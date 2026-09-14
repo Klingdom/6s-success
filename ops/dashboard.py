@@ -305,8 +305,9 @@ def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     return (f"{cards_rendered} cards render clean from the template "
             f"layer{gallery}")
 
-def traffic_line() -> str:
-    """Real visitors on the deck, or an honest statement that it could not look.
+def traffic_reading() -> tuple:
+    """(measured: bool, line: str). Real visitors, or an honest statement that
+    this run could not look.
 
     The deck has never carried a traffic number. It carries revenue, issues,
     commits and readiness, and the thing the whole business is currently
@@ -324,30 +325,98 @@ def traffic_line() -> str:
     never print a zero or omit the row, because a missing number reads as no
     traffic and a zero reads as a measurement. This runs in CI, where there is
     no ssh key, so the unreadable path is the common one and has to be legible.
+
+    Returning the bool alongside the line, rather than making the caller sniff
+    the text for "not measured", is what let this call site carry a real
+    reading forward (_carry_last_reading below) instead of a string match
+    quietly breaking the day the wording changed.
     """
     try:
         sys.path.insert(0, os.path.join(ROOT, "ops"))
         import experiments as X
         f = X.gather()
     except Exception as e:                                    # noqa: BLE001
-        return ("**not measured** (%s). No number here means nobody looked, "
-                "not that nobody came." % str(e)[:80])
+        return False, ("**not measured** (%s). No number here means nobody "
+                "looked, not that nobody came." % str(e)[:80])
     if not getattr(f, "traffic", None):
-        return ("**not measured** (%s). No number here means nobody looked, "
-                "not that nobody came."
+        return False, ("**not measured** (%s). No number here means nobody "
+                "looked, not that nobody came."
                 % (str(getattr(f, "read_error", "")) or "analytics unreadable")[:80])
     t = f.traffic
     auto = t.get("automated_pageviews", 0)
     base = ("%d pageviews from %d visitors, %s to %s"
             % (t["pageviews"], t["visitors"], t["first"][:10], t["last"][:10]))
     if not auto:
-        return base
-    return ("%s. **%d of those pageviews came from %d automated session(s)**, "
+        return True, base
+    return True, ("%s. **%d of those pageviews came from %d automated session(s)**, "
             "leaving %d from %d visitors. The remainder is not the same as "
             "strangers: it still includes Phil and any check run from a real "
             "browser."
             % (base, auto, t.get("automated_sessions", 0),
                t.get("human_pageviews", 0), t.get("human_visitors", 0)))
+
+
+def traffic_line() -> str:
+    """Back-compat wrapper: the line alone, for anything that only wants text."""
+    return traffic_reading()[1]
+
+
+# Marks the two known "this run could not look" phrasings (traffic_line's
+# own and check_affiliate_trigger.verdict()'s own), used only to keep a
+# pre-fix committed file's plain field from bootstrapping its own honest
+# "not measured" text into a fake carried measurement. Never used to decide
+# whether the CURRENT run measured; that always comes from the real
+# measured/fired boolean, never a string match on this run's own text.
+_UNMEASURED_MARK = re.compile(r"not measured|not evaluated", re.I)
+
+
+def _carry_last_reading(prefix: str, measured: bool, line: str,
+                         prev: dict, generated: str) -> dict:
+    """Keep the last actually-measured reading when this run could not look.
+
+    Generalises carry_forward() (above, revenue-specific) to any dashboard
+    line that can honestly say "not measured": found needed 2026-09-14 when a
+    session with a real ssh key measured traffic_line as "945 pageviews from
+    74 visitors...", committed it, and the very next run in this same
+    no-egress environment overwrote it with "**not measured** (no ssh key)."
+    traffic_line() and affiliate_trigger had no carry-forward at all, so
+    every credential-less cycle (the common case here) erased the prior
+    cycle's real number, exactly the "one blind run poisons the well" bug
+    carry_forward()'s own docstring already names and fixed for revenue.
+
+    Persists the last MEASURED line under its own key, written only by a run
+    that actually measured, so no run of blind cycles can erase it. Pure, so
+    it can be tested without an ssh key or a live analytics database, which
+    is the whole condition it exists to handle.
+
+    Bootstraps from a committed state.json written before this function
+    existed: such a file holds a real measurement in the plain field itself
+    (no "_last_measured" sibling yet). Recognised as real only when it does
+    not itself carry this same "could not measure" wording, the same way
+    resolve_deploy_verdict()'s own "sibling" fallback reads an older file's
+    nested "deploy" dict rather than assuming a fresh 0. Without this, the
+    very first blind run after this fix ships would read the old field,
+    find no "_last_measured" key, and discard a real reading anyway.
+    """
+    last_key, when_key, carried_key = (f"{prefix}_last_measured",
+                                        f"{prefix}_measured_at",
+                                        f"{prefix}_carried_from")
+    if measured:
+        return {prefix: line, last_key: line, when_key: generated,
+                carried_key: None}
+    last = prev.get(last_key)
+    when = prev.get(when_key)
+    if last is None:
+        candidate = prev.get(prefix)
+        if candidate and not _UNMEASURED_MARK.search(candidate):
+            last, when = candidate, prev.get("generated")
+    if not last:
+        # Nothing measured yet, ever. Nothing to carry; show this run's own
+        # honest "could not look", same as before this function existed.
+        return {prefix: line, carried_key: None}
+    return {prefix: ("%s (carried forward from %s; this run could not "
+                     "measure it fresh: %s)" % (last, when or "an earlier run", line)),
+            last_key: last, when_key: when or "", carried_key: when or "an earlier run"}
 
 
 def count_files(pattern, recursive=True):
@@ -402,22 +471,34 @@ S["commits_total"] = (
     else None
 )
 # The traffic number, read here so a slow or unreachable analytics database
-# delays only this row. See traffic_line(): people rather than events, the
+# delays only this row. See traffic_reading(): people rather than events, the
 # automated share separated out, and an explicit "not measured" when it could
 # not look, because a missing row reads as no traffic and a zero reads as a
-# measurement.
-S["traffic_line"] = traffic_line()
+# measurement. Carried forward via _carry_last_reading when this run could
+# not measure it fresh, same reason revenue_month is: this environment has no
+# ssh key on the common run, and without carrying, a real prior reading gets
+# silently overwritten by that run's own honest ignorance.
+_traffic_measured, _traffic_line_now = traffic_reading()
+S.update(_carry_last_reading("traffic_line", _traffic_measured, _traffic_line_now,
+                              _prev, S["generated"]))
 
 # The affiliate trigger's current reading. On the deck rather than in preflight,
 # because it is a number worth glancing at and not a warning worth repeating:
 # PLAN-AFFILIATE-MONETISATION.md authorises one application when it fires, and
-# gate_affiliate_trigger stays silent until it does.
+# gate_affiliate_trigger stays silent until it does. Carried forward the same
+# way traffic_line is: check_affiliate_trigger.verdict()'s own "fired" return
+# is None exactly when it could not evaluate, which is the honest measured/
+# unmeasured signal, not a string prefix to sniff.
 try:
     import check_affiliate_trigger as _T
-    S["affiliate_trigger"] = _T.verdict(_T.reading())[1]
+    _aff_fired, _aff_line = _T.verdict(_T.reading())
+    _aff_measured = _aff_fired is not None
 except Exception as _e:                                          # noqa: BLE001
-    S["affiliate_trigger"] = ("not evaluated (%s). Not the same as not fired."
-                              % str(_e)[:70])
+    _aff_measured = False
+    _aff_line = ("not evaluated (%s). Not the same as not fired."
+                % str(_e)[:70])
+S.update(_carry_last_reading("affiliate_trigger", _aff_measured, _aff_line,
+                              _prev, S["generated"]))
 
 _git_status = sh_checked("git status --porcelain")
 S["clean"] = (_git_status == "") if _git_status is not None else None

@@ -2043,6 +2043,61 @@ def gate_dashboard_deploy_carry_forward() -> None:
              f"unmeasured 0/0 instead. Got {sibling!r}")
 
 
+def gate_dashboard_traffic_carry_forward() -> None:
+    """A real traffic or affiliate-trigger reading must survive an unmeasured run.
+
+    Same shape of bug as gate_dashboard_live_links_carry_forward and
+    gate_dashboard_deploy_carry_forward, found in two rows those two gates
+    never touched. Found 2026-09-14, live, mid-cycle: this operator's own
+    checkout carried a committed ops/state.json with traffic_line reading
+    "945 pageviews from 74 visitors..." (measured by a sibling session with a
+    real ssh key), and simply running this preflight in this no-ssh-key
+    sandbox regenerated state.json with traffic_line back to "**not
+    measured**", about to be committed over the real reading. Neither
+    traffic_line() nor the affiliate_trigger read had ever been wired into
+    carry_forward()'s own pattern; every credential-less run (the common case
+    here) silently erased whatever a capable run had last measured, the
+    identical "one blind run poisons the well" bug carry_forward()'s own
+    docstring already names and fixed for revenue_month years of log entries
+    ago, just sitting unfixed in these two newer rows.
+
+    Proves the pure function itself, with synthetic inputs, the same pattern
+    the sibling carry-forward gates use for their own resolve functions.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    out = dashboard._carry_last_reading(
+        "traffic_line", False, "**not measured** (no ssh key)",
+        {"traffic_line_last_measured": "70 pageviews from 12 visitors",
+         "traffic_line_measured_at": "2026-09-14 10:00"},
+        "2026-09-14 11:00")
+    if "70 pageviews from 12 visitors" not in out.get("traffic_line", ""):
+        fail("dashboard-traffic-carry-forward",
+             f"_carry_last_reading() dropped a real traffic reading on an "
+             f"unmeasured run instead of carrying it forward; got {out!r}")
+    # A real measurement this run must always win over anything carried.
+    fresh = dashboard._carry_last_reading(
+        "traffic_line", True, "80 pageviews from 15 visitors",
+        {"traffic_line_last_measured": "70 pageviews from 12 visitors",
+         "traffic_line_measured_at": "2026-09-14 10:00"},
+        "2026-09-14 11:00")
+    if fresh.get("traffic_line") != "80 pageviews from 15 visitors":
+        fail("dashboard-traffic-carry-forward",
+             f"_carry_last_reading() let a stale carried traffic reading "
+             f"override a fresh real measurement; got {fresh!r}")
+    # affiliate_trigger must carry under its own key, proving the prefix
+    # argument is genuinely used rather than one field hardcoded inside.
+    aff = dashboard._carry_last_reading(
+        "affiliate_trigger", False, "T2 NOT EVALUATED: analytics unreadable",
+        {"affiliate_trigger_last_measured": "T2 not fired: 3 of 60",
+         "affiliate_trigger_measured_at": "2026-09-13 09:00"},
+        "2026-09-14 09:00")
+    if "T2 not fired: 3 of 60" not in aff.get("affiliate_trigger", ""):
+        fail("dashboard-traffic-carry-forward",
+             f"_carry_last_reading() dropped a real affiliate-trigger reading "
+             f"on an unmeasured run; got {aff!r}")
+
+
 def gate_dashboard_constraint_reflects_carried_deploy() -> None:
     """The dashboard's headline sentence must read the carried verdict, not
     only this run's own unmeasured probe.
@@ -12498,6 +12553,7 @@ def main() -> int:
     run_gate(gate_dashboard_severity)
     run_gate(gate_dashboard_live_links_carry_forward)
     run_gate(gate_dashboard_deploy_carry_forward)
+    run_gate(gate_dashboard_traffic_carry_forward)
     run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)
     run_gate(gate_dashboard_shallow_commits)

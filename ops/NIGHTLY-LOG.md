@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (a real measurement about to be silently erased, caught while attaching, not while hunting)
+
+**Did:** Unshallowed, ff-only onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last several log entries. Backlog sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential. The cold-read tier has already been declared exhausted in this log several times, with an explicit warning not to manufacture a finding by re-sweeping it, so I did not.
+
+**Found instead, mid-cycle:** a concurrent session pushed while I was validating (`3d2c61a8`, an image-generation window and an `accept_image.py` fix). Its committed `ops/state.json` carried a real measured `traffic_line` ("945 pageviews from 74 visitors...", from a session with a real ssh key). Merging it in and running `preflight.py` in this no-ssh-key sandbox silently regenerated that field to "**not measured**" in my own working tree, about to be committed over the real reading, the exact "one blind run poisons the well" bug `carry_forward()`'s own docstring already names and fixed for `revenue_month`. `traffic_line` and `affiliate_trigger` had never been wired into that pattern.
+
+**Fixed:** `_carry_last_reading()` in `ops/dashboard.py`, generalising `carry_forward()`, wired to both fields, with a bootstrap path for a pre-fix committed file's plain field (no `_last_measured` sibling yet). New `gate_dashboard_traffic_carry_forward`, `ops/tests/test_traffic_carry_forward.py` (10 cases), fail-then-pass proved via `git stash` on the pre-fix source. Verified against the real committed state: 945/74 now preserved with an honest "carried forward from 2026-09-14 11:46" note. Full `preflight.py` clean (23 pre-diagnosed warnings), `test_carry_forward.py`, mobile `npm test`, `check_urls.py` (188/188), `audit_pages.py` (0), `affiliate.py --check` (162 documents) all clean after.
+
+**Went well:** noticing an unexpected local diff before committing it, rather than trusting a clean exit code.
+
+**Did not go well:** this bug likely fired silently on every no-ssh-key cycle since `traffic_line` was added, each time a capable session's real reading aged out of `state.json` before the next one refreshed it; no way to know how many committed dashboards understated traffic as a result.
+
+**Changing next cycle:** none; the gate is now in place.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and 8 decision/blocked-on-art issues, unchanged. Constraint still traffic (2.3 visitors/day).
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `ops/tests/test_traffic_carry_forward.py`, `STATUS.md`, command deck. No price, product or page changed.
+
 ## 2026-09-14, cycle (generation came back after fifteen days, and the images are not good enough)
 
 **Did:** System RAM reached 2.8 GB free, the most in four days of checking, and the probe loaded the pipeline: exit 0, "generation is available on this machine". First time since 2026-08-30. Took the window immediately: backed up and cleared the eight rejected zone heroes and regenerated all eight in one minute, seven to nine seconds each. Then reviewed them, found a real defect in my own accept test, and fixed it.
