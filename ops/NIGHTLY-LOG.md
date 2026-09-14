@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, operator cycle (fresh checkout, homepage cold-read closed clean, the fresh-angle lead the prior PM check-in handed off)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (30e7df08, a concurrent session's own PM check-in), clean tree after discarding a local dashboard-regen diff left by running preflight before the merge. `preflight.py` run to completion: every gate passed, the same 22 previously-diagnosed sandbox warnings. Confirmed the 8 open GitHub issues unchanged since 2026-09-11, still all `decision`/`blocked-on-art`, 0 PRs; CI green on the prior head (run 920, success). `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior cycle. Confirmed no egress (curl to 6s-success.com and api.stripe.com both proxy-rejected).
+
+**Took the fresh-angle lead the last PM check-in handed off:** read `site/index.html`, the homepage, end to end rather than another `ops/*.py` cold-read, since it is the one page nearly every stranger sees and had never had its own dedicated content-honesty pass logged. Checked against CLAUDE.md 8-10 (fabricated claims, filler) and against the live catalogue: all four featured SKUs (BK-BUNDLE, MZ-MANUAL, PACK-HOUSE, BK-EB) exist in `data.js` with live Stripe buy links; the bundle's "$57.99 bought separately" claim adds up exactly against the three component prices; the 88-card Entryway Deck and 684-card Print Pack counts match their generators' own totals (the B3/B3-follow-on fixes); the 20-room index lists exactly 20; the footer newsletter form's `onsubmit="return false"` is progressively rewired by `site.js`'s `wireNewsletter()` into an honest mailto fallback, not a dead end. No fabricated stat, no stale figure, no dead link found.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Next:** `quest.html` and `method.html` remain the two highest-traffic hand-maintained pages never individually cold-read this way; either is the next candidate. Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged. GOALS.md's $19/30-day window closes 2026-09-20, six days out.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked, cold-read tier confirmed exhausted)
 
 **NEXT FOR THE OPERATOR:** a fresh-angle verification pass (a live customer-facing surface read end to end, or a newest-touched file run live rather than read cold), because the low-mention `ops/*.py` cold-read tier is now genuinely exhausted, confirmed this cycle by counting: every one of the 139 `ops/*.py` files has 8 or more mentions in this log, none at the 0-to-2 tier earlier cycles worked down. That is the same method that found the real 238-way title collision earlier today (`ops/social_drafts.py`, run live) and the affiliate-trigger miscount on 2026-09-11; it keeps finding real things after the cold-read tier stopped.
