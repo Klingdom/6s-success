@@ -54,6 +54,22 @@ OBJECTS = [
     ("mugs capped at the number of daily drinkers plus two", "mugs"),
     ("One tray holding keys and sunglasses", "tray"),
     ("Machine", "Machine"),
+
+    # Participial and comparative conditions, added 2026-09-14. The first
+    # marker list held only prepositional ones, so these three reached the
+    # vision model whole and came back as MISSING PRIMARY OBJECTS on images
+    # that plainly contained boards, folders and a counter. A false hard
+    # fail on the object is the exact failure this split exists to stop, so
+    # each one that was observed is pinned here.
+    ("Boards lying flat and supported along their length with the longest "
+     "and heaviest at the bottom", "Boards"),
+    ("Hanging folders labelled by the question you would ask when looking",
+     "Hanging folders"),
+    ("clear run of counter at least as wide as your largest cutting board",
+     "clear run of counter"),
+    ("A bare mattress with one fitted sheet pulled tight to the corners",
+     "bare mattress with one fitted sheet"),
+    ("umbrellas standing in the stand", "umbrellas"),
 ]
 
 
