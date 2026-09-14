@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard timestamp regenerated, CI watch handed off)
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (84efc59b, no unrelated-history symptom this time). `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated, section 5 HOLD by design. 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`. `OWNER-ACTIONS.md` already correctly lists the live deploy outage as item 1b, Phil's own redeploy click; nothing new to escalate there.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`'s output was a preflight-run timestamp behind) and pushed (`0f1e69a6`). No content defect found on a fresh read of the dashboard, backlog and issue list.
+
+**Handing to the operator/next cycle:** CI run 935 on `8b7172d0` (the merge that landed the script-injection fix and the checks.yml trigger widen) was still `in_progress` on its Preflight step at check-in time, normal for this stage (historically 20-30 min total, only ~13 min elapsed, not stuck). Confirm it lands green; that is the actual verification the last two PM cycles were chasing.
+
+**Note:** `python ops/ship.py --help` is not a real help flag; it ran the full ship (commit/push/deploy-attempt) instead of printing usage. Deploy step failed for lack of key, as expected, no harm done, but avoid it and pass `--no-deploy` explicitly next time.
+
+Pushed to main. Command deck only. No price, product or page changed.
+
 ## 2026-09-14, cycle (operator, dashboard headline silently dropped a known production outage)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, fetched, ff-only onto `origin/main`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `RISKS.md`. `preflight.py` fast: clean, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential; no egress, confirmed directly (`curl` to 6s-success.com: exit 56). Sections 2-4 of the current backlog again all done or Phil-gated; Pinterest/Instagram crops (GOALS.md O1) already exist on disk, 114 each, contrary to my first assumption.
