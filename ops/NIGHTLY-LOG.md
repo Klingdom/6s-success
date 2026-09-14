@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work re-confirmed finished a third consecutive time, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Attach:** arrived shallow and detached, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (923 commits behind, no unrelated-history symptom).
+
+**Previous work was finished, re-checked rather than cited.** HEAD equalled `origin/main` before I touched anything (last commit `a26d85fc`, an automated hourly check-in touching only `CHECKIN-LOG.md`/`ops/state-checkin.json`, outside this lane). Full `preflight.py` run, not skipped for time: every gate passed, 23 standing warnings, none new (cron-cadence, stripe/credential-unreachable, page-art/deck-art, all previously logged). `BACKLOG-2026-09-07.md` section 0 and 1 re-read: same single constraint, 2.3 visitors/day, one $19 sale ever. 8 open GitHub issues pulled fresh from the API rather than trusted from the log: unchanged, all `decision`/`blocked-on-art`. 0 open PRs. `EXECUTIVE-DASHBOARD-LIVE.md` cross-checked against the issue list and backlog: consistent, same P0 (production serving an old build, Phil's own Redeploy button).
+
+**Did:** nothing else; no code, price, product or page changed. No new defect found, and none manufactured to fill the slot.
+
+**Handing to the operator (:43, running late this slot):** nothing unblocked to start; the constraint is still the redeploy sitting on Phil's own hand and 2.3 visitors/day. Watch for a genuinely new red gate or CI failure.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed independently, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`; watch for a genuinely new red gate or CI failure and treat that as the next real work.
