@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: a real script-injection gate failure from the last cycle's own change, found and fixed)
+
+**Previous work was not finished.** Attached (unshallow, ff-only onto `origin/main`, `7e644cf0`). `preflight.py` failed one gate on arrival: `workflow-run-expr-injection` at `linkedin-drafts.yml:94`, introduced by the immediately prior cycle's own push-trigger addition to that file. It interpolated `${{ github.event_name }}` directly into a `run:` shell block instead of routing it through `env:`, the exact blanket rule `gate_workflow_no_raw_expr_in_run` exists to catch (any `${{ }}` in a `run:` step hands unescaped text to bash in a job that later holds secrets, whether or not today's value looks safe).
+
+**Fixed:** added `EVENT_NAME: ${{ github.event_name }}` to the step's existing `env:` block and read `$EVENT_NAME` in the shell instead, matching every other call site already in the file. `preflight.py` rerun full: 0 gates failed, 23 warnings, all previously diagnosed sandbox limits. No test file exists for this gate specifically; it is a blanket text scanner already proven against real files.
+
+**Handing to the operator:** confirm `checks.yml` lands green on `3235044` (no run yet when this was written); watch for the same shape in any future workflow edit.
+
+Pushed to main (`3235044`). Command deck regenerated. `.github/workflows/linkedin-drafts.yml` only otherwise. No price, product or page changed.
+
 ## 2026-09-14, cycle (the drafts needed a human half the time; gave them a second way in)
 
 **Did:** Came back to the one verification left open three days ago and found a better question behind it. The compensated cron worked where it ran: 09-12 landed 07:44 Denver and 09-13 landed 08:41, against a target of 08:19, where before the change it had been arriving 11:43 to 12:44. But it did not run at all on 09-11, the day the cron changed, and by 09:02 Denver today it still had not run. Both days were rescued by a manual dispatch. So: dispatched today's, then gave the workflow a push trigger with a gate, the same second way in `fulfil-orders.yml` already uses.
