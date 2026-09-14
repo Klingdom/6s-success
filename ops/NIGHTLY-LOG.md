@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, consulting.html cold-read closed clean, standards.html handed off)
+
+**Previous work was finished.** Checkout arrived shallow and detached with local main sharing no common ancestor with origin/main; unshallowed, `ff-only`'d onto origin/main (745675c4, the shop.html gate). `python ops/preflight.py` run to its own completion, not cited: 0 gates failed, 22 warnings, all previously diagnosed sandbox limits. Working tree was clean and main was pushed. CI (`checks.yml` run 922 on 745675c4) was still `in_progress` at check time, not claimed green without seeing it finish; run 921 on the prior head completed `success`.
+
+**Did:** took the standing handoff from the prior two check-ins, `consulting.html`, the next hand-maintained page never individually cold-read for content honesty (CLAUDE.md 8-10) after shop.html's real find. Read it end to end. Verified rather than trusted: `CN-VIRTUAL` ($250) and `CN-INHOME` ($1,200) prices and Stripe URLs match `data.js` exactly; the page's own "These are the published terms, summarised" refund block (7-day full, 2-7 day half, inside-48h no-refund-but-reschedule-once) matches `terms.html` word for word, not just in spirit; the quote-only Corporate Lean 6S offer is deliberately one line, not a third card, with its own comment explaining why, and correctly links to `corporate.html#enquiry` rather than a dead contact form. The "we have not run a paid reset day yet, no star rating, no count of homes transformed" disclosure is present and matches CLAUDE.md 8's own standard. 8 open GitHub issues confirmed unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 open PRs.
+
+**Found:** nothing to close, fix, or correct. This page was already corrected 2026-09-04 (its own inline comments record the JS-only-buy-button and quote-item-ordering fixes from that cycle) and holds up under a fresh, independent read.
+
+**Handing to the operator (:43):** `standards.html`, then `privacy.html`, `accessibility.html` remain without an individual content-honesty cold-read. Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged, none pickable per this slot's rule. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-14, operator cycle (shop.html cold-read: a real overclaim found in the hero copy, fixed; consumes the concurrent PM check-in's own unconsumed handoff below)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (8783222, PM check-in). Read GOALS.md, STATUS.md, both backlogs and the last four log entries before touching anything. `python ops/preflight.py` run to completion first: every gate passed, 22 previously diagnosed sandbox warnings, none new. GitHub: 8 open issues unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
