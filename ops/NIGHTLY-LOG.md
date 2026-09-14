@@ -15,6 +15,26 @@ NEXT FOR THE OPERATOR: watch for a genuinely new red gate or CI failure and trea
 
 Pushed to main. Command deck regenerated.
 
+## 2026-09-14 (late), scheduled operator pass: RISKS.md's two most-read entries were still citing pre-LRN-0010 numbers
+
+**Did:** attached clean (shallow, unshallowed, ff-only onto origin/main, no unrelated-history symptom). Full `preflight.py`: every gate passed, same 23 standing warnings, no new ones. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 GitHub issues pulled fresh, unchanged (decision/blocked-on-art); `inbox_agent.py --apply` still has no mail credential; no egress (curl to 6s-success.com and google.com both `connect_rejected`, confirmed directly). Both `checks.yml` and `publish-image.yml` were mid-run on HEAD when I checked; the prior commit's own runs of both were green.
+
+Rather than another exhausted cold-read pass, checked whether today's own biggest finding (LRN-0010: every buy-click and quote-click since 7 Sept traces to the owner's home IP, not a stranger) had actually reached RISKS.md, the file whose own text calls RISK-0013 "this register's own most consequential entry." It had not: RISK-0013's evidence still cited a hand-pulled "68 visitors/161 visits, 2026-09-11" reading and never mentioned LRN-0010 at all, still treating the 16 unpaid checkout sessions as an open, ambiguous lead the newer finding had already retired. RISK-0005's evidence had the same shape one paragraph off: it explicitly said the visit count was "correctly left unconfirmed" days after the 21:30 pull had actually reconfirmed it (196 visits). Fixed both: current traffic figures, and RISK-0013 now states plainly that stranger buy-clicks have been 0 since 7 September, not "16 ambiguous," with the mitigation naming the proxy-log check that LRN-0010 requires going forward.
+
+**Turned into a gate (step 10b).** This exact shape, a document corrected and a sibling never told, had already hit RISK-0005/RISK-0013 once before (2026-09-04, the retired "47 sessions" wording, fixed by `gate_no_stale_session_label`) and gate_risks_evidence_current already catches it for `key=value` state.json citations, but neither reaches a prose "N visitors/N visits" figure, which is the shape both stale entries actually used again. New `gate_risks_traffic_citations_current` in `ops/preflight.py`: finds every RISKS.md evidence block that cites an actual visitor/visit figure (by regex, not a hardcoded RISK-ID list, so a future entry that starts tracking traffic is covered automatically) and fails if GOALS.md's current baseline is not present somewhere in it. Own bug caught before shipping: the first version keyed off a bare substring check ("visitor" and "visit" both present), which is always true of any sentence containing the word "visitor" alone, since "visit" is a substring of "visitor"; it false-positived on RISK-0012's unrelated prose ("a visitor who arrives today...") which cites no figure at all. Fixed to require an actual `\d+ visitors?` and `\d+ visits?` citation before a block counts as traffic-tracking. `ops/tests/test_gate_risks_traffic_citations_current.py` (6 cases) and a direct fail-then-pass proof against the real committed files (planting the old 68/161 text back in fails by name citing RISK-0013; the real fixed file is clean) both pass.
+
+**Verified:** full `preflight.py` rerun with the new gate registered, clean (0 gates failed, 23 warnings, unchanged). `check_urls.py` (188/188), `affiliate.py --check` (162 documents) clean. Grepped for other stale "16 unpaid checkout" or "68 visitors" citations elsewhere; none live outside narrated history.
+
+**Went well:** finding a real gap between where evidence is discovered (LEARNINGS.md) and where it is supposed to govern decisions (RISKS.md), and catching my own gate's false positive before it ever ran for real.
+
+**Did not go well:** shipped a substring bug in the gate's first draft; would have fired on RISK-0012 every cycle had it not been caught before committing.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts); confirm `checks.yml`/`publish-image.yml` land green on this commit.
+
+Pushed to main. Command deck regenerated.
+
 ## 2026-09-14 (evening), local session: traced every recent checkout and quote signal to the owner's household
 
 **Did:** matched Stripe's unpaid checkout sessions against Umami and the proxy's access log (`nginx-proxy-manager` `proxy-host-4_access.log*`; `docker logs` had been wiped by today's two container recreations). The 7 Sept burst of ~90, the 12 Sept CN-CORP quote click and the 14 Sept MZ-MANUAL buy-click all came from the owner's home IP. The other opens had no request to our site within two minutes either side. Recorded as `LEARNINGS.md` LRN-0010, and the evidence was added to `OWNER-ACTIONS.md` 1c. Fixed `ops/audit_visual.py`: its desktop pass crashed decoding Chrome's UTF-8 output as cp1252.

@@ -336,10 +336,10 @@ evidence:
     caught and fixed 2026-09-14. Updated again 2026-09-14 11:46 (74 visitors,
     945 pageviews/30 days), a real pull that sat in ops/state.json uncarried
     into GOALS.md/OWNER-ACTIONS.md for most of a day, the same shape again,
-    caught and fixed the same day. The visit count (161) is still the
-    2026-09-07 figure: pageviews is not the same metric as a `visit_id`
-    count, so it was correctly left unconfirmed rather than replaced by it.
-    This is a hand-transcribed
+    caught and fixed the same day. Updated again 2026-09-14 21:30, the first
+    read since 2026-09-07 to re-pull the visit count rather than carry it
+    forward: 75 visitors/196 visits/947 pageviews/30 days, of which 441
+    pageviews came from 2 automated sessions. This is a hand-transcribed
     snapshot, not a live feed, and goes stale the same way any
     hand-transcribed number does.
 impact: >
@@ -701,11 +701,21 @@ evidence:
   - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
     catalog has not moved revenue because almost nobody is arriving at the
     site yet. Discovery, not what can be bought, is the constraint now."
-  - GOALS.md baseline, hand-pulled, most recently 2026-09-11: 68
-    visitors/161 visits/30 days, up from 60/161 on 2026-09-07 and 52/144
-    four days before that. Two organic referrals exist in the site's whole
-    life, one from Bing (21 August) and one from Google (4 September). A
-    live feed is still blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
+  - GOALS.md baseline, direct Umami database read, 2026-09-14 21:30: 75
+    visitors/196 visits/947 pageviews/30 days, up from 68/161 on 2026-09-11
+    and 60/161 on 2026-09-07. Four organic referrals exist in the site's
+    whole life: one from Bing (21 August) and three from Google (4 to 12
+    September), read directly from the database. A live feed is still
+    blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
+  - LEARNINGS.md LRN-0010 (2026-09-14, HIGH confidence): every buy-click and
+    quote-click Stripe/Umami/the reverse-proxy access log can identify since
+    2026-09-07 traced to the owner's own home IP and personal iPhone, not a
+    stranger, including the 2026-09-14 MZ-MANUAL buy-click and the
+    2026-09-12 CN-CORP quote-click. Stripe's 16 unpaid checkout sessions in
+    the last 7 days are not evidence of stranger interest: this register's
+    own prior citation of "16 unpaid checkout sessions" as an open,
+    ambiguous lead is retired by this finding. The honest number is not
+    "16 ambiguous," it is "0 stranger buy-clicks since 2026-09-07."
   - ops/state.json (2026-09-03): email_list=0, so there is also no list to
     fall back on while search compounds
 impact: >
@@ -714,13 +724,19 @@ impact: >
   ordering rule (epic 4, conversion, waits on epic 1, measurement). The
   catalog (RISK-0008, closed), the Quest, and the payment route (RISK-0001,
   closed) are all built; none of it has yet been tested against a real
-  stranger's decision to buy.
+  stranger's decision to buy, and LRN-0010 closes off the one lead
+  (unpaid checkout sessions) that might have shown a stranger trying.
 mitigation: >
   Per ROADMAP-2026-2029.md: get automated traffic measurement flowing
   (BACKLOG-2026-H2.md 1.2), let real Search Console and scroll-depth data
   accumulate (1.4, 1.5), and run the capped local demand test for the
   service SKUs (epic 3B) once Phil approves a budget, since that route does
-  not require organic search to compound first.
+  not require organic search to compound first. Per LRN-0010: until
+  OWNER-ACTIONS.md item 1c is done (Phil's own devices tagged
+  `?6s-internal=1`), any funnel signal must be checked against the reverse
+  proxy's access log for the owner's home IP before it is reported as
+  stranger activity; Stripe checkout-session counts alone must never be
+  reported as evidence of stranger interest.
 closing_condition: >
   A stranger, not a personal referral, completes a purchase; or
   ROADMAP-2026-2029.md's own G1 gate resolves (fewer than 500 organic

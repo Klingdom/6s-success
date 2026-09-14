@@ -8504,6 +8504,82 @@ def _status_material_path(f: str) -> bool:
                  "ROADMAP-2026-2029.md", "GOALS.md")
 
 
+def gate_risks_traffic_citations_current() -> None:
+    """Any RISKS.md evidence block that cites a visitor/visit traffic figure
+    must cite GOALS.md's own current baseline somewhere in that block, not
+    only an older one.
+
+    Found 2026-09-14 (late): RISK-0013 and RISK-0005, the two entries that
+    track the traffic baseline, both still opened their evidence with a
+    superseded reading (RISK-0013: "68 visitors/161 visits... most recently
+    2026-09-11"; RISK-0005: a note that the visit count was "correctly left
+    unconfirmed") after GOALS.md had already moved to 75 visitors/196
+    visits/947 pageviews on 2026-09-14 21:30. This is the identical
+    one-document-corrected-sibling-never-told shape gate_no_stale_session_
+    label already fixed once in these same two entries (2026-09-04, the
+    retired "47 sessions" wording) and gate_risks_evidence_current already
+    catches for `key=value` state.json citations; neither gate reaches a
+    prose "N visitors / N visits" figure, which is the shape both stale
+    entries actually used. Rather than special-case RISK-0005/RISK-0013 by
+    ID, this gate finds every evidence block that mentions both "visitor"
+    and "visit" (the two entries that track traffic, by content rather than
+    a hardcoded ID list, so a future risk entry that starts citing traffic
+    is covered automatically) and requires GOALS.md's own current figure to
+    appear in it. A block may still narrate history ("up from 68/161"); the
+    gate only requires the CURRENT figure be present somewhere, not that
+    old ones be absent, matching how these entries are actually written.
+    """
+    risks_path = os.path.join(ROOT, "RISKS.md")
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    if not os.path.exists(risks_path) or not os.path.exists(goals_path):
+        return
+    check_risks_traffic_citations_current(
+        io.open(risks_path, encoding="utf-8").read(),
+        io.open(goals_path, encoding="utf-8").read(),
+    )
+
+
+def check_risks_traffic_citations_current(risks_text, goals_text) -> None:
+    """Pure logic for gate_risks_traffic_citations_current, importable by
+    tests without touching the filesystem."""
+    if not risks_text or not goals_text:
+        return
+
+    m = re.search(
+        r"\*\*(\d+) visitors\s*/\s*(\d+) visits\s*/\s*30 days\*\*",
+        goals_text)
+    if not m:
+        return  # GOALS.md's own baseline format changed; nothing to check.
+    visitors, visits = m.group(1), m.group(2)
+    current = f"{visitors} visitors/{visits} visits"
+
+    blocks = re.findall(
+        r"```yaml\n(id: RISK-\d+.*?)\n```", risks_text, re.DOTALL)
+    bad = []
+    for block in blocks:
+        # Require an actual numeric citation of each metric, not a bare
+        # mention: "visitor" is a substring of "visitor" but a prose
+        # sentence like "a visitor who arrives today" names no figure and
+        # is not tracking the baseline this gate protects (RISK-0012 does
+        # this in its `impact:` prose without citing any traffic number).
+        if not re.search(r"\d+\s*visitors?\b", block, re.IGNORECASE):
+            continue
+        if not re.search(r"\d+\s*visits?\b", block, re.IGNORECASE):
+            continue
+        risk_id = re.search(r"id:\s*(RISK-\d+)", block).group(1)
+        # Accept either exact adjacency ("75 visitors/196 visits" or
+        # "75 visitors / 196 visits") without demanding one literal spacing.
+        loose = re.search(
+            rf"{visitors}\s*visitors\s*/\s*{visits}\s*visits", block)
+        if not loose:
+            bad.append(risk_id)
+
+    if bad:
+        fail("risks-traffic-citations-current",
+             "RISKS.md cites traffic but not GOALS.md's current baseline "
+             f"({current}): {', '.join(sorted(bad))}")
+
+
 def status_currency_gap(status_text, commits, threshold=8):
     """Pure logic for gate_status_currency: which commits STATUS.md never
     mentioned, and whether that pile has grown past a threshold worth a
@@ -12694,6 +12770,7 @@ def main() -> int:
     run_gate(gate_risks_evidence_current)
     run_gate(gate_risk_cross_references_current)
     run_gate(gate_no_stale_session_label)
+    run_gate(gate_risks_traffic_citations_current)
     run_gate(gate_status_currency)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
