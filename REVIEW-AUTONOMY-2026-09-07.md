@@ -2,6 +2,29 @@
 
 7 September 2026. Everything below was checked today, not recalled.
 
+**Annotated 2026-09-14, operator.** Two things below have moved since this
+was written; the rest was checked directly against the live repository today
+and still holds.
+
+1. The "What genuinely runs without me" table lists six jobs. A seventh now
+   exists and belongs in it: `social-drafts.yml`, added 2026-09-12, a real
+   cron schedule (13:30 UTC daily) that drafts Facebook and X posts from the
+   book corpus with nobody watching, the same shape as `linkedin-drafts.yml`
+   two rows above it. Not a correction to anything wrong here, an omission:
+   the job did not exist yet on 7 September.
+2. The core finding, that nothing can deploy the site and a human click is
+   still the only path from a published image to a live one, is still true
+   today, checked directly against `.github/workflows/publish-image.yml`
+   (still ends at "the host pulls this," no deploy step) and
+   `docker-compose.hostinger.yml`. That file also records something this
+   review did not know when it recommended a deploy key: a Watchtower
+   auto-updater was tried on this VPS and removed the same day, because it
+   crash looped on a shared host that also runs two other live products.
+   Recommendation 1 below is therefore still open and still genuinely Phil's
+   call, not a stale ask: the auto-pull path was already attempted once and
+   failed for a reason a deploy key does not share (a crash loop, not a
+   credential), so the two are not the same recommendation.
+
 ---
 
 ## The short answer

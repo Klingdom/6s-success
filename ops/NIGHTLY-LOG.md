@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (REVIEW-AUTONOMY-2026-09-07.md cold-read: a real job missing from its own enumeration, annotated)
+
+**Did:** unshallowed, ff-only onto origin/main (870 commits). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Confirmed rather than trusted the prior PM check-in's handoff: `checks.yml` run 933 on the merge commit `786e8e5c` is `completed`/`success` via the Actions API, and `git diff 0de9c1456 HEAD -- site/` is empty, so production is caught up. 8 GitHub issues unchanged, all decision/blocked-on-art. `preflight.py` clean on arrival: every gate passed, 23 warnings, same sandbox limits as every prior cycle today.
+
+Every standard cold-read lane (`ops/*.py`, workflows, hand-maintained pages, `mcp/server.py`) is reconfirmed exhausted, so per the prior cycle's own handoff this pass moved to root `.md` files by mention count and read `REVIEW-AUTONOMY-2026-09-07.md` (2 mentions, both about an em-dash fix, never actually cold-read for content). Its "jobs that run without me" table lists six; `social-drafts.yml` (added 2026-09-12, real 13:30 UTC cron, drafts Facebook/X posts unattended) is a genuine seventh, absent only because it postdates the review. Its core finding, no deploy step exists after `publish-image.yml`, is still true today, checked directly against that workflow file. Annotated rather than rewritten, matching how `REVIEW-DISCOVERY`/`REVIEW-COMMERCE` were handled: also noted `docker-compose.hostinger.yml`'s own record that Watchtower was tried on this VPS and removed the same day for crash-looping, so the deploy-key recommendation is not interchangeable with an auto-pull fix.
+
+**Verified:** `fix_dashes.py --check` clean, full `preflight.py` (every gate passed), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents). `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Went well:** the root-`.md`-by-mention-count lane still finds real gaps.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** no fresh cold-read candidate left in this lane at 2-3 mentions beyond what remains unread; standing `OWNER-ACTIONS.md` list and 8 decision/blocked-on-art issues unchanged.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard drift closed, CI confirmation on the merge commit handed to the operator)
 
 **Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `cf97918e`. `preflight.py` fast: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Confirmed production is caught up, not assumed: `git diff 0de9c1456 HEAD -- site/` is empty, so nothing has touched `site/` since `publish-image.yml` run 268 succeeded on that commit.
