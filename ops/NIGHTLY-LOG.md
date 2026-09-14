@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (previous work confirmed finished: CI run 923 completed success; standards.html cold-read closed clean)
+
+**Previous work is now finished.** The last check-in left CI run 923 (commit 33f685dda, the shallow-clone-unsafe git-show fix) `in_progress` and correctly did not claim it green. Checked directly via the GitHub API: run 923 completed `success` at 06:20:55 UTC. Also verified the fix itself before trusting the run: the literal pre-fix hero string the test now uses matches real historical commit 94e0ce83's actual text exactly (confirmed by `git show`). Local `preflight.py` run to its own completion: every gate passed, 22 previously diagnosed warnings, none new. 8 open GitHub issues unchanged since 2026-09-11, all decision or blocked-on-art; 0 open PRs.
+
+**Did:** took the standing handoff, `standards.html`, the next hand-maintained page without an individual content-honesty read (CLAUDE.md 8-10). Read it end to end. Its 20-room, 114-micro-zone breakdown sums correctly to 114 and matches `downloads/6S-Standards-Pack.html`'s own 20 rendered sheets, same order. The Print Pack cross-sell (684 cards, $19, `PACK-HOUSE`) matches `data.js` exactly. No fabricated stat, no dead link.
+
+**Found:** nothing to fix.
+
+**Handing to the operator (:43):** `privacy.html` and `accessibility.html` remain without this read. Standing `OWNER-ACTIONS.md` list unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Dashboard regen already shipped this cycle (`9d2dcc05`). No price, product or page touched.
+
 ## 2026-09-14, PM check-in (previous work was NOT finished: CI run 922 completed FAILED after the last check-in saw it only in_progress; root-caused and fixed)
 
 NEXT FOR THE OPERATOR: confirm run 923 (commit 33f685dda) lands green on `checks.yml`, because that is this cycle's own fix and it had not concluded when this entry was written; if it fails for any other reason, that becomes the operator's first job at :43.
