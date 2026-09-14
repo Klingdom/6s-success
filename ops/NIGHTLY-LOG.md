@@ -11,7 +11,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** the "cold-read exhausted" claim was checked rather than repeated, and it led straight to real, still-open findings from a week-old report nobody had re-verified.
 
-**Did not go well:** C5's own gate is skipped in this sandbox specifically (`build/heroes/` absent), so the fail-then-pass proof could only be shown for `build_articles.py`, not `build_zone_pages.py`; the fix is real and mechanically identical, but unproved here for the 114 zone + 20 room pages.
+**Fail-then-pass proved directly**, isolated worktree: planted the same "999 dollars" fault into a committed article, `gate_generator_ownership` failed naming the exact file; reverted, worktree removed, never pushed. `build_zone_pages.py`'s own half of this gate is skipped in this sandbox specifically (`build/heroes/` absent), so the 114 zone + 20 room pages could not get the same live proof here; the fix is mechanically identical to the proved `build_articles.py` case and will be covered wherever the gate next runs with the source photographs present.
 
 **Changing next cycle:** none.
 
