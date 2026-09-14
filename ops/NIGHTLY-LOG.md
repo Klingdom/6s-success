@@ -3,19 +3,35 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-14, scheduled operator pass (dashboard headline drift after a real deploy, found and closed structurally)
+## 2026-09-14, scheduled operator pass (dashboard headline drift after a real deploy, found and closed structurally; a concurrent PM check-in's own hand fix caught overclaiming)
 
 **Did:** attached (shallow and detached, unshallowed, ff-only onto origin/main, clean). Preflight clean on arrival, 8 issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential (inbox unchecked, per step 8). BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated again.
 
-Rather than one more cold-read pass, checked the dashboard's own machine state against the latest commit (`5bc41464`, a local session with real VPS/Stripe access): that session deployed and confirmed production current by build id, then edited `site/standards.html` in the same pass, moving the repo's own build id on again, and never reran `ops/dashboard.py`. `ops/state.json` still carried `deploy_last_verdict: "stale"` from before the deploy, and this sandbox has no egress to tell "never redeployed" apart from "one file behind since an hour ago." Fixed structurally: `ops/deploy.py` now writes `ops/deploy-verdict.json` (build id, timestamp) the moment it confirms a live build; `ops/dashboard.py` reads it when it cannot measure live itself, naming both build ids honestly when they differ. Backfilled the marker from `5bc41464`'s own real claim.
+Rather than one more cold-read pass, checked the dashboard's own machine state against the latest commit (`5bc41464`, a local session with real VPS/Stripe access): that session deployed and confirmed production current by build id (497533af...), then edited `site/standards.html` in the same pass, moving the repo's own build id on again (to 7ec37f0e...) without ever redeploying or rerunning `ops/dashboard.py`. Fixed structurally rather than by hand: `ops/deploy.py` now writes `ops/deploy-verdict.json` (build id, timestamp) the instant it confirms a live build; `ops/dashboard.py` reads it when it cannot measure live itself, naming both build ids honestly when they differ rather than collapsing to a bare "stale" or "current". Backfilled the marker from `5bc41464`'s own real claim.
 
-Two real bugs found proving it: the marker branch first reused this run's own unmeasured 0/0 asset counts (recreating the exact 2026-08-31 "0 of 0 differ" bug); and a strict `>` timestamp check made the note vanish the very next regeneration. Both fixed, fail-then-pass proved.
+**Found while merging:** a concurrent PM check-in (`3e1cbdf1`, below) hand-carried the SAME deploy into `state.json` as fully "current, 0 of 9 assets differ", reading `5bc41464`'s own claim at face value without checking whether that commit's own later edit (`standards.html`) had moved the repo's build id past what was actually confirmed live. It had. So that fix, made in good faith, reintroduced the exact overclaim this pass exists to prevent, one level up: "confirmed deployed" is not the same fact as "nothing has changed since". This structural fix supersedes it: the marker correctly names the gap as one file, not zero and not unknown.
+
+Two real bugs found proving the mechanism itself: the marker branch first reused this run's own unmeasured 0/0 asset counts (recreating the exact 2026-08-31 "0 of 0 differ" bug); and a strict `>` timestamp check made the honest note vanish the very next regeneration. Both fixed, fail-then-pass proved.
 
 **Verified:** new gate (7 cases), `test_deploy.py` (14 to 20 cases), full `preflight.py` (0 failed, 23 warnings), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 docs), mobile `npm test` (4 suites) all clean.
 
-**Next:** owner gates unchanged (redeploy the standards.html fix, YouTube OAuth, Search Console, Gemini billing).
+**Next:** owner gates unchanged (redeploy the standards.html fix, YouTube OAuth, Search Console, Gemini billing). The concurrent check-in's own handoff (correlate 16 unpaid checkout sessions against `who=internal`) still stands, needs live Stripe/Umami access no sandbox here has.
 
 Pushed to main. Command deck regenerated.
+
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, then a real deploy landed mid-check and its own generated dashboard never got told)
+
+NEXT FOR THE OPERATOR: correlate the 16 unpaid Stripe checkout sessions from the last 7 days against `measure.js`'s existing `who=internal` tag (the local session's own flagged "Unchecked" item below), because it is priority-1 measurement work and the only lead this cycle found toward telling a real prospect from our own testing; needs live Stripe/Umami access this sandbox does not have, so it likely needs the same kind of credentialed local session that did today's deploy, not this sandbox.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (934 commits behind). Confirmed previous work finished: `preflight.py` clean, tree clean, `BACKLOG-2026-09-07.md` sections 2-4 done, 5 correctly HOLD, 6 owner gates; 8 open issues unchanged (`decision`/`blocked-on-art`), matched fresh against the API.
+
+**Then, mid-check, a real deploy landed** (`5bc41464`, a local session with the VPS key): production redeployed and confirmed CURRENT by build id and all 9 asset fingerprints, the revenue-summing bug in the emailed briefs fixed, traffic re-pulled (75 visitors/196 visits/30d), Standards page linked to all 114 zones. Fetched it before shipping anything of my own.
+
+**Found and fixed:** that commit updated `GOALS.md`/`STATUS.md` by hand but never re-ran `ops/dashboard.py`, so the generated deck's own `ops/state.json` still carried the pre-deploy "stale, 1 of 9 assets differ" verdict and kept printing "Redeploy the site" and "PRODUCTION IS SERVING AN OLD BUILD" as current fact, the same corrected-in-one-place shape this repo keeps finding, one file over. Carried the verified reading into `state.json`'s `deploy_last_verdict`/`deploy_verified_at`/`deploy_stale_assets` (0 of 9 now), citing the build-id check and commit rather than claiming this sandbox re-verified it (it still cannot reach `6s-success.com`). Regenerated: the deck now correctly drops the redeploy ask and reads "Discovery, not what can be bought, is the constraint now," with its existing reachability caveat intact. `preflight.py` clean after, 0 gates failed, same 23 standing warnings. Did not touch `state.json`'s `traffic_line` carry (still shows the older 74/945 pageview reading against GOALS.md's new 75/196): the line's own format has no slot for a visit count, reformatting it is bigger than this slot, and GOALS.md is already correct, so a future cycle should fix `traffic_reading()`'s format rather than hand-patch the string again.
+
+**Superseded by the operator pass above, same day: this entry's own "0 of 9, fully current" carry was itself an overclaim.** It read `5bc41464`'s deploy confirmation at face value without checking that the same commit's `standards.html` edit moved the repo's build id past what was actually confirmed live. Left here as the honest record of what happened, not deleted.
+
+Pushed to main.
 
 ## 2026-09-14, local session with the VPS key, Stripe and mail (deployed, fixed revenue in the emailed briefs, linked the Standards page)
 
