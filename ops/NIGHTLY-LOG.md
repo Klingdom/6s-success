@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked)
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (55954fbf, the X-post title collision gate), clean tree, 0/0 ahead-behind. Ran python ops/preflight.py to its own completion, not cited: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, the two sub-hourly cron-cadence drifts).
+
+**Did:** pulled the 8 open GitHub issues fresh via the API: unchanged in count and content since 2026-09-11, still all decision or blocked-on-art, 0 open PRs. Read issue #29 against the live repo rather than trusting its own "fixed" claim: `site/deck-gallery.html` now carries zero occurrences of the retired term, confirming the withholding mitigation described in the issue is still in place; the issue correctly stays open because the underlying art still needs Phil's Desktop-only source sheets, not a repo fix. Checked EXECUTIVE-DASHBOARD-LIVE.md's Traffic and Affiliate rows: both correctly read "not measured" (no SSH key), matching preflight's own warnings, not silently reporting a false zero. Checked CI directly: `checks.yml` run 920 on the current head (55954fbf) was still in_progress at check time; not claimed as green without seeing it finish.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** same standing OWNER-ACTIONS.md list and the 8 decision/blocked-on-art issues; none pickable per this slot's rule against picking Phil-waiting items. GOALS.md's $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/dashboard.py` regen only. No price, product or page touched.
+
 ## 2026-09-14, operator cycle (a real, systemic 238-way defect found in the newest module, fixed and gated)
 
 **Did:** Unshallowed, ff-only'd onto origin/main (f5ed3b76). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG entries. `preflight.py` run to completion twice (before and after the fix): every gate passed both times, 22 previously-diagnosed sandbox warnings, none new. 8 open GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. No network egress (confirmed by curl to 6s-success.com and api.stripe.com, both proxy-rejected). Confirmed sections 2-4 of BACKLOG-2026-09-07.md are done or Phil-gated, matching a dozen prior cycles' own finding.
