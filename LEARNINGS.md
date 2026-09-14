@@ -531,6 +531,46 @@ beside the button is correct on its own terms at any traffic level. It should
 not be reported later as a validated conversion win unless a purchase actually
 follows.
 
+#### LRN-0010: Every buy and quote signal since 7 September came from the owner's own household, and Stripe's "checkout started" count is not a customer metric
+
+**Status:** SUPPORTED
+**Confidence:** HIGH for attribution, MEDIUM for the stranger estimate
+**Domain:** CONVERSION / DATA QUALITY
+**Measured:** 2026-09-14
+
+Stripe holds 16 unpaid checkout sessions in the 7 days to 2026-09-14 and about
+90 more on 2026-09-07. Each one was matched against Umami events and against
+the reverse proxy's own access log (`nginx-proxy-manager`,
+`/data/logs/proxy-host-4_access.log*`, which survives container recreation,
+unlike `docker logs 6s-success`).
+
+- **2026-09-07 16:43, ~90 sessions opened in catalogue order ~3s apart:** the
+  owner's home IP (160.2.171.170, the only IP ever referred from hPanel),
+  browsing with an emulated `iPhone OS 17_0` user agent plus a Windows Chrome,
+  hopping pages every few seconds. Our own tooling or testing.
+- **2026-09-12 23:46, the only `quote-click` (CN-CORP):** the home IP, a real
+  iPhone (`iOS 18_7`, 430x932), arriving from LinkedIn.
+- **2026-09-14 01:24:58, the only `buy-click` matched to a session (MZ-MANUAL,
+  $29):** the same home IP and iPhone, to the second. Abandoned.
+- **The other opens** had no request to our site within two minutes either
+  side, so they did not start from a page on the site. Their source is unknown.
+- **Scale of household traffic, 2026-08-30 to 09-14:** the home IP sent 5,416
+  of 6,408 analytics beacons (4,497 headless Chrome, 881 iPhone, 57 desktop);
+  66 other browser IPs sent 281. Headless beacons do not become Umami visits
+  (2,498 on 2026-09-04 against 9 recorded visits), so headless tooling does
+  not inflate the visitor count, but the owner's iPhone does.
+- **LinkedIn:** 27 LinkedIn-referred page views, 7 from the home IP and 20
+  from 13 other IPs. Some of those are mobile-carrier IPs on the same iOS
+  version as the owner's phone, so a few may be the owner off wifi.
+
+**Implication.** "Customers who are not Phil" is still 0 and "buy-clicks from
+strangers" is also 0 since 2026-09-07. Stripe's session count must never be
+reported as checkouts started; the honest funnel signal is a `buy-click` from
+a device not labelled internal. Until the owner's devices carry
+`?6s-internal=1` (`OWNER-ACTIONS.md` 1c), every funnel read needs this
+proxy-log attribution by hand. Umami's `IGNORE_IP` would remove the household
+automatically but deletes data irreversibly, so it is not adopted.
+
 ### Verified SEO/AEO Learnings
 
 `NONE VERIFIED IN THIS FILE`

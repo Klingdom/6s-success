@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14 (evening), local session: traced every recent checkout and quote signal to the owner's household
+
+**Did:** matched Stripe's unpaid checkout sessions against Umami and the proxy's access log (`nginx-proxy-manager` `proxy-host-4_access.log*`; `docker logs` had been wiped by today's two container recreations). The 7 Sept burst of ~90, the 12 Sept CN-CORP quote click and the 14 Sept MZ-MANUAL buy-click all came from the owner's home IP. The other opens had no request to our site within two minutes either side. Recorded as `LEARNINGS.md` LRN-0010, and the evidence was added to `OWNER-ACTIONS.md` 1c. Fixed `ops/audit_visual.py`: its desktop pass crashed decoding Chrome's UTF-8 output as cp1252.
+
+**Went well:** the proxy log answered a question every earlier cycle marked unknowable.
+
+**Did not go well:** this morning's brief called LinkedIn the channel that works; 7 of its 27 referred page views were the owner.
+
+**Not ours, reported only:** Ledgerium's compose project has `umami`/`umami-db` restart-looping (98/109 restarts), and `ledgerium-ai` fails its healthcheck. ledgerium.ai answers 200. Nothing touched (`CLAUDE.md` 36b).
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, full independent re-verification, no fresh item unblocked)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (946 commits behind).

@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-14, item 1's traffic figure carried forward to the
+**Last measured:** 2026-09-14 (evening), item 1c extended: the 12 Sept quote click, the 14 Sept buy-click and the 7 Sept checkout burst all traced to your own home connection (LRN-0010). Earlier: 2026-09-14, item 1's traffic figure carried forward to the
 real 2026-09-14 11:46 database read (74 visitors, 945 pageviews), then the same evening to a direct database read (75 visitors, 196 visits, 947 pageviews), replacing
 the three-day-old 2026-09-11 pull. Earlier: 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
 link into each of the 12 published video descriptions, closing
@@ -541,6 +541,15 @@ front of you as a numbered action, it only ever printed inside
 the gap this item closes; `preflight.py` now carries
 `gate_experiment_owner_actions_surfaced` so a future one like it cannot sit
 silent the same way.
+
+**New evidence, 2026-09-14 (`LEARNINGS.md` LRN-0010).** The two newest funnel
+signals, the Corporate quote click on 12 September and the $29 Micro Zone
+Manual buy-click on 14 September, both came from your home connection on an
+iPhone (iOS 18.7, 430x932 screen). So did the burst of about 90 checkout pages
+opened on 7 September. None were labelled, so each had to be traced by hand
+through the server's access log. Your home IP also sent 85% of all analytics
+beacons over the last fortnight. The iPhone and your Windows Chrome are the two
+devices to label first.
 
 **What:** on each device you personally browse the site from (phone, laptop,
 tablet), open `https://6s-success.com/?6s-internal=1` once. That tells the
