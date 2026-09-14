@@ -12184,6 +12184,108 @@ def gate_us_spelling_consistency() -> None:
              f"spelling outside the one whitelisted URL: {names}")
 
 
+BINARY_EXTS = (".pdf", ".epub", ".mobi", ".png", ".jpg", ".jpeg", ".webp",
+               ".avif", ".ico", ".woff", ".woff2", ".ttf", ".otf")
+
+
+def check_gitattributes_declares(text: str) -> list:
+    """Which of BINARY_EXTS has no `*.ext binary` line in .gitattributes text."""
+    missing = []
+    for ext in BINARY_EXTS:
+        pat = re.compile(r"^\*" + re.escape(ext) + r"\s+binary\s*$", re.M)
+        if not pat.search(text):
+            missing.append(ext)
+    return missing
+
+
+def check_pdf_startxref_resolves(data: bytes):
+    """None if the PDF's own `startxref` byte offset resolves correctly,
+    else a short string describing why it does not.
+
+    This is what REVIEW-QA-2026-09-07.md actually found broken: line-ending
+    conversion had shifted every byte after the first injected \\r, so the
+    trailer's `startxref 26187468` pointed at the middle of a compressed
+    stream instead of the `xref` keyword. That is the real, load-bearing
+    signature of this corruption, not the presence of a \\r\\n pair: a first
+    version of this check flagged any \\r\\n at all and mis-fired on a
+    healthy PDF whose embedded content legitimately contains some (proved
+    wrong here before shipping, not after: a PDF with 506 \\r\\n pairs but a
+    startxref that resolves exactly is not corrupted, and this check agrees).
+    """
+    idx = data.rfind(b"startxref")
+    if idx == -1:
+        return "no startxref keyword found"
+    m = re.search(rb"startxref\s+(\d+)", data[idx:idx + 40])
+    if not m:
+        return "startxref keyword present but no offset follows it"
+    off = int(m.group(1))
+    if off >= len(data):
+        return f"startxref points past end of file ({off} >= {len(data)})"
+    chunk = data[off:off + 40]
+    # Classic xref table, or a cross-reference STREAM ("N G obj").
+    if chunk.startswith(b"xref") or re.match(rb"^\d+\s+\d+\s+obj", chunk):
+        return None
+    return f"startxref offset {off} does not point at an xref table or object"
+
+
+def gate_binary_files_protected() -> None:
+    """.gitattributes exists, declares every binary type this site ships, and
+    no committed PDF's own `startxref` has been shifted out of alignment.
+
+    REVIEW-QA-2026-09-07.md, P2: the repository had no `.gitattributes`. Git's
+    binary detection looks for a NUL byte early in the file; the ReportLab-
+    written free deck PDF has none near its header, so git treated it as text
+    and applied line-ending conversion on checkout from a Windows working
+    tree. The tree copy was 2,092 bytes larger than what production served,
+    every extra byte a \\r injected before an \\n inside a compressed stream,
+    which shifted every later byte offset, so the trailer's own
+    `startxref 26187468` pointed at the middle of a compressed stream instead
+    of the `xref` keyword; `pypdf` could only open it by rebuilding a broken
+    table. It only worked in production because every deploy so far has run
+    from a Linux checkout. `.gitattributes` (added this pass) declares PDFs
+    and every other binary type this site ships as binary explicitly, so git
+    never has to guess, regardless of which OS commits them.
+
+    This gate keeps both halves of that fix honest: the declarations cannot
+    quietly go missing, and a PDF whose `startxref` no longer resolves is
+    caught before it ships. It checks structural resolution, not the mere
+    presence of a \\r\\n byte pair: the first version of this gate used that
+    cruder signal and failed on the live, healthy sample-book PDF, which
+    carries 506 legitimate \\r\\n pairs in its own content but a `startxref`
+    that resolves exactly. Caught before shipping by running this gate
+    against the real file, not assuming the review's one measured example
+    generalised to every PDF on the site.
+    """
+    ga_path = os.path.join(ROOT, ".gitattributes")
+    if not os.path.exists(ga_path):
+        fail("binary-files-protected",
+             ".gitattributes is missing. Without it, git guesses whether a "
+             "binary file (PDF, image, font) is text from its early bytes, "
+             "and can silently corrupt one with line-ending conversion on a "
+             "Windows checkout. See REVIEW-QA-2026-09-07.md section 6.")
+        return
+    text = io.open(ga_path, encoding="utf-8").read()
+    missing = check_gitattributes_declares(text)
+    if missing:
+        fail("binary-files-protected",
+             f".gitattributes exists but does not declare {missing} as "
+             f"binary. Add '*{missing[0]} binary' and the rest.")
+        return
+    broken = []
+    for dirpath, _dirs, files in os.walk(os.path.join(ROOT, "site")):
+        for fn in files:
+            if fn.lower().endswith(".pdf"):
+                p = os.path.join(dirpath, fn)
+                reason = check_pdf_startxref_resolves(io.open(p, "rb").read())
+                if reason:
+                    broken.append((os.path.relpath(p, ROOT), reason))
+    if broken:
+        fail("binary-files-protected",
+             "committed PDF(s) have a startxref that does not resolve, the "
+             "structural signature of line-ending corruption: " +
+             ", ".join(f"{p} ({why})" for p, why in broken))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -12305,6 +12407,7 @@ def main() -> int:
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
+    run_gate(gate_binary_files_protected)
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
