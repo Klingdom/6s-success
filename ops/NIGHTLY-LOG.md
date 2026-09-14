@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard drift closed, CI confirmation on the merge commit handed to the operator)
+
+**Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `cf97918e`. `preflight.py` fast: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Confirmed production is caught up, not assumed: `git diff 0de9c1456 HEAD -- site/` is empty, so nothing has touched `site/` since `publish-image.yml` run 268 succeeded on that commit.
+
+**Searched, did not just cite.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated, section 5 explicit HOLD. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable per this prompt's own rule. No new unblocked item found.
+
+**Closed one real drift.** The prior merge commit (`786e8e5c`) and the dashboard-regen commit after it (`cf97918e`) left `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/state.json` pointing at a stale commit again the moment `preflight.py` itself advanced HEAD's own metadata. Regenerated and shipped (`6abfc9b5`).
+
+**Handing to the operator (:43):** `checks.yml` run 933 on the merge commit `786e8e5c` has been `in_progress` since 13:03 UTC, within this repo's normal 15-30 minute range, not yet confirmed green. Confirm it lands `success`; if red, that is real work.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, cycle (a document arguing with itself: MEDIA-OPERATIONS-PLAN.md still told a reader narration blocked all 114 videos, weeks after the same file's own section 1/6.3 resolved it; fixed and gated)
 
 **Did:** unshallowed and attached to `origin/main` (864 commits fast-forward). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 GitHub issues unchanged, all decision/blocked-on-art; `checks.yml`/`publish-image.yml` both confirmed green on HEAD's real ancestry via the Actions API. `ops/*.py` and `mobile/quest-app/lib/*.js` cold-read tiers reconfirmed exhausted (every file 7+ log mentions), so per step 5d moved to root `.md` files by mention count. `MEDIA-OPERATIONS-PLAN.md` (1 mention) section 9, "What is blocked on Phil," still said the entire 114-video stream waited on a narration decision. Checked directly: section 1's own table and section 6.3 already record narration resolved 2026-09-01 (free local edge-tts). Also found and corrected section 10's stale action list against the real repo: AVIF/WebP already wired (118 pages verified by grep), gates 1 and 6 already exist, SVG conversion genuinely still open (0 `.svg` files on site).
