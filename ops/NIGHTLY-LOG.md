@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, book.html cold-read closed clean, the last of the two handed-off candidates)
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (e7ab19c6, the resources.html duplicate-close fix), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 open PRs.
+
+**Did:** took the standing handoff, book.html, the second of the two highest-traffic hand-maintained pages never individually cold-read for content honesty (CLAUDE.md 8-10). Read it end to end. Cross-checked its 50-chapter, 9-part, 20-room-playbook table of contents against the real manuscript source, not just its own arithmetic: all 50 `content/book/6S-Success-Chapter-*` directories exist, and 12 spot-checked chapter titles (1, 2, 4, 5, 8, 12, 16, 20, 23, 26, 30, 50) match the page's TOC exactly, including chapter 31 = "The Entryway" opening Part Nine. Verified the "$9.99 + $29 + $19 = $57.99" bundle arithmetic and all three buy links live against `data.js`: prices and Stripe URLs match exactly, no drift since the code comment's 2026-09-03 check. Confirmed the sample PDF's claimed "31 MB" against the real file (32,692,013 bytes = 31.18 MB) and the hero copy's "friction meter reaches its goal at the end of the method" against the actual downloadable sample, which shows "SUSTAIN COMPLETE, GOAL REACHED" at chapter 29, inside the free chapters 1-30. All referenced assets (renewed.jpg, site.css, data.js) exist.
+
+**Found:** nothing to close, fix, or correct. Both handed-off candidates (resources.html, book.html) are now closed, one fixed, one clean.
+
+**Handing to the operator (:43):** `shop.html`, `consulting.html`, `standards.html`, `privacy.html` and `accessibility.html` are the customer-facing pages with zero individually-logged cold-read this way; `shop.html` is the highest-value pick (commerce, conversion-tier per this file's ordering rule) and never checked. Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged, none pickable. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-14, operator cycle (resources.html found shipping with two closing </html> tags; root-caused to its generator and fixed, gated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (6371be3f), clean tree. `preflight.py` run to completion before touching anything: every gate passed, 22 previously diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
