@@ -3,15 +3,33 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, shop.html handoff carried forward unconsumed)
+## 2026-09-14, operator cycle (shop.html cold-read: a real overclaim found in the hero copy, fixed; consumes the concurrent PM check-in's own unconsumed handoff below)
 
-**NEXT FOR THE OPERATOR:** cold-read `shop.html` end to end against CLAUDE.md 8-10, because the prior PM check-in named it the highest-value unconsumed pick (commerce, conversion-tier per this file's ordering rule) among the five customer-facing pages never individually cold-read this way, and no cycle has picked it up since that handoff went in 27 minutes ago.
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (8783222, PM check-in). Read GOALS.md, STATUS.md, both backlogs and the last four log entries before touching anything. `python ops/preflight.py` run to completion first: every gate passed, 22 previously diagnosed sandbox warnings, none new. GitHub: 8 open issues unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Took the standing handoff:** the prior PM check-in named `shop.html` as the highest-value hand-maintained page never individually cold-read for content honesty (CLAUDE.md 8-10), commerce and conversion-tier. Read it end to end, not just its generated product grid. Found a real, if small, honesty gap in the hand-authored hero copy (outside both the `PRODUCT-SCHEMA` and `prerendered-shop` generator-owned regions, confirmed by grep before editing): "Everything here can be bought today and delivered today" and "Every priced item below checks out directly and securely through Stripe" both overstate for the one product that is not, Corporate Lean 6S, quote-based per GOALS.md's own "158 of 159" line and confirmed live on the page (`data-sku="CN-CORP"`, price shown as "Quote", button "Request a quote" linking to corporate.html, not Stripe). Fixed both sentences to name the one exception plainly rather than imply it does not exist. No other copy issue found: no fabricated stat, no em/en dash, no discount claim beyond what `stripe-price-claims` already covers.
+
+**Verified after:** full `preflight.py` (0 failed, 23 warnings, the new one being the expected "uncommitted change" flag before staging), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** the cold-read method found a real, live trust gap on the highest-traffic commerce page.
+
+**Did not go well:** nothing new; same shallow-checkout reattach as every cycle.
+
+**Changing next cycle:** none; no new gate needed, this was a one-line hand-copy fix with no generator to protect.
+
+**Next:** `consulting.html`, `standards.html`, `privacy.html` and `accessibility.html` remain without an individual content-honesty cold-read; `consulting.html` is next highest-value (it names the same Corporate Lean 6S quote path and the $1,200 In-Home Consult, worth checking against this exact finding). Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Pushed to main. `site/shop.html`, command deck. No price or product touched, no new page, IndexNow not applicable (existing page edited, not added).
+
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, shop.html handoff carried forward unconsumed, superseded by the operator cycle above)
+
+**NEXT FOR THE OPERATOR:** cold-read `shop.html` end to end against CLAUDE.md 8-10, because the prior PM check-in named it the highest-value unconsumed pick (commerce, conversion-tier per this file's ordering rule) among the five customer-facing pages never individually cold-read this way, and no cycle had picked it up since that handoff went in 27 minutes earlier. (Consumed by the operator cycle above, which landed concurrently: `shop.html` read in full, a real hero-copy overclaim found and fixed.)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (87832227, the book.html cold-read, both original handed-off candidates now closed), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings, none new.
 
-**Did:** pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all `decision` or `blocked-on-art`, none pickable per this slot's rule. 0 open PRs. No commit landed between 04:15 and this check (git log tip still `87832227`), so the prior handoff is genuinely unconsumed, not superseded.
+**Did:** pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all `decision` or `blocked-on-art`, none pickable per this slot's rule. 0 open PRs. No commit landed between 04:15 and this check (git log tip still `87832227`), so the prior handoff was genuinely unconsumed at the time, not superseded.
 
-**Found:** nothing new to close, fix, or correct; `shop.html` has been touched for specific defects (perf, a contrast-audit timing flake, stale JSON-LD) but never given the same end-to-end content-honesty read `resources.html`/`book.html` just got, so the handoff stands as written.
+**Found:** nothing new to close, fix, or correct; `shop.html` had been touched for specific defects (perf, a contrast-audit timing flake, stale JSON-LD) but never given the same end-to-end content-honesty read `resources.html`/`book.html` just got, so the handoff stood as written.
 
 **Handing to the operator (:43):** `shop.html` first, then `consulting.html`, `standards.html`, `privacy.html`, `accessibility.html` in that order. Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged, none pickable. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
 
