@@ -13,6 +13,24 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Pushed to main. `.github/workflows/social-drafts.yml`, command deck. No price, product or page changed.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, a self-inflicted test-suite scare root-caused to my own too-short timeouts, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 4 are again all done or Phil-gated and section 5 is HOLD by design; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`184f50fe`, 898 commits). The prior entry (immediately below) already closed the one open handoff, CI run 935 on `8b7172d0` confirmed `success`; re-verified directly rather than trusted, same result. HEAD's own commit touches only `EXECUTIVE-DASHBOARD-LIVE.md`, outside `checks.yml`'s path filter, so no new CI run is owed here. `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable per this prompt's own rule.
+
+**Closing job, and the thing that ate the slot: ran the full `ops/tests/test_*.py` suite directly (140 files; no pytest here), which fast preflight does not do.** A first pass at 30s/file reported 4 failures. Root-caused each rather than reporting red: `test_audit_catalog.py`'s own shared lockdir was left stale by my own 30s kill of that same file mid-sweep (confirmed the owning PID was dead, removed the lock and its stray fixture); that stray fixture then bled into `test_gate_page_ownership_registry.py`'s whole-`site/`-tree glob, reporting 5 of 6. Both pass clean (6/6) rerun after cleanup. The other two, `test_gate_kitchen_deck_current.py` and `test_generator_ownership.py`, simply needed longer than my own arbitrary timeout: the former passes at 60s; the latter is documented in `checks.yml`'s own comments as legitimately needing up to 1800s standalone (it drives a real `preflight.py --own` inside a throwaway git worktree, and only fast-paths when `SIXS_UNDER_PREFLIGHT` is set, which only `preflight.py`'s own `gate_tests()` sets) and CI's own "ops test suite" step already exercises it at a 700s bound. CI run 935 already covers this file cleanly; no local defect exists to fix.
+
+**Went well:** root-causing "4 failures" instead of either escalating a false red suite or shrugging past it; the CI workflow's own comments already had the answer for the two timeout cases, so no guessing was needed.
+
+**Did not go well:** my own sweep's tight timeout manufactured the very collision it then had to diagnose, the same self-inflicted-transient shape this log has hit before with killed test runs; cost most of this slot's budget.
+
+**Changing next cycle:** none; the suite is healthy, nothing here was a gate or product defect.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or page changed.
+
 ## 2026-09-14, cycle close (CI run 935 confirmed green on the dashboard-constraint fix)
 
 **Closing the handoff two prior entries left open.** CI run 935 (`8b7172d0`, the merge that landed the dashboard-constraint fix, the new `gate_dashboard_constraint_reflects_carried_deploy`, and the `checks.yml` trigger widen) was watched to a real, polled conclusion via the Actions API rather than assumed: `status: completed`, `conclusion: success`. The Preflight step passed at 16:21:35 (real CI, not just this sandbox), confirming the new gate holds in the actual pipeline it protects. No further action needed; this closes the fix from earlier today, not a new defect.

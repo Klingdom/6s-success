@@ -1,13 +1,13 @@
 {
- "generated": "2026-09-14 17:01",
- "commit": "184f50fe",
- "commit_msg": "Regenerate command deck",
+ "generated": "2026-09-14 17:02",
+ "commit": "45186eff",
+ "commit_msg": "Give social-drafts.yml the same push-trigger fallback linkedin-drafts.yml got: its cron has fired twice, both hours late, and no run existed for today by 16:52 UTC",
  "commits_7d": 1002,
- "commits_total": 2010,
+ "commits_total": 2011,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
