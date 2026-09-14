@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (the drafts needed a human half the time; gave them a second way in)
+
+**Did:** Came back to the one verification left open three days ago and found a better question behind it. The compensated cron worked where it ran: 09-12 landed 07:44 Denver and 09-13 landed 08:41, against a target of 08:19, where before the change it had been arriving 11:43 to 12:44. But it did not run at all on 09-11, the day the cron changed, and by 09:02 Denver today it still had not run. Both days were rescued by a manual dispatch. So: dispatched today's, then gave the workflow a push trigger with a gate, the same second way in `fulfil-orders.yml` already uses.
+
+**Verified:** the gate end to end, in production, not just locally. The commit that added it triggered a push run, which read the ledger, printed "already sent today (1 successful run(s))" and SKIPPED every later step including the send. Before that, all six branches were exercised against the extracted logic (schedule yes, dispatch yes, push-early no, push-already-sent no, push-not-sent-yet yes, ledger-unreadable no), and the API query was checked against the live repo: 1 successful run today, 2 since yesterday, so the date filter really filters.
+
+**Went well:** copying the reasoning and not just the mechanism. `fulfil-orders.yml` is safe to run on every push because Stripe holds the ledger in `fulfilled_at`. Nothing holds a ledger here, and at roughly 150 commits a day a bare push trigger would have mailed Phil 150 times. The workflow's own run history is the ledger that already existed. Also checked the cost before adding ~150 runs a day: the repo is public, so Actions minutes are free, a stood-down run takes 11 seconds, and fulfil-orders already runs 96 of its last 100 from push.
+
+**Did not go well:** wrote the YAML patch against indentation I had read off a `sed` output that was adding its own two-space prefix, so the anchor did not match. Same class as the accessibility-tree mistake on 09-11: reading a formatted view of a thing and treating it as the thing. Cost one attempt; the assert caught it before anything was written.
+
+**Changing next cycle:** an unreadable ledger sends NOTHING, deliberately. If the API ever starts failing quietly, the symptom will be drafts that stop arriving rather than drafts arriving 150 times, and the schedule and manual dispatch both still work. That is the right way round, but it does mean a silent failure looks like silence. Worth a check if a morning ever passes with no drafts and no dispatch.
+
+**Next:** `gate_scheduled_delivery_phase` resets its sample whenever the workflow changes, and I just changed it, so the 08:19 landing is once again NOT YET VERIFIED and needs three scheduled runs. Image generation still blocked on system RAM, 0.6 GB free of 15.8, unchanged across four days.
+
+Pushed to main. `.github/workflows/linkedin-drafts.yml` only. No price, product, page or image changed.
+
 ## 2026-09-14, operator cycle (full autonomous run, verified rather than trusted the "nothing unblocked" claim, no new defect found)
 
 **Did:** unshallowed, `merge --ff-only` onto `3a7965ba` (878 commits). `preflight.py` clean, 23 standing warnings. `inbox_agent.py --apply`: no mail credential, unchecked.
