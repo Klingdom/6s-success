@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (the handed-off `REVIEW-DISCOVERY-2026-09-07.md` read; D7's ungrammatical titles fixed, worse than the report itself counted)
+
+**Did:** picked up the PM check-in's own handoff, `REVIEW-DISCOVERY-2026-09-07.md` (SEO review, "changed no file except itself"). D16 (visible FAQ) was already fixed by Phil the same day the report shipped; annotated the report so it stops reading as open. D7 named 4 ungrammatical titles ("How to organize the guest bedroom guest dresser" etc); checked live and found the corpus actually had 8, the report under-counted `guest closet` and `guest bed and linens`. Root cause: `searchable()` in `ops/build_zone_pages.py` strips "The "/"Zone"/"Primary " from a zone's display name for the title, but nothing stripped a leading "Guest ", so "Guest Bedroom" + "guest dresser" doubled the word; the two Primary Bedroom nightstand siblings had no override at all, one read as ungrammatical ("...primary bedroom your own nightstand"), the other collided with it. Fixed via `ops/zone-search-terms.json` (the existing override mechanism this exact defect class was already fixed with 4 times on 2026-08-23, per that file's own comment), not the generator: 8 new/changed entries, all title-only, no H1 or display-name touched. Regenerated `build_zone_pages.py`, `build_zone_index.py`, `build_youtube_metadata.py` (confirmed all 8 affected videos unpublished, none of the 12 frozen ones touched).
+
+**Went well:** the sibling cross-link mechanism (`_sibling_index`) picked up the newly-shared "vanity counter"/"closet" terms automatically and added "The same zone in another room" links to the two Primary pages, a genuine D6/D9 step, for free, as a side effect of the grammar fix.
+
+**Verified:** `audit_pages.py` 0 duplicate titles/descriptions across 191 pages (no new collision from the 8 changes). `preflight.py` clean (0 failed, 22 warnings, all previously diagnosed), `check_urls.py` (188/188), `affiliate.py --check` (162 documents). `build_zone_pages.py`'s own ownership-gate half stays sandbox-skipped (`build/heroes/` absent), same caveat as the commerce fix earlier today.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** `REVIEW-DISCOVERY-2026-09-07.md` still has D15 (crawler log split, real gap) and D11 (20 room pages say "organise", body copy) genuinely open and unblocked; larger pilot items (D1-D5, D8-D10) correctly wait on Search Console. `REVIEW-QA-2026-09-07.md` not yet re-checked.
+
+Pushed to main. Dashboard regenerated. No Stripe/product touched, 8 zone pages + video metadata regenerated, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, real fixes shipped mid-slot by a concurrent cycle, next review report handed off)
 
 **Previous work was finished, and better than expected.** Arrived detached/shallow; unshallowed, ff-only'd onto `origin/main`. A concurrent operator cycle pushed while I was reading (`ff50c760`/`60b4b99f`): took the prior check-in's own handoff, `REVIEW-COMMERCE-2026-09-07.md`, and fixed two of its three live findings free plus converted a hardcoded-price defect (the same class that once produced a live $18 charge on a $9.99 page) to a live catalogue read across two generators, fail-then-pass proved. Re-fetched, discarded my own now-stale local dashboard regen (`git checkout --`, not a force), ff-only'd onto their tip.

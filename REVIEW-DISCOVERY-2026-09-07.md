@@ -5,6 +5,25 @@
 **Role:** seo-aeo
 **Type:** report only. This review changed no file except itself.
 
+**Status, 2026-09-14, operator:** re-verified against live code a week after
+this report shipped. **D16** (visible FAQ answers) was already fixed the same
+day by Phil (`9b7f5abb`, `faq_html()`), the report's own bottom line is stale
+on that one point. **D7** (ungrammatical titles) verified still live and
+fixed: `ops/zone-search-terms.json` gained overrides for the two nightstand
+siblings and six "guest X guest Y" zones this pass found live but the report
+under-counted (it named 4, the corpus had 8: also `guest closet`, `guest bed
+and linens`), all title-only, no H1/display-name change, `audit_pages.py`
+0 duplicate titles/descriptions after. **D6** (duplicate H1s / differentiation)
+partially advanced as a side effect: the sibling cross-link mechanism the
+generator already had picked up the newly-shared "vanity counter"/"closet"
+terms automatically and added "The same zone in another room" sections to
+`primary-bathroom-the-vanity-counter` and `primary-bedroom-the-primary-closet`,
+without deciding which page should be primary for the shared query, which the
+report correctly leaves gated on Search Console. Still open, in report order:
+D15 (crawler log split, real gap, not yet built), D11 (spelling consistency,
+20 room pages still say "organise"), D1-D5/D8-D10/D12-D14 (larger-scope pilot
+work), D19-D21 (Phil-gated). Full account in `ops/NIGHTLY-LOG.md`.
+
 ---
 
 ## 0. Bottom line
