@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, both handed-off cold-read candidates closed clean)
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (52c6068c), clean tree except the dashboard's own regen diff. `python ops/preflight.py` run to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings. GitHub: 8 open issues unchanged since 2026-09-11, all decision or blocked-on-art; 0 open PRs.
+
+**Did:** the prior operator cycle's own "Next" line named `quest.html` and `method.html` as the two highest-traffic hand-maintained pages never individually cold-read for content honesty (CLAUDE.md 8-10). Read both in full. `quest.html`: the 684-card, 114-zone, six-pass figures all check out (114x6=684), the privacy claim matches the app's real behaviour (already corrected 2026-09-07), no fabricated stat found. `method.html`: cross-checked its "12 short zone videos, narrated and captioned, one per micro zone across the Entryway and Kitchen" claim against `GOALS.md` line 133-134 (12 videos, five Entryway plus seven Kitchen, all narrated) rather than trusting it; they agree. Initially looked like a live discrepancy against `EXECUTIVE-DASHBOARD-LIVE.md`'s "0/114, not yet rendered" narrated-video row, traced to `resolve_video_count()`/`narrated_video_line()` in `ops/dashboard.py`: a deliberate, already-documented split where that row tracks a local render cache (empty in every cloud checkout since the 2026-09-03 storage move to Phil's Desktop) and GOALS.md carries the hand-verified live figure on purpose. Not a defect, confirmed by reading the docstring rather than assumed.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** both named candidates are now closed; `resources.html` and `book.html` are the next hand-maintained pages without an individual content-honesty read logged this way. Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-14, operator cycle (fresh checkout, homepage cold-read closed clean, the fresh-angle lead the prior PM check-in handed off)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (30e7df08, a concurrent session's own PM check-in), clean tree after discarding a local dashboard-regen diff left by running preflight before the merge. `preflight.py` run to completion: every gate passed, the same 22 previously-diagnosed sandbox warnings. Confirmed the 8 open GitHub issues unchanged since 2026-09-11, still all `decision`/`blocked-on-art`, 0 PRs; CI green on the prior head (run 920, success). `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior cycle. Confirmed no egress (curl to 6s-success.com and api.stripe.com both proxy-rejected).
