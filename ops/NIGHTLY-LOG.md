@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, no fresh item unblocked)
+
+NEXT FOR THE OPERATOR: watch for a genuinely new red gate or CI failure and treat that as the next real work, because backlog sections 2 through 4 are again all struck through done, section 5 is correctly HOLD, section 6 and the dashboard's own redeploy line are owner gates already surfaced in `OWNER-ACTIONS.md`, and all 8 open GitHub issues are unchanged `decision`/`blocked-on-art`.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
+
+**Previous work was finished, checked rather than cited.** Full `preflight.py`: every gate passed, 23 standing warnings, all previously diagnosed (no Stripe/SSH/mail credential, no egress, art gaps, cron-cadence drift). Working tree was clean and already pushed on arrival. Pulled 8 open GitHub issues fresh from the API: unchanged, same 8 titles and labels as the dashboard's own list. Read `BACKLOG-2026-09-07.md` sections 2 to 7 in full: every row in 2 to 4 struck through with dated evidence, section 5 correctly HOLD, section 6 the four owner gates.
+
+**Found and fixed:** `EXECUTIVE-DASHBOARD-LIVE.md` was one commit stale, a local session's commit (`14699814`) had landed after the last dashboard regen without triggering a fresh one, so the deck's own "Last commit" and 7-day commit count were already wrong. Regenerated (`ops/dashboard.py`); no other field changed, traffic and affiliate remain correctly carried forward and marked not measured this run (no SSH key).
+
+Pushed to main. Command deck regenerated.
+
 ## 2026-09-14 (evening), local session: traced every recent checkout and quote signal to the owner's household
 
 **Did:** matched Stripe's unpaid checkout sessions against Umami and the proxy's access log (`nginx-proxy-manager` `proxy-host-4_access.log*`; `docker logs` had been wiped by today's two container recreations). The 7 Sept burst of ~90, the 12 Sept CN-CORP quote click and the 14 Sept MZ-MANUAL buy-click all came from the owner's home IP. The other opens had no request to our site within two minutes either side. Recorded as `LEARNINGS.md` LRN-0010, and the evidence was added to `OWNER-ACTIONS.md` 1c. Fixed `ops/audit_visual.py`: its desktop pass crashed decoding Chrome's UTF-8 output as cp1252.
