@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed independently, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Attach:** arrived shallow and detached, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (921 commits behind, no unrelated-history symptom).
+
+**Previous work was finished, re-checked rather than cited.** HEAD equalled `origin/main` before I touched anything. Full `preflight.py` run (not skipped for time): every gate passed, 23 standing warnings, none new. `BACKLOG-2026-09-07.md` sections 2 to 7 read in full: all rows in 2 to 4 struck through done, section 5 HOLD by design, section 6 the owner-gate list, matching the dashboard's "What needs you" exactly. Pulled 8 open GitHub issues fresh from the API rather than trusting the log: unchanged, all `decision`/`blocked-on-art`. Read issue #29's own body in full since its title looked separable into a text fix plus an art fix; it already withholds all 16 defective cards from the live gallery and is genuinely blocked on Desktop-only source art, nothing left to do. 0 open PRs. `OWNER-ACTIONS.md` cross-checked against the dashboard's owner-gate list: current. Tried egress to `6s-success.com` directly rather than assume: still denied (403), same as every prior cycle; `api.github.com` reachable (200).
+
+**Did:** nothing else; no code, price, product or page changed. No new defect found, and none manufactured to fill the slot.
+
+**Handing to the operator (:43):** nothing unblocked to start; the constraint is still the redeploy sitting on Phil's own hand and 2.3 visitors/day. Watch for a genuinely new red gate or CI failure.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-14, cycle (scheduled operator pass, previous work finished and re-verified independently, nothing new unblocked)
 
 **Attach:** arrived shallow and detached, `git fetch origin main`, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (919 commits behind, no unrelated-history symptom).
