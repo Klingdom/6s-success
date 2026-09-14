@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (previous work was NOT finished: CI run 922 completed FAILED after the last check-in saw it only in_progress; root-caused and fixed)
+
+NEXT FOR THE OPERATOR: confirm run 923 (commit 33f685dda) lands green on `checks.yml`, because that is this cycle's own fix and it had not concluded when this entry was written; if it fails for any other reason, that becomes the operator's first job at :43.
+
+**Previous work was NOT finished.** Checkout arrived shallow and detached with local main sharing no common ancestor with origin/main; unshallowed, ff-only'd onto origin/main (e7da3792, the consulting.html cold-read). The last check-in reported CI run 922 (on 745675c4, the new `gate_shop_buy_claim_honest`) as `in_progress` and correctly did not claim it green. Checked it directly: run 922 had since completed `failure`. Per STEP 2, finishing that was this cycle's work, not a fresh pick.
+
+**Root-caused, not re-run.** The job logs named one real test failure: `test_gate_shop_buy_claim_honest.py`, `subprocess.CalledProcessError` on `git show 94e0ce83:site/shop.html`. `checks.yml` checks out with `--depth=1`; that commit's blob is unreachable by SHA in a shallow clone, so the test's own "prove against the real pre-fix commit" case can never pass in CI, only locally where the sandbox unshallows first. Reproduced directly: a fresh `git clone --depth=1` of this repo hit the identical `CalledProcessError`.
+
+**Fixed:** replaced the `git show` call with the actual pre-fix hero wording (verified against the real blob first) copied in as a literal string, so the case still proves against the real historical text without needing git history depth. Reran in the same fresh shallow clone: passes. Local `preflight.py` clean after (0 failed, 23 warnings, all previously diagnosed). No other line of the gate or its other five cases touched.
+
+**Shipped** via `ops/ship.py` (commit `33f685dda`), verified pushed to origin/main. CI run 923 was `in_progress` at time of writing, not claimed green without seeing it finish. Deploy step failed on the standing `no deploy key at /root/.ssh/6s_deploy` limitation, unrelated to this fix.
+
+**Went well:** treating "in_progress" from the prior check-in as unresolved rather than assumed-fine, and reproducing the exact CI failure locally (shallow clone) before believing the fix rather than guessing from the log alone.
+
+**Did not go well:** the shallow-checkout-unsafe pattern (a fixed-SHA `git show`) shipped in the first place two cycles ago; nothing in this repo's own gates currently catches "a test calls git show against a commit that might not exist in a shallow clone" as a class, only this one instance.
+
+Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged, none pickable per this slot's rule. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out. `standards.html` cold-read from the prior handoff still stands, unconsumed.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, consulting.html cold-read closed clean, standards.html handed off)
 
 **Previous work was finished.** Checkout arrived shallow and detached with local main sharing no common ancestor with origin/main; unshallowed, `ff-only`'d onto origin/main (745675c4, the shop.html gate). `python ops/preflight.py` run to its own completion, not cited: 0 gates failed, 22 warnings, all previously diagnosed sandbox limits. Working tree was clean and main was pushed. CI (`checks.yml` run 922 on 745675c4) was still `in_progress` at check time, not claimed green without seeing it finish; run 921 on the prior head completed `success`.
