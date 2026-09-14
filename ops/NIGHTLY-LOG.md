@@ -5,6 +5,18 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked)
 
+**NEXT FOR THE OPERATOR:** independent re-verification only, because every unblocked lever this repository can reach from here is already shipped and gated, and every open item is genuinely Phil's to move.
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (f5ed3b76), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion (not cited from a prior run): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, the two sub-hourly cron-cadence drifts).
+
+**Did:** pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all `decision` or `blocked-on-art`; 0 open PRs. Read `RISKS.md`'s severity table: the same three `CRITICAL` rows (0007 restore-unproven, 0011 masters outside repo, 0013 no stranger converted) remain correctly filed as needing Phil or a VPS-credentialed session, none newly actionable here. Read `CHECKIN-LOG.md`'s latest entry (01:16): still zero outcome movement against rising commit counts, already surfaced to Phil by an earlier cycle, not repeated. Read `GOALS.md` section 2: constraint is still arrivals; its $19/30-day revenue window closes 2026-09-20, six days out, nothing actionable before then.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** same standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues; none pickable per this slot's rule against picking Phil-waiting items.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (2a558886), clean tree. Ran python ops/preflight.py to its own completion (400s, exit 0): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, cron-cadence drift on the two sub-hourly workflows, unmatched from cycle to cycle).
 
 **Did:** read BACKLOG-2026-09-07.md end to end: sections 1-4 all struck through done or Phil-gated, section 5 correctly held on the traffic constraint, section 6's four owner gates unchanged. Pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all decision or blocked-on-art, 0 open PRs. Spot-checked one claim rather than trusting it: grepped the live site for the retired term "Set in Order" (dashboard claims 0 live uses); found one hit, read it in context, and confirmed it is deliberate editorial prose explaining translation variance, not the canon violation the gate exists to catch, and confirmed `gate_no_stray...` (the retired-term gate) is correctly scoped to bare/list-item usage, not explanatory prose, by reading its own source.
