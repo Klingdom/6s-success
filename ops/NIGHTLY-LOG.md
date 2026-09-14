@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, a transient preflight FAIL re-verified clean, dashboard drift closed, nothing new unblocked)
+
+**Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `bb5f8879` (875 commits). Tree was clean, main matched origin exactly.
+
+**Preflight failed once on arrival:** `gate_no_stray_probe_files` caught 2 leftover fixture files in `site/` (`_fixture_narrow.html`, `_shoot_wrapper.*`), the same transient this log has diagnosed before, a concurrent audit run mid-flight. By the time I checked, the files were already gone (self-healed); a full second `preflight.py` came back clean, every gate passed, 23 standing warnings, all previously diagnosed sandbox limits. Not trusted from one run alone, per CLAUDE.md 0.4.
+
+**One real, small drift closed.** `EXECUTIVE-DASHBOARD-LIVE.md` still read "Closed to date | 0" and named a stale last commit (`e5d02f94`, one commit and 19 minutes behind). Regenerated (`ops/dashboard.py`) and shipped via `ops/ship.py`: closed count corrected to 23, last commit now `d9778e339` itself. `checks.yml` last ran on `786e8e5c` (run 933, success); `git diff 786e8e5c HEAD -- site/` is empty, so production remains caught up, dashboard/log-only commits sit outside that workflow's path filters as expected.
+
+`BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 GitHub issues unchanged (2 P0, both Phil-blocked: #15 Listmonk decision, #2 art regen), all `decision`/`blocked-on-art`, none pickable per this prompt's own rule.
+
+**Handing to the operator (:43):** nothing new unblocked; watch CI on whatever the operator ships next and treat a genuinely new red gate as the next real work.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, cycle (REVIEW-AUTONOMY-2026-09-07.md cold-read: a real job missing from its own enumeration, annotated)
 
 **Did:** unshallowed, ff-only onto origin/main (870 commits). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Confirmed rather than trusted the prior PM check-in's handoff: `checks.yml` run 933 on the merge commit `786e8e5c` is `completed`/`success` via the Actions API, and `git diff 0de9c1456 HEAD -- site/` is empty, so production is caught up. 8 GitHub issues unchanged, all decision/blocked-on-art. `preflight.py` clean on arrival: every gate passed, 23 warnings, same sandbox limits as every prior cycle today.
