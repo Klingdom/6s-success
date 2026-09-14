@@ -16,11 +16,32 @@ name: Social drafts (Facebook, X)
 # (see linkedin-drafts.yml's own comment and gate_scheduled_workflow_cadence
 # in ops/preflight.py): this fires once and is not the one email that has to
 # land before coffee, so no early-compensation offset is applied here.
+#
+# A SECOND WAY IN, added 2026-09-14 after checking this workflow's own run
+# history rather than assuming the cron holds: both real runs on record
+# (2026-09-12, 2026-09-13) fired at 16:23 and 16:59 UTC against a 13:30 cron,
+# 3 to 3.5 hours late, and by 16:52 UTC on 2026-09-14, later than either prior
+# firing, no run for today existed at all. That is the identical shape
+# linkedin-drafts.yml measured (2 of 4 days needed a human to dispatch it by
+# hand) before it got this same fix.
+#
+# fulfil-orders.yml and linkedin-drafts.yml both solved this the same way,
+# and their notes carry the important caveat: a push trigger is only safe
+# when something ELSE holds the state, so two runs cannot both act. Here,
+# as in linkedin-drafts.yml, there is no natural ledger, so the gate step
+# below uses this workflow's own run history: a push sends only if no run
+# has succeeded today AND the clock is past the cron's own 13:30 UTC (no
+# early-compensation offset exists here to wait out), which leaves the
+# schedule its chance first. The concurrency group queues rather than
+# cancels, so two pushes in the same minute serialise and the second sees
+# the first's success and stands down.
 
 on:
   schedule:
     - cron: '30 13 * * *'      # fires ~13:30 UTC, mid-morning US
   workflow_dispatch:
+  push:
+    branches: [main]
 
 concurrency:
   group: social-drafts
@@ -29,17 +50,65 @@ concurrency:
 jobs:
   drafts:
     runs-on: ubuntu-latest
+    # A short job with no timeout can sit for hours holding its concurrency
+    # group. Nothing has hung yet; this is so a hang cannot become a silent
+    # outage of the report.
     timeout-minutes: 20
     permissions:
       contents: read
+      actions: read          # the gate step reads this workflow's own runs
     steps:
+      - name: Decide whether this run should send
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -eu
+          if [ "$EVENT_NAME" != 'push' ]; then
+            echo 'send=yes' >> "$GITHUB_OUTPUT"
+            echo 'schedule or manual run: sending.'
+            exit 0
+          fi
+          # Push is the FALLBACK. Give the schedule until its own cron time
+          # before standing in for it.
+          now=$(date -u +%s)
+          target=$(date -u -d 'today 13:30' +%s)
+          if [ "$now" -lt "$target" ]; then
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo 'before 13:30 UTC: leaving it to the schedule.'
+            exit 0
+          fi
+          today=$(date -u +%Y-%m-%d)
+          runs="repos/$GITHUB_REPOSITORY/actions/workflows/social-drafts.yml/runs"
+          n=$(gh api "$runs?status=success&created=%3E%3D$today" \
+                --jq '.workflow_runs | length' 2>/dev/null || echo unknown)
+          if [ "$n" = unknown ]; then
+            # Could not read the ledger. Do NOT send: a duplicate on every
+            # push is worse than a late email, and both the schedule and the
+            # manual dispatch still work.
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo '::warning::could not read run history; standing down rather than risking repeats.'
+            exit 0
+          fi
+          if [ "$n" -gt 0 ]; then
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo "already sent today ($n successful run(s))."
+            exit 0
+          fi
+          echo 'send=yes' >> "$GITHUB_OUTPUT"
+          echo 'past 13:30 UTC with no successful run today: standing in for the schedule.'
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.send == 'yes'
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.send == 'yes'
         with:
           python-version: '3.12'
 
       - name: Check it can send before it builds anything
+        if: steps.gate.outputs.send == 'yes'
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
@@ -49,6 +118,7 @@ jobs:
           echo "credentials present"
 
       - name: Write and send today's Facebook and X drafts
+        if: steps.gate.outputs.send == 'yes'
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}

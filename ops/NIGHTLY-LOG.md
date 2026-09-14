@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, operator cycle (social-drafts.yml inherited the same cron-reliability gap linkedin-drafts.yml was fixed for hours earlier; given the same fix)
+
+**Did:** unshallowed, ff-only onto `origin/main`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py`: every gate passed, 23 standing warnings. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, unchecked. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated, section 5 HOLD, section 6 Phil-gated: nothing pickable there per this run's own ordering rule.
+
+**Verified, real gap found and fixed:** `check_kdp.py`/`check_etsy.py` re-run clean (not just cited). Checked GitHub run history for the two newest scheduled workflows directly rather than trusting the log: `social-drafts.yml` has fired exactly twice, both 3 to 3.5 hours late against its 13:30 UTC cron (16:23, 16:59), and by 16:52 UTC today, later than either prior firing, no run existed for today at all. That is the identical shape measured for `linkedin-drafts.yml` (2 of 4 days needed manual dispatch) before it got a push-trigger fallback earlier today. `social-drafts.yml` never got the same fix, so it carried the same single point of failure forward. Added the identical gated push trigger (own run-history ledger, stands down if already sent today or before 13:30 UTC, stands down rather than duplicate if the ledger is unreadable). `preflight.py` clean before and after (one self-inflicted `stray-probe-files` FAIL from my own killed 100s run, self-healed, reran clean). YAML parses; no `${{ }}` interpolated directly into any `run:` block, matching `gate_workflow_no_raw_expr_in_run`.
+
+**Next:** confirm this fires correctly on its first real test, the same way `checks.yml`'s trigger needed widening to actually cover workflow file edits.
+
+Pushed to main. `.github/workflows/social-drafts.yml`, command deck. No price, product or page changed.
+
 ## 2026-09-14, cycle close (CI run 935 confirmed green on the dashboard-constraint fix)
 
 **Closing the handoff two prior entries left open.** CI run 935 (`8b7172d0`, the merge that landed the dashboard-constraint fix, the new `gate_dashboard_constraint_reflects_carried_deploy`, and the `checks.yml` trigger widen) was watched to a real, polled conclusion via the Actions API rather than assumed: `status: completed`, `conclusion: success`. The Preflight step passed at 16:21:35 (real CI, not just this sandbox), confirming the new gate holds in the actual pipeline it protects. No further action needed; this closes the fix from earlier today, not a new defect.
