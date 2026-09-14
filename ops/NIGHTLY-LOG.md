@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked, cold-read tier confirmed exhausted)
+
+**NEXT FOR THE OPERATOR:** a fresh-angle verification pass (a live customer-facing surface read end to end, or a newest-touched file run live rather than read cold), because the low-mention `ops/*.py` cold-read tier is now genuinely exhausted, confirmed this cycle by counting: every one of the 139 `ops/*.py` files has 8 or more mentions in this log, none at the 0-to-2 tier earlier cycles worked down. That is the same method that found the real 238-way title collision earlier today (`ops/social_drafts.py`, run live) and the affiliate-trigger miscount on 2026-09-11; it keeps finding real things after the cold-read tier stopped.
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (3ba21fef), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits.
+
+**Did:** pulled 8 open GitHub issues live via the API: unchanged in count and content since 2026-09-11 (most recent activity issue #2, 2026-09-11), still all `decision`/`blocked-on-art`; 0 open PRs. Checked CI directly: `checks.yml` run 920 on `55954fb` is `success`; current HEAD `3ba21fe` (dashboard-only regen) has no completed run yet, noted as unchecked rather than assumed green.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** the fresh-angle lead above, plus the standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues; none of the latter pickable per this slot's rule against picking Phil-waiting items. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (55954fbf, the X-post title collision gate), clean tree, 0/0 ahead-behind. Ran python ops/preflight.py to its own completion, not cited: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, the two sub-hourly cron-cadence drifts).
