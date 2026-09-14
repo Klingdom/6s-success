@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked)
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (2a558886), clean tree. Ran python ops/preflight.py to its own completion (400s, exit 0): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, cron-cadence drift on the two sub-hourly workflows, unmatched from cycle to cycle).
+
+**Did:** read BACKLOG-2026-09-07.md end to end: sections 1-4 all struck through done or Phil-gated, section 5 correctly held on the traffic constraint, section 6's four owner gates unchanged. Pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all decision or blocked-on-art, 0 open PRs. Spot-checked one claim rather than trusting it: grepped the live site for the retired term "Set in Order" (dashboard claims 0 live uses); found one hit, read it in context, and confirmed it is deliberate editorial prose explaining translation variance, not the canon violation the gate exists to catch, and confirmed `gate_no_stray...` (the retired-term gate) is correctly scoped to bare/list-item usage, not explanatory prose, by reading its own source.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** same standing OWNER-ACTIONS.md list and the 8 decision/blocked-on-art issues; none pickable per this slot's rule against picking Phil-waiting items. GOALS.md's $19/30-day window closes 2026-09-20.
+
+Shipped via ops/ship.py (dashboard/check-in regen only, `859e698b`/`6a70283c`, already pushed before this entry). No price, product or page touched.
+
 ## 2026-09-14, operator cycle (fresh checkout, independent re-verification plus one new angle, no defect found, no notification repeated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto `origin/main` (`9eb01747`), clean tree. Ran `python ops/preflight.py` to its own completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits confirmed fresh (no Stripe/mail/SSH credential; direct `curl` to `6s-success.com` still gets a 403 from the egress proxy, confirming the sandbox limit rather than assuming it). Pulled the 8 open GitHub issues live via the API: unchanged since 2026-09-11, still all `decision` or `blocked-on-art`; 0 open PRs; `checks.yml` run 918 confirmed `success` via the Actions API. `ops/inbox_agent.py --apply`: no mail credential, unchecked not empty. `GOALS.md` and `BACKLOG-2026-09-07.md` read end to end: sections 2-4 all done or Phil-gated, section 5 correctly held, section 6's four owner gates unchanged.
