@@ -5823,6 +5823,75 @@ def gate_ops_test_suite_matches_gate_tests(wf_path=None) -> None:
              "gets, and will fail this step's 700s bound by name again")
 
 
+_HARDCODED_GIT_HISTORY_RE = re.compile(
+    r"""git\s+(?:show|log|diff)\s+['"]?[0-9a-fA-F]{7,40}\b"""
+    r"""|['"](?:show|log|diff)['"]\s*,\s*['"][0-9a-fA-F]{7,40}\b"""
+)
+
+
+def check_no_hardcoded_git_history(text: str) -> bool:
+    """True if `text` asks git to look at a specific, named old commit.
+
+    Only catches the literal shape that actually broke CI: a bare hex SHA
+    typed straight into a `git show`/`log`/`diff` call, shell string or
+    subprocess list alike. It does not try to trace a SHA assigned to a
+    variable several lines away and interpolated later; that indirection is
+    rare enough, and static analysis of it false-positive-prone enough, that
+    catching the direct case (the one every real instance of this so far has
+    been) is worth more than chasing full coverage.
+    """
+    return bool(_HARDCODED_GIT_HISTORY_RE.search(text))
+
+
+def gate_no_hardcoded_git_history() -> None:
+    """A test must never ask git to show a specific old commit by hash.
+
+    Found 2026-09-14: `test_gate_shop_buy_claim_honest.py`'s own case 5 ran
+    `git show 94e0ce83:site/shop.html` to fetch the real pre-fix page and
+    prove the new check catches it. It passed here, where this session had
+    already unshallowed onto full history, then crashed real CI outright
+    (`subprocess.CalledProcessError`, exit 128, "fatal: invalid object name
+    '94e0ce83'") on the very next push, because `actions/checkout@v4` in
+    `checks.yml` takes no `fetch-depth` and defaults to a shallow, depth-1
+    clone: only the tip commit exists locally, so any older SHA a test
+    hardcodes is simply not there to show. Reproduced directly: cloning this
+    repository with `--depth 1` and running the exact same `git show`
+    against it fails with that exact error.
+
+    This is the same shallow-checkout shape `gate_dashboard_shallow_commits`
+    and `gate_ops_test_suite_matches_gate_tests` each already closed for a
+    different symptom (a silently truncated count, a wrongly-slow test
+    path); this one is a third symptom of the same underlying fact, an
+    outright crash instead of a wrong number or a slow path, so it gets its
+    own gate rather than folding into either. The fix
+    (`ops/tests/test_gate_shop_buy_claim_honest.py`) reconstructs the same
+    pre-fix text by undoing the known fix on the live file's own content,
+    needing no git history at all. Every future gate test that wants to
+    prove itself against "the real pre-fix file" should do the same: keep
+    the old and new strings in the test and diff between them, not walk
+    git's history for a commit CI may never have fetched.
+
+    test_gate_no_hardcoded_git_history.py itself is exempt, the same way
+    gate_network_calls_have_timeout exempts preflight.py: its own fixtures
+    deliberately contain the exact bad shapes this gate looks for, to prove
+    the detector catches them, and would otherwise flag itself.
+    """
+    for f in sorted(glob.glob(os.path.join(ROOT, "ops", "tests", "test_*.py"))):
+        if os.path.basename(f) == "test_gate_no_hardcoded_git_history.py":
+            continue
+        text = open(f, encoding="utf-8", errors="replace").read()
+        if check_no_hardcoded_git_history(text):
+            fail("no-hardcoded-git-history",
+                 f"{os.path.relpath(f, ROOT)} asks git to show/log/diff a "
+                 f"specific historical commit by hash. checks.yml's "
+                 f"actions/checkout@v4 has no fetch-depth, so CI's clone is "
+                 f"shallow (depth 1) and only the tip commit exists; this "
+                 f"crashes there even though it can pass in a fully-fetched "
+                 f"sandbox. Reconstruct the old content by editing a copy of "
+                 f"the live file's own text instead, the way "
+                 f"test_gate_shop_buy_claim_honest.py does.")
+
+
 def gate_integrations() -> None:
     """The proxied services must serve what only they could produce.
 
@@ -11994,6 +12063,7 @@ def main() -> int:
     run_gate(gate_workflow_no_raw_expr_in_run)
     run_gate(gate_checks_excludes_generated_files)
     run_gate(gate_ops_test_suite_matches_gate_tests)
+    run_gate(gate_no_hardcoded_git_history)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
