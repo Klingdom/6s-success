@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (the prompt was right; the empty negative prompt was the bug)
+
+**Did:** Chased the cluttered kitchen counter from the previous cycle to its actual cause and fixed it. I had recorded it as a prompt problem, on the strength of this plan's own measurement that only 199 of 628 standard clauses reach a prompt. That was a reasonable guess and it was wrong. The prompt reads "holding only one large wooden cutting board, a wooden knife block and a small salt cellar, nothing else on the surface", which is exactly the standard. The NEGATIVE prompt was empty, so "nothing else on the surface" went to the model as positive tokens, and "else on the surface" is an instruction to put things on the surface.
+
+**Verified:** all three prompt shapes through `split_negations`. The counter drops the clause and gains clutter suppression; the entryway door mat does the same with "floor" still in the positive prompt, which is the case the old exclusion existed to protect; the nursery "no blankets or toys" is unchanged. `test_image_negations` rewritten to assert the new behaviour and green.
+
+**Went well:** reading the prompt instead of trusting my own note from four hours earlier. `split_negations` deliberately excluded "nothing", and its docstring gives a good reason: negating the noun in "nothing else on the floor" would suppress the floor the mat stands on. That reasoning was right about what not to do and wrong about doing nothing, and it took reading the actual prompt and the actual empty negative to see the third option.
+
+**Did not go well:** lost another heredoc to backslash eating, on a regex this time: `\b` became a literal backspace, the anchor did not match, and the assert stopped it before anything was written. That is at least the ninth occurrence in this repository and the second this week, and I still reached for a heredoc first. Also could not verify the fix by generating: two attempts crashed the model load with a Windows access violation, at 3.2 GB and then at 4.6 GB free, having succeeded at 4.4 GB an hour earlier. Free memory is necessary and not sufficient, and I am not claiming a threshold I cannot reproduce.
+
+**Changing next cycle:** the correction to yesterday's conclusion matters more than the fix. I wrote that the bottleneck had moved to "prompts that carry the room rather than the standard, which is free to fix". For this zone the prompt carried the standard perfectly and the pipeline threw it away. Before blaming a prompt again, print the positive AND negative actually handed to the model.
+
+**Next:** regenerate `kitchen--primary-prep-counter` on the next cycle that can generate, and look at whether the counter is clear. Nothing shipped: `build/heroes/` is gitignored, all 114 files are present, and every verdict sha for the eight regenerated zones is stale, so those pages stay text-only.
+
+Pushed to main. `ops/image_local.py`, `ops/tests/test_image_negations.py`. No price, product, page or shipped image changed.
+
 ## 2026-09-14, cycle (generation came back after fifteen days, and the images are not good enough)
 
 **Did:** System RAM reached 2.8 GB free, the most in four days of checking, and the probe loaded the pipeline: exit 0, "generation is available on this machine". First time since 2026-08-30. Took the window immediately: backed up and cleared the eight rejected zone heroes and regenerated all eight in one minute, seven to nine seconds each. Then reviewed them, found a real defect in my own accept test, and fixed it.

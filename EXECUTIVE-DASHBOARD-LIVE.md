@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-14 11:46 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-14 11:56 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 945 pageviews from 74 visitors, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 504 from 72 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Traffic | 946 pageviews from 75 visitors, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 505 from 73 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 1009 of 2019 total |
+| Commits (7 days) | 1003 of 2021 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `12de5883` Merge routine work |
+| Last commit | `bd39cc75` "nothing else on the surface" was telling the model to cover |
 
 ## Product readiness
 
