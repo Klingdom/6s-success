@@ -11786,6 +11786,52 @@ def gate_root_docs_six_s_terms() -> None:
              f"{len(bad)} document(s) misname the 6S steps: {bad[:5]}")
 
 
+def check_x_post_titles_unique(posts: list) -> list[str]:
+    """Pure logic: which (chapter, title) pairs collide across two sources.
+
+    Split out so a test can feed it a synthetic pool without touching the
+    real corpus. See gate_x_post_titles_unique() for why this exists.
+    """
+    seen = {}
+    dupes = []
+    for p in posts:
+        key = (p["chapter"], p["title"])
+        if key in seen and seen[key] != p["source"]:
+            dupes.append(f"{p['chapter']}: {p['title']!r} ({seen[key]} and {p['source']})")
+        else:
+            seen[key] = p["source"]
+    return dupes
+
+
+def gate_x_post_titles_unique() -> None:
+    """No two X posts from the same chapter render an identical title.
+
+    Found 2026-09-14: `ops/social_drafts.py`'s own preview showed two
+    different X posts both titled "Post 10 [ch04]", indistinguishable until
+    read. All 50 chapters carry two numbered X-post source files
+    (`x-thread.md`, `x-short-posts-10.md`), each numbered from 1
+    independently, so every chapter collides in pairs across the whole
+    corpus: 238 colliding pairs before the fix, confirmed directly against
+    the pre-fix commit in an isolated worktree, not a one-off. Fixed in
+    `corpus_posts.split_numbered()`, which now folds a filename-derived hint
+    into the title. This re-derives the real pool on every run and fails by
+    name if a collision within one chapter ever reappears, so a future
+    third numbered file cannot reintroduce the same ambiguity silently.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import corpus_posts as cp
+        posts = cp.pool("x-post")
+    except Exception as e:                                       # noqa: BLE001
+        warn("x-post-titles", f"could not check: {type(e).__name__}: {e}")
+        return
+    dupes = check_x_post_titles_unique(posts)
+    if dupes:
+        fail("x-post-titles",
+             f"{len(dupes)} chapter(s) have two X posts with an identical, "
+             f"indistinguishable title: {dupes[:5]}")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -11901,6 +11947,7 @@ def main() -> int:
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
     run_gate(gate_root_docs_six_s_terms)
+    run_gate(gate_x_post_titles_unique)
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
