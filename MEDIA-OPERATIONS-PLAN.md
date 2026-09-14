@@ -255,18 +255,48 @@ we have already shipped at least once.
 
 ## 9. What is blocked on Phil
 
-| # | Decision | Why it matters |
-|---|---|---|
-| 1 | **Narration: captions-only, paid voice, or record it yourself** | The entire 114-video stream waits on this. Captions-only costs nothing and unblocks today. |
-| 2 | Budget for a commercial voice, if that is the choice | roughly $10 to $30/mo |
+**Corrected 2026-09-14, operator: this section was stale and contradicted the
+rest of this same file.** Row 1 below said the entire 114-video stream still
+waited on a narration decision. It did not: section 6.3, above, already
+records that narration was never actually blocked and that all 114 zones
+render; the table in section 1 has said "Narration | resolved. edge-tts
+neural voice (en-US-AvaNeural)..." since 2026-09-01. Nobody had told this
+section. This is the exact "source corrected, artifact never re-derived"
+defect class this repository's own gates now exist to catch elsewhere; this
+file carries no `preflight.py` gate of its own, so it went unnoticed until a
+cold read caught it directly.
 
-Nothing else in this plan needs an answer.
+| # | Decision | Status |
+|---|---|---|
+| ~~1~~ | ~~Narration: captions-only, paid voice, or record it yourself~~ | **Resolved 2026-09-01, no Phil decision needed.** Free local edge-tts neural narration, not captions-only. All 114 zones render, silent and narrated, both orientations. |
+| ~~2~~ | ~~Budget for a commercial voice~~ | **Moot.** The free path was used instead; nothing was spent. |
+
+**Nothing in this plan currently needs Phil's decision.** Publishing the
+remaining 102 of 114 videos needs his own YouTube OAuth paste (`OWNER-ACTIONS.md`
+item 1), which is a credential gate, not an open choice.
 
 ## 10. What I will do next without being asked
 
-1. Build quality gates 2 through 5, since each blocks a defect already shipped.
-2. Generate AVIF and WebP derivatives with `srcset` for the 313 existing images,
-   which is the largest available mobile performance win.
-3. Convert diagrams that are vector in nature from raster to SVG.
-4. Produce the first room's video set captions-only as a working sample, so the
-   narration decision is made against something real rather than in the abstract.
+**Reconciled 2026-09-14, operator, against the real repository rather than
+left as an aging to-do list.**
+
+1. ~~Build quality gates 2 through 5~~ **Partially done.** Gate 1 (no image
+   ships without a recorded verdict) and gate 6 (every video carries captions
+   before publish) exist in `ops/preflight.py` (`gate_image_coverage`,
+   `gate_srt_captions_current`, `gate_films_match_their_captions`); alt text
+   is checked by `ops/audit_pages.py`. Gates 3 to 5 (explicit width/height,
+   an AVIF/WebP derivative over a size threshold, and a per-asset weight
+   budget) are still not their own standing check, genuinely open.
+2. ~~Generate AVIF and WebP derivatives with `srcset`~~ **Done.** `ops/build_avif.py`
+   wires an AVIF `<source>` ahead of the raster fallback; 118 site pages
+   currently reference a `.avif` file, verified directly by grep against the
+   real `site/` tree, not assumed from this line's own prior claim.
+3. Convert diagrams that are vector in nature from raster to SVG. **Still
+   genuinely open:** `site/` carries 0 `.svg` files today, checked directly.
+   Not attempted this pass; the site currently has no vector-native diagram
+   content to convert (the drawings this plan describes were never produced),
+   so this is a future-content item, not a pipeline defect.
+4. ~~Produce the first room's video set captions-only as a working sample~~
+   **Overtaken.** Every one of the 114 zones has a full narrated set, not a
+   single captions-only sample; the decision this item was meant to inform
+   was resolved directly (item 1 above) instead.

@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (a document arguing with itself: MEDIA-OPERATIONS-PLAN.md still told a reader narration blocked all 114 videos, weeks after the same file's own section 1/6.3 resolved it; fixed and gated)
+
+**Did:** unshallowed and attached to `origin/main` (864 commits fast-forward). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 GitHub issues unchanged, all decision/blocked-on-art; `checks.yml`/`publish-image.yml` both confirmed green on HEAD's real ancestry via the Actions API. `ops/*.py` and `mobile/quest-app/lib/*.js` cold-read tiers reconfirmed exhausted (every file 7+ log mentions), so per step 5d moved to root `.md` files by mention count. `MEDIA-OPERATIONS-PLAN.md` (1 mention) section 9, "What is blocked on Phil," still said the entire 114-video stream waited on a narration decision. Checked directly: section 1's own table and section 6.3 already record narration resolved 2026-09-01 (free local edge-tts). Also found and corrected section 10's stale action list against the real repo: AVIF/WebP already wired (118 pages verified by grep), gates 1 and 6 already exist, SVG conversion genuinely still open (0 `.svg` files on site).
+
+**Verified:** new `gate_no_stale_narration_blocker` in `preflight.py`, fail-then-pass proved directly against the real file (planted the old sentence, watched it fail by name, reverted). Full `preflight.py` both fast and `--deep --own`: every gate passed, 23 warnings, all previously diagnosed (the one `--own` FAIL was this session's own uncommitted tree, not a real defect). `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** the doc-cold-read lane still finds real, if smaller, defects.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list unchanged; `.svg` diagram conversion is real, open, unscheduled work.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard regenerated, nothing new unblocked)
 
 **Previous work was finished.** Attached clean (fetch, unshallow already done, ff-only onto `origin/main`, `29788df6`). Full `preflight.py` ran clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Working tree was clean before I touched anything and `main` matched `origin/main`. `ops/NIGHTLY-LOG.md`'s own newest entry and `checks.yml`/`publish-image.yml` run history both confirm production caught up on run 268 (`0de9c145`), the real evidence the prior handoff asked for.

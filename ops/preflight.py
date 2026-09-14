@@ -8592,6 +8592,45 @@ def gate_no_stale_affiliate_blocker() -> None:
              (len(declined), ", ".join(sorted(declined))))
 
 
+def gate_no_stale_narration_blocker() -> None:
+    """MEDIA-OPERATIONS-PLAN.md must not present the narration decision as
+    a live, unresolved block on the video stream.
+
+    Found 2026-09-14, this operator, a cold read of a 1-mention root .md
+    file per step 5d once the ops/*.py and mobile lib tiers were both
+    reconfirmed exhausted. The file's own section 1 table has said
+    "Narration | resolved. edge-tts neural voice (en-US-AvaNeural)..."
+    since 2026-09-01, and section 6.3 ("Narration was never actually
+    blocked...") makes the same correction in prose. Section 9, "What is
+    blocked on Phil," had never been told: it still read "The entire
+    114-video stream waits on this," a live-sounding table two-thirds of
+    the way down the same document contradicting its own top summary. The
+    exact "source corrected, artifact never re-derived" shape this file's
+    own history names as its dominant defect class, just never before
+    caught inside a single document arguing with itself. Corrected to
+    record the resolution and its date.
+
+    This gate does not try to prove the whole file current, only that this
+    one already-fixed-elsewhere fact cannot regress back into reading as
+    an open decision, the same narrow, reusable-if-wrong shape as
+    gate_no_stale_listmonk_blocker and gate_no_stale_affiliate_blocker.
+    """
+    path = os.path.join(ROOT, "MEDIA-OPERATIONS-PLAN.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    claims_blocked = bool(re.search(
+        r"entire\s+114-video\s+stream\s+waits\s+on\s+this", text,
+        re.IGNORECASE))
+    if claims_blocked:
+        fail("no-stale-narration-blocker",
+             "MEDIA-OPERATIONS-PLAN.md section 9 claims the entire "
+             "114-video stream still waits on a narration decision, but "
+             "the same file's own section 1/6.3 already record it "
+             "resolved 2026-09-01 (free local edge-tts narration, all 114 "
+             "zones rendered). Read the real state, not a stale table.")
+
+
 def gate_affiliate_approved_claims_current() -> None:
     """how-we-make-money.html and affiliate-disclosure.html must not still
     say no affiliate programme has been approved once
@@ -12460,6 +12499,7 @@ def main() -> int:
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)
+    run_gate(gate_no_stale_narration_blocker)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
     run_gate(gate_visual_strategy_truncation_current)
