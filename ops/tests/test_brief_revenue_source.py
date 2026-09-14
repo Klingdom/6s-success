@@ -77,6 +77,9 @@ def main() -> int:
                 fails.append("hourly_brief revenue_30d=%r, want 19.0" % cm["revenue_30d"])
             if cm["paid_30d"] != 1:
                 fails.append("hourly_brief paid_30d=%r, want 1" % cm["paid_30d"])
+            if cm.get("revenue_lifetime") != 19.0:
+                fails.append("hourly_brief revenue_lifetime=%r, want 19.0"
+                             % cm.get("revenue_lifetime"))
 
         import roadmap_report as rr
         rr.env = lambda name, default="": os.environ.get(name, default)

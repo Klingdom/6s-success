@@ -39,6 +39,7 @@ committed subprocess call, and the flag genuinely does what the fix depends
 on in this machine's real browser.
 """
 import inspect
+import io
 import os
 import re
 import subprocess
@@ -102,6 +103,58 @@ def test_site_css_still_disables_reveal_transition_under_reduced_motion():
         "the fix in audit_visual.py relies on this rule existing."
     )
 
+
+
+def test_reduced_motion_reveal_is_visible_in_a_real_browser():
+    """The CSS text can say opacity:1 and still lose the cascade.
+
+    Found 2026-09-14: the reduced-motion block wrote `.reveal{opacity:1}`
+    while the fade rule is `.js .reveal{opacity:0; transition...}`, which is
+    more specific. The text check above passed; the browser still rendered
+    every reveal at opacity 0 with a 0.7s transition. So this reads the
+    computed style of a real page, with reduced motion forced.
+    """
+    import subprocess
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import browser as B
+    found = B.find_browser()
+    if not found:
+        print("SKIP (unchecked, not passing): no browser for computed style")
+        return
+    exe, extra = found
+    probe = os.path.join(ROOT, "site", "_reduced_motion_probe.html")
+    io.open(probe, "w", encoding="utf-8").write(
+        '<!doctype html><meta charset="utf-8">'
+        '<iframe id="f" src="book.html" style="width:1280px;height:900px"></iframe>'
+        '<script>var f=document.getElementById("f");f.onload=function(){'
+        'var d=f.contentDocument,w=f.contentWindow;'
+        'var el=[].slice.call(d.querySelectorAll(".reveal")).filter('
+        'function(e){return !e.classList.contains("in")})[0];'
+        'var o=el?{found:1,opacity:w.getComputedStyle(el).opacity,'
+        'dur:w.getComputedStyle(el).transitionDuration}:{found:0};'
+        'var p=document.createElement("pre");'
+        'p.textContent="RESULT"+JSON.stringify(o)+"ENDRESULT";'
+        'document.body.appendChild(p)};</script>')
+    try:
+        p = subprocess.run(
+            [exe, "--headless=new", "--disable-gpu",
+             "--allow-file-access-from-files", "--force-prefers-reduced-motion",
+             "--virtual-time-budget=100", "--dump-dom", *extra,
+             "file:///" + probe.replace(os.sep, "/")],
+            capture_output=True, text=True, encoding="utf-8",
+            errors="replace", timeout=90)
+    finally:
+        os.remove(probe)
+    m = re.search(r"RESULT(\{.*?\})ENDRESULT", p.stdout or "")
+    assert m, "probe produced no result; unchecked, not passing"
+    import json
+    r = json.loads(m.group(1))
+    assert r["found"], "no un-revealed .reveal element on book.html to measure"
+    assert float(r["opacity"]) == 1.0, (
+        "under prefers-reduced-motion a .reveal element renders at opacity "
+        "%s, so reduced-motion visitors still get the fade" % r["opacity"])
+    assert all(float(x.rstrip("s")) == 0 for x in r["dur"].split(",")), (
+        "under prefers-reduced-motion .reveal still transitions (%s)" % r["dur"])
 
 if __name__ == "__main__":
     fns = [v for k, v in list(globals().items()) if k.startswith("test_")]

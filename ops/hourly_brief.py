@@ -84,6 +84,10 @@ def commerce() -> dict:
         # window that sale sat inside. Found 2026-09-14 against the live API.
         sessions = get(f"checkout/sessions?limit=100&created[gte]={since}")["data"]
         charges = get(f"charges?limit=100&created[gte]={since}")["data"]
+        # Lifetime alongside the 30-day window. The one real sale (2026-08-21)
+        # leaves the trailing window on 2026-09-20, after which "$0 / 30d"
+        # alone reads like a broken instrument rather than a quiet month.
+        ever = get("charges?limit=100")["data"]
         paid = [c for c in charges
                 if c.get("status") == "succeeded" and c.get("paid")
                 and not c.get("refunded")
@@ -99,6 +103,10 @@ def commerce() -> dict:
                                - (c.get("amount_refunded") or 0)
                                for c in paid) / 100,
             "checkouts_started_30d": len(sessions),
+            "revenue_lifetime": sum((c.get("amount_captured") or c.get("amount") or 0)
+                                    - (c.get("amount_refunded") or 0)
+                                    for c in ever
+                                    if c.get("status") == "succeeded" and c.get("paid")) / 100,
             "live_links": len(links),
             "balance_available": avail,
             "balance_pending": pend,
@@ -257,8 +265,11 @@ def build() -> tuple[str, str]:
 
     rev = cm.get("revenue_30d", 0)
     sales = cm.get("paid_30d", 0)
+    life = cm.get("revenue_lifetime")
     subject = (f"{'OUTAGE - PAYMENT LINK DEAD - ' if link_problem else ''}"
-               f"6S hourly: ${rev:,.0f} / 30d, {sales} sale(s), "
+               f"6S hourly: ${rev:,.0f} / 30d"
+               f"{f' (${life:,.0f} lifetime)' if life is not None else ''}, "
+               f"{sales} sale(s), "
                f"{len(ib.get('unread', []))} unread")
 
     L = [f"{now:%Y-%m-%d %H:%M} UTC", ""]
@@ -268,6 +279,7 @@ def build() -> tuple[str, str]:
         L.append(f"  could not read Stripe: {cm['error']}")
     else:
         L += [f"  revenue, last 30 days      ${cm['revenue_30d']:,.2f}",
+              f"  revenue, lifetime          ${cm.get('revenue_lifetime', 0):,.2f}",
               f"  paid orders                {cm['paid_30d']}",
               f"  checkout pages opened      {cm['checkouts_started_30d']}"
               " (not orders; includes our own checks)",

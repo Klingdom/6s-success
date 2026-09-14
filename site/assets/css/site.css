@@ -663,7 +663,11 @@ main:focus{outline:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none}
+  /* .js .reveal is more specific than .reveal, so the plain selector here
+     lost the cascade: measured 2026-09-14 in headless Chrome with reduced
+     motion matched, .reveal still sat at opacity 0 with a 0.7s transition.
+     Visitors who asked for less motion got the fade anyway. */
+  .reveal,.js .reveal{opacity:1;transform:none;transition:none}
   .gauge .needle{animation:none}
 }
 

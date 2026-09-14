@@ -455,8 +455,14 @@ def audit(page: str, exe: str, extra_args: list, width: int, height: int,
              # budget now clears the probe's own ceiling.
              "--virtual-time-budget=15000", "--dump-dom", *extra_args,
              "file:///" + probe.replace(os.sep, "/")],
-            capture_output=True, text=True, timeout=120)
-        m = re.search(r"RESULT(\{.*?\})ENDRESULT", p.stdout, re.S)
+            # encoding is explicit: text=True alone decodes with the locale
+            # codec, which is cp1252 on Windows, and Chrome's DOM dump is
+            # UTF-8. Found 2026-09-14: the desktop pass died in subprocess's
+            # reader thread on byte 0x8f, stdout came back None, and every
+            # page it hit reported "NOT measured" rather than a finding.
+            capture_output=True, text=True, encoding="utf-8",
+            errors="replace", timeout=120)
+        m = re.search(r"RESULT(\{.*?\})ENDRESULT", p.stdout or "", re.S)
         if not m:
             return None
         return json.loads(m.group(1))
@@ -511,6 +517,14 @@ def live_matches(rel: str, local: str):
 
 
 def main() -> int:
+    # Findings quote page text verbatim, arrows and em dashes included. On a
+    # Windows console stdout is cp1252, and on 2026-09-14 the first desktop
+    # pass to finish measuring died printing its own report on U+2192.
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:                                  # noqa: BLE001
+            pass
     import browser as B
     found = B.find_browser()
     if not found:
