@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (`REVIEW-QA-2026-09-07.md` read; a duplicated false privacy claim and a real `.gitattributes` gap both fixed, the second with a new gate that caught its own first draft's bug)
+
+**Did:** the third and last of the three week-old review reports. Most P0/P1 findings (quest-scroll, cart, contrast, privacy.html forms claim) were already fixed 2026-09-08. Checked the rest live: `quest.html`'s hero was corrected 2026-09-07 to stop claiming quest progress is "never sent anywhere" (finish-card events do leave the browser), but the identical false claim was still verbatim live in two places never touched by that fix, `quest.html`'s own room-map view and `method.html`; reworded both to match. `terms.html`'s affiliate section said "some pages carry affiliate links, meaning we may earn a commission", contradicting `how-we-make-money.html` and every zone page (0 of 10 programmes approved, nothing earns anything today); corrected. The review's `.gitattributes` finding was real and still open: none existed, so git guesses whether a binary file is text and can silently line-ending-corrupt one on a Windows checkout, the exact defect the review measured on the free deck PDF's tree copy (2,092 injected bytes, shifted startxref). Added `.gitattributes` for every binary type this site ships.
+
+**Found and fixed a bug in my own new gate before it shipped.** First version of `gate_binary_files_protected` counted `\r\n` byte pairs in each committed PDF as the corruption signal; ran it for real and it flagged the live, healthy sample-book PDF, which carries 506 legitimate `\r\n` pairs in its own content. Traced the review's actual measurement: the real signature is the trailer's `startxref` no longer resolving to the `xref` keyword, not the presence of any `\r\n`. Rewrote the check to verify structural resolution instead; both shipped PDFs now verify clean. `ops/tests/test_gate_binary_files_protected.py` (6 cases) includes that exact regression as its own test case.
+
+**Verified:** `preflight.py` clean (0 failed, 21-22 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (0/0 duplicates), `affiliate.py --check` (162 documents).
+
+**Went well:** running the new gate against the real files before committing it caught a real false-positive before it ever shipped as a standing check.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** not re-verified this pass: the bundle `$66` Stripe description, sample PDF cover text, six colliding Stripe product names, Idaho consult disclosure (all Stripe-side, no credential here), security headers, `invest.html`'s unsourced investor-facing claims (flagged, not edited: narrative judgment on a fundraising document, Phil's call). Concurrent PM check-in's own D11 (spelling) handoff still open.
+
+Pushed to main. Dashboard regenerated. No Stripe/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, D11 (American-spelling consistency) handed to the operator as the highest-value unblocked item)
 
 NEXT FOR THE OPERATOR: fix D11 in `REVIEW-DISCOVERY-2026-09-07.md` (normalise "organise"/"organising" to "organize"/"organizing" in body copy, leaving the one indexed British-spelling URL alone), because it is the only genuinely unblocked item left in any lane and it is small and mechanical enough for one slot.
