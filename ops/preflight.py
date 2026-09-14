@@ -1198,6 +1198,52 @@ def gate_pack_deck_distinct() -> None:
              f"already. First: {hits[0][0]}: {hits[0][1][:120]!r}")
 
 
+def check_shop_buy_claim_honest(text: str) -> list:
+    """Pure logic behind gate_shop_buy_claim_honest, given shop.html's text."""
+    problems = []
+    if 'price">Quote<' not in text:
+        return problems
+    if "Everything here can be bought today and delivered today" in text:
+        problems.append(
+            "hero claims 'Everything...can be bought today' while a "
+            "quote-based product (price shown as Quote) is in the grid")
+    marker = "checks out directly and securely through Stripe"
+    idx = text.find(marker)
+    if idx != -1:
+        nearby = text[idx:idx + 250]
+        if "except" not in nearby and "Corporate Lean 6S" not in nearby:
+            problems.append(
+                "hero claims every priced item checks out through Stripe "
+                "with no exception named near a quote-based product in the grid")
+    return problems
+
+
+def gate_shop_buy_claim_honest() -> None:
+    """shop.html's hero copy must not claim universal instant checkout
+    while a quote-based product sits in its own grid.
+
+    Found 2026-09-14, cold-reading shop.html for content honesty (CLAUDE.md
+    8-10): the hand-authored lede said "Everything here can be bought today
+    and delivered today" and "Every priced item below checks out directly
+    and securely through Stripe", both untrue for Corporate Lean 6S
+    (SKU CN-CORP), the one of 159 catalogue products GOALS.md's own "158 of
+    159" line already names as quote-based, no fixed price, no Stripe
+    checkout, "Request a quote" linking to corporate.html instead. Fixed the
+    copy to name the exception. This gate re-derives the check from the
+    live grid (a real "Quote" price tile) rather than a hardcoded SKU list,
+    so it still fires if a future quote-based product is added under a
+    different SKU and the hero copy is not updated to match.
+    """
+    path = os.path.join(SITE, "shop.html")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8", errors="replace").read()
+    problems = check_shop_buy_claim_honest(text)
+    if problems:
+        fail("shop-buy-claim-honest",
+             "site/shop.html: " + "; ".join(problems))
+
+
 def gate_tests() -> None:
     """Run everything in ops/tests. A test nobody runs is not a test.
 
@@ -11894,6 +11940,7 @@ def main() -> int:
     run_gate(gate_affiliate)
     run_gate(gate_stale_claims)
     run_gate(gate_pack_deck_distinct)
+    run_gate(gate_shop_buy_claim_honest)
     run_gate(gate_front_matter_filled)
     run_gate(gate_mobile_corpus_current)
     run_gate(gate_mobile_js_tests)

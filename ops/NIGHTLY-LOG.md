@@ -15,7 +15,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Did not go well:** nothing new; same shallow-checkout reattach as every cycle.
 
-**Changing next cycle:** none; no new gate needed, this was a one-line hand-copy fix with no generator to protect.
+**Turned the lesson into a gate.** New `gate_shop_buy_claim_honest` in `preflight.py`, pure `check_shop_buy_claim_honest()` re-derived from the live grid (a real `"Quote"` price tile, not a hardcoded SKU list) so it still fires if a future quote-based product ships under a different SKU and the hero copy is not updated to match. `ops/tests/test_gate_shop_buy_claim_honest.py` (6 cases) fail-then-pass proved directly against the real pre-fix commit (`94e0ce83`, fails both checks by name) and the real current file (clean).
+
+**Changing next cycle:** none.
 
 **Next:** `consulting.html`, `standards.html`, `privacy.html` and `accessibility.html` remain without an individual content-honesty cold-read; `consulting.html` is next highest-value (it names the same Corporate Lean 6S quote path and the $1,200 In-Home Consult, worth checking against this exact finding). Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
 
