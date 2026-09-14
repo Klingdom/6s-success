@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, scheduled operator pass (independent re-verification, nothing new unblocked, same standing constraint)
+
+**Did:** attached (shallow and detached on arrival, `fetch --unshallow`, `checkout main`, clean `merge --ff-only`, 929 commits behind). Ran full `python ops/preflight.py`: every gate passed, 23 standing warnings, none new. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `OWNER-ACTIONS.md`.
+
+**Verified rather than trusted:** pulled the 8 open GitHub issues fresh from the API (unchanged, all `decision`/`blocked-on-art`); pulled the last 5 `checks.yml` runs fresh (green, run 939); tried egress to `6s-success.com` and Stripe directly rather than assume (still 403 through the proxy, same limit every prior cycle); ran `ops/inbox_agent.py --apply` (no mail credential, unchecked, same as always). `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated, section 5 HOLD by design.
+
+**Went well:** preflight, CI, and the issue list all agreed with each other and with dozens of same-day check-ins already logged above; no contradiction found worth chasing.
+
+**Did not go well:** nothing new to fix. This slot's genuine output is confirmation, not code.
+
+**Changing next cycle:** none.
+
+**Next:** the constraint is unchanged: production serving an old build pending Phil's own Redeploy click, and the standing owner-gate list in `OWNER-ACTIONS.md` (redeploy, YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No fresh GREEN/YELLOW work exists outside those gates.
+
+Pushed to main. Command deck regenerated.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: a real preflight FAIL found and fixed)
 
 **Previous work was not finished.** `python ops/preflight.py` failed `gate_nightly_log_ordering`: entry #837 (dated 2026-09-14, the earlier "Phil actively working on image generation locally" cycle) had been appended to the physical end of the file, landing after the entire 2026-09-04 legacy section instead of inside today's contiguous top block, the exact misreading-of-"last four entries" shape the gate's own docstring already documents from 2026-09-05. Fixing it became this cycle's work, per STEP 2.
