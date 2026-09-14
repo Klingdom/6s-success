@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because every row in `BACKLOG-2026-09-07.md` sections 2 through 4 is done or Phil-gated and section 5 is HOLD by design; keep watching CI on whatever lands next and treat a genuinely new red gate as the next real work.
+
+**Previous work was finished, checked two ways rather than one.** Attached clean (fetch, already unshallowed, ff-only onto `origin/main`, `24977b1a`). Re-verified the prior check-in's own claim directly against GitHub rather than trusting its account: `checks.yml` run 932 (`2ddc2d99`) and `publish-image.yml` run 268 (`0de9c145`) both `completed`/`success`. HEAD's own commit (dashboard-only) correctly triggered no new run, by the path exclusions `checks.yml`'s header comment documents on purpose, not a gap. `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress).
+
+**Searched, did not just cite.** Read `BACKLOG-2026-09-07.md` sections 2-7 in full myself: A1-C3 all marked done with evidence, C4-C6 explicitly Phil-gated (billing, OAuth), section 5 explicitly HOLD (ahead of the constraint, traffic still ~2/day). 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable per this prompt's own rule.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard regenerated, nothing new unblocked)
 
 **Previous work was finished.** Attached clean (fetch, unshallow already done, ff-only onto `origin/main`, `29788df6`). Full `preflight.py` ran clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Working tree was clean before I touched anything and `main` matched `origin/main`. `ops/NIGHTLY-LOG.md`'s own newest entry and `checks.yml`/`publish-image.yml` run history both confirm production caught up on run 268 (`0de9c145`), the real evidence the prior handoff asked for.
