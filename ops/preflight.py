@@ -2043,6 +2043,108 @@ def gate_dashboard_deploy_carry_forward() -> None:
              f"unmeasured 0/0 instead. Got {sibling!r}")
 
 
+def gate_dashboard_deploy_marker_carry_forward() -> None:
+    """A confirmed-live deploy marker must reach the dashboard when prev cannot.
+
+    Found 2026-09-14: ops/deploy.py deployed and confirmed production current
+    by build id, then the same pass edited site/standards.html, which moved
+    the repo's own build id on again before dashboard.py was ever rerun. The
+    committed ops/state.json still held deploy_last_verdict "stale" from
+    before that deploy, and every later egress-less run would have carried
+    that stale reading forward forever, with no way to tell "never
+    redeployed in weeks" apart from "one file behind since an hour ago".
+    ops/deploy.py now writes ops/deploy-verdict.json the moment it confirms a
+    build live; resolve_deploy_verdict() reads it when this run has no live
+    measurement of its own. Proves that pure logic with synthetic inputs.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+
+    # A marker whose build id still matches the repo must read as genuinely
+    # current, not stuck on prev's older "stale".
+    current = dashboard.resolve_deploy_verdict(
+        {"verdict": "unknown", "stale_assets": 0, "checked_assets": 4},
+        {"deploy_last_verdict": "stale", "deploy_verified_at": "2026-09-14 15:00"},
+        "2026-09-14 21:00",
+        marker={"verdict": "current", "build_id": "abc123",
+               "checked_at": "2026-09-14T21:36:20Z"},
+        repo_build_id="abc123")
+    if current.get("deploy_verdict") != "current":
+        fail("dashboard-deploy-marker-carry-forward",
+             f"resolve_deploy_verdict() ignored a fresh, matching deploy "
+             f"marker and stayed on prev's older carried verdict; got "
+             f"{current!r}")
+
+    # A marker whose build id no longer matches the repo (more work landed
+    # since the confirmed deploy) must say so precisely, not silently claim
+    # "current" and not silently repeat the old generic "stale" either.
+    drifted = dashboard.resolve_deploy_verdict(
+        {"verdict": "unknown", "stale_assets": 0, "checked_assets": 4},
+        {"deploy_last_verdict": "stale", "deploy_verified_at": "2026-09-14 15:00"},
+        "2026-09-14 21:00",
+        marker={"verdict": "current", "build_id": "abc123",
+               "checked_at": "2026-09-14T21:36:20Z"},
+        repo_build_id="def456")
+    if drifted.get("deploy_verdict") != "stale":
+        fail("dashboard-deploy-marker-carry-forward",
+             f"resolve_deploy_verdict() must call a repo-moved-on-since-"
+             f"confirmation case 'stale', not {drifted.get('deploy_verdict')!r}")
+    note = drifted.get("deploy_marker_note") or ""
+    if "abc123" not in note or "def456" not in note:
+        fail("dashboard-deploy-marker-carry-forward",
+             f"a drifted marker must name both the confirmed build and the "
+             f"repo's current build so the reader can see the gap is one "
+             f"change, not an unknown backlog; got {note!r}")
+
+    # A marker older than what prev already recorded must never regress a
+    # fresher carried reading (prev already reflects something newer).
+    stale_marker = dashboard.resolve_deploy_verdict(
+        {"verdict": "unknown", "stale_assets": 0, "checked_assets": 4},
+        {"deploy_last_verdict": "current",
+         "deploy_verified_at": "2026-09-14 22:00"},
+        "2026-09-14 23:00",
+        marker={"verdict": "current", "build_id": "old000",
+               "checked_at": "2026-09-14T15:00:00Z"},
+        repo_build_id="old000")
+    if stale_marker.get("deploy_verdict") != "current":
+        fail("dashboard-deploy-marker-carry-forward",
+             f"an older marker must not override a fresher carried verdict; "
+             f"got {stale_marker!r}")
+
+    # The exact live regression this gate exists to prevent: a marker
+    # already carried into prev's own deploy_verified_at (an equal
+    # timestamp, not a strictly newer one) must go on being applied, not
+    # silently drop its note the very next time this file regenerates with
+    # nothing new to measure. Caught live: the note appeared once, then
+    # vanished on the following run.
+    reapplied = dashboard.resolve_deploy_verdict(
+        {"verdict": "unknown", "stale_assets": 0, "checked_assets": 4},
+        {"deploy_last_verdict": "stale",
+         "deploy_verified_at": "2026-09-14T21:36:20Z"},
+        "2026-09-14 23:00",
+        marker={"verdict": "current", "build_id": "abc123",
+               "checked_at": "2026-09-14T21:36:20Z"},
+        repo_build_id="def456")
+    if not reapplied.get("deploy_marker_note"):
+        fail("dashboard-deploy-marker-carry-forward",
+             f"a marker already carried into prev's own deploy_verified_at "
+             f"(equal timestamp) must still be re-applied on the next run, "
+             f"not silently dropped; got {reapplied!r}")
+
+    # A real live measurement this run must always win over any marker.
+    live = dashboard.resolve_deploy_verdict(
+        {"verdict": "current", "stale_assets": 0, "checked_assets": 4},
+        {"deploy_last_verdict": "stale", "deploy_verified_at": "2026-09-14 15:00"},
+        "2026-09-14 21:00",
+        marker={"verdict": "current", "build_id": "zzz999",
+               "checked_at": "2026-09-14T21:36:20Z"},
+        repo_build_id="something-else")
+    if live.get("deploy_verdict") != "current" or live.get("deploy_carried"):
+        fail("dashboard-deploy-marker-carry-forward",
+             f"a real live measurement must win outright over a marker, "
+             f"with deploy_carried False; got {live!r}")
+
+
 def gate_dashboard_traffic_carry_forward() -> None:
     """A real traffic or affiliate-trigger reading must survive an unmeasured run.
 
@@ -12553,6 +12655,7 @@ def main() -> int:
     run_gate(gate_dashboard_severity)
     run_gate(gate_dashboard_live_links_carry_forward)
     run_gate(gate_dashboard_deploy_carry_forward)
+    run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
     run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)

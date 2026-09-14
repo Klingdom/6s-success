@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, scheduled operator pass (dashboard headline drift after a real deploy, found and closed structurally)
+
+**Did:** attached (shallow and detached, unshallowed, ff-only onto origin/main, clean). Preflight clean on arrival, 8 issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential (inbox unchecked, per step 8). BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated again.
+
+Rather than one more cold-read pass, checked the dashboard's own machine state against the latest commit (`5bc41464`, a local session with real VPS/Stripe access): that session deployed and confirmed production current by build id, then edited `site/standards.html` in the same pass, moving the repo's own build id on again, and never reran `ops/dashboard.py`. `ops/state.json` still carried `deploy_last_verdict: "stale"` from before the deploy, and this sandbox has no egress to tell "never redeployed" apart from "one file behind since an hour ago." Fixed structurally: `ops/deploy.py` now writes `ops/deploy-verdict.json` (build id, timestamp) the moment it confirms a live build; `ops/dashboard.py` reads it when it cannot measure live itself, naming both build ids honestly when they differ. Backfilled the marker from `5bc41464`'s own real claim.
+
+Two real bugs found proving it: the marker branch first reused this run's own unmeasured 0/0 asset counts (recreating the exact 2026-08-31 "0 of 0 differ" bug); and a strict `>` timestamp check made the note vanish the very next regeneration. Both fixed, fail-then-pass proved.
+
+**Verified:** new gate (7 cases), `test_deploy.py` (14 to 20 cases), full `preflight.py` (0 failed, 23 warnings), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 docs), mobile `npm test` (4 suites) all clean.
+
+**Next:** owner gates unchanged (redeploy the standards.html fix, YouTube OAuth, Search Console, Gemini billing).
+
+Pushed to main. Command deck regenerated.
+
 ## 2026-09-14, local session with the VPS key, Stripe and mail (deployed, fixed revenue in the emailed briefs, linked the Standards page)
 
 **Did:** production was STALE (`quest-data.js`, build `3c70a770` vs repo `497533af`); ran `ops/deploy.py`, now CURRENT on build id and all 9 assets. The deploy verdict said "already matched" after shipping a new build; it now compares build ids. `hourly_brief.py` and `roadmap_report.py` still summed paid checkout sessions, so the four-hourly email read "$0 / 30d, 0 sale(s)" with the $19 charge inside the window; both read charges now, refunds excluded, `test_brief_revenue_source.py` fail-then-pass proved in a worktree. Re-pulled traffic directly: 75 visitors / 196 visits / 30d, 18 / 30 in 7d; Google 3 visits from 2 visitors, 4 of 6 landing pageviews on `/standards.html`, whose room list had no links, so it now links all 114 zone pages (verified against files and live 200s). Merged over a concurrent 74/161 carry.

@@ -15,6 +15,7 @@ runs directly.
 
 Run:  python ops/tests/test_deploy.py
 """
+import json
 import os
 import sys
 import tempfile
@@ -37,10 +38,11 @@ def run(argv, key_exists=True, pub_exists=True, reachable_user="root",
     """
     real = (D.KEY, D.reachable, D.ssh, D.live_product_count,
             D.repo_product_count, D.live_build_id, D.repo_build_id,
-            D.live_stamp, D.repo_stamp, sys.argv)
+            D.live_stamp, D.repo_stamp, D.VERDICT_PATH, sys.argv)
 
     tmpdir = tempfile.mkdtemp()
     fake_key = os.path.join(tmpdir, "key")
+    D.VERDICT_PATH = os.path.join(tmpdir, "deploy-verdict.json")
     if key_exists:
         open(fake_key, "w").write("fake private key")
         if pub_exists:
@@ -65,12 +67,19 @@ def run(argv, key_exists=True, pub_exists=True, reachable_user="root",
         D.live_stamp = lambda: live_stamp
         D.repo_stamp = lambda: mine_stamp
         sys.argv = ["deploy.py"] + argv
-        return D.main()
+        code = D.main()
+        marker_path = os.path.join(tmpdir, "deploy-verdict.json")
+        marker = None
+        if os.path.exists(marker_path):
+            with open(marker_path, encoding="utf-8") as f:
+                marker = json.load(f)
+        return code, marker
     finally:
         (D.KEY, D.reachable, D.ssh, D.live_product_count,
          D.repo_product_count, D.live_build_id, D.repo_build_id,
-         D.live_stamp, D.repo_stamp, sys.argv) = real
-        for p in (fake_key, fake_key + ".pub"):
+         D.live_stamp, D.repo_stamp, D.VERDICT_PATH, sys.argv) = real
+        for p in (fake_key, fake_key + ".pub",
+                  os.path.join(tmpdir, "deploy-verdict.json")):
             if os.path.exists(p):
                 os.remove(p)
         os.rmdir(tmpdir)
@@ -79,77 +88,100 @@ def run(argv, key_exists=True, pub_exists=True, reachable_user="root",
 def main() -> int:
     fails = []
 
-    r = run([], key_exists=False)
+    r, _ = run([], key_exists=False)
     if r != 1:
         fails.append(f"no deploy key must return 1 (blocked), got {r}")
 
-    r = run([], reachable_user=None)
+    r, _ = run([], reachable_user=None)
     if r != 2:
         fails.append(f"key present but not installed on the server must "
                       f"return 2, got {r}")
 
-    r = run([], reachable_user=None, pub_exists=False)
+    r, _ = run([], reachable_user=None, pub_exists=False)
     if r != 2:
         fails.append(f"key present, not installed, AND no .pub file must "
                       f"still return 2 with a clear message rather than "
                       f"crash (this is the real bug this file found: an "
                       f"unhandled FileNotFoundError), got {r}")
 
-    r = run(["--check"])
+    r, m = run(["--check"])
     if r != 0:
         fails.append(f"--check with a reachable user must return 0, got {r}")
+    if m is not None:
+        fails.append(f"--check must change nothing, including the deploy "
+                      f"verdict marker; got {m!r}")
 
-    r = run([], docker_ok=False)
+    r, m = run([], docker_ok=False)
     if r != 1:
         fails.append(f"a failed docker inspect must return 1, got {r}")
+    if m is not None:
+        fails.append(f"a failed deploy must not write a 'current' marker; "
+                      f"got {m!r}")
 
-    r = run([], deploy_ok=False)
+    r, _ = run([], deploy_ok=False)
     if r != 1:
         fails.append(f"a failed compose pull/up must return 1, got {r}")
 
-    r = run([], after=None)
+    r, _ = run([], after=None)
     if r != 1:
         fails.append(f"unreadable product count after deploy must return 1 "
                       f"(unchecked is not deployed), got {r}")
 
-    r = run([], after=140, want=159)
+    r, _ = run([], after=140, want=159)
     if r != 1:
         fails.append(f"a product count behind the repository must return 1, "
                       f"got {r}")
 
-    r = run([], live_id="old999", mine_id="new123")
+    r, m = run([], live_id="old999", mine_id="new123")
     if r != 1:
         fails.append(f"a build id mismatch must return 1 (different build "
                       f"live), got {r}")
+    if m is not None:
+        fails.append(f"a build id mismatch must not write a 'current' "
+                      f"marker; got {m!r}")
 
-    r = run([], live_id=None, mine_id="new123")
+    r, _ = run([], live_id=None, mine_id="new123")
     if r != 1:
         fails.append(f"an unreadable live build id when the repo has one "
                       f"must return 1 (unchecked is not deployed), got {r}")
 
-    r = run([], live_stamp=None)
+    r, _ = run([], live_stamp=None)
     if r != 1:
         fails.append(f"an unreadable stylesheet stamp must return 1, got {r}")
 
-    r = run([], live_stamp="css-old", mine_stamp="css-new")
+    r, _ = run([], live_stamp="css-old", mine_stamp="css-new")
     if r != 1:
         fails.append(f"a stylesheet stamp mismatch must return 1 (this is "
                       f"the exact 2026-09-04 near-miss: matching product "
                       f"count, different build), got {r}")
 
-    r = run([], before=159, after=159, want=159)
+    r, m = run([], before=159, after=159, want=159, live_id="build1",
+               mine_id="build1")
     if r != 0:
         fails.append(f"an already-current site (before == after, everything "
                       f"matches) must return 0, got {r}")
+    if not m or m.get("verdict") != "current" or m.get("build_id") != "build1":
+        fails.append(f"a confirmed-current deploy must persist a marker "
+                      f"naming the live build id, so a later egress-less "
+                      f"run can tell a real confirmation from a stale carry "
+                      f"(2026-09-14: this never happened, and a session's "
+                      f"own confirmed deploy was invisible to the next run "
+                      f"that could not itself reach the site); got {m!r}")
+    if not m or "checked_at" not in m:
+        fails.append(f"the marker must carry when it was confirmed, got {m!r}")
 
-    r = run([], before=140, after=159, want=159)
+    r, m = run([], before=140, after=159, want=159, live_id="build2",
+               mine_id="build2")
     if r != 0:
         fails.append(f"a real deploy that changed the count and now matches "
                       f"must return 0, got {r}")
+    if not m or m.get("build_id") != "build2":
+        fails.append(f"a real deploy (count changed) must also persist the "
+                      f"marker with the new live build id; got {m!r}")
 
     for f in fails:
         print(f"  FAIL  {f}")
-    total = 14
+    total = 20
     print(f"  {total - len(fails)} of {total} cases pass")
     return 1 if fails else 0
 

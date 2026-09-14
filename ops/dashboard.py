@@ -580,7 +580,9 @@ except Exception as e:                                       # noqa: BLE001
 S["deploy_verdict"] = S["deploy"]["verdict"]
 
 
-def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str) -> dict:
+def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str,
+                           marker: dict | None = None,
+                           repo_build_id: str | None = None) -> dict:
     """Keep a carried-forward deploy verdict's numbers matching its claim.
 
     The same rule live_links already has (resolve_live_links_verdict), and
@@ -607,7 +609,38 @@ def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str) -> dict:
 
     Pure, mirroring resolve_live_links_verdict(), so preflight can prove it
     with synthetic inputs.
+
+    2026-09-14 addition: ops/deploy.py is the only file in this repository
+    that ever runs with real SSH access to production, and it used to prove
+    a real deploy live and then say nothing durable about it. A session that
+    deployed, confirmed current, and then (same pass) edited another file
+    moved the repo's own build id on again before ever rerunning this file,
+    so the next egress-less run carried forward whatever deploy_last_verdict
+    prev happened to hold from BEFORE that deploy -- "stale" -- and had no
+    way to tell a deploy that never happened apart from one that happened an
+    hour ago and was immediately one file behind again. deploy.py now writes
+    ops/deploy-verdict.json the moment it confirms a build live; `marker` is
+    that file's parsed content (or None), `repo_build_id` is this run's own
+    read of site/build-id.txt. Only trusted when newer than what prev already
+    recorded, so an old marker can never overwrite a fresher real measurement
+    or a fresher carry.
     """
+    def _carried_counts():
+        """The last real asset counts, from wherever they still survive.
+
+        Shared by every carry-forward branch below (marker or plain), so
+        none of them can repeat the 2026-08-31 bug: a carried verdict word
+        next to this run's own unmeasured 0/0, on the exact line CLAUDE.md
+        treats as a P0 trust defect.
+        """
+        prev_deploy = prev.get("deploy") or {}
+        if "deploy_stale_assets" in prev:
+            return prev["deploy_stale_assets"], prev["deploy_checked_assets"]
+        if prev_deploy.get("verdict") not in (None, "unknown"):
+            return (prev_deploy.get("stale_assets", deploy["stale_assets"]),
+                    prev_deploy.get("checked_assets", deploy["checked_assets"]))
+        return deploy["stale_assets"], deploy["checked_assets"]
+
     if deploy["verdict"] != "unknown":
         return {"deploy_verdict": deploy["verdict"],
                 "deploy_last_verdict": deploy["verdict"],
@@ -615,22 +648,51 @@ def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str) -> dict:
                 "deploy_carried": False,
                 "deploy_stale_assets": deploy["stale_assets"],
                 "deploy_checked_assets": deploy["checked_assets"]}
+    if marker and marker.get("verdict") == "current" and marker.get("build_id"):
+        marker_time = marker.get("checked_at") or ""
+        prev_time = prev.get("deploy_verified_at") or ""
+        # >= , not >: once this marker has been carried into prev's own
+        # deploy_verified_at, a strict > would treat it as no longer "new"
+        # and silently drop back to a plain carry with no marker_note on
+        # the very next regeneration, even though nothing had changed and
+        # no fresher measurement had occurred. Found live, the first time
+        # this ran twice in a row: the note appeared once, then vanished.
+        # A genuinely fresher independent measurement (live or a newer
+        # marker) always sets prev_time strictly ahead of this static
+        # marker_time on its own, so >= never lets a stale marker win.
+        if marker_time and marker_time >= prev_time:
+            _, checked = _carried_counts()
+            if marker["build_id"] == repo_build_id:
+                return {"deploy_verdict": "current",
+                        "deploy_last_verdict": "current",
+                        "deploy_verified_at": marker_time,
+                        "deploy_carried": True,
+                        "deploy_marker_source": True,
+                        "deploy_stale_assets": 0,
+                        "deploy_checked_assets": checked}
+            stale, checked = _carried_counts()
+            short_m, short_r = marker["build_id"][:16], (repo_build_id or "unknown")[:16]
+            return {"deploy_verdict": "stale",
+                    "deploy_last_verdict": "stale",
+                    "deploy_verified_at": marker_time,
+                    "deploy_carried": True,
+                    "deploy_marker_source": True,
+                    "deploy_stale_assets": stale,
+                    "deploy_checked_assets": checked,
+                    "deploy_marker_note":
+                        (f"A session with real access confirmed production "
+                         f"current at {marker_time} (build {short_m}). The "
+                         f"repository has since moved to build {short_r}, "
+                         f"not yet redeployed, so this gap is whatever "
+                         f"changed since that confirmation, not an unknown "
+                         f"backlog.")}
     last_verdict = prev.get("deploy_last_verdict")
     if not last_verdict:
         return {"deploy_verdict": "unknown",
                 "deploy_carried": False,
                 "deploy_stale_assets": deploy["stale_assets"],
                 "deploy_checked_assets": deploy["checked_assets"]}
-    prev_deploy = prev.get("deploy") or {}
-    if "deploy_stale_assets" in prev:
-        stale = prev["deploy_stale_assets"]
-        checked = prev["deploy_checked_assets"]
-    elif prev_deploy.get("verdict") not in (None, "unknown"):
-        stale = prev_deploy.get("stale_assets", deploy["stale_assets"])
-        checked = prev_deploy.get("checked_assets", deploy["checked_assets"])
-    else:
-        stale = deploy["stale_assets"]
-        checked = deploy["checked_assets"]
+    stale, checked = _carried_counts()
     return {"deploy_verdict": last_verdict,
             "deploy_last_verdict": last_verdict,
             "deploy_verified_at": prev.get("deploy_verified_at", "an earlier run"),
@@ -639,7 +701,26 @@ def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str) -> dict:
             "deploy_checked_assets": checked}
 
 
-S.update(resolve_deploy_verdict(S["deploy"], _prev, S["generated"]))
+def _load_deploy_marker():
+    p = os.path.join(ROOT, "ops", "deploy-verdict.json")
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def _repo_build_id_for_marker():
+    p = os.path.join(ROOT, "site", "build-id.txt")
+    try:
+        return read(p).strip() or None
+    except Exception:
+        return None
+
+
+S.update(resolve_deploy_verdict(S["deploy"], _prev, S["generated"],
+                                marker=_load_deploy_marker(),
+                                repo_build_id=_repo_build_id_for_marker()))
 
 try:
     import check_live_links
@@ -1441,11 +1522,13 @@ if S.get("deploy_verdict") == "stale" or S.get("live_links_verdict") == "dead":
                            + " Nothing else about the business matters until "
                              "this one button is pressed." + _reach)
     else:
+        _marker_note = ((" " + S["deploy_marker_note"])
+                        if S.get("deploy_marker_note") else "")
         S["constraint"] = ("PRODUCTION IS SERVING AN OLD BUILD. The live site "
                            "can take money, and every payment link it serves "
                            "is active in Stripe, but it is running a build "
                            "from before most of this work existed."
-                           + _cat_gap() + _repo_ready
+                           + _marker_note + _cat_gap() + _repo_ready
                            + " One deploy moves all of it to the customer."
                            + _reach)
 

@@ -40,6 +40,41 @@ BASE = "https://6s-success.com"
 # than assume.
 USERS = ("root", "deploy", "ubuntu", "debian")
 
+# Written the moment this script confirms production live at a specific
+# build id, and nowhere else. Found 2026-09-14: a session holding the VPS
+# key deployed, confirmed production current by build id, then edited
+# site/standards.html in the same pass, which moved the repo's own build id
+# on again. Nothing recorded the confirmed-live moment anywhere durable, so
+# a later session with no egress (every cloud sandbox) had no way to tell
+# "never redeployed in weeks" apart from "one file behind since an hour
+# ago", and ops/dashboard.py could only ever carry forward whatever
+# deploy_last_verdict happened to be sitting in ops/state.json from before
+# this deploy, which was still "stale". This file is the only place that
+# can observe a real, credentialed deploy; write down what it saw.
+VERDICT_PATH = os.path.join(ROOT, "ops", "deploy-verdict.json")
+
+
+def write_verdict_marker(build_id: str) -> None:
+    """Record a confirmed-live build id, for a later egress-less run to read.
+
+    Deliberately minimal: just enough for ops/dashboard.py to tell whether
+    the repo has moved on since production was last actually confirmed
+    current, and when that confirmation happened. Never read by this file
+    itself; a separate concern (deploy_freshness.check() already does its
+    own live check when it can reach the network) kept separate on purpose.
+    """
+    import datetime
+    import json
+    payload = {
+        "verdict": "current",
+        "build_id": build_id,
+        "checked_at": datetime.datetime.now(datetime.timezone.utc)
+        .strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+    with open(VERDICT_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+        f.write("\n")
+
 
 def ssh(user: str, cmd: str, timeout: int = 90):
     """Run one command on the VPS. Returns (ok, output)."""
@@ -255,6 +290,7 @@ def main() -> int:
     else:
         print("  VERDICT production changed (build %s -> %s) and now matches "
               "the repository." % (before_id or "unreadable", live_id))
+    write_verdict_marker(live_id)
     return 0
 
 
