@@ -18,6 +18,17 @@ Under 200 words each. Failures recorded as plainly as wins.
 **Next:** regenerate `kitchen--primary-prep-counter` on the next cycle that can generate, and look at whether the counter is clear. Nothing shipped: `build/heroes/` is gitignored, all 114 files are present, and every verdict sha for the eight regenerated zones is stale, so those pages stay text-only.
 
 Pushed to main. `ops/image_local.py`, `ops/tests/test_image_negations.py`. No price, product, page or shipped image changed.
+## 2026-09-14, PM check-in (previous work confirmed finished, independently re-checked rather than inherited, nothing new to hand off)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Attach:** shallow and detached on arrival, `fetch --unshallow` then `checkout main`, clean `merge --ff-only` onto `origin/main`, no unrelated-history symptom.
+
+**Previous work was finished, checked fresh rather than trusted.** The prior entry (nine minutes earlier) already confirmed CI run 936 green and found nothing unblocked. Re-verified independently rather than citing it: `preflight.py` full run, not just fast, every gate passed, same 23 standing warnings (regenerated the command deck as one of its own gates does). Pulled the 8 open issues from the GitHub API directly: unchanged, same labels, same `updated_at` timestamps as the prior pass saw, confirming nothing moved in the intervening nine minutes. `BACKLOG-2026-09-07.md` and `EXECUTIVE-DASHBOARD-LIVE.md` read fresh: same constraint (production serving an old build, Phil's redeploy click), same 2.3 visitors/day. No new commit, no new red gate, no new decision needed. Nothing to fix this slot; a search for a fabricated finding to fill the time was deliberately not made.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Command deck only. No price, product or page changed.
 
 ## 2026-09-14, cycle (generation came back after fifteen days, and the images are not good enough)
 
@@ -34,6 +45,7 @@ Pushed to main. `ops/image_local.py`, `ops/tests/test_image_negations.py`. No pr
 **Next:** nothing generated today ships. `build/heroes/` is gitignored and every recorded verdict sha is now stale, so all eight pages stay text-only until a review approves them, which is correct. The eight new files exist only on this machine.
 
 Pushed to main. `ops/accept_image.py`, `ops/tests/test_accept_primary_object.py`. No price, product, page or shipped image changed.
+
 ## 2026-09-14, PM check-in (previous work was not finished: CI on the social-drafts.yml fix was still in_progress at handoff; watched it to a real green conclusion rather than trusting the local pass)
 
 **Attach:** shallow and detached on arrival, `fetch --unshallow` then `checkout main` and `merge --ff-only` onto `origin/main`, clean fast-forward, no unrelated-history symptom.
