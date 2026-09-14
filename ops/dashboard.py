@@ -1317,7 +1317,19 @@ def _cat_gap() -> str:
 # links the live site served were deactivated in Stripe and the business could
 # not take a dollar. A dashboard's single most prominent sentence has to be
 # about the thing the reader thinks it is about, which is the website.
-if S.get("deploy", {}).get("verdict") == "stale" or         S.get("live_links_verdict") == "dead":
+#
+# Read S["deploy_verdict"], not S["deploy"]["verdict"]. The former is
+# resolve_deploy_verdict()'s carried-forward result, computed above and
+# already correct: it keeps "stale" alive across a run with no egress. The
+# latter is only ever this run's own unmeasured probe, "unknown" on every
+# sandbox without egress, which is every cloud run. Found 2026-09-14: the
+# committed dashboard's own state.json read deploy_verdict "stale" while
+# this sentence still said "Discovery... is the constraint now", because
+# this condition checked the wrong field and so could never fire from a
+# session that could not itself reach the site, silently dropping a known,
+# still-open, real production outage from the single most prominent line
+# on the page. gate_dashboard_constraint_reflects_carried_deploy proves it.
+if S.get("deploy_verdict") == "stale" or S.get("live_links_verdict") == "dead":
     _ll_note = (f" Last confirmed {S['live_links_carried_from']}; this run has "
                 f"no Stripe credential to reverify, so this is not new "
                 f"information, only a reminder that nothing has cleared it."

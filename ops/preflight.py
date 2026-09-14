@@ -2043,6 +2043,46 @@ def gate_dashboard_deploy_carry_forward() -> None:
              f"unmeasured 0/0 instead. Got {sibling!r}")
 
 
+def gate_dashboard_constraint_reflects_carried_deploy() -> None:
+    """The dashboard's headline sentence must read the carried verdict, not
+    only this run's own unmeasured probe.
+
+    One layer above gate_dashboard_deploy_carry_forward. That gate proves
+    resolve_deploy_verdict() itself carries a "stale" verdict correctly
+    across a run with no egress; it does not prove anything downstream
+    actually reads the carried value. Found 2026-09-14: it did not. The
+    constraint-sentence override a few hundred lines later in dashboard.py
+    checked S["deploy"]["verdict"] (this run's own raw probe, "unknown" on
+    every sandbox without egress, i.e. every cloud run) instead of
+    S["deploy_verdict"] (resolve_deploy_verdict()'s already-correct carried
+    result). The committed ops/state.json this cycle proved it live:
+    deploy_verdict read "stale" while the constraint sentence still read
+    "Discovery... is the constraint now", silently dropping a known,
+    still-open production outage from the single most prominent line on
+    the page, on every run that cannot itself reach the site. Static, not
+    behavioural, because the constraint text is composed as module-level
+    script code with no pure function to call directly; greps for the one
+    shape that matters (a "stale" comparison against the un-carried nested
+    probe) rather than banning "deploy"]["verdict"]" outright, since line
+    ~499's S["deploy_verdict"] = S["deploy"]["verdict"] is a legitimate,
+    unrelated initial assignment.
+    """
+    path = os.path.join(ROOT, "ops", "dashboard.py")
+    with open(path, encoding="utf-8") as f:
+        src = f.read()
+    bad = re.search(
+        r'deploy["\']?\s*,?\s*\{?\}?\)?\s*\.get\(\s*["\']verdict["\']\s*\)\s*'
+        r'==\s*["\']stale["\']',
+        src)
+    if bad:
+        fail("dashboard-constraint-carried-deploy",
+             f"ops/dashboard.py compares deploy[\"verdict\"] (this run's own "
+             f"unmeasured probe) to 'stale' at char {bad.start()}; it must "
+             f"compare S[\"deploy_verdict\"] (the carried-forward result) "
+             f"instead, or a still-stale production deploy silently stops "
+             f"being named on every run without egress.")
+
+
 def gate_dashboard_working_tree() -> None:
     """A failed git status/rev-list must never render as "clean, in sync".
 
@@ -12458,6 +12498,7 @@ def main() -> int:
     run_gate(gate_dashboard_severity)
     run_gate(gate_dashboard_live_links_carry_forward)
     run_gate(gate_dashboard_deploy_carry_forward)
+    run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)
     run_gate(gate_dashboard_shallow_commits)
     run_gate(gate_dashboard_shallow_commits_7d)
