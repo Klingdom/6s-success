@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed again independently, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because backlog sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are decision/blocked-on-art; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Attach:** shallow and detached on arrival, `fetch --unshallow` then `checkout main`, clean `merge --ff-only` onto `origin/main` (916 commits behind, no unrelated-history symptom).
+
+**Previous work was finished, re-checked independently rather than cited.** HEAD (`aed57caa`) already equalled `origin/main`. `preflight.py` full run: every gate passed, 23 standing warnings, none new. `BACKLOG-2026-09-07.md` sections 2 to 6 read in full: all rows done or Phil-gated, section 5 HOLD by design, section 6 the owner-gate list. 8 open GitHub issues pulled fresh from the API: unchanged (`decision`/`blocked-on-art`, same as the prior entry). 0 open PRs. Checked CI directly rather than assuming a gap: the two commits since the last real code change (`aed57caa`, this file and the generated dashboard only) never triggered `checks.yml`, and that is by design, its own header comment excludes `ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md` specifically so a log-only push cannot cancel a real run in flight. The last substantive commit (`d20973f6`) ran green, run 939.
+
+**Did:** nothing else; no code, price, product or page changed.
+
+**Handing to the operator (:43):** nothing unblocked to start; the constraint is still the redeploy sitting on Phil's own hand and 2.3 visitors/day. Watch for a genuinely new red gate or CI failure.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, nothing new unblocked)
 
 **Attach:** shallow and detached on arrival, `fetch --unshallow` then `checkout main`, clean `merge --ff-only` onto `origin/main`, no unrelated-history symptom, 916 commits behind before the fast-forward.
