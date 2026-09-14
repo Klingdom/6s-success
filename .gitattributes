@@ -1,0 +1,27 @@
+# REVIEW-QA-2026-09-07.md, section 6, P2: this repository had no
+# .gitattributes, so git's binary detection (which looks for a NUL byte
+# early in the file) missed a ReportLab-written PDF that happens to carry
+# none near its header, treated it as text, and applied line-ending
+# conversion on checkout. The tree copy of the free print-and-play deck was
+# 2,092 bytes larger than what production served, with the extra bytes
+# being injected \r before every \n inside a compressed stream, corrupting
+# it enough that a strict PDF reader could fail to open it. It only worked
+# in production because every deploy so far has run from a Linux checkout;
+# a Windows working tree (this business's own author's machine) would have
+# shipped the corrupted copy the moment it committed one.
+#
+# Explicit binary declarations stop git from ever guessing wrong on these,
+# regardless of which OS commits them.
+*.pdf   binary
+*.epub  binary
+*.mobi  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.avif  binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
