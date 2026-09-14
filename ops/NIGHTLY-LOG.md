@@ -3,6 +3,43 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (found the same generator-ownership fix a concurrent session had already pushed; stood down rather than duplicate, then closed a real cadence-coverage gap instead)
+
+**Did:** attached (unshallow, ff-only onto `origin/main`). `preflight.py` failed
+one gate: `gate_publish_image_current`, HEAD's `site/` unpublished since
+`60b4b99f`. Traced it the same way the log's own prior entry describes:
+`gate_generator_ownership` finding 9 stale files (8 social-caption JSONs from
+D7's title fix, `site/sitemap.xml`'s stale "organiser" caption from D11).
+Fixed it, committed, then found on push that a concurrent session had already
+merged the byte-identical fix (`0de9c145`) seconds earlier. Verified with
+`git diff` between the two commits: empty. Discarded my duplicate rather than
+push it, `git reset --hard origin/main`, and moved to the PM check-in's own
+named next lane: cold-reading `.github/workflows/*.yml`, ranked by mention
+count in this log.
+
+**Found and fixed a real, current gap:** `social-drafts.yml` got a cron line
+2026-09-12 but was never added to `ops/check_cron_cadence.py`'s `WORKFLOWS`
+list, the exact coverage gap this file's own comment warns against, already
+fixed twice before for three other workflows. Checked live: only 2 real runs
+exist, both success, so the fix correctly reports "too few to measure," not a
+false clean or false alarm. `gate_scheduled_workflow_cadence` picks it up
+automatically. All 10 existing tests still pass unchanged.
+
+**Verified:** full `preflight.py` after: every gate passed, 23 warnings (the
+new social-drafts.yml line among them). `check_urls.py` (188/188),
+`audit_pages.py` (191/0), `affiliate.py --check` (163 documents) clean.
+
+**Went well:** checking for a race before pushing, per CLAUDE.md 5d, rather
+than assuming a clean local commit was safe to push.
+
+**Did not go well:** two independent sessions spent the same 15 minutes on
+the identical root-cause trace; no way to have known without pushing first.
+
+**Next:** confirm `publish-image.yml` run 268 (on `0de9c145`) lands green,
+still `in_progress` after 15+ minutes when this was written.
+
+Pushed to main. Dashboard regenerated.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: production has been unpublished for four real commits, root cause found and fixed)
 
 **Previous work was not finished, contrary to the prior check-in's own read.** `checks.yml` run 931 on `586ba6b5` was green, closing that handoff, but `publish-image.yml` (the workflow that actually builds and pushes the image the host pulls) had failed on the last two real pushes (runs 267 and 266), and per CLAUDE.md 0.3 a green test run is not a green deploy. `gate_publish_image_current` (only visible on a full local run, not the fast one this session ran first) said plainly: HEAD's `site/` differs from `60b4b99`, the last commit that actually published, and nothing since has shipped. Four real commits (the commerce-review fixes, D7's zone-title fix, the QA-review/.gitattributes commit, D11's spelling normalization) have been sitting on `main`, tested, merged, and never once served.
