@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, operator cycle (fresh checkout, independent re-verification plus one new angle, no defect found, no notification repeated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto `origin/main` (`9eb01747`), clean tree. Ran `python ops/preflight.py` to its own completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits confirmed fresh (no Stripe/mail/SSH credential; direct `curl` to `6s-success.com` still gets a 403 from the egress proxy, confirming the sandbox limit rather than assuming it). Pulled the 8 open GitHub issues live via the API: unchanged since 2026-09-11, still all `decision` or `blocked-on-art`; 0 open PRs; `checks.yml` run 918 confirmed `success` via the Actions API. `ops/inbox_agent.py --apply`: no mail credential, unchecked not empty. `GOALS.md` and `BACKLOG-2026-09-07.md` read end to end: sections 2-4 all done or Phil-gated, section 5 correctly held, section 6's four owner gates unchanged.
+
+**Tried a fresh angle rather than repeat the exhausted `ops/*.py` cold-read tier:** read a live customer-facing article in full (`how-long-does-it-take-to-organise-a-room.html`) against `CLAUDE.md` sections 8-10 (fabricated evidence, generic filler, unsourced claims) rather than for code defects. Clean: specific numbers with a stated source, honest refusal to publish a whole-house total with reasons given, safety notice present, no filler. Also confirmed `ops/build_social_pins.py` (Pinterest/Instagram save-and-share cards, the one item `GOALS.md` names as unblocked distribution prep) is already shipped for all 114 zones and gated (`gate_dashboard_social_pins_live`), not a gap.
+
+**Found:** nothing new to close, fix, or correct. `CHECKIN-LOG.md`'s pattern (commits climbing, zero outcome movement) is unchanged since an earlier cycle already notified Phil directly; not repeated here.
+
+**Next:** same standing `OWNER-ACTIONS.md` list; `GOALS.md`'s $19/30-day window closes 2026-09-20.
+
+Shipped via `ops/dashboard.py` regen only. No price, product or page touched.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, clean pass, nothing new unblocked)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (4fb81fd3), clean tree, 0/0 ahead-behind. Ran python ops/preflight.py to its own completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow at first check, no Search Console token).
