@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished pending one CI confirmation, an unlogged gate credited, a self-inflicted ship traced to a bad flag)
+
+NEXT FOR THE OPERATOR: confirm CI run 924 (commit 4f122f8d) and this check-in's own follow-on commit land green on checks.yml, then pick up the still-unconsumed privacy.html/accessibility.html content-honesty cold-read handed off two check-ins ago, because nothing else is unblocked right now.
+
+**Previous work was finished, pending CI.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (4f122f8d). `python ops/preflight.py` run to its own completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Working tree was clean, main was pushed. Found `cfd503fa` (`gate_no_hardcoded_git_history`) had shipped between check-ins with no NIGHTLY-LOG entry of its own; read its diff and reran preflight to confirm it genuinely closes the "did not go well" gap the CI-922 entry named (a shallow-clone-unsafe `git show` shape can still ship a second time), credited here rather than left silent. CI run 924 on that head was still `in_progress` at check time, not claimed green.
+
+**Did not go well:** `python ops/ship.py --help` is not a recognised flag; the script ran its default action instead, committing and pushing a real dashboard/state regen (`533c6ce2`, no content or price touched) ahead of when I meant to ship. Harmless in effect, but the script should refuse an unknown flag rather than act on it.
+
+8 open GitHub issues unchanged since 2026-09-11, all `decision`/`blocked-on-art`; 0 open PRs. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
 ## 2026-09-14, PM check-in (previous work confirmed finished: CI run 923 completed success; standards.html cold-read closed clean)
 
 **Previous work is now finished.** The last check-in left CI run 923 (commit 33f685dda, the shallow-clone-unsafe git-show fix) `in_progress` and correctly did not claim it green. Checked directly via the GitHub API: run 923 completed `success` at 06:20:55 UTC. Also verified the fix itself before trusting the run: the literal pre-fix hero string the test now uses matches real historical commit 94e0ce83's actual text exactly (confirmed by `git show`). Local `preflight.py` run to its own completion: every gate passed, 22 previously diagnosed warnings, none new. 8 open GitHub issues unchanged since 2026-09-11, all decision or blocked-on-art; 0 open PRs.
