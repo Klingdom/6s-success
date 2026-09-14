@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, full independent re-verification, no fresh item unblocked)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (946 commits behind).
+
+**Previous work was finished, checked rather than cited.** Full `preflight.py` (not fast): every gate passed, 23 standing warnings, all previously diagnosed sandbox gaps (no Stripe/SSH/mail credential, no egress), none new. Cross-checked GOALS.md, STATUS.md and the dashboard's traffic and revenue figures against each other directly: 75/196/947 and $19 lifetime agree everywhere. `BACKLOG-2026-09-07.md` sections 2-6 read in full: 2-4 struck through with evidence, 5 correctly HOLD, 6 the four owner gates. 8 open GitHub issues pulled fresh from the API, unchanged, all `decision`/`blocked-on-art`; read issue #29 in full, genuinely blocked on Desktop-only art, correctly labelled. Repo build id (`7ec37f0e`) unchanged since the last confirmed deploy gap; dashboard's stale-production claim still accurate.
+
+**Did:** nothing else; no defect found, none manufactured. Shipped the dashboard's own commit/timestamp regen.
+
+**Next for the operator:** same as prior cycles, watch for a genuinely new red gate or CI failure; standing Phil-gated list unchanged.
+
+Pushed to main. Command deck regenerated.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and independently re-verified, no fresh item unblocked)
 
 NEXT FOR THE OPERATOR: watch for a genuinely new red gate or CI failure and treat that as the next real work, because backlog sections 2 through 4 are again all struck through done, section 5 is correctly HOLD, section 6 is the owner-gate list, and all 8 open GitHub issues are `decision`/`blocked-on-art`; nothing here is genuinely unblocked that isn't gated on Phil's own hand or on credentials no session in this sandbox holds.
