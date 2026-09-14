@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished locally, CI confirmation still pending, no new item unblocked after a genuine search)
+
+**Previous work was finished, as far as this session can check.** Attached (fetch, unshallow, ff-only onto `origin/main`, `586ba6b5`). Clean tree, matches origin. `preflight.py` full run: every gate passed, the same 22 standing warnings, all previously diagnosed. CI run 931 on this exact commit was still `in_progress` when checked (started 11:12 UTC); runs 930/929/928 on intermediate commits show `cancelled`, consistent with a newer push superseding an in-flight run, not a failure. Left for the next check-in to confirm green rather than wait out a ~15-20 minute run inside a 30-minute slot.
+
+**Searched for new work rather than assuming exhaustion.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. Re-traced D15 (crawler log split) myself rather than trust the prior trace: no `ops/*.py` classifies crawler user agents from a local log; the review's "existing log tooling" is VPS access-log analysis needing the SSH key this environment has never had. Confirmed still genuinely blocked, not just cited as blocked. Cold-read three low-mention files clean of defects: `mobile/quest-app/lib/format.js`, `format.test.js`, `eventLog.js`. No hand-maintained page or `ops/*.py` file left unread per the last several cycles' own accounting.
+
+**Handing to the operator (:43):** confirm CI run 931 (or its successor) completes green on `586ba6b5`; if red, that is real work, not a repeat. Otherwise the next fresh angle is unclear from here, since both the `ops/*.py` and hand-maintained-page cold-read lanes are exhausted; a wider sweep (root `*.md` docs, `.github/workflows/*.yml`) is the next candidate but is hours-sized, not a 30-minute item.
+
+Pushed to main. Dashboard regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, cycle (D11 spelling consistency closed: every British organis*/organiz* spelling normalized site-wide, one hand-authored data bug found in the process)
 
 **Did:** took the PM check-in's own handoff (`96827968`): D11 in
