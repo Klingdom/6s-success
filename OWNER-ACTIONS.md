@@ -7,7 +7,7 @@ Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
 **Last measured:** 2026-09-14, item 1's traffic figure carried forward to the
-real 2026-09-14 11:46 database read (74 visitors, 945 pageviews), replacing
+real 2026-09-14 11:46 database read (74 visitors, 945 pageviews), then the same evening to a direct database read (75 visitors, 196 visits, 947 pageviews), replacing
 the three-day-old 2026-09-11 pull. Earlier: 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
 link into each of the 12 published video descriptions, closing
 `PLAN-MICROZONES-DECKS-APP.md`'s S5 row; the copy is built and gated, only
@@ -405,7 +405,7 @@ built and 12 are public, because those 12 were posted by hand. 102 finished
 narrated videos, with captions, titles, descriptions and tags, are sitting on a
 disk where nobody can find them.
 
-**Measured 2026-09-14 11:46 (carried forward from `ops/state.json`; this file could not re-pull it directly, no SSH key in this sandbox), and it corrects the three-day-old figure above.** Traffic is 74 visitors and 945 pageviews, 2.5 a day (72 visitors and 504 pageviews once 2 automated sessions are excluded). The per-source breakdown below and the 161-visit count are still the 2026-09-11 pull, not yet refreshed:
+**Measured 2026-09-14 21:30 by a direct database read (the source table below is the 2026-09-11 breakdown).** Traffic is 75 visitors, 196 visits and 947 pageviews, 2.5 a day (72 visitors and 504 pageviews once 2 automated sessions are excluded). The per-source breakdown below and the 161-visit count are still the 2026-09-11 pull, not yet refreshed:
 
 | Source | Visitors, 30 days |
 |---|---|

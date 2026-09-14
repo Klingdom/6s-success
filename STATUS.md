@@ -19,6 +19,8 @@ Update this file whenever the material operating state changes.
 **Last Updated:** 2026-09-14  
 **Updated By:** Claude, scheduled operator cycle. Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow` then ff-only onto `origin/main`.
 
+**Did (local session, VPS key + Stripe + mail present):** production was serving an older build (`quest-data.js` stale); deployed with `ops/deploy.py`, confirmed CURRENT by build id `497533af` and all 9 asset fingerprints. Fixed the emailed briefs reporting $0 revenue: `ops/hourly_brief.py` and `ops/roadmap_report.py` read charges now, not paid checkout sessions (new `ops/tests/test_brief_revenue_source.py`, fail-then-pass). Traffic re-pulled directly, visits included for the first time since 2026-09-07: 75 visitors / 196 visits / 30 days. Google's only landing page of note is `/standards.html`; its room list now links all 114 zone pages. Open: 16 unpaid checkout sessions in 7 days are probably our own tooling, not yet proven; production has no automated deploy, which is an owner decision (deploy key as a GitHub secret).
+
 **Did (this pass): found and fixed a real dashboard regression while attaching, rather than another exhausted cold-read sweep.** Backlog sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged, no PRs; a concurrent session pushed mid-cycle (image-generation window and an `accept_image.py` object-detection fix, `3d2c61a8`), merged cleanly. Its committed `ops/state.json` carried a real measured `traffic_line` ("945 pageviews from 74 visitors...", from a session with a real ssh key). Running `preflight.py`/`dashboard.py` in this no-ssh-key sandbox silently regenerated that field to "**not measured**", about to be committed over the real reading, before I noticed the diff and traced it: `traffic_line` and `affiliate_trigger` had no carry-forward at all, unlike `revenue_month`/`deploy_verdict`/`live_links_verdict`, which were each already fixed for this exact bug. Added `_carry_last_reading()` in `ops/dashboard.py` (generalising `carry_forward()`), wired both fields through it, with a bootstrap path so a pre-fix committed file's plain field (no `_last_measured` sibling yet) still carries instead of being discarded once. New `gate_dashboard_traffic_carry_forward` in `preflight.py`, `ops/tests/test_traffic_carry_forward.py` (10 cases), fail-then-pass proved (`git stash` on the pre-fix source crashes the test with `AttributeError`, confirming the defect was real). Verified end to end: regenerating against the real committed state now correctly preserves the 945/74 reading with an honest "carried forward from 2026-09-14 11:46" note instead of erasing it. `preflight.py` full pass clean (0 gates failed, 23 pre-diagnosed warnings), `test_carry_forward.py` (10/10) and mobile `npm test` (3 suites) unaffected, `check_urls.py` (188/188), `audit_pages.py` (0 findings), `affiliate.py --check` (162 documents) all clean after.
 
 **Prior pass, for continuity:** CI run 936 (the `social-drafts.yml` push-trigger fix) confirmed `completed success` at 17:34 UTC. Standing constraint unchanged: traffic (2.3 visitors/day), redeploy sitting on Phil's own hand.
@@ -202,9 +204,8 @@ email list is 0: Listmonk exists but shares a sending identity with a
 different business (Compassion Benchmark), so every signup surface has been
 deliberately withdrawn rather than mail customers under the wrong brand
 (issue #15, P0). The real constraint now is that almost nobody is arriving at
-the site: 74 visitors / 161 visits in the last 30 days (visitor count
-carried forward from a 2026-09-14 11:46 real database read; the visit count is
-still the 2026-09-07 figure, unconfirmed since), 21 sessions in the
+the site: 75 visitors / 196 visits in the last 30 days (both read directly from the
+database 2026-09-14 21:30), 18 visitors in the
 last 7, and as of 2026-09-05, exactly two visits have ever come from a
 search engine (one Bing, one Google), per direct database reads
 recorded in `GOALS.md` (2026-09-02, corrected 2026-09-03 after the first
@@ -581,8 +582,8 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 74 | Last 30 days | MEASURED 2026-09-14 11:46 (re-measured from a 2026-09-11 pull that read 68, itself re-measured from an earlier 2026-09-07 pull that read 60, itself re-measured from a 2026-09-02 pull that read 52), direct database read, carried into this file from `ops/state.json`, recorded in `GOALS.md`/`OWNER-ACTIONS.md`; not a live pull, this sandbox cannot refresh it |
-| Sessions | 21 | Last 7 days | Same source and same caveat |
+| Sessions | 75 | Last 30 days | MEASURED 2026-09-14 21:30 (visitors; 196 visits, 947 pageviews of which 441 automated), direct Umami database read over ssh from a session holding the VPS key; previous 74 carried at 11:46, 68 (2026-09-11), 60 (2026-09-07) |
+| Sessions | 18 | Last 7 days | Same source, 2026-09-14: 18 visitors, 30 visits, 77 pageviews |
 | Organic sessions | 2, whole life of the site, as of 2026-09-05 (1 Bing, 1 Google) | Last 30 days | Same source and same caveat. Corrected 2026-09-09: this row said "1 from Bing, 0 from Google" for four days after `GOALS.md`'s own 2026-09-05 correction retired that claim. |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |

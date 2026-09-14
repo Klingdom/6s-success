@@ -61,7 +61,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **74 visitors / 161 visits / 30 days** | visitor count carried from `ops/state.json`'s own real reading, measured 2026-09-14 11:46 by a session with a live database read (`OWNER-ACTIONS.md` item 1, 945 pageviews/74 visitors, 2.5 a day; 72 visitors/504 pageviews once 2 automated sessions are excluded), three days newer than this row's own prior 2026-09-11 pull (68 visitors) and never carried back here until now. This sandbox has no SSH key and could not re-pull it directly. The visit count is still the 2026-09-07 figure: pageviews are not the same metric as a `visit_id` count, so it cannot honestly replace 161, and nothing in this sandbox can re-derive visits without a live database read. Treat 161 as unconfirmed since 2026-09-07 until a fresh visit count is pulled. Up from 68/2.3-a-day on 2026-09-11, 60 on 2026-09-07, 52/144 on 2026-09-03. The original "47 sessions" row was neither a visitor nor a visit count: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
+| Stranger to Visitor | **75 visitors / 196 visits / 30 days** | measured 2026-09-14 21:30 by a direct Umami database read from a session holding the VPS key (`ops/traffic_query.sh`), the first time since 2026-09-07 that visits, not just visitors, were re-pulled. 947 pageviews, of which 441 came from 2 automated sessions, leaving 506 from 73 visitors. Up from 74 visitors carried from the same day's 11:46 reading, 68 (2026-09-11) and 60/161 (2026-09-07). In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
 | Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
@@ -104,14 +104,13 @@ not by how interesting they are.
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
 | Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30** | all of them |
-| Sessions from organic search | **2, whole life of the site, as of 2026-09-05** | one visit from Bing (21 August), one from Google (4 September). This row said "1 in 30 days... none from Google" until now; the "Corrected 2026-09-05" note three lines below had already retired that claim and this row was never told. |
-| Sessions, last 7 days | **21** | 128 pageviews |
+| Sessions from organic search | **4 visits from 3 visitors, whole life of the site, as of 2026-09-14** | one visit from Bing (21 August) and three visits from two Google visitors (4 to 12 September), read directly from the Umami database 2026-09-14. Four of Google's six landing pageviews were `/standards.html`, the other two the home page: the Standards Pack is the one page search is currently sending anyone to. Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05. |
+| Sessions, last 7 days | **18** | 18 visitors, 30 visits, 77 pageviews, measured 2026-09-14 |
 | Weekly visitors | 17.5/wk | 500/wk |
 
-**Why it is first, now with numbers.** 74 visitors (carried from a
-2026-09-14 11:46 database read, up from 68 on 2026-09-11 and 60 on
-2026-09-07) across 161 visits in thirty days (the visit count itself last
-confirmed 2026-09-07, not yet re-pulled), and in the whole life of
+**Why it is first, now with numbers.** 75 visitors (read directly from the
+database 2026-09-14 21:30, up from 68 on 2026-09-11 and 60 on 2026-09-07)
+across 196 visits in thirty days, and in the whole life of
 this site **exactly two of them arrived from a search engine**: Bing on 21
 August, and Google on 4 September. Every other arrival was direct, or from
 LinkedIn, which is the only channel we actually post to and which produced 17.

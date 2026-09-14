@@ -75,15 +75,29 @@ def commerce() -> dict:
     since = int((datetime.datetime.now(datetime.timezone.utc)
                  - datetime.timedelta(days=30)).timestamp())
     try:
+        # Revenue is read from CHARGES, not checkout sessions. A Payment Link
+        # session is created when somebody opens the link and expires whether
+        # or not they pay; on this account every session reads "unpaid" even
+        # for the one real sale (ch_3U722U6OlZmKL8mF1Hooe, $19, 2026-08-21).
+        # dashboard.py was fixed for this on 2026-09-10; this reader was not,
+        # so the four-hourly email said "$0 / 30d, 0 sale(s)" for the whole
+        # window that sale sat inside. Found 2026-09-14 against the live API.
         sessions = get(f"checkout/sessions?limit=100&created[gte]={since}")["data"]
-        paid = [s for s in sessions if s.get("payment_status") == "paid"]
+        charges = get(f"charges?limit=100&created[gte]={since}")["data"]
+        paid = [c for c in charges
+                if c.get("status") == "succeeded" and c.get("paid")
+                and not c.get("refunded")
+                and (c.get("amount_refunded") or 0)
+                < (c.get("amount_captured") or c.get("amount") or 0)]
         links = [l for l in get("payment_links?limit=100")["data"] if l.get("active")]
         bal = get("balance")
         avail = sum(b["amount"] for b in bal.get("available", [])) / 100
         pend = sum(b["amount"] for b in bal.get("pending", [])) / 100
         return {
             "paid_30d": len(paid),
-            "revenue_30d": sum(s.get("amount_total", 0) for s in paid) / 100,
+            "revenue_30d": sum((c.get("amount_captured") or c.get("amount") or 0)
+                               - (c.get("amount_refunded") or 0)
+                               for c in paid) / 100,
             "checkouts_started_30d": len(sessions),
             "live_links": len(links),
             "balance_available": avail,
@@ -255,7 +269,8 @@ def build() -> tuple[str, str]:
     else:
         L += [f"  revenue, last 30 days      ${cm['revenue_30d']:,.2f}",
               f"  paid orders                {cm['paid_30d']}",
-              f"  checkouts started          {cm['checkouts_started_30d']}",
+              f"  checkout pages opened      {cm['checkouts_started_30d']}"
+              " (not orders; includes our own checks)",
               f"  live payment links         {cm['live_links']}",
               f"  balance available/pending  ${cm['balance_available']:,.2f}"
               f" / ${cm['balance_pending']:,.2f}"]

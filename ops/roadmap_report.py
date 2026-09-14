@@ -60,20 +60,15 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 74, "visits": 161, "views": 435,
+TRAFFIC = {"visitors": 75, "visits": 196, "views": 506,
            "days": 30, "as_of": "2026-09-14",
-           "how": "visitors carried from ops/state.json's own real reading, "
-                  "measured 2026-09-14 11:46 by a session with a live "
-                  "database read (OWNER-ACTIONS.md item 1, 945 pageviews/74 "
-                  "visitors/30 days; 72 visitors/504 pageviews once 2 "
-                  "automated sessions are excluded), up from 68 on a "
-                  "2026-09-11 pull, itself up from 60 on 2026-09-07 and 52 "
-                  "on 2026-09-03. Visits is still the 2026-09-07 figure "
-                  "(161): pageviews is not the same metric as a visit_id "
-                  "count, so it cannot honestly replace it, and no live "
-                  "database read is available here to re-derive it. In "
-                  "Umami session_id is the VISITOR and persists across "
-                  "days, while visit_id is the visit."}
+           "how": "read directly from the Umami database 2026-09-14 21:30 over "
+                  "ssh (ops/traffic_query.sh): 75 visitors, 196 visits, 947 "
+                  "pageviews of which 441 came from 2 automated sessions, so "
+                  "views here is the 506 human pageviews. Up from 74 carried at "
+                  "11:46 the same day, 68 on 2026-09-11 and 60/161 on 2026-09-07. "
+                  "In Umami session_id is the VISITOR and persists across days, "
+                  "while visit_id is the visit."}
 
 
 def env(name: str, default: str = "") -> str:
@@ -132,13 +127,24 @@ def commerce() -> dict:
     month = int(now.replace(day=1, hour=0, minute=0, second=0,
                             microsecond=0).timestamp())
     try:
+        # Revenue from CHARGES, not paid checkout sessions: Payment Link
+        # sessions on this account read "unpaid" even for the real $19 sale,
+        # so a session count reports zero while money arrives. Same defect
+        # dashboard.py fixed 2026-09-10; this reader was found 2026-09-14.
         sessions = get(f"checkout/sessions?limit=100&created[gte]={month}")["data"]
-        paid = [s for s in sessions if s.get("payment_status") == "paid"]
+        charges = get(f"charges?limit=100&created[gte]={month}")["data"]
+        paid = [c for c in charges
+                if c.get("status") == "succeeded" and c.get("paid")
+                and not c.get("refunded")
+                and (c.get("amount_refunded") or 0)
+                < (c.get("amount_captured") or c.get("amount") or 0)]
         allpi = get("payment_intents?limit=100")["data"]
         ok = [p for p in allpi if p["status"] == "succeeded"]
         bal = get("balance")
         return {
-            "month_revenue": sum(s.get("amount_total", 0) for s in paid) / 100,
+            "month_revenue": sum((c.get("amount_captured") or c.get("amount") or 0)
+                                 - (c.get("amount_refunded") or 0)
+                                 for c in paid) / 100,
             "month_orders": len(paid),
             "month_sessions": len(sessions),
             "lifetime_orders": len(ok),

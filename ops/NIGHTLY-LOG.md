@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, local session with the VPS key, Stripe and mail (deployed, fixed revenue in the emailed briefs, linked the Standards page)
+
+**Did:** production was STALE (`quest-data.js`, build `3c70a770` vs repo `497533af`); ran `ops/deploy.py`, now CURRENT on build id and all 9 assets. The deploy verdict said "already matched" after shipping a new build; it now compares build ids. `hourly_brief.py` and `roadmap_report.py` still summed paid checkout sessions, so the four-hourly email read "$0 / 30d, 0 sale(s)" with the $19 charge inside the window; both read charges now, refunds excluded, `test_brief_revenue_source.py` fail-then-pass proved in a worktree. Re-pulled traffic directly: 75 visitors / 196 visits / 30d, 18 / 30 in 7d; Google 3 visits from 2 visitors, 4 of 6 landing pageviews on `/standards.html`, whose room list had no links, so it now links all 114 zone pages (verified against files and live 200s). Merged over a concurrent 74/161 carry.
+
+**Unchecked:** whether the 16 unpaid checkout sessions in 7 days are people or our own tooling.
+
+**Next:** tag internal checkout opens; deploy after the next green publish.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, a fresher traffic reading found sitting uncarried since 11:46 and propagated everywhere it is repeated)
 
 Previous work was finished: preflight clean (0 gates failed, 23 standing warnings), tree clean and pushed, dashboard/backlog/8 open issues (all decision or blocked-on-art) agreed. Checked GOALS.md's traffic baseline against ops/state.json's own carried reading, per the measurement priority: a real 2026-09-14 11:46 database pull (74 visitors, 945 pageviews, 72/504 once 2 automated sessions are excluded) had landed in state.json and the dashboard but never reached GOALS.md, OWNER-ACTIONS.md item 1, STATUS.md, RISKS.md, DATA-SOURCES.md, BACKLOG-2026-09-07.md or roadmap_report.py/experiments.json, all still citing the three-day-old 68/910/2.3 figure. The same corrected-in-one-place, sibling-never-told shape this repository keeps finding. Carried it into all seven; preflight clean after, the gate's own test 5/5. Pushed (34b8c028). Handing to the operator: nothing new unblocked, watch for a red gate or CI failure.

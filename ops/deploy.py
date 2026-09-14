@@ -169,6 +169,11 @@ def main() -> int:
         return 0
 
     before = live_product_count()
+    # The product count alone cannot tell a no-op from a real release: it read
+    # 159 before and after the 2026-09-14 deploy that moved production from
+    # build 3c70a770 to 497533af, and the verdict said "already matched".
+    # Record the build id too, so the verdict says what actually happened.
+    before_id = live_build_id()
 
     # What the Redeploy button does. Find the compose project rather than
     # assuming its path, because guessing here restarts the wrong thing.
@@ -244,11 +249,12 @@ def main() -> int:
               "image has not finished publishing: check `gh run list`, then "
               "run this again.")
         return 1
-    if before == after:
+    if before == after and before_id == live_id:
         print("  VERDICT production already matched the repository and still "
               "does, by product count AND build stamp.")
     else:
-        print("  VERDICT production changed and now matches the repository.")
+        print("  VERDICT production changed (build %s -> %s) and now matches "
+              "the repository." % (before_id or "unreadable", live_id))
     return 0
 
 

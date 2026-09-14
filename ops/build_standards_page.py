@@ -148,11 +148,32 @@ def main() -> int:
              "item": "https://6s-success.com/standards.html"}],
     }, indent=1)
 
+    # Each room links straight to its zone pages. Measured 2026-09-14: four of
+    # the six pageviews Google has ever referred landed on this page, and its
+    # room list was plain text, so a searcher who wanted the pantry standard
+    # had no path to the pantry's actual zones except the site nav. Filenames
+    # are built exactly as ops/build_zone_pages.py builds them (slug of room,
+    # slug of the display name via zone-name-map.json), and main() refuses to
+    # write a link to a page that does not exist.
+    name_map = json.load(io.open(os.path.join(ROOT, "ops", "zone-name-map.json"),
+                                 encoding="utf-8"))
+
+    def slug(t):
+        return re.sub(r"[^a-z0-9]+", "-", (t or "").lower()).strip("-")
+
+    def zone_link(room, zone):
+        shown = name_map.get(f"{room}|{zone}", zone)
+        href = f"zones/{slug(room)}-{slug(shown)}.html"
+        if not os.path.exists(os.path.join(SITE, href)):
+            raise SystemExit(f"standards.html would link a missing page: {href}")
+        return '<a href="' + href + '">' + esc(shown) + '</a>'
+
     room_list = "".join(
-        '<li><strong>' + esc(r["room"]) + '.</strong> '
-        + str(sum(1 for z in r["zones"]
-                  if (z.get("leave_behind") or {}).get("standard")))
-        + " micro zones.</li>"
+        '<li style="break-inside:avoid;margin-bottom:10px"><strong>'
+        + esc(r["room"]) + '.</strong> '
+        + ", ".join(zone_link(r["room"], z["zone"]) for z in r["zones"]
+                    if (z.get("leave_behind") or {}).get("standard"))
+        + "</li>"
         for r in rooms)
 
     body = f"""
@@ -252,7 +273,9 @@ def main() -> int:
   <div class="wrap">
     <p class="eyebrow">Twenty sheets</p>
     <h2>Every room, {zones} micro zones</h2>
-    <ul class="cols" style="columns:2;column-gap:44px;line-height:1.9">{room_list}</ul>
+    <p>Each sheet's standard comes from the zone's own page, which also walks the
+    six passes that get the zone there. Pick yours:</p>
+    <ul class="cols" style="columns:2;column-gap:44px;line-height:1.7">{room_list}</ul>
   </div>
 </section>
 
