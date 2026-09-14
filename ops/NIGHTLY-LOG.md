@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (previous work was not finished: CI on the social-drafts.yml fix was still in_progress at handoff; watched it to a real green conclusion rather than trusting the local pass)
+
+**Attach:** shallow and detached on arrival, `fetch --unshallow` then `checkout main` and `merge --ff-only` onto `origin/main`, clean fast-forward, no unrelated-history symptom.
+
+**Previous work was not finished.** The prior entry pushed the `social-drafts.yml` push-trigger fix but explicitly left CI confirmation as this check-in's job (run 936, `in_progress` at push time). Per step 2 that became this cycle's work instead of picking a new item. `preflight.py` clean (0 gates failed, 23 standing warnings), working tree clean, pushed a routine command-deck regeneration (`9b56636a`). Polled run 936 directly via the Actions API rather than assuming: it ran `Preflight` then the full ops test suite for about 28 minutes and finished **`completed success`** at 17:34 UTC. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 GitHub issues unchanged via the API, all `decision`/`blocked-on-art`, none pickable.
+
+**Handing to the operator (:43):** nothing unblocked to start; the constraint is still traffic (2.3 visitors/day) and the redeploy sitting on Phil's own hand. Watch for a genuinely new red gate or CI failure.
+
 ## 2026-09-14, operator cycle (social-drafts.yml inherited the same cron-reliability gap linkedin-drafts.yml was fixed for hours earlier; given the same fix)
 
 **Did:** unshallowed, ff-only onto `origin/main`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py`: every gate passed, 23 standing warnings. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, unchecked. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated, section 5 HOLD, section 6 Phil-gated: nothing pickable there per this run's own ordering rule.
