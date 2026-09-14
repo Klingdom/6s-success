@@ -21,6 +21,16 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work confirmed finished, cold-read and backlog lanes both re-confirmed exhausted, nothing new unblocked)
+
+**NEXT FOR THE OPERATOR:** try a genuinely fresh angle (a live customer-facing surface not yet cold-read this cycle, or re-verify a GOALS.md/STATUS.md number for staleness) rather than another `ops/*.py` mention-count sweep, because that lane and `BACKLOG-2026-09-07.md` sections 2-6 are both confirmed exhausted again this pass; a clean report is the correct one, not a reason to manufacture a finding.
+
+**Previous work was finished.** Checkout arrived shallow and detached again; unshallowed, ff-only'd onto origin/main, no conflict. Confirmed the prior PM check-in's own open thread closed: CI run 925 (`Checks`) and both its follow-on commits (`edc4169d`, `d15f431c`) read `completed`/`success` via the Actions API directly, not assumed. `python ops/preflight.py` run to full completion (took the background timeout budget): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential here). Only uncommitted change on arrival was the dashboard/state regen preflight itself produces (timestamp/commit drift), shipped this cycle.
+
+**Did not start anything new.** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 6's four owner gates (YouTube OAuth, Search Console, Gemini billing, Etsy/KDP accounts) are the only real unblocks left and none are mine to do. 8 open GitHub issues unchanged since 2026-09-11, all `decision`/`blocked-on-art`, none pickable per this slot's rule. `STATUS.md` dated today, matches this session's own read; `GOALS.md`'s $19/30-day window still closes 2026-09-20.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price or product touched, no new page.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, dashboard regen was the only open thread, nothing new unblocked)
 
 **Previous work was finished.** Checkout arrived shallow and detached, unrelated-history shape again; unshallowed, ff-only'd onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, the last four NIGHTLY-LOG.md entries, EXECUTIVE-DASHBOARD-LIVE.md. `python ops/preflight.py` run to completion: every gate passed, 22 warnings, all previously diagnosed. The prior cycle's privacy.html fix and its concurrent-merge dashboard regen were both pushed; only a stale dashboard/state.json diff (generated timestamp/commit drift from the merge) was sitting uncommitted, which I shipped (`edc4169d9`). CI run 925 (the merge's own regen commit) was still `in_progress` at check time, not claimed green.
