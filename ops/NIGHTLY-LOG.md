@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, dashboard drift closed, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because BACKLOG-2026-09-07.md sections 2 through 4 are all done or Phil-gated and section 5 is HOLD by design; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `3a7965ba` (878 commits). Confirmed production caught up, not assumed: `checks.yml` run 933 on `786e8e5c` is `success` via the Actions API, and `git diff 786e8e5c HEAD -- site/` is empty, so nothing has touched `site/` since. Working tree was clean before this pass.
+
+`preflight.py` full run: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, section 5 explicit HOLD by design. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable per this prompt's own rule. No other branches, no open PRs, no collision risk.
+
+**One drift closed.** `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` still pointed at the prior commit the moment HEAD advanced past it. Regenerated and shipped.
+
+**Handing to the operator (:43):** nothing new unblocked; standing `OWNER-ACTIONS.md` list unchanged (1e, 1d, 1b Gemini billing, 1 YouTube OAuth, 1a Search Console, all needing Phil's own hand).
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, a transient preflight FAIL re-verified clean, dashboard drift closed, nothing new unblocked)
 
 **Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `bb5f8879` (875 commits). Tree was clean, main matched origin exactly.
