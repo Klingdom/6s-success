@@ -339,6 +339,57 @@ def all_pages() -> list:
                   if os.sep + "downloads" + os.sep not in f)
 
 
+_HEAD_SCRIPT_RE = re.compile(r"<script\b([^>]*)>", re.I)
+
+
+def check_head_scripts_non_blocking(html: str) -> list:
+    """Return the src (or a snippet) of every <head> <script> that would
+    block HTML parsing: it carries src= but neither defer nor async. A
+    JSON-LD data block (type="application/ld+json") carries no src and never
+    blocks anything, so it is not a finding here."""
+    m = re.search(r"<head\b[^>]*>(.*?)</head>", html, re.I | re.S)
+    if not m:
+        return []
+    problems = []
+    for sm in _HEAD_SCRIPT_RE.finditer(m.group(1)):
+        attrs = sm.group(1)
+        if "src=" not in attrs or "application/ld+json" in attrs:
+            continue
+        if re.search(r"\bdefer\b", attrs, re.I) or re.search(r"\basync\b", attrs, re.I):
+            continue
+        src_m = re.search(r'src="([^"]*)"', attrs)
+        problems.append(src_m.group(1) if src_m else attrs.strip()[:60])
+    return problems
+
+
+def gate_head_scripts_non_blocking() -> None:
+    """A <script src=...> sitting in <head> without defer or async stops the
+    HTML parser cold: the browser must fetch and run it before it can build
+    the rest of the page, delaying first paint by however long that fetch
+    takes. CLAUDE.md section 46 names performance as part of quality, and
+    GOALS.md lists "page speed" among the O1 work that needs no owner gate,
+    but nothing had ever actually measured it: 0 hits for "lighthouse" and
+    one incidental fix (an @font-face round trip) in the whole of
+    ops/NIGHTLY-LOG.md as of 2026-09-14. Checked directly rather than
+    assumed: all 193 real pages carry zero blocking head scripts today, every
+    real script either deferred (assets/js/measure.js, the Umami snippet) or
+    placed at the very end of body (quest-data.js, quest.js, site.js,
+    photos.js). That absence was never a checked fact before this gate, only
+    an accident nothing protected; a future hand edit or generator change
+    could reintroduce it silently otherwise.
+    """
+    bad = []
+    for f in all_pages():
+        html = io.open(f, encoding="utf-8", errors="replace").read()
+        problems = check_head_scripts_non_blocking(html)
+        if problems:
+            bad.append((os.path.relpath(f, ROOT), problems[:2]))
+    if bad:
+        fail("head-scripts-blocking",
+             f"{len(bad)} page(s) load a <head> <script src> with neither "
+             f"defer nor async, blocking first paint: {bad[:3]}")
+
+
 STAT = re.compile(
     r"\b(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
     r"(?:percent|%|hours?|minutes?|days?|weeks?|years?|times|x)\b", re.I)
@@ -12246,6 +12297,7 @@ def main() -> int:
     run_gate(gate_icons_current)
     run_gate(gate_hazard_icons_current)
     run_gate(gate_every_generator_has_a_protection_plan)
+    run_gate(gate_head_scripts_non_blocking)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)
 

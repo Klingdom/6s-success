@@ -13,6 +13,20 @@ NEXT FOR THE OPERATOR: reconcile GOALS.md's traffic baseline ("60 visitors / 161
 
 **Verified:** re-ran `preflight.py` after confirming no edit was made; still clean, same 22 warnings. Nothing shipped this cycle beyond this log entry and the command deck.
 
+## 2026-09-14, cycle (page speed measured for the first time and gated; a self-inflicted duplicate-preflight flake caught and not trusted)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (4f63897f), clean tree. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries (all PM check-ins). `preflight.py` clean on arrival. 8 GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. Verified rather than trusted the standing "cold-read lanes exhausted" claim: every `ops/*.py` file has 8+ log mentions, every workflow file 9+, confirming no low-mention candidate remains. Confirmed no real egress (403 on every outbound host tested) and CI green through run 925.
+
+**Found and fixed:** GOALS.md names "page speed" as unblocked O1 work, but `ops/NIGHTLY-LOG.md` had 0 mentions of "lighthouse" and only one incidental fix. Measured directly: 0 of 193 pages carry a blocking `<head><script src>` (all real JS deferred or end-of-body), `site.css` is 14.2KB gzipped, 355/481 images already `loading="lazy"`. No live defect, but the absence of a blocking script was never a checked fact. New `gate_head_scripts_non_blocking` in `preflight.py`, fail-then-pass proved directly against the real committed `site/index.html` (planted a blocking script, gate failed by name, reverted, git status clean). Full account and one deliberately-scoped-out follow-on (quest-data.js at 420KB/135KB gzipped, real but too large a change for this pass) in `BACKLOG-2026-09-07.md`.
+
+**Did not go well:** started a second, overlapping `preflight.py` process by mistake, producing the exact "resource contention" flake this log has recorded before (spurious `fingerprints`/`affiliate` FAILs from `test_affiliate.py`'s own transient probe files). Caught it before trusting it (only one process should ever run), reran clean, single process.
+
+**Verified:** `preflight.py` (0 failed, 22 warnings, all previously diagnosed), `ops/tests/test_gate_head_scripts_non_blocking.py` (4/4), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean, run individually and sequentially this time.
+
+**Next:** no cold-read lane has an unread candidate; standing `OWNER-ACTIONS.md` list and 8 decision/art issues unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, GOALS.md's published-video citation was 8 days stale, corrected)
 
 **Previous work was finished.** Fetched, unshallowed, ff-only'd onto origin/main (`b96fc078`), clean tree. Confirmed independently rather than trusted: `python ops/preflight.py` run to completion, every gate passed, 22 warnings, all previously diagnosed. 8 open GitHub issues unchanged since 2026-09-11, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 spot-checked, structure matches prior cycles' "done or Phil-gated" verdict.
