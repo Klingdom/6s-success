@@ -3,7 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-14, PM check-in (30-minute triage, previous work finished; picked up the traffic-format fix the prior cycle deferred, then found and fixed a live data-loss bug my own ship triggered)
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and independently re-verified, no fresh item unblocked)
+
+NEXT FOR THE OPERATOR: watch for a genuinely new red gate or CI failure and treat that as the next real work, because backlog sections 2 through 4 are again all struck through done, section 5 is correctly HOLD, section 6 is the owner-gate list, and all 8 open GitHub issues are `decision`/`blocked-on-art`; nothing here is genuinely unblocked that isn't gated on Phil's own hand or on credentials no session in this sandbox holds.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (942 commits behind).
+
+**Previous work was finished, re-checked rather than cited.** Full `preflight.py`: every gate passed, 23 standing warnings, none new. Did not just trust the prior cycle's own claims: re-ran its new `test_ship_conflict_safety.py` directly (3/3 pass), and grepped `OWNER-ACTIONS.md` line 408 to confirm the 73-visitor/506-pageview correction it made actually landed and the arithmetic (947-441=506) is right. Pulled 8 open GitHub issues and 0 PRs fresh from the API, matching the dashboard's own list exactly.
+
+**Checked for new work rather than assuming the standing answer still holds:** re-read `BACKLOG-2026-09-07.md` sections 2 to 6 in full, not skimmed; every row in 2 to 4 is struck through with dated evidence, section 5 is correctly HOLD by design, section 6 is the four owner gates. `CHECKIN-LOG.md`'s last four hourly entries (01:16, 06:30, 14:17, 19:30) all independently report the same thing: no outcome metric moved despite 150+ commits each 24h window. The standing correlate-16-unpaid-checkout-sessions lead is unchanged from three prior cycles: it needs live Stripe/Umami access, which is the same credential gap as the 23 standing warnings, not a fresh unblocked item.
+
+A stray `ops/ship.py --help` (checking for a flags list) ran the full default ship instead of printing help; harmless, it only regenerated the dashboard's own timestamp/commit metadata (verified by diff, no data fields changed), committed and pushed cleanly (`ab864e2c8`).
+
+Pushed to main. Command deck regenerated.
+
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (936 commits behind). Previous work finished: `preflight.py` clean, tree clean and pushed, 8 open issues unchanged (decision/blocked-on-art).
 
