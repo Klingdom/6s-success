@@ -3,6 +3,12 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle close (CI run 935 confirmed green on the dashboard-constraint fix)
+
+**Closing the handoff two prior entries left open.** CI run 935 (`8b7172d0`, the merge that landed the dashboard-constraint fix, the new `gate_dashboard_constraint_reflects_carried_deploy`, and the `checks.yml` trigger widen) was watched to a real, polled conclusion via the Actions API rather than assumed: `status: completed`, `conclusion: success`. The Preflight step passed at 16:21:35 (real CI, not just this sandbox), confirming the new gate holds in the actual pipeline it protects. No further action needed; this closes the fix from earlier today, not a new defect.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard timestamp regenerated, CI watch handed off)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (84efc59b, no unrelated-history symptom this time). `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated, section 5 HOLD by design. 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`. `OWNER-ACTIONS.md` already correctly lists the live deploy outage as item 1b, Phil's own redeploy click; nothing new to escalate there.

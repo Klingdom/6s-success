@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-14 16:14 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-14 16:35 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 1002 of 2006 total |
+| Commits (7 days) | 1002 of 2008 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `84efc59b` Regenerate command deck after merge |
+| Last commit | `8822dd9b` PM check-in: log the clean triage pass and CI-watch handoff |
 
 ## Product readiness
 
