@@ -78,14 +78,32 @@ def main() -> int:
             if u in negative:
                 fails.append("%s: %r wrongly moved to the negative prompt %r"
                              % (note, u, negative))
-        # Nothing may be silently lost: every non-negation clause survives.
+        # Nothing may be silently lost: every clause that is not an
+        # instruction-to-omit survives. "nothing else ..." IS such an
+        # instruction and is deliberately dropped, which is checked
+        # separately below, so it is skipped here.
         for clause in [c.strip() for c in subject.split(",")]:
             low = clause.lower()
-            if low.startswith(("no ", "without ")):
+            if low.startswith(("no ", "without ", "nothing else")):
                 continue
             if clause not in positive:
                 fails.append("%s: clause %r vanished from the prompt entirely"
                              % (note, clause[:40]))
+
+        # A "nothing else" clause must leave the positive prompt AND put
+        # clutter terms in the negative one. Leaving it in the positive is
+        # what produced a kitchen counter covered in bowls and vegetables
+        # under a standard reading "nothing else is on the run", measured
+        # 2026-09-14. Dropping it without suppressing anything would be a
+        # quieter version of the same bug.
+        if "nothing else" in subject.lower():
+            if "nothing else" in positive.lower():
+                fails.append("%s: the 'nothing else' clause is still in the "
+                             "POSITIVE prompt, where its tokens tell the model "
+                             "to put things there" % note)
+            if "clutter" not in negative.lower():
+                fails.append("%s: 'nothing else' was dropped but nothing was "
+                             "suppressed in its place: %r" % (note, negative))
 
     # The seed must not change when a negation moves, or every previously
     # generated image silently becomes unreproducible.

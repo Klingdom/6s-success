@@ -128,6 +128,12 @@ def build_prompt(subject: str) -> str:
     return prompt_for(subject)
 
 
+# What "nothing else" actually means to a diffusion model. Generic, because
+# the clause never names what to leave out: it names what the surface should
+# be free OF, which is everything.
+CLUTTER = ("clutter, extra objects, scattered items, piles, food, packaging, "
+           "bottles, jars, bowls, papers")
+
 def split_negations(subject: str) -> tuple:
     """(positive, extra_negative). Move "no X" out of the prompt it poisons.
 
@@ -161,11 +167,32 @@ def split_negations(subject: str) -> tuple:
     the mat is standing on. "no X" and "without X" name objects to leave out.
     "nothing else HERE" is a statement about a scene, and the two do not
     survive the same treatment.
+
+    That was right about what NOT to do and wrong about doing nothing. Leaving
+    the clause in the positive prompt hands the model the tokens "else on the
+    surface", which is an instruction to put things on the surface. Measured
+    2026-09-14: the Kitchen Primary Prep Counter prompt reads "holding only one
+    large wooden cutting board, a wooden knife block and a small salt cellar,
+    nothing else on the surface", the negative prompt was EMPTY, and the image
+    came back carrying bowls, vegetables, a jar and two boards, against a
+    standard of "nothing else is on the run".
+
+    So a "nothing else" clause is now dropped from the positive prompt and
+    answered with CLUTTER, generic terms for extra objects, rather than with
+    the noun it mentions. The floor and the counter still get drawn. What
+    should not be standing on them is what gets suppressed.
     """
     parts = [p.strip() for p in subject.split(",")]
     keep, drop = [], []
     for p in parts:
         low = p.lower()
+        if re.match(r"^nothing\s+else\b", low):
+            # Says "leave the surface clear". It cannot be drawn toward, and
+            # the noun it names (floor, surface, counter) must still appear,
+            # so neither keeping it nor negating it is right. Drop it, and
+            # suppress clutter instead.
+            drop.append(CLUTTER)
+            continue
         if re.match(r"^(no|without)\b", low):
             # "no blankets or toys" -> "blankets, toys"
             body = re.sub(r"^(no|without)\s+", "", p,
