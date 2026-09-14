@@ -43,6 +43,33 @@ on:
     - cron: '47 10 * * *'      # fires 04:47 Denver, LANDS about 08:19 (median 3.53h late)
   workflow_dispatch:
 
+  # A SECOND WAY IN, because the schedule above does not fire as asked.
+  #
+  # Measured 2026-09-14, the four days after the cron was compensated: it ran
+  # on 09-12 (07:44 Denver) and 09-13 (08:41), both good. It did NOT run on
+  # 09-11, the day the cron changed, and had not run by 09:02 Denver on 09-14
+  # against an 04:47 cron. Two of four days needed a human to dispatch it by
+  # hand. That is not a schedule, and this is the one email whose whole
+  # purpose is to arrive before the day starts, on the only channel that is
+  # measurably sending anybody: LinkedIn 8 visitors in 30 days against 1 from
+  # Google.
+  #
+  # fulfil-orders.yml solved the same GitHub problem the same way, and its
+  # note carries the important caveat: a push trigger is only safe when
+  # something ELSE holds the state, so two runs cannot both act. There that
+  # is `fulfilled_at` on the Stripe PaymentIntent. Here there is no such
+  # ledger, and this repository takes roughly 150 commits a day, so a bare
+  # push trigger would mail Phil 150 times.
+  #
+  # So the gate step below uses the only ledger that already exists: this
+  # workflow's own run history. A push sends only if no run has succeeded
+  # today AND the clock is past the promised landing time, which leaves the
+  # schedule its chance first. The concurrency group queues rather than
+  # cancels, so two pushes in the same minute serialise and the second sees
+  # the first's success and stands down.
+  push:
+    branches: [main]
+
 concurrency:
   group: linkedin-drafts
   cancel-in-progress: false
@@ -56,14 +83,58 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
+      actions: read          # the gate step reads this workflow's own runs
     steps:
+      - name: Decide whether this run should send
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          if [ '${{ github.event_name }}' != 'push' ]; then
+            echo 'send=yes' >> "$GITHUB_OUTPUT"
+            echo 'schedule or manual run: sending.'
+            exit 0
+          fi
+          # Push is the FALLBACK. Give the schedule until the promised
+          # landing time before standing in for it.
+          now=$(date -u +%s)
+          target=$(date -u -d 'today 14:19' +%s)
+          if [ "$now" -lt "$target" ]; then
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo 'before 14:19 UTC: leaving it to the schedule.'
+            exit 0
+          fi
+          today=$(date -u +%Y-%m-%d)
+          runs="repos/$GITHUB_REPOSITORY/actions/workflows/linkedin-drafts.yml/runs"
+          n=$(gh api "$runs?status=success&created=%3E%3D$today" \
+                --jq '.workflow_runs | length' 2>/dev/null || echo unknown)
+          if [ "$n" = unknown ]; then
+            # Could not read the ledger. Do NOT send: a duplicate on every
+            # push is worse than a late email, and both the schedule and the
+            # manual dispatch still work.
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo '::warning::could not read run history; standing down rather than risking repeats.'
+            exit 0
+          fi
+          if [ "$n" -gt 0 ]; then
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo "already sent today ($n successful run(s))."
+            exit 0
+          fi
+          echo 'send=yes' >> "$GITHUB_OUTPUT"
+          echo 'past 14:19 UTC with no successful run today: standing in for the schedule.'
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.send == 'yes'
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.send == 'yes'
         with:
           python-version: '3.12'
 
       - name: Check it can send before it builds anything
+        if: steps.gate.outputs.send == 'yes'
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
@@ -73,6 +144,7 @@ jobs:
           echo "credentials present"
 
       - name: Write three drafts and send them
+        if: steps.gate.outputs.send == 'yes'
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
