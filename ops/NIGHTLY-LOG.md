@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: a real preflight FAIL found and fixed)
+
+**Previous work was not finished.** `python ops/preflight.py` failed `gate_nightly_log_ordering`: entry #837 (dated 2026-09-14, the earlier "Phil actively working on image generation locally" cycle) had been appended to the physical end of the file, landing after the entire 2026-09-04 legacy section instead of inside today's contiguous top block, the exact misreading-of-"last four entries" shape the gate's own docstring already documents from 2026-09-05. Fixing it became this cycle's work, per STEP 2.
+
+**Attach:** shallow and detached on arrival, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (927 commits behind, no unrelated-history symptom).
+
+**Fixed:** relocated the misplaced entry (content byte-identical, verified by diff) to the end of today's block, its chronologically correct spot. Verified directly (`gate_nightly_log_ordering()` returns no failure) before shipping, then re-ran full `preflight.py` to completion on the pushed commit: every gate passed, the same 23 standing sandbox-limit warnings, none new.
+
+**Checked for other new work:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Nothing else unblocked.
+
+**Handing to the operator (:43):** nothing else unblocked; the standing constraint is still the redeploy sitting on Phil's own hand and 2.3 visitors/day. This slot's real work was closing the log-ordering defect, not starting something new.
+
+Pushed to main (`a63ebb8e`), command deck regenerated separately.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work re-confirmed finished a third consecutive time, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`; watch for a genuinely new red gate or CI failure and treat that as the next real work.
