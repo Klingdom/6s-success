@@ -97,6 +97,19 @@ def attempt() -> str:
             git("rebase", "--abort")
             return ("STOP: conflict in files that are not generated: %s. "
                     "That is a decision, not something to automate." % unknown[:4])
+        # Resolve each conflicted generated file to origin/main's own valid
+        # content BEFORE regenerating. Found live 2026-09-14 via ops/ship.py
+        # (which has its own copy of this same rebase loop): regenerating
+        # while ops/state.json still holds literal conflict markers makes
+        # dashboard.py's own prev-load fail to parse and silently treat prior
+        # state as {} (an `except Exception: pass`), so every carry-forward
+        # reading (traffic_line, affiliate_trigger) this run cannot measure
+        # fresh comes back "not measured" with no source, discarding a real
+        # prior measurement instead of carrying it forward. origin/main's own
+        # committed copy is always valid (it was pushed clean) and is the
+        # freshest legitimate memory available here.
+        for f in conflicted:
+            git("checkout", "origin/main", "--", f)
         # Only generated files. Regenerate rather than choose a side.
         regenerate()
         for f in GENERATED:

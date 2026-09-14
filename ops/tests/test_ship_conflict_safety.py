@@ -203,10 +203,82 @@ def case_dashboard_only_conflict_still_ships() -> str:
         return ""
 
 
+def case_generated_conflict_preserves_carry_forward() -> str:
+    """A conflict confined to ops/state.json must not erase a real prior
+    measurement that dashboard.py cannot re-measure itself.
+
+    Found live 2026-09-14: the conflict handler ran a real dashboard.py
+    against a working tree where ops/state.json still held literal
+    "<<<<<<<"/"======="/">>>>>>>" markers. dashboard.py's own prev-load is
+    `try: json.load(...) except Exception: pass`, so the unparseable
+    marker text silently became prev={}, and every field that can only be
+    known by carrying forward a real prior measurement (traffic_line,
+    affiliate_trigger) came back as a bare "not measured" with no source,
+    discarding a real reading instead of carrying it. This stub dashboard.py
+    models exactly that carry-forward shape (read prev's "measurement" key,
+    write it forward when this run "cannot measure fresh") so the case can
+    tell "carried the real reading" apart from "quietly lost it".
+    """
+    with tempfile.TemporaryDirectory() as base:
+        repo = os.path.join(base, "repo")
+        origin = os.path.join(base, "origin.git")
+        os.makedirs(os.path.join(repo, "ops"))
+        shutil.copy(SHIP, os.path.join(repo, "ops", "ship.py"))
+        shutil.copy(SYNC, os.path.join(repo, "ops", "sync_push.py"))
+        write(os.path.join(repo, "ops", "dashboard.py"),
+              "import io, json\n"
+              "try:\n"
+              "    prev = json.load(io.open('ops/state.json'))\n"
+              "except Exception:\n"
+              "    prev = {}\n"
+              "measurement = prev.get('measurement') or 'NOT-MEASURED'\n"
+              "io.open('EXECUTIVE-DASHBOARD-LIVE.md', 'w').write(measurement + '\\n')\n"
+              "io.open('ops/dashboard.html', 'w').write('<html>' + measurement + '</html>\\n')\n"
+              "io.open('ops/state.json', 'w').write(json.dumps({'measurement': measurement}) + '\\n')\n")
+        write(os.path.join(repo, "EXECUTIVE-DASHBOARD-LIVE.md"), "BASE-READING\n")
+        write(os.path.join(repo, "ops", "dashboard.html"), "<html>BASE-READING</html>\n")
+        write(os.path.join(repo, "ops", "state.json"),
+              json.dumps({"measurement": "BASE-READING"}) + "\n")
+        init_repo(repo)
+        git(base, "init", "-q", "--bare", origin)
+        git(repo, "remote", "add", "origin", origin)
+        git(repo, "push", "-q", "origin", "main", check=False)
+
+        # Remote side: a session that actually measured something real.
+        remote_clone = os.path.join(base, "remote_clone")
+        git(base, "clone", "-q", origin, remote_clone)
+        git(remote_clone, "checkout", "-q", "-b", "main", "origin/main", check=False)
+        git(remote_clone, "config", "user.email", "test@example.com")
+        git(remote_clone, "config", "user.name", "test")
+        write(os.path.join(remote_clone, "ops", "state.json"),
+              json.dumps({"measurement": "REAL-REMOTE-READING"}) + "\n")
+        git(remote_clone, "add", "-A")
+        git(remote_clone, "commit", "-q", "-m", "remote measured something real")
+        git(remote_clone, "push", "-q", "origin", "main")
+
+        # Local side: an unrelated real source change, plus its own stale
+        # state.json edit, so state.json genuinely conflicts on rebase.
+        write(os.path.join(repo, "README.md"), "local edit\n")
+        write(os.path.join(repo, "ops", "state.json"),
+              json.dumps({"measurement": "STALE-LOCAL-READING"}) + "\n")
+
+        r = run_ship(repo)
+        if r.returncode != 0:
+            return ("a conflict confined to state.json should still ship; "
+                    "stdout=%r stderr=%r" % (r.stdout, r.stderr))
+        state = origin_main_text(origin, "ops/state.json")
+        if "REAL-REMOTE-READING" not in state:
+            return ("the real remote measurement was lost across the "
+                     "conflict instead of carried forward: %r" % state)
+        return ""
+
+
 def main() -> int:
     cases = [
         ("real-source conflict must never push", case_real_source_conflict_never_pushes),
         ("dashboard-only conflict still ships", case_dashboard_only_conflict_still_ships),
+        ("generated conflict preserves carry-forward",
+         case_generated_conflict_preserves_carry_forward),
     ]
     fails = []
     for name, fn in cases:

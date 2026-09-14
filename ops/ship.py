@@ -131,6 +131,21 @@ def main() -> int:
                 git("rebase", "--abort")
                 step("push", False, "conflict in real source: %s" % unknown[:3])
                 return 1
+            # Resolve each conflicted generated file to origin/main's own
+            # valid content BEFORE regenerating, not after. Found live
+            # 2026-09-14: dashboard.py was run here while ops/state.json
+            # still held literal "<<<<<<<"/"======="/">>>>>>>" markers from
+            # the failed rebase; its own prev-load does `except Exception:
+            # pass` on a parse failure and silently treated that as prev={},
+            # so every carry-forward field (traffic_line, affiliate_trigger)
+            # this run could not measure fresh came back as a bare "not
+            # measured" with no source, discarding a real prior reading
+            # instead of carrying it forward. origin/main's own committed
+            # copy is always valid JSON/HTML (it was pushed clean), and it
+            # is the freshest legitimate memory available at this point, so
+            # checking it out first gives dashboard.py a real prev to read.
+            for f in conflicted:
+                git("checkout", "origin/main", "--", f)
             subprocess.run([sys.executable, os.path.join(ROOT, "ops",
                                                          "dashboard.py")],
                            cwd=ROOT, capture_output=True, timeout=900)
