@@ -162,13 +162,27 @@ still fails on its own, an unanswered checklist is still not a pass, and the
 unmet clause is still present in the report. Fail-proved by reverting to
 all-fatal scoring and watching it go red.
 
-**NOT proven: that the live reviewer now passes the entryway image.** Re-running
-it returned 429, quota spent, and the tool correctly reported UNCHECKED rather
-than a verdict. So the logic is verified and the end-to-end result is not. The
-next cycle with quota should run `accept_image.py --one
-entryway--coat-and-outerwear-zone` and expect PASS with an advisory line; if it
-still fails on the object, the extraction is wrong and this section is wrong
-with it.
+**Proven end to end on 2026-09-14, against the live reviewer.** The prediction
+above was written when the quota was spent, naming the command and the expected
+outcome so it could be settled either way. Both halves came back as predicted:
+
+```
+accept_image.py --one entryway--coat-and-outerwear-zone
+  PASS
+    - standard not demonstrated: One coat per person on the rail
+    - standard not demonstrated: hats and gloves together in a single labeled bin
+    - standard not demonstrated: umbrellas standing in the stand
+
+accept_image.py --one dining-room--beverage-or-coffee-station
+  FAIL
+    - required but not shown: Machine (hard fail, primary object)
+    - standard not demonstrated: grounds
+```
+
+The image a person judges good now passes, and the clauses no photograph can
+satisfy are reported rather than fatal. The image genuinely missing its subject
+still fails, on the object, which is the case worth keeping. The split does what
+it was built to do, and it is no longer only a claim about logic.
 
 **A fourth case, and the one that matters most, found 11 September by driving
 the live quest flow in a browser.** The others were zone page heroes. This one
