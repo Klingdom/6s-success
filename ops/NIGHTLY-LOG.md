@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, no new item unblocked, handoff carried forward)
+
+**NEXT FOR THE OPERATOR:** cold-read `resources.html` and `book.html` end to end against CLAUDE.md 8-10, because the prior PM check-in named them as the next hand-maintained pages never individually checked for content honesty this way and no operator cycle has picked that up yet.
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (6371be3f, the prior PM check-in's own quest.html/method.html cold-read), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings, none new.
+
+**Did:** pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all `decision` or `blocked-on-art`; 0 open PRs. No commit landed between 03:17 and this check, so the prior handoff is still unconsumed rather than superseded.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** the carried-forward `resources.html`/`book.html` cold-read above; standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged, none pickable per this slot's rule. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, both handed-off cold-read candidates closed clean)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (52c6068c), clean tree except the dashboard's own regen diff. `python ops/preflight.py` run to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings. GitHub: 8 open issues unchanged since 2026-09-11, all decision or blocked-on-art; 0 open PRs.
