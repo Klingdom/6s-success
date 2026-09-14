@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, shop.html handoff carried forward unconsumed)
+
+**NEXT FOR THE OPERATOR:** cold-read `shop.html` end to end against CLAUDE.md 8-10, because the prior PM check-in named it the highest-value unconsumed pick (commerce, conversion-tier per this file's ordering rule) among the five customer-facing pages never individually cold-read this way, and no cycle has picked it up since that handoff went in 27 minutes ago.
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (87832227, the book.html cold-read, both original handed-off candidates now closed), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings, none new.
+
+**Did:** pulled the 8 open GitHub issues fresh via the API rather than the dashboard: unchanged in count and content since 2026-09-11, still all `decision` or `blocked-on-art`, none pickable per this slot's rule. 0 open PRs. No commit landed between 04:15 and this check (git log tip still `87832227`), so the prior handoff is genuinely unconsumed, not superseded.
+
+**Found:** nothing new to close, fix, or correct; `shop.html` has been touched for specific defects (perf, a contrast-audit timing flake, stale JSON-LD) but never given the same end-to-end content-honesty read `resources.html`/`book.html` just got, so the handoff stands as written.
+
+**Handing to the operator (:43):** `shop.html` first, then `consulting.html`, `standards.html`, `privacy.html`, `accessibility.html` in that order. Standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues unchanged, none pickable. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, book.html cold-read closed clean, the last of the two handed-off candidates)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (e7ab19c6, the resources.html duplicate-close fix), clean tree, 0/0 ahead-behind. Ran `python ops/preflight.py` to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 open PRs.
