@@ -287,14 +287,21 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-14T06:30:08Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
   "https://6s-success.com/": "a1757d37a8f15f7a",
   "https://6s-success.com/method.html": "f12db7e726e3db3d",
-  "https://6s-success.com/resources.html": "60283ee7371d9a36",
+  "https://6s-success.com/resources.html": "5b95d25c50b39594",
   "https://6s-success.com/book.html": "525f5a71bb549763",
-  "https://6s-success.com/shop.html": "99bae313dabfe23a",
+  "https://6s-success.com/shop.html": "329e017eac878de3",
   "https://6s-success.com/consulting.html": "dd6353a520a9bbe7",
   "https://6s-success.com/about.html": "862bbff29a9ebf27",
   "https://6s-success.com/contact.html": "044de97e08240fa4",
