@@ -103,7 +103,7 @@ not by how interesting they are.
 | Key result | Baseline | Target |
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
-| Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51** | all of them |
+| Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30** | all of them |
 | Sessions from organic search | **2, whole life of the site, as of 2026-09-05** | one visit from Bing (21 August), one from Google (4 September). This row said "1 in 30 days... none from Google" until now; the "Corrected 2026-09-05" note three lines below had already retired that claim and this row was never told. |
 | Sessions, last 7 days | **21** | 128 pageviews |
 | Weekly visitors | 14/wk | 500/wk |
@@ -174,6 +174,14 @@ row's number against that file on every cycle and would have failed had the
 two disagreed; the row's own citation date was just three days behind the
 pipeline that feeds it, fixed above. No new videos from Phil since the
 Kitchen batch.
+
+**Reconfirmed again 2026-09-14, PM check-in.** This row's own citation had
+drifted 8 days behind the pipeline that feeds it, the same shape as
+2026-09-06 above, even though the number itself never went wrong (the gate
+would have caught that). `ops/state-checkin.json` shows `youtube_published_
+last_measured: 12`, `_measured_at` 2026-09-14 06:30, same 12 real IDs. Still
+no new videos from Phil since the Kitchen batch; the constraint remains
+distribution, not production.
 
 ### O2. Keep the arrival. Capture an email.
 
