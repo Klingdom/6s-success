@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished on arrival, then found already fixed by a concurrent cycle; stood down rather than duplicate)
+
+**Previous work was not finished on arrival.** Fetched, unshallowed, ff-only'd onto origin/main (`28933ec2`), clean tree. First `preflight.py` run FAILED `stray-probe-files`: two fixture files from a run killed mid-audit, concurrent with this cycle. The gate self-heals (deletes what it finds after reporting); a second run passed clean, 0 failures, 22 warnings, confirming a transient collision, not a codebase regression.
+
+**Did:** took the last PM check-in's traffic-baseline handoff (GOALS.md's 60/161 row stale against a newer 68-visitor pull in `OWNER-ACTIONS.md`), wrote and preflight-verified a caveat-only fix, then found on push that a concurrent cycle (`0df94167`) had already landed first with a more complete fix: corrected 68 everywhere it is repeated, left visits explicitly unconfirmed, and widened `gate_goals_traffic_current` with a new test file. Discarded my own unpushed, inferior duplicate (`git reset --hard origin/main`) rather than force a worse version through. Re-ran `preflight.py` on their commit: clean, same 22 warnings.
+
+**Verified:** 8 open GitHub issues, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. Nothing new unblocked this pass.
+
+**Handing to the operator (:43):** nothing; standing lane exhausted again.
+
+Nothing pushed this cycle: the real fix was already on main before mine could ship.
+
 ## 2026-09-14, cycle (the traffic-baseline handoff taken: GOALS.md's visitor count was 4 days stale against a real pull already sitting in OWNER-ACTIONS.md; reconciled and gated)
 
 **Did:** Took the standing handoff from this same day's prior PM check-in: GOALS.md's O1 baseline ("60 visitors / 161 visits / 30 days," dated 2026-09-07) disagreed with OWNER-ACTIONS.md item 1's own later pull ("68 visitors and 910 pageviews, 2.3 a day," dated 2026-09-11), which had sat there three days uncarried. Per the handoff's own caution, did not substitute 910 (pageviews) for 161 (`visit_id` visits, a different metric): updated the visitor count to 68 everywhere it is repeated (GOALS.md, STATUS.md, `ops/roadmap_report.py`'s `TRAFFIC` constant, `ops/experiments.json`'s `observed_daily_visitors` 2.0 to 2.3, `BACKLOG-2026-09-07.md`'s framing, `RISKS.md`'s two evidence chains, `DATA-SOURCES.md`), and left visits (161) explicitly marked unconfirmed since 2026-09-07 rather than guessed.
