@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, nothing new unblocked)
+
+**Attach:** shallow and detached on arrival, `fetch --unshallow` then `checkout main`, clean `merge --ff-only` onto `origin/main`, no unrelated-history symptom, 916 commits behind before the fast-forward.
+
+**Previous work was finished.** The prior cycle logged and pushed the negative-prompt fix (`ops/image_local.py`, `ops/tests/test_image_negations.py`) and was honest that no image shipped (build artifacts gitignored, verdict shas stale). `preflight.py` full run: every gate passed, the same 23 standing warnings, none new. `HEAD` equalled `origin/main` before I touched anything, so main was already pushed. No unverified claim sitting from the last entry.
+
+**Checked for new unblocked work rather than trusting the last PM entry's own "nothing to hand off":** `BACKLOG-2026-09-07.md` sections 2 to 4 read in full, all rows done or Phil-gated; section 5 is HOLD by design; section 6 is Phil's own gate list. 8 open GitHub issues pulled fresh from the API: unchanged, all `decision`/`blocked-on-art`, none pickable per this run's own rule. 0 open PRs. Cross-checked `GOALS.md`'s "$19, one sale, ever" against `STATUS.md`'s own revenue rows: consistent, and this sandbox has no Stripe credential to confirm or refute a newer sale either way, same limit every prior cycle already logged.
+
+**Collided with a concurrent cycle while shipping:** `ops/ship.py` rejected the first push (a real conflict in `ops/NIGHTLY-LOG.md`, not a generated file); a concurrent cycle had already landed a real fix (traffic/affiliate carry-forward in `ops/dashboard.py`). Reset onto the pushed `origin/main` rather than force through the conflict, kept both log entries, and let `ops/dashboard.py` re-derive the three generated deck files instead of hand-merging them.
+
+**Did:** enabled `core.hooksPath` locally (cleared on every fresh container, not a repo defect). No code, price, product or page changed.
+
+**Handing to the operator (:43):** nothing unblocked to start; the constraint is still the redeploy sitting on Phil's own hand and 2.3 visitors/day. Watch for a genuinely new red gate or CI failure.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-14, cycle (a real measurement about to be silently erased, caught while attaching, not while hunting)
 
 **Did:** Unshallowed, ff-only onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last several log entries. Backlog sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential. The cold-read tier has already been declared exhausted in this log several times, with an explicit warning not to manufacture a finding by re-sweeping it, so I did not.
