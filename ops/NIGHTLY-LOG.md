@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (generation came back after fifteen days, and the images are not good enough)
+
+**Did:** System RAM reached 2.8 GB free, the most in four days of checking, and the probe loaded the pipeline: exit 0, "generation is available on this machine". First time since 2026-08-30. Took the window immediately: backed up and cleared the eight rejected zone heroes and regenerated all eight in one minute, seven to nine seconds each. Then reviewed them, found a real defect in my own accept test, and fixed it.
+
+**Verified:** the nursery by eye first, because that is the one the negation fix was written for and the one where being wrong contradicts safe-sleep guidance on a nursery page. It is now a bare mattress with a fitted sheet, no blankets, no pillows, no toys in the crib, where the old one had a pillow. That is the standard the page teaches. The extraction fix is proven by unit test against the five exact clauses observed failing, and NOT against the live reviewer: the quota ran out mid-check. Command and expected outcome recorded in the commit so the next cycle can settle it.
+
+**Went well:** looking before spending. Four of the eight went to the reviewer and all four failed, which read as a disaster until the reasons were opened. Three of the four fatal lines were my own bug, not the pictures: CONDITION_MARKERS only understood prepositional conditions, so "Boards lying flat and supported along their length" and "Hanging folders labelled by the question you would ask" reached the model whole and came back as missing PRIMARY OBJECTS. The boards were in the picture. The folders were in the picture. A false hard fail on the object is the precise failure the 09-11 split exists to stop, and I had left half the grammar out of it.
+
+**Did not go well:** the kitchen prep counter regenerated into the same defect it was demoted for. The standard is "nothing else is on the run" and the new picture is a counter carrying bowls, vegetables, a jar and two boards. That is not the model failing to draw; it is the prompt describing the room instead of the cleared standard, which this plan already measured as 199 of 628 clauses reaching the prompt at all. Separately, three of the four carried "an object that looks physically impossible or malformed", which is SD 1.5 and not fixable by prompting.
+
+**Changing next cycle:** the bottleneck has moved and the owner list should say so. It is no longer "generation is blocked". Generation works, costs nothing and takes nine seconds an image. What does not work is the output clearing the quality bar, for two separate reasons: prompts that carry the room rather than the standard, which is free to fix, and malformed objects, which is the model and is what the paid path in OWNER-ACTIONS 1b actually buys.
+
+**Next:** nothing generated today ships. `build/heroes/` is gitignored and every recorded verdict sha is now stale, so all eight pages stay text-only until a review approves them, which is correct. The eight new files exist only on this machine.
+
+Pushed to main. `ops/accept_image.py`, `ops/tests/test_accept_primary_object.py`. No price, product, page or shipped image changed.
+
 ## 2026-09-14, operator cycle (social-drafts.yml inherited the same cron-reliability gap linkedin-drafts.yml was fixed for hours earlier; given the same fix)
 
 **Did:** unshallowed, ff-only onto `origin/main`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py`: every gate passed, 23 standing warnings. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, unchecked. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated, section 5 HOLD, section 6 Phil-gated: nothing pickable there per this run's own ordering rule.
