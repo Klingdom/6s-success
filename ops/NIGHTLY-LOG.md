@@ -21,6 +21,18 @@ Every standard cold-read lane (`ops/*.py`, workflows, hand-maintained pages, `mc
 
 Pushed to main. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed on CI, one transient preflight failure re-verified clean, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 4 are all done or Phil-gated and section 5 is HOLD by design; watch CI on whatever the operator ships next and treat a genuinely new red gate as the next real work.
+
+**Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `056e3e0e`. The prior check-in's own handoff item, `checks.yml` run 933 on the merge commit `786e8e5c`, was confirmed `success` directly via the Actions API, not assumed. `publish-image.yml`'s last real success is still run 268 on `0de9c145`, and `git diff` shows nothing has touched `site/` since, so production remains caught up; the merge commit only touched dashboard/log files, correctly outside that workflow's path filters.
+
+**Preflight failed once, on the transient this file's own history already names**: `gate_no_stray_probe_files` caught 2 leftover fixture files from a run this session's own first preflight attempt collided with mid-flight; the gate self-heals (deletes what it finds) and a second full run came back clean, every gate passed, 23 warnings, all previously diagnosed sandbox limits. `OWNER-ACTIONS.md`: nothing new to close, every open row genuinely needs Phil's hand. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
+
+An earlier accidental `ops/ship.py` invocation (typo'd `--help`, which the tool does not implement as a real flag) committed routine dashboard-only drift (`ee5cf8d5`) without this entry; recorded here for the record rather than amended.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard drift closed, CI confirmation on the merge commit handed to the operator)
 
 **Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `cf97918e`. `preflight.py` fast: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Confirmed production is caught up, not assumed: `git diff 0de9c1456 HEAD -- site/` is empty, so nothing has touched `site/` since `publish-image.yml` run 268 succeeded on that commit.
