@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-14 17:46 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-14 17:48 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-14 09:08 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-14 11:46 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 1006 of 2016 total |
+| Commits (7 days) | 1005 of 2017 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `ec98fe94` PM check-in: CI run 936 confirmed green, close the social-dr |
+| Last commit | `153d5a6a` PM check-in: previous work confirmed finished, independently |
 
 ## Product readiness
 
@@ -46,10 +46,10 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-14 09:08: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, photo-led | 2/106 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-14 09:08: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-14 09:08: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-14 09:08: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, photo-led | 2/106 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |

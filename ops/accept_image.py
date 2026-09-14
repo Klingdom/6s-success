@@ -185,8 +185,22 @@ def _strip_parenthetical(callout: str) -> str:
 # 'One basket holding four throws folded to the same rectangle' names a
 # basket and then a standard. A photograph can show the object. It cannot
 # show 'per person', and asking it to is a question that can only fail.
+# The first version of this list held only prepositional conditions, and it
+# under-reduced anything phrased with a participle. Measured 2026-09-14
+# against the eight regenerated heroes: 'Boards lying flat and supported
+# along their length with the longest and heaviest at the bottom' and
+# 'Hanging folders labelled by the question you would ask when looking' both
+# reached the vision model whole and came back as missing PRIMARY OBJECTS.
+# Boards were in the picture. Folders were in the picture. The condition on
+# them was not, and a hard fail on the object is exactly what the split was
+# built to stop. So the participles that introduce a standard are markers
+# too, and so is a comparative ('at least as wide as').
 CONDITION_MARKERS = (' per ', ' capped at ', ' holding ', ' so that ',
-                     ' so ', ' with fewer than ', ' that ', ' which ')
+                     ' so ', ' with fewer than ', ' that ', ' which ',
+                     ' lying ', ' labelled ', ' labeled ', ' supported ',
+                     ' pulled ', ' stacked ', ' standing ', ' folded ',
+                     ' hung ', ' stored ', ' at least ', ' arranged ',
+                     ' sorted ', ' grouped ')
 
 
 def _object_only(phrase: str) -> str:
