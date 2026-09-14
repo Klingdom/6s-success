@@ -8,12 +8,23 @@ Corporate Lean 6S (SKU CN-CORP), the one quote-based product in the grid.
 """
 import io
 import os
-import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 import preflight as P  # noqa: E402
+
+# The real pre-fix wording from commit 94e0ce83 (site/shop.html), copied here
+# as a literal so this case does not depend on git history depth: CI checks
+# out with --depth=1, where that commit's blob is unreachable by SHA.
+PRE_FIX_HERO = (
+    "Everything here can be bought today and delivered today. The book and "
+    "the manual, printable packs for a single micro zone, a whole room, a "
+    "situation or a whole area of the house, a free app, a free deck, and "
+    "consulting. Nothing is listed that we cannot hand over. "
+    "Every priced item below checks out directly and securely through "
+    "Stripe. No card details ever touch this site."
+)
 
 
 def _wrap(hero: str, has_quote: bool) -> str:
@@ -50,13 +61,9 @@ def main() -> int:
     if P.check_shop_buy_claim_honest(_wrap(hero, has_quote=True)) != []:
         bad.append("case 4: the fixed wording, naming the exception, must pass")
 
-    pre_fix = subprocess.run(
-        ["git", "show", "94e0ce83:site/shop.html"],
-        cwd=ROOT, capture_output=True, text=True, check=True,
-    ).stdout
-    problems = P.check_shop_buy_claim_honest(pre_fix)
+    problems = P.check_shop_buy_claim_honest(_wrap(PRE_FIX_HERO, has_quote=True))
     if len(problems) != 2:
-        bad.append(f"case 5: the real pre-fix commit (94e0ce83) must fail "
+        bad.append(f"case 5: the real pre-fix wording (commit 94e0ce83) must fail "
                    f"both checks, got {len(problems)}: {problems}")
 
     live_path = os.path.join(ROOT, "site", "shop.html")
