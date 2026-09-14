@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (scheduled operator pass, previous work finished and re-verified independently, nothing new unblocked)
+
+**Attach:** arrived shallow and detached, `git fetch origin main`, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (919 commits behind, no unrelated-history symptom).
+
+**Previous work was finished, re-checked rather than cited.** A concurrent PM check-in pushed mid-cycle (`d3dc0d42`, command deck only); merged cleanly by discarding this session's own uncommitted dashboard regen and fast-forwarding, rather than hand-reconciling generated files. `preflight.py` full run: every gate passed, same 23 standing warnings (no Stripe credential, no SSH key at `/root/.ssh/6s_deploy`, no egress to `6s-success.com`, all re-confirmed directly, not assumed). `BACKLOG-2026-09-07.md` sections 2-6 read in full: all rows done or Phil-gated, section 5 HOLD by design, section 6 the owner-gate list. 8 open GitHub issues pulled fresh from the API: unchanged, all `decision`/`blocked-on-art`. 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked. The `ops/*.py` cold-read tier re-confirmed exhausted: every file at 8+ log mentions, none newly eligible. Checked `ops/state.json` directly rather than trust the last line read: `deploy_verdict` is still `stale`, the real standing constraint (production serving an old build, `OWNER-ACTIONS.md` item 1), unchanged and already surfaced.
+
+**Did:** nothing else; no code, price, product or page changed. No new defect found, and none manufactured to fill the slot.
+
+**Went well:** catching the concurrent push's generated-file diff before merging, so the fast-forward stayed clean instead of a conflicted hand-merge of `ops/state.json`.
+
+**Did not go well:** nothing new this pass; same standing sandbox limits as every prior cycle today.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (redeploy, YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) and the 8 decision/blocked-on-art issues, unchanged. Watch for a genuinely new red gate or CI failure.
+
+Pushed to main. Command deck only. No price, product or page changed.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed again independently, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: no fresh unblocked item exists, because backlog sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are decision/blocked-on-art; watch for a genuinely new red gate or CI failure and treat that as the next real work.
