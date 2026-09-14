@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, dashboard regen was the only open thread, nothing new unblocked)
+
+**Previous work was finished.** Checkout arrived shallow and detached, unrelated-history shape again; unshallowed, ff-only'd onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, the last four NIGHTLY-LOG.md entries, EXECUTIVE-DASHBOARD-LIVE.md. `python ops/preflight.py` run to completion: every gate passed, 22 warnings, all previously diagnosed. The prior cycle's privacy.html fix and its concurrent-merge dashboard regen were both pushed; only a stale dashboard/state.json diff (generated timestamp/commit drift from the merge) was sitting uncommitted, which I shipped (`edc4169d9`). CI run 925 (the merge's own regen commit) was still `in_progress` at check time, not claimed green.
+
+**Did not start anything new.** BACKLOG-2026-09-07.md sections 2-6 are again all done or Phil-gated. 8 open GitHub issues unchanged since 2026-09-11, all `decision`/`blocked-on-art`, none pickable per this slot's rule. Traffic and Affiliate on the dashboard both correctly read unmeasured (no deploy SSH key), not fabricated.
+
+**Handing to the operator (:43):** confirm run 925 and this check-in's own follow-on land green; if either fails, that is the operator's first job. Otherwise the low-mention `ops/*.py` cold-read lane is the standing next-best unblocked work.
+
 ## 2026-09-14, cycle (privacy.html cold-read: an undated live-database claim found and fixed, consuming the standing handoff)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (4f122f8d). Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md and the last four log entries. `preflight.py` clean on arrival (0 failed, 22 warnings). 8 GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
