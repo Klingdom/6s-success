@@ -267,6 +267,23 @@ def gate_product_images_exist() -> None:
         rel = v if "/" in v else os.path.join("img", v)
         if not os.path.exists(os.path.join(SITE, "assets", rel)):
             missing.append(v)
+    # Since 2026-09-15 renderProduct wraps each tile in a <picture> whose
+    # srcset names responsive variants (site.js pictureSources): -sm/-md for
+    # a slash path ending -md.jpg, assets/img/w/<stem>-420/-840 for a bare
+    # .jpg. A browser cannot check those exist, and a missing AVIF is a broken
+    # image for every browser that prefers it, so each one must be on disk.
+    for v in sorted(set(_re.findall(r'"img":\s*"([^"]+)"', src))):
+        if "/" in v and v.endswith("-md.jpg"):
+            base = os.path.join(SITE, "assets", v[:-len("-md.jpg")])
+            wanted = [base + suf for suf in ("-sm.avif", "-sm.webp", "-md.avif", "-md.webp")]
+        elif "/" not in v and v.endswith(".jpg"):
+            base = os.path.join(SITE, "assets", "img", "w", v[:-len(".jpg")])
+            wanted = [base + suf for suf in ("-420.avif", "-420.webp", "-840.avif", "-840.webp")]
+        else:
+            continue
+        gone = [os.path.relpath(w, SITE).replace(os.sep, "/") for w in wanted if not os.path.exists(w)]
+        if gone:
+            missing.append("%s (srcset variant %s)" % (v, gone[0]))
     if missing:
         fail("product-images",
              "%d product image(s) do not exist under site/assets/ at the path "

@@ -52,7 +52,10 @@ WIDTHS = (420, 840, 1280)
 # their own folder, and not recorded in the room size index.
 PAGE_SRC = os.path.join(ROOT, "site", "assets", "img")
 PAGE_OUT = os.path.join(ROOT, "site", "assets", "img", "w")
-PAGE_PHOTOS = ("calm-living.jpg", "standard.jpg", "reset-together.jpg", "renewed.jpg")
+PAGE_PHOTOS = ("calm-living.jpg", "standard.jpg", "reset-together.jpg", "renewed.jpg",
+               # The rest of the shop and product-card photos (renderProduct tiles).
+               "family.jpg", "hero-entry.jpg", "prepare.jpg", "reset.jpg",
+               "rhythm.jpg", "room-map.jpg", "shine.jpg", "straighten.jpg")
 
 
 def main() -> int:

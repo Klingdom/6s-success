@@ -19,6 +19,33 @@
     return v.indexOf("/") >= 0 ? "assets/" + v : "assets/img/" + v;
   }
 
+  /* Responsive sources for a product tile, or null to keep a plain <img>.
+     Every name here is guaranteed on disk by preflight's
+     gate_product_images_exist, because a browser cannot check a srcset file
+     exists and a missing AVIF is a broken image for every browser that
+     prefers it. Zone and card images carry -sm (320w) and -md (640w)
+     siblings; bare top-level photos have 420w and 840w variants in
+     assets/img/w/ (ops/room_image_variants.py). */
+  function pictureSources(v) {
+    if (!v) { return null; }
+    var base, widths;
+    if (v.indexOf("/") >= 0 && v.slice(-7) === "-md.jpg") {
+      base = "assets/" + v.slice(0, -7);
+      widths = [["-sm", 320], ["-md", 640]];
+    } else if (v.indexOf("/") < 0 && v.slice(-4) === ".jpg") {
+      base = "assets/img/w/" + v.slice(0, -4);
+      widths = [["-420", 420], ["-840", 840]];
+    } else {
+      return null;
+    }
+    function set(ext) {
+      return widths.map(function (w) { return base + w[0] + "." + ext + " " + w[1] + "w"; }).join(", ");
+    }
+    var sizes = ' sizes="(max-width:760px) 92vw, 360px"';
+    return '<source type="image/avif" srcset="' + set("avif") + '"' + sizes + '>' +
+           '<source type="image/webp" srcset="' + set("webp") + '"' + sizes + '>';
+  }
+
   function money(n) {
     if (n === null || n === undefined) return "Quote";
     if (n === 0) return "Free";
@@ -142,7 +169,10 @@
      * describe. When real product photography exists, give it real alt text
      * per product and delete this comment. */
     return '<article class="product reveal"><div class="ph">' + badge +
-      '<img src="' + imgSrc(p.img) + '" alt="" loading="lazy"></div>' +
+      (pictureSources(p.img)
+        ? '<picture>' + pictureSources(p.img) + '<img src="' + imgSrc(p.img) + '" alt="" loading="lazy"></picture>'
+        : '<img src="' + imgSrc(p.img) + '" alt="" loading="lazy">') +
+      '</div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +
       '<h3>' + p.name + '</h3><p class="blurb">' + p.blurb + '</p>' +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +

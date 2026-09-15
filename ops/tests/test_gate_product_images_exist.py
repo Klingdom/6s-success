@@ -135,6 +135,32 @@ def main() -> int:
         preflight.SITE = old_site
         shutil.rmtree(tmp)
 
+    # 7 and 8, added 2026-09-15: renderProduct now names responsive srcset
+    #    variants, so a variant missing from disk must fail by name even though
+    #    the tile's own <img src> exists. One real file of each shape is moved
+    #    aside and always restored.
+    for label, rel in (("top-level photo variant", os.path.join("assets", "img", "w", "standard-420.avif")),
+                       ("zone picture variant", None)):
+        if rel is None:
+            zm = re.search(r'"img":\s*"zones/([^"]+)-md\.jpg"', real)
+            if not zm:
+                fails.append("no zones/...-md.jpg img value to test the zone variant case")
+                continue
+            rel = os.path.join("assets", "zones", zm.group(1) + "-sm.webp")
+        target = os.path.join(preflight.SITE, rel)
+        if not os.path.exists(target):
+            fails.append("%s: expected real file %s is not on disk" % (label, rel))
+            continue
+        aside = target + ".testaside"
+        os.rename(target, aside)
+        try:
+            f, w = _run()
+            name = os.path.basename(target)
+            if not f or not any(name in x[1] for x in f):
+                fails.append("a missing %s (%s) was not caught by name: %r" % (label, name, f))
+        finally:
+            os.rename(aside, target)
+
     # 6. Re-verify the real file is clean after the restore.
     f, w = _run()
     if f:
@@ -147,7 +173,7 @@ def main() -> int:
             print(" -", x)
         return 1
     print("OK: gate_product_images_exist mirrors imgSrc()'s own "
-          "slash-rooting rule, 6/6 checks pass")
+          "slash-rooting rule and requires every srcset variant, 8/8 checks pass")
     return 0
 
 
