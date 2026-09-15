@@ -46,11 +46,26 @@ name: Checks
 # matched neither trigger, so the fix that closed a real injection hole
 # landed on main with no CI run at all; the previous cycle's own request to
 # "confirm checks.yml lands green" on that commit could never be satisfied.
+#
+# Widened again on 2026-09-15 to add 'build/**': a commit that rewrote real
+# generator logic in build/listings/build_etsy_assets.py (chaining three
+# upstream builders into its own main() so it could no longer render a stale
+# intermediate) matched neither this filter nor publish-image.yml's, so the
+# fix for a real bug shipped to main with no Checks run at all, the same
+# shape as the linkedin-drafts.yml gap above, now confirmed to also swallow
+# build/ changes. Most of build/ is gitignored generated output (PDFs,
+# rendered HTML, images) that will not exist in the CI checkout; preflight
+# already reports those as unchecked warnings rather than failures, so
+# tracked build/ source files (the *.py generators, *.json data) get the
+# same coverage ops/** gets without needing their own exclusion list, since
+# nothing under build/ regenerates on every autonomous cycle the way
+# ops/dashboard.html and ops/state.json do.
 on:
   push:
     branches: [main]
     paths:
       - 'ops/**'
+      - 'build/**'
       - '.github/workflows/**'
       - '!ops/state.json'
       - '!ops/dashboard.html'
@@ -58,6 +73,7 @@ on:
   pull_request:
     paths:
       - 'ops/**'
+      - 'build/**'
       - '.github/workflows/**'
       - '!ops/dashboard.html'
       - '!ops/state.json'
