@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, one stale operating document corrected)
+
+NEXT FOR THE OPERATOR: widen the traffic-citation currency check (`gate_risks_traffic_citations_current` in `ops/preflight.py`, currently `RISKS.md`-only) to also cover `STATUS.md` and any other hand-maintained document that cites a visitor/visit figure, because `STATUS.md`'s own "Current Overall Assessment" section was just found stale by hand this cycle (citing 60/161 traffic against GOALS.md's current 75/196/947, and a stale production-verification date), and nothing machine-checked would have caught it the way the same gate already catches this exact defect class in `RISKS.md`.
+
+**Attach:** clean `git fetch origin main` + `merge --ff-only`, not shallow, no conflict.
+
+**Previous work finished, checked not cited.** Last cycle's own commit (`cb00b337`, the 3.11 syntax-error fix and EP-001 root-cause) is on main; ran `preflight.py` unbounded: every gate passed, 23 pre-diagnosed warnings, none new. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 GitHub issues unchanged (all `decision`/`blocked-on-art`); 0 open PRs.
+
+**Found and fixed:** `STATUS.md` section 30 was frozen at 2026-08-19/08-26, calling the email list "unreadable" when it is readable and measured at 0, citing a superseded traffic baseline, and dating production knowledge to a session three weeks stale. Rewrote against `GOALS.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md`, all read fresh. Full account in `STATUS.md`'s own metadata section.
+
+**Not touched:** the redeploy gap (production on `4e533c792222ee54`, repository at `dc6db19...`) — already tracked in `OWNER-ACTIONS.md` 1b, no deploy key in this sandbox, genuinely Phil-gated.
+
+Shipped via `ops/ship.py --no-deploy`. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (a real syntax error caught live on main, fixed and gated; one genuine EP-001 data-conflict root-caused and fixed; two left correctly unresolved)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`5d98f989`), 1023 commits behind. Closed the prior PM check-in's own open handoff: pulled run 964 live via the GitHub API, confirmed `completed`/`success` on `5b668b3d`. 8 GitHub issues unchanged, 0 PRs. The cold-read `ops/*.py` lane is fully saturated (every file has 8+ nightly-log mentions).
