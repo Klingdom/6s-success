@@ -518,6 +518,7 @@ def main(apply_it: bool) -> int:
         print("  nothing approved yet, so no page gets a picture")
         return 0
     if not apply_it:
+        print("  first matched pages (these DO get a picture):")
         for _p, m, page, _d in ps[:5]:
             print(f"    {m['zone'][:30]:32} -> {os.path.basename(page)}")
         print("\n  --check only, nothing written")

@@ -7224,7 +7224,7 @@ def gate_deck_download_has_art() -> None:
                   "they ship was NOT confirmed here)")
     warn("deck-art",
          "%d of %d card heroes are rejected, so those cards render with a "
-         "placeholder instead of a photograph, %s: %s. TWO blockers, not one: "
+         "text-only concept panel (the card's objective, no photograph), %s: %s. TWO blockers, not one: "
          "GENERATING replacements needs free system RAM (the local "
          "model load dies at about 2 GB free of 15.8), and REVIEWING "
          "them needs the vision billing in OWNER-ACTIONS.md. The "
