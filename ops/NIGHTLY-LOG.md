@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, local session: home and deck heroes, card template, app fonts (release 0b4c4fa4, deploy pending)
+
+**Did:** Home hero: the retired friction gauge is replaced with the first real Quest card (quest-data.js symptoms[0]), gated word for word by the new `gate_home_hero_card_real`. Deck hero: a fan of three real card fronts. Zone pages: the short-version heading lost to `.wrap h2` on all 114 pages; fixed. Cards: 11 of 13 placeholder panels now show the card's own objective, taglines no longer split at an ellipsis, footers pinned (full cards pixel-identical), two transcription typos fixed at source, deck re-rendered 178 of 178, PDF rebuilt. App: Fraunces, Newsreader and Inter bundled (verified in the Android export). `gate_build_id_current` no longer warns about staged files.
+
+**Did not go well:** the first release, `1dea8896`, failed publish twice over: the reduced-motion test read only the first of three reduced-motion blocks (fixed on origin by `5437a438`), and `site/deck.html` lacked the AVIF sources `build_avif.wire()` adds (fixed in `7bf758da` by running the real generator). Along the way, three layout collapses (grid auto margins, a content-sized column, a fan with no in-flow content) were caught only by measuring in a browser, and a probe regex matched its own script text.
+
+**Learned:** this shell tool collapses doubled backslashes before a script runs, which caused three escape bugs; long inline scripts with several heredocs also failed to parse. Write scripts to files through a quoted heredoc and run them separately. A green audit says nothing about an element rendering at 0x0.
+
+**Next:** deploy `0b4c4fa4` once its image builds and verify live (build id `2842a61cb7c89663`, hero card, fan with AVIF, stylesheet rules, rebuilt PDF). Then the zone page supplies block: inline styles to classes, disclosure wording and position unchanged.
+
 ## 2026-09-15, PM check-in (previous work was NOT finished: preflight FAILed twice, both self-inflicted, both root-caused and fixed)
 
 Attached clean onto origin/main, then merged in Phil's own live hero/deck fix and a concurrent operator's test-isolation fix. Full preflight then FAILed two ways, neither a real site defect. First: `test_audit_visual_reduced_motion.py` used `re.search` to find site.css's one `prefers-reduced-motion:reduce` block, but Phil's commit added two more, smaller ones ahead of it (`.hero-card`, `.fan-card`); the test grabbed the wrong one and never saw the real `.reveal{opacity:1}` rule, which was never broken. Fixed the test to check all such blocks. Second: I ran preflight itself under an external `timeout 110`, which SIGKILLed it mid-run right after it rendered fresh Etsy PDFs but before its own cleanup restored them, leaving the tree looking dirty, exactly the interruption-corruption shape the prior cycle had just fixed for a different script. Restored the PDFs via `git checkout`, re-ran preflight unbounded this time: 0 gates failed, 23 standing warnings. No new item was genuinely unblocked this cycle; both fixes were finishing broken verification, not new work.
