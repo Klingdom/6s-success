@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, fourth)
+
+**Attach:** shallow/detached; unshallowed, ff-only onto `origin/main` (`8eff9c9b`), clean.
+
+**Previous work: finished.** Working tree clean, main matched origin. 7 open GitHub issues unchanged, all `decision`/`blocked-on-art`. Backlog sections 2-6 all done or Phil-gated. `OWNER-ACTIONS.md` 1b already closed by a concurrent local session.
+
+**Self-inflicted false FAIL, not a repo defect.** `gate_etsy_pdfs_current` failed twice ("already differs from HEAD"): my own shell `timeout` was shorter than the gate's 300s render budget, killing it mid-render before its own restore ran, leaving two PDFs dirty for the next run. Restored to HEAD, reran uninterrupted past 300s: every gate passed, 23 known warnings, none new.
+
+**Did:** regenerated and pushed the command deck only.
+
+**Handing to the operator:** same standing Phil-blocked list, unchanged.
+
 ## 2026-09-15, PM check-in (30-minute triage, third)
 
 NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
