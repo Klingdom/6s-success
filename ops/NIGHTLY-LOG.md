@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, CI still running past this slot, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 34946840813 (commit `feb32974`) finishes green, then continue the step 5d cold-read lane on the next low-mention `ops/*.py` file, because that CI run is still on "The ops test suite" step past this 30-minute slot and every genuinely unblocked backlog row is done or Phil-gated.
+
+**Attach:** clean `git fetch origin main` + unshallow + `merge --ff-only`, fast-forwarded 1035 commits onto `origin/main` (`466b3a26`), no conflict.
+
+**Previous work confirmed finished.** The last PM cycle's own handoff was to watch `checks.yml`/`publish-image.yml` go green on `feb32974` after the flaky syntax-gate fix. Checked live via the GitHub API rather than assumed: `publish-image.yml` run 280 on that exact commit is `completed`/`success`. `checks.yml` run 972 is still `in_progress`, but not stalled: its own "Preflight" step already passed (17 min, matching this sandbox's own local preflight time) and it is now mid-way through "The ops test suite" with no failed step. `466b3a26` (current HEAD) is command-deck/log only, confirmed by `git show --stat`, so nothing since `feb32974` needs a fresh CI run to be safe. Local `preflight.py --fast` was started but killed by its own 170s guard; that is a sandbox-speed observation, not a finding, since CI's identical step took 17 minutes on the same commit.
+
+**Nothing new unblocked.** `BACKLOG-2026-09-07.md` sections 2 to 4 (micro zones, decks, images/video) are again all struck through done or explicitly Phil-gated (C4/C5/C6); section 5 is HOLD by design; section 6 is owner gates. 8 open GitHub issues, unchanged, all `decision` or `blocked-on-art`. `OWNER-ACTIONS.md`'s standing redeploy gap (repo `047a015202e83e30`, `site/build-id.txt` confirmed still matching HEAD's site content) stays the top Phil gate, already recorded, not re-raised here.
+
+Shipping via `ops/ship.py --no-deploy`. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log. No price, product or page touched.
+
 ## 2026-09-15, PM check-in (previous work was NOT finished: checks.yml and publish-image.yml both red on main; converged independently with a concurrent local session on the same root cause and fix)
 
 **Attach:** clean `git fetch origin main` + `merge --ff-only`, not shallow, no conflict.
