@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, evening, local session: deployed the storage-after-Sort fix that was built but never live
+
+**Found:** production served build `587d80befe8bd586` while the repository computed `c3d0d442441b24df`. The difference was `8e7401b7` (another session): zone pages recommended 570 storage and organization products in "What to have on hand before you start", above Sort, against the rule that storage is never recommended before Sort; the fix moves them into "What to store it in, now that you know what you are keeping", after the Sort pass and before Straighten. Its image built green (`903df184`) but no environment that can deploy had deployed it, so the rule was still broken live.
+
+**Did:** ran `ops/deploy.py` from this machine. Production moved from `587d80befe8bd586` to `c3d0d442441b24df`; freshness CURRENT.
+
+**Verified live:** Six sampled zone pages are byte-identical to the repository, carry the storage section after the Sort pass and before Straighten (searched inside the passes section: the diagnosis cards above it carry their own S chips, which made a first, unscoped check report two pages as misplaced when they were not), and list no storage in the before-you-start block. `gate_no_storage_before_sort` run locally: 69 storage-family product names checked against 115 zone pages, none before Sort.
+
+**Note for the next session:** a CI-green image is not a deployed site. Cloud sessions cannot deploy, so a site change they push waits for a machine that can; the deploy verdict and `deploy_freshness.py` are what show the gap.
+
 ## 2026-09-15, scheduled operator cycle (independent verification, no new defect; cold-read lane reconfirmed exhausted)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then clean `merge --ff-only` onto `origin/main` (`c9fccfe4`, 57 commits, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md` section 0, and the four most recent `ops/NIGHTLY-LOG.md` entries before touching anything.
