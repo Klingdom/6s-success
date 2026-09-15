@@ -23,6 +23,20 @@ NEXT FOR THE OPERATOR: continue the standing root `.md`-by-mention-count cold-re
 
 Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched.
 
+## 2026-09-15, scheduled operator cycle (fresh checkout, independent re-verification via a fresh angle, no defect found)
+
+**Attach:** arrived shallow and detached; `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`. A concurrent PM check-in (`28deba0d`) landed mid-cycle; discarded only my own locally-regenerated dashboard timestamp drift, ff-only'd cleanly onto it, nothing unique lost.
+
+**Did:** `python ops/preflight.py` to its own completion (unbounded, per the two prior cycles' own lesson about timeout kills): every gate passed, 22-23 warnings, all previously-diagnosed sandbox limits (no Stripe/mail/SSH credential, confirmed by direct curl 403 through the proxy; no Pillow; GitHub-side cron drift on two workflows). Set `core.hooksPath` (unset again, per clone). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential. Pulled the 8 open GitHub issues live via the API: unchanged, still all `decision`/`blocked-on-art`; 0 open PRs. `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `RISKS.md`'s severity table all read end to end: sections 2-4 done or Phil-gated, section 5 correctly held, the same three `CRITICAL` risks open (0007, 0011, 0013), all correctly needing Phil or VPS/Stripe access this sandbox does not hold.
+
+**Tried a fresh angle rather than repeat the ops/*.py or root-.md-by-mention-count lanes already reconfirmed exhausted today:** cold-read two low-mention customer-facing legal pages against `CLAUDE.md` sections 8-10 and the affiliate rules (`disclaimer.html`, `affiliate-disclosure.html`). Verified the disclosure's specific claim ("target.com and homedepot.com") against the real generated corpus by grepping every rendered zone page and `kit.html`: exactly those two domains appear, nothing else, so the claim holds. Also read `DISASTER-RECOVERY.md` cold: confirmed it is still template scaffolding with every field in its own "Current DR State" section `UNKNOWN`, correctly matching RISK-0007's open status rather than a new gap; filling it with real values needs VPS/provider access this sandbox does not have, so left alone rather than guessed at.
+
+**Found:** nothing new to close, fix, or correct. Both legal pages are accurate and clean.
+
+**Next:** same standing `OWNER-ACTIONS.md` list; `GOALS.md`'s $19/30-day window closes 2026-09-20, five days out.
+
+Shipped via `ops/dashboard.py` regen only. No price, product or page touched.
+
 ## 2026-09-15, local session: supplies cards and zone-pack shop pictures (both live)
 
 **Did:** Zone and room pages: the supplies block is now light cards (three columns on desktop, one on a phone) with a quieter disclosure whose wording and position above the links are unchanged, moved from inline styles to classes in `ops/zone_supplies.py`; verified live at build `2f183516`. Shop: each Micro Zone Pack shows its own reviewed zone picture (101 of 109; distinct catalogue images 13 to 113), and product schema image URLs follow `site.js`'s slash rule; verified live (every zone picture in data.js, pre-rendered tiles showing them, every shop schema image URL requested and returning 200).
