@@ -17,6 +17,18 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Shipped via `ops/ship.py --no-deploy`. Command deck only (regenerated as a side effect of running `preflight.py`). No price, product or page touched.
 
+## 2026-09-15, scheduled operator cycle (built the general path-filter coverage gate the prior PM check-in handed off)
+
+**Did:** Unshallowed and attached cleanly. BACKLOG-2026-09-07.md sections 2-6 unchanged, done or Phil-gated. Picked up the exact handoff in `605a477c`: a general gate checking every preflight dependency against CI path filters, the shape already fixed three times by hand (linkedin-drafts.yml, build_etsy_assets.py, App.js).
+
+New `gate_ci_path_filter_covers_preflight_inputs` reconstructs, from preflight.py's own AST, every real file its source reads, and checks each against checks.yml's and publish-image.yml's push.paths. Against the real pre-fix files it named 23 live gaps: every root *.md operating document and `content/manual/source/content.json` (the master zone corpus), neither previously suspected. Confirmed real: commits `e8ef3bed`/`7e644cf0` (2026-09-14) each touched one root .md file and landed with zero Checks runs. Fixed in checks.yml (`content/**`, `mcp/**`, `.gitattributes`, `.gitignore`, root `*.md`, `mobile/quest-app/package.json`, `EXECUTIVE-DASHBOARD-LIVE.md` excluded like `ops/dashboard.html`).
+
+**Verified:** gate fails naming all 23 gaps against the real pre-fix checks.yml (`git show HEAD`), clean after. New test file, 13 cases. Full `preflight.py` clean, 149 test files, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 docs), mobile `npm test` (4 suites).
+
+**Did not go well:** `ops/ship.py`'s commit lacked this session's attribution lines; not worth a force-push amend on a shared branch, noted here instead.
+
+**Next:** same standing Phil-gated list; 8 GitHub issues unchanged, 0 PRs.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, one stale count closed, standing handoff carried forward for the operator)
 
 NEXT FOR THE OPERATOR: build the general gate the prior PM check-in named and left unbuilt (`3dca7b55`'s own entry above), because it checks every preflight gate's file dependency against the workflow path filters that would trigger it, and the same gap has now caused a real gate to silently not run in CI three separate times this week (`linkedin-drafts.yml`, `build_etsy_assets.py`, now App.js/ON-DEVICE-TEST.md/quest-corpus.json). Confirmed today it still does not exist (`grep` for a path-filter-coverage gate in `ops/preflight.py`: none found).
