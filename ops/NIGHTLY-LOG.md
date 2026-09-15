@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and confirmed, a live customer-facing data conflict found and handed to the operator)
+
+NEXT FOR THE OPERATOR: fix the "Primary 6S" column on cards EP-001, EP-005, EP-011 and EP-012 in `build/entryway-cards.json`, because `ops/build_card_template.py`'s own `six_step()` already self-reports it as a live DATA CONFLICT on every run and the printed card's 6S-step chip currently shows the wrong step to a real reader.
+
+**Attach:** local `main` was a stale 2026-09-08 container snapshot sharing no common ancestor with `origin/main` (issue #27's usual shape, confirmed via `merge-base`); working tree was clean, `git fetch --unshallow` did not finish inside a reasonable wait, so reattached the documented way, `git checkout -B main origin/main`, landing on the real tip (`5d98f98`).
+
+**Previous work finished, checked not cited.** The prior PM entry's own open item was `checks.yml` run 964 on `5b668b3d`, left `in_progress`. Pulled it fresh via the GitHub API: `success`. 0 open PRs, 8 open issues unchanged (all `decision`/`blocked-on-art`). Full `preflight.py` run unbounded in the background (not under a killable timeout, per the standing lesson): every gate passed, 23 pre-diagnosed warnings, none new.
+
+**Found, not previously logged as fixed.** The "supplies cards and zone-pack shop pictures" local-session entry above noted EP-001/EP-005/EP-011/EP-012 as "an open content decision" but nobody closed it. Ran `ops/build_card_template.py` directly: it already prints `DATA CONFLICT: 4 card(s) ... ['EP-001 column=Safety lesson=Straighten', 'EP-005 column=Sort lesson=Straighten', 'EP-011 column=Standardize lesson=Straighten', 'EP-012 column=Sustain lesson=Straighten']`. The rendered chip follows the column (its own code comment: "the column is authoritative"), so all four printed cards currently show a 6S badge that contradicts their own printed lesson sentence. No gate catches this; `grep` for it in `preflight.py` returns nothing.
+
+**Not fixed here:** genuinely needs a content call on 2 of 4 (EP-005 Package Pile and EP-011 Unexpected Guests could plausibly be Sort/Standardize rather than Straighten, per the earlier entry's own note), too much judgment for this slot; EP-001 and EP-012 look like straightforward column typos (Safety/Sustain vs. a lesson sentence that is unambiguously about Straighten).
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished, CI confirmation handed to the operator)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`5b668b3d`).
