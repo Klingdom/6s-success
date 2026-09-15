@@ -68,7 +68,11 @@ def product_ld(p: dict) -> dict | None:
         "name": name,
         "sku": p["sku"],
         "description": p["blurb"],
-        "image": f"{BASE}/assets/img/{p['img']}",
+        # Same rule as imgSrc() in site.js: a bare name lives in assets/img, a
+        # path with a slash is relative to assets. Without it, a zone pack's
+        # picture (zones/...) would publish a schema image URL that 404s.
+        "image": (f"{BASE}/assets/{p['img']}" if "/" in p['img']
+                  else f"{BASE}/assets/img/{p['img']}"),
         "brand": {"@type": "Brand", "name": "6S Success"},
         "url": f"{BASE}/{p.get('href', 'shop.html')}",
     }

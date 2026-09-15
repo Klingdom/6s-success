@@ -36,6 +36,7 @@ from __future__ import annotations
 import io
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -80,7 +81,43 @@ SPAN_IMG = ["room-map.jpg", "reset.jpg", "renewed.jpg", "rhythm.jpg",
             "reset-together.jpg", "calm-living.jpg", "standard.jpg"]
 
 
+_ZONE_VERDICTS = None
+
+
+def _zone_image(p: dict):
+    """The zone's own reviewed picture, as published on its zone page, or None.
+
+    Every zone pack used to show its room's one picture: 159 products shared 13
+    images, and a shopper scrolling a room saw the same photograph on every tile.
+    The zone pages already publish a reviewed picture for most zones, so a pack
+    shows that one. Only a verdict of ok counts, and only when the file is
+    actually published under site/assets/zones; anything else keeps the room
+    picture rather than showing an unreviewed or missing image. 2026-09-15.
+    """
+    global _ZONE_VERDICTS
+    zones = p.get("zones") or []
+    if p.get("kind") != "zone" or len(zones) != 1:
+        return None
+    if _ZONE_VERDICTS is None:
+        path = os.path.join(ROOT, "ops", "hero-verdicts.json")
+        _ZONE_VERDICTS = json.load(io.open(path, encoding="utf-8")) if os.path.exists(path) else {}
+    room, zone = zones[0][0], (zones[0][1] or {}).get("zone", "")
+    slug = lambda s: re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")
+    stem = "%s--%s" % (slug(room), slug(zone))
+    rec = _ZONE_VERDICTS.get(stem) or {}
+    if rec.get("verdict") != "ok":
+        return None
+    rel = "zones/%s-md.jpg" % stem
+    if not os.path.exists(os.path.join(ROOT, "site", "assets", "zones", stem + "-md.jpg")):
+        return None
+    return rel
+
+
 def image_for(p: dict, i: int) -> str:
+    if p["kind"] == "zone":
+        own = _zone_image(p)
+        if own:
+            return own
     if p["kind"] in ("zone", "room"):
         return ROOM_IMG.get(p.get("room"), "room-map.jpg")
     return SPAN_IMG[i % len(SPAN_IMG)]
