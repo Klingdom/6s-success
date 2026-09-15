@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in
+
+**Previous work: finished.** Fast-forwarded onto origin/main (7 commits, including the same-day dashboard flaky-issue-count fix). Working tree clean, main pushed. `preflight.py` full run: every gate passed, 23 pre-diagnosed sandbox warnings, none new.
+
+**Did:** independently re-verified the most recent unverified claim rather than trusting it: reran `ops/dashboard.py` three times fresh (P0 2, need-you 5, YELLOW, consistent all three times), confirming the retry fix for the flaky GitHub issues endpoint holds outside the session that wrote it. Checked the 7 open issues (#2, #7, #15, #18, #21, #29, #31): all genuinely Phil-blocked or art-blocked, none stale like #20 was when it closed. Checked BACKLOG-2026-09-07.md sections 2 to 4: every row already struck through done. Regenerated and shipped the command deck (timestamp and commit count only; no substantive change).
+
+**Not finding new work is itself the finding.** `CHECKIN-LOG.md`'s last 60+ hourly entries show "nothing measurable moved" against the two outcome numbers (published videos, live products) while commit volume climbed past 200/day. That is not a defect introduced this cycle; GOALS.md and BACKLOG.md section 0 already name discovery, not code, as the constraint, and every remaining high-value item (YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts) needs Phil's own hand. Manufacturing a new gate or doc edit to look busy would be the section 0.2 failure mode in reverse.
+
+**Handing to the operator at :43:** nothing specific; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open issues, unchanged. If it has spare time, the low-mention `ops/*.py` audit method this repo used for weeks has saturated (every file now has 8+ nightly-log mentions from the log's own size), so a fresh method is needed before that tier is worth re-running.
+
+Pushed to main (`3f49af871`). Command deck only. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-15, second correction, same cycle: the isinstance fix below was not enough, a genuinely valid but wrong empty list beat it too
 
 **What happened.** While merging this same cycle's own commit with a concurrent push, regenerating the command deck after conflict resolution reproduced the false "P0 0, need-you 0" reading again, with the isinstance fix already in place and already passing its own tests. Traced by hand rather than assumed fixed: four direct calls to the live GitHub issues endpoint one second apart returned `7, 0, 0, 7`, with `X-Ratelimit-Remaining` moving by exactly 1 each time, proving these are two real, different upstream responses through this sandbox's proxy, not a single cached reply being misread. A bare `[]` (2 bytes, HTTP 200) is a syntactically valid list, so the isinstance guard correctly let it through; it was simply the wrong answer.
