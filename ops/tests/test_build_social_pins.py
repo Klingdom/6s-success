@@ -13,7 +13,8 @@ covers what can be checked without a browser, in a CI that has none:
      fragments the old comma split produced: the Landing Zone's four items
      exactly (the old split lost "one wallet and"), the shower caddy's list
      kept whole under its shared qualifier, "soles down" kept with its item,
-     and no item that is a bare count ("One wash").
+     and noun lists that share one qualifier kept as one item. A real
+     standalone count ("One bag", "A coaster") is a standard and is allowed.
   2. approved_art() matches quest-data.js exactly, and every stem has its
      -lg.jpg on disk.
   3. A card with a picture uses that zone's own file, shows first sentences,
@@ -62,22 +63,26 @@ def main() -> int:
     if not shower or shower[0] != "One shampoo, one conditioner, one wash, and one bar per person in the caddy":
         fails.append("shower caddy list was split apart: %r" % shower[:2])
     shoes = P.done_items(zone("Entryway", "Shoe and Boot Zone"))
-    if "Two pairs per person on the rack, soles down" not in shoes:
-        fails.append("a trailing modifier left its item: %r" % shoes[:2])
-    count_only = re.compile(r"^(one|two|three|a|an|no)[ ][a-z]+$", re.I)
-    lost, bare = [], []
+    if "Two pairs per person on the rack, soles down" not in shoes or "One pair of slippers each" not in shoes:
+        fails.append("a trailing modifier left its item, or a standalone count was absorbed: %r" % shoes)
+    # Noun lists that share one qualifier stay one item (the first rewrite split them).
+    for room, name, whole in (("Nursery", "Changing Station", "Diapers, wipes, and cream all touchable without moving your feet or lifting your hand off your baby"),
+                              ("Home Office", "Primary Desk", "The monitor, keyboard, and mouse in fixed positions"),
+                              ("Laundry Room", "Utility and Cleaning Zone", "Broom, mop and dustpan hanging heads up with painted outlines showing behind each one"),
+                              ("Patio or Deck", "Garden and Plant Care Zone", "One tool caddy holding trowel, pruners, and gloves"),
+                              ("Laundry Room", "Sorting and Hamper Zone", "Three labeled bags standing clear of the walking line, each below half full")):
+        if whole not in P.done_items(zone(room, name)):
+            fails.append("%s / %s lost its whole item %r: %r" % (room, name, whole[:40], P.done_items(zone(room, name))))
+    lost = []
     for r, z in VZ.zones():
         items = P.done_items(z)
-        raw = words(str(z.get("done_looks_like") or ""))
-        got = words(" ".join(items))
-        if got != [w for w in raw if w != "and"] and got != raw:
-            if sorted(set(raw) - set(got) - {"and"}):
-                lost.append("%s / %s" % (r, z["zone"]))
-        bare += ["%s / %s: %r" % (r, z["zone"], i) for i in items if count_only.match(i)]
+        from collections import Counter
+        missing = Counter(words(str(z.get("done_looks_like") or ""))) - Counter(words(" ".join(items)))
+        # Only an "and" that opened an item may go, at most one per item.
+        if set(missing) - {"and"} or missing.get("and", 0) > len(items):
+            lost.append("%s / %s: %r" % (r, z["zone"], dict(missing)))
     if lost:
         fails.append("done_items dropped words of the standard for %d zone(s): %r" % (len(lost), lost[:3]))
-    if bare:
-        fails.append("bare count items: %r" % bare[:3])
 
     # 2. approvals
     src = BMC.load_source()
@@ -146,6 +151,15 @@ def main() -> int:
             over.append("%s / %s" % (rr, zz["zone"]))
     if cut:
         fails.append("pin descriptions that do not end in their zone link: %r" % cut[:3])
+    # Instagram captions list the whole standard; a cap once dropped safety items.
+    capped = []
+    for rr, zz in VZ.zones():
+        caption = SC.build_one(rr, zz)["instagram"]["caption"]
+        missing_items = [i for i in P.done_items(zz) if i.rstrip(".") not in caption]
+        if missing_items:
+            capped.append("%s / %s: %r" % (rr, zz["zone"], missing_items[:2]))
+    if capped:
+        fails.append("Instagram captions missing checklist items: %r" % capped[:3])
     if dots:
         fails.append("pin descriptions carrying a truncation mark: %r" % dots[:3])
     if over:

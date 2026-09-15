@@ -36,6 +36,16 @@
       }
       if (n) steps.push(n + ' item(s) left for the zone page');
     }
+    /* The eyebrow is one line or it is untidy: "PRIMARY BEDROOM · FREE ZONE"
+       with "RESET" alone underneath. Shrink it until it fits on one line. */
+    var eb=document.querySelector('.eyebrow');
+    if (eb) {
+      var efs=parseFloat(getComputedStyle(eb).fontSize), estart=efs, lh=function(){ return eb.getBoundingClientRect().height; };
+      eb.style.whiteSpace='nowrap';
+      while (eb.scrollWidth > eb.clientWidth + 1 && efs > 0.016*H) { efs -= 0.5; eb.style.fontSize = efs + 'px'; }
+      if (efs < estart) steps.push('eyebrow ' + efs.toFixed(1) + 'px');
+      if (eb.scrollWidth > eb.clientWidth + 1) { eb.style.whiteSpace=''; steps.push('eyebrow wraps'); }
+    }
     if (art) {
       if (over() && sub) { sub.remove(); steps.push('purpose dropped'); }
       var ah=art.getBoundingClientRect().height;

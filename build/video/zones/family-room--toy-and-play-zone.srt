@@ -15,21 +15,22 @@ What done looks like
 4
 00:00:04,120 --> 00:00:05,040
 1 Five or six open bins with no lids on
-the lowest shelf
+the lowest shelf, one category each
 
 5
 00:00:05,040 --> 00:00:05,960
-2 One category each
-
-6
-00:00:05,960 --> 00:00:06,880
-3 A photo of the contents taped to the
+2 A photo of the contents taped to the
 front face where a child looking down sees
 it
 
+6
+00:00:05,960 --> 00:00:06,880
+3 The play mat rolled against the wall
+
 7
 00:00:06,880 --> 00:00:07,800
-4 The play mat rolled against the wall
+4 Enough clear floor that two children can
+build without moving anything first
 
 8
 00:00:07,800 --> 00:00:10,000

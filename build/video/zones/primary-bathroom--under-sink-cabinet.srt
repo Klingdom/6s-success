@@ -23,12 +23,13 @@ nothing stacked on it
 
 6
 00:00:05,960 --> 00:00:06,880
-3 One open bottle per job
+3 One open bottle per job, and both
+shut-off valves in plain sight when the
+doors
 
 7
 00:00:06,880 --> 00:00:07,800
-4 Both shut-off valves in plain sight when
-the doors swing open
+swing open
 
 8
 00:00:07,800 --> 00:00:10,000

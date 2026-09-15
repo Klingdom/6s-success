@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, afternoon, local session: the shared checklist split corrected again; social cards rebuilt; a false YouTube instruction removed
+
+**Found by reviewing my own morning work, not by a gate:** the "what done looks like" split (now single-sourced as `video_zone.done_items()` by `5616a7f4`) still broke noun lists that share one qualifier. Examples: "Broom" / "Mop and dustpan hanging heads up with painted outlines showing behind each one"; "Diapers, wipes" / "Cream all touchable without moving your feet"; "The monitor, keyboard" / "Mouse in fixed positions"; "Machine, grounds, mugs" / "Then spoons and sugar …". It also dropped the "and" inside lists ("holding trowel, pruners, gloves"). My own test hid this, because its lost-word check ignored every "and". I found it by printing every item of three words or fewer against its source sentence.
+
+**Did:**
+- **Corrected split.** A single-sentence standard now groups short parts followed by an "and …" part as one list sharing that part's qualifier. A short count stands alone ("One bag"). Other short parts attach to the item before ("…, soles down"). Dependent parts attach back ("each below half full", "then spoons and sugar", "one category each"). A short "and" part closes the previous item's list. "And" is kept inside items.
+- **Stricter test.** It counts words, "and" included; only an item-opening "and" may go. It pins five shared-qualifier lists as whole items and keeps "One pair of slippers each" standalone. The single-source gate's own cases still pass.
+- **Regenerated.** The 114 video caption sidecars under `build/video/zones` and the 114 social captions were rebuilt; 20 of each changed in content, the rest only in line endings.
+- **One-line eyebrow.** The fit script now keeps the card eyebrow on one line: "PRIMARY BEDROOM · FREE ZONE" with "RESET" alone underneath was showing on a dozen cards with long room names.
+- **Instagram captions uncapped.** They listed only the first four checklist items, which dropped real standards from 16 captions, among them "The cabinet strapped to a wall stud", "The unit screwed to the wall" and "A clear arm's length between the grill body and the siding, railing, and umbrella canopy". Every item is listed now; the longest caption is 768 characters against Instagram's 2,200. The test asserts every item appears, and fails against a capped caption.
+- **Rebuilt cards.** All 228 cards rebuilt and measured as fitting: 185 carry their zone's picture (was 179), 8 of those leaving one item behind a '+ 1 more on the zone page' line; 43 are text only (27 whose standard is too long to share the canvas, 16 for the 8 zones with no approved picture). 62 cards changed in content.
+
+**Corrected in OWNER-ACTIONS item 1:** the instruction for the 11 affected published videos told Phil to use "YouTube Studio's replace-video option, which keeps the URL and view count". That option does not exist: YouTube does not let you swap the file of an uploaded video. The item now says to upload the corrected video as a new video (new URL, zero views), then unlist or delete the old one and update links.
+
+**Still open:** the narrated caption sidecars under `build/video/zones-narrated` and the video files themselves need `ops/video_narrated.py` on Phil's machine (OWNER-ACTIONS item 1). The wide-frame footer fix already landed in `5c8f4cb3`.
+
+**Slip, recorded:** while proving the new caption test fails against a capped caption, I ran `git stash push` on a file with no local changes (so nothing was stashed) and then `git stash drop`, which drops whatever stash was on top. The current stash list and the dangling stash commits were checked afterwards. Every stash-like dangling commit from today is an autostash or duplicates an entry still listed. The one candidate is `9d0cf0ed` ("corpus regen + deploy verdict, held while pushing docs", 2026-09-14 23:23), which held regenerated files since superseded by later commits and is recoverable with `git stash apply 9d0cf0ed` if anyone needs it. Mutation probes should patch in memory, as the others did, and never touch the stash.
+
+**Did not go well:** I shipped a split twice that I had judged by reading about fifteen examples. The defect only showed when every short item was listed against its source. The strict word count should have been in the first test.
+
 ## 2026-09-15, PM check-in (30-minute triage)
 
 **Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom, fast-forwarded onto the prior cycle's own commit (`496c1192`).

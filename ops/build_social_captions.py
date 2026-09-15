@@ -130,7 +130,11 @@ def ig_caption(room: str, z: dict, url: str) -> str:
     if items:
         lines.append("")
         lines.append("What done looks like:")
-        for i, d in enumerate(items[:4]):
+        # Every item, no cap. A four-item cap dropped real standards from 16
+        # captions, among them "The cabinet strapped to a wall stud" and "The
+        # unit screwed to the wall" (found 2026-09-15). The longest full list
+        # makes a 768-character caption against Instagram's 2,200 limit.
+        for i, d in enumerate(items):
             lines.append("%d. %s" % (i + 1, d.rstrip(".")))
     lines.append("")
     lines.append(IG_CTA % zone.lower())

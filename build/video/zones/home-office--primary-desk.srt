@@ -13,16 +13,17 @@ What done looks like
 
 4
 00:00:04,120 --> 00:00:05,040
-1 The monitor, keyboard
+1 The monitor, keyboard, and mouse in
+fixed positions
 
 5
 00:00:05,040 --> 00:00:05,960
-2 Mouse in fixed positions
+2 One notebook
 
 6
 00:00:05,960 --> 00:00:06,880
-3 One notebook, one inbox tray holding
-fewer than a dozen sheets
+3 One inbox tray holding fewer than a
+dozen sheets
 
 7
 00:00:06,880 --> 00:00:07,800

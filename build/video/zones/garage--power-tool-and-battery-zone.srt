@@ -9,298 +9,294 @@ chargers so a tool is always ready to run
 and nothing is left charging unattended.
 
 3
-00:00:03,200 --> 00:00:03,967
+00:00:03,200 --> 00:00:04,120
 What done looks like
 
 4
-00:00:03,967 --> 00:00:04,733
+00:00:04,120 --> 00:00:05,040
 1 One shelf per battery system with its
 charger mounted at the front edge and no
 
 5
-00:00:04,733 --> 00:00:05,500
+00:00:05,040 --> 00:00:05,960
 pack sitting on it
 
 6
-00:00:05,500 --> 00:00:06,267
+00:00:05,960 --> 00:00:06,880
 2 Every drill and saw in its case or on a
-labelled hook with guards down, bits,
+labelled hook with guards down, and bits
 
 7
-00:00:06,267 --> 00:00:07,033
-blades
+00:00:06,880 --> 00:00:07,800
+3 Blades, and sanding discs in the shallow
+drawer underneath
 
 8
-00:00:07,033 --> 00:00:07,800
-3 Sanding discs in the shallow drawer
-underneath
-
-9
 00:00:07,800 --> 00:00:10,000
 One session Power Tool and Battery Zone
 60-90 min
 
-10
+9
 00:00:10,000 --> 00:00:11,900
 Sort Line every pack up and run it in the
 tool it belongs
 
-11
+10
 00:00:11,900 --> 00:00:12,950
 Sort Line every pack up and run it in the
 tool it belongs to until you know which
 
-12
+11
 00:00:12,950 --> 00:00:14,000
 ones still hold a charge.
 
-13
+12
 00:00:14,000 --> 00:00:15,900
 Sort Packs that die in a minute, chargers
 for the drill you sold,
 
-14
+13
 00:00:15,900 --> 00:00:16,950
 Sort Packs that die in a minute, chargers
 for the drill you sold, and the sander
 
-15
+14
 00:00:16,950 --> 00:00:18,000
 with the taped cord all leave today.
 
-16
+15
 00:00:18,000 --> 00:00:18,950
 Straighten Group by battery system rather
 than by task, so one shelf carries the
 
-17
+16
 00:00:18,950 --> 00:00:19,900
 tools, packs, and charger
 
-18
+17
 00:00:19,900 --> 00:00:20,600
 Straighten Group by battery system rather
 than by task, so one shelf carries the
 
-19
+18
 00:00:20,600 --> 00:00:21,300
 tools, packs, and charger of a single
 platform and you stop carrying a green
 pack
 
-20
+19
 00:00:21,300 --> 00:00:22,000
 to a red tool.
 
-21
+20
 00:00:22,000 --> 00:00:23,900
 Straighten Blades, drill bits, and sanding
 discs go in a shallow
 
-22
+21
 00:00:23,900 --> 00:00:24,950
 Straighten Blades, drill bits, and sanding
 discs go in a shallow drawer directly
 
-23
+22
 00:00:24,950 --> 00:00:26,000
 beneath the tools that take them.
 
-24
+23
 00:00:26,000 --> 00:00:27,900
 Shine Brush or blow the motor vents on
 each drill and saw clear of
 
-25
+24
 00:00:27,900 --> 00:00:28,950
 Shine Brush or blow the motor vents on
 each drill and saw clear of packed dust,
 and
 
-26
+25
 00:00:28,950 --> 00:00:30,000
 clean the battery contacts and the charger
 terminals.
 
-27
+26
 00:00:30,000 --> 00:00:31,900
 Shine A vent clogged with plaster dust
 runs a
 
-28
+27
 00:00:31,900 --> 00:00:34,000
 Shine A vent clogged with plaster dust
 runs a motor hot enough to shorten its
 life.
 
-29
+28
 00:00:34,000 --> 00:00:35,900
 Safety Packs come off the charger once
 they are full and sit at partial charge
 
-30
+29
 00:00:35,900 --> 00:00:36,950
 Safety Packs come off the charger once
 they are full and sit at partial charge on
 a
 
-31
+30
 00:00:36,950 --> 00:00:38,000
 shelf well clear of the fuel can and the
 rag bin.
 
-32
+31
 00:00:38,000 --> 00:00:39,900
 Safety Confirm every blade guard springs
 back freely on its own, and retire any
 
-33
+32
 00:00:39,900 --> 00:00:40,950
 Safety Confirm every blade guard springs
 back freely on its own, and retire any
 
-34
+33
 00:00:40,950 --> 00:00:42,000
 tool with a cracked case rather than
 pushing it behind the others.
 
-35
+34
 00:00:42,000 --> 00:00:42,950
 Standardize One shelf label per battery
 system, charger mounted at the front edge,
 
-36
+35
 00:00:42,950 --> 00:00:43,900
 so a pack left charging shows
 
-37
+36
 00:00:43,900 --> 00:00:44,600
 Standardize One shelf label per battery
 system, charger mounted at the front edge,
 
-38
+37
 00:00:44,600 --> 00:00:45,300
 so a pack left charging shows as a lump on
 the shelf edge you can see from the
 
-39
+38
 00:00:45,300 --> 00:00:46,000
 doorway without walking in.
 
-40
+39
 00:00:46,000 --> 00:00:47,900
 Sustain Pulling a full pack off the
 charger is part of finishing the
 
-41
+40
 00:00:47,900 --> 00:00:48,950
 Sustain Pulling a full pack off the
 charger is part of finishing the job, the
 same
 
-42
+41
 00:00:48,950 --> 00:00:50,000
 as putting the drill back in its case.
 
-43
+42
 00:00:50,000 --> 00:00:51,900
 Sustain The second net is the side door,
 because locking up at night takes you past
 
-44
+43
 00:00:51,900 --> 00:00:52,950
 Sustain The second net is the side door,
 because locking up at night takes you past
 
-45
+44
 00:00:52,950 --> 00:00:54,000
 the charger shelf and anything still on a
 charger comes off on the way.
 
-46
+45
 00:00:54,000 --> 00:00:55,900
 Sustain Slip is a lump on the shelf edge,
 visible from the doorway,
 
-47
+46
 00:00:55,900 --> 00:00:56,950
 Sustain Slip is a lump on the shelf edge,
 visible from the doorway, which is why
 
-48
+47
 00:00:56,950 --> 00:00:58,000
 the chargers are mounted at the front.
 
-49
+48
 00:00:58,000 --> 00:00:59,900
 Sustain Nothing sleeps on a charger here,
 because this is the one
 
-50
+49
 00:00:59,900 --> 00:01:00,950
 Sustain Nothing sleeps on a charger here,
 because this is the one garage habit
 
-51
+50
 00:01:00,950 --> 00:01:02,000
 whose failure cannot be undone by tidying
 afterwards.
 
-52
+51
 00:01:02,000 --> 00:01:02,309
 The call Somewhere on that shelf is a good
 tool on a dead platform: the drill from
 
-53
+52
 00:01:02,309 --> 00:01:02,618
 the brand you left behind, one tired pack,
 and a charger nobody makes any more.
 
-54
+53
 00:01:02,618 --> 00:01:02,927
 You keep it because the tool itself is
 fine, and it is.
 
-55
+54
 00:01:02,927 --> 00:01:03,236
 Decide this with money rather than
 loyalty.
 
-56
+55
 00:01:03,236 --> 00:01:03,545
 Price one replacement pack today.
 
-57
+56
 00:01:03,545 --> 00:01:03,855
 If a pack costs more than half what a
 current equivalent tool costs, or you
 cannot
 
-58
+57
 00:01:03,855 --> 00:01:04,164
 buy one at all, the tool is finished, so
 sell it with its charger while it still
 
-59
+58
 00:01:04,164 --> 00:01:04,473
 means something to somebody, or take it to
 electrical recycling.
 
-60
+59
 00:01:04,473 --> 00:01:04,782
 Running two battery systems is a cost you
 can defend.
 
-61
+60
 00:01:04,782 --> 00:01:05,091
 Running three means a hunt through three
 shelves every time you want to put a hole
 
-62
+61
 00:01:05,091 --> 00:01:05,400
 in a wall.
 
-63
+62
 00:01:05,400 --> 00:01:07,800
 Power Tool and Battery Zone The full
 reset, free at 6s-success.com

@@ -24,13 +24,12 @@ than across the floor beside the bed
 
 6
 00:00:05,960 --> 00:00:06,880
-3 Any medication in the drawer is in date,
-capped
+3 Any medication in the drawer is in date
 
 7
 00:00:06,880 --> 00:00:07,800
-4 Closed away from a child or a dog who
-can climb onto this bed
+4 Capped, and closed away from a child or
+a dog who can climb onto this bed
 
 8
 00:00:07,800 --> 00:00:10,000

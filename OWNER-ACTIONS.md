@@ -483,10 +483,13 @@ fork again), and the 102 not-yet-uploaded videos will render correctly the
 first time. The 11 affected videos already on YouTube cannot be corrected any
 other way, because YouTube will not replace a video file after upload: they
 need `python ops/video_narrated.py` run again on your machine (real narration
-and ffmpeg, not available to any cloud session) and the results re-uploaded
-over the old ones through YouTube Studio's replace-video option, which keeps
-the URL and view count. The one zone that was already correct is Entry Console
-or Bench.
+and ffmpeg, not available to any cloud session) and the results uploaded as
+new videos. YouTube does not let you swap the file of a video that is already
+up, so the corrected video gets a new URL and starts at zero views; set the old
+one to Unlisted (or delete it) once the new one is live, and update any link
+that points at the old URL. (Corrected 2026-09-15: an earlier version of this
+item described a replace-video option that keeps the URL; that option does not
+exist.) The one zone that was already correct is Entry Console or Bench.
 
 ### 1a. Verify the site in Google Search Console. One paste, about three minutes.
 

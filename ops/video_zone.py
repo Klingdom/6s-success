@@ -208,8 +208,64 @@ def words(text: str, upto: int) -> str:
 
 _DONE_SENTENCE = re.compile(r"(?<=[^.][.!?])[ ]+(?=[A-Z])")
 _DONE_COUNT = re.compile(
-    r"^(one|a|an|no|each|every|two|three|four|five|six|a single|only|"
-    r"nothing|all|both)[ ]", re.I)
+    r"^(one|a|an|no|two|three|four|five|six|a single|nothing|every|all)[ ]", re.I)
+_DONE_DEPENDENT = re.compile(r"^(each|then|both)[ ]|[ ]each$", re.I)
+
+
+def _done_core(part: str) -> str:
+    return re.sub(r"^and ", "", part)
+
+
+def _done_list_sentence(sentence: str) -> list:
+    """Split one standard written as a single comma list, every word kept.
+
+    - short parts followed by an "and ..." part are one list sharing that
+      part's qualifier: "Diapers, wipes, and cream all touchable ...";
+    - a short count on its own is a standard: "one bag", "one notebook";
+    - any other short part modifies the item before it: "..., soles down";
+    - a part that depends on the one before attaches back: "each below half
+      full", "then spoons and sugar ...", "one category each";
+    - a short part starting "and" closes the previous item's list: "holding
+      trowel, pruners, and gloves".
+    """
+    parts = [p.strip() for p in re.split(r",(?![^(]*[)])", sentence) if p.strip()]
+    items, pending = [], []
+
+    def attach_back(texts):
+        if items:
+            items[-1] = items[-1] + ", " + ", ".join(texts)
+            return True
+        return False
+
+    for idx, p in enumerate(parts):
+        c = _done_core(p)
+        short = len(c.split()) < 3
+        last = idx == len(parts) - 1
+        if _DONE_DEPENDENT.search(c) and (not c.lower().endswith(" each") or len(c.split()) <= 3):
+            if not attach_back(pending + [p]):
+                items.append(", ".join(pending + [p]))
+            pending = []
+            continue
+        if short and p.startswith("and "):
+            if not attach_back(pending + [p]):
+                items.append(", ".join(pending + [p]))
+            pending = []
+            continue
+        if short and not last:
+            pending.append(p)
+            continue
+        if pending:
+            if p.startswith("and ") or not items:
+                p = ", ".join(pending + [p])
+            else:
+                for q in pending:
+                    if _DONE_COUNT.match(_done_core(q)) or not attach_back([q]):
+                        items.append(q)
+            pending = []
+        if short and last and attach_back([p]):
+            continue
+        items.append(p)
+    return items
 
 
 def done_items(z: dict) -> list:
@@ -217,50 +273,30 @@ def done_items(z: dict) -> list:
 
     The single source for this split; ops/build_social_pins.py and
     ops/video_zone_photo.py both call this rather than keeping their own
-    copy. Fixed here 2026-09-15 after the original split (cut at every
-    comma and every " and ", kept only the first four fragments of three
-    words or more) shipped on the "What done looks like" screen of the 11
-    of 12 zone videos already published to YouTube: "one wallet and one
-    phone per adult" became "One phone per adult", "The salt. The kettle"
-    was welded into one item, and standards such as "The cabinet strapped
-    to a wall stud" were dropped for running past the fourth slot. The
-    narrator read the same fragments aloud and the caption file repeated
-    them, so the defect was heard as well as seen.
+    copy. The original split (cut at every comma and every " and ", kept
+    only the first four fragments of three words or more) shipped on the
+    "What done looks like" screen of 11 of the 12 zone videos already on
+    YouTube: "one wallet and one phone per adult" became "One phone per
+    adult", "The salt. The kettle" was welded into one item, and standards
+    such as "The cabinet strapped to a wall stud" were dropped. The first
+    rewrite (2026-09-15, morning) still broke noun lists that share one
+    qualifier: "Broom" / "Mop and dustpan hanging heads up ...", "Diapers,
+    wipes" / "Cream all touchable ...", "The monitor, keyboard" / "Mouse in
+    fixed positions", and dropped the "and" inside lists. Corrected the same
+    afternoon after reading every short item against its source.
 
-    A standard written as several sentences gives one item per sentence. A
-    standard written as one sentence is a comma list, split at top-level
-    commas, where a short part that starts a count ("one wash") joins the
-    part after it, since it shares that part's qualifier ("one bar per
-    person in the caddy"), and a short part that does not ("soles down")
-    belongs to the part before it. No cap here: a caller that needs one
-    trims the returned list itself.
+    A standard written as several sentences gives one item per sentence. One
+    written as a single sentence is split by _done_list_sentence(). No cap
+    here: a caller that needs one trims the returned list itself.
     """
     raw = str(z.get("done_looks_like") or "").strip()
     sents = [s.strip().rstrip(".") for s in _DONE_SENTENCE.split(raw) if s.strip()]
     if len(sents) > 1:
         out = sents
     else:
-        parts = [re.sub(r"^and ", "", p.strip())
-                 for p in re.split(r",(?![^(]*[)])", sents[0] if sents else "")]
-        out, carry = [], ""
-        for p in parts:
-            if not p:
-                continue
-            short = len(p.split()) < 3
-            if short and _DONE_COUNT.match(p):
-                carry = (carry + ", " if carry else "") + p
-                continue
-            if short and out and not carry:
-                out[-1] = out[-1] + ", " + p
-                continue
-            out.append((carry + ", " + p) if carry else p)
-            carry = ""
-        if carry:
-            if out:
-                out[-1] = out[-1] + ", " + carry
-            else:
-                out.append(carry)
-    return [o[0].upper() + o[1:] for o in out if o]
+        out = _done_list_sentence(sents[0]) if sents else []
+    out = [_done_core(o) for o in out if o]
+    return [o[0].upper() + o[1:] for o in out]
 
 
 def _sentence_chunks(text, budget=30):
