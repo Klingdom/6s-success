@@ -1,6 +1,23 @@
 # Nightly log
 
 One entry per unattended pass, newest first. Written to be read half awake.
+
+## 2026-09-15, scheduled operator cycle (independent verification pass, no new defect; two GitHub issues re-checked cold against live code, both found current)
+
+**Did:** Unshallowed and attached cleanly (`fetch --unshallow`, ff-only onto `origin/main`, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` referenced, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Full `python ops/preflight.py`: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. `curl` to `6s-success.com` confirmed exit 56/000, and the agent proxy's own status log shows a genuine 403 policy denial on that host, not a local bug, matching every prior cycle's report.
+
+**Verified rather than trusted:** pulled 8 open GitHub issues fresh via the API (unchanged count, all `decision`/`blocked-on-art`) and 0 open PRs. Rather than accept that at face value, read issues #2 and #29 in full against the current code instead of citing their last comment. #2 (stale card heroes) carries a same-day (05:45 UTC) recount comment already correcting 12 to 9 rejected heroes and citing `LRN-0012`; matches `ops/card-hero-verdicts.json` and the live `preflight.py` warning (`deck-art 9 of 88`) exactly. #29 (deck gallery withheld cards) is still architecturally live, not superseded by the newer card-template pipeline: confirmed `ops/build_deck_gallery.py` still reads `site/assets/cards/entryway/index.json`, the scanned-sheet pipeline the issue describes, separate from `ops/build_card_template.py`'s corpus-driven one. `BACKLOG-2026-09-07.md` sections 2-6 again all struck through done or correctly Phil-gated; section 5 (Hold) still correctly waiting on traffic/evidence. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, matching every prior cycle.
+
+**Went well:** checking the two open issues against live code directly, instead of trusting their already-fresh-looking last comments, still found both genuinely current rather than assuming so from the recency of the comment alone.
+
+**Went not well:** no new customer-facing work was unblocked this cycle; the site remains Phil-gated on YouTube OAuth, Search Console verification, local-GPU card regeneration and the Listmonk/Etsy/KDP account decisions, all already in `OWNER-ACTIONS.md`.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` list. Highest-value unblocked-but-undone item remains none; every unblocked row in the current backlog is done.
+
+Shipped via `ops/ship.py --no-deploy` equivalent (log and dashboard regen only, no site/product/price touched). No new page, IndexNow not applicable.
+
 Under 200 words each. Failures recorded as plainly as wins.
 
 ## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, one real record-keeping gap found and flagged, not fixed here)
