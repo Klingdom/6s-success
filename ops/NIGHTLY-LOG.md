@@ -3,7 +3,17 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, no fresh item unblocked)
+## 2026-09-15, PM check-in (previous work was NOT finished: the Etsy PDF gate failed again on the same three listings a fix had just re-verified; root-caused and closed)
+
+NEXT FOR THE OPERATOR: widen `checks.yml`'s path filter (currently `ops/**` plus workflow files) to also cover `build/**`, because this cycle pushed a real logic change to `build/listings/build_etsy_assets.py` and CI never ran on it at all, the same "site/-only commits get no Checks run" gap the 18:33 local session logged and deliberately left open, now confirmed to also swallow `build/` changes, not only `site/`.
+
+**Attach:** shallow and detached, `fetch --unshallow`, ff-only onto `origin/main`.
+
+**Found NOT finished:** full `preflight.py` FAILed `etsy-pdfs-current` on Kitchen, Moving-In and Holiday Hosting, the exact three listings `9ff67ac8` (18:19 local) had just rebuilt. content.json was unchanged since that commit, so this was not fresh drift. Root cause: `build_etsy_assets.py` only ever reads whatever HTML already sits at `build/products/*.html` (gitignored, uncommitted) and `build/6S-Whole-House-Print-Pack.html`; it never regenerates them. Whoever ran the rebuild had a stale `build/products/RP-KITCHEN.html` on disk, so the "fix" shipped a PDF that matched the gate's before/after diff without catching up to the real source. Confirmed with `pymupdf`: the fresh render differs from the committed PDF by genuine rewritten sentences, not reflow noise; re-rendering twice from unchanged input is byte-identical text, so this environment's output is deterministic.
+
+**Fixed:** chained `build_printpack.main()`, `build_standards.main()` and `build_catalog.build_all()` into `build_etsy_assets.py`'s own `main()`, so it can no longer render a stale intermediate. All 3 `ops/tests/test_*etsy*.py` files and `check_etsy.py` pass; gate re-run against the clean pushed HEAD: 0 FAIL, 0 WARN. `check_urls.py` 188/188.
+
+Pushed to main (`0374e09c`, `4564b0d9`). No price or product touched, no new page. CI will not have run on the fix commit (see handoff above).
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
 
