@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, evening, local session: shop pack cards link the free page that explains them (`8dfa3fce`, link form fixed in `1c93dc1d`)
+
+**Found reviewing products and pages:** the shop sold 109 zone packs ($4) and 19 room packs ($9) as a name, a blurb and a buy button. A shopper had no way to read the steps a pack prints before buying it. Those steps are free on each zone and room page, and those pages already offer the matching pack. So explain-then-offer held from the page side and was missing from the shop side. 156 of 159 catalogue entries carry no link of any kind.
+
+**Did:** `ops/wire_generated_catalog.py` writes a `page` for every zone and room pack. The URL comes from quest-data.js (the zone's own url) and the room's slug, the records the pages are built from, never from the product name: packs are named for the zone ("Landing Zone Pack") while pages use the zone's display name ("the-landing-spot"). A page is linked only if it exists on disk. `site/assets/js/site.js` renders it (as an extensionless link, per the fix below) as "Read the free steps first" under the blurb. Situation kits and area bundles span several rooms and get none. All 155 buy links were carried through the regeneration. The prerendered shop now has 128 links; product schema, fingerprints and service worker were regenerated.
+
+**First release refused, correctly:** the image build for `8dfa3fce` failed `generator-ownership` on `site/shop.html`. The first version linked `zones/<slug>.html`, and `build_resources.py` (through `ops/canonical_links.py`) rewrites every internal zone and room link into the extensionless form those pages declare as canonical, so the committed shop never matched its generators. Nothing deployed from that build. Reproduced locally by running the gate and then each chain generator in turn until `build_resources.py` changed exactly that line. A concurrent session reached the same diagnosis first and pushed the fix as `1c93dc1d` (`page` is now extensionless; existence is still checked against the `.html` file). My identical local fix (`784c6eba`, same resulting build id) was dropped rather than pushed; it is kept on the branch `backup/pack-links-local-784c6eba`. Locally, `gate_generator_ownership` then passed on shop.html. The only other file it flagged was the EPUB, whose 62 entries are byte- and timestamp-identical to the committed one; only the zip container differs on this machine, and CI does not flag it.
+
+**Tested:** new `ops/tests/test_pack_pages.py` proves each pack links the page whose own pack button carries the same Stripe payment link as the shop card, which a wrong page cannot. It catches planted swapped, missing, nonexistent and wrong-kind links. Local evidence: 11 targeted gates and 6 related tests passed. Full local preflight has been killed for low memory on this machine today; the full run is CI's image build.
+
+**Live:** The image build for `1c93dc1d` passed (full preflight in CI) and production moved from build `c3d0d442441b24df` to this release; freshness CURRENT; the live shop carries all 128 'Read the free steps first' links, every zone and room pack in live data.js has a page, live site.js renders it, sampled linked pages answer 200, and all 560 image URLs on the 128 live pack cards answer 200 with an image type. Production is on build `c3530a45f1e67279`. The deploy verdict was committed after this deploy, with this entry.
+
+**Not measured yet:** whether shoppers use the link or it changes buy-clicks. There were no stranger purchases before this change, so there is no baseline to compare against yet.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work's own open thread was CI confirmation; still in progress, not yet green)
 
 NEXT FOR THE OPERATOR: confirm CI finishes on `1c93dc1d` (checks.yml run 999, publish-image.yml run 287), because both jobs' Preflight step (the exact step that failed on the bug commit) already passed on retry, but neither run had completed as of 22:42 UTC, so green is not yet confirmed.
