@@ -148,10 +148,10 @@ def page_for(p: dict):
         src = BMC.load_source()
         zones, rooms = {}, {}
         for r in src["rooms"]:
-            rooms[r["room"]] = "rooms/%s.html" % r["slug"]
+            rooms[r["room"]] = "rooms/%s" % r["slug"]
             for z in r["zones"]:
                 if z.get("url"):
-                    zones[(r["room"], z["zone"])] = z["url"].lstrip("/") + ".html"
+                    zones[(r["room"], z["zone"])] = z["url"].lstrip("/")
         _PAGES = (zones, rooms)
     zones, rooms = _PAGES
     if p.get("kind") == "zone":
@@ -164,7 +164,10 @@ def page_for(p: dict):
         rel = rooms.get(p.get("room"))
     else:
         return None
-    if rel and os.path.exists(os.path.join(ROOT, "site", rel)):
+    # rel is the extensionless canonical path every other internal link on
+    # the site uses (ops/canonical_links.py); the file on disk still carries
+    # .html, so existence is checked against that, not against rel itself.
+    if rel and os.path.exists(os.path.join(ROOT, "site", rel + ".html")):
         return rel
     return None
 

@@ -44,7 +44,10 @@ def page_problems(cat):
         if not page:
             out.append("%s has no page" % p["sku"])
             continue
-        path = os.path.join(SITE, page)
+        # page is the extensionless canonical path every internal link on the
+        # site uses (ops/canonical_links.py); the file on disk still carries
+        # .html.
+        path = os.path.join(SITE, page + ".html")
         if not os.path.exists(path):
             out.append("%s links %s, which does not exist" % (p["sku"], page))
             continue
@@ -85,7 +88,7 @@ def main() -> int:
     wrong_kind = dict(packs[0]); wrong_kind["cat"] = "Situation Kits"
     if not any("is not a zone or room pack" in x for x in page_problems([wrong_kind])):
         fails.append("a kit carrying a page was not caught")
-    missing = dict(packs[0]); missing["page"] = "zones/not-a-real-zone.html"
+    missing = dict(packs[0]); missing["page"] = "zones/not-a-real-zone"
     if not any("does not exist" in x for x in page_problems([missing])):
         fails.append("a page that does not exist was not caught")
 
