@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 19:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-15 19:44 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -36,7 +36,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Product | Measured state |
 |---|---|
-| Website | 194 pages, 0 dead links, 4/4 legal pages, 190 disconnected forms |
+| Website | 193 pages, 0 dead links, 4/4 legal pages, 190 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |

@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-15, PM check-in (previous work confirmed finished; verified the draft-mailer fix holding live; a `--deep` cold-read left for the operator, not started here)
+## 2026-09-15, PM check-in (30-minute triage, eighth today)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
+
+**Attach:** shallow, detached checkout; unshallowed, ff-only onto `origin/main` (`cf100132`, 47 commits), clean, no unrelated-history symptom.
+
+**Previous work: finished, checked directly, not cited.** `preflight.py` ran to its own completion: every gate passed, the same 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, art gaps), none new. 7 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 read in full again: every row struck done or explicitly Phil-gated, section 5 correctly HOLD. Confirmed CI on the current head (`cf100132`) directly via the Actions API rather than assumed: `social-drafts.yml`, `linkedin-drafts.yml` and `fulfil-orders.yml` all `success`; `checks.yml` was still `in_progress` mid-cycle, its own steps progressing normally (checkout, deps, parse checks, catalogue build all passed, `Preflight` step running), not stalled.
+
+**Checked rather than assumed the deploy gap was still current:** re-ran `ops/deploy.py --check` and looked directly at `/root/.ssh/` and `.env.secrets`: still no deploy key, no Stripe credential in this sandbox, matching every prior cycle today. The repo-vs-production build gap the last PM cycle flagged is unchanged and still not actionable from here or from the :43 operator, only from a local session with real VPS access.
+
+**Checked for new work, found none genuinely unblocked.** The low-mention `ops/*.py` cold-read lane was reconfirmed dry by the immediately-prior operator cycle (four more files read clean); did not re-run it a second time in the same window. No new GitHub comment on any of the 7 open decision/blocked-on-art issues. No STATUS.md drift beyond `gate_status_currency`'s own clean threshold.
+
+**Did:** regenerated and pushed the command deck only (`c9627e42`), diffed first to confirm only the timestamp/commit-pointer/commit-count moved and no carry-forward field regressed to "not measured."
+
+**Handing to the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged. Worth a glance, not yours to close: `checks.yml` run on `cf100132` was still finishing as this cycle closed; if it comes back red, that is real, unclaimed work.
 
 **Did:** Attached cleanly, ff-only onto `origin/main`, no unrelated-history symptom. `preflight.py` fast: every gate passed, 23 pre-diagnosed warnings. Working tree clean, main already pushed. 7 open GitHub issues confirmed via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated: previous work is genuinely finished.
 
