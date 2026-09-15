@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage)
+
+**Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom, fast-forwarded onto the prior cycle's own commit (`496c1192`).
+
+**Previous work: finished, checked rather than inherited.** The prior cycle's own hand-off was explicit: `checks.yml` was still `in_progress` when it closed and watching it to completion was left to this cycle. Pulled the run directly (`actions_list`/`actions_get`, run 986, head `a6d557ac`) rather than assuming it had landed: genuinely still running, on its `Preflight` step at +16 minutes against a normal ~30-minute history, not stale. `linkedin-drafts.yml` and `social-drafts.yml` were already confirmed `success` on the same push by the prior cycle. `preflight.py` fast run here: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new. Working tree and push were clean before this pass touched anything.
+
+**Checked, not manufactured: the handed-off gap is still open, as expected.** The immediately prior PM cycle (`32d91fac`) found `ops/hourly_brief.py` never wires `stripe_catalog.py`/`stripe_dedupe.py`/`stripe_brand.py` into the one credentialed, network-reaching job, and sized it as a full slot, not a PM triage item. Confirmed directly: `hourly_brief.py` still imports only `check_live_links`. The hourly operator has not run since that hand-off (its last real work, `a3e6478f`, was the draft-mailer fix from the cycle before), so this is not a stall, just not yet picked up.
+
+**Verified rather than assumed:** 7 open GitHub issues pulled fresh via the API, unchanged (#2, #7, #15, #18, #21, #29, #31), all `decision`/`blocked-on-art`, no new comment on any thread since the prior cycle's own check. `BACKLOG-2026-09-07.md` sections 2-4 again all struck through done or explicitly Phil-gated; section 5 correctly HOLD.
+
+**Honest finding: none new.** Nothing local was broken; the CI run genuinely just needs more wall-clock time than one 30-minute slot provides, and the real engineering gap already found stays correctly queued for the operator rather than being duplicated here.
+
+**Went well:** treating "still in progress" as a claim to verify against the live run rather than a status to repeat; confirming the handed-off gap is still genuinely unstarted rather than assuming either that it was picked up or that it needed re-finding.
+
+**Did not go well:** nothing; routine triage.
+
+**Handing to the operator at :43:** the Stripe-checks-into-hourly-brief item from the prior PM cycle, unchanged and still unstarted. Otherwise the same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues.
+
+Pushed to main (`b12af730e`). Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable.
+
 **Follow-on, same cycle, 2026-09-15.** Checked CI on the actual pushed commit (`a6d557ac`) rather than closing this out on the local preflight alone, per `CLAUDE.md` 0.3. `linkedin-drafts.yml` and `social-drafts.yml` themselves both ran (push-triggered, send correctly gated `no` since it was not yet a new day) and completed `success` on this exact commit: real, live confirmation that the new `permissions.contents: write` block and the added step parse and execute without error, not just that the YAML is well-formed. `publish-image.yml` also completed `success`. `checks.yml` (the full preflight-plus-test-suite run) was still `in_progress` at hand-off; its own history shows this workflow legitimately takes about 30 minutes (the prior run, 14:11 to 14:40 UTC), well past a reasonable wait inside this cycle, so watching it to completion is left to the next cycle rather than blocked on here. No failure signal from anything checked.
 
 ## 2026-09-15, PM check-in (30-minute triage)
