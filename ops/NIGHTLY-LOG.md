@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished, verified a concurrent push rather than starting a fresh sweep)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`. `preflight.py`'s own run silently regenerated the command deck as a side effect before I had checked anything in; stashed it, merged, popped it back, no loss.
+
+**Previous work finished, checked not cited.** `preflight.py` clean both before and after the merge: every gate passed, the same 23 standing warnings, none new. Working tree clean, main pushed.
+
+**A concurrent session's commit (`0d0f5b1b`, "Quest app: the zone's six passes as a spine; footer links reach 44px") landed just before this cycle attached, claiming passing tests and gates but not yet independently confirmed by anyone else.** Reran it myself rather than trust the commit message: mobile `npm test`, all 4 suites pass; `preflight.py` full run, every gate still passes. Claim holds.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2 to 6 still done, HOLD or Phil-gated. 8 open GitHub issues pulled fresh (2 P0, both blocked on art or a Listmonk infra decision, neither operator-actionable); 0 open PRs. `OWNER-ACTIONS.md`'s redeploy item (1b) matches the dashboard's own "what needs you" line; no deploy key or Stripe credential in this sandbox, confirmed directly, so it stays Phil's.
+
+**Ran `ops/ship.py` without an argument it recognizes (typo, meant `--help`); it read as no-args and committed and pushed the pending dashboard regen (`ae7a5ae7`) before I noticed.** No harm done, that regen needed shipping anyway and nothing else was staged, but the lesson from two cycles ago about checking a tool's own argv handling before passing it a flag applies here too.
+
+**Handing to the operator:** nothing new unblocked this pass; the standing Phil-gated list is unchanged. Worth a look next: whether `0d0f5b1b`'s CI run landed green, since this cycle only checked local, not the Actions API.
+
 ## 2026-09-15, local session: hero badge truth, method grid, first local card art accepted (release 04985c27 live; card art committed)
 
 **Did:** homepage hero card named the symptom's cause pass (Straighten) while the Quest it opens starts on Sort. Badge, colour and lit spine segment now follow the zone's first step; `gate_home_hero_card_real` fails on any other badge (new case, 4/4). Method page "Learn the method your way" was six products in a four-column grid (a 4 + 2 row); now three columns (3 + 3 desktop, 2 + 2 + 2 tablet, 1 phone), audits clean at both widths. `gate_zone_short_answer_above_fold` skips gitignored `_*.html` scratch files (new case 6/6, red against the old filter). Release `04985c27`: publish success, deployed, live build `15cb07c13abaadca`, freshness CURRENT, live badge 'Sort', live stylesheet lights segment 1. ALL PASS.
