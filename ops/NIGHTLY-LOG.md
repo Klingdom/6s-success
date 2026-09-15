@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (finished the prior PM cycle's `preflight.py --deep` handoff, clean; independent verification, no new defect)
+
+**Did:** Unshallowed a shallow, detached checkout and attached to `main` (ff-only onto `origin/main`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s ordering, `CLAUDE.md`, and the four most recent log entries. `preflight.py` fast: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. `check_urls.py`: 188/188. `audit_pages.py`: 191 pages, 0 findings. Mobile `npm test`: all 4 suites pass. `BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated; section 5 correctly HOLD on the traffic constraint.
+
+**Checked the cold-read lane before trusting the log's own "exhausted" claim (step 5d):** ranked `ops/*.py` by markdown-mention count myself rather than citing a prior cycle's ranking. Confirmed directly, not assumed: every genuinely low-mention candidate (`ledgerium_price_check.py`, `shrink_sample.py`, `media_capability.py`, `wire_measure.py`, `wire_progressive.py`, and others) already carries a specific prior fix or a repeated clean `--check` run, traced by grepping this file's own history rather than the mention count alone. The lane is genuinely dry, independently reconfirmed; re-reading files that many prior cycles already cleared today is not this cycle's job. Checked the two open, older decision issues (#7, #18) directly rather than assuming they were still live: both remain genuine, unresolved owner calls (keep-or-discard a superseded master-plan file; a whole-book monochrome-vs-colour style decision gated on Gemini billing anyway), correctly not mine to close, unlike #20 which an earlier cycle today closed as superseded by real events.
+
+**The actual work this cycle: finished `preflight.py --deep`, which the top-of-log PM check-in had started, hit the same fast/deep collision it already knows about, and explicitly left for "the :43 operator, which has the time budget it needs."** Ran it to completion in the background (about 5 minutes) rather than start a fresh cold-read sweep on top of an exhausted one. Result: every gate passed, the same 23 warnings as the fast run, nothing new. This closes out a handoff that had sat open since the previous PM cycle.
+
+**A concurrent PM check-in (`902cd981`) pushed mid-cycle**, touching the same generator-owned dashboard files this cycle's own fast-preflight run had also regenerated locally; merged (`4a145c25`), took origin's copy of the three conflicted generated files rather than hand-resolving markers (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, per the established rule for generator-owned output), then reran `ops/dashboard.py` fresh against the merged tree before committing and pushing (`9ceed03d`).
+
+**Went well:** treating the prior cycle's own "left for the operator" handoff as this cycle's actual highest-value action rather than another exhausted `ops/*.py` sweep; the deep audit closing clean confirms the site-wide visual/contrast/mobile-touch-target state is still sound after today's storage-before-Sort and heading-hierarchy fixes.
+
+**Did not go well:** nothing new; the checkout still arrives shallow and detached every time (issue #27's standing shape), unshallowed cleanly as always.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged. Highest-value unblocked item remains the four owner gates in `BACKLOG-2026-09-07.md` section 6 (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts), all waiting on Phil's own hand.
+
+Pushed to main (three commits: dashboard checkpoint, merge, post-merge regen). Command deck only; no site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-09-15, PM check-in (30-minute triage, eighth today)
 
 NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
