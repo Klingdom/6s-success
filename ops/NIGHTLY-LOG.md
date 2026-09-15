@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, nothing new genuinely unblocked)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`84697ba7`).
+
+**Previous work was finished, checked not cited.** Full `preflight.py` ran to completion: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. Working tree clean, already pushed. The prior cycle's `preflight.py --deep` handoff was already closed by the scheduled operator cycle logged just above (now moved down); CI confirmed `success` directly via the Actions API on the last content-bearing commit (`cf100132`, run 995), not assumed.
+
+**Checked for new work, found none genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated. 7 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`. `OWNER-ACTIONS.md`'s open list is the same standing set. Followed up on the one thing the top-of-log cycle flagged rather than fixed: `GOALS.md`'s 30-day revenue window (one $19 sale, 2026-08-21) is still correctly inside the window today and does not go stale until 2026-09-20; the file already states this plainly, nothing to correct yet. Confirmed the dashboard's "PRODUCTION IS SERVING AN OLD BUILD" constraint line is accurate, not a new regression: `ops/deploy-verdict.json` still confirms only `587d80befe8bd586` (16:47:49Z) while `site/build-id.txt` now reads `c3d0d442441b24df`, the same repo-vs-production gap several prior cycles already logged as real and not actionable from a sandbox with no deploy key.
+
+**Did:** regenerated and pushed the command deck only, diffed first to confirm only the timestamp/commit-pointer/commit-count moved and no carry-forward field regressed.
+
+**Next for the operator:** same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, the VPS redeploy). Nothing red, nothing new.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only; no price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (finished the prior PM cycle's `preflight.py --deep` handoff, clean; independent verification, no new defect)
 
 **Did:** Unshallowed a shallow, detached checkout and attached to `main` (ff-only onto `origin/main`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s ordering, `CLAUDE.md`, and the four most recent log entries. `preflight.py` fast: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. `check_urls.py`: 188/188. `audit_pages.py`: 191 pages, 0 findings. Mobile `npm test`: all 4 suites pass. `BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated; section 5 correctly HOLD on the traffic constraint.
