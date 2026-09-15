@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, converged with a concurrent fix for the same defect this cycle found independently)
+
+**Attach:** shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`e170c110`, the tip left by the last-logged local session).
+
+**Previous work checked, not cited: found NOT finished, independently.** `preflight.py` unbounded: 3 gate(s) failed, 6 of 149 tests failed, all tracing to one `SyntaxError` in `ops/build_zone_pages.py` line 467 (a same-quote-nested f-string, valid only on Python 3.12+, this sandbox runs 3.11). Fixed it locally and was mid-verification when the fix push conflicted: a concurrent session (`cb00b337`) had landed its own fix for the identical line seconds earlier, plus more than mine had: the ternary hoisted to a variable instead of just requoted, a new `gate_ops_python_syntax` that now parses every `ops/*.py` file first so this class of bug fails loud instead of cascading into unrelated gates, and a proper root-cause fix for the standing EP-001/005/011/012 handoff (EP-001 through EP-004 are two different cards colliding by ID between a retired planning file and the live corpus; EP-005/011/012's titles genuinely match both sources, so those stay open as a real content question, not a guess).
+
+**Reconciled per CLAUDE.md's own instruction to prefer merge over force:** reset this session's now-fully-superseded local commit and took `origin/main` as-is rather than re-doing better-already-done work. Reran `preflight.py` clean on that tip: every gate passed, 23 warnings, all previously diagnosed. 7 open GitHub issues (one closed since last read, #20), all decision or blocked-on-art, none actionable here.
+
+**Handing to the operator:** nothing new; the same standing Phil-gated list.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (finished the prior PM cycle's `preflight.py --deep` handoff, clean; independent verification, no new defect)
 
 **Did:** Unshallowed a shallow, detached checkout and attached to `main` (ff-only onto `origin/main`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s ordering, `CLAUDE.md`, and the four most recent log entries. `preflight.py` fast: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. `check_urls.py`: 188/188. `audit_pages.py`: 191 pages, 0 findings. Mobile `npm test`: all 4 suites pass. `BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated; section 5 correctly HOLD on the traffic constraint.
