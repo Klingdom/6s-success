@@ -161,6 +161,25 @@ def main() -> int:
         finally:
             os.rename(aside, target)
 
+    # 9, added 2026-09-15: card fronts are 150/400/760 px and pictureSources
+    #    names their -lg, so a missing card -lg variant must fail by name.
+    cm = re.search(r'"img":\s*"(cards/[^"]+)-md\.jpg"', real)
+    if not cm:
+        fails.append("no cards/...-md.jpg img value to test the card -lg case")
+    else:
+        target = os.path.join(preflight.SITE, "assets", cm.group(1) + "-lg.avif")
+        if not os.path.exists(target):
+            fails.append("expected real card variant %s is not on disk" % target)
+        else:
+            aside = target + ".testaside"
+            os.rename(target, aside)
+            try:
+                f, w = _run()
+                if not f or not any(os.path.basename(target) in x[1] for x in f):
+                    fails.append("a missing card -lg variant was not caught by name: %r" % (f,))
+            finally:
+                os.rename(aside, target)
+
     # 6. Re-verify the real file is clean after the restore.
     f, w = _run()
     if f:
@@ -173,7 +192,7 @@ def main() -> int:
             print(" -", x)
         return 1
     print("OK: gate_product_images_exist mirrors imgSrc()'s own "
-          "slash-rooting rule and requires every srcset variant, 8/8 checks pass")
+          "slash-rooting rule and requires every srcset variant, 9/9 checks pass")
     return 0
 
 

@@ -23,13 +23,16 @@
      Every name here is guaranteed on disk by preflight's
      gate_product_images_exist, because a browser cannot check a srcset file
      exists and a missing AVIF is a broken image for every browser that
-     prefers it. Zone and card images carry -sm (320w) and -md (640w)
+     prefers it. Zone pictures carry -sm (320w) and -md (640w); card fronts -sm (150w), -md (400w) and -lg (760w)
      siblings; bare top-level photos have 420w and 840w variants in
      assets/img/w/ (ops/room_image_variants.py). */
   function pictureSources(v) {
     if (!v) { return null; }
     var base, widths;
-    if (v.indexOf("/") >= 0 && v.slice(-7) === "-md.jpg") {
+    if (v.indexOf("cards/") === 0 && v.slice(-7) === "-md.jpg") {
+      base = "assets/" + v.slice(0, -7);
+      widths = [["-sm", 150], ["-md", 400], ["-lg", 760]];
+    } else if (v.indexOf("/") >= 0 && v.slice(-7) === "-md.jpg") {
       base = "assets/" + v.slice(0, -7);
       widths = [["-sm", 320], ["-md", 640]];
     } else if (v.indexOf("/") < 0 && v.slice(-4) === ".jpg") {

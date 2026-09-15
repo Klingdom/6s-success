@@ -675,6 +675,8 @@ except letting a session with real access re-run `python ops/deploy.py --check`
 once so the tracked record catches up; if you have not, item 1b above still
 stands. Left the tracked verdict file untouched rather than guess at it.
 
+**Resolved 2026-09-15 (local session with production access): no redeploy needed.** Production's own `build-id.txt` was read directly and serves `065e8b434a25c03c`, the build `main` carries, so the log was right and the tracked record was stale. Cause: that session staged `ops/deploy-verdict.json` into each release commit before the release's own deploy ran, so every commit carried the previous deploy's verdict and the refreshed one was never committed. The current verdict is committed with this correction, and the session now commits the verdict after each deploy, with that release's log entry.
+
 ### 2. Run the 15 on-device app checks. About 20 minutes.
 
 **What:** `cd mobile/quest-app && npx expo start --lan`, scan the QR with Expo

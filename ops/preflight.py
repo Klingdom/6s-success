@@ -273,7 +273,12 @@ def gate_product_images_exist() -> None:
     # .jpg. A browser cannot check those exist, and a missing AVIF is a broken
     # image for every browser that prefers it, so each one must be on disk.
     for v in sorted(set(_re.findall(r'"img":\s*"([^"]+)"', src))):
-        if "/" in v and v.endswith("-md.jpg"):
+        if v.startswith("cards/") and v.endswith("-md.jpg"):
+            # Card fronts are 150/400/760 px wide, not the zones' 320/640, and
+            # pictureSources names their -lg too.
+            base = os.path.join(SITE, "assets", v[:-len("-md.jpg")])
+            wanted = [base + suf for suf in ("-sm.avif", "-sm.webp", "-md.avif", "-md.webp", "-lg.avif", "-lg.webp")]
+        elif "/" in v and v.endswith("-md.jpg"):
             base = os.path.join(SITE, "assets", v[:-len("-md.jpg")])
             wanted = [base + suf for suf in ("-sm.avif", "-sm.webp", "-md.avif", "-md.webp")]
         elif "/" not in v and v.endswith(".jpg"):
