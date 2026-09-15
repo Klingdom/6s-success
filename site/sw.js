@@ -4,15 +4,15 @@
  * content hashes of the assets it names, and hand editing it is how a worker
  * ends up serving last week's stylesheet forever.
  *
- * Cache name: 6s-quest-771720899c
+ * Cache name: 6s-quest-12fc457bb8
  * It is derived from the hashes below, so it changes exactly when the assets
  * change, and the activate step then drops every older cache automatically.
  */
-var CACHE = "6s-quest-771720899c";
+var CACHE = "6s-quest-12fc457bb8";
 var PRECACHE = [
   "/quest.html",
   "/",
-  "/assets/css/site.css?v=2eaffe3f11",
+  "/assets/css/site.css?v=9ad627103b",
   "/assets/js/quest-data.js?v=7709404e31",
   "/assets/js/photos.js?v=e48aa56387",
   "/assets/js/quest.js?v=69cc908211",

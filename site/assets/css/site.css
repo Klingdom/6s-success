@@ -992,6 +992,7 @@ main:focus{outline:none}
 .zone-rows li b::before{content:counter(zrow) ". "}
 .zone-thumb{display:block;width:96px;aspect-ratio:4/3;border-radius:9px;overflow:hidden;background:#EFE7D6}
 .zone-thumb img{display:block;width:100%;height:100%;object-fit:cover}
-.zone-thumb-none{border:1px dashed #D8CCB4;background:#F5EFE2}
+.zone-thumb-none{border:1px dashed #D8CCB4;background:#F5EFE2;display:flex;align-items:center;justify-content:center;text-align:center}
+.zone-thumb-none span{font-family:var(--sans);font-size:11px;line-height:1.25;font-weight:600;letter-spacing:.02em;color:#6B6258;padding:4px}
 .zone-rows-note{font-family:var(--sans);font-size:13px;color:var(--soft);margin:2px 0 22px}
 @media (max-width:520px){.zone-rows li{grid-template-columns:76px 1fr;gap:12px}.zone-thumb{width:76px}}

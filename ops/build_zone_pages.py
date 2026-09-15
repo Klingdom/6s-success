@@ -460,7 +460,10 @@ def _zone_thumb(room, zone, eager=False):
     base = os.path.join(SITE, "assets", "zones", stem)
     have = all(os.path.exists(base + suf) for suf in ("-sm.jpg", "-sm.webp", "-md.webp"))
     if ok.get(stem) != "ok" or not have:
-        return ('<span class="zone-thumb zone-thumb-none" aria-hidden="true"></span>', 0)
+        # An empty dashed box read as a picture that failed to load (seen on a
+        # phone, 2026-09-15), so the slot says what it is.
+        return ('<span class="zone-thumb zone-thumb-none" aria-hidden="true">'
+                '<span>No picture yet</span></span>', 0)
     b = f"../assets/zones/{stem}"
     loading = "eager" if eager else "lazy"
     return (f'<span class="zone-thumb"><picture>'
@@ -1503,6 +1506,25 @@ def _clean(t):
     return re.sub(r"\s+", " ", (t or "")).strip()
 
 
+def _session_notice(session: str, note: str) -> str:
+    """The visible "One session" line, joined the way _join_clause joins it.
+
+    The time note continues the session fragment ("30-45 min" then "most of it
+    in Sort"). Rendered as "<b>One session: 30-45 min.</b> most of it in Sort"
+    it read as a typo directly under the title of 113 of 115 zone pages, while
+    the structured data built from the same two fields had already been fixed
+    to join them with a comma. Found 2026-09-15 looking at the live page on a
+    phone. A note that starts a new sentence keeps the full stop.
+    """
+    session = " ".join(str(session or "").split()).rstrip(" .,;")
+    note = " ".join(str(note or "").split())
+    if not note:
+        return f"<b>One session: {esc(session)}.</b>"
+    if note[0].islower():
+        return f"<b>One session: {esc(session)}</b>, {esc(note.rstrip('.'))}."
+    return f"<b>One session: {esc(session)}.</b> {esc(note)}"
+
+
 def _join_clause(first: str, second: str) -> str:
     """Join two content fields into one sentence without inventing a full stop
     in front of a lowercase word.
@@ -1994,8 +2016,8 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     out.append(f'<p class="lede">{esc(zone.get("purpose", ""))}</p></div>')
 
     out.append('<p class="notice" style="max-width:60ch">'
-               f'<b>One session: {esc(zone.get("session", ""))}.</b> '
-               f'{esc(zone.get("time_note", ""))}</p>')
+               + _session_notice(zone.get("session", ""), zone.get("time_note", ""))
+               + '</p>')
 
     # The answer to the question in the page title, before the description of
     # the thing. See short_answer() for why this is the first content a reader
