@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, correction to the entry immediately below: that "no new defect" cycle shipped a false-clean command deck, found and fixed by re-checking its own output before trusting it
+
+**What happened.** The prior entry's own `ops/dashboard.py` regeneration wrote and committed (`fb6dc5c4`) a command deck reading GREEN, "Open P0: 0", "Nothing is blocked on you right now", "No open issues". At that exact moment there were genuinely 7 open GitHub issues, 2 of them P0. Caught before push by doing what CLAUDE.md 0.3/0.4 ask: checking the diff of a file this run had just written rather than trusting a script's own exit code. A second, immediate rerun of the same unmodified command returned the correct numbers (P0 2, need-you 5, YELLOW), confirming this was not a one-off fluke of that moment's data but a live bug that fires intermittently.
+
+**Root cause, found by reproducing rather than guessing.** `dashboard.py`'s `gh_issues()` already had a deliberate guard against a failed GitHub API call rendering as "zero issues" (`issues_available = open_issues is not None`, rendering `UNKNOWN` when `None`). What it did not guard against: a *successful* HTTP response whose body is valid JSON but not a list, e.g. `{}` or `{"message": "..."}` (a rate-limit/auth-error shape, or an observed transient malformed body through this sandbox's proxy). `[i for i in data if "pull_request" not in i]` does not raise on a dict; it silently iterates the dict's *keys* as strings, so a `{}` body produces `[]`, which reads as "issues_available: True, 0 issues" instead of "unreachable, UNKNOWN". The existing "unreachable" safeguard only covered `None`, not "wrong-shaped but truthy."
+
+**Fixed** in `ops/dashboard.py`'s `gh_issues()`: `if not isinstance(data, list): return None` before the filter, so any non-list body now reads as unreachable rather than as an issue count. New `ops/tests/test_gate_dashboard_issue_payload.py` (5 cases): a real list still parses correctly and excludes pull requests; a `{"message": ...}` body and a bare `{}` body both now return `None`; and a fail-then-pass pair proves the pre-fix function body (kept as an inline literal, not fetched via `git show`, so the test carries no dependency on repository history under a shallow CI checkout) really does return `[]` on the same input the fixed version correctly rejects. Since `dashboard.py` runs entirely at import time with no `main()`/`if __name__` guard, the test extracts and execs just the `gh_issues` function's source text with a stubbed `urllib.request.urlopen`, rather than importing the whole module (which would trigger real git and network calls in-process).
+
+**Verified:** `ops/dashboard.py` rerun after the fix, correct output (YELLOW, P0 2, need-you 5) confirmed against a fresh live pull of the 7 open issues. `preflight.py` run to completion (not the fast pass, the same run that exercises all 153 test files via `gate_tests`): every gate passed, the same 23 pre-diagnosed sandbox warnings, none new, the new test file included and passing. `check_urls.py` (188/188), `affiliate.py --check` (162 documents) clean. Also cleaned up: an earlier concurrent, unrelated run of the full test suite against this same working tree had left `site/sitemap.xml` mid-mutation from `test_gate_sitemap_images.py`'s own drift check; reverted with `git checkout`, confirmed the file's `contact.html` image entry matches the live page's `og:image` again.
+
+**Went well:** not trusting a script's own "wrote X" success message, per this file's whole standing lesson; the intermittent nature would have made this easy to ship if the second, correct-looking run had been the only one checked.
+
+**Did not go well:** the previous entry's own commit shipped this for one push before the recheck caught it. It never reached `main`'s history as the final state: superseded by this same cycle before any other session could pull it.
+
+**Changing next cycle:** none beyond the gate/test just added.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged. Worth flagging: GOALS.md's one sale falls out of the trailing 30-day window on 2026-09-20 unless a second sale lands first.
+
+Pushed to main. `ops/dashboard.py`, new `ops/tests/test_gate_dashboard_issue_payload.py`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable, no page added or rewritten.
+
 ## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; deck-gallery withhold list and standard suite re-checked directly)
 
 **Did:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow` (clean), `checkout -B main origin/main`, `merge --ff-only`, no unrelated-history symptom this run. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-6 in full, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` fast: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new. `affiliate.py --check` clean (162 documents), `check_urls.py` clean (188/188). `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every cloud cycle.

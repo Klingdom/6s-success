@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 13:48 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-15 13:59 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **GREEN** Operating normally. |
+| **Overall** | **YELLOW** 2 P0 items still open. |
 | **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-14 18:32 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
@@ -26,11 +26,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Traffic | 947 pageviews from 75 visitors across 196 visits, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 506 from 73 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 0 (0 P0, 0 blocked on art, 0 need your call) |
+| Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 24 |
-| Commits (7 days) | 1067 of 2185 total |
+| Commits (7 days) | 1066 of 2186 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `f7b1d902` PM check-in: previous work reconfirmed finished, nothing new |
+| Last commit | `fb6dc5c4` Nightly log: independent re-verification pass, no new defect |
 
 ## Product readiness
 
@@ -56,9 +56,20 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 ## What needs you
 
-- Nothing is blocked on you right now.
+- **#31** Decide: the deck gallery and the deck download are two different card designs
+- **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
+- **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
+- **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
+- **#7** Decide: keep or discard the 2,786-card master plan
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
+| 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
+| 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |
+| 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
+| 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
+| 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
+| 7 | Decide: keep or discard the 2,786-card master plan | decision |
+| 2 | Regenerate 9 remaining stale card images | P0, blocked-on-art |

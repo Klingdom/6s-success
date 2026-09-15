@@ -553,6 +553,15 @@ def gh_issues(state):
                      "User-Agent": "6s-dashboard"})
         with urllib.request.urlopen(req, timeout=20) as r:
             data = json.loads(r.read().decode("utf-8", "replace"))
+        # A malformed or error body (GitHub returns a JSON *object* like
+        # {"message": "..."} on rate-limit/auth failure, and a transient
+        # proxy hiccup was once observed to return a bare "{}") must not be
+        # read as "zero issues": iterating a dict yields its string keys,
+        # which silently survived the "pull_request" filter below and
+        # rendered a real 2-P0/5-decision open-issue count as a false
+        # all-clear "0 open issues" dashboard. Only a genuine list is data.
+        if not isinstance(data, list):
+            return None
         # the issues endpoint also returns pull requests; exclude them
         return [i for i in data if "pull_request" not in i]
     except Exception:
