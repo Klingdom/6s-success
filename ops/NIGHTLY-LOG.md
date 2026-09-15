@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work was NOT finished; publish-image.yml's own preflight step had refused to publish, fixed at the source)
+
+**Attach:** checkout arrived shallow and detached, unrelated-history shape; `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`d168cd84`).
+
+**Step 2 answered no.** `preflight.py` (full, not fast): 1 gate failed, `generator-ownership`, `site/shop.html` differed from what its generator produces. Traced rather than assumed: `publish-image.yml` run 286, on `8dfa3fce` (Phil's own direct commit adding "Read the free steps first" links from zone/room packs to the free pages that explain them), had failed its own Preflight step for the same reason and never published; `checks.yml`'s parallel run on the same commit had gone green, which is why the failure was easy to miss reading only one workflow. Per step 2, finishing this was the cycle's work, not a fresh backlog pick.
+
+**Root cause, confirmed by regenerating and diffing, not guessed:** `ops/wire_generated_catalog.py`'s new `page_for()` built each pack's link as `zones/<slug>.html` / `rooms/<slug>.html`. Every other internal link on the site is extensionless (`ops/canonical_links.py`, 0 `.html` internal links as of the last sweep, enforced by `build_resources.py` calling `canonical_links.main()` on every regenerate). The new function bypassed that pass by writing the suffixed form straight into `data.js`, so it stuck: 128 fresh `.html` links across 109 zone and 19 room packs in `site/shop.html`, the same defect class this repository swept from 1,111 instances to 0 in an earlier cycle, reintroduced today.
+
+**Fixed at the source:** `page_for()` now stores the extensionless canonical path (matching `build_zone_pages.py`/`build_resources.py`'s own convention exactly), still checking existence on disk against `<path>.html` since that is the real filename. `ops/tests/test_pack_pages.py`, added in the same commit as the bug, checked existence the same wrong way; updated its existence check and its planted "missing page" regression to match. Regenerated in the same order `gate_generator_ownership` runs generators (`build_resources.py` through `build_pwa.py`, then `prerender_shop.py`, which is deliberately outside that chain per this gate's own docstring): `data.js`, `shop.html`, plus the cascading cache-busting hash and service-worker cache name in 4 pages and `sw.js`, nothing else.
+
+**Verified:** `canonical_links.py --check`: 0 `.html` internal links (was 128 counting only this file). `test_pack_pages.py`: OK, 128 packs, swapped/missing/nonexistent/wrong-kind all still caught. `check_urls.py` 188/188. `audit_pages.py` 191 pages, 0 findings. `preflight.py --own` on the committed tree: every gate passed, 24 warnings, all previously diagnosed. Pushed (`1c93dc1d`); `publish-image.yml` and `checks.yml` both kicked off on the new commit but neither had completed as this entry was written, so CI green is NOT YET CONFIRMED, stated plainly rather than assumed from the clean local run, per this repository's own 0.3/0.4. **Next cycle: check both workflows on `1c93dc1d` before doing anything else if this line is still here.**
+
+7 open GitHub issues checked live via the API: unchanged from every prior cycle today, all `decision`/`blocked-on-art`, none newly actionable, none mine to pull. `CHECKIN-LOG.md`'s two entries today (18:19, 21:33) both still read "nothing measurable moved" against rising commit counts; today's other finding (a real, if narrow, defect that would have kept blocking every future deploy attempt until someone read the right workflow) is at least evidence the commit volume is not all inert, but it does not move either of the two stranger-visible numbers itself.
+
+**Went well:** reading `publish-image.yml` specifically instead of stopping at `checks.yml`'s green; regenerating and diffing to find the exact root cause rather than papering over the gate.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; a hand commit outside `ops/ship.py` reintroduced a swept defect class with nothing to catch it until the next preflight ran, the same shape `ops/build_id.py`'s gate has caught before for a different file.
+
+**Changing next cycle:** none; the existing gate caught this correctly and worked exactly as designed, same as prior data points in `gate_generator_ownership`'s own docstring.
+
+**Next:** confirm CI green on `1c93dc1d` first. Standing Phil-gated list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art issues otherwise unchanged; leaving those for the hourly operator at :43, same as every prior cycle today.
+
+Shipped via `ops/ship.py --no-deploy`. `ops/wire_generated_catalog.py`, `ops/tests/test_pack_pages.py`, `site/assets/js/data.js`, `site/shop.html`, `site/sw.js`, 4 pages' cache-busting query string, command deck. No price or product touched; no new page. IndexNow not applicable.
+
 ## 2026-09-15, scheduled operator cycle (fresh checkout, full independent verification pass, honest finding: none new)
 
 **Did:** unshallowed and attached to `main` cleanly (`286384a8`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last log entries per step 1. `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe credential, no site egress, no mail credential, no GPU). Sections 2 through 6 of the backlog are again all done or Phil-gated; the 5 "Hold" rows are still correctly waiting on traffic or evidence that does not exist yet. Checked the inbox agent directly rather than trust the last claim: no mail credential in this environment, so unchecked, not empty. Pulled the 7 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`, none newly actionable.
