@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (previous work was NOT finished: checks.yml and publish-image.yml both red on main; converged independently with a concurrent local session on the same root cause and fix)
+
+**Attach:** clean `git fetch origin main` + `merge --ff-only`, not shallow, no conflict.
+
+**Previous work NOT finished, so this became the cycle's work.** Local `preflight.py` passed clean on HEAD (`082d0a73`), but per 0.3 a local pass is not proof of CI, so I pulled the real run history: both `checks.yml` (run 970) and `publish-image.yml` (run 279) failed on that exact commit, meaning nothing since `e170c110` has actually published. `gate_publish_image_current` was already saying so locally, correctly, as `FAIL publish-image-current`.
+
+**Root-caused rather than re-run blind.** The job log named the real failure: `test_gate_ops_python_syntax.py`, one assertion, `[]`. Its fixture was a same-quote nested f-string, valid on Python 3.12+ (PEP 701), a SyntaxError only below it. This sandbox runs 3.11 so the test always passed here; `checks.yml` pins no Python version, so the runner's newer default parses the fixture cleanly and the assertion that it should fail never fires. Reproduced directly: the pre-fix test under `python3.12` here fails identically, both missing lines the CI log showed. Had a fix drafted (swap the fixture for a universally-broken syntax error) when `git fetch` surfaced `feb32974`, pushed minutes earlier by the same local session that landed `082d0a73`: a better version of the identical fix, keeping the nested-quote case as a version-aware assertion (must flag on 3.11, must not on 3.12+) rather than dropping that coverage. Verified theirs directly (`python3.10` through `3.13`, all pass, 6 cases) and took it as-is rather than shipping a duplicate, narrower fix.
+
+**Also found and fixed, same cycle:** `EXECUTIVE-DASHBOARD-LIVE.md` was stale by two commits and a redeploy-confirmation (still naming `b17b5872` and a 05:21 confirmation instead of 07:22). Regenerated on top of `feb32974`.
+
+**Handing to the operator:** confirm `checks.yml`/`publish-image.yml` go green on `feb32974` and that the image actually publishes; that needs watching a live CI run past this 30-minute slot.
+
+Shipping via `ops/ship.py --no-deploy`. Command deck only; the test fix itself is `feb32974`, already on main. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (this sandbox had real JRE and GitHub egress unlike every prior one, so a standing UNVERIFIED epubcheck claim became a real measurement)
 
 **Did:** Unshallowed and attached cleanly onto origin/main. Read GOALS.md, STATUS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md sections 0 to 7 in full, ROADMAP-2026-2029.md's arithmetic, the last four NIGHTLY-LOG entries. `preflight.py` full run clean (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues, 0 PRs, unchanged. Backlog sections 2 to 6 again all done, held, or Phil-gated, so per step 5d checked whether this session's own environment differed from the standing assumptions rather than re-running an exhausted cold-read lane. It did: `java -version` found a real JRE and `curl https://github.com` succeeded, both firsts this log records. Downloaded epubcheck 5.1.0, ran it against `build/6S-Success-Home-Edition.epub`: 0 fatals/errors/warnings against EPUB 3.3 rules. Widened `build/listings/verify_epub.py` to run the real validator when a JRE and jar are both reachable (env var `EPUBCHECK_JAR` or a known path) and degrade to its existing structural checks otherwise, the same behaviour every prior sandbox will still see. Corrected the same blanket "no JRE on this machine" claim in `ops/build_epub.py`'s own verifier and in `OWNER-ACTIONS.md`, and recorded the dated real result in `MARKETPLACE-LISTINGS.md`. Also installed Pillow fresh (pypi.org reachable too) and confirmed the KDP cover is current against `build/cover.png`, clearing that warning honestly for this run.
