@@ -56,8 +56,14 @@ def build(s):
     """Return (subject, text, html). Plain text is written first and on purpose:
     it is what a watch and a locked phone screen show."""
     money = "can take payment" if s["can_take_payment"] else "cannot take payment"
+    # needs_phil is 0, not missing, when GitHub was unreachable this run
+    # (dashboard.py sets issues_available False and the count to 0 in the
+    # same breath), so the subject line, the one thing a locked screen
+    # shows without opening the mail, must not read it as a real zero.
+    needs_phil = (s["needs_phil"] if s["issues_available"]
+                  else "? (GitHub unreachable)")
     subject = (f"6S Success: {s['overall']}, {s['revenue_text']}, "
-               f"{s['needs_phil']} need you")
+               f"{needs_phil} need you")
 
     decisions = [i for i in s.get("issues", [])
                  if any(l["name"] == "decision" for l in i.get("labels", []))]

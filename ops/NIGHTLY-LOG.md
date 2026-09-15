@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (the one credentialed hourly mail could report a false zero instead of unknown; fixed and gated)
+
+**Did:** unshallowed and attached to `main` cleanly (`b6989083`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries and `GOALS.md`/`STATUS.md`. Sections 2-6 of the backlog again all done or Phil-gated; 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed warnings). No SSH key, no Stripe credential, no mail credential, no egress to the live site, all retested directly rather than assumed.
+
+**Found:** ranked `ops/*.py` by real mention count across the operating docs; floor is 10. Cold-read the three lowest (`build_image_prompts.py`, `send_brief.py`, `stripe_check.py`). `stripe_check.py` and the prompt file were clean. `send_brief.py`'s subject line, and its live sibling `ops/hourly_brief.py`'s `build_line()` (the one credentialed hourly mail Phil actually reads), both read `open_p0`/`needs_phil` with a bare `.get(key, '?')`. Neither key is ever missing: `ops/dashboard.py` sets both to `0` in the same breath it sets `issues_available` to `False` when GitHub could not be reached that run, so the `'?'` fallback never fires and both briefs would have shown a confident "P0 0, needs Phil 0" (`hourly_brief`'s SUBJECT line) or "0 need you" (`send_brief`'s subject, what a locked phone screen shows without opening the mail) on a run where the answer was actually unknown. This is the exact class `CLAUDE.md` 0.4 names and this repository has fixed repeatedly for other dashboard fields; this specific pair had never been checked. `send_brief.py` itself is not wired into any scheduled workflow (confirmed: not referenced by any `.github/workflows/*.yml`), so today it is dead code, but the identical defect on the same two fields in the live, hourly-scheduled sibling is real, and `CLAUDE.md` 0.2 says fix it once now rather than report it twice.
+
+**Fixed:** both functions now check `issues_available` explicitly and render "unknown (GitHub unreachable)" rather than trusting a zero that could be real or could be a blank measurement. Widened the existing `gate_hourly_brief_build_line` in `preflight.py` (previously only proving the 2026-09-01 key-name fix) to also drive both functions through the unreachable case and fail if either reports a bare 0 or omits the word "unknown". Fail-then-pass proved directly: `git stash` on the two source files reproduced all four failure lines by name (both fields, both files), reverted, gate clean. New `ops/tests/test_gate_hourly_brief_build_line.py` (a dedicated unit test, since neither file had ever had one), same fail-then-pass proof standalone.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings, none new), `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), mobile `npm test` (unaffected, nothing in `mobile/` touched) all clean after.
+
+**Went well:** the mention-count method surfaced a genuine, narrow-but-real defect on the one live credentialed mail path even after roughly a hundred cycles today had already worked this exact lane; checking whether `send_brief.py` is actually scheduled anywhere before overstating its live impact.
+
+**Did not go well:** nothing new; the fix is small and the live exposure window is narrow (GH_TOKEN is set on the real hourly workflow, so this only bites on a genuine GitHub API outage or exhausted rate limit during that specific run, which `gh_issues()`'s own retry logic already partly guards against).
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts) and the 7 open decision/blocked-on-art GitHub issues, unchanged. `ops/*.py` cold-read floor is now 11 (`build_image_prompts.py`, `stripe_check.py` confirmed clean this cycle).
+
+Pushed to main. `ops/hourly_brief.py`, `ops/send_brief.py`, `ops/preflight.py`, `ops/tests/test_gate_hourly_brief_build_line.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable (internal owner-facing mail tools, not a published page). Inbox: no mail credential, unchecked, not empty.
+
 ## 2026-09-15, PM check-in (STATUS.md was 17 commits stale, corrected)
 
 **Previous work checked:** shipped, `preflight.py` clean, 7 issues unchanged. `checks.yml` run 1001 on `46ade0c1` stayed `in_progress` all slot; prior run took 29 minutes, ordinary timing, reported plainly not assumed green.

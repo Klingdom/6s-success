@@ -309,9 +309,20 @@ def build_line(st: dict) -> str:
     any real key, so this line has read "P0 ?" and "commits 7d ?" on every
     hourly mail ever sent, even a run with a working Stripe key and real
     egress that measured both numbers correctly two dict keys away.
+
+    open_p0 and needs_phil are not missing when GitHub was unreachable that
+    run, they are 0: dashboard.py sets issues_available False and both
+    counts to 0 in the same breath, so a plain .get(..., '?') never sees the
+    '?' fallback and this line would read "P0 0   needs Phil 0", a false
+    all-clear on the one field CLAUDE.md 0.4 says must never default to
+    passing. Checked explicitly instead.
     """
+    if st.get("issues_available") is False:
+        p0, phil = "unknown (GitHub unreachable)", "unknown (GitHub unreachable)"
+    else:
+        p0, phil = st.get("open_p0", "?"), st.get("needs_phil", "?")
     return (f"  overall {st.get('overall', '?')}   "
-            f"P0 {st.get('open_p0', '?')}   needs Phil {st.get('needs_phil', '?')}   "
+            f"P0 {p0}   needs Phil {phil}   "
             f"commits 7d {st.get('commits_7d', '?')}")
 
 

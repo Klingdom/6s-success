@@ -6997,7 +6997,8 @@ def gate_roadmap_report_backlog_done() -> None:
 
 
 def gate_hourly_brief_build_line() -> None:
-    """The hourly brief's BUILD line must read the real measured fields.
+    """The hourly brief's BUILD line must read the real measured fields, and
+    must not report a real zero when GitHub was actually unreachable.
 
     Found 2026-09-01 running ops/hourly_brief.py --preview cold, the same
     "run it, don't just read it" check that found the three defects in
@@ -7011,21 +7012,56 @@ def gate_hourly_brief_build_line() -> None:
     real egress that measured both correctly. Fixed with a pure build_line(st)
     this gate proves directly, the same pattern the roadmap and status-report
     gates above already use.
+
+    Found 2026-09-15, cold-reading both files: open_p0 and needs_phil are
+    not missing when GitHub was unreachable that run, they are 0.
+    dashboard.py sets issues_available False and both counts to 0 in the
+    same breath, so a bare .get(..., '?') never sees its own fallback and
+    the hourly BUILD line, plus the unused sibling ops/send_brief.py's own
+    subject line (what a locked phone screen shows without opening the
+    mail), would both have read a confident "0" on the one field CLAUDE.md
+    0.4 says must never default to passing. Both now check
+    issues_available explicitly; this gate proves both directions for
+    hourly_brief and the subject line for send_brief.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import hourly_brief as hb
+    import send_brief as sb
     line = hb.build_line({"overall": "YELLOW", "open_p0": 3, "needs_phil": 5,
-                          "commits_7d": 403})
+                          "commits_7d": 403, "issues_available": True})
     bad = []
     if "P0 3" not in line:
         bad.append(f"open_p0=3 did not render as 'P0 3': {line!r}")
     if "commits 7d 403" not in line:
         bad.append(f"commits_7d=403 did not render as 'commits 7d 403': {line!r}")
+
+    unreach = hb.build_line({"overall": "YELLOW", "open_p0": 0, "needs_phil": 0,
+                             "commits_7d": 403, "issues_available": False})
+    if "P0 0" in unreach or "needs Phil 0" in unreach:
+        bad.append("hourly_brief.build_line reported a real 0 for open_p0/"
+                    f"needs_phil while issues_available is False: {unreach!r}")
+    if "unknown" not in unreach.lower():
+        bad.append(f"hourly_brief.build_line does not say unknown when "
+                   f"GitHub was unreachable: {unreach!r}")
+
+    base = {"overall": "YELLOW", "overall_why": "test", "revenue_text": "$0",
+            "customers_text": "0", "email_list": 0, "can_take_payment": True,
+            "constraint": "test", "needs_phil": 0, "issues_available": False,
+            "issues": [], "chapters": 50, "book_sellable": True, "rooms": 20,
+            "zones": 114, "commits_7d": 1, "generated": "2026-01-01 00:00"}
+    subj = sb.build(base)[0]
+    if "0 need you" in subj:
+        bad.append("send_brief.build's subject reported a real '0 need you' "
+                   f"while issues_available is False: {subj!r}")
+    if "unreachable" not in subj.lower() and "?" not in subj:
+        bad.append(f"send_brief.build's subject does not flag GitHub as "
+                   f"unreachable: {subj!r}")
+
     if bad:
         fail("hourly-brief-build-line",
-             "the hourly brief's BUILD line does not read the real measured "
-             "fields, so it would show '?' next to numbers dashboard.py "
-             "already measured: %s" % "; ".join(bad))
+             "an owner-facing brief reports a false zero instead of unknown "
+             "when GitHub was unreachable, or does not read the real "
+             "measured fields: %s" % "; ".join(bad))
 
 
 def gate_hourly_brief_payment_links() -> None:
