@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently re-verified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: same standing root `.md`-by-mention-count cold-read lane (ops/*.py and workflow files already exhausted), since every backlog row is done, HOLD, or Phil-gated and all 8 GitHub issues are unchanged decision/blocked-on-art.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`9e44be13`).
+
+**Previous work was finished, checked not cited.** Full `preflight.py` run unbounded (not under an external timeout, per the last two cycles' own lesson): every gate passed, 23 pre-diagnosed warnings, none new. Working tree clean, already pushed.
+
+**Verified rather than trusted the last operator cycle's own claim.** It said `ops/routine-prompt.md` was rewritten to match the live scheduled prompt exactly, restoring two privacy sentences and the 2026-09-10 revenue-metric lesson. Compared its content directly against this cycle's own live hourly-operator prompt text: all three sentences are present verbatim. Claim confirmed, not assumed.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2-6 unchanged, done or Phil-gated. `GOALS.md` baseline still correct (one $19 sale, 30-day window closes 2026-09-20, not yet stale). 8 GitHub issues pulled fresh, unchanged, all `decision`/`blocked-on-art`. 0 PRs.
+
+**Found:** nothing new to close, fix, or correct.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished after fixing two self-inflicted preflight kills; nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the root `.md`-by-mention-count cold-read lane, because `ops/*.py` and workflow files are already reconfirmed exhausted, every backlog row is done, HOLD, or Phil-gated, and all 8 GitHub issues are unchanged decision/blocked-on-art.
