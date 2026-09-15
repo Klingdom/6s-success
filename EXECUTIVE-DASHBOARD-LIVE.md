@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 18:17 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-15 18:19 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
