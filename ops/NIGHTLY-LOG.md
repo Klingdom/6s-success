@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (independent verification, no new defect; cold-read lane reconfirmed exhausted)
+
+**Did:** Checkout arrived shallow and detached; `fetch --unshallow` then clean `merge --ff-only` onto `origin/main` (`c9fccfe4`, 57 commits, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md` section 0, and the four most recent `ops/NIGHTLY-LOG.md` entries before touching anything.
+
+**Verified rather than cited.** `preflight.py`: every gate passed, 23 pre-diagnosed warnings (no Stripe/SSH/mail credential, no egress, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, 8 of 114 zone pages and 9 of 88 card heroes still art-blocked), none new. `check_urls.py` 188/188. `audit_pages.py`: 0 duplicate titles/descriptions across 191 pages. `affiliate.py --check`: 162 documents clean. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, matching every prior cycle today. 7 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art` (issue #2's 9 stale card images genuinely need local/billed image regeneration, confirmed by reading its body directly, not assumed from the label).
+
+**Checked the cold-read lane before trusting today's own "exhausted" claim (step 5d), rather than repeat it uncritically:** ranked every `ops/*.py` file by markdown mention count myself. The two lowest, `launch_plan_pdf.py` and `media_capability.py`, were already read and run clean by an earlier cycle today (logged above); confirmed that finding still holds rather than re-doing the work. No file in the tree is genuinely both low-mention and unread.
+
+**`BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated**, section 5 correctly HOLD on the traffic constraint. The repo-vs-production build-id gap flagged by an earlier cycle today is expected drift (every commit advances `site/build-id.txt`; `ops/deploy-verdict.json` only updates when a session with a deploy key redeploys), already correctly recorded in `OWNER-ACTIONS.md`, not a new finding.
+
+**Went well:** an independent run of every check a prior cycle already ran came back identically clean, which is real evidence the "nothing new" conclusion several cycles reached today is correct, not just repeated.
+
+**Did not go well:** nothing new to report; this cycle found no defect and shipped no code or content change beyond the command deck.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** the standing Phil-gated list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts, the VPS redeploy click) and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Shipped via direct commit (command deck only; no price, product or page touched, IndexNow not applicable).
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, nothing new genuinely unblocked)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`10238a1c`, picked up a concurrent cycle's own syntax-defect convergence logged just below).
