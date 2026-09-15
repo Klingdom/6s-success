@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (confirmed CI green on the handed-off commit, then closed a real "source corrected, artifact never re-derived" gap in the site's own revenue arithmetic)
+
+**Did:** unshallowed and attached to `main` cleanly (`7a2421fc`). Read `BACKLOG-2026-09-07.md` (sections 2-4 all done, 5 correctly HOLD, 6 owner gates), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last log entries. The most recent PM check-in had left one explicit unresolved item: confirm `publish-image.yml` and `checks.yml` both went green on `1c93dc1d` before doing anything else. Checked both directly via the Actions API rather than assume: both `completed`/`success`. `preflight.py` full: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
+
+**Found:** `BACKLOG-2026-09-07.md` sections 2-6 were again all done or Phil-gated, so per step 5d ranked `ops/*.py` by real mention count in this file; the floor is now 9 (was 8 a few cycles ago). Read `ops/revenue_model.py` cold, the tool `ROADMAP-2026-2029.md` itself tells a reader to rerun for the site's own visitor-target arithmetic. Its `CHECKOUT_PAID, CHECKOUT_TOTAL = 1, 7` is presented as a MEASURED conversion rate, carried since 2026-08-23 and last touched 2026-09-07. `LEARNINGS.md`'s LRN-0010 (2026-09-14, never touched by either file since) traced every checkout session in two separate windows, 16 in the 7 days to 2026-09-14 and about 90 on 2026-09-07, to the owner's own household by proxy log and Umami event, and states plainly that "Stripe's session count must never be reported as checkouts started." The seven sessions this file counts predate that trace and were never individually re-checked the same way, so "1 paid of 7" is not merely small-sample noise (which the file already, correctly, warned about); it may not describe a single real customer's behaviour at all. `ROADMAP-2026-2029.md`'s own opening table reproduces the identical "1-in-7 checkout rate" as the number every visitor figure in the plan is divided by, with the same missing caveat.
+
+**Fixed:** added LRN-0010's finding, by name, next to both citations rather than only noting it here: a comment and a printed line in `ops/revenue_model.py`, and a dated correction paragraph in `ROADMAP-2026-2029.md` immediately under the existing "coincidence with a percentage sign" sentence. Neither number was changed; both are still honestly labelled placeholders, now with the stronger and more accurate caveat attached. New `gate_revenue_model_checkout_caveat` in `ops/preflight.py` (pure logic in `check_revenue_model_cites_lrn0010`), requiring `LRN-0010` appear near either file's own checkout-rate claim, so a future edit to either file cannot silently drop the caveat and read as merely-noisy again. `ops/tests/test_gate_revenue_model_lrn0010.py` (7 cases), fail-then-pass proved directly: `git stash` on both real fixed files reproduced both citations missing, named by file, before the fix; restored and reran clean after.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings, all previously diagnosed, no new ones), `ops/tests/test_revenue_model.py` and the new test file both pass, `python ops/revenue_model.py` runs clean and prints the new caveat line, `check_urls.py` (188/188), `audit_pages.py` (191/0, 0 duplicate titles/descriptions), `affiliate.py --check` (162 documents) all clean after.
+
+**Went well:** treating the prior cycle's own explicit handoff (confirm CI) as the first action rather than starting fresh work on an unconfirmed head; finding a genuine, previously unconnected fact-vs-artifact gap in the single number every visitor target in the roadmap divides by, rather than another already-exhausted `ops/*.py` file.
+
+**Did not go well:** nothing new; this pass closed cleanly.
+
+**Changing next cycle:** none. The standing owner-gate list (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts) remains the only unblocked-by-evidence lever; none of it is mine to pull.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/revenue_model.py`, `ROADMAP-2026-2029.md`, `ops/preflight.py`, `ops/tests/test_gate_revenue_model_lrn0010.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable (a planning doc and an internal tool, not a published page).
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work was NOT finished; publish-image.yml's own preflight step had refused to publish, fixed at the source)
 
 **Attach:** checkout arrived shallow and detached, unrelated-history shape; `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`d168cd84`).

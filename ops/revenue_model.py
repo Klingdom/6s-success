@@ -37,6 +37,15 @@ TARGET = 20_000.0
 # Measured, from Stripe on 2026-08-23: 7 checkout sessions ever, 1 paid.
 # n=7 is far too small to be a rate. It is carried because it is the only
 # observed number of its kind, and it is labelled everywhere it is used.
+#
+# LRN-0010 (2026-09-14, LEARNINGS.md) found something worse than a small
+# sample: of 16 unpaid sessions in the 7 days to 2026-09-14 and about 90 more
+# on 2026-09-07, every one traced by proxy log and Umami event to the
+# owner's own household, not a stranger. Stripe's session count "must never
+# be reported as checkouts started." The 7 counted here predate that trace
+# and were never individually re-checked, so this ratio may not measure a
+# single real customer's behaviour at all; it is carried as a labelled
+# placeholder for exactly that reason, not as a trustworthy rate.
 CHECKOUT_PAID, CHECKOUT_TOTAL = 1, 7
 
 # Assumed, not measured. The band ordinary ecommerce sites live in.
@@ -97,7 +106,10 @@ def main() -> int:
               f"{v_lo:>9,.0f} to {v_hi:>7,.0f} {hr_s:>11}{flag}")
 
     print(f"\n  Checkout conversion used: {CHECKOUT_PAID} of {CHECKOUT_TOTAL} "
-          f"= {ck:.0%}. MEASURED, but n=7, so treat as a placeholder.")
+          f"= {ck:.0%}. MEASURED, but n=7, so treat as a placeholder. LRN-0010 "
+          "(2026-09-14) found the household, not a stranger, behind nearly "
+          "every checkout session traced since; this ratio may reflect our "
+          "own testing, not customer behaviour.")
     print(f"  Visit to checkout used: {lo:.0%} to {hi:.0%}. ASSUMED. "
           "No measured value exists.")
     print(f"  A month of one person's working time: {WORKING_HOURS_PER_MONTH:,.0f} hours.")

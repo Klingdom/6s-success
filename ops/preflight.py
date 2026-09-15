@@ -8555,6 +8555,63 @@ def gate_roadmap_site_age_current() -> None:
         warn("roadmap-site-age-current", w)
 
 
+def check_revenue_model_cites_lrn0010(revenue_model_text, roadmap_text):
+    """Pure logic behind gate_revenue_model_checkout_caveat, importable by
+    tests without touching the filesystem. Returns a list of problem strings.
+
+    Found 2026-09-15: `ops/revenue_model.py` prints "1 paid of 7 [checkout
+    sessions]" as the MEASURED half of the site's own visitor-target
+    arithmetic, and `ROADMAP-2026-2029.md` reproduces the same "1-in-7
+    checkout rate" as the load-bearing number under every visitor figure in
+    its own opening table. Both predate `LEARNINGS.md`'s LRN-0010
+    (2026-09-14), which traced every checkout session in two separate
+    windows (16 in 7 days, ~90 in one day) to the owner's own household by
+    proxy log and Umami event, and states plainly that "Stripe's session
+    count must never be reported as checkouts started." Neither file had
+    ever been told. This is the same source-corrected-artifact-never-
+    rederived shape this repository's own gates exist to close, just for a
+    finding instead of a price: a genuinely new fact (the "measured" rate
+    may reflect nobody's behaviour but ours) sat unconnected to the two
+    places that state the number as if it were still just small-sample
+    noise. This gate does not remove either citation, both are honest
+    starting points labelled as such; it only requires each file to name
+    LRN-0010 near its own checkout-rate claim, so a future edit cannot
+    silently drop the caveat and quietly return to reporting the number
+    as merely small, not compromised.
+    """
+    problems = []
+    if revenue_model_text and "CHECKOUT_PAID" in revenue_model_text:
+        if "LRN-0010" not in revenue_model_text:
+            problems.append(
+                "ops/revenue_model.py states a checkout conversion rate "
+                "but never cites LRN-0010 (household-contaminated session "
+                "data), the caveat that rate needs")
+    if roadmap_text and "1-in-7 checkout rate" in roadmap_text:
+        if "LRN-0010" not in roadmap_text:
+            problems.append(
+                "ROADMAP-2026-2029.md cites the 1-in-7 checkout rate but "
+                "never cites LRN-0010 near it")
+    return problems
+
+
+def gate_revenue_model_checkout_caveat() -> None:
+    """The site's own checkout-conversion figure must carry LRN-0010's
+    caveat everywhere it is quoted as a measurement.
+
+    See check_revenue_model_cites_lrn0010's docstring for the regression
+    this closes.
+    """
+    rm_path = os.path.join(ROOT, "ops", "revenue_model.py")
+    roadmap_path = os.path.join(ROOT, "ROADMAP-2026-2029.md")
+    rm_text = io.open(rm_path, encoding="utf-8").read() \
+        if os.path.exists(rm_path) else ""
+    roadmap_text = io.open(roadmap_path, encoding="utf-8").read() \
+        if os.path.exists(roadmap_path) else ""
+    problems = check_revenue_model_cites_lrn0010(rm_text, roadmap_text)
+    if problems:
+        fail("revenue-model-checkout-caveat", "; ".join(problems))
+
+
 def gate_marketplace_fix_current() -> None:
     """MARKETPLACE-LISTINGS.md must stop claiming a shipped fix is missing.
 
@@ -13748,6 +13805,7 @@ def main() -> int:
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_pricing_deck_ladder_current)
     run_gate(gate_roadmap_site_age_current)
+    run_gate(gate_revenue_model_checkout_caveat)
     run_gate(gate_marketplace_fix_current)
     run_gate(gate_corporate_buy_path_current)
     run_gate(gate_build_id_current)
