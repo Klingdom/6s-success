@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (independent verification pass, no new defect; four more low-mention files cold-read, all already correctly handled)
+
+**Did:** Unshallowed a shallow, detached checkout and attached to `main` (ff-only onto `origin/main`, clean, 43 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s gate coverage, `CLAUDE.md`, and the four most recent log entries. `preflight.py` clean on arrival (0 gates failed, 23 pre-diagnosed warnings, unchanged from the prior cycle). `BACKLOG-2026-09-07.md` sections 2-6 again all struck done, correctly HOLD, or Phil-gated, read in full rather than trusted from a prior summary. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `ops/inbox_agent.py --apply` confirmed no mail credential in this environment, matching every prior sandbox today.
+
+**Checked for new work, per step 5d rather than trusting the log's own "exhausted" claim:** ranked every `ops/*.py` file by mentions across the repository's markdown and picked four low-ranked candidates the log's own cold-read trail had not clearly closed out: `ops/wire_signup.py`, `ops/build_zone_index.py`, `ops/link_standards.py`, `ops/receive_deploy_key.py`. Read each in full and checked live where possible, not assumed from the docstring:
+- `wire_signup.py`: deliberately not wired into any build step. Confirmed this is intentional and already gated (`gate_no_stale_listmonk_blocker`, added 2026-09-09 reading this exact file), not an oversight.
+- `build_zone_index.py`: chains the full wiring pipeline (`canonical_links`, `prune_catalog_js`, `wire_landmarks`, `wire_progressive`, `wire_measure`, `wire_pwa`, `wire_aria_current`, `build_avif.wire()`, then `fingerprint_assets.main(False)` last) correctly, matching the pattern `gate_generator_chains_fingerprint` requires. No defect.
+- `link_standards.py`: not called from any other generator or workflow; footer links were added once and now live in each page's own committed markup, propagated onward by whichever generator owns that page's header/footer template. Checked live: 189 of 193 site pages carry the Standards Pack footer link; the 4 without it (`invest.html`, the sample/standards-pack/print-and-play downloadable documents) carry no `site-footer` at all, so the skip is correct, not a miss.
+- `receive_deploy_key.py`: correctly requires IMAP credentials this sandbox does not hold; logic read clean, nothing to run here.
+
+**Verified:** Regenerated the command deck (`ops/dashboard.py`) and reran `preflight.py` to completion afterward: every gate passed, same 23 warnings, none new; confirmed the traffic/affiliate carry-forward fields from this morning's fix still read "carried forward from 2026-09-14 18:32" rather than regressing to "not measured."
+
+**Went well:** the cold-read lane still returned a useful negative result (four specific files individually verified clean or correctly gated) rather than a vague "nothing to check."
+
+**Did not go well:** nothing this pass.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-15, PM check-in (30-minute triage, seventh)
 
 NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
