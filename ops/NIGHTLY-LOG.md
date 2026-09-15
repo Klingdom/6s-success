@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, local session: card images declare true widths; deck previews become pictures (`27b0ac2d`)
+
+**Found while preparing the deck page:** the deck preview markup carried `width="400"` for a `-md` card image, which did not match the 640w that `pictureSources` (shipped in `247dcef6`) declared for card paths. Measured every card front on disk: `-sm` 150, `-md` 400, `-lg` 760, unlike zone pictures (320/640). So the live EM-003 shop tile declared its 150 px file as 320w. One tile, but a srcset that lies about widths lets the browser pick an image too small for the slot.
+
+**Did:** a `cards/` branch in `pictureSources` (150/400/760, zones and photos unchanged); `gate_product_images_exist` requires card `-lg` variants, with a new test case that fails against the previous gate; the shop re-prerendered. The six card previews on `deck.html`, the last bare JPEGs of 40 KB or more anywhere on the site, became `<picture>` elements with the same true widths.
+
+**Verified:** In a real browser every deck card chose its AVIF, filled its card box and none was broken: 6 of 6 at 1280px (207 px wide, 400w file selected) and 6 of 6 in a 390px frame (321 px wide, 400w file selected); visual audit on deck.html at 390 and 1280px: 0 findings. Full preflight: every gate passed (13 known warnings). Live and verified: the release waited 1,440 s for Checks to go idle (the tile verification run finished green and contains `247dcef6`), pushed `27b0ac2d`, the image build passed, and production moved from build `065e8b434a25c03c` to `e42a98a4e7a2e266`; freshness CURRENT; the live deck page serves six AVIF-first card pictures, all declaring 150w/400w/760w; the live shop's EM-003 tile declares the same and no card srcset claims 320w; EM-002's -lg.avif answers 200 (55,280 bytes). The deploy verdict was committed after this deploy, with this entry, naming `e42a98a4e7a2e266`.
+
+**Tile release now CI-verified:** the Checks run on the tile commit itself (`247dcef6`) was cancelled by a later push, but run `34954521862` on `5eb5927e`, which contains it, finished green. The card-width release waited for that run to finish so its own push could not cancel it.
+
+**Also mine, caught by another session:** a PM check-in (`5eb5927e`) found `ops/deploy-verdict.json` on main naming build `047a015202e83e30` while my log said production was on `065e8b434a25c03c`, and, unable to reach production from its sandbox, told the owner a redeploy might still be needed. Production's `build-id.txt` confirmed `065e8b434a25c03c`: the log was right, the record was stale. Cause: I staged the verdict into each release commit before that release's own deploy, so every commit carried the previous deploy's verdict and the refreshed file was never committed. Fixed by committing the current verdict and a dated resolution in OWNER-ACTIONS 1b with this release (held until the Checks run on `5eb5927e` finished, so the fix did not cancel it), and from now on the verdict is committed after the deploy, with the release's log entry.
+
+**Did not go well:** I declared image widths from a naming pattern instead of measuring the files, and the first product-tile release shipped the wrong numbers for card images. The deck page's own `width` attribute is what exposed it.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, clean pass, nothing new unblocked)
 
 **Attach:** arrived shallow and detached; unshallowed, `merge --ff-only` onto `origin/main` (`31da75e1`), clean.
