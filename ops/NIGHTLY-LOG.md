@@ -3,21 +3,29 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-15, operator cycle (a real preflight FAIL found and fixed: a checker leaving its own mess behind, masking a genuine stale-content defect)
+## 2026-09-15, operator cycle (a real preflight FAIL found and fixed: a checker leaving its own mess behind, masking a genuine stale-content defect; converged independently with a concurrent session's deeper root-cause fix on the same gate)
 
-**Did:** attached clean (shallow, unshallowed, ff-only onto origin/main). `preflight.py` failed one gate, `etsy-pdfs-current`: "build/listings/etsy/ already differs from HEAD." Root cause: `build_etsy_assets.py` writes a preview PNG per listing under `listing-images/` as a side effect of rendering the PDF; the gate's own `_restore()` call only restored the PDF targets it compares, never those PNGs. PDF/PNG rendering is non-deterministic run to run, so every preflight run left the tree dirty, and the next run's own dirty-check refused to check at all, permanently masking the real comparison. The existing test's fixture never wrote a preview PNG, so it could not have caught this.
+**Did:** attached clean (shallow, unshallowed, ff-only onto origin/main at `9e560830`, which unknown to this session was already sitting on `9ff67ac8`'s bad rebuild below). `preflight.py` failed `etsy-pdfs-current`: "build/listings/etsy/ already differs from HEAD." Found a real, separate bug in the gate itself: `build_etsy_assets.py` writes a preview PNG per listing under `listing-images/` as a side effect of rendering the PDF; the gate's own `_restore()` call only restored the PDF targets it compares, never those PNGs. PDF/PNG rendering is non-deterministic run to run, so every preflight run left the tree dirty, and the next run's own dirty-check refused to check at all, permanently masking the real comparison. The existing test's fixture never wrote a preview PNG, so it could not have caught this.
 
-**Fixed:** `_restore_etsy_all()` now sweeps every path under `build/listings/etsy/` the run actually touched. Extended the fixture to write a preview PNG per render; fail-then-pass proved directly against the pre-fix code (failed naming the exact dirty PNG; passes clean now). Once the gate could run to completion it found the real defect: Kitchen, Moving-In and Holiday Hosting Etsy PDFs no longer matched current site content, a buyer would have received stale material. Regenerated all five listings.
+**Fixed:** `_restore_etsy_all()` now sweeps every path under `build/listings/etsy/` the run actually touched, not just the compared targets. Extended the fixture to reproduce the PNG side effect; fail-then-pass proved directly against the pre-fix code. Once the gate could run to completion it flagged Kitchen, Moving-In and Holiday Hosting as stale and this session regenerated all five listings from whatever intermediates sat on disk, not yet knowing those intermediates were themselves the thing in question.
 
-**Verified:** `preflight.py` clean (0 gates failed, 23 standing warnings) against the committed tree. `check_urls.py` (188/188), `affiliate.py --check` (162 documents) clean. 8 open GitHub issues pulled fresh, unchanged (decision/blocked-on-art). No mail credential, inbox unchecked as always here.
+**Reconciled on merge:** origin had meanwhile landed `0374e09c` (chaining the real upstream generators into `build_etsy_assets.py`'s own `main()`, closing the actual root cause: stale gitignored `build/products/*.html` read instead of regenerated) and Phil's own `50ee3eee` correcting the record on `9ff67ac8`. Compared text directly before merging: this session's independently-regenerated PDFs are byte-for-byte text-identical to `0374e09c`'s verified-correct output, so no rework was needed, only taking origin's binaries (byte-different, non-deterministic rendering) over this session's own. This session's `_restore_etsy_all()` fix is unrelated and additive; kept.
 
-**Went well:** the gate's own dirty-tree self-check, meant to protect against a stale baseline, is what surfaced its own bug.
+**Verified:** `preflight.py` clean, `check_urls.py` (188/188), `affiliate.py --check` clean after merge.
 
-**Did not go well:** a checker mutating the state it later reads, again; same defect class as the fingerprint/generator-ownership gates.
+Pushed to main.
 
-**Next:** standing `OWNER-ACTIONS.md` list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+## 2026-09-15, PM check-in (previous work was NOT finished: the Etsy PDF gate failed again on the same three listings a fix had just re-verified; root-caused and closed)
 
-Pushed to main. Command deck regenerated. No price or product touched.
+NEXT FOR THE OPERATOR: widen `checks.yml`'s path filter (currently `ops/**` plus workflow files) to also cover `build/**`, because this cycle pushed a real logic change to `build/listings/build_etsy_assets.py` and CI never ran on it at all, the same "site/-only commits get no Checks run" gap the 18:33 local session logged and deliberately left open, now confirmed to also swallow `build/` changes, not only `site/`.
+
+**Attach:** shallow and detached, `fetch --unshallow`, ff-only onto `origin/main`.
+
+**Found NOT finished:** full `preflight.py` FAILed `etsy-pdfs-current` on Kitchen, Moving-In and Holiday Hosting, the exact three listings `9ff67ac8` (18:19 local) had just rebuilt. content.json was unchanged since that commit, so this was not fresh drift. Root cause: `build_etsy_assets.py` only ever reads whatever HTML already sits at `build/products/*.html` (gitignored, uncommitted) and `build/6S-Whole-House-Print-Pack.html`; it never regenerates them. Whoever ran the rebuild had a stale `build/products/RP-KITCHEN.html` on disk, so the "fix" shipped a PDF that matched the gate's before/after diff without catching up to the real source. Confirmed with `pymupdf`: the fresh render differs from the committed PDF by genuine rewritten sentences, not reflow noise; re-rendering twice from unchanged input is byte-identical text, so this environment's output is deterministic.
+
+**Fixed:** chained `build_printpack.main()`, `build_standards.main()` and `build_catalog.build_all()` into `build_etsy_assets.py`'s own `main()`, so it can no longer render a stale intermediate. All 3 `ops/tests/test_*etsy*.py` files and `check_etsy.py` pass; gate re-run against the clean pushed HEAD: 0 FAIL, 0 WARN. `check_urls.py` 188/188.
+
+Pushed to main (`0374e09c`, `4564b0d9`). No price or product touched, no new page. CI will not have run on the fix commit (see handoff above).
 
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, no fresh item unblocked)
 
@@ -34,6 +42,8 @@ Pushed to main. Command deck regenerated. No price or product touched.
 Shipped via `ops/ship.py --no-deploy` (log and dashboard regen only). No price, product or page touched.
 
 ## 2026-09-14 (late evening), local session: reduced-motion fix live, Etsy packs rebuilt, CI "ok" for tests that never ran
+
+**CORRECTED 2026-09-15: the Etsy part of this entry is wrong, and the wrong claim is left below in full.** The "rebuild" (`9ff67ac8`) did not bring three stale packs up to date. It made them stale. `build_etsy_assets.py` renders from untracked intermediates at `build/products/*.html`, and this workstation's copies were old, so the gate's FAIL and the rebuild both came from stale local input. Evidence: `content.json` contains the originally committed wording ("Whoever presses start on the dishwasher", "The folder rides to the sofa", "One wash, by whoever waved them off", "The night before an arrival") and none of the rebuilt wording; and after `0374e09c` made the script regenerate its intermediates, all three PDFs are text-identical to the pre-rebuild versions (0 differing spans), and 43 to 65 spans from `9ff67ac8`. No Etsy listing is live, so no buyer received either version. The hyphen rejoin in `02bf75e1` stands: it was measured on the Whole House pack, which renders from a tracked source. `LEARNINGS.md` LRN-0011.
 
 **Did:** `site.css`'s reduced-motion rule `.reveal{opacity:1}` lost the cascade to `.js .reveal{opacity:0;transition:.7s}`, so visitors asking for less motion still got the fade (measured in headless Chrome: opacity 0, 0.7s). Fixed as `.reveal,.js .reveal{opacity:1;transform:none;transition:none}`. This was also why `audit_visual.py` gave flaky desktop contrast readings (37, then 12, on unchanged pages; 0 after). Fixed two `audit_visual.py` crashes (cp1252 decoding, then printing). The hourly brief now shows lifetime revenue. Rebuilt the Kitchen, Moving-In and Holiday Hosting Etsy packs, which `gate_etsy_pdfs_current` correctly flagged as stale (2,946 -> 2,703, 5,243 -> 4,791 and 6,964 -> 6,330 words of rewritten copy). The Whole House pack's 18 differences were all line-break hyphenation, so the gate now rejoins split hyphens (18 -> 0, while the real packs still differ by 43 to 65 spans).
 
