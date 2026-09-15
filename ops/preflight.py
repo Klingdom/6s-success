@@ -12779,6 +12779,52 @@ def gate_test_rotation_isolated() -> None:
              f"file on interruption: {bad}")
 
 
+ROUTINE_PROMPT_REQUIRED_LINES = [
+    "Never write a customer's name, email or address into this repository.",
+    "The buyer's identity is in Stripe and must never be written into this "
+    "repository, which is public.",
+    "A metric can read the wrong source and report zero forever.",
+    "STEP 0. ATTACH TO A BRANCH.",
+    "STEP 13. ESCALATE, DO NOT DECIDE.",
+]
+
+
+def gate_routine_prompt_current() -> None:
+    """ops/routine-prompt.md is this repo's own mirror of the live scheduled
+    operator prompt, kept only because no agent session is allowed to edit
+    the routine itself (OWNER-ACTIONS.md R4/item 10, GitHub issue #27).
+
+    Found drifted 2026-09-08 (committed 6,156 bytes against a live 9,462) and
+    fixed that day. Found drifted again 2026-09-15, this operator, comparing
+    the committed file directly against the prompt this exact cycle actually
+    received rather than trusting the earlier fix to have held: three
+    sentences were missing, two of them privacy rules (never write a buyer's
+    name or their Stripe identity into this public repository) and one an
+    operational lesson (a metric reading the wrong source and reporting zero
+    forever, the real 2026-09-10 revenue-measurement incident). A stale
+    mirror is not bookkeeping: it is the one document that tells a future
+    reader what this session was actually told to do, and it was quietly
+    wrong twice now.
+
+    This gate has no access to the live routine, which lives outside the
+    repository, so it cannot catch a wholly new drift. What it can do is
+    hold the line on sentences already known to have gone missing once:
+    their disappearance is a strong signal even though their presence is not
+    a guarantee the rest of the file is current.
+    """
+    path = os.path.join(ROOT, "ops", "routine-prompt.md")
+    if not os.path.exists(path):
+        fail("routine-prompt", "ops/routine-prompt.md is missing")
+        return
+    text = io.open(path, encoding="utf-8", errors="replace").read()
+    missing = [line for line in ROUTINE_PROMPT_REQUIRED_LINES if line not in text]
+    if missing:
+        fail("routine-prompt",
+             f"ops/routine-prompt.md is missing {len(missing)} line(s) "
+             f"already known to have dropped out of this file once before: "
+             f"{missing}")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -12903,6 +12949,7 @@ def main() -> int:
     run_gate(gate_us_spelling_consistency)
     run_gate(gate_binary_files_protected)
     run_gate(gate_test_rotation_isolated)
+    run_gate(gate_routine_prompt_current)
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)

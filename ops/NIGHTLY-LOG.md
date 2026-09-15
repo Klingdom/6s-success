@@ -29,6 +29,26 @@ Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard
 
 **Next:** deploy `0b4c4fa4` once its image builds and verify live (build id `2842a61cb7c89663`, hero card, fan with AVIF, stylesheet rules, rebuilt PDF). Then the zone page supplies block: inline styles to classes, disclosure wording and position unchanged.
 
+## 2026-09-15, scheduled operator cycle (routine-prompt mirror drifted again, same defect class R4 fixed once; found by direct comparison, fixed and gated)
+
+**Did:** attached clean (shallow, unshallowed, ff-only onto origin/main, no unrelated-history symptom this run). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, last several log entries. Full `preflight.py`: every gate passed, 23 pre-diagnosed warnings, none new. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential (checked directly), no egress. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found, per step 5d, by comparing the thing itself rather than trusting the 2026-09-08 fix to have held.** `ops/routine-prompt.md`, this repo's own committed mirror of the live scheduled prompt (kept only because no agent session can edit the routine itself, R4/issue #27), was missing three sentences the live prompt this exact cycle received still carries: two privacy rules ("Never write a customer's name, email or address into this repository," and the Stripe buyer-identity line) and one operational lesson (a metric reading the wrong source and reporting zero forever, the real 2026-09-10 revenue incident). Same drift class as R4, recurred because nothing re-checked it after that fix.
+
+**Fixed:** rewrote `ops/routine-prompt.md` to match the live prompt exactly. New `gate_routine_prompt_current` in `preflight.py` checks five known-current sentences remain present; `ops/tests/test_gate_routine_prompt_current.py` (5 cases) fail-then-pass proved directly against both a reconstructed drifted fixture and the real committed file.
+
+**Verified:** `preflight.py` clean before and after (0 gates failed), `dashboard.py` regenerated.
+
+**Went well:** treating the live prompt as ground truth to diff against, not just re-reading the mirror and assuming it still matched.
+
+**Did not go well:** this is the second time this exact file has drifted; the gate only catches sentences already known to matter, not a wholly new drift, since it has no access to the live routine.
+
+**Changing next cycle:** none; the new gate is the change.
+
+**Next:** standing `OWNER-ACTIONS.md` list unchanged.
+
+Pushed to main. `ops/routine-prompt.md`, `ops/preflight.py`, `ops/tests/test_gate_routine_prompt_current.py`, command deck. No price, product or page touched.
+
 ## 2026-09-15, PM check-in (previous work was NOT finished: preflight FAILed twice, both self-inflicted, both root-caused and fixed)
 
 Attached clean onto origin/main, then merged in Phil's own live hero/deck fix and a concurrent operator's test-isolation fix. Full preflight then FAILed two ways, neither a real site defect. First: `test_audit_visual_reduced_motion.py` used `re.search` to find site.css's one `prefers-reduced-motion:reduce` block, but Phil's commit added two more, smaller ones ahead of it (`.hero-card`, `.fan-card`); the test grabbed the wrong one and never saw the real `.reveal{opacity:1}` rule, which was never broken. Fixed the test to check all such blocks. Second: I ran preflight itself under an external `timeout 110`, which SIGKILLed it mid-run right after it rendered fresh Etsy PDFs but before its own cleanup restored them, leaving the tree looking dirty, exactly the interruption-corruption shape the prior cycle had just fixed for a different script. Restored the PDFs via `git checkout`, re-ran preflight unbounded this time: 0 gates failed, 23 standing warnings. No new item was genuinely unblocked this cycle; both fixes were finishing broken verification, not new work.
