@@ -61,6 +61,13 @@ Shipped via `ops/ship.py --no-deploy`. Command deck only (regenerated as a side 
 
 **Did not go well:** the first thumbnail used `aspectRatio: 4/3` with a fixed width; React Native web ignored it and rendered the 320x240 source at 74x240, a tall strip. Caught in the 390px screenshot, fixed with an explicit 74x56. Two long inline heredocs failed bash parsing before any file was touched (the known long-command trap); the edit was split into a snippet file plus a short script, and an ambiguous anchor aborted cleanly before writing.
 
+**Closing checks, same night:**
+
+- **CI.** Checks runs on `a0d7f929`, `78a1c85b`, `f8d687ce` and `e597429c` were each cancelled by the next push. The cancelling group is `checks-${{ github.ref }}`, so no individual run failed. `61ea616b` was then cancelled the same way, by a concurrent session's `5b668b3d` (a general gate against CI path-filter gaps), which contains every commit from tonight. Run `34935764335` on `5b668b3d` is therefore the one that verifies them. Result: success (all steps; CI has no browser, so its browser-based tests report NOT VERIFIED rather than pass).
+- **Checks triggers.** A concurrent session added `App.js`, `ON-DEVICE-TEST.md` and `quest-corpus.json` to the Checks triggers (`48519cc6`). I added `assets/zoneHeroes.js` and `assets/zones/**` (`61ea616b`), because `gate_mobile_corpus_current` now checks them too. The YAML was parsed to confirm both new paths under `push` and `pull_request`.
+- **Phone-width audit.** All 193 pages measured: 0 contrast failures, 0 distorted or broken images, 0 targets under 44px, 0 sideways scroll, 0 heading or landmark problems. One page, `kitchen-deck.html`, is reported as fonts still loading. Served over HTTP, its `document.fonts.status` is "loaded" at 4s and 15s. The 16 unloaded faces are weights it never uses. So the flag is an audit-only effect of `file://`, not a visitor defect. Raising the probe's font wait from 4s to 8s did not change it, so that edit was reverted, not shipped.
+- **Desktop audit.** the same 193 pages at 1280px, all clean: 0 contrast, 0 distorted or broken images, 0 images without width/height or alt, 0 heading, landmark, label or focus problems; kitchen-deck.html carries the same file:// font note, and no probe file was left behind.
+
 **Next:** the finish screen still shows the zone as text only; decide whether the zone's picture belongs on that recap. Physical-device check of the thumbnail on iOS and Android.
 
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished, verified a concurrent push rather than starting a fresh sweep)
