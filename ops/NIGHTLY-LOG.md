@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and CI healthy though still confirming, nothing new unblocked)
+
+**NEXT FOR THE OPERATOR: confirm `checks.yml` and `publish-image.yml` go green on `2525057e`/`b6989083`, then cold-read `stripe_check.py` or `stripe_links.py` (both at the 9-mention floor, both money-domain) for a real defect, because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated and this is the method that found A7, B5 and C7.**
+
+**Previous work checked, not assumed:** attached cleanly (shallow, unshallowed, ff-only onto `origin/main`, `b6989083`). Working tree clean, main already pushed. `preflight.py` full: every gate passed, 23 pre-diagnosed sandbox warnings (no network, no Stripe/SSH/mail credential here), none new. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; re-read #29 in full rather than trust the dashboard's "0 live uses of Set in Order" line at face value, since a `grep` of `site/deck-gallery.html` also shows 0: the issue's own body explains why, the 16 defective cards were withheld from `index.json` as a mitigation, not fixed, so 0 live hits is the withhold working, not the issue going stale. Left open, correctly.
+
+**CI status, checked directly rather than inferred:** the previous cycle's own explicit handoff was to confirm `checks.yml` on `46ade0c1`'s successor. Its run on `2525057e` (run 1002) is still `in_progress` 23 minutes in (Preflight step took 17 minutes and passed, now on the ops test suite); no failed step, ordinary timing per this workflow's own history (prior runs 17-29 minutes). `b6989083` (current HEAD, a log-only commit) has not yet spawned its own run in the list checked. Not yet confirmed green, but nothing here reads as stalled or broken.
+
+**Did not go well / recurring:** this is the second consecutive cycle where the 30-minute PM cadence lands mid-run against a CI job that regularly takes 20-30 minutes, so "confirm CI" keeps bouncing forward one slot. `STATUS.md`'s own 2026-09-15 morning entry already recorded the root cause (`checks.yml` cancels in-progress runs per ref under concurrent pushes) and a recommended fix, not yet made. Not re-diagnosing it again here; flagging that the recommendation is still sitting unmade if a future cycle has a slot free for it.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+No file other than this log and the command deck changed this pass. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-15, PM check-in (STATUS.md was 17 commits stale, corrected)
 
 **Previous work checked:** shipped, `preflight.py` clean, 7 issues unchanged. `checks.yml` run 1001 on `46ade0c1` stayed `in_progress` all slot; prior run took 29 minutes, ordinary timing, reported plainly not assumed green.
