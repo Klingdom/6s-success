@@ -18,6 +18,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** same standing Phil-blocked list and 7 open decision/blocked-on-art issues, unchanged.
 
+## 2026-09-15, PM check-in (30-minute triage, fifth)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
+
+**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`e30bfb1`), then a concurrent scheduled push (`14a9498c`, social-drafts rotation) fast-forwarded in clean, no conflict.
+
+**Previous work: finished.** `preflight.py` ran to completion: every gate passed, the same 23 pre-diagnosed warnings, none new. `preflight.py --deep` (`gate_visual_audit`, the 193-page render) already completed clean earlier today per this session's own operator entry above; not stale enough to rerun this slot.
+
+**Checked for new work, found none.** `BACKLOG-2026-09-07.md` sections 2 to 6 again all struck done, correctly HOLD, or Phil-gated. 7 open GitHub issues, unchanged, all `decision`/`blocked-on-art`. Rather than re-run the `ops/*.py` cold-read lane several prior cycles today already confirmed exhausted (10+ mention floor), probed this session's own actual access directly instead of citing an earlier one's: no SSH deploy key, no `.env.secrets`, no Pillow, `curl https://github.com` rejected by the egress proxy. Matches every standing limit; nothing newly available in this session.
+
+**Did:** regenerated and pushed the command deck only.
+
+**Handing to the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art issues, unchanged.
+
 ## 2026-09-15, PM check-in (30-minute triage, fourth)
 
 **Attach:** shallow/detached; unshallowed, ff-only onto `origin/main` (`8eff9c9b`), clean.
