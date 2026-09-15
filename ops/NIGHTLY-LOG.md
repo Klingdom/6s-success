@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, one stale count closed, standing handoff carried forward for the operator)
+
+NEXT FOR THE OPERATOR: build the general gate the prior PM check-in named and left unbuilt (`3dca7b55`'s own entry above), because it checks every preflight gate's file dependency against the workflow path filters that would trigger it, and the same gap has now caused a real gate to silently not run in CI three separate times this week (`linkedin-drafts.yml`, `build_etsy_assets.py`, now App.js/ON-DEVICE-TEST.md/quest-corpus.json). Confirmed today it still does not exist (`grep` for a path-filter-coverage gate in `ops/preflight.py`: none found).
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`3dca7b55`).
+
+**Previous work finished, checked not cited:** ran `preflight.py` unbounded in the background rather than under a timeout (the standing lesson about kills producing false FAILs). Came back clean: every gate passed, 23 warnings, all pre-diagnosed sandbox limits (no Stripe/mail/SSH credential, no Pillow, GitHub-side cron drift). Working tree was clean before this cycle, main up to date with origin. 8 GitHub issues pulled fresh via the API: unchanged, all decision/blocked-on-art. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 still done, HOLD, or Phil-gated. `GOALS.md`'s traffic baseline (75/196/947) matches `RISKS.md` and the backlog, no drift.
+
+**Closed one stale count instead of re-reporting it:** issue #2 still said "12 remaining" in its own title-era count; verified against `ops/card-hero-verdicts.json` directly that three (EP-008, ET-004, EU-011) now pass, leaving 9, matching `OWNER-ACTIONS.md`'s already-corrected figure. Posted the recount with evidence; the issue's title is GitHub's own and unedited.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only (regenerated as a side effect of running `preflight.py`). No price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, a third instance of the checks.yml path-filter gap found and fixed while verifying a concurrent push)
 
 **Attach:** clean. **Previous work finished:** `preflight.py` clean, tree clean, main pushed.
