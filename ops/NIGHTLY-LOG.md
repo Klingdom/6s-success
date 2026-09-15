@@ -24,6 +24,20 @@ Shipped via direct commit (command deck only; no price, product or page touched,
 
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, nothing new genuinely unblocked)
 
+NEXT FOR THE OPERATOR: same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, because nothing else is genuinely unblocked this slot.
+
+**Attach:** arrived shallow and detached; `fetch --unshallow` then clean `merge --ff-only` onto `origin/main` (`c9fccfe4`), no unrelated-history symptom.
+
+**Previous work checked, not cited: finished.** Ran `preflight.py` to completion (not bounded to the fast path): every gate passed, the same 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow, the two cron-cadence drifts, the repo-vs-production deploy gap), none new. It regenerated the command deck as a side effect (timestamp/commit-pointer only, diffed to confirm no carry-forward field regressed). Working tree was otherwise clean.
+
+**Checked for new work, found none genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6 read in full again: every row struck done or explicitly Phil-gated, section 5 correctly HOLD, section 6 the same four owner gates. 7 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. CI on the current head confirmed directly via the Actions API, not assumed: all three workflows that fired on `c9fccfe4` (social-drafts, linkedin-drafts, fulfil-orders) completed `success`.
+
+**One small closing job, per step 3:** read `STATUS.md` section 1 rather than trust it stale; it is already current for this cycle window (same 7-issue count, same 23 warnings, same deploy gap), last updated by a PM cycle earlier today. Nothing to correct.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only; no price, product or page touched.
+
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, nothing new genuinely unblocked)
+
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`10238a1c`, picked up a concurrent cycle's own syntax-defect convergence logged just below).
 
 **Previous work was finished, checked not cited.** Full `preflight.py` ran to completion: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. Working tree clean, already pushed. The prior cycle's `preflight.py --deep` handoff was already closed by the scheduled operator cycle logged further below; CI confirmed `success` directly via the Actions API on the last content-bearing commit (`cf100132`, run 995), not assumed.
