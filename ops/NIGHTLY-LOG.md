@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, third)
+
+NEXT FOR THE OPERATOR: verify or trigger a real production redeploy, because build `587d80befe8bd586` (Phil's own `790a5d05` zone-page fix) is unconfirmed live against the last confirmed build `346c043b56385f64` (11:17:08Z).
+
+**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`790a5d05`), clean, 3 commits ahead of the last PM cycle, two of them Phil's own local-session fixes.
+
+**Previous work: finished, checked not inherited.** `preflight.py` ran directly: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`.
+
+**Found and fixed:** `OWNER-ACTIONS.md` item 1b's "no redeploy needed" resolution had gone stale the moment `790a5d05` landed after the 11:17:08Z deploy confirmation; reopened it with the exact commit and build gap rather than leave it silently wrong. Command deck regenerated to match.
+
+**Handing to the operator:** the redeploy-verification item above if real access exists this run; otherwise the same standing Phil-blocked list, unchanged.
+
 ## 2026-09-15, PM check-in (30-minute triage, second)
 
 **Attach:** arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`8389a56`), clean, 20 commits.
