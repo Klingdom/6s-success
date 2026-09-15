@@ -32,7 +32,8 @@ line up
 
 8
 00:00:06,267 --> 00:00:07,033
-3 Nothing draped over the sofa back
+3 Nothing draped over the sofa back, the
+radiator
 
 9
 00:00:07,033 --> 00:00:07,800

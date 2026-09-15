@@ -8,326 +8,333 @@ reserve that feeds the working shelves,
 and nothing else.
 
 3
-00:00:03,200 --> 00:00:04,120
+00:00:03,200 --> 00:00:03,967
 What done looks like
 
 4
-00:00:04,120 --> 00:00:05,040
-1 Sacks of rice
+00:00:03,967 --> 00:00:04,733
+1 Sacks of rice, cases of tinned tomatoes
+and packs of kitchen roll, each written
 
 5
-00:00:05,040 --> 00:00:05,960
-2 Cases of tinned tomatoes
+00:00:04,733 --> 00:00:05,500
+on with the month it arrived, all standing
+at or below waist height
 
 6
-00:00:05,960 --> 00:00:06,880
-3 Packs of kitchen roll
+00:00:05,500 --> 00:00:06,267
+2 A maximum number written on the shelf
+edge for each line, and the count on the
 
 7
-00:00:06,880 --> 00:00:07,800
-4 Each written on with the month it
-arrived
+00:00:06,267 --> 00:00:07,033
+shelf sitting at or under it
 
 8
+00:00:07,033 --> 00:00:07,800
+3 Nothing stacked in front of anything
+else
+
+9
 00:00:07,800 --> 00:00:10,000
 One session Backstock and Bulk Zone 45-75
 min
 
-9
+10
 00:00:10,000 --> 00:00:10,950
 Sort Open up the back of this zone and
 meet what you forgot you owned: the second
 
-10
+11
 00:00:10,950 --> 00:00:11,900
 sack of rice,
 
-11
+12
 00:00:11,900 --> 00:00:12,600
 Sort Open up the back of this zone and
 meet what you forgot you owned: the second
 
-12
+13
 00:00:12,600 --> 00:00:13,300
 sack of rice, the twelve-pack of a sauce
 nobody liked, the case of sparkling water
 
-13
+14
 00:00:13,300 --> 00:00:14,000
 from a party in another season.
 
-14
+15
 00:00:14,000 --> 00:00:15,900
 Sort Anything you hold more than one spare
 of moves forward
 
-15
+16
 00:00:15,900 --> 00:00:16,950
 Sort Anything you hold more than one spare
 of moves forward into the working
 
-16
+17
 00:00:16,950 --> 00:00:18,000
 shelves this month or it leaves.
 
-17
+18
 00:00:18,000 --> 00:00:19,900
 Straighten Weight decides
 
-18
+19
 00:00:19,900 --> 00:00:22,000
 Straighten Weight decides height.
 
-19
+20
 00:00:22,000 --> 00:00:22,950
 Straighten Sacks and cases go on the floor
 or the bottom shelf on a board, kitchen
 
-20
+21
 00:00:22,950 --> 00:00:23,900
 roll and paper napkins go up top
 
-21
+22
 00:00:23,900 --> 00:00:24,600
 Straighten Sacks and cases go on the floor
 or the bottom shelf on a board, kitchen
 
-22
+23
 00:00:24,600 --> 00:00:25,300
 roll and paper napkins go up top because
 they are light, and everything sits one
 
-23
+24
 00:00:25,300 --> 00:00:26,000
 row deep so you never move a case to see a
 case.
 
-24
+25
 00:00:26,000 --> 00:00:27,900
 Shine Sweep the floor of this zone and
 check the underside of the bottom case
 
-25
+26
 00:00:27,900 --> 00:00:28,950
 Shine Sweep the floor of this zone and
 check the underside of the bottom case for
 
-26
+27
 00:00:28,950 --> 00:00:30,000
 damp, where a concrete floor or an outside
 wall is sweating.
 
-27
+28
 00:00:30,000 --> 00:00:31,900
 Shine Cardboard that has gone soft is
 warning you
 
-28
+29
 00:00:31,900 --> 00:00:32,950
 Shine Cardboard that has gone soft is
 warning you about moisture before your
 food
 
-29
+30
 00:00:32,950 --> 00:00:34,000
 does.
 
-30
+31
 00:00:34,000 --> 00:00:35,900
 Safety Fall, cut, or crush: a stacked
 column of cases is stable right
 
-31
+32
 00:00:35,900 --> 00:00:36,950
 Safety Fall, cut, or crush: a stacked
 column of cases is stable right up until
 
-32
+33
 00:00:36,950 --> 00:00:38,000
 somebody pulls the second one from the
 bottom.
 
-33
+34
 00:00:38,000 --> 00:00:39,900
 Safety Stack no higher than your chest,
 bend at the knees for the rice sack, and
 
-34
+35
 00:00:39,900 --> 00:00:40,950
 Safety Stack no higher than your chest,
 bend at the knees for the rice sack, and
 
-35
+36
 00:00:40,950 --> 00:00:42,000
 never store a heavy case overhead where
 getting it down means catching it.
 
-36
+37
 00:00:42,000 --> 00:00:43,900
 Standardize Write a maximum for each line
 on the shelf edge, two of this, one of
 
-37
+38
 00:00:43,900 --> 00:00:44,950
 Standardize Write a maximum for each line
 on the shelf edge, two of this, one of
 
-38
+39
 00:00:44,950 --> 00:00:46,000
 that, and mark every pack with its arrival
 month as it goes in.
 
-39
+40
 00:00:46,000 --> 00:00:47,900
 Standardize Undated bulk is where the
 saving
 
-40
+41
 00:00:47,900 --> 00:00:50,000
 Standardize Undated bulk is where the
 saving quietly expires out of sight.
 
-41
+42
 00:00:50,000 --> 00:00:51,900
 Sustain The gap is the signal and
 
-42
+43
 00:00:51,900 --> 00:00:54,000
 Sustain The gap is the signal and the trip
 is the trigger.
 
-43
+44
 00:00:54,000 --> 00:00:54,950
 Sustain When a working container runs
 empty, its replacement comes off the front
 of
 
-44
+45
 00:00:54,950 --> 00:00:55,900
 backstock and the
 
-45
+46
 00:00:55,900 --> 00:00:56,600
 Sustain When a working container runs
 empty, its replacement comes off the front
 of
 
-46
+47
 00:00:56,600 --> 00:00:57,300
 backstock and the item goes on the list in
 the same movement, by the person who
 
-47
+48
 00:00:57,300 --> 00:00:58,000
 emptied it.
 
-48
+49
 00:00:58,000 --> 00:00:58,950
 Sustain No stock take, ever, and the
 writing costs twenty seconds.
 
-49
+50
 00:00:58,950 --> 00:00:59,900
 Slip is a pack stacked in
 
-50
+51
 00:00:59,900 --> 00:01:00,600
 Sustain No stock take, ever, and the
 writing costs twenty seconds.
 
-51
+52
 00:01:00,600 --> 00:01:01,300
 Slip is a pack stacked in front of
 another, or a count above the maximum
 written on
 
-52
+53
 00:01:01,300 --> 00:01:02,000
 the shelf edge.
 
-53
+54
 00:01:02,000 --> 00:01:02,950
 Sustain Recovery is pulling the oldest
 forward and stopping buying that line.
 
-54
+55
 00:01:02,950 --> 00:01:03,900
 Offers break this
 
-55
+56
 00:01:03,900 --> 00:01:04,600
 Sustain Recovery is pulling the oldest
 forward and stopping buying that line.
 
-56
+57
 00:01:04,600 --> 00:01:05,300
 Offers break this zone, because a
 genuinely good price is the reason a
 maximum gets
 
-57
+58
 00:01:05,300 --> 00:01:06,000
 ignored.
 
-58
+59
 00:01:06,000 --> 00:01:06,283
 The call You bought the big one because
 the unit price was better, and some of it
 
-59
+60
 00:01:06,283 --> 00:01:06,567
 went stale, rancid, or simply boring
 before you reached the bottom.
 
-60
+61
 00:01:06,567 --> 00:01:06,850
 The honest question is not whether the
 price was good.
 
-61
+62
 00:01:06,850 --> 00:01:07,133
 It is whether you have ever finished one
 of these in time.
 
-62
+63
 00:01:07,133 --> 00:01:07,417
 So write down, for each item, the largest
 quantity you have genuinely used up
 
-63
+64
 00:01:07,417 --> 00:01:07,700
 before it turned, and make that number
 your maximum on the shelf edge.
 
-64
+65
 00:01:07,700 --> 00:01:07,983
 Until your count falls back below that
 number you do not buy the item again,
 
-65
+66
 00:01:07,983 --> 00:01:08,267
 whatever the shelf price is doing.
 
-66
+67
 00:01:08,267 --> 00:01:08,550
 Anything already over the line goes
 forward into meals this month or out to a
 food
 
-67
+68
 00:01:08,550 --> 00:01:08,833
 bank while it is still in date.
 
-68
+69
 00:01:08,833 --> 00:01:09,117
 A cupboard full of food you will not eat
 is not a store of value, it is money you
 
-69
+70
 00:01:09,117 --> 00:01:09,400
 have already spent.
 
-70
+71
 00:01:09,400 --> 00:01:11,800
 Backstock and Bulk Zone The full reset,
 free at 6s-success.com

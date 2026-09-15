@@ -24,7 +24,8 @@ than across the floor beside the bed
 
 6
 00:00:05,960 --> 00:00:06,880
-3 Any medication in the drawer is in date
+3 Any medication in the drawer is in date,
+capped
 
 7
 00:00:06,880 --> 00:00:07,800

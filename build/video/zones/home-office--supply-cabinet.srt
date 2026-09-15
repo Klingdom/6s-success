@@ -27,8 +27,8 @@ behind it
 
 7
 00:00:06,267 --> 00:00:07,033
-3 Max written on a card at the front edge
-of each shelf
+3 Min and max written on a card at the
+front edge of each shelf
 
 8
 00:00:07,033 --> 00:00:07,800

@@ -13,22 +13,21 @@ What done looks like
 
 4
 00:00:04,120 --> 00:00:05,040
-1 Sugar running left to right along one
-liftable tray
+1 Machine, grounds, mugs
 
 5
 00:00:05,040 --> 00:00:05,960
-2 Mugs capped at the number of daily
-drinkers plus two
+2 Then spoons and sugar running left to
+right along one liftable tray
 
 6
 00:00:05,960 --> 00:00:06,880
-3 A marked fill line on the bean jar
+3 Mugs capped at the number of daily
+drinkers plus two
 
 7
 00:00:06,880 --> 00:00:07,800
-4 A hand's width of clear air behind the
-kettle
+4 A marked fill line on the bean jar
 
 8
 00:00:07,800 --> 00:00:10,000

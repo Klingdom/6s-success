@@ -189,6 +189,63 @@ def words(text: str, upto: int) -> str:
     return " ".join(out)
 
 
+_DONE_SENTENCE = re.compile(r"(?<=[^.][.!?])[ ]+(?=[A-Z])")
+_DONE_COUNT = re.compile(
+    r"^(one|a|an|no|each|every|two|three|four|five|six|a single|only|"
+    r"nothing|all|both)[ ]", re.I)
+
+
+def done_items(z: dict) -> list:
+    """The zone's finished standard as checkable items, every word kept.
+
+    The single source for this split; ops/build_social_pins.py and
+    ops/video_zone_photo.py both call this rather than keeping their own
+    copy. Fixed here 2026-09-15 after the original split (cut at every
+    comma and every " and ", kept only the first four fragments of three
+    words or more) shipped on the "What done looks like" screen of the 11
+    of 12 zone videos already published to YouTube: "one wallet and one
+    phone per adult" became "One phone per adult", "The salt. The kettle"
+    was welded into one item, and standards such as "The cabinet strapped
+    to a wall stud" were dropped for running past the fourth slot. The
+    narrator read the same fragments aloud and the caption file repeated
+    them, so the defect was heard as well as seen.
+
+    A standard written as several sentences gives one item per sentence. A
+    standard written as one sentence is a comma list, split at top-level
+    commas, where a short part that starts a count ("one wash") joins the
+    part after it, since it shares that part's qualifier ("one bar per
+    person in the caddy"), and a short part that does not ("soles down")
+    belongs to the part before it. No cap here: a caller that needs one
+    trims the returned list itself.
+    """
+    raw = str(z.get("done_looks_like") or "").strip()
+    sents = [s.strip().rstrip(".") for s in _DONE_SENTENCE.split(raw) if s.strip()]
+    if len(sents) > 1:
+        out = sents
+    else:
+        parts = [re.sub(r"^and ", "", p.strip())
+                 for p in re.split(r",(?![^(]*[)])", sents[0] if sents else "")]
+        out, carry = [], ""
+        for p in parts:
+            if not p:
+                continue
+            short = len(p.split()) < 3
+            if short and _DONE_COUNT.match(p):
+                carry = (carry + ", " if carry else "") + p
+                continue
+            if short and out and not carry:
+                out[-1] = out[-1] + ", " + p
+                continue
+            out.append((carry + ", " + p) if carry else p)
+            carry = ""
+        if carry:
+            if out:
+                out[-1] = out[-1] + ", " + carry
+            else:
+                out.append(carry)
+    return [o[0].upper() + o[1:] for o in out if o]
+
+
 def _sentence_chunks(text, budget=30):
     """Split into slide-sized pieces at sentence boundaries, never mid-clause.
 
@@ -226,12 +283,9 @@ def beats(room: str, z: dict) -> list:
     purpose = str(z.get("purpose") or "").strip()
     session = str(z.get("session") or "").strip()
 
-    # One long sentence of clauses. Split it into the two to four things a
-    # person can actually check, because a wall of text is not a video beat.
-    raw = str(z.get("done_looks_like") or "").strip().rstrip(".")
-    parts = [c.strip() for c in re.split(r",(?![^(]*\))| and (?=\w+ \w+)", raw)
-             if c.strip()]
-    done = [c[0].upper() + c[1:] for c in parts if len(c.split()) >= 3][:4]
+    # The finished standard, split into the things a person can actually
+    # check without losing any of its words. A slide holds at most four.
+    done = done_items(z)[:4]
 
     call_d = z.get("the_call") or {}
     if isinstance(call_d, dict):

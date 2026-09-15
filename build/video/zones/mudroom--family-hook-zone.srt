@@ -13,7 +13,7 @@ What done looks like
 
 4
 00:00:04,120 --> 00:00:05,040
-1 One bag per person
+1 Two coats and one bag per person
 
 5
 00:00:05,040 --> 00:00:05,960

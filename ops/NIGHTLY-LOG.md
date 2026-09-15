@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (a second copy of the "what done looks like" split bug found live in ops/video_zone.py, fixed, single-sourced, 92 captions regenerated)
+
+**Did:** the merge that landed a concurrent local session's work (`f1b77eac`) carried its own log entry describing a real, still-open defect: `ops/build_social_pins.py`'s `done_items()` had a comma/"and" split that dropped words and welded sentences, fixed that same session, but the entry itself named `ops/video_zone.py`'s `beats()` as carrying an *independent, unfixed* copy of the same bug, confirmed live on 11 of the 12 zone videos already published to YouTube, and a third, cruder copy in `ops/video_zone_photo.py`. That session deliberately deferred it ("recorded in BACKLOG as the next workstream rather than folded into this one"). Read `beats()` directly rather than trust the description: confirmed the exact old split at line 232, still there. This is the highest-priority genuinely unblocked, unfixed item in the whole backlog: P0 trust (wrong words shown and narrated on live customer-facing video), and it sits directly upstream of C6 (publish the 102 remaining videos), so shipping it unfixed would have put the same defect into all 114 videos, not just 11.
+
+**Fixed:** moved the corrected split into `video_zone.done_items()`, the one real implementation; `build_social_pins.py` and `video_zone_photo.py` now both call it instead of keeping their own copies, the same single-source shape `gate_video_slug_single_source` already enforces for filename slugs. `beats()` now calls `done_items(z)[:4]` in place of its own inline regex. Regenerated the 114 committed `build/video/zones/*.srt` sidecars (pure Python, no browser or audio dependency): 92 of 114 had gone stale the moment `beats()`'s output changed, confirmed by diffing `video_srt.srt_for()`'s fresh output against every committed file before regenerating, not assumed from the code change alone.
+
+**Verified:** new `gate_done_items_single_source` in `preflight.py`, checking (a) `done_items()` keeps every test word across three constructed standards, (b) `build_social_pins.done_items` is the identical function object, not a re-fork, (c) `video_zone_photo.py` still imports `video_zone` under the name its `script_for()` reads, (d) `beats()`'s own source still calls `done_items(` and has not grown back the old regex. Fail-then-pass proved twice in isolated scratch copies: reverting `beats()` to its inline split fails by name ("no longer calls done_items()"), and re-forking `build_social_pins.done_items` as an independent function also fails by name ("a separate function again"). Full `preflight.py` (every gate passed, 23 warnings, none new), all 151 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after.
+
+**Went well:** reading a concurrent session's own log entry as a lead, rather than re-running the same cold-read lane everyone else exhausted today, found real, current, unblocked work in minutes.
+
+**Went not well / unchecked:** `build/video/zones-narrated/*.srt` (the real, audio-timed captions behind the actual .mp4 files) and the .mp4 files themselves need real TTS narration and ffmpeg to regenerate, neither available in this sandbox; the 11 affected videos already live on YouTube still say the wrong thing until Phil runs `ops/video_narrated.py` locally and re-uploads them (YouTube cannot replace an uploaded file's content any other way). Recorded in `OWNER-ACTIONS.md` item 1 and `BACKLOG-2026-09-07.md` C7 rather than left only in this log. Mobile `npm test` not run: this change touched no file under `mobile/`.
+
+**Changing next cycle:** none beyond the gate just added.
+
+**Next:** same standing `OWNER-ACTIONS.md` list, now with the 11-video re-render/re-upload named explicitly under item 1. 7 open decision/blocked-on-art GitHub issues unchanged.
+
+Pushed to main. `ops/video_zone.py`, `ops/build_social_pins.py`, `ops/video_zone_photo.py`, `ops/preflight.py`, 92 `build/video/zones/*.srt` files, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, command deck. No price or product touched; no site page changed; IndexNow not applicable.
+
 ## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; cold-read of ops/service_orders.py found nothing wrong)
 
 **Attach:** arrived shallow and detached; `fetch --unshallow`, `merge --ff-only` onto `origin/main` (`7561255a`), fast-forwarded 1056 commits, no unrelated-history symptom.

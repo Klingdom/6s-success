@@ -41,6 +41,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import video as V                                             # noqa: E402
+import video_zone as VZ                                       # noqa: E402  (done_items())
 
 CONTENT = os.path.join(ROOT, "content", "manual", "source", "content.json")
 HEROES = os.path.join(ROOT, "build", "heroes", "zones")
@@ -87,15 +88,17 @@ def script_for(room: str, z: dict) -> list:
     say what goes wrong, say what done looks like, give the one action.
     """
     name = z["zone"]
-    done = str(z.get("done_looks_like") or "").strip().rstrip(".")
     why = str(z.get("purpose") or z.get("why") or "").strip().rstrip(".")
 
     lines = [f"The {name.lower()}."]
     if why:
         lines.append(why.split(".")[0].strip())
     lines.append("What done looks like:")
-    for clause in [c.strip() for c in done.split(",") if c.strip()][:3]:
-        lines.append(clause[0].upper() + clause[1:] if clause else clause)
+    # video_zone.done_items() is the single source for this split; see its
+    # own docstring for why a plain comma split (the previous logic here)
+    # welds multi-sentence standards together and cuts lists apart.
+    for clause in VZ.done_items(z)[:3]:
+        lines.append(clause)
     lines.append("Fifteen minutes. One zone.")
     return [l for l in lines if l][:8]
 

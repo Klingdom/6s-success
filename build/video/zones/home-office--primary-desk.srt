@@ -13,21 +13,20 @@ What done looks like
 
 4
 00:00:04,120 --> 00:00:05,040
-1 Mouse in fixed positions
+1 The monitor, keyboard
 
 5
 00:00:05,040 --> 00:00:05,960
-2 One inbox tray holding fewer than a
-dozen sheets
+2 Mouse in fixed positions
 
 6
 00:00:05,960 --> 00:00:06,880
-3 No sticky notes on the monitor bezel
+3 One notebook, one inbox tray holding
+fewer than a dozen sheets
 
 7
 00:00:06,880 --> 00:00:07,800
-4 The power strip hooked off the floor so
-the chair rolls over bare carpet
+4 No sticky notes on the monitor bezel
 
 8
 00:00:07,800 --> 00:00:10,000

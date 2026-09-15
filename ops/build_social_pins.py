@@ -79,7 +79,7 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
-import video_zone as VZ  # noqa: E402  (zones(), browser(), FONTS)
+import video_zone as VZ  # noqa: E402  (zones(), browser(), FONTS, done_items())
 import build_mobile_corpus as BMC  # noqa: E402  (load_source(): approved zone pictures)
 
 PIN_DIR = os.path.join(ROOT, "build", "social", "pinterest")
@@ -133,53 +133,11 @@ li b{{flex:0 0 4.2vh;height:4.2vh;border-radius:50%;background:{accent};
 </style><body>{body}</body>"""
 
 
-_SENTENCE = re.compile(r"(?<=[^.][.!?])[ ]+(?=[A-Z])")
-_COUNT = re.compile(r"^(one|a|an|no|each|every|two|three|four|five|six|a single|only|nothing|all|both)[ ]", re.I)
-
-
-def done_items(z: dict) -> list:
-    """The zone's finished standard as checkable items, every word kept.
-
-    Rewritten 2026-09-15. The previous split cut at every comma and at " and ",
-    which chopped lists apart and lost words: "one wallet and one phone per
-    adult" became "One phone per adult", "the salt. The kettle" was welded
-    into one item, and 76 of the items across 114 zones read as fragments. It
-    also kept only the first four items, which dropped standards such as "The
-    cabinet strapped to a wall stud".
-
-    Now: a standard written as several sentences gives one item per sentence.
-    A standard written as one sentence is a comma list, split at top-level
-    commas, where a short part that starts a count ("one wash") joins the part
-    after it, since it shares that part's qualifier ("one bar per person in
-    the caddy"), and a short part that does not ("soles down") belongs to the
-    part before it. No cap: the card decides how many fit.
-    """
-    raw = str(z.get("done_looks_like") or "").strip()
-    sents = [s.strip().rstrip(".") for s in _SENTENCE.split(raw) if s.strip()]
-    if len(sents) > 1:
-        out = sents
-    else:
-        parts = [re.sub(r"^and ", "", p.strip())
-                 for p in re.split(r",(?![^(]*[)])", sents[0] if sents else "")]
-        out, carry = [], ""
-        for p in parts:
-            if not p:
-                continue
-            short = len(p.split()) < 3
-            if short and _COUNT.match(p):
-                carry = (carry + ", " if carry else "") + p
-                continue
-            if short and out and not carry:
-                out[-1] = out[-1] + ", " + p
-                continue
-            out.append((carry + ", " + p) if carry else p)
-            carry = ""
-        if carry:
-            if out:
-                out[-1] = out[-1] + ", " + carry
-            else:
-                out.append(carry)
-    return [o[0].upper() + o[1:] for o in out if o]
+# done_items() moved to video_zone.py 2026-09-15 so this pipeline and the
+# zone video pipeline (ops/video_zone.py's beats(), which feeds narration,
+# captions and the batch renderer) share one split instead of two copies
+# drifting apart, the same shape as the earlier zone_slug() consolidation.
+done_items = VZ.done_items
 
 
 _SENT = re.compile(r"(?<=[^.][.!?])[ ]+")

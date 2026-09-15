@@ -14,25 +14,26 @@ What done looks like
 
 4
 00:00:03,967 --> 00:00:04,733
-1 Each drawer has one job
+1 Each drawer has one job and a name
+written inside its front edge
 
 5
 00:00:04,733 --> 00:00:05,500
-2 A name written inside its front edge.
-Flatware sits in a divided insert with
+2 Flatware sits in a divided insert with
+nothing loose beside it
 
 6
 00:00:05,500 --> 00:00:06,267
-nothing loose beside it. Foil
+3 Foil, cling film, and baking paper stand
+on end so you can read the boxes from
 
 7
 00:00:06,267 --> 00:00:07,033
-3 Baking paper stand on end so you can
-read the boxes from above. Every drawer
+above
 
 8
 00:00:07,033 --> 00:00:07,800
-closes flush with one push
+4 Every drawer closes flush with one push
 
 9
 00:00:07,800 --> 00:00:10,000

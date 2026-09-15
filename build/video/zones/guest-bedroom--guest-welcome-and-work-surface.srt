@@ -27,7 +27,8 @@ for the suitcase
 
 7
 00:00:06,880 --> 00:00:07,800
-4 One labelled bin holding a spare charger
+4 One labelled bin holding a spare
+charger, wifi card, water glass
 
 8
 00:00:07,800 --> 00:00:10,000

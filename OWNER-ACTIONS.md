@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-15 (night), item 1b corrected: the free print-and-play deck now has 9 cards without a photograph, not 12 (EP-008, ET-004 and EU-011 got locally generated, reviewed heroes, verified live in the served PDF). Earlier: 2026-09-14 (evening), item 1c extended: the 12 Sept quote click, the 14 Sept buy-click and the 7 Sept checkout burst all traced to your own home connection (LRN-0010). Earlier: 2026-09-14, item 1's traffic figure carried forward to the
+**Last measured:** 2026-09-15 (night), item 1 extended: 11 of the 12 published YouTube videos say and show the wrong "what done looks like" list (the generator bug is fixed; only re-narrating, re-rendering and re-uploading those 11 needs you). Earlier same day, item 1b corrected: the free print-and-play deck now has 9 cards without a photograph, not 12 (EP-008, ET-004 and EU-011 got locally generated, reviewed heroes, verified live in the served PDF). Earlier: 2026-09-14 (evening), item 1c extended: the 12 Sept quote click, the 14 Sept buy-click and the 7 Sept checkout burst all traced to your own home connection (LRN-0010). Earlier: 2026-09-14, item 1's traffic figure carried forward to the
 real 2026-09-14 11:46 database read (74 visitors, 945 pageviews), then the same evening to a direct database read (75 visitors, 196 visits, 947 pageviews), replacing
 the three-day-old 2026-09-11 pull. Earlier: 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
 link into each of the 12 published video descriptions, closing
@@ -468,6 +468,25 @@ corrected text for each is in `build/video/youtube/<slug>.json` under
 `title`/`description`; the 12 slugs are the keys of
 `ops/youtube-published.json`. Low value against 2.5 visitors a day, so not
 worth a special trip, but cheap to fix the next time you are in Studio anyway.
+
+**Also separate, and not optional this time: 11 of those 12 videos show and
+say the wrong "what done looks like" list, and re-uploading is the only fix.**
+Found 2026-09-15 by a local session, confirmed and root-caused the same day by
+an operator cycle. `ops/video_zone.py`'s `beats()`, which the narration and
+caption pipeline both read from, used to cut the finished-standard sentence at
+every comma and every "and" and keep only the first four fragments of three
+words or more. On screen and in the narrator's voice this dropped real words
+("one wallet and one phone per adult" became "One phone per adult") and
+sometimes welded two sentences into one ("The salt. The kettle"). The
+generator is now fixed (`video_zone.done_items()`, gated so it cannot silently
+fork again), and the 102 not-yet-uploaded videos will render correctly the
+first time. The 11 affected videos already on YouTube cannot be corrected any
+other way, because YouTube will not replace a video file after upload: they
+need `python ops/video_narrated.py` run again on your machine (real narration
+and ffmpeg, not available to any cloud session) and the results re-uploaded
+over the old ones through YouTube Studio's replace-video option, which keeps
+the URL and view count. The one zone that was already correct is Entry Console
+or Bench.
 
 ### 1a. Verify the site in Google Search Console. One paste, about three minutes.
 

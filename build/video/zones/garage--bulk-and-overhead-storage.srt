@@ -20,15 +20,16 @@ you can read standing on the slab
 
 5
 00:00:05,040 --> 00:00:05,960
-2 A last-opened month
+2 A last-opened month and year on the end
+of each one
 
 6
 00:00:05,960 --> 00:00:06,880
-3 Year on the end of each one
+3 The heaviest bins on the lowest rack
 
 7
 00:00:06,880 --> 00:00:07,800
-4 The heaviest bins on the lowest rack
+4 Nothing overhanging the parking bay
 
 8
 00:00:07,800 --> 00:00:10,000

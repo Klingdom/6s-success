@@ -23,12 +23,11 @@ What done looks like
 6
 00:00:05,960 --> 00:00:06,880
 3 A drawer where every divided section has
-one named category
+one named category and you can see the
 
 7
 00:00:06,880 --> 00:00:07,800
-4 You can see the base of the drawer
-between things
+base of the drawer between things
 
 8
 00:00:07,800 --> 00:00:10,000

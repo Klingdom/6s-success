@@ -23,7 +23,8 @@ drain holes clear
 
 6
 00:00:05,500 --> 00:00:06,267
-3 One tool caddy holding trowel
+3 One tool caddy holding trowel, pruners,
+gloves
 
 7
 00:00:06,267 --> 00:00:07,033

@@ -8162,6 +8162,88 @@ def gate_video_slug_single_source() -> None:
              % (canonical, batch))
 
 
+def gate_done_items_single_source() -> None:
+    """The "what done looks like" split must come from one function, and
+    that function must not lose a word of the standard.
+
+    Found 2026-09-15, this operator, cold-reading a concurrent session's own
+    log entry rather than trusting its "recorded as the next workstream"
+    line. ops/video_zone.py's beats() (feeds narration, captions and the
+    batch renderer for all 114 zone videos) split the standard at every
+    comma and every " and ", kept only fragments of three words or more, and
+    capped at four: "one wallet and one phone per adult" lost "one wallet
+    and", "The counter holds only the board. The salt. The kettle stays
+    plugged in." welded two sentences into "The salt. The kettle", and
+    standards past the fourth slot (e.g. "The cabinet strapped to a wall
+    stud") were dropped outright. Checked directly against the 12 zone
+    videos already published to YouTube: 11 of 12 showed the defect on
+    screen and the narrator read the same fragments aloud, uncorrectable
+    now that they are uploaded. A sibling session had already fixed the
+    identical bug in ops/build_social_pins.py's done_items() the same day,
+    without knowing video_zone.py's beats() carried an independent, still
+    broken copy, and ops/video_zone_photo.py carried a cruder third copy
+    (comma-only, first three, no sentence handling). Consolidated into
+    video_zone.done_items(), the one real implementation; the other two
+    files now call it. Nothing gated this before, so it could recur exactly
+    the way the video-slug split did (video-slug-single-source, above).
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    video_zone = importlib.import_module("video_zone")
+    build_social_pins = importlib.import_module("build_social_pins")
+    video_zone_photo = importlib.import_module("video_zone_photo")
+    if not hasattr(video_zone, "done_items"):
+        fail("done-items-single-source",
+             "video_zone.py has no done_items(); the canonical split is missing")
+        return
+    if build_social_pins.done_items is not video_zone.done_items:
+        fail("done-items-single-source",
+             "build_social_pins.done_items is a separate function again, "
+             "not video_zone.done_items")
+        return
+    if video_zone_photo.script_for.__globals__.get("VZ") is not video_zone:
+        fail("done-items-single-source",
+             "video_zone_photo.py no longer imports video_zone as VZ")
+        return
+    import inspect
+    beats_src = inspect.getsource(video_zone.beats)
+    if "done_items(z)" not in beats_src:
+        fail("done-items-single-source",
+             "video_zone.beats() no longer calls done_items(); it may have "
+             "reverted to its own inline split")
+        return
+    if re.search(r',\(\?!\[\^\(\]\*\\?\)\)\|', beats_src):
+        fail("done-items-single-source",
+             "video_zone.beats() has grown back its own comma/'and' split "
+             "instead of calling done_items()")
+        return
+    cases = [
+        ("one wallet and one phone per adult are on the tray, keys hang on "
+         "their hook, mail goes straight to the recycling",
+         ["wallet", "phone", "keys", "mail", "recycling"]),
+        ("The counter holds only the board. The salt. The kettle stays "
+         "plugged in.",
+         ["board", "salt", "kettle"]),
+        ("the door latches on the first push, the mat catches soles down, "
+         "shoes are off the floor",
+         ["latches", "soles down", "shoes"]),
+    ]
+    for raw, must_contain in cases:
+        items = video_zone.done_items({"done_looks_like": raw})
+        joined = " | ".join(items).lower()
+        missing = [w for w in must_contain if w.lower() not in joined]
+        if missing:
+            fail("done-items-single-source",
+                 "done_items() lost %r from %r: got %r"
+                 % (missing, raw, items))
+            return
+        if len(items) < 3:
+            fail("done-items-single-source",
+                 "done_items() returned only %d item(s) for a 3-part "
+                 "standard: %r" % (len(items), items))
+            return
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -13459,6 +13541,7 @@ def main() -> int:
     run_gate(gate_dashboard_narrated_videos_live)
     run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)
+    run_gate(gate_done_items_single_source)
     run_gate(gate_cover_author_current)
     run_gate(gate_icons_current)
     run_gate(gate_hazard_icons_current)

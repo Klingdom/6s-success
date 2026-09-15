@@ -14,26 +14,27 @@ What done looks like
 
 4
 00:00:03,967 --> 00:00:04,733
-1 Every cable labelled at both ends
+1 Every cable labelled at both ends,
+running in one bundle to a single labelled
 
 5
 00:00:04,733 --> 00:00:05,500
-2 Running in one bundle to a single
-labelled power strip. Nothing plugged in
-that
+power strip
 
 6
 00:00:05,500 --> 00:00:06,267
-serves a device you no longer own
+2 Nothing plugged in that serves a device
+you no longer own, a clear hand's gap of
 
 7
 00:00:06,267 --> 00:00:07,033
-3 A clear hand's gap of air around the
-amplifier
+air around the amplifier and console
+vents, and every game controller and
+remote in
 
 8
 00:00:07,033 --> 00:00:07,800
-4 Every game controller
+one bin instead of four locations
 
 9
 00:00:07,800 --> 00:00:10,000
