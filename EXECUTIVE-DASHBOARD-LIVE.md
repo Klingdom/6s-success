@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 16:49 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-15 16:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-15T11:17:08Z (build 346c043b56385f64). The repository has since moved to build 587d80befe8bd586, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 24 |
-| Commits (7 days) | 1068 of 2208 total |
+| Commits (7 days) | 1071 of 2211 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `790a5d05` Zone pages: join the session line as a sentence; label empty |
+| Last commit | `4529e167` Merge: concurrent deploy-verdict confirmation |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 106/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
+| Zone imagery | 106/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,7 +56,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 0 of 0 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 106 reviewed pictures and every fix since the last deploy reach nobody.
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
