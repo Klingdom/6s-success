@@ -45,6 +45,15 @@ INDEX = os.path.join(ROOT, "ops", "room-image-sizes.json")
 # would cost storage and save nobody anything.
 WIDTHS = (420, 840, 1280)
 
+# Page photos: the large figures on hand-maintained pages (home, about,
+# method, consulting, book) were bare 200 to 250 KB JPEGs, most of them
+# loaded eagerly well below the fold (measured 2026-09-15: 1.6 MB of eager
+# image bytes across those pages). Same widths and encoders as the rooms,
+# their own folder, and not recorded in the room size index.
+PAGE_SRC = os.path.join(ROOT, "site", "assets", "img")
+PAGE_OUT = os.path.join(ROOT, "site", "assets", "img", "w")
+PAGE_PHOTOS = ("calm-living.jpg", "standard.jpg", "reset-together.jpg", "renewed.jpg")
+
 
 def main() -> int:
     try:
@@ -73,6 +82,29 @@ def main() -> int:
                             ("jpg", dict(quality=80, optimize=True,
                                          progressive=True))):
                 p = os.path.join(OUT, f"{stem}-{w}.{ext}")
+                if (os.path.exists(p)
+                        and os.path.getmtime(p) >= os.path.getmtime(f)):
+                    skipped += 1
+                    continue
+                im.convert("RGB").resize((w, h), Image.LANCZOS).save(p, **kw)
+                made += 1
+
+    os.makedirs(PAGE_OUT, exist_ok=True)
+    for name in PAGE_PHOTOS:
+        f = os.path.join(PAGE_SRC, name)
+        if not os.path.exists(f):
+            print(f"  page photo missing: {name}")
+            continue
+        stem = os.path.splitext(name)[0]
+        im = Image.open(f)
+        for w in WIDTHS:
+            if w > im.width:
+                continue
+            h = round(im.height * w / im.width)
+            for ext, kw in (("webp", dict(quality=80, method=6)),
+                            ("jpg", dict(quality=80, optimize=True,
+                                         progressive=True))):
+                p = os.path.join(PAGE_OUT, f"{stem}-{w}.{ext}")
                 if (os.path.exists(p)
                         and os.path.getmtime(p) >= os.path.getmtime(f)):
                     skipped += 1
