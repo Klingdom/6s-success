@@ -3545,6 +3545,15 @@ def gate_mobile_corpus_current() -> None:
              "mobile/quest-app/assets/quest-corpus.json is stale against "
              "site/assets/js/quest-data.js. Run: "
              "python ops/build_mobile_corpus.py")
+        return
+    # The bundled zone pictures and their require map come from the same
+    # generator and drift the same way: an approved or withdrawn hero must
+    # reach the app too.
+    problems = BMC.hero_problems()
+    if problems:
+        fail("mobile-corpus-current",
+             "%d bundled zone picture problem(s) in mobile/quest-app, e.g. %s. "
+             "Run: python ops/build_mobile_corpus.py" % (len(problems), problems[0]))
 
 
 def gate_mobile_finish_actions_distinct() -> None:
