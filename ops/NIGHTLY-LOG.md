@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, second)
+
+**Attach:** arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`8389a56`), clean, 20 commits.
+
+**Previous work: finished, checked not inherited.** The three-cycle-old Stripe-checks-into-hourly-brief handoff landed (`9e1681d`) since the last PM check-in. `preflight.py` ran here directly: every gate passed, 23 pre-diagnosed sandbox warnings, none new (cron-cadence drift already known and gated since 09-09, not a fresh finding).
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`, none newly stale (issue #2's "9 remaining" figure matches OWNER-ACTIONS). Nothing genuinely unblocked found this slot.
+
+**Did:** regenerated and pushed the command deck only.
+
+**Handing to the operator:** same standing Phil-blocked list, unchanged.
+
 ## 2026-09-15, PM check-in (30-minute triage)
 
 NEXT FOR THE OPERATOR: wire `ops/stripe_catalog.py`'s price-claim check, `ops/stripe_dedupe.py`'s duplicate-product check and `ops/stripe_brand.py`'s identity check into `ops/hourly_brief.py`, because this is the third PM cycle in a row to find that gap unstarted while two other pieces of real work landed around it.
