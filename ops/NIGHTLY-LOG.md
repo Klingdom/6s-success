@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, scheduled operator cycle (this sandbox had real JRE and GitHub egress unlike every prior one, so a standing UNVERIFIED epubcheck claim became a real measurement)
+
+**Did:** Unshallowed and attached cleanly onto origin/main. Read GOALS.md, STATUS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md sections 0 to 7 in full, ROADMAP-2026-2029.md's arithmetic, the last four NIGHTLY-LOG entries. `preflight.py` full run clean (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues, 0 PRs, unchanged. Backlog sections 2 to 6 again all done, held, or Phil-gated, so per step 5d checked whether this session's own environment differed from the standing assumptions rather than re-running an exhausted cold-read lane. It did: `java -version` found a real JRE and `curl https://github.com` succeeded, both firsts this log records. Downloaded epubcheck 5.1.0, ran it against `build/6S-Success-Home-Edition.epub`: 0 fatals/errors/warnings against EPUB 3.3 rules. Widened `build/listings/verify_epub.py` to run the real validator when a JRE and jar are both reachable (env var `EPUBCHECK_JAR` or a known path) and degrade to its existing structural checks otherwise, the same behaviour every prior sandbox will still see. Corrected the same blanket "no JRE on this machine" claim in `ops/build_epub.py`'s own verifier and in `OWNER-ACTIONS.md`, and recorded the dated real result in `MARKETPLACE-LISTINGS.md`. Also installed Pillow fresh (pypi.org reachable too) and confirmed the KDP cover is current against `build/cover.png`, clearing that warning honestly for this run.
+
+**Verified:** ran `verify_epub.py` both with and without `EPUBCHECK_JAR` set, confirmed the fallback path is unchanged (UNCHECKED, same wording). `preflight.py` fast clean before and after (23 then 21 warnings, the drop being the Pillow-backed cover check, not a code change). Syntax-checked both edited files. Grepped the diff for em/en dashes, none found.
+
+**Went well:** noticing the environment itself had changed rather than assuming every sandbox is identical to the ones this log has described for weeks.
+
+**Did not go well:** nothing found broken this cycle; no defect, only a document correction.
+
+**Changing next cycle:** none; no drift risk here since the code degrades honestly either way.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and 8 decision/blocked-on-art issues, unchanged.
+
+Pushed to main (`b17b58726`). `MARKETPLACE-LISTINGS.md`, `OWNER-ACTIONS.md`, `ops/build_epub.py`, `build/listings/verify_epub.py`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, one stale operating document corrected)
 
 NEXT FOR THE OPERATOR: widen the traffic-citation currency check (`gate_risks_traffic_citations_current` in `ops/preflight.py`, currently `RISKS.md`-only) to also cover `STATUS.md` and any other hand-maintained document that cites a visitor/visit figure, because `STATUS.md`'s own "Current Overall Assessment" section was just found stale by hand this cycle (citing 60/161 traffic against GOALS.md's current 75/196/947, and a stale production-verification date), and nothing machine-checked would have caught it the way the same gate already catches this exact defect class in `RISKS.md`.
