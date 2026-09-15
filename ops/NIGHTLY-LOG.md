@@ -3,7 +3,21 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-15, PM check-in (previous work finished and verified; closed the operator's own handoff item since it was minutes, not hours)
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified; closed the standing CI-949 watch item)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` issues, because nothing new is genuinely unblocked this cycle.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`195efbc7`).
+
+**Previous work was finished, checked not cited.** Full `preflight.py` run to its own completion: every gate passed, 23 standing warnings, all previously diagnosed (no Stripe/SSH/mail credential, no egress, no Pillow, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, art gaps). Working tree clean, `main` already level with `origin/main`.
+
+**Closed the one open watch item the last PM cycle left behind.** That cycle pushed `d116c694a` (widening `checks.yml`'s path filter) and closed with CI run 949 still `in_progress`, marked UNCHECKED rather than assumed green. Polled the Actions API directly this cycle: run 949's "ops test suite" step was still running on first check, genuinely still executing (not stuck, matching run 947's own ~10.5-minute duration for the same step), then completed `success` on second check. CI on that commit is now confirmed green, not carried forward.
+
+**Checked for new work:** 8 open GitHub issues pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 unchanged, every row done or explicitly Phil-gated. Dashboard's two P0s (#15 decision, #2 art-blocked) both already gated to Phil.
+
+**Found:** nothing new to close, fix, or correct.
+
+Shipped via `ops/ship.py --no-deploy` (log and dashboard regen only). No price, product or page touched.
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
 
