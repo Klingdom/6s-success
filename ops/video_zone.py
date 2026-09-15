@@ -117,7 +117,7 @@ html,body{{width:{w}px;height:{h}px;overflow:hidden}}
    pixels of empty below it, which reads as a slide that failed to load. */
 body{{background:{bg};color:{fg};font-family:Inter,Arial,sans-serif;
   display:flex;flex-direction:column;justify-content:center;
-  padding:300px 84px 470px}}
+  padding:{pad}}}
 .eyebrow{{font-size:34px;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:{eyebrow};margin-bottom:34px}}
 h1{{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:92px;
@@ -140,8 +140,8 @@ li b{{flex:0 0 54px;height:54px;border-radius:50%;background:{accent};
   line-height:1.3}}
 .rule{{height:5px;background:{honey};width:180px;margin:0 0 40px}}
 .trig{{font:700 44px/1.35 Inter;letter-spacing:.01em}}
-.foot{{position:absolute;left:84px;bottom:360px;font:600 30px/1 Inter;letter-spacing:.18em;
-  text-transform:uppercase;color:{footer}}}
+.foot{{position:absolute;left:{foot_left};bottom:{foot_bottom};font:600 30px/1 Inter;
+  letter-spacing:.18em;text-transform:uppercase;color:{footer}}}
 </style><body>{body}</body>"""
 
 
@@ -160,11 +160,28 @@ def shot(exe: str, extra_args: list, html: str, png: str) -> None:
 
 
 def page(body: str, dark: bool = False) -> str:
+    # The 1080x1920 portrait frame's own padding (300px top, 470px bottom)
+    # and footer position (bottom:360px) were the only values this SHELL
+    # ever had, so the 1920x1080 wide cut inherited them unchanged: only
+    # 1080 - 300 - 470 = 310px of content height, against roughly 1140px in
+    # the portrait frame. Measured 2026-09-15 by a local session rendering
+    # every beat of every zone as a screenshot (not a DOM dump, which read
+    # this layout wrong): once done_items() stopped truncating the
+    # standard, 35 of 114 zones' "What done looks like" list collided with
+    # the footer in wide mode, four of them already published (Cooking,
+    # Lower Cabinet and Cookware, Refrigerator and Freezer, Sink and
+    # Dishwashing). These values are that session's own measurement:
+    # confirmed clear on the same 35 zones by rendering a real screenshot
+    # of the four published ones at wide resolution before this shipped.
+    pad = "110px 120px 170px" if WIDE else "300px 84px 470px"
+    foot_left = "120px" if WIDE else "84px"
+    foot_bottom = "80px" if WIDE else "360px"
     return SHELL.format(
         fonts=FONTS, w=W, h=H,
         bg=DEEP if dark else PAPER, fg=PAPER if dark else INK,
         eyebrow=HONEY if dark else ACCENT, accent=ACCENT, paper=PAPER,
         ink=INK, honey=HONEY, footer="#ffffff55" if dark else "#8C8478",
+        pad=pad, foot_left=foot_left, foot_bottom=foot_bottom,
         body=body)
 
 

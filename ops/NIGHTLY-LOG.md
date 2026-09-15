@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (the wide-frame footer collision a concurrent session measured but did not land, fixed and screenshot-verified)
+
+**Did:** merging in a concurrent session's push (`24c44298`) surfaced another entry in the same "zone video checklist" thread: a session had measured that once `done_items()` stops truncating the standard (my own fix, two commits earlier this cycle), 35 of 114 zones' "What done looks like" list collides with the footer in the wide (1920x1080, YouTube) frame, because `beats()`'s `SHELL` reused the portrait frame's padding and footer position unchanged for the wide cut. That session measured and proposed exact replacement values (`padding:110px 120px 170px`, `.foot{bottom:80px;left:120px}`) but explicitly left them unapplied ("not work to start at the end of a session"), naming it as the next session's work.
+
+**Verified this sandbox actually has what's needed, rather than assuming otherwise:** `/opt/pw-browsers` carries a real Chromium, and `video_zone.browser()` finds it. Rendered the proposed values directly rather than trusting the prior session's numbers untested: all four already-published, previously-colliding Kitchen zones (Cooking, Lower Cabinet and Cookware, Refrigerator and Freezer, Sink and Dishwashing) now clear the footer in wide mode; the whole corpus's worst case by character count (Guest Vanity Storage, 424 chars) also clears; the hook, closing-call and a long Safety-pass instructional beat all still render correctly; the portrait frame, unchanged, still renders exactly as before. Screenshots viewed directly, not inferred from a DOM dump, per that session's own warning that a DOM dump reads this specific layout wrong.
+
+**Applied:** `page()` in `ops/video_zone.py` now branches padding and footer position on `WIDE`. No caption regeneration needed for this part, since it changes layout only, not the beat text or timing that `build/video/zones/*.srt` encodes.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings, none new), all 151 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after.
+
+**Went well:** the prior session's own measurement was precise enough to apply directly; independent re-verification against the real worst cases found no edge it missed.
+
+**Went not well:** still cannot render the actual narrated .mp4 files or their real audio-timed `zones-narrated` captions here (no TTS engine wired up, and this sandbox's ffmpeg is Playwright's minimal recording build, unconfirmed for libx264/aac); the wide layout fix is verified by screenshot, not by an actual finished video.
+
+**Changing next cycle:** none.
+
+**Next:** `render_all_narrated.py` for both orientations, regenerate the narrated SRTs, then the OWNER-ACTIONS re-upload of the 11 published videos, all still Phil's own machine per the prior entries. `BACKLOG-2026-09-07.md` C7 updated with this follow-on.
+
+Pushed to main. `ops/video_zone.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched; no site page changed.
+
 ## 2026-09-15, scheduled operator cycle (a second copy of the "what done looks like" split bug found live in ops/video_zone.py, fixed, single-sourced, 92 captions regenerated)
 
 **Did:** the merge that landed a concurrent local session's work (`f1b77eac`) carried its own log entry describing a real, still-open defect: `ops/build_social_pins.py`'s `done_items()` had a comma/"and" split that dropped words and welded sentences, fixed that same session, but the entry itself named `ops/video_zone.py`'s `beats()` as carrying an *independent, unfixed* copy of the same bug, confirmed live on 11 of the 12 zone videos already published to YouTube, and a third, cruder copy in `ops/video_zone_photo.py`. That session deliberately deferred it ("recorded in BACKLOG as the next workstream rather than folded into this one"). Read `beats()` directly rather than trust the description: confirmed the exact old split at line 232, still there. This is the highest-priority genuinely unblocked, unfixed item in the whole backlog: P0 trust (wrong words shown and narrated on live customer-facing video), and it sits directly upstream of C6 (publish the 102 remaining videos), so shipping it unfixed would have put the same defect into all 114 videos, not just 11.
@@ -19,6 +39,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** same standing `OWNER-ACTIONS.md` list, now with the 11-video re-render/re-upload named explicitly under item 1. 7 open decision/blocked-on-art GitHub issues unchanged.
 
 Pushed to main. `ops/video_zone.py`, `ops/build_social_pins.py`, `ops/video_zone_photo.py`, `ops/preflight.py`, 92 `build/video/zones/*.srt` files, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, command deck. No price or product touched; no site page changed; IndexNow not applicable.
+
+## 2026-09-15, local session: zone video checklist, fix designed and measured, not rendered
+
+**Why this entry exists:** BACKLOG 1b (added with `5ab0cf07`) records that 11 of the 12 published zone videos show and narrate a broken "What done looks like" checklist. This session measured whether the whole-standard split from `build_social_pins.done_items()` can simply replace the one in `ops/video_zone.py` `beats()`, and handed the rendering to a later session.
+
+**Measured:**
+- **Vertical (1080x1920):** all 114 zones fit with the whole standard, confirmed from screenshots. The longest, Guest Vanity Storage at 426 characters, ends 81 px above the footer.
+- **Wide (1920x1080):** 35 of 114 collide with the footer, including four published Kitchen zones (Cooking, Lower Cabinet and Cookware, Refrigerator and Freezer, Sink and Dishwashing). The cause is the shared SHELL frame spacing: `padding:300px 84px 470px` and `.foot{bottom:360px}` were sized for the 1920 px vertical frame, leaving 310 px of content height in a 1080 px frame. Spacing the wide frame at `padding:110px 120px 170px` with `.foot{bottom:80px; left:120px}` puts all 114 clear. Screenshots of every beat of two zones under both spacings read as well or better. Judge this from screenshot pixels, not a DOM dump or a page-side marker: both reported wrong results on this layout.
+
+**Why it was not done here:** `beats()` feeds the narration (edge-tts reads each beat's visible text) and the SRT sidecars under `build/video/zones-narrated`, which are committed and gated (`gate_srt_captions_current`, `gate_films_match_their_captions`, `gate_caption_line_length`). Changing the checklist means new narration and a re-render of 228 videos, then Phil re-uploading the 12 published ones. That is hours of rendering, and not work to start at the end of a session.
+
+**Next session:** one shared split (move `done_items()` somewhere `video_zone.py` can import without a cycle, and delete the copy in `video_zone_photo.py`), wide-only frame spacing as above, `render_all_narrated.py` for both orientations, regenerate the SRTs, run the three gates, then an OWNER-ACTIONS item for the 12 re-uploads.
+
+**Picked up by the cycle above (`5616a7f4`), pushed minutes after this entry:** the shared split is done. The wide-frame footer-collision measurement above (35 of 114 zones) is real and still open, not addressed by that fix, since it is a CSS spacing question, not a text-splitting one; `beats()`'s wide (`--wide`) frame padding is unchanged. Needs its own pass: apply this session's measured `padding:110px 120px 170px`/`.foot{bottom:80px; left:120px}` to the wide `SHELL`, screenshot-verify all 114 zones (not a DOM dump, per this entry's own warning), then the render/re-upload sequence above.
 
 ## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; cold-read of ops/service_orders.py found nothing wrong)
 
