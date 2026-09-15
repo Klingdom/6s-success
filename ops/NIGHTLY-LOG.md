@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, clean pass, nothing new unblocked)
+
+**Attach:** arrived shallow and detached; unshallowed, `merge --ff-only` onto `origin/main` (`31da75e1`), clean.
+
+**Previous work confirmed finished, checked rather than inherited.** `preflight.py` unbounded: every gate passed, 23 pre-diagnosed warnings, none new. Working tree was clean and main already pushed before I touched anything. 8 GitHub issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done, HOLD or Phil-gated.
+
+**Checked, not just cited:** the deploy-verdict/log discrepancy the prior PM cycle flagged is still open (`ops/deploy-verdict.json` still names `047a015202e83e30`; `site/build-id.txt` is `065e8b434a25c03c`) and still correctly recorded in `OWNER-ACTIONS.md` 1b, untouched here since this sandbox has no production access either. `GOALS.md`, `RISKS.md` and `BACKLOG-2026-09-07.md` traffic citations all agree (75/196/947, 2026-09-14 21:30). The standing cold-read lanes (`ops/*.py`, `build/listings/*.py`, root `.md` files) remain exhausted per the log's own mention counts; found no new candidate to open.
+
+**Handing to the operator:** no specific lane; continue wherever the last full cycle left off. Nothing time-boxed to hours was found this slot.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (independent verification pass, no new defect; two GitHub issues re-checked cold against live code, both found current)
 
 **Did:** Unshallowed and attached cleanly (`fetch --unshallow`, ff-only onto `origin/main`, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` referenced, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Full `python ops/preflight.py`: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. `curl` to `6s-success.com` confirmed exit 56/000, and the agent proxy's own status log shows a genuine 403 policy denial on that host, not a local bug, matching every prior cycle's report.
