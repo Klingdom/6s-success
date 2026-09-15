@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished, CI confirmation handed to the operator)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`5b668b3d`).
+
+**Previous work finished, checked not cited.** The prior PM cycle's own handoff (build the path-filter coverage gate) was already built and pushed by the time this cycle attached (`5b668b3d`, between that entry and this one). Ran `preflight.py` unbounded, not under a killable timeout: every gate passed including the new `gate_ci_path_filter_covers_preflight_inputs` itself, 23 standing warnings, none new. That gate passing locally is direct evidence the 23 named path-filter gaps are actually closed in `checks.yml`, not just detected. Read the commit's own message and diff rather than trust the summary: it names the fix (`content/**`, `mcp/**`, `.gitattributes`, `.gitignore`, `mobile/quest-app/package.json`, root-only `*.md`) and the two already-landed proof commits (`e8ef3bed`, `7e644cf0`) that shipped with zero Checks runs before the fix.
+
+**Not yet closed: CI itself.** Pulled run 964 (head `5b668b3d`) live via the GitHub API three times across this cycle; still `in_progress` on the Preflight step each time, ordinary duration (this repo's own preflight run takes several minutes locally too, not stalled). Left for the operator at :43 to confirm green rather than assumed.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2-6 still done, HOLD or Phil-gated. 8 GitHub issues pulled fresh: unchanged, all decision/blocked-on-art. 0 PRs. `OWNER-ACTIONS.md` last measured tonight, no stale figure found. `gate_status_currency` passed clean (no warning), so `STATUS.md`'s stale header date is not real drift by the gate's own threshold.
+
+**Handing to the operator:** confirm run 964 (and `publish-image.yml` if it fires) lands green on `5b668b3d`; nothing else unblocked this pass.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only (regenerated as a side effect of running `preflight.py`). No price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, one stale count closed, standing handoff carried forward for the operator)
 
 NEXT FOR THE OPERATOR: build the general gate the prior PM check-in named and left unbuilt (`3dca7b55`'s own entry above), because it checks every preflight gate's file dependency against the workflow path filters that would trigger it, and the same gap has now caused a real gate to silently not run in CI three separate times this week (`linkedin-drafts.yml`, `build_etsy_assets.py`, now App.js/ON-DEVICE-TEST.md/quest-corpus.json). Confirmed today it still does not exist (`grep` for a path-filter-coverage gate in `ops/preflight.py`: none found).
