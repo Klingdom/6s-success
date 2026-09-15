@@ -4,15 +4,25 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-09-15, PM check-in (30-minute triage, third)
 
-NEXT FOR THE OPERATOR: verify or trigger a real production redeploy, because build `587d80befe8bd586` (Phil's own `790a5d05` zone-page fix) is unconfirmed live against the last confirmed build `346c043b56385f64` (11:17:08Z).
+NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
 
-**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`790a5d05`), clean, 3 commits ahead of the last PM cycle, two of them Phil's own local-session fixes.
+**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`790a5d05`), clean, 3 commits ahead of the last PM cycle, two of them Phil's own local-session fixes; a fourth (`11cfb6fd`) landed concurrently while this cycle worked and merged clean.
 
 **Previous work: finished, checked not inherited.** `preflight.py` ran directly: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`.
 
-**Found and fixed:** `OWNER-ACTIONS.md` item 1b's "no redeploy needed" resolution had gone stale the moment `790a5d05` landed after the 11:17:08Z deploy confirmation; reopened it with the exact commit and build gap rather than leave it silently wrong. Command deck regenerated to match.
+**Found, then found resolved:** `OWNER-ACTIONS.md` item 1b's "no redeploy needed" resolution had gone stale the moment `790a5d05` landed after the 11:17:08Z deploy confirmation with no newer verdict committed; corrected the doc to name the exact gap. Before shipping, the concurrent local session's own `11cfb6fd` landed, confirming production redeployed and current at build `587d80befe8bd586` (checked 16:47:49Z), the entry below. Updated `OWNER-ACTIONS.md` again to record the gap as closed rather than ship a stale reopening. Command deck regenerated to match.
 
-**Handing to the operator:** the redeploy-verification item above if real access exists this run; otherwise the same standing Phil-blocked list, unchanged.
+## 2026-09-15, afternoon, local session: zone pages read the session line as a sentence; empty zone thumbnails labelled (`790a5d05`)
+
+**Found by looking, not by a gate:** after the day's releases I screenshotted the live homepage, shop, Kitchen room page, Landing Spot zone page and deck page at 390 and 1280 px. Two defects a visitor sees:
+- **Session line:** 113 of 115 zone pages rendered "One session: 30-45 min. most of it in Sort" directly under the title. The time note continues the session fragment, so the full stop landed in front of a lowercase word. `_join_clause()` had already fixed the same join in the structured data ("125 answers"); the visible line was never changed to match.
+- **Empty thumbnail:** room pages showed an empty dashed box for the 8 zones with no approved picture. On a phone that reads as an image that failed to load.
+
+**Did:** `_session_notice()` in `ops/build_zone_pages.py` builds the visible line the way `_join_clause()` builds the answer: a lowercase note continues after a comma ("**One session: 30-45 min**, most of it in Sort, because the paper is the slow part."), and a note that starts a sentence keeps the full stop. The empty slot now says "No picture yet" (small, muted, centred). Regenerated all zone and room pages; the stylesheet change re-fingerprinted every page that links it. Checked locally at 390 px before release.
+
+**Live:** The image build passed (full preflight in CI; local full preflight was killed twice for low memory, so local evidence was 16 targeted page gates and 11 related tests), and production moved from build `346c043b56385f64` to this release; freshness CURRENT; the live Landing Spot page serves the joined session line, four sampled zone pages carry no old lowercase join, and the live Kitchen room page serves the 'No picture yet' slot. Production is on build `587d80befe8bd586`. The deploy verdict was committed after this deploy, with this entry.
+
+**No gate added:** the broken join is a one-line template fault and `_session_notice()` now owns it. A gate for "a full stop followed by a lowercase word in rendered text" would be broader and more useful, and would take a sweep of false positives first (abbreviations, "e.g.", list markers). Recorded here, not built.
 
 ## 2026-09-15, PM check-in (30-minute triage, second)
 
