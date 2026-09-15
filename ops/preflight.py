@@ -244,9 +244,17 @@ def gate_product_images_exist() -> None:
     images resolved fine, which is exactly why a single wrong one survives: the
     page looks right unless you check the tile that is broken.
 
-    site/assets/js/site.js builds the URL as "assets/img/" + img, so that is
-    what this checks. It is a file existence test, not a fetch, so it works in
-    CI with no network.
+    site.js's imgSrc() was fixed the same day: a bare filename resolves under
+    assets/img/, but a value containing a slash is already rooted at assets/
+    (cards/..., zones/..., ...) and must not get assets/img/ prefixed a second
+    time. This gate went stale against that fix and kept checking assets/img/
+    unconditionally; it happened to stay quiet only because assets/img/cards/
+    still carried an old duplicate copy of the entryway card art. Found
+    2026-09-15 when 101 new zone-pack images (assets/zones/...) tripped a
+    real FAIL for tiles that render correctly on the actual site, confirmed
+    against the pre-rendered site/shop.html, which already emits
+    src="assets/zones/...". Mirror imgSrc()'s own rule here instead of a
+    second, drifting copy of it.
     """
     import re as _re
     d = os.path.join(SITE, "assets", "js", "data.js")
@@ -256,12 +264,14 @@ def gate_product_images_exist() -> None:
     src = io.open(d, encoding="utf-8", errors="replace").read()
     missing = []
     for v in sorted(set(_re.findall(r'"img":\s*"([^"]+)"', src))):
-        if not os.path.exists(os.path.join(SITE, "assets", "img", v)):
+        rel = v if "/" in v else os.path.join("img", v)
+        if not os.path.exists(os.path.join(SITE, "assets", rel)):
             missing.append(v)
     if missing:
         fail("product-images",
-             "%d product image(s) do not exist under site/assets/img/, so the "
-             "tile shows a broken image: %s" % (len(missing), missing[:3]))
+             "%d product image(s) do not exist under site/assets/ at the path "
+             "imgSrc() would build, so the tile shows a broken image: %s" % (
+                 len(missing), missing[:3]))
 
 
 def gate_third_party() -> None:

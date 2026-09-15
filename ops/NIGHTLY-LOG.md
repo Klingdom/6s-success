@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work was NOT finished: a real preflight FAIL, root-caused and fixed, not a site defect)
+
+NEXT FOR THE OPERATOR: same standing root `.md`-by-mention-count cold-read lane, since every backlog row is done, HOLD, or Phil-gated and all 8 GitHub issues are unchanged decision/blocked-on-art; confirm CI lands green on `47d2a989`'s superseding run once this fix's own push completes it.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`47d2a989`, Phil's own local push: zone-pack images, supplies-as-cards).
+
+**Previous work was NOT finished.** Full `preflight.py` FAILed: `gate_product_images_exist` named 101 missing images, all `zones/...` paths from Phil's just-landed shop change. Traced before touching anything: `site/shop.html` already serves `src="assets/zones/..."` and the file is really there, so the shop tile is not broken. The gate itself was stale: `site.js`'s `imgSrc()` was fixed 2026-09-04 so a slash-containing value roots at `assets/` directly, but this gate never got the same fix and kept checking `assets/img/` unconditionally, staying quiet only because `assets/img/cards/entryway/` happened to hold a leftover duplicate of the card art. The first `zones/...` value with no such duplicate exposed it.
+
+**Fixed:** `gate_product_images_exist` now mirrors `imgSrc()`'s own slash-rooting rule. New `ops/tests/test_gate_product_images_exist.py` (6 cases: real corpus clean, a broken slash-rooted path caught by name, the correct root confirmed directly, a broken bare filename still caught, a missing data.js warns not fails, real file left clean after) proved fail-then-pass against the real regression.
+
+**Verified:** `preflight.py` clean after (0 gates failed, 23 standing warnings, none new). All `ops/tests/test_gate_*.py` pass. `check_urls.py` 188/188, `audit_pages.py` clean, `affiliate.py --check` clean (162 documents), mobile `npm test` 4 suites pass.
+
+**Went well:** checking the real rendered `shop.html` before assuming the FAIL meant a broken site, per CLAUDE.md 0.3.
+
+**Did not go well:** the gate drifted out of sync with the resolver logic it exists to police, the same "source corrected, checker never re-derived" class this repo names as dominant, this time in the checker itself.
+
+Shipped via `ops/ship.py`. `ops/preflight.py`, `ops/tests/test_gate_product_images_exist.py`, command deck. No price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently re-verified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: same standing root `.md`-by-mention-count cold-read lane (ops/*.py and workflow files already exhausted), since every backlog row is done, HOLD, or Phil-gated and all 8 GitHub issues are unchanged decision/blocked-on-art.
