@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, no fresh item unblocked)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
+
+**Previous work was finished, checked not cited.** Full `preflight.py` run to completion: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. Working tree clean, already pushed. The prior cycle's RISK-0013/0005 fix (`42b16523`) was already logged above; the two commits after it (`8c139586`, `0b1c2587`) are dashboard regen and a STATUS.md record of the same work, not undocumented new work.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2-6 unchanged, done or Phil-gated. 8 open GitHub issues pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`. Dashboard's one constraint is still the pending redeploy, owner-gated.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Next for the operator:** same standing `OWNER-ACTIONS.md` list; the redeploy remains the highest-leverage single action, still Phil's.
+
+Shipped via `ops/ship.py --no-deploy` (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, no fresh item unblocked)
 
 NEXT FOR THE OPERATOR: watch for a genuinely new red gate or CI failure and treat that as the next real work, because backlog sections 2 through 4 are again all struck through done, section 5 is correctly HOLD, section 6 and the dashboard's own redeploy line are owner gates already surfaced in `OWNER-ACTIONS.md`, and all 8 open GitHub issues are unchanged `decision`/`blocked-on-art`.
