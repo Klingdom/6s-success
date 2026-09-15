@@ -16,8 +16,10 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-14  
+**Last Updated:** 2026-09-14 (late)  
 **Updated By:** Claude, scheduled operator cycle. Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow` then ff-only onto `origin/main`.
+
+**Did (this pass):** found RISKS.md's two most-read entries, RISK-0013 ("this register's own most consequential entry") and RISK-0005, still citing a superseded traffic reading (68 visitors/161 visits, 2026-09-11) a cycle after GOALS.md moved to 75/196/947 (2026-09-14 21:30), and RISK-0013 never mentioning LRN-0010 at all, so it still treated the 16 unpaid Stripe checkout sessions as an open, ambiguous lead that finding had already retired (0 stranger buy-clicks since 7 Sept, not "16 ambiguous"). Fixed both entries. New `gate_risks_traffic_citations_current` in `ops/preflight.py` requires GOALS.md's current baseline appear in any RISKS.md block that cites an actual visitor/visit figure; own substring-matching bug caught and fixed before shipping (see `ops/NIGHTLY-LOG.md`). A concurrent PM check-in pushed mid-cycle (dashboard-only regen after a stale commit gap); rebased cleanly, no content conflict. Full `preflight.py` clean after (0 gates failed, 23 pre-diagnosed warnings), `check_urls.py` (188/188), `affiliate.py --check` (162 documents). 8 GitHub issues unchanged (decision/blocked-on-art), no egress, no mail credential.
 
 **Did (evening, same local session):** every funnel signal since 7 Sept traced to the owner's home IP through the proxy access log: the ~90-session checkout burst (7 Sept), the only quote click (12 Sept) and the only matched buy-click (14 Sept). Strangers' buy-clicks since 7 Sept: 0. `LEARNINGS.md` LRN-0010. `ops/audit_visual.py` desktop decoding crash fixed. Reported, not touched: Ledgerium's `umami`/`umami-db` containers restart-looping on the shared VPS.
 
