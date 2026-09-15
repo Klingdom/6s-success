@@ -341,6 +341,41 @@ def preview(pdf_path, pages, dest, cols, width=2000, height=1500):
     doc.close()
 
 
+def _regenerate_sources() -> None:
+    """Rebuild every HTML file LISTINGS reads before rendering any of them.
+
+    Found 2026-09-15: `9ff67ac8` rebuilt the Kitchen, Moving-In and Holiday
+    Hosting PDFs and gate_etsy_pdfs_current went green, then failed on the
+    same three listings again the very next run, with content.json
+    unchanged in between. Root cause: this script only ever reads whatever
+    already sits at build/products/*.html and build/6S-Whole-House-Print-
+    Pack.html on disk (render() calls `open(...)`, never a generator); it
+    never regenerates them itself. build/products/ is gitignored, so
+    nothing commits its freshness and nothing enforces it either. Whoever
+    ran the rebuild had a stale build/products/RP-KITCHEN.html already on
+    disk (from before some earlier content.json edit) and rendered that,
+    which produced a PDF that satisfied the gate's before/after diff
+    without actually catching up to content.json. The gate's own fix
+    message ("Run: python build/listings/build_etsy_assets.py") could not
+    have prevented this, because running it was exactly what produced the
+    stale fix. Regenerating the three real sources here, every run, closes
+    the gap the same way issue #26's other generator-chaining fixes did.
+    """
+    ops_dir = os.path.join(ROOT, "ops")
+    sys.path.insert(0, ops_dir)
+    try:
+        import build_printpack
+        import build_standards
+        import build_catalog
+        assert build_printpack.main() == 0, "build_printpack.py failed"
+        assert build_standards.main() == 0, "build_standards.py failed"
+        build_catalog.build_all(build_catalog.catalogue(build_catalog.load()))
+    finally:
+        sys.path.remove(ops_dir)
+        for m in ("build_printpack", "build_standards", "build_catalog"):
+            sys.modules.pop(m, None)
+
+
 def main():
     browser = find_browser()
     if not browser:
@@ -348,6 +383,7 @@ def main():
               "on Windows, Playwright's Chromium, and PATH). Set $ETSY_BROWSER "
               "to a binary that supports --headless --print-to-pdf.")
         return 1
+    _regenerate_sources()
     shutil.rmtree(TMP, ignore_errors=True)
     os.makedirs(TMP, exist_ok=True)
 
