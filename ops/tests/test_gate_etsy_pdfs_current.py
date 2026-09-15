@@ -109,6 +109,24 @@ def find_browser():
     return None
 
 
+def write_preview(dest):
+    # Found 2026-09-15: the real build_etsy_assets.py's main() also writes a
+    # preview PNG per listing under listing-images/, a path gate_etsy_pdfs_
+    # current() never compares. Restoring only the PDF targets left those
+    # PNGs modified in the working tree after every run (PDF/PNG rendering
+    # is non-deterministic run to run), so the NEXT preflight invocation saw
+    # build/listings/etsy/ already dirty and refused to check at all. This
+    # fixture must reproduce that exact side effect (a file that changes on
+    # every render even when the source text does not) or case 1 below
+    # cannot exercise the bug it exists to catch.
+    idir = os.path.join(os.path.dirname(os.path.dirname(dest)),
+                        "listing-images")
+    os.makedirs(idir, exist_ok=True)
+    stem = os.path.splitext(os.path.basename(dest))[0]
+    with open(os.path.join(idir, stem + "-1-first-page.png"), "wb") as fh:
+        fh.write(os.urandom(16))
+
+
 def render(browser, src_rel, dest):
     url = "file:///" + os.path.abspath(os.path.join(ROOT, src_rel)).replace(os.sep, "/")
     last = None
@@ -208,6 +226,7 @@ def main():
         if not os.path.exists(dest) or os.path.getsize(dest) <= 1024:
             print("FAIL: no PDF produced for " + slug)
             return 1
+        write_preview(dest)
     for slug in sorted({s for s, _, _ in LISTINGS}):
         dest = os.path.join(OUT, slug, "files", INSTRUCTIONS[1])
         render(browser, INSTRUCTIONS[0], dest)

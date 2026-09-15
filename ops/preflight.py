@@ -11563,6 +11563,23 @@ def gate_etsy_pdfs_current() -> None:
     before = {rel: norm_text(os.path.join(ROOT, rel)) for rel in targets
               if os.path.exists(os.path.join(ROOT, rel))}
 
+    def _restore_etsy_all() -> None:
+        # Found 2026-09-15: build_etsy_assets.py's own main() also writes a
+        # preview PNG per listing under listing-images/ as a side effect of
+        # rendering the PDF (three per listing: first page, four sheets,
+        # last page), a path this gate never compares. Restoring only
+        # `targets` (the PDFs and the shared instructions sheet) left those
+        # PNGs sitting modified in the working tree after every run, since
+        # PDF/PNG rendering is non-deterministic run to run (this gate's own
+        # norm_text() docstring above). The next preflight invocation then
+        # saw build/listings/etsy/ already dirty and failed inconclusively
+        # ("could not check ... commit or stash first"), permanently masking
+        # the real content check behind a self-inflicted dirty tree. Restore
+        # everything this run actually touched under the etsy tree, not
+        # just the paths this gate happens to compare.
+        _restore([p for p in worktree_changes()
+                  if p.startswith("build/listings/etsy/")])
+
     # Found 2026-09-13, the 6th consecutive CI run this exact gate has taken
     # down: build_etsy_assets.py's own render() already bounds each browser
     # launch to 90s with a retry, and main() bails on the first listing that
@@ -11612,7 +11629,7 @@ def gate_etsy_pdfs_current() -> None:
              "committed files untouched, and swept for any orphaned Chrome "
              "process this timeout's SIGKILL could not reach. Unchecked, "
              "not clean." % ETSY_PDFS_TIMEOUT_SECONDS)
-        _restore(targets)
+        _restore_etsy_all()
         return
     no_browser = "no headless Chromium-family browser found" in p.stdout
     if no_browser:
@@ -11620,14 +11637,14 @@ def gate_etsy_pdfs_current() -> None:
              "could not check: no headless Chromium-family browser found "
              "here, so the Etsy PDFs could not be re-derived from the "
              "current site content. Unchecked, not clean.")
-        _restore(targets)
+        _restore_etsy_all()
         return
 
     stale = [rel for rel in targets
              if os.path.exists(os.path.join(ROOT, rel))
              and rel in before
              and norm_text(os.path.join(ROOT, rel)) != before[rel]]
-    _restore(targets)
+    _restore_etsy_all()
 
     if stale:
         fail("etsy-pdfs-current",
