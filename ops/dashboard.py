@@ -443,12 +443,45 @@ S = {"generated": now.strftime("%Y-%m-%d %H:%M")}
 # referencing a name (`_prev`) that a later block defined, which only ever
 # worked by accident of load order and threw NameError once nothing later
 # in the file happened to run first.
-_prev = {}
-try:
-    _prev = json.load(io.open(os.path.join(ROOT, "ops", "state.json"),
-                              encoding="utf-8"))
-except Exception:                                            # noqa: BLE001
-    pass
+def _load_prev_state(path=None) -> dict:
+    """The last regenerated state.json, tolerating one unreadable copy.
+
+    A working-tree state.json that fails to parse is not evidence there is
+    nothing to carry forward, it is evidence this run could not look, the
+    exact distinction _carry_last_reading() itself exists to enforce for
+    traffic_line and affiliate_trigger. Found 2026-09-15: merge commit
+    d9893032 regenerated the dashboard while this exact file still held its
+    own unresolved conflict markers, json.load() threw on the literal
+    "<<<<<<<" text, the old bare `except: pass` below swallowed it, and
+    every carry-forward field (traffic_line, affiliate_trigger,
+    revenue_month, deploy_verdict, paying_customers) silently reset as if
+    nothing had ever been measured, for every one of the 9 commits since,
+    each one carrying nothing because the last real reading was already
+    gone. Falling back to the last COMMITTED copy is never worse than the
+    {} this used to fall back to: at worst it is one run behind, not zero
+    runs of memory at all.
+
+    path is only ever overridden by a test; every real caller reads the
+    repository's own ops/state.json.
+    """
+    path = path or os.path.join(ROOT, "ops", "state.json")
+    try:
+        return json.load(io.open(path, encoding="utf-8"))
+    except Exception:                                        # noqa: BLE001
+        pass
+    committed = sh("git show HEAD:ops/state.json")
+    if committed:
+        try:
+            print("  ! working-tree ops/state.json did not parse; falling "
+                  "back to the last committed copy so carry-forward fields "
+                  "are not lost", file=sys.stderr)
+            return json.loads(committed)
+        except Exception:                                    # noqa: BLE001
+            pass
+    return {}
+
+
+_prev = _load_prev_state()
 
 # --- git / github
 S["commit"] = sh("git rev-parse --short HEAD")

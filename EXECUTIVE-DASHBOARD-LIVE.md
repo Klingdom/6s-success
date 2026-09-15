@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 16:14 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-15 17:09 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **not measured, no Stripe credential in this environment** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-14 18:32 because this run could not reach Stripe** |
 | | `............................` |
-| **Paying customers** | not measured |
+| **Paying customers** | 0 |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -24,13 +24,13 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
-| Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
+| Traffic | 947 pageviews from 75 visitors across 196 visits, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 506 from 73 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 24 |
-| Commits (7 days) | 1065 of 2204 total |
+| Commits (7 days) | 1069 of 2209 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `8389a565` Command deck: regenerate after rebase |
+| Last commit | `11cfb6fd` Log the zone session-line release; commit its deploy verdict |
 
 ## Product readiness
 
