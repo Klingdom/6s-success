@@ -514,6 +514,31 @@ intermediates first, and the PDFs came back text-identical to the pre-rebuild ve
 one differing sentence and look it up in the source file. An untracked intermediate cannot be trusted to be current, and agreement
 between tools that read the same intermediate is not independent evidence.
 
+#### LRN-0012: The local image model draws the room, not the micro zone; a close-up naming one or two objects is the only prompt shape that has produced acceptable art
+
+**Status:** SUPPORTED
+**Confidence:** MEDIUM (one model, one night, one reviewer)
+**Domain:** MEDIA / BUILD
+**Measured:** 2026-09-14 to 2026-09-15
+
+SD 1.5 on the local GPU (`ops/image_local.py`), reviewed by Claude at full size against each zone's `done_looks_like` or each
+card's callouts, and for cards also at the 750x349 photograph band the template crops to.
+
+- Zone heroes, subject + room word + "warm wood and painted wall, daylight": 0 of 8 zones acceptable, 32 images. Every set
+  showed the whole room (a kitchen, a bathroom, a home office) and dropped the zone object (the prep counter, the under-sink
+  cabinet, the printer).
+- Same zones, "close up of", no room tail, clutter pushed into the negative prompt: 0 of 3, 12 images. The room went away, and
+  so did the object; two sets became wood or wall texture.
+- Entryway cards, "close up of" one or two concrete objects, no room tail: 3 of 12 cards acceptable, 48 images (EP-008
+  backpacks and shoes by a rainy door, ET-004 wall mail sorter, EU-011 clipboard on a hook). Every rejection needed lettering
+  (labels, whiteboards, command boards), fine mechanical detail (keys, boot-tray rims, umbrella ribs) or a specific object the
+  model could not hold together (a leash, stacked letter trays).
+
+**Implication.** Stop spending cycles on prompt variations for the eight image-less zone pages: none of the three prompt
+shapes moved them. For the nine remaining placeholder cards, one more round is worth it only for subjects that name a single
+large, simple object; anything that depends on text or fine detail needs a stronger model or a real photograph. A subject
+naming more than two objects has not produced an acceptable image in this pipeline.
+
 ### Verified Customer Learnings
 
 `NONE VERIFIED IN THIS FILE`

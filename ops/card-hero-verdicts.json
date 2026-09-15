@@ -156,8 +156,9 @@
   "verdict": "no"
  },
  "EP-008": {
-  "sha": "1ca32771a4",
-  "verdict": "no"
+  "sha": "42a6ab1bb4",
+  "verdict": "ok",
+  "why": "two red backpacks by a rain-streaked glass door, dark shoes, wet reflective tile floor: soaked gear and a wet mess with no umbrella home. Minor strap/shoe merge not visible at card band size."
  },
  "EP-009": {
   "sha": "527defbb90",
@@ -236,8 +237,9 @@
   "verdict": "no"
  },
  "ET-004": {
-  "sha": "bfe9557f18",
-  "verdict": "no"
+  "sha": "18137cd874",
+  "verdict": "ok",
+  "why": "wall-mounted wooden two-column slotted mail sorter holding plain white envelopes; coherent joinery; small illegible round seal marks, no letters or brand."
  },
  "ET-005": {
   "sha": "ec42e48aa2",
@@ -312,8 +314,9 @@
   "verdict": "ok"
  },
  "EU-011": {
-  "sha": "e0b798af93",
-  "verdict": "no"
+  "sha": "990b74d90c",
+  "verdict": "ok",
+  "why": "plain clipboard with blank white paper hung from a hook on a door panel; coherent clip and hanger; no text."
  },
  "EU-012": {
   "sha": "54a8367e93",

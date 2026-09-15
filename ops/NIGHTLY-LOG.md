@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, local session: hero badge truth, method grid, first local card art accepted (release 04985c27 live; card art committed)
+
+**Did:** homepage hero card named the symptom's cause pass (Straighten) while the Quest it opens starts on Sort. Badge, colour and lit spine segment now follow the zone's first step; `gate_home_hero_card_real` fails on any other badge (new case, 4/4). Method page "Learn the method your way" was six products in a four-column grid (a 4 + 2 row); now three columns (3 + 3 desktop, 2 + 2 + 2 tablet, 1 phone), audits clean at both widths. `gate_zone_short_answer_above_fold` skips gitignored `_*.html` scratch files (new case 6/6, red against the old filter). Release `04985c27`: publish success, deployed, live build `15cb07c13abaadca`, freshness CURRENT, live badge 'Sort', live stylesheet lights segment 1. ALL PASS.
+
+**Card art (committed with this entry, live check to follow):** generated locally (SD 1.5, Python 3.12 + torch cu128, RTX 2070 SUPER, free) four candidates each for the 12 rejected Entryway card heroes, reviewed by Claude at full size and at the card's 750x349 photograph band. Accepted 3: EP-008 Missing Umbrella, ET-004 Mail Sorter, EU-011 Weekly Audit. Rejected originals kept as `build/heroes/entryway-rejected/<id>-v2.*`; each sidecar records seed, prompt, reviewer and the replaced sha; `ops/card-hero-verdicts.json` carries sha-bound ok verdicts with the reason. Deck PDF rebuilt (89 cards, 20 sheets), served copy byte-identical to build copy, all three new fronts pixel-matched inside the served PDF (pages 9, 13, 17, mean diff under 0.1/255). Placeholder cards in the free download: 12 to 9.
+
+**Zone heroes, tried and NOT shipped:** 8 zone pages with no picture, 8 zones x 4 seeds, then a close-up round for the 3 nearest: 0 of 11 acceptable across 44 images. The model composes the room and drops the zone object. Those pages stay text-only, which is correct. Not a prompt problem; needs a stronger model or real photographs. See LRN-0012.
+
+**Did not go well:** I passed `--help` to `audit_visual.py` and `preflight.py`; neither parses it, so each started a full run. Killing them left four gitignored scratch files under `site/` (`_visual_probe.html` mid-preflight failed zone-short-answer). None shipped, all deleted. Lesson: read a tool's argv handling before passing it a flag.
+
+**Also:** the method page phone screenshot looked clipped on the right; that is Edge headless's minimum window width, not the page (audit: 0 sideways scroll). `wire_zone_heroes.py --check` prints dining-room page names under its "held back" count; those pages do carry heroes, so it is a misleading printout, not a customer defect. Left for a later pass.
+
+**Next:** live-verify the card art release; OWNER-ACTIONS 1b card count 12 to 9 once live.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently re-verified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the standing root `.md`-by-mention-count cold-read lane, because every `BACKLOG-2026-09-07.md` row in sections 2 to 6 is done, HOLD, or Phil-gated, and all 8 GitHub issues are unchanged decision or blocked-on-art.
