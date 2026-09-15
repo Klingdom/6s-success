@@ -40,6 +40,28 @@ Pushed to main. `ops/video_zone.py`, `BACKLOG-2026-09-07.md`, command deck. No p
 
 Pushed to main. `ops/video_zone.py`, `ops/build_social_pins.py`, `ops/video_zone_photo.py`, `ops/preflight.py`, 92 `build/video/zones/*.srt` files, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, command deck. No price or product touched; no site page changed; IndexNow not applicable.
 
+## 2026-09-15, PM check-in, correction: the deep preflight below actually finished
+
+The entry immediately below reported `preflight.py --deep` as still running at `gate_visual_audit` when the 580-second budget ran out, and handed a longer-budget rerun to the operator. It finished shortly after that entry was written, while this cycle was resolving a concurrent-push merge conflict in this file: `every gate passed, 23 warning(s), exit 0`, the same 23 pre-diagnosed warnings the fast pass already shows, nothing new. Checked its actual log rather than assumed from the earlier snapshot. This is, as far as this log shows, the first `--deep` run to complete today; no new defect found. The operator handoff below (give it a longer budget) is satisfied, not still needed, though periodically re-running it in full stays worthwhile since it is the only check that reaches `gate_visual_audit`.
+
+## 2026-09-15, PM check-in (30-minute triage, previous work finished; a real stale-doc defect fixed, deep preflight attempted and left honestly incomplete)
+
+**Attach:** arrived shallow and detached; `fetch --unshallow`, `merge --ff-only` onto `origin/main` (`4f51c93f`), clean, no unrelated-history symptom.
+
+**Previous work finished, checked rather than inherited.** `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. Working tree was clean and main already pushed before this pass touched anything. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art` (#2's count, #29's mitigation and #20's closure all already correct and current). `BACKLOG-2026-09-07.md` sections 2-6 again all done, HOLD or Phil-gated.
+
+**Small closing job, a real one: STATUS.md's own production-knowledge paragraph had gone stale within the hour.** The prior PM cycle's own commit (`46a9776c`, 11:20:39Z) correctly said build `346c043b56385f64` was "not yet redeployed," citing `e42a98a4e7a2e266` as last confirmed. A later commit from a session with real VPS access (`a064f2fa`, 11:49:23Z) then committed an updated `ops/deploy-verdict.json` confirming `346c043b56385f64` itself went live at 11:17:08Z, but never touched STATUS.md's own paragraph, so it kept asserting production was behind after it had already caught up. Exactly the "corrected source, unrederived artifact" class `BACKLOG-2026-09-07.md` section 7 names as this month's dominant defect, this time in the one document meant to answer "where are we now" for every other agent. Fixed the paragraph and the "Immediate Focus" line's matching stale clause against `site/build-id.txt` and `ops/deploy-verdict.json`, both read fresh.
+
+**Attempted the deep preflight the prior PM cycle and this morning's operator cycle both punted on, and it is honestly reporting UNCHECKED, not clean.** Ran `preflight.py --deep` in the background with a 580-second budget while doing the STATUS.md work above. It ran cleanly through the network-dependent checks (each failed fast and honestly, e.g. Etsy's fee page 403, no egress) and reached `gate_visual_audit`, the full 193-page headless-browser sweep, where it was still running when the budget ran out. This matches a prior cycle's note that this specific gate is backgrounded with a 900-second timeout of its own; 580 seconds was not enough headroom on top of everything else this check runs through first. Recording this honestly rather than treating the fast pass as sufficient: `gate_visual_audit`'s own result for this run is UNCHECKED, not passed, so no new-defect claim from it can be made either way this cycle.
+
+**Went well:** verifying one specific, falsifiable claim (STATUS.md's redeploy line against `ops/deploy-verdict.json`) rather than re-sweeping ground roughly forty prior cycles have already covered today.
+
+**Went not well / unchecked:** deep preflight did not complete in this slot; no Stripe, SSH, mail or network egress credential in this sandbox, same as every cloud cycle today.
+
+**Next for the operator (:43):** give `preflight.py --deep` a longer, dedicated budget (15+ minutes) specifically to let `gate_visual_audit` finish, since it is the one check that has not completed even once today and has caught real regressions before (a WCAG contrast defect, a dashboard-currency bug) that the fast pass cannot see. If it still cannot finish in one slot, say so plainly again rather than silently dropping it.
+
+Pushed to main. `STATUS.md` (one paragraph and one clause corrected against fresher source documents), command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-15, local session: zone video checklist, fix designed and measured, not rendered
 
 **Why this entry exists:** BACKLOG 1b (added with `5ab0cf07`) records that 11 of the 12 published zone videos show and narrate a broken "What done looks like" checklist. This session measured whether the whole-standard split from `build_social_pins.done_items()` can simply replace the one in `ops/video_zone.py` `beats()`, and handed the rendering to a later session.
