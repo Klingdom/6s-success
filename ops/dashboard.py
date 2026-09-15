@@ -539,33 +539,70 @@ def gh_token():
         return None
 
 
+def _gh_issues_once(state, token):
+    import urllib.request
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/klingdom/6s-success/issues"
+        f"?state={state}&per_page=100",
+        headers={"Authorization": f"Bearer {token}",
+                 "Accept": "application/vnd.github+json",
+                 "User-Agent": "6s-dashboard"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        data = json.loads(r.read().decode("utf-8", "replace"))
+    # A malformed or error body (GitHub returns a JSON *object* like
+    # {"message": "..."} on rate-limit/auth failure, and a transient
+    # proxy hiccup was once observed to return a bare "{}") must not be
+    # read as "zero issues": iterating a dict yields its string keys,
+    # which silently survived the "pull_request" filter below and
+    # rendered a real 2-P0/5-decision open-issue count as a false
+    # all-clear "0 open issues" dashboard. Only a genuine list is data.
+    if not isinstance(data, list):
+        return None
+    # the issues endpoint also returns pull requests; exclude them
+    return [i for i in data if "pull_request" not in i]
+
+
 def gh_issues(state):
-    import urllib.request, urllib.error
+    """Fetch the issue list, defended against two independently observed
+    failure shapes, not just one.
+
+    The isinstance guard above catches a non-list body. It does not catch
+    the shape found afterward, in this same sandbox, on the same repo,
+    within the same second: a syntactically valid but WRONG empty list,
+    genuinely `[]`/200, alternating with a correct 7-item answer on
+    immediate retries (X-Ratelimit-Remaining moved by 1 between calls, so
+    these are two real, different upstream responses, not one cached
+    reply). A dashboard that reports "0 open issues" from whichever of
+    those two answers happened to land first is exactly the false
+    all-clear this file exists to prevent.
+
+    GitHub issues do not appear and vanish within a second of each other,
+    so of any two readings taken moments apart, the one naming MORE open
+    issues is the one to trust: a flaky read can only under-report (miss
+    real issues), never invent ones that do not exist. Retry up to three
+    times and keep the longest valid list seen; a real, sustained zero
+    still reports as zero once nothing longer turns up.
+    """
+    import time
     token = gh_token()
     if not token:
         return None
-    try:
-        req = urllib.request.Request(
-            f"https://api.github.com/repos/klingdom/6s-success/issues"
-            f"?state={state}&per_page=100",
-            headers={"Authorization": f"Bearer {token}",
-                     "Accept": "application/vnd.github+json",
-                     "User-Agent": "6s-dashboard"})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            data = json.loads(r.read().decode("utf-8", "replace"))
-        # A malformed or error body (GitHub returns a JSON *object* like
-        # {"message": "..."} on rate-limit/auth failure, and a transient
-        # proxy hiccup was once observed to return a bare "{}") must not be
-        # read as "zero issues": iterating a dict yields its string keys,
-        # which silently survived the "pull_request" filter below and
-        # rendered a real 2-P0/5-decision open-issue count as a false
-        # all-clear "0 open issues" dashboard. Only a genuine list is data.
-        if not isinstance(data, list):
-            return None
-        # the issues endpoint also returns pull requests; exclude them
-        return [i for i in data if "pull_request" not in i]
-    except Exception:
+    best = None
+    saw_any_success = False
+    for attempt in range(3):
+        try:
+            result = _gh_issues_once(state, token)
+        except Exception:
+            result = None
+        if result is not None:
+            saw_any_success = True
+            if best is None or len(result) > len(best):
+                best = result
+        if attempt < 2:
+            time.sleep(0.5)
+    if not saw_any_success:
         return None
+    return best
 
 # Zone imagery. Counted off the pages themselves rather than off the number of
 # images generated, because an image that exists and an image a reader can see

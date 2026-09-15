@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, second correction, same cycle: the isinstance fix below was not enough, a genuinely valid but wrong empty list beat it too
+
+**What happened.** While merging this same cycle's own commit with a concurrent push, regenerating the command deck after conflict resolution reproduced the false "P0 0, need-you 0" reading again, with the isinstance fix already in place and already passing its own tests. Traced by hand rather than assumed fixed: four direct calls to the live GitHub issues endpoint one second apart returned `7, 0, 0, 7`, with `X-Ratelimit-Remaining` moving by exactly 1 each time, proving these are two real, different upstream responses through this sandbox's proxy, not a single cached reply being misread. A bare `[]` (2 bytes, HTTP 200) is a syntactically valid list, so the isinstance guard correctly let it through; it was simply the wrong answer.
+
+**Fixed** by retrying: `gh_issues()` now calls the endpoint up to 3 times (0.5s apart) and keeps the longest valid list seen, on the reasoning that GitHub issues cannot appear or vanish within a second of each other, so of any two readings taken moments apart, the one naming MORE open issues is the one to trust; a flaky read can only under-report, never invent issues that do not exist. Refactored the single-attempt logic into `_gh_issues_once()` so `gh_issues()` itself is just the retry/max loop. `ops/tests/test_gate_dashboard_issue_payload.py` extended from 5 to 9 cases: the original malformed-body cases now run against a 3-attempt retry loop instead of one call; two new cases prove a flaky `[]` sandwiched between real answers does not win, and that a genuinely sustained `[]` across all 3 attempts still correctly reports zero; a second fail-then-pass pair (`_BUG2_SOURCE`, the exact isinstance-only code this cycle's own earlier commit shipped, again kept as an inline literal rather than fetched via `git show` per `gate_no_hardcoded_git_history`) proves that version really was still fooled by one flaky `[]`, and that the current retry version is not.
+
+**Verified:** dashboard.py rerun 3 times in a row after the fix, all 3 correct (P0 2, need-you 5, YELLOW), against the same flaky endpoint that alternated moments earlier. `preflight.py` run to completion: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new, all test files (now 9 cases in the new file) passing.
+
+**Went well:** treating the first fix's own clean test pass as provisional rather than final, and rerunning the real script against the real (flaky) endpoint instead of stopping at green unit tests.
+
+**Did not go well:** the first fix, while correct as far as it went, was shipped on the strength of unit tests alone without a live rerun against the actual endpoint; that gap is exactly what caught this second, deeper bug, but the same gap could just as easily have hidden a third.
+
+**Changing next cycle:** treat this whole class (dashboard.py's live GitHub reads) as flaky-by-default in this sandbox going forward; do not trust one clean regeneration of the command deck as proof, rerun before committing when it reports zero anything.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged. Worth flagging: GOALS.md's one sale falls out of the trailing 30-day window on 2026-09-20 unless a second sale lands first.
+
+Pushed to main, merged with a concurrent PM cycle. `ops/dashboard.py`, `ops/tests/test_gate_dashboard_issue_payload.py`, command deck. No price, product or page touched. IndexNow not applicable, no page added or rewritten.
+
 ## 2026-09-15, correction to the entry immediately below: that "no new defect" cycle shipped a false-clean command deck, found and fixed by re-checking its own output before trusting it
 
 **What happened.** The prior entry's own `ops/dashboard.py` regeneration wrote and committed (`fb6dc5c4`) a command deck reading GREEN, "Open P0: 0", "Nothing is blocked on you right now", "No open issues". At that exact moment there were genuinely 7 open GitHub issues, 2 of them P0. Caught before push by doing what CLAUDE.md 0.3/0.4 ask: checking the diff of a file this run had just written rather than trusting a script's own exit code. A second, immediate rerun of the same unmodified command returned the correct numbers (P0 2, need-you 5, YELLOW), confirming this was not a one-off fluke of that moment's data but a live bug that fires intermittently.
@@ -21,6 +39,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged. Worth flagging: GOALS.md's one sale falls out of the trailing 30-day window on 2026-09-20 unless a second sale lands first.
 
 Pushed to main. `ops/dashboard.py`, new `ops/tests/test_gate_dashboard_issue_payload.py`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable, no page added or rewritten.
+
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently reconfirmed a second time; nothing new unblocked; one self-inflicted false alarm diagnosed and cleared)
+
+NEXT FOR THE OPERATOR: once today's linkedin-drafts.yml scheduled run lands (fired 10:47 UTC, median landing about 14:20 UTC per this file's own delay measurement, so likely just after this handoff), open the 3 generated drafts and read them for real, not just confirm the run completed, because nobody has checked this specific day's actual draft content since the reflow.py CTA-burying fix landed and LinkedIn is this site's largest identified traffic source.
+
+**Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom, fast-forwarded onto the prior PM cycle's own commit (`f7b1d902`).
+
+**Previous work finished, checked rather than inherited, the hard way.** First `preflight.py` run came back with 3 gate failures (`fingerprints`: UnicodeDecodeError; `tests`: `test_affiliate.py` "a real probe file was already here"; `etsy-pdfs-current`: build dir differs from HEAD) that did not match any of today's dense run of prior cycles. Traced rather than reported: this session had accidentally started two `preflight.py` processes concurrently, both regenerating the same Etsy PDF and both touching the same test-probe path, and both races and lost writes explain all three failures. Killed the duplicate, reverted the drifted PDF, re-ran `preflight.py` once, cleanly: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new. `fingerprint_assets.py --check` also re-run standalone to confirm: clean, 577 references across 193 pages. Recording the false alarm and its cause here rather than silently discarding it, since CLAUDE.md 0.4 treats a green result after an error as void until re-run, and this one only became trustworthy after that re-run.
+
+**Verified rather than assumed:** working tree was clean and main already pushed before this pass touched anything (the dashboard-timestamp diff preflight itself produces is the only expected drift). 7 open GitHub issues pulled fresh via the API, unchanged since the prior PM cycle's own check 22 minutes earlier, all `decision`/`blocked-on-art`, all still updated before this run started, no new Phil reply. `BACKLOG-2026-09-07.md` sections 2-6 again all done, HOLD or Phil-gated. Checked `linkedin-drafts.yml`'s cron (`47 10 * * *`) against the current time (13:41 UTC): the scheduled fire (10:47 UTC) has passed but the median 3.53h delay puts expected landing around 14:20 UTC, so it is correctly still pending, not stale, matching the prior PM cycle's same conclusion.
+
+**Honest finding: none new.** Ranking `ops/*.py` by log-mention count again turned up nothing unread: a prior cycle (line 3760 of this file) already independently confirmed that lane is genuinely dry, and spot-checking several of today's lowest-count names (`ledgerium_price_check.py`, `corpus_index.py`, `wire_legal_strip.py`, `video.py`, `build_all_prompts.py`) against this file's own history shows each already carries a specific prior clean result. Continuing to re-read files that many independent cycles have already cleared is not this cycle's job.
+
+**Did:** regenerated the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), the only real change this pass.
+
+**Went well:** treating the first preflight run's 3 failures as a signal to investigate rather than a defect to log or paper over; finding the true, boring cause (self-inflicted concurrency) in a few minutes instead of either alarming on it or silently re-running until it went away.
+
+**Went not well:** wasted several minutes on a mistake I made myself; the two-instance race is a reminder to background exactly one preflight run at a time.
+
+**Handing to the operator (:43):** the linkedin-drafts content check above. Otherwise, same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Etsy/KDP accounts, the 11-video re-narrate/re-upload) and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck only; no price, product or page touched.
 
 ## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; deck-gallery withhold list and standard suite re-checked directly)
 
