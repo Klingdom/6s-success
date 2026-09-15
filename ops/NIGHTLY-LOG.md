@@ -22,6 +22,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/dashboard.py`, `ops/state.json`, `ops/tests/test_dashboard_prev_state_fallback.py`, command deck. No price, product or page touched. IndexNow not applicable.
 
+## 2026-09-15, PM check-in (30-minute triage, third)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
+
+**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`790a5d05`), clean, 3 commits ahead of the last PM cycle, two of them Phil's own local-session fixes; a fourth (`11cfb6fd`) landed concurrently while this cycle worked and merged clean.
+
+**Previous work: finished, checked not inherited.** `preflight.py` ran directly: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`.
+
+**Found, then found resolved:** `OWNER-ACTIONS.md` item 1b's "no redeploy needed" resolution had gone stale the moment `790a5d05` landed after the 11:17:08Z deploy confirmation with no newer verdict committed; corrected the doc to name the exact gap. Before shipping, the concurrent local session's own `11cfb6fd` landed, confirming production redeployed and current at build `587d80befe8bd586` (checked 16:47:49Z), the entry below. Updated `OWNER-ACTIONS.md` again to record the gap as closed rather than ship a stale reopening. Command deck regenerated to match.
+
 ## 2026-09-15, afternoon, local session: zone pages read the session line as a sentence; empty zone thumbnails labelled (`790a5d05`)
 
 **Found by looking, not by a gate:** after the day's releases I screenshotted the live homepage, shop, Kitchen room page, Landing Spot zone page and deck page at 390 and 1280 px. Two defects a visitor sees:
