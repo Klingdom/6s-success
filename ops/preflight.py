@@ -1700,14 +1700,15 @@ def gate_stripe_price_claims() -> None:
     catalogue price or the exact sum of the bundle's components. Warns rather
     than fails: it describes the Stripe account and cannot run without a
     credential, and no credential reports UNCHECKED rather than clean.
+
+    The check itself lives in stripe_catalog.price_claim_gaps() so ops/
+    hourly_brief.py, the one credentialed job that can actually reach this
+    account, runs the identical logic rather than a copy that could drift.
     """
-    import re as _re
     try:
         sys.path.insert(0, os.path.join(ROOT, "ops"))
         import stripe_catalog as sc
-        prods = [p for p in sc.list_all("products") if p.get("active")]
-        src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
-                      encoding="utf-8").read()
+        bad = sc.price_claim_gaps()
     except (Exception, SystemExit) as e:                        # noqa: BLE001
         # secret_key() in stripe_catalog.py reports a missing credential with
         # sys.exit(), which raises SystemExit, not Exception. Found
@@ -1721,16 +1722,6 @@ def gate_stripe_price_claims() -> None:
              "clean: a made-up saving sits on the checkout page, where the "
              "site's own copy checks cannot see it." % type(e).__name__)
         return
-    prices = {float(x) for x in _re.findall(r'"price"\s*:\s*([0-9.]+)', src)}
-    # A bundle may legitimately quote the sum of its parts.
-    sums = {round(sum(c), 2) for c in
-            [[a, b, c2] for a in prices for b in prices for c2 in prices]} if len(prices) < 40 else set()
-    bad = []
-    for p in prods:
-        for amt in _re.findall(r"\$([0-9]+(?:\.[0-9]{2})?)", p.get("description") or ""):
-            v = float(amt)
-            if v not in prices and v not in sums:
-                bad.append((p.get("name", "")[:36], v))
     if bad:
         warn("stripe-price-claims",
              "%d price figure(s) in Stripe product descriptions match no "
@@ -7115,6 +7106,112 @@ def gate_hourly_brief_payment_links() -> None:
         fail("hourly-brief-payment-links",
              "a confirmed dead live payment link does not reach the "
              "hourly brief's SUBJECT line: %r" % subject)
+
+
+def gate_hourly_brief_stripe_checks() -> None:
+    """The hourly brief must run the price-claims, duplicate-SKU and
+    business-identity checks against the live Stripe account, not just
+    check_live_links.py.
+
+    Found 2026-09-15, handed off unstarted across three prior PM check-ins
+    (ops/NIGHTLY-LOG.md): gate_stripe_price_claims, gate_stripe_one_per_sku
+    and gate_stripe_brand in this file have read "UNCHECKED, not clean" in
+    every sandbox this project has ever run in, the exact credential gap
+    gate_hourly_brief_payment_links (above) already fixed for
+    check_live_links.py on 2026-09-09, but for a different check. The
+    credential (STRIPE_SECRET_KEY) and the real egress both already sit in
+    .github/workflows/hourly-brief.yml, the one automated, credentialed
+    job Phil actually reads; nothing had wired these three into it.
+
+    Fixed with hourly_brief.price_claims_summary(), duplicate_sku_summary()
+    and brand_summary(), each a thin wrapper around the same function the
+    matching preflight gate already calls (stripe_catalog.price_claim_gaps(),
+    stripe_dedupe.duplicates(), stripe_brand.check()), so there is one
+    implementation of each check, not two that can drift.
+
+    Proves the three summary functions distinguish a real problem from a
+    clean account and from an unchecked one, and that a real problem reaches
+    the SUBJECT line, the same shape gate_hourly_brief_payment_links already
+    uses for check_live_links.py.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import hourly_brief as hb
+
+    problems = []
+
+    # With no credential here, each summary must read as UNCHECKED or OK,
+    # never silently crash and never claim a problem it never measured.
+    for label, fn in (("price-claims", hb.price_claims_summary),
+                      ("duplicate-sku", hb.duplicate_sku_summary),
+                      ("brand", hb.brand_summary)):
+        problem, lines = fn()
+        text = "\n".join(lines)
+        if problem:
+            problems.append(f"{label}: read as a problem with no credential "
+                            f"in this environment: {text!r}")
+        if "UNCHECKED" not in text and "OK" not in text:
+            problems.append(f"{label}: neither OK nor UNCHECKED with no "
+                            f"credential here: {text!r}")
+
+    # Exercise the real branch logic directly, without touching Stripe: stub
+    # the underlying library call each summary wraps, not the summary itself,
+    # so the test proves the wiring rather than re-testing the library call.
+    real_price = hb.sc.price_claim_gaps
+    hb.sc.price_claim_gaps = lambda: [("Bundle", 66.0)]
+    try:
+        problem, lines = hb.price_claims_summary()
+    finally:
+        hb.sc.price_claim_gaps = real_price
+    if not problem or "FABRICATED PRICE" not in "\n".join(lines):
+        problems.append("price_claims_summary: a real mismatch did not read "
+                        "as a problem: %r" % lines)
+
+    real_dupe = hb.stripe_dedupe.duplicates
+    hb.stripe_dedupe.duplicates = lambda: {"BK-EB": [{}, {}]}
+    try:
+        problem, lines = hb.duplicate_sku_summary()
+    finally:
+        hb.stripe_dedupe.duplicates = real_dupe
+    if not problem or "DUPLICATE" not in "\n".join(lines):
+        problems.append("duplicate_sku_summary: a real duplicate did not "
+                        "read as a problem: %r" % lines)
+
+    real_brand = hb.stripe_brand.check
+    hb.stripe_brand.check = lambda: {
+        "gaps": [("Business name is not '6S Success'", "x")]}
+    try:
+        problem, lines = hb.brand_summary()
+    finally:
+        hb.stripe_brand.check = real_brand
+    if not problem or "IDENTITY GAP" not in "\n".join(lines):
+        problems.append("brand_summary: a real identity gap did not read "
+                        "as a problem: %r" % lines)
+
+    # A fabricated price must reach the SUBJECT line too, not only the body.
+    real = (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check,
+            hb.sc.price_claim_gaps)
+    hb.commerce = lambda: {"revenue_30d": 0, "paid_30d": 0,
+                           "checkouts_started_30d": 0, "live_links": 3,
+                           "balance_available": 0, "balance_pending": 0}
+    hb.inbox = lambda: {"unread": []}
+    hb.site = lambda: {"home": 200}
+    hb.measured = lambda: {}
+    hb.cll.check = lambda: {"verdict": "ok", "slugs": {}, "checked_pages": 0}
+    hb.sc.price_claim_gaps = lambda: [("Bundle", 66.0)]
+    try:
+        subject, _ = hb.build()
+    finally:
+        (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check,
+         hb.sc.price_claim_gaps) = real
+    if "FABRICATED PRICE" not in subject:
+        problems.append("a confirmed fabricated price claim does not reach "
+                        "the hourly brief's SUBJECT line: %r" % subject)
+
+    if problems:
+        fail("hourly-brief-stripe-checks",
+             "hourly_brief's price/duplicate/brand summaries do not "
+             "distinguish a real live problem from a clean or unchecked "
+             "account: %s" % "; ".join(problems))
 
 
 def gate_checkin_youtube_carry_forward() -> None:
@@ -13555,6 +13652,7 @@ def main() -> int:
     run_gate(gate_roadmap_report_backlog_done)
     run_gate(gate_hourly_brief_build_line)
     run_gate(gate_hourly_brief_payment_links)
+    run_gate(gate_hourly_brief_stripe_checks)
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)

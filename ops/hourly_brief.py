@@ -41,6 +41,9 @@ from email.header import decode_header, make_header
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import check_live_links as cll                                # noqa: E402
+import stripe_brand                                           # noqa: E402
+import stripe_catalog as sc                                   # noqa: E402
+import stripe_dedupe                                          # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "ops", "state.json")
@@ -218,6 +221,74 @@ def payment_link_summary(links: dict) -> tuple[bool, list[str]]:
     return False, [f"  UNCHECKED  {links.get('note') or 'could not verify live payment links'}"]
 
 
+def price_claims_summary() -> tuple[bool, list[str]]:
+    """Run stripe_catalog.price_claim_gaps() here, the one job that already
+    carries STRIPE_SECRET_KEY and real egress.
+
+    Written 2026-09-15. gate_stripe_price_claims in preflight.py has read
+    "UNCHECKED, not clean" in every sandbox this project has ever run in,
+    the same credential gap payment_link_summary()'s own docstring names for
+    check_live_links.py, and for the same reason: this operator sandbox has
+    never held a Stripe key. Nothing wired the check into the one job that
+    does, even after the sibling check was wired in on 2026-09-09.
+    """
+    try:
+        bad = sc.price_claim_gaps()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        return False, [f"  UNCHECKED  could not read Stripe product "
+                       f"descriptions ({type(e).__name__})"]
+    if not bad:
+        return False, ["  OK  every dollar figure in an active product "
+                       "description matches a catalogue price or a bundle sum"]
+    lines = [f"  FABRICATED PRICE  {len(bad)} figure(s) in Stripe product "
+             f"descriptions match no catalogue price and no sum of catalogue "
+             f"prices:"]
+    for name, v in bad[:6]:
+        lines.append(f"    {name}  claims ${v:,.2f}")
+    return True, lines
+
+
+def duplicate_sku_summary() -> tuple[bool, list[str]]:
+    """Same reasoning as price_claims_summary(): stripe_dedupe.duplicates()
+    describes the live account and has only ever run from this sandbox,
+    which has never held a credential.
+    """
+    try:
+        dupes = stripe_dedupe.duplicates()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        return False, [f"  UNCHECKED  could not check for duplicate Stripe "
+                       f"products ({type(e).__name__})"]
+    if not dupes:
+        return False, ["  OK  every SKU resolves to exactly one active "
+                       "Stripe product"]
+    lines = [f"  DUPLICATE PRODUCTS  {len(dupes)} SKU(s) have more than one "
+             f"active Stripe product, so a live link can be charging a price "
+             f"nobody approved:"]
+    for skusym, prods in list(dupes.items())[:6]:
+        lines.append(f"    {skusym}  {len(prods)} active product(s)")
+    return True, lines
+
+
+def brand_summary() -> tuple[bool, list[str]]:
+    """Same reasoning again: stripe_brand.check() is issue #21's own
+    Ledgerium-identity check and has never run against the live account
+    from a credentialed environment before.
+    """
+    try:
+        r = stripe_brand.check()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        return False, [f"  UNCHECKED  could not check the Stripe account's "
+                       f"public business identity ({type(e).__name__})"]
+    if not r["gaps"]:
+        return False, ["  OK  business name, url, support email and "
+                       "description all match 6S Success"]
+    lines = [f"  IDENTITY GAP  {len(r['gaps'])} business-identity gap(s) on "
+             f"the live Stripe account:"]
+    for gap, where in r["gaps"][:6]:
+        lines.append(f"    {gap}")
+    return True, lines
+
+
 def measured() -> dict:
     try:
         subprocess.run([sys.executable, os.path.join(ROOT, "ops", "dashboard.py")],
@@ -261,12 +332,17 @@ def build() -> tuple[str, str]:
     except Exception as e:                                    # noqa: BLE001
         links = {"verdict": "unknown", "note": f"check_live_links crashed: {e}"}
     link_problem, link_lines = payment_link_summary(links)
+    price_problem, price_lines = price_claims_summary()
+    dupe_problem, dupe_lines = duplicate_sku_summary()
+    brand_problem, brand_lines = brand_summary()
     prev = load_last()
 
     rev = cm.get("revenue_30d", 0)
     sales = cm.get("paid_30d", 0)
     life = cm.get("revenue_lifetime")
     subject = (f"{'OUTAGE - PAYMENT LINK DEAD - ' if link_problem else ''}"
+               f"{'FABRICATED PRICE ON CHECKOUT - ' if price_problem else ''}"
+               f"{'DUPLICATE STRIPE PRODUCT - ' if dupe_problem else ''}"
                f"6S hourly: ${rev:,.0f} / 30d"
                f"{f' (${life:,.0f} lifetime)' if life is not None else ''}, "
                f"{sales} sale(s), "
@@ -309,6 +385,11 @@ def build() -> tuple[str, str]:
 
     L += ["", "PAYMENT LINKS (live site, not the repository)"]
     L += link_lines
+
+    L += ["", "STRIPE ACCOUNT (live, not the repository)"]
+    L += price_lines
+    L += dupe_lines
+    L += brand_lines
 
     if st:
         L += ["", "BUILD", build_line(st)]

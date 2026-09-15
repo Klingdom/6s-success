@@ -22,6 +22,22 @@ NEXT FOR THE OPERATOR: wire `ops/stripe_catalog.py`'s price-claim check, `ops/st
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable.
 
+## 2026-09-15, scheduled operator cycle: the three P0-trust Stripe checks finally wired into the one credentialed hourly job
+
+**Did:** Attached to main (unshallow, ff-only, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Three prior same-day PM check-ins had handed off the same unstarted item: wire `stripe_catalog.py`'s price-claim check, `stripe_dedupe.py`'s duplicate-product check and `stripe_brand.py`'s identity check into `ops/hourly_brief.py`, since `hourly-brief.yml` already carries `STRIPE_SECRET_KEY` and real egress. Confirmed genuinely unstarted (grep both directions) before starting. Extracted `stripe_catalog.price_claim_gaps()` so the preflight gate and the new wiring share one implementation. Added `price_claims_summary`/`duplicate_sku_summary`/`brand_summary` to `hourly_brief.py`, wired into `build()`, a real problem reaches the SUBJECT line. New `gate_hourly_brief_stripe_checks` in `preflight.py`.
+
+**Verified:** Fail-then-pass proved directly. Full `preflight.py` run twice; the first run showed 2 failures that did not reproduce standalone or on a second isolated run, diagnosed as a race from my own concurrent test invocations, not a real defect. Second isolated run: 0 gates failed, 23 pre-diagnosed warnings. Related tests (`test_gate_stripe_price_claims.py`, `test_stripe_brand.py`, `test_check_sellable.py`) individually clean.
+
+**Went well:** Reusing the existing gate logic instead of duplicating it; catching my own false-positive before reporting it as a defect.
+
+**Did not go well:** Running ad hoc test invocations concurrently with a background preflight run caused a transient false failure; wasted a cycle re-running.
+
+**Changing next cycle:** Don't run anything else against the repo while a background preflight/test-suite run is in flight.
+
+**Next:** Same standing `OWNER-ACTIONS.md` list and 7 open decision/blocked-on-art GitHub issues.
+
+Pushed to main. `ops/stripe_catalog.py`, `ops/preflight.py`, `ops/hourly_brief.py`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-15, afternoon, local session: the shared checklist split corrected again; social cards rebuilt; a false YouTube instruction removed
 
 **Found by reviewing my own morning work, not by a gate:** the "what done looks like" split (now single-sourced as `video_zone.done_items()` by `5616a7f4`) still broke noun lists that share one qualifier. Examples: "Broom" / "Mop and dustpan hanging heads up with painted outlines showing behind each one"; "Diapers, wipes" / "Cream all touchable without moving your feet"; "The monitor, keyboard" / "Mouse in fixed positions"; "Machine, grounds, mugs" / "Then spoons and sugar …". It also dropped the "and" inside lists ("holding trowel, pruners, gloves"). My own test hid this, because its lost-word check ignored every "and". I found it by printing every item of three words or fewer against its source sentence.

@@ -168,6 +168,31 @@ def catalogue() -> dict[str, dict]:
     return {i["sku"]: i for i in arr}
 
 
+def price_claim_gaps() -> list[tuple[str, float]]:
+    """Every dollar figure in an active Stripe product description must be
+    either a catalogue price or the exact sum of a bundle's components.
+
+    Extracted from preflight.py's gate_stripe_price_claims so the same check
+    can run inside ops/hourly_brief.py, the one credentialed job that can
+    actually reach this account, rather than only from a sandbox that never
+    holds a Stripe key. Raises via list_all()/secret_key() when there is no
+    credential, the convention every other Stripe reader here uses; callers
+    that want a soft failure catch that themselves.
+    """
+    import re as _re
+    prods = [p for p in list_all("products") if p.get("active")]
+    prices = {round(float(i.get("price") or 0), 2) for i in catalogue().values()}
+    sums = {round(sum(c), 2) for c in
+            [[a, b, c2] for a in prices for b in prices for c2 in prices]} if len(prices) < 40 else set()
+    bad = []
+    for p in prods:
+        for amt in _re.findall(r"\$([0-9]+(?:\.[0-9]{2})?)", p.get("description") or ""):
+            v = float(amt)
+            if v not in prices and v not in sums:
+                bad.append((p.get("name", "")[:36], v))
+    return bad
+
+
 # ---------------------------------------------------------------- decisions
 def deliverable(sku: str, item: dict, spec: dict) -> tuple[bool, str]:
     """Can a customer actually receive this if they pay right now?
