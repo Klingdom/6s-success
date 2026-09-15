@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, local session: supplies cards and zone-pack shop pictures (both live)
+
+**Did:** Zone and room pages: the supplies block is now light cards (three columns on desktop, one on a phone) with a quieter disclosure whose wording and position above the links are unchanged, moved from inline styles to classes in `ops/zone_supplies.py`; verified live at build `2f183516`. Shop: each Micro Zone Pack shows its own reviewed zone picture (101 of 109; distinct catalogue images 13 to 113), and product schema image URLs follow `site.js`'s slash rule; verified live (every zone picture in data.js, pre-rendered tiles showing them, every shop schema image URL requested and returning 200).
+
+**Did not go well:** the card layout made each product name a standalone 19px link, so the phone audit went from 0 to 11 small targets on the kitchen zone page; caught by comparing against a worktree baseline, fixed with padding and an equal negative margin. The shop release then failed publish on `gate_product_images_exist`, which still assumed every image lives under `assets/img/`. My release driver ran a hand-picked set of gates and missed it; another session fixed the gate in `e2049d57`. That commit touched no `site/` files, so no image build started, and the build had to be dispatched by hand.
+
+**Learned:** run full preflight before pushing a catalogue change, not a chosen subset. A push that changes no `site/` files never rebuilds the image. Seven consecutive Checks runs were cancelled by the next push, so CI had not finished on any of today's work until `e2049d57`.
+
+**Open, a content decision:** EP-001, EP-005, EP-011 and EP-012 name one 6S step in `build/entryway-cards.json` (Primary 6S) and Straighten in their lesson line. EP-001 Lost Keys reads as Straighten and EP-012 Morning Rush as Sustain; EP-005 and EP-011 are ambiguous.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified; the prior entry's own open item confirmed closed)
 
 **Attach:** shallow/detached, `fetch --unshallow`, clean ff-only onto `origin/main` (`053ffb41`).
