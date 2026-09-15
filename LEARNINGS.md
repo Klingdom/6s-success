@@ -496,6 +496,24 @@ is. `CLAUDE.md` step 10b already says this for a defect found inside one
 cycle; this is the same rule applied across a whole week's worth of log
 entries that nobody had summed before now.
 
+#### LRN-0011: A re-render gate is only as current as the untracked intermediates it reads
+
+**Status:** SUPPORTED
+**Confidence:** HIGH
+**Domain:** DATA QUALITY / BUILD
+**Measured:** 2026-09-14 to 2026-09-15
+
+`gate_etsy_pdfs_current` re-renders the Etsy PDFs and compares their text with the committed ones. On one workstation it
+failed three packs. The rebuild that "fixed" it (`9ff67ac8`) replaced current copy with old copy, because
+`build_etsy_assets.py` read `build/products/*.html`, which is gitignored and was stale on that machine. The gate, the rebuild and
+the word-level diff all agreed with each other, and all three were wrong, because they shared one stale input. The source of truth,
+`content/manual/source/content.json`, held the committed wording the whole time. `0374e09c` made the script regenerate its
+intermediates first, and the PDFs came back text-identical to the pre-rebuild versions.
+
+**Implication.** When a gate says generated output is stale, confirm the direction against the source before regenerating: find
+one differing sentence and look it up in the source file. An untracked intermediate cannot be trusted to be current, and agreement
+between tools that read the same intermediate is not independent evidence.
+
 ### Verified Customer Learnings
 
 `NONE VERIFIED IN THIS FILE`
