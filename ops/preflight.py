@@ -11530,7 +11530,14 @@ def gate_etsy_pdfs_current() -> None:
         doc = _pymupdf.open(path)
         t = "".join(page.get_text() for page in doc)
         doc.close()
-        return re.sub(r"\s+", " ", t).strip()
+        # A hyphen at a line break comes back as "once-a- year" from one
+        # browser and "once-a-year" from another. Measured 2026-09-14: the
+        # Whole House Print Pack rebuilt on Windows differed from the
+        # committed PDF in 18 places, every one a hyphenation split, and
+        # 0 once the split was rejoined, while three packs with real
+        # rewritten copy still differed by 43 to 65 spans. Rejoining keeps
+        # the gate about content, not about which browser wrapped the line.
+        return re.sub(r"-\s+", "-", re.sub(r"\s+", " ", t).strip())
 
     sys.path.insert(0, listings_dir)
     dont_write_bytecode = sys.dont_write_bytecode
