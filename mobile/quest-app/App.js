@@ -373,6 +373,25 @@ export default function App() {
           </Text>
         </View>
 
+        {/* The zone's six passes as one spine, the same object the site's home
+          * card and deck use: finished passes filled in their pass colour, the
+          * current one taller. Decorative, so hidden from screen readers; the
+          * badge label already says "Pass n of 6, <pass>". */}
+        <View style={s.spine} accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants" aria-hidden>
+          {card.zone.steps.map((st) => {
+            const finishedPass = Boolean(done[cardId(card.zone, st.s)]);
+            const current = st.s === card.step.s;
+            return (
+              <View key={st.s} style={[
+                s.seg,
+                finishedPass || current ? { backgroundColor: PASS_COLOUR[st.s] } : null,
+                current ? s.segCurrent : null,
+              ]} />
+            );
+          })}
+        </View>
+
         <Text style={s.where}>{card.zone.room} &gt; {card.zone.zone}</Text>
         <Text style={s.h1}>{card.zone.purpose}</Text>
         <Text style={s.body}>{card.step.text}</Text>
@@ -438,7 +457,10 @@ const s = StyleSheet.create({
   },
   badgeText: { fontFamily: F.sansBold, fontSize: 12, letterSpacing: 1.2, textTransform: "uppercase" },
   count: { fontFamily: F.sans, color: C.soft, fontSize: 13, letterSpacing: 0.6 },
-  where: { fontFamily: F.sansSemi, color: C.soft, fontSize: 13, marginTop: 18, letterSpacing: 0.4 },
+  where: { fontFamily: F.sansSemi, color: C.soft, fontSize: 13, marginTop: 16, letterSpacing: 0.4 },
+  spine: { flexDirection: "row", alignItems: "center", gap: 5, marginTop: 16 },
+  seg: { flex: 1, height: 4, borderRadius: 2, backgroundColor: C.line },
+  segCurrent: { height: 8, borderRadius: 4 },
   eyebrow: { fontFamily: F.sansBold, color: C.honey, fontSize: 12, letterSpacing: 2 },
   h1: { fontFamily: F.display, color: C.ink, fontSize: 26, marginTop: 8, lineHeight: 33 },
   body: { fontFamily: F.serif, color: C.ink, fontSize: 18, lineHeight: 27, marginTop: 14 },
@@ -460,7 +482,8 @@ const s = StyleSheet.create({
   },
   ghostText: { fontFamily: F.sansSemi, color: C.ink, fontSize: 15 },
   foot: { fontFamily: F.sans, color: C.soft, fontSize: 13, lineHeight: 20, marginTop: 26 },
-  importLink: { marginTop: 18, alignItems: "center" },
+  /* 44px tall: measured 17px on a 390px screen, under the touch-target floor. */
+  importLink: { marginTop: 8, minHeight: 44, justifyContent: "center", alignItems: "center", paddingHorizontal: 8 },
   importLinkText: {
     color: C.soft, fontSize: 13, textDecorationLine: "underline",
   },
