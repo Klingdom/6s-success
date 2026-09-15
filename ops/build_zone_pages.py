@@ -441,6 +441,33 @@ def _og_image(room, zone):
     return f"{BASE}/assets/img/room-map.jpg"
 
 
+def _zone_thumb(room, zone, eager=False):
+    """(html, pictured) for one zone row on a room page.
+
+    Approval is the same sha-bound verdict the zone page hero uses, asked
+    through _og_image so a zone approved since the last build gets its
+    derivatives made now instead of on a second run. Alt is empty on purpose:
+    the zone name is the adjacent link text. A zone with no approved picture
+    gets an empty slot the same size, so the row reads as having none rather
+    than as a broken image."""
+    stem = f"{_slug(room)}--{_slug(zone)}"
+    _og_image(room, zone)
+    try:
+        import wire_zone_heroes as W
+        ok = W.approved()
+    except Exception:                                         # noqa: BLE001
+        ok = {}
+    base = os.path.join(SITE, "assets", "zones", stem)
+    have = all(os.path.exists(base + suf) for suf in ("-sm.jpg", "-sm.webp", "-md.webp"))
+    if ok.get(stem) != "ok" or not have:
+        return ('<span class="zone-thumb zone-thumb-none" aria-hidden="true"></span>', 0)
+    b = f"../assets/zones/{stem}"
+    return (f'<span class="zone-thumb"><picture>'
+            f'<source type="image/webp" srcset="{b}-sm.webp 320w, {b}-md.webp 640w" sizes="96px">'
+            f'<img src="{b}-sm.jpg" alt="" width="320" height="240" loading="{'eager' if eager else 'lazy'}" decoding="async">'
+            f'</picture></span>', 1)
+
+
 def offer(name, zone_slug, room=None, zone=None):
     # zone_slug carries the visitor straight into this zone's own run via
     # quest.js's findZoneBySlug(), rather than the general start screen. This
@@ -2384,13 +2411,28 @@ def room_page(room, header, footer, all_rooms=()):
                    'not one long day. Each session finishes on its own, so '
                    'stopping after the first still leaves the room better '
                    'than it was.</p>')
-    out.append('<ol>')
+    # Each zone row carries its approved illustration as a small thumbnail,
+    # the same pictures and the same honest note the web Quest room preview
+    # uses. Eleven room pages had no image at all while most of their zones
+    # had an approved picture; the chapter lead figure above stays the room
+    # art, and gate_pages_missing_art keys on that figure, not on these.
+    out.append('<ol class="zone-rows">')
+    pictured = 0
     for z in room["zones"]:
         dn = display(room["room"], z["zone"])
-        out.append(f'<li style="margin:0 0 14px"><a href="../zones/{rs}-{slug(dn)}.html">'
+        # On a room with no chapter figure the first thumbnail is the first
+        # image on the page and sits near the fold, so it loads eagerly
+        # (audit_pages hero-lazy). With a chapter figure, that is the lead.
+        thumb, has_pic = _zone_thumb(room["room"], z["zone"],
+                                     eager=(not figs and pictured == 0))
+        pictured += has_pic
+        out.append(f'<li>{thumb}<div><a href="../zones/{rs}-{slug(dn)}.html">'
                    f'<b>{esc(dn)}</b></a> ({esc(z.get("session", ""))})<br>'
-                   f'{esc(z.get("purpose", ""))}</li>')
+                   f'{esc(z.get("purpose", ""))}</div></li>')
     out.append('</ol>')
+    if pictured:
+        out.append('<p class="zone-rows-note">Illustrations of each zone finished. '
+                   'Not photographs of real homes.</p>')
     for f in figs[1:]:
         out.append(figure_html(f))
     # The room's kit, deduplicated across its zones. See ops/zone_supplies.py.

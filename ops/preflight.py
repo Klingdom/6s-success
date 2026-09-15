@@ -7378,6 +7378,14 @@ def gate_pages_missing_art() -> None:
     def _no_hero(f):
         return 'id="zone-hero"' not in _visible_html(f)
 
+    # Room pages are checked for the chapter lead figure (class="room-lead",
+    # written by build_zone_pages.figure_html) for the same reason zone pages
+    # are checked for the hero: since 2026-09-15 every room page carries zone
+    # thumbnails, so any <img> would report all eleven unillustrated chapters
+    # as illustrated and hide the gap OWNER-ACTIONS.md 1b still counts.
+    def _no_lead(f):
+        return 'class="room-lead"' not in _visible_html(f)
+
     def _no_img(f):
         return not re.search(r"<img\b", _visible_html(f))
 
@@ -7386,7 +7394,7 @@ def gate_pages_missing_art() -> None:
             ("zone", os.path.join(ROOT, "site", "zones", "*.html"),
              "hero rejected", _no_hero),
             ("room", os.path.join(ROOT, "site", "rooms", "*.html"),
-             "chapter not illustrated", _no_img)):
+             "chapter not illustrated", _no_lead)):
         pages = [f for f in _glob.glob(pattern) if not f.endswith("index.html")]
         if not pages:
             warn("page-art", "no %s pages found, so their artwork was NOT "

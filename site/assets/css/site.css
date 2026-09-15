@@ -983,3 +983,15 @@ main:focus{outline:none}
 .faq-list dt{font-weight:600;color:var(--ink);margin:18px 0 4px}
 .faq-list dt:first-child{margin-top:0}
 .faq-list dd{margin:0;color:var(--soft);line-height:1.6}
+
+/* Room pages: each micro zone row carries its approved illustration as a
+   thumbnail. The list stays an <ol>; the number is drawn by a counter because
+   a grid row drops the list marker, and the working order is the point. */
+.zone-rows{list-style:none;padding:0;margin:16px 0 0;counter-reset:zrow}
+.zone-rows li{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;margin:0 0 16px;counter-increment:zrow}
+.zone-rows li b::before{content:counter(zrow) ". "}
+.zone-thumb{display:block;width:96px;aspect-ratio:4/3;border-radius:9px;overflow:hidden;background:#EFE7D6}
+.zone-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.zone-thumb-none{border:1px dashed #D8CCB4;background:#F5EFE2}
+.zone-rows-note{font-family:var(--sans);font-size:13px;color:var(--soft);margin:2px 0 22px}
+@media (max-width:520px){.zone-rows li{grid-template-columns:76px 1fr;gap:12px}.zone-thumb{width:76px}}

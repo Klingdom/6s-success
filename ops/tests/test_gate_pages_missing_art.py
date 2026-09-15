@@ -90,18 +90,26 @@ def main():
         fails.append("a zone with no picture at all was not counted as "
                       "missing art")
 
-    # Case 4: room pages keep the old, unchanged behavior (any <img> counts,
-    # since rooms have no per-zone hero marker at all).
-    w = run({}, {"room-with-plain-img.html": "<p>Intro</p>"
-                 '<img src="x.jpg" alt="">',
+    # Case 4, changed 2026-09-15: room pages are checked for the chapter lead
+    # figure, not any <img>. Room pages now carry zone thumbnails, which would
+    # otherwise report an unillustrated chapter as illustrated: the same
+    # masking shape case 2 covers for a zone page with a video thumbnail.
+    lead = '<figure class="room-lead"><img src="x.jpg" alt=""></figure>'
+    thumbs = ('<ol class="zone-rows"><li><span class="zone-thumb">'
+              '<img src="t.jpg" alt=""></span></li></ol>')
+    w = run({}, {"room-with-chapter-art.html": "<p>Intro</p>" + lead + thumbs,
+                 "room-with-only-thumbs.html": "<p>Intro</p>" + thumbs,
                  "room-with-nothing.html": "<p>Intro</p>"})
     msg = " ".join(m for _, m in w)
-    if "room-with-plain-img" in msg:
-        fails.append("a room page with a plain <img> was wrongly counted "
-                      "as missing art (room behavior regressed)")
+    if "room-with-chapter-art" in msg:
+        fails.append("a room page with its chapter lead figure was wrongly "
+                      "counted as missing art")
+    if "room-with-only-thumbs" not in msg:
+        fails.append("zone thumbnails masked a room page whose chapter is "
+                      "not illustrated")
     if "room-with-nothing" not in msg:
         fails.append("a room page with no image at all was not counted as "
-                      "missing art (room behavior regressed)")
+                      "missing art")
 
     if fails:
         print("FAIL")
@@ -110,7 +118,7 @@ def main():
         return 1
     print("PASS: 4 case(s), zone pages are checked for the hero figure "
           "specifically, a video thumbnail no longer masks a rejected "
-          "hero, and room-page behavior is unchanged")
+          "hero, and zone thumbnails no longer mask a room page" + chr(39) + "s missing chapter art")
     return 0
 
 
