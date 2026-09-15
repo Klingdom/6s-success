@@ -1953,9 +1953,9 @@ The backlog exists to make that answer executable.
    up to that point is built.
 2. **Pinterest and Instagram crops**, 2:3 and 4:5. Pinterest is the highest
    intent surface in this category and we are absent from it.
-3. **Remaining contrast**: 13 on public pages (deck 8, standards 5) and 26 on
-   the unlisted investor page. Mostly colour-coded card badges where the hue
-   carries meaning, so each needs a darkened variant rather than a blanket fix.
+3. ~~**Remaining contrast**~~ Resolved: measured again 2026-09-15 with
+   `ops/audit_visual.py` at 1280 and 390 px, deck.html, standards.html and
+   invest.html all report 0 text below contrast (was 13 public, 26 investor).
 4. **Thumbnails** for the 114 videos.
 5. Email capture, still blocked on the Listmonk root URL.
 6. Affiliate verification emails from 29 August, still unactioned.

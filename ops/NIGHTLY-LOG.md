@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, local session: variable fonts pinned to the weight they are used at; gzip level 6 (`7e7d1db7`)
+
+**Found:** `Newsreader-400-normal` and `Inter-400-normal` (and their `-ext` subsets) were full variable fonts. Newsreader carried weight 200-800 and optical size 6-72, with 114 KB of its 128 KB latin file being variation data. Inter carried weight 100-900. CSS declares each face at weight 400 only, and every other weight the site uses has its own static file, so the weight data downloaded on every first visit and was never used. Separately, nginx compressed text at gzip level 1 (its default): quest-data.js went out as 167 KB.
+
+**Did:** Newsreader 400 normal: weight axis pinned to 400 with fontTools' instancer, optical-size axis kept, so large headings still get their display cuts. Inter 400 normal: fully static at 400 (weight was its only axis). Italic files untouched (their only axis is optical size). Glyph coverage is identical (cmap compared per file). The four files total 352 KB before and 152 KB after. nginx `gzip_comp_level 6`: measured locally, quest-data.js 167,159 to 135,475 bytes, site.css 19.7 to 16.6 KB, shop.html 35 to 30 KB.
+
+**Verified before release:** headless screenshots of index, a kitchen zone page and an article, at 1280 and 390 px, original fonts against instanced fonts. The zone and article pages were pixel-identical. The homepage showed small differences on the hero card, and I checked where they came from. An A/A run with identical fonts on both sides reproduced the italic-line differences exactly, so those come from font loading timing in the harness. Serving only the new Newsreader, or only the new Inter, reproduced nothing beyond that A/A noise. A first trial that also pinned optical size was rejected: it changed 0.35 to 2.13% of pixels. Full preflight: every gate passed.
+
+**Live:** The image build passed and production moved from build `e42a98a4e7a2e266` to `346c043b56385f64`; freshness CURRENT. All four instanced font files and the untouched italic are served byte-identical to the committed files. quest-data.js now goes out gzip-compressed in 135,500 bytes (was 167,205). The release's first live check reported quest-data.js as not matching the repository. It had compared against this Windows checkout, which has CRLF endings under core.autocrlf=true; compared against the committed blob, the live file is identical, confirmed by a second check that did not redeploy. Production is on build `346c043b56385f64`. The deploy verdict was committed after this deploy, with this entry.
+
+**Known limit:** the service worker caches fonts cache-first under a name derived from the precache URL list. People with the app installed keep the old font files until that name changes. They render the same, so those people just don't get the byte saving yet. The Quest app bundles the same two faces as variable TTFs (Newsreader 230 KB, Inter 123 KB). React Native renders their default instance, so pinning them there would save about 150 KB with no visual change. Not done: small against the app's 1.4 MB of zone pictures, and it cannot be checked on a device from here.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished; one stale issue title corrected, deep preflight handed to the operator again)
 
 NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion (time-box it, e.g. 10 minutes, and report honestly if it cannot finish rather than skip it silently), because it still has not completed once today across the full cycle history and previously caught real regressions the fast pass misses.
