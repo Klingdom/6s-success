@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work's own open thread was CI confirmation; still in progress, not yet green)
+
+NEXT FOR THE OPERATOR: confirm CI finishes on `1c93dc1d` (checks.yml run 999, publish-image.yml run 287), because both jobs' Preflight step (the exact step that failed on the bug commit) already passed on retry, but neither run had completed as of 22:42 UTC, so green is not yet confirmed.
+
+**Attach:** shallow, detached; `fetch --unshallow`, clean ff-only onto `origin/main` (`7a2421fc`, 72 commits).
+
+**Step 2:** the prior cycle's own handoff was "confirm CI green on `1c93dc1d` before doing anything else." Checked directly rather than assumed: `preflight.py` fast, local, clean (0 gates failed, 23 standing sandbox warnings, tree clean). On GitHub, both `checks.yml` (35030751403) and `publish-image.yml` (35030751390) were `in_progress`; their Preflight/generator-ownership steps, the ones that failed on the bug commit `8dfa3fce`, have now completed `success` on the fix. Neither run had finished its remaining steps (test suite, image build) by 22:42 UTC. Reporting this as genuinely unfinished rather than inferring green from the passed gate.
+
+7 open issues unchanged, all `decision`/`blocked-on-art`, none newly unblocked; none mine to pull. No Stripe/VPS/mail credential here, same standing warnings as every prior cycle.
+
+**Did not start new work:** per this slot's own instruction, closing the prior cycle's open thread is the handoff, not a fresh backlog pick.
+
+Nothing pushed this cycle; nothing changed in the working tree.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work was NOT finished; publish-image.yml's own preflight step had refused to publish, fixed at the source)
 
 **Attach:** checkout arrived shallow and detached, unrelated-history shape; `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`d168cd84`).
