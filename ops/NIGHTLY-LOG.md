@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, afternoon, local session: zone pages read the session line as a sentence; empty zone thumbnails labelled (`790a5d05`)
+
+**Found by looking, not by a gate:** after the day's releases I screenshotted the live homepage, shop, Kitchen room page, Landing Spot zone page and deck page at 390 and 1280 px. Two defects a visitor sees:
+- **Session line:** 113 of 115 zone pages rendered "One session: 30-45 min. most of it in Sort" directly under the title. The time note continues the session fragment, so the full stop landed in front of a lowercase word. `_join_clause()` had already fixed the same join in the structured data ("125 answers"); the visible line was never changed to match.
+- **Empty thumbnail:** room pages showed an empty dashed box for the 8 zones with no approved picture. On a phone that reads as an image that failed to load.
+
+**Did:** `_session_notice()` in `ops/build_zone_pages.py` builds the visible line the way `_join_clause()` builds the answer: a lowercase note continues after a comma ("**One session: 30-45 min**, most of it in Sort, because the paper is the slow part."), and a note that starts a sentence keeps the full stop. The empty slot now says "No picture yet" (small, muted, centred). Regenerated all zone and room pages; the stylesheet change re-fingerprinted every page that links it. Checked locally at 390 px before release.
+
+**Live:** The image build passed (full preflight in CI; local full preflight was killed twice for low memory, so local evidence was 16 targeted page gates and 11 related tests), and production moved from build `346c043b56385f64` to this release; freshness CURRENT; the live Landing Spot page serves the joined session line, four sampled zone pages carry no old lowercase join, and the live Kitchen room page serves the 'No picture yet' slot. Production is on build `587d80befe8bd586`. The deploy verdict was committed after this deploy, with this entry.
+
+**No gate added:** the broken join is a one-line template fault and `_session_notice()` now owns it. A gate for "a full stop followed by a lowercase word in rendered text" would be broader and more useful, and would take a sweep of false positives first (abbreviations, "e.g.", list markers). Recorded here, not built.
+
 ## 2026-09-15, PM check-in (30-minute triage, second)
 
 **Attach:** arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`8389a56`), clean, 20 commits.
