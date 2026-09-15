@@ -4,17 +4,29 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, nothing new genuinely unblocked)
 
-**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`84697ba7`).
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`10238a1c`, picked up a concurrent cycle's own syntax-defect convergence logged just below).
 
-**Previous work was finished, checked not cited.** Full `preflight.py` ran to completion: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. Working tree clean, already pushed. The prior cycle's `preflight.py --deep` handoff was already closed by the scheduled operator cycle logged just above (now moved down); CI confirmed `success` directly via the Actions API on the last content-bearing commit (`cf100132`, run 995), not assumed.
+**Previous work was finished, checked not cited.** Full `preflight.py` ran to completion: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new. Working tree clean, already pushed. The prior cycle's `preflight.py --deep` handoff was already closed by the scheduled operator cycle logged further below; CI confirmed `success` directly via the Actions API on the last content-bearing commit (`cf100132`, run 995), not assumed.
 
 **Checked for new work, found none genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated. 7 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`. `OWNER-ACTIONS.md`'s open list is the same standing set. Followed up on the one thing the top-of-log cycle flagged rather than fixed: `GOALS.md`'s 30-day revenue window (one $19 sale, 2026-08-21) is still correctly inside the window today and does not go stale until 2026-09-20; the file already states this plainly, nothing to correct yet. Confirmed the dashboard's "PRODUCTION IS SERVING AN OLD BUILD" constraint line is accurate, not a new regression: `ops/deploy-verdict.json` still confirms only `587d80befe8bd586` (16:47:49Z) while `site/build-id.txt` now reads `c3d0d442441b24df`, the same repo-vs-production gap several prior cycles already logged as real and not actionable from a sandbox with no deploy key.
 
-**Did:** regenerated and pushed the command deck only, diffed first to confirm only the timestamp/commit-pointer/commit-count moved and no carry-forward field regressed.
+**Did:** regenerated and pushed the command deck only, diffed first to confirm only the timestamp/commit-pointer/commit-count moved and no carry-forward field regressed. Push conflicted with a concurrent cycle's own push (`10238a1c`, below); merged rather than forced, kept both entries.
 
 **Next for the operator:** same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, the VPS redeploy). Nothing red, nothing new.
 
 Shipped via `ops/ship.py --no-deploy`. Command deck only; no price, product or page touched.
+
+## 2026-09-15, PM check-in (30-minute triage, converged with a concurrent fix for the same defect this cycle found independently)
+
+**Attach:** shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`e170c110`, the tip left by the last-logged local session).
+
+**Previous work checked, not cited: found NOT finished, independently.** `preflight.py` unbounded: 3 gate(s) failed, 6 of 149 tests failed, all tracing to one `SyntaxError` in `ops/build_zone_pages.py` line 467 (a same-quote-nested f-string, valid only on Python 3.12+, this sandbox runs 3.11). Fixed it locally and was mid-verification when the fix push conflicted: a concurrent session (`cb00b337`) had landed its own fix for the identical line seconds earlier, plus more than mine had: the ternary hoisted to a variable instead of just requoted, a new `gate_ops_python_syntax` that now parses every `ops/*.py` file first so this class of bug fails loud instead of cascading into unrelated gates, and a proper root-cause fix for the standing EP-001/005/011/012 handoff (EP-001 through EP-004 are two different cards colliding by ID between a retired planning file and the live corpus; EP-005/011/012's titles genuinely match both sources, so those stay open as a real content question, not a guess).
+
+**Reconciled per CLAUDE.md's own instruction to prefer merge over force:** reset this session's now-fully-superseded local commit and took `origin/main` as-is rather than re-doing better-already-done work. Reran `preflight.py` clean on that tip: every gate passed, 23 warnings, all previously diagnosed. 7 open GitHub issues (one closed since last read, #20), all decision or blocked-on-art, none actionable here.
+
+**Handing to the operator:** nothing new; the same standing Phil-gated list.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched.
 
 ## 2026-09-15, scheduled operator cycle (finished the prior PM cycle's `preflight.py --deep` handoff, clean; independent verification, no new defect)
 
