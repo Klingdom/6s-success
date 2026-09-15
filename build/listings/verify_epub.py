@@ -1,14 +1,22 @@
 """Structural pre-flight for the KDP EPUB upload.
 
-This is NOT epubcheck. No JRE is installed on this machine and epubcheck was not
-available, so this checks the classes of defect that a zip + XML reader can see:
-container integrity, mimetype placement, XML well-formedness, manifest/spine
-referential integrity, orphan resources, broken internal hrefs and image srcs,
-and the KDP-relevant metadata and cover requirements.
+This is mostly NOT epubcheck: most sandboxes this has run in have no JRE and no
+network path to fetch epubcheck, so this checks the classes of defect that a zip
++ XML reader can see: container integrity, mimetype placement, XML
+well-formedness, manifest/spine referential integrity, orphan resources, broken
+internal hrefs and image srcs, and the KDP-relevant metadata and cover
+requirements.
+
+When a Java runtime AND a real epubcheck.jar are both available (`EPUBCHECK_JAR`
+env var, or a jar found under the paths `find_epubcheck_jar()` checks), the real
+validator runs too, so the result is a live measurement rather than a repeated
+UNCHECKED line. Set `EPUBCHECK_JAR=/path/to/epubcheck.jar` to point at a jar this
+run downloaded; nothing is committed to the repository, since the jar is a ~30MB
+binary and not every environment can reach github.com to fetch it.
 
 Anything it cannot see is reported as UNCHECKED, not as a pass.
 """
-import zipfile, os, sys, posixpath, re
+import zipfile, os, sys, posixpath, re, shutil, subprocess
 from xml.etree import ElementTree as ET
 from urllib.parse import unquote
 
@@ -127,8 +135,37 @@ try:
 except Exception as e:
     U(f"embedded cover geometry not read: {e}")
 
+# 9b real epubcheck conformance, when Java and a jar are both reachable
+def find_epubcheck_jar():
+    env = os.environ.get("EPUBCHECK_JAR")
+    if env and os.path.isfile(env):
+        return env
+    for candidate in ("/opt/epubcheck/epubcheck.jar", "/usr/local/lib/epubcheck.jar"):
+        if os.path.isfile(candidate):
+            return candidate
+    return None
+
+java = shutil.which("java")
+jar = find_epubcheck_jar()
+if java and jar:
+    try:
+        proc = subprocess.run(
+            [java, "-jar", jar, EPUB], capture_output=True, text=True, timeout=120
+        )
+        report = (proc.stdout + proc.stderr).strip()
+        summary_line = next((l for l in report.splitlines() if l.startswith("Messages:")), report.splitlines()[-1] if report else "")
+        (P if proc.returncode == 0 else F)(
+            f"epubcheck (real validator) exit {proc.returncode}: {summary_line}"
+        )
+    except Exception as e:
+        U(f"epubcheck conformance: attempted, failed to run: {e}")
+elif java and not jar:
+    U("epubcheck conformance: NOT RUN. Java is present but no epubcheck.jar found "
+      "(set EPUBCHECK_JAR to a downloaded jar's path).")
+else:
+    U("epubcheck conformance: NOT RUN. No JRE on this machine; install Java + epubcheck to run the real validator.")
+
 # 10 things this script structurally cannot judge
-U("epubcheck conformance: NOT RUN. No JRE on this machine; install Java + epubcheck to run the real validator.")
 U("Kindle Previewer / KDP converter behaviour: NOT RUN. Only Amazon's own converter can confirm the file renders correctly on device.")
 U("CSS validity and Kindle CSS-subset support: not inspected.")
 U("Font embedding licence: no fonts are embedded in this archive, so nothing to license.")

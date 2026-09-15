@@ -881,7 +881,9 @@ def build(verbose: bool = False) -> dict:
 
 
 # --------------------------------------------------------------------------
-# verification (epubcheck is not available here, so these run instead)
+# verification (structural checks; the real epubcheck run, when an environment
+# happens to have both a JRE and network egress, lives in
+# build/listings/verify_epub.py instead of being duplicated here)
 # --------------------------------------------------------------------------
 def verify(result: dict) -> int:
     import xml.etree.ElementTree as ET
@@ -897,8 +899,8 @@ def verify(result: dict) -> int:
             print(f"  FAIL  {name}{(' :: ' + detail) if detail else ''}")
             failures.append(name)
 
-    print("\nVerification (epubcheck and java are not installed on this machine;")
-    print("the following structural checks were written and run instead)\n")
+    print("\nVerification (structural checks; run build/listings/verify_epub.py")
+    print("separately for the real epubcheck validator where Java is available)\n")
 
     ok("epub file exists", OUT_EPUB.is_file(), str(OUT_EPUB))
     with zipfile.ZipFile(OUT_EPUB) as zf:

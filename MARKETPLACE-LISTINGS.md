@@ -51,7 +51,7 @@ write anything.
 
 | Thing | Why not | What to do about it |
 |---|---|---|
-| **epubcheck conformance** | No JRE on this machine, and epubcheck is not installed. `verify_epub.py` covers what a zip and XML reader can see; it is not a substitute | KDP's own converter runs on upload and will report errors. Read that report rather than assuming |
+| ~~**epubcheck conformance**~~ | **Verified 2026-09-15, operator: real epubcheck 5.1.0 ran against `build/6S-Success-Home-Edition.epub`, not the structural approximation.** Most sandboxes this file has run in have no JRE and no path to fetch epubcheck, but this one had both (`java` 21 present, `github.com` reachable through the proxy), so `verify_epub.py` was widened to run the real validator when it can (`EPUBCHECK_JAR` env var or a found jar) and degrade to the old structural checks otherwise. Result: `Validating using EPUB version 3.3 rules. No errors or warnings detected. Messages: 0 fatals / 0 errors / 0 warnings / 0 infos`, exit 0. This is the actual tool KDP's own converter is built on, not a proxy for it | Still worth reading KDP's own converter report on upload; a clean epubcheck run does not guarantee Amazon's proprietary converter agrees, only that the file is a conformant EPUB 3 |
 | **How the book renders on a device** | Only Kindle Previewer or Amazon's converter can answer this | Use the online previewer on the upload screen before hitting Publish |
 | **The real delivery cost** | Amazon charges on the size of its converted file, not the EPUB. The EPUB is 0.81 MB, which would be about $0.12 | KDP shows the exact figure on the pricing screen before publishing |
 | **Whether a cover may carry a website URL** | The cover criteria page says nothing either way, and the rule that forbids URLs is written about descriptions, not covers | Sidestepped. See section 2.7: the KDP cover has the URL removed |
@@ -809,8 +809,9 @@ Ranked by how much it would change the outcome.
    worth removing from `build_etsy_assets.py`, but that script only runs
    against a hardcoded Windows Edge path and needs a session on Phil's own
    machine to change and reverify.
-3. **epubcheck.** Installing a JRE and epubcheck would turn the largest
-   UNVERIFIED item in section 1 into a measurement.
+3. ~~**epubcheck.**~~ **Done 2026-09-15, operator.** A sandbox with both a JRE
+   and network egress to GitHub ran the real validator: 0 fatals/errors/warnings
+   against EPUB 3.3 rules. See section 1.
 4. **A second look at price once there is evidence.** The trigger is written
    down in 2.6 so it does not get argued from scratch.
 

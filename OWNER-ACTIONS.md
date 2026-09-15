@@ -1050,11 +1050,12 @@ Every field is written and checked. Your part is the account and the paste.
    `build/listings/kdp/cover-kdp.jpg`. Not `build/cover.png`: KDP accepts JPEG
    and TIFF only, and that file also carries a URL that is better off the
    cover. Section 2.7 explains why.
-6. **Read the converter's report and open the online previewer.** This is the
-   one gate no script here could satisfy: there is no JRE on the operator
-   machine, so epubcheck has not been run. The EPUB has passed every structural
-   check a zip and XML reader can perform, and Amazon's own converter is the
-   thing that decides.
+6. **Read the converter's report and open the online previewer.** The EPUB has
+   passed every structural check a zip and XML reader can perform, and, as of
+   2026-09-15, the real epubcheck 5.1.0 validator too (0 fatals/errors/warnings
+   against EPUB 3.3 rules, `MARKETPLACE-LISTINGS.md` section 1). Amazon's own
+   converter is still the thing that ultimately decides, since it runs a
+   proprietary pipeline neither tool can substitute for.
 7. **Pricing tab.** `70%` royalty, `$9.99`, all territories, no DRM, **not**
    enrolled in KDP Select. Section 2.6 has the arithmetic and section 2.8 has
    the reason Select is a no.
