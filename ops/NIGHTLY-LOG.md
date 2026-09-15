@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in, correction: the deep preflight below actually finished
+
+The entry immediately below reported `preflight.py --deep` as still running at `gate_visual_audit` when the 580-second budget ran out, and handed a longer-budget rerun to the operator. It finished shortly after that entry was written, while this cycle was resolving a concurrent-push merge conflict in this file: `every gate passed, 23 warning(s), exit 0`, the same 23 pre-diagnosed warnings the fast pass already shows, nothing new. Checked its actual log rather than assumed from the earlier snapshot. This is, as far as this log shows, the first `--deep` run to complete today; no new defect found. The operator handoff below (give it a longer budget) is satisfied, not still needed, though periodically re-running it in full stays worthwhile since it is the only check that reaches `gate_visual_audit`.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished; a real stale-doc defect fixed, deep preflight attempted and left honestly incomplete)
 
 **Attach:** arrived shallow and detached; `fetch --unshallow`, `merge --ff-only` onto `origin/main` (`4f51c93f`), clean, no unrelated-history symptom.
