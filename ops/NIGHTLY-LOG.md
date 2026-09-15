@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (STATUS.md was 17 commits stale, corrected)
+
+**Previous work checked:** shipped, `preflight.py` clean, 7 issues unchanged. `checks.yml` run 1001 on `46ade0c1` stayed `in_progress` all slot; prior run took 29 minutes, ordinary timing, reported plainly not assumed green.
+
+**Fixed:** `STATUS.md`'s header cited `21f907a1`, 17 commits behind, silent on the pack-page fix, its CI handoff, and this session's own LRN-0010 fix. Added a current entry. First edit used an em dash; `gate_dashes` failed it pre-ship, fixed, reran clean.
+
+**Next:** confirm `checks.yml` on `46ade0c1`'s successor. Phil-gated list and 7 issues unchanged, left for the operator at :43.
+
+Shipped via `ops/ship.py --no-deploy` (`2525057e`). `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-15, scheduled operator cycle (confirmed CI green on the handed-off commit, then closed a real "source corrected, artifact never re-derived" gap in the site's own revenue arithmetic)
 
 **Did:** unshallowed and attached to `main` cleanly (`7a2421fc`). Read `BACKLOG-2026-09-07.md` (sections 2-4 all done, 5 correctly HOLD, 6 owner gates), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last log entries. The most recent PM check-in had left one explicit unresolved item: confirm `publish-image.yml` and `checks.yml` both went green on `1c93dc1d` before doing anything else. Checked both directly via the Actions API rather than assume: both `completed`/`success`. `preflight.py` full: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
