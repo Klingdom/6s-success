@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; cold-read of ops/service_orders.py found nothing wrong)
+
+**Attach:** arrived shallow and detached; `fetch --unshallow`, `merge --ff-only` onto `origin/main` (`7561255a`), fast-forwarded 1056 commits, no unrelated-history symptom.
+
+**Did:** Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` referenced, `CLAUDE.md`, and today's dense run of prior `NIGHTLY-LOG.md` entries (30-plus cycles already today, all converging on "every unblocked row is done or Phil-gated"). Full `python ops/preflight.py`: every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new.
+
+**Verified rather than trusted:** `BACKLOG-2026-09-07.md` sections 2-4 all struck through done or found-already-done; section 5 correctly Hold; section 6 owner gates unchanged. 7 open GitHub issues pulled fresh via the API (down from 8 after `#20` closed this morning), unchanged since, all `decision`/`blocked-on-art`. 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, matching every prior cycle. Per step 5d, cold-read `ops/service_orders.py` (9 mentions in this log, one of the lowest, and money-adjacent: it forwards the three service bookings to Phil with a calendar invite). Traced `which_service()`'s position-based routing and `find_time()`'s date/time parsing by hand against several constructed strings; both hold up, including the guarded edge cases their own comments describe (two-digit slice out of a four-digit year, spelled month stems, ambiguous time refused rather than guessed). Found no defect to fix.
+
+**Went well:** the position-based routing and the "ambiguous returns None" refusal in `find_time()` are both real safeguards against a wrong appointment time, not just comments.
+
+**Went not well:** could not exercise `recent_service_charges()` or `service_emails()` live, no Stripe or IMAP credential in this sandbox; that path stays unverified end to end, same gap every cloud cycle reports.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Etsy/KDP accounts). 7 open decision/blocked-on-art issues unchanged.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished; STATUS.md corrected to reflect it rather than another cold-read sweep)
 
 **Previous work finished.** `preflight.py` clean before touching anything, 23 pre-diagnosed warnings. Backlog sections 2-6 again done or Phil-gated; 7 open issues confirmed live (down from 8), all `decision`/`blocked-on-art`.

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 11:23 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-15 11:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 24 |
-| Commits (7 days) | 1057 of 2167 total |
+| Commits (7 days) | 1058 of 2168 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `46a9776c` STATUS.md: reflect the operator cycle that closed issue #20  |
+| Last commit | `7561255a` PM check-in: log the STATUS.md correction |
 
 ## Product readiness
 
@@ -73,4 +73,4 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
 | 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
 | 7 | Decide: keep or discard the 2,786-card master plan | decision |
-| 2 | Regenerate 12 remaining stale card images | P0, blocked-on-art |
+| 2 | Regenerate 9 remaining stale card images | P0, blocked-on-art |
