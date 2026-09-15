@@ -10,6 +10,7 @@ stays silent when the page carries no hero card at all.
 Run:  python ops/tests/test_gate_home_hero_card_real.py
 """
 import io
+import json
 import os
 import shutil
 import sys
@@ -63,6 +64,22 @@ def test_drifted_action_fails_by_name():
     assert fails, "a drifted action line was not caught"
     assert any("action" in msg for _, msg in fails), fails
     print("ok  an edited action line fails, naming the action field")
+
+
+def test_badge_showing_the_cause_pass_fails():
+    """The 2026-09-15 regression: a badge naming symptoms[0].sixS, the cause
+    pass, instead of the pass the Quest opens on, must be caught."""
+    home, data = _real()
+    quest = json.JSONDecoder().raw_decode(data[data.index("window.QUEST = ") + len("window.QUEST = "):])[0]
+    cause = quest["symptoms"][0]["sixS"]
+    start = home.index('data-quest="sixS">') + len('data-quest="sixS">')
+    end = home.index("</span>", start)
+    if home[start:end].lower() == cause.lower():
+        raise AssertionError("the real hero already shows the cause pass %r" % cause)
+    fails = _run(home[:start] + cause + home[end:], data)
+    assert fails, "a badge showing the cause pass was not caught"
+    assert any("sixS" in msg for _, msg in fails), fails
+    print("ok  a badge naming the cause pass instead of the opening pass fails")
 
 
 def test_no_hero_card_is_silent():

@@ -8094,8 +8094,24 @@ def gate_home_hero_card_real() -> None:
              "hero card still shows symptoms[0].")
         return
     sym = symptoms[0]
+    first_pass = ""
+    for _room in quest.get("rooms") or []:
+        if _room.get("room") != sym.get("room"):
+            continue
+        for _zone in _room.get("zones") or []:
+            if _zone.get("zone") == sym.get("zone") and _zone.get("steps"):
+                first_pass = _zone["steps"][0].get("s", "")
+    if not first_pass:
+        fail("home-hero-card-real", "quest-data.js has no steps for the symptom's zone, "
+             "so the hero badge cannot be checked.")
+        return
     want = {
-        "sixS": sym.get("sixS", ""),
+        # The badge names the pass the Quest actually opens on. The symptom flow
+        # starts the zone's own run and only swaps in the action text, so the
+        # card a visitor lands on carries the zone's first pass (Sort for the
+        # Landing Zone), not the symptom's cause pass (sixS, Straighten).
+        # Found 2026-09-15: the hero said Straighten and the card said Sort.
+        "sixS": first_pass.title(),
         "where": "%s › %s" % (sym.get("room", ""), sym.get("zone", "")),
         "symptom": "“%s”" % sym.get("symptom", ""),
         "why": (sym.get("why", "")[:1].lower() + sym.get("why", "")[1:]),
@@ -11042,7 +11058,10 @@ def gate_zone_short_answer_above_fold() -> None:
     the answer back below the supply list without a red preflight naming it.
     """
     pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
-    pages = [p for p in pages if os.path.basename(p) != "index.html"]
+    # "_" names are scratch files (audit_visual.py's probe) that .gitignore
+    # keeps out of every release; one written mid-run is not a zone page.
+    pages = [p for p in pages if os.path.basename(p) != "index.html"
+             and not os.path.basename(p).startswith("_")]
     if not pages:
         warn("zone-short-answer", "no zone pages built yet, could not check.")
         return

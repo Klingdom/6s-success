@@ -92,7 +92,14 @@ def main() -> int:
     if r:
         fails.append("index.html wrongly checked as a zone page: %r" % (r,))
 
-    # 5. The real, committed site: clean on every one of the 114 zone pages.
+    # 5. A scratch file audit_visual.py writes beside the page it measures
+    #    (site/**/_*.html, gitignored, never shipped) is not a zone page.
+    #    Found 2026-09-14: a killed audit left one mid-run and failed this gate.
+    r = _run({"clean.html": GOOD, "_visual_probe.html": STRIPPED})
+    if r:
+        fails.append("gitignored _ scratch file wrongly checked: %r" % (r,))
+
+    # 6. The real, committed site: clean on every one of the 114 zone pages.
     real_pages = sorted(glob.glob(os.path.join(ROOT, "site", "zones", "*.html")))
     if len(real_pages) < 100:
         print("  (skipped: fewer than 100 real zone pages found on disk)")
@@ -107,7 +114,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_zone_short_answer_above_fold, 5/5 checks pass")
+    print("OK: gate_zone_short_answer_above_fold, 6/6 checks pass")
     return 0
 
 

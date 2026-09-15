@@ -428,7 +428,7 @@ main:focus{outline:none}
 .hc-try::after{content:" \2192"}
 .hc-spine{display:flex;gap:4px}
 .hc-spine i{display:block;width:18px;height:6px;border-radius:3px;background:#E2D8C4}
-.hc-spine i:nth-child(2){background:var(--s-colour,#BC4B2A)}
+.hc-spine i:nth-child(1){background:var(--s-colour,#BC4B2A)}
 @media (max-width:900px){.hero-card{transform:none;margin:8px auto 0}}
 @media (prefers-reduced-motion:reduce){.hero-card,.hero-card:hover,.hero-card:focus-visible{transition:none;transform:none}}
 
