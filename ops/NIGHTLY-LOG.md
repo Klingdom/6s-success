@@ -18,6 +18,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Shipping via a direct commit (dashboard regeneration only). No price, product or page touched. IndexNow not applicable.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, nothing new genuinely unblocked; the cold-read lane's "dry" verdict held again)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, because nothing else is genuinely unblocked this slot.
+
+**Attach:** checkout arrived shallow and detached; `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`286384a8`), no unrelated-history symptom.
+
+**Previous work checked, not cited: finished.** `preflight.py` (full run, not bounded to fast): every gate passed, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow, the two cron-cadence drifts, 8 art-blocked zone pages, 9 art-blocked card heroes), none new. Working tree was already clean and `main` already pushed before this pass touched anything. 7 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Read issue #2's full comment history directly rather than trusting the count: still 9 cards without an approved hero, still a plain local-GPU retry on Phil's own machine, no billing or art-direction decision, matching `OWNER-ACTIONS.md` exactly. `BACKLOG-2026-09-07.md` sections 2-6 again all struck done or explicitly Phil-gated, section 5 correctly HOLD on the traffic constraint. `STATUS.md` and `OWNER-ACTIONS.md` both already current against this state; nothing to correct in either.
+
+**Checked whether the cold-read lane is really still dry before handing the operator the same conclusion again.** Ranked every `ops/*.py` file by markdown-mention count: the current floor (`review_heroes.py`, `split_deck_cards.py`, `build_card_prompts.py`, `generate_zone_heroes.py`, `hazard_icons.py`, 8 mentions each) all resolve, on reading their actual history in this log, to files already cold-read and cleared, or files genuinely gated on local GPU/egress this sandbox does not have (image generation, Ledgerium/Stripe checks). A same-day PM cycle already reached this same conclusion independently at line 4246 of this file. Did not repeat the sweep a third time today; repeating a confirmed-dry search is not new evidence.
+
+**One thing worth surfacing rather than silently repeating the same handoff:** `CHECKIN-LOG.md`'s own automated entries for today (18:19, 21:33) both report "nothing measurable moved" against 193 and then 201 commits in 24 hours. That is not a defect this cycle can fix (it is Phil's cadence, not a bug), but it is real evidence, not assumed: the two numbers a stranger can see (published videos, live products) have not moved today despite heavy commit volume, and this cycle's own finding (another "nothing new" triage) is one more data point in that same direction. Recording it plainly here rather than letting ten consecutive "nothing new" PM entries read as ten independent facts when they are substantially the same fact restated.
+
+**Went well:** verifying "dry" against this file's own history instead of re-running an already-exhausted sweep from scratch.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27's drafted fix still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, the 9-card local-GPU retry) and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only; no price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished; caught a real deploy landing mid-cycle and corrected the two documents that still cited the prior build)
 
 **Attach:** fetched and ff-only'd onto `origin/main` (`21f907a1`), clean tree.
