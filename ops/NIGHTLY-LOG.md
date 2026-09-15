@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (fresh checkout, full independent verification pass, honest finding: none new)
+
+**Did:** unshallowed and attached to `main` cleanly (`286384a8`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last log entries per step 1. `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe credential, no site egress, no mail credential, no GPU). Sections 2 through 6 of the backlog are again all done or Phil-gated; the 5 "Hold" rows are still correctly waiting on traffic or evidence that does not exist yet. Checked the inbox agent directly rather than trust the last claim: no mail credential in this environment, so unchecked, not empty. Pulled the 7 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`, none newly actionable.
+
+**Verified, not assumed:** re-ran `check_urls.py` (188/188 sitemap URLs resolve), `audit_pages.py` (191 pages, 0 duplicate titles or descriptions), `affiliate.py --check` (162 delivered documents, clean), and the mobile `quest-app` Jest suite (4 suites, all pass) fresh, rather than citing a prior green. Independently re-ranked `ops/*.py` by nightly-log mention count to look for a genuinely unread cold-read candidate: the floor is now 8 mentions with no file below it, and hand-checking the six lowest-count files' own history (`build_card_prompts.py`, `generate_zone_heroes.py`, `hazard_icons.py`, `review_heroes.py`, `split_deck_cards.py`, `youtube_upload.py`) shows every one already carries a specific prior finding, fix, or a repeated live-clean check, confirming the same conclusion this log's own line 4246 reached earlier: the cold-read lane is dry, not merely under-swept.
+
+**Went well:** the attach step (Step 0) worked exactly as scripted, no unrelated-histories error, first try.
+
+**Did not go well:** nothing genuinely new to fix this cycle. Recording that plainly rather than manufacturing a sweep, per CLAUDE.md 5c/5d.
+
+**Changing next cycle:** none. The standing owner-gate list (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts) is the only unblocked-by-evidence lever left; none of it is mine to pull.
+
+**Next:** regenerated the command deck (`ops/dashboard.py`); only its timestamp and commit counters moved. Nothing else in the working tree.
+
+Shipping via a direct commit (dashboard regeneration only). No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished; caught a real deploy landing mid-cycle and corrected the two documents that still cited the prior build)
 
 **Attach:** fetched and ff-only'd onto `origin/main` (`21f907a1`), clean tree.
