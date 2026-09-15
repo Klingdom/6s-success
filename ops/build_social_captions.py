@@ -86,17 +86,36 @@ def hashtags_for(room: str, zone: str, cap: int) -> list:
 
 
 def pin_description(room: str, z: dict, url: str) -> str:
-    purpose = re.sub(r"\s+", " ", (z.get("purpose") or "").strip())
-    items = SP.done_items(z)
-    lines = [purpose] if purpose else []
-    if items:
-        lines.append("Done looks like: " + "; ".join(i.rstrip(".") for i in items[:2]) + ".")
-    lines.append("Free step-by-step for this zone: %s" % url)
-    text = " ".join(lines).strip()
-    # Pinterest truncates descriptions around 500 characters in most surfaces.
-    if len(text) > 490:
-        text = text[:490].rsplit(" ", 1)[0].rstrip(",;:") + "..."
-    return text
+    """Purpose, up to two whole checklist items, then the link. Never cut.
+
+    Pinterest truncates descriptions around 500 characters. This used to cut
+    the finished text at 490 and add "...". With the checklist items whole
+    (done_items() was rewritten 2026-09-15), 15 descriptions ran long enough
+    that the cut landed inside the closing link line and removed the URL, the
+    one part of a pin description that sends anyone anywhere. So the link line
+    is reserved first, and the checklist gives way a whole item at a time.
+    """
+    limit = 490
+    purpose = re.sub(r"[ ]+", " ", (z.get("purpose") or "").strip())
+    items = [i.rstrip(".") for i in SP.done_items(z)]
+    link = "Free step-by-step for this zone: %s" % url
+    for n in (2, 1, 0):
+        lines = [purpose] if purpose else []
+        if n and items:
+            lines.append("Done looks like: " + "; ".join(items[:n]) + ".")
+        lines.append(link)
+        text = " ".join(lines).strip()
+        if len(text) <= limit:
+            return text
+    # Only a purpose line longer than the whole budget gets here. Keep its
+    # whole sentences that fit, and the link.
+    room_left = limit - len(link) - 1
+    kept = ""
+    for sentence in re.split(r"(?<=[.!?])[ ]+", purpose):
+        if len((kept + " " + sentence).strip()) > room_left:
+            break
+        kept = (kept + " " + sentence).strip()
+    return (kept + " " + link).strip()
 
 
 def ig_caption(room: str, z: dict, url: str) -> str:

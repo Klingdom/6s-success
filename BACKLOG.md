@@ -1948,11 +1948,21 @@ The backlog exists to make that answer executable.
 - Service bookings forward to the owner with a calendar invite.
 
 ### Open, ranked against GOALS.md
-1. **Publish to YouTube.** Channel exists at youtube.com/@6SSuccess with 0
-   videos. Upload needs an OAuth credential that does not exist yet; everything
+1. **Publish to YouTube.** Channel exists at youtube.com/@6SSuccess with 12
+   videos, uploaded by Phil. Automated upload needs an OAuth credential that does not exist yet; everything
    up to that point is built.
-2. **Pinterest and Instagram crops**, 2:3 and 4:5. Pinterest is the highest
-   intent surface in this category and we are absent from it.
+1b. **Zone videos show and speak a broken checklist.** Found 2026-09-15:
+   11 of the 12 published zone videos lose words of the zone's standard
+   or show fragments on the "What done looks like" screen (Landing Zone
+   drops "wallet"; Primary Prep Counter shows "The salt. The kettle"),
+   and the narration reads the same lines. Cause: `video_zone.py` `beats()`
+   and `video_zone_photo.py` keep their own copies of the comma split that
+   `build_social_pins.done_items()` replaced. Next: one shared split, new
+   narration, re-render; Phil re-uploads the 12 published ones.
+2. **Pinterest and Instagram cards**, 2:3 and 4:5: built (114 zones, both
+   surfaces) and, since 2026-09-15, led by each zone's approved picture.
+   Still absent from Pinterest itself: posting needs the accounts in
+   OWNER-ACTIONS item 16.
 3. ~~**Remaining contrast**~~ Resolved: measured again 2026-09-15 with
    `ops/audit_visual.py` at 1280 and 390 px, deck.html, standards.html and
    invest.html all report 0 text below contrast (was 13 public, 26 investor).

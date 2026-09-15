@@ -111,7 +111,7 @@ frame.addEventListener("load", function(){
       // #cause-victory carries a "Done when:" label ahead of the same
       // sentence the card's own #c-done-look renders without one; strip it
       // here so the two can be compared for the words that actually matter.
-      out.causeVictoryRaw = out.causeVictory.replace(/^Done when:\s*/, "");
+      out.causeVictoryRaw = out.causeVictory.replace(/^Done when:\\s*/, "");
 
       out.evtAfterPick = w.__evt.slice();
 
