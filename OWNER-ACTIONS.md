@@ -1211,7 +1211,9 @@ the two accounts above.
 
 **Updated 2026-09-15:** the cards were rebuilt to lead with each zone's approved
 picture (106 of 114 zones; the other 8 have no approved picture and stay text
-only). Same file names, same captions, same steps above.
+only). Same file names and the same steps above. The captions were regenerated
+too: their checklist now quotes each standard whole, and 15 Pinterest
+descriptions that had lost their zone link to a length cut end in it again.
 
 ---
 

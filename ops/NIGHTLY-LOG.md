@@ -20,6 +20,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `STATUS.md` (one paragraph and one clause corrected against fresher source documents), command deck. No price, product or page touched, no new page, IndexNow not applicable.
 
+## 2026-09-15, local session: zone video checklist, fix designed and measured, not rendered
+
+**Why this entry exists:** BACKLOG 1b (added with `5ab0cf07`) records that 11 of the 12 published zone videos show and narrate a broken "What done looks like" checklist. This session measured whether the whole-standard split from `build_social_pins.done_items()` can simply replace the one in `ops/video_zone.py` `beats()`, and handed the rendering to a later session.
+
+**Measured:**
+- **Vertical (1080x1920):** all 114 zones fit with the whole standard, confirmed from screenshots. The longest, Guest Vanity Storage at 426 characters, ends 81 px above the footer.
+- **Wide (1920x1080):** 35 of 114 collide with the footer, including four published Kitchen zones (Cooking, Lower Cabinet and Cookware, Refrigerator and Freezer, Sink and Dishwashing). The cause is the shared SHELL frame spacing: `padding:300px 84px 470px` and `.foot{bottom:360px}` were sized for the 1920 px vertical frame, leaving 310 px of content height in a 1080 px frame. Spacing the wide frame at `padding:110px 120px 170px` with `.foot{bottom:80px; left:120px}` puts all 114 clear. Screenshots of every beat of two zones under both spacings read as well or better. Judge this from screenshot pixels, not a DOM dump or a page-side marker: both reported wrong results on this layout.
+
+**Why it was not done here:** `beats()` feeds the narration (edge-tts reads each beat's visible text) and the SRT sidecars under `build/video/zones-narrated`, which are committed and gated (`gate_srt_captions_current`, `gate_films_match_their_captions`, `gate_caption_line_length`). Changing the checklist means new narration and a re-render of 228 videos, then Phil re-uploading the 12 published ones. That is hours of rendering, and not work to start at the end of a session.
+
+**Next session:** one shared split (move `done_items()` somewhere `video_zone.py` can import without a cycle, and delete the copy in `video_zone_photo.py`), wide-only frame spacing as above, `render_all_narrated.py` for both orientations, regenerate the SRTs, run the three gates, then an OWNER-ACTIONS item for the 12 re-uploads.
+
 ## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; cold-read of ops/service_orders.py found nothing wrong)
 
 **Attach:** arrived shallow and detached; `fetch --unshallow`, `merge --ff-only` onto `origin/main` (`7561255a`), fast-forwarded 1056 commits, no unrelated-history symptom.
