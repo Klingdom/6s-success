@@ -15,6 +15,16 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Handing to the operator:** a general gate that checks every preflight gate's file dependency against the workflow path filters that would trigger it is real, worth building, and too large for this slot.
 
+## 2026-09-15, local session: Quest app shows each zone's picture, bundled offline (`f8d687ce`)
+
+**Did:** the app card named its zone in grey text only while 106 of 114 zones already have a reviewed illustration on the site. The card header now shows it as a 74x56 thumbnail beside "Room > Zone", the one place the web Quest card allows a picture (quest.js: "the working half of the card stays text"), decorative, absent for the 8 zones without an approved image. Bundled rather than fetched so the footer's "nothing is sent anywhere" stays true: `ops/build_mobile_corpus.py` passes `img` through, copies the site's approved `-sm.jpg` files (106 files, 1.4 MB, measured against the -md set at 4.6 MB) and writes a generated `assets/zoneHeroes.js` require map. `gate_mobile_corpus_current` and `--check` now fail on a missing picture, an unapproved picture or a stale map; new `ops/tests/test_mobile_zone_heroes.py` plants each shape in a temp copy and fails against the previous generator.
+
+**Verified:** `npm test`; all 10 preflight gates that read the app; full `preflight.py`: every gate passed except one, `owner-actions-last-measured-current`, which my own docs commit `926d4571` broke by adding a 2026-09-15 correction without moving the header date; fixed in `e8ef3bed` and that gate rerun clean; Expo web export in a real 390px frame: no overflow, 0 targets under 44px, thumbnail 74x56 on a fresh card and on a seeded mid-zone card (4 of 6, SAFETY). NOT verified: on a physical device, and by CI (`checks.yml` does not watch `mobile/**`).
+
+**Did not go well:** the first thumbnail used `aspectRatio: 4/3` with a fixed width; React Native web ignored it and rendered the 320x240 source at 74x240, a tall strip. Caught in the 390px screenshot, fixed with an explicit 74x56. Two long inline heredocs failed bash parsing before any file was touched (the known long-command trap); the edit was split into a snippet file plus a short script, and an ambiguous anchor aborted cleanly before writing.
+
+**Next:** the finish screen still shows the zone as text only; decide whether the zone's picture belongs on that recap. Physical-device check of the thumbnail on iOS and Android.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished, verified a concurrent push rather than starting a fresh sweep)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`. `preflight.py`'s own run silently regenerated the command deck as a side effect before I had checked anything in; stashed it, merged, popped it back, no loss.
