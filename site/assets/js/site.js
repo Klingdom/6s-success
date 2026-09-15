@@ -178,6 +178,13 @@
       '</div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +
       '<h3>' + p.name + '</h3><p class="blurb">' + p.blurb + '</p>' +
+      /* EXPLAIN BEFORE OFFER, FROM THE SHOP SIDE TOO.
+       * A zone or room pack prints steps that are already free on a page of
+       * this site, and that page already offers the pack. The card used to
+       * sell 128 packs with no way to read those steps first. `page` is
+       * computed by ops/wire_generated_catalog.py from the same records the
+       * pages are built from; it is absent for anything with no single page. */
+      (p.page ? '<p class="fulfil"><a href="' + p.page + '">Read the free steps first</a></p>' : '') +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +
       fulfil + supr +
       '<div class="foot">' + priceHtml + action + '</div></div></article>';

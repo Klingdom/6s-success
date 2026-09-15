@@ -123,6 +123,52 @@ def image_for(p: dict, i: int) -> str:
     return SPAN_IMG[i % len(SPAN_IMG)]
 
 
+_PAGES = None
+
+
+def page_for(p: dict):
+    """The free page that explains what a zone or room pack contains, or None.
+
+    Added 2026-09-15. The shop sold 109 zone packs and 19 room packs as a name,
+    a blurb and a buy button, with no way to see the steps the cards print. The
+    zone and room pages already explain exactly that, and already offer the
+    pack; the shop card now links back to them, so the order is explain, then
+    offer, from either side. Situation kits and area bundles span several rooms
+    and have no single page, so they get none.
+
+    The URL comes from quest-data.js (the zone's own url) and the room's slug,
+    the same records the pages are built from, never from the product name: a
+    pack is named for the zone ("Landing Zone Pack") while its page is named
+    for the zone's display name ("the-landing-spot"). A page that does not
+    exist on disk is not linked.
+    """
+    global _PAGES
+    if _PAGES is None:
+        import build_mobile_corpus as BMC
+        src = BMC.load_source()
+        zones, rooms = {}, {}
+        for r in src["rooms"]:
+            rooms[r["room"]] = "rooms/%s.html" % r["slug"]
+            for z in r["zones"]:
+                if z.get("url"):
+                    zones[(r["room"], z["zone"])] = z["url"].lstrip("/") + ".html"
+        _PAGES = (zones, rooms)
+    zones, rooms = _PAGES
+    if p.get("kind") == "zone":
+        pairs = p.get("zones") or []
+        if len(pairs) != 1:
+            return None
+        room, z = pairs[0]
+        rel = zones.get((room, z.get("zone")))
+    elif p.get("kind") == "room":
+        rel = rooms.get(p.get("room"))
+    else:
+        return None
+    if rel and os.path.exists(os.path.join(ROOT, "site", rel)):
+        return rel
+    return None
+
+
 def entry(p: dict, i: int = 0, prev: dict | None = None) -> dict:
     """One catalogue row.
 
@@ -146,6 +192,9 @@ def entry(p: dict, i: int = 0, prev: dict | None = None) -> dict:
         # Named so the shop can show the cheaper superset beside the subset.
         "super": "PACK-HOUSE",
     }
+    page = page_for(p)
+    if page:
+        out["page"] = page
     if prev and prev.get("buy"):
         out["buy"] = prev["buy"]
     return out
