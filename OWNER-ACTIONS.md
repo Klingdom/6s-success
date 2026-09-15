@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-14 (evening), item 1c extended: the 12 Sept quote click, the 14 Sept buy-click and the 7 Sept checkout burst all traced to your own home connection (LRN-0010). Earlier: 2026-09-14, item 1's traffic figure carried forward to the
+**Last measured:** 2026-09-15 (night), item 1b corrected: the free print-and-play deck now has 9 cards without a photograph, not 12 (EP-008, ET-004 and EU-011 got locally generated, reviewed heroes, verified live in the served PDF). Earlier: 2026-09-14 (evening), item 1c extended: the 12 Sept quote click, the 14 Sept buy-click and the 7 Sept checkout burst all traced to your own home connection (LRN-0010). Earlier: 2026-09-14, item 1's traffic figure carried forward to the
 real 2026-09-14 11:46 database read (74 visitors, 945 pageviews), then the same evening to a direct database read (75 visitors, 196 visits, 947 pageviews), replacing
 the three-day-old 2026-09-11 pull. Earlier: 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
 link into each of the 12 published video descriptions, closing
