@@ -80,6 +80,16 @@ CATALOGUE = os.path.join(ROOT, "ops", "affiliate-catalogue.csv")
 # without; the second two are "only if your zone has one of these".
 NEEDED = ("Core", "Core Reset Kit")
 
+# CLAUDE.md's affiliate rule: "Never recommend a storage product before the
+# reader has done Sort." The pre-Sort "What to have on hand before you
+# start" block used to hold every needed/maybe product regardless of family,
+# which put bins, shelf risers, drawer dividers and the like (569 rows
+# across 112 of 114 zones, most with a live retailer link) directly above
+# the Sort heading on the page. Bins are what Straighten is for; a reader
+# has to know what they are keeping before a bin size means anything.
+# render_storage() below renders this family separately, after Sort.
+STORAGE_FAMILY = "Storage & Organization"
+
 # schema.org draws the line between a thing consumed by the procedure and a
 # thing reused after it. A bottle of cleaner is a HowToSupply; a vacuum is a
 # HowToTool. Getting this backwards is not a small thing, it is markup that
@@ -258,8 +268,8 @@ def kit(room: str, manual_zone: str) -> dict:
     items = _zone_products().get(f"{room}||{manual_zone}") or []
     cat, rare = _catalogue(), _rarity()
 
-    out = {"needed": [], "maybe": [], "links": 0, "tracked": 0,
-           "amazon": False}
+    out = {"needed": [], "maybe": [], "storage_needed": [], "storage_maybe": [],
+           "links": 0, "tracked": 0, "amazon": False}
     for p in items:
         row = cat.get(p["id"], {})
         if not _room_allows(row.get("Applicable Rooms"), room):
@@ -288,10 +298,14 @@ def kit(room: str, manual_zone: str) -> dict:
                 out["tracked"] += 1
                 if rec["merchant"] == "amazon":
                     out["amazon"] = True
-        bucket = "needed" if p.get("level") in NEEDED else "maybe"
+        is_needed = p.get("level") in NEEDED
+        if fam == STORAGE_FAMILY:
+            bucket = "storage_needed" if is_needed else "storage_maybe"
+        else:
+            bucket = "needed" if is_needed else "maybe"
         out[bucket].append(rec)
 
-    for b in ("needed", "maybe"):
+    for b in ("needed", "maybe", "storage_needed", "storage_maybe"):
         # Rarest first, then alphabetical so the order is stable between runs.
         out[b].sort(key=lambda r: (r["rarity"], r["name"]))
     return out
@@ -392,6 +406,13 @@ def render(room: str, manual_zone: str, display_name: str,
     Returns a self-contained block: disclosure first (only when the page
     genuinely has outbound retailer links), then the needed kit, then the
     conditional half folded away so it cannot bury the method.
+
+    Deliberately excludes the STORAGE_FAMILY items kit() now buckets
+    separately (storage_needed/storage_maybe): CLAUDE.md's affiliate rule is
+    "never recommend a storage product before the reader has done Sort",
+    and this block is rendered above the six passes, before Sort. See
+    render_storage(), called by the page builder right after the Sort
+    section instead.
     """
     k = kit(room, manual_zone)
     if not k["needed"] and not k["maybe"]:
@@ -414,9 +435,19 @@ def render(room: str, manual_zone: str, display_name: str,
     # Today every link is a plain retailer search, no programme is approved,
     # so this renders "Nothing on this page earns us anything", which is true
     # and is the thing a reader is owed before they click out.
-    if k["links"]:
+    #
+    # Scoped to THIS block's own needed+maybe (not kit()'s whole-zone
+    # k["links"]/k["amazon"], which also count render_storage()'s items):
+    # a zone whose only affiliate links are storage products now prints no
+    # links here at all (they moved after Sort), and printing this
+    # disclosure above an unlinked list would be a promise this block does
+    # not keep.
+    pre_links = k["needed"] + k["maybe"]
+    if any(r["kind"] for r in pre_links):
         try:
             import affiliate as A
+            amazon = any(r["kind"] == "tracked" and r["merchant"] == "amazon"
+                        for r in pre_links)
             out.append(_styled(
                 # has_links means "are there links on this page", not
                 # "do any of them pay us". Passing tracked made 114 zone
@@ -425,7 +456,7 @@ def render(room: str, manual_zone: str, display_name: str,
                 # above fifteen live retailer links, which reads as
                 # though there are no links at all. Both sentences are
                 # true; only one of them describes the page.
-                A.disclosure(k["amazon"], bool(k["links"]), prefix)))
+                A.disclosure(amazon, True, prefix)))
         except Exception:                                     # noqa: BLE001
             pass
 
@@ -453,6 +484,69 @@ def render(room: str, manual_zone: str, display_name: str,
     return "\n".join(out)
 
 
+def render_storage(room: str, manual_zone: str, display_name: str,
+                    prefix: str = "../") -> str:
+    """Bins, shelves and the rest of STORAGE_FAMILY, or "" when this zone
+    calls for none. The page builder places this after the Sort section,
+    never before it: see render()'s own docstring for why.
+
+    Self-contained the same way render() is: its own disclosure line first,
+    because a reader can reach this block without having scrolled past
+    render()'s disclosure (a zone with no non-storage kit prints "").
+
+    A zone can carry both blocks (non-storage links before Sort, storage
+    links after it), and ops/affiliate.py's disclosure() always writes the
+    same hardcoded id. Two <aside id="affiliate-disclosure"> on one page is
+    invalid HTML, so this block's own copy is renamed after the fact rather
+    than reused as-is; nothing links to the id by anchor (checked: no page
+    or script references "#affiliate-disclosure").
+    """
+    k = kit(room, manual_zone)
+    if not k["storage_needed"] and not k["storage_maybe"]:
+        return ""
+
+    out = []
+    out.append('<h2 id="what-to-store-it-in">What to store it in, now that '
+               'you know what you are keeping</h2>')
+    out.append('<p>Bins and shelves are for what Sort left behind, not a '
+               'stand-in for it. Buying storage before sorting means buying '
+               'a container for things you have not yet decided to keep.</p>')
+
+    storage_links = k["storage_needed"] + k["storage_maybe"]
+    if any(r["kind"] for r in storage_links):
+        try:
+            import affiliate as A
+            amazon = any(r["kind"] == "tracked" and r["merchant"] == "amazon"
+                        for r in storage_links)
+            block = A.disclosure(amazon, True, prefix)
+            # Rename this copy's id so it cannot collide with render()'s
+            # disclosure when a zone carries both (see docstring above).
+            block = block.replace('id="%s"' % A.DISCLOSURE_ID,
+                                  'id="%s-storage"' % A.DISCLOSURE_ID, 1)
+            out.append(_styled(block))
+        except Exception:                                     # noqa: BLE001
+            pass
+
+    if k["storage_needed"]:
+        out.append('<ul class="kit-list">')
+        out += [_row_html(r) for r in k["storage_needed"]]
+        out.append('</ul>')
+
+    if k["storage_maybe"]:
+        noun = _esc(display_name.strip().lower())
+        out.append('<details style="margin:18px 0 0">'
+                   f'<summary style="cursor:pointer;font-family:var(--sans);'
+                   f'font-weight:600">Only if your {noun} has one: '
+                   f'{len(k["storage_maybe"])} more</summary>'
+                   f'<p style="margin:12px 0 8px">Not every {noun} needs '
+                   'these. Each one is here because some do, and the reason '
+                   'is next to it.</p>'
+                   '<ul class="kit-list">')
+        out += [_row_html(r) for r in k["storage_maybe"]]
+        out.append('</ul></details>')
+    return "\n".join(out)
+
+
 def room_kit(room: str, manual_zones) -> list:
     """The Core kit for a whole room, deduplicated across its zones.
 
@@ -461,9 +555,14 @@ def room_kit(room: str, manual_zones) -> list:
     honest answer to "what do I need to buy or find before I start on this
     room at all".
     """
+    # A room page has no Sort heading of its own to be "before", so the
+    # storage/non-storage split render() enforces on zone pages does not
+    # apply here: the room kit is one honest list of everything the room's
+    # zones call for.
     seen, out = set(), []
     for mz in manual_zones:
-        for rec in kit(room, mz)["needed"]:
+        k = kit(room, mz)
+        for rec in k["needed"] + k["storage_needed"]:
             if rec["id"] in seen:
                 continue
             seen.add(rec["id"])
@@ -504,10 +603,13 @@ def schema(room: str, manual_zone: str) -> tuple:
 
     Only the "needed" half is marked up. A conditional item is by definition
     not required to complete the procedure, and HowToSupply means required.
+    Structured data has no reading order, so it lists the storage-family
+    Core items too (render()/render_storage() split those apart only for
+    the visible page, to satisfy "never recommend storage before Sort").
     """
     k = kit(room, manual_zone)
     supply, tool = [], []
-    for r in k["needed"]:
+    for r in k["needed"] + k["storage_needed"]:
         node = {"@type": "HowToSupply" if r["supply"] else "HowToTool",
                 "name": r["name"]}
         (supply if r["supply"] else tool).append(node)

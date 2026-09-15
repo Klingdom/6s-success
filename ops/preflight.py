@@ -12511,6 +12511,95 @@ def gate_zone_supplies_docstring_current() -> None:
              "Update the docstring to the real count." % (claimed, real))
 
 
+def gate_no_storage_before_sort() -> None:
+    """CLAUDE.md's affiliate rule: "Never recommend a storage product
+    before the reader has done Sort."
+
+    Found 2026-09-15, cold-reading ops/zone_supplies.py: the "What to have
+    on hand before you start" kit block (render()) rendered every needed
+    and maybe/conditional product regardless of family, above all six
+    passes including Sort. The catalogue's own "Storage & Organization"
+    family (bins, shelf risers, drawer dividers, hangers and the like) had
+    570 rows across 112 of 114 zones, most already live retailer links from
+    ops/product_links.py, all recommended before a reader had sorted
+    anything. Home Office File Storage's "Fireproof Document Box" was the
+    clearest single case: a real container, tagged for the Straighten
+    pass, linked to Home Depot, sitting in the block above Sort.
+
+    Fixed the same cycle: render() now excludes STORAGE_FAMILY items, and
+    a new render_storage() places them in their own "What to store it in"
+    section, wired by ops/build_zone_pages.py to render right after the
+    Sort pass and before Straighten.
+
+    This gate re-derives, from the real catalogue, which product names are
+    Storage & Organization items, and fails if any of those names appears
+    in a real zone page's rendered kit block before its id="sort" section
+    opens. It does not trust zone_supplies.py's own bucketing logic (that
+    would just prove the code agrees with itself); it reads the shipped
+    HTML, the same surface a reader sees.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import zone_supplies as zs
+        cat = zs._catalogue()
+    except Exception as e:                                       # noqa: BLE001
+        warn("storage-before-sort",
+             "could not read the affiliate catalogue to check the "
+             "storage-before-Sort rule (%s). Unchecked, not clean." % e)
+        return
+    if not cat:
+        warn("storage-before-sort",
+             "the affiliate catalogue read empty, so the storage-before-"
+             "Sort rule could not be checked. Unchecked, not clean.")
+        return
+
+    import html as _html
+    storage_names = sorted({
+        (row.get("Product Standard Name") or "").strip()
+        for row in cat.values()
+        if (row.get("Product Family") or "").strip() == zs.STORAGE_FAMILY
+    } - {""})
+    if not storage_names:
+        warn("storage-before-sort",
+             "no catalogue row carries the Storage & Organization family "
+             "any more, so this gate has nothing to check against. Verify "
+             "by hand that the family was renamed rather than emptied.")
+        return
+
+    zone_dir = os.path.join(ROOT, "site", "zones")
+    files = sorted(glob.glob(os.path.join(zone_dir, "*.html")))
+    if not files:
+        warn("storage-before-sort",
+             "no site/zones/*.html found, so the storage-before-Sort rule "
+             "could not be checked here.")
+        return
+
+    bad = []
+    for f in files:
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        m1 = re.search(r'<h2 id="what-you-need">', s)
+        m2 = re.search(r'\bid="sort"', s)
+        if not m1 or not m2 or m2.start() <= m1.start():
+            continue
+        pre = s[m1.start():m2.start()]
+        for name in storage_names:
+            needle = f"<b>{_html.escape(name, quote=True)}</b>"
+            if needle in pre:
+                bad.append((os.path.relpath(f, ROOT), name))
+                break
+
+    if bad:
+        fail("storage-before-sort",
+             "%d zone page(s) still recommend a storage product before "
+             "the Sort pass. First few: %s. This is a CLAUDE.md rule that "
+             "does not bend; fix in ops/zone_supplies.py's render()/"
+             "render_storage() split, not by hand-editing the page." %
+             (len(bad), bad[:4]))
+        return
+    print(f"  {len(storage_names)} storage-family product name(s) checked "
+         f"against {len(files)} zone page(s): none recommended before Sort")
+
+
 def gate_feed_current() -> None:
     """site/feed.xml must match what ops/build_feed.py would write right now.
 
@@ -13621,6 +13710,7 @@ def main() -> int:
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
+    run_gate(gate_no_storage_before_sort)
     run_gate(gate_data_sources_current)
     run_gate(gate_growth_playbook_linkedin_current)
     run_gate(gate_mobile_overflow, deep)

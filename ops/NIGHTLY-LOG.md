@@ -2,13 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle: a live violation of CLAUDE.md's own affiliate rule found and fixed, 570 storage-product recommendations moved from before Sort to after it
+
+**Did:** Attached to main (unshallow after a transient fetch reset, ff-only, clean, 35 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` clean on arrival (0 gates failed, 23 pre-diagnosed warnings). Backlog sections 2-6 again all done or Phil-gated, 7 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential, no egress, no ssh/Stripe/Gemini credential, all retested directly rather than assumed. Cold-read `ops/zone_supplies.py` (10 mentions, the current cold-read floor) and `ops/wire_nav.py` per step 5d. `wire_nav.py` was clean. `zone_supplies.py` was not: CLAUDE.md's routine prompt states "never recommend a storage product before the reader has done Sort," and the "What to have on hand before you start" kit block rendered every needed/conditional product before all six passes including Sort. Measured, not assumed: 570 "Storage & Organization" family rows across 112 of 114 real zone pages, most live retailer links, in that block. Home Office File Storage's Home Depot-linked "Fireproof Document Box" (tagged for Straighten) was the clearest live instance.
+
+**Fixed:** `zone_supplies.kit()` now buckets storage-family items separately; `render()` excludes them; new `render_storage()` places them after Sort, before Straighten, `build_zone_pages.py` wired in. Each block's disclosure is scoped to its own links; the storage block's disclosure `id` is renamed to avoid a duplicate id when both appear. `schema()` and `room_kit()` still see the full set. Regenerated all 114 zone pages.
+
+**Verified:** Live before/after confirmed (Fireproof Document Box now sits after `id="sort"`). New `gate_no_storage_before_sort`, fail-then-pass proved by planting the exact old defect in the real file and watching it fail by name, then regenerating clean. Full `preflight.py` (0 failed, 24 warnings, the extra one an expected uncommitted-diff notice), `affiliate.py --check` (162 documents), `check_urls.py` (188/188), `audit_pages.py` (191/0), targeted affiliate tests all clean. Total link count unchanged at 1,717 (`zone_supplies.py`'s own report), confirming nothing was dropped, only repositioned.
+
+**Went well:** the cold-read lane, called "exhausted" by several prior cycles today, still found a real, large-scale, rule-level violation nobody had checked for by name.
+
+**Did not go well:** nothing this pass; the fix and its gate both verified clean.
+
+**Changing next cycle:** none; the new gate closes this class going forward.
+
+**Next:** same standing Phil-blocked list and 7 open decision/blocked-on-art issues, unchanged.
+
 ## 2026-09-15, PM check-in (30-minute triage, sixth)
 
 NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
 
-**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`16de3304`), clean, 36 commits ahead of last local state, no conflict.
+**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`16de3304`), clean, 36 commits ahead of last local state, no conflict. A concurrent operator cycle (the storage-before-Sort fix immediately above) pushed while this cycle worked; merged clean, no content conflict beyond this log's own prepend point.
 
-**Previous work: finished, independently reconfirmed.** `preflight.py` ran to completion: every gate passed, the same 23 pre-diagnosed warnings, none new. `EXECUTIVE-DASHBOARD-LIVE.md`'s traffic and revenue carry-forward, fixed by the scheduled operator cycle earlier today, checked directly: both fields correctly read "carried forward from 2026-09-14 18:32" rather than the false "not measured" that bug produced, so that fix is holding.
+**Previous work: finished, independently reconfirmed.** `preflight.py` ran to completion: every gate passed, the same 23 pre-diagnosed warnings, none new. `EXECUTIVE-DASHBOARD-LIVE.md`'s traffic and revenue carry-forward, fixed by an earlier scheduled operator cycle today, checked directly: both fields correctly read "carried forward from 2026-09-14 18:32" rather than the false "not measured" that bug produced, so that fix is holding.
 
 **Checked for new work, found none.** `BACKLOG-2026-09-07.md` sections 2-6 again all struck done, correctly HOLD, or Phil-gated; read in full, not from memory. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. `STATUS.md` already current, last updated this same cycle window.
 
