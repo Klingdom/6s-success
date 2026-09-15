@@ -378,7 +378,7 @@ main:focus{outline:none}
 /* ---------- hero (deep ground + gauge signature) ---------- */
 .hero{position:relative;background:radial-gradient(120% 90% at 78% 0%,#2c4049 0,var(--deep) 46%,var(--deep-2) 100%);
   color:var(--cream-on-deep);overflow:hidden}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;
   align-items:center;padding-top:76px;padding-bottom:84px}
 .hero h1{font-family:var(--display);color:#fff;font-size:clamp(42px,6.2vw,74px);line-height:.98;letter-spacing:-.03em}
 .hero h1 em{font-style:italic;color:var(--honey);font-weight:500}
@@ -389,10 +389,78 @@ main:focus{outline:none}
 .hero .trust{margin-top:30px;font-family:var(--sans);font-size:13.5px;color:rgba(237,228,210,.7);
   display:flex;gap:20px;flex-wrap:wrap}
 .hero .trust b{color:#fff;font-weight:700}
-.hero-art{position:relative;display:grid;place-items:center}
+.hero-art{position:relative;display:grid;grid-template-columns:minmax(0,1fr);place-items:center}
 .gauge{width:100%;max-width:440px;filter:drop-shadow(0 24px 44px rgba(0,0,0,.35))}
 .gauge .needle{transform-box:fill-box;transform-origin:50% 92%;animation:sweep 3.4s cubic-bezier(.6,.02,.2,1) .4s both}
 @keyframes sweep{0%{transform:rotate(-58deg)}70%{transform:rotate(6deg)}100%{transform:rotate(0)}}
+
+/* ---------- home hero: a real Quest card (replaces the retired gauge) ----------
+   Mirrors .q-card in quest.html so the promise above the fold looks exactly
+   like the thing the free button opens. Colour carried by the band, the badge
+   and the spine together, never by colour alone: the pass is also named. */
+.hero .cta-row .btn-lg{padding-left:24px;padding-right:24px}
+.hero-card{display:block;width:100%;max-width:440px;background:#FBF7EF;color:var(--ink);
+  border-radius:18px;border-top:7px solid var(--s-colour,#BC4B2A);text-decoration:none;
+  box-shadow:0 30px 70px rgba(0,0,0,.38),0 2px 0 rgba(255,255,255,.06) inset;
+  transform:rotate(1.2deg);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.hero-card:hover,.hero-card:focus-visible{transform:rotate(0deg) translateY(-3px);
+  box-shadow:0 36px 80px rgba(0,0,0,.45)}
+.hero-card:focus-visible{outline:3px solid var(--focus,#F0C674);outline-offset:4px}
+.hero-card > span{display:block}
+.hc-band{padding:18px 24px 14px;background:#FBF7EF;
+  background:color-mix(in srgb,var(--s-colour,#BC4B2A) 14%,#FBF7EF)}
+.hc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.hc-badge{font-family:var(--sans);font-size:12.5px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;padding:7px 14px;border-radius:99px}
+.hc-count{font-family:var(--sans);font-size:12.5px;font-weight:700;color:#5E574F}
+.hc-where{display:block;font-family:var(--sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;color:#584f46}
+.hc-symptom{padding:16px 24px 0;font-family:var(--display);font-weight:600;font-size:22px;
+  line-height:1.22;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.hc-why{padding:8px 24px 0;font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.45;color:#584f46}
+.hc-do{padding:14px 24px 0;font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--ink)}
+.hc-panel{margin:16px 24px 0;padding:2px 0 2px 14px;border-left:4px solid var(--green-d,#4E7A57);
+  font-family:var(--serif);font-size:15.5px;line-height:1.45;color:#584f46}
+.hc-panel-h{display:block;font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:#5E574F;margin-bottom:4px}
+.hc-foot{display:flex !important;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:20px;padding:14px 24px 18px;border-top:1px solid #E2D8C4}
+.hc-try{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--terra-d,#9E3C20)}
+.hc-try::after{content:" \2192"}
+.hc-spine{display:flex;gap:4px}
+.hc-spine i{display:block;width:18px;height:6px;border-radius:3px;background:#E2D8C4}
+.hc-spine i:nth-child(2){background:var(--s-colour,#BC4B2A)}
+@media (max-width:900px){.hero-card{transform:none;margin:8px auto 0}}
+@media (prefers-reduced-motion:reduce){.hero-card,.hero-card:hover,.hero-card:focus-visible{transition:none;transform:none}}
+
+/* ---------- deck hero: a fan of real card fronts ----------
+   The scanned fronts are not all the same shape (400x536 to 400x564), so each
+   sits in a fixed 5:7 frame and is cropped from the top, where the title is. */
+/* width:100% resolves against .hero-art's column, which is only definite
+   because .hero-art declares grid-template-columns:minmax(0,1fr). Without
+   that, the column was sized by content, and this fan has none in flow
+   (every card is absolutely positioned), so it collapsed to 0x0 on phones.
+   Measured 2026-09-15. */
+.card-fan{position:relative;display:block;width:100%;max-width:440px;aspect-ratio:1/1;margin:0 auto}
+.fan-card{position:absolute;top:8%;left:50%;width:56%;aspect-ratio:5/7;border-radius:14px;overflow:hidden;
+  background:#FBF7EF;box-shadow:0 26px 60px rgba(0,0,0,.42);transition:transform .25s ease}
+.fan-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.fan-l{transform:translateX(-96%) rotate(-9deg);top:13%}
+.fan-r{transform:translateX(-4%) rotate(9deg);top:13%}
+.fan-c{transform:translateX(-50%);z-index:2}
+.card-fan:hover .fan-l,.card-fan:focus-visible .fan-l{transform:translateX(-104%) rotate(-12deg)}
+.card-fan:hover .fan-r,.card-fan:focus-visible .fan-r{transform:translateX(4%) rotate(12deg)}
+.card-fan:focus-visible{outline:3px solid var(--focus,#F0C674);outline-offset:6px;border-radius:18px}
+@media (max-width:900px){.card-fan{max-width:340px;margin-top:10px}
+  /* On a phone the fan box is about 323px. At 56% with a near full-card
+     offset and a 9 degree tilt, both side cards ran past the screen edge
+     (clipped by the hero, so nothing scrolled, but it read as broken).
+     Measured 2026-09-15; these keep all three inside the box. */
+  .fan-card{width:48%}
+  .fan-l{transform:translateX(-86%) rotate(-7deg)}
+  .fan-r{transform:translateX(-14%) rotate(7deg)}
+  .card-fan:hover .fan-l,.card-fan:focus-visible .fan-l{transform:translateX(-90%) rotate(-9deg)}
+  .card-fan:hover .fan-r,.card-fan:focus-visible .fan-r{transform:translateX(-10%) rotate(9deg)}}
+@media (prefers-reduced-motion:reduce){.fan-card{transition:none}}
 
 /* ---------- six-S spine ---------- */
 .s-track{display:grid;grid-template-columns:repeat(6,1fr);gap:0;counter-reset:s;margin:0}
@@ -533,7 +601,10 @@ main:focus{outline:none}
    what follows rather than a callout competing with it. */
 .answer{margin:26px 0 4px;padding:20px 0 4px;border-top:1px solid var(--rule);
   border-bottom:1px solid var(--rule)}
-.answer-h{font-family:var(--sans);font-size:12.5px;font-weight:700;
+/* Qualified with .answer: `.wrap h2` (0,1,1) outranked a bare `.answer-h`
+   (0,1,0), so on all 114 zone pages this 12.5px caption rendered at 28px
+   with a 40px top margin. Measured 2026-09-15. */
+.answer .answer-h{font-family:var(--sans);font-size:12.5px;font-weight:700;
   letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
   margin:0 0 12px}
 .answer-steps{list-style:none;counter-reset:a;margin:0;padding:0;
@@ -614,7 +685,7 @@ main:focus{outline:none}
   /* No order:-1 here. The art is decorative; the headline and buy button in
      hero-copy come first in the source and must stay first on a phone
      screen, not get pushed below a graphic. */
-  .hero-art{max-width:360px;margin-inline:auto}
+  .hero-art{width:100%;max-width:360px;margin-inline:auto}
   .split,.split.flip .media{grid-template-columns:1fr}
   .split .media{order:-1}
   .g-4{grid-template-columns:repeat(2,1fr)}

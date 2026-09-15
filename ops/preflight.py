@@ -178,12 +178,22 @@ def gate_build_id_current() -> None:
              % (have or "nothing", want))
         return
 
+    # Only UNSTAGED or untracked site/ changes make this verdict untrustworthy.
+    # `git status --porcelain` also lists staged ones, so between `git add`
+    # and `git commit` this warned "not yet staged" about files that were
+    # staged, every time. Measured 2026-09-15. Porcelain v1 is two status
+    # characters then the path: the second is the working tree, and "??"
+    # is untracked. The output is not stripped before splitting, because
+    # strip() removes the leading space of an unstaged-only first line and
+    # would make it read as staged.
     try:
-        dirty = subprocess.run(
+        porcelain = subprocess.run(
             ["git", "status", "--porcelain", "--", "site"], cwd=ROOT,
-            capture_output=True, text=True, timeout=30).stdout.strip()
+            capture_output=True, text=True, timeout=30).stdout
     except Exception:                                           # noqa: BLE001
-        dirty = ""
+        porcelain = ""
+    dirty = chr(10).join(line for line in porcelain.splitlines()
+                      if line[:2] == "??" or (len(line) > 1 and line[1] != " "))
     if dirty:
         warn("build-id",
              "this verdict is current against the git INDEX, but site/ has "
@@ -8033,6 +8043,70 @@ def gate_corporate_buy_path_current() -> None:
                  "one (commit 9e7b1cd1). Reread and correct the doc.")
 
 
+def gate_home_hero_card_real() -> None:
+    """The home page's hero card must be a real Quest card, word for word.
+
+    Added 2026-09-15, when the hero's retired friction gauge was replaced with
+    the first symptom card the Quest itself deals (quest-data.js
+    symptoms[0]). A card hand-copied into a hand-maintained page is exactly
+    the "source corrected, shipped artifact never re-derived" defect this
+    repository keeps finding: the Quest's wording changes and the home page
+    goes on promising a card the button no longer opens. Each span marked
+    data-quest in the hero must equal the matching field in quest-data.js,
+    after unescaping HTML. A page with no hero card has nothing to drift, so
+    it passes.
+    """
+    import html as _html
+    home_path = os.path.join(ROOT, "site", "index.html")
+    data_path = os.path.join(ROOT, "site", "assets", "js", "quest-data.js")
+    if not os.path.exists(home_path):
+        return
+    home = io.open(home_path, encoding="utf-8").read()
+    m = re.search(r'<a class="hero-card".*?</a>', home, re.S)
+    if not m:
+        return
+    card = m.group(0)
+    if not os.path.exists(data_path):
+        fail("home-hero-card-real",
+             "site/index.html carries a hero card but site/assets/js/quest-data.js "
+             "is missing, so its wording cannot be checked.")
+        return
+    src = io.open(data_path, encoding="utf-8").read()
+    marker = "window.QUEST = "
+    if marker not in src:
+        fail("home-hero-card-real", "quest-data.js no longer assigns window.QUEST; "
+             "this gate needs updating to read it.")
+        return
+    quest, _end = json.JSONDecoder().raw_decode(src[src.index(marker) + len(marker):])
+    symptoms = quest.get("symptoms") or []
+    if not symptoms:
+        fail("home-hero-card-real", "quest-data.js has no symptoms, but the home "
+             "hero card still shows symptoms[0].")
+        return
+    sym = symptoms[0]
+    want = {
+        "sixS": sym.get("sixS", ""),
+        "where": "%s › %s" % (sym.get("room", ""), sym.get("zone", "")),
+        "symptom": "“%s”" % sym.get("symptom", ""),
+        "why": (sym.get("why", "")[:1].lower() + sym.get("why", "")[1:]),
+        "action": sym.get("action", ""),
+        "victory": sym.get("victory", ""),
+    }
+    got = {}
+    for fm in re.finditer(r'data-quest="([a-zA-Z]+)"[^>]*>(.*?)</span>', card, re.S):
+        got[fm.group(1)] = _html.unescape(re.sub(r"<[^>]+>", "", fm.group(2))).strip()
+    bad = []
+    for key, value in want.items():
+        if key not in got:
+            bad.append("%s missing" % key)
+        elif got[key] != value:
+            bad.append("%s is %r, quest-data.js says %r" % (key, got[key][:60], value[:60]))
+    if bad:
+        fail("home-hero-card-real",
+             "the home page hero card has drifted from the Quest card it shows "
+             "(quest-data.js symptoms[0]): %s" % "; ".join(bad))
+
+
 def gate_goals_traffic_current() -> None:
     """GOALS.md's traffic baseline must be the same number everywhere it is repeated.
 
@@ -12734,6 +12808,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
+    run_gate(gate_home_hero_card_real)
     run_gate(gate_quest_data_heroes_current)
     run_gate(gate_quest_funnel_events)
     run_gate(gate_quest_session_placement)

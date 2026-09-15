@@ -68,7 +68,7 @@
 }
 </script>
 <!-- SEO:END -->
-<link rel="stylesheet" href="assets/css/site.css?v=91d3bb95e1">
+<link rel="stylesheet" href="assets/css/site.css?v=c8dd3a4136">
 <!-- PWA:BEGIN -->
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -162,20 +162,23 @@
       </div>
     </div>
     <div class="hero-art">
-      <svg class="gauge" viewBox="0 0 460 300" role="img" aria-label="A friction meter sweeping from friction on the left to calm on the right, the needle resting in the calm green zone.">
-        <path d="M50 240 A180 180 0 0 1 74 150"  fill="none" stroke="#CB4B36" stroke-width="26" stroke-linecap="round"/>
-        <path d="M74 150 A180 180 0 0 1 140 84"  fill="none" stroke="#BC4B2A" stroke-width="26"/>
-        <path d="M140 84 A180 180 0 0 1 230 60"  fill="none" stroke="#D98A2B" stroke-width="26"/>
-        <path d="M230 60 A180 180 0 0 1 320 84"  fill="none" stroke="#DDA63A" stroke-width="26"/>
-        <path d="M320 84 A180 180 0 0 1 386 150" fill="none" stroke="#6E8B5B" stroke-width="26"/>
-        <path d="M386 150 A180 180 0 0 1 410 240" fill="none" stroke="#4E7A57" stroke-width="26" stroke-linecap="round"/>
-        <circle cx="386" cy="150" r="7" fill="#FBF7EF" stroke="#4E7A57" stroke-width="3"/>
-        <text x="386" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#EDE4D2" letter-spacing="1">GOAL</text>
-        <g class="needle"><line x1="230" y1="240" x2="353" y2="150" stroke="#F7F2E9" stroke-width="6" stroke-linecap="round"/></g>
-        <circle cx="230" cy="240" r="12" fill="#F7F2E9"/><circle cx="230" cy="240" r="5" fill="#22323C"/>
-        <text x="52" y="268" text-anchor="start" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#CB4B36" letter-spacing="2">FRICTION</text>
-        <text x="408" y="268" text-anchor="end" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#8FB27E" letter-spacing="2">CALM</text>
-      </svg>
+      <!-- A real card from the Quest, not a picture of an idea. The gauge that
+           stood here was the book's retired friction meter; a stranger could
+           not tell from it what the free button gives them. This is the first
+           symptom card the Quest itself deals (quest-data.js symptoms[0]),
+           word for word, and gate_home_hero_card_real fails if any line here
+           drifts from that file. Real text, so the contrast audit reads it. -->
+      <a class="hero-card" href="quest.html" style="--s-colour:#BC4B2A" aria-label="Try this card in the Home Quest: Keys, chargers and sunglasses land beside the tray, not in it">
+        <span class="hc-band">
+          <span class="hc-head"><span class="hc-badge" style="background:#BC4B2A;color:#FFFFFF" data-quest="sixS">Straighten</span><span class="hc-count">Two minutes</span></span>
+          <span class="hc-where" data-quest="where">Entryway &rsaquo; Landing Zone</span>
+        </span>
+        <span class="hc-symptom" data-quest="symptom">&ldquo;Keys, chargers and sunglasses land beside the tray, not in it&rdquo;</span>
+        <span class="hc-why">Often, it is because <span data-quest="why">the tray is not where my hand actually opens on the way in</span>.</span>
+        <span class="hc-do" data-quest="action">Empty the tray and the paper stack onto the surface, then give every sheet a verdict: act, file, or recycle, before anything goes back.</span>
+        <span class="hc-panel"><span class="hc-panel-h">Done when</span><span data-quest="victory">One tray holds only keys and sunglasses, and no loose paper sits anywhere on the surface.</span></span>
+        <span class="hc-foot"><span class="hc-try">Try this card</span><span class="hc-spine" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+      </a>
     </div>
   </div>
 </section>
