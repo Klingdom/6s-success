@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, operator cycle (a real preflight FAIL found and fixed: a checker leaving its own mess behind, masking a genuine stale-content defect)
+
+**Did:** attached clean (shallow, unshallowed, ff-only onto origin/main). `preflight.py` failed one gate, `etsy-pdfs-current`: "build/listings/etsy/ already differs from HEAD." Root cause: `build_etsy_assets.py` writes a preview PNG per listing under `listing-images/` as a side effect of rendering the PDF; the gate's own `_restore()` call only restored the PDF targets it compares, never those PNGs. PDF/PNG rendering is non-deterministic run to run, so every preflight run left the tree dirty, and the next run's own dirty-check refused to check at all, permanently masking the real comparison. The existing test's fixture never wrote a preview PNG, so it could not have caught this.
+
+**Fixed:** `_restore_etsy_all()` now sweeps every path under `build/listings/etsy/` the run actually touched. Extended the fixture to write a preview PNG per render; fail-then-pass proved directly against the pre-fix code (failed naming the exact dirty PNG; passes clean now). Once the gate could run to completion it found the real defect: Kitchen, Moving-In and Holiday Hosting Etsy PDFs no longer matched current site content, a buyer would have received stale material. Regenerated all five listings.
+
+**Verified:** `preflight.py` clean (0 gates failed, 23 standing warnings) against the committed tree. `check_urls.py` (188/188), `affiliate.py --check` (162 documents) clean. 8 open GitHub issues pulled fresh, unchanged (decision/blocked-on-art). No mail credential, inbox unchecked as always here.
+
+**Went well:** the gate's own dirty-tree self-check, meant to protect against a stale baseline, is what surfaced its own bug.
+
+**Did not go well:** a checker mutating the state it later reads, again; same defect class as the fingerprint/generator-ownership gates.
+
+**Next:** standing `OWNER-ACTIONS.md` list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+
+Pushed to main. Command deck regenerated. No price or product touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified, no fresh item unblocked)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
