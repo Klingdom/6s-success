@@ -2069,6 +2069,7 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     out.append('<h2>The six passes, in order</h2>')
     out.append('<p>Work them in this order. Sorting after you have arranged '
                'things means arranging things you were about to remove.</p>')
+    _storage_placed = False
     for i, s in enumerate(SIX, 1):
         body = passes.get(s)
         if not body:
@@ -2086,6 +2087,18 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                        f'{len(surfaces)} of them, with what to use on each</a>.'
                        f'</p>')
         out.append('</section>')
+        # Storage products (bins, shelves, drawer dividers) go here, right
+        # after Sort and before Straighten, never in the pre-Sort kit block
+        # above: see ops/zone_supplies.py render_storage()'s own docstring
+        # for the CLAUDE.md rule this satisfies.
+        if s == "sort":
+            out.append(zone_supplies.render_storage(room["room"], zone["zone"], thing))
+            _storage_placed = True
+    if not _storage_placed:
+        # No zone in the corpus lacks a Sort paragraph today, but if one
+        # ever did, the storage kit still has to reach the reader somewhere
+        # after Sort rather than silently vanish.
+        out.append(zone_supplies.render_storage(room["room"], zone["zone"], thing))
 
     call = zone.get("the_call") or {}
     if call.get("text"):
