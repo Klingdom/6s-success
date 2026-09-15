@@ -104,11 +104,14 @@ def test_force_reduced_motion_flag_actually_works_on_this_browser():
 def test_site_css_still_disables_reveal_transition_under_reduced_motion():
     css = open(os.path.join(ROOT, "site", "assets", "css", "site.css"),
                 encoding="utf-8").read()
-    m = re.search(r"@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{([^}]*\}[^}]*)\}",
-                   css, re.S)
-    assert m, "no prefers-reduced-motion:reduce block in site.css"
-    block = m.group(1)
-    assert re.search(r"\.reveal\s*\{\s*opacity:\s*1", block), (
+    # site.css now carries several small, scoped
+    # @media(prefers-reduced-motion:reduce) blocks (.hero-card, .fan-card)
+    # ahead of the one this test actually cares about. re.search found only
+    # the first one and never reached .reveal's own block: check all of them.
+    blocks = re.findall(r"@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{([^}]*\}[^}]*)\}",
+                         css, re.S)
+    assert blocks, "no prefers-reduced-motion:reduce block in site.css"
+    assert any(re.search(r"\.reveal\s*\{\s*opacity:\s*1", b) for b in blocks), (
         "the reduced-motion block no longer forces .reveal to opacity:1; "
         "the fix in audit_visual.py relies on this rule existing."
     )

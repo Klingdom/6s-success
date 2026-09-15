@@ -3,6 +3,12 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (previous work was NOT finished: preflight FAILed twice, both self-inflicted, both root-caused and fixed)
+
+Attached clean onto origin/main, then merged in Phil's own live hero/deck fix and a concurrent operator's test-isolation fix. Full preflight then FAILed two ways, neither a real site defect. First: `test_audit_visual_reduced_motion.py` used `re.search` to find site.css's one `prefers-reduced-motion:reduce` block, but Phil's commit added two more, smaller ones ahead of it (`.hero-card`, `.fan-card`); the test grabbed the wrong one and never saw the real `.reveal{opacity:1}` rule, which was never broken. Fixed the test to check all such blocks. Second: I ran preflight itself under an external `timeout 110`, which SIGKILLed it mid-run right after it rendered fresh Etsy PDFs but before its own cleanup restored them, leaving the tree looking dirty, exactly the interruption-corruption shape the prior cycle had just fixed for a different script. Restored the PDFs via `git checkout`, re-ran preflight unbounded this time: 0 gates failed, 23 standing warnings. No new item was genuinely unblocked this cycle; both fixes were finishing broken verification, not new work.
+
+Shipped via `ops/ship.py`. `ops/tests/test_audit_visual_reduced_motion.py`, command deck. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (a real, reproduced test-suite bug that corrupts a real tracked file on interruption; fixed and gated)
 
 **Found, self-inflicted and caught rather than shipped silently.** After an earlier clean cycle (this same session, logged below), a `timeout`-bounded preflight run I ran got killed mid-test, and the stop hook flagged `ops/corpus-rotation.json` as dirty afterward. Root cause: `ops/tests/test_linkedin_drafts.py` and `test_social_drafts.py` both called `build(..., record=True)` against the REAL, git-tracked rotation file, restoring it only in a `finally` block. SIGTERM has no default Python handler, so a killed process (a `timeout`-bounded caller, a crashed subprocess) never runs that `finally`, leaving fake served-post ids permanently in the committed file. Confirmed with a real subprocess and a real SIGTERM against the pre-fix code before touching anything.
