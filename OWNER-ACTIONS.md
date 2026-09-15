@@ -1209,6 +1209,10 @@ truncation artefact, no em or en dash. Gated in `preflight.py`
 corpus silently stale. No further operator step is buildable here without
 the two accounts above.
 
+**Updated 2026-09-15:** the cards were rebuilt to lead with each zone's approved
+picture (106 of 114 zones; the other 8 have no approved picture and stay text
+only). Same file names, same captions, same steps above.
+
 ---
 
 ### 17. Decide the capped local demand test for In-Home Days. A budget, a stop date, and about five minutes beyond that.
