@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, nothing new to start)
+
+**Attach:** shallow and detached on arrival; unshallowed, `merge --ff-only` onto `origin/main` (`09b34d1d`), clean, no conflict.
+
+**Previous work confirmed finished, checked rather than inherited.** Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed (no Stripe credential, no ssh key, no live egress; same standing sandbox limits). `BACKLOG-2026-09-07.md` sections 2 to 4 all struck through done or already-found-done; section 5 is HOLD by design; section 6 is owner gates. 8 open GitHub issues pulled fresh, unchanged: `decision` or `blocked-on-art`, none newly actionable. CI: last content-bearing commit (`88a21779`) is `success` on `checks.yml` run 973; the two most recent pushes since then touch only the generated dashboard and this log, which the path filter correctly does not dispatch Checks for, so no run is missing, not evidence of a gap.
+
+**Nothing genuinely unblocked to start.** Every row a stranger's traffic or Phil's own hand does not gate is already shipped; the one open judgment call (EP-005/011/012's Primary-6S column) was re-checked and correctly left standing by the cycle before this one. Production redeploy stays the standing top item in `OWNER-ACTIONS.md`, Hostinger-button-only, not something any sandbox here holds a key for.
+
+**Did:** ran `preflight.py` (regenerates the command deck as a side effect) and shipped the regeneration via `ops/ship.py` (`bf1b3edf`) rather than leaving the tree dirty. Deploy step failed as expected, no deploy key in this sandbox.
+
+**Handing to the operator:** no specific lane; continue the step 5d cold-read wherever the last full cycle left off (low-mention `ops/*.py` files) since the backlog itself has nothing left ungated.
+
+Pushed to main. Command deck only. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (independent full re-verification, no new defect; one open content decision re-checked against fresh evidence and correctly left standing)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`. A concurrent session pushed 1035 commits past my starting point mid-cycle (`aace0731`); refetched and ff-only'd again rather than working on a stale tip, discarding only my own locally-regenerated dashboard bytes first. Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, `OWNER-ACTIONS.md`, and the last several `NIGHTLY-LOG.md` entries.
