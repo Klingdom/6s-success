@@ -20,6 +20,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Command deck regenerated. No price or product touched; one GitHub issue closed, one planning doc corrected, one gate added.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and CI-verified; a stale dashboard claim self-corrected on regen)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep`, because it has not run once today across roughly thirty cycles, and it previously caught real defects the fast pass misses (a WCAG contrast failure, a generator-ownership regression).
+
+**Attach:** shallow and detached; unshallowed, `merge --ff-only` onto `origin/main` (`e8fda5fc`), clean.
+
+**Previous work confirmed finished.** Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed. `publish-image.yml` on `27b0ac2d` (card-width release): `success`. Deploy-verdict fix holds: `deploy-verdict.json`/`build-id.txt` both read `e42a98a4e7a2e266`. 8 GitHub issues unchanged, decision/art-gated. Backlog sections 2-4 done or Phil-gated, 5 HOLD, 6 owner gates.
+
+**Closing job, not hand-edited:** preflight's own regen corrected the command deck's stale "PRODUCTION IS SERVING AN OLD BUILD" line, written before the verdict fix landed; it now reads current.
+
+Pushed to main. Command deck only. No price, product or page touched.
+
 ## 2026-09-15, local session: card images declare true widths; deck previews become pictures (`27b0ac2d`)
 
 **Found while preparing the deck page:** the deck preview markup carried `width="400"` for a `-md` card image, which did not match the 640w that `pictureSources` (shipped in `247dcef6`) declared for card paths. Measured every card front on disk: `-sm` 150, `-md` 400, `-lg` 760, unlike zone pictures (320/640). So the live EM-003 shop tile declared its 150 px file as 320w. One tile, but a srcset that lies about widths lets the browser pick an image too small for the slot.
