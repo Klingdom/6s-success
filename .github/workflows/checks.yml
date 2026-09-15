@@ -77,34 +77,74 @@ name: Checks
 # Also mobile/quest-app/assets/zoneHeroes.js and assets/zones/**, added the same
 # night: build_mobile_corpus.py writes them and gate_mobile_corpus_current checks
 # them, so a change to a bundled zone picture must start this workflow too.
+#
+# Widened again on 2026-09-15, found by the general version of this gap
+# rather than another accident: new gate_ci_path_filter_covers_preflight_inputs
+# in ops/preflight.py reconstructs, from preflight.py's own AST, every ROOT-
+# or SITE-relative file its own source actually reads, and checks each one
+# against this file's and publish-image.yml's push.paths. It named two real,
+# live gaps neither prior widening had found. First: every root *.md file
+# this repository's own operating documents live in (GOALS.md, STATUS.md,
+# RISKS.md, OWNER-ACTIONS.md, ROADMAP-2026-2029.md, and more), each read
+# directly by a currency-checking gate, matched no push filter at all;
+# commits e8ef3bed (OWNER-ACTIONS.md only) and 7e644cf0 (PLAN-VISUAL-STRATEGY.md
+# only) both landed on main on 2026-09-14 with zero Checks runs, confirmed
+# directly against both commits' own diffs. Second: content/manual/source/
+# content.json, the master corpus every zone page, the diagnosis blocks and
+# the hazard icons are all generated from, matched neither filter either, so
+# a hand edit there with no accompanying ops/ or site/ change would ship
+# unverified. Added 'content/**' (the corpus, plus content/images/prompts/*.md
+# read by the same route), 'mcp/**' (content.json's own committed MCP copy,
+# gate_mcp_corpus_current), '.gitattributes' and '.gitignore' (read directly by
+# gate_binary_files_protected and the generated-file-location gate), and root
+# '*.md' with EXECUTIVE-DASHBOARD-LIVE.md excluded the same way
+# ops/dashboard.html already is, since ops/sync_push.py's own GENERATED list
+# names it as the one root doc regenerated on every cycle rather than a real
+# input. GitHub's path-glob semantics mean a bare '*.md' with no '**/' prefix
+# matches only root-level files, not content/**/*.md or site/**/*.md, so this
+# does not widen the trigger into either of those trees.
 on:
   push:
     branches: [main]
     paths:
       - 'ops/**'
       - 'build/**'
+      - 'content/**'
+      - 'mcp/**'
       - '.github/workflows/**'
       - 'mobile/quest-app/App.js'
       - 'mobile/quest-app/ON-DEVICE-TEST.md'
       - 'mobile/quest-app/assets/quest-corpus.json'
       - 'mobile/quest-app/assets/zoneHeroes.js'
       - 'mobile/quest-app/assets/zones/**'
+      - 'mobile/quest-app/package.json'
+      - '.gitattributes'
+      - '.gitignore'
+      - '*.md'
       - '!ops/state.json'
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
+      - '!EXECUTIVE-DASHBOARD-LIVE.md'
   pull_request:
     paths:
       - 'ops/**'
       - 'build/**'
+      - 'content/**'
+      - 'mcp/**'
       - '.github/workflows/**'
       - 'mobile/quest-app/App.js'
       - 'mobile/quest-app/ON-DEVICE-TEST.md'
       - 'mobile/quest-app/assets/quest-corpus.json'
       - 'mobile/quest-app/assets/zoneHeroes.js'
       - 'mobile/quest-app/assets/zones/**'
+      - 'mobile/quest-app/package.json'
+      - '.gitattributes'
+      - '.gitignore'
+      - '*.md'
       - '!ops/dashboard.html'
       - '!ops/state.json'
       - '!ops/NIGHTLY-LOG.md'
+      - '!EXECUTIVE-DASHBOARD-LIVE.md'
   workflow_dispatch:
 
 # Without this, every push in a fast run of commits starts its own full job,

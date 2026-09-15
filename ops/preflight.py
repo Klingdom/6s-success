@@ -6113,6 +6113,239 @@ def gate_checks_excludes_generated_files(wf_path=None) -> None:
              % ", ".join(missing))
 
 
+def _workflow_on_paths(text: str, event: str) -> tuple:
+    """Return (includes, excludes) for on.<event>.paths in a workflow file.
+
+    Parsed by indentation, not a YAML library: ops/requirements.txt is
+    deliberately stdlib-only, the same reason gate_workflow_no_raw_expr_in_run
+    walks workflow files as text rather than importing PyYAML.
+    """
+    lines = text.split("\n")
+
+    def indent_of(line: str) -> int:
+        return len(line) - len(line.lstrip(" "))
+
+    on_idx = next((i for i, l in enumerate(lines) if l.rstrip() == "on:"), None)
+    if on_idx is None:
+        return [], []
+    on_indent = indent_of(lines[on_idx])
+
+    event_idx = event_indent = None
+    for i in range(on_idx + 1, len(lines)):
+        line = lines[i]
+        if not line.strip():
+            continue
+        ind = indent_of(line)
+        if ind <= on_indent:
+            break
+        if line.strip() == f"{event}:" and event_idx is None:
+            event_idx, event_indent = i, ind
+    if event_idx is None:
+        return [], []
+
+    paths_idx = paths_indent = None
+    for i in range(event_idx + 1, len(lines)):
+        line = lines[i]
+        if not line.strip():
+            continue
+        ind = indent_of(line)
+        if ind <= event_indent:
+            break
+        if line.strip() == "paths:" and paths_idx is None:
+            paths_idx, paths_indent = i, ind
+    if paths_idx is None:
+        return [], []
+
+    includes, excludes = [], []
+    for i in range(paths_idx + 1, len(lines)):
+        line = lines[i]
+        if not line.strip():
+            continue
+        if indent_of(line) <= paths_indent:
+            break
+        m = re.match(r"^- ['\"](.+)['\"]\s*$", line.strip())
+        if not m:
+            continue
+        pat = m.group(1)
+        (excludes if pat.startswith("!") else includes).append(
+            pat[1:] if pat.startswith("!") else pat)
+    return includes, excludes
+
+
+def _gh_path_glob_to_regex(pattern: str) -> str:
+    """Translate one GitHub Actions push.paths glob to a regex.
+
+    Supports '**' (any depth, including zero directories) and '*'/'?'
+    (never crossing a '/'), which is the subset every pattern in this
+    repository's own workflow files actually uses.
+    """
+    out, i, n = [], 0, len(pattern)
+    while i < n:
+        if pattern[i:i + 3] == "**/":
+            out.append("(?:.*/)?")
+            i += 3
+        elif pattern[i:i + 2] == "**":
+            out.append(".*")
+            i += 2
+        elif pattern[i] == "*":
+            out.append("[^/]*")
+            i += 1
+        elif pattern[i] == "?":
+            out.append("[^/]")
+            i += 1
+        else:
+            out.append(re.escape(pattern[i]))
+            i += 1
+    return "^" + "".join(out) + "$"
+
+
+def _path_triggers_workflow(rel: str, includes: list, excludes: list) -> bool:
+    if not any(re.match(_gh_path_glob_to_regex(p), rel) for p in includes):
+        return False
+    return not any(re.match(_gh_path_glob_to_regex(p), rel) for p in excludes)
+
+
+def _preflight_declared_dependencies(src_path=None) -> set:
+    """Every ROOT- or SITE-relative real file preflight.py's own source
+    reads, reconstructed from its AST rather than a hand-maintained list.
+
+    Two shapes are covered, matching how this file actually builds paths:
+    a bare string literal that is itself a real tracked path (open(...,
+    "GOALS.md")-style, common for the root operating documents), and an
+    os.path.join(ROOT, ...) or os.path.join(SITE, ...) call whose remaining
+    arguments are all string literals (the SRC = os.path.join(ROOT,
+    "content", "manual", "source", "content.json")-style every generator in
+    this tree uses). A literal is kept only if git actually tracks it,
+    so a coincidental string that merely looks path-shaped is dropped.
+    """
+    path = src_path or os.path.join(ROOT, "ops", "preflight.py")
+    tree = ast.parse(open(path, encoding="utf-8").read())
+    tracked = set(
+        l.strip() for l in
+        subprocess.run(["git", "ls-files"], cwd=ROOT,
+                       capture_output=True, text=True).stdout.splitlines()
+        if l.strip())
+
+    found = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            if node.value in tracked:
+                found.add(node.value)
+        elif (isinstance(node, ast.Call)
+              and isinstance(node.func, ast.Attribute)
+              and node.func.attr == "join"
+              and node.args
+              and isinstance(node.args[0], ast.Name)
+              and node.args[0].id in ("ROOT", "SITE")):
+            parts, ok = [], True
+            for a in node.args[1:]:
+                if isinstance(a, ast.Constant) and isinstance(a.value, str):
+                    parts.append(a.value)
+                else:
+                    ok = False
+                    break
+            if ok and parts:
+                rel = "/".join(parts)
+                if node.args[0].id == "SITE":
+                    rel = "site/" + rel
+                if rel in tracked:
+                    found.add(rel)
+    return found
+
+
+CI_PATH_COVERAGE_WORKFLOWS = ("checks.yml", "publish-image.yml")
+
+# Files preflight.py's own source reads that are deliberately NOT covered by
+# either workflow's push.paths, each for a real, checked reason rather than
+# an oversight. Every one of these is also excluded, by the identical '!'
+# pattern, from checks.yml's own paths (gate_checks_excludes_generated_files
+# proves the four ops/ ones stay excluded there); this dict exists only so
+# gate_ci_path_filter_covers_preflight_inputs does not re-flag a decision
+# already made and gated elsewhere, and so removing an entry here without
+# a real reason is visible in review.
+CI_PATH_COVERAGE_EXEMPT = {
+    "ops/state.json": "pure output of ops/dashboard.py, rewritten every "
+        "autonomous cycle regardless of real change; excluded from "
+        "checks.yml on purpose (gate_checks_excludes_generated_files).",
+    "ops/dashboard.html": "same as ops/state.json, the other dashboard.py "
+        "output.",
+    "ops/NIGHTLY-LOG.md": "one hand-written entry appended every cycle, "
+        "never gating logic; excluded from checks.yml on purpose "
+        "(gate_checks_excludes_generated_files).",
+    "EXECUTIVE-DASHBOARD-LIVE.md": "the third file in ops/sync_push.py's "
+        "own GENERATED list, rewritten every cycle the same way "
+        "ops/dashboard.html is; excluded from checks.yml for the same "
+        "reason.",
+}
+
+
+def gate_ci_path_filter_covers_preflight_inputs(wf_dir=None, src_path=None) -> None:
+    """A file this gate suite reads must be able to start the Checks run.
+
+    Found and fixed by hand three times before this gate existed, each time
+    the same shape and each time discovered only by an accident: a commit
+    changing linkedin-drafts.yml alone (2026-09-14), one changing only
+    build/listings/build_etsy_assets.py (2026-09-15 01:00), and one changing
+    only mobile/quest-app/App.js (2026-09-15, later the same day) each landed
+    on main with zero Checks runs, because none of their paths matched
+    checks.yml's push filter even though real preflight gates read every one
+    of them. The prior fixes each widened the filter for the one file class
+    that happened to be found; nothing checked whether the same shape existed
+    anywhere else.
+
+    Built the general version instead of waiting for a fourth accident. This
+    reconstructs, from preflight.py's own AST, every real repository file its
+    source actually reads (see _preflight_declared_dependencies), then checks
+    each one against checks.yml's and publish-image.yml's own push.paths, the
+    only two workflows that run preflight.py on a push to main. Run the day
+    it was written, it immediately named two live gaps neither prior
+    accident had found: every root *.md operating document (GOALS.md,
+    STATUS.md, OWNER-ACTIONS.md, RISKS.md, ROADMAP-2026-2029.md and more,
+    each read by a currency-checking gate) and content/manual/source/
+    content.json (the master corpus every zone page, diagnosis block and
+    hazard-icon cross-check is generated from). Commits e8ef3bed and
+    7e644cf0 (2026-09-14, each touching exactly one root .md file) are the
+    real, already-landed proof this gap was not hypothetical. Both fixed in
+    the same commit as this gate, in checks.yml.
+
+    What this buys going forward is not today's clean bill of health, it is
+    the day a 4th file class is added to preflight.py without a matching
+    workflow path: this fails immediately, by name, instead of shipping
+    unverified until the next accidental discovery.
+    """
+    d = wf_dir or os.path.join(ROOT, ".github", "workflows")
+    coverage = []
+    for wf in CI_PATH_COVERAGE_WORKFLOWS:
+        p = os.path.join(d, wf)
+        if not os.path.isfile(p):
+            continue
+        text = open(p, encoding="utf-8", errors="replace").read()
+        inc, exc = _workflow_on_paths(text, "push")
+        if inc:
+            coverage.append((inc, exc))
+
+    if not coverage:
+        fail("ci-path-coverage",
+             "could not read any push.paths from %s; this check could not "
+             "run at all" % ", ".join(CI_PATH_COVERAGE_WORKFLOWS))
+        return
+
+    deps = _preflight_declared_dependencies(src_path=src_path)
+    uncovered = sorted(
+        rel for rel in deps
+        if rel not in CI_PATH_COVERAGE_EXEMPT
+        and not any(_path_triggers_workflow(rel, inc, exc) for inc, exc in coverage))
+
+    if uncovered:
+        fail("ci-path-coverage",
+             "%d file(s) preflight.py's own source reads have no push path "
+             "filter in %s, so a commit changing only one of them starts no "
+             "Checks run and every gate depending on it goes unverified in "
+             "CI, the exact shape found three times already: %s"
+             % (len(uncovered), " or ".join(CI_PATH_COVERAGE_WORKFLOWS),
+                ", ".join(uncovered)))
+
+
 def gate_ops_test_suite_matches_gate_tests(wf_path=None) -> None:
     """checks.yml's own duplicate test loop must skip what gate_tests() skips.
 
@@ -12939,6 +13172,7 @@ def main() -> int:
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
     run_gate(gate_checks_excludes_generated_files)
+    run_gate(gate_ci_path_filter_covers_preflight_inputs)
     run_gate(gate_ops_test_suite_matches_gate_tests)
     run_gate(gate_no_hardcoded_git_history)
     run_gate(gate_integrations)
