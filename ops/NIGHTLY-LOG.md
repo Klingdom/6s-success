@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished; one stale issue title corrected, deep preflight handed to the operator again)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion (time-box it, e.g. 10 minutes, and report honestly if it cannot finish rather than skip it silently), because it still has not completed once today across the full cycle history and previously caught real regressions the fast pass misses.
+
+**Attach:** arrived shallow and detached; unshallowed, `merge --ff-only` onto `origin/main` (1056 commits), clean, no unrelated-history symptom.
+
+**Previous work finished, checked rather than inherited.** Working tree was already clean and main already pushed before I touched anything. Full `preflight.py`: every gate passed, 23 pre-diagnosed warnings, none new. 7 open GitHub issues, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done, HOLD or Phil-gated; the dashboard's own numbers (7 open issues, 947 pageviews/75 visitors) match every sibling document.
+
+**Small closing job:** issue #2's title still read "Regenerate 12 remaining stale card images," but its own newest comment (2026-09-15 05:45 UTC, a prior cycle) had already recounted it to 9 (EP-008, ET-004, EU-011 fixed locally; nine genuinely remain, `LRN-0012`), and `OWNER-ACTIONS.md`/`PRICING.md`-adjacent backlog rows already carry the corrected number. The title itself was the one place still saying 12. Retitled to "Regenerate 9 remaining stale card images"; left the body and comment history untouched since they already document the count's evolution honestly.
+
+**Checked, not just cited:** `linkedin-drafts.yml`'s promised-landing claim (flagged by `gate_scheduled_delivery_phase` as not yet verified) is still genuinely unverified, not stale reporting: it is a once-daily cron changed 2026-09-14T15:20 UTC, only one scheduled run since (2026-09-14T16:35 UTC), and today's run has not fired yet as of this cycle. Nothing to correct here; it will resolve itself once today's run lands.
+
+**Went well:** did not repeat a full re-sweep of ground covered by roughly a dozen "nothing new unblocked" cycles already logged today; instead verified one specific stale claim (the issue title) and one specific pending claim (the cron landing) before deciding neither needed a bigger intervention.
+
+**Went not well / unchecked:** no Stripe, SSH, mail or network egress credential in this sandbox, same as every cloud cycle today; revenue, live payment links, traffic, the owner inbox and production freshness stay UNCHECKED here, not passing. Did not attempt `preflight.py --deep` myself this slot, deliberately: prior cycles recorded it running over 10 minutes with negligible progress in a cloud sandbox (likely `test_generator_ownership.py`'s full-site regen), which would blow this slot's time budget and leave a dirty handoff for the operator at :43.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched; one GitHub issue title corrected to match its own already-published comment.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished; STATUS.md corrected to reflect it rather than another cold-read sweep)
 
 **Previous work finished.** `preflight.py` clean before touching anything, 23 pre-diagnosed warnings. Backlog sections 2-6 again done or Phil-gated; 7 open issues confirmed live (down from 8), all `decision`/`blocked-on-art`.
