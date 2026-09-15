@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-15 00:14 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-14 18:32 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-14 11:46 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
+| **Can the site take money?** | yes, confirmed live, 158 of 159 catalog items |
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-14T21:36:20Z (build 497533af2aea0b51). The repository has since moved to build ce8d35070e1af742, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 947 pageviews from 75 visitors across 196 visits, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 506 from 73 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-14 21:30; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-14 11:46; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
+| Traffic | 947 pageviews from 75 visitors across 196 visits, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 506 from 73 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 1007 of 2069 total |
+| Commits (7 days) | 1009 of 2075 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `0b1c2587` Record RISK-0013/0005 fix in STATUS.md; regenerate command d |
+| Last commit | `02bf75e1` Etsy PDF gate: rejoin hyphens split by a line break before c |
 
 ## Product readiness
 
@@ -41,22 +41,21 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 106/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
+| Entryway deck | 89 cards render clean from the template layer; the gallery publishes 72 of them |
+| Zone imagery | 106/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 0/114, not yet rendered |
-| Zone reset videos, photo-led | 0/106 eligible, not yet rendered |
-| Zone reset videos, 16:9 for YouTube | 0/114, not yet rendered |
-| Zone reset videos, narrated | 0/114, not yet rendered |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, photo-led | 2/106 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 0 of 0 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 106 reviewed pictures and every fix since the last deploy reach nobody.
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier

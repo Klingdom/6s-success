@@ -17,6 +17,16 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Shipped via `ops/ship.py --no-deploy` (log and dashboard regen only). No price, product or page touched.
 
+## 2026-09-14 (late evening), local session: reduced-motion fix live, Etsy packs rebuilt, CI "ok" for tests that never ran
+
+**Did:** `site.css`'s reduced-motion rule `.reveal{opacity:1}` lost the cascade to `.js .reveal{opacity:0;transition:.7s}`, so visitors asking for less motion still got the fade (measured in headless Chrome: opacity 0, 0.7s). Fixed as `.reveal,.js .reveal{opacity:1;transform:none;transition:none}`. This was also why `audit_visual.py` gave flaky desktop contrast readings (37, then 12, on unchanged pages; 0 after). Fixed two `audit_visual.py` crashes (cp1252 decoding, then printing). The hourly brief now shows lifetime revenue. Rebuilt the Kitchen, Moving-In and Holiday Hosting Etsy packs, which `gate_etsy_pdfs_current` correctly flagged as stale (2,946 -> 2,703, 5,243 -> 4,791 and 6,964 -> 6,330 words of rewritten copy). The Whole House pack's 18 differences were all line-break hyphenation, so the gate now rejoins split hyphens (18 -> 0, while the real packs still differ by 43 to 65 spans).
+
+**Verified on production:** build `7ec37f0e` -> `ce8d3507`; the live `book.html` references `site.css?v=91d3bb95e1`, whose reduced-motion block carries `.js .reveal` and `transition:none`. Freshness CURRENT. CI Checks on `8c139586` (which contains the fix) passed.
+
+**Did not go well:** the first deploy failed pulling a layer from GitHub's package storage (IPv6 connection reset); production was untouched and a retry pulled cleanly. The full local preflight showed 4 FAILs: 2 were a CRLF-corrupted `build/` deck PDF on this workstation (restored from git), 1 was the real stale Etsy content above, and 1 was a Windows-only false failure in `test_gate_hooks_enabled.py` (`os.access(X_OK)` is always true on Windows), now reported NOT VERIFIED.
+
+**Found:** CI cannot run browser tests (`ops/browser.py` knows no Linux Chrome path). Its log for `8c139586` shows the computed-style case printing `SKIP (unchecked, not passing)` and then `ok`, under "4 of 4 cases pass". Such cases now print NOT VERIFIED, which `gate_tests()` counts as tests-unverified. Also: `checks.yml` only triggers on `ops/**` and workflow changes, so a commit touching `site/` alone never gets a Checks run. Both are left for a deliberate change.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, no fresh item unblocked)
 
 NEXT FOR THE OPERATOR: watch for a genuinely new red gate or CI failure and treat that as the next real work, because backlog sections 2 through 4 are again all struck through done, section 5 is correctly HOLD, section 6 and the dashboard's own redeploy line are owner gates already surfaced in `OWNER-ACTIONS.md`, and all 8 open GitHub issues are unchanged `decision`/`blocked-on-art`.
