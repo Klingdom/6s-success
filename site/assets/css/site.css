@@ -462,6 +462,34 @@ main:focus{outline:none}
   .card-fan:hover .fan-r,.card-fan:focus-visible .fan-r{transform:translateX(-10%) rotate(9deg)}}
 @media (prefers-reduced-motion:reduce){.fan-card{transition:none}}
 
+/* ---------- supplies block on zone and room pages ----------
+   Classes from ops/zone_supplies.py (2026-09-15), replacing inline styles no
+   stylesheet could override. The disclosure keeps its wording and its place
+   above the links; it is quieter than the old dashed box but still set in
+   full ink, because it is the sentence that tells a reader whether we are
+   paid. kit.html styles .disclosure itself and uses .kititem, so nothing
+   here reaches that page. */
+.kit-disclosure{font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--ink);
+  background:var(--panel);border-left:4px solid var(--honey);border-radius:0 10px 10px 0;
+  padding:12px 16px;margin:16px 0 18px;max-width:66ch}
+.kit-disclosure p{margin:0 0 8px}
+.kit-disclosure p:last-child{margin-bottom:0}
+.kit-list{list-style:none;padding:0;margin:14px 0 0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.kit-item{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:14px 16px;line-height:1.45}
+.kit-name{display:block;font-family:var(--sans);font-size:15.5px;color:var(--ink)}
+/* Padding with an equal negative margin: a 45px tap target with no change
+   to spacing. Alone on its line, the 19px name link read as a standalone
+   target and failed the 44px check on every zone and room page. */
+.kit-name a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:3px;display:inline-block;padding:13px 0;margin:-13px 0}
+.kit-name a:hover{color:var(--terra)}
+.kit-qty{margin-left:4px;font-weight:600;color:var(--soft)}
+.kit-why{display:block;margin-top:5px;font-size:15px;color:#3F3832}
+.kit-safety{display:block;margin-top:9px;padding-left:9px;border-left:3px solid var(--honey);
+  font-family:var(--sans);font-size:13.5px;color:var(--soft)}
+@media (max-width:600px){.kit-list{grid-template-columns:1fr}}
+
 /* ---------- six-S spine ---------- */
 .s-track{display:grid;grid-template-columns:repeat(6,1fr);gap:0;counter-reset:s;margin:0}
 .s-step{position:relative;padding:22px 16px 18px;text-align:center}

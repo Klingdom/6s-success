@@ -349,13 +349,13 @@ def _why(rec: dict, link_passes: bool = True) -> str:
 def _row_html(rec: dict, link_passes: bool = True) -> str:
     qty = ""
     if rec.get("qty") and str(rec["qty"]) not in ("1", "None"):
-        qty = f' <span style="opacity:.7">&times;{_esc(rec["qty"])}</span>'
+        qty = f' <span class="kit-qty">&times;{_esc(rec["qty"])}</span>'
     safety = ""
     if rec["safety"]:
-        safety = (f'<br><span style="font-size:14.5px;opacity:.85">'
+        safety = (f' <span class="kit-safety">'
                   f'{_esc(rec["safety"])}.</span>')
-    return (f'<li style="margin:0 0 10px">{_anchor(rec)}{qty}'
-            f'<br>{_why(rec, link_passes)}{safety}</li>')
+    return (f'<li class="kit-item"><span class="kit-name">{_anchor(rec)}{qty}</span>'
+            f' <span class="kit-why">{_why(rec, link_passes)}</span>{safety}</li>')
 
 
 # site.css has no .disclosure rule: the only page that used the block before
@@ -375,9 +375,13 @@ _DISCLOSURE_STYLE = (
     'border-radius:12px;padding:16px 18px;margin:18px 0;max-width:66ch"')
 
 
+# The disclosure and supply rows carry classes (kit-disclosure, kit-list,
+# kit-item, kit-name, kit-why, kit-qty, kit-safety) styled in site.css, not
+# inline styles that no stylesheet could override. The disclosure wording,
+# its id and its place above the links are unchanged. 2026-09-15.
 def _styled(block: str) -> str:
     return block.replace('<aside class="disclosure" id=',
-                         f'<aside {_DISCLOSURE_STYLE} class="disclosure" id=',
+                         '<aside class="disclosure kit-disclosure" id=',
                          1)
 
 
@@ -426,7 +430,7 @@ def render(room: str, manual_zone: str, display_name: str,
             pass
 
     if k["needed"]:
-        out.append('<ul style="max-width:66ch">')
+        out.append('<ul class="kit-list">')
         out += [_row_html(r) for r in k["needed"]]
         out.append('</ul>')
 
@@ -443,7 +447,7 @@ def render(room: str, manual_zone: str, display_name: str,
                    f'<p style="margin:12px 0 8px">Not every {noun} needs '
                    'these. Each one is here because some do, and the reason '
                    'is next to it.</p>'
-                   '<ul style="max-width:66ch">')
+                   '<ul class="kit-list">')
         out += [_row_html(r) for r in k["maybe"]]
         out.append('</ul></details>')
     return "\n".join(out)
@@ -489,7 +493,7 @@ def render_room(room: str, manual_zones, room_lower: str,
             out.append(_styled(A.disclosure(amazon, bool(tracked), prefix)))
         except Exception:                                     # noqa: BLE001
             pass
-    out.append('<ul style="max-width:66ch">')
+    out.append('<ul class="kit-list">')
     out += [_row_html(r, link_passes=False) for r in items]
     out.append('</ul>')
     return "\n".join(out)
