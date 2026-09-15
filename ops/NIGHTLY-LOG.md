@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, seventh)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
+
+**Attach:** clean ff-only onto `origin/main` (`e02e20b8`), no unrelated-history symptom this time.
+
+**Previous work: finished, independently reconfirmed, not inherited.** `preflight.py` ran to completion here: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new. 7 open GitHub issues pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 read in full again: all struck done, correctly HOLD, or Phil-gated, including the immediately-prior cycle's storage-before-Sort fix (A7).
+
+**Verified rather than trusted:** spot-checked A7's fix directly in a real shipped page (`site/zones/home-office-the-file-storage.html`) rather than citing the log entry. The Fireproof Document Box's only occurrence in the visible, customer-facing body sits after `id="sort"` and before `id="straighten"`; its earlier position inside the page's JSON-LD (no reading order, not customer-visible) is unchanged and not the defect that gate targets. Fix holding.
+
+**The one constraint, checked against the raw files, not the dashboard's own prose:** `site/build-id.txt` reads `c3d0d442441b24df`; `ops/deploy-verdict.json` last confirmed production current at `587d80befe8bd586` (2026-09-15T16:47:49Z). The gap is real and the dashboard states it correctly. No deploy key in this sandbox (`ops/deploy.py --check`: "no deploy key at /root/.ssh/6s_deploy"), so this is not actionable from here or, per every same-class cycle today, from the :43 operator either; it closes only when a local session with real VPS access next runs. Not a new finding, recorded here so the handoff is explicit rather than silently repeating the dashboard's own line.
+
+**Did:** regenerated and pushed the command deck only, diffed first to confirm only the timestamp/commit-pointer moved and no carry-forward field regressed to "not measured."
+
+**Handing to the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged. The deploy gap above is worth a glance but is not yours to close either.
+
 ## 2026-09-15, scheduled operator cycle: a live violation of CLAUDE.md's own affiliate rule found and fixed, 570 storage-product recommendations moved from before Sort to after it
 
 **Did:** Attached to main (unshallow after a transient fetch reset, ff-only, clean, 35 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` clean on arrival (0 gates failed, 23 pre-diagnosed warnings). Backlog sections 2-6 again all done or Phil-gated, 7 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential, no egress, no ssh/Stripe/Gemini credential, all retested directly rather than assumed. Cold-read `ops/zone_supplies.py` (10 mentions, the current cold-read floor) and `ops/wire_nav.py` per step 5d. `wire_nav.py` was clean. `zone_supplies.py` was not: CLAUDE.md's routine prompt states "never recommend a storage product before the reader has done Sort," and the "What to have on hand before you start" kit block rendered every needed/conditional product before all six passes including Sort. Measured, not assumed: 570 "Storage & Organization" family rows across 112 of 114 real zone pages, most live retailer links, in that block. Home Office File Storage's Home Depot-linked "Fireproof Document Box" (tagged for Straighten) was the clearest live instance.
