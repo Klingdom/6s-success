@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, scheduled operator cycle (a real, reproduced test-suite bug that corrupts a real tracked file on interruption; fixed and gated)
+
+**Found, self-inflicted and caught rather than shipped silently.** After an earlier clean cycle (this same session, logged below), a `timeout`-bounded preflight run I ran got killed mid-test, and the stop hook flagged `ops/corpus-rotation.json` as dirty afterward. Root cause: `ops/tests/test_linkedin_drafts.py` and `test_social_drafts.py` both called `build(..., record=True)` against the REAL, git-tracked rotation file, restoring it only in a `finally` block. SIGTERM has no default Python handler, so a killed process (a `timeout`-bounded caller, a crashed subprocess) never runs that `finally`, leaving fake served-post ids permanently in the committed file. Confirmed with a real subprocess and a real SIGTERM against the pre-fix code before touching anything.
+
+**Fixed:** both tests now point `corpus_posts.ROTATION` at an isolated temp path for their own duration, so the real file is never written at all, crash or no crash. Proved immune to the identical kill scenario afterward. Polluted file restored to its committed content.
+
+**Gated:** new `gate_test_rotation_isolated` in `preflight.py`, using `ast.parse` rather than text/regex scanning, deliberately: this gate's own test file necessarily contains fixture strings shaped exactly like the trigger pattern ("import corpus_posts", "record=True" as plain text), and a naive scan would fail on itself. `ops/tests/test_gate_test_rotation_isolated.py` (6 cases, including that exact self-referential false-positive check) and a direct fail-then-pass proof against the real pre-fix and post-fix committed file content both pass.
+
+**Went well:** the stop hook's own dirty-tree check caught the corruption before it reached a commit.
+
+**Did not go well:** I caused this by running an unbounded-runtime command under an artificial timeout without first checking whether the tool it wrapped was safe to interrupt.
+
+**Next:** standing `OWNER-ACTIONS.md` list unchanged. Full `preflight.py` clean (0 gates failed, 23 warnings) after all fixes.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified; closed the standing CI-949 watch item)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` issues, because nothing new is genuinely unblocked this cycle.

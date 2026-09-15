@@ -9,11 +9,24 @@ rejects anything over 280 characters, so build("x", ...) must never hand back
 a post that could not actually be posted as written.
 
 Run:  python ops/tests/test_social_drafts.py
+
+Found 2026-09-15: this test used to mutate the real, git-tracked
+ops/corpus-rotation.json directly and restore it in a `finally` block, the
+same shape test_linkedin_drafts.py had. A `finally` only runs if the
+interpreter unwinds the stack; a hard interrupt (a `timeout`-bounded caller
+sending SIGTERM, a crash, a killed subprocess) skips it, leaving the real
+rotation file permanently polluted with fake served posts, which then makes
+every later run of this same test flaky against whatever was left behind.
+Reproduced live: an interrupted `preflight.py` run left three fake
+`facebook-post` entries in the real file. Fixed the same way: point
+corpus_posts.ROTATION at an isolated temp path for the duration of the
+test, so the real file is never written at all, crash or no crash.
 """
 import io
 import os
 import re
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -35,6 +48,11 @@ def _remaining(text: str) -> int:
 
 def main() -> int:
     fails = []
+    real_rotation = cp.ROTATION
+    fd, tmp_path = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+    os.remove(tmp_path)                              # start absent, like a fresh install
+    cp.ROTATION = tmp_path
     before = _read_rotation()
 
     try:
@@ -72,11 +90,12 @@ def main() -> int:
                          f"it to drop to {expected}, one day's worth of "
                          f"posts actually served")
     finally:
-        if before is None:
-            if os.path.exists(cp.ROTATION):
-                os.remove(cp.ROTATION)
-        else:
-            io.open(cp.ROTATION, "w", encoding="utf-8", newline="").write(before)
+        # The real rotation file was never touched: only the temp path was.
+        # Restoring the module attribute is enough; the crash-unsafe window
+        # this used to have against the real file no longer exists.
+        cp.ROTATION = real_rotation
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
     # An unknown platform is a programming error, not a silent no-op.
     try:

@@ -34,6 +34,7 @@ remember to pass.
 """
 from __future__ import annotations
 
+import ast
 import collections
 import glob
 import io
@@ -12622,6 +12623,88 @@ def gate_binary_files_protected() -> None:
              ", ".join(f"{p} ({why})" for p, why in broken))
 
 
+def check_test_rotation_isolated(text: str) -> str | None:
+    """Pure logic: does this test file mutate the real corpus-rotation.json?
+
+    Parses the file as real Python (ast), rather than scanning its raw text,
+    on purpose: this exact gate's own test file necessarily contains fixture
+    strings like "import corpus_posts as cp" and "record=True" as PLAIN TEXT
+    DATA describing the old, broken shape, not as real code. A text-scanning
+    version of this check would find those fixture strings and fail on its
+    own test, the same "matched a quoted example, not real usage" shape
+    gate_goals_organic_search_row_current was already made quote-aware
+    against. AST parsing sidesteps the whole class: a string literal is
+    never mistaken for an import or a call.
+
+    Split out so a test can feed it a synthetic file body without needing a
+    real ops/tests fixture on disk. See gate_test_rotation_isolated() for
+    the incident this exists to stop recurring.
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return None                      # not this check's problem to report
+
+    alias = None
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for n in node.names:
+                if n.name == "corpus_posts":
+                    alias = n.asname or n.name
+    if alias is None:
+        return None
+
+    has_record_true = any(
+        isinstance(node, ast.Call)
+        and any(kw.arg == "record" and isinstance(kw.value, ast.Constant)
+                and kw.value.value is True for kw in node.keywords)
+        for node in ast.walk(tree))
+    if not has_record_true:
+        return None
+
+    isolates = any(
+        isinstance(node, ast.Assign)
+        and any(isinstance(t, ast.Attribute) and t.attr == "ROTATION"
+                and isinstance(t.value, ast.Name) and t.value.id == alias
+                for t in node.targets)
+        for node in ast.walk(tree))
+    if isolates:
+        return None
+
+    return (f"calls record=True but never reassigns {alias}.ROTATION to an "
+            f"isolated path first, so it would write through to the real, "
+            f"git-tracked ops/corpus-rotation.json")
+
+
+def gate_test_rotation_isolated() -> None:
+    """No test that exercises record=True ever writes the real rotation file.
+
+    Found 2026-09-15: test_linkedin_drafts.py and test_social_drafts.py both
+    called build(..., record=True) against the real ops/corpus-rotation.json,
+    restoring it only in a `finally` block. A `finally` only runs if the
+    interpreter unwinds the call stack; SIGTERM (the signal a `timeout`-
+    bounded caller sends, with no Python-level default handler) kills the
+    process without running one. Reproduced directly: a `timeout`-interrupted
+    preflight run left three fake `facebook-post` entries permanently in the
+    real, committed file, which then makes every later run of the same test
+    flaky against whatever state was left behind by the last one. Fixed by
+    pointing corpus_posts.ROTATION at an isolated temp path for the test's
+    own duration in both files, so the real file is never written at all,
+    crash or no crash. This gate keeps that fix from regressing, and covers
+    any future test file that touches the same rotation mechanism.
+    """
+    bad = []
+    for p in sorted(glob.glob(os.path.join(ROOT, "ops", "tests", "test_*.py"))):
+        text = io.open(p, encoding="utf-8", errors="replace").read()
+        problem = check_test_rotation_isolated(text)
+        if problem:
+            bad.append(f"{os.path.basename(p)}: {problem}")
+    if bad:
+        fail("test-rotation-isolated",
+             f"{len(bad)} test file(s) risk corrupting the real rotation "
+             f"file on interruption: {bad}")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -12744,6 +12827,7 @@ def main() -> int:
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
     run_gate(gate_binary_files_protected)
+    run_gate(gate_test_rotation_isolated)
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
