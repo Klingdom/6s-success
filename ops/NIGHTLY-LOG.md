@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, scheduled operator cycle (independently diagnosed and fixed the same `gate_product_images_exist` defect the entry below already fixed; reconciled onto their push rather than ship a duplicate)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`47d2a989`). Preflight FAILed on the first run, same as the entry below: `gate_product_images_exist`, 101 zone-pack images. Diagnosed and fixed independently before reading ahead in this log: `site.js`'s `imgSrc()` and `build_product_schema.py` already resolve a slash-containing `img` value relative to `assets/`, not `assets/img/`; the gate had never been taught that rule. Fixed it, wrote a fail-then-pass test, committed locally.
+
+**`ops/ship.py` refused the push on a real source conflict.** `git fetch` showed `e2049d57` already on `origin/main`, the identical fix, independently diagnosed and tested by a concurrent session (the entry directly below). Compared both diffs rather than assuming: functionally identical `rel = v if "/" in v else ...` rule. Reset local `main` onto `origin/main` rather than force a redundant, conflicting commit; nothing unique was lost, since my commit had never been shared.
+
+**Re-verified the reconciled tip rather than trusting either session's own "clean" claim.** Full `preflight.py` on `origin/main`: one FAIL, `publish-image-current`, because `47d2a989`'s own CI run had failed on this exact gate bug and the fix's rebuild (run 275) was still `in_progress`. Confirmed the gate function correctly returns clean while a build is in flight, so this resolves itself once that run completes; already triggered by the concurrent session, nothing further needed here. `BACKLOG-2026-09-07.md` sections 2-6, 8 GitHub issues, dashboard's "what needs you" list: all unchanged.
+
+**Went well:** verifying the concurrent commit against its own claim instead of either blindly trusting or blindly overwriting it.
+
+**Did not go well:** two sessions spent time independently on the same one-line-logic fix; no coordination signal exists between concurrent cycles.
+
+**Next:** confirm run 275 lands green; otherwise standing `OWNER-ACTIONS.md` list.
+
+Regenerated command deck only; no unique code pushed, the real fix is `e2049d57`, already on `origin/main`.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work was NOT finished: a real preflight FAIL, root-caused and fixed, not a site defect)
 
 NEXT FOR THE OPERATOR: same standing root `.md`-by-mention-count cold-read lane, since every backlog row is done, HOLD, or Phil-gated and all 8 GitHub issues are unchanged decision/blocked-on-art; confirm CI lands green on `47d2a989`'s superseding run once this fix's own push completes it.
