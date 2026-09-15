@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, local session: product tiles serve responsive AVIF/WebP (`247dcef6`)
+
+**Did:** `renderProduct` in `site.js` drew every product card with a bare `<img>` of the source file (top-level photos 130 to 280 KB, zone pictures 55 to 80 KB), 159 of them on the shop and the same cards on the homepage, method and book pages. Each tile is now a `<picture>` (AVIF, then WebP, then the unchanged `imgSrc()` JPEG) through a small `pictureSources()` helper: `-sm`/`-md` siblings for zone and card images, `assets/img/w/<stem>-420/-840` for the twelve top-level photos, a plain `<img>` for anything else. `ops/room_image_variants.py` now covers all twelve photos; the shop was re-prerendered from the same `renderProduct`, and its first card stays eager. `gate_product_images_exist` now requires every srcset variant on disk, with two new test cases that fail against the old gate.
+
+**Result:** first 8 shop tiles on desktop 1,632 KB to 96 KB; first 3 on a 3x phone 510 KB to 86 KB; all 159 tiles scrolled 16.5 MB to 1.7 MB.
+
+**Verified:** diff line-classified (every other page only the `site.js` fingerprint); real-browser probe, every measured tile chose AVIF, filled its box, none broken (shop 24 desktop and 8 phone, method 7 and 3, homepage 4 and book 6 desktop). **Unchecked:** the homepage and book card grids at phone width sit below the probe's six-screen window, so they were not measured; they run the same `renderProduct` code as the shop and method, which were. audit_pages clean, check_urls resolves, visual audits on shop and homepage clean at both widths. Full preflight: every gate passed (13 known warnings). Live and verified: production moved from build `047a015202e83e30` to `065e8b434a25c03c`, freshness CURRENT, the live shop serves all 159 tiles as AVIF-first pictures with no plain tile left, one sample of each naming shape answers 200 as AVIF and WebP (kitchen--cooking-zone-sm 4,353 and 8,870 bytes, room-map-420 11,438 and 19,950, EM-003 card -sm 4,807 and 6,990), and the live site.js (`37c3f65654`) defines pictureSources. The first push was rejected because origin moved during a full test rerun that only regenerated dashboard files had triggered; the resumed release rebased onto two generated-only commits without rerunning and pushed on the first attempt.
+
+**CI caught up:** Checks run `34948760354` on `88a21779` finished green, the first run on main to finish since `5b668b3d` at 06:10. It contains the room thumbnails (`e170c110`), the Python 3.11 syntax fix (`cb00b337`), the page photos (`082d0a73`) and the syntax test fix (`feb32974`), so all of tonight's earlier releases are now CI-verified. The tile release was held until it finished so its push could not cancel it.
+
+**Workflow note:** my own docs-only log push earlier (`88a21779`) cancelled the Checks run on `feb32974`, because `checks.yml` includes `*.md`, so `STATUS.md` triggers Checks (the nightly log is excluded). I assumed otherwise. STATUS.md edits now wait until no important Checks run is in progress.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, nothing new to start)
 
 **Attach:** shallow and detached on arrival; unshallowed, `merge --ff-only` onto `origin/main` (`09b34d1d`), clean, no conflict.
