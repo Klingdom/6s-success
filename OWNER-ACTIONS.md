@@ -144,6 +144,8 @@ the only gap.
 
 ### 1b. Turn on Gemini API billing. This unblocks every image on the roadmap.
 
+**Corrected 2026-09-15, local session: the free deck now has 9 cards without a photograph, not 12.** EP-008, ET-004 and EU-011 got locally generated heroes (free, SD 1.5), reviewed at full size and at the card's photograph band, and the print-and-play PDF was rebuilt and verified live. The other nine do not print a placeholder glyph any more: the template shows the card's objective in a text panel where the photograph goes. Readable, but still no picture. Still missing: EE-002, EH-004, EM-009, EP-007, ES-007, ET-003, EU-002, EU-004, EU-009. Local generation could not draw them (LRN-0012), so they need a stronger model or real photographs. The eight zone pages were also tried locally, 0 of 11 zones acceptable.
+
 **Measured 2026-09-04, not assumed.** The `GEMINI_API_KEY` in `.env.secrets`
 works: it lists 50 models including `gemini-3-pro-image`,
 `gemini-3.1-flash-image` and `gemini-2.5-flash-image`. But every image request
