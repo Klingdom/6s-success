@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage)
+
+NEXT FOR THE OPERATOR: wire `ops/stripe_catalog.py`'s price-claim check, `ops/stripe_dedupe.py`'s duplicate-product check and `ops/stripe_brand.py`'s identity check into `ops/hourly_brief.py`, the same way `check_live_links.py` was wired in on 2026-09-09, because those three P0-trust checks have read "UNCHECKED, not clean" in every sandbox this project has ever run in, despite the credential already sitting one workflow away.
+
+**Attach:** arrived shallow and detached, `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom, fast-forwarded 9 commits onto the prior cycle's own work.
+
+**Previous work: finished, checked rather than inherited.** `preflight.py` full run (own background process, ran to completion rather than timing out under my own shell wrapper): every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree was clean and main already pushed before this pass touched anything. `BACKLOG-2026-09-07.md` sections 2 to 4 again all struck through done or explicitly Phil-gated (C6 videos, C5 superseded); section 5 correctly HOLD, waiting on traffic. 7 open GitHub issues pulled fresh (#2, #7, #15, #18, #21, #29, #31): read #2's full comment thread specifically, the most recently updated one (11:46 today); its last comment is this project's own 05:45 recount, no new Phil reply. `OWNER-ACTIONS.md` already reflects that recount (9, not 12).
+
+**Found, not manufactured: a real, unblocked gap.** `gate_hourly_brief_payment_links` in `preflight.py` documents that `check_live_links.py` (the revenue-outage check) was deliberately wired into `hourly_brief.py` on 2026-09-09 because `.github/workflows/hourly-brief.yml` already carries a real `STRIPE_SECRET_KEY` and real egress, the one credentialed, network-reaching job this project has. Reading `ops/hourly_brief.py` directly: only `check_live_links` is imported. `gate_stripe_price_claims`, `gate_stripe_one_product_per_sku` and `gate_stripe_brand` each independently warn "UNCHECKED, not clean" every single run, in every sandbox, for the same structural reason live-links used to: no credential here. But the credential already exists, in the same secrets store, for the same workflow, proven working for the sibling check. Grepped both directions (`hourly_brief` referenced nowhere in `stripe_catalog.py`/`stripe_dedupe.py`/`stripe_brand.py`, and none of the three imported into `hourly_brief.py`) to confirm this was never attempted or rejected, not just unfinished. This is real engineering work (three checks, each needs the same `problem, lines` summary shape `payment_link_summary()` already established, plus tests proving the four branches: clean, a real gap, unreachable, no-credential), sized for a full slot rather than three minutes before an operator handoff, so it is not started here.
+
+**Verified rather than assumed:** ranked `ops/*.py` by log-mention count again; the floor is still in the 8+ range across all 139 files, confirming the cold-read lane a prior cycle already found saturated stays saturated. `CHECKIN-LOG.md`'s last four hourly entries: no outcome metric (published videos, live products) has moved while commit volume climbed to 203/24h, the same discovery-not-code constraint `GOALS.md` and `BACKLOG.md` section 0 already name; not a new defect, and manufacturing a doc edit to look busy would be the section 0.2 failure mode in reverse.
+
+**Went well:** the hourly-brief-payment-links gate's own docstring pointed straight at the pattern to extend; cross-checking both files confirmed it is genuinely unstarted rather than assumed unstarted.
+
+**Did not go well:** nothing found in the fast preflight lane the last several cycles hadn't already checked; this cycle's value is entirely the one gap above.
+
+**Handing to the operator at :43:** the Stripe-checks-into-hourly-brief item above. Otherwise, same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, the diff `preflight.py` itself produces by regenerating the deck). No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-15, PM check-in
 
 **Previous work: finished.** Fast-forwarded onto origin/main (7 commits, including the same-day dashboard flaky-issue-count fix). Working tree clean, main pushed. `preflight.py` full run: every gate passed, 23 pre-diagnosed sandbox warnings, none new.
