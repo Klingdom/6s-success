@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished; caught a real deploy landing mid-cycle and corrected the two documents that still cited the prior build)
+
+**Attach:** fetched and ff-only'd onto `origin/main` (`21f907a1`), clean tree.
+
+**Previous work checked, not cited: finished.** `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Mid-cycle, a real state change landed rather than another quiet cycle.** Checked CI on `main` directly via the Actions API rather than trusting the last-known head: a local session with real VPS access had just pushed `19b1e298` ("Deploy the storage-after-Sort zone fix; commit its deploy verdict"), a few minutes after this cycle's own attach. Re-fetched. `ops/deploy-verdict.json` now confirms build `c3d0d442441b24df` live at `2026-09-15T21:13:31Z`, matching `site/build-id.txt`: production is current for the first time since `8e7401b7`'s storage-before-Sort fix built green hours earlier and sat undeployed. This closes the "PRODUCTION IS SERVING AN OLD BUILD" line that had been the dashboard's own headline constraint all afternoon.
+
+**Did: made two hand-maintained documents match this, rather than let them read stale.** Regenerated the command deck (`ops/dashboard.py`); its "one constraint" line correctly dropped the deploy gap and reverted to naming discovery/traffic, matching the newly-current `deploy-verdict.json`. `STATUS.md` section 30's "Production Knowledge" paragraph still cited the prior build (`346c043b56385f64`, superseded twice since); corrected to the current build and verdict, both superseded readings kept for continuity rather than silently dropped. `OWNER-ACTIONS.md` item 1b's "Last measured" note was one deploy behind for the same reason; corrected.
+
+**Verified:** `preflight.py` fast clean after both edits (0 gates failed, 23 warnings, all previously diagnosed). Working tree diff limited to the two corrected documents plus the regenerated command deck; no code, price or product touched.
+
+**Next for the operator:** same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts) and the 7 open decision/blocked-on-art GitHub issues, none pickable per this slot's rule. Nothing red.
+
+Shipping via `ops/ship.py --no-deploy`. No price, product or page touched; command deck plus the two corrected documents only.
+
 ## 2026-09-15, evening, local session: deployed the storage-after-Sort fix that was built but never live
 
 **Found:** production served build `587d80befe8bd586` while the repository computed `c3d0d442441b24df`. The difference was `8e7401b7` (another session): zone pages recommended 570 storage and organization products in "What to have on hand before you start", above Sort, against the rule that storage is never recommended before Sort; the fix moves them into "What to store it in, now that you know what you are keeping", after the Sort pass and before Straighten. Its image built green (`903df184`) but no environment that can deploy had deployed it, so the rule was still broken live.
