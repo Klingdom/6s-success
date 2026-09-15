@@ -2276,6 +2276,7 @@
    "id": "EP-001",
    "title": "LOST KEYS",
    "type": "PROBLEM CARD",
+   "six_s": "Straighten",
    "difficulty": 2,
    "tagline": "THE KEY PROBLEM THAT STARTS THE DAY WRONG.",
    "callouts": [

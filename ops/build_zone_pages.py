@@ -462,9 +462,10 @@ def _zone_thumb(room, zone, eager=False):
     if ok.get(stem) != "ok" or not have:
         return ('<span class="zone-thumb zone-thumb-none" aria-hidden="true"></span>', 0)
     b = f"../assets/zones/{stem}"
+    loading = "eager" if eager else "lazy"
     return (f'<span class="zone-thumb"><picture>'
             f'<source type="image/webp" srcset="{b}-sm.webp 320w, {b}-md.webp 640w" sizes="96px">'
-            f'<img src="{b}-sm.jpg" alt="" width="320" height="240" loading="{'eager' if eager else 'lazy'}" decoding="async">'
+            f'<img src="{b}-sm.jpg" alt="" width="320" height="240" loading="{loading}" decoding="async">'
             f'</picture></span>', 1)
 
 

@@ -6579,6 +6579,46 @@ def gate_legal_strip_current() -> None:
              " / ".join(first) or "wire_legal_strip.py --check failed")
 
 
+def gate_ops_python_syntax() -> None:
+    """Every ops/*.py file must parse on the interpreter actually running it.
+
+    Found 2026-09-15: commit e170c110 ("Room pages: each micro zone row
+    shows its approved illustration") landed a nested f-string, an f-string
+    delimited with single quotes whose own expression also used single
+    quotes for a ternary ('eager' if eager else 'lazy'). That parses on
+    Python 3.12+ (PEP 701 lifted the same-quote restriction) but is a hard
+    SyntaxError on 3.11, which is what this sandbox runs. CI's own run 964
+    on an earlier commit was green, so this shipped to main unnoticed:
+    nothing had ever asked whether every ops/*.py file parses at all before
+    a gate that happens to import it discovers the hard way. The failure
+    that surfaced was not "syntax error in build_zone_pages.py" but three
+    unrelated gate crashes and six test-file failures, each blaming a
+    different symptom of the one real cause.
+
+    This runs first, before anything else, because a syntax error in one
+    module explains every downstream crash that imports it and should be
+    named once, plainly, rather than rediscovered scattered across a dozen
+    later failures.
+
+    Proof this can fail: ops/tests/test_gate_ops_python_syntax.py plants a
+    real nested-quote f-string in a temp copy and asserts the gate names it
+    by file and line, then asserts a clean tree passes.
+    """
+    import ast
+    for name in sorted(os.listdir(os.path.join(ROOT, "ops"))):
+        if not name.endswith(".py"):
+            continue
+        p = os.path.join(ROOT, "ops", name)
+        try:
+            ast.parse(open(p, encoding="utf-8").read(), filename=name)
+        except SyntaxError as e:                                # noqa: BLE001
+            fail("ops-python-syntax",
+                 f"ops/{name} does not parse on this interpreter "
+                 f"(Python {sys.version.split()[0]}): line {e.lineno}: "
+                 f"{e.msg}. A gate that happens to import this file will "
+                 f"blame the wrong symptom; fix the syntax first.")
+
+
 def gate_no_stray_probe_files() -> None:
     """A killed audit_visual.py or test_audit_catalog.py run must never leave
     a page-shaped file live.
@@ -13109,6 +13149,12 @@ def main() -> int:
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
 
     bootstrap_fresh_sandbox()
+
+    # Runs before everything else: a syntax error in one ops/*.py file
+    # explains every downstream gate crash and test failure that imports
+    # it, so name it once, plainly, before anything else has a chance to
+    # blame the wrong symptom.
+    run_gate(gate_ops_python_syntax)
 
     # Runs before every other gate: a stray probe/fixture file left by an
     # earlier killed run must be caught and cleared here, before
