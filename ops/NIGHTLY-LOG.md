@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage)
+
+NEXT FOR THE OPERATOR: wire `ops/stripe_catalog.py`'s price-claim check, `ops/stripe_dedupe.py`'s duplicate-product check and `ops/stripe_brand.py`'s identity check into `ops/hourly_brief.py`, because this is the third PM cycle in a row to find that gap unstarted while two other pieces of real work landed around it.
+
+**Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom, fast-forwarded 17 commits onto `7ef3a6fa`.
+
+**Previous work: finished, checked rather than inherited.** Two things landed since the last PM cycle (`b12af730`): the hourly operator never picked up the handed-off Stripe gap, instead a local session fixed a real bug (`video_zone.done_items()` still broke shared-qualifier noun lists like "Broom" / "Mop and dustpan..."), rebuilt all 228 cards and 114 social captions, and corrected a false YouTube instruction in `OWNER-ACTIONS.md`. Ran `preflight.py` here directly rather than trusting the local session's own account: every gate passed, 23 warnings, all the same standing sandbox-credential limits (no Stripe key, no ssh key, no mail, no Pillow), none new. Working tree was clean and pushed before this pass. GitHub CI on the pushed commit (`7ef3a6fa`): `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml` all completed `success`; `checks.yml` (run 987) still `in_progress` at +20min against its normal ~30min history, not stale, same shape the last two cycles already saw and correctly did not block on.
+
+**Checked, not manufactured: the handed-off gap is still open.** Confirmed directly by reading `ops/hourly_brief.py`: it still imports only `check_live_links`, nothing from `stripe_catalog.py`/`stripe_dedupe.py`/`stripe_brand.py`. This is the third consecutive PM cycle to find it unstarted (`32d91fac` found it, `b12af730` re-confirmed it, this cycle re-confirms it again). Nobody's fault: the operator slots since then did real, correctly-prioritised work (the draft-mailer fix, then the checklist-split fix), just not this item. It stays the highest-value unblocked engineering item: `BACKLOG-2026-09-07.md` sections 2 to 4 are again all done or Phil-gated, section 5 correctly HOLD, and this is a real P0-trust gap (three checks reading "UNCHECKED, not clean" in every run despite the credential already sitting one workflow away, the same shape `check_live_links` closed on 2026-09-09 and the same shape that let six dead payment links go eight days unnoticed before that).
+
+**Verified rather than assumed:** 7 open GitHub issues pulled fresh, unchanged (#2, #7, #15, #18, #21, #29, #31), all `decision`/`blocked-on-art`, no new comment on any thread. Regenerating the dashboard as part of `preflight.py`'s own gate checks only moved commit counts and the last-commit line; diffed to confirm nothing else changed.
+
+**Went well:** treating "still in progress" as a claim to verify against the live run again rather than repeat it; not manufacturing a new finding when the honest one was "the same real gap, still open."
+
+**Did not go well:** nothing new; routine triage.
+
+**Handing to the operator at :43:** the Stripe-checks-into-hourly-brief item above, unchanged and still unstarted. Otherwise the same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art GitHub issues.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-15, afternoon, local session: the shared checklist split corrected again; social cards rebuilt; a false YouTube instruction removed
 
 **Found by reviewing my own morning work, not by a gate:** the "what done looks like" split (now single-sourced as `video_zone.done_items()` by `5616a7f4`) still broke noun lists that share one qualifier. Examples: "Broom" / "Mop and dustpan hanging heads up with painted outlines showing behind each one"; "Diapers, wipes" / "Cream all touchable without moving your feet"; "The monitor, keyboard" / "Mouse in fixed positions"; "Machine, grounds, mugs" / "Then spoons and sugar …". It also dropped the "and" inside lists ("holding trowel, pruners, gloves"). My own test hid this, because its lost-word check ignored every "and". I found it by printing every item of three words or fewer against its source sentence.
