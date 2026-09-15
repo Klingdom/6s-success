@@ -74,6 +74,9 @@ name: Checks
 # gate_mobile_corpus_current against assets/quest-corpus.json. All six ran
 # locally when checked by hand; none ran in CI, because nothing triggered
 # this workflow. Added the three files those gates actually read.
+# Also mobile/quest-app/assets/zoneHeroes.js and assets/zones/**, added the same
+# night: build_mobile_corpus.py writes them and gate_mobile_corpus_current checks
+# them, so a change to a bundled zone picture must start this workflow too.
 on:
   push:
     branches: [main]
@@ -84,6 +87,8 @@ on:
       - 'mobile/quest-app/App.js'
       - 'mobile/quest-app/ON-DEVICE-TEST.md'
       - 'mobile/quest-app/assets/quest-corpus.json'
+      - 'mobile/quest-app/assets/zoneHeroes.js'
+      - 'mobile/quest-app/assets/zones/**'
       - '!ops/state.json'
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
@@ -95,6 +100,8 @@ on:
       - 'mobile/quest-app/App.js'
       - 'mobile/quest-app/ON-DEVICE-TEST.md'
       - 'mobile/quest-app/assets/quest-corpus.json'
+      - 'mobile/quest-app/assets/zoneHeroes.js'
+      - 'mobile/quest-app/assets/zones/**'
       - '!ops/dashboard.html'
       - '!ops/state.json'
       - '!ops/NIGHTLY-LOG.md'
