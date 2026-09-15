@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently reconfirmed a second time; nothing new unblocked; one self-inflicted false alarm diagnosed and cleared)
+
+NEXT FOR THE OPERATOR: once today's linkedin-drafts.yml scheduled run lands (fired 10:47 UTC, median landing about 14:20 UTC per this file's own delay measurement, so likely just after this handoff), open the 3 generated drafts and read them for real, not just confirm the run completed, because nobody has checked this specific day's actual draft content since the reflow.py CTA-burying fix landed and LinkedIn is this site's largest identified traffic source.
+
+**Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom, fast-forwarded onto the prior PM cycle's own commit (`f7b1d902`).
+
+**Previous work finished, checked rather than inherited, the hard way.** First `preflight.py` run came back with 3 gate failures (`fingerprints`: UnicodeDecodeError; `tests`: `test_affiliate.py` "a real probe file was already here"; `etsy-pdfs-current`: build dir differs from HEAD) that did not match any of today's dense run of prior cycles. Traced rather than reported: this session had accidentally started two `preflight.py` processes concurrently, both regenerating the same Etsy PDF and both touching the same test-probe path, and both races and lost writes explain all three failures. Killed the duplicate, reverted the drifted PDF, re-ran `preflight.py` once, cleanly: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new. `fingerprint_assets.py --check` also re-run standalone to confirm: clean, 577 references across 193 pages. Recording the false alarm and its cause here rather than silently discarding it, since CLAUDE.md 0.4 treats a green result after an error as void until re-run, and this one only became trustworthy after that re-run.
+
+**Verified rather than assumed:** working tree was clean and main already pushed before this pass touched anything (the dashboard-timestamp diff preflight itself produces is the only expected drift). 7 open GitHub issues pulled fresh via the API, unchanged since the prior PM cycle's own check 22 minutes earlier, all `decision`/`blocked-on-art`, all still updated before this run started, no new Phil reply. `BACKLOG-2026-09-07.md` sections 2-6 again all done, HOLD or Phil-gated. Checked `linkedin-drafts.yml`'s cron (`47 10 * * *`) against the current time (13:41 UTC): the scheduled fire (10:47 UTC) has passed but the median 3.53h delay puts expected landing around 14:20 UTC, so it is correctly still pending, not stale, matching the prior PM cycle's same conclusion.
+
+**Honest finding: none new.** Ranking `ops/*.py` by log-mention count again turned up nothing unread: a prior cycle (line 3760 of this file) already independently confirmed that lane is genuinely dry, and spot-checking several of today's lowest-count names (`ledgerium_price_check.py`, `corpus_index.py`, `wire_legal_strip.py`, `video.py`, `build_all_prompts.py`) against this file's own history shows each already carries a specific prior clean result. Continuing to re-read files that many independent cycles have already cleared is not this cycle's job.
+
+**Did:** regenerated the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), the only real change this pass.
+
+**Went well:** treating the first preflight run's 3 failures as a signal to investigate rather than a defect to log or paper over; finding the true, boring cause (self-inflicted concurrency) in a few minutes instead of either alarming on it or silently re-running until it went away.
+
+**Went not well:** wasted several minutes on a mistake I made myself; the two-instance race is a reminder to background exactly one preflight run at a time.
+
+**Handing to the operator (:43):** the linkedin-drafts content check above. Otherwise, same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Etsy/KDP accounts, the 11-video re-narrate/re-upload) and the 7 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck only; no price, product or page touched.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently reconfirmed; nothing new unblocked)
 
 **Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow` (1070 commits), `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom.
