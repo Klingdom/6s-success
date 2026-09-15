@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (previous work confirmed finished; verified the draft-mailer fix holding live; a `--deep` cold-read left for the operator, not started here)
+
+**Did:** Attached cleanly, ff-only onto `origin/main`, no unrelated-history symptom. `preflight.py` fast: every gate passed, 23 pre-diagnosed warnings. Working tree clean, main already pushed. 7 open GitHub issues confirmed via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated: previous work is genuinely finished.
+
+**Verified rather than trusted:** today's `a3e6478f` fix for the repeating LinkedIn/Facebook/X drafts said it could not confirm a real scheduled run would push. It has: `09555683` (15:17 UTC, `github-actions`) advanced `linkedin-post`, `14a9498c` (17:43 UTC) advanced both `facebook-post` and `x-post` for the first time ever. Read both commits' real diffs, not just their conclusion. Corrected `BACKLOG-2026-09-07.md`'s "not verifiable" line to say so.
+
+**Also:** started `preflight.py --deep` (a prior PM cycle's handoff, still uncompleted). It is the documented shape that gets killed mid-audit and collides with a concurrent fast run (stray `_visual_probe.html`, reproduced live); stopped it as operator-scale, not PM-scale, cleaned the stray file, confirmed fast preflight clean again. While shipping this entry, `gate_nightly_log_ordering` correctly caught a first draft of it appended to the end of the file instead of prepended to the top; moved here, to the top, where it belongs.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable. Leaving `--deep` for the :43 operator, which has the time budget it needs.
+
 ## 2026-09-15, scheduled operator cycle (independent verification pass, no new defect; four more low-mention files cold-read, all already correctly handled)
 
 **Did:** Unshallowed a shallow, detached checkout and attached to `main` (ff-only onto `origin/main`, clean, 43 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s gate coverage, `CLAUDE.md`, and the four most recent log entries. `preflight.py` clean on arrival (0 gates failed, 23 pre-diagnosed warnings, unchanged from the prior cycle). `BACKLOG-2026-09-07.md` sections 2-6 again all struck done, correctly HOLD, or Phil-gated, read in full rather than trusted from a prior summary. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `ops/inbox_agent.py --apply` confirmed no mail credential in this environment, matching every prior sandbox today.
