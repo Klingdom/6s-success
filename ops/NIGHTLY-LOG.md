@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (independent re-verification, no new defect; deck-gallery withhold list and standard suite re-checked directly)
+
+**Did:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow` (clean), `checkout -B main origin/main`, `merge --ff-only`, no unrelated-history symptom this run. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-6 in full, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` fast: every gate passed, the same 23 pre-diagnosed sandbox warnings, none new. `affiliate.py --check` clean (162 documents), `check_urls.py` clean (188/188). `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every cloud cycle.
+
+**Checked rather than trusted:** pulled all 7 open GitHub issues fresh via the API (unchanged: #2, #31, #21, #29, #18, #15, #7, all `decision`/`blocked-on-art`) and read the comment threads on #29, #18, #7 and #15 directly; zero comments on any of the four, so no Phil reply to act on. Ranked all 139 `ops/*.py` files by mention count in this log: the minimum across the whole set is 8, so the cold-read-a-low-mention-file lane that found real defects earlier this week is now genuinely exhausted, not merely under-swept, confirming what a PM check-in already suspected. Independently re-verified issue #29's live mitigation rather than citing it: read `site/assets/cards/entryway/index.json` directly, 72 cards, all 16 withheld "Set in Order"/duplicate codes (EM-004, EM-009, EP-001/002/003/004/006/007/008/010/011/012, ET-009/010/011/012) confirmed absent, no regression from today's other card-pipeline commits. Tried a fresh production/analytics read (`curl` to 6s-success.com, checked for an SSH key at `/root/.ssh/`): no egress, no key, same sandbox limit every prior cycle has hit, reported unchecked rather than assumed clean.
+
+**Honest finding: none.** Every avenue this cycle checked (GitHub issue threads, the mention-count exhaustion check, the deck-gallery regression check, the standard verification suite) came back clean or already correctly documented. OWNER-ACTIONS.md's 20 open items are unchanged, all genuinely Phil-gated (accounts, billing, hardware access, or a decision only he can make).
+
+**Went well:** the mention-count method finally confirmed dry (8 minimum across 139 files) instead of assumed dry, closing that lane properly rather than leaving it ambiguous for the next cycle.
+
+**Did not go well:** nothing new found; nothing local to fix without Phil's next action.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 1, the 11 re-narrated videos; item 1b, the 9 remaining card heroes; item 7, the Listmonk decision; item 1d, the Stripe business description; items 14-16, KDP/Etsy/Pinterest-Instagram accounts) and the 7 open decision/blocked-on-art GitHub issues, unchanged. Worth flagging for the next cycle, not urgent yet: GOALS.md's one sale falls out of the trailing 30-day window on 2026-09-20 unless a second sale lands first.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable, no page added or rewritten.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently reconfirmed; nothing new unblocked)
 
 **Attach:** arrived shallow and detached; `fetch origin main`, `fetch --unshallow` (1070 commits), `checkout -B main origin/main`, `merge --ff-only`, clean, no unrelated-history symptom.
