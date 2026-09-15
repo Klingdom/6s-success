@@ -186,6 +186,43 @@ that zone.
 No product was removed, no price changed, and nothing was hidden: every
 category still has its own filter button in the shop with its count on it.
 
+### 0.6 Section 2's whole card-deck ladder is stale, found 2026-09-15
+
+Checked directly against the live catalogue (`site/assets/js/data.js`) rather
+than assumed: it carries exactly one deck SKU, `DECK-ENTRY`, **88 cards plus a
+room divider, free**. There is no `$12` illustrated PDF, no `$29` printed and
+boxed tier, and no `$34` bundle tier anywhere in the 159-SKU catalogue. The
+whole four-tier ladder in section 2 below describes a **46-card, line-art**
+deck that was superseded weeks ago by the 88-card deck actually shipped
+(`BACKLOG-2026-09-07.md` B3/B4, done 2026-09-07/08); nobody updated this
+document when the card count and art direction changed.
+
+GitHub issue #20, which section 2 answers, is the same staleness in the other
+direction: it still asks Phil to confirm a pricing ladder for a deck that no
+longer exists in that form, and its own comment (2026-08-20) sets these same
+$12/$29/$34 numbers as though they were about to ship. Commented and closed as
+superseded rather than left open asking for a decision that is not live
+any more.
+
+**What is still true and still load-bearing:** tier 1 being free was the right
+call and stands (see "Why tier 1 is free" below, unaffected by the card-count
+change). Paid tiers 2 to 4 are correctly held, not built: `BACKLOG-2026-09-07.md`
+section 5 lists "Physical decks, paid decks" as waiting on "a stranger buying
+anything at all," which is still the state of the evidence as of this date (one
+$19 sale, ever, to somebody who is not Phil). Nothing here changes that
+sequencing.
+
+**What would need re-deriving, not just re-typing, before any paid tier is
+built:** every number in "Why tier 2 is $12" and "Why tier 3 is $29" leans on
+the 46-card premise (the 0.529 digital-to-print ratio applied to a 46-card
+physical comparable, the "same 46 cards" cannibalisation argument). An 88-card
+deck is not a heavier version of the same math; it is a different product
+against the same $20 to $36 comparable cluster, and the honest position is
+that this file has no current answer for it, not that $12/$29/$34 still hold
+with a bigger deck. Whoever revisits paid tiers should re-run this section
+against 88 cards and the comparables available at that time, not patch the
+old numbers.
+
 ---
 
 ## 1. The state of the evidence, stated first
@@ -206,6 +243,10 @@ real transactions.
 ---
 
 ## 2. Card decks
+
+**Stale, see section 0.6.** Tier 1 is real, live, and now 88 cards, not the 46
+this section describes throughout. Tiers 2 to 4 do not exist as SKUs and are
+correctly held pending sales evidence, not pending the numbers below.
 
 ### The ladder
 

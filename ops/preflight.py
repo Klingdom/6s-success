@@ -8235,6 +8235,81 @@ def gate_roadmap_prices_current() -> None:
              "live catalogue: %s" % "; ".join(bad))
 
 
+def pricing_deck_ladder_problems(text: str, live_count: str) -> list:
+    """Pure logic for gate_pricing_deck_ladder_current, testable without
+    real files. `text` is PRICING.md's full content; `live_count` is the
+    card count read from the live DECK-ENTRY catalogue entry, as a string.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+    if "card-deck ladder is stale" not in text.lower():
+        problems.append(
+            "PRICING.md's section 2 card-deck ladder has no staleness "
+            "marker, and the live DECK-ENTRY catalogue entry says %s "
+            "cards. Either the ladder shipped for real (update section 2 "
+            "and this gate to check the real SKUs) or the correction "
+            "marker was removed by mistake." % live_count)
+        return problems
+    if live_count not in text:
+        problems.append(
+            "PRICING.md's stale-ladder correction no longer names the "
+            "live card count (%s, read from data.js's DECK-ENTRY entry). "
+            "The deck's size changed again; section 0.6 needs the new "
+            "number." % live_count)
+    return problems
+
+
+def gate_pricing_deck_ladder_current() -> None:
+    """PRICING.md's card-deck section must carry a live staleness marker,
+    kept current against the real catalogue.
+
+    Found 2026-09-15, this operator, cold-reading GitHub issue #20 (unchanged
+    since 2026-08-20) and cross-checking it against the live catalogue rather
+    than trusting an old comment. PRICING.md section 2 described a four-tier
+    ladder for a 46-card, line-art Entryway deck (free / $12 illustrated PDF /
+    $29 printed / $34 bundle) for weeks after the deck actually shipped as an
+    88-card deck with no paid tiers at all (`site/assets/js/data.js` carries
+    exactly one deck SKU, DECK-ENTRY, free). Every sibling money-adjacent
+    document (ROADMAP, GOALS, RISKS, STATUS) already has a gate that catches
+    this shape of drift; PRICING.md had none, which is why this one sat
+    unnoticed while the others were repeatedly caught and fixed.
+
+    This does not force section 2's historical reasoning to be rewritten
+    (the comparables research stays useful for whenever paid tiers are
+    revisited); it only requires the correction to stay present and to keep
+    citing the real, current card count, so a future edit cannot silently
+    delete the correction while the stale ladder above it still reads as
+    live. If a paid tier ships for real, replace the marker and this gate
+    with a check against the real SKUs instead of deleting either.
+    """
+    path = os.path.join(ROOT, "PRICING.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+
+    js_path = os.path.join(SITE, "assets", "js", "data.js")
+    if not os.path.exists(js_path):
+        return
+    js = io.open(js_path, encoding="utf-8").read()
+    try:
+        cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    except Exception:                                         # noqa: BLE001
+        return
+    deck = next((p for p in cat if p.get("sku") == "DECK-ENTRY"), None)
+    if not deck:
+        return
+    m = re.search(r"(\d+)\s+cards",
+                  f"{deck.get('variant', '')} {deck.get('blurb', '')}")
+    if not m:
+        return
+    live_count = m.group(1)
+
+    problems = pricing_deck_ladder_problems(text, live_count)
+    if problems:
+        fail("pricing-deck-ladder-current", "; ".join(problems))
+
+
 def roadmap_site_age_drift(text: str, today: dt.date):
     """Pure logic behind gate_roadmap_site_age_current, kept separate so a
     test can drive it against synthetic text without touching the real file.
@@ -13335,6 +13410,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_pricing_deck_ladder_current)
     run_gate(gate_roadmap_site_age_current)
     run_gate(gate_marketplace_fix_current)
     run_gate(gate_corporate_buy_path_current)

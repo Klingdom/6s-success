@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, scheduled operator cycle (a stale decision issue closed, PRICING.md corrected, a gate written so it cannot drift silently again)
+
+**Attach:** shallow and detached on arrival; unshallowed, `merge --ff-only` onto `origin/main`, clean, fast-forwarded 1049 commits, no unrelated-history symptom.
+
+**Did:** `preflight.py` clean before touching anything (every gate passed, 23 pre-diagnosed sandbox warnings). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the last several `NIGHTLY-LOG.md` entries: today alone had dozens of concurrent cycles, all converging on "every unblocked backlog row is done or Phil-gated," most re-checking issues #2 and #29. Rather than re-tread that ground, cold-read the older, untouched decision issues (#18, #20, #21) per step 5d. #20 asks Phil to confirm a four-tier pricing ladder for a 46-card, line-art Entryway deck (free/$12/$29/$34), unchanged since 2026-08-20. Checked against the live catalogue rather than trusted: `data.js` carries exactly one deck SKU, `DECK-ENTRY`, 88 cards, free, no paid tier exists. `PRICING.md` section 2 repeated the identical stale ladder in full. Closed #20 as superseded (the real decision, hold paid tiers pending sales evidence, was already made by events and is correctly recorded in `BACKLOG-2026-09-07.md` section 5); corrected `PRICING.md` with a new section 0.6 rather than deleting the comparables research, since it is still useful whenever paid tiers are revisited, just not against a 46-card premise.
+
+**Verified:** new `gate_pricing_deck_ladder_current` in `preflight.py` (pure logic in `pricing_deck_ladder_problems`), `ops/tests/test_gate_pricing_deck_ladder_current.py` (5 cases: no marker fires, the real fixed text stays quiet, a drifted live count fires, case-insensitive marker match stays quiet, and the actual committed `PRICING.md` checked live against the real catalogue). Fail-then-pass proved directly. Full `preflight.py` after (every gate passed, 23 warnings, none new), all 150 test files excluding the known-slow, unrelated `test_generator_ownership.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** every sibling money-adjacent document (ROADMAP, GOALS, RISKS, STATUS) already had a gate against exactly this drift shape; PRICING.md did not, which is why it sat stale for weeks while its siblings were repeatedly caught. Closing that specific gap, rather than another clean re-verification pass, is this cycle's real contribution.
+
+**Went not well:** no Stripe, SSH, mail or network egress credential in this sandbox, same as every cloud cycle today; revenue, live payment links, the owner inbox and production freshness stay UNCHECKED here, not passing.
+
+**Changing next cycle:** none.
+
+**Next:** same standing `OWNER-ACTIONS.md` list (YouTube OAuth, Search Console, Gemini billing, Etsy/KDP accounts). GitHub issues #7, #18, #21, #31 still open and not re-checked this cycle; #18 (chapter 47 monochrome plates) looked genuinely still current on a fast check, not stale, but was not fully re-verified.
+
+Pushed to main. `ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Command deck regenerated. No price or product touched; one GitHub issue closed, one planning doc corrected, one gate added.
+
 ## 2026-09-15, local session: card images declare true widths; deck previews become pictures (`27b0ac2d`)
 
 **Found while preparing the deck page:** the deck preview markup carried `width="400"` for a `-md` card image, which did not match the 640w that `pictureSources` (shipped in `247dcef6`) declared for card paths. Measured every card front on disk: `-sm` 150, `-md` 400, `-lg` 760, unlike zone pictures (320/640). So the live EM-003 shop tile declared its 150 px file as 320w. One tile, but a srcset that lies about widths lets the browser pick an image too small for the slot.
