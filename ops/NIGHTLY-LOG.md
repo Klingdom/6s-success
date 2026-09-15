@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, scheduled operator cycle (independent full re-verification, no new defect; one open content decision re-checked against fresh evidence and correctly left standing)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`. A concurrent session pushed 1035 commits past my starting point mid-cycle (`aace0731`); refetched and ff-only'd again rather than working on a stale tip, discarding only my own locally-regenerated dashboard bytes first. Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, `OWNER-ACTIONS.md`, and the last several `NIGHTLY-LOG.md` entries.
+
+**Verified rather than assumed.** Full `preflight.py`, run twice (once before the merge, once after): every gate passed both times, 23 pre-diagnosed warnings, none new. `BACKLOG-2026-09-07.md` sections 2-6 all done, HOLD or Phil-gated. 8 GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`. 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `roadmap_report.py --allow-partial`: next-in-queue rows are either measurement-gated (EXP-002 needs 12+ distinct visitors this sandbox cannot read) or explicitly held pending traffic (`GOALS.md` rule 1). Mobile `npm test`: 4/4 suites pass. Checked CI directly: `publish-image.yml` run 280 succeeded on the latest content-bearing commit; `checks.yml`'s own `cancel-in-progress` concurrency group is cancelling runs under tonight's push rate, which is expected behaviour, not a failure, confirmed by reading the concurrent session's own account of the same thing.
+
+**Re-checked the one open judgment call (EP-005/EP-011/EP-012's Primary-6S column) against the live corpus rather than re-guessing.** All three cards' own `six_s_lesson` field reads a Straighten sentence, verbatim or near-verbatim with uncontested Straighten cards EP-007/EP-008, while their `best_practices` text still points at Standardize/Sustain-shaped habits (a 5-minute guest reset, a nightly reset). This is the same fork the prior cycle found: unresolvable from the JSON alone, since it turns on whether the lesson sentence is a real transcription or a copy-pasted template default. Left standing rather than forced, per CLAUDE.md 5d.
+
+**Found:** nothing new to fix. No gate added; nothing broken was found to gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` list; 8 decision/blocked-on-art issues unchanged; EP-005/011/012 still needs the physical card.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, a concurrent session's own log entry corrected my read of the still-running CI check, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the step 5d cold-read lane on the next low-mention `ops/*.py` file, because every genuinely unblocked backlog row is done or Phil-gated and the CI question below is already settled, not open.
