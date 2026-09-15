@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, a third instance of the checks.yml path-filter gap found and fixed while verifying a concurrent push)
+
+**Attach:** clean. **Previous work finished:** `preflight.py` clean, tree clean, main pushed.
+
+**Started by verifying a concurrent commit (`0d0f5b1b`, App.js's six-pass spine and two touch targets), not by opening a new sweep.** Confirmed the claim with mobile `npm test` (4/4) and a local `preflight.py` (clean). Checked whether CI itself had actually run it and found it had not run at all, for either `checks.yml` or `publish-image.yml`: the commit only touches `mobile/quest-app/App.js`, which matches neither workflow's path filter, nor `mobile-checks.yml`'s own (`lib/**` and `package.json` only).
+
+**This is the same shape `checks.yml`'s own header already names twice** (the `linkedin-drafts.yml` injection fix, then `build_etsy_assets.py`), now confirmed for a third file class. `preflight.py`, which `checks.yml` already runs, carries at least six gates that read App.js, `ON-DEVICE-TEST.md` and `assets/quest-corpus.json` directly (`gate_mobile_finish_actions_distinct`, `gate_mobile_no_bare_jsx_text_expr_break`, `gate_mobile_diagnostics_promise_kept`, `gate_mobile_badge_contrast`, `gate_on_device_check_count`, `gate_mobile_corpus_current`, all confirmed defined and wired into the run sequence). None of them ran in CI on this commit; only by hand, here.
+
+**Fixed:** widened `checks.yml`'s push and pull_request path filters to add those three files, dated and reasoned the same way the file's own history is written. YAML validated, `preflight.py` clean after (0 gates failed, same 23 standing warnings), `check_urls.py` 188/188.
+
+**Handing to the operator:** a general gate that checks every preflight gate's file dependency against the workflow path filters that would trigger it is real, worth building, and too large for this slot.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished, verified a concurrent push rather than starting a fresh sweep)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`. `preflight.py`'s own run silently regenerated the command deck as a side effect before I had checked anything in; stashed it, merged, popped it back, no loss.

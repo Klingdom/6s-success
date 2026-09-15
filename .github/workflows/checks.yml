@@ -60,6 +60,20 @@ name: Checks
 # same coverage ops/** gets without needing their own exclusion list, since
 # nothing under build/ regenerates on every autonomous cycle the way
 # ops/dashboard.html and ops/state.json do.
+#
+# Widened again on 2026-09-15, a fresh instance of the same shape: commit
+# 0d0f5b1b changed only mobile/quest-app/App.js (a real behaviour change,
+# the six-pass progress spine and two touch targets) and matched neither
+# this filter nor mobile-checks.yml's, whose own trigger is scoped to
+# mobile/quest-app/lib/** and package.json, not App.js itself. preflight.py
+# (which this workflow already runs) carries at least four gates that parse
+# App.js directly and would have caught a regression in exactly this commit's
+# area (gate_mobile_finish_actions_distinct, gate_mobile_no_bare_jsx_text_expr_break,
+# gate_mobile_diagnostics_promise_kept, gate_mobile_badge_contrast), plus
+# gate_on_device_check_count against ON-DEVICE-TEST.md and
+# gate_mobile_corpus_current against assets/quest-corpus.json. All six ran
+# locally when checked by hand; none ran in CI, because nothing triggered
+# this workflow. Added the three files those gates actually read.
 on:
   push:
     branches: [main]
@@ -67,6 +81,9 @@ on:
       - 'ops/**'
       - 'build/**'
       - '.github/workflows/**'
+      - 'mobile/quest-app/App.js'
+      - 'mobile/quest-app/ON-DEVICE-TEST.md'
+      - 'mobile/quest-app/assets/quest-corpus.json'
       - '!ops/state.json'
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
@@ -75,6 +92,9 @@ on:
       - 'ops/**'
       - 'build/**'
       - '.github/workflows/**'
+      - 'mobile/quest-app/App.js'
+      - 'mobile/quest-app/ON-DEVICE-TEST.md'
+      - 'mobile/quest-app/assets/quest-corpus.json'
       - '!ops/dashboard.html'
       - '!ops/state.json'
       - '!ops/NIGHTLY-LOG.md'
