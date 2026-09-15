@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished; STATUS.md corrected to reflect it rather than another cold-read sweep)
+
+**Previous work finished.** `preflight.py` clean before touching anything, 23 pre-diagnosed warnings. Backlog sections 2-6 again done or Phil-gated; 7 open issues confirmed live (down from 8), all `decision`/`blocked-on-art`.
+
+**Did:** the last operator cycle (`042079dd`, closed #20, corrected `PRICING.md`, added a gate) shipped correctly but never updated `STATUS.md`, which still said 8 open issues and cited production two builds stale. Corrected both against live sources and recorded the cycle in the running header.
+
+**Verified:** `preflight.py` clean after, same warnings, none new.
+
+**Handing to the operator:** standing `OWNER-ACTIONS.md` list, redeploy remains Phil's. Nothing new unblocked.
+
+Pushed to main (`46a9776c`). `STATUS.md` only, plus deck regen.
+
 ## 2026-09-15, scheduled operator cycle (a stale decision issue closed, PRICING.md corrected, a gate written so it cannot drift silently again)
 
 **Attach:** shallow and detached on arrival; unshallowed, `merge --ff-only` onto `origin/main`, clean, fast-forwarded 1049 commits, no unrelated-history symptom.
