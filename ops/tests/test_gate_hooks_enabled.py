@@ -39,10 +39,24 @@ def _git(*args, cwd):
                     text=True, timeout=60)
 
 
+class NotVerified(Exception):
+    """This platform cannot simulate the case, so it was not exercised.
+
+    gate_hooks_enabled() asks os.access(path, os.X_OK). On Windows that is
+    True for any existing file, and chmod(0o644) cannot clear it, so a
+    "not executable" hook cannot be built here. Those cases used to fail
+    on every Windows preflight, a failure that was never a defect; on
+    Linux CI they still run for real.
+    """
+
+
 def _write_hook(path, executable):
     io.open(path, "w", encoding="utf-8").write("#!/bin/sh\nexit 0\n")
     mode = 0o755 if executable else 0o644
     os.chmod(path, mode)
+    if not executable and os.access(path, os.X_OK):
+        raise NotVerified("this platform reports every file as executable, "
+                          "so a non-executable hook cannot be simulated")
 
 
 def _run_gate(hooks, hooks_path_set=True):
@@ -150,17 +164,22 @@ def test_no_hooks_directory_is_a_noop():
 
 def main() -> int:
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
-    failed = 0
+    failed = unverified = 0
     for t in tests:
         try:
             t()
+        except NotVerified as e:
+            unverified += 1
+            print("SKIPPED (NOT VERIFIED) %s: %s" % (t.__name__, e))
         except AssertionError as e:
             failed += 1
             print("FAIL %s: %s" % (t.__name__, e))
+    note = (", %d NOT VERIFIED (unchecked, not passing)" % unverified
+            if unverified else "")
     if failed:
-        print("\n%d of %d test(s) failed" % (failed, len(tests)))
+        print("\n%d of %d test(s) failed%s" % (failed, len(tests), note))
         return 1
-    print("\n%d of %d test(s) pass" % (len(tests), len(tests)))
+    print("\n%d of %d test(s) pass%s" % (len(tests) - unverified, len(tests), note))
     return 0
 
 
