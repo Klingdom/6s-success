@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, local session: room pages show each zone's illustration (`e170c110`)
+
+**Did:** eleven of the twenty room pages (the rooms whose book chapters are not illustrated) carried no image at all, while most of their zones already had a reviewed picture. Each zone row in "The N micro zones, in working order" now shows that picture as a thumbnail (96px, 76px on phones) with the web Quest's own note, "Illustrations of each zone finished. Not photographs of real homes." Alt is empty because the zone name is the adjacent link; the 8 zones without an approved picture get an empty dashed slot. 106 thumbnails and 8 empty slots across 20 pages, AVIF wired on all. Approval is the zone hero's own sha-bound verdict, via `_og_image`.
+
+**Why the gate changed too:** `gate_pages_missing_art` judged room pages by "any `<img>`", which the thumbnails would have satisfied on every page, silently reporting all eleven unillustrated chapters as illustrated. It now keys on the chapter lead figure (`class="room-lead"`), the same shape of fix it got for zone heroes on 2026-09-11, and still names the same 11 rooms. Test case 4 fails against the old gate and passes with the new one.
+
+**Verified:** every other changed page differs only in the `site.css` fingerprint (line-classified). Visual audit on Garage and Kitchen at 390 and 1280px: 0 findings. Screenshots at both widths reviewed. Full preflight: first run failed on audit_pages hero-lazy (11 pages), fixed; the rerun passed every gate (13 known warnings). Live and verified: build `dc6db21934bf8a6e`, freshness CURRENT, rooms/garage serves 7 thumbnails and the note, a thumbnail answers 200 as avif (4,582 bytes), webp (10,418) and jpg (15,070), and the live stylesheet `2eaffe3f11` carries `.zone-rows`.
+
+**Did not go well:** the first thumbnail on the eleven rooms without a chapter figure was lazy loaded, and it is the first image on those pages. My own visual audits (contrast, tap targets, distortion, sideways scroll) do not include audit_pages, so they passed; the full preflight failed on hero-lazy across 11 pages. Fixed in the generator (that one thumbnail loads eagerly), audit_pages clean, full preflight rerun. Same lesson as earlier today: a hand-picked gate set is not the release check.
+
+**Why this and not social previews:** first candidate was unique `og:image`s for room pages, but the social tooling links only zone pages (342 links), which already share their own picture, so that would have changed almost nothing.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and confirmed, a live customer-facing data conflict found and handed to the operator)
 
 NEXT FOR THE OPERATOR: fix the "Primary 6S" column on cards EP-001, EP-005, EP-011 and EP-012 in `build/entryway-cards.json`, because `ops/build_card_template.py`'s own `six_step()` already self-reports it as a live DATA CONFLICT on every run and the printed card's 6S-step chip currently shows the wrong step to a real reader.
