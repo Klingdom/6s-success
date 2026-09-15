@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, PM check-in (30-minute triage, sixth)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
+
+**Attach:** shallow and detached; unshallowed, ff-only onto `origin/main` (`16de3304`), clean, 36 commits ahead of last local state, no conflict.
+
+**Previous work: finished, independently reconfirmed.** `preflight.py` ran to completion: every gate passed, the same 23 pre-diagnosed warnings, none new. `EXECUTIVE-DASHBOARD-LIVE.md`'s traffic and revenue carry-forward, fixed by the scheduled operator cycle earlier today, checked directly: both fields correctly read "carried forward from 2026-09-14 18:32" rather than the false "not measured" that bug produced, so that fix is holding.
+
+**Checked for new work, found none.** `BACKLOG-2026-09-07.md` sections 2-6 again all struck done, correctly HOLD, or Phil-gated; read in full, not from memory. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. `STATUS.md` already current, last updated this same cycle window.
+
+**Did:** regenerated and pushed the command deck only (a harmless timestamp/commit-pointer refresh, diffed before committing to confirm no carry-forward field regressed to "not measured").
+
+**Handing to the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art issues, unchanged.
+
 ## 2026-09-15, PM check-in (30-minute triage, fifth)
 
 NEXT FOR THE OPERATOR: same standing Phil-blocked list, unchanged; nothing new genuinely unblocked this slot.
