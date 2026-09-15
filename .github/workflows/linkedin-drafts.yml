@@ -82,8 +82,8 @@ jobs:
     # so that a hang cannot become a silent outage of the report.
     timeout-minutes: 20
     permissions:
-      contents: read
-      actions: read          # the gate step reads this workflow's own runs
+      contents: write         # the last step commits ops/corpus-rotation.json
+      actions: read           # the gate step reads this workflow's own runs
     steps:
       - name: Decide whether this run should send
         id: gate
@@ -153,3 +153,20 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
         run: python ops/linkedin_drafts.py --send "$OWNER_EMAIL"
+
+      # Without this, --send's own rotation write lives only on this runner's
+      # disk and is destroyed when the job ends: every future run starts from
+      # whatever ops/corpus-rotation.json last had committed, so the "nothing
+      # repeats until the pool is exhausted" guarantee in ops/corpus_posts.py
+      # was false in practice. Found 2026-09-15: the file had not moved since
+      # 2026-09-06, 9 days of sends past this workflow's own history, so this
+      # step had been serving the identical three posts every single morning.
+      - name: Persist the rotation so tomorrow does not repeat today
+        if: steps.gate.outputs.send == 'yes'
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/corpus-rotation.json
+          git diff --cached --quiet || git commit -m 'LinkedIn drafts: advance rotation'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main || true

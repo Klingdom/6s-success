@@ -55,8 +55,8 @@ jobs:
     # outage of the report.
     timeout-minutes: 20
     permissions:
-      contents: read
-      actions: read          # the gate step reads this workflow's own runs
+      contents: write         # the last step commits ops/corpus-rotation.json
+      actions: read           # the gate step reads this workflow's own runs
     steps:
       - name: Decide whether this run should send
         id: gate
@@ -126,3 +126,17 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
         run: python ops/social_drafts.py --send "$OWNER_EMAIL"
+
+      # Same gap linkedin-drafts.yml had: --send's rotation write only ever
+      # lived on this runner's disk. Nothing here ever committed
+      # ops/corpus-rotation.json back, so every run re-read the same
+      # committed served-set and served the identical posts again.
+      - name: Persist the rotation so tomorrow does not repeat today
+        if: steps.gate.outputs.send == 'yes'
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/corpus-rotation.json
+          git diff --cached --quiet || git commit -m 'Social drafts: advance rotation'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main || true

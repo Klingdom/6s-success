@@ -12513,6 +12513,72 @@ def gate_downloads_noindex() -> None:
                  "one." % rel)
 
 
+DRAFT_ROTATION_WORKFLOWS = ["linkedin-drafts.yml", "social-drafts.yml"]
+
+
+def check_draft_rotation_persisted(wf_dir: str | None = None) -> list:
+    """Pure check behind gate_draft_rotation_persisted. Returns problem strings.
+
+    Found 2026-09-15: ops/corpus-rotation.json had not moved since 2026-09-06,
+    9 real days after linkedin-drafts.yml's own scheduled runs (confirmed
+    live against 2026-09-09/10/12/13/14, all real sends, "Write three drafts
+    and send them" completed success, not skipped) kept firing daily.
+    ops/corpus_posts.py's take(record=True) writes the rotation file to
+    disk, but neither this workflow nor its sibling social-drafts.yml ever
+    committed and pushed it back: a GitHub Actions runner's checkout is
+    thrown away when the job ends, so every run re-read the same committed
+    served-set and, being purely deterministic on that set (sorted by
+    chapter/title, no date or randomness involved), served the identical
+    posts every time. corpus_posts.py's own docstring promises "nothing
+    repeats until the pool is exhausted"; in production this was false on
+    the single channel GOALS.md names as the largest confirmed source of
+    visitors. social-drafts.yml carried the same gap for facebook-post and
+    x-post, confirmed the same way against its own 3 real scheduled sends
+    (2026-09-12/13/14).
+
+    Checks two things per workflow, both required for the fix to hold:
+    1. `permissions.contents: write` (a plain contents: read cannot push).
+    2. A step that both touches ops/corpus-rotation.json and pushes,
+       so this cannot regress silently if a future edit drops the step
+       or reads the wrong file.
+    """
+    d = wf_dir or os.path.join(ROOT, ".github", "workflows")
+    problems = []
+    for name in DRAFT_ROTATION_WORKFLOWS:
+        path = os.path.join(d, name)
+        if not os.path.isfile(path):
+            problems.append(f"{name} not found under {d}")
+            continue
+        text = io.open(path, encoding="utf-8").read()
+        if not re.search(r"permissions:\s*\n(?:.*\n)*?\s*contents:\s*write",
+                          text):
+            problems.append(
+                f"{name} does not declare permissions.contents: write, so "
+                "even a correct commit step could not push the rotation "
+                "file back")
+            continue
+        has_rotation_ref = "corpus-rotation.json" in text
+        has_push = re.search(r"git push", text) is not None
+        if not (has_rotation_ref and has_push):
+            problems.append(
+                f"{name} has contents: write but no step that both "
+                "references ops/corpus-rotation.json and runs `git push`, "
+                "so a real --send can still discard its own rotation "
+                "advance the moment the runner is torn down")
+    return problems
+
+
+def gate_draft_rotation_persisted() -> None:
+    """The draft-mailer workflows must commit their own rotation state back.
+
+    See check_draft_rotation_persisted for the incident this exists to
+    catch: a --send that "records" a served post only on a runner's disk,
+    never in git, has not actually recorded anything.
+    """
+    for msg in check_draft_rotation_persisted():
+        fail("draft-rotation-persisted", msg)
+
+
 def gate_llms_txt_current() -> None:
     """site/llms.txt must still name every free, ungated asset that exists.
 
@@ -13547,6 +13613,7 @@ def main() -> int:
     run_gate(gate_hazard_icons_current)
     run_gate(gate_every_generator_has_a_protection_plan)
     run_gate(gate_head_scripts_non_blocking)
+    run_gate(gate_draft_rotation_persisted)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)
 
