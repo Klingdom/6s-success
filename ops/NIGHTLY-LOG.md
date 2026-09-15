@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, evening, local session: 23 products are explained nowhere but their shop tile (measured, not fixed)
+
+**Measured after the pack-page release:** 31 of the 159 catalogue entries carry no page link, and 23 of those are named on no page anywhere on the site except shop.html: all 15 situation kits ($14), all 6 area bundles ($16), the $49 Complete Digital Bundle, and Corporate Lean 6S (which has its own quote page, so it is the one honest exception in that group). The 128 zone and room packs were fixed earlier this evening, because each already had a free page that explains the steps it prints and offers the pack; these 23 have no such page.
+
+**Why nothing was linked for them:** of the 8 remaining entries that are named somewhere, most are named in passing. The Whole House Print Pack gets a sentence on deck.html and a line in a list on resources.html; the Micro Zone Manual gets one line in that same list; kit.html, despite the name, is about the eight supplies a micro zone asks for and never mentions the pack. book.html is the book's own page and would be a fair link for the book, and a stretch for the bundle that contains it. Sending a buyer from a $14 kit to a page about something else reads as helpful and is not, so the gap is recorded rather than papered over.
+
+**Recorded as BACKLOG 1c**, with the numbers and the two questions it raises: whether each kit and bundle deserves a page of its own (what is in it, which rooms and zones it covers, who it is for), or whether that part of the line should shrink. A content decision, not a linking one.
+
 ## 2026-09-15, PM check-in (30-minute triage, previous work finished and CI healthy though still confirming, nothing new unblocked)
 
 **NEXT FOR THE OPERATOR: confirm `checks.yml` and `publish-image.yml` go green on `2525057e`/`b6989083`, then cold-read `stripe_check.py` or `stripe_links.py` (both at the 9-mention floor, both money-domain) for a real defect, because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated and this is the method that found A7, B5 and C7.**

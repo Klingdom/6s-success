@@ -1959,6 +1959,23 @@ The backlog exists to make that answer executable.
    and `video_zone_photo.py` keep their own copies of the comma split that
    `build_social_pins.done_items()` replaced. Next: one shared split, new
    narration, re-render; Phil re-uploads the 12 published ones.
+1c. **23 products are explained nowhere but the shop tile.** Measured
+   2026-09-15 against the live catalogue and the rendered pages: 31 of 159
+   entries carry no page link, and 23 of those are named on no page except
+   shop.html. That is all 15 situation kits ($14), all 6 area bundles ($16),
+   the $49 digital bundle and the corporate consult (which has its own quote
+   page). A shopper gets a name, a blurb and a buy button, and nothing to
+   read first. The 128 zone and room packs were fixed on 2026-09-15 by
+   linking the free page that already explains and offers each one
+   (`8dfa3fce`, link form `1c93dc1d`); these 23 have no such page to link.
+   Of the 8 that are named elsewhere, most are named in passing: the Whole
+   House Print Pack appears in a sentence on deck.html and a list on
+   resources.html, and the Micro Zone Manual appears once, in that same
+   list. Linking those would send a buyer to a page about something else.
+   Next: decide whether a kit and bundle deserve a page each (what is in it,
+   which rooms and zones, who it is for), or whether the line should shrink.
+   Not a link problem: a content problem.
+
 2. **Pinterest and Instagram cards**, 2:3 and 4:5: built (114 zones, both
    surfaces) and, since 2026-09-15, led by each zone's approved picture.
    Still absent from Pinterest itself: posting needs the accounts in
