@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work confirmed finished, one real record-keeping gap found and flagged, not fixed here)
+
+NEXT FOR THE OPERATOR: continue the standing step 5d low-mention `ops/*.py` cold-read lane, because every backlog row is done or Phil-gated and nothing new became unblocked this slot.
+
+**Attach:** arrived shallow and detached; unshallowed, `merge --ff-only` onto `origin/main` (`636234cd`), clean.
+
+**Previous work confirmed finished, checked rather than inherited.** `preflight.py` unbounded: every gate passed, 23 pre-diagnosed warnings, none new. Working tree was clean and main already pushed before I touched anything. 8 GitHub issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs.
+
+**Found, not fixed: a structured record disagrees with a prose claim.** The newest log entry (`636234cd`, a local session with real access) says it redeployed and verified production live at build `065e8b434a25c03c`. But `ops/deploy-verdict.json`, which `ops/deploy.py` writes "the moment it confirms a build live", still names the prior build `047a015202e83e30` at `08:44:21Z`. Ran `deploy_freshness.py --json` myself: `reachable: false`, `verdict: unknown`, this sandbox has no path to 6s-success.com, same as every prior cycle. Could not adjudicate either claim, so left the generator-owned verdict file untouched rather than guess, and did not hand-edit `EXECUTIVE-DASHBOARD-LIVE.md` (also generator-owned, and its "not yet redeployed" framing is honestly derived from the tracked record it has). Added a note to `OWNER-ACTIONS.md` item 1b so Phil sees the discrepancy in one place instead of two documents quietly disagreeing.
+
+**Next:** same standing Phil-blocked list, five open decision issues unchanged. The deploy-verdict reconciliation above needs a session with real production access, not a cloud sandbox.
+
+Pushed to main. `OWNER-ACTIONS.md`, this log, command deck regenerated. No price, product or page touched.
+
 ## 2026-09-15, local session: product tiles serve responsive AVIF/WebP (`247dcef6`)
 
 **Did:** `renderProduct` in `site.js` drew every product card with a bare `<img>` of the source file (top-level photos 130 to 280 KB, zone pictures 55 to 80 KB), 159 of them on the shop and the same cards on the homepage, method and book pages. Each tile is now a `<picture>` (AVIF, then WebP, then the unchanged `imgSrc()` JPEG) through a small `pictureSources()` helper: `-sm`/`-md` siblings for zone and card images, `assets/img/w/<stem>-420/-840` for the twelve top-level photos, a plain `<img>` for anything else. `ops/room_image_variants.py` now covers all twelve photos; the shop was re-prerendered from the same `renderProduct`, and its first card stays eager. `gate_product_images_exist` now requires every srcset variant on disk, with two new test cases that fail against the old gate.

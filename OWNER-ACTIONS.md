@@ -662,6 +662,19 @@ autonomous session has been able to do since the key was installed.
 **Ready:** a fresh, tested image is already on GHCR and both workflows are
 green, current as of the last successful push.
 
+**Possibly already done, unconfirmed:** a 2026-09-15 03:40 local session's own
+`ops/NIGHTLY-LOG.md` entry (commit `636234cd`) says it redeployed and verified
+production live at build `065e8b434a25c03c` (real browser probes, sample AVIF/
+WebP files answering 200, CI green). But `ops/deploy.py` is supposed to write
+`ops/deploy-verdict.json` "the moment it confirms a build live", and that
+tracked file still shows the prior build `047a015202e83e30` at `08:44:21Z`, not
+the newer one. No cloud sandbox since (including this one; `deploy_freshness.py
+--json` returns `reachable: false`, `verdict: unknown`) can reach the live site
+to settle it either way. If you already redeployed, nothing further is needed
+except letting a session with real access re-run `python ops/deploy.py --check`
+once so the tracked record catches up; if you have not, item 1b above still
+stands. Left the tracked verdict file untouched rather than guess at it.
+
 ### 2. Run the 15 on-device app checks. About 20 minutes.
 
 **What:** `cd mobile/quest-app && npx expo start --lan`, scan the QR with Expo
