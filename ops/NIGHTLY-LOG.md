@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished after fixing two self-inflicted preflight kills; nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the root `.md`-by-mention-count cold-read lane, because `ops/*.py` and workflow files are already reconfirmed exhausted, every backlog row is done, HOLD, or Phil-gated, and all 8 GitHub issues are unchanged decision/blocked-on-art.
+
+**Attach:** shallow and detached; `fetch --unshallow`, ff-only onto `origin/main` (`5437a438`).
+
+**Previous work was finished, checked not cited, but I broke it twice myself getting there.** Ran `preflight.py` under a `timeout` wrapper twice; each kill either left the tree dirty or made the run report a false FAIL (a stray `site/_gate_fixture_stale.html` from the first kill), the exact interruption shape the immediately preceding cycle had just fixed for a different file. Switched to running it unbounded in the background: the next full run came back clean, every gate passed, 23 pre-diagnosed warnings, none new.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2-6 all done, HOLD, or Phil-gated. 8 open GitHub issues pulled fresh: unchanged, all `decision`/`blocked-on-art`. 0 PRs. The standing P0 (production serving an old build) still needs Phil's own Hostinger redeploy click, already recorded in `OWNER-ACTIONS.md`.
+
+**Went well:** the tree stayed recoverable both times; nothing broken shipped.
+
+**Did not go well:** repeated, in the same session, the exact "impatient timeout kills preflight mid-audit" mistake the prior cycle had just diagnosed and fixed for a different file.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched.
+
 ## 2026-09-15, local session: home and deck heroes, card template, app fonts (release 0b4c4fa4, deploy pending)
 
 **Did:** Home hero: the retired friction gauge is replaced with the first real Quest card (quest-data.js symptoms[0]), gated word for word by the new `gate_home_hero_card_real`. Deck hero: a fan of three real card fronts. Zone pages: the short-version heading lost to `.wrap h2` on all 114 pages; fixed. Cards: 11 of 13 placeholder panels now show the card's own objective, taglines no longer split at an ellipsis, footers pinned (full cards pixel-identical), two transcription typos fixed at source, deck re-rendered 178 of 178, PDF rebuilt. App: Fraunces, Newsreader and Inter bundled (verified in the Android export). `gate_build_id_current` no longer warns about staged files.
