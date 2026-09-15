@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and independently re-verified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the standing root `.md`-by-mention-count cold-read lane, because every `BACKLOG-2026-09-07.md` row in sections 2 to 6 is done, HOLD, or Phil-gated, and all 8 GitHub issues are unchanged decision or blocked-on-art.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`04985c27`).
+
+**Previous work finished, checked not cited.** Ran `preflight.py` unbounded in the background rather than under an external timeout (an earlier attempt under `timeout 110` was killed mid-run, per the standing lesson that a kill either dirties the tree or produces a false FAIL; confirmed no stray file survived that kill). The unbounded run came back clean: every gate passed, 23 warnings, the same standing set, none new. `checks.yml` run 957 and `publish-image.yml` run 275 (the `gate_product_images_exist` fix, `e2049d57`) both confirmed `success` via the GitHub API, closing the open item the prior PM cycle's entry left for the operator.
+
+**A newer commit landed after that fix** (`04985c27`, "Home hero card names the pass the Quest opens on"), already pushed by a concurrent session before this cycle started. Its CI (`checks.yml` run 958, `publish-image.yml` run 276) was still `in_progress` at normal duration when this cycle closed; left for the operator to confirm rather than assumed green.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2 to 6 unchanged, done, HOLD, or Phil-gated. 8 open GitHub issues pulled fresh: unchanged, all `decision`/`blocked-on-art` (issue #2's card-image regeneration confirmed still art-blocked, not operator-actionable). 0 PRs. `OWNER-ACTIONS.md`'s standing Phil-only list unchanged.
+
+**Went well:** running preflight unbounded this time instead of repeating the timeout mistake logged twice before.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open.
+
+**Next:** confirm run 958/276 land green; otherwise the standing cold-read lane and `OWNER-ACTIONS.md` list.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or page touched.
+
 ## 2026-09-15, local session: supplies cards and zone-pack shop pictures (both live)
 
 **Did:** Zone and room pages: the supplies block is now light cards (three columns on desktop, one on a phone) with a quieter disclosure whose wording and position above the links are unchanged, moved from inline styles to classes in `ops/zone_supplies.py`; verified live at build `2f183516`. Shop: each Micro Zone Pack shows its own reviewed zone picture (101 of 109; distinct catalogue images 13 to 113), and product schema image URLs follow `site.js`'s slash rule; verified live (every zone picture in data.js, pre-rendered tiles showing them, every shop schema image URL requested and returning 200).
