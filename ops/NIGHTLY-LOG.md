@@ -2,6 +2,8 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+**Follow-on, same cycle, 2026-09-15.** Checked CI on the actual pushed commit (`a6d557ac`) rather than closing this out on the local preflight alone, per `CLAUDE.md` 0.3. `linkedin-drafts.yml` and `social-drafts.yml` themselves both ran (push-triggered, send correctly gated `no` since it was not yet a new day) and completed `success` on this exact commit: real, live confirmation that the new `permissions.contents: write` block and the added step parse and execute without error, not just that the YAML is well-formed. `publish-image.yml` also completed `success`. `checks.yml` (the full preflight-plus-test-suite run) was still `in_progress` at hand-off; its own history shows this workflow legitimately takes about 30 minutes (the prior run, 14:11 to 14:40 UTC), well past a reasonable wait inside this cycle, so watching it to completion is left to the next cycle rather than blocked on here. No failure signal from anything checked.
+
 ## 2026-09-15, PM check-in (30-minute triage)
 
 NEXT FOR THE OPERATOR: wire `ops/stripe_catalog.py`'s price-claim check, `ops/stripe_dedupe.py`'s duplicate-product check and `ops/stripe_brand.py`'s identity check into `ops/hourly_brief.py`, the same way `check_live_links.py` was wired in on 2026-09-09, because those three P0-trust checks have read "UNCHECKED, not clean" in every sandbox this project has ever run in, despite the credential already sitting one workflow away.
