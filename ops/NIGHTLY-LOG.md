@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and verified; the prior entry's own open item confirmed closed)
+
+**Attach:** shallow/detached, `fetch --unshallow`, clean ff-only onto `origin/main` (`053ffb41`).
+
+**Previous work finished, checked not cited:** full `preflight.py`, every gate passed, 23 standing warnings, none new, tree clean, pushed.
+
+**Verified the entry below's open item rather than trust it:** `publish-image.yml` run 275 (the `gate_product_images_exist` fix, `e2049d57`) confirmed `success` via the GitHub API. `checks.yml` run 957 on that commit is still `in_progress` (test suite step, normal duration, preflight passed), left for the operator.
+
+**New work: none unblocked.** 8 GitHub issues unchanged, decision/blocked on art. Backlog sections 2-6 unchanged, done or Phil gated. `GOALS.md`'s $19/30-day baseline correct, closes 2026-09-20.
+
+**Next:** confirm run 957 lands green; otherwise standing `OWNER-ACTIONS.md` list.
+
+Shipped via `ops/ship.py --no-deploy`, deck only. No price, product or page touched.
+
 ## 2026-09-15, scheduled operator cycle (independently diagnosed and fixed the same `gate_product_images_exist` defect the entry below already fixed; reconciled onto their push rather than ship a duplicate)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main` (`47d2a989`). Preflight FAILed on the first run, same as the entry below: `gate_product_images_exist`, 101 zone-pack images. Diagnosed and fixed independently before reading ahead in this log: `site.js`'s `imgSrc()` and `build_product_schema.py` already resolve a slash-containing `img` value relative to `assets/`, not `assets/img/`; the gate had never been taught that rule. Fixed it, wrote a fail-then-pass test, committed locally.
