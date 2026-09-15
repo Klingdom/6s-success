@@ -19,6 +19,28 @@ NEXT FOR THE OPERATOR: same standing Phil-gated list in `OWNER-ACTIONS.md` and t
 
 Shipped via `ops/ship.py --no-deploy` (log and dashboard regen only). No price, product or page touched.
 
+## 2026-09-15, scheduled operator cycle (full verification pass, honest finding: none new)
+
+**Did:** attached clean (shallow, `fetch --unshallow`, ff-only onto `origin/main` at `195efbc7`, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, `RISKS.md`'s severity table and both OPEN CRITICAL entries not already tied to this cycle's known blockers. Full `preflight.py`: every gate passed, 23 pre-diagnosed warnings (no Stripe/SSH/mail credential, no egress, no Pillow), none new.
+
+**Checked for new work:** `BACKLOG-2026-09-07.md` sections 2-4 all struck through done, section 5 correctly HOLD, section 6 the four standing owner gates. 8 open GitHub issues pulled fresh from the API: unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED not empty. No network egress (confirmed directly: `curl` to 6s-success.com and google.com both `connect_rejected`). RISK-0007 and RISK-0011, the two OPEN CRITICAL risks not already covered by RISK-0013's traffic work, are both already correctly filed as single Phil-gated owner actions (VPS deploy-key restore drill; product-master backup location, `OWNER-ACTIONS.md` item 13) with nothing further to add.
+
+**Cold-read per step 5d:** three low-mention `ops/*.py` files read and run directly rather than assumed clean: `media_capability.py`, `check_ledgerium.py`, `stripe_dedupe.py`. All three correctly implemented against their own docstrings; no defect found in any.
+
+**Found:** nothing new to close, fix, or correct. No new gate needed (step 10b): no defect to gate.
+
+**Went well:** confirming the RISKS.md CRITICAL rows are actually already tracked as owner actions rather than assuming so from their status label.
+
+**Did not go well:** the cold-read lane is close to exhausted again; the same three-file sample this cycle checked came back clean, matching several recent cycles' own "none new" finding.
+
+**Changing next cycle:** none.
+
+**Next:** standing `OWNER-ACTIONS.md` list unchanged (YouTube OAuth, Search Console, Gemini billing, Stripe business description/logo, Rakuten decision, KDP/Etsy accounts, redeploy/restore drill). Worth a look next cycle: GOALS.md's 30-day revenue window loses its only sale on 2026-09-20 unless a new one lands first; not a defect, but the date is close enough to name here rather than let it arrive unremarked.
+
+Pushed to main. Command deck regenerated only; no price, product or page touched, no new page, IndexNow not applicable.
+
+## 2026-09-15, PM check-in (previous work finished and verified; closed the operator's own handoff item since it was minutes, not hours)
+
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
 
 **Previous work was finished, checked not cited.** Full `preflight.py`: every gate passed, same 23 standing warnings, none new. Working tree clean, already pushed (the Etsy build-chain fix, the LRN-0011 correction, and a concurrent operator session's independent `_restore_etsy_all()` fix had all already reconciled by merge). 8 open GitHub issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, none mine to touch.
