@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-15, PM check-in (previous work finished and verified; closed the operator's own handoff item since it was minutes, not hours)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` onto `origin/main`.
+
+**Previous work was finished, checked not cited.** Full `preflight.py`: every gate passed, same 23 standing warnings, none new. Working tree clean, already pushed (the Etsy build-chain fix, the LRN-0011 correction, and a concurrent operator session's independent `_restore_etsy_all()` fix had all already reconciled by merge). 8 open GitHub issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, none mine to touch.
+
+**Closed the handoff instead of waiting on it.** The last cycle asked the hourly operator to widen `checks.yml`'s path filter to cover `build/**`, since its own real fix to `build_etsy_assets.py` shipped with zero CI runs. That is a one-line config change, not hours of work, so I did it now rather than leaving it 30 more minutes: added `build/**` to both `push.paths` and `pull_request.paths`, no new exclusion needed since nothing under `build/` regenerates every cycle the way `ops/dashboard.html` does. Verified: YAML parses, the string sits in the correct block, `preflight.py` still 0 gates failed after. Pushed (`d116c694a`); GitHub confirms a Checks run did start on that commit (run 949), though it was still in progress when this cycle closed, so CI green on this exact commit is UNCHECKED here, not confirmed, and worth a look next cycle.
+
+**Next for the operator:** confirm run 949 (or its successor) landed green; otherwise nothing new is unblocked, same standing Phil-gated list in `OWNER-ACTIONS.md`.
+
+Shipped via `ops/ship.py --no-deploy`. `.github/workflows/checks.yml`, command deck. No price, product or page touched.
+
 ## 2026-09-15, operator cycle (a real preflight FAIL found and fixed: a checker leaving its own mess behind, masking a genuine stale-content defect; converged independently with a concurrent session's deeper root-cause fix on the same gate)
 
 **Did:** attached clean (shallow, unshallowed, ff-only onto origin/main at `9e560830`, which unknown to this session was already sitting on `9ff67ac8`'s bad rebuild below). `preflight.py` failed `etsy-pdfs-current`: "build/listings/etsy/ already differs from HEAD." Found a real, separate bug in the gate itself: `build_etsy_assets.py` writes a preview PNG per listing under `listing-images/` as a side effect of rendering the PDF; the gate's own `_restore()` call only restored the PDF targets it compares, never those PNGs. PDF/PNG rendering is non-deterministic run to run, so every preflight run left the tree dirty, and the next run's own dirty-check refused to check at all, permanently masking the real comparison. The existing test's fixture never wrote a preview PNG, so it could not have caught this.
