@@ -20,6 +20,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFonts } from "expo-font";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 
@@ -42,6 +43,18 @@ const DIAG_KEY = "6s.quest.diag.v1";
 /* Method order. The corpus already stores steps in this order; this exists so
  * the finish recap can name passes in method order rather than draw order. */
 const S_ORDER = ["sort", "straighten", "shine", "safety", "standardize", "sustain"];
+
+/* The site's own type, bundled so it works with no network. Converted
+ * losslessly from site/assets/fonts (woff2 to ttf); all three families are
+ * SIL Open Font License. One file per weight, because a custom family plus
+ * fontWeight can silently fall back to the system font on Android. */
+const F = {
+  display: "Fraunces-600",
+  serif: "Newsreader-400",
+  sans: "Inter-400",
+  sansSemi: "Inter-600",
+  sansBold: "Inter-700",
+};
 
 const C = {
   deep: "#1A272E",
@@ -103,6 +116,16 @@ export default function App() {
   const [idle, setIdle] = useState(false);     // true after "Stop here, this counts"
   const [log, setLog] = useState([]);
   const [showDiag, setShowDiag] = useState(false);
+  /* Rendering waits for the fonts, or for them to fail: a font problem must
+   * never keep an offline app on a spinner. */
+  const [fontsLoaded, fontError] = useFonts({
+    [F.display]: require("./assets/fonts/Fraunces-600-normal.ttf"),
+    [F.serif]: require("./assets/fonts/Newsreader-400-normal.ttf"),
+    [F.sans]: require("./assets/fonts/Inter-400-normal.ttf"),
+    [F.sansSemi]: require("./assets/fonts/Inter-600-normal.ttf"),
+    [F.sansBold]: require("./assets/fonts/Inter-700-normal.ttf"),
+  });
+  const fontsReady = fontsLoaded || Boolean(fontError);
 
   useEffect(() => {
     let alive = true;
@@ -244,7 +267,7 @@ export default function App() {
     );
   }
 
-  if (done === null) {
+  if (done === null || !fontsReady) {
     return (
       <SafeAreaView style={[s.screen, s.centre]}>
         <StatusBar barStyle="light-content" />
@@ -413,30 +436,30 @@ const s = StyleSheet.create({
   badge: {
     borderWidth: 1.5, borderRadius: 999, paddingVertical: 5, paddingHorizontal: 12,
   },
-  badgeText: { fontSize: 12, fontWeight: "700", letterSpacing: 1.2, textTransform: "uppercase" },
-  count: { color: C.soft, fontSize: 13, letterSpacing: 0.6 },
-  where: { color: C.soft, fontSize: 13, marginTop: 18, letterSpacing: 0.4 },
-  eyebrow: { color: C.honey, fontSize: 12, fontWeight: "700", letterSpacing: 2 },
-  h1: { color: C.ink, fontSize: 26, fontWeight: "700", marginTop: 8, lineHeight: 33 },
-  body: { color: C.ink, fontSize: 17, lineHeight: 26, marginTop: 14 },
+  badgeText: { fontFamily: F.sansBold, fontSize: 12, letterSpacing: 1.2, textTransform: "uppercase" },
+  count: { fontFamily: F.sans, color: C.soft, fontSize: 13, letterSpacing: 0.6 },
+  where: { fontFamily: F.sansSemi, color: C.soft, fontSize: 13, marginTop: 18, letterSpacing: 0.4 },
+  eyebrow: { fontFamily: F.sansBold, color: C.honey, fontSize: 12, letterSpacing: 2 },
+  h1: { fontFamily: F.display, color: C.ink, fontSize: 26, marginTop: 8, lineHeight: 33 },
+  body: { fontFamily: F.serif, color: C.ink, fontSize: 18, lineHeight: 27, marginTop: 14 },
   panel: {
     backgroundColor: C.panel, borderColor: C.line, borderWidth: 1,
     borderRadius: 14, padding: 16, marginTop: 20,
   },
-  panelHead: { color: C.soft, fontSize: 11, fontWeight: "700", letterSpacing: 1.4 },
-  panelBody: { color: C.ink, fontSize: 15, lineHeight: 23, marginTop: 8 },
-  note: { color: C.soft, fontSize: 14, marginTop: 16, lineHeight: 21 },
+  panelHead: { fontFamily: F.sansBold, color: C.soft, fontSize: 11, letterSpacing: 1.4 },
+  panelBody: { fontFamily: F.serif, color: C.ink, fontSize: 16, lineHeight: 24, marginTop: 8 },
+  note: { fontFamily: F.sans, color: C.soft, fontSize: 14, marginTop: 16, lineHeight: 21 },
   primary: {
     backgroundColor: C.accent, borderRadius: 999, paddingVertical: 16,
     alignItems: "center", marginTop: 26,
   },
-  primaryText: { color: "#fff", fontSize: 17, fontWeight: "700" },
+  primaryText: { fontFamily: F.sansBold, color: "#fff", fontSize: 17 },
   ghost: {
     borderColor: C.line, borderWidth: 1, borderRadius: 999, paddingVertical: 14,
     alignItems: "center", marginTop: 12,
   },
-  ghostText: { color: C.ink, fontSize: 15, fontWeight: "600" },
-  foot: { color: C.soft, fontSize: 13, lineHeight: 20, marginTop: 26 },
+  ghostText: { fontFamily: F.sansSemi, color: C.ink, fontSize: 15 },
+  foot: { fontFamily: F.sans, color: C.soft, fontSize: 13, lineHeight: 20, marginTop: 26 },
   importLink: { marginTop: 18, alignItems: "center" },
   importLinkText: {
     color: C.soft, fontSize: 13, textDecorationLine: "underline",
