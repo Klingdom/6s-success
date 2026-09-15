@@ -505,7 +505,11 @@ def approved_heroes() -> set:
 
 
 # ------------------------------------------------------------- text fitting
-_SENT = re.compile(r"(?<=[.!?])\s+")
+# A sentence ends at . ! or ? followed by space, but not at an ellipsis: the
+# corpus tagline "WHERE CLUTTER EITHER STOPS... OR SPREADS THROUGH THE ENTIRE
+# HOUSE." was split at the dots, so the front printed only its first half,
+# ending in "...", as if it had been cut. Measured 2026-09-15.
+_SENT = re.compile(r"(?<=[^.][.!?])\s+")
 NEXT_PREFIX = "Next -> "   # stands in for the rendered "Next  →  "
 
 
@@ -927,6 +931,12 @@ h1{{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:{tpx}px;
   font-size:{round(cg * 0.52)}px;line-height:1;opacity:.75}}
 .ckind{{font-weight:800;font-size:{px['kind']}px;letter-spacing:.3em;
   text-indent:.3em;color:var(--tx)}}
+/* A placeholder panel that says something: the card's objective beside a
+   small family mark, instead of one large mark and the family's name. */
+.shot.concept.stmt{{justify-content:flex-start}}
+.stmt .cinner{{align-items:flex-start;gap:{CONCEPT_GAP}px;padding:{CONCEPT_PAD_Y}px {CONCEPT_PAD_X}px}}
+.cglyph.cglyph-sm{{width:{CONCEPT_GLYPH}px;height:{CONCEPT_GLYPH}px;font-size:{round(CONCEPT_GLYPH * 0.52)}px;border-width:3px;opacity:.85}}
+.cstate{{font-size:{px['body_sm']}px;line-height:{LH['body_sm']};font-weight:600;color:#2B2622;margin:0}}
 /* ---- the one action block */
 .act{{flex:0 0 auto;padding:{ACT_PT}px {pad_x}px {ACT_PB}px;display:flex;
   gap:{round(px['label'])}px}}
@@ -942,7 +952,11 @@ h1{{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:{tpx}px;
   padding:{round(px['micro']*0.24)}px {round(px['micro']*0.6)}px}}
 .act p.txt{{font-size:{px['body']}px;line-height:{LH['body']};font-weight:400}}
 /* ---- footer meta */
-.foot{{flex:0 0 {FOOT_H}px;display:flex;align-items:flex-end;
+/* margin-top:auto pins the footer to the bottom edge. The photograph stops
+   growing at SHOT_MAX, so on a card whose text runs short the spare height
+   used to collect below the footer: EM-002 showed about 130px of blank paper
+   under it once its over-long tagline was dropped. Measured 2026-09-15. */
+.foot{{flex:0 0 {FOOT_H}px;margin-top:auto;display:flex;align-items:flex-end;
   gap:{round(px['micro'])}px;padding:0 {pad_x}px {pad_y + 3}px;
   border-top:1px solid {S.LINE};font-size:{px['micro']}px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:#5B534A;
@@ -1068,7 +1082,41 @@ def card_html(c: dict, hero: str, boiler: set, bleed: bool = False) -> str:
                base_css(colour, fg, tx, bleed, p), body, bleed)
 
 
-def concept_hero(c: dict) -> str:
+# PAD_X, not a smaller number: the panel runs to the trim edge, so any padding
+# below the safe inset puts the statement where a printer may cut. 44 put it
+# 4px past the safe area, caught by render_cards.py on 2026-09-15.
+CONCEPT_PAD_X, CONCEPT_PAD_Y = PAD_X, 30
+CONCEPT_GLYPH, CONCEPT_GAP = 64, 14
+
+
+def concept_statement(c: dict, shot) -> str:
+    """The card's own objective, fitted to its panel, or "" to keep the glyph.
+
+    The glyph-only panel told a reader nothing about the card it sat on. The
+    objective is the one sentence of real card copy printed on neither face:
+    the back carries the callouts, the quest and the next card, and the front
+    uses the objective only when a card has no quick win and no game effect,
+    in which case it is already the front's action and is not repeated here.
+    Transcriptions marked UNREADABLE are never printed. Whole sentences only,
+    at the body size; if none fits the panel, the glyph panel stays.
+    """
+    obj = clean(c.get("objective"))
+    if not obj or "UNREADABLE" in obj.upper():
+        return ""
+    if not clean(c.get("quick_win")) and not clean(c.get("game_effect")):
+        return ""
+    # body_sm is 8.5pt, the card spec's own floor for a sentence. At body size
+    # six of the thirteen objectives needed one line more than their panel had.
+    body_px = S.SCALE_PX["body_sm"]
+    line_h = round(body_px * LH["body_sm"])
+    height = (shot or SHOT_FLOOR) - 2 * CONCEPT_PAD_Y - CONCEPT_GLYPH - CONCEPT_GAP
+    nlines = min(4, height // line_h)
+    if nlines < 2:
+        return ""
+    return fit_lines(obj, "body_sm", body_px, nlines, S.CARD_W - 2 * CONCEPT_PAD_X)
+
+
+def concept_hero(c: dict, shot=None) -> str:
     """A designed panel for the cards no photograph passed review for.
 
     Twelve of the 88 failed three rounds of prompting for structural reasons:
@@ -1080,6 +1128,12 @@ def concept_hero(c: dict) -> str:
     """
     fam = S.family_of(c.get("type"))
     glyph = S.FAMILY[fam][1]
+    statement = concept_statement(c, shot)
+    if statement:
+        return ('<div class="shot concept stmt"><div class="cinner">'
+                f'<span class="cglyph cglyph-sm" aria-hidden="true">{glyph}</span>'
+                f'<p class="cstate" data-safe="objective">{html.escape(statement)}</p>'
+                '</div></div>')
     return ('<div class="shot concept"><div class="cinner">'
             f'<span class="cglyph" aria-hidden="true">{glyph}</span>'
             f'<p class="ckind">{html.escape(fam.upper())}</p>'
@@ -1176,7 +1230,7 @@ def main() -> int:
             rel = os.path.relpath(have[code], out).replace(os.sep, "/")
             hero = f'<div class="shot"><img src="{rel}" alt=""></div>'
         else:
-            hero = concept_hero(c)
+            hero = concept_hero(c, fit_front(c, boiler)["shot"])
             concept += 1
         if six_step(c):
             stepped += 1
