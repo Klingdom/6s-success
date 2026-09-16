@@ -503,20 +503,26 @@ retire the link.
 
 ## 10. Defects found while writing this, for their owners
 
-1. **`DECK-ENTRY`'s catalogue tile is a 404 on the live site.** It points at
-   `assets/img/cards/entryway/EM-003-Entryway-Key-Station-front-md.jpg`;
-   `site/assets/img/cards/entryway/` is empty and the URL returns HTTP 404
-   with a 6 KB error page. The real images are at `assets/cards/entryway/`,
-   1,153 files, and `EE-002-...-front-md.jpg` returns 200. So the free deck,
-   our main lead magnet, shows a broken image on the shop. Owner:
-   `commerce-manager` / whoever owns `ops/build_catalog.py`. **Not fixed here:
-   `data.js` is out of scope for this agent.**
+1. **Closed, 2026-09-16 PM check-in.** ~~`DECK-ENTRY`'s catalogue tile is a
+   404 on the live site.~~ `site.js`'s `imgSrc()` now roots any value
+   containing a slash at `assets/` rather than `assets/img/`, and
+   `data.js`'s `DECK-ENTRY` entry resolves to the real file at
+   `assets/cards/entryway/EM-003-Entryway-Key-Station-front-md.jpg`, verified
+   to exist on disk. `gate_product_images_exist` in `ops/preflight.py`
+   (its own docstring dates the fix to the same day this document was
+   written) now checks every product tile's image this same way and passed
+   clean in this cycle's `preflight.py` run.
 2. **The deck gallery shows 72 of 88 cards**, and 10 of the 11 problem cards
    are missing art, because the model would not produce believable mess. The
    friction accept test in section 6.2 exists for that reason.
-3. **`ops/build_printpack.py` and `ops/build_standards.py` both describe the
-   free Entryway deck as 46 cards.** It is 88 on the site and 89 in
-   `build/entryway-cardtext.json`. Three numbers for one product.
+3. **Closed, 2026-09-16 PM check-in.** ~~`ops/build_printpack.py` and
+   `ops/build_standards.py` both describe the free Entryway deck as 46
+   cards.~~ Checked directly: neither file contains a "46 card" claim
+   anymore. `BACKLOG-2026-09-07.md` B3 (done 2026-09-07) reconciled the
+   count everywhere to 88 on the site / 89 in
+   `build/entryway-cardtext.json`, and `gate_deck_count` now guards it,
+   including the spelled-out-number regression B3's own follow-on found and
+   fixed on the homepage 2026-09-12.
 4. **The Entryway deck teaches 12 micro zones; the Manual teaches 5** for the
    same room. Not fixable in the deck without a rebuild; the Kitchen deck is
    gated against repeating it.

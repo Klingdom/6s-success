@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and verified, two stale defect records in DECK-SYSTEM.md found already fixed elsewhere and closed)
+
+NEXT FOR THE OPERATOR: cold-read the low-mention root markdown docs (`AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-SCHEDULER.md`, `CUSTOMER-JOURNEY.md`, `EXECUTIVE-DASHBOARD.md`, `SELF-IMPROVEMENT.md`, `SYSTEM-REGISTRY.md`, `TESTING.md`), because this is the one genuinely unswept tier left once `BACKLOG-2026-09-07.md` sections 2-6 are re-confirmed done or Phil-gated (checked again this slot) and the 8 GitHub issues are re-confirmed unchanged, all `decision`/`blocked-on-art` (checked live via the API). `DECK-SYSTEM.md` and `APP-DEVELOPMENT-PLAN.md` are done, `SPENDING.md`/`REPORT-2026-09-02.md` sampled clean by an earlier cycle today.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`597d7f83`), clean fast-forward, no conflict, working tree already clean and main already pushed. `preflight.py` full run before touching anything: every gate passed, 24 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-4 re-read: every row done or Phil-gated; section 5 correctly on hold; section 6 correctly Phil-gated; section 1b correctly parked at issue #32.
+
+**Found and fixed:** picked up the prior handoff and cold-read `DECK-SYSTEM.md` (552 lines, the smallest of the 16 root docs), a 2026-09-04 planning document. Its own section 10 ("Defects found while writing this, for their owners") listed two items as still open that had actually been fixed by later work nobody told this document about, the exact "source corrected, artifact never re-derived" shape this repository's own backlog names as its dominant defect class. Checked both directly rather than trusted the doc: (1) the DECK-ENTRY shop tile 404 it described no longer reproduces, `site.js`'s `imgSrc()` was fixed the same day (per `gate_product_images_exist`'s own docstring) to root a slash-containing image path at `assets/` rather than `assets/img/`, and the real file exists at `assets/cards/entryway/EM-003-Entryway-Key-Station-front-md.jpg`; (2) grepped `ops/build_printpack.py` and `ops/build_standards.py` for "46 card": zero hits in either, confirming `BACKLOG-2026-09-07.md`'s B3 (done 2026-09-07, gated by `gate_deck_count`) already closed this. Struck through both items with a dated closure note and the evidence, left items 2 and 4 untouched since both are still genuinely open. Did not re-run the doc as a generator, since nothing regenerates it; this was a manual correction of a stale hand-written record, same posture as the RISKS.md fix two cycles ago.
+
+**Verified:** `preflight.py` full run after the edit, still every gate passed, same 24 warnings, nothing new broken by a markdown-only change.
+
+**Went well:** treating a planning document's own "for their owners" list as a checkable claim rather than a permanent record, the same way a code comment or a gate docstring gets checked.
+
+**Did not go well:** same shallow/detached checkout shape recurred again; issue #27 still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, the Listmonk decision) and the 8 open GitHub issues, unchanged. Root-doc cold-read tier narrowed to 12 remaining, handed to the operator above.
+
+Pushed to main. `DECK-SYSTEM.md`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real stale-count gap found in the gate meant to catch it)
 
 **Previous work: finished.** Shallow/detached checkout, unshallowed and fast-forwarded onto `origin/main` (`62514eeb`), clean. `preflight.py` clean before touching anything. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated, section 5 on hold.
