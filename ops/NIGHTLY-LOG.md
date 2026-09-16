@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (GOALS.md's own O1 video baseline was self-contradicting a sibling document for six weeks; fixed, and the gate that should have caught it fixed too)
+
+**Did:** checkout arrived shallow and detached, standard step 0 handled it. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last log entries. `preflight.py` clean on arrival, 24 pre-diagnosed warnings. 8 GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. No mail credential, no egress, both unchecked not empty. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; issue #32 already covers section 1b. Dispatched a background agent to cold-read the 9 lowest-mention root docs (below the tier already swept), since the standard `ops/*.py` and root-doc lanes are independently confirmed exhausted by many cycles today.
+
+**Found and verified directly, not trusted from the agent's report:** `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md` both say 102 of 114 narrated videos remain to publish; `GOALS.md`'s own O1 table said "12 of 228" and "uploading the other 216." Confirmed against the real pipeline: `ops/youtube_upload.py`'s own docstring, "the wide 16:9 file is the upload; Shorts are a separate distribution decision," and `build/video/youtube/` holds exactly 114 zone metadata files (the committed source that tool reads jobs from). 228 is a real count, just of the wrong thing: 114 zones times two orientations, not the YouTube target. The numerator (12) was always right. Fixed both rows and the one live cross-reference (`PLAN-MICROZONES-DECKS-APP.md` M3). `gate_goals_published_videos_current` had hardcoded "228" in its own regex, so it could never have caught its own denominator being wrong; rewritten to derive the real total from `build/video/youtube/` instead of a literal. New `ops/tests/test_gate_goals_published_videos_current.py` (7 cases), fail-then-pass proved via `git stash` against the real pre-fix gate.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 24 warnings, none new), `check_urls.py` (188/188), `audit_pages.py` (0/0), `fix_dashes.py --check` (0/0).
+
+**Went well:** the low-mention-file method found a real, master-baseline-file defect after both higher tiers reported exhausted.
+
+**Did not go well:** same shallow/detached checkout shape.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged.
+
+Pushed to main. `GOALS.md`, `PLAN-MICROZONES-DECKS-APP.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_published_videos_current.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, CI confirmation still open, handed to the operator)
 
 NEXT FOR THE OPERATOR: resume the doc-sprawl cleanup lane (120 root-level .md files, three overlapping backlogs), because sections 2 to 4 of BACKLOG-2026-09-07.md are all done, section 5 is correctly on HOLD pending traffic evidence, and section 6 is entirely owner-gated, so operational honesty (category 6) is the only lane with a genuinely unblocked candidate this slot.

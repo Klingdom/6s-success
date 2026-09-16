@@ -10223,20 +10223,37 @@ def gate_roadmap_photo_asset_caveat() -> None:
 
 
 def gate_goals_published_videos_current() -> None:
-    """GOALS.md's O1 'Published videos' row must match the last measured count.
+    """GOALS.md's O1 'Published videos' row must match the last measured count,
+    against the real denominator, not a hardcoded one.
 
     Found 2026-09-02: ops/state-checkin.json recorded youtube_published going
     0 to 1 at 15:02 that day (a real video, published by Phil), but GOALS.md's
     O1 table still read "0 of 228" and its own narrative still said the
     distribution problem "has not been started" and was "blocked on channel
     accounts." All three were stale in a file whose own header says a stale
-    number here is a defect in the file, and nothing had checked it. This
-    gate parses ops/state-checkin.json's own persisted, measured count
-    (never the possibly-null live field, the same carried-forward value
-    checkin.py itself trusts) and fails if GOALS.md's row disagrees.
+    number here is a defect in the file, and nothing had checked it.
+
+    Corrected 2026-09-16: the gate itself carried the same "228" this class
+    of defect keeps producing, this time as a hardcoded literal in its own
+    regex rather than derived from anything. GOALS.md's row had silently
+    drifted to "12 of 228" for six weeks, conflating 228 total rendered
+    video FILES (114 zones, two orientations each) with the YouTube
+    publishing target. ops/youtube_upload.py's own docstring is explicit:
+    "The wide 16:9 file is the upload. Shorts are a separate distribution
+    decision and are not posted by this tool," so only one file per zone,
+    114 total, is ever eligible, matching MEDIA-OPERATIONS-PLAN.md and
+    OWNER-ACTIONS.md's own "102 of 114 remaining" framing, which was right
+    the whole time. This gate would have passed the wrong denominator
+    forever, because it only ever checked the numerator against a literal
+    "228" it never verified either. Now the denominator itself is derived
+    from the same committed metadata directory ops/youtube_upload.py reads
+    jobs from (build/video/youtube/*.json, excluding playlists.json), so a
+    future change to the zone count cannot silently disagree with GOALS.md
+    again without this gate naming it.
     """
     state_path = os.path.join(ROOT, "ops", "state-checkin.json")
     goals_path = os.path.join(ROOT, "GOALS.md")
+    meta_dir = os.path.join(ROOT, "build", "video", "youtube")
     if not os.path.exists(state_path) or not os.path.exists(goals_path):
         return
     try:
@@ -10249,18 +10266,40 @@ def gate_goals_published_videos_current() -> None:
     if measured is None:
         return
 
+    if not os.path.isdir(meta_dir):
+        warn("goals-published-videos-current",
+             "build/video/youtube/ is missing, so the real total eligible "
+             "for YouTube upload could not be derived here. Unchecked, not "
+             "clean.")
+        return
+    real_total = len([f for f in os.listdir(meta_dir)
+                       if f.endswith(".json") and f != "playlists.json"])
+    if real_total == 0:
+        warn("goals-published-videos-current",
+             "build/video/youtube/ has no zone metadata files, so the real "
+             "total could not be derived. Unchecked, not clean.")
+        return
+
     goals = io.open(goals_path, encoding="utf-8").read()
-    m = re.search(r"Published videos\s*\|\s*\*\*(\d+) of 228", goals)
+    m = re.search(r"Published videos\s*\|\s*\*\*(\d+) of (\d+)", goals)
     if not m:
         warn("goals-published-videos-current",
              "GOALS.md's 'Published videos' row has changed shape or moved; "
              "this gate could not read it and needs updating to match.")
         return
-    claimed = int(m.group(1))
+    claimed, claimed_total = int(m.group(1)), int(m.group(2))
+    if claimed_total != real_total:
+        fail("goals-published-videos-current",
+             f"GOALS.md says {claimed} of {claimed_total} published videos, "
+             f"but build/video/youtube/ holds {real_total} real zone "
+             f"metadata files, the actual set ops/youtube_upload.py can "
+             f"ever publish from (one wide 16:9 file per zone; Shorts are "
+             f"not uploaded by that tool). The denominator has drifted.")
+        return
     if claimed != measured:
         fail("goals-published-videos-current",
-             f"GOALS.md says {claimed} of 228 published videos, but "
-             f"ops/state-checkin.json's last real measurement says "
+             f"GOALS.md says {claimed} of {claimed_total} published videos, "
+             f"but ops/state-checkin.json's last real measurement says "
              f"{measured} (as of "
              f"{state.get('youtube_published_measured_at', 'unknown time')})")
 

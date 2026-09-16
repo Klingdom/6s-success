@@ -103,7 +103,7 @@ not by how interesting they are.
 | Key result | Baseline | Target |
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
-| Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30** | all of them |
+| Published videos | **12 of 114, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30. Corrected 2026-09-16: this row read "12 of 228" for six weeks, conflating the 228 total rendered video FILES (114 vertical plus 114 horizontal, two orientations of the same 114 zones) with the YouTube publishing target. `ops/youtube_upload.py`'s own docstring states only the wide 16:9 file is ever uploaded ("Shorts are a separate distribution decision and are not posted by this tool"), so the real denominator is 114, one per zone, matching `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md`'s own "102 of 114 remaining" framing, which was right the whole time. The numerator (12) was never wrong.** | all 114 |
 | Sessions from organic search | **4 visits from 3 visitors, whole life of the site, as of 2026-09-14** | one visit from Bing (21 August) and three visits from two Google visitors (4 to 12 September), read directly from the Umami database 2026-09-14. Four of Google's six landing pageviews were `/standards.html`, the other two the home page: the Standards Pack is the one page search is currently sending anyone to. Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05. |
 | Sessions, last 7 days | **18** | 18 visitors, 30 visits, 77 pageviews, measured 2026-09-14 |
 | Weekly visitors | 17.5/wk | 500/wk |
@@ -140,7 +140,7 @@ while the slow instrument warms up, and keep opening the video channels,
 because a category like this is searched on YouTube and Pinterest as much as
 on Google.
 
-**Blocked on:** uploading the other 216 (228 minus the 12 live), which needs
+**Blocked on:** uploading the other 102 (114 minus the 12 live), which needs
 Phil's own hand on each one, no operator credential exists for this. See
 `OWNER-ACTIONS.md` item 11 and `BACKLOG-2026-H2.md` 3.10. Instagram and
 TikTok still need accounts only Phil can create; everything up to those
