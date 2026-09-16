@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (finished the handoff's 10-mention ops/*.py tier, clean; no unblocked item survives)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (242 commits) and `merge --ff-only` attached cleanly onto `origin/main`, landing on `11d4b6e1`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md` and `CLAUDE.md` in full, the four newest `NIGHTLY-LOG.md` entries. `preflight.py` full run: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b's 23-page decision stays with Phil rather than overridden, since it is a real content-scope tradeoff (write 22 pages or shrink the catalogue), not a gate this operator should reopen without new evidence.
+
+**Picked up the standing handoff exactly:** the prior cycle named `build_all_prompts.py`, `build_card_prompts.py`, `build_catalog.py`, `generate_card_art.py`, `shrink_sample.py` as the next unread tier. Read all five end to end. Confirmed the Mudroom deck (88 written cards, zero art) referenced there is a known, deliberate hold (`BACKLOG-2026-H2.md` 2.7, Phil's own decision to keep it unpromoted), not a fresh gap. Checked `build_catalog.py`'s pricing invariants (`WHOLE_HOUSE=19`, `PRICE` ceiling assert, zone/room/situation/area counts) against the live 164-item total in `ROADMAP-2026-2029.md`: consistent. Checked `generate_card_art.py`'s `style_prefix()` guard (the "riley"/"cartoon" assert) against `content/decks/entryway/Entryway-Illustration-Prompts-ALL.md`: it correctly names the retired 46-card children's-deck concept, not a live count, so not a drift. No live defect found in any of the five.
+
+**Verified:** `preflight.py` full run clean (no page, price or generator source touched, so `check_urls.py`/`audit_pages.py`/`affiliate.py --check` were not rerun). Command deck regenerated (`ops/dashboard.py`) against the current pushed HEAD.
+
+**Went well:** verifying the prior cycle's Mudroom reference against its own recorded decision instead of treating an unfamiliar deck name as a fresh defect.
+
+**Did not go well:** nothing new; this closes the fifth and last file in the handed-off tier with no finding, the same shape as several other cold-read lanes this week.
+
+**Changing next cycle:** none; no new defect means no new gate to write, per step 10b.
+
+**Next for the operator:** no candidate remains in the 10-mention `ops/*.py` tier. Pick the next lower tier by log-mention count, or continue verifying a prior cycle's own claim. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Highest-leverage action remains a redeploy, which needs Phil's own hand in the Hostinger Docker Manager.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real overclaim found and fixed in ops/check_ledgerium.py's own cold-read handoff)
 
 **Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and `merge --ff-only` attached cleanly onto `origin/main`, landing on `b83558b8`. `preflight.py` run to full completion in the background: every gate passed, 0 FAIL, 23 pre-diagnosed sandbox warnings, none new. Working tree was clean apart from the routine dashboard-timestamp regen. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated. The prior two cycles' handoff (payment-safety cold-read: `ops/check_ledgerium.py`, `ops/ledgerium_price_check.py`, `ops/stripe_invoice.py`) was still open, so this slot did it rather than pick a fresh lane.
