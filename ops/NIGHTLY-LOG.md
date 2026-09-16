@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished locally but CI was red, a real flake root-caused and fixed rather than restarted)
+
+**Previous work: finished locally, not on GitHub.** Shallow/detached checkout, unshallowed and fast-forwarded onto `origin/main` (`9ed7c533`), clean. Local `preflight.py` passed every gate. But `gate_workflows_healthy`'s own warning plus a direct check via the GitHub Actions API showed the real, most recent `checks.yml` run (1019, on `f4f238ae`) had FAILED: `gate_tests` reported `test_ship_conflict_safety.py: OSError: [Errno 39] Directory not empty: 'repo'`, thrown by `tempfile.TemporaryDirectory`'s own cleanup after the test itself had already printed `PASS: 3/3`. Treated this as the cycle's actual work per STEP 2 rather than starting the root-doc cold-read handoff.
+
+**Diagnosed, not guessed:** ran the test 9 times locally, 9/9 clean, ruling out a logic bug in the test's own assertions. Root cause: git can fork a detached `gc --auto` child on commit/push that outlives the `git` command that spawned it, so the test's `shutil.rmtree` can race a still-running gc child writing into `repo/.git/objects` on a slower/more loaded CI runner, a race this sandbox never loses. Fixed by setting `gc.auto 0` on every repo and clone the test creates, across all three cases, rather than adding a retry-and-hope. Local `preflight.py` clean after, pushed (`b276e85df`).
+
+**Handoff:** CI run 1020 on `b276e85df` was still `in_progress` after several minutes' wait at the end of this slot; not yet confirmed green. Next cycle (:40 or :43): check run 1020's conclusion first before anything else. If red, it is a new, different failure, not this one. Root-doc cold-read tier (`AGENT-EVALUATIONS.md` etc., 12 files, ~22.5k lines) remains unswept and is hours of work, left for the operator.
+
+Pushed to main (`b276e85df`). `ops/tests/test_ship_conflict_safety.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (independent full re-verification, no new defect; three candidate leads checked and closed clean rather than left as open suspicion)
 
 **Did:** checkout arrived shallow and detached, the standing symptom; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed cleanly onto `597d7f83` (126 commits ahead), no conflict. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`/`GOALS.md`'s constraint section, `CLAUDE.md`, and the day's own prior `ops/NIGHTLY-LOG.md` entries (roughly 20 cycles already run today, most reporting no new defect after the ops/*.py and root-doc cold-read lanes both hit their mention floor). `preflight.py` clean, run twice (fast and with `--own`): every gate passed, 24-25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated (A7's affiliate-before-Sort fix and B1-B5 confirmed closed by reading their own rows, not cited); section 5 correctly on hold; section 1b correctly parked at issue #32.
