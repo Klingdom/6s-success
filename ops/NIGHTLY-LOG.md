@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, one new handoff item found outside the standard cold-read lane)
+
+**NEXT FOR THE OPERATOR: investigate and likely remove `content/book/6s-success-claude-files/` (46 files, referenced nowhere), because it is a stale, orphaned duplicate of the 2026-08-16 control-doc install source sitting inside the book manuscript tree.**
+
+**Previous work: finished.** Unshallowed, ff-forwarded onto `origin/main` cleanly. `preflight.py` clean: every gate passed, 23 pre-diagnosed warnings, none new. Backlog sections 2-6 again all done or Phil-gated; 8 GitHub issues reconfirmed unchanged via the API, all `decision`/`blocked-on-art`.
+
+**Did:** set `core.hooksPath` (per-clone, resets each checkout). Ranked root docs and `ops/*.py` by mention count; the low-mention `ops/*.py` lane is genuinely exhausted, but this surfaced `content/book/6s-success-claude-files/`, which diffs near-identical to the root AUTONOMY-*/CLAUDE.md control docs plus `agents/`/`super prompts/` folders, predates the em-dash house-style cleanup, and per its own `_review/INSTALL-NOTES.md` is the untouched 2026-08-16 install source, not book content. `ops/build_epub.py` never reads it. Not removed here: a real judgment call on Phil's own uploaded material, left for a fuller operator pass rather than started at this slot.
+
+Regenerated dashboard (build id/commit count only). Pushed to main.
+
 ## 2026-09-16, scheduled operator cycle (ops/*.py cold-read lane fully exhausted; moved a tier over, three candidates came back clean)
 
 **Did:** unshallowed and attached to `main` cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries and `GOALS.md`. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed sandbox warnings, none new). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior sandbox. Every unblocked `BACKLOG-2026-09-07.md` row again done or Phil-gated (1b's 23-kit decision stays correctly escalated at issue #32, not mine to decide). Recomputed the `ops/*.py` cold-read mention floor: every file now sits at 10+, confirming the lane genuinely exhausted rather than trusting the last cycle's claim of it. Moved a tier over per step 5d: `build/listings/verify_zone_claims.py` (4 mentions), `mobile/quest-app/assets/zoneHeroes.js` (2), `mobile/quest-app/babel.config.js` (4).
