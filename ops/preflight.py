@@ -13549,6 +13549,78 @@ def gate_us_spelling_consistency() -> None:
              f"spelling outside the one whitelisted URL: {names}")
 
 
+SAMPLE_PDF_REL = os.path.join(
+    "site", "downloads",
+    "6S Success Home Edition - Sample (Chapters 1-30).pdf")
+
+
+def gate_sample_pdf_spelling() -> None:
+    """The free sample PDF is a checked-in binary gate_us_spelling_consistency
+    never reaches: that gate only globs site/**/*.html, and a PDF is not
+    HTML. D11 (2026-09-14) normalized every HTML source and body-copy
+    template to American spelling, but this book manuscript was compiled
+    to PDF outside that pipeline (no ops/build_*.py converts it; it is a
+    tracked binary, edited only by ops/optimize_sample_pdf.py and
+    ops/shrink_sample.py, neither of which touches wording), so a stray
+    British spelling already present in the compiled PDF has no way to
+    surface.
+
+    Found 2026-09-16, this operator: 4 instances (3 "organised", 1
+    "organisation"; pages 228, 243, 253 and 259 of 492, one-indexed)
+    survive in the live shipped file, inconsistent with the same
+    document's own 22 "organized" and 20 "organizing" elsewhere, and with
+    every other page on the site. Tried to fix it directly by redacting
+    and re-inserting the word with the page's own embedded font (pymupdf,
+    extracting the exact SegoeUI/SegoeUI-Semibold subset already in the
+    file): the plain-weight instances (pages 228, 259) render correctly,
+    but the semibold instances (pages 243, 253) silently substitute a
+    generic serif fallback, because pymupdf could not resolve glyphs from
+    that particular subsetted TTF's own cmap when re-embedded as a fresh
+    font resource. A visibly wrong font on the site's primary lead magnet
+    is worse than the inconsistency it would fix, so the edit was
+    discarded rather than shipped; this gate exists so the finding is not
+    lost to the next cycle's "cold-read lane exhausted" sweep, which
+    cannot see inside a PDF.
+
+    Warn, not fail: this is real and correctly attributed, but nothing in
+    this sandbox can safely rewrite the affected font's glyph subset, and
+    failing preflight over four words already outnumbered 22 to 4 in the
+    same document would block real, unrelated work for a defect nobody
+    here can close. Fixed by whoever next has the source manuscript (a
+    proper text edit and recompile) or the necessary font tooling.
+    """
+    path = os.path.join(ROOT, SAMPLE_PDF_REL)
+    if not os.path.exists(path):
+        return
+    try:
+        import pymupdf
+    except ImportError:
+        warn("sample-pdf-spelling",
+             "could not check: pymupdf is not installed here, so the "
+             "sample PDF's text could not be read. Unchecked, not clean.")
+        return
+    try:
+        doc = pymupdf.open(path)
+        hits = []
+        for pno in range(doc.page_count):
+            found = check_us_spelling(doc[pno].get_text())
+            if found:
+                hits.append((pno + 1, found))
+        doc.close()
+    except Exception as e:                                       # noqa: BLE001
+        warn("sample-pdf-spelling",
+             "could not check: %s. Unchecked, not clean." % e)
+        return
+    if hits:
+        named = ", ".join(f"page {p} ({', '.join(h)})" for p, h in hits[:5])
+        warn("sample-pdf-spelling",
+             f"{len(hits)} page(s) of the live sample PDF "
+             f"({SAMPLE_PDF_REL}) carry a British organis*/organiz* "
+             f"spelling this gate cannot safely rewrite in place: "
+             f"{named}. Needs a source-manuscript edit and recompile, "
+             f"not a binary patch.")
+
+
 BINARY_EXTS = (".pdf", ".epub", ".mobi", ".png", ".jpg", ".jpeg", ".webp",
                ".avif", ".ico", ".woff", ".woff2", ".ttf", ".otf")
 
@@ -13910,6 +13982,7 @@ def main() -> int:
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
+    run_gate(gate_sample_pdf_spelling)
     run_gate(gate_binary_files_protected)
     run_gate(gate_test_rotation_isolated)
     run_gate(gate_routine_prompt_current)

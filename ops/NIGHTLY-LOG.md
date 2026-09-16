@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (a real British-spelling regression found inside the free sample PDF, a fix attempted and correctly discarded when it risked shipping a worse defect, a detection gate added instead)
+
+**Did:** checkout arrived shallow and detached, the standing symptom; unshallowed and fast-forwarded onto `origin/main` cleanly (113 commits ahead, no conflict). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries (many cycles already run today, cold-read lane and risk register both independently reconfirmed exhausted). `preflight.py` clean (every gate passed, 23 pre-diagnosed warnings). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Found:** `gate_us_spelling_consistency` (D11, 2026-09-14) only globs `site/**/*.html`, so it cannot see inside a PDF. The free sample book, the site's primary lead magnet (`site/downloads/6S Success Home Edition - Sample (Chapters 1-30).pdf`, 492 pages, a checked-in binary with no owning generator), still carries 4 British spellings ("organised" x3, "organisation" x1, pages 228/243/253/259) against the same document's own 22 "organized"/20 "organizing" elsewhere, because D11's fix reached the HTML manuscript source but nothing ever recompiles this PDF from it.
+
+**Tried to fix directly, then correctly stopped.** Used pymupdf to redact and re-insert the word with the page's own embedded SegoeUI/SegoeUI-Semibold font subset (extracted via `doc.extract_font`, reinserted with the sampled true background color, not white, after a first attempt visibly boxed the word against the page's actual cream background). The two plain-weight instances rendered pixel-correct on verification. The semibold instances silently fell back to a generic serif font: pymupdf could not resolve glyphs from that particular subsetted TTF's own cmap when re-embedded as a fresh font resource, and this was only caught by rendering and reading the result, not by the text-extraction check that verifies the words were replaced. A visibly wrong font shipped to every downloader of the site's top lead magnet would be worse than the four-word inconsistency it fixes, so the edit was discarded rather than pushed.
+
+**Fixed instead: the detection gap, not the words.** New `gate_sample_pdf_spelling` in `preflight.py`, reusing `check_us_spelling()`'s existing pure logic against `pymupdf`-extracted PDF text, warn-level (not fail: nothing in this sandbox can safely rewrite the affected font, and failing the whole build over four words already outnumbered 22-to-4 in the same document would block unrelated work for a defect nobody here can close). `ops/tests/test_gate_sample_pdf_spelling.py` (9 cases: clean/dirty synthetic PDFs, missing-file silence, and a direct check against the real committed file proving the live finding) all pass. Left named in `OWNER-ACTIONS.md`-equivalent detail inside the gate's own docstring rather than opening a new GitHub issue: this sits in the same family as `page-art`/`deck-art`, an honestly-warned, currently-unfixable-from-here defect, not a new decision.
+
+**Verified:** full `preflight.py` (every gate passed, 24 warnings, 23 previously diagnosed plus this one new and correctly attributed), `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents) all clean after. No price or product touched, no site page changed, IndexNow not applicable.
+
+**Went well:** rendering and reading the actual pixel result before shipping a binary edit, catching a font-substitution defect that text-extraction verification alone would have missed entirely.
+
+**Did not go well:** roughly the first half of this cycle re-covered ground (GitHub issues, risk register, `ops/*.py` cold-read floor) that a dozen-plus prior cycles today had already independently confirmed clean; the real find came from checking a binary artifact class (a checked-in PDF) nothing had specifically targeted yet, not from another sweep of the same lanes.
+
+**Changing next cycle:** none; the new gate is real, proven, and correctly scoped as a warn.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. The 4-word sample-PDF spelling fix itself is unclaimed: needs either the original manuscript source (a text edit and recompile, sidestepping the subset-font problem entirely) or font tooling this sandbox does not have.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_sample_pdf_spelling.py`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, prior handoff swept clean, no new unblocked item survives independent re-check)
 
 **Previous work: finished.** Checkout arrived shallow and detached, 111 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`f0543afd`, a command-deck-only regen sitting on top of the RISK-0003 fix), clean, no conflict. Working tree was already clean and main already pushed.

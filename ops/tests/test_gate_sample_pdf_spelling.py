@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""
+Prove ops/preflight.py's gate_sample_pdf_spelling() catches a British
+organis*/organiz* spelling inside the free sample PDF.
+
+gate_us_spelling_consistency only globs site/**/*.html, so it cannot see a
+British spelling that survives inside a checked-in PDF: the free sample book
+(site/downloads/6S Success Home Edition - Sample (Chapters 1-30).pdf) is
+compiled outside the site's own generator pipeline (no ops/build_*.py
+produces it), so D11's 2026-09-14 spelling normalization, which reached
+every HTML source, never reached this binary. Found live, 2026-09-16: 4
+instances of "organised"/"organisation" still ship in the real file.
+
+Builds small, isolated fixture PDFs with pymupdf rather than mutating the
+real 32 MB sample, the same fixture-over-real-asset approach
+test_gate_kdp_cover_current.py uses for its cover image. Also checks the
+real committed file directly, proving the live finding rather than only a
+synthetic one.
+
+Run:  python ops/tests/test_gate_sample_pdf_spelling.py
+"""
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, "ops"))
+
+import preflight                                               # noqa: E402
+
+try:
+    import pymupdf
+except ImportError:
+    pymupdf = None
+
+PASS = FAIL = 0
+
+
+def check(label, cond):
+    global PASS, FAIL
+    if cond:
+        PASS += 1
+        print(f"  ok    {label}")
+    else:
+        FAIL += 1
+        print(f"  FAIL  {label}")
+
+
+def make_pdf(path, lines):
+    doc = pymupdf.open()
+    page = doc.new_page()
+    page.insert_text((50, 72), "\n".join(lines), fontsize=11)
+    doc.save(path)
+    doc.close()
+
+
+def run_gate_against(path):
+    preflight.FAIL.clear()
+    preflight.WARN.clear()
+    orig = preflight.SAMPLE_PDF_REL
+    preflight.SAMPLE_PDF_REL = path
+    try:
+        preflight.gate_sample_pdf_spelling()
+    finally:
+        preflight.SAMPLE_PDF_REL = orig
+    return list(preflight.FAIL), list(preflight.WARN)
+
+
+def main():
+    if pymupdf is None:
+        print("  skipped: pymupdf not installed here")
+        return 0
+
+    tmp = os.path.join(ROOT, "ops", "tests", "_tmp_sample_pdf_spelling")
+    os.makedirs(tmp, exist_ok=True)
+
+    clean = os.path.join(tmp, "clean.pdf")
+    make_pdf(clean, ["A tidy shelf, organized by activity, not by category."])
+    fails, warns = run_gate_against(clean)
+    check("clean PDF: no fail", fails == [])
+    check("clean PDF: no warn", warns == [])
+
+    dirty = os.path.join(tmp, "dirty.pdf")
+    make_pdf(dirty, ["Grouping the coffee things looks organised on a shelf."])
+    fails, warns = run_gate_against(dirty)
+    check("dirty PDF: never a hard fail (nothing here can safely rewrite it)",
+          fails == [])
+    check("dirty PDF: warns", len(warns) == 1)
+    check("dirty PDF: names the gate", warns and warns[0][0] == "sample-pdf-spelling")
+    check("dirty PDF: names the word", warns and "organised" in warns[0][1])
+    check("dirty PDF: names page 1", warns and "page 1" in warns[0][1])
+
+    missing = os.path.join(tmp, "does-not-exist.pdf")
+    fails, warns = run_gate_against(missing)
+    check("missing file: silent, not a false pass or crash",
+          fails == [] and warns == [])
+
+    real = os.path.join(ROOT, "site", "downloads",
+                        "6S Success Home Edition - Sample (Chapters 1-30).pdf")
+    if os.path.exists(real):
+        fails, warns = run_gate_against(real)
+        check("real committed file: currently still carries the live finding",
+              fails == [] and len(warns) == 1
+              and "organised" in warns[0][1])
+    else:
+        print("  skipped: real sample PDF not present in this checkout")
+
+    for f in (clean, dirty):
+        try:
+            os.remove(f)
+        except OSError:
+            pass
+    try:
+        os.rmdir(tmp)
+    except OSError:
+        pass
+
+    print(f"\n{PASS} of {PASS + FAIL} cases pass")
+    return 1 if FAIL else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
