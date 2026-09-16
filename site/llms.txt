@@ -25,6 +25,10 @@ one drawer. Small enough to diagnose, finish in one session, and keep.
   home, no account or email needed. /kitchen-deck.html : the Kitchen deck, 72
   cards, typeset and free to read or print; the art for it is not drawn yet,
   so cards show a coloured glyph panel rather than a photograph.
+- /standards.html : the Standards Pack, twenty printable sheets, one per
+  room, naming the standard each micro zone holds to and the everyday moment
+  that brings it back. Free, no email, no account. The sheets themselves are
+  at /downloads/6S-Standards-Pack.html.
 - /shop.html : the products. /consulting.html and /corporate.html : the
   services.
 

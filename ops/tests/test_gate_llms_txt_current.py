@@ -32,6 +32,7 @@ GOOD = (
     "- /quest.html : a free browser app.\n"
     "- /deck.html : the Entryway deck, free to print.\n"
     "- /kitchen-deck.html : the Kitchen deck, free to read or print.\n"
+    "- /standards.html : the Standards Pack, free to print.\n"
     "- /shop.html : the products.\n"
 )
 
@@ -57,9 +58,16 @@ COUNT_BODY = (
     "- /quest.html : a free browser app.\n"
     "- /deck.html : the Entryway deck, free to print.\n"
     "- /kitchen-deck.html : the Kitchen deck, free to read or print.\n"
+    "- /standards.html : the Standards Pack, free to print.\n"
     "- /shop.html : the products.\n"
 )
 
+
+# The 2026-09-16 regression: /standards.html, free, ungated, and the one
+# page search has measurably sent anyone to, unnamed in the file written
+# for answer engines to read.
+MISSING_STANDARDS = GOOD.replace(
+    "- /standards.html : the Standards Pack, free to print.\n", "")
 
 def _run(body, articles=None):
     """articles: real *.html filenames to create under a fake site/articles/,
@@ -144,12 +152,17 @@ def main() -> int:
         fails.append("a body with no parseable count wrongly failed: %r"
                      % (r,))
 
+    # 9. The 2026-09-16 regression: the Standards Pack unnamed.
+    r = _run(MISSING_STANDARDS)
+    if not r or "/standards.html" not in r[0][1]:
+        fails.append("missing /standards.html not caught by name: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_llms_txt_current, 8/8 checks pass")
+    print("OK: gate_llms_txt_current, 9/9 checks pass")
     return 0
 
 

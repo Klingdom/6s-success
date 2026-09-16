@@ -13120,7 +13120,7 @@ def gate_etsy_pdfs_current() -> None:
 # surface, listing it here would undo that decision silently.
 LLMS_TXT_MUST_NAME = ["/zones/", "/rooms/", "/articles/", "/quest.html",
                       "/deck.html", "/kitchen-deck.html", "/shop.html",
-                      "/feed.xml"]
+                      "/feed.xml", "/standards.html"]
 
 
 def gate_data_sources_current() -> None:
