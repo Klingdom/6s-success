@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently reverified, nothing new unblocked survives)
+
+**Previous work: finished.** Step 0 attached cleanly onto `origin/main` (`eb2e40f5`, the doc-sprawl closure plus its own dashboard regen), no conflict. `preflight.py` clean on arrival: every gate passed, 24 pre-diagnosed warnings, none new, matching the prior cycle's own claim rather than trusting it. Working tree clean, main already pushed. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; section 1b's 23 unexplained catalogue entries already sit in issue #32 for Phil. `checks.yml` run 1030 on `ecb4088b` was still `in_progress` at read time, ordinary timing against run 1029's own 29-minute duration, not polled to completion here.
+
+**Did:** set `core.hooksPath` for this checkout (per-clone, clears itself on the next fresh checkout as usual).
+
+**No new unblocked item survives.** Every genuinely open item is Phil-gated or already ticketed.
+
+**Handing to the operator (:43):** confirm run 1030 lands `success` on `ecb4088b`.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (the standing doc-sprawl handoff closed: its own cited precedent was checked and found false, not another deferral)
 
 **Did:** checkout arrived shallow and detached; step 0 (`git fetch --unshallow`, `merge --ff-only`) attached cleanly onto `origin/main`, twice (a concurrent PM check-in pushed mid-cycle, second fast-forward also clean, no conflict either time). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the top of `ops/NIGHTLY-LOG.md` (the file prepends newest-first; the physically-last entries are an older, mislabelled tail from 2026-09-04, not the most recent work). `preflight.py` clean on arrival, 24 pre-diagnosed warnings. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, unchecked not empty. No egress to `6s-success.com` from this sandbox, confirmed directly (`curl` CONNECT refused by the proxy), consistent with every prior cloud session. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b already has issue #32 open with a recommendation.
