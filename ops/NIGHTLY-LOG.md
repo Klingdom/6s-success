@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (next cold-read tier swept clean; deploy-gap fix already shipped by a concurrent session)
+
+**Step 0/1:** checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached onto `origin/main` (`574adfa9`), 185 commits fast-forwarded, clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the top four log entries. `preflight.py` clean on arrival, 24 pre-diagnosed sandbox warnings (no SSH key, no Stripe/mail credential, no egress to `6s-success.com`, confirmed directly: `curl` CONNECT returned 403 from the proxy), none new.
+
+**Step 3/5d: no unblocked backlog item survived.** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Section 1b's 23-catalogue-entries finding correctly not reopened: issue #32 already reasons through both options and recommends holding, and CLAUDE.md 21 says not to relitigate a settled decision without new evidence, which none has arrived. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No mail credential, correctly unchecked not empty.
+
+**Went looking for genuinely new work.** The `ops/*.py` cold-read lane confirmed exhausted again (every file 10+ mentions). Moved to the next-lowest tier: `build/listings/amazon_nodes.py`, `amazon_suggest.py`, `etsy_economics.py`, `build_kdp_cover.py` (3-4 mentions, the lowest in the tree). All four read clean. The two Amazon scrapers are standalone, unwired research tools needing live egress this sandbox lacks, and neither writes a tracked file, so nothing here is silently drifting unseen. `etsy_economics.py`'s hardcoded `DIRECT_PRICE` table (what each of the four Etsy-listed products nets through the site's own Stripe checkout, used to keep Etsy priced high enough that the site stays the cheaper place to buy) was checked against the live `site/assets/js/data.js` rather than trusted from the source comment: PACK-HOUSE $19, RP-KITCHEN $9, KIT-MOVING-IN $14, KIT-HOLIDAY-HOST $14, all four match exactly. `build_kdp_cover.py` could not be run (Pillow not installed, pre-diagnosed warning) but its own self-verifying logic (samples the real background colour, refuses to write if a pixel outside the URL band moved) reads correctly on inspection.
+
+**Found the dashboard already correctly reflected the deploy gap closing, a concurrent PM check-in shipped it first (`c807fef9`, `4612909d`).** This cycle had independently traced the same thing (`ops/deploy-verdict.json` committed by `574adfa9` already read `current` for build `628eb4520b6e9ded`, but the command deck had not been regenerated against it) and drafted the identical fix; rebased onto the concurrent push rather than duplicate it, per the same posture the earlier same-day "arrived mid a burst of concurrent sessions" entry above used for the mobile-corpus gate. Confirmed the shipped fix is complete and correct: `EXECUTIVE-DASHBOARD-LIVE.md`'s constraint line now reads discovery/traffic, not an old build, and `deploy_verdict` in `ops/state.json` reads `current`.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 24 warnings, none new).
+
+**Went well:** checking the shipped concurrent fix's actual content rather than assuming it matched, before folding this cycle's own duplicate work into it.
+
+**Did not go well:** a second cycle spent real verification work on the same deploy-gap fact within the same push window; harmless here since nothing duplicate shipped, the same low-cost concurrency gap named in the "arrived mid a burst" entry above.
+
+**Changing next cycle:** none. `build/listings/*.py`'s remaining files (`check_kdp.py`, `verify_zone_claims.py`, `verify_epub.py`) and `mobile/quest-app/lib/*.test.js` are the next genuinely low-mention candidates.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. No redeploy is owed; the gap closed earlier today and the deck already reflects it.
+
+Nothing new to push beyond this entry; the substantive fix already shipped by the concurrent session. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, an unshipped deploy-current regen closed, STATUS.md's own stale claim corrected)
 
 **NEXT FOR THE OPERATOR: confirm this push lands CI success, otherwise same standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open decision/blocked-on-art issues, because nothing new survived independent re-check.**
