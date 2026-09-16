@@ -24,6 +24,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and pushed, CI confirmation still pending, handed off)
+
+NEXT FOR THE OPERATOR: check CI run 1020's conclusion on `b276e85d` first, because it was still `in_progress` when this slot ended; if red, root-cause it fresh rather than assume it repeats run 1019's shape, if green, resume the unswept root-doc cold-read tier (12 files, `AGENT-EVALUATIONS.md` through `TESTING.md`).
+
+**Did:** Clean fast-forward attach (fetch, unshallow, merge --ff-only), no conflict. Confirmed the prior cycle's flake fix (`b276e85d`) is pushed and its own log entry (`5e5866c8`) already written. `preflight.py` clean locally, 24 warnings, all environment-access, unchanged from prior cycles. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. Checked run 1020 directly via the GitHub API rather than trusting the handoff: still `in_progress` at slot end, Preflight step took ~17 minutes then the test suite step started, progressing normally, not stuck. Regenerated and shipped the command deck.
+
+**Did not go well:** ran out of slot time before run 1020 completed; CI is not yet confirmed green this cycle, a timing gap not a new failure.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main (`e7b9c447`, dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished locally but CI was red, a real flake root-caused and fixed rather than restarted)
 
 **Previous work: finished locally, not on GitHub.** Shallow/detached checkout, unshallowed and fast-forwarded onto `origin/main` (`9ed7c533`), clean. Local `preflight.py` passed every gate. But `gate_workflows_healthy`'s own warning plus a direct check via the GitHub Actions API showed the real, most recent `checks.yml` run (1019, on `f4f238ae`) had FAILED: `gate_tests` reported `test_ship_conflict_safety.py: OSError: [Errno 39] Directory not empty: 'repo'`, thrown by `tempfile.TemporaryDirectory`'s own cleanup after the test itself had already printed `PASS: 3/3`. Treated this as the cycle's actual work per STEP 2 rather than starting the root-doc cold-read handoff.
