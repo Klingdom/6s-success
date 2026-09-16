@@ -7887,6 +7887,73 @@ def gate_deck_download_has_art() -> None:
          % (len(missing), len(d), where, ", ".join(missing)))
 
 
+def check_print_and_play_art_count(text, illustrated, missing) -> list:
+    """Pure logic behind gate_print_and_play_art_count_current."""
+    m = re.search(r"(\d+) of the (\d+) carry a photograph; the other (\d+)",
+                  text)
+    if not m:
+        return ["the illustrated-count sentence has changed shape or gone "
+                "missing; this gate could not read it and needs updating "
+                "to match"]
+    got_ill, got_total, got_missing = (int(m.group(1)), int(m.group(2)),
+                                        int(m.group(3)))
+    total = illustrated + missing
+    problems = []
+    if got_total != total:
+        problems.append("page says %d total cards, the real verdict file "
+                         "holds %d" % (got_total, total))
+    if got_ill != illustrated:
+        problems.append("page says %d carry a photograph, the real count "
+                         "is %d" % (got_ill, illustrated))
+    if got_missing != missing:
+        problems.append("page says %d do not, the real count is %d" %
+                         (got_missing, missing))
+    return problems
+
+
+def gate_print_and_play_art_count_current() -> None:
+    """site/deck/entryway-print-and-play.html's illustrated-card count must
+    match ops/card-hero-verdicts.json, not a stale or invented number.
+
+    Found 2026-09-16, this operator, cold-reading this hand-authored
+    retired-notice page (owned by no generator, confirmed by grep across
+    every ops/build_*.py). It claimed "88 cards, illustrated front and
+    back" while 9 of the 88 reviewed card heroes are rejected and actually
+    render with a text-only concept panel instead of a photograph, exactly
+    what gate_deck_download_has_art already names on the download itself.
+    Nothing had checked this page's own prose against that same verdict
+    file. Fixed the copy to state the real split (79 illustrated, 9 not)
+    instead of claiming every card is pictured. This gate stops the two
+    numbers drifting apart again the next time a rejected hero is
+    regenerated and approved, or another one is rejected.
+    """
+    page = os.path.join(SITE, "deck", "entryway-print-and-play.html")
+    verdicts = os.path.join(ROOT, "ops", "card-hero-verdicts.json")
+    if not os.path.exists(page):
+        return
+    if not os.path.exists(verdicts):
+        warn("print-and-play-art-count",
+             "no card hero verdict file, so this page's illustrated-card "
+             "claim was NOT checked")
+        return
+    try:
+        d = json.load(io.open(verdicts, encoding="utf-8"))
+    except ValueError:
+        warn("print-and-play-art-count",
+             "card hero verdicts unreadable; this page's illustrated-card "
+             "claim UNCHECKED")
+        return
+    missing = sum(1 for v in d.values()
+                  if isinstance(v, dict) and v.get("verdict") != "ok")
+    illustrated = len(d) - missing
+    text = _visible_html(page)
+    problems = check_print_and_play_art_count(text, illustrated, missing)
+    if problems:
+        fail("print-and-play-art-count",
+             "site/deck/entryway-print-and-play.html: %s" %
+             "; ".join(problems))
+
+
 def gate_caption_line_length() -> None:
     """No caption line may exceed the readable budget, in either caption set.
 
@@ -14471,6 +14538,7 @@ def main() -> int:
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
+    run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_caption_line_length)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)

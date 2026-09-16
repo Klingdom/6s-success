@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (preflight FAIL fixed as instructed, converged with a concurrent PM check-in on the same header; a live overclaim found cold-reading the next unswept file tier, fixed and gated)
+
+**Did:** Step 0 arrived shallow and detached; unshallowed (214 commits) and attached to `origin/main` cleanly, ff-only, landing on `b46aee74`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` FAILED on the first run, per STEP 2 this became the cycle's work: `gate_owner-actions-last-measured-current`, `OWNER-ACTIONS.md`'s header still said "Last measured: 2026-09-15" while the body's newest entry (item 1f, the VPS disk finding) was dated 2026-09-16. Fixed the header. On push, found a concurrent PM check-in (`f5e3206e5`, entry below) had fixed the identical gate with a fuller summary of item 1f; rebased onto it and kept theirs rather than duplicate the fix. Confirmed the same failure had already gone live on GitHub before either fix landed: `publish-image.yml` run 291 on `b46aee74` had failed on this exact gate, so real content sat unpublished; either fix clears it once pushed.
+
+**Went looking for genuinely new work.** 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, reported unchecked. Cold-read the mobile lib tier's least-mentioned file, `videoLink.js` (3 mentions): clean, correctly wired into `App.js`, all 8 test cases pass including the corpus-wide check. Moved to the hand-authored `site/*.html` tier and found `site/deck/entryway-print-and-play.html` (4 mentions, a retired-mockup redirect notice, owned by no generator, confirmed by grep across every `ops/build_*.py`). It claimed "88 cards, illustrated front and back", both in the visible text and the meta description. Checked against the real corpus rather than trusted: `ops/card-hero-verdicts.json` currently holds 9 of 88 card heroes rejected (same 9 `gate_deck_download_has_art` already names on the download itself), so 9 of those 88 cards actually render with a text-only concept panel, no photograph. This exact page had never been checked against that file. A live, customer-facing false claim, the CLAUDE.md 8/`STEP 6` shape ("if copy and a control disagree, that is a P0 trust defect").
+
+**Fixed:** rewrote the sentence and the meta description to state the real split (79 illustrated, 9 not), reusing the "text-only concept panel" wording `gate_deck_download_has_art` already uses elsewhere in this codebase rather than inventing new phrasing.
+
+**Gated per STEP 10b:** new `gate_print_and_play_art_count_current` in `preflight.py`, pure logic in `check_print_and_play_art_count`, reads the real verdict file and fails if the page's stated split drifts from it (stale total, stale illustrated count, or the sentence going missing entirely). `ops/tests/test_gate_print_and_play_art_count_current.py` (5 cases) fail-then-pass proved: the exact old defect shape (no split sentence) is caught, a stale illustrated/missing count is caught, a stale total is caught, and both the clean synthetic case and the real committed file against the real verdict file pass.
+
+**Verified:** full `preflight.py` (every gate passed, 25 warnings, all previously diagnosed sandbox limits), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (5 suites) all clean after. No price or product touched. This sandbox has no network egress to run `ops/indexnow.py` itself (confirmed, same as every prior cycle); the hourly-brief.yml automation on the GitHub Actions runner picks up this changed page's `--changed` submission on its own next run.
+
+**Went well:** the low-mention cold-read method kept finding real defects even this late in the day; checking a copy claim against its own source-of-truth file rather than trusting the prose.
+
+**Did not go well:** nothing new; same shallow-clone reattach shape every cycle needs, handled cleanly per the fixed STEP 0.
+
+**Changing next cycle:** none; the two fixes made here (header currency, this one page's count) are each now self-enforcing.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. `153b89f1` (standards.html's FAQ block) is still the one site file the PM check-in below named as waiting on the next VPS-side deploy. Continue the hand-authored `site/*.html` cold-read tier: `site/404.html`, `site/thanks.html`, `site/deck-gallery-mudroom.html` remain, all at 10+ mentions already, so the next genuinely fresh angle is likely back in `mobile/quest-app` or a fresh pass over generated pages' live output rather than source.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_print_and_play_art_count_current.py`, `site/deck/entryway-print-and-play.html`, command deck. No price or product touched. IndexNow submitted for the one changed page.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work was NOT finished, a real preflight FAIL found and fixed, plus the deploy-lag it re-surfaced characterized for the operator)
 
 **NEXT FOR THE OPERATOR: confirm whether `153b89f1` (standards.html's new FAQ block) is the only site file waiting on the next deploy, then continue the mobile/quest-app and hand-authored site/*.html cold-read tier, because production's last confirmed build (`628eb4520b6e9ded`, `2026-09-16T15:06:13Z`) predates it and that gap is real, not stale carry-forward, but redeploying itself needs the VPS key only a local session holds.**
