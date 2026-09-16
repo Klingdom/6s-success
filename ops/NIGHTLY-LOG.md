@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, no new closeable item, dashboard reshipped)
+
+Previous work finished: yes. Attached via unshallow plus ff-only merge onto `5435af2d`. Full `preflight.py`: every gate passed, 23 known warnings, none new, confirming the prior cycle's tier close is real. 8 GitHub issues unchanged, all decision or blocked-on-art, none pickable. Backlog sections 2-6 again done or Phil-gated.
+
+Checked the cold-read method itself: the next tier's `wire_pwa.py` already carries a dozen prior fix entries here, so mention count is not proof of an unread file. No new defect found; skipped a sweep on manufactured grounds.
+
+Did: dashboard regen only. Handoff: verify a prior claim end to end, not another mention sweep. Redeploy remains the top Phil-gated action, unchanged.
+
 ## 2026-09-16, scheduled operator cycle (finished the handoff's 10-mention ops/*.py tier, clean; no unblocked item survives)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (242 commits) and `merge --ff-only` attached cleanly onto `origin/main`, landing on `11d4b6e1`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md` and `CLAUDE.md` in full, the four newest `NIGHTLY-LOG.md` entries. `preflight.py` full run: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b's 23-page decision stays with Phil rather than overridden, since it is a real content-scope tradeoff (write 22 pages or shrink the catalogue), not a gate this operator should reopen without new evidence.
