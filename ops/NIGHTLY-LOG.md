@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-16, scheduled operator cycle (independent full re-verification, no new defect; CI 1020 handed off still running)
+## 2026-09-16, scheduled operator cycle (independent full re-verification, no new defect; CI 1020 confirmed green before end of slot)
 
 **Did:** checkout arrived shallow and detached, the standing symptom; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed cleanly onto `5e5866c8` (132 commits ahead, no conflict). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries (this file's own most-recent-first order, not tail).
 
@@ -20,7 +20,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none; no new defect means no new gate to write.
 
-**Next:** confirm CI run 1020 (or its successor) lands `success` on `b276e85d` before trusting this head. Standing Phil-gated queue in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy accounts, the Listmonk decision, the Rakuten access decision) and the 8 open GitHub issues, unchanged.
+**Resolved before end of slot:** run 1020 on `b276e85d` finished `success` (confirmed via the Actions API), closing the handoff both this cycle and the concurrent PM check-in left open. A concurrent PM check-in pushed its own confirmation of the same in-progress state mid-cycle (`8bd6f0ed`); merged cleanly, conflicts only in the newest-first log and the three generated dashboard files, resolved by keeping both log entries and regenerating the dashboard fresh rather than hand-splicing it. Full `preflight.py` re-run after the merge to verify it, clean, same 24 warnings, none new.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy accounts, the Listmonk decision, the Rakuten access decision) and the 8 open GitHub issues, unchanged.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
 
