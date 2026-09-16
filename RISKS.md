@@ -244,19 +244,33 @@ id: RISK-0003
 title: Card art carries third party trademarks
 status: OPEN
 severity: HIGH
-likelihood: OCCURRING
+likelihood: POSSIBLE
 owner: content-editor
 evidence:
-  - GitHub issue #1, cards EE-001 and EP-005 contain Amazon trademarks, P0
-  - GitHub issue #2, 12 further stale card images await regeneration (recounted 2026-09-07; the issue's own body still reads the earlier 30 July figure)
+  - GitHub issue #1 (EE-001, EP-005, Amazon trademarks) closed 2026-09-08, verified
+    fixed in the rendered card faces and in the actual shipped print-and-play PDF
+    by pixel comparison (mean distance 0.06 of 255 on both pages), not assumed
+    from a timestamp. No live exposure from these two remains.
+  - GitHub issue #2, 9 further card heroes rejected and unregenerated as of
+    2026-09-15 (recounted down from 17, then 12). These do not ship: no card
+    renders from an unapproved hero (ops/review_heroes.py binds approval to the
+    image's own sha), so they carry no live exposure today. Only one of the
+    nine (EE-002) has been checked against a trademark specifically, and it is
+    an aesthetic rejection (a distorted object merge), not a trademark one; the
+    other eight are unclassified for trademark content, since no OCR exists in
+    this environment to sweep them.
+  - No qualified intellectual-property professional has reviewed the deck.
 impact: >
   The Entryway deck is the pilot for a 20 deck product line. Art that depicts
   another company's marks is not safe to print, sell, or use in marketing, and
   reworking it after a print run is far more expensive than reworking it now.
 mitigation: >
-  Regenerate the affected art without third party marks, then have a qualified
+  The two confirmed instances are fixed and verified through to the shipped
+  artifact. What remains is process, not a known live defect: have a qualified
   intellectual property professional review the deck before any commercial
-  distribution. This document does not state what the law requires.
+  distribution, and classify the 9 still-rejected heroes for trademark content
+  (not only aesthetics) before any of them is ever approved to ship. This
+  document does not state what the law requires.
 closing_condition: >
   Zero third party marks remain in deck art, confirmed by review, and
   professional review of the deck is complete.

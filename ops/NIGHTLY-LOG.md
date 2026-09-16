@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, one stale risk-register entry found and corrected)
+
+NEXT FOR THE OPERATOR: sweep `DECISIONS.md` and `LEARNINGS.md` for the same defect class just found in `RISKS.md` (an entry citing a GitHub issue as live/occurring evidence when that issue has since closed), because RISK-0003 sat stale that way for over a week and nothing suggests the other two memory files are immune to it.
+
+**Previous work: finished.** Checkout arrived shallow and detached, 107 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`9a9c53ee`, the prior PM check-in), clean, no conflict. Working tree was already clean and main already pushed.
+
+**Did:** ran `preflight.py` fresh. First run hit this same session's own 110s tool timeout mid-render and left `build/listings/etsy/` and the command-deck files dirty, the identical self-inflicted shape the immediately prior PM cycle also hit and documented; restored to HEAD and reran uninstructed for its own full length: every gate passed, the same 23 pre-diagnosed warnings, none new. Re-verified rather than cited: 8 GitHub issues live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Recomputed the `ops/*.py` cold-read mention floor directly rather than trust the last cycle's number: still 10, confirming that lane genuinely still exhausted rather than stale. Checked CI directly rather than assumed: `checks.yml` run 1013 on `7d3e68cc` (the commit the last PM check-in asked to confirm) is `success`; the current head at attach time, `9a9c53ee`, correctly triggered no run at all, since it touched only the three files (`ops/state.json`, `ops/dashboard.html`, `EXECUTIVE-DASHBOARD-LIVE.md`) plus `ops/NIGHTLY-LOG.md`, all four excluded by `checks.yml`'s own path filter.
+
+**Fixed:** `RISKS.md`'s RISK-0003 ("Card art carries third party trademarks") was OPEN/HIGH/OCCURRING, citing GitHub issue #1 (EE-001/EP-005 Amazon trademarks) as live evidence. Checked issue #1 directly rather than trusted the register: closed 2026-09-08, with the fix verified all the way to the shipped print-and-play PDF by pixel comparison (mean distance 0.06/255 on both affected pages), not merely a code change. Issue #2 (the 12-cited further stale images) has also moved, recounted to 9 as of 2026-09-15, and none of the 9 ship (`ops/review_heroes.py` binds approval to the image's own sha, so an unapproved hero never renders); only one of the nine has been checked against trademark content specifically (an aesthetic rejection, not a trademark one), so the other eight are honestly left unclassified rather than assumed clean. Rewrote the entry's evidence, likelihood (`OCCURRING` to `POSSIBLE`, since the only confirmed live instances are fixed and verified) and mitigation to match; left `status: OPEN` and the closing condition unchanged, since no professional IP review of the deck has been recorded and that is a real, unmet gate, not a stale one.
+
+**Verified:** `preflight.py` clean before and after (every gate passed, 23 warnings, none new); no em or en dash introduced (grepped directly). No price, product or site page touched; this is a risk-register correction, not a live change. IndexNow not applicable.
+
+**Went well:** treating a stale risk-register entry as a defect to fix once found, rather than only noting it for a future cycle, per `CLAUDE.md` 0.2.
+
+**Did not go well:** the same shallow/detached checkout shape on attach, and the same self-inflicted killed-preflight artifact the immediately prior PM cycle already diagnosed; worth a standing note that this tool's own 110s cap is shorter than a full `preflight.py` run and killing it mid-render is what causes this, not a real regression.
+
+**Changing next cycle:** none; the fix is complete and gated by nothing further needed (a risk-register entry is not enforced by `preflight.py`).
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `DECISIONS.md`/`LEARNINGS.md` staleness sweep handed to the operator above.
+
+Pushed to main. `RISKS.md`, `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, one self-inflicted false gate failure found and cleared, no new unblocked item survives independent re-check)
 
 **Previous work: finished.** Checkout arrived shallow and detached, 106 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`7d3e68cc`, the RISK-0009 close), clean, no conflict.
