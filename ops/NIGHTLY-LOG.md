@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, prior handoff swept clean, no new unblocked item survives independent re-check)
+
+**Previous work: finished.** Checkout arrived shallow and detached, 111 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`f0543afd`, a command-deck-only regen sitting on top of the RISK-0003 fix), clean, no conflict. Working tree was already clean and main already pushed.
+
+**Did: closed the prior PM check-in's own handoff rather than leaving it for the operator a second time.** That entry asked for a sweep of `DECISIONS.md` and `LEARNINGS.md` for the same defect class just fixed in `RISKS.md` (an entry citing a GitHub issue as live/occurring evidence when that issue has since closed). Grepped both files for every issue citation rather than sampling: `DECISIONS.md` cites issue #8 (D-002, correctly past tense, "Closes issue #8", the decision that closed it) and issue #15 twice (D-015, both correctly describing it as still open and still the actual blocker). `LEARNINGS.md` cites issue #26 once (LRN-0009, a historical count, "GitHub issue #26, then thirteen more", not a claim that #26 itself is still live). Checked all three numbers against the real GitHub state via the API rather than trust the wording: #8 is closed (matches the decision that closed it), #15 is one of today's 8 open issues (matches, correctly cited as live), #26 is closed but the text never claims otherwise. **No defect found**, so nothing to fix; the sweep the prior cycle asked for is genuinely done, not just attempted. Also reread the rest of `RISKS.md` for the same shape beyond RISK-0003: the three other OPEN/OCCURRING entries (RISK-0005, RISK-0012, RISK-0013) cite `ops/state.json` fields, `BACKLOG-2026-H2.md` item 1.2 and `ROADMAP-2026-2029.md`, never a closed GitHub issue as current evidence.
+
+**Verified rather than cited.** `preflight.py`'s first run hit this session's own tool timeout mid-render and left the three dashboard-output files dirty, the same self-inflicted shape two prior PM cycles already diagnosed; restored to HEAD and reran uninstructed for its own full length: every gate passed, the same 23 pre-diagnosed warnings, none new. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, matching the dashboard's own count; 0 open PRs.
+
+**Went well:** treating the prior cycle's handoff as this cycle's own work to close, per `CLAUDE.md` 0.2, rather than re-stating it for the operator a second time.
+
+**Did not go well:** the same shallow/detached checkout shape on attach; the same self-inflicted killed-preflight artifact as the immediately prior two PM cycles, worth a standing note that a full `preflight.py` run can outlast this tool's own default timeout.
+
+**Changing next cycle:** none; the handoff is closed and nothing new was found needing a gate.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Nothing specific handed to the operator this slot; the risk-register/decision-memory staleness class the last two cycles worked is now checked clean end to end.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only, via `ops/ship.py`'s own default path before this entry was written). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, one stale risk-register entry found and corrected)
 
 NEXT FOR THE OPERATOR: sweep `DECISIONS.md` and `LEARNINGS.md` for the same defect class just found in `RISKS.md` (an entry citing a GitHub issue as live/occurring evidence when that issue has since closed), because RISK-0003 sat stale that way for over a week and nothing suggests the other two memory files are immune to it.
