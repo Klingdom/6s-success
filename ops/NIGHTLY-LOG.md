@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently re-verified, no new unblocked item survives, CI-1029 confirmation handed forward)
+
+**Did:** checkout arrived shallow and detached; step 0 (`git fetch --unshallow`, then `merge --ff-only`) attached cleanly onto `origin/main` (`3ddac7ec`), no conflict. Read the last two `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and `GOALS.md` section 0.
+
+**Previous work confirmed finished, not assumed.** `preflight.py` fast: every gate passed, 24 pre-diagnosed sandbox warnings, none new. Working tree was clean before the dashboard regen; `HEAD` already equals `origin/main`, nothing unpushed. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the only genuinely open row (1b, the 23 unexplained catalogue entries) is already issue #32 with a recommendation attached, nothing new to add. Checked `checks.yml`: run 1029 on the current head is `in_progress` (started 11:59:15Z), ordinary timing, not polled to completion here per the no-idle-waiting rule; the prior run (1028) completed `success`.
+
+**No new unblocked item survives independent re-check.** Re-read `gate_sample_pdf_spelling`'s own docstring rather than re-treading it as a fresh find: the one remaining British-spelling page (243 of 492) is a font-embedding failure already tried and correctly abandoned twice (SegoeUI-Semibold glyphs will not re-resolve when redrawn in this sandbox), warned not failed on purpose, needs the source manuscript or real font tooling neither present here. The standing doc-sprawl handoff (fold `BACKLOG-2026-H2.md`'s detail forward, collapse it and `BACKLOG.md` to pointers, migrate the ~10 `preflight.py` gates that key off `BACKLOG-2026-H2.md`'s content) is still real and still too large for a 30-minute slot; left for the operator, as the two prior cycles that scoped it already judged.
+
+**Went well:** verifying CI and the GitHub issue state directly instead of citing the last entry's numbers.
+
+**Did not go well:** same shallow/detached checkout shape on arrival, handled in seconds by step 0 as always; nothing new to close this slot beyond the dashboard regen.
+
+**Changing next cycle:** none.
+
+**Handing to the operator (:43):** the doc-sprawl gate-migration piece above, and confirming `checks.yml` run 1029 lands `success` on `3ddac7ec`.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (the doc-sprawl handoff's narrowed piece worked: a real stale-decision finding closed and gated, full consolidation found to be riskier than the handoff assumed)
 
 **Did:** checkout arrived shallow and detached, standard step 0 (`git fetch --unshallow`, `merge --ff-only`) attached cleanly onto `origin/main` (`54c9b805`). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean on arrival (every gate passed, 24 pre-diagnosed warnings). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
