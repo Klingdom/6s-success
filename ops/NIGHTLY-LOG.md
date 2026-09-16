@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, STATUS.md's own 9-commit currency gap closed)
+
+**Was the previous work finished?** Yes. `preflight.py` was clean on arrival (every gate passed, 24 pre-diagnosed sandbox warnings, none new), working tree clean, main already pushed at `b268599a`, 8 GitHub issues unchanged (`decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Did:** Step 0 arrived shallow and detached; unshallowed (218 commits) and ff-only attached onto `origin/main` cleanly. Since preflight was green, per STEP 3 looked for the smallest closeable item rather than opening new work: `gate_status_currency`'s own warning named it directly, `STATUS.md` had gone 9 material commits stale since its last edit (`c807fef9`), the phone-app store-prep block (icons, listing, price, screenshots, two sabotage-proven gates) plus the standards.html FAQ, the VPS disk escalation, the owner-actions header fix, and the print-and-play overclaim fix, none of it ever summarised at the top of the file. Verified the gate's own file list directly (`git diff-tree` per commit against `_status_material_path`) before writing anything, matching its count exactly. Wrote a dated entry citing all 9 hashes.
+
+**Caught mid-edit:** a concurrent local session (Phil's own, `80a2d801`) deployed production while this cycle was running, closing the exact deploy gap this entry had just flagged (the print-and-play fix going live). Refetched, confirmed no conflict, corrected the entry before shipping rather than ship a claim already stale by the time it landed.
+
+**Introduced and caught before shipping:** one em dash in my own new prose, `ops/fix_dashes.py --check` and `preflight.py`'s `dashes`/`tests` gates both correctly FAILed on it; fixed, reran clean.
+
+**Verified:** `preflight.py` full run clean both times after the two fixes (every gate passed, 23 warnings, all previously diagnosed). All 9 material commit hashes confirmed present in the shipped text by direct grep before pushing.
+
+**Handing to the operator:** nothing new unblocked; standing Phil-gated list in `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6 unchanged, 8 open GitHub issues unchanged. Worth a look: `git log`'s ordering vs commit-date ordering diverged for `574adfa9` earlier today (commit date 09:24, content `checked_at` 15:06Z), a sandbox clock quirk, not a defect, but worth remembering when reasoning about "what landed before what" from `git log` timestamps alone.
+
+Pushed to main (two commits, `9862344f` then `a189290`, the second correcting the first before the entry became stale). `STATUS.md` only, command deck regenerated both times. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (preflight FAIL fixed as instructed, converged with a concurrent PM check-in on the same header; a live overclaim found cold-reading the next unswept file tier, fixed and gated)
 
 **Did:** Step 0 arrived shallow and detached; unshallowed (214 commits) and attached to `origin/main` cleanly, ff-only, landing on `b46aee74`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` FAILED on the first run, per STEP 2 this became the cycle's work: `gate_owner-actions-last-measured-current`, `OWNER-ACTIONS.md`'s header still said "Last measured: 2026-09-15" while the body's newest entry (item 1f, the VPS disk finding) was dated 2026-09-16. Fixed the header. On push, found a concurrent PM check-in (`f5e3206e5`, entry below) had fixed the identical gate with a fuller summary of item 1f; rebased onto it and kept theirs rather than duplicate the fix. Confirmed the same failure had already gone live on GitHub before either fix landed: `publish-image.yml` run 291 on `b46aee74` had failed on this exact gate, so real content sat unpublished; either fix clears it once pushed.
