@@ -685,6 +685,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_cover.py": ("gate_cover_author_current",),
     "build_deck_pdf.py": ("gate_deck_pdf_download_current",),
     "build_etsy_assets.py": ("gate_etsy_pdfs_current",),
+    "build_app_icons.py": ("gate_store_art",),
     "build_icons.py": ("gate_icons_current",),
     "build_id.py": ("gate_build_id_current",),
     "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
