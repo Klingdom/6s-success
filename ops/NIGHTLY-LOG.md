@@ -26,6 +26,8 @@ Before fixing, checked whether the page's OTHER hard numbers were also stale, si
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_invest_page_catalog_current.py`, `site/invest.html`, command deck. No price or product touched. IndexNow not applicable (existing page edited, not added; no egress from this sandbox regardless).
 
+**Push arrived after a concurrent PM check-in had already landed two commits** (`db5fb725`, the "about.html cold-read clean" entry that named `invest.html` as the next unread file, the exact page this cycle independently found and fixed). Merged rather than force-pushed: `ops/NIGHTLY-LOG.md` conflict resolved by keeping both entries, this one first; the three generated command-deck files resolved by taking either side and then regenerating fresh with `ops/dashboard.py` against the true merged HEAD. The merge also exposed `site/build-id.txt` as stale against the merged `site/` tree (this cycle's own `invest.html` edit); regenerated with `ops/build_id.py` and reran full `preflight.py`, which correctly FAILED on the stale hash first (`gate_build_id_current` working as designed) and passed clean, 24 warnings, after the fix. Pushed as a second commit, `6e3faa82`. CI (`checks.yml` run 1051) was still `in_progress` after 10+ minutes at the end of this slot, consistent with this repository's known high push-volume runner contention; not yet confirmed green, handed to the next cycle to check.
+
 ## 2026-09-16, PM check-in (30 minute triage, previous work finished, one more cold-read candidate closed clean, no new defect)
 
 **NEXT FOR THE OPERATOR: continue the hand-authored site/*.html cold-read tier at invest.html and method.html, because about.html is now checked clean and those two are the last unread files in that lane.**
