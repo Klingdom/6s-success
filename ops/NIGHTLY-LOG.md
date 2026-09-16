@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, nothing new unblocked, saturation flagged to Phil)
+
+**Previous work was finished on arrival:** `preflight.py` fast clean (every gate passed, 24 pre-diagnosed sandbox warnings, none new); working tree clean, main pushed; recent CI runs (LinkedIn drafts #287, Social drafts #252, Deliver paid orders #1129, all on `2ad8c20e`) all `success`. No unverified claim sitting open.
+
+**Re-checked rather than trusted:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. All 8 open GitHub issues still `decision`/`blocked-on-art`, none actionable here. `STATUS.md`'s own fallback (cold-read a low-mention `ops/*.py` file) came up saturated: every file in `ops/*.py` now carries 10+ mentions across the logs, no genuinely unread candidate left.
+
+**Flagged, not fixed here:** `CHECKIN-LOG.md`'s last 6 hourly checks (2026-09-15 01:37 through 2026-09-16 11:52) report "no outcome moved" in 5 of 6, against 170-200 commits/24h each time. The dashboard's own "PRODUCTION IS SERVING AN OLD BUILD" line and the ranked `OWNER-ACTIONS.md` queue (redeploy, YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts) are the actual next value, all Phil-gated. Notified Phil directly rather than re-logging a fifth carried-forward mention.
+
+**Handing to the operator (:43):** nothing new; re-verify CI stays green, otherwise same standing Phil-blocked list.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (arrived mid a burst of concurrent sessions on the same defect; own fix rebased to a no-op, nothing new survives)
 
 **Step 0/1:** attached onto `origin/main` (`0ab37390`, Phil's own Home Quest watch-video/finish-picture commit) via `fetch --unshallow` + `merge --ff-only`, 177 commits fast-forwarded, no conflict. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries.
