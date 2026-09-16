@@ -12792,6 +12792,48 @@ def gate_downloads_noindex() -> None:
                  "one." % rel)
 
 
+def gate_standards_pack_current() -> None:
+    """The Standards Pack a visitor actually downloads must match the build.
+
+    ops/build_standards.py writes build/6S-Standards-Pack.html, and
+    gate_generator_ownership already proves that file is correctly derived
+    from content/manual/source/content.json. But nothing copies it into
+    site/downloads/6S-Standards-Pack.html, the path a real visitor's browser
+    fetches (linked from book.html and standards.html, per
+    gate_downloads_noindex's own docstring): that copy is a manual step, done
+    by hand each time the generator's output changes. gate_downloads_noindex
+    already named this exact gap for one failure mode (the noindex/canonical
+    tags going missing on the shipped copy) and said outright it "cannot do
+    itself, only catch if skipped." Nothing caught the general case: any
+    future content fix (a corrected standard, a reworded trigger) that reruns
+    the generator but skips the copy would ship a stale download to every
+    reader who then prints it and posts it in their kitchen, invisible to
+    every other gate, since gate_generator_ownership only checks build/, and
+    audit_pages.py/the sitemap both deliberately skip downloads/. Checked
+    directly on 2026-09-16: the two files are currently byte-identical, so
+    this closes a latent gap, not a live one, the same posture
+    gate_kdp_cover_current and gate_etsy_pdfs_current were added under.
+
+    Direct content comparison, not a regenerate-and-diff: build_standards.py
+    itself is already covered by gate_generator_ownership, so re-running it
+    here would only duplicate that check. What is uncovered is the copy step
+    downstream of it.
+    """
+    build_path = os.path.join(ROOT, "build", "6S-Standards-Pack.html")
+    live_path = os.path.join(SITE, "downloads", "6S-Standards-Pack.html")
+    if not (os.path.exists(build_path) and os.path.exists(live_path)):
+        return
+    build_html = io.open(build_path, encoding="utf-8", errors="replace").read()
+    live_html = io.open(live_path, encoding="utf-8", errors="replace").read()
+    if build_html != live_html:
+        fail("standards-pack-current",
+             "site/downloads/6S-Standards-Pack.html does not match "
+             "build/6S-Standards-Pack.html. A reader downloads the stale "
+             "one. Run: python ops/build_standards.py, then copy "
+             "build/6S-Standards-Pack.html over site/downloads/"
+             "6S-Standards-Pack.html.")
+
+
 DRAFT_ROTATION_WORKFLOWS = ["linkedin-drafts.yml", "social-drafts.yml"]
 
 
@@ -13791,6 +13833,7 @@ def main() -> int:
     run_gate(gate_feed_current)
     run_gate(gate_llms_txt_current)
     run_gate(gate_downloads_noindex)
+    run_gate(gate_standards_pack_current)
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
