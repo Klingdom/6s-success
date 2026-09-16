@@ -477,7 +477,7 @@ def offer(name, zone_slug, room=None, zone=None):
     # quest.js's findZoneBySlug(), rather than the general start screen. This
     # function is the source for all 114 zone pages; a bare ../quest.html here
     # would regress every one of them the next time this generator runs, which
-    # is exactly the "generator erases a hand fix" trap RETRO-2026-08-26.md
+    # is exactly the "generator erases a hand fix" trap retro/RETRO-2026-08-26.md
     # names twice already.
     pack = _zone_pack(room, zone) if room and zone else None
 

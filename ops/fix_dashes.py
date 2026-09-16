@@ -27,7 +27,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def targets():
     return sorted(set(glob.glob(os.path.join(ROOT, "*.md"))
-                      + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)))
+                      + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)
+                      + glob.glob(os.path.join(ROOT, "retro", "*.md"))))
 
 # A label is short, has no sentence punctuation, and is the sort of thing that
 # wants a colon after it: a heading, a bold run, an identifier, a numbered stage.

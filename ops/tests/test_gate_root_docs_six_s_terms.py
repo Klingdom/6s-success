@@ -20,7 +20,7 @@ The naive version of this check (a whole-document substring search for
 produced real false positives before shipping: this project's own style
 and history docs (CONTENT-STANDARDS.md, RISKS.md, STATUS.md, STRIPE.md,
 BACKLOG-2026-H2.md, OWNER-ACTIONS.md, PLAN-MEDIA-2026-09-07.md, LOOP.md,
-EXECUTIVE-DASHBOARD-LIVE.md, RETRO-2026-08-30-cycle2.md) correctly quote
+EXECUTIVE-DASHBOARD-LIVE.md, retro/RETRO-2026-08-30-cycle2.md) correctly quote
 or narrate the retired term in running prose to document the rule or
 record a past fix, and two separate, correctly-ordered lists sitting a
 few lines apart in AUTONOMY-ORCHESTRATION.md looked like one list rotated

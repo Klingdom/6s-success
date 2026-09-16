@@ -140,7 +140,7 @@ median and 12.4-hour longest gap; privacy.html's only mention of payments
 was a promise to update the page before they went live, which happened
 weeks earlier) and hardened the deploy path (`nginx -t` now runs in CI
 before publish; three proxied locations got fail-fast timeouts). Full
-account in `RETRO-2026-08-30-cycle6.md`. The code fix is on `main` and
+account in `retro/RETRO-2026-08-30-cycle6.md`. The code fix is on `main` and
 built by CI (confirmed by this operator, run green against `8413b9a`);
 whether the redeployed live site is actually taking money again is
 unconfirmed from this sandbox (no egress to 6s-success.com or the Stripe
@@ -897,7 +897,7 @@ equivalent band) still read `href="../quest.html"` with no `?zone=`, even
 though every deployed zone page has carried the query string since
 yesterday. Yesterday's fix edited the 114 generated files directly rather
 than the generator that owns them, exactly the anti-pattern
-`RETRO-2026-08-26.md` names twice from two earlier incidents and writes a
+`retro/RETRO-2026-08-26.md` names twice from two earlier incidents and writes a
 rule to prevent. It had not yet regressed anything live, because nothing
 had re-run the generator since. It would have on the next zone content
 edit. Fixed `offer()` to build the same `?zone=<slug>` link from data the
@@ -982,7 +982,7 @@ commit message: `grep -l "Just this zone" site/zones/*.html` matches 109 of
 per-zone SKU (correct, not a gap).
 
 **5.8 done 2026-08-30, this operator, picking up the open thread named in
-`RETRO-2026-08-30-cycle5.md` ("the deck still is not linked anywhere a
+`retro/RETRO-2026-08-30-cycle5.md` ("the deck still is not linked anywhere a
 customer can reach... preparing the download and the page copy is not
 [deploy gated]. That is next").** Verified rather than trusted: `deck.html`
 still described a 46-card, unillustrated, five-zone-six-pass deck at "a
@@ -2129,7 +2129,7 @@ gate fail with the correct message, restored, reran `preflight.py` clean.
 No em or en dashes in the diff.
 
 **6.16 done 2026-08-31, this operator, found while acting on a real preflight
-failure rather than a routine clean run.** `RETRO-2026-08-31-cycle29.md`
+failure rather than a routine clean run.** `retro/RETRO-2026-08-31-cycle29.md`
 shipped 3 em dashes; the dashes gate caught it, fixed. Enabling
 `core.hooksPath` for the same cycle's new pre-commit control-byte hook
 surfaced git's own warning on the next commit: the hook was ignored because
@@ -2174,7 +2174,7 @@ just because the local cache is empty (the gate's second assertion). Restored
 and reran `preflight.py` clean. No em or en dashes in the diff.
 
 **6.14 done 2026-08-31, this operator, prompted by Phil's own cycle 26
-retro.** Phil's retro (`RETRO-2026-08-31-cycle26.md`) wrote and verified,
+retro.** Phil's retro (`retro/RETRO-2026-08-31-cycle26.md`) wrote and verified,
 on his own machine with real Edge, a functional test of the Home Quest,
 the only complete journey a visitor can finish while every payment link is
 dead. Read `ops/tests/test_quest_flow.py` before treating that as settled:
@@ -2411,7 +2411,7 @@ equivalent-gate item; not evaluated this cycle beyond confirming it is a
 manual, per-figure process rather than a bulk rerun risk.
 
 **6.6 done 2026-08-30, added by this operator, not in the backlog until now.**
-`RETRO-2026-08-30.md` (Phil's own retrospective on the zone-hero incident) named
+`retro/RETRO-2026-08-30.md` (Phil's own retrospective on the zone-hero incident) named
 the gap directly: "The card decks, the before and after pairs and the chapter
 figures all run through generators with no equivalent gate." Read
 `ops/import_generated_art.py` rather than trusting that as a finding: confirmed

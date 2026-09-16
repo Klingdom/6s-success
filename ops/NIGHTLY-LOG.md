@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, picked up the standing RETRO archive handoff)
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`c1af20c3`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable per this routine's own rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was already clean, `main` already pushed.
+
+**Did:** picked up the prior PM check-in's own standing handoff rather than starting fresh: archived the 38 `RETRO-2026-08-*.md` cycle retrospectives (none touched since August) into a new `retro/` subdirectory, `git mv` not delete. That handoff undersold the work: three real, load-bearing places scan root-level `*.md` files by a non-recursive `ROOT/*.md` glob and would have silently stopped covering these 38 files the moment they moved, without failing anything (`gate_root_docs_six_s_terms` in `ops/preflight.py`, the "Zero em/en dashes" gate in `ops/fix_dashes.py` which `preflight.py` already calls with `--check`, and `ops/dashboard.py`'s own `ctrl_em`/`ctrl_en` house-style count). Widened all three globs to also read `retro/*.md`, so the move changes nothing about what gets checked. Also corrected the 21 citations of a moved filename across `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-H2.md`, `STATUS.md`, `docs/audit/CURRENT-STATE-AUDIT.md`, `RISKS.md` and four `ops/*.py` comments to read `retro/RETRO-...`, so a citation still names a real path rather than one that used to be true.
+
+**Verified:** confirmed the dash gate was clean before touching anything (`fix_dashes.py --check`: 0 em, 0 en, so the move could not be mistaken for fixing a real failure). After the move and the three glob fixes: `fix_dashes.py --check` still clean; `ops/tests/test_gate_root_docs_six_s_terms.py` 11/11, including case 7 (the real gate run against the live repo); full `preflight.py` (every gate passed, 23 warnings, none new); `check_urls.py` (188/188). No RETRO file cross-references another by bare name, so nothing inside `retro/` itself needed a path change. Command deck regenerated (timestamp and commit count only; diffed to confirm).
+
+**Went well:** treating "just move the files" as a claim to verify rather than a fact, which surfaced three real gate/metric blind spots the original handoff had not found.
+
+**Did not go well:** same shallow/detached checkout shape on attach; `git fetch --unshallow` handles it every time, noted here only because the prompt now asks for it explicitly.
+
+**Changing next cycle:** none; the move and its three follow-on fixes are complete and verified.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (unchanged) and the 8 open GitHub issues (unchanged, all decision/blocked-on-art). No item is being left for the hourly operator this slot; this handoff is now fully closed rather than partially done.
+
+Pushed to main. `retro/` (38 files moved), `ops/fix_dashes.py`, `ops/dashboard.py`, `ops/preflight.py`, five docs' citations, four `.py` comment citations, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, cycle (operator)
 
 **Did:** Checkout arrived shallow and detached (the standing symptom this prompt now unshallows before anything else); unshallowed, fast-forwarded onto `origin/main` (`7895ecb8`), clean. Read `BACKLOG-2026-09-07.md` in full, `STATUS.md`, `ops/NIGHTLY-LOG.md`'s last entries, and `CLAUDE.md`. `preflight.py` clean on arrival (0 gates failed, 23 pre-diagnosed warnings). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `ops/inbox_agent.py --apply`: no mail credential, as every prior sandbox this week. Every unblocked row in `BACKLOG-2026-09-07.md` sections 2-4 is again done or Phil-gated (section 1b's own finding already has issue #32 open), so per step 5d cold-read a low-mention `ops/*.py` file, `build_standards.py` (the free 20-sheet Standards Pack generator). Found a real, if currently latent, gap: `gate_downloads_noindex`'s own docstring already named `site/downloads/6S-Standards-Pack.html` as a manually-copied file with "nothing regenerates" it, and said outright that gate "cannot do itself, only catch if skipped" for the noindex/canonical tags specifically. Nothing checked the actual content: `gate_generator_ownership` proves `build/6S-Standards-Pack.html` is correctly derived from `content.json`, but nothing compared that file to the copy a real visitor's browser fetches at `/downloads/6S-Standards-Pack.html`. A future content fix (a corrected standard, a reworded trigger) that reran the generator but skipped the manual copy would ship a stale free lead magnet, invisible to every other check (audit_pages.py and the sitemap both deliberately skip `downloads/`). Checked directly: the two files are byte-identical today, so this closes a latent gap, not a live defect. New `gate_standards_pack_current` in `ops/preflight.py`, direct content comparison (the generator side is already covered elsewhere, so a second regenerate-and-diff would only duplicate `gate_generator_ownership`).
@@ -18,11 +36,11 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, the ops-file cold-read lane confirmed exhausted, a doc-sprawl handoff given instead)
 
-NEXT FOR THE OPERATOR: archive the 38 `RETRO-2026-08-*.md` cycle files (260K, none touched since August) into a `retro/` subdirectory rather than leaving them at repo root, because that is genuinely unblocked, non-Phil-gated, reversible cleanup work (CLAUDE.md 0.8) at a moment when every backlog row and every open GitHub issue is done or waiting on Phil, and the diagnostic method that has produced real findings for the last several days (cold-reading the lowest-mention `ops/*.py` file) has run dry.
+NEXT FOR THE OPERATOR: archive the 38 `retro/RETRO-2026-08-*.md` cycle files (260K, none touched since August) into a `retro/` subdirectory rather than leaving them at repo root, because that is genuinely unblocked, non-Phil-gated, reversible cleanup work (CLAUDE.md 0.8) at a moment when every backlog row and every open GitHub issue is done or waiting on Phil, and the diagnostic method that has produced real findings for the last several days (cold-reading the lowest-mention `ops/*.py` file) has run dry.
 
 **Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`7895ecb8`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, same count as the prior cycle, none new. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; `checks.yml` run 1005 on the prior PM cycle's own head (`2b06353a`) was still `in_progress` at ordinary timing (prior same-workflow runs on this repo have taken up to 29 minutes), not a stall.
 
-**Did:** re-ran the "rank `ops/*.py` by mentions in this log" method the last several cycles used to find real defects. Every one of 139 files now carries at least 9 mentions; the lowest-mention tier a prior cycle worked from (`build_kit_page.py`, `owner_inbox.py`, `stripe_setup.py`, etc.) is gone. Confirms, independently, what a same-day earlier cycle already reported ("minimum 8 mentions ... exhausted"): this specific lane is dry, not merely quiet today. Checked for a live network path to re-measure the 2-day-stale traffic/affiliate numbers myself (`curl` to `6s-success.com`, DNS resolves, connection itself returns exit 000): no egress from this sandbox, consistent with every prior cloud session. Read `RISKS.md`'s open items (`RISK-0011` masters backup, `RISK-0012` no audience retained, `RISK-0013` discovery is the constraint) and GitHub issue #21 (Stripe legal-entity/business-website fields) in full rather than trust their summaries: all three risks and the issue are genuinely current, not stale, no action available to a session without the missing credential. Noticed instead: 120 markdown files sit at repo root, including three backlogs (`BACKLOG.md`, `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md`), three roadmaps/dashboards' worth of near-duplicates, and 38 numbered `RETRO-2026-08-*.md` cycle retrospectives from the project's first two weeks, none modified since August. Checked before recommending: `RETRO-2026-08-3*` filenames are referenced from `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-H2.md`, `STATUS.md`, `docs/audit/CURRENT-STATE-AUDIT.md` and `RISKS.md`, so a move (not a delete) that keeps the filenames intact under `retro/` is the safe version of this; a straight `rm` would break those citations for no reason. Left the fix itself to the operator rather than doing it in this 30-minute slot, per this routine's own instruction not to start something large here.
+**Did:** re-ran the "rank `ops/*.py` by mentions in this log" method the last several cycles used to find real defects. Every one of 139 files now carries at least 9 mentions; the lowest-mention tier a prior cycle worked from (`build_kit_page.py`, `owner_inbox.py`, `stripe_setup.py`, etc.) is gone. Confirms, independently, what a same-day earlier cycle already reported ("minimum 8 mentions ... exhausted"): this specific lane is dry, not merely quiet today. Checked for a live network path to re-measure the 2-day-stale traffic/affiliate numbers myself (`curl` to `6s-success.com`, DNS resolves, connection itself returns exit 000): no egress from this sandbox, consistent with every prior cloud session. Read `RISKS.md`'s open items (`RISK-0011` masters backup, `RISK-0012` no audience retained, `RISK-0013` discovery is the constraint) and GitHub issue #21 (Stripe legal-entity/business-website fields) in full rather than trust their summaries: all three risks and the issue are genuinely current, not stale, no action available to a session without the missing credential. Noticed instead: 120 markdown files sit at repo root, including three backlogs (`BACKLOG.md`, `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md`), three roadmaps/dashboards' worth of near-duplicates, and 38 numbered `retro/RETRO-2026-08-*.md` cycle retrospectives from the project's first two weeks, none modified since August. Checked before recommending: `retro/RETRO-2026-08-3*` filenames are referenced from `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-H2.md`, `STATUS.md`, `docs/audit/CURRENT-STATE-AUDIT.md` and `RISKS.md`, so a move (not a delete) that keeps the filenames intact under `retro/` is the safe version of this; a straight `rm` would break those citations for no reason. Left the fix itself to the operator rather than doing it in this 30-minute slot, per this routine's own instruction not to start something large here.
 
 **Verified:** no source or generated file touched this pass; nothing shipped that needs re-verification beyond the standing `preflight.py` and CI checks above.
 
@@ -9593,7 +9611,7 @@ touched.
 origin/main again (issue #27's usual shape); working tree clean, reset to
 origin/main. Read the backlog, roadmap, CLAUDE.md and the last four log
 entries. `preflight.py` FAILED, not just warned: the dashes gate found 3 em
-dashes in `RETRO-2026-08-31-cycle29.md`, Phil's own retrospective, committed
+dashes in `retro/RETRO-2026-08-31-cycle29.md`, Phil's own retrospective, committed
 after the control-layer dash sweep. Fixed in place, reran `fix_dashes.py
 --check`: control layer clean. Enabled the new cycle 29 pre-commit hook
 locally (`git config core.hooksPath .githooks`) and it warned on the very
@@ -9629,7 +9647,7 @@ executable bit, not just `core.hooksPath`.
 outreach). Redeploy in Hostinger remains the single highest-value action.
 
 Pushed to main. `.githooks/pre-commit` (mode only), `ops/preflight.py`,
-`RETRO-2026-08-31-cycle29.md`, `ops/state.json`,
+`retro/RETRO-2026-08-31-cycle29.md`, `ops/state.json`,
 `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and this entry: no site
 content, no IndexNow, no Stripe sync, no price or product touched.
 
@@ -18261,7 +18279,7 @@ confirming a clean tree and none of the local commits reachable from any
 remote ref. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`
 and the last four log entries in full. Found the tip was Phil's own
 `0844fce`, a retrospective committed straight to main rather than a log
-entry: `RETRO-2026-08-26.md`, naming the wrong image-count claim, the
+entry: `retro/RETRO-2026-08-26.md`, naming the wrong image-count claim, the
 first-run gate, and two new process rules, one of them "check for a
 generator before hand editing anything under `site/`." All four gates
 clean on arrival. Walked all six epics in order: 1 through 4 fully blocked,
@@ -18274,7 +18292,7 @@ pages carried the same defect the 114 zone pages had before yesterday,
 Applying the fix surfaced a real problem: `ops/build_zone_pages.py`'s
 `offer()` function, the source for all 114 zone pages, still built the
 bare link. Yesterday's fix had edited the 114 generated files directly,
-never the generator, exactly what `RETRO-2026-08-26.md` names as a twice
+never the generator, exactly what `retro/RETRO-2026-08-26.md` names as a twice
 already earned lesson from two unrelated incidents. Fixed `offer()` to
 build `?zone=<slug>` from data it already has, fixed `room_offer()` the
 same way with a new `?room=<slug>`, added `findRoomBySlug()` and a `room`
@@ -18355,7 +18373,7 @@ per-room `quest.html?room=<slug>` link in `ops/build_resources.py`,
 reusing `findRoomBySlug()`. Regenerating showed the committed page carried
 two Stripe links and the signup withdrawal notice that the generator's
 own template never produced, a third occurrence of the "generator
-disagrees with its own real output" shape RETRO-2026-08-26.md already
+disagrees with its own real output" shape retro/RETRO-2026-08-26.md already
 named twice. Folded both into the template rather than restoring by
 hand, and filed issue #26 to record the pattern now that CLAUDE.md's
 three-strikes rule applies. Ran `build_seo.py` then `fingerprint_assets.py`
@@ -19090,7 +19108,7 @@ status --short` limited to `ops/build_seo.py`, `site/privacy.html`,
 `site/sitemap.xml`, and the three dashboard outputs.
 
 **Went well:** Checking for a generator before touching `site/privacy.html`
-directly, per the rule `RETRO-2026-08-26.md` and issue #26 both exist to
+directly, per the rule `retro/RETRO-2026-08-26.md` and issue #26 both exist to
 enforce, rather than patching the live file's title and moving on.
 
 **Did not go well:** The drift sat live long enough to ship a 70-char title,
@@ -20453,7 +20471,7 @@ awaits a Redeploy click. No Stripe sync.
 ## 2026-08-30, cycle (30th: extended the review gate the last retro asked for)
 
 **Did:** Checkout shallow again; reset local to origin/main. Phil's
-`RETRO-2026-08-30.md`: 114 zone heroes wired unreviewed, two visibly wrong,
+`retro/RETRO-2026-08-30.md`: 114 zone heroes wired unreviewed, two visibly wrong,
 fixed with a review-verdict gate; names the next gap: cards, before/after
 pairs, chapter figures still ungated. Verified, not trusted:
 `ops/import_generated_art.py` published a card sheet straight to the deck,
@@ -20537,7 +20555,7 @@ GitHub close) had both missed because neither checked the path a visitor
 actually hits.
 
 **Did not go well:** The `git checkout` near-miss above. Coincidentally
-the same mistake Phil's own second-cycle retro (`RETRO-2026-08-30-cycle2.md`,
+the same mistake Phil's own second-cycle retro (`retro/RETRO-2026-08-30-cycle2.md`,
 merged in mid-session) recorded independently this same day.
 
 **Changing next cycle:** None beyond the new gate; the near-miss above is
@@ -20708,7 +20726,7 @@ base again (issue #27, same shallow-clone shape as 8+ prior cycles);
 five days stale, so reset local to origin/main. Read the backlog, roadmap,
 CLAUDE.md and, since the last operator log entry was five cycles back
 (cycle 34), all nine of Phil's own commits since plus his
-`RETRO-2026-08-30-cycle6.md`: eight parallel specialist audits found the
+`retro/RETRO-2026-08-30-cycle6.md`: eight parallel specialist audits found the
 business had been unable to take money for at least three days, all six
 live payment links deactivated in Stripe and invisible to every
 repository-level check because a dead link still returns HTTP 200. He fixed
@@ -21295,7 +21313,7 @@ routine was created via http_api, and only a session that itself called
 create_trigger may update it, regardless of which session it currently
 fires into. This closes the question for good; no further attempts are
 worth making without a session that actually created the trigger. Also
-read RETRO-2026-08-31-cycle22.md, written directly by Phil this morning:
+read retro/RETRO-2026-08-31-cycle22.md, written directly by Phil this morning:
 two real defects found and fixed there (audit_catalog.py's price-drift
 regex truncating $9.99 to $9, and the dashboard's carry-forward writing
 to a key the renderer never read, showing "$19 of revenue" beside "None
@@ -21547,7 +21565,7 @@ content changed, no IndexNow, no Stripe sync, no price or product touched.
 **Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
 shape; working tree clean, reset local to origin/main rather than merging.
 Read the backlog, roadmap, CLAUDE.md, this file's last four entries, and the
-day's own RETRO-2026-08-31-cycle29.md and cycle30.md, since a concurrent
+day's own retro/RETRO-2026-08-31-cycle29.md and cycle30.md, since a concurrent
 session logs there under a different counter and had already found and fixed
 two real defects today (a 12 day silent MCP publish failure, and roughly three
 quarters of scheduled runs dropping to cron contention). `preflight.py` clean,
@@ -21718,7 +21736,7 @@ genuinely unrelated history (different root commits, not the usual
 shallow-clone illusion issue #27 names); working tree clean, no merge base
 either direction, reset local `main` to `origin/main`. Read the backlog,
 roadmap, `CLAUDE.md`, the last four log entries and
-`RETRO-2026-08-31-cycle34.md`. `preflight.py` clean, 8 standing warnings,
+`retro/RETRO-2026-08-31-cycle34.md`. `preflight.py` clean, 8 standing warnings,
 none new. GitHub: same 9 open issues, 0 PRs. Inbox agent: no mail
 credentials. Every backlog row walked: epics 1 to 4, 3B and 5B.4/5B.6 to
 5B.10 are Phil-blocked, credential-blocked, device-blocked, or claimed

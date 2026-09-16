@@ -73,7 +73,7 @@ a real function:
 - **Backup/restore:** `backup()` writes a JSON file; `restore(text)` reads one
   back. This is the exact shape `mobile/quest-app/lib/importProgress.js`
   parses; already exercised end to end with a real browser-produced file per
-  `RETRO-2026-08-31-cycle34.md`.
+  `retro/RETRO-2026-08-31-cycle34.md`.
 - **Recommendation engine:** `computeRecommendation()`, `nearestZone()`,
   `heldZones()`, `daysSince()`, `streak()` together implement audit-due and
   sustain-cadence logic. **Nothing in the mobile MVP has an equivalent.**
@@ -238,7 +238,7 @@ starting the parity build-out itself until 5B.4 closes.
 as JSON, not sampled), `site/sw.js` (existence and registration site),
 `site/privacy.html`, `site/accessibility.html`, `mobile/quest-app/App.js`
 (full read), `mobile/quest-app/README.md`, `mobile/quest-app/assets/quest-corpus.json`
-(header fields), `CURRENT_STATE_AUDIT.md`, `RETRO-2026-08-31-cycle34.md`,
+(header fields), `CURRENT_STATE_AUDIT.md`, `retro/RETRO-2026-08-31-cycle34.md`,
 `BACKLOG-2026-H2.md` epic 5B, one `WebFetch` against the live site (blocked,
 confirming the standing egress wall), one `WebSearch` query (returned
 low-confidence results, not used as evidence). `git status`/`git log` for the

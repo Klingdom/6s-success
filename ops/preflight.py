@@ -13364,7 +13364,7 @@ def gate_root_docs_six_s_terms() -> None:
     See check_six_s_terms() for the finding this closes and why it exists.
     """
     bad = []
-    for p in sorted(glob.glob(os.path.join(ROOT, "*.md"))):
+    for p in sorted(glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "retro", "*.md"))):
         text = io.open(p, encoding="utf-8", errors="replace").read()
         for problem in check_six_s_terms(text):
             bad.append(f"{os.path.basename(p)}: {problem}")

@@ -24,7 +24,7 @@ REVIEW BEFORE PUBLISH
 A sheet is not copied straight to the deck folder. It is staged under
 build/deck-review/<deck>/ first. ops/review_heroes.py exists because 114
 generated zone photos were wired onto live pages before anyone looked at
-one; RETRO-2026-08-30.md named this pipeline as carrying the same risk with
+one; retro/RETRO-2026-08-30.md named this pipeline as carrying the same risk with
 no equivalent gate, since size/ratio/flatness/banded-edge checks can tell a
 blank render from a photo but cannot tell a correct card from a garbled or
 mismatched one. So --apply now does two things every time it runs: stage any

@@ -7,7 +7,7 @@ WHY THIS EXISTS
 ops/review_heroes.py exists because 114 generated zone photographs were wired
 onto 114 live pages before anybody looked at one, and a spot check found a
 garage tool wall rendered as sawhorses. That cycle's own retrospective
-(RETRO-2026-08-30.md) named the next place the same failure was still
+(retro/RETRO-2026-08-30.md) named the next place the same failure was still
 possible: "The card decks... run through generators with no equivalent gate."
 
 ops/import_generated_art.py used to copy a finished card sheet straight into

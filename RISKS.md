@@ -183,7 +183,7 @@ evidence:
   - site/cart.html no longer states "Secure checkout arrives in v2"; that
     line is absent from the file as of this review
   - 2026-08-30: this route broke for real for at least three days (all six
-    live payment links deactivated in Stripe, RETRO-2026-08-30-cycle6.md),
+    live payment links deactivated in Stripe, retro/RETRO-2026-08-30-cycle6.md),
     found and fixed, and is now actively monitored for that specific
     failure mode (ops/check_live_links.py, wired into preflight.py), not
     merely built once

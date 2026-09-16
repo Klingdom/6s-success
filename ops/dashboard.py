@@ -1205,7 +1205,7 @@ S["cards_pdf_shipped"] = os.path.exists(
     os.path.join(ROOT, "site", "downloads", "6S-Entryway-Deck-PrintAndPlay.pdf"))
 
 # The control layer enforces the house style but was never measured against it.
-ctrl = glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)
+ctrl = glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True) + glob.glob(os.path.join(ROOT, "retro", "*.md"))
 S["ctrl_files"] = len(ctrl)
 S["ctrl_em"] = sum(read(f).count("—") for f in ctrl)
 S["ctrl_en"] = sum(read(f).count("–") for f in ctrl)
