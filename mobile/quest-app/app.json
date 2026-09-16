@@ -8,16 +8,23 @@
     "backgroundColor": "#1A272E",
     "splash": {
       "resizeMode": "contain",
-      "backgroundColor": "#1A272E"
+      "backgroundColor": "#1A272E",
+      "image": "./assets/splash.png"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.novaconsulting.sixssuccess.homequest"
     },
     "android": {
       "package": "com.novaconsulting.sixssuccess.homequest",
-      "adaptiveIcon": { "backgroundColor": "#1A272E" }
-    }
+      "adaptiveIcon": {
+        "backgroundColor": "#1A272E",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      }
+    },
+    "icon": "./assets/icon.png"
   }
 }
