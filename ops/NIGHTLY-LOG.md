@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (clean verification pass, no new defect, cold-read tier extended to the two least-checked hand-maintained legal pages)
+
+**Did:** Step 0 arrived shallow and detached; `git fetch --unshallow` (223 new commits) then `merge --ff-only` onto `origin/main` cleanly, landing on `0da0874d`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` ran clean to completion (moved to background after the 120s foreground cap, finished on its own): every gate passed, 23 warnings, all previously diagnosed sandbox limits, matching the prior cycle's own count exactly.
+
+**Checked GitHub and the inbox before picking new work.** 8 open issues re-read live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per this routine's own rule. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked rather than empty. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b's 23 catalogue kits (issue #32) correctly not reopened.
+
+**Went looking for genuinely new work in the hand-authored `site/*.html` cold-read tier**, per the prior cycle's own handoff. Ranked the 17 pages `ops/preflight.py`'s own `HAND_MAINTAINED_PAGES` registry names (not the stale `deck-gallery-mudroom.html` a much earlier cycle mis-tracked: that page is generator-owned, `gate_page_ownership_registry` already corrected this) by log-mention count and read the two least-checked: `disclaimer.html` (7 mentions) and `affiliate-disclosure.html` (8). Both read clean end to end. Specifically verified rather than assumed: `disclaimer.html`'s og:image file exists on disk; no non-`_generic` SKU with a refund promise in `data.js` is missing from `thanks.html`'s `PLANS` object (checked by direct script against the real catalogue, `gate_thanks_page_refund_promises` already covers the SKUs it does name); `affiliate-disclosure.html`'s claim that retailer links go only to `target.com` and `homedepot.com` holds against a direct grep of every zone page and `kit.html`, no third domain found; its cross-referenced claim on `privacy.html` that YouTube is never auto-embedded holds too, the one `<iframe>` construction found is inside a click handler, built from `youtube-nocookie.com` only after a user gesture, matching `privacy.html`'s own detailed disclosure of that exact behaviour. Also cold-read `mobile/quest-app/lib/eventLog.js` (10 mentions, among the tier's lower ones): correctly local-only, bounded at 300 events, its own 6-case test passes.
+
+**Verified:** full `preflight.py` clean (every gate passed, 23 warnings, all previously diagnosed), no page or price touched so `check_urls.py`/`audit_pages.py`/`affiliate.py --check` not rerun. Command deck regenerated (`ops/dashboard.py`); the only real change in it is the routine same-day drift (commit count, revenue still correctly shown carried forward from 2026-09-14, not reset to zero).
+
+**Went well:** the page-ownership registry (`gate_page_ownership_registry`) meant this cycle did not repeat the exact `deck-gallery-mudroom.html` misclassification three earlier cycles made; cross-checking a legal page's factual claims (retailer domains, refund promises, embed behaviour) against the real shipped files instead of just reading the prose for tone.
+
+**Did not go well:** nothing new found. The unblocked, undecided surface remains genuinely thin; this is the same "clean verification pass" shape most of today's cycles have logged.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Remaining unread hand-maintained pages by mention count: `how-we-make-money.html` (9), `about.html`/`invest.html`/`method.html` (12-13). Remaining unread `mobile/quest-app` lib file: `format.js` (8 mentions).
+
+Pushed to main. Command deck regenerated only (timestamp, commit count). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, state unchanged from the prior check-in, one file cleared from the cold-read handoff)
 
 NEXT FOR THE OPERATOR: continue the hand-authored `site/*.html` cold-read tier at `site/thanks.html` and `site/deck-gallery-mudroom.html`, because `site/404.html` came back clean this cycle and those two are the ones still named unread.
