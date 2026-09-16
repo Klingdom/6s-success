@@ -679,6 +679,7 @@ GENERATOR_OWNERSHIP_CHAIN = [
 # place now.
 GENERATOR_PROTECTED_ELSEWHERE = {
     "build_all_prompts.py": ("gate_card_prompts_desktop_only",),
+    "build_app_icons.py": ("gate_app_icons_current",),
     "build_card_prompts.py": ("gate_card_prompts_desktop_only",),
     "build_card_template.py": ("gate_card_related_links", "gate_deck_art_withheld"),
     "build_catalog.py": ("gate_marketplace_fix_current", "gate_zone_heroes_stable"),
@@ -3469,6 +3470,67 @@ def gate_icons_current() -> None:
              "ops/build_icons.py was committed after the icons it draws, so "
              "the shipped icons may predate a generator change. Run: python "
              "ops/build_icons.py and commit the result if anything changed.")
+
+
+# name -> (width, height), matches ops/build_app_icons.py's own main() saves.
+APP_ICON_FILES = {
+    os.path.join("mobile", "quest-app", "assets", "icon.png"): (1024, 1024),
+    os.path.join("mobile", "quest-app", "assets", "adaptive-icon.png"): (1024, 1024),
+    os.path.join("mobile", "quest-app", "assets", "splash.png"): (2048, 2048),
+    os.path.join("build", "listings", "app", "play-icon-512.png"): (512, 512),
+    os.path.join("build", "listings", "app", "feature-graphic-1024x500.png"): (1024, 500),
+}
+
+
+def gate_app_icons_current() -> None:
+    """The phone app's store art must not silently drift from its generator.
+
+    2026-09-16: ops/build_app_icons.py shipped the app's first icon, splash
+    and store-listing art (commit d142cad0), but landed outside both
+    gate_generator_ownership's regenerate-and-diff chain and
+    GENERATOR_PROTECTED_ELSEWHERE, so gate_every_generator_has_a_protection_plan
+    correctly failed: nothing checked these five PNGs against the generator
+    that draws them. Not folded into the regenerate-and-diff chain for the
+    same reason gate_icons_current is not: that needs Pillow, which
+    ops/requirements.txt deliberately keeps out of CI.
+
+    So this checks what a byte-diff cannot check portably: every file the
+    generator's own main() saves exists and decodes, via raw PNG IHDR
+    bytes, to the exact size main()'s own asserts require, and that the
+    generator has not been committed more recently than the art it draws.
+    """
+    src_path = os.path.join(ROOT, "ops", "build_app_icons.py")
+    if not os.path.exists(src_path):
+        return
+    missing, wrong_size = [], []
+    for rel, (want_w, want_h) in APP_ICON_FILES.items():
+        path = os.path.join(ROOT, rel)
+        if not os.path.exists(path):
+            missing.append(rel)
+            continue
+        with open(path, "rb") as fh:
+            head = fh.read(33)
+        if head[:8] != b"\x89PNG\r\n\x1a\n" or head[12:16] != b"IHDR":
+            wrong_size.append("%s (not a valid PNG)" % rel)
+            continue
+        w = int.from_bytes(head[16:20], "big")
+        h = int.from_bytes(head[20:24], "big")
+        if (w, h) != (want_w, want_h):
+            wrong_size.append("%s is %dx%d, expected %dx%d" % (rel, w, h, want_w, want_h))
+    if missing or wrong_size:
+        fail("app-icons-current",
+             "app store art does not match ops/build_app_icons.py's own "
+             "sizes. Run: python ops/build_app_icons.py. Missing: %s. Wrong "
+             "size: %s." % (missing or "none", wrong_size or "none"))
+        return
+    gen_ts = _last_commit_epoch("ops/build_app_icons.py")
+    art_ts = min((_last_commit_epoch(rel) or 0) for rel in APP_ICON_FILES)
+    if gen_ts and art_ts and gen_ts > art_ts:
+        warn("app-icons-current",
+             "ops/build_app_icons.py was committed after the art it draws, "
+             "so the shipped art may predate a generator change. Run: "
+             "python ops/build_app_icons.py and commit the result if "
+             "anything changed.")
 
 
 def gate_hazard_icons_current() -> None:
@@ -14364,6 +14426,7 @@ def main() -> int:
     run_gate(gate_done_items_single_source)
     run_gate(gate_cover_author_current)
     run_gate(gate_icons_current)
+    run_gate(gate_app_icons_current)
     run_gate(gate_hazard_icons_current)
     run_gate(gate_every_generator_has_a_protection_plan)
     run_gate(gate_head_scripts_non_blocking)

@@ -41,10 +41,17 @@ def app_sources() -> list:
     return sorted(out)
 
 
-# Anything that could carry a byte off the device.
+# Anything that could carry a byte off the device. fetch/XHR/WebSocket/
+# EventSource/sendBeacon/axios/FormData are banned everywhere, no exceptions,
+# including in the one file exempted below. The bare https?:// literal is
+# also banned by default, except for the one sanctioned external-navigation
+# link: lib/videoLink.js builds a youtube.com/watch URL only to hand to
+# Linking.openURL from an explicit Pressable onPress in App.js, the same as
+# a web page's <a href>, never fetched by the app itself, and guarded by a
+# strict YouTube id regex so no other host can be smuggled through it.
 NETWORK = re.compile(
     r"\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|navigator\.sendBeacon|"
-    r"axios|\bnew\s+FormData\b|https?://(?!schema\.org)", re.I)
+    r"axios|\bnew\s+FormData\b|https?://(?!schema\.org|www\.youtube\.com/watch)", re.I)
 
 # Legitimate mentions in prose. A comment explaining that there is no network
 # call must not be read as one, which is exactly the mistake I made about

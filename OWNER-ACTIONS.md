@@ -701,7 +701,7 @@ stands. Left the tracked verdict file untouched rather than guess at it.
 
 **Briefly reopened, then resolved, same 2026-09-15 afternoon.** Between the 11:17:08Z verdict above and this note, exactly one commit touched `site/`: `790a5d05` (a phone review by Phil himself, fixing the "One session: 30-45 min. most of it in Sort" grammar on 113 of 114 zone pages and labelling the empty zone-picture slot on room pages), moving the repository to build `587d80befe8bd586` with no newer verdict committed. This PM check-in flagged that gap; before it shipped, the same local session's own `11cfb6fd` landed, confirming production redeployed and current at `587d80befe8bd586` (checked 16:47:49Z). No action needed here now; recorded for continuity in case the tracked verdict ever falls behind again without a fresh commit to explain it.
 
-### 2. Run the 15 on-device app checks. About 20 minutes.
+### 2. Run the 16 on-device app checks. About 20 minutes.
 
 **What:** `cd mobile/quest-app && npx expo start --lan`, scan the QR with Expo
 Go, work through `mobile/quest-app/ON-DEVICE-TEST.md`.

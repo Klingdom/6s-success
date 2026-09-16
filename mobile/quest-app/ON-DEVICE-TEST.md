@@ -1,13 +1,14 @@
 # On-device test script
 
-Ten minutes, twelve checks. Each one names exactly what to expect, so the
-answer is a fact rather than an impression.
+Sixteen checks in two tiers: twelve core checks in about ten minutes, four
+more in about five. Each one names exactly what to expect, so the answer is a
+fact rather than an impression.
 
 Everything in this app has been proven from source: it bundles, the corpus
 matches the website, the merge rules are unit tested, no source file can reach
 the network, and every control carries a role and a label. **None of that
 required a phone, and none of it proves the app is usable on one.** These
-eleven checks are the part only a device can answer.
+sixteen checks are the part only a device can answer.
 
 Write the result in the right-hand column. If something is wrong, the exact
 words on screen are more useful than a description of them.
