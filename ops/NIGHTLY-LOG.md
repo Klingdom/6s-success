@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, one self-inflicted false gate failure found and cleared, no new unblocked item survives independent re-check)
+
+**Previous work: finished.** Checkout arrived shallow and detached, 106 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`7d3e68cc`, the RISK-0009 close), clean, no conflict.
+
+**Did:** ran `preflight.py` fresh rather than trust the log's own "clean" claim. A first run, capped at 110s by my own tooling timeout, was killed mid-render and left `build/listings/etsy/` dirty (two Etsy PDFs modified from HEAD), which made the very next run FAIL `gate_etsy_pdfs_current` for real ("already differs from HEAD"). Traced rather than assumed: diffed the PDF bytes directly, the only difference was the embedded Skia `CreationDate`/`ModDate` timestamp, confirming it was this session's own killed process, not a real regression. Restored `build/listings/etsy/` to HEAD and reran `preflight.py` uninstructed for its own full 108s: every gate passed, the same 23 pre-diagnosed warnings, none new. Re-verified independently rather than cited: 8 GitHub issues live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, section 1b still correctly waiting on Phil at issue #32; `STATUS.md`'s own header already reflects the current head. Checked CI directly: `checks.yml` run 1013 on the current head was `in_progress` at ordinary timing when this cycle closed; two earlier same-day "Command deck regen only" pushes show `cancelled` conclusions, the ordinary per-ref concurrency cancellation this repo already runs into under rapid pushes, not a new defect.
+
+**Went well:** treating my own gate failure as a claim to root-cause rather than either reporting it as a live defect or silently re-running until it went away.
+
+**Did not go well:** the same shallow/detached checkout shape on attach; killing a long-running `preflight.py` invocation myself is what caused the one FAIL this cycle found, worth remembering for any future slot working against this same 108s-plus generator.
+
+**Changing next cycle:** none; no real defect found, nothing to gate.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Confirm `checks.yml` run 1013 on `7d3e68cc` lands green at the next opportunity; nothing else handed to the operator this slot beyond the standing queue.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (picked up a concurrent session's own handoff: the stale claude-files mirror retired, RISK-0009 closed)
 
 **Did:** picked up the prior PM check-in's own handoff below ("investigate and likely remove `content/book/6s-success-claude-files/`") rather than opening a fresh sweep, since `CLAUDE.md` 0.2 says fix a reported problem once rather than report it a third time (it was already named in `RISKS.md` RISK-0009 and `CONTENT-STANDARDS.md` before this handoff repeated it). Checked before removing, not assumed: no `ops/build_*.py` generator reads the directory (`build_epub.py`'s own chapter glob matches `*hapter*`, absent from this directory's name); `ops/corpus_index.py` indexes it only as raw material, and a direct query of the real `ops/corpus-index.json` confirmed 0 of its 79 files were ever scored "ready" to post, so nothing from it could have reached the social-draft pipeline. Diffed a sample file (`CLAUDE.md`) against the real one: 148 lines behind, missing the entire section 0 added since, confirming it genuinely is the stale pre-fix mirror the risk register already described.
