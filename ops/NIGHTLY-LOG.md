@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, ops/*.py cold-read lane confirmed exhausted, handed the operator a genuinely unswept tier)
+
+NEXT FOR THE OPERATOR: cold-read the low-mention root markdown docs (`AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`, `APP-DEVELOPMENT-PLAN.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-SCHEDULER.md`, `CUSTOMER-JOURNEY.md`, `DECK-SYSTEM.md`, `EXECUTIVE-DASHBOARD.md`, `REPORT-2026-09-02.md`, `SELF-IMPROVEMENT.md`, `SPENDING.md`, `SYSTEM-REGISTRY.md`, `TESTING.md`, each cited 2 or fewer times in this log against every `ops/*.py` file's floor of 9+), because that code-file lane is confirmed exhausted today (recomputed directly, not cited) while this document tier has never been swept the same way, and section 7 of `BACKLOG-2026-09-07.md` names exactly this shape, a source corrected somewhere while the document nobody re-reads still states the old fact, as the dominant defect class this repository keeps finding.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`dad51d85`, the prior PM check-in's own clean sweep), no conflict. Working tree was already clean and main already pushed.
+
+**Did:** ran `preflight.py` fresh rather than cite the prior cycle's claim. First run hit this session's own tool timeout mid-render and left three dashboard-output files dirty, the same self-inflicted shape several prior PM cycles have already hit and diagnosed; restored to HEAD and reran uninstructed at full length (590s): every gate passed, the same 23 pre-diagnosed warnings, none new. Re-verified rather than trusted: 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs, matching the dashboard's own count. Read `BACKLOG-2026-09-07.md` in full (not sampled): every row in sections 2 to 4 (micro zones, decks, images and video) is struck through done or explicitly marked Phil-gated; section 1b (23 unexplained catalogue entries) is a content decision correctly parked at issue #32; section 5 is deliberately on hold pending evidence; section 6 is the same four owner gates already in `OWNER-ACTIONS.md`. Recomputed the `ops/*.py` cold-read mention floor directly against the real log rather than trust the last cycle's number: every file sits at 9 or more, confirming that lane is still genuinely exhausted, not just quiet today. Computed the same count for root `*.md` docs as a comparison: sixteen files sit at 2 or fewer, a tier this log's own history shows has never been worked the way `ops/*.py` has.
+
+**The honest finding: none new.** No defect found to fix this slot; every angle re-derived what today's prior cycles already established rather than turning up something fresh.
+
+**Went well:** recomputing the exhaustion claim and the backlog-clean claim directly instead of citing them, and finding a genuinely different, unswept tier to hand off rather than repeating "keep reading `ops/*.py`" into a lane that is provably dry.
+
+**Did not go well:** the same shallow/detached checkout shape on attach; the same self-inflicted killed-preflight artifact on the first run, worth a standing note that a full `preflight.py` run needs more than this tool's short default timeout.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, the Listmonk decision) and the 8 open GitHub issues, unchanged. Root-doc cold-read tier handed to the operator above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, prior handoff swept clean, no new unblocked item survives independent re-check)
 
 **Previous work: finished.** Checkout arrived shallow and detached, 111 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`f0543afd`, a command-deck-only regen sitting on top of the RISK-0003 fix), clean, no conflict. Working tree was already clean and main already pushed.
