@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (CI-1030 confirmation closed, no new unblocked item survives, one near-miss caught before it shipped)
+
+**Did:** checkout arrived shallow and detached; step 0 (`git fetch --unshallow`, `merge --ff-only`) attached cleanly onto `origin/main` (`169ec013`), 169 commits fast-forwarded, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, the top of `ops/NIGHTLY-LOG.md` (newest-first; confirmed again this is the correct end to read, not the physically-last, older, mislabelled 2026-09-04 tail). `preflight.py` clean on arrival: every gate passed, 24 pre-diagnosed sandbox warnings, none new. `inbox_agent.py --apply`: no mail credential, unchecked not empty, matching every prior cycle.
+
+**Verified:** confirmed `checks.yml` run 1030 on `ecb4088b` via the Actions API directly rather than trusting the prior cycle's own "handing to the operator" note: `conclusion: success`, closing that handoff. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable (#32's 23-catalogue-entries decision and #2's art regen both correctly Phil's). `BACKLOG-2026-09-07.md` sections 2 to 6 again read in full: every row done or owner-gated (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+
+**Went looking for genuinely new work rather than accept a fourth straight "nothing new" without checking.** Cold-read `ops/wire_breadcrumbs.py` (`--check`: 0 would change, 27 already correct, clean) and `ops/wire_nav.py` per step 5d, both low-mention files. Ran `wire_nav.py` directly to verify it is still idempotent against the live site, since its own docstring claims exactly that. It is not: it stripped `aria-current="page"` from 5 pages (method.html, consulting.html, book.html, resources.html, zones/index.html), because nothing calls `ops/wire_aria_current.py` after it and no generator chains `wire_nav.py` at all. Caught before committing (`git diff` on the 5 files, reverted with `git checkout --`), and confirmed this is not a new gap: `gate_nav_current`, found 2026-09-10 reading this exact file cold, already exists for precisely this defect shape and already ran clean on the pre-touch state. No fix needed; the existing gate already covers what would have shipped had this gone uncaught, and it has no dedicated `ops/tests/test_*.py` file, which is a real but minor gap I am leaving for a cycle with room to write one rather than rushing a test under this cycle's own time budget.
+
+**Went well:** actually running a "should be idempotent" tool instead of only reading it, which is what surfaced the near-miss; catching it with a diff check before it reached the working tree, let alone a commit.
+
+**Did not go well:** same shallow/detached checkout shape on arrival, handled in seconds by step 0 as always; nearly committed an accessibility regression by trusting a docstring's own idempotency claim without a diff check first.
+
+**Changing next cycle:** none; the protecting gate already exists and is correctly the reason nothing shipped.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged. A small remaining gap: `gate_nav_current` has no dedicated test file, worth 20 minutes for a cycle that is not otherwise full.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently reverified, nothing new unblocked survives)
 
 **Previous work: finished.** Step 0 attached cleanly onto `origin/main` (`eb2e40f5`, the doc-sprawl closure plus its own dashboard regen), no conflict. `preflight.py` clean on arrival: every gate passed, 24 pre-diagnosed warnings, none new, matching the prior cycle's own claim rather than trusting it. Working tree clean, main already pushed. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; section 1b's 23 unexplained catalogue entries already sit in issue #32 for Phil. `checks.yml` run 1030 on `ecb4088b` was still `in_progress` at read time, ordinary timing against run 1029's own 29-minute duration, not polled to completion here.
