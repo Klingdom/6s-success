@@ -58,10 +58,11 @@ with the web Quest, notifications, purchases, or a store presence. Two of those
 
 Everything else is speculation until this is done.
 
-- Run the 12 checks in `mobile/quest-app/ON-DEVICE-TEST.md`.
+- Run the 15 checks in `mobile/quest-app/ON-DEVICE-TEST.md` (11 core, plus 4
+  more if there is time).
 - Scan the Expo QR, confirm the loop, persistence, offline, screen reader,
   Dynamic Type, and the web import.
-- **Exit criterion:** 12 of 12 pass, or a written list of what did not.
+- **Exit criterion:** 15 of 15 pass, or a written list of what did not.
 
 **Why it is first:** every claim in section 1 that says "from source" becomes
 either confirmed or a defect list. A failure here is worth more than a pass.

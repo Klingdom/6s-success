@@ -4165,6 +4165,15 @@ def gate_on_device_check_count() -> None:
     tables (lines matching "| N |") and asserting every "N on-device
     check(s)" phrase found elsewhere in the repo names that same number, not
     by trusting either document to describe the other correctly.
+
+    Widened 2026-09-16, PM check-in: the "N on-device checks" phrasing this
+    gate checked was not the only one that drifts. APP-DEVELOPMENT-PLAN.md's
+    own Phase 0 section said "Run the 12 checks in ON-DEVICE-TEST.md" and
+    "Exit criterion: 12 of 12 pass," and GOALS.md's O5 key result said "12 of
+    12 checks pass," neither of which the original regex could see, while the
+    real file had already moved to 15. Found stale, fixed by hand, and the
+    gate extended with two more patterns and GOALS.md added as a referrer so
+    this exact wording gap cannot reopen unnoticed.
     """
     script_path = os.path.join(ROOT, "mobile", "quest-app", "ON-DEVICE-TEST.md")
     if not os.path.exists(script_path):
@@ -4176,17 +4185,23 @@ def gate_on_device_check_count() -> None:
              "this gate could not verify the count quoted elsewhere.")
         return
     real_count = len(rows)
-    referrers = ["OWNER-ACTIONS.md", "APP-DEVELOPMENT-PLAN.md"]
+    referrers = ["OWNER-ACTIONS.md", "APP-DEVELOPMENT-PLAN.md", "GOALS.md"]
+    patterns = [
+        r"(\d+)\s+on-device\s+(?:app\s+)?checks?",
+        r"(\d+)\s+checks?\s+in\s+`?mobile/quest-app/ON-DEVICE-TEST\.md`?",
+        r"(\d+)\s+of\s+\1\s+(?:checks\s+pass|pass)",
+    ]
     stale = []
     for name in referrers:
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
         text = io.open(p, encoding="utf-8").read()
-        for m in re.finditer(r"(\d+)\s+on-device\s+(?:app\s+)?checks?", text, re.IGNORECASE):
-            quoted = int(m.group(1))
-            if quoted != real_count:
-                stale.append(f"{name} says {quoted}")
+        for pattern in patterns:
+            for m in re.finditer(pattern, text, re.IGNORECASE):
+                quoted = int(m.group(1))
+                if quoted != real_count:
+                    stale.append(f"{name} says {quoted}")
     if stale:
         fail("on-device-check-count",
              f"ON-DEVICE-TEST.md defines {real_count} numbered checks, but "

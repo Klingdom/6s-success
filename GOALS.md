@@ -246,7 +246,7 @@ approves, only the affiliate tag needs adding, not a page rebuilt.
 
 | Key result | Baseline | Target |
 |---|---|---|
-| Verified on a real phone | **no** | 12 of 12 checks pass |
+| Verified on a real phone | **no** | 15 of 15 checks pass |
 | Store listings | none | both stores |
 
 **Why it is fifth, not first:** an app is a retention tool. Retention of zero

@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real stale-count gap found in the gate meant to catch it)
+
+**Previous work: finished.** Shallow/detached checkout, unshallowed and fast-forwarded onto `origin/main` (`62514eeb`), clean. `preflight.py` clean before touching anything. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated, section 5 on hold.
+
+**Found and fixed:** `APP-DEVELOPMENT-PLAN.md` said "Run the 12 checks" and "12 of 12 pass" for the on-device test script, against its own section 6 table's correct "15." `GOALS.md`'s O5 key result also said "12 of 12 checks pass." Real count in `mobile/quest-app/ON-DEVICE-TEST.md` is 15 (11 core + 4 extra). `gate_on_device_check_count` existed for exactly this defect class but its regex only matched "N on-device checks," missing both phrasings. Fixed both docs, widened the gate with two more patterns plus `GOALS.md` as a referrer, proved fail-then-pass by planting the old text.
+
+**Next:** operator, the root-doc cold-read tier (16 large aspirational docs) is still unswept; two small ones sampled this slot (`SPENDING.md`, `REPORT-2026-09-02.md`) came back clean.
+
+Pushed to main.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished and confirmed, a real RISKS.md self-inconsistency found and closed)
 
 NEXT FOR THE OPERATOR: cold-read the low-mention root markdown docs (`AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`, `APP-DEVELOPMENT-PLAN.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-SCHEDULER.md`, `CUSTOMER-JOURNEY.md`, `DECK-SYSTEM.md`, `EXECUTIVE-DASHBOARD.md`, `REPORT-2026-09-02.md`, `SELF-IMPROVEMENT.md`, `SPENDING.md`, `SYSTEM-REGISTRY.md`, `TESTING.md`), because two PM cycles ago handed this off already and nothing has swept it since (confirmed via `git log 990035a8..HEAD`, only the sample-PDF spelling gate and this cycle's own work landed in between); it is the one genuinely unworked tier left once every backlog row in sections 2 to 6 of `BACKLOG-2026-09-07.md` is re-confirmed done or Phil-gated and the 8 GitHub issues are re-confirmed unchanged, all `decision`/`blocked-on-art`.
