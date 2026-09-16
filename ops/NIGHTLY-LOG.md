@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (arrived mid a burst of concurrent sessions on the same defect; own fix rebased to a no-op, nothing new survives)
+
+**Step 0/1:** attached onto `origin/main` (`0ab37390`, Phil's own Home Quest watch-video/finish-picture commit) via `fetch --unshallow` + `merge --ff-only`, 177 commits fast-forwarded, no conflict. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries.
+
+**Step 2: preflight failed on arrival**, same shape the entry above this one also hit: `mobile-corpus-current` (`mobile/quest-app/assets/quest-corpus.json` stale against `site/assets/js/quest-data.js`, the file `0ab37390` edited) and its downstream `tests` failure. Fixed it the same way, per STEP 2, before checking whether anyone else had: ran `ops/build_mobile_corpus.py`, confirmed the only diff was the checksum (the mobile builder does not read the new video/picture fields), reran `preflight.py --fast` clean, all 163 `ops/tests/test_*.py` files individually, mobile `npm test` (4 suites), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), all clean.
+
+**Shipped via `ops/ship.py --no-deploy` and only then found the duplicate:** the push landed as `90101037`, and `git log` on the fresh fetch it rebased against showed two concurrent sessions had independently hit and fixed the identical gate in the several minutes this cycle was running (`b2bdf921`, then `edfd0c9d` with a second, unrelated dashboard dead-link fix, both already logged above). `ops/ship.py`'s rebase correctly absorbed this: `git show --stat 90101037` confirms the corpus file carries zero diff against its parent, so nothing duplicate actually shipped, only a command-deck regen. CI run 1032 on `0ab37390` itself had already failed `success` to `failure` the same way, confirming this was a real, live gap Phil's own commit introduced, not a false alarm, and the gate that exists for exactly this shape (`gate_generator_chains_fingerprint`'s sibling, `mobile-corpus-current`) caught it in three independent places (this session, a concurrent session, and CI) the way it should.
+
+**Verified nothing else survives:** 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b's finding stays on issue #32. No mail credential in this sandbox, `inbox_agent.py --apply` correctly reports unchecked, not empty.
+
+**Went well:** treating the failed preflight as this cycle's actual work per STEP 2, same as every peer session did independently; verifying the shipped commit's real diff rather than trusting `ship.py`'s "push ok" at face value, which is what caught the duplication was harmless rather than assuming it.
+
+**Did not go well:** three sessions (at least) spent real work on the identical gate within about ten minutes of each other, because nothing coordinates concurrent scheduled cycles against the same repo. CLAUDE.md section 40 already names "avoid multiple agents independently changing production" as a principle; this is the same failure mode in miniature, harmless here only because `ops/ship.py`'s rebase happens to de-duplicate an identical regenerated file. A same-shaped race over a hand-authored file would not resolve so cleanly.
+
+**Changing next cycle:** none for the code; noting the race here because it is a real, if currently low-cost, gap in the operating model, not something a single cycle can fix.
+
+**Next:** confirm CI lands green on the current tip. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main (`90101037`, net effect: command deck regen only, the substantive fix already shipped by a concurrent session). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work was NOT finished on arrival, a real preflight failure closed and a checker false-positive fixed)
 
 **NEXT FOR THE OPERATOR: confirm CI lands green on `edfd0c9d`, because that is the only open thread; nothing new unblocked survived independent re-check of `GOALS.md`, `BACKLOG-2026-09-07.md` and the 8 open GitHub issues.**
