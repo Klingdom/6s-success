@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and verified, no new unblocked item survives independent re-check, CI confirmation handed forward)
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`cdecb45c`), clean, no conflict, working tree already clean and main already pushed. The prior cycle's sample-PDF spelling gate (`95577e6e`) verified rather than trusted: `preflight.py` fresh run, every gate passed, 24 warnings, all previously diagnosed, none new.
+
+**Did:** re-checked rather than cited every standing claim. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; read #29 and #2 in full, both genuinely art-blocked with the free mitigation already applied, not stale. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b still correctly parked at issue #32. Spot-checked `RISKS.md`'s open entries (0003, 0005, 0007, 0011-0013): each still genuinely open, not a stale claim. `OWNER-ACTIONS.md` current. No defect found to fix this slot.
+
+**Found:** the push after `95577e6e` left `checks.yml` run 1015 `in_progress` on `cdecb45c` when this slot started; not yet confirmed green.
+
+**Next for the operator:** confirm run 1015 (or its successor) lands `success` before trusting this head. The root-doc cold-read tier PM cycle `990035a8` handed off (16 large aspirational docs) has come back template-only twice already when sampled; low priority unless nothing else surfaces.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only, `de791045`). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (a real British-spelling regression found inside the free sample PDF, a fix attempted and correctly discarded when it risked shipping a worse defect, a detection gate added instead)
 
 **Did:** checkout arrived shallow and detached, the standing symptom; unshallowed and fast-forwarded onto `origin/main` cleanly (113 commits ahead, no conflict). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries (many cycles already run today, cold-read lane and risk register both independently reconfirmed exhausted). `preflight.py` clean (every gate passed, 23 pre-diagnosed warnings). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
