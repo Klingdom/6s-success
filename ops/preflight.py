@@ -690,7 +690,8 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
     "build_kdp_cover.py": ("gate_kdp_cover_current",),
     "build_kitchen_deck.py": ("gate_kitchen_deck_current",),
-    "build_manual_print.py": ("gate_front_matter_filled",),
+    "build_manual_print.py": ("gate_front_matter_filled",
+                               "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
     "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
                       "gate_site_verification_declared",
@@ -12023,6 +12024,74 @@ def gate_kdp_cover_current() -> None:
              % (p.returncode, p.stdout.strip()[-300:]))
 
 
+def gate_manual_print_fonts_current() -> None:
+    """The print edition's embedded fonts must not predate a real font change.
+
+    ops/build_manual_print.py's embed_fonts() inlines each face straight from
+    site/assets/fonts/*.woff2 as a base64 data URI, so the vendor file needs
+    no network. content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html was
+    last regenerated 2026-08-21 ("Make the book and the manual buyable").
+    Commit 7e7d1db7 (2026-09-15, Phil) re-cut Newsreader-400-normal and
+    Inter-400-normal from full variable fonts down to the one weight the CSS
+    actually declares, shrinking those two files by roughly half; nothing
+    reran the print builder afterward, so the committed print edition still
+    embeds the old, larger variable-font data for both faces. `gens` in
+    gate_generator_ownership does not reach this generator (it lives outside
+    ops/), and gate_front_matter_filled, the one check already mapped to
+    build_manual_print.py in GENERATOR_PROTECTED_ELSEWHERE, only checks the
+    copyright page's bracketed fields, never the fonts. This is the same
+    "source corrected, artifact never re-derived" shape gate_kdp_cover_current
+    and gate_etsy_pdfs_current already guard elsewhere, just never connected
+    to this file. No live customer has received the stale copy: MZ-MANUAL is
+    fulfilled from content/manual/micro-zone-manual-publishable.html (Google
+    Fonts, not embedded), and the print edition itself is not yet submitted
+    anywhere (Amazon KDP account creation is still owner-gated). Checked
+    directly: regenerating today drops the file from 1,601,422 to 1,469,306
+    bytes, only the two @font-face blocks named above differ, and running the
+    regenerate twice back to back is byte-identical, so this closes a latent
+    gap, not a live one.
+
+    Same regenerate-and-diff method as gate_kdp_cover_current, scoped to the
+    one file that embeds fonts (MANUAL and PUBLISHABLE do not: they link
+    Google Fonts, so a font-file change never touches their bytes and diffing
+    them here would only add false-positive risk from unrelated content
+    drift, which gate_front_matter_filled and the manual's own build already
+    watch). Refuses an already-dirty tree, runs the real generator, diffs,
+    restores every file the generator can touch either way.
+    """
+    script = os.path.join(ROOT, "ops", "build_manual_print.py")
+    out_rel = "content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html"
+    touched = [out_rel,
+               "content/manual/6S Home Micro Zone SOP Field Manual v3.html",
+               "content/manual/micro-zone-manual-publishable.html"]
+    out_abs = os.path.join(ROOT, out_rel)
+    if not (os.path.exists(script) and os.path.exists(out_abs)):
+        return
+    dirty = [t for t in touched if t in worktree_changes()]
+    if dirty:
+        fail("manual-print-fonts-current",
+             "could not check: %s already differs from HEAD, so a diff "
+             "afterward would not mean anything. Commit or stash first."
+             % dirty)
+        return
+    p = subprocess.run([PY, script], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    changed = out_rel in worktree_changes()
+    _restore(touched)
+    if changed:
+        fail("manual-print-fonts-current",
+             "%s does not match what ops/build_manual_print.py produces "
+             "from the current site/assets/fonts/*.woff2. The print edition "
+             "would embed stale font data. Run: python ops/build_manual_print.py"
+             % out_rel)
+    elif p.returncode != 0:
+        fail("manual-print-fonts-current",
+             "ops/build_manual_print.py could not regenerate the print "
+             "edition it normally produces (exit %d), and the committed "
+             "file was left unchanged rather than proven current: %s"
+             % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
+
+
 def _epub_word_count(epub_path: str) -> int | None:
     """Recompute the EPUB's word count the same way
     build/listings/verify_epub.py does (strip tags from every spine XHTML
@@ -13827,6 +13896,7 @@ def main() -> int:
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
     run_gate(gate_kdp_cover_current)
+    run_gate(gate_manual_print_fonts_current)
     run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_etsy_pdfs_current)
