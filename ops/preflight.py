@@ -3457,8 +3457,15 @@ def gate_store_art():
             if not declared:
                 fail("store-art", "app.json declares no %s, so the build has no %s" % (label, label))
                 continue
-            p = os.path.join(ROOT, "mobile", "quest-app",
-                             declared.lstrip("./").replace("/", os.sep))
+            # lstrip strips a character set, not a prefix, so it keeps eating any
+            # leading "." or "/" it finds: "./.hidden.png" becomes "hidden.png" and
+            # ".//weird.png" becomes "weird.png". Today every declared path survives
+            # it, which is precisely why it would sit here unnoticed until the day a
+            # dotted filename arrives and the gate reports a missing file that is
+            # sitting right there. A false failure in a release gate is worse than no
+            # gate, because somebody trusts it and goes hunting.
+            rel = re.sub(r"^\./", "", declared)
+            p = os.path.join(ROOT, "mobile", "quest-app", *rel.split("/"))
             if not os.path.exists(p):
                 fail("store-art", "app.json %s points at %s which does not exist" % (label, declared))
 
