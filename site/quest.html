@@ -713,6 +713,11 @@ if ("serviceWorker" in navigator) {
     </div>
     <div class="q-row" style="margin-top:14px;justify-content:space-between">
       <a class="btn btn-ghost btn-sm" id="c-zone-link" href="#">Read the full method for this zone</a>
+      <!-- Shown only for the zones whose video is actually published (12 of
+           114 today), filled by renderCard() from the zone's own id. A link,
+           not an embed: nothing is requested from YouTube until it is pressed,
+           the same promise the zone pages make. -->
+      <a class="btn btn-ghost btn-sm" id="c-watch-video" href="#" target="_blank" rel="noopener" hidden>Watch this zone</a>
       <button class="btn btn-ghost btn-sm" id="c-stop">Stop here</button>
     </div>
   </section>
@@ -730,8 +735,18 @@ if ("serviceWorker" in navigator) {
          zone's own "what done looks like", so the reader leaves holding the
          thing they are meant to keep rather than a percentage. -->
     <div id="f-held" class="q-mode" hidden style="margin-top:18px">
-      <h2 id="f-held-head"></h2>
-      <p id="f-held-standard"></p>
+      <!-- The zone just finished, pictured. The working card deliberately
+           keeps its own picture small (see #c-thumb), because there the
+           instruction is what must be read; here the work is done, and the
+           picture is the place it was done in. Empty for the zones with no
+           approved picture, which stay text, as they do everywhere else. -->
+      <div class="rec-row">
+        <span id="f-held-pic"></span>
+        <div style="flex:1;min-width:0">
+          <h2 id="f-held-head"></h2>
+          <p id="f-held-standard"></p>
+        </div>
+      </div>
     </div>
     <p class="q-recap" id="f-recap" hidden aria-hidden="true"></p>
     <p class="q-recap-note" id="f-recap-note" hidden></p>
@@ -815,9 +830,9 @@ if ("serviceWorker" in navigator) {
   </div>
 </footer>
 
-<script src="assets/js/quest-data.js?v=7709404e31"></script>
+<script src="assets/js/quest-data.js?v=12d484b2fd"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=69cc908211"></script>
+<script src="assets/js/quest.js?v=addfeceea2"></script>
 <script src="assets/js/site.js?v=1b922dd0ac"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->

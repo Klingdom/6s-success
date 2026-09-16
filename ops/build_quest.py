@@ -91,6 +91,32 @@ PURPOSE = {
 }
 
 
+PUBLISHED = os.path.join(ROOT, "ops", "youtube-published.json")
+
+
+def published_videos() -> dict:
+    """{zone stem: YouTube id} for zones whose video is actually published.
+
+    Added 2026-09-16. Twelve zone videos are live on YouTube and every zone
+    page links its own, but the app offered none, so the one surface a person
+    is actually working in could not show the zone being done. The file is
+    keyed by exactly the stem build_data() computes below (room slug, two
+    dashes, raw zone name), so this is a lookup, not a guess.
+
+    Only an id that looks like a YouTube id is carried: a half-written entry
+    would otherwise ship a dead link into the app. A missing file is normal
+    in a checkout with no publishing history and yields no videos at all.
+    """
+    if not os.path.exists(PUBLISHED):
+        return {}
+    out = {}
+    for stem, rec in json.load(io.open(PUBLISHED, encoding="utf-8")).items():
+        vid = (rec or {}).get("video_id") if isinstance(rec, dict) else None
+        if isinstance(vid, str) and re.fullmatch(r"[A-Za-z0-9_-]{11}", vid):
+            out[stem] = vid
+    return out
+
+
 def approved_and_published() -> set:
     """Stems that MUST appear, independent of what is on disk right now.
 
@@ -238,7 +264,8 @@ def build_symptoms(raw_rooms: list, zone_lookup: dict) -> list:
 def build_data() -> tuple[str, dict]:
     d = json.load(io.open(SRC, encoding="utf-8"))
     art = heroes()
-    rooms, cards, pictured = [], 0, 0
+    vids = published_videos()
+    rooms, cards, pictured, videoed = [], 0, 0, 0
 
     for r in d["rooms"]:
         zones = []
@@ -275,6 +302,12 @@ def build_data() -> tuple[str, dict]:
             if stem in art:
                 zones[-1]["img"] = stem
                 pictured += 1
+            # The zone's own published video, for the 12 that have one. A link
+            # only: nothing is requested from YouTube until somebody presses it,
+            # which is the same promise the zone pages make.
+            if stem in vids:
+                zones[-1]["video"] = vids[stem]
+                videoed += 1
         if zones:
             rooms.append({"room": r["room"], "slug": slug(r["room"]), "zones": zones})
 
@@ -289,7 +322,7 @@ def build_data() -> tuple[str, dict]:
                                          separators=(",", ":")) + ";\n")
     return js, {"rooms": len(rooms),
                 "zones": sum(len(r["zones"]) for r in rooms),
-                "cards": cards, "pictured": pictured,
+                "cards": cards, "pictured": pictured, "videoed": videoed,
                 "kb": len(js.encode()) // 1024}
 
 
@@ -301,6 +334,9 @@ def main() -> int:
           f"{stats['cards']} cards, {stats['kb']} KB")
     print(f"  pictures       {stats['pictured']} of {stats['zones']} zones carry "
           f"a reviewed image; the rest render text, as they always did")
+    print(f"  videos         {stats['videoed']} of {stats['zones']} zones carry a "
+          f"published video id; the app links it, and requests nothing from "
+          f"YouTube until somebody presses it")
 
     # Guard the two claims the whole method rests on. A generated file is
     # exactly where a quiet reordering would survive unnoticed.

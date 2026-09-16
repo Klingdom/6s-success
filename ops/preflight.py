@@ -4015,6 +4015,77 @@ def quest_data_stale_heroes(data: dict, allowed: set) -> dict:
     return {stem: where for stem, where in shipped.items() if stem not in allowed}
 
 
+def quest_data_unpublished_videos(data: dict, allowed: dict) -> dict:
+    """Every "video" id in `data` that is not the published id for its own
+    zone, mapped to what is wrong with it. Pure: no file I/O, so this gate's
+    own test can drive it directly, the same shape as
+    quest_data_stale_heroes() above.
+
+    `allowed` is {zone stem: published id}. A zone in the payload is matched
+    by its own "img" stem where it has one; a zone with a video but no
+    picture is matched by name against the same map, because the stem is the
+    room slug and the raw zone name, which build_quest.py computes for every
+    zone whether or not a picture was ever approved.
+    """
+    bad = {}
+    for r in data.get("rooms") or []:
+        for z in r.get("zones") or []:
+            vid = z.get("video")
+            if not vid:
+                continue
+            stem = z.get("img")
+            want = allowed.get(stem) if stem else None
+            if want is None:
+                matches = [s for s, v in allowed.items()
+                           if s.endswith("--" + _slugish(z.get("zone", "")))]
+                want = allowed.get(matches[0]) if len(matches) == 1 else None
+            if want is None:
+                bad[vid] = "zone %r carries a video that is not published" % z.get("zone")
+            elif want != vid:
+                bad[vid] = ("zone %r carries %s, but the published id for it is %s"
+                            % (z.get("zone"), vid, want))
+    return bad
+
+
+def _slugish(t: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", (t or "").lower()).strip("-")
+
+
+def gate_quest_data_videos_published() -> None:
+    """The app may only offer a zone video that is actually published.
+
+    Added 2026-09-16 with the app's own "Watch this zone" link. Twelve zone
+    videos are live on YouTube; ops/youtube-published.json is the record of
+    which, and ops/build_quest.py copies those ids into quest-data.js. A link
+    to an unpublished or mistyped id is a dead end offered inside the one
+    surface somebody is actually working in, and it would look exactly like a
+    working link until pressed. This is the same always-on, file-scoped shape
+    as gate_quest_data_heroes_current above: it compares the shipped payload
+    against the publishing record rather than trusting that the generator was
+    re-run after the record changed.
+    """
+    data_path = os.path.join(SITE, "assets", "js", "quest-data.js")
+    pub_path = os.path.join(ROOT, "ops", "youtube-published.json")
+    if not os.path.exists(data_path) or not os.path.exists(pub_path):
+        return
+    js = io.open(data_path, encoding="utf-8").read()
+    try:
+        data = json.loads(js[js.index("{"):js.rindex(";")])
+    except ValueError:
+        return
+    allowed = {}
+    for stem, rec in json.load(io.open(pub_path, encoding="utf-8")).items():
+        vid = (rec or {}).get("video_id") if isinstance(rec, dict) else None
+        if isinstance(vid, str) and re.fullmatch(r"[A-Za-z0-9_-]{11}", vid):
+            allowed[stem] = vid
+    bad = quest_data_unpublished_videos(data, allowed)
+    if bad:
+        fail("quest-data-videos",
+             "%d video id(s) in quest-data.js are not the published id for "
+             "their zone: %s. Run: python ops/build_quest.py"
+             % (len(bad), list(bad.values())[:3]))
+
+
 def gate_quest_funnel_events() -> None:
     """BACKLOG-2026-09-07.md A5's funnel events must stay wired.
 
@@ -14100,6 +14171,7 @@ def main() -> int:
     run_gate(gate_quest_symptom_entry)
     run_gate(gate_home_hero_card_real)
     run_gate(gate_quest_data_heroes_current)
+    run_gate(gate_quest_data_videos_published)
     run_gate(gate_quest_funnel_events)
     run_gate(gate_quest_session_placement)
     run_gate(gate_quest_card_victory_honesty)

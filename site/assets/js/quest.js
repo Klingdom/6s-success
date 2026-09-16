@@ -1079,6 +1079,20 @@
        for the four zones with no approved image, so the row collapses back
        to the text it has always been rather than holding the previous
        zone's picture, which would be a picture of the wrong room. */
+    /* The zone's own published video, for the 12 zones that have one. Href
+       only, opened in a new tab on press: this never contacts YouTube while
+       the card is merely being read, which is the promise the zone pages
+       make in words. Zones without a video keep the row as it was. */
+    var watchLink = $("#c-watch-video");
+    if (watchLink) {
+      if (c.zone.video) {
+        watchLink.href = "https://www.youtube.com/watch?v=" + c.zone.video;
+        watchLink.hidden = false;
+      } else {
+        watchLink.hidden = true;
+        watchLink.removeAttribute("href");
+      }
+    }
     var cthumb = $("#c-thumb");
     if (cthumb) {
       cthumb.innerHTML = picture(c.zone, { cls: "q-thumb", sizes: "74px" });
@@ -1255,6 +1269,13 @@
           ? first.zone.zone + " is done."
           : justHeld.length + " zones are done, including " + first.zone.zone + ".";
         var standard = (first.zone.done || "").trim();
+        /* Emptied when the finished zone has no approved picture, never left
+           showing the previous session's zone. */
+        var fpic = $("#f-held-pic");
+        if (fpic) {
+          fpic.innerHTML = picture(first.zone,
+            { cls: "rec-thumb", sizes: "(max-width:380px) 70px, 88px" });
+        }
         $("#f-held-standard").textContent = standard
           ? "That is the standard to hold: " + standard
           : "All six passes are finished in that zone.";
