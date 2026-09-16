@@ -58,6 +58,38 @@ the text-only causes are fixed free, the pixels need this same billing gate. Ear
 
 ## Open, ranked by what they unblock
 
+### 1f. The VPS disk is 79% full, and 46 GB of it is throwaway. One command, about a minute.
+
+**Found 2026-09-16 by this operator, first direct look at the host in days** (cloud
+sessions hold no deploy key; this was run from your own machine).
+
+**What the numbers are:** `/` is 96G with 76G used, 21G free. `docker system df`
+reports **45.96 GB of build cache, 100% reclaimable**, against 62.65 GB of images
+that are all in active use. So most of the pressure is rebuild leftovers, not
+anything anyone needs.
+
+**Why I did not just run it.** That host also runs Ledgerium's live billing, its
+database, Cal.com and two other sites. CLAUDE.md is explicit that Ledgerium's
+infrastructure is another business's revenue and must not be touched as a side
+effect of 6S Success work, and a prune on a shared host is a YELLOW action even
+when it is almost certainly safe. Almost certainly is the part I do not get to
+decide for someone else's customers.
+
+**What to run, when you want it:**
+
+```
+ssh root@187.77.25.50 'docker builder prune -af'
+```
+
+It removes build cache only. It does not touch images, containers, volumes or
+any running service. The next image build on any project will be slower once,
+because it rebuilds its cache, and that is the whole cost.
+
+**How urgent:** not yet. 21G free is comfortable, nothing is failing, and the
+6S Success container is healthy with 0 restarts. It becomes urgent if free space
+drops under about 5G, because Docker writes image layers before it knows whether
+they fit.
+
 ### 1e. Decide about Rakuten's standing access to your support Google account. About two minutes.
 
 Found 2026-09-09 by opening the mailbox rather than reading our own record of
