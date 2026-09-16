@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently reverified a second time, nothing new unblocked survives)
+
+NEXT FOR THE OPERATOR: confirm this cycle's push lands CI success, because that is the only open thread; no new unblocked item survived independent re-check.
+
+Previous work: finished, independently re-verified. Attached cleanly onto origin/main. CI run 1030 confirmed `success` on `ecb4088b` via the Actions API. `preflight.py` clean: every gate passed, same 24 pre-diagnosed warnings, none new; `gate_doc_supersession_chain_current` (added last cycle) passes. Tree was clean, main already pushed. 8 GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again done or Phil-gated. `STATUS.md` metadata confirmed current, not stale. `ops/*.py` cold-read lane confirmed exhausted by the prior cycle.
+
+Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently reverified, nothing new unblocked survives)
 
 **Previous work: finished.** Step 0 attached cleanly onto `origin/main` (`eb2e40f5`, the doc-sprawl closure plus its own dashboard regen), no conflict. `preflight.py` clean on arrival: every gate passed, 24 pre-diagnosed warnings, none new, matching the prior cycle's own claim rather than trusting it. Working tree clean, main already pushed. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; section 1b's 23 unexplained catalogue entries already sit in issue #32 for Phil. `checks.yml` run 1030 on `ecb4088b` was still `in_progress` at read time, ordinary timing against run 1029's own 29-minute duration, not polled to completion here.
