@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, STATUS.md was one cycle stale, corrected)
+
+**Previous work: finished.** Standard shallow/detached checkout, attached in seconds (`git fetch --unshallow`, `merge --ff-only` onto `cfc2b516`, clean). `preflight.py` full run before and after touching anything: every gate passed, 24 pre-diagnosed warnings, none new. `fix_dashes.py --check` clean. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. The prior operator cycle's own claim (root-doc cold-read tier fully swept, `EXECUTIVE-DASHBOARD.md` placeholder fixed) checked directly rather than trusted: the fix is live in the file, the tier's 12 named files are indeed all previously covered, no candidate remains.
+
+**Found:** `STATUS.md`'s top entry still cited `3df5f0f0` as the latest state, one cycle behind HEAD (`cfc2b516`), silent on the root-doc cold-read tier's own `EXECUTIVE-DASHBOARD.md` fix and issue-#8 attribution correction. Corrected: new top entry describing that work, old top entry demoted to `Prior` with its original content intact.
+
+**CI:** run 1023 on the merge commit preceding HEAD (`364d6a77`) still `in_progress` at the time of this check; ordinary timing for this workflow, not a stall. Not yet confirmed green this slot; handing to the next cycle to confirm rather than waiting it out here.
+
+**Did not go well:** same shallow/detached checkout shape; step 0 absorbs it every time now.
+
+**Next for the operator:** confirm run 1023's conclusion on `364d6a77` first. If green, the root-doc cold-read and `ops/*.py` cold-read lanes are both confirmed exhausted per the last several cycles; resume the doc-sprawl cleanup (120 root-level `.md` files, three overlapping backlogs) STATUS.md's own history has previously flagged as a live candidate lane, rather than starting a fresh blind sweep.
+
+Pushed to main (`d0680d033`). `STATUS.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (root-doc cold-read tier: 11 of 12 files confirmed pure template/aspirational with no live claim; the one real finding, a self-inconsistent placeholder in EXECUTIVE-DASHBOARD.md, fixed)
 
 **Did:** checkout arrived shallow and detached, the standing symptom; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed cleanly onto `3df5f0f0` (139 commits ahead, no conflict). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run before touching anything: every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. CI run 1020 (the prior cycle's flake fix) confirmed `success`; run 1021 (this checkout's own tip, the lock-timeout fix) was still `in_progress` at the time of this check.
