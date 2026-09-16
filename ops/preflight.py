@@ -9680,6 +9680,57 @@ def gate_no_stale_narration_blocker() -> None:
              "zones rendered). Read the real state, not a stale table.")
 
 
+def gate_no_stale_card_deck_decision() -> None:
+    """BACKLOG-2026-H2.md must not still present the card-deck sales
+    decision (issue #20, row 5.1) as open and waiting on Phil once
+    BACKLOG-2026-09-07.md records it closed.
+
+    Found 2026-09-16, this operator, a background-agent cross-check of the
+    three-backlog-file supersession chain dispatched after several PM
+    check-ins flagged "doc-sprawl cleanup" as the only unblocked item but
+    kept deferring the actual read. Row 5.1 and the "Items waiting on
+    Phil, consolidated" list both still named the card-deck sales model
+    as a live, Phil-owned decision, unchanged since 2026-08-24, while
+    BACKLOG-2026-09-07.md's B5 row records issue #20 closed as superseded
+    on 2026-09-15 (the real decision, hold paid tiers pending sales
+    evidence, was already made by events; the four-tier ladder this row
+    asked Phil to confirm was built against a retired 46-card premise).
+    The exact "source corrected, sibling document never told" shape this
+    file's own history names as its dominant defect class, same narrow,
+    reusable-if-wrong posture as gate_no_stale_listmonk_blocker,
+    gate_no_stale_affiliate_blocker and gate_no_stale_narration_blocker.
+
+    This gate does not try to prove the whole doc-sprawl handoff done,
+    only that this one already-closed decision cannot regress back into
+    reading as open in the file kept specifically for its detail and
+    acceptance criteria.
+    """
+    h2_path = os.path.join(ROOT, "BACKLOG-2026-H2.md")
+    current_path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(h2_path) or not os.path.exists(current_path):
+        return
+    h2 = io.open(h2_path, encoding="utf-8").read()
+    current = io.open(current_path, encoding="utf-8").read()
+    closed_in_current = bool(re.search(
+        r"issue #20 closed as superseded", current, re.IGNORECASE))
+    if not closed_in_current:
+        return
+    row_match = re.search(
+        r"\|\s*5\.1\s*\|[^\n]*card decks get sold[^\n]*\|", h2,
+        re.IGNORECASE)
+    row_open = bool(row_match) and "~~" not in row_match.group(0)
+    listed_waiting = bool(re.search(
+        r"card deck sales model.{0,20}5\.1",
+        h2.replace("\n", " "), re.IGNORECASE))
+    if row_open or listed_waiting:
+        fail("no-stale-card-deck-decision",
+             "BACKLOG-2026-H2.md still presents the card-deck sales "
+             "decision (row 5.1, issue #20) as open and waiting on Phil, "
+             "but BACKLOG-2026-09-07.md's B5 row already records issue "
+             "#20 closed as superseded on 2026-09-15. Strike the row and "
+             "drop it from the 'Items waiting on Phil' list.")
+
+
 def gate_affiliate_approved_claims_current() -> None:
     """how-we-make-money.html and affiliate-disclosure.html must not still
     say no affiliate programme has been approved once
@@ -14118,6 +14169,7 @@ def main() -> int:
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_no_stale_narration_blocker)
+    run_gate(gate_no_stale_card_deck_decision)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
     run_gate(gate_visual_strategy_truncation_current)

@@ -799,7 +799,7 @@ starts before epic 1 answers whether the funnel works.
 
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
-| 5.1 | Decide how card decks get sold (issue #20) | a decision recorded in `DECISIONS.md` | 0.3 | **Phil** |
+| 5.1 | ~~Decide how card decks get sold (issue #20)~~ | **Closed as superseded, 2026-09-15, operator.** `BACKLOG-2026-09-07.md` row B5: the real decision (hold paid tiers pending sales evidence) was already made by events, not a fresh choice. The site carries exactly one deck SKU, `DECK-ENTRY`, 88 cards, free, no paid tier; the four-tier ladder this row asked Phil to confirm was built against a retired 46-card premise. Issue #20 commented and closed; `PRICING.md` corrected with a dated section 0.6 rather than this row's ladder being acted on. No longer waiting on Phil. | 0.3 | **done 2026-09-15** |
 
 **5.1 has new context as of 2026-08-27.** All 90 Entryway cards, full resolution,
 front and back, are now publicly browsable for free at `deck-gallery.html` (see
@@ -2511,7 +2511,7 @@ mobile `npm test` all three suites unchanged.
    global from-address and accept the cost to the other brand.
 3. **Publish the ten LinkedIn posts** (3.1). Already written and in his inbox.
 4. **Generate the six tier-0 images** (3.3). Prompts ready.
-5. **Chapter 47 monochrome plates** (2.5), **card deck sales model** (5.1).
+5. **Chapter 47 monochrome plates** (2.5). Item 5.1, formerly listed here, closed 2026-09-15 (see the epic 5 table above) and is no longer waiting on anybody.
 6. **Stripe business website field** (2.8, issue #21). Settings, Business
    details, Public details, Edit. Everything else on the account (name,
    statement descriptor, support email/URL, legal pages, checkout branding)
