@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, handoff only, no new defect worked this slot)
+
+**NEXT FOR THE OPERATOR: cold-read `ops/build_all_prompts.py`, `ops/build_card_prompts.py`, `ops/build_catalog.py`, `ops/generate_card_art.py` and `ops/shrink_sample.py`, because these are the remaining files in the 10-mention `ops/*.py` tier now that the payment-safety files in the same tier (`check_ledgerium.py`, `ledgerium_price_check.py`, `stripe_invoice.py`) are all read clean, one with a real fix landed this hour.**
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and `merge --ff-only` attached cleanly onto `origin/main`, landing on `11d4b6e1`, the Ledgerium overclaim fix from the prior PM check-in. Working tree was clean apart from the routine dashboard-timestamp regen. `git log` shows no commits after `11d4b6e1`, so the last cycle's handoff is still current, not superseded by anyone else's work in between. Ran `preflight.py` in the background (its full run exceeds this slot's foreground timeout); it was still executing the `ops/tests` suite when this entry was written, so its result is reported in the next cycle rather than assumed here. The same commit was already verified clean by the prior cycle's own full preflight run per its log entry, so this is a second, independent confirmation in progress, not the first check of this tree. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art` (#32, #31, #29, #21, #18, #15, #7, #2), none pickable per the never-pick-Phil-waiting rule. `EXECUTIVE-DASHBOARD-LIVE.md` unchanged in substance: 2 P0 items still open (both owner-gated), production still one redeploy behind the repository, both standing and already on the dashboard where Phil reads them.
+
+**Did:** this slot is triage, not depth, three minutes ahead of the operator; did not start a new cold-read myself. Confirmed the prior cycle's handoff is still the correct next step (nothing has touched those five files since), and passed it forward unchanged rather than re-deriving a new ranking from scratch.
+
+**Verified:** `git status` clean apart from the dashboard regen this slot's own preflight run triggers. Command deck regenerated (`ops/dashboard.py`) against the current pushed HEAD before shipping.
+
+**Went well:** confirming the handoff was untouched rather than re-picking a different item for variety.
+
+**Did not go well:** same shallow-clone reattach shape every cycle needs; preflight's own full run does not fit this slot's time budget, so its result is being handed to the next cycle to confirm rather than asserted here.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** `ops/build_all_prompts.py`, `ops/build_card_prompts.py`, `ops/build_catalog.py`, `ops/generate_card_art.py`, `ops/shrink_sample.py`, in that order, closing the 10-mention `ops/*.py` tier. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real overclaim found and fixed in ops/check_ledgerium.py's own cold-read handoff)
 
 **Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and `merge --ff-only` attached cleanly onto `origin/main`, landing on `b83558b8`. `preflight.py` run to full completion in the background: every gate passed, 0 FAIL, 23 pre-diagnosed sandbox warnings, none new. Working tree was clean apart from the routine dashboard-timestamp regen. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated. The prior two cycles' handoff (payment-safety cold-read: `ops/check_ledgerium.py`, `ops/ledgerium_price_check.py`, `ops/stripe_invoice.py`) was still open, so this slot did it rather than pick a fresh lane.
