@@ -1093,14 +1093,27 @@ def _count_dead_links(files):
     # before the element is shown, so id="c-zone-link" href="#" in the
     # template is a placeholder waiting on a script, not a broken link a
     # visitor could ever click. Checking whether the id is set with .href
-    # somewhere in the site's own scripts tells the two apart.
+    # somewhere in the site's own scripts tells the two apart, in either of
+    # two shapes: the direct $("#id").href = ... , and $("#id") first
+    # assigned to a variable that is then .href-set later (quest.js's own
+    # watch-video row, which also toggles .hidden on the same reference).
     js_text = "".join(read(j) for j in
                        glob.glob(os.path.join(ROOT, "site", "assets", "js", "*.js")))
     total = 0
     for f in files:
         for tag in re.findall(r'<a\b[^>]*href="#"[^>]*>', read(f)):
             m = re.search(r'\bid="([^"]+)"', tag)
-            if m and ('#%s").href' % m.group(1)) in js_text:
+            if not m:
+                total += 1
+                continue
+            eid = m.group(1)
+            if ('#%s").href' % eid) in js_text:
+                continue
+            var_m = re.search(
+                r'\b(?:var|let|const)\s+(\w+)\s*=\s*\$\("#%s"\)' % re.escape(eid),
+                js_text)
+            if var_m and re.search(r'\b%s\.href\s*=' % re.escape(var_m.group(1)),
+                                    js_text):
                 continue
             total += 1
     return total
