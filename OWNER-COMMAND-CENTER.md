@@ -1,3 +1,17 @@
+> **Not the live operating model.** Written 2026-08-17, one of the first two days
+> of this repository, before the first sale, the revenue arithmetic in
+> `ops/revenue_model.py`, and the traffic constraint `GOALS.md` now names as
+> the whole business's constraint. This file specifies a formal multi-agent
+> orchestration layer (named roles, handoffs, a scheduler, a memory
+> architecture) that was never built this way: no `ops/*.py` tool and no
+> other current operating document implements or depends on it, confirmed by
+> grep across `ops/`, `CLAUDE.md` and the GitHub workflows. The operating
+> model that actually runs today is `CLAUDE.md` section 0, `GOALS.md`,
+> `BACKLOG-2026-09-07.md`, the gates in `ops/preflight.py`, and
+> `ops/NIGHTLY-LOG.md`. Kept rather than deleted so the record shows what was
+> designed on day one; do not treat anything below as current state, a live
+> contract, or a description of how this repository is actually operated.
+
 # 6S Success Owner Command Center
 
 > Canonical requirements for the secure owner control plane governing the 6S Success autonomous Claude Code organization.
