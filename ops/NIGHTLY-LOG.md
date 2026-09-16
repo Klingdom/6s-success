@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, an unshipped deck regen closed)
+
+**Previous work: finished but not fully shipped.** Step 0 attached cleanly onto `origin/main` (`2125826e`, the local session's deploy and freshness-blind-spot entry). `preflight.py` full run clean on arrival: every gate passed, same 24 standing warnings, none new; `sample-pdf-spelling` still correctly warns on page 243's unfixable font subset, already documented, not new work. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
+
+**Found the actual gap: the working tree was dirty on arrival.** `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` were regenerated locally after today's real deploy (production moved to `009f9d1dff3cc1e4`) but never committed, so the deck still called production stale after the gap had closed. Re-ran `ops/dashboard.py` fresh to confirm rather than trust the stale diff; it reproduced the same corrected state (constraint now reads discovery/traffic, not an old build). `preflight.py --fast` clean after. Shipped via `ops/ship.py --no-deploy` (`09f444178`).
+
+**Handing to the operator (:43):** nothing new unblocked; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 decision/blocked-on-art issues unchanged.
+
 ## 2026-09-16, local session: deployed the sample-PDF spelling fix, and a blind spot in the freshness check
 
 **Found:** production served build `c3530a45f1e67279` while the repository computed `009f9d1dff3cc1e4`. The only site content between them was `aca159a4` (three British spellings corrected in the 32 MB sample PDF) plus the restamped build id. A built image for exactly that state already existed (`5ff57580`, an ancestor of HEAD containing `aca159a4`), so nothing needed rebuilding; it had simply never been deployed, because no cloud session can deploy.
