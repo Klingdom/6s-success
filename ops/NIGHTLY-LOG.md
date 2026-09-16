@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, a self-inflicted preflight FAIL traced and cleared before it could be mistaken for a real one)
+
+**NEXT FOR THE OPERATOR: watch CI run 1043 (`c3005d49`, Phil's own new sabotage-proven tests for `gate_store_art`/`gate_store_listing_lengths`) land green, then move the cold-read method off `ops/*.py`, because every one of 139 files there now carries 9 or more mentions in this log and the lane that has found most of this week's real defects is saturated; the next unswept, genuinely low-mention tier is `mobile/quest-app` lib files and hand-authored `site/*.html` pages, not another pass over `ops/`.**
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`eacebc34`, an automated `social-drafts.yml` rotation commit sitting on top of Phil's own `c3005d49`). `preflight.py`'s first run (given a short timeout) was killed mid-render inside `gate_etsy_pdfs_current`'s PDF regeneration step, which left `build/listings/etsy/L1-whole-house/files/6S-Whole-House-Print-Pack.pdf` modified in the working tree (same byte count, non-deterministic render metadata, the gate's own docstring names this exact risk). The next full run correctly refused to trust a diff against an already-dirty tree ("could not check ... commit or stash first"), which is this gate working as designed against my own interruption, not a live defect: this exact failure shape is on record twice already (2026-09-15 PM check-in, 2026-09-15 operator cycle). Restored the file with `git checkout --`, confirmed a clean tree, and reran `preflight.py` to completion without interruption.
+
+**Verified:** `preflight.py` clean on the uninterrupted run: every gate passed, 23 pre-diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable per this routine's own rule. `BACKLOG-2026-09-07.md` sections 1b through 6 again all done or Phil-gated. CI: run 1043 on `c3005d49` (adds real tests for the two store gates, proven by sabotage) `in_progress` at ordinary timing for this workflow, not a stall; run 1042 (the prior PM cycle's own merge) confirmed `success`.
+
+**Went well:** treating my own killed subprocess as a claim to trace rather than either a real gate failure to escalate or a nuisance to bypass; the fix was a plain restore, not a code change, because the defect was entirely mine.
+
+**Did not go well:** running preflight with too short a timeout in the first place, on a repository where the etsy-PDF gate is already documented as expensive and interruption-sensitive.
+
+**Changing next cycle:** give `preflight.py` room to finish in one call on this repository; a truncated run here does not fail safe, it leaves a real file dirty that the next run correctly refuses to trust.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `ops/*.py` cold-read lane confirmed saturated (minimum mention count is now 2, for `build_app_icons.py`, added and gated this same afternoon, not an old neglected file); the next genuinely unread tier is `mobile/quest-app` and hand-authored `site/*.html`.
+
+Pushed to main. Command deck regenerated only (timestamp and commit count). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (own fix rebased to a no-op mid-run, cold-read of the next low-mention file found no live defect)
 
 **Did:** Step 0 attached shallow-and-detached onto `origin/main` cleanly (`git fetch --unshallow`, ff-only). `preflight.py` failed on the very first run, 4 gates: `on-device-check-count`, `ci-path-coverage`, `generator-protection-plan`, and a real `tests` failure in `test_mobile_offline_and_a11y.py` flagging `lib/videoLink.js`'s YouTube URL as a network call. Fixed all four independently, then `git push` was rejected: a concurrent session had already fixed the same four (and then merged a second concurrent fix of its own) while this cycle worked. Compared my fix to theirs file by file before choosing: `GENERATOR_PROTECTED_ELSEWHERE["build_app_icons.py"]` was byte-identical; the `checks.yml` path-filter widening and the `videoLink.js` network-regex exception were the same idea, theirs slightly tighter (`youtube.com/watch` rather than the whole host). Reset local `main` to `origin/main` rather than push a duplicate or force a conflict, since none of my commit had landed remotely. `preflight.py` reran clean at that HEAD (every gate passed, 24 warnings, none new), so nothing of mine survived as a distinct change.
