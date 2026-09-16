@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, local session: the Home Quest offers the zone's video, and pictures the zone you just finished (`0ab37390`)
+
+**Found reviewing the app as a visitor:** twelve zone videos are published on YouTube, every zone page links its own, and the app offered none. The one surface somebody is actually working in could not show the zone being done. The app also kept its only picture as a roughly 40 px thumbnail beside the zone name, which is deliberate on the working card (the comment in quest.html says so: the instruction is what must be read there), but it meant a finished session was reported entirely in text.
+
+**Did:** `ops/build_quest.py` now reads `ops/youtube-published.json` and copies the published id into each zone record in quest-data.js, keyed by the same stem the pictures use, so it is a lookup rather than a guess; the build reports the count (12 of 114). The card's button row carries "Watch this zone" for exactly those zones, as a link that opens in a new tab: nothing is requested from YouTube until it is pressed, which is the promise the zone pages already make in words. The finish screen pictures the zone just finished, inside the block that already names it and hands back its standard.
+
+**Gated:** new `quest_data_unpublished_videos()` (pure) and `gate_quest_data_videos_published`, registered beside the hero gate, with `ops/tests/test_gate_quest_data_videos.py`. It catches an unpublished id, an id belonging to a different zone, and it matches zones that have a video but no approved picture by name, which is the real case for the prep counter, whose hero verdict was withdrawn. The committed payload carries exactly the twelve published ids.
+
+**Verified in a real browser, read back from the DOM:** the card screen shows the watch link on a zone that has one; finishing a zone shows the held block with head "Landing Zone is done." and a picture that actually loaded (88x66, one img and two sources). Nine targeted gates and four tests pass, including the end-to-end quest flow test.
+
+**Three harness mistakes worth recording, because each one looked like a pass:** the first driver clicked Done on iframe load, before the app had rendered a card, and screenshotted the card screen; the second scripted the iframe from a `file://` wrapper against an `http://127.0.0.1` app, so `contentDocument` was null on every tick for 45 seconds and the run merely read "pending"; the third pressed Done exactly six times, which finished six assorted cards across four passes rather than one zone, so `heldZones()` correctly returned nothing and the block I was trying to prove stayed hidden. Only the fourth, which keeps pressing while the card still belongs to the deep-linked zone and then reads the DOM, proved anything. A screenshot that looks right is not evidence that the code ran.
+
+**Live:** The image build for `b2bdf921` passed (full preflight in CI) and production moved from build `009f9d1dff3cc1e4` to this release; freshness CURRENT; live quest.html carries the watch link and the finish picture slot, live quest.js renders both, live quest-data.js carries exactly the twelve published video ids and no others, and the zone pictures the finish screen shows answer 200. The first image build (`0ab37390`) failed gate mobile-corpus-current, because quest-data.js gained the video field without the phone app's bundled corpus being rebuilt; nothing deployed from it, and `b2bdf921` regenerated the corpus. Production is on build `628eb4520b6e9ded`. The deploy verdict was committed after this deploy, with this entry.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, nothing new unblocked, saturation flagged to Phil)
 
 **Previous work was finished on arrival:** `preflight.py` fast clean (every gate passed, 24 pre-diagnosed sandbox warnings, none new); working tree clean, main pushed; recent CI runs (LinkedIn drafts #287, Social drafts #252, Deliver paid orders #1129, all on `2ad8c20e`) all `success`. No unverified claim sitting open.
