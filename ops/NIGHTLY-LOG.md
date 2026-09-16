@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (own fix rebased to a no-op mid-run, cold-read of the next low-mention file found no live defect)
+
+**Did:** Step 0 attached shallow-and-detached onto `origin/main` cleanly (`git fetch --unshallow`, ff-only). `preflight.py` failed on the very first run, 4 gates: `on-device-check-count`, `ci-path-coverage`, `generator-protection-plan`, and a real `tests` failure in `test_mobile_offline_and_a11y.py` flagging `lib/videoLink.js`'s YouTube URL as a network call. Fixed all four independently, then `git push` was rejected: a concurrent session had already fixed the same four (and then merged a second concurrent fix of its own) while this cycle worked. Compared my fix to theirs file by file before choosing: `GENERATOR_PROTECTED_ELSEWHERE["build_app_icons.py"]` was byte-identical; the `checks.yml` path-filter widening and the `videoLink.js` network-regex exception were the same idea, theirs slightly tighter (`youtube.com/watch` rather than the whole host). Reset local `main` to `origin/main` rather than push a duplicate or force a conflict, since none of my commit had landed remotely. `preflight.py` reran clean at that HEAD (every gate passed, 24 warnings, none new), so nothing of mine survived as a distinct change.
+
+**Went looking for genuinely new work.** Section 1b/issue #32 (23 kits/bundles with no page) correctly still held: the issue itself recommends not writing 21 pages nobody has asked for yet at 2.5 visitors/day, and nothing has changed since. Picked the next cold-read candidate a prior cycle had named, `build/listings/verify_zone_claims.py`, and ran it against the real committed Etsy PDFs rather than reading it cold: cross-checked every zone/room claim in `MARKETPLACE-LISTINGS.md`'s L4 and L5 copy (5+4+2+2=13 for Moving In, 5+5+5+1=16 for Holiday Hosting) against the script's real output. All correct; no live defect, the same shape as C2's "found already clean" rather than something to fix.
+
+**Verified:** `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (5 suites) all clean at the reset HEAD. 8 GitHub issues confirmed via the API, unchanged. No mail credential here.
+
+**Went well:** checking the concurrent fix's actual content file by file before resetting to it, rather than assuming a matching commit message meant matching code.
+
+**Did not go well:** a third preflight run this same day was spent proving a fix that had already landed; the underlying gate content was worth writing once, not three times across three sessions.
+
+**Changing next cycle:** none new.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. `verify_zone_claims.py` stays an unwired manual script; the zone/room prose it checks is free-form English, and a regex tight enough to catch a fabricated zone name reliably risks false positives on legitimate phrasing, the same tradeoff this repository has walked back before.
+
+No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, dashboard regen only, nothing new genuinely unblocked)
 
 Attached cleanly onto origin/main (c65d15be, a prior PM cycle's merge of a concurrent operator session). Previous work: finished. preflight.py clean on arrival, every gate passed, 24 pre-diagnosed sandbox warnings, none new. Working tree clean, main pushed. 8 GitHub issues confirmed live via the API, unchanged, all decision or blocked-on-art (issue #2's "9 stale card images" checked directly: genuinely blocked, needs real art regeneration, not a free local fix). checks.yml run 1042 on c65d15be confirmed in_progress via the Actions API, started 17:01:20Z, ordinary timing not a stall. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated; section 1b's 23 catalogue kits (issue #32) still await Phil's decision, so no page work is unblocked there yet. Regenerated and shipped the dashboard, stale since before the merge. Handing the operator: nothing new unblocked; standing owner-gates list in OWNER-ACTIONS.md unchanged.
