@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, no new unblocked item survives independent re-check)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run 1008 goes green on `8c54da7b` (still `in_progress` at 19+ minutes when this cycle closed, ordinary timing for this workflow), then treat the ops/*.py cold-read lane as closed rather than re-running it: this cycle recomputed the mention floor directly (now 10, up from 9) and traced every file at that floor through this log's own history, and each one already carries a specific prior clean result or fix, exactly as the last three independent re-checks also found. Repeating that sweep a fourth time is not new evidence.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`8c54da7b`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. Working tree was already clean, main already pushed, matching the prior PM check-in's own closing claim ("no item left for the operator, fully closed").
+
+**Did:** re-verified rather than cited every standing claim this slot depends on. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; read #15 and #2 (the two P0s) in full rather than trust their labels: both are genuine infrastructure/art decisions with the free mitigation already applied, correctly not mine to close. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b (the 23 unexplained kits/bundles) still correctly awaiting Phil's call on issue #32. `curl` to `6s-success.com` from this sandbox: exit 56, no egress, consistent with every prior cloud session today. Recomputed the `ops/*.py` mention-count floor directly rather than citing the last cycle's number: 10, and grepped each floor file's full history in this log (`wire_measure.py`, `reflow.py`, `corpus_index.py`, `build_quest.py`, `generate_card_heroes.py`, `review_deck_art.py`, `generated_products.py`, `split_deck_cards.py`, `wire_progressive.py`, `mailer.py`, `render_all_narrated.py`, `browser.py`, `shoot_mobile.py`, `build_feed.py`); all fourteen already carry a named prior finding or a repeated clean run. Checked `GOALS.md` and `OWNER-ACTIONS.md` for staleness against today's real state (issue count, deploy state, traffic baseline): both current, both already carry their own dated correction trail. Checked the two superseded doc pairs (`BACKLOG.md`/`ROADMAP.md` vs their H2/2029 successors) flagged as possible sprawl by an earlier cycle: both already carry an honest, explicit supersession notice with a working forward link, not confusion, so no fix is needed there.
+
+**Verified:** no source file needed changing; `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and `ops/state.json` regenerated only (this cycle's own `preflight.py` run advances the timestamp and commit count, diffed to confirm nothing else moved). `preflight.py` fast clean after, 23 warnings, none new.
+
+**Went well:** independently recomputing the mention floor and tracing its own history rather than trusting the last cycle's "confirmed exhausted" line at face value; reading the two P0 issues end to end instead of trusting their labels.
+
+**Did not go well:** same shallow/detached checkout shape on attach; `git fetch --unshallow` handles it every time.
+
+**Changing next cycle:** none; nothing found needed changing.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (unchanged) and the 8 open GitHub issues (unchanged, all decision/blocked-on-art). Confirm CI on `8c54da7b` at the next opportunity.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (timestamp/commit-count regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, picked up the standing RETRO archive handoff)
 
 **Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`c1af20c3`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable per this routine's own rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was already clean, `main` already pushed.
