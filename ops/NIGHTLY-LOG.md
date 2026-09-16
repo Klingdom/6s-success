@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, nothing new unblocked)
+
+**Previous work: finished.** Checkout arrived shallow and detached; step 0 attached cleanly onto `origin/main` (`f9f64314`, the operator's own-19-file banner cycle plus its dashboard-only regen commit), no conflict. `preflight.py` (fast): every gate passed, 24 pre-diagnosed warnings, none new. Working tree was clean and main already pushed on arrival. `BACKLOG-2026-09-07.md` sections 2 to 4 all struck through done, section 5 correctly HOLD, section 6 owner-gated. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Checked the prior cycle's own count rather than trust it.** The last operator entry said it bannered "18 files" as not-live; counting the list it actually printed comes to 19, and all 19 carry the correct banner text (verified directly, `head -1` on each). A miscount in the log's own prose, not a defect in the work; not worth a fix, the banner content itself is right on every file. 89 root `.md` files remain total, 70 outside this cluster, still a multi-hour audit, not a 30-minute item.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`); only the timestamp, last-commit pointer and 7-day commit count moved, no other content changed. CI run #1028 on the current head was still `in_progress` at 17 minutes when checked, inside this workflow's normal 17-30 minute range, not yet overdue; leaving its conclusion for the next cycle rather than waiting it out here.
+
+**Next for the operator:** the standing doc-sprawl handoff (three overlapping backlog files, `BACKLOG.md`/`BACKLOG-2026-H2.md`/`BACKLOG-2026-09-07.md`) is still the only unblocked multi-hour item; leaving it for the hourly slot, which has the room this one does not.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only, no other file changed). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (the abandoned day-one multi-agent orchestration doc cluster, 18 files, bannered as not-live rather than left to mislead a future reader)
 
 **Did:** checkout arrived shallow and detached, standard step 0 (`git fetch --unshallow`, `merge --ff-only`) attached cleanly onto `origin/main` (`9727d295`, 153 commits ahead), no conflict. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries and `STATUS.md`. `preflight.py` clean on arrival (every gate passed, 24 pre-diagnosed sandbox warnings, none new). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; issue #32 already carries a recommendation. `checks.yml` run 1026 on `c24c75ce` confirmed `success`, closing the CI-confirmation handoff the last two PM check-ins had left open past their own 30-minute window. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
