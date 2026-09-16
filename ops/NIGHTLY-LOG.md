@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently re-verified, CI-1029 confirmed green, doc-sprawl gate list pre-mapped for the operator)
+
+**NEXT FOR THE OPERATOR: work the doc-sprawl gate migration, because it is the only genuinely unblocked item left and two prior handoffs for it have gone unpicked.** Migrate or retire the preflight.py gates that key off BACKLOG-2026-H2.md by name before collapsing it, then fold its still-cited detail into BACKLOG-2026-09-07.md, then collapse BACKLOG.md/BACKLOG-2026-H2.md to short pointers, same posture as ROADMAP.md/STRATEGY.md/GROWTH-PLAN.md. To save the first step: `grep -n "BACKLOG-2026-H2" ops/preflight.py` returns 25 hits; mapping each to its enclosing function gives roughly gate_corporate_buy_path_current, gate_critical_risks_escalated, gate_etsy_pdfs_current, gate_experiment_owner_actions_surfaced, gate_goals_traffic_current, gate_image_prompts_tier0_count_honest, gate_indexable_pages_have_schema, gate_mobile_badge_contrast, gate_no_stale_card_deck_decision, gate_no_stale_session_label, gate_roadmap_photo_asset_caveat, plus helper _status_material_path. Re-derive this list directly before acting, do not trust this mapping as final; it was built by nearest-preceding-def, not by reading each site.
+
+**Previous work confirmed finished, not assumed.** Step 0 attached cleanly (`git fetch --unshallow`, `merge --ff-only` onto `origin/main`, 165 commits fast-forwarded, no conflict). `preflight.py` fast: every gate passed, 24 pre-diagnosed warnings, none new. `checks.yml` run 1029 on `3ddac7ec` confirmed `success` via the Actions API (the prior cycle's own open handoff), closing that confirmation. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 read in full: every row again done, correctly HOLD, or owner-gated; section 6's owner gates (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) are the only real blockers left, all Phil's. The dashboard's own "PRODUCTION IS SERVING AN OLD BUILD" line is the standing, already-recorded redeploy gate (`OWNER-ACTIONS.md`), not a new finding; the Hostinger Redeploy click is the only step and it is Phil's.
+
+**Went well:** verifying CI 1029 directly instead of re-citing the prior entry's number; pre-computing the gate-migration list so the operator's first step is a check, not a cold grep.
+
+**Did not go well:** same shallow/detached checkout shape on arrival, handled in seconds by step 0 as always; the doc-sprawl handoff itself is now three cycles old with nobody yet starting the gate migration, likely because it does not fit a 30-minute slot either.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only, no other file changed). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished and independently re-verified, no new unblocked item survives, CI-1029 confirmation handed forward)
 
 **Did:** checkout arrived shallow and detached; step 0 (`git fetch --unshallow`, then `merge --ff-only`) attached cleanly onto `origin/main` (`3ddac7ec`), no conflict. Read the last two `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and `GOALS.md` section 0.
