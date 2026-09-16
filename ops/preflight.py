@@ -9731,6 +9731,87 @@ def gate_no_stale_card_deck_decision() -> None:
              "drop it from the 'Items waiting on Phil' list.")
 
 
+# (superseded file, the successor filename it must name in its own banner)
+_SUPERSESSION_CHAIN = [
+    ("BACKLOG.md", "BACKLOG-2026-H2.md"),
+    ("BACKLOG-2026-H2.md", "BACKLOG-2026-09-07.md"),
+    ("ROADMAP.md", "ROADMAP-2026-2029.md"),
+    ("STRATEGY.md", "ROADMAP-2026-2029.md"),
+    ("GROWTH-PLAN.md", "ROADMAP-2026-2029.md"),
+]
+_SUPERSESSION_MARKERS = ("superseded", "current plan is",
+                          "current ordering lives in")
+
+
+def gate_doc_supersession_chain_current() -> None:
+    """Every superseded planning doc must still point forward, and the file
+    it points to must still be the live one, not itself superseded.
+
+    Found 2026-09-16, this operator, checking a standing recommendation
+    (several PM check-ins today: "collapse BACKLOG.md/BACKLOG-2026-H2.md to
+    short historical pointers, the same posture already used for
+    ROADMAP.md/STRATEGY.md/GROWTH-PLAN.md") against the actual files rather
+    than trusting the cited precedent. It was wrong: ROADMAP.md (2,039
+    lines) and STRATEGY.md (1,556 lines) both still carry their full
+    original body under a banner; neither was ever collapsed. The real
+    precedent these three files (and BACKLOG.md/BACKLOG-2026-H2.md, which
+    already match it) all share is "banner plus full body kept," not
+    "collapse to a stub." BACKLOG.md and BACKLOG-2026-H2.md already carry
+    correct, forward-pointing banners (fixed 2026-09-08 for the exact
+    backwards-only chain this gate now protects), so there is no
+    outstanding doc-sprawl defect here, only an inherited misdescription of
+    what "the same posture" means. Recorded so the recommendation stops
+    being repeated as if it named unfinished work.
+
+    This gate still earns its place going forward: it independently
+    protects the thing that was actually broken once (2026-09-08, issue
+    found reading the hourly operator's own instructions: `BACKLOG.md` said
+    it was superseded by `BACKLOG-2026-H2.md`, and that file said nothing
+    about being superseded further, so automation reading "the current
+    file" the instructions named stopped one hop too early). It fails if
+    any file in the chain loses its forward-pointing banner, if the banner
+    stops naming a file that exists, or if the file at the end of a chain
+    (the one nothing here supersedes) is itself marked superseded, the
+    same shape bug in a new place.
+    """
+    bad = []
+    terminal_successors = {succ for _, succ in _SUPERSESSION_CHAIN}
+    superseded_names = {name for name, _ in _SUPERSESSION_CHAIN}
+    for name, successor in _SUPERSESSION_CHAIN:
+        p = os.path.join(ROOT, name)
+        if not os.path.exists(p):
+            continue
+        head = io.open(p, encoding="utf-8").read(2000)
+        head_lower = head.lower()
+        if not any(m in head_lower for m in _SUPERSESSION_MARKERS):
+            bad.append(f"{name} no longer carries a supersession banner "
+                       f"near its top")
+            continue
+        if successor not in head:
+            bad.append(f"{name}'s banner no longer names {successor} as "
+                       f"its successor")
+            continue
+        if not os.path.exists(os.path.join(ROOT, successor)):
+            bad.append(f"{name} points at {successor}, which no longer "
+                       f"exists")
+
+    for successor in terminal_successors:
+        if successor in superseded_names:
+            continue  # it is itself superseded further down the chain
+        p = os.path.join(ROOT, successor)
+        if not os.path.exists(p):
+            continue
+        head_lower = io.open(p, encoding="utf-8").read(2000).lower()
+        if any(m in head_lower for m in _SUPERSESSION_MARKERS):
+            bad.append(f"{successor} is the live end of a supersession "
+                       f"chain but its own top now reads as superseded "
+                       f"too; the chain would strand a reader who follows "
+                       f"it here")
+
+    if bad:
+        fail("doc-supersession-chain-current", "; ".join(bad))
+
+
 def gate_affiliate_approved_claims_current() -> None:
     """how-we-make-money.html and affiliate-disclosure.html must not still
     say no affiliate programme has been approved once
@@ -10210,9 +10291,17 @@ def gate_critical_risks_escalated() -> None:
     every document, only that each CRITICAL/OPEN risk's own ID appears on
     at least one of the three, so a real gap cannot silently sit in the
     register alone again.
+
+    Widened 2026-09-16, this operator: added BACKLOG-2026-09-07.md, the
+    file that actually carries live ordering today (BACKLOG-2026-H2.md's
+    own banner has said so since 2026-09-08). Both stay checked, since
+    H2 still holds some of the risk citations (RISK-0013) and nothing
+    requires an existing citation to move; this only stops the live queue
+    from being a blind spot the same shape already found once for H2.
     """
     risks_path = os.path.join(ROOT, "RISKS.md")
-    other_paths = ["OWNER-ACTIONS.md", "BACKLOG-2026-H2.md", "STATUS.md"]
+    other_paths = ["OWNER-ACTIONS.md", "BACKLOG-2026-H2.md",
+                   "BACKLOG-2026-09-07.md", "STATUS.md"]
     if not os.path.exists(risks_path):
         return
     risks_text = io.open(risks_path, encoding="utf-8").read()
@@ -10232,10 +10321,11 @@ def gate_critical_risks_escalated() -> None:
     if missing:
         fail("critical-risks-escalated",
              f"{', '.join(missing)} is CRITICAL and OPEN in RISKS.md but "
-             f"not named in OWNER-ACTIONS.md, BACKLOG-2026-H2.md or "
-             f"STATUS.md; section 23's own escalation rule requires a "
-             f"CRITICAL risk with no visible mitigation to reach a working "
-             f"list, not just sit in the register.")
+             f"not named in OWNER-ACTIONS.md, BACKLOG-2026-H2.md, "
+             f"BACKLOG-2026-09-07.md or STATUS.md; section 23's own "
+             f"escalation rule requires a CRITICAL risk with no visible "
+             f"mitigation to reach a working list, not just sit in the "
+             f"register.")
 
 
 def gate_roadmap_photo_asset_caveat() -> None:
@@ -14170,6 +14260,7 @@ def main() -> int:
     run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_no_stale_narration_blocker)
     run_gate(gate_no_stale_card_deck_decision)
+    run_gate(gate_doc_supersession_chain_current)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
     run_gate(gate_visual_strategy_truncation_current)
