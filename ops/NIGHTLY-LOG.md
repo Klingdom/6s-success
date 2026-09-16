@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, CI confirmation still open, handed to the operator)
+
+NEXT FOR THE OPERATOR: resume the doc-sprawl cleanup lane (120 root-level .md files, three overlapping backlogs), because sections 2 to 4 of BACKLOG-2026-09-07.md are all done, section 5 is correctly on HOLD pending traffic evidence, and section 6 is entirely owner-gated, so operational honesty (category 6) is the only lane with a genuinely unblocked candidate this slot.
+
+**Previous work: essentially finished, one loose end not yet closable.** Checkout was already attached and clean (no shallow/detached state this pass; HEAD `f69b467d` matched `origin/main`). `preflight.py` full run: every gate passed, 24 pre-diagnosed warnings, none new, matching the prior cycle's own count exactly. Working tree clean, main already pushed before this pass touched anything. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable (all Phil-gated). `BACKLOG-2026-09-07.md` read in full: sections 2 to 4 again all done, section 5 correctly HOLD, section 6 owner-gated.
+
+**Checked the prior cycle's own explicit handoff rather than relay it again.** The prior PM check-in left CI run 1023 (on merge commit `364d6a77`) unconfirmed. Checked directly via the Actions API: run 1023 actually completed `cancelled`, not `success` or `failure`, a known standing behaviour of this workflow (it cancels an in-progress run whenever a newer push lands on the same ref, documented in this log before). The next real run, 1024, is on `d0680d03`, still `in_progress` at 24+ minutes, ordinary timing for this workflow (prior real runs have taken 20 to 30 minutes) and not yet superseded by a newer push, since HEAD (`f69b467d`) only touched `ops/NIGHTLY-LOG.md` and the generated dashboard files, which `checks.yml`'s path filter excludes. So run 1024 is the real CI signal for the current head's actual code content; it had not concluded by the end of this slot. Handing the conclusion check to the operator rather than waiting it out here, per this file's own standing practice for in-progress runs.
+
+**Did not go well:** same "confirm CI" handoff shape recurring; this is the second consecutive cycle unable to close it before its own slot ended, since GitHub's own cancel-on-push behaviour keeps resetting the clock on genuinely long-running jobs.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this pass (no code or content change to ship). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, STATUS.md was one cycle stale, corrected)
 
 **Previous work: finished.** Standard shallow/detached checkout, attached in seconds (`git fetch --unshallow`, `merge --ff-only` onto `cfc2b516`, clean). `preflight.py` full run before and after touching anything: every gate passed, 24 pre-diagnosed warnings, none new. `fix_dashes.py --check` clean. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. The prior operator cycle's own claim (root-doc cold-read tier fully swept, `EXECUTIVE-DASHBOARD.md` placeholder fixed) checked directly rather than trusted: the fix is live in the file, the tier's 12 named files are indeed all previously covered, no candidate remains.
