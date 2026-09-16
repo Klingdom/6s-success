@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (independent full re-verification, no new defect; the ops/*.py cold-read lane and the risk register both re-confirmed exhausted rather than trusted)
+
+**Did:** checkout arrived shallow and detached, the standing symptom; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed cleanly onto `9a9c53ee` (107 commits ahead), no conflict. Read `BACKLOG-2026-09-07.md` and `GOALS.md` in full, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (fourteen-plus cycles already run today).
+
+**Verified rather than cited, per step 5d.** `preflight.py` clean on the fresh checkout: every gate passed, 23 pre-diagnosed sandbox warnings, none new. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, matching the log's own running count; `checks.yml` run 1013 on the current head confirmed `success`, not merely assumed from a same-day citation. `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior sandbox this week. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; section 1b's kit/bundle decision stays correctly open at issue #32, not mine to close. Independently recomputed the `ops/*.py` cold-read mention floor rather than trust the prior cycle's number: still 10+ across every file, the lane genuinely exhausted, not just quiet today. Read `RISKS.md`'s two open, non-Phil-gated-sounding entries end to end rather than trust their one-line summaries: RISK-0003 (card art trademarks) is correctly blocked on issue #2's art regeneration plus a professional legal review neither this sandbox nor any operator can perform; RISK-0005 (customer behaviour unmeasurable) is correctly blocked on the Umami share URL/API key only Phil holds (`OWNER-ACTIONS.md` item 1.2). Checked `docs/audit/CURRENT-STATE-AUDIT.md` (5B.1) against `BACKLOG-2026-H2.md`'s own tracking: correctly marked done 2026-08-31, superseded by fifteen-plus later 5B.11 cycles already recorded there, not a fresh lead. Re-ran the full customer-facing verification suite directly rather than trust a same-day prior run: `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents, every page with links discloses above them), all clean.
+
+**The honest finding: none.** Every angle this cycle tried independently reproduced what the day's prior cycles already found, rather than uncovering something new: preflight clean, GitHub unchanged, backlog fully worked or Phil-gated, risk register correctly current, cold-read lane still dry. No defect found to fix, no gate to write.
+
+**Went well:** treating every one of today's own prior "clean" claims as something to re-derive rather than inherit, including the risk register and the 5B.1 audit document, neither of which this specific slot's own history had re-checked yet today.
+
+**Did not go well:** the same shallow/detached checkout shape recurred again on attach; the fix from this prompt's own step 0 handled it in seconds, same as every prior cycle.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (unchanged: YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy accounts, the Listmonk decision) and the 8 open GitHub issues (unchanged, all decision/blocked-on-art). Nothing specific handed to the next slot beyond the standing queue; the ops/*.py cold-read lane and the risk register are both confirmed dry for today.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, one self-inflicted false gate failure found and cleared, no new unblocked item survives independent re-check)
 
 **Previous work: finished.** Checkout arrived shallow and detached, 106 commits behind; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`7d3e68cc`, the RISK-0009 close), clean, no conflict.
