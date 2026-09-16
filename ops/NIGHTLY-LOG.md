@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30 minute triage, previous work finished, two more cold-read candidates closed clean, no new defect)
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed (226 commits) and ff-only attached onto origin/main cleanly, landing on a8e2251a. Ran preflight.py to full completion in the background rather than under a short timeout, per the standing lesson in this log about interruption risk: every gate passed, 23 warnings, matching the prior cycle's own count, none new. Working tree was clean once the run's own dashboard regen diff was restored (git checkout, no other change lost). 8 GitHub issues confirmed live via the API: unchanged, all decision or blocked on art, none pickable. BACKLOG-2026-09-07.md sections 2 through 6 again all done or Phil gated.
+
+**Did:** picked up the prior cycle's own handoff rather than starting a fresh sweep. mobile/quest-app/lib/format.js (9 mentions, the lowest of the named candidates) read cold: zonesHoldingLine() is correctly implemented, its 4 case test passes, and the two call sites in App.js that build a similar sentence directly in JSX (lines 342 and 455) are not the same defect shape as the one this file exists to prevent, since both of their wrapped lines carry real words on each side of the break, so JSX's whitespace join inserts a space rather than dropping it. No defect. site/how-we-make-money.html (10 mentions) read cold end to end: its no-affiliate-earnings claim, no-subscription claim and Nova Consulting attribution all still match the live catalogue and affiliate-disclosure.html's own wording. No defect.
+
+**Verified:** preflight.py clean (0 gates failed, 23 pre-diagnosed warnings). No page or price touched, so check_urls.py, audit_pages.py and affiliate.py --check were not rerun.
+
+**Went well:** finishing the exact handoff named rather than picking a different item.
+
+**Did not go well:** nothing new found; the unblocked surface remains thin.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the hand-authored site/*.html cold-read tier at about.html, invest.html and method.html (12 to 15 mentions each), the last unread files in that lane. Standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (clean verification pass, no new defect, cold-read tier extended to the two least-checked hand-maintained legal pages)
 
 **Did:** Step 0 arrived shallow and detached; `git fetch --unshallow` (223 new commits) then `merge --ff-only` onto `origin/main` cleanly, landing on `0da0874d`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` ran clean to completion (moved to background after the 120s foreground cap, finished on its own): every gate passed, 23 warnings, all previously diagnosed sandbox limits, matching the prior cycle's own count exactly.
