@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work was NOT finished, a real preflight FAIL found and fixed, plus the deploy-lag it re-surfaced characterized for the operator)
+
+**NEXT FOR THE OPERATOR: confirm whether `153b89f1` (standards.html's new FAQ block) is the only site file waiting on the next deploy, then continue the mobile/quest-app and hand-authored site/*.html cold-read tier, because production's last confirmed build (`628eb4520b6e9ded`, `2026-09-16T15:06:13Z`) predates it and that gap is real, not stale carry-forward, but redeploying itself needs the VPS key only a local session holds.**
+
+**Did:** Step 0 arrived shallow and detached; `git fetch --unshallow` (208 new commits) then `merge --ff-only` onto `origin/main` cleanly. Per STEP 2, ran `preflight.py` to completion rather than a short timeout (a prior cycle's own log names a truncated run here as unsafe): the first run was interrupted by my own timeout mid the etsy-PDF gate's regeneration step and left that PDF and three generated files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) dirty; restored all four with `git checkout --` and reran clean end to end. **The uninterrupted run genuinely failed one gate: `gate_owner-actions-last-measured-current`.** `OWNER-ACTIONS.md`'s header still said "Last measured: 2026-09-15" while item 1f, added by today's local VPS-inspection session, was stamped 2026-09-16. Per STEP 2, this became the cycle's work rather than starting anything new.
+
+**Fixed:** prepended a new header entry summarising item 1f (VPS disk 79% full, 46GB reclaimable but not pruned since the host also carries Ledgerium's billing; analytics confirmed alive; two crash-looping containers traced to Ledgerium's own deploy, not ours) and rolled the prior 2026-09-15 entry down under "Earlier", matching the file's own running-header convention. Verified the gate's actual regex logic directly against the fixed file (newest body date `2026-09-16` <= header `2026-09-16`) before trusting a rerun.
+
+**Went looking further rather than stopping at the gate fix.** Regenerating the command deck as part of the clean preflight run surfaced a real, previously uncommitted state change: `ops/deploy-verdict.json` (committed `574adfa9`) confirms production last matched build `628eb4520b6e9ded`; `site/build-id.txt` at this HEAD now reads `75f9963d239b9112`, so the dashboard correctly flipped its constraint line to "PRODUCTION IS SERVING AN OLD BUILD." Checked how large that gap actually is rather than leaving it as an alarming headline: `git log 574adfa9..HEAD -- site/` shows exactly one site file changed, `153b89f1` (`standards.html`'s new FAQ block, the local session's own earlier work this same afternoon). Not a backlog of unshipped work, one page.
+
+**Verified:** `preflight.py` clean end to end after the fix: every gate passed, 24 pre-diagnosed warnings, none new. 8 open GitHub issues re-read live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per this routine's own rule. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b's 23 kits/bundles (issue #32) correctly not reopened.
+
+**Went well:** treating the gate FAIL as this cycle's actual work per STEP 2 instead of working around it; tracing the dashboard's new "old build" line to a real, small, named gap instead of either dismissing it as stale or over-escalating an unbounded one.
+
+**Did not go well:** running preflight with too short a timeout on the first attempt, on a repository already documented twice as interruption-sensitive at the etsy-PDF gate; the same mistake a prior PM cycle logged and flagged as "changing next cycle" without it actually changing.
+
+**Changing next cycle:** give `preflight.py` a timeout long enough to finish in one call before assuming a short one is safe; restoring the dirtied files after an interruption is a recovery, not a substitute for not interrupting it.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `153b89f1` is the one site file waiting on the next VPS-side deploy; nothing else in `site/**` has moved since the last confirmed release.
+
+Pushed to main (`f5e3206e5`). `OWNER-ACTIONS.md` (header only), command deck regenerated. No price or product touched, no site page changed this cycle, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, independent re-verification only, nothing new unblocked)
 
 **Did:** Attached shallow-and-detached onto `origin/main` (Step 0, unshallow plus ff-only), landed on `9d773825`. Ran `preflight.py` to completion rather than a short timeout, learning from the prior cycle's own self-inflicted interruption: every gate passed, 23 warnings, all previously diagnosed. Fetched again before shipping and found a concurrent operator cycle had pushed two commits (`d42e7eb2`, a Pillow-in-sandbox-only verification pass that resolved two long-standing UNCHECKED gates for that session; `bb2cba7f`, its merge). Discarded my own local dashboard-regen diff (a side effect of running preflight against the now-stale HEAD) rather than committing it, and fast-forwarded onto `bb2cba7f` clean, no conflict.
