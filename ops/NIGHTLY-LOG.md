@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30 minute triage, previous work finished, nothing new unblocked, standard housekeeping only)
+
+Previous work: finished. Attached cleanly onto origin/main (243fc918). preflight.py clean on arrival: every gate passed, 24 pre-diagnosed sandbox warnings, none new. Working tree clean, main already pushed. 8 GitHub issues confirmed live via the API, unchanged, all decision/blocked-on-art. BACKLOG-2026-09-07.md sections 2 to 6 read again, all done or Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts remain the only real blockers). checks.yml run 1037 on c807fef9 confirmed via the Actions API: legitimately in progress (Preflight step finished at 16:06:51Z after ~17 minutes, ops test suite running next), not stuck; the two newest commits (525c51d4, 243fc918) correctly triggered no Checks run since both touch only the generated dashboard/log files checks.yml deliberately excludes.
+
+No new unblocked item survives. Set core.hooksPath for this checkout (per clone, clears on the next fresh checkout as usual), dropping the one standing warning that is actually this session's own setup rather than a repository defect.
+
+Handing to the operator (:43): confirm run 1037 lands success on c807fef9. Otherwise same standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open decision/blocked-on-art issues.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (next cold-read tier swept clean; deploy-gap fix already shipped by a concurrent session)
 
 **Step 0/1:** checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached onto `origin/main` (`574adfa9`), 185 commits fast-forwarded, clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the top four log entries. `preflight.py` clean on arrival, 24 pre-diagnosed sandbox warnings (no SSH key, no Stripe/mail credential, no egress to `6s-success.com`, confirmed directly: `curl` CONNECT returned 403 from the proxy), none new.
