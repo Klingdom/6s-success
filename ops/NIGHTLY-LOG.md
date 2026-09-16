@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, handoff only, no new defect worked this slot)
+
+**NEXT FOR THE OPERATOR: cold-read `ops/check_ledgerium.py`, `ops/ledgerium_price_check.py` and `ops/stripe_invoice.py`, because these are the lowest-mention files in the ops/*.py tier (10 mentions each, tied with `build_all_prompts.py`/`build_card_prompts.py`/`build_catalog.py`/`generate_card_art.py`/`shrink_sample.py`) and the only three of that group that touch payment/billing safety, the area CLAUDE.md section 36b singles out as the one where an untested assumption already cost real work once.**
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed (237 new commits) and `merge --ff-only` attached cleanly onto `origin/main`, landing on `e5ac9093`. `preflight.py` ran to full completion in the background rather than under the 120s foreground cap: every gate passed, 0 FAIL, 23 pre-diagnosed sandbox warnings (no Stripe/SSH/mail credential, no egress, no Pillow, no JRE, cron-cadence drift already gated since 09-09, the standing art gaps), none new. Working tree clean apart from the routine dashboard-timestamp regen preflight itself triggers. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art` (#32, #31, #29, #21, #18, #15, #7, #2), none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; the last cycle's own handoff (the hand-authored `site/*.html` cold-read tier) is confirmed exhausted, `method.html` came back clean and nothing remains unread in that lane.
+
+**Did:** this slot's own instruction is triage, not depth, three minutes ahead of the operator; did not open a new cold-read myself. Ranked `ops/*.py` by log-mention count across `NIGHTLY-LOG.md`, `CHECKIN-LOG.md`, `STATUS.md` and `BACKLOG-2026-09-07.md` to find the next tier (the prior handoff already named this as the fallback lane once the site tier closed): `build_app_icons.py` (4) was touched and gated today (`STATUS.md`, 18:54 entry), so it is not a fresh candidate; the next tier at 10 mentions is `build_all_prompts.py`, `build_card_prompts.py`, `build_catalog.py`, `check_ledgerium.py`, `generate_card_art.py`, `ledgerium_price_check.py`, `shrink_sample.py`, `stripe_invoice.py`. Named the three with money/billing surface first (`check_ledgerium.py`, `ledgerium_price_check.py`, `stripe_invoice.py`, 144/114/142 lines) as the operator's priority within that tier, since a payment-adjacent file getting its first cold read outranks a prompt-building file under the "broken or dishonest" ordering rule.
+
+**Noted, not re-reported as new:** the dashboard's "PRODUCTION IS SERVING AN OLD BUILD" line and the redeploy ask are unchanged from the last several cycles' own account (`STATUS.md`, `OWNER-ACTIONS.md` item 1) and already sit at the top of "What needs you." Confirmed this is a recurring, actively-managed gap (production was caught up as recently as today 19:18:34Z by a local session with real access) rather than a stalled one, so it is not re-escalated here; the standing ask stays on the dashboard where Phil already reads it.
+
+**Verified:** `preflight.py` full run clean (not just fast), 0 gates failed. `git status` clean except the dashboard regen. Command deck regenerated (`ops/dashboard.py`) against the current pushed HEAD before shipping.
+
+**Went well:** confirming the prior handoff's "fully swept" claim against a fresh full preflight and a fresh GitHub read rather than taking it on faith; naming the payment-safety files first instead of picking the tier's lowest-effort file.
+
+**Did not go well:** same shallow-clone reattach shape every cycle needs; nothing to add there.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** `ops/check_ledgerium.py`, `ops/ledgerium_price_check.py`, `ops/stripe_invoice.py` first; `build_all_prompts.py`, `build_card_prompts.py`, `build_catalog.py`, `generate_card_art.py`, `shrink_sample.py` next in the same tier if those three come back clean. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, method.html cold-read clean, hand-authored tier now fully swept)
 
 **Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and ff-only attached onto `origin/main` cleanly, landing on `6e3faa82`. `preflight.py` ran to full completion in the background rather than under the 120s foreground cap: every gate passed, 23 pre-diagnosed sandbox warnings, none new. Working tree clean apart from a routine dashboard-timestamp regen. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
