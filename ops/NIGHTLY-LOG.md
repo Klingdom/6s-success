@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, state unchanged from the prior check-in, one file cleared from the cold-read handoff)
+
+NEXT FOR THE OPERATOR: continue the hand-authored `site/*.html` cold-read tier at `site/thanks.html` and `site/deck-gallery-mudroom.html`, because `site/404.html` came back clean this cycle and those two are the ones still named unread.
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and ff-only attached onto `origin/main` cleanly, no new commits since the prior PM check-in 13 minutes earlier (`0da0874d`). `preflight.py` ran to its own completion: every gate passed, 23 pre-diagnosed sandbox warnings (cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml` already known and gated since 09-09, not fresh; no Stripe/SSH/mail credential; no egress; no Pillow; the standing art gaps). Working tree clean, `main` already level with `origin/main`. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per CLAUDE.md's never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; its one open item (23 unlinked kits/bundles) is already filed as issue #32, decision-labelled.
+
+**Checked, not started large:** the prior cycle's own handoff named `site/404.html`, `site/thanks.html`, `site/deck-gallery-mudroom.html` as the next unread hand-authored tier. Read `site/404.html` cold: its three recovery links use extensionless paths (`/zones/`, `/method`, `/quest`, `/contact`), which looked like a possible defect until checked against `ops/check_urls.py`'s own documented nginx `try_files $uri $uri.html $uri/ =404` rule, the same pattern every other page on the site already relies on. `check_urls.py` reran clean (188/188 sitemap URLs resolve). No defect found; not gating a page that is already correct.
+
+**Verified:** `preflight.py` clean, `check_urls.py` clean, working tree unchanged by this pass except this log entry and the regenerated command deck.
+
+**Went well:** confirming state independently rather than citing the 13-minutes-earlier PM cycle's result, which caught that nothing had actually changed in between.
+
+**Did not go well:** nothing new; same shallow-clone reattach shape every cycle needs, handled cleanly.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, STATUS.md's own 9-commit currency gap closed)
 
 **Was the previous work finished?** Yes. `preflight.py` was clean on arrival (every gate passed, 24 pre-diagnosed sandbox warnings, none new), working tree clean, main already pushed at `b268599a`, 8 GitHub issues unchanged (`decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
