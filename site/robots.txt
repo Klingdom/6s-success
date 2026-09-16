@@ -5,4 +5,12 @@ Allow: /
 # Utility and direct-link-only pages carry a noindex meta tag instead of a
 # Disallow, because a crawler has to fetch a page to see the noindex.
 
+# /stats/ is the self-hosted analytics beacon, not a page. It returns no
+# HTML, so there is nothing to index and no noindex tag a crawler could
+# find by fetching it, which is why the rule above does not cover it.
+# Measured 2026-09-16 from the proxy access log, filtered to this domain:
+# of Googlebot's 129 fetches, 21 went to /stats/api/send and 6 to
+# /stats/script.js, while not one went to a zone, room or article page.
+Disallow: /stats/
+
 Sitemap: https://6s-success.com/sitemap.xml

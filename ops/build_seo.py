@@ -645,6 +645,14 @@ def build_robots():
         "# Utility and direct-link-only pages carry a noindex meta tag instead of a\n"
         "# Disallow, because a crawler has to fetch a page to see the noindex.\n"
         "\n"
+        "# /stats/ is the self-hosted analytics beacon, not a page. It returns no\n"
+        "# HTML, so there is nothing to index and no noindex tag a crawler could\n"
+        "# find by fetching it, which is why the rule above does not cover it.\n"
+        "# Measured 2026-09-16 from the proxy access log, filtered to this domain:\n"
+        "# of Googlebot's 129 fetches, 21 went to /stats/api/send and 6 to\n"
+        "# /stats/script.js, while not one went to a zone, room or article page.\n"
+        "Disallow: /stats/\n"
+        "\n"
         "Sitemap: %s/sitemap.xml\n" % BASE
     )
     open(os.path.join(SITE, "robots.txt"), "w", encoding="utf-8", newline="\n").write(txt)
