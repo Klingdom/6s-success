@@ -3386,6 +3386,121 @@ def gate_cover_author_current() -> None:
              f"the Liberation fallback fonts, not only on Phil's machine.")
 
 
+
+STORE_LISTING = os.path.join(ROOT, "mobile", "quest-app", "STORE-LISTING.md")
+APP_JSON = os.path.join(ROOT, "mobile", "quest-app", "app.json")
+
+# Apple rejects an icon carrying any alpha channel, so the PNG colour type
+# matters as much as the size. Play takes alpha. The adaptive foreground must
+# keep alpha or the launcher cannot crop it to its own shape.
+# colour type 2 = RGB, 6 = RGBA. None means "do not care".
+STORE_ART = [
+    ("mobile/quest-app/assets/icon.png", (1024, 1024), 2),
+    ("mobile/quest-app/assets/adaptive-icon.png", (1024, 1024), 6),
+    ("mobile/quest-app/assets/splash.png", (2048, 2048), None),
+    ("build/listings/app/play-icon-512.png", (512, 512), 6),
+    ("build/listings/app/feature-graphic-1024x500.png", (1024, 500), None),
+]
+PNG_COLOUR = {0: "greyscale", 2: "RGB", 3: "palette", 4: "greyscale+alpha", 6: "RGBA"}
+
+
+def png_header(path):
+    """(width, height, colour_type) from the IHDR. No Pillow, on purpose.
+
+    ops/requirements.txt keeps Pillow out of CI because preflight installs
+    beside STRIPE_SECRET_KEY and SMTP_PASS in fulfil-orders.yml, which is why
+    gate_icons_current parses headers rather than decoding images. A gate that
+    can only warn "Pillow missing" in the one environment that matters is not a
+    gate. Same IHDR technique as build_social_pins.png_dims, extended by the
+    one byte that says whether an alpha channel is present.
+    """
+    with open(path, "rb") as fh:
+        head = fh.read(33)
+    if head[:8] != b"\x89PNG\r\n\x1a\n" or head[12:16] != b"IHDR":
+        return (0, 0, -1)
+    return (int.from_bytes(head[16:20], "big"),
+            int.from_bytes(head[20:24], "big"),
+            head[25])
+
+
+def gate_store_art():
+    """The phone app store art exists, at the exact shapes the stores demand.
+
+    Store art is the slowest thing in the system to correct: a wrong icon sits
+    in a listing until an entirely new build is reviewed. The app shipped with
+    no image of any kind, no icon, no splash, no store art, and nothing noticed
+    until the listing was being written, which is what this gate is for.
+    """
+    for rel, size, colour in STORE_ART:
+        path = os.path.join(ROOT, *rel.split("/"))
+        if not os.path.exists(path):
+            fail("store-art", "%s is missing; run ops/build_app_icons.py" % rel)
+            continue
+        w, h, ct = png_header(path)
+        if (w, h) != size:
+            fail("store-art", "%s is %dx%d, the store wants %dx%d"
+                 % (rel, w, h, size[0], size[1]))
+        if colour is not None and ct != colour:
+            extra = (" (an alpha channel is an App Store rejection, not a warning)"
+                     if colour == 2 else "")
+            fail("store-art", "%s is %s, must be %s%s"
+                 % (rel, PNG_COLOUR.get(ct, "type %d" % ct),
+                    PNG_COLOUR.get(colour, colour), extra))
+
+    if os.path.exists(APP_JSON):
+        cfg = json.load(io.open(APP_JSON, encoding="utf-8")).get("expo", {})
+        for label, declared in (
+                ("icon", cfg.get("icon")),
+                ("splash.image", (cfg.get("splash") or {}).get("image")),
+                ("android.adaptiveIcon.foregroundImage",
+                 ((cfg.get("android") or {}).get("adaptiveIcon") or {}).get("foregroundImage"))):
+            if not declared:
+                fail("store-art", "app.json declares no %s, so the build has no %s" % (label, label))
+                continue
+            p = os.path.join(ROOT, "mobile", "quest-app",
+                             declared.lstrip("./").replace("/", os.sep))
+            if not os.path.exists(p):
+                fail("store-art", "app.json %s points at %s which does not exist" % (label, declared))
+
+
+# Apple truncates or rejects on these two fields, and STORE-LISTING.md exists to
+# be pasted into a submission form without further thought. It was written twice
+# with a hand-counted number that was wrong, which is exactly the kind of error
+# nobody re-checks because it looks like it was already checked.
+STORE_FIELDS = [
+    ("app name", r"\*\*App name \(Apple, 30 char max\):\*\* (.+)", 30),
+    ("subtitle", r"\*\*Subtitle \(Apple, 30 max\):\*\* (.+)", 30),
+    ("short description", r"\*\*Short description \(Play, 80 max\):\*\*\s*\n(.+)", 80),
+]
+
+
+def store_listing_overruns(text):
+    """Pure. Returns [(label, value, length, cap)] for fields over their cap."""
+    bad = []
+    for label, pat, cap in STORE_FIELDS:
+        m = re.search(pat, text)
+        if not m:
+            bad.append((label, "FIELD MISSING", 0, cap))
+            continue
+        val = m.group(1).strip()
+        if len(val) > cap:
+            bad.append((label, val, len(val), cap))
+    return bad
+
+
+def gate_store_listing_lengths():
+    """The hard-capped store fields actually fit inside their limits."""
+    if not os.path.exists(STORE_LISTING):
+        return
+    text = io.open(STORE_LISTING, encoding="utf-8").read()
+    for label, val, n, cap in store_listing_overruns(text):
+        if val == "FIELD MISSING":
+            fail("store-listing", "%s is missing from STORE-LISTING.md" % label)
+        else:
+            fail("store-listing", "%s is %d characters, the store allows %d: %s"
+                 % (label, n, cap, val[:60]))
+
+
 def gate_icons_current() -> None:
     """The PWA/favicon icons must not silently drift from the generator that draws them.
 
@@ -14364,6 +14479,8 @@ def main() -> int:
     run_gate(gate_done_items_single_source)
     run_gate(gate_cover_author_current)
     run_gate(gate_icons_current)
+    run_gate(gate_store_art)
+    run_gate(gate_store_listing_lengths)
     run_gate(gate_hazard_icons_current)
     run_gate(gate_every_generator_has_a_protection_plan)
     run_gate(gate_head_scripts_non_blocking)

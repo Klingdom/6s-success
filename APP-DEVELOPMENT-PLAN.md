@@ -144,10 +144,11 @@ ordered by revenue and retention impact against risk.
 
 | # | Gate | Cost | Unblocks |
 |---|---|---|---|
-| 1 | Run the 15 on-device checks | 20 min | Everything |
+| 1 | Run the 16 on-device checks | 20 min | Everything |
 | 2 | Apple Developer account | $99/yr | iOS release, IAP |
 | 3 | Google Play account | $25 once | Android release, IAP |
 | 4 | Accounts layer: yes or no, and the privacy stance | a decision | Household play, 6S Plus |
+| 5 | Six screenshots during check 1, on the phone | 0 min extra | Both store listings |
 
 Items 2 and 3 are account creation and payment, which I cannot do. Item 1 needs
 a physical phone. Item 4 is a business and privacy decision.
@@ -162,9 +163,21 @@ without confusion. Everything after that is improvement, not completion.
 
 ## 8. What I will do next without being asked
 
-1. Phase 1 work that needs no account: icon, splash, screenshots, `app.json`,
-   store copy, privacy disclosure.
+1. ~~Phase 1 work that needs no account: icon, splash, store copy, privacy
+   disclosure.~~ **Done 2026-09-16.** The app had no image of any kind, which
+   blocked the listing as hard as the accounts did. `ops/build_app_icons.py`
+   now renders the Apple 1024 (RGB, no alpha), the Play 512, the Android
+   adaptive foreground, the splash and the Play feature graphic from the same
+   brand mark the site uses, and `app.json` points at them. `gate_store_art`
+   and `gate_store_listing_lengths` fail the build if any of it goes missing
+   or overruns a store field. Screenshots are the exception and are gate 5
+   above: they must show the real app on a real phone.
 2. Keep the corpus in lockstep with the website and fail the build if it drifts.
 3. Extend the automated tests to cover the finish-a-zone and resume paths.
-4. Write the store listing text and the screenshots so that day one after the
-   accounts exist is a submission, not a scramble.
+4. ~~Write the store listing text so that day one after the accounts exist is a
+   submission, not a scramble.~~ **Done 2026-09-16:**
+   `mobile/quest-app/STORE-LISTING.md` holds every field ready to paste, the
+   data-safety answers with the evidence behind them, and the price decision:
+   free, no in-app purchase in the first release, because the live shop
+   already promises the Home Quest free and the app is the top of the funnel
+   rather than the product.
