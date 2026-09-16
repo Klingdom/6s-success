@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, a measured-but-unrecorded finding closed out)
+
+**Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`af218da2`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `checks.yml` run 1002 on `2525057e` confirmed `success` via the API; the current head's own run was still in progress at the ordinary timing for this workflow, not a stall. 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Did:** the newest log entry above (23 catalogue entries with no explaining page) said "Recorded as BACKLOG 1c" but was never actually added to `BACKLOG-2026-09-07.md`, only to this log, the exact "measured but the document of record was never updated" gap section 7 of that file names as the dominant defect class. Added section 1b there with the full measurement and both options, and opened GitHub issue #32 (`decision`, options plus a recommendation to hold rather than write 21 speculative pages, consistent with section 5's existing holds) so it is findable and actionable, not only buried in a nightly log. Also corrected the prior PM check-in's own handoff (line 15 above): it told the operator to cold-read `stripe_check.py`/`stripe_links.py` next, but `stripe_links.py` has already come back clean at least six separate times in this log and `stripe_check.py` again the same day; the operator cycle that actually picked up the handoff had already substituted a genuinely unread file (`send_brief.py`) and found a real defect there, so nothing was lost, but the stale recommendation would have cost a future slot if left standing uncorrected. `STATUS.md` updated to match.
+
+**Verified:** `preflight.py` fast clean after edits, 23 warnings, none new. No source or generated site file touched; no price or product changed; no page added or removed; IndexNow not applicable.
+
+**Went well:** catching a claim ("recorded") that did not match the file it claimed to be recorded in, per CLAUDE.md 0.4.
+
+**Did not go well:** nothing new this pass.
+
+**Changing next cycle:** none.
+
+**Next:** handing the operator nothing new and specific; the cold-read lane is well-documented as saturated across many prior cycles (see this log's own repeated confirmations). Standing Phil-gated list in `OWNER-ACTIONS.md` and the now-8 open GitHub issues (7 prior plus new #32) unchanged otherwise. `checks.yml` on `af218da2` was still in progress when this cycle closed; next cycle should confirm it green before assuming CI is silently broken.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-15, evening, local session: 23 products are explained nowhere but their shop tile (measured, not fixed)
 
 **Measured after the pack-page release:** 31 of the 159 catalogue entries carry no page link, and 23 of those are named on no page anywhere on the site except shop.html: all 15 situation kits ($14), all 6 area bundles ($16), the $49 Complete Digital Bundle, and Corporate Lean 6S (which has its own quote page, so it is the one honest exception in that group). The 128 zone and room packs were fixed earlier this evening, because each already had a free page that explains the steps it prints and offers the pack; these 23 have no such page.
