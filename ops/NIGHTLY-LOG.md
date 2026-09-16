@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, dashboard regen only, nothing new genuinely unblocked)
+
+Attached cleanly onto origin/main (c65d15be, a prior PM cycle's merge of a concurrent operator session). Previous work: finished. preflight.py clean on arrival, every gate passed, 24 pre-diagnosed sandbox warnings, none new. Working tree clean, main pushed. 8 GitHub issues confirmed live via the API, unchanged, all decision or blocked-on-art (issue #2's "9 stale card images" checked directly: genuinely blocked, needs real art regeneration, not a free local fix). checks.yml run 1042 on c65d15be confirmed in_progress via the Actions API, started 17:01:20Z, ordinary timing not a stall. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated; section 1b's 23 catalogue kits (issue #32) still await Phil's decision, so no page work is unblocked there yet. Regenerated and shipped the dashboard, stale since before the merge. Handing the operator: nothing new unblocked; standing owner-gates list in OWNER-ACTIONS.md unchanged.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work was NOT finished, arrived mid a concurrent session fixing the same gates; merged rather than duplicated)
 
 **NEXT FOR THE OPERATOR: pick up BACKLOG-2026-09-07.md section 1b (the 23 catalogue entries with no page of their own), because it is the only unblocked, undecided item; everything else genuinely unblocked is already done or is Phil-gated (issue #32 covers the decision half of the same gap).**
