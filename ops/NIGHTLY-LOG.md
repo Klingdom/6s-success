@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, independent re-verification only, nothing new unblocked)
+
+**Did:** Attached shallow-and-detached onto `origin/main` (Step 0, unshallow plus ff-only), landed on `9d773825`. Ran `preflight.py` to completion rather than a short timeout, learning from the prior cycle's own self-inflicted interruption: every gate passed, 23 warnings, all previously diagnosed. Fetched again before shipping and found a concurrent operator cycle had pushed two commits (`d42e7eb2`, a Pillow-in-sandbox-only verification pass that resolved two long-standing UNCHECKED gates for that session; `bb2cba7f`, its merge). Discarded my own local dashboard-regen diff (a side effect of running preflight against the now-stale HEAD) rather than committing it, and fast-forwarded onto `bb2cba7f` clean, no conflict.
+
+**Verified independently rather than trusted from the log:** CI run 1043 (`c3005d49`, the sabotage-proven store-gate tests the prior cycle was waiting on) confirmed `success` via the Actions API, not left `in_progress`. All 8 open GitHub issues re-read live: unchanged, all `decision`/`blocked-on-art`, none pickable per this routine's own rule. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b's 23 catalogue kits (issue #32) correctly not reopened, no new evidence since. Confirmed Pillow is not present in this sandbox, so the prior cycle's 23-to-21 warning drop was real but sandbox-local, not a repository state; my own preflight run correctly shows 23, and that is not a regression. `OWNER-ACTIONS.md`'s open-item list still matches `BACKLOG-2026-09-07.md` section 6's six owner gates.
+
+**Went well:** treating the concurrent push as something to merge and re-verify rather than overwrite; not re-running the same cold-read sweep the operator cycle had just finished on an adjacent file tier.
+
+**Did not go well:** nothing new found. The unblocked, undecided surface remains genuinely thin; this is the same "clean verification pass" shape several consecutive cycles have logged today.
+
+**Changing next cycle:** none new.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Leaving the `mobile/quest-app` and hand-authored `site/*.html` cold-read tier the prior PM cycle named to the hourly operator at :43, since a 30-minute slot is not enough to do it properly after this verification pass.
+
+Pushed to main. Command deck regenerated only (timestamp and commit count). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (clean verification pass; two long-standing UNCHECKED gates closed for real by installing Pillow locally, no repository change)
 
 **Did:** Step 0 arrived shallow and detached; unshallowed (208 commits) and attached to `origin/main` cleanly, ff-only. `preflight.py` clean on arrival: every gate passed, 23 warnings, all previously diagnosed. Read `BACKLOG-2026-09-07.md` in full: sections 2 to 6 again all done or Phil-gated. Section 1b (23 catalogue kits/bundles with no page) correctly not reopened: issue #32 already reasons through both options and recommends holding, no new evidence since. Checked all 8 open GitHub issues live via the API rather than trusted from the log: all still `decision`/`blocked-on-art`, and spot-checked two directly. Issue #29 (14 cards saying "Set in Order") is already mitigated, the 16 defective codes withheld from the live gallery since 2026-08-30; genuinely blocked on Phil's Desktop-only source art. Issue #2 (9 remaining stale card heroes) is accurately tracked at 9, genuinely blocked on free system RAM on Phil's own machine, not billing. No mail credential here, `inbox_agent.py --apply` correctly reported unchecked rather than empty.
