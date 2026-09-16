@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (independent full re-verification, no new defect; CI 1020 handed off still running)
+
+**Did:** checkout arrived shallow and detached, the standing symptom; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed cleanly onto `5e5866c8` (132 commits ahead, no conflict). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries (this file's own most-recent-first order, not tail).
+
+**Verified rather than cited:** local `preflight.py` full run, every gate passed, 24 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow/ffmpeg here), none new. `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents) all clean. Mobile `npm test`: pickCard, eventLog and pluralization suites all pass. `inbox_agent.py --apply`: no mail credential, unchecked not empty. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b correctly parked at issue #32; section 5 correctly on hold.
+
+**CI handoff picked up and re-checked, not resolved:** the prior PM check-in root-caused a real flake in `test_ship_conflict_safety.py` (a detached `git gc --auto` child racing `tempfile.TemporaryDirectory` cleanup) and pushed the fix (`b276e85d`) plus a log-only follow-up (`5e5866c8`, already on this checkout). Checked run 1020 on `b276e85d` directly via the Actions API rather than assume the fix landed clean: still `in_progress` at both the start and end of this slot (Preflight step completed clean at 07:39:54Z, the ops test suite step, which contains the fixed test, still running). Not a stall: this is the same step and roughly the same duration prior genuinely-slow runs on this workflow have taken. Handing to the next cycle to confirm the conclusion before trusting this head's CI state.
+
+**Checked for a new defect rather than only re-confirm old ones, per step 5d, since the `ops/*.py` and root-doc cold-read lanes are both independently confirmed exhausted by roughly 30 cycles today:** read `LEDGERIUM-BILLING.md` end to end against `CLAUDE.md` section 36b's warning (self-consistent, already corrected, gate exists); read `DISASTER-RECOVERY.md` and `AUTONOMY-SCHEDULER.md` in full (both honestly template/aspirational documents, every unpopulated field marked `UNKNOWN` rather than asserted, so neither carries a live stale claim to fix, consistent with the "template-only" result two prior cycles already reported for this tier); re-read `OWNER-ACTIONS.md` and `GOALS.md` in full against the live GitHub issue list, no drift found.
+
+**The honest finding: none new.** No defect found to fix, no gate to write.
+
+**Went well:** treating the CI handoff as this slot's first-class work (checked the run directly rather than assuming yesterday's fix meant done) instead of only running another cold-read sweep.
+
+**Did not go well:** the same shallow/detached checkout shape recurred again; handled in seconds by step 0, same as every prior cycle.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** confirm CI run 1020 (or its successor) lands `success` on `b276e85d` before trusting this head. Standing Phil-gated queue in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy accounts, the Listmonk decision, the Rakuten access decision) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished locally but CI was red, a real flake root-caused and fixed rather than restarted)
 
 **Previous work: finished locally, not on GitHub.** Shallow/detached checkout, unshallowed and fast-forwarded onto `origin/main` (`9ed7c533`), clean. Local `preflight.py` passed every gate. But `gate_workflows_healthy`'s own warning plus a direct check via the GitHub Actions API showed the real, most recent `checks.yml` run (1019, on `f4f238ae`) had FAILED: `gate_tests` reported `test_ship_conflict_safety.py: OSError: [Errno 39] Directory not empty: 'repo'`, thrown by `tempfile.TemporaryDirectory`'s own cleanup after the test itself had already printed `PASS: 3/3`. Treated this as the cycle's actual work per STEP 2 rather than starting the root-doc cold-read handoff.
