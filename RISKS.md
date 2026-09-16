@@ -124,7 +124,7 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-09-10.
+Last reviewed: 2026-09-16.
 
 **On the previous "Last reviewed: 2026-08-19" and what it cost.** This
 register's own section 22 promises the four `CRITICAL` entries get re-read
@@ -141,7 +141,7 @@ this file exists for. See `gate_risks_register_current` in
 `ops/preflight.py`, added this cycle, which fails if this date goes more
 than 31 days stale again.
 
-Thirteen risks are recorded. Six are open, one is mitigating, six are
+Thirteen risks are recorded. Six are open, none are mitigating, seven are
 closed. Three open risks are `CRITICAL` (RISK-0007, RISK-0011, RISK-0013).
 None have been formally accepted by the owner, so none are `ACCEPTED` yet.
 
@@ -155,7 +155,7 @@ None have been formally accepted by the owner, so none are `ACCEPTED` yet.
 | RISK-0006 | Safety and legal front matter is new and unreviewed | HIGH | CLOSED |
 | RISK-0007 | Single host, no staging, unproven restore | CRITICAL | OPEN |
 | RISK-0008 | Nine product lines, none purchasable | HIGH | CLOSED |
-| RISK-0009 | Control documents contradict the published canon | MEDIUM | MITIGATING |
+| RISK-0009 | Control documents contradict the published canon | LOW | CLOSED |
 | RISK-0010 | No automated quality gate before production | MEDIUM | CLOSED |
 | RISK-0011 | Product masters live outside the repository | CRITICAL | OPEN |
 | RISK-0012 | No audience is being retained | HIGH | OPEN |

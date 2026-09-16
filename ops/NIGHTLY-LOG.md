@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished and confirmed, a real RISKS.md self-inconsistency found and closed)
+
+NEXT FOR THE OPERATOR: cold-read the low-mention root markdown docs (`AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`, `APP-DEVELOPMENT-PLAN.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-SCHEDULER.md`, `CUSTOMER-JOURNEY.md`, `DECK-SYSTEM.md`, `EXECUTIVE-DASHBOARD.md`, `REPORT-2026-09-02.md`, `SELF-IMPROVEMENT.md`, `SPENDING.md`, `SYSTEM-REGISTRY.md`, `TESTING.md`), because two PM cycles ago handed this off already and nothing has swept it since (confirmed via `git log 990035a8..HEAD`, only the sample-PDF spelling gate and this cycle's own work landed in between); it is the one genuinely unworked tier left once every backlog row in sections 2 to 6 of `BACKLOG-2026-09-07.md` is re-confirmed done or Phil-gated and the 8 GitHub issues are re-confirmed unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`aeeb3196`), clean, no conflict, working tree already clean and main already pushed. The prior PM check-in's own outstanding item, `checks.yml` run 1015 on `cdecb45c`, confirmed `success` directly via the GitHub API (not re-cited): the operator handoff is resolved.
+
+**Did:** re-verified rather than cited. `preflight.py` run at full length twice (the first of two default-timeout attempts was killed at 110s by this session's own tool limit and, exactly as a prior PM cycle already diagnosed, left `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` dirty from a partial regen; restored to HEAD before the real run rather than building on a killed run's output). Full run: every gate passed, 24 warnings, all previously diagnosed. 8 GitHub issues confirmed live via the API, unchanged. `BACKLOG-2026-09-07.md` sections 2 to 6 re-read in full: every row done or Phil-gated, section 1b correctly parked at issue #32, section 5 correctly on hold.
+
+**Found and fixed:** dispatched a research agent to check `OWNER-ACTIONS.md` and `RISKS.md` for currency rather than only cite them. `RISKS.md`'s RISK-0009 was closed today by an earlier commit (`7d3e68cc`), and that commit correctly wrote the individual record's own `status: CLOSED`/`severity: LOW` block, but never touched section 8's summary table (still read `MEDIUM | MITIGATING`) or the register's own count line (still said "one is mitigating, six are closed") or its "Last reviewed" date. This is the exact "source corrected, shipped artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 names as the dominant defect class, this time inside a document instead of code. Fixed all three: table row to `LOW | CLOSED`, count line to "six open, none are mitigating, seven are closed", `Last reviewed` bumped to today. Checked against `gate_risk_cross_references_current`'s own regex before touching the row (it expects exactly this `| RISK-ID | title | SEVERITY | STATUS |` shape) and against every `ops/tests/*.py` for a hardcoded RISK-0009 status: none found. `preflight.py` full run after: still every gate passed, same 24 warnings, nothing new broken by the edit.
+
+**Went well:** using a background research agent to check document currency in parallel with the long preflight run instead of serializing the two.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; the same self-inflicted killed-preflight dashboard-dirtying shape recurred a third time this week, worth flagging louder: any cycle running `preflight.py` in this environment needs the full ~590s budget from the first attempt, not a shorter one that gets killed and has to be diagnosed and undone.
+
+**Changing next cycle:** none; the register-consistency gap that let this slip (a `status:` field can change without its own summary table being required to agree) is a real generalizable gap, but writing a gate for it now would be scope creep on a triage slot; noting it here for whoever next touches `gate_risk_cross_references_current` or writes its sibling.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, the Listmonk decision) and the 8 open GitHub issues, unchanged. Root-doc cold-read tier handed to the operator above, still unswept.
+
+Pushed to main. `RISKS.md`, `ops/NIGHTLY-LOG.md`, command deck (dashboard regen). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished and verified, no new unblocked item survives independent re-check, CI confirmation handed forward)
 
 **Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`cdecb45c`), clean, no conflict, working tree already clean and main already pushed. The prior cycle's sample-PDF spelling gate (`95577e6e`) verified rather than trusted: `preflight.py` fresh run, every gate passed, 24 warnings, all previously diagnosed, none new.
