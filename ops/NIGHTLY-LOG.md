@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (clean verification pass; two long-standing UNCHECKED gates closed for real by installing Pillow locally, no repository change)
+
+**Did:** Step 0 arrived shallow and detached; unshallowed (208 commits) and attached to `origin/main` cleanly, ff-only. `preflight.py` clean on arrival: every gate passed, 23 warnings, all previously diagnosed. Read `BACKLOG-2026-09-07.md` in full: sections 2 to 6 again all done or Phil-gated. Section 1b (23 catalogue kits/bundles with no page) correctly not reopened: issue #32 already reasons through both options and recommends holding, no new evidence since. Checked all 8 open GitHub issues live via the API rather than trusted from the log: all still `decision`/`blocked-on-art`, and spot-checked two directly. Issue #29 (14 cards saying "Set in Order") is already mitigated, the 16 defective codes withheld from the live gallery since 2026-08-30; genuinely blocked on Phil's Desktop-only source art. Issue #2 (9 remaining stale card heroes) is accurately tracked at 9, genuinely blocked on free system RAM on Phil's own machine, not billing. No mail credential here, `inbox_agent.py --apply` correctly reported unchecked rather than empty.
+
+**Went looking for genuinely new work.** Cold-read the next unswept low-mention files a prior cycle had named: `build/listings/check_kdp.py` and `build/listings/verify_epub.py`, run against the real committed EPUB and KDP fields rather than read cold. Both clean, no defect. Also swept `mobile/quest-app/lib/format.js` (12 mentions, not yet named in the log): correctly wired into `App.js`, its own 4-case test passes, no defect.
+
+**Installed Pillow and pytest locally in this sandbox only** (not added to `ops/requirements.txt`, which deliberately excludes Pillow from CI per the 2026-09-16 store-art entry, so this changes nothing for any other session). With it, two checks that have reported UNCHECKED for weeks ran for real this cycle instead: `test_build_cover.py` (3 cases, genuinely passed, not just executed) and preflight's cover-geometry check inside `check_kdp.py`/`verify_epub.py` (cover confirmed exactly 1600x2560 RGB, the KDP ideal, embedded copy inside the EPUB matches). `preflight.py`'s warning count dropped from 23 to 21 on the strength of two real passes, not a suppressed line. `pytest` itself is the wrong tool for `ops/tests/*.py` (they are subprocess scripts with their own `sys.exit`, run individually by `preflight.py`'s own `gate_tests()`, not pytest-collectible as a directory); tried it, got an `INTERNALERROR` on collection, recognised it as my own tool misuse rather than a repository defect once `gate_tests()`'s own mechanism was read, and preflight's own run already re-verified every test file correctly.
+
+**Verified:** full `preflight.py` after (every gate passed, 21 warnings, all previously diagnosed or newly resolved as above). `check_urls.py`, `audit_pages.py`, `affiliate.py --check` not re-run this cycle since no page, price or product changed. Confirmed no egress independently rather than trusted from the log: `curl` to `6s-success.com` and `api.stripe.com` both return a 403 policy denial from the proxy, matching every prior cycle's claim.
+
+**Went well:** installing Pillow to turn two UNCHECKED lines into real, current passes rather than leaving them unverified for another cycle.
+
+**Did not go well:** nothing new found. This is the same "clean verification pass" shape several prior cycles have logged; the unblocked, undecided surface of this repository is genuinely thin right now.
+
+**Changing next cycle:** none new.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. No redeploy owed: no `site/**` file touched.
+
+No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (own fix rebased to a no-op mid-run, cold-read of the next low-mention file found no live defect)
 
 **Did:** Step 0 attached shallow-and-detached onto `origin/main` cleanly (`git fetch --unshallow`, ff-only). `preflight.py` failed on the very first run, 4 gates: `on-device-check-count`, `ci-path-coverage`, `generator-protection-plan`, and a real `tests` failure in `test_mobile_offline_and_a11y.py` flagging `lib/videoLink.js`'s YouTube URL as a network call. Fixed all four independently, then `git push` was rejected: a concurrent session had already fixed the same four (and then merged a second concurrent fix of its own) while this cycle worked. Compared my fix to theirs file by file before choosing: `GENERATOR_PROTECTED_ELSEWHERE["build_app_icons.py"]` was byte-identical; the `checks.yml` path-filter widening and the `videoLink.js` network-regex exception were the same idea, theirs slightly tighter (`youtube.com/watch` rather than the whole host). Reset local `main` to `origin/main` rather than push a duplicate or force a conflict, since none of my commit had landed remotely. `preflight.py` reran clean at that HEAD (every gate passed, 24 warnings, none new), so nothing of mine survived as a distinct change.
