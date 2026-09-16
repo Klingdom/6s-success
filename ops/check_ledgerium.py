@@ -90,7 +90,8 @@ def _check_on_vps() -> dict:
     except Exception:                                           # noqa: BLE001
         return {"state": "unchecked",
                 "problems": ["the VPS check returned nothing readable"]}
-    return {"state": "problems" if probs else "ok", "problems": probs}
+    return {"state": "problems" if probs else "ok", "problems": probs,
+            "where": "the VPS"}
 
 
 def check() -> dict:
@@ -123,7 +124,8 @@ def check() -> dict:
     # in, but not impossible). Use the exact same check the VPS path runs, so
     # there is one definition of "correct," not two that can silently drift.
     problems = _lpc.check(key)
-    return {"state": "problems" if problems else "ok", "problems": problems}
+    return {"state": "problems" if problems else "ok", "problems": problems,
+            "where": "this environment (the ambient key is Ledgerium's own)"}
 
 
 def main() -> int:
@@ -132,7 +134,9 @@ def main() -> int:
         print("  Ledgerium billing NOT checked: %s" % r["problems"][0])
         return 0
     if r["state"] == "ok":
-        print("  Ledgerium billing intact: 4 live prices active and correctly priced in acct_1TG5Tu7QvDIBlvfc, checked on the VPS")
+        print("  Ledgerium billing intact: %d live price(s) active and correctly "
+              "priced in %s, checked on %s"
+              % (len(EXPECTED), LEDGERIUM_ACCOUNT, r.get("where", "the VPS")))
         return 0
     print("  Ledgerium billing has %d problem(s):" % len(r["problems"]))
     for p in r["problems"]:

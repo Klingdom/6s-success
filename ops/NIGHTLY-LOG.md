@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real overclaim found and fixed in ops/check_ledgerium.py's own cold-read handoff)
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and `merge --ff-only` attached cleanly onto `origin/main`, landing on `b83558b8`. `preflight.py` run to full completion in the background: every gate passed, 0 FAIL, 23 pre-diagnosed sandbox warnings, none new. Working tree was clean apart from the routine dashboard-timestamp regen. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated. The prior two cycles' handoff (payment-safety cold-read: `ops/check_ledgerium.py`, `ops/ledgerium_price_check.py`, `ops/stripe_invoice.py`) was still open, so this slot did it rather than pick a fresh lane.
+
+**The find.** `check_ledgerium.py`'s `main()` printed a fixed string on every "ok" result: "4 live prices active and correctly priced in acct_1TG5Tu7QvDIBlvfc, checked on the VPS". Two problems. First, the "4" was a hand-typed number sitting right next to `EXPECTED` (now correctly the single source of truth after this file's own earlier fix), the identical single-source-of-truth gap this file's own comments cite `gate_video_slug_single_source` as the precedent for; a fifth Ledgerium plan would make the message wrong the moment `EXPECTED` grew. Second, and worse: `check()` has two return paths for a clean "ok" result, `_check_on_vps()` (the normal case) and a direct branch the file's own docstring says is "unusual... but not impossible" (the ambient key IS Ledgerium's own). `main()` printed "checked on the VPS" for both, so the rare direct-check path would have reported a location the check never actually used, a false claim about how the evidence was gathered, the exact shape CLAUDE.md 0.3/0.4 warn about.
+
+**Fixed:** both `check()` branches now return a `"where"` field naming their real location; `main()` composes the count from `len(EXPECTED)` and the location from `r["where"]`. Verified directly, not just read: monkeypatched `_key`/`_account_id`/`_api` to force the rare direct-key branch and confirmed `main()` now prints "checked on this environment (the ambient key is Ledgerium's own)" instead of the false "checked on the VPS". `ops/tests/test_ledgerium_check.py` (5 cases, none touch the print string) still pass unchanged. `ops/stripe_invoice.py` read cold too: its hardcoded refund `FOOTER` was checked word-for-word against the live `site/terms.html` refund terms and matches exactly; a real single-source-of-truth risk if either drifts, but nothing wrong today, so left as a noted risk rather than a manufactured gate.
+
+**Verified:** `preflight.py` full run clean after the fix, 0 gates failed, same 23 warnings. `python ops/tests/test_ledgerium_check.py` passes. Checked for em/en dashes in the changed file by codepoint: 0.
+
+**Went well:** finishing the exact handoff two cycles left open rather than starting a fresh lane; the fix was verified by forcing the actual code path, not inferred from reading it.
+
+**Did not go well:** same shallow-clone reattach shape every cycle needs; nothing to add there.
+
+**Changing next cycle:** none; the fix is self-verifying (the message now derives from the same data the check itself uses).
+
+**Next for the operator:** the payment-safety tier's other two files are now both read clean (`ledgerium_price_check.py`, `stripe_invoice.py`); continue the same 10-mention `ops/*.py` tier at `build_all_prompts.py`, `build_card_prompts.py`, `build_catalog.py`, `generate_card_art.py`, `shrink_sample.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/check_ledgerium.py`, this log entry, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (clean verification pass, cold-read widened to mobile/quest-app, no new defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (237 commits) and `merge --ff-only` attached onto `origin/main` cleanly, landing on `e5ac9093`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` ran clean on arrival: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow), none new. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable (re-read #29 and #32 in full; both already correctly mitigated or escalated by prior cycles, nothing new to add). `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.
