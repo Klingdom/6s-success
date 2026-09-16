@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-15, evening, local session: 23 products are explained nowhere but their shop tile (measured, not fixed)
+
+**Measured after the pack-page release:** 31 of the 159 catalogue entries carry no page link, and 23 of those are named on no page anywhere on the site except shop.html: all 15 situation kits ($14), all 6 area bundles ($16), the $49 Complete Digital Bundle, and Corporate Lean 6S (which has its own quote page, so it is the one honest exception in that group). The 128 zone and room packs were fixed earlier this evening, because each already had a free page that explains the steps it prints and offers the pack; these 23 have no such page.
+
+**Why nothing was linked for them:** of the 8 remaining entries that are named somewhere, most are named in passing. The Whole House Print Pack gets a sentence on deck.html and a line in a list on resources.html; the Micro Zone Manual gets one line in that same list; kit.html, despite the name, is about the eight supplies a micro zone asks for and never mentions the pack. book.html is the book's own page and would be a fair link for the book, and a stretch for the bundle that contains it. Sending a buyer from a $14 kit to a page about something else reads as helpful and is not, so the gap is recorded rather than papered over.
+
+**Recorded as BACKLOG 1c**, with the numbers and the two questions it raises: whether each kit and bundle deserves a page of its own (what is in it, which rooms and zones it covers, who it is for), or whether that part of the line should shrink. A content decision, not a linking one.
+
+## 2026-09-15, PM check-in (30-minute triage, previous work finished and CI healthy though still confirming, nothing new unblocked)
+
+**NEXT FOR THE OPERATOR: confirm `checks.yml` and `publish-image.yml` go green on `2525057e`/`b6989083`, then cold-read `stripe_check.py` or `stripe_links.py` (both at the 9-mention floor, both money-domain) for a real defect, because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated and this is the method that found A7, B5 and C7.**
+
+**Previous work checked, not assumed:** attached cleanly (shallow, unshallowed, ff-only onto `origin/main`, `b6989083`). Working tree clean, main already pushed. `preflight.py` full: every gate passed, 23 pre-diagnosed sandbox warnings (no network, no Stripe/SSH/mail credential here), none new. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; re-read #29 in full rather than trust the dashboard's "0 live uses of Set in Order" line at face value, since a `grep` of `site/deck-gallery.html` also shows 0: the issue's own body explains why, the 16 defective cards were withheld from `index.json` as a mitigation, not fixed, so 0 live hits is the withhold working, not the issue going stale. Left open, correctly.
+
+**CI status, checked directly rather than inferred:** the previous cycle's own explicit handoff was to confirm `checks.yml` on `46ade0c1`'s successor. Its run on `2525057e` (run 1002) is still `in_progress` 23 minutes in (Preflight step took 17 minutes and passed, now on the ops test suite); no failed step, ordinary timing per this workflow's own history (prior runs 17-29 minutes). `b6989083` (current HEAD, a log-only commit) has not yet spawned its own run in the list checked. Not yet confirmed green, but nothing here reads as stalled or broken.
+
+**Did not go well / recurring:** this is the second consecutive cycle where the 30-minute PM cadence lands mid-run against a CI job that regularly takes 20-30 minutes, so "confirm CI" keeps bouncing forward one slot. `STATUS.md`'s own 2026-09-15 morning entry already recorded the root cause (`checks.yml` cancels in-progress runs per ref under concurrent pushes) and a recommended fix, not yet made. Not re-diagnosing it again here; flagging that the recommendation is still sitting unmade if a future cycle has a slot free for it.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+No file other than this log and the command deck changed this pass. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-15, scheduled operator cycle (the one credentialed hourly mail could report a false zero instead of unknown; fixed and gated)
 
 **Did:** unshallowed and attached to `main` cleanly (`b6989083`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries and `GOALS.md`/`STATUS.md`. Sections 2-6 of the backlog again all done or Phil-gated; 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed warnings). No SSH key, no Stripe credential, no mail credential, no egress to the live site, all retested directly rather than assumed.
