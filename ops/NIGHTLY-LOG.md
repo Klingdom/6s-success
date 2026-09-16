@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work was NOT finished on arrival, a real preflight failure closed and a checker false-positive fixed)
+
+**NEXT FOR THE OPERATOR: confirm CI lands green on `edfd0c9d`, because that is the only open thread; nothing new unblocked survived independent re-check of `GOALS.md`, `BACKLOG-2026-09-07.md` and the 8 open GitHub issues.**
+
+**Step 0/1 clean:** attached onto `origin/main` (`0ab37390`, Phil's own Home Quest watch-video/finish-picture commit) via `fetch --unshallow` + `merge --ff-only`, 177 commits fast-forwarded, no conflict.
+
+**Step 2: previous work was not finished.** `preflight.py`'s first run failed 2 gates: `mobile-corpus-current` (`mobile/quest-app/assets/quest-corpus.json` stale against `site/assets/js/quest-data.js`, the file `0ab37390` edited) and its downstream `tests` failure. Per STEP 2 this became the cycle's work rather than picking a fresh backlog item. Traced before fixing: CI's own run 1032 on `0ab37390` had already failed the same way; a concurrent session (`b2bdf921`, pushed mid-cycle) independently regenerated the corpus, confirmed by rebasing onto it and reproducing a clean `preflight.py --check` before touching anything.
+
+**A second, real defect found while re-running preflight clean: the executive dashboard's own "dead links" count read 1, not 0, a checker false positive, not a live defect.** `ops/dashboard.py`'s `_count_dead_links()` only recognised the one-line `$("#id").href = ...` shape for "this `href="#"` gets a real target from script." `0ab37390`'s new watch-video row uses `var watchLink = $("#c-watch-video"); ... watchLink.href = ...` instead (needed because the same reference also toggles `.hidden`), invisible to the old heuristic, so a live, correctly-wired link (Phil verified it in a real browser per his own commit message) read as broken on the dashboard. Widened the heuristic to also recognise the var-then-`.href` shape. New `ops/tests/test_dashboard_dead_links.py` (5 cases), fail-then-pass proved directly against an isolated root: a genuine dead link (no script reference at all) still counts as 1; the real `quest.js` pattern now counts as 0; a same-named variable does not mask an unrelated dead link; an id-less `href="#"` still counts.
+
+**Verified:** full `preflight.py` clean after both fixes (every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new). Shipped via `ops/ship.py --no-deploy` (`edfd0c9d`); ship.py rebased cleanly onto the concurrent `b2bdf921` push, so this commit carries only the dashboard fix and its test, not a duplicate corpus regen. CI runs 1033 (`b2bdf921`) and 1034 (`edfd0c9d`) were both still in progress at read time, ordinary timing, not polled to completion here per the no-idle-waiting rule.
+
+**Went well:** treating the failed preflight as the cycle's actual work per STEP 2 instead of working around it or starting a fresh backlog item; re-deriving the dead-link count's own root cause instead of accepting the number at face value once the mobile-corpus gate was already closed by someone else.
+
+**Did not go well:** none; both defects were caught and closed the same cycle.
+
+**Handing to the operator (:43):** confirm CI runs 1033/1034 land `success`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged; `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+Pushed to main (`edfd0c9d`). `ops/dashboard.py`, `ops/tests/test_dashboard_dead_links.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, an unshipped deck regen closed)
 
 **Previous work: finished but not fully shipped.** Step 0 attached cleanly onto `origin/main` (`2125826e`, the local session's deploy and freshness-blind-spot entry). `preflight.py` full run clean on arrival: every gate passed, same 24 standing warnings, none new; `sample-pdf-spelling` still correctly warns on page 243's unfixable font subset, already documented, not new work. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
