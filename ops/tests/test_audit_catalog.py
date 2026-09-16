@@ -10,6 +10,7 @@ leading digits of a price, so a page stating the correct $9.99 price of the
 ebook was read as "$9" and reported as drift. That would have failed the build
 on correct copy the first time anyone wrote that price beside that name.
 """
+import inspect
 import io
 import os
 import subprocess
@@ -63,7 +64,18 @@ SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
 STALE_AFTER = 900
 
 
-def _lock(path: str, timeout: int = 600) -> None:
+# Found live 2026-09-16: a killed run's orphaned lockdir (this exact file's
+# own comment two lines below anticipates it) blocked the very next waiter
+# forever in practice, because its default timeout (600) was shorter than
+# STALE_AFTER (900). A waiter that starts right as the orphan is created
+# always hits its own timeout before the lock is old enough to break, so the
+# self-heal this was written for could never fire on the first retry; only a
+# second, later-arriving waiter (or a human clearing the directory by hand,
+# as happened on 2026-09-11 and again on 2026-09-16) ever got past it. The
+# margin below guarantees any single waiter's own timeout outlasts
+# STALE_AFTER, so the lock it is waiting on is always stale, and therefore
+# broken, before that waiter gives up.
+def _lock(path: str, timeout: int = STALE_AFTER + 120) -> None:
     start = time.time()
     while True:
         try:
@@ -89,6 +101,42 @@ def _unlock(path: str) -> None:
         os.rmdir(path)
     except OSError:
         pass
+
+
+def _check_lock_self_heals() -> str:
+    """A killed run's orphaned lockdir must not block the very next waiter.
+
+    Two checks, because either one alone misses the real 2026-09-16 bug:
+
+    1. The constant relationship itself. A waiter only ever lives long enough
+       to see a lock go stale if its own timeout exceeds STALE_AFTER; with
+       the old default (600 < STALE_AFTER's 900) this was false, so a waiter
+       starting right as the orphan was created always raised first. Checked
+       directly against the real, un-overridden default, since a check that
+       passes an explicit timeout would not have caught that bug at all.
+    2. The break-and-retry mechanism itself, on a fake orphan of its own
+       (never the real LOCK, so this cannot collide with a concurrent real
+       run), backdated past STALE_AFTER, called with a short explicit
+       timeout so a regression here fails in seconds rather than hanging.
+    """
+    default_timeout = inspect.signature(_lock).parameters["timeout"].default
+    if default_timeout <= STALE_AFTER:
+        return ("_lock()'s default timeout (%ss) does not exceed STALE_AFTER "
+                 "(%ss), so a waiter that starts right as an orphaned lock is "
+                 "created will always time out before the lock is old enough "
+                 "to break" % (default_timeout, STALE_AFTER))
+
+    path = LOCK + ".selfheal_check_%d" % os.getpid()
+    os.mkdir(path)
+    old = time.time() - STALE_AFTER - 5
+    os.utime(path, (old, old))
+    try:
+        _lock(path, timeout=5)
+    except RuntimeError as e:
+        return "an orphaned lock older than STALE_AFTER was not broken: %s" % e
+    finally:
+        _unlock(path)
+    return ""
 
 
 def run(inner: str) -> str:
@@ -120,6 +168,9 @@ def pick(decimal: bool):
 
 def main() -> int:
     bad = []
+    heal_failure = _check_lock_self_heals()
+    if heal_failure:
+        bad.append(heal_failure)
     dec_name, dec_price = pick(True)
     int_name, int_price = pick(False)
     retired = A.load_retired()

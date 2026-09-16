@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real self-inflicted lock bug found and fixed rather than papered over a third time)
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow` then ff-only onto `origin/main` (`8b38907c`), clean, 138 commits. Confirmed via the GitHub Actions API rather than trusted from the log: `checks.yml` run 1020 on `b276e85df` completed `success`, closing the handoff the prior two cycles left open. 8 GitHub issues confirmed live via the API, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was clean, main already pushed.
+
+**Found a real bug in the act of tripping it myself.** Ran `python ops/preflight.py` to verify state; it hung well past its usual runtime. Traced (not guessed): its `test_audit_catalog.py` child was blocked acquiring `site/_audit_catalog_fixture.lockdir`, orphaned by my own earlier `timeout 180 python ops/preflight.py` probe, which SIGTERM'd mid-critical-section. That file's own `_lock()` has self-heal logic for exactly this ("a run that was killed leaves its directory behind"), gated on `STALE_AFTER = 900`, but its default wait `timeout` was `600`, less than `STALE_AFTER`. A waiter starting right when the orphan appears always hits its own 600s timeout before the lock is old enough to break, so the self-heal could never actually fire on the first waiter; this exact shape was hand-cleared by a human/agent on 2026-09-11 and again just now, never fixed at the root.
+
+**Fixed:** `_lock()`'s default timeout is now `STALE_AFTER + 120`, so any single waiter's own timeout always outlasts the staleness threshold. Added `_check_lock_self_heals()` to the test file itself, run from its own `main()`: (1) asserts the real default exceeds `STALE_AFTER` directly (a check with an explicit timeout would not have caught the actual bug), and (2) proves the break-and-retry mechanism on a fake orphan of its own path, never the real lock. Proved fail-then-pass by monkeypatching the old 600s default in an isolated interpreter (fails with a named reason) and against the fix (passes), before ever running the slow full file. Full `ops/tests/test_audit_catalog.py` run for real after: `ok` line unchanged, no new fail. Full `preflight.py` clean before and after (every gate passed, 24 pre-diagnosed warnings, none new).
+
+**Went well:** cleaning the orphan I caused rather than waiting it out, then fixing the constant relationship instead of just moving on once unblocked, since the log already showed this exact shape recurring.
+
+**Did not go well:** same shallow/detached checkout shape recurred again; standard step 0 handled it in seconds.
+
+**Changing next cycle:** none; the fix is in the constant relationship itself, not a one-off value, so no future STALE_AFTER change can silently reintroduce this without also breaking the new check.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Redeploy remains the top production item, waiting on VPS access this sandbox does not hold.
+
+Pushed to main. `ops/tests/test_audit_catalog.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (independent full re-verification, no new defect; CI 1020 confirmed green before end of slot)
 
 **Did:** checkout arrived shallow and detached, the standing symptom; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed cleanly onto `5e5866c8` (132 commits ahead, no conflict). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries (this file's own most-recent-first order, not tail).
