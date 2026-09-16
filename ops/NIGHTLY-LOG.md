@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (a live, investor-facing false claim found cold-reading invest.html, fixed and gated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed and `merge --ff-only` onto `origin/main` cleanly, landing on `8459cfff`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` ran clean on arrival (every gate passed, 23 warnings, all previously diagnosed). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.
+
+**Continued the standing handoff:** the prior cycle's own next-step named `about.html`, `invest.html`, `method.html` as the unread hand-authored tier. `about.html` read clean end to end (founder claims all carry their own honest "engagements, not endorsements" disclaimer). `invest.html` did not: its Traction section claimed "a dockerized web app with a 41-item catalog and a working cart, deploy-ready." Neither is true. `site/assets/js/data.js` holds 159 catalog items, not 41 (checked directly, `json.loads` on the real file). The cart was removed entirely on 2026-09-08 (A6, `BACKLOG-2026-09-07.md`: "Cart removed entirely, it was unreachable, not fixed to be reachable"); checkout is a per-product Stripe payment link, confirmed by grepping every `buy.stripe.com` URL in `shop.html`. This is a P0 trust defect on the page most likely to be read line by line, by someone deciding whether to fund the business.
+
+Before fixing, checked whether the page's OTHER hard numbers were also stale, since a page with one drifted count is the shape most likely to carry more: derived the real bill-of-materials catalog straight from `content/manual/source/products.json` (123 active products, 7 `Product Family` values, 88 marked `Applicable Rooms: All` which is 72%, 33 marked `Required Level: Core`) and found every one of the page's other claims (123 products/7 families in the stat strip, "88 (72%) apply to every room, anchored by 33 core products" in the moat section, "123-product catalog, 7 families" in traction and roadmap) exactly correct. So only the storefront line needed fixing, not the whole page.
+
+**Fixed:** rewrote the sentence to "a dockerized web app with a 159-item catalog and one-click Stripe checkout on every product, deploy-ready."
+
+**Gated per STEP 10b:** new `gate_invest_page_catalog_current` in `preflight.py`, pure logic in `check_invest_page_numbers`, re-derives all five hard numbers (stat-strip products/families, moat overlap sentence, two "N-product catalog" mentions, and the storefront item-count-plus-cart sentence) from the real source files on every run rather than trusting the prose. `ops/tests/test_gate_invest_page_catalog_current.py` (6 cases) fail-then-pass proved directly: the real old defect string (41-item catalog, working cart) fails by name citing both problems, a drifted bill-of-materials mention and a drifted moat percentage each fail by name, a missing storefront sentence is caught rather than passing silently, and the real committed file against the real source files passes clean.
+
+**Verified:** full `preflight.py` (every gate passed, 24 warnings, one more only because this session's own uncommitted diff triggers the pre-existing `build-id` staged-change warning, same pattern noted in earlier cycles), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0 em/en dashes), mobile `npm test` (5 suites) all clean after. All 167 of 167 `ops/tests/test_*.py` files individually (including the known-slow `test_generator_ownership.py` worktree test, unrelated to this change but let run to completion rather than assumed clean), exit code 0 on every one.
+
+**Went well:** the cold-read handoff from the prior cycle led straight to a real, live defect on the highest-stakes page on the site; checking the OTHER numbers on the same page before declaring it clean, rather than fixing one line and moving on, since a page found lying once is the page most worth re-checking in full.
+
+**Did not go well:** nothing new; same shallow-clone reattach shape every cycle needs, handled cleanly per the fixed STEP 0.
+
+**Changing next cycle:** none; the fix is now self-enforcing.
+
+**Next:** continue the hand-authored `site/*.html` cold-read tier at `method.html` (12 to 15 mentions), the last unread file in that lane. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_invest_page_catalog_current.py`, `site/invest.html`, command deck. No price or product touched. IndexNow not applicable (existing page edited, not added; no egress from this sandbox regardless).
+
 ## 2026-09-16, PM check-in (30 minute triage, previous work finished, two more cold-read candidates closed clean, no new defect)
 
 **Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed (226 commits) and ff-only attached onto origin/main cleanly, landing on a8e2251a. Ran preflight.py to full completion in the background rather than under a short timeout, per the standing lesson in this log about interruption risk: every gate passed, 23 warnings, matching the prior cycle's own count, none new. Working tree was clean once the run's own dashboard regen diff was restored (git checkout, no other change lost). 8 GitHub issues confirmed live via the API: unchanged, all decision or blocked on art, none pickable. BACKLOG-2026-09-07.md sections 2 through 6 again all done or Phil gated.

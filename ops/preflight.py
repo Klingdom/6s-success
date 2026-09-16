@@ -7954,6 +7954,142 @@ def gate_print_and_play_art_count_current() -> None:
              "; ".join(problems))
 
 
+def check_invest_page_numbers(text, bom_total, bom_families, bom_allroom,
+                               bom_allroom_pct, bom_core, catalog_count):
+    """Pure logic behind gate_invest_page_catalog_current.
+
+    invest.html is a real, live investor pitch (noindex, follow, reached from
+    a mailto CTA) that states five hard, checkable numbers about the product
+    catalogue and the storefront. Every one of them was verified against the
+    real files this run: 123 active products in
+    content/manual/source/products.json across 7 Product Family values, 88 of
+    them (72%) marked "All" rooms, 33 marked Required Level "Core". None of
+    that had ever been derived and compared before; it happened to be
+    correct. The storefront line had not: it claimed "a 41-item catalog and a
+    working cart" while site/assets/js/data.js holds 159 items and the cart
+    was removed entirely on 2026-09-08 (A6, BACKLOG-2026-09-07.md), leaving a
+    stale count and a false feature claim on the one page most likely to be
+    read closely by someone deciding whether to fund this business.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+
+    m = re.search(r'<div class="n">(\d+)</div><div class="l">Products, '
+                  r'(\d+) families', text)
+    if not m:
+        problems.append("the stat-strip Products/families figure is missing "
+                         "or has changed shape")
+    else:
+        if int(m.group(1)) != bom_total:
+            problems.append("stat-strip says %s products, the real "
+                             "bill-of-materials catalog holds %d" %
+                             (m.group(1), bom_total))
+        if int(m.group(2)) != bom_families:
+            problems.append("stat-strip says %s families, the real catalog "
+                             "holds %d" % (m.group(2), bom_families))
+
+    m = re.search(r'Of our (\d+) fully-specified product types, '
+                  r'<b>(\d+) \((\d+)%\) apply to every room</b>, anchored '
+                  r'by <b>(\d+) core products</b>', text)
+    if not m:
+        problems.append("the moat section's overlap sentence is missing or "
+                         "has changed shape")
+    else:
+        total, allroom, pct, core = (int(x) for x in m.groups())
+        if total != bom_total:
+            problems.append("moat section says %d product types, real "
+                             "catalog holds %d" % (total, bom_total))
+        if allroom != bom_allroom:
+            problems.append("moat section says %d apply to every room, "
+                             "real count is %d" % (allroom, bom_allroom))
+        if pct != bom_allroom_pct:
+            problems.append("moat section says %d%%, real share is %d%%" %
+                             (pct, bom_allroom_pct))
+        if core != bom_core:
+            problems.append("moat section says %d core products, real "
+                             "count is %d" % (core, bom_core))
+
+    claimed = re.findall(r'(\d+)-product catalog', text)
+    wrong = [c for c in claimed if int(c) != bom_total]
+    if wrong:
+        problems.append('a "%s-product catalog" mention does not match the '
+                         'real catalog (%d products)' % (wrong[0], bom_total))
+    elif not claimed:
+        problems.append('no "N-product catalog" mention found; the traction '
+                         'and roadmap sections have changed shape')
+
+    m = re.search(r'a dockerized web app with a (\d+)-item catalog[^<]*',
+                  text)
+    if not m:
+        problems.append("the storefront description's item-catalog "
+                         "sentence is missing or has changed shape")
+    else:
+        if int(m.group(1)) != catalog_count:
+            problems.append("storefront description says %s-item catalog, "
+                             "the real site/assets/js/data.js catalog holds "
+                             "%d" % (m.group(1), catalog_count))
+        if re.search(r'\bcart\b', m.group(0), re.I):
+            problems.append("storefront description still claims a cart; "
+                             "the cart was removed 2026-09-08 (checkout is "
+                             "per-product Stripe links, no cart)")
+
+    return problems
+
+
+def gate_invest_page_catalog_current() -> None:
+    """invest.html's catalogue and storefront numbers must match the real
+    catalogue, not a number that was once true.
+
+    Found 2026-09-16, this operator, cold-reading the hand-authored
+    site/*.html tier: the traction section claimed "a 41-item catalog and a
+    working cart, deploy-ready." Neither is true. site/assets/js/data.js
+    holds 159 items, and the cart was removed entirely on 2026-09-08 (A6,
+    BACKLOG-2026-09-07.md: "Cart removed entirely, it was unreachable, not
+    fixed to be reachable: no page could ever add an item"). Every other
+    hard number on this page (123 products, 7 families, 88/72%% all-room, 33
+    core) was checked directly against
+    content/manual/source/products.json and found correct, so this gate only
+    needed to fix and protect the two that had drifted, not rewrite the
+    page. This is the same "source corrected, shipped artifact never
+    re-derived" defect class named throughout this backlog, on the one page
+    most likely to be read line by line by someone deciding whether to put
+    money in.
+    """
+    page = os.path.join(SITE, "invest.html")
+    if not os.path.exists(page):
+        return
+    products_path = os.path.join(ROOT, "content", "manual", "source",
+                                  "products.json")
+    data_js_path = os.path.join(SITE, "assets", "js", "data.js")
+    if not (os.path.exists(products_path) and os.path.exists(data_js_path)):
+        warn("invest-page-catalog", "products.json or data.js missing; "
+             "invest.html's catalogue numbers were NOT checked")
+        return
+    try:
+        master = json.load(io.open(products_path,
+                                    encoding="utf-8"))["master"]
+        js = io.open(data_js_path, encoding="utf-8").read()
+        catalog = json.loads(js[js.index("["):js.rindex("]") + 1])
+    except (ValueError, KeyError):
+        warn("invest-page-catalog", "products.json or data.js unreadable; "
+             "invest.html's catalogue numbers were NOT checked")
+        return
+    active = [p for p in master if p.get("Active")]
+    bom_total = len(active)
+    bom_families = len({p.get("Product Family") for p in active})
+    bom_allroom = sum(1 for p in active if p.get("Applicable Rooms") == "All")
+    bom_allroom_pct = round(100 * bom_allroom / bom_total) if bom_total else 0
+    bom_core = sum(1 for p in active if p.get("Required Level") == "Core")
+    text = _visible_html(page)
+    problems = check_invest_page_numbers(
+        text, bom_total, bom_families, bom_allroom, bom_allroom_pct,
+        bom_core, len(catalog))
+    if problems:
+        fail("invest-page-catalog", "site/invest.html: %s" %
+             "; ".join(problems))
+
+
 def gate_caption_line_length() -> None:
     """No caption line may exceed the readable budget, in either caption set.
 
@@ -14539,6 +14675,7 @@ def main() -> int:
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
+    run_gate(gate_invest_page_catalog_current)
     run_gate(gate_caption_line_length)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
