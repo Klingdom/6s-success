@@ -73,6 +73,11 @@ def build() -> dict:
                 # Reviewed zone illustration stem as the web Quest carries it:
                 # only for zones a human approved, else None. See hero_plan().
                 "img": z.get("img") or None,
+                # The zone's published YouTube id, for the 12 zones that have
+                # one. Carried so the app can offer the same "watch this zone"
+                # the web app does; a link only, so nothing is requested from
+                # YouTube until somebody presses it. Absent for the rest.
+                "video": z.get("video") or None,
             })
 
     # Flattened, because the app draws a card by zone and pass rather than

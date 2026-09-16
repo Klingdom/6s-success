@@ -38,6 +38,16 @@ networks**.
   unrelated room.
 - Shows the room, the zone, which of the six passes it is, the purpose, one
   bounded job, and what done looks like.
+- Shows the zone's own reviewed illustration as a small thumbnail beside the
+  room and zone line, for the 106 zones that have one. The pictures are
+  bundled, so they work with no signal, and the working half of the card stays
+  text: the instruction is what has to be read there.
+- Offers **Watch this zone** for the 12 zones whose video is published on
+  YouTube (the five Entryway and seven Kitchen zones). It is a link, not an
+  embed: nothing is requested from YouTube until it is pressed, and the other
+  102 zones show no link at all. Which zones have one comes from the website's
+  own publishing record through `ops/build_mobile_corpus.py`, so this app
+  cannot offer a video the site has not published.
 - Marking it done advances. Six passes complete a zone, and the finish screen
   recaps the session as coloured dots plus the same counts in words.
 - Progress survives closing the app, held in AsyncStorage under `6s.quest.v1`,

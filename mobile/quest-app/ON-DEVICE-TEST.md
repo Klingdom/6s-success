@@ -1,6 +1,6 @@
 # On-device test script
 
-Ten minutes, eleven checks. Each one names exactly what to expect, so the
+Ten minutes, twelve checks. Each one names exactly what to expect, so the
 answer is a fact rather than an impression.
 
 Everything in this app has been proven from source: it bundles, the corpus
@@ -29,7 +29,7 @@ words on screen are more useful than a description of them.
    New-NetFirewallRule -DisplayName "Expo dev" -Direction Inbound -LocalPort 8081 -Protocol TCP -Action Allow -Profile Private
    ```
 
-## The eleven checks
+## The twelve checks
 
 | # | Do this | Expect exactly this | Result |
 |---|---|---|---|
@@ -44,15 +44,18 @@ words on screen are more useful than a description of them.
 | 9 | **Turn on airplane mode**, then close and reopen the app | It still opens and still works. This is the offline-first promise, and a garage or basement is the real terrain | |
 | 10 | Turn on **VoiceOver** (iPhone) or **TalkBack** (Android) and swipe through the card | Each control announces as a **button** with a spoken name: "Mark this card done", "Not now", "Import progress from the web Quest". The six coloured dots on the finish screen are **skipped silently**, because their meaning is in the words beside them | |
 | 11 | With VoiceOver or TalkBack still on, swipe to and activate **Not now** | It announces its name and hint before activation, and after activation the screen reader lands on the new card rather than announcing nothing changed. This is the same button check 4 does, with a screen reader on | |
+| 12 | On the **Entryway > Landing Zone** card, scroll past **Not now** and tap **Watch this zone** | The phone opens YouTube (app or browser) on that zone's own video, and nothing was requested from YouTube before you pressed it. Back in the app, the card is where you left it | |
+
+Check 12 tests only the zones that have a video. Twelve of the 114 do: the five Entryway zones and the seven Kitchen ones, which are also the first twelve the app walks, so a zone with no video is a dozen finished zones away and not worth your thumbs. That the other 102 offer no link at all is proved by `node lib/videoLink.test.js`, which reads the bundled corpus itself.
 
 ## Four extra checks if you have another five minutes
 
 | # | Do this | Expect | Result |
 |---|---|---|---|
-| 12 | On the PC open the web Quest, do two cards, press **Back up**, put the downloaded `6s-home-quest-progress.json` somewhere the phone can reach (email it to yourself, or Google Drive). In the app tap **Already used the web Quest? Import your progress** and pick it | A message saying how many cards were imported. Progress from the browser now shows in the app, and nothing you did on the phone is lost | |
-| 13 | Increase the phone's text size to the largest setting and reopen the app | Text grows. Nothing is cut off, no button loses its label, no line runs off the screen | |
-| 14 | Finish a second zone (six **Done** taps again), then on the finish screen tap **Stop here, this counts** instead of **Draw the next card** | A screen headed **Good stopping point.**, the zones-holding count, and one **Draw a card** button. Nothing pushes another card at you | |
-| 15 | On that stopping screen, tap **Draw a card** | Returns to an open card, ready to continue | |
+| 13 | On the PC open the web Quest, do two cards, press **Back up**, put the downloaded `6s-home-quest-progress.json` somewhere the phone can reach (email it to yourself, or Google Drive). In the app tap **Already used the web Quest? Import your progress** and pick it | A message saying how many cards were imported. Progress from the browser now shows in the app, and nothing you did on the phone is lost | |
+| 14 | Increase the phone's text size to the largest setting and reopen the app | Text grows. Nothing is cut off, no button loses its label, no line runs off the screen | |
+| 15 | Finish a second zone (six **Done** taps again), then on the finish screen tap **Stop here, this counts** instead of **Draw the next card** | A screen headed **Good stopping point.**, the zones-holding count, and one **Draw a card** button. Nothing pushes another card at you | |
+| 16 | On that stopping screen, tap **Draw a card** | Returns to an open card, ready to continue | |
 
 ## What each check is actually for
 

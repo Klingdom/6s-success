@@ -25,6 +25,7 @@ import {
   Pressable,
   ActivityIndicator,
   Image,
+  Linking,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
@@ -37,6 +38,7 @@ import { cardId, pickCard, isCardVisible } from "./lib/pickCard";
 import ZONE_HEROES from "./assets/zoneHeroes";
 import { logEvent, formatForDisplay } from "./lib/eventLog";
 import { zonesHoldingLine } from "./lib/format";
+import { videoUrl } from "./lib/videoLink";
 
 /* The same key the web app uses, so a future import can recognise its shape. */
 const KEY = "6s.quest.v1";
@@ -434,6 +436,20 @@ export default function App() {
                    onPress={skip}>
           <Text style={s.ghostText}>Not now</Text>
         </Pressable>
+
+        {/* The zone's own video, for the twelve zones that have one published.
+          * A link, not an embed: nothing is requested from YouTube until this
+          * is pressed, which is the same promise the web app and the zone
+          * pages make. videoUrl() returns null for every other zone, so the
+          * card simply does not offer one rather than offering a dead link. */}
+        {videoUrl(card.zone) ? (
+          <Pressable style={s.importLink} accessibilityRole="link"
+                     accessibilityLabel="Watch this zone on YouTube"
+                     accessibilityHint="Opens the video for this zone in your browser"
+                     onPress={() => Linking.openURL(videoUrl(card.zone))}>
+            <Text style={s.importLinkText}>Watch this zone</Text>
+          </Pressable>
+        ) : null}
 
         <Text style={s.foot}>
           {zonesHeld} of {CORPUS.zoneCount} zones holding. Progress is on this

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, local session (phone app carries the zone video and the finish picture the web app shipped this morning)
+
+**Did:** The web release went live and was verified first (build `628eb4520b6e9ded`, logged in `574adfa9`): the Home Quest card offers `Watch this zone` for the twelve zones whose video is published, and the finish screen shows the held zone picture. This entry is the phone app catching up to it. `ops/build_mobile_corpus.py` now carries `video` beside `img` into the bundled corpus, so the app can never offer a video the site has not published; `lib/videoLink.js` turns a zone into a YouTube URL or into nothing, refusing anything that is not eleven valid id characters; App.js renders a guarded link, not an embed, so nothing is requested from YouTube until it is pressed, with an accessibility role, label and hint.
+
+**Verified:** five plain-node suites pass (`importProgress`, `pickCard`, `eventLog`, `format`, `videoLink`), the new one asserting against the bundled corpus itself that exactly 12 of 114 zones carry a usable id, and that malformed, empty, non-string and missing ids all yield no link. App.js was parsed under the real Babel parser with the JSX plugin rather than eyeballed, because a syntax error there bricks launch and no test covers the JSX.
+
+**Caught a false check before it reached the phone.** The new on-device check 12 said to tap Not now until reaching a zone with no video, naming Entryway, Entry Console or Bench. The corpus says otherwise: all five Entryway zones and all seven Kitchen zones have videos, and those twelve are exactly the first twelve zones the app walks, so the first video-less zone (Pantry, Dry Goods Shelves) is a dozen finished zones away. The check would have failed on the phone for the wrong reason and wasted an evening. Check 12 now tests only the positive case; the negative case is proved by `node lib/videoLink.test.js` reading the bundle.
+
+**Also corrected the stale facts in the plan** rather than only adding to it: App.js is 537 lines not 340, there are 8 runtime dependencies not 7, Phase 0 is 16 checks not 12, and the plan had recorded neither the 106 bundled pictures nor the video link. The `README.md` what-it-does-today section still described a text-only card, and now does not.
+
+**Went well:** verifying the check 12 premise against the corpus before shipping it. It was written from memory of the Entryway list and it was wrong.
+
+**Did not go well:** the commit was held six times across the day waiting for an idle CI that never came; it finally went out on top of a still-running run whose commit is now its ancestor, so a later green run covers both. Holding finished work for a permanently busy queue was the wrong trade.
+
+**Changing next cycle:** when a document instructs Phil to do something physical, check the instruction against the data the same way code is checked. A wrong sentence in a checklist costs his time, which is the scarcest thing here.
+
+**Next:** the remaining phone-app gate is unchanged and is Phil alone: the Apple ($99/yr) and Google Play ($25) developer accounts in `OWNER-ACTIONS.md`. Nothing else blocks a build. The store-listing and pricing half of the smartphone product plan is the next unblocked work, and it needs no account to draft.
+
+No price or product touched, no site page changed, no deploy (this commit touches no `site/**` file, so it publishes no image). IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30 minute triage, previous work finished, nothing new unblocked, standard housekeeping only)
 
 Previous work: finished. Attached cleanly onto origin/main (243fc918). preflight.py clean on arrival: every gate passed, 24 pre-diagnosed sandbox warnings, none new. Working tree clean, main already pushed. 8 GitHub issues confirmed live via the API, unchanged, all decision/blocked-on-art. BACKLOG-2026-09-07.md sections 2 to 6 read again, all done or Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts remain the only real blockers). checks.yml run 1037 on c807fef9 confirmed via the Actions API: legitimately in progress (Preflight step finished at 16:06:51Z after ~17 minutes, ops test suite running next), not stuck; the two newest commits (525c51d4, 243fc918) correctly triggered no Checks run since both touch only the generated dashboard/log files checks.yml deliberately excludes.
