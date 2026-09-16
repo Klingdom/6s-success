@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, no new unblocked item survives independent re-check)
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then ff-only onto `origin/main` landed a mid-attach race: a real commit (`9e1c2a21`, the print manual embedded-font fix logged just below) plus its own dashboard-regen commit (`24bb22e7`) arrived between my first fetch and my merge. Re-fetched and ff-forwarded cleanly onto `24bb22e7`. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `STATUS.md` already correctly reflects the print-manual fix; no staleness found.
+
+**Did:** re-verified rather than cited. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Chased down one real-looking anomaly rather than assuming it was fine: two consecutive "Command deck regen only" commits (`3564d506`, `38b68f7e`) each touch only the three files `checks.yml`'s own path filter already excludes (`ops/state.json`, `ops/dashboard.html`, `EXECUTIVE-DASHBOARD-LIVE.md`), and correctly triggered no Checks run at all, matching the filter's own documented intent. A third such commit (`24bb22e7`) did trigger a run, which looked at first like the same exclusion silently failing again; traced instead to the ordinary case the filter is supposed to allow through: it rode in the same push as `9e1c2a21`, a real change to `content/manual/print/...` and `ops/preflight.py`, so the combined push correctly matched `content/**`. No defect in the path filter.
+
+**Verified:** no source or generated file needed changing beyond the standing dashboard regen (`ops/ship.py` with no arguments defaulted to a dashboard-only commit and push, `84908444`, harmless and consistent with the pattern this repository already runs many times a day; deploy step correctly failed, no deploy key in this sandbox, same as every prior cloud session). `preflight.py` fast clean, 23 warnings, none new, after.
+
+**Went well:** treating the two-commits-in-one-push CI trigger as a claim to trace to its actual cause rather than either dismissing it or writing it up as a new path-filter bug on the strength of a surface pattern match.
+
+**Did not go well:** same shallow/detached checkout shape on attach; `git fetch --unshallow` handles it every time. Running `ops/ship.py --help` is not a supported flag and silently runs the default ship path instead of printing usage; harmless here (it only regenerated and pushed the dashboard) but worth remembering not to rely on for a real dry-run.
+
+**Changing next cycle:** none; nothing found needed changing.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (unchanged) and the 8 open GitHub issues (unchanged, all decision/blocked-on-art). Nothing specific handed to the hourly operator this slot beyond the standing queue.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `STATUS.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (the print manual's embedded fonts were a month stale against a real font change; fixed and gated)
 
 **Did:** unshallowed and attached to `main` cleanly (`8c54da7b`). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries and `GOALS.md`. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed sandbox warnings). 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, as every prior sandbox this week. Every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 again done or Phil-gated, so per step 5d cold-read the lowest-mention `ops/*.py` tier (floor 9): `verify_media_delivery.py`, `mailer.py`, `generated_products.py`, `wire_legal_strip.py`, `corpus_index.py`, `linkedin_posts.py`, `diagnosis.py` and `video.py` all read clean, several also run directly rather than only read (`wire_legal_strip.py --check`, `diagnosis.py` against the real `content.json`, `corpus_index.py`'s own corpus scan).
