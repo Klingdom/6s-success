@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, one new handoff item found outside the standard cold-read lane)
+
+**NEXT FOR THE OPERATOR: investigate and likely remove `content/book/6s-success-claude-files/` (46 files, referenced nowhere), because it is a stale, orphaned duplicate of the 2026-08-16 control-doc install source sitting inside the book manuscript tree.**
+
+**Previous work: finished.** Unshallowed, ff-forwarded onto `origin/main` cleanly. `preflight.py` clean: every gate passed, 23 pre-diagnosed warnings, none new. Backlog sections 2-6 again all done or Phil-gated; 8 GitHub issues reconfirmed unchanged via the API, all `decision`/`blocked-on-art`.
+
+**Did:** set `core.hooksPath` (per-clone, resets each checkout). Ranked root docs and `ops/*.py` by mention count; the low-mention `ops/*.py` lane is genuinely exhausted, but this surfaced `content/book/6s-success-claude-files/`, which diffs near-identical to the root AUTONOMY-*/CLAUDE.md control docs plus `agents/`/`super prompts/` folders, predates the em-dash house-style cleanup, and per its own `_review/INSTALL-NOTES.md` is the untouched 2026-08-16 install source, not book content. `ops/build_epub.py` never reads it. Not removed here: a real judgment call on Phil's own uploaded material, left for a fuller operator pass rather than started at this slot.
+
+Regenerated dashboard (build id/commit count only). Pushed to main.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, no new unblocked item survives independent re-check)
 
 **Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then ff-only onto `origin/main` landed a mid-attach race: a real commit (`9e1c2a21`, the print manual embedded-font fix logged just below) plus its own dashboard-regen commit (`24bb22e7`) arrived between my first fetch and my merge. Re-fetched and ff-forwarded cleanly onto `24bb22e7`. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `STATUS.md` already correctly reflects the print-manual fix; no staleness found.
