@@ -26,6 +26,24 @@ Before fixing, checked whether the page's OTHER hard numbers were also stale, si
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_invest_page_catalog_current.py`, `site/invest.html`, command deck. No price or product touched. IndexNow not applicable (existing page edited, not added; no egress from this sandbox regardless).
 
+## 2026-09-16, PM check-in (30 minute triage, previous work finished, one more cold-read candidate closed clean, no new defect)
+
+**NEXT FOR THE OPERATOR: continue the hand-authored site/*.html cold-read tier at invest.html and method.html, because about.html is now checked clean and those two are the last unread files in that lane.**
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and ff-only attached onto origin/main cleanly, landing on 8459cfff, a clean fast-forward. `preflight.py` ran to completion in the background: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree was clean before this cycle's own read-only checks. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 6's owner gates (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) remain the only real blockers.
+
+**Did:** picked up the prior cycle's own handoff. Read `site/about.html` (15 mentions) cold, end to end: the founder bio, Nova Consulting framing, and the six-S summary all still read consistently with the rest of the site; the founder section's own comment correctly disclaims testimonial/results claims and the CV panel correctly notes "engagements, not endorsements." No "Set in Order" phrasing, no em or en dash anywhere in the file (checked by codepoint, not by eye). No defect found. Did not start `invest.html` or `method.html`; three-file cold-reads are the operator's depth, not this slot's.
+
+**Verified:** no page or price touched, so `check_urls.py`/`audit_pages.py`/`affiliate.py --check` were not rerun. Command deck regenerated (`ops/dashboard.py`) against the current pushed HEAD.
+
+**Went well:** finishing the exact handoff named rather than picking a different item; staying to a single small check rather than opening a three-file sweep this close to the operator's own slot.
+
+**Did not go well:** nothing new found; the unblocked surface remains thin, as it has for several days.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30 minute triage, previous work finished, two more cold-read candidates closed clean, no new defect)
 
 **Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed (226 commits) and ff-only attached onto origin/main cleanly, landing on a8e2251a. Ran preflight.py to full completion in the background rather than under a short timeout, per the standing lesson in this log about interruption risk: every gate passed, 23 warnings, matching the prior cycle's own count, none new. Working tree was clean once the run's own dashboard regen diff was restored (git checkout, no other change lost). 8 GitHub issues confirmed live via the API: unchanged, all decision or blocked on art, none pickable. BACKLOG-2026-09-07.md sections 2 through 6 again all done or Phil gated.
