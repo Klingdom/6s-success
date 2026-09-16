@@ -1,14 +1,13 @@
 # On-device test script
 
-Sixteen checks in two tiers: twelve core checks in about ten minutes, four
-more in about five. Each one names exactly what to expect, so the answer is a
-fact rather than an impression.
+Ten minutes, twelve checks, plus four optional extras and six screenshots. Each one names exactly what to expect, so the
+answer is a fact rather than an impression.
 
 Everything in this app has been proven from source: it bundles, the corpus
 matches the website, the merge rules are unit tested, no source file can reach
 the network, and every control carries a role and a label. **None of that
 required a phone, and none of it proves the app is usable on one.** These
-sixteen checks are the part only a device can answer.
+twelve checks are the part only a device can answer.
 
 Write the result in the right-hand column. If something is wrong, the exact
 words on screen are more useful than a description of them.
@@ -57,6 +56,27 @@ Check 12 tests only the zones that have a video. Twelve of the 114 do: the five 
 | 14 | Increase the phone's text size to the largest setting and reopen the app | Text grows. Nothing is cut off, no button loses its label, no line runs off the screen | |
 | 15 | Finish a second zone (six **Done** taps again), then on the finish screen tap **Stop here, this counts** instead of **Draw the next card** | A screen headed **Good stopping point.**, the zones-holding count, and one **Draw a card** button. Nothing pushes another card at you | |
 | 16 | On that stopping screen, tap **Draw a card** | Returns to an open card, ready to continue | |
+
+## Six screenshots, while you are already in there
+
+Neither store will accept a listing without screenshots of the real app, and
+they cannot be honestly faked: a web capture dressed up as a phone screenshot
+would be a false claim to a review team. This is the only store asset that
+needs your hands, and it costs nothing but the button press, because every
+screen below is one you are already looking at during the checks above.
+
+| Shot | Screen | When it appears |
+|---|---|---|
+| S1 | An open card: zone line, picture, the job | Check 2 |
+| S2 | The card scrolled to DONE LOOKS LIKE and the Done button | Check 3 |
+| S3 | The finish screen: six coloured dots and the standard | Check 5 |
+| S4 | The zones-holding line underneath it | Check 6, same screen |
+| S5 | The next zone's card, to show it is not all Entryway | Check 7 |
+| S6 | The Diagnostics screen | Diagnostics section below |
+
+Portrait, no debug banner visible, and do not crop them: the stores resize
+from the full device capture. Send them however is easiest; they go straight
+into `STORE-LISTING.md`'s listing, which is otherwise ready to paste.
 
 ## What each check is actually for
 

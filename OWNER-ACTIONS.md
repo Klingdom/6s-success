@@ -831,7 +831,18 @@ deploy in item 1.
 
 **Why it matters:** no store listing, no iOS or Android release, no in-app
 purchase without them.
-**Ready:** everything up to submission is in `APP-DEVELOPMENT-PLAN.md` phase 1.
+**Ready:** everything up to submission is done and committed.
+`mobile/quest-app/STORE-LISTING.md` holds every listing field ready to paste,
+the data-safety answers with their evidence, and the price decision (free, no
+in-app purchase in the first release). The icon, splash, adaptive icon and Play
+feature graphic are drawn and committed; `gate_store_art` fails the build if any
+of them goes missing or lands at the wrong size.
+
+**One more thing only you can do, and it is free:** while you run the 16
+on-device checks, take six screenshots (the card, a finished zone, the finish
+screen, the progress line, diagnostics, import). Both stores reject a listing
+without them, and a web capture dressed up as a phone screenshot would be a
+false claim to a review team, so this is the one asset I will not fabricate.
 
 ### 6. Accounts layer: yes or no, and the privacy stance.
 
