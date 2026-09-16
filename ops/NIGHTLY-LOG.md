@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (ops/*.py cold-read lane fully exhausted; moved a tier over, three candidates came back clean)
+
+**Did:** unshallowed and attached to `main` cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries and `GOALS.md`. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed sandbox warnings, none new). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior sandbox. Every unblocked `BACKLOG-2026-09-07.md` row again done or Phil-gated (1b's 23-kit decision stays correctly escalated at issue #32, not mine to decide). Recomputed the `ops/*.py` cold-read mention floor: every file now sits at 10+, confirming the lane genuinely exhausted rather than trusting the last cycle's claim of it. Moved a tier over per step 5d: `build/listings/verify_zone_claims.py` (4 mentions), `mobile/quest-app/assets/zoneHeroes.js` (2), `mobile/quest-app/babel.config.js` (4).
+
+**Verified:** ran `verify_zone_claims.py` against the real four live Etsy PDFs and hand-checked every zone name it printed against `MARKETPLACE-LISTINGS.md`'s L2/L4/L5 copy, the exact comparison the file's own docstring asks a human to do. All three listings' zone counts and named zones match the PDFs exactly; no false claim found. `zoneHeroes.js`: all 106 required `.jpg` files exist on disk, and `build_mobile_corpus.py --check` confirms the mobile corpus matches the website's 114 zones/684 cards. `babel.config.js` is trivial boilerplate. Full `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** actually running `verify_zone_claims.py` and doing the copy cross-check by hand, rather than reading the source and moving on, closes it out as genuinely checked.
+
+**Did not go well:** three genuine cold-read candidates in a row came back clean; the accessible defect-finding lane keeps thinning as more of the repository gets checked.
+
+**Changing next cycle:** none; no defect found, no new gate needed.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, no new unblocked item survives independent re-check)
 
 **Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then ff-only onto `origin/main` landed a mid-attach race: a real commit (`9e1c2a21`, the print manual embedded-font fix logged just below) plus its own dashboard-regen commit (`24bb22e7`) arrived between my first fetch and my merge. Re-fetched and ff-forwarded cleanly onto `24bb22e7`. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `STATUS.md` already correctly reflects the print-manual fix; no staleness found.
