@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, the ops-file cold-read lane confirmed exhausted, a doc-sprawl handoff given instead)
+
+NEXT FOR THE OPERATOR: archive the 38 `RETRO-2026-08-*.md` cycle files (260K, none touched since August) into a `retro/` subdirectory rather than leaving them at repo root, because that is genuinely unblocked, non-Phil-gated, reversible cleanup work (CLAUDE.md 0.8) at a moment when every backlog row and every open GitHub issue is done or waiting on Phil, and the diagnostic method that has produced real findings for the last several days (cold-reading the lowest-mention `ops/*.py` file) has run dry.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`7895ecb8`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, same count as the prior cycle, none new. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; `checks.yml` run 1005 on the prior PM cycle's own head (`2b06353a`) was still `in_progress` at ordinary timing (prior same-workflow runs on this repo have taken up to 29 minutes), not a stall.
+
+**Did:** re-ran the "rank `ops/*.py` by mentions in this log" method the last several cycles used to find real defects. Every one of 139 files now carries at least 9 mentions; the lowest-mention tier a prior cycle worked from (`build_kit_page.py`, `owner_inbox.py`, `stripe_setup.py`, etc.) is gone. Confirms, independently, what a same-day earlier cycle already reported ("minimum 8 mentions ... exhausted"): this specific lane is dry, not merely quiet today. Checked for a live network path to re-measure the 2-day-stale traffic/affiliate numbers myself (`curl` to `6s-success.com`, DNS resolves, connection itself returns exit 000): no egress from this sandbox, consistent with every prior cloud session. Read `RISKS.md`'s open items (`RISK-0011` masters backup, `RISK-0012` no audience retained, `RISK-0013` discovery is the constraint) and GitHub issue #21 (Stripe legal-entity/business-website fields) in full rather than trust their summaries: all three risks and the issue are genuinely current, not stale, no action available to a session without the missing credential. Noticed instead: 120 markdown files sit at repo root, including three backlogs (`BACKLOG.md`, `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md`), three roadmaps/dashboards' worth of near-duplicates, and 38 numbered `RETRO-2026-08-*.md` cycle retrospectives from the project's first two weeks, none modified since August. Checked before recommending: `RETRO-2026-08-3*` filenames are referenced from `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-H2.md`, `STATUS.md`, `docs/audit/CURRENT-STATE-AUDIT.md` and `RISKS.md`, so a move (not a delete) that keeps the filenames intact under `retro/` is the safe version of this; a straight `rm` would break those citations for no reason. Left the fix itself to the operator rather than doing it in this 30-minute slot, per this routine's own instruction not to start something large here.
+
+**Verified:** no source or generated file touched this pass; nothing shipped that needs re-verification beyond the standing `preflight.py` and CI checks above.
+
+**Went well:** treating "the exhausted-lane claim, re-checked" as itself real verification rather than a rubber stamp; noticing the doc-sprawl pattern while looking for something else instead of manufacturing a finding in `ops/*.py` to justify the slot.
+
+**Did not go well:** same shallow/detached checkout shape on attach; nothing new there, `git fetch --unshallow` handles it every time.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` (unchanged) and the 8 open GitHub issues (unchanged, all decision/blocked-on-art). The RETRO-file archive above is the one concrete, unblocked item on the table.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `STATUS.md`, command deck (dashboard regen from this cycle's own `preflight.py` run). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, a measured-but-unrecorded finding closed out)
 
 **Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`af218da2`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. `checks.yml` run 1002 on `2525057e` confirmed `success` via the API; the current head's own run was still in progress at the ordinary timing for this workflow, not a stall. 7 open GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
