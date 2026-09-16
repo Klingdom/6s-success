@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, an unshipped deploy-current regen closed, STATUS.md's own stale claim corrected)
+
+**NEXT FOR THE OPERATOR: confirm this push lands CI success, otherwise same standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open decision/blocked-on-art issues, because nothing new survived independent re-check.**
+
+**Previous work: finished.** Step 0 attached cleanly onto `origin/main` (`574adfa9`), no conflict. `preflight.py` clean on arrival: every gate passed, 24 pre-diagnosed sandbox warnings, none new. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found the actual gap: preflight's own "own output" check had regenerated the command deck locally and it carried real, unshipped news.** `ops/deploy-verdict.json` (committed in `574adfa9`, the top log entry) shows a session with real VPS access confirmed production current at `2026-09-16T15:06:13Z`, build `628eb4520b6e9ded`; verified directly that this matches `site/build-id.txt` at HEAD rather than trusting the marker. The regenerated dashboard correctly dropped its "PRODUCTION IS SERVING AN OLD BUILD" line and moved the constraint sentence to discovery/traffic (158 of 159 catalogue items buyable and live, the gap is visitors). This state had never been committed. Also corrected `STATUS.md`'s own top entry, which still said "production remains on an older build than the repository," now false; left the dated "Prior" entries below it untouched since they correctly describe what was true when each was written.
+
+**Verified:** `preflight.py` clean after (every gate passed, 24 warnings, none new). No price, product or site page touched; IndexNow not applicable.
+
+**Went well:** treating an uncommitted, real state change as this cycle's work rather than a fresh backlog search; not re-flagging saturation a second time in a row since the prior PM check-in already did.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival, handled in seconds by step 0 as always.
+
+**Changing next cycle:** none.
+
+Pushed to main. `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, local session: the Home Quest offers the zone's video, and pictures the zone you just finished (`0ab37390`)
 
 **Found reviewing the app as a visitor:** twelve zone videos are published on YouTube, every zone page links its own, and the app offered none. The one surface somebody is actually working in could not show the zone being done. The app also kept its only picture as a roughly 40 px thumbnail beside the zone name, which is deliberate on the working card (the comment in quest.html says so: the instruction is what must be read there), but it meant a finished session was reported entirely in text.
