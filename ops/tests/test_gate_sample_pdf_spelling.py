@@ -9,7 +9,13 @@ British spelling that survives inside a checked-in PDF: the free sample book
 compiled outside the site's own generator pipeline (no ops/build_*.py
 produces it), so D11's 2026-09-14 spelling normalization, which reached
 every HTML source, never reached this binary. Found live, 2026-09-16: 4
-instances of "organised"/"organisation" still ship in the real file.
+instances of "organised"/"organisation" shipped in the real file; 3
+(pages 228, 253, 259, all plain SegoeUI) were fixed the same day by
+redacting and re-inserting the whole word with the page's own embedded
+font, verified pixel-correct and text-extraction-correct. The fourth
+(page 243, SegoeUI-Semibold) stays live: pymupdf cannot resolve that
+subset's glyphs when re-embedded as a fresh font resource, and a wrong
+font would be worse than the inconsistency it fixes.
 
 Builds small, isolated fixture PDFs with pymupdf rather than mutating the
 real 32 MB sample, the same fixture-over-real-asset approach
@@ -98,9 +104,11 @@ def main():
                         "6S Success Home Edition - Sample (Chapters 1-30).pdf")
     if os.path.exists(real):
         fails, warns = run_gate_against(real)
-        check("real committed file: currently still carries the live finding",
+        check("real committed file: 3 of 4 fixed, page 243 (semibold) "
+              "still carries the one instance nothing here can safely fix",
               fails == [] and len(warns) == 1
-              and "organised" in warns[0][1])
+              and "organised" in warns[0][1]
+              and "1 page" in warns[0][1])
     else:
         print("  skipped: real sample PDF not present in this checkout")
 

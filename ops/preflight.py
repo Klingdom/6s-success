@@ -13567,27 +13567,44 @@ def gate_sample_pdf_spelling() -> None:
 
     Found 2026-09-16, this operator: 4 instances (3 "organised", 1
     "organisation"; pages 228, 243, 253 and 259 of 492, one-indexed)
-    survive in the live shipped file, inconsistent with the same
+    survived in the live shipped file, inconsistent with the same
     document's own 22 "organized" and 20 "organizing" elsewhere, and with
-    every other page on the site. Tried to fix it directly by redacting
-    and re-inserting the word with the page's own embedded font (pymupdf,
-    extracting the exact SegoeUI/SegoeUI-Semibold subset already in the
-    file): the plain-weight instances (pages 228, 259) render correctly,
-    but the semibold instances (pages 243, 253) silently substitute a
-    generic serif fallback, because pymupdf could not resolve glyphs from
-    that particular subsetted TTF's own cmap when re-embedded as a fresh
-    font resource. A visibly wrong font on the site's primary lead magnet
-    is worse than the inconsistency it would fix, so the edit was
-    discarded rather than shipped; this gate exists so the finding is not
-    lost to the next cycle's "cold-read lane exhausted" sweep, which
-    cannot see inside a PDF.
+    every other page on the site. The first attempt to fix all four
+    directly (redact and re-insert with the page's own embedded font)
+    mis-attributed pages 243 AND 253 as SegoeUI-Semibold and discarded
+    the whole fix rather than ship a wrong font; re-checked directly
+    against the font actually used by each span (page.get_text("dict")),
+    not assumed from that record: only page 243 is SegoeUI-Semibold, the
+    other three (228, 253, 259) are plain SegoeUI, the weight the first
+    attempt already proved renders correctly.
 
-    Warn, not fail: this is real and correctly attributed, but nothing in
-    this sandbox can safely rewrite the affected font's glyph subset, and
-    failing preflight over four words already outnumbered 22 to 4 in the
-    same document would block real, unrelated work for a defect nobody
-    here can close. Fixed by whoever next has the source manuscript (a
-    proper text edit and recompile) or the necessary font tooling.
+    Fixed 2026-09-16, later the same day, this operator: pages 228, 253
+    and 259 corrected (whole-word redact-and-reinsert using the exact
+    embedded SegoeUI subset extracted from the file, matching the
+    sampled background colour and the span's own color/size; a
+    single-character substitution was tried first and rendered
+    pixel-correct but left an empty gap in the PDF's own text layer
+    where the changed letter should read, a ToUnicode edge case in
+    single-glyph text objects, so the whole word was replaced instead,
+    which extracts correctly). Verified: text extraction now reads
+    "organized"/"organization" on all three pages; a full pixel diff
+    against the pre-fix file at 150dpi shows 0 changed pixels on every
+    page except these three (only ~1,500-2,000 of 6.31M pixels each,
+    the redrawn word itself) and on page 243; page count, embedded
+    JPEG image validity and page 10's text all unchanged. Page 243
+    remains open: the SegoeUI-Semibold subset still fails the same way
+    the first attempt found, pymupdf cannot resolve its glyphs when
+    re-embedded as a fresh font resource, and a visibly wrong font on
+    the site's primary lead magnet is worse than the one remaining
+    inconsistency it would fix.
+
+    Warn, not fail: the one remaining instance is real and correctly
+    attributed, but nothing in this sandbox can safely rewrite that
+    font's glyph subset, and failing preflight over one word already
+    outnumbered 25 to 1 in the same document would block real,
+    unrelated work for a defect nobody here can close. Fixed by whoever
+    next has the source manuscript (a proper text edit and recompile)
+    or the necessary font tooling.
     """
     path = os.path.join(ROOT, SAMPLE_PDF_REL)
     if not os.path.exists(path):
