@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, method.html cold-read clean, hand-authored tier now fully swept)
+
+**Was the previous work finished?** Yes. Checkout arrived shallow and detached; unshallowed and ff-only attached onto `origin/main` cleanly, landing on `6e3faa82`. `preflight.py` ran to full completion in the background rather than under the 120s foreground cap: every gate passed, 23 pre-diagnosed sandbox warnings, none new. Working tree clean apart from a routine dashboard-timestamp regen. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Did:** picked up the prior cycle's own handoff. Read `site/method.html` (12-15 mentions, the last unread file in the hand-authored cold-read tier) cold, end to end. Cross-checked its hard numbers against the real source rather than trusted from the prose: `PACK-HOUSE` in `site/assets/js/data.js` confirms 684 cards, $19, the same Stripe link the page uses; the "12 short zone videos... across the Entryway and Kitchen" line matches `GOALS.md`'s own corrected 12-of-114 count and A1's Kitchen 7 + Entryway 5 split; the "no zone is named" event claim matches `quest.html`'s identical wording and A6's fix; both `courses` and `app` product grids the page fills client-side have real catalogue rows (6 and 1) so neither renders empty, the exact shape the page's own comment says was fixed once already. Checked by codepoint: 0 em or en dashes, no "Set in Order" phrasing. No defect found. With this file clean, `about.html`/`invest.html`/`method.html` are all now read; the hand-authored `site/*.html` cold-read tier is fully swept.
+
+**Verified:** no page or price touched, so `check_urls.py`/`audit_pages.py`/`affiliate.py --check` were not rerun. Command deck regenerated (`ops/dashboard.py`) against the current pushed HEAD.
+
+**Went well:** finishing the exact handoff named rather than picking a different item; verifying the page's numeric claims against the real catalogue and `GOALS.md` rather than reading for tone only.
+
+**Did not go well:** nothing new; the hand-authored cold-read lane is now exhausted, same shape as the `ops/*.py` lane before it.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** no candidate remains in the hand-authored `site/*.html` cold-read tier. Redeploy is the one standing item the dashboard names as needing Phil (VPS access this sandbox does not hold); otherwise pick the next cold-read lane per step 5d (a fresh low-mention `ops/*.py` or `mobile/quest-app` file) or continue verifying a prior cycle's own claim. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated, this log entry, no other file changed. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, scheduled operator cycle (a live, investor-facing false claim found cold-reading invest.html, fixed and gated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed and `merge --ff-only` onto `origin/main` cleanly, landing on `8459cfff`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` ran clean on arrival (every gate passed, 23 warnings, all previously diagnosed). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.
