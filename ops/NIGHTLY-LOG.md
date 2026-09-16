@@ -22,6 +22,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `EXECUTIVE-DASHBOARD.md`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, STATUS.md was 32 commits stale and corrected)
+
+NEXT FOR THE OPERATOR: resume the root-level `.md` cold-read lane, because the `ops/*.py` lane is confirmed exhausted (10+ mentions each) and this slot's own find (STATUS.md silently missing two real cycles) shows the same "source fixed, document of record never re-derived" defect class still live in root docs, not just generated artifacts.
+
+**Previous work: finished.** Standard shallow/detached checkout, attached in seconds. `preflight.py` clean (every gate passed, 24 pre-diagnosed warnings, none new). CI run 1020 confirmed `success` by the prior cycle; the lock-bug fix (`3df5f0f0`) verified and already pushed. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found:** `STATUS.md` last touched at `7d3e68cc`, 32 commits behind HEAD, silent on the `checks.yml` flake fix and CI-1020 confirmation, and on this session's own lock-bug fix. Corrected: new top entry, old top entry demoted to `Prior` with its original content intact (caught and fixed a mislabel from my own first edit before shipping). `fix_dashes.py --check` clean, `preflight.py` clean after.
+
+**Did not go well:** same shallow/detached checkout shape; step 0 absorbs it every time now.
+
+Pushed to main (`e31862346`). `STATUS.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, a real self-inflicted lock bug found and fixed rather than papered over a third time)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow` then ff-only onto `origin/main` (`8b38907c`), clean, 138 commits. Confirmed via the GitHub Actions API rather than trusted from the log: `checks.yml` run 1020 on `b276e85df` completed `success`, closing the handoff the prior two cycles left open. 8 GitHub issues confirmed live via the API, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was clean, main already pushed.
