@@ -176,6 +176,74 @@ def main() -> int:
         + "</li>"
         for r in rooms)
 
+
+    # Five questions, answered in the page's own sentences.
+    #
+    # WHY THIS PAGE AND WHY NOW. Four of the six pageviews Google has ever
+    # referred landed here, so this is the one page search actually sends
+    # anyone to, and it was the only page shape on the site with no FAQ at
+    # all: 115 of 140 pages carry one, this one carried zero. Filtered to
+    # 6s-success.com alone (the proxy log also serves another business, which
+    # is how an earlier reading of this overcounted by 7x), the crawlers that
+    # fetched us since 19 August are GPTBot 246, bingbot 214, Googlebot 127,
+    # ClaudeBot 112. Answer engines lead Google here about 2.8 to 1, and they
+    # quote a question answered in a sentence, not an argument spread over
+    # 1,444 words.
+    #
+    # THE RULE, TAKEN FROM build_zone_pages.zone_faq(). Every answer below is
+    # a sentence this page already renders in full. Nothing is written for the
+    # schema. If the prose above changes and one of these stops matching, the
+    # assertion at the end of main() fails the build rather than shipping a
+    # structured answer the page does not give.
+    #
+    # VISIBLE, NOT SCHEMA-ONLY. faq_html() in build_zone_pages.py had to be
+    # written precisely because 114 pages carried questions no reader could
+    # see, and two of the nine described nothing on the page at all.
+    faq = [
+        ("What is a standard in 6S?",
+         "A standard is one sentence describing the finished state, checkable "
+         "at a glance. It is not a rule and not a chore chart. It is the "
+         "answer to the only question that matters when you walk in: is this "
+         "zone right, or not?"),
+        ("What goes on a standards sheet?",
+         "Three things. The standard: what the zone looks like when it is "
+         "right, in one sentence. The trigger: the everyday moment that starts "
+         "the reset. And two signatures, because a standard nobody agreed to "
+         "is one person's preference, and the household will treat it as one."),
+        ("Where should a standards sheet go?",
+         "Inside the cupboard door. On the back of the pantry door. Above the "
+         "bench where the work actually happens. A standard filed away is not "
+         "a standard, and a standard on the fridge for a room upstairs gets "
+         "read exactly once."),
+        ("What if a standard stops being true?",
+         "Rewrite any line that stops being true. A standard that is quietly "
+         "broken every week is a bad standard, and the room is telling you so. "
+         "That is the point of the pen line, not a failure of it."),
+        ("Do the sheets tell me how to reset the room?",
+         "No. A standard says what right looks like. It does not tell you how "
+         "to get there from a room that is currently wrong. Each sheet's "
+         "standard comes from the zone's own page, which also walks the six "
+         "passes that get the zone there."),
+    ]
+
+    faq_ld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://6s-success.com/standards.html#faq",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in faq],
+    }, indent=1)
+
+    faq_html = (
+        '<section class="section"><div class="wrap narrow">'
+        '<p class="eyebrow">Questions</p>'
+        '<h2>Questions people ask about standards</h2>'
+        '<dl class="faq-list">'
+        + "".join("<dt>%s</dt><dd>%s</dd>" % (esc(q), esc(a)) for q, a in faq)
+        + '</dl></div></section>')
+
     body = f"""
 <section class="hero">
   <div class="wrap">
@@ -297,6 +365,7 @@ def main() -> int:
     emailed within a few hours. These sheets stay free either way.</p>
   </div>
 </section>
+{faq_html}
 """
 
     html = f"""<!doctype html>
@@ -328,6 +397,9 @@ def main() -> int:
 </script>
 <script type="application/ld+json">
 {ld}
+</script>
+<script type="application/ld+json">
+{faq_ld}
 </script>
 <!-- SEO:END -->
 <link rel="stylesheet" href="assets/css/site.css">
@@ -378,6 +450,13 @@ def main() -> int:
             q = clip(z["leave_behind"][f], 140 if f == "standard" else 96)
             assert esc(q) in flat,                 f"the hero quotes {z['zone']} {f} in words content.json does not use"
     print(f"  hero quotes {len(hero_zones)} zones, all verbatim from content.json")
+    # Same rule as the hero: a structured answer must be a sentence the
+    # page actually renders. If the prose above is reworded and an answer
+    # stops matching, this fails the build instead of shipping an answer
+    # the reader never sees.
+    for _q, _a in faq:
+        assert esc(_a) in flat, f"FAQ answer not present in the page prose: {_q}"
+    print(f"  faq: {len(faq)} questions, every answer verbatim from the page")
     print("  claims checked: the download exists, analytics wired, "
           "one paid path present")
 
