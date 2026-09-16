@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, local session: deployed the sample-PDF spelling fix, and a blind spot in the freshness check
+
+**Found:** production served build `c3530a45f1e67279` while the repository computed `009f9d1dff3cc1e4`. The only site content between them was `aca159a4` (three British spellings corrected in the 32 MB sample PDF) plus the restamped build id. A built image for exactly that state already existed (`5ff57580`, an ancestor of HEAD containing `aca159a4`), so nothing needed rebuilding; it had simply never been deployed, because no cloud session can deploy.
+
+**Did:** ran `ops/deploy.py`. Production moved to `009f9d1dff3cc1e4`. Verified live: build id matches HEAD, freshness CURRENT, and the sample PDF itself is 32,708,534 bytes live, byte-for-byte the size of the committed file, which is the only content that actually changed.
+
+**Worth knowing, and the reason this entry exists:** `ops/deploy_freshness.py` reported CURRENT while production was a build behind. It is not wrong, it is narrow: it compares nine fingerprinted assets and one content marker, and a change confined to `site/downloads/` touches none of them. The build id caught it, because it hashes git's index of the whole of `site/`. So freshness answers "are the sampled assets current", not "is production this build", and only the build-id comparison answers the second question. Anything checking for drift should compare build ids first and treat a CURRENT freshness verdict as secondary.
+
 ## 2026-09-16, scheduled operator cycle (CI-1030 confirmation closed, no new unblocked item survives, one near-miss caught before it shipped)
 
 **Did:** checkout arrived shallow and detached; step 0 (`git fetch --unshallow`, `merge --ff-only`) attached cleanly onto `origin/main` (`169ec013`), 169 commits fast-forwarded, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, the top of `ops/NIGHTLY-LOG.md` (newest-first; confirmed again this is the correct end to read, not the physically-last, older, mislabelled 2026-09-04 tail). `preflight.py` clean on arrival: every gate passed, 24 pre-diagnosed sandbox warnings, none new. `inbox_agent.py --apply`: no mail credential, unchecked not empty, matching every prior cycle.
