@@ -86,8 +86,25 @@ def init_repo(repo: str) -> None:
     git(repo, "init", "-q", "-b", "main")
     git(repo, "config", "user.email", "test@example.com")
     git(repo, "config", "user.name", "test")
+    no_gc(repo)
     git(repo, "add", "-A")
     git(repo, "commit", "-q", "-m", "base")
+
+
+def no_gc(repo: str) -> None:
+    """Stop git from forking a detached `git gc --auto` child on commit/push.
+
+    Found live in CI 2026-09-16, run 1019: `test_ship_conflict_safety.py`
+    passed 3/3 locally every time (9 straight runs) but failed the CI runner
+    with `OSError: [Errno 39] Directory not empty: 'repo'` from
+    `tempfile.TemporaryDirectory`'s own cleanup. Git can spawn `gc --auto`
+    as a background process that outlives the `git` command that triggered
+    it; `subprocess.run` returns once that parent exits, so the test's own
+    `shutil.rmtree` can race a still-running gc child still writing pack
+    files into `repo/.git/objects`, and lose the race on a slower or more
+    loaded runner than this sandbox. Disabling it removes the race instead
+    of chasing a flake that would not reproduce here."""
+    git(repo, "config", "gc.auto", "0")
 
 
 def make_scenario(base: str):
@@ -102,6 +119,7 @@ def make_scenario(base: str):
     init_repo(repo)
 
     git(base, "init", "-q", "--bare", origin)
+    no_gc(origin)
     git(repo, "remote", "add", "origin", origin)
     git(repo, "push", "-q", "origin", "main", check=False)  # noisy local warning, still lands
 
@@ -110,6 +128,7 @@ def make_scenario(base: str):
     git(remote_clone, "checkout", "-q", "-b", "main", "origin/main", check=False)
     git(remote_clone, "config", "user.email", "test@example.com")
     git(remote_clone, "config", "user.name", "test")
+    no_gc(remote_clone)
     write(os.path.join(remote_clone, "CHECKIN-LOG.md"),
           "# log\n\n## entry\nSENTINEL-REMOTE\n")
     write(os.path.join(remote_clone, "ops", "state-checkin.json"),
@@ -173,6 +192,7 @@ def case_dashboard_only_conflict_still_ships() -> str:
         base_files(repo)
         init_repo(repo)
         git(base, "init", "-q", "--bare", origin)
+        no_gc(origin)
         git(repo, "remote", "add", "origin", origin)
         git(repo, "push", "-q", "origin", "main", check=False)
 
@@ -181,6 +201,7 @@ def case_dashboard_only_conflict_still_ships() -> str:
         git(remote_clone, "checkout", "-q", "-b", "main", "origin/main", check=False)
         git(remote_clone, "config", "user.email", "test@example.com")
         git(remote_clone, "config", "user.name", "test")
+        no_gc(remote_clone)
         write(os.path.join(remote_clone, "ops", "state.json"), '{"remote": true}\n')
         git(remote_clone, "add", "-A")
         git(remote_clone, "commit", "-q", "-m", "remote dashboard run")
@@ -241,6 +262,7 @@ def case_generated_conflict_preserves_carry_forward() -> str:
               json.dumps({"measurement": "BASE-READING"}) + "\n")
         init_repo(repo)
         git(base, "init", "-q", "--bare", origin)
+        no_gc(origin)
         git(repo, "remote", "add", "origin", origin)
         git(repo, "push", "-q", "origin", "main", check=False)
 
@@ -250,6 +272,7 @@ def case_generated_conflict_preserves_carry_forward() -> str:
         git(remote_clone, "checkout", "-q", "-b", "main", "origin/main", check=False)
         git(remote_clone, "config", "user.email", "test@example.com")
         git(remote_clone, "config", "user.name", "test")
+        no_gc(remote_clone)
         write(os.path.join(remote_clone, "ops", "state.json"),
               json.dumps({"measurement": "REAL-REMOTE-READING"}) + "\n")
         git(remote_clone, "add", "-A")
