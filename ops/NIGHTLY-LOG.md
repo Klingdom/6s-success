@@ -2,9 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, scheduled operator cycle (picked up a concurrent session's own handoff: the stale claude-files mirror retired, RISK-0009 closed)
+
+**Did:** picked up the prior PM check-in's own handoff below ("investigate and likely remove `content/book/6s-success-claude-files/`") rather than opening a fresh sweep, since `CLAUDE.md` 0.2 says fix a reported problem once rather than report it a third time (it was already named in `RISKS.md` RISK-0009 and `CONTENT-STANDARDS.md` before this handoff repeated it). Checked before removing, not assumed: no `ops/build_*.py` generator reads the directory (`build_epub.py`'s own chapter glob matches `*hapter*`, absent from this directory's name); `ops/corpus_index.py` indexes it only as raw material, and a direct query of the real `ops/corpus-index.json` confirmed 0 of its 79 files were ever scored "ready" to post, so nothing from it could have reached the social-draft pipeline. Diffed a sample file (`CLAUDE.md`) against the real one: 148 lines behind, missing the entire section 0 added since, confirming it genuinely is the stale pre-fix mirror the risk register already described.
+
+**Fixed:** removed all 79 files (`git rm -r`). Regenerated `ops/corpus_index.py` clean (1019 postable files, 4408 units, unaffected by the removal). Closed `RISK-0009` in `RISKS.md` and updated `CONTENT-STANDARDS.md`'s matching note: the risk's own closing condition asked for the mirror retired AND a regression check on the control layer, and the second half already existed and had gone unnoticed by the risk's own text, `gate_root_docs_six_s_terms` in `ops/preflight.py` (confirmed wired into `main()` and passing) already fails the build on a misnamed six-s term in any root or `retro/` document, stronger protection than the dashboard-visibility line the old mitigation asked for.
+
+**Verified:** full `preflight.py` (every gate passed, 23 pre-diagnosed warnings, none new), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after. No price, product or live page touched; this is a control-layer/book-source cleanup, not a site change. IndexNow not applicable.
+
+**Went well:** treating the concurrent session's handoff as something to close, not just relay forward a third time.
+
+**Did not go well:** nothing; a clean close.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `_review/agent-drafts/` stays open under issue #9, a separate decision issue, not touched here.
+
+Pushed to main. `RISKS.md`, `CONTENT-STANDARDS.md`, `ops/corpus-index.json`, 79 file deletions under `content/book/6s-success-claude-files/`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, one new handoff item found outside the standard cold-read lane)
 
-**NEXT FOR THE OPERATOR: investigate and likely remove `content/book/6s-success-claude-files/` (46 files, referenced nowhere), because it is a stale, orphaned duplicate of the 2026-08-16 control-doc install source sitting inside the book manuscript tree.**
+**NEXT FOR THE OPERATOR (closed by the following cycle, above): investigate and likely remove `content/book/6s-success-claude-files/` (46 files, referenced nowhere), because it is a stale, orphaned duplicate of the 2026-08-16 control-doc install source sitting inside the book manuscript tree.**
 
 **Previous work: finished.** Unshallowed, ff-forwarded onto `origin/main` cleanly. `preflight.py` clean: every gate passed, 23 pre-diagnosed warnings, none new. Backlog sections 2-6 again all done or Phil-gated; 8 GitHub issues reconfirmed unchanged via the API, all `decision`/`blocked-on-art`.
 

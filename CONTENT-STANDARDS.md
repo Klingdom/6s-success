@@ -221,13 +221,16 @@ uses). Re-verified 2026-09-11: both defects are fixed and tracked in `RISK-0009`
 **The 2026-08-17 finding, that the documents instructing agents were less compliant
 than the published work, is no longer current.** Both halves of that inversion were
 fixed 2026-08-19 and confirmed clean again on re-check 2026-08-19 and this pass.
-Two items stay open, both already tracked, neither live instruction: a stale
-duplicate mirror at `content/book/6s-success-claude-files/`, and drafts under
-`_review/agent-drafts/` gated behind issue #9. Extending `ops/dashboard.py` to scan
-the control layer, so a future regression is caught automatically rather than by
-the next manual sweep, is the one piece of `RISK-0009`'s mitigation not yet done.
+The stale duplicate mirror at `content/book/6s-success-claude-files/` was retired
+2026-09-16 (checked first: no generator read it, and `ops/corpus_index.py` had
+never scored any of its 79 files as postable). One item stays open, already
+tracked, not live instruction: drafts under `_review/agent-drafts/` gated behind
+issue #9. The control layer already carries a build-blocking gate for the six-s
+term (`gate_root_docs_six_s_terms` in `ops/preflight.py`) and dashboard visibility
+for the dash rule (`ctrl_em`/`ctrl_en`), so a future regression here fails the
+build rather than waiting for the next manual sweep.
 
-Recorded as `RISK-0009`.
+Recorded as `RISK-0009`, closed 2026-09-16.
 
 ---
 

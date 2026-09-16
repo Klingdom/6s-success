@@ -498,7 +498,7 @@ review: monthly, alongside RISK-0013
 ```yaml
 id: RISK-0009
 title: Control documents contradict the published canon
-status: MITIGATING
+status: CLOSED
 severity: LOW
 likelihood: UNLIKELY
 owner: content-editor
@@ -545,25 +545,42 @@ evidence:
   - ops/dashboard.py still measures the term only in the live site and book,
     not the control layer, so a future regression here would not show on the
     dashboard.
+  - 2026-09-16: `content/book/6s-success-claude-files/` (79 files) retired.
+    Checked before removing, not assumed: no `ops/build_*.py` generator reads
+    it (`build_epub.py`'s own chapter glob matches `*hapter*`, which this
+    directory's name does not contain), and `ops/corpus_index.py` indexed
+    it only as unpublishable raw material, 0 of 79 files ever scored "ready"
+    to post. The one remaining gap this risk's own mitigation named, a
+    regression check for the control layer, already exists and was missed
+    when this risk was last written: `gate_root_docs_six_s_terms` in
+    `ops/preflight.py` (wired into `main()`, confirmed passing) fails the
+    build on any root or `retro/` document misnaming the six steps, and
+    `ops/dashboard.py`'s own `ctrl_em`/`ctrl_en` already scan the same root
+    `*.md` plus `claude/**/*.md` plus `retro/*.md` set for the dash half.
+    That is stronger protection than the dashboard-only visibility this
+    mitigation originally asked for: a gate blocks the build, a dashboard
+    count does not. `ops/corpus_index.py` re-run after the removal, clean
+    (1019 postable files, 4408 units, unaffected).
 impact: >
-  Both halves of the original defect (the dashes and the term) are now fixed
-  and verified in the active control layer, the shipped book, the decks, and
-  the games. What remains is a stale, inactive duplicate directory and a set
-  of drafts already gated behind a separate decision issue, neither of which
-  an agent would read as live instruction.
+  Both halves of the original defect (the dashes and the term) are fixed and
+  verified in the active control layer, the shipped book, the decks, and the
+  games. The stale duplicate directory that was the one remaining loose end
+  is retired. `_review/agent-drafts/` stays open under issue #9, a separate
+  decision issue, not this risk.
 mitigation: >
-  Closed for the active control layer. Two items remain, both already
-  tracked elsewhere: reconcile or retire content/book/6s-success-claude-
-  files/ (a new, smaller finding), and resolve issue #9, which covers
-  `_review/agent-drafts/`. Extending ops/dashboard.py's scan to the control
-  layer would catch a future regression sooner than the next manual triage.
+  Complete. The stale mirror is retired. The control layer already carries a
+  build-blocking gate for the six-s-term violation (`gate_root_docs_six_s_
+  terms`) and dashboard visibility for the dash violation (`ctrl_em`/
+  `ctrl_en`), so no further work is needed to close this risk; a future
+  regression fails the build rather than waiting for the next manual triage.
 closing_condition: >
   Zero em and en dashes (met). Every remaining "Set in Order" occurrence
-  outside the stale mirror and the gated drafts fixed or confirmed as a
-  deliberate rule-statement (met 2026-08-19). Fully closes once the stale
-  mirror is reconciled or retired and the dashboard scan covers the control
-  layer.
-review: monthly
+  outside the gated drafts fixed or confirmed as a deliberate rule-statement
+  (met 2026-08-19). The stale mirror is retired (met 2026-09-16). A
+  regression check for the control layer exists and passes
+  (`gate_root_docs_six_s_terms`, confirmed wired into `preflight.py main()`).
+  All conditions met; closed 2026-09-16.
+review: closed, no further review scheduled
 ```
 
 See `CONTENT-STANDARDS.md` section 4 for the canon this violates.
