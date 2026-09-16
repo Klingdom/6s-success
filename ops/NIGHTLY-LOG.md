@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-16, PM check-in (30-minute triage, previous work finished, the standing CI handoff closed)
+
+**NEXT FOR THE OPERATOR: doc-sprawl cleanup (three overlapping backlog files, `BACKLOG.md`/`BACKLOG-2026-H2.md`/`BACKLOG-2026-09-07.md`), because it is the only unblocked item several consecutive cycles today have independently confirmed and it is now the standing handoff, not a new one.**
+
+**Previous work: finished.** Checkout arrived shallow and detached; step 0 attached cleanly onto `origin/main` (`9727d295`, the twin's 10:10 check-in), no conflict. The prior PM check-in had left run #1026 (Preflight on `c24c75ce`) open past its own typical 17-18 minute duration and hand off unresolved. Checked directly via the Actions API rather than re-measuring from scratch: run #1026 completed `success` at 10:30:29Z, roughly 29 minutes after it started, longer than the tight 17-18 minute cluster the prior cycle cited but a real completion, not a hang. That closes the standing handoff; no other CI-in-progress run sits on the current head.
+
+Local `preflight.py` (full, not fast) was started to independently confirm, but the resource cost of running it end to end (known 17+ minute duration for `gate_tests`) does not fit what is left of a 30-minute slot that also needed to read state and confirm CI; killed it before it collided with `ops/ship.py`'s own preflight run rather than let two copies race (the exact contention a prior cycle already root-caused once). Relying on CI's own green run for gate coverage this pass, not a local run I could not complete; flagging this rather than presenting the unfinished background run as a pass.
+
+8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` section 1 ("done this week") is current through the font-embedding and Standards Pack fixes already logged; sections 2-6 remain the standing done/Phil-gated state several dozen cycles today have already confirmed independently.
+
+**Did not go well:** this is the same "the workflow's real duration does not reliably fit a 30-minute PM slot" gap the prior cycle named; this pass adds that a *local* full preflight run has the identical problem and should not be started fresh in this slot either, only relied on when a prior cycle's clean run is already current.
+
+**Changing next cycle:** none; treat CI's own run result as sufficient confirmation in a 30-minute slot rather than attempting a redundant local full run against the same head.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (dashboard regen only). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-16, PM check-in (30-minute triage, previous work finished, this slot spent confirming CI rather than starting new work, still unresolved past its own typical duration)
 
 **Previous work: finished.** Checkout arrived shallow and detached; standard step 0 attached cleanly onto `origin/main` (`c24c75ce`, 152 commits ahead), no conflict. `preflight.py` full run: every gate passed, 24 pre-diagnosed sandbox warnings, none new. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` read in full: sections 2 to 4 all done (struck through with evidence), section 5 correctly HOLD, section 6 owner-gated, section 1b (23 unexplained catalogue entries) already has issue #32 open, nothing new to add. `RISKS.md` re-checked against `GOALS.md`'s current 75/196/947 traffic baseline: both cite it correctly, no drift found this pass.
