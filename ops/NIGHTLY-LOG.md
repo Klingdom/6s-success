@@ -2,7 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-17, PM check-in (30-minute triage, previous work was NOT finished: a real CI failure on HEAD, root-caused and fixed, converged with a concurrent session's identical fix)
+## 2026-09-17, PM check-in (30-minute triage, previous work was NOT finished: run 305 was not a failure, it timed out, and this is why)
+
+NEXT FOR THE OPERATOR: watch run 306 (`badd2e904`, push-triggered, in progress at hand-off) to completion. If it goes green, publish-image-current clears and the earlier generator-ownership fix is finally live. If it still fails on something other than a timeout, that is real work, not another timeout.
+
+**Previous work was NOT finished.** `preflight.py FAIL publish-image-current`: run 305 (workflow_dispatch on `d1908690`, the prior cycle's fix) showed `in_progress` for 20 minutes then `cancelled`, not `failure`. Checked the job, not guessed: its `timeout-minutes: 20` matched the cancellation to the second. Run 303, the last real success, already used 18m13s of that 20m budget (Preflight step alone: 16m48s), so this was already one slow run from tipping over before today. Root cause is `gate_generator_ownership`'s own test running a full nested `preflight.py` twice per call; too large a fix for this slot. Raised `timeout-minutes` to 35 as headroom, pushed (`badd2e904`), re-triggered the workflow. A duplicate manual dispatch (307) fired alongside the push-triggered run (306); no concurrency group exists to prevent that, so I cancelled the redundant one.
+
+Pushed to main. `.github/workflows/publish-image.yml`, command deck.
+
 
 NEXT FOR THE OPERATOR: confirm `publish-image.yml` run #305 (workflow_dispatch on `d1908690`, in progress at hand-off) completes green, and that the fast local `preflight.py`'s `publish-image-current` gate clears on the next run once it does; if it is still red, that is the operator's first job, ahead of any new cold-read pick. Once confirmed, the standing cold-read lane (`build_standards.py`, `receive_deploy_key.py`, `reflow.py`, `review_heroes.py`, `root_causes.py`, 11-mention `ops/*.py` tier) is still the highest-value genuinely unblocked work: all 7 GitHub issues stay decision/blocked-on-art, all backlog rows in sections 2-4 stay done or Phil-gated.
 
