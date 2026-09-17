@@ -48,8 +48,10 @@
   "verdict": "ok"
  },
  "EH-004": {
-  "sha": "5eff4dc723",
-  "verdict": "no"
+  "verdict": "ok",
+  "sha": "f32b06180a",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "EH-005": {
   "sha": "b80fbb1c81",
@@ -152,8 +154,10 @@
   "verdict": "ok"
  },
  "EP-007": {
-  "sha": "a1e25a101b",
-  "verdict": "no"
+  "verdict": "ok",
+  "sha": "ccada10955",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "EP-008": {
   "sha": "42a6ab1bb4",
