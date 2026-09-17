@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, two cold-read candidates checked clean, four handed to the operator)
+
+**Previous work was finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (324-commit fast-forward, no unrelated-history symptom). `preflight.py` full run clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress), none new. Working tree and `STATUS.md` both already matched this state before this cycle touched anything, main already pushed. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `BACKLOG-2026-09-07.md` again all done or Phil-gated.
+
+**Continued the standing `ops/*.py` cold-read lane the last operator cycle handed off**, since the previous work was finished and nothing else in the backlog was unblocked. Read and ran two of the six remaining candidates: `render_all_narrated.py` (`--check` correctly reports 0 of 228, matching the dashboard's own "0/114 rendered" line, no defect), `build_sample_html.py` (`--check` runs clean against the real source; its own "--check" mode does not diff against the committed output, but that gap is already closed elsewhere: the file is registered in `GENERATOR_OWNERSHIP_CHAIN`, so `gate_generator_ownership`'s regenerate-and-diff already catches drift here, not merely unlisted the way `prerender_shop.py` was before 2026-09-17's earlier fix). No defect found in either file; no new gate needed.
+
+**No new closeable item found this slot;** command deck regenerated only (`preflight.py`'s own run touched its timestamp/commit-pointer fields), no code or content changed.
+
+**Handing to the operator:** the remaining cold-read lane: `build_avif.py`, `render_cards.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main. Command deck and this log only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (worked the standing cold-read lane, all three checked candidates came back clean or already gated; one stale internal comment fixed)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (324-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top). `preflight.py` clean on attach: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable by this session. No mail credential in this sandbox; `inbox_agent.py --apply` correctly reported unchecked.
