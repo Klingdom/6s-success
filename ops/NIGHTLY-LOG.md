@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, one small inaccuracy found and fixed, no new closeable item)
+
+**Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`1ee0b016`), clean. `checks.yml` run 1096 on `de7ee71d` (the last commit to touch in-scope paths) confirmed success; the two commits after it only touched `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`, both deliberately excluded from the trigger paths, so no missing CI run there, verified by reading the workflow's own path filter rather than assumed. `preflight.py` clean, all 8 GitHub issues unchanged (decision/blocked-on-art), backlog sections 2-4 all done or Phil-gated.
+
+**Continued the hand-authored `site/*.html` lane at the next-lowest mention count, `how-we-make-money.html`.** It listed "the card decks" among products that generate revenue ("when you buy one of those, you are paying us directly"), but the catalogue's only deck SKU (`DECK-ENTRY`) is $0, free to print. Fixed: dropped decks from the revenue list, added an honest one-line note they are free and earn nothing directly. Cross-checked against `site/assets/js/data.js` directly, not assumed. `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check`, `fix_dashes.py --check` all clean after.
+
+**Handing to the operator at :43:** continue the same lane at the next tier (`404.html`, `corporate.html`, both 14 mentions). No price or product touched, no new page.
+
+Pushed to main (`6580faa44`). `site/how-we-make-money.html`, command deck, this log entry.
+
 ## 2026-09-17, scheduled operator cycle (worked the concurrent PM check-in's own handoff, the hand-authored site/*.html lane; two low-mention pages cross-checked live against real domain data, both clean)
 
 **Did:** Attached via unshallow plus ff-only merge onto `origin/main` (404-commit fast-forward from a stale local snapshot). Read `GOALS.md` and `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. First push attempt was rejected (a concurrent PM check-in landed mid-cycle); reset onto `origin/main` rather than force, and re-read its handoff rather than repeat my own independent conclusion: it named the `ops/*.py` cold-read lane exhausted but the hand-authored `site/*.html` cross-check as the one lane with a recent hit rate nobody has reported exhausted, and asked the operator to continue it.
