@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (run 309 confirmed green: the publish-image.yml/checks.yml deadlock is resolved, closing a chain that spanned six commits and three converging bugs)
+
+**Did:** Dispatched `publish-image.yml` manually on `main` after the test-isolation fix landed (`0cbca788`), rather than waiting on the path filter (the fix touches no `site/` file). Polled the resulting run (309) to completion via the Actions API rather than trusting a local pass: `in_progress` for roughly 19 minutes, then `completed success`. Pulled the job's own step list to confirm it was a real publish, not just a green Preflight: "Build the image so it can be tested before anyone gets it," "Start the image and check what it actually returns," and "Build and push" all completed successfully, ending 14:39:03Z.
+
+**Verified the deadlock is actually gone, not just this one run green:** re-fetched `origin/main` (picked up a concurrent session's own confirmation entry, converged independently on the identical diagnosis, reconciled below rather than duplicated) and ran a full local `preflight.py`: every gate passed, 23 warnings, `gate_publish_image_current` no longer even appears, meaning `goods` has genuinely advanced past `d4ac5147` to `0cbca788` and the six real content fixes that had been sitting undeliverable since run 303 (the Listmonk-comment generator sync, the timeout headroom raise, the duplicate-Stripe-name gate, and the three fixes to this gate itself) are now in the image the host pulls, awaiting only Phil's Hostinger redeploy click as usual.
+
+**The full chain, for the record:** run 306 failed on a duplicate-run race (fixed by same-commit exclusion); run 306/1074 also exposed a structural deadlock, since the gate blocking `publish-image.yml` was also the gate whose own success was needed to clear it (fixed, independently and convergently by two sessions, with an own-workflow warn/fail branch); run 308 then failed a third way, a test-isolation leak in that second fix's own tests (fixed, again independently and convergently by two sessions); run 309 finally went green. Three real, distinct bugs, each invisible until actually exercised inside the specific workflow it protects, each caught by watching CI to completion rather than trusting a local or partial pass, per `CLAUDE.md` 0.3 and 0.4.
+
+**Went well:** never declaring the incident closed on an unpushed fix, an untested branch, or a dispatched-but-unwatched run; each of the three bugs was found by actually reading a real, live job log rather than reasoning from the code alone.
+
+**Did not go well:** the same incident cost real time across at least four sessions today. The standing "changing next cycle" note from two entries ago still applies: if this exact gate needs a fourth fix, stop patching it and reconsider whether it belongs unconditionally inside `preflight.py` at all.
+
+**Changing next cycle:** none beyond that standing three-strikes note; the fix is now proven live, not just locally.
+
+**Next:** resume the standing cold-read lane (`build_standards.py`, `receive_deploy_key.py`, `reflow.py`, `review_heroes.py`, `root_causes.py`, 11-mention `ops/*.py` tier), the next genuinely unblocked work now that this is closed. All 7 GitHub issues remain decision/blocked-on-art. Production still needs Phil's own Hostinger redeploy click to actually serve the now-current image; that gate is unchanged and belongs in `OWNER-ACTIONS.md`, already recorded there.
+
+Pushed to main (dashboard/log only this entry; the substantive fix was already pushed and confirmed by CI run 309 above). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work was NOT finished: run 308 failed for real; converged independently with a concurrent session on the identical root cause and fix, took theirs, no duplicate shipped)
 
 NEXT FOR THE OPERATOR: run 309 (workflow_dispatch on `0cbca788`, dispatched by the concurrent session, this cycle's own merge commit `9e24c574` sits on top of it unchanged in `site/`/Dockerfile) was still `in_progress` at hand-off. Watch it to completion via the Actions API, not a local pass. If it goes green, `gate_publish_image_current` should finally clear and `goods` advances past `d4ac5147`; if it fails on anything else, that is real work, not a repeat of this shape. Once confirmed, the standing cold-read lane (`build_standards.py`, `receive_deploy_key.py`, `reflow.py`, `review_heroes.py`, `root_causes.py`, 11-mention `ops/*.py` tier) is the next genuinely unblocked work; all 7 GitHub issues stay decision/blocked-on-art.
