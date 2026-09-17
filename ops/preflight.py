@@ -6398,7 +6398,7 @@ def gate_workflows_healthy() -> None:
         warn("workflows-healthy", "; ".join(bits))
 
 
-def _publish_image_runs(token, wf_name, extra_qs=""):
+def _publish_image_runs(token, wf_name, extra_qs="", per_page=1):
     """One page of publish-image.yml's own run history, newest first.
 
     Split out from gate_publish_image_current so a test can force its return
@@ -6406,7 +6406,7 @@ def _publish_image_runs(token, wf_name, extra_qs=""):
     """
     import urllib.request
     url = ("https://api.github.com/repos/klingdom/6s-success/actions/"
-           f"workflows/{wf_name}/runs?per_page=1{extra_qs}")
+           f"workflows/{wf_name}/runs?per_page={per_page}{extra_qs}")
     req = urllib.request.Request(
         url, headers={"Authorization": f"Bearer {token}",
                       "Accept": "application/vnd.github+json",
@@ -6439,6 +6439,21 @@ def gate_publish_image_current() -> None:
     If the latest run failed (or never ran) AND there is a real diff, that is
     not routine, it is undelivered work, and preflight should say so loudly
     enough that someone re-triggers the build rather than reading past it.
+
+    Found broken 2026-09-17: this gate ran *inside* an active publish-image.yml
+    attempt for HEAD (run 306) and failed on itself. A redundant manual
+    workflow_dispatch (run 307) had raced the real push-triggered run and
+    completed (cancelled) a few seconds sooner, so the API's single
+    newest-by-creation-time run was that duplicate, not the still-executing
+    real attempt. The old code took whatever run the API listed first as "the
+    latest", with no check that it was not simply another attempt at this
+    exact commit. A same-commit duplicate is not history to compare against;
+    it is noise from the attempt already in flight. Fixed by pulling several
+    recent runs and setting aside every one that shares HEAD's own commit
+    before deciding whether "the latest attempt" is unresolved, succeeded, or
+    genuinely stuck: only once every attempt at HEAD's own commit has actually
+    concluded, with none of them a success, does this fall back to comparing
+    against the last real prior success.
     """
     wf_name = "publish-image.yml"
     wf_dir = os.path.join(ROOT, ".github", "workflows")
@@ -6456,7 +6471,7 @@ def gate_publish_image_current() -> None:
         return
 
     try:
-        latest = _publish_image_runs(token, wf_name)
+        latest = _publish_image_runs(token, wf_name, per_page=10)
         goods = _publish_image_runs(token, wf_name, "&status=success")
     except Exception:                                          # noqa: BLE001
         warn("publish-image-current",
@@ -6466,8 +6481,26 @@ def gate_publish_image_current() -> None:
 
     if not latest:
         return  # never run at all; gate_workflows_healthy already covers this
-    latest_conclusion = latest[0].get("conclusion")
-    latest_status = latest[0].get("status")
+
+    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                          capture_output=True, text=True).stdout.strip()
+
+    # Any run sharing HEAD's own commit (this very run, or a duplicate
+    # trigger racing it) is not prior history. If one of them is still
+    # unresolved, an attempt to publish HEAD is in flight right now, whatever
+    # a same-commit duplicate's own completed/cancelled record already says.
+    same_commit = [r for r in latest if head and r.get("head_sha") == head]
+    if any(r.get("status") != "completed" for r in same_commit):
+        return  # still attempting to publish this exact commit
+    if any(r.get("conclusion") == "success" for r in same_commit):
+        return  # this exact commit already shipped
+
+    prior = [r for r in latest if r not in same_commit]
+    if not prior:
+        return  # no attempt at any other commit to compare against
+
+    latest_conclusion = prior[0].get("conclusion")
+    latest_status = prior[0].get("status")
     if latest_status != "completed" or latest_conclusion == "success":
         return  # currently building, or the latest attempt already succeeded
 

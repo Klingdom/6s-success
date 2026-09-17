@@ -58,6 +58,12 @@ def _make_repo(differs):
     return tmp, good_sha
 
 
+def _head(repo):
+    return subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo,
+                          capture_output=True, text=True,
+                          check=True).stdout.strip()
+
+
 def _run_with(repo, latest, goods, token="fake-token"):
     old_root = preflight.ROOT
     old_runs = preflight._publish_image_runs
@@ -67,8 +73,8 @@ def _run_with(repo, latest, goods, token="fake-token"):
     try:
         preflight.ROOT = repo
         preflight._publish_image_runs = (
-            lambda tok, name, extra_qs="": goods if "status=success" in extra_qs
-            else latest)
+            lambda tok, name, extra_qs="", per_page=1:
+            goods if "status=success" in extra_qs else latest)
         dashboard.gh_token = lambda: token
         preflight.gate_publish_image_current()
         return list(preflight.FAIL), list(preflight.WARN)
@@ -152,6 +158,74 @@ def test_never_succeeded_fails_outright():
         shutil.rmtree(repo, ignore_errors=True)
 
 
+def test_duplicate_same_commit_run_in_progress_stays_quiet():
+    """The exact bug found 2026-09-17: a redundant workflow_dispatch racing a
+    push-triggered run for the SAME commit completed (cancelled) a few
+    seconds before the real run's own preflight step finished, and the old
+    code took whichever run the API happened to list first as "the latest",
+    with no check that it shared HEAD's own commit. A same-commit duplicate
+    is not history: the real attempt at this exact commit is still in
+    flight, so nothing should be reported yet."""
+    repo, good_sha = _make_repo(differs=True)
+    try:
+        head = _head(repo)
+        fails, warns = _run_with(
+            repo,
+            latest=[
+                {"status": "completed", "conclusion": "cancelled",
+                 "head_sha": head},        # duplicate, finished first
+                {"status": "in_progress", "conclusion": None,
+                 "head_sha": head},        # the real run, still executing
+                {"status": "completed", "conclusion": "failure",
+                 "head_sha": "deadbeef"},  # unrelated older history
+            ],
+            goods=[{"status": "completed", "conclusion": "success",
+                   "head_sha": good_sha}])
+        assert fails == [] and warns == [], (fails, warns)
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
+def test_same_commit_run_succeeded_stays_quiet():
+    repo, good_sha = _make_repo(differs=True)
+    try:
+        head = _head(repo)
+        fails, warns = _run_with(
+            repo,
+            latest=[{"status": "completed", "conclusion": "success",
+                    "head_sha": head}],
+            goods=[])
+        assert fails == [] and warns == [], (fails, warns)
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
+def test_same_commit_all_concluded_without_success_falls_through():
+    """Once every attempt at HEAD's own commit has actually concluded, with
+    no duplicate still in flight, and none of them succeeded, the gate must
+    fall back to comparing against real prior history rather than staying
+    quiet forever just because the failures were all for this commit."""
+    repo, good_sha = _make_repo(differs=True)
+    try:
+        head = _head(repo)
+        fails, warns = _run_with(
+            repo,
+            latest=[
+                {"status": "completed", "conclusion": "failure",
+                 "head_sha": head},
+                {"status": "completed", "conclusion": "cancelled",
+                 "head_sha": head},
+                {"status": "completed", "conclusion": "failure",
+                 "head_sha": "deadbeef"},
+            ],
+            goods=[{"status": "completed", "conclusion": "success",
+                   "head_sha": good_sha}])
+        assert len(fails) == 1, (fails, warns)
+        assert good_sha[:8] in fails[0][1]
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
 def test_no_token_warns_unchecked_not_healthy():
     repo, good_sha = _make_repo(differs=True)
     try:
@@ -169,6 +243,9 @@ if __name__ == "__main__":
     test_latest_success_stays_quiet_even_with_uncalled_goods_query()
     test_in_progress_latest_run_stays_quiet()
     test_never_succeeded_fails_outright()
+    test_duplicate_same_commit_run_in_progress_stays_quiet()
+    test_same_commit_run_succeeded_stays_quiet()
+    test_same_commit_all_concluded_without_success_falls_through()
     test_no_token_warns_unchecked_not_healthy()
     print("ok  gate_publish_image_current tells undelivered fixes apart from "
           "a routine failure with nothing real behind it")
