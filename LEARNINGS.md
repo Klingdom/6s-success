@@ -514,6 +514,28 @@ intermediates first, and the PDFs came back text-identical to the pre-rebuild ve
 one differing sentence and look it up in the source file. An untracked intermediate cannot be trusted to be current, and agreement
 between tools that read the same intermediate is not independent evidence.
 
+#### LRN-0014: A conflict in a newest-first file must be resolved by date order, not by marker order
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (one file, but the failure recurred twice in a single session and was corrected by another operator)
+**Domain:** PROCESS / GIT
+**Measured:** 2026-09-16 into 2026-09-17, `ops/NIGHTLY-LOG.md`
+
+`ops/NIGHTLY-LOG.md` states its own invariant in line 3: "One entry per unattended pass, newest first." Every session inserts
+at the same anchor, so concurrent sessions collide there constantly. Twice in one session I resolved those conflicts by
+stripping the three marker lines and keeping both sides **in the order the markers happened to present them**, which is
+`HEAD` first, then the replayed commit. That order is an artifact of who rebased onto whom. It is not chronological, and it
+silently violated the file's invariant. A later operator had to spend a cycle on `41486ffe`, "fix entry ordering left wrong by
+a rebase conflict resolution", moving an entry back into place.
+
+- Keeping both sides is correct, and remains correct: never resolve a shared log by discarding another session's entry.
+- Ordering them by marker position is wrong whenever the two entries carry different timestamps.
+- The check is cheap and was skipped: after resolving, read back the `^## ` headings and confirm they descend by date.
+
+**Implication.** For any append-at-top file (`ops/NIGHTLY-LOG.md`, `STATUS.md`), a conflict resolution is not finished when the
+markers are gone. It is finished when the entries are in the order the file claims to keep. Verify the headings after every
+resolution, the same way a generated file is regenerated rather than hand-picked from either side of a conflict.
+
 #### LRN-0012: The local image model draws the room, not the micro zone; a close-up naming one or two objects is the only prompt shape that has produced acceptable art
 
 **Status:** SUPPORTED
