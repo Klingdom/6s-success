@@ -8430,6 +8430,64 @@ def gate_invest_page_no_fabricated_claims() -> None:
              "does not exist\" finding." % found)
 
 
+def gate_book_sample_format_disclosure() -> None:
+    """book.html must disclose that its two free sample formats differ, and
+    the disclosure must still be true.
+
+    Found 2026-09-07 in REVIEW-QA-2026-09-07.md, fixed 2026-09-17: book.html
+    offered "Read chapters 1 to 30 free" (HTML) and "Download... (PDF, 31
+    MB)" side by side with no hint that they differ. They differ a lot: the
+    HTML sample renders 172 of 231 figures as a text description instead of
+    a picture (`Figure description` placeholder boxes, no `<img>`), while
+    the PDF keeps all of its embedded images. A reader picking the smaller,
+    mobile-friendly HTML option had no way to know most figures would be
+    text, not a picture, until they hit the first one.
+
+    This checks two things, not one: that the disclosure sentence is still
+    on the page, and that the fact it states is still true by re-deriving
+    the real counts from the two committed files. A future edit that makes
+    the disclosure disappear, or that quietly fixes the HTML sample so most
+    figures ARE pictures again (making the caveat stale and overcautious,
+    not merely unneeded), both get caught here.
+    """
+    page = os.path.join(SITE, "book.html")
+    if not os.path.exists(page):
+        return
+    body = io.open(page, encoding="utf-8", errors="replace").read()
+    marker = "The online version is lighter and shows most figures as a described caption"
+    if marker not in body:
+        fail("book-sample-format-disclosure",
+             "site/book.html no longer discloses that the free online "
+             "sample and the PDF differ in how many figures are real "
+             "pictures. See REVIEW-QA-2026-09-07.md's 'the free HTML book "
+             "has none of the book's pictures' finding.")
+        return
+
+    html_path = os.path.join(
+        SITE, "downloads",
+        "6S Success Home Edition - Sample (Chapters 1-30).html")
+    if not os.path.exists(html_path):
+        warn("book-sample-format-disclosure",
+             "the free HTML sample is missing, so the disclosure's own "
+             "figure counts were not re-checked. Unchecked, not correct.")
+        return
+    sample = io.open(html_path, encoding="utf-8", errors="replace").read()
+    total_figs = len(re.findall(r"<figure", sample))
+    text_only = len(re.findall(r"Figure description", sample))
+    if total_figs == 0:
+        warn("book-sample-format-disclosure",
+             "the free HTML sample has no <figure> elements at all, so the "
+             "disclosure's own claim could not be re-checked.")
+        return
+    if text_only * 2 < total_figs:
+        fail("book-sample-format-disclosure",
+             "site/book.html still says the online sample shows 'most "
+             "figures' as text, but the real file now renders only %d of "
+             "%d figures as text, no longer a majority. The disclosure "
+             "needs rewording, not silent staleness."
+             % (text_only, total_figs))
+
+
 def gate_caption_line_length() -> None:
     """No caption line may exceed the readable budget, in either caption set.
 
@@ -15154,6 +15212,7 @@ def main() -> int:
     run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_invest_page_catalog_current)
     run_gate(gate_invest_page_no_fabricated_claims)
+    run_gate(gate_book_sample_format_disclosure)
     run_gate(gate_caption_line_length)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
