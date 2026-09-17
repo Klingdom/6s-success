@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (built the credential-free gate REVIEW-QA-2026-09-07.md's own Stripe name-collision finding asked for)
+
+**Did:** Attached via unshallow plus ff-only merge onto `cacb5e9c`, clean, 334-commit fast-forward. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed warnings). `BACKLOG-2026-09-07.md` sections 2-6 again done or Phil-gated, 7 GitHub issues unchanged (decision/blocked-on-art), no mail credential. The `ops/*.py` cold-read lane sits at an 11-mention floor with nearly every file at it already investigated by name across this log, so read `REVIEW-QA-2026-09-07.md` itself instead: its "8 of 155 Stripe pages carry copy the site does not" finding names six $4 zone packs sharing a bare Stripe name with the room dropped ("Dresser Drawers Pack" on both Primary and Kids Bedroom), and states its own fix: "no two live Stripe products share a name, a gate can assert this from the catalogue with no Stripe credential." Checked first, not assumed: `ensure_product()` in `ops/stripe_catalog.py` already builds the room-qualified name; today's catalogue produces zero collisions. Extracted `product_name()` and added `duplicate_product_names()`, both pure, no Stripe call; new `gate_no_duplicate_stripe_product_names` in `preflight.py` FAILS (not warns, since it needs no credential). `ops/tests/test_gate_no_duplicate_stripe_product_names.py` (5 cases), fail-then-pass proved via `git stash` (`AttributeError: no attribute 'product_name'` pre-fix).
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings, none new), all 177 test files (`test_generator_ownership.py` the known slow one, unaffected), `check_urls.py` (188/188), `audit_pages.py` (0 findings), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0). Whether the six live Stripe objects still carry the old name is unverified here, no credential; noted in `REVIEW-QA-2026-09-07.md`.
+
+**Went well:** reading the QA review document itself once the ops-file lane saturated.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list. Production still needs Phil's Hostinger redeploy click.
+
+Pushed to main. `ops/stripe_catalog.py`, `ops/preflight.py`, `ops/tests/test_gate_no_duplicate_stripe_product_names.py`, `REVIEW-QA-2026-09-07.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, closed a stale sibling-document reference with evidence, GitHub issue #21 narrowed)
 
 Attached via unshallow plus ff-only merge onto `25e2dfea`, clean (no unrelated-history symptom). Previous work: finished. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed sandbox warnings, none new); working tree was already clean before this cycle touched anything. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. 7 open GitHub issues, all `decision`/`blocked-on-art`.

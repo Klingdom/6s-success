@@ -311,10 +311,36 @@ def invalidate(kind: str) -> None:
         del _CACHE[k]
 
 
-def ensure_product(sku: str, item: dict, spec: dict, apply_it: bool) -> str | None:
+def product_name(item: dict) -> str:
+    """The exact Stripe product name ensure_product() sends for a catalogue
+    item, pulled out so a name collision can be checked from the catalogue
+    alone, with no Stripe credential and no live call.
+    """
     name = item["name"]
     if item.get("variant"):
         name = f"{name} ({item['variant']})"
+    return name
+
+
+def duplicate_product_names(cat: dict[str, dict] | None = None) -> dict[str, list[str]]:
+    """SKUs that would resolve to the same Stripe product name.
+
+    REVIEW-QA-2026-09-07.md found six live $4 zone packs sharing a bare
+    Stripe name ("Dresser Drawers Pack") with the room that disambiguates
+    them ("Primary Bedroom", "Kids Bedroom") dropped, three real name
+    collisions on the storefront's own line-item text. product_name() above
+    already builds the full, disambiguated name from the catalogue; this
+    only needs grouping and reporting, no Stripe account to check against.
+    """
+    cat = cat if cat is not None else catalogue()
+    by_name: dict[str, list[str]] = {}
+    for sku, item in cat.items():
+        by_name.setdefault(product_name(item), []).append(sku)
+    return {name: skus for name, skus in by_name.items() if len(skus) > 1}
+
+
+def ensure_product(sku: str, item: dict, spec: dict, apply_it: bool) -> str | None:
+    name = product_name(item)
     payload = {
         "name": name,
         "description": item["blurb"][:350],

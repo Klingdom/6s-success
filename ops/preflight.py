@@ -1820,6 +1820,39 @@ def gate_stripe_price_claims() -> None:
              "reading a number we do not charge: %s" % (len(bad), bad[:3]))
 
 
+def gate_no_duplicate_stripe_product_names() -> None:
+    """No two catalogue SKUs may resolve to the same Stripe product name.
+
+    REVIEW-QA-2026-09-07.md found six live $4 zone packs sharing a bare
+    Stripe name: "Dresser Drawers Pack" on both the Primary Bedroom and Kids
+    Bedroom packs, "Shower or Tub Pack" and "Toilet Area Pack" each the same
+    way across Primary and Guest Bathroom, the room dropped from the exact
+    text a buyer scans at checkout. The site's own catalogue name already
+    disambiguates each of these ("Dresser Drawers Pack, Primary Bedroom");
+    the collision was in the name ops/stripe_catalog.py's own ensure_product()
+    sent to Stripe, a value this repository can compute without ever calling
+    Stripe. The review's own acceptance criterion says as much: "No two live
+    Stripe products share a name. A gate can assert this from the catalogue
+    with no Stripe credential."
+
+    Checked directly before writing this gate: today's catalogue produces
+    zero collisions (ensure_product() already builds the room-qualified name
+    with the variant appended), so this closes a loophole a future SKU add
+    could reopen silently, not a live defect today. Runs and fails locally,
+    no credential and no network needed, unlike its Stripe-account siblings
+    just below, which is exactly what the review asked for.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import stripe_catalog as sc
+    dupes = sc.duplicate_product_names()
+    if dupes:
+        fail("dup-stripe-names",
+             "%d Stripe product name(s) would be shared by more than one "
+             "SKU, so a buyer at checkout cannot tell them apart: %s. Give "
+             "each catalogue entry a name or variant that disambiguates it."
+             % (len(dupes), dict(list(dupes.items())[:3])))
+
+
 def gate_stripe_one_product_per_sku() -> None:
     """Every SKU must resolve to exactly one active Stripe product.
 
@@ -15105,6 +15138,7 @@ def main() -> int:
     run_gate(gate_scheduled_delivery_phase)
     run_gate(gate_schedule_comment_minute_current)
     run_gate(gate_stripe_price_claims)
+    run_gate(gate_no_duplicate_stripe_product_names)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)
     run_gate(gate_stripe_brand)
