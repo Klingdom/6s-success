@@ -214,6 +214,12 @@ def back_body(card: dict, by_id: dict) -> str:
                     + "".join(f"<li>{esc(w)}</li>" for w in card["write_on"])
                     + "</ul>")
         out.append(f'<p>{esc(card["instruction"])}</p>')
+        mq = card.get("micro_quest") or []
+        if mq:
+            out.append('<h4>Ninety seconds, if that is what you have</h4>'
+                        '<ul class="kmicro">'
+                        + "".join(f"<li>{esc(q)}</li>" for q in mq)
+                        + "</ul>")
     elif t == "EVENT CARD":
         zones = card["tests_zones"]
         out.append('<p><strong>Tests:</strong> ' + ", ".join(

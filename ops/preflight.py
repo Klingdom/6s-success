@@ -3224,6 +3224,84 @@ def gate_kitchen_deck_rendered() -> None:
         fail("kitchen-deck-rendered", "; ".join(problems))
 
 
+def check_kitchen_micro_quests(cards: list, page: str) -> list:
+    """Pure logic for gate_kitchen_micro_quests, testable without real
+    files. `cards` is ops/cardtext/build_kitchen_deck.py's own card list;
+    `page` is the full text of site/kitchen-deck.html.
+
+    DECK-GAME-DESIGN.md section 2 measured that no 1 to 3 minute rung
+    existed anywhere in this deck and section 4.1 put the fix (3 authored
+    micro quests per zone, 21 total) on the 7 STANDARD card backs, the one
+    genuinely sparse back in the deck. Its own generator gate already
+    proves the corpus is internally consistent (3 per standard card, no
+    duplicate line); this proves the shipped page still carries them,
+    verbatim, which a hand edit to the page template or a generator that
+    stops reading `micro_quest` would not otherwise catch.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    standards = [c for c in cards if c["type"] == "STANDARD CARD"]
+    problems = []
+    seen = []
+    for c in standards:
+        mq = c.get("micro_quest") or []
+        if len(mq) != 3:
+            problems.append(f"{c['id']} carries {len(mq)} micro quest(s) in "
+                            f"the corpus, not 3")
+            continue
+        for q in mq:
+            needle = _html.escape(str(q), quote=True)
+            if needle not in page:
+                problems.append(f"{c['id']}'s micro quest is not on the "
+                                f"rendered page verbatim: {q!r}")
+            seen.append(q)
+    if len(seen) == 21 and len(set(seen)) != 21:
+        problems.append("a micro quest line repeats across standard cards")
+    return problems
+
+
+def gate_kitchen_micro_quests() -> None:
+    """DECK-GAME-DESIGN.md section 2/4.1: the 1 to 3 minute micro quest rung
+    the Kitchen deck was missing (measured: no time tier below 15 minutes
+    anywhere in it) has to actually be on the shipped page, not just in the
+    gated cardtext corpus, per the same "source corrected, artifact never
+    re-derived" shape this project keeps finding elsewhere.
+
+    Checks the shipped page against the real corpus (pure logic in
+    check_kitchen_micro_quests, proved to fail on three planted regressions
+    in ops/tests/test_gate_kitchen_micro_quests.py): every standard card
+    carries exactly 3 micro quests, all 21 appear verbatim on the rendered
+    page, and none repeats.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_kitchen_deck as KD
+        import importlib
+        importlib.reload(KD)
+        deck = KD.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kitchen-micro-quests",
+             f"could not build the Kitchen cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "kitchen-deck.html")
+    if not os.path.exists(page_path):
+        fail("kitchen-micro-quests",
+             "ops/cardtext/build_kitchen_deck.py's corpus exists but "
+             "site/kitchen-deck.html does not. Run "
+             "ops/build_kitchen_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_kitchen_micro_quests(deck["cards"], page)
+    if problems:
+        fail("kitchen-micro-quests", "; ".join(problems))
+
+
 def check_kitchen_deck_print_tracked(page: str) -> list:
     """Pure logic for gate_kitchen_deck_print_tracked, testable without real
     files. `page` is the full text of site/kitchen-deck.html.
@@ -14544,6 +14622,7 @@ def main() -> int:
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)
+    run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_deck_print_tracked)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)

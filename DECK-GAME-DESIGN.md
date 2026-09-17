@@ -282,9 +282,25 @@ has seen any of this.
 
 ## 7. What is Phil's to decide
 
-1. **Author 21 Kitchen micro quests?** Recommended yes. It is the only new
-   content this proposes, it fits in zero new card slots, and it is the rung
-   the ladder is missing.
+1. ~~**Author 21 Kitchen micro quests?**~~ **Done 2026-09-17, operator.**
+   Recommended yes, and this one did not need to wait: it is reversible
+   content on an existing free, ungated page, no price or product touched,
+   squarely `CLAUDE.md` 0.5's GREEN tier rather than one of its actual
+   gates (money, contracts, account creation, irreversible action). All 21
+   authored (3 per zone, `MICRO_QUESTS` in
+   `ops/cardtext/build_kitchen_deck.py`), grounded in that zone's own real
+   Manual passes, never invented; each is one physical movement ending in
+   something observable, per `DECK-SYSTEM.md` 5.4, checked by the
+   generator's own `gate()` (exactly 3 per standard card, none blank, none
+   repeated, fail-then-pass proved) and printed on the standard card back
+   as this section recommended, the one genuinely sparse back in the deck.
+   Live on `site/kitchen-deck.html`, protected by a new
+   `gate_kitchen_micro_quests` in `ops/preflight.py` so the rendered page
+   cannot silently drift from the corpus the way several other generators
+   here already have. Items 2 to 4 below are unchanged: a mechanical
+   scoring system and a combinatorics change are a larger, separate design
+   decision and out of scope for this pass, per `CLAUDE.md` 0.1's "finish
+   one thing."
 2. **Reintroduce Momentum, one counter, nothing subtracts?** Recommended yes.
 3. **Upgrade and Tool cards stay deleted?** Recommended yes, and this one I
    would argue for: it is where buying pressure would re-enter a product about

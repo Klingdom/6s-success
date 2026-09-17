@@ -206,6 +206,79 @@ ZONES = {
 
 
 # ---------------------------------------------------------------------------
+# MICRO QUEST LAYER. `DECK-GAME-DESIGN.md` section 2 measured that no rung
+# under 15 minutes exists anywhere in this deck, and that the 684 zone steps
+# in the Manual cannot be cut down into one because they run 25 to 134 words
+# and are whole-pass instructions, not tasks. So these three per zone are
+# hand authored here rather than harvested, each one a single physical
+# movement grounded in that zone's own Manual passes (never invented), each
+# ending in something a person can see is true, per `DECK-SYSTEM.md` 5.4.
+# They print on the STANDARD card back, per that plan's section 4.1: the
+# zone and event card backs are already full, and the standard back is the
+# one that is genuinely sparse.
+# ---------------------------------------------------------------------------
+
+MICRO_QUESTS = {
+ "Primary Prep Counter": [
+  "Lift the toaster and the kettle, wipe underneath both, and set them back "
+  "against the wall with their cords coiled.",
+  "Move the salt and the oil in behind the cutting board, then check the "
+  "knife block sits on your dominant side.",
+  "Lay the cutting board flat on bare counter and clear whatever is stopping "
+  "it from lying flat.",
+ ],
+ "Cooking Zone": [
+  "Turn every pan handle inward over the hob and move the tea towel and the "
+  "paper roll off the burner side.",
+  "Take the tools out of the crock, put back only the ones your hand "
+  "actually reaches for, and box the rest.",
+  "Turn the spice rack's back row to the front so every label reads without "
+  "shuffling a jar.",
+ ],
+ "Sink and Dishwashing Zone": [
+  "Wring the sponge dry, stand it on edge, and wipe the drain flange until "
+  "it shows no film.",
+  "Empty the basin, dry it with the towel, and hang the towel back on its "
+  "bar.",
+  "Move the bleach and the ammonia based cleaner apart under the sink, cap "
+  "both, and turn their labels to face out.",
+ ],
+ "Upper Cabinet Zone": [
+  "Empty one shelf completely, wipe the dust from the back of it, and put "
+  "back only the mugs that lift out without moving another.",
+  "Move the heaviest stack down from above head height to a shelf you can "
+  "reach without a step stool.",
+  "Pull the mug nobody ever chooses off the shelf and set it by the door to "
+  "leave the kitchen.",
+ ],
+ "Lower Cabinet and Cookware Zone": [
+  "Nest the pan stack no more than three deep, with a cloth between the "
+  "coated ones, and stand the baking sheets on edge beside it.",
+  "Twist every pan handle and tighten any rivet that moves while the "
+  "cabinet is open.",
+  "Carry the pan that has been sleeping on the burner back to its own slot, "
+  "and move that slot to the front if it does not fit.",
+ ],
+ "Utensil and Utility Drawers": [
+  "Tip one drawer onto a towel, put back only what earns its spot, and "
+  "close the drawer flush with one push.",
+  "Sheathe the loose paring knife or peeler and lay it back at the front of "
+  "the drawer where you see it first.",
+  "Lift the flatware insert out, tip the crumbs into the bin, and wipe both "
+  "runners before sliding it back in.",
+ ],
+ "Refrigerator and Freezer": [
+  "Empty the eat-first bin of anything past its day and set what is left "
+  "back at the front where the door opens onto it.",
+  "Move any raw meat package down to the lowest shelf so nothing below it "
+  "can catch a drip.",
+  "Name and date one unlabelled lid with the tape on top of the fridge, or "
+  "empty it into the bin.",
+ ],
+}
+
+
+# ---------------------------------------------------------------------------
 # ROOT CAUSE LAYER. Twelve of the twenty one causes in the product model: the
 # twelve that actually occur in a kitchen. Each says how to confirm it in
 # thirty seconds while standing there, because a diagnosis you cannot check is
@@ -1154,6 +1227,7 @@ def standard_card(name: str, z: dict, spec: dict) -> dict:
                        "your own words if the printed sentence is not yours, "
                        "and put it where the zone is. A standard nobody "
                        "signed is a preference.",
+        "micro_quest": MICRO_QUESTS[name],
         "related": {"zone": spec["id"],
                     "actions": [a["id"] for a in ACTIONS
                                 if a["zone"] == name]},
@@ -1294,6 +1368,22 @@ def gate(cards: list, zmap: dict) -> None:
             lb = zmap[c["zone"]]["leave_behind"]
             assert c["objective"] == lb["standard"]
             assert c["trigger"] == lb["trigger"]
+
+    # The 1 to 3 minute tier DECK-GAME-DESIGN.md section 2 found missing:
+    # exactly 3 per standard card, none blank, none repeated anywhere in the
+    # deck (a repeated line would mean two zones sharing a card by accident).
+    all_micro_quests = []
+    for c in cards:
+        if c["type"] != "STANDARD CARD":
+            continue
+        mq = c.get("micro_quest") or []
+        assert len(mq) == 3, f"{c['id']} has {len(mq)} micro quests, needs 3"
+        for q in mq:
+            assert q and q.strip() == q, f"{c['id']} has a blank/untrimmed micro quest"
+            assert len(q.split()) <= 30, f"{c['id']} micro quest too long for a card back: {q!r}"
+        all_micro_quests.extend(mq)
+    assert len(all_micro_quests) == len(set(all_micro_quests)), (
+        "a micro quest line repeats across zones")
 
     known = {c["id"] for c in cards}
     for c in cards:

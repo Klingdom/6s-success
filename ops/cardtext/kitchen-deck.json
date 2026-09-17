@@ -2685,6 +2685,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the toaster and the kettle, wipe underneath both, and set them back against the wall with their cords coiled.",
+    "Move the salt and the oil in behind the cutting board, then check the knife block sits on your dominant side.",
+    "Lay the cutting board flat on bare counter and clear whatever is stopping it from lying flat."
+   ],
    "related": {
     "zone": "KZ-001",
     "actions": [
@@ -2720,6 +2725,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Turn every pan handle inward over the hob and move the tea towel and the paper roll off the burner side.",
+    "Take the tools out of the crock, put back only the ones your hand actually reaches for, and box the rest.",
+    "Turn the spice rack's back row to the front so every label reads without shuffling a jar."
+   ],
    "related": {
     "zone": "KZ-002",
     "actions": [
@@ -2755,6 +2765,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wring the sponge dry, stand it on edge, and wipe the drain flange until it shows no film.",
+    "Empty the basin, dry it with the towel, and hang the towel back on its bar.",
+    "Move the bleach and the ammonia based cleaner apart under the sink, cap both, and turn their labels to face out."
+   ],
    "related": {
     "zone": "KZ-003",
     "actions": [
@@ -2790,6 +2805,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Empty one shelf completely, wipe the dust from the back of it, and put back only the mugs that lift out without moving another.",
+    "Move the heaviest stack down from above head height to a shelf you can reach without a step stool.",
+    "Pull the mug nobody ever chooses off the shelf and set it by the door to leave the kitchen."
+   ],
    "related": {
     "zone": "KZ-004",
     "actions": [
@@ -2825,6 +2845,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Nest the pan stack no more than three deep, with a cloth between the coated ones, and stand the baking sheets on edge beside it.",
+    "Twist every pan handle and tighten any rivet that moves while the cabinet is open.",
+    "Carry the pan that has been sleeping on the burner back to its own slot, and move that slot to the front if it does not fit."
+   ],
    "related": {
     "zone": "KZ-005",
     "actions": [
@@ -2860,6 +2885,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Tip one drawer onto a towel, put back only what earns its spot, and close the drawer flush with one push.",
+    "Sheathe the loose paring knife or peeler and lay it back at the front of the drawer where you see it first.",
+    "Lift the flatware insert out, tip the crumbs into the bin, and wipe both runners before sliding it back in."
+   ],
    "related": {
     "zone": "KZ-006",
     "actions": [
@@ -2895,6 +2925,11 @@
     "Where this card lives: ______________________________"
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Empty the eat-first bin of anything past its day and set what is left back at the front where the door opens onto it.",
+    "Move any raw meat package down to the lowest shelf so nothing below it can catch a drip.",
+    "Name and date one unlabelled lid with the tape on top of the fridge, or empty it into the bin."
+   ],
    "related": {
     "zone": "KZ-007",
     "actions": [
