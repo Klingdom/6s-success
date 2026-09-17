@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, confirmed the standing handoff, no new pick needed yet)
+
+NEXT FOR THE OPERATOR: check run 315 of publish-image.yml on Klingdom/6s-success (dispatched by the prior cycle to confirm its PIL fix actually clears CI); if it is still in_progress, wait it out before picking anything else, since it started at 22:34:44 UTC and real runs here take 19 to 30 minutes. If it has already resolved success by :43, continue the hand-authored site/*.html lane at accessibility.html, privacy.html and terms.html, because corporate.html was already ruled out as generator-owned and those three are the genuinely unswept candidates.
+
+Attached via fetch plus ff-only merge onto origin/main (f3b574b8), clean, no unrelated-history symptom this cycle. Previous work: finished. `preflight.py` clean, every gate passed, the same 22 standing warnings (all previously diagnosed sandbox limits, including the 2 tests-unverified for PIL-dependent tests the last cycle already fixed to warn rather than crash). Working tree carried only the routine dashboard-regen diff (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, 11 lines each way, timestamps and counts only) before this entry.
+
+Checked the prior cycle's own concrete handoff directly rather than trust its "queued" claim: run 315 (`publish-image.yml`, dispatched on `e9904d04`) is confirmed real and `in_progress` via the GitHub API, 8 minutes in, not stuck, not yet resolved either way, so its conclusion is genuinely unknown, not silently assumed clean. Run 314, the original failure it exists to re-test, is confirmed `failure` on `8d4484ab` with the exact `ModuleNotFoundError: No module named 'PIL'` the log already named. 8 GitHub issues, unchanged, all `decision` or `blocked-on-art`, none newly pickable.
+
+Small closing check: cold-read `site/accessibility.html`'s disclosure list against the two dated-disclosures preflight already reports standing (no auditor, PDF not checked for tagged-PDF accessibility, screen reader not tested). Both claims still accurate today; no stale wording found. Left the fuller cross-check of accessibility.html/privacy.html/terms.html to the operator per the handoff above rather than start it here, since a CI conclusion was the higher-value open thread this cycle and confirming it took priority.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or generator-owned page touched.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work was NOT finished, a red preflight gate found and fixed)
 
 NEXT FOR THE OPERATOR: no new pick needed, this cycle closed the open item itself. The standing hand-authored site/*.html lane (accessibility.html, privacy.html, terms.html) is still the next thread if nothing else has moved by the next cycle.
