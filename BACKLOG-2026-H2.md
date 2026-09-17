@@ -2512,14 +2512,14 @@ mobile `npm test` all three suites unchanged.
 3. **Publish the ten LinkedIn posts** (3.1). Already written and in his inbox.
 4. **Generate the six tier-0 images** (3.3). Prompts ready.
 5. **Chapter 47 monochrome plates** (2.5). Item 5.1, formerly listed here, closed 2026-09-15 (see the epic 5 table above) and is no longer waiting on anybody.
-6. **Stripe business website field** (2.8, issue #21). Settings, Business
-   details, Public details, Edit. Everything else on the account (name,
-   statement descriptor, support email/URL, legal pages, checkout branding)
-   is already fixed per account; only this one field was blocked by Stripe's
-   own safety check when the operator tried it, because it can silently
-   change Ledgerium's account too. Also worth a decision while there: the
-   industry/MCC code (Software, wrong for books and consulting) and whether
-   to keep Stripe Climate's 1% contribution.
+6. **Stripe business website field** (2.8, issue #21). The field itself is
+   fixed and no longer waiting on anybody: row 2.8 above records it verified
+   live 2026-09-06 (`business_profile.url` reads `https://6s-success.com`,
+   nothing points at ledgerium.ai). This row had kept describing it as
+   still blocked by Stripe's own safety check for eleven days after that
+   fix landed. What is still Phil's actual call, per issue #21 itself: the
+   industry/MCC code (Software, wrong for books and consulting) and
+   whether to keep Stripe Climate's 1% contribution.
 7. **The 1,000 existing images** (3.3b). Found 2026-08-26: not reachable from
    this sandbox, same as the credentials above. Needs the 864 book plates, 90
    deck illustrations and 94 photographs placed somewhere this operator

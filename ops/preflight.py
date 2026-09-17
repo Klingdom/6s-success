@@ -10545,6 +10545,43 @@ def gate_no_stale_affiliate_apply_instruction() -> None:
                      name.title())
 
 
+def gate_no_stale_stripe_website_blocker() -> None:
+    """BACKLOG-2026-H2.md's "Items waiting on Phil, consolidated" list must
+    not describe the Stripe business website field (row 2.8, issue #21) as
+    still blocked once row 2.8 itself records it fixed.
+
+    Found 2026-09-17, this PM check-in, re-reading GitHub issue #21 for a
+    triage decision on whether to close it. Row 2.8 records the field
+    "verified fixed 2026-09-06 by reading the live account," but the
+    consolidated list's item 6 still read "only this one field was blocked
+    by Stripe's own safety check when the operator tried it," eleven days
+    after the fix, the same "source corrected, sibling document never
+    told" shape gate_no_stale_card_deck_decision and
+    gate_no_stale_affiliate_apply_instruction already protect elsewhere in
+    this same file. Corrected the wording this cycle; this gate stops it
+    from drifting back.
+    """
+    h2_path = os.path.join(ROOT, "BACKLOG-2026-H2.md")
+    if not os.path.exists(h2_path):
+        return
+    text = io.open(h2_path, encoding="utf-8").read()
+    row_match = re.search(r"\|\s*2\.8\s*\|[^\n]*\|", text)
+    row_says_done = bool(row_match) and "no longer needs anybody" in row_match.group(0)
+    if not row_says_done:
+        return
+    item_match = re.search(
+        r"Stripe business website field.{0,600}", text, re.DOTALL)
+    if item_match and re.search(
+            r"blocked by stripe.{0,40}safety check when the operator tried",
+            item_match.group(0), re.IGNORECASE):
+        fail("no-stale-stripe-website-blocker",
+             "BACKLOG-2026-H2.md's 'Items waiting on Phil' item 6 still "
+             "describes the Stripe business website field as blocked by "
+             "Stripe's safety check, but row 2.8 already records it fixed "
+             "and verified live 2026-09-06. Update item 6 to only name "
+             "the still-open industry/MCC and Stripe Climate decisions.")
+
+
 # (superseded file, the successor filename it must name in its own banner)
 _SUPERSESSION_CHAIN = [
     ("BACKLOG.md", "BACKLOG-2026-H2.md"),
@@ -15202,6 +15239,7 @@ def main() -> int:
     run_gate(gate_no_stale_narration_blocker)
     run_gate(gate_no_stale_card_deck_decision)
     run_gate(gate_no_stale_affiliate_apply_instruction)
+    run_gate(gate_no_stale_stripe_website_blocker)
     run_gate(gate_doc_supersession_chain_current)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
