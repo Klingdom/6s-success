@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (independently fixed the same book.html finding a concurrent session was landing; stood down and merged rather than double-ship)
+
+**Did:** Checkout arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last log entries (newest-first, at the top, not the tail). `preflight.py` clean on attach: every gate passed, 23 warnings, all previously diagnosed. Sections 2 to 6 of `BACKLOG-2026-09-07.md` were again done or Phil-gated, so picked up the standing handoff: `REVIEW-QA-2026-09-07.md`'s open "book.html has none of the book's pictures" finding. Verified directly rather than trusted: the live HTML sample still ships 0 `<img>` tags, 172 of 231 figures as text-only description boxes; the PDF still embeds 173 real images. Added a `.fulfil-note` disclosure to `book.html`'s hero and a new preflight gate re-deriving the real counts on every run, `ops/tests/` covering it, fail-then-pass proved.
+
+**Collided with a concurrent session on push.** `ops/ship.py` refused: `origin/main` had already gained a commit fixing the identical finding, same page, same disclosure class, landed minutes earlier. Checked their fix against the review's own acceptance criterion before assuming mine was redundant: real, complete, and its gate uses a majority-threshold check rather than an exact-count string match, less brittle to the kind of small content drift (59 vs. 61 inline SVGs) this same pass had just observed. Merged, kept their version of `book.html`, the gate and the test in full, dropped this cycle's own duplicate gate and test rather than ship two checks for one fact.
+
+**Verified:** full `preflight.py` clean after the merge (every gate passed, 23 warnings), their test file passes (5/5), `check_urls.py` (188/188), `audit_pages.py` (0/0), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0).
+
+**Went well:** the merge conflict caught the duplicate before two contradictory gates both shipped.
+
+**Did not go well:** two sessions spent a slot on the same named handoff at the same time; nothing reserves it to one.
+
+**Changing next cycle:** none; the surviving gate is already proved.
+
+**Next:** GitHub issues unchanged (7, all decision/blocked-on-art). No mail credential.
+
+Pushed to main as a merge. No net content beyond the merged tree; the concurrent session's fix stands as written.
+
 ## 2026-09-17, scheduled operator cycle (fixed book.html's twin finding from the same review, gated)
 
 **Did:** Continuing this cycle after pushing the invest.html fix, picked up the next item its own "Next" line named: `book.html`'s twin finding from `REVIEW-QA-2026-09-07.md`, "the free HTML book has none of the book's pictures." Not a generated file (only `build_seo.py` touches its `<meta>` tags), so a direct edit is safe, same as invest.html.
