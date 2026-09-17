@@ -97,7 +97,13 @@ def reflow(text: str, max_paras: int = 2) -> str:
         if merged and merged[-1].rstrip().endswith(":"):
             # What follows a colon continues the sentence, so it does not take
             # a capital. Leaving one reads as two sentences fused by accident.
-            b = b[0].lower() + b[1:] if b and b[0].isupper() and not b.startswith("I ") else b
+            # The pronoun "I" stays capitalised regardless of position, but
+            # the old check only caught "I " (a trailing space), so "I've",
+            # "I'm", "I'll" and "I'd" all still got lowercased to "i've" etc,
+            # found 2026-09-17 by probing the exact class this guard exists
+            # to prevent.
+            is_pronoun_i = bool(re.match(r"^I(?:[\s'’]|$)", b))
+            b = b[0].lower() + b[1:] if b and b[0].isupper() and not is_pronoun_i else b
             merged[-1] = merged[-1].rstrip() + " " + b
         else:
             merged.append(b)

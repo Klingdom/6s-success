@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (cold-read ops/reflow.py; a real live typo-shaped defect found and fixed, a hardcoded test-count bug fixed alongside it)
+
+**Did:** With the publish-image.yml/checks.yml incident closed and confirmed live, resumed the standing cold-read lane named in the prior handoff. `ops/build_standards.py`: ran it, diffed the output against both the committed generator artifact and the served `site/downloads/6S-Standards-Pack.html`, byte-identical both ways, no defect. `ops/reflow.py` (joins chopped-up LinkedIn draft paragraphs back into prose, used live by `corpus_posts.py`'s `clean()` on every draft the `linkedin-drafts.yml` workflow emails Phil): read the colon-merge rule, which lowercases whatever follows a colon to read as one continuing sentence, with a guard meant to keep the pronoun "I" capitalised regardless of position. The guard only matched a literal `"I "` (a trailing space), so a contraction with no space before the apostrophe was never caught.
+
+**Reproduced directly before fixing:** `reflow("Three things people mix up:\n\nI've been doing this wrong for years.")` returned `"...mix up: i've been doing this wrong for years."`; same result for `I'm`, `I'll`, `I'd`. A lowercase mid-sentence "i've" reads as a typo, which is precisely the "sounds like AI slop" complaint this file's own docstring exists to fix, just from the opposite direction.
+
+**Fixed:** the guard now matches "I" followed by whitespace, an apostrophe (straight or curly), or end of string, so every contraction of the pronoun stays capitalised while an ordinary capitalised word that merely starts with the letter I ("Idaho", "Its") still lowercases correctly, which is the whole point of the rule.
+
+**Also found and fixed in the same file's test:** `ops/tests/test_reflow.py`'s own failure message hardcoded `6` as the total check count while 8 checks already ran before this cycle added 7 more, the same self-inconsistent-count class this repository's own gates were built to catch elsewhere. Replaced with a counter the test derives from its own `check()` calls.
+
+**Verified:** fail-then-pass proved directly, `git stash` on `ops/reflow.py` alone reproduced all 4 new contraction cases failing by name against the real pre-fix code (plus confirmed the two non-pronoun cases, "Idaho"/"Its", already passed, so the guard was not simply removed), restoring the fix cleared all 15. Checked for stale derived output: `corpus_posts.py`'s `clean()` calls `reflow()` live at draft-generation time, and no committed file stores a pre-generated draft, so nothing needs regenerating. Full `preflight.py` (every gate passed, 23 warnings, none new), `check_urls.py` (188/188), `fix_dashes.py --check` (0/0) all clean after.
+
+**Went well:** treating the cold-read lane's own methodology (read, then actually run, then probe an edge case the code's own comment implies it should handle) as the reason this surfaced at all; the bug was invisible to a static read alone; it took constructing the exact input shape the guard was meant to protect and checking it byte for byte.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; both fixes are narrow and proven.
+
+**Next:** continue the standing cold-read lane (`receive_deploy_key.py`, `review_heroes.py`, `root_causes.py` remain unread this cycle). All 7 GitHub issues stay decision/blocked-on-art.
+
+Pushed to main. `ops/reflow.py`, `ops/tests/test_reflow.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable (this affects generated LinkedIn drafts, not a published page).
+
 ## 2026-09-17, scheduled operator cycle (run 309 confirmed green: the publish-image.yml/checks.yml deadlock is resolved, closing a chain that spanned six commits and three converging bugs)
 
 **Did:** Dispatched `publish-image.yml` manually on `main` after the test-isolation fix landed (`0cbca788`), rather than waiting on the path filter (the fix touches no `site/` file). Polled the resulting run (309) to completion via the Actions API rather than trusting a local pass: `in_progress` for roughly 19 minutes, then `completed success`. Pulled the job's own step list to confirm it was a real publish, not just a green Preflight: "Build the image so it can be tested before anyone gets it," "Start the image and check what it actually returns," and "Build and push" all completed successfully, ending 14:39:03Z.

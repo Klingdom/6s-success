@@ -17,6 +17,17 @@ via the linkedin-drafts.yml workflow. Fixed by widening TAIL_RE to the
 same free-chapter vocabulary ops/corpus_posts.py's own FREE_CLAIM pattern
 already uses elsewhere in this file, plus "online book".
 
+Found 2026-09-17, cold-read: reflow()'s own colon-merge rule lowercases
+whatever follows a colon to read as one continuing sentence, with a guard
+meant to keep the pronoun "I" capitalised regardless of position. The
+guard only matched a literal "I " (a trailing space), so a contraction
+with no space before the apostrophe, "I've", "I'm", "I'll" or "I'd", still
+got lowercased to "i've" etc, reproduced directly before being fixed in
+ops/reflow.py itself. Also fixed here: this file's own failure message
+hardcoded "6" as the total check count while 8 checks already ran, the
+same self-inconsistent-count class this repository's gates exist to catch
+elsewhere; it now counts itself.
+
 Run:  python ops/tests/test_reflow.py
 """
 import os
@@ -28,9 +39,11 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 import reflow                                                  # noqa: E402
 
 FAILS = []
+CHECKS = [0]
 
 
 def check(name, cond):
+    CHECKS[0] += 1
     print(("  [ok] " if cond else "  [FAIL] ") + name)
     if not cond:
         FAILS.append(name)
@@ -120,9 +133,34 @@ def main():
           out6.strip() == "The first pass took an hour. "
                           "Feel free to skip the drawer if it is already sorted.")
 
+    # Found 2026-09-17: a block merged after a colon that starts with a
+    # contraction of the pronoun "I" (no trailing space before the
+    # apostrophe) was still lowercased to "i've"/"i'm"/etc, because the old
+    # guard only matched a literal "I " with a space. The pronoun must stay
+    # capitalised in every one of these shapes; an ordinary capitalised word
+    # that merely starts with the letter I ("Idaho", "Its") must still be
+    # lowercased, since that is the whole point of this merge rule.
+    for pronoun_case, expected_tail in [
+        ("I've been doing this wrong for years.", "I've been"),
+        ("I'm going to explain why.", "I'm going"),
+        ("I'll show you.", "I'll show"),
+        ("I'd rather not.", "I'd rather"),
+        ("I am fine with that.", "I am fine"),
+    ]:
+        out = reflow.reflow("Three things people mix up:\n\n" + pronoun_case)
+        check(f"pronoun I stays capitalised in {pronoun_case!r}",
+              expected_tail in out)
+    for other_case, expected_tail in [
+        ("Idaho is not a pronoun.", "idaho is not"),
+        ("Its own thing broke.", "its own thing"),
+    ]:
+        out = reflow.reflow("Three things people mix up:\n\n" + other_case)
+        check(f"a non-pronoun word starting with I still lowercases in "
+              f"{other_case!r}", expected_tail in out)
+
     print()
     if FAILS:
-        print("%d of %d checks failed: %s" % (len(FAILS), 6, FAILS))
+        print("%d of %d checks failed: %s" % (len(FAILS), CHECKS[0], FAILS))
         return 1
     print("all checks passed")
     return 0
