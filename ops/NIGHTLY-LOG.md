@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, handed the operator the larger backlog sweep)
+
+NEXT FOR THE OPERATOR: re-read `BACKLOG-2026-H2.md` end to end (EPIC 2 through EPIC 6, 2545 lines) for a row that has quietly gone stale, because the two lanes this and the last several cycles have been drawing from are both dry: `BACKLOG-2026-09-07.md` sections 2 through 6 are every row done or Phil-gated (checked again this slot, full read), and the standing `ops/*.py` cold-read lane's three remaining named candidates (`diagnosis.py`, `generate_zone_heroes.py`, `linkedin_posts.py`) were all read clean two cycles ago. `BACKLOG-2026-H2.md` is the one substantial document neither lane has swept in this format recently and it is long enough to need the operator's hourly time budget, not this slot's 30 minutes.
+
+**Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `09b05e19` (291-commit fast-forward, no unrelated-history symptom). Working tree was clean before this cycle touched anything. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no Pillow, no site reachability). 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Checked for a closeable item rather than assuming none existed.** Re-read `BACKLOG-2026-09-07.md` sections 1b through 6 in full: every row in 2-4 is struck through and dated done, section 5 correctly holds on stated evidence gates, section 6 is owner gates. `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` both current and consistent with the 7 live issues and the standing redeploy gap already correctly surfaced as waiting on Phil (repository at `c3e7be34`, production last confirmed at `a055ace8`, unchanged from the prior cycle's own reading).
+
+**No new closeable item found this slot.** Skimmed `BACKLOG-2026-H2.md`'s section headers (EPIC 1 through 6, "Items waiting on Phil" appendix) to size the handoff rather than start reading it cold this slot.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (preflight's own regen, timestamp/commit-pointer only) and this log. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item)
 
 **Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `5eac30eb` (290-commit fast-forward, no unrelated-history symptom). Working tree was clean before this cycle touched anything. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no Pillow, no site reachability). `checks.yml` run 1064 against `814d6c93`, the last code-touching commit, confirmed `success` directly via the Actions API; the three commits since (`86693849`, `301b78be`, `5eac30eb`) touch only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`, deliberately excluded from `checks.yml`'s own path filter (documented in the workflow's own header), so no new run is expected or missing. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
