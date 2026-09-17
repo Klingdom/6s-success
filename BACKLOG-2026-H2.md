@@ -412,7 +412,7 @@ defect on its own.
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | needs Phil (account creation), see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
-| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **5 narrated videos live 2026-09-02/03, Phil.** 109 to go, same wall, no operator credential |
+| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **12 narrated videos live, last measured 2026-09-17 01:34 (`ops/state-checkin.json`), corrected here 2026-09-17, operator: this row still read "5... 2026-09-02/03" from its own last note below, 2 weeks and 7 videos stale.** 102 to go, same wall, no operator credential |
 | 3.11 | ~~Pinterest and Instagram save-and-share cards, prepared~~ | 114 zones, both surfaces, correct dimensions, verified by opening the rendered images | 0.4 | **done 2026-09-02, operator** |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
@@ -2529,13 +2529,20 @@ mobile `npm test` all three suites unchanged.
    would do), plus five minutes to create and verify the listing under his
    own account. Everything else, the description, category and exact
    service-area towns, is drafted at `build/gbp-listing-package.txt`.
-9. **Apply to retail affiliate programmes.** Link layer, compliance gate and
-   primary-sourced research on all 10 candidate programmes are done
-   (2026-08-28, Phil's own commits); `build/affiliate-email.txt` is the
-   dossier. Opening an account carries his legal/tax identity, so applying
-   is his step, not the operator's. Do not apply to Amazon or Wayfair per
-   the dossier's own findings; Etsy, Office Depot and the legacy Home Depot
-   programme look like the best near-term fits.
+9. **Apply to retail affiliate programmes: on hold, not a task for him today.**
+   Corrected 2026-09-17, operator: this item still named Etsy, Office Depot
+   and Home Depot as "the best near-term fits" and told him not to apply to
+   Amazon, a call `PLAN-AFFILIATE-MONETISATION.md` (Phil, finalised
+   2026-09-07) overrode ten days before this correction: "do not apply to
+   anything today. Not Amazon, not Impact, not CJ, not Rakuten," held until
+   T2 fires (60 real retailer clicks in a trailing 90 days, reading 0 of 60
+   as of 2026-09-09). Home Depot is also simply wrong here: it is one of the
+   five Impact-routed programmes declined 29 August
+   (`ops/affiliate-accounts.json`), not a near-term fit. Link layer,
+   compliance gate and primary-sourced research on all 10 candidate
+   programmes are still done (2026-08-28, Phil's own commits);
+   `build/affiliate-email.txt` is the dossier, kept for when the trigger
+   fires. Nothing is his to do here until then.
 10. **Referral partner outreach** (3B.3). Three message templates (senior
     move managers, real estate agents, professional organizers) and a
     response log are ready at `build/referral-partner-outreach.txt` and
