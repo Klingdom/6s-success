@@ -736,6 +736,85 @@ def gate_prerender_shop_current() -> None:
              (p.returncode, (p.stderr or p.stdout or "").strip()[-200:]))
 
 
+def check_kit_page_zone_counts(rarity: dict, catalogue_rows: list, page: str) -> list:
+    """Pure logic for gate_kit_page_zone_counts_current, testable without
+    real files. `rarity` is product id -> real zone count, computed fresh
+    from content/manual/source/zone_products.json (the same source
+    ops/zone_supplies.py already trusts instead of the catalogue's own
+    frozen column). `catalogue_rows` is the Tier-1 rows of
+    ops/affiliate-catalogue.csv. `page` is the full text of site/kit.html.
+
+    Found 2026-09-17: site/kit.html renders "N of 114 zones ask for this"
+    for each of the eight kit items, and ops/build_kit_page.py read N
+    straight from the catalogue CSV's own `_zone_count` column, a value
+    frozen at whatever catalog state last hand-edited that file.
+    ops/zone_supplies.py already refuses to trust that same column ("that
+    column lives in a file another agent is editing this cycle and a stale
+    count would silently reorder every page") and ops/build_manual_print.py
+    already found it wrong for ten records after cleaning tools were added
+    later. build_kit_page.py was the one reader of this column nobody had
+    checked. All eight counts matched reality today (no live defect), fixed
+    at the source: the generator now recomputes from the real zone map, the
+    same method as the other two files, so this gate mostly proves the fix
+    holds rather than something currently broken.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+    problems = []
+    for r in catalogue_rows:
+        pid = (r.get("Product ID") or "").strip()
+        name = r.get("Product Standard Name", "").strip()
+        if pid not in rarity:
+            continue
+        real = rarity[pid]
+        needle = f'<b>{real} of 114 zones</b> ask for this'
+        if needle not in page:
+            problems.append(f"{pid} ({_html.escape(name)}): page does not "
+                            f"say '{real} of 114 zones', the count computed "
+                            f"fresh from zone_products.json; it may still "
+                            f"carry a frozen or hand-typed number")
+    return problems
+
+
+def gate_kit_page_zone_counts_current() -> None:
+    """site/kit.html's "N of 114 zones ask for this" line, for each of the
+    eight kit items, must match a live count from
+    content/manual/source/zone_products.json, not a frozen catalogue column.
+
+    See check_kit_page_zone_counts's docstring for the full history. This
+    re-derives the count independently of ops/build_kit_page.py's own logic
+    (reading zone_products.json directly here, not importing
+    ops/zone_supplies.py) so a future regression in either file is still
+    caught, not just a regenerate-and-diff of the generator against itself,
+    which would stay green even if both trusted the same wrong number.
+    """
+    import csv
+    zp_path = os.path.join(ROOT, "content", "manual", "source",
+                           "zone_products.json")
+    cat_path = os.path.join(ROOT, "ops", "affiliate-catalogue.csv")
+    page_path = os.path.join(SITE, "kit.html")
+    if not (os.path.exists(zp_path) and os.path.exists(cat_path)
+            and os.path.exists(page_path)):
+        warn("kit-page-zone-counts",
+             "could not check: a required file is missing.")
+        return
+
+    zone_products = json.load(io.open(zp_path, encoding="utf-8"))
+    rarity: dict = {}
+    for items in zone_products.values():
+        for it in items:
+            rarity[it["id"]] = rarity.get(it["id"], 0) + 1
+
+    rows = [r for r in csv.DictReader(io.open(cat_path, encoding="utf-8-sig"))
+            if r["Tier"].startswith("1")]
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_kit_page_zone_counts(rarity, rows, page)
+    if problems:
+        fail("kit-page-zone-counts", "; ".join(problems))
+
+
 GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_pages.py", "build_resources.py",
     "wire_generated_catalog.py", "build_product_schema.py",
@@ -15462,6 +15541,7 @@ def main() -> int:
     run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
     run_gate(gate_prerender_shop_current)
+    run_gate(gate_kit_page_zone_counts_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
     run_gate(gate_risks_register_current)

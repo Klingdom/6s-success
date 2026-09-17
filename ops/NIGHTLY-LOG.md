@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (continued the hand-authored site/*.html handoff; a real latent correctness gap closed on kit.html, no live customer defect found)
+
+**Did:** Attached via `git fetch origin main` plus `git fetch --unshallow` plus ff-only merge onto `origin/main` (`5380faa5`), clean, 410-commit fast-forward, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the last several `ops/NIGHTLY-LOG.md` entries before touching anything. `preflight.py` (background, full run) was clean at the start: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`. No mail credential; `inbox_agent.py --apply` reports "no mail credentials in this environment" honestly, UNCHECKED not empty. No egress: `curl` to `6s-success.com` and `api.stripe.com` both denied by the sandbox proxy (`connect_rejected`, organization policy), confirmed directly, not assumed.
+
+**Picked up the most recent PM check-in's own handoff** ("continue the same lane at the next tier: `404.html`, `corporate.html`"), rather than re-derive a fresh pick, since every unblocked backlog row is again done or Phil-gated. Checked both cold: no stale count, price or product claim in either; clean. Continued the same lane at the next-lowest tier (`kit.html`, 15 mentions) rather than stop after two clean pages.
+
+**Found a real, if latent, correctness gap on `kit.html`.** Its "N of 114 zones ask for this" line, on all eight kit items, reads `ops/affiliate-catalogue.csv`'s own `_zone_count` column, frozen at whatever catalog state last hand-edited that CSV. Two other files in this repository already stopped trusting that exact column: `ops/zone_supplies.py`'s own comment says why ("that column lives in a file another agent is editing this cycle and a stale count would silently reorder every page"), and `ops/build_manual_print.py` already found it wrong for ten records once cleaning tools were added later. `ops/build_kit_page.py` was the one reader of it nobody had checked. Verified directly before fixing: recomputed rarity fresh from `content/manual/source/zone_products.json` and compared to all eight CSV values; every one currently matches, so this is a protection gap, not a live defect today.
+
+**Fixed at the source, not only gated.** `build_kit_page.py`'s `kit()` now recomputes each product's zone count from the real zone map via `ops/zone_supplies._rarity()`, the same source and method `zone_supplies.py` and `build_manual_print.py` already use, instead of trusting the frozen CSV column. Regenerating produced a byte-identical `site/kit.html` (confirmed the fix changes nothing today). Proved the fix actually does something, not just by construction: planted a stale `_zone_count=999` for one product in a scratch copy of the CSV, watched the pre-fix generator (`git stash`) ship "999 of 114 zones ask for this" on the rendered page, confirmed the fixed generator ignores it and correctly renders "109" (the real, live-computed count), then restored the CSV to its real values.
+
+**Gated.** New `gate_kit_page_zone_counts_current` in `preflight.py`, pure logic in `check_kit_page_zone_counts`, deliberately re-deriving rarity straight from `zone_products.json` rather than importing `zone_supplies.py`, so a future regression in either file is still caught rather than a regenerate-and-diff of the generator against itself (which would stay green even if both trusted the same wrong number). `ops/tests/test_gate_kit_page_zone_counts.py` (4 cases: a clean match, the exact stale-column regression this gate exists for, a product absent from the zone map correctly not flagged, and a live check against the real committed `site/kit.html`) fail-then-pass proved.
+
+**Verified after.** Full `preflight.py` (every gate passed, 22 warnings, all previously diagnosed sandbox limits, 181 of 181 test files run via `gate_tests`, up from 180), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean after.
+
+**Went well:** the established hand-authored-page lane kept paying off past two clean pages, and this find is the same "source corrected, artifact never re-derived" shape section 7 of the backlog names as dominant, on a page nobody had reason to suspect (it renders honest numbers, just from the wrong place).
+
+**Did not go well:** none new; no live customer-facing defect existed, so this is prevention rather than repair.
+
+**Changing next cycle:** none.
+
+**Next:** continue the hand-authored `site/*.html` lane at the next-lowest mention count (`kitchen-deck.html`, `thanks.html`, both worked heavily today already, so `deck-gallery-mudroom.html` or `terms.html` are the more likely genuinely-unswept picks). All 8 GitHub issues remain decision/blocked-on-art. No price or product touched, no new page; IndexNow not applicable.
+
+Pushed to main. `ops/build_kit_page.py`, `ops/preflight.py`, `ops/tests/test_gate_kit_page_zone_counts.py`, `BACKLOG-2026-09-07.md`, command deck, this log entry.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, one small inaccuracy found and fixed, no new closeable item)
 
 **Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`1ee0b016`), clean. `checks.yml` run 1096 on `de7ee71d` (the last commit to touch in-scope paths) confirmed success; the two commits after it only touched `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`, both deliberately excluded from the trigger paths, so no missing CI run there, verified by reading the workflow's own path filter rather than assumed. `preflight.py` clean, all 8 GitHub issues unchanged (decision/blocked-on-art), backlog sections 2-4 all done or Phil-gated.

@@ -51,6 +51,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import affiliate as A                                          # noqa: E402
+import zone_supplies as ZS                                     # noqa: E402
 
 SITE = os.path.join(ROOT, "site")
 OUT = os.path.join(SITE, "kit.html")
@@ -102,6 +103,19 @@ WHY = {
 def kit() -> list:
     rows = [r for r in csv.DictReader(io.open(CATALOGUE, encoding="utf-8-sig"))
             if r["Tier"].startswith("1")]
+
+    # The CSV's own "_zone_count" column is frozen at whatever catalog state
+    # last edited this file by hand. ops/zone_supplies.py and
+    # ops/build_manual_print.py both already stopped trusting it for exactly
+    # this reason (the latter found it wrong for ten records after cleaning
+    # tools were added later). This page rendered the frozen number directly
+    # ("109 of 114 zones ask for this"), so recompute it from the real zone
+    # map instead, same source and same method as those two files.
+    rarity = ZS._rarity()
+    for r in rows:
+        pid = (r.get("Product ID") or "").strip()
+        if pid in rarity:
+            r["_zone_count"] = str(rarity[pid])
 
     def first_phase(r):
         ph = [p.strip() for p in re.split(r"[;,]", r["Supported 6S Phases"])]
