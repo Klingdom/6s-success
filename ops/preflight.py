@@ -8430,6 +8430,64 @@ def gate_invest_page_no_fabricated_claims() -> None:
              "does not exist\" finding." % found)
 
 
+def gate_book_sample_format_disclosure() -> None:
+    """book.html must disclose that its two free sample formats differ, and
+    the disclosure must still be true.
+
+    Found 2026-09-07 in REVIEW-QA-2026-09-07.md, fixed 2026-09-17: book.html
+    offered "Read chapters 1 to 30 free" (HTML) and "Download... (PDF, 31
+    MB)" side by side with no hint that they differ. They differ a lot: the
+    HTML sample renders 172 of 231 figures as a text description instead of
+    a picture (`Figure description` placeholder boxes, no `<img>`), while
+    the PDF keeps all of its embedded images. A reader picking the smaller,
+    mobile-friendly HTML option had no way to know most figures would be
+    text, not a picture, until they hit the first one.
+
+    This checks two things, not one: that the disclosure sentence is still
+    on the page, and that the fact it states is still true by re-deriving
+    the real counts from the two committed files. A future edit that makes
+    the disclosure disappear, or that quietly fixes the HTML sample so most
+    figures ARE pictures again (making the caveat stale and overcautious,
+    not merely unneeded), both get caught here.
+    """
+    page = os.path.join(SITE, "book.html")
+    if not os.path.exists(page):
+        return
+    body = io.open(page, encoding="utf-8", errors="replace").read()
+    marker = "The online version is lighter and shows most figures as a described caption"
+    if marker not in body:
+        fail("book-sample-format-disclosure",
+             "site/book.html no longer discloses that the free online "
+             "sample and the PDF differ in how many figures are real "
+             "pictures. See REVIEW-QA-2026-09-07.md's 'the free HTML book "
+             "has none of the book's pictures' finding.")
+        return
+
+    html_path = os.path.join(
+        SITE, "downloads",
+        "6S Success Home Edition - Sample (Chapters 1-30).html")
+    if not os.path.exists(html_path):
+        warn("book-sample-format-disclosure",
+             "the free HTML sample is missing, so the disclosure's own "
+             "figure counts were not re-checked. Unchecked, not correct.")
+        return
+    sample = io.open(html_path, encoding="utf-8", errors="replace").read()
+    total_figs = len(re.findall(r"<figure", sample))
+    text_only = len(re.findall(r"Figure description", sample))
+    if total_figs == 0:
+        warn("book-sample-format-disclosure",
+             "the free HTML sample has no <figure> elements at all, so the "
+             "disclosure's own claim could not be re-checked.")
+        return
+    if text_only * 2 < total_figs:
+        fail("book-sample-format-disclosure",
+             "site/book.html still says the online sample shows 'most "
+             "figures' as text, but the real file now renders only %d of "
+             "%d figures as text, no longer a majority. The disclosure "
+             "needs rewording, not silent staleness."
+             % (text_only, total_figs))
+
+
 def gate_caption_line_length() -> None:
     """No caption line may exceed the readable budget, in either caption set.
 
@@ -14702,80 +14760,6 @@ def gate_sample_pdf_spelling() -> None:
              f"not a binary patch.")
 
 
-SAMPLE_HTML_REL = os.path.join(
-    "site", "downloads",
-    "6S Success Home Edition - Sample (Chapters 1-30).html")
-BOOK_HTML_REL = os.path.join("site", "book.html")
-
-
-def gate_book_html_figures_disclosed() -> None:
-    """`REVIEW-QA-2026-09-07.md`'s "the free HTML book has none of the
-    book's pictures" finding (2026-09-07): `book.html` offered the HTML
-    sample and the PDF sample side by side with no warning that they
-    differ. The PDF embeds a real picture for every figure; the HTML
-    edition renders most figures (172 of 231, checked 2026-09-17) as a
-    plain text description box instead, because it has 0 `<img>` tags.
-    A reader who picks the HTML edition, the one the page's own button
-    order favours and the only one that works without a 31 MB download,
-    gets a book that is three quarters text-only figures and is never
-    told so.
-
-    Fixed 2026-09-17, this operator: added a `.fulfil-note` disclosure
-    to `book.html`'s hero, next to the two format buttons, naming the
-    real 172-of-231 figure count and telling the reader which format to
-    pick if the pictures matter to them. `book.html` is hand-authored
-    (confirmed: no `ops/build_*.py` writes it, only `build_seo.py`
-    touches its `<meta>` tags), so a direct edit is safe.
-
-    This gate re-derives the HTML edition's own figure/image/text-desc
-    counts from the live shipped file on every run and fails if
-    `book.html` ever loses the disclosure, or if the disclosure's own
-    stated numbers drift from what the shipped sample actually
-    contains, the same "source corrected, artifact never re-derived"
-    shape this repository's gates exist to catch. It does not require
-    the PDF to still have 173 images to pass: that number is not
-    quoted in the disclosure's own copy (only "every figure" is), so a
-    change there would not make the live claim false.
-    """
-    book_path = os.path.join(ROOT, BOOK_HTML_REL)
-    html_path = os.path.join(ROOT, SAMPLE_HTML_REL)
-    if not os.path.exists(book_path) or not os.path.exists(html_path):
-        return
-    with open(book_path, encoding="utf-8") as f:
-        book = f.read()
-    with open(html_path, encoding="utf-8") as f:
-        sample = f.read()
-
-    figures = sample.count("<figure")
-    imgs = sample.count("<img")
-    textdesc = sample.count("Figure description")
-
-    if imgs > 0 and textdesc == 0:
-        # The HTML edition now carries real artwork; the disclosure
-        # this gate protects would be stale, not missing. Nothing to
-        # check: the acceptance criterion's other branch is satisfied.
-        return
-
-    if "figures" not in book.lower() or "fulfil-note" not in book:
-        fail("book-html-figures-disclosed",
-             "site/book.html no longer discloses that its HTML sample "
-             "and PDF sample differ in artwork. REVIEW-QA-2026-09-07.md's "
-             "'the free HTML book has none of the book's pictures' "
-             "finding is live again: state which format has the "
-             "pictures, or give the HTML edition the same artwork.")
-        return
-
-    expected = f"{textdesc} of {figures}"
-    if expected not in book:
-        fail("book-html-figures-disclosed",
-             f"site/book.html's figure-count disclosure has drifted from "
-             f"the real sample: the shipped HTML edition now has "
-             f"{textdesc} of {figures} figures as text descriptions "
-             f"({imgs} carry an actual <img>), but book.html does not "
-             f"state '{expected}'. Re-derive the numbers from "
-             f"{SAMPLE_HTML_REL} and update the disclosure.")
-
-
 BINARY_EXTS = (".pdf", ".epub", ".mobi", ".png", ".jpg", ".jpeg", ".webp",
                ".avif", ".ico", ".woff", ".woff2", ".ttf", ".otf")
 
@@ -15141,7 +15125,6 @@ def main() -> int:
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
     run_gate(gate_sample_pdf_spelling)
-    run_gate(gate_book_html_figures_disclosed)
     run_gate(gate_binary_files_protected)
     run_gate(gate_test_rotation_isolated)
     run_gate(gate_routine_prompt_current)
@@ -15229,6 +15212,7 @@ def main() -> int:
     run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_invest_page_catalog_current)
     run_gate(gate_invest_page_no_fabricated_claims)
+    run_gate(gate_book_sample_format_disclosure)
     run_gate(gate_caption_line_length)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
