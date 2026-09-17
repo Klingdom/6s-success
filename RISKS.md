@@ -356,17 +356,19 @@ evidence:
     pageviews came from 2 automated sessions. This is a hand-transcribed
     snapshot, not a live feed, and goes stale the same way any
     hand-transcribed number does.
-  - unreconciled as of 2026-09-17: a 2026-09-16 local session read the
-    identical 947-pageview, 2026-08-20-to-2026-09-14 dataset from the same
-    VPS and named the noise differently, a single unattributed
-    `?|iOS|mobile` session carrying 792 of 947 pageviews (84%), leaving
-    roughly 155 real events rather than the 506 the row above states.
-    Neither session checked whether its own filter subsumes or overlaps the
-    other's, so this is two different readings of one dataset, not two
-    confirmations of the same number. The 30-day traffic figure this repo
-    prioritizes work against should be treated as genuinely uncertain
-    between "506 real pageviews" and "155 real pageviews" until a session
-    with VPS access re-runs both filters side by side and explains the gap.
+  - RESOLVED 2026-09-17 by re-deriving both figures from one query on the
+    VPS, rather than choosing between them. The 155 came from 947 - 792,
+    which subtracts that session's 792 TOTAL EVENTS from the site's 947
+    PAGEVIEWS: mismatched units on either side of a subtraction. Measured
+    directly: that session (no browser string, iOS/mobile, 7 Sept, 28
+    minutes) has 792 events = 431 pageviews + 361 custom events. The
+    honest human figure is 949 - 431 = 518 pageviews from 77 visitors over
+    30 days, or 501 from 76 once a second high-rate session (17 pageviews
+    in 8 minutes) also goes. The earlier 506 reading was right in method.
+    Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
+    per-session breakdown so the two units cannot be confused again.
+  - current baseline, direct Umami database read, 2026-09-17 17:55 UTC: 78
+    visitors/200 visits/949 pageviews/30 days, 518 human pageviews.
 impact: >
   Traffic now has one real, dated data point instead of none, so "every
   growth claim is unfalsifiable" no longer fully holds. There is still no
@@ -743,9 +745,10 @@ evidence:
   - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
     catalog has not moved revenue because almost nobody is arriving at the
     site yet. Discovery, not what can be bought, is the constraint now."
-  - GOALS.md baseline, direct Umami database read, 2026-09-14 21:30: 75
-    visitors/196 visits/947 pageviews/30 days, up from 68/161 on 2026-09-11
-    and 60/161 on 2026-09-07. Four organic referrals exist in the site's
+  - GOALS.md baseline, direct Umami database read, 2026-09-17 17:55 UTC: 78
+    visitors/200 visits/949 pageviews/30 days (518 human pageviews once the
+    one automated session is excluded), up from 75/196 on 2026-09-14, 68/161
+    on 2026-09-11 and 60/161 on 2026-09-07. Four organic referrals exist in the site's
     whole life: one from Bing (21 August) and three from Google (4 to 12
     September), read directly from the database. A live feed is still
     blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)

@@ -458,14 +458,14 @@ built and 12 are public, because those 12 were posted by hand. 102 finished
 narrated videos, with captions, titles, descriptions and tags, are sitting on a
 disk where nobody can find them.
 
-**Measured 2026-09-14 21:30 by a direct database read (the source table below is the 2026-09-11 breakdown).** Traffic is 75 visitors, 196 visits and 947 pageviews, 2.5 a day (73 visitors and 506 pageviews once 2 automated sessions are excluded). The per-source breakdown below and the 161-visit count are still the 2026-09-11 pull, not yet refreshed:
+**Measured 2026-09-17 17:55 UTC by a direct database read, breakdown re-pulled in the same query.** Traffic is 78 visitors, 200 visits and 949 pageviews, 2.6 a day (77 visitors and 518 pageviews once the one automated session is excluded; 76 and 501 once a second high-rate session goes too):
 
 | Source | Visitors, 30 days |
 |---|---|
-| direct or unknown | 62 |
-| LinkedIn (both domains) | 8 |
+| direct or unknown | 70 |
+| LinkedIn (both domains) | 10 |
 | Bluesky (both domains) | 5 |
-| Google | **1** |
+| Google | **2** |
 | Bing | 1 |
 
 This paragraph used to read "ZERO of them arrive from Google". That is now

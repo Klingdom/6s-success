@@ -638,6 +638,34 @@ automatically but deletes data irreversibly, so it is not adopted.
 
 ### Verified SEO/AEO Learnings
 
+#### LRN-0015: A count is not a count until its unit is named; 947 minus 792 was pageviews minus events
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (re-derived from the source database in one query, both figures reproduced exactly)
+**Domain:** Measurement
+**Measured:** 2026-09-17, direct Umami database read from the VPS
+
+Two sessions read the same dataset and published figures three times apart. One reported 506 real pageviews of 947 after
+excluding automated sessions; the other reported "one session carrying 792 of 947 pageviews (84%), leaving roughly 155
+real events". Both numbers are real and both were honestly read. The subtraction was not: **792 is that session's TOTAL
+EVENTS (431 pageviews plus 361 custom events), and 947 was the site's PAGEVIEW count.** Different units on either side of
+a minus sign. Re-derived in one query: 949 pageviews over 30 days, 431 of them that one session (no browser string,
+iOS/mobile, 28 minutes on 7 September), leaving **518 human pageviews from 77 visitors**, or 501 from 76 once a second
+high-rate session goes too. The 506 reading was right in method.
+
+**Why it mattered:** `GOALS.md` and `RISKS.md` are the files work is prioritised from, and for a day they carried a
+traffic figure that was either right or three times too high, with no way to tell which. Nothing was wrong with either
+observer; the defect was that neither figure carried its unit.
+
+**Implication.** Any count published here names its unit: pageviews, events, visits (`visit_id`) or visitors
+(`session_id`). Never subtract two counts sourced from different queries without checking both units first.
+`ops/traffic_query.sh` now prints pageviews and all_events side by side per session, so the answer is read, not recalled.
+This is the same family as the already-recorded `session_id` = visitor trap, which cost a 3x error in the other
+direction.
+
+**Next action:** none outstanding; baselines corrected in `GOALS.md`, `RISKS.md`, `STATUS.md`, `OWNER-ACTIONS.md`,
+`ops/roadmap_report.py` and `ops/experiments.json` in the same commit as this entry.
+
 #### LRN-0013: Googlebot reads no content page here, and it is not because the content is hard to reach
 
 > **Corrected 2026-09-17: the headline observation is false, and the implication changes with it.** The 129-fetch window

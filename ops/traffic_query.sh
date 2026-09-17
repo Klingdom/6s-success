@@ -143,3 +143,35 @@ where e.website_id = :'w'
   and e.event_name = 'buy-click'
 order by e.created_at;
 SQL
+
+echo "== per-session breakdown, last 30 days (PAGEVIEWS vs ALL EVENTS) =="
+# WHY THIS BLOCK EXISTS, WRITTEN DOWN SO THE UNITS ARE NEVER MIXED AGAIN
+# -------------------------------------------------------------------
+# On 2026-09-16 a session read the noise in this data as "one session
+# carrying 792 of 947 pageviews (84%), leaving roughly 155 real events".
+# It is not 792 pageviews. 792 is that session's TOTAL EVENTS: 431
+# pageviews plus 361 custom events (scroll-depth mostly). 947 was the
+# site's pageview count. Subtracting one from the other is mismatched
+# units, and it understated real traffic by a factor of three for a day
+# in GOALS.md and RISKS.md, the two files work is prioritised from.
+# Re-derived 2026-09-17: 949 pageviews total, 431 from that session,
+# 518 human. Both columns are printed here, side by side, so that the
+# question "pageviews or events?" is never answered from memory again.
+# LEARNINGS.md LRN-0015.
+docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
+select left(e.session_id::text, 8) as visitor,
+       count(*) filter (where e.event_type = 1) as pageviews,
+       count(*) as all_events,
+       count(distinct e.visit_id) as visits,
+       coalesce(s.browser, '?') || '/' || coalesce(s.os, '?')
+         || '/' || coalesce(s.device, '?') as agent,
+       round(extract(epoch from (max(e.created_at) - min(e.created_at))) / 60)::int
+         as span_minutes
+from website_event e
+left join session s on s.session_id = e.session_id
+where e.website_id = :'w'
+  and e.created_at > now() - interval '30 days'
+group by 1, s.browser, s.os, s.device
+order by pageviews desc
+limit 15;
+SQL
