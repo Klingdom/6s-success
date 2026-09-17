@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, nothing newly unblocked, handoff is CI confirmation plus the hand-authored-page lane)
+
+NEXT FOR THE OPERATOR: confirm CI green on the current HEAD (`de7ee71d`), then continue the hand-authored `site/*.html` cross-check against current catalog and deck facts, because every unblocked backlog row and every generator-owned page is verified done or Phil-gated today and that lane is the one with a recent hit rate (it is what found the `invest.html`/`book.html` defects a prior cycle fixed) that nobody has reported exhausted.
+
+**Previous work: finished.** Attached via unshallow plus ff-only fast-forward onto `origin/main` (404 commits, `de7ee71d`), clean. Read the last several log entries, `BACKLOG-2026-09-07.md` in full and `EXECUTIVE-DASHBOARD-LIVE.md`. Ran `python ops/preflight.py` to real completion in the background (about 8 minutes): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail/ssh credential, no Pillow), 0 new. Working tree was clean before and after.
+
+**CI checked directly, not cited.** `checks.yml` run 1095 on the prior commit (`dbf3b1f0`) completed `success`. Run 1096 on the current HEAD (`de7ee71d`, the STATUS.md archive commit) was `in_progress`, about 8 minutes after it started against the measured 28.7-30.6 minute norm for this workflow: not stuck, not yet confirmed either.
+
+**Verified the backlog claim rather than trust it.** `BACKLOG-2026-09-07.md` sections 2-4 (micro zones/app, decks, images/video): every unblocked row reads Done, several from earlier today (B6, B7, the Kitchen micro quests and related-links work). Section 1b (23 catalogue entries named on no page) and section 6 (owner gates: YouTube OAuth, Search Console, Gemini billing, KDP/Etsy, Apple/Play accounts, screenshots) are the only open items, all Phil's. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `RISKS.md`'s 3 open CRITICAL risks (0007 restore, 0011 backup location, 0013 no conversion) are each already correctly represented in `OWNER-ACTIONS.md`, nothing unsurfaced.
+
+**Went well:** checking CI and the backlog directly instead of citing the prior cycle's own clean claims a second time.
+
+**Did not go well:** none new; the standing Phil-gated list is unchanged and this 30-minute slot found nothing to fix.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No code, content, price or product touched. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified independently, no new closeable item)
 
 **Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`dbf3b1f0`, a 402-commit fast-forward from a stale local snapshot), clean. That commit's own claims checked directly, not cited: it both fixed `checks.yml`'s `cancel-in-progress` so main's own CI run can no longer be superseded by the next push, and corrected the immediately preceding entry's "stuck runner" alarm. Confirmed the correction is right, not just plausible: run 1094 on `66b6e638` shows `completed`/`success`, 30m27s total, matching the commit's own cited 28.7-30.6 minute norm for a real Checks run.
