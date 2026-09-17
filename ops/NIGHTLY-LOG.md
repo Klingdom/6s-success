@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item)
+
+**Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `5eac30eb` (290-commit fast-forward, no unrelated-history symptom). Working tree was clean before this cycle touched anything. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no Pillow, no site reachability). `checks.yml` run 1064 against `814d6c93`, the last code-touching commit, confirmed `success` directly via the Actions API; the three commits since (`86693849`, `301b78be`, `5eac30eb`) touch only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`, deliberately excluded from `checks.yml`'s own path filter (documented in the workflow's own header), so no new run is expected or missing. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Checked for a closeable item rather than assuming none existed.** Re-read `BACKLOG-2026-09-07.md` sections 2 through 4 in full (the "Now" sections), per the immediately prior cycle's own handoff to find a row that has quietly gone stale: every row is struck through and dated done, or correctly Phil-gated (C1/C4-C6). No stale claim found. `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` both match the 7 live issues and the standing redeploy gap already correctly surfaced as waiting on Phil.
+
+**No new closeable item found this slot.** The standing cold-read lane is genuinely dry (confirmed by the immediately prior cycle and this one); nothing under `ops/*.py` remains unread and untested at a size this slot can finish. Leaving the next `ops/*.py` cold-read pass, if any low-mention file remains, and any deep re-read of `BACKLOG-2026-H2.md`'s older sections, to the hourly operator at :43, which has the time budget a from-scratch sweep needs.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (preflight's own regen, timestamp/commit-pointer only) and this log. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (cold-read the three named handoff files; all clean, no new closeable item)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (`b496fbd9`, 286-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several log entries (newest-first, at the top). `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked.
