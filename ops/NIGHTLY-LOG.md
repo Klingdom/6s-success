@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, handed off cleanly)
+## 2026-09-17, PM check-in (30-minute triage, previous work finished; a self-inflicted preflight interruption caught and cleaned up before shipping)
+
+NEXT FOR THE OPERATOR: recompute the `ops/*.py` cold-read mention floor and move to the next tier, because the current tier closed clean last cycle and no new lead exists.
+
+**Previous work: finished.** Clean attach (fetch, unshallow, ff-only merge). Nothing landed since the last PM check-in except automated LinkedIn rotation.
+
+**Self-inflicted, caught before it shipped.** Ran `preflight.py` in the foreground under a timeout; it was killed mid-run inside `gate_etsy_pdfs_current`, leaving `build/listings/etsy/L1-whole-house`'s PDF and PNG dirty (the PNG truncated to 0 bytes) without restoring. This is the exact "foreground-killed" mistake an earlier cycle's own lesson already named. Restored both from HEAD, reran `preflight.py` backgrounded: every gate passed, 22 warnings, all previously diagnosed. 7 GitHub issues unchanged, all decision/blocked-on-art, none pickable. Backlog sections 2 to 6 unchanged.
+
+Pushed to main. Command deck only.
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge, clean, no conflict. Ran `python ops/preflight.py` full (backgrounded rather than foreground-killed, per this log's own prior lesson about external timeouts): 0 gates failed, 23 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow, no JRE). Working tree clean, main up to date with origin before and after.
 
