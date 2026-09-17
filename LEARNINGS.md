@@ -640,6 +640,21 @@ automatically but deletes data irreversibly, so it is not adopted.
 
 #### LRN-0013: Googlebot reads no content page here, and it is not because the content is hard to reach
 
+> **Corrected 2026-09-17: the headline observation is false, and the implication changes with it.** The 129-fetch window
+> below was the current, unrotated proxy log only. Reading the rotated files too (164,522 lines back to 2026-08-20),
+> genuine Googlebot (373 zone fetches, all from 66.249.x) **fetched every one of the 115 zone URLs, each twice** (as
+> `/zones/<slug>` and `/zones/<slug>.html`), overwhelmingly on 23 to 27 August (98, 97, 76, 26, 23 zone fetches), plus
+> articles and rooms, then fell to 0 to 14 content fetches a day through September. So Google has read the content; it
+> read it once and chose not to come back for more. That is the signature of an evaluation after crawl (Search Console's
+> "crawled, currently not indexed", or indexed with no ranking), not of a crawler that never found the pages. The
+> reachability findings below still stand. What does not: "the remaining candidates are crawl-budget allocation and
+> domain authority" should now read **page value as Google judged it on first read, and authority**, and that makes the
+> distinctiveness of the 114 templated zone pages a legitimate candidate cause again. Two cheap contributors were fixed
+> the same day: every page also answered 200 on `www.` (29 of 143 Googlebot fetches 10 to 17 Sept) and every
+> zone/room/article page on its `.html` twin; both now 301 to the canonical (`site/nginx/default.conf`,
+> `ops/tests/test_nginx_www_redirect.py`). **Method lesson:** a log-derived "never" must name the retention window it
+> covers; `zcat -f <log>.*.gz` before concluding absence.
+
 **Status:** SUPPORTED
 **Confidence:** MEDIUM (one crawl window, one log source, and it rules a cause out rather than naming the real one)
 **Domain:** SEO / AEO
