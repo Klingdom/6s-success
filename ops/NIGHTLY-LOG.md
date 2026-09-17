@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work (Phil's own www-to-apex fix) finished and verified; confirmed the ops/*.py cold-read lane is genuinely dry, not just apparently so)
+
+NEXT FOR THE OPERATOR: try a fresh angle instead of the `ops/*.py` cold-read lane, because checking specific low-mention candidates directly against this log (`mailer.py`, `service_orders.py`, `video.py`, `verify_deploy.py`, `deploy_freshness.py`, `zone_supplies.py`) showed every one already carries a dated finding or a repeated clean run this week.
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge, clean. Phil's own `c7659827` (www to apex 301, closing `OWNER-ACTIONS.md` item 9) is tested (`ops/tests/test_nginx_www_redirect.py`, reran it standalone: `ok`), documented, and already deployed and confirmed live on the VPS per its own commit message. Full `preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 7 GitHub issues unchanged, all decision/blocked-on-art. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Dashboard regen surfaced the standing deploy-gap pattern again** (repo now ahead of the last confirmed production build, `6c155b8b48679497` to `4e2e23713c5a4e6e`): expected, not new, already routed through `gate_hourly_brief_deploy_staleness` and the dashboard's own "Redeploy the site" line. No VPS access here to act on it.
+
+Pushed to main. Command deck only, no code/content/price/product change. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, dashboard regenerated)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main`, clean, no unrelated-history symptom. `preflight.py` run backgrounded rather than foreground-killed (per this log's own standing lesson): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow, no ssh key). Working tree clean before and after. `STATUS.md` checked against the latest log entry: current, no drift.
