@@ -22,6 +22,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/build_image_prompts.py`, command deck, this log. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, cold-read lane handed back to the operator)
+
+NEXT FOR THE OPERATOR: work the standing `ops/*.py` cold-read lane (`build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`), because the standing handoff named by the last several cycles is still untouched: the most recent scheduled operator cycle (`6da828dc`, 09:03) spent its slot reconciling a concurrent book.html fix instead, and nothing since has picked up this list.
+
+**Previous work was finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (`9f6bfd29`), no unrelated-history symptom this time. `preflight.py` full run clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress), none new. Working tree was clean before this cycle touched anything, main already pushed. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated; the only open items are 1b (issue #32, a content decision already filed) and section 6's owner gates (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy/developer accounts), all correctly waiting on Phil.
+
+**Closed the one loose thread the prior PM check-in (09:23) had left unescalated:** `checks.yml` run #1068 on `d4ac5147`, `in_progress` for over 20 minutes at that cycle's read. Checked directly via the Actions API rather than left open again: it completed at 09:27:08, conclusion `success` (a real 29-minute run, not a stuck one). The two runs immediately before it (`#1066`, `#1067`) show `cancelled`, both normal supersession from rapid successive pushes to main in that window, not runner failures. No stuck-runner problem; nothing to escalate.
+
+**No new closeable item found this slot;** command deck regenerated only, no code or content changed. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main. Command deck and this log only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, handed the cold-read lane to the operator)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly. Two of the fast-forwards picked up a stray local diff my own `preflight.py` run had generated (dashboard timestamp/commit-pointer churn only); discarded rather than merged, since it was this session's own side effect, not real work, and re-attached clean at the true tip (`1e7ee189`). Full `preflight.py` clean at that tip: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable (#32's kits/bundles decision, #31's deck-design decision, #29 and #2 both blocked on art regeneration, #21/#18/#15 all Phil decisions). `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; the two review handoffs (`invest.html`, `book.html`) closed and reconciled by earlier cycles today. No mail credential, no egress from this sandbox, both unchecked not empty.
