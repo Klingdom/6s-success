@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, handed off the DECK-GAME-DESIGN items the last cycle only named)
+
+NEXT FOR THE OPERATOR: implement `DECK-GAME-DESIGN.md` section 7 items 2 to 4 (reintroduce the Momentum counter, keep Upgrade/Tool cards deleted, print the side-quest edges) in the Kitchen deck, because item 1 in that same section was already reclassified from "Phil's to decide" to `CLAUDE.md` 0.5's GREEN tier and executed directly last cycle, and items 2 to 4 carry the same recommendation with no money, contract, account-creation or irreversible-action gate attached, so the same reclassification applies.
+
+Previous work finished: yes. Attached clean (shallow reattach, `fetch --unshallow` then `merge --ff-only` onto `origin/main` at `163fed99`, no unrelated-history symptom). `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree was clean before and after. 7 open GitHub issues confirmed live via the API (#7 closed by the immediately prior cycle, verified gone): all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 re-checked: every row still done or Phil-gated. `EXECUTIVE-DASHBOARD-LIVE.md` was already regenerated fresh (01:44) by the prior cycle; no stale figure found. No new closeable item found this slot; not starting the handoff item myself, per this slot's 30-minute triage scope.
+
+Pushed to main. Command deck and this log only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, closed the oldest open decision issue with evidence, nothing new unblocked)
 
 **Previous work was finished.** Checkout attached cleanly (shallow, `fetch --unshallow` then `ff-only`). `git log`/`ops/NIGHTLY-LOG.md`'s newest entry and `BACKLOG-2026-09-07.md` row B6 agree: the prior operator cycle authored and shipped the 21 Kitchen micro quests, hit one self-inflicted `gate_build_id` FAIL mid-cycle, fixed it, and left `preflight.py` clean. Working tree was clean, main was up to date with origin, and a full `preflight.py` run here confirmed it again: every gate passed, 23 warnings, all standing environment-access limits (no Stripe/SSH/mail credential, no Pillow), nothing newly stale.
