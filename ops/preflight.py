@@ -7843,6 +7843,87 @@ def gate_hourly_brief_stripe_checks() -> None:
              "account: %s" % "; ".join(problems))
 
 
+def gate_hourly_brief_deploy_staleness() -> None:
+    """The hourly brief must surface a confirmed production/repository
+    mismatch, not only the dashboard file that already carries it.
+
+    Found 2026-09-17: a local session logged that production had sat behind
+    the repository for a stretch spanning two customer-facing trust fixes
+    (ops/NIGHTLY-LOG.md, "Deploy 95 commits of finished work"), and that the
+    watcher had been correct and silent the whole time: ops/state.json read
+    deploy_verdict: stale, and EXECUTIVE-DASHBOARD-LIVE.md's own regenerated
+    text said "Redeploy the site... 106 reviewed pictures and every fix
+    since the last deploy reach nobody," while every session, including the
+    one that eventually deployed, read past it. Its own conclusion: "the
+    instrument worked and the loop did not... nothing routed the one actor
+    able to act to the one line saying to act." hourly-brief.yml is that
+    routing: it is the one automated, credentialed mail Phil actually reads
+    on a schedule, the same job gate_hourly_brief_payment_links (above)
+    already routes a live payment-link outage through. Nothing routed a
+    confirmed stale deploy through it.
+
+    Fixed with hourly_brief.deploy_staleness_summary(st), reading the same
+    deploy_verdict/deploy_verified_at/deploy_carried fields
+    ops/dashboard.py's resolve_deploy_verdict() already writes to
+    ops/state.json, the same "one field, read where it can reach a human"
+    shape gate_hourly_brief_payment_links already proved for a dead payment
+    link. "unknown" must stay non-urgent: it usually just means nothing with
+    VPS access has measured recently, not that anything is wrong.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import hourly_brief as hb
+
+    cases = [
+        ("current", {"deploy_verdict": "current",
+                     "deploy_verified_at": "2026-09-17T12:00:00Z"},
+         False, "OK"),
+        ("stale", {"deploy_verdict": "stale",
+                   "deploy_verified_at": "2026-09-15T12:00:00Z",
+                   "deploy_carried": True},
+         True, "BEHIND"),
+        ("unknown", {"deploy_verdict": "unknown"}, False, "UNCHECKED"),
+        ("empty", {}, False, "UNCHECKED"),
+    ]
+    bad = []
+    for name, st, want_problem, want_word in cases:
+        problem, lines = hb.deploy_staleness_summary(st)
+        text = "\n".join(lines)
+        if problem != want_problem:
+            bad.append(f"{name}: problem={problem}, wanted {want_problem}")
+        if want_word not in text:
+            bad.append(f"{name}: {want_word!r} missing from summary: {text!r}")
+    if bad:
+        fail("hourly-brief-deploy-staleness",
+             "hourly_brief.deploy_staleness_summary() does not distinguish "
+             "a confirmed stale deploy from a current or genuinely unmeasured "
+             "one: %s" % "; ".join(bad))
+
+    # A confirmed stale deploy must reach the SUBJECT line too, not only the
+    # body, matching gate_hourly_brief_payment_links' own proof.
+    real = (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check)
+    hb.commerce = lambda: {"revenue_30d": 0, "paid_30d": 0,
+                           "checkouts_started_30d": 0, "live_links": 3,
+                           "balance_available": 0, "balance_pending": 0}
+    hb.inbox = lambda: {"unread": []}
+    hb.site = lambda: {"home": 200}
+    hb.measured = lambda: {"deploy_verdict": "stale",
+                           "deploy_verified_at": "2026-09-15T12:00:00Z",
+                           "deploy_carried": True}
+    hb.cll.check = lambda: {"verdict": "ok", "slugs": {}, "checked_pages": 0}
+    try:
+        subject, body = hb.build()
+    finally:
+        hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check = real
+    if "PRODUCTION BEHIND" not in subject:
+        fail("hourly-brief-deploy-staleness",
+             "a confirmed stale deploy does not reach the hourly brief's "
+             "SUBJECT line: %r" % subject)
+    if "DEPLOY" not in body or "BEHIND" not in body:
+        fail("hourly-brief-deploy-staleness",
+             "a confirmed stale deploy does not reach the hourly brief's "
+             "own body: %r" % body[:400])
+
+
 def gate_checkin_youtube_carry_forward() -> None:
     """The hourly self check-in must not let "could not reach YouTube" collapse
     into "the channel is empty."
@@ -15301,6 +15382,7 @@ def main() -> int:
     run_gate(gate_hourly_brief_build_line)
     run_gate(gate_hourly_brief_payment_links)
     run_gate(gate_hourly_brief_stripe_checks)
+    run_gate(gate_hourly_brief_deploy_staleness)
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)

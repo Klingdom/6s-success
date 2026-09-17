@@ -170,6 +170,44 @@ def site() -> dict:
     return out
 
 
+def deploy_staleness_summary(st: dict) -> tuple[bool, list[str]]:
+    """Whether production is confirmed behind the repository, from the one
+    signal this job can read without a VPS deploy key: ops/dashboard.py's
+    own carried-forward deploy_verdict in ops/state.json.
+
+    Written 2026-09-17. Production sat behind the repository by 95 commits
+    for a stretch that included two customer-facing trust fixes, while
+    ops/state.json read deploy_verdict: stale and the dashboard's own text
+    said "Redeploy the site" the whole time (ops/NIGHTLY-LOG.md, 2026-09-17:
+    "the instrument worked and the loop did not"). The watcher was real;
+    nothing routed its line to a reader who could act on it. This is that
+    routing, the same shape payment_link_summary() already gives a dead
+    Stripe link: surfaced in the one automated, credentialed mail Phil
+    actually reads, not only in a dashboard file nobody was pointed back to.
+
+    This job holds no deploy key, so the ask stays a message, not a fix: a
+    session with VPS access still has to run ops/deploy.py or Phil still has
+    to click Redeploy. problem is True only for a genuinely confirmed
+    mismatch (deploy_verdict == "stale"), never for "unknown", which can be
+    perfectly ordinary (nothing with VPS access has run recently) and must
+    not read as an outage it was never evidence for, CLAUDE.md 0.4.
+    """
+    verdict = st.get("deploy_verdict")
+    checked = st.get("deploy_verified_at") or "an unknown time"
+    if verdict == "stale":
+        carried = (" (last CONFIRMED current at that time, not measured "
+                   "this run)" if st.get("deploy_carried") else "")
+        return True, [f"  BEHIND  production does not match the repository. "
+                      f"Last confirmed matching: {checked}{carried}. Needs a "
+                      f"Redeploy click, or a session with VPS access running "
+                      f"ops/deploy.py."]
+    if verdict == "current":
+        return False, [f"  OK  production matches the repository "
+                       f"(confirmed {checked})"]
+    return False, [f"  UNCHECKED  deploy state not measured this run "
+                   f"(verdict: {verdict or 'none recorded'})"]
+
+
 def payment_link_summary(links: dict) -> tuple[bool, list[str]]:
     """Turn check_live_links.check()'s result into (problem, lines).
 
@@ -346,6 +384,7 @@ def build() -> tuple[str, str]:
     price_problem, price_lines = price_claims_summary()
     dupe_problem, dupe_lines = duplicate_sku_summary()
     brand_problem, brand_lines = brand_summary()
+    deploy_problem, deploy_lines = deploy_staleness_summary(st)
     prev = load_last()
 
     rev = cm.get("revenue_30d", 0)
@@ -354,6 +393,7 @@ def build() -> tuple[str, str]:
     subject = (f"{'OUTAGE - PAYMENT LINK DEAD - ' if link_problem else ''}"
                f"{'FABRICATED PRICE ON CHECKOUT - ' if price_problem else ''}"
                f"{'DUPLICATE STRIPE PRODUCT - ' if dupe_problem else ''}"
+               f"{'PRODUCTION BEHIND REPOSITORY - ' if deploy_problem else ''}"
                f"6S hourly: ${rev:,.0f} / 30d"
                f"{f' (${life:,.0f} lifetime)' if life is not None else ''}, "
                f"{sales} sale(s), "
@@ -404,6 +444,9 @@ def build() -> tuple[str, str]:
 
     if st:
         L += ["", "BUILD", build_line(st)]
+
+    L += ["", "DEPLOY (production vs. repository)"]
+    L += deploy_lines
 
     L += ["", f"Dashboard: {SITE}  |  full log in ops/NIGHTLY-LOG.md"]
 
