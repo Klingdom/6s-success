@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (seven cold-read candidates checked adversarially against their own protecting gates, no live defect found)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (`adc83176`, 305-commit fast-forward, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked.
+
+**Worked the standing cold-read lane**, checking 7 genuinely unread low-mention `ops/*.py` files: `wire_measure.py`, `stripe_links.py`, `build_feed.py`, `wire_nav.py`, `wire_progressive.py`, `build_pwa.py`, `build_printpack.py`. For each, read the source, then actually ran it standalone and diffed the result against the committed tree rather than trusting the docstring.
+
+**No live defect found, but one real gap was checked and ruled out rather than assumed.** Running `wire_nav.py` standalone strips `aria-current="page"` from five pages' own nav link, since its `build()` has no concept of the current page; this looked like the same "generator strips a downstream stamp when run standalone" shape as the fingerprint-chaining defects fixed 2026-09-09. Traced whether it is actually unprotected: `gate_nav_current` already re-derives the correct `aria-current` marker straight from `wire_aria_current.py` against whatever is committed, independent of which generator last touched the page, so a commit made after running `wire_nav.py` alone would fail preflight immediately. Confirmed by reasoning through the gate's own check, not merely reading its docstring. The other six files were each already covered by an existing, correctly-scoped gate (`gate_generator_chains_fingerprint`, `gate_nav_canonical`, `gate_feed_current`) and produced no diff or only the expected fingerprint-stripping this environment's standalone runs always show, reverted every time.
+
+**Verified:** full `preflight.py` clean after (unchanged, no site file touched), `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0). Mobile `npm test` not run: nothing under `mobile/` touched.
+
+**Went well:** treating each file's protecting gate as a claim to test against the real standalone-execution scenario it exists to catch, not a citation to trust.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; no defect found, no new gate needed.
+
+**Next:** cold-read lane candidates remaining: `build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production remains behind the repository's current build, still needing Phil's own Hostinger redeploy click.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log entry. No site content, price or product touched. IndexNow not applicable, no page changed.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, found the operator mid-flight on the same row and stood down rather than duplicate it)
 
 **Previous work was finished.** Attached clean (shallow, unshallowed, ff-only onto `origin/main` at `690f46c9`). `preflight.py` clean (every gate passed, 23 pre-diagnosed warnings, none new). Tree was clean before this cycle touched anything. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `checks.yml` run 1064 on `814d6c93` already confirmed `success`; commits since only touch dashboard/log files excluded from that workflow's path filter.
