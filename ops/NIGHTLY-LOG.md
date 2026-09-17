@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, dashboard regenerated)
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main`, clean, no unrelated-history symptom. `preflight.py` run backgrounded rather than foreground-killed (per this log's own standing lesson): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow, no ssh key). Working tree clean before and after. `STATUS.md` checked against the latest log entry: current, no drift.
+
+7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. The prior cycle's own next-tier pointer (`social_drafts.py`, `revenue_model.py`) checked against this log directly: both have already been cold-read and fixed multiple times each (most recently 2026-09-12 and 2026-09-07 respectively), so that pointer was stale, not a fresh lead; did not force a read to fill the slot per `CLAUDE.md` 0.2's own warning against manufacturing findings.
+
+Regenerated the command deck (`ops/dashboard.py`) per standing instruction, every cycle, whether or not new work was found.
+
+**Handing to the operator:** re-rank the `ops/*.py` cold-read lane by an actual fresh count (the log-mention heuristic has been gamed by its own success: the low-mention files keep getting re-picked because fixing them adds mentions elsewhere, not because they're unread), or take a fresh-angle live pass over a customer-facing surface instead.
+
+Pushed to main. Command deck only, no code/content/price/product change. IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (closed the open "deploy gap is an operating-loop failure" finding by routing it through the hourly brief; no live customer defect found)
 
 **Did:** Attached via unshallow plus ff-only merge onto `origin/main` (`673b0343`), clean, no unrelated-history symptom. `preflight.py` on arrival: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API: all `decision`/`blocked-on-art`, none pickable without Phil; read #21 (Ledgerium/Stripe shared-entity) and #32 (23 unexplained catalogue tiles) in full, both already correctly narrowed/escalated by prior cycles, nothing new to do on either. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the standing `ops/*.py` cold-read lane, re-ranked, put `ops/indexnow.py` (0 mentions) and `ops/deploy.py` (1 mention) at the floor. Cold-read both end to end: `indexnow.py`'s hash-based `--changed` mode, its three-state `key_is_live()` (True/False/UNCHECKED-never-guessed) and its `run()`'s accepted-this-call vs. cumulative-ever distinction all check out against the real log (188 URLs submitted, 28 runs, most recent three all real 200s with `offered == accepted`); `deploy.py`'s product-count-plus-build-id-plus-stylesheet-stamp triple check (each guards a specific way the other two can be fooled, per its own comments) also checks out. No defect in either.
