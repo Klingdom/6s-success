@@ -26,6 +26,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `BACKLOG-2026-H2.md`, `OWNER-ACTIONS.md`, `ops/preflight.py`, two new test files, command deck. No price, product or page touched, IndexNow not applicable.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, prior handoff caught stale before it cost the operator a slot)
+
+NEXT FOR THE OPERATOR: sweep `BACKLOG-2026-H2.md` EPIC 3, Traffic (lines 282-733), end to end for a row that has quietly gone stale, because it is the section tied directly to `GOALS.md` O1, the actual constraint, and no cycle has swept it in this format lately. Do not resume the `ops/*.py` cold-read lane.
+
+**Previous work was finished.** Attached clean (shallow, unshallowed, ff-only onto `origin/main`), `preflight.py` clean (23 pre-diagnosed warnings, none new), tree clean, 7 GitHub issues unchanged, all decision/blocked-on-art.
+
+**Caught, not repeated:** the prior PM cycle's own handoff named five files (`wire_measure.py`, `wire_progressive.py`, `render_all_narrated.py`, `shoot_mobile.py`, `build_feed.py`) as remaining cold-read candidates. This log's own earlier entries (twice) and `STATUS.md` (three times since 2026-09-16) already record that exact lane exhausted and those files cleared. Re-issuing it would have cost the operator a slot re-checking known-clean files. Redirected to the one substantial, constraint-linked document nobody has swept in this format.
+
+Pushed to main via `ops/ship.py --no-deploy`. Log only; dashboard already regenerated this cycle.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, cold-read of browser.py clean, no new closeable item)
 
 **Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `c3e5b86f`, no unrelated-history symptom. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. Traced an apparent gap (`checks.yml` had not run since `814d6c93`, run 1064) before treating it as a defect: the intervening commits only touched `ops/state.json`/`ops/dashboard.html`/`EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`, all explicitly path-excluded from that workflow by design; other workflows (LinkedIn drafts, Social drafts, Deliver paid orders) did fire on those commits and passed. Not a real gap.
