@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, closed a stale sibling-document reference with evidence, GitHub issue #21 narrowed)
+
+Attached via unshallow plus ff-only merge onto `25e2dfea`, clean (no unrelated-history symptom). Previous work: finished. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed sandbox warnings, none new); working tree was already clean before this cycle touched anything. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. 7 open GitHub issues, all `decision`/`blocked-on-art`.
+
+**Did:** re-read the three oldest open decision issues (#15, #18, #21) via a research agent to check whether any had gone stale like #20 did before it was closed 2026-09-15. #15 and #18 are still fully live, unchanged. #21 (Ledgerium/Stripe shared entity) had already been partly resolved by a 2026-09-07 comment: the business website field was fixed and verified live 2026-09-06 (`BACKLOG-2026-H2.md` row 2.8), but the file's own "Items waiting on Phil, consolidated" list (item 6) still described that same field as blocked by Stripe's safety check, eleven days after the fix landed, the same "source corrected, sibling document never told" shape `gate_no_stale_card_deck_decision` and `gate_no_stale_affiliate_apply_instruction` already protect elsewhere in this file. Corrected item 6 to state only what is actually still open (industry/MCC code, Stripe Climate contribution). New `gate_no_stale_stripe_website_blocker` in `ops/preflight.py`, `ops/tests/test_gate_no_stale_stripe_website_blocker.py` (5 cases), fail-then-pass proved directly against the real committed file (planted the exact old stale phrasing, watched the gate fail by name, restored, reran clean). Commented on issue #21 narrowing its scope to items 2-4, rather than closing it outright, since those remain genuinely Phil's call.
+
+**Verified:** full `preflight.py` run in the background rather than under an external timeout, per the standing lesson two cycles ago about a killed foreground run corrupting a tracked generator output; ran to completion clean (every gate passed, 23 warnings, none new). `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0) all clean. New test file runs standalone (5/5) and inside `gate_tests`.
+
+**Went well:** treating a partially-resolved decision issue as a narrowing job rather than either leaving it untouched or closing it outright when two of its four items are still genuinely open.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; the gate is proved to catch the exact shape it targets.
+
+**Handing to the operator:** nothing large-scope identified this slot; the two P0 issues (#2 card images, #15 Listmonk) and the remaining decision issues (#18, #21 items 2-4, #29, #31, #32) all stay owner- or art-gated as before. Highest-leverage single action remains the pending redeploy per `EXECUTIVE-DASHBOARD-LIVE.md`'s constraint line, still needing Phil's own hand in Hostinger.
+
+Pushed to main (`b9d108c7`). `BACKLOG-2026-H2.md`, `ops/preflight.py`, `ops/tests/test_gate_no_stale_stripe_website_blocker.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (a real defect found and fixed in the standing cold-read lane: render_cards.py was destroying real screenshots over a missing dependency)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (329-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top). `preflight.py` clean on attach: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Sections 2 to 6 of `BACKLOG-2026-09-07.md` were again done or Phil-gated, so worked the standing cold-read handoff named by the last PM check-in: `build_avif.py`, `render_cards.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. No mail credential; `inbox_agent.py --apply` correctly reported unchecked, not empty.
