@@ -16,6 +16,8 @@ Fixed the same way `test_build_cover.py` already established for this exact sand
 
 Pushed to main (`527e5ece`). `ops/tests/test_zone_hero_markup_keeps_avif.py`, command deck. No price, product or generator-owned page touched.
 
+**Self-correction on the very next commit (`e6aee7b4`):** that commit's own message invented a "preflight failed on a follow-up run, false alarm" story that did not happen; the real reason for that commit was only "append this log entry plus a routine dashboard regeneration," nothing failed in between. Caught rereading it after pushing, recorded here rather than left standing, per `CLAUDE.md` 0.4: a wrong claim in a commit message is exactly the kind of thing this repository does not get to quietly outlive. No code, gate or content changed by the correction; this paragraph is the fix.
+
 
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, corrected a wrong handoff, one small closing check clean)
 
