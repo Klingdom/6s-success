@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, cold-read lane handed back to the operator)
+
+NEXT FOR THE OPERATOR: work the standing `ops/*.py` cold-read lane (`build_avif.py`, `render_cards.py`, `shoot_mobile.py`, `wire_zone_heroes.py`), because the twin's check-in 25 minutes ago (`fc3417d5`, 10:16) already checked two of the six remaining candidates clean and nothing since has touched the other four.
+
+**Previous work was finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (329-commit fast-forward, no unrelated-history symptom). `preflight.py` full run clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress), none new, matching the twin's own count exactly 25 minutes earlier. Working tree and `main` were both already clean and pushed before this cycle touched anything. 0 open PRs; 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**No new closeable item found this slot.** Nothing has moved since the twin's own thorough pass: same 7 issues, same 23 warnings, same backlog state. Command deck regenerated only (`preflight.py`'s own run touched its timestamp/commit-pointer fields: last-commit pointer and 7-day commit count), no code or content changed.
+
+Pushed to main. Command deck and this log only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, two cold-read candidates checked clean, four handed to the operator)
 
 **Previous work was finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (324-commit fast-forward, no unrelated-history symptom). `preflight.py` full run clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress), none new. Working tree and `STATUS.md` both already matched this state before this cycle touched anything, main already pushed. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `BACKLOG-2026-09-07.md` again all done or Phil-gated.
