@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (ran the one check no cycle had run today, `preflight.py --deep`; clean, no new defect)
+
+**Did:** Attached via unshallow plus ff-only merge onto `origin/main` (`7a4874a2`), clean, no unrelated-history symptom, 382-commit fast-forward. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several log entries before touching anything. Every standing lane was already reported exhausted by today's own prior cycles: 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; `inbox_agent.py --apply` reports no mail credential, UNCHECKED not empty; `curl` to `6s-success.com` and `api.stripe.com` both denied by the sandbox proxy, confirming no egress directly rather than citing a prior cycle's claim; the `ops/*.py` cold-read mention-count lane was re-derived and found gamed exactly as the standing note warns (`build_quest.py` sits at the current floor by mention count alone, but a direct grep shows it has been cold-read and run clean at least four separate times already).
+
+**The one genuinely fresh angle: `preflight.py --deep` had not been run once today**, checked by grepping every `## 2026-09-17` entry in this log for `--deep` before starting, not assumed from the gap since the last deep run I could find (2026-09-15). It is the only gate that reaches `gate_visual_audit`, the full 193-page headless-Chromium contrast/landmark/tap-target sweep, and it has caught a real live defect on a day it ran before (the `quest.html` figcaption contrast failure, 2026-09-04). Ran it in the background with no artificial wrapper timeout, to actual completion rather than the foreground-killed shape this log has flagged repeatedly. Result: **every gate passed, 22 warnings, all previously diagnosed sandbox limits, 0 new.** `gate_visual_audit` printed no findings, meaning 0 across all 193 pages.
+
+**Checked the dashboard regeneration this run itself caused, rather than assume it was harmless.** Regenerating `ops/state.json` from a no-egress sandbox dropped several fields to `null`/`0`/`unreachable` that a prior local session (with real VPS and Stripe access) had populated: `revenue_all_time`, `sales_all_time`, `site_live`, `deploy.assets`, `cards_rendered`. Read this as a possible live instance of the exact "unknown read as unused" defect class `CLAUDE.md` 0.4 names, and traced each one through to the rendered `EXECUTIVE-DASHBOARD-LIVE.md` before deciding whether it was a real regression. It is not: every one of those fields carries the carry-forward and honest-unmeasured machinery this repository has built over many prior cycles (`gate_dashboard_traffic_carry_forward` and its siblings) and the rendered deck states plainly "carried forward... because this run could not reach Stripe" and "unconfirmed on the live site: no Stripe credential in this environment," never a silent zero. Confirmed by reading the actual diff line by line, not by trusting the gate's own green result alone.
+
+**Verified:** `preflight.py` fast and `--deep` both clean before and after. No code, content, price or product touched. `check_urls.py` not re-run (no page content changed). IndexNow not applicable.
+
+**Went well:** treating "every standing lane reports exhausted" as a reason to look for a genuinely unexercised check rather than force a finding out of an already-gamed lane; verifying the dashboard's own field drops against the rendered page before writing them off as fine.
+
+**Did not go well:** none new this cycle.
+
+**Changing next cycle:** none; `gate_visual_audit` is proven, ran to completion, and found nothing. Worth periodically re-running in full regardless, since it is the only check that reaches it and content keeps moving under it.
+
+**Next:** all 7 GitHub issues remain decision/blocked-on-art, none pickable without Phil. Standing owner-gate list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the six on-device screenshots, item 1f VPS disk, item 1d Stripe business description, item 1e Rakuten access). No VPS or Stripe access in this sandbox to act on any of them.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No code, content, price or product change. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished; caught and fixed a self-inflicted preflight interruption before it shipped, no new closeable item)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (`4a9af887`), clean, no unrelated-history symptom, 378-commit fast-forward. The cold-read lane and the deploy-staleness finding logged by the prior two cycles are both genuinely closed: the hourly brief already carries the redeploy tag, and no fresh angle was left unexplored at the standing floor.
