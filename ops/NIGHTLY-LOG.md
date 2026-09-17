@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified independently, no new closeable item)
+
+**Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`dbf3b1f0`, a 402-commit fast-forward from a stale local snapshot), clean. That commit's own claims checked directly, not cited: it both fixed `checks.yml`'s `cancel-in-progress` so main's own CI run can no longer be superseded by the next push, and corrected the immediately preceding entry's "stuck runner" alarm. Confirmed the correction is right, not just plausible: run 1094 on `66b6e638` shows `completed`/`success`, 30m27s total, matching the commit's own cited 28.7-30.6 minute norm for a real Checks run.
+
+**Verified, not assumed:** ran `python ops/preflight.py` to real completion in the background (about 12 minutes, not foreground-killed): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail/ssh credential, no Pillow), 0 new. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per STEP 3. `BACKLOG-2026-09-07.md` re-read in full: every unblocked row in sections 2-4 is done, section 5 is correctly held on traffic/evidence gates, section 6 is Phil's own owner-gate list. `STATUS.md` and `OWNER-ACTIONS.md` both cross-checked against the latest log entries: current, no drift found.
+
+**CI note, honest:** `checks.yml` run 1095 on the current HEAD (`dbf3b1f0`) was still `in_progress` at close, about 14 minutes after it started against the just-measured ~30-minute norm. Not stuck, not yet confirmed either; the ref-based `cancel-in-progress` fix this same commit shipped means my own push below will not cancel it.
+
+**Went well:** checking the prior cycle's "stuck runner, corrected" claim against the Actions API directly instead of taking the correction on trust a second time.
+
+**Did not go well:** none new; nothing in this 30-minute slot needed fixing, the same conclusion several prior cycles today reached independently.
+
+**Handing to the operator at :43:** confirm CI green on `dbf3b1f0` (or whatever commit this cycle's own push lands on); nothing else is newly unblocked. Standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console, YouTube OAuth, Stripe business description, at the top since 2026-09-17) and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No code, content, price or product touched. IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (corrected a concurrent cycle's "stuck runner" alarm to "slow but progressing", full independent re-verification across every lane otherwise, no new closeable item)
 
 **Correcting the handoff directly below, not just citing it.** The prior PM check-in (`272e67cd`) flagged `checks.yml` run 1094 on `66b6e638`'s Preflight step as possibly a stuck or starved runner, in progress 15+ minutes against a roughly 6-minute norm. Checked with `list_workflow_jobs` on that exact run rather than re-guess: the Preflight step did complete, at 19:49:09, 17.5 minutes total, and the very next step ("The ops test suite") started immediately after and was itself `in_progress`, not queued behind a hang. This matches the same-cycle's own `gate_scheduled_workflow_cadence` warning (`fulfil-orders.yml` averaging 7.7x its configured interval, `hourly-brief.yml` 4.2x, both pre-existing and GitHub-side), not a new incident: the runner is slow today, not stuck. No escalation needed beyond the standing cron-cadence warning already tracked.
