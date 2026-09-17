@@ -8384,6 +8384,52 @@ def gate_invest_page_catalog_current() -> None:
              "; ".join(problems))
 
 
+def gate_invest_page_no_fabricated_claims() -> None:
+    """invest.html must not restate the unsourced statistics and the
+    fabricated-capability claims REVIEW-QA-2026-09-07.md confirmed as P0.
+
+    Found 2026-09-07 in that review, still live at the 2026-09-14 re-check,
+    handed to the operator again 2026-09-17: a fundraising document, the
+    highest-stakes copy on the domain, stated as present fact several things
+    that were either unsourced ("the number-one reason," "a multi-billion-
+    dollar market," "than anyone else") or described a capability that does
+    not exist yet as though a customer could use it today ("3 Ways to buy:
+    app, web, done-for-you," "the exact 15-minute method, in the app," "we
+    buy them in volume, hold less inventory," "kit-ready"). The page's own
+    Traction section already discloses the phone app as "a working
+    prototype... ready for beta," so the hero and system sections
+    contradicted the page's own honest section further down. Fixed
+    2026-09-17 by removing the unsourced superlatives/rankings and by
+    relabelling every not-yet-built capability as planned, live only where
+    it is actually live (web storefront, Nova Consulting).
+
+    This checks the exact banned phrases can never return, not that the
+    whole page stays honest forever: a new fabricated claim in different
+    words would not be caught here, only a regression of this specific one.
+    """
+    page = os.path.join(SITE, "invest.html")
+    if not os.path.exists(page):
+        return
+    text = io.open(page, encoding="utf-8", errors="replace").read()
+    banned = [
+        "number-one reason",
+        "multi-billion-dollar",
+        "than anyone else",
+        "kit-ready",
+        "in the app.",
+        "we buy them in volume, hold less inventory,",
+        "Ways to buy: app, web, done-for-you",
+    ]
+    found = [b for b in banned if b in text]
+    if found:
+        fail("invest-page-no-fabricated-claims",
+             "site/invest.html restates a claim REVIEW-QA-2026-09-07.md "
+             "confirmed as unsourced or describing a capability that does "
+             "not exist yet: %s. See that review's \"CONFIRMED, P2: "
+             "invest.html carries unsourced statistics and a product that "
+             "does not exist\" finding." % found)
+
+
 def gate_caption_line_length() -> None:
     """No caption line may exceed the readable budget, in either caption set.
 
@@ -15107,6 +15153,7 @@ def main() -> int:
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_invest_page_catalog_current)
+    run_gate(gate_invest_page_no_fabricated_claims)
     run_gate(gate_caption_line_length)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
