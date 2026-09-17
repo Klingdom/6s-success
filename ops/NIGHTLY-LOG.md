@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, one CI run left unverified)
+
+**Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `814d6c93` (284-commit fast-forward, no unrelated-history symptom). Working tree was clean before this cycle touched anything. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged (`decision`/`blocked-on-art`/P0-blocked), none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row done or Phil-gated; section 1b is already issue #32.
+
+**No new closeable item found.** The standing cold-read lane (`diagnosis.py`, `generate_zone_heroes.py`, `linkedin_posts.py`) is real work but needs the fail-then-pass gate-and-test cycle every prior finding there has required, hours not this slot.
+
+**Left genuinely unverified, per CLAUDE.md 0.4:** `checks.yml` run 1064 against `814d6c93` was still `in_progress` after 12+ minutes of polling. Recorded as unchecked, not assumed green. Handing to the twin at :40 or the operator at :43 to confirm.
+
+Pushed to main (`f51919a0`, dashboard/log regen only). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (cold-read ops/prerender_shop.py per the standing lane; a real, live protection gap closed, no live defect found)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (281-commit fast-forward, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (all newest-first at the top of the file, not the tail, which this cycle initially misread before catching itself). `preflight.py` full run clean before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 open GitHub issues confirmed live via the API, unchanged (all `decision`/`blocked-on-art`, none pickable). `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. Every row in `BACKLOG-2026-09-07.md` sections 2 to 6 was again done or Phil-gated, matching every recent PM check-in's own finding, so this cycle worked the standing cold-read lane (`diagnosis.py`, `generate_zone_heroes.py`, `hazard_icons.py`, `linkedin_posts.py`, `prerender_shop.py`, all tied at 13 log mentions).
