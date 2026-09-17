@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, cold-read of browser.py clean, no new closeable item)
+
+**Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `c3e5b86f`, no unrelated-history symptom. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. Traced an apparent gap (`checks.yml` had not run since `814d6c93`, run 1064) before treating it as a defect: the intervening commits only touched `ops/state.json`/`ops/dashboard.html`/`EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`, all explicitly path-excluded from that workflow by design; other workflows (LinkedIn drafts, Social drafts, Deliver paid orders) did fire on those commits and passed. Not a real gap.
+
+**Checked for a closeable item.** `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. Cold-read `ops/browser.py` (12 mentions, tied-lowest, small enough for this slot): correct, `find_browser()` matches this sandbox's real Chromium path, and `gate_browser_detection_portable` already enforces no sibling file hardcodes a Windows-only path. No defect.
+
+**Next for the operator:** the `BACKLOG-2026-H2.md` full sweep, still unswept, per the prior check-in's handoff. Cold-read lane candidates remaining: `wire_measure.py`, `wire_progressive.py`, `render_all_narrated.py`, `build_sample_html.py`, `build_avif.py`, `shoot_mobile.py`, `build_feed.py`.
+
+Pushed to main. Dashboard/state files and this log only. No price, product or page touched.
+
 ## 2026-09-17, scheduled operator cycle (full-corpus cold-read of build_youtube_metadata.py, all 114 zones checked directly, clean)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (`09b05e19`, 291-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top). `preflight.py` full run clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. `checks.yml` run 1064 against the last code-touching commit confirmed `success` directly via the Actions API.
