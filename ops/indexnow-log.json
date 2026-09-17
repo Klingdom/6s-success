@@ -364,6 +364,13 @@
    "offered": 3,
    "accepted": 3,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-17T01:34:06Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -386,8 +393,8 @@
   "https://6s-success.com/deck-gallery.html": "22f84a2d1918ba31",
   "https://6s-success.com/deck.html": "8b051fa46c2e004b",
   "https://6s-success.com/kit.html": "17208f979d665480",
-  "https://6s-success.com/quest.html": "8bf733377a8d6c80",
-  "https://6s-success.com/standards.html": "0bead1ed9320acb1",
+  "https://6s-success.com/quest.html": "52dacd8a042d5c1b",
+  "https://6s-success.com/standards.html": "5a1e5d4692f7e091",
   "https://6s-success.com/articles/decluttering-vs-organizing": "1d4a8e162a9f8483",
   "https://6s-success.com/articles/everyday-things-out-of-reach": "0f2f0cbe570cbd4c",
   "https://6s-success.com/articles/everything-needs-an-assigned-home": "8ebc15f21849ce34",
@@ -418,7 +425,7 @@
   "https://6s-success.com/articles/why-you-never-finish-a-zone": "11b1d829c1050919",
   "https://6s-success.com/articles/why-your-house-gets-messy-again": "3cf36f241bf0f4b2",
   "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "0c24243e9bb41c94",
-  "https://6s-success.com/deck/entryway-print-and-play.html": "8f67b22677c72f46",
+  "https://6s-success.com/deck/entryway-print-and-play.html": "eeb35f22c1099d10",
   "https://6s-success.com/rooms/dining-room": "7d26759c1e7c9494",
   "https://6s-success.com/rooms/entryway": "46bf240688c639c9",
   "https://6s-success.com/rooms/family-room": "58d532ba4a929630",
@@ -554,6 +561,6 @@
   "https://6s-success.com/zones/workshop-the-material-rack": "c6c26c4f04772c3f",
   "https://6s-success.com/zones/workshop-the-power-tool-storage": "a50d2c7b8af1859b",
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "28f0256b773ee039",
-  "https://6s-success.com/kitchen-deck.html": "0003b01596b8bd43"
+  "https://6s-success.com/kitchen-deck.html": "61a518cda0030fb0"
  }
 }
