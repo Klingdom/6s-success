@@ -9688,7 +9688,7 @@ def gate_corporate_buy_path_current() -> None:
     if not os.path.exists(corp_path):
         return
     stale = "Corporate Lean 6S is the one gap, no buy path yet"
-    for name in ("GOALS.md", "STATUS.md"):
+    for name in ("GOALS.md", "STATUS.md", "STATUS-ARCHIVE.md"):
         doc_path = os.path.join(ROOT, name)
         if not os.path.exists(doc_path):
             continue
@@ -10218,7 +10218,7 @@ def gate_no_stale_session_label() -> None:
     bad = []
     pattern = re.compile(r"\d+\s*sessions?\b(?:(?!\.).){0,40}?30[\s-]*days",
                           re.IGNORECASE)
-    for name in ("STATUS.md", "RISKS.md", "BACKLOG-2026-H2.md"):
+    for name in ("STATUS.md", "STATUS-ARCHIVE.md", "RISKS.md", "BACKLOG-2026-H2.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
@@ -10504,7 +10504,7 @@ def gate_no_stale_checkout_count() -> None:
     bad = []
     pattern = re.compile(r"\bseven\s+checkout\s+sessions?\b|"
                           r"\b7\s+checkout\s+sessions?\b", re.IGNORECASE)
-    for name in ("STATUS.md", "RISKS.md", "GOALS.md"):
+    for name in ("STATUS.md", "STATUS-ARCHIVE.md", "RISKS.md", "GOALS.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
@@ -10548,7 +10548,7 @@ def gate_no_stale_listmonk_blocker() -> None:
     bad = []
     pattern = re.compile(
         r"listmonk\s+root\s+url\s+and\s+from-address", re.IGNORECASE)
-    for name in ("GOALS.md", "STATUS.md", "RISKS.md"):
+    for name in ("GOALS.md", "STATUS.md", "STATUS-ARCHIVE.md", "RISKS.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
@@ -11387,7 +11387,7 @@ def gate_critical_risks_escalated() -> None:
     """
     risks_path = os.path.join(ROOT, "RISKS.md")
     other_paths = ["OWNER-ACTIONS.md", "BACKLOG-2026-H2.md",
-                   "BACKLOG-2026-09-07.md", "STATUS.md"]
+                   "BACKLOG-2026-09-07.md", "STATUS.md", "STATUS-ARCHIVE.md"]
     if not os.path.exists(risks_path):
         return
     risks_text = io.open(risks_path, encoding="utf-8").read()
