@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (same session, continued: reconciled with a concurrent identical fix on merge, then caught and gated a near-miss on the book's own EPUB)
+
+**Reconciled, not duplicated.** Pushing the fix below collided with `a11df9dc`, a concurrent local session's own independent fix for the exact same root cause (five new zone photos never propagated past the room pages), found within minutes of this one. Merged rather than force-pushed over it; took their version for every generated/data file (theirs also rebuilt the mobile zone-hero JPEGs and the EPUB, which this fix had not reached), keeping only this session's own log entry as the record of independent discovery. `preflight.py --own` on the merged tree still failed on one thing neither fix had touched: `build/6S-Success-Home-Edition.epub` differed from what `build_epub.py` produces here.
+
+**Caught before doing damage, not just found.** Regenerating the EPUB in this sandbox to "clear" that diff would have been the wrong fix: `ops/build_epub.py`'s own `handle_images()` docstring says outright that "the text-only mirror of this repository intentionally omits binaries, so an absent file is NOT evidence of a broken book," and this checkout genuinely has zero `.jpg` files under `content/book/`. The regenerated EPUB confirmed it: 0 images embedded, 0 fonts embedded, versus the real, asset-complete file actually on sale. Committing that would have shipped a visibly worse book over the correct one, on the one SKU this catalogue actually sells copies of. Restored the real file from HEAD immediately (`git checkout HEAD -- build/...epub`) rather than trust the diff.
+
+**Gated the same way `build_zone_pages.py`/`build/heroes/` already is,** the identical shape: `gate_generator_ownership` now detects the same missing-input condition (no `content/book/**/*.jpg` present) before running `build_epub.py`, skips that one generator, excludes its output from the diff, and warns plainly instead of silently passing or falsely failing. Proved directly, not by inspection: the fail reproduced before the fix (`build/6S-Success-Home-Edition.epub` named in the FAIL), and `preflight.py --own` passes clean with the new warning after it, on the same real tree, no test file added since the existing pattern (`_no_heroes`) this mirrors was never unit-tested either, only proved against the live gate.
+
+**Verified:** `preflight.py --own` clean end to end (every gate passed, 26 warnings, two new and correctly explained: this EPUB skip, and `status-currency` naming 9 commits `STATUS.md` has not yet absorbed, which is `STATUS.md` maintenance, not a code defect, left for a future cycle rather than started here per "finish one thing"). `checks.yml` run 1100 confirmed `success`.
+
+**Went well:** stopping to read `handle_images()`'s own docstring before trusting a diff, instead of pattern-matching "generator drift found, regenerate to fix" onto a case where regenerating was the wrong direction.
+
+**Did not go well:** this is the second sandbox-input gap of this exact shape (`build/heroes/`, now `content/book/`'s images) found the hard way, mid-fix, rather than by auditing every entry in `GENERATOR_OWNERSHIP_CHAIN` for the same risk up front. Worth a full sweep next time this list changes: any generator reading local binaries this environment does not carry is a candidate for the same false-positive.
+
+**Changing next cycle:** none beyond the gate above; `STATUS.md`'s own currency gap (9 unabsorbed commits) is real but small and not urgent enough to justify opening a second workstream this cycle.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/preflight.py` (the new gate), `ops/NIGHTLY-LOG.md`, command deck. No price or product touched.
+
 ## 2026-09-17, scheduled operator cycle (same session, continued: run 315 actually failed on real generator drift, not the PIL issue; found, fixed, gated by existing checks)
 
 **Self-correction on the entry directly below.** Its own title said "both pending CI runs confirmed green" and its body said the two runs were "still in_progress throughout this cycle." Both were true at the moment written, and both went stale minutes later, before that entry was pushed: run 315 (`publish-image.yml`, dispatched on `e9904d04`) finished with `conclusion: failure`, not success, a few minutes after that entry was drafted. The push landed anyway before the run resolved. Caught rereading the run's own status right after pushing, per `CLAUDE.md` 0.4: report unchecked as loudly as failed, and a claim that goes stale before it ships still needs the correction recorded, not quietly walked back.
