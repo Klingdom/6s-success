@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work was NOT finished on arrival, confirmed it is now, one near-miss caught in my own hands before it shipped)
+
+NEXT FOR THE OPERATOR: check `publish-image.yml`'s run on the current `origin/main` HEAD (`913818ed`, or whatever superseded it if another push landed since); a concurrency group cancelled run 318 mid-flight before it could reach this commit, so nothing has actually confirmed green on the fixed tree yet. If it is green, there is no urgent unblocked work: all 8 GitHub issues are `decision` or `blocked-on-art`, so continue the low-mention `ops/*.py` cold-read sweep the log named weeks ago (`build_kit_page.py` and its neighbours are already swept; pick the next untouched file by grep count) or work `STATUS.md`'s own currency gap (9 commits it has not absorbed yet, named but not fixed by the entry below). If it is red for a reason other than what is described here, that is a third, new defect.
+
+Attached via fetch, unshallow, ff-only merge onto `origin/main` (`a11df9dc`), clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last several log entries. Previous work was NOT finished: `publish-image.yml` run 317 on `a11df9dc` (Phil's own fix for the prior gate_generator_ownership drift) had failed again, same step, different cause: `build/6S-Success-Home-Edition.epub` differed from a fresh `build_epub.py` build. Per step 2, fixing that was this cycle's work.
+
+**Diagnosed it myself, independently, as a zlib version mismatch (this sandbox's Python links a different zlib than CI's), not real content drift: extracted both archives and diffed all 62 entries byte for byte, identical; only the compressed container bytes differed.** Regenerated the epub locally to "fix" it. Before committing, `git fetch` surfaced that a concurrent session had reached the repository first with a better answer: `fe213300` fixed `gate_generator_ownership` to compare zip entries by content, not raw bytes, immune to the zlib difference, and separately found that this sandbox has no `content/book/**/*.jpg` at all, so a from-scratch rebuild here embeds zero images, a strictly worse file than the real one on sale. My own local rebuild had exactly that defect (0 images embedded, confirmed by rereading my own build's stdout after the fact) and would have shipped a degraded book over the correct one had I pushed first. `ops/ship.py`'s merge reconciled the trees; my dead-end epub rebuild was never staged in the commit that resulted (`913818ed` touches only the dashboard). No harm done, but only because the timing favored the better fix, not because I checked `handle_images()`'s own docstring before rebuilding, which the concurrent entry below says plainly and I did not do first.
+
+**Verified after reconciling:** `python ops/prerender_shop.py --check` clean (159 products, block present), matching the concurrent session's own shop re-render. `preflight.py` (fast, my own sandbox has Chromium so `prerender-shop-current` runs here where CI cannot check it) clean end to end: every gate passed, 23 warnings, all previously diagnosed. Working tree clean after push. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Went well:** fetching before pushing caught a real near-miss rather than shipping a worse book; the existing gate design (content-vs-bytes, skip-on-missing-input) is the correct fix and I did not need to touch it further.
+
+**Did not go well:** I diagnosed the same root cause the concurrent session had already fixed better, and would have shipped a degraded artifact had I been first. The standing lesson from the entry below (read what a generator's own docstring says about missing sandbox inputs before trusting a regenerate-and-diff) applies to me here too, not just to future cycles.
+
+**Changing next cycle:** none; the existing fix is correct, this was a race, not a gap.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main (`913818ed`, dashboard regen only; the real fixes were already on `origin/main` from the concurrent session by the time this push landed). No price or product touched.
+
 ## 2026-09-17, scheduled operator cycle (same session, continued: reconciled with a concurrent identical fix on merge, then caught and gated a near-miss on the book's own EPUB)
 
 **Reconciled, not duplicated.** Pushing the fix below collided with `a11df9dc`, a concurrent local session's own independent fix for the exact same root cause (five new zone photos never propagated past the room pages), found within minutes of this one. Merged rather than force-pushed over it; took their version for every generated/data file (theirs also rebuilt the mobile zone-hero JPEGs and the EPUB, which this fix had not reached), keeping only this session's own log entry as the record of independent discovery. `preflight.py --own` on the merged tree still failed on one thing neither fix had touched: `build/6S-Success-Home-Edition.epub` differed from what `build_epub.py` produces here.
