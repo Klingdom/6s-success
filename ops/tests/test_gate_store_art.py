@@ -123,10 +123,76 @@ def check_listing_lengths(fails: list) -> None:
         fails.append("an empty listing reported no problems at all")
 
 
+def check_staleness(fails: list) -> None:
+    """Added 2026-09-16: a palette or draw() change in ops/build_icons.py
+    (whose draw/DEEP/CREAM ops/build_app_icons.py imports) can leave every
+    store icon the old colour, correctly sized and typed throughout, so the
+    size/colour-type checks above would stay green. This is the same
+    mtime-style staleness shape gate_icons_current already uses for its own
+    generator, tested here by controlling _last_commit_epoch directly rather
+    than the real git history, so the test means the same thing regardless
+    of when this repo's files were actually last committed.
+    """
+    real = preflight._last_commit_epoch
+    epochs = {}
+
+    def fake(path):
+        return epochs.get(path)
+
+    preflight._last_commit_epoch = fake
+    try:
+        # 1. Generator committed BEFORE the art: clean, no warning.
+        preflight.WARN.clear()
+        preflight.FAIL.clear()
+        epochs["ops/build_icons.py"] = 100
+        epochs["ops/build_app_icons.py"] = 100
+        for rel, _size, _colour in preflight.STORE_ART:
+            epochs[rel] = 200
+        preflight.gate_store_art()
+        if any(g == "store-art" and "predate" in m for g, m in preflight.WARN):
+            fails.append("a generator committed BEFORE its art still warned of staleness")
+
+        # 2. THE CASE THIS TEST EXISTS FOR: build_icons.py (not
+        # build_app_icons.py itself) committed AFTER the art. The bug this
+        # gate exists to catch is a palette change in the imported module,
+        # not just an edit to build_app_icons.py's own file.
+        preflight.WARN.clear()
+        preflight.FAIL.clear()
+        epochs["ops/build_icons.py"] = 300
+        preflight.gate_store_art()
+        hits = [m for g, m in preflight.WARN if g == "store-art" and "predate" in m]
+        if not hits:
+            fails.append("ops/build_icons.py committed after the store art did not warn")
+
+        # 3. Same shape, but build_app_icons.py itself is the one that moved.
+        preflight.WARN.clear()
+        preflight.FAIL.clear()
+        epochs["ops/build_icons.py"] = 100
+        epochs["ops/build_app_icons.py"] = 300
+        preflight.gate_store_art()
+        hits = [m for g, m in preflight.WARN if g == "store-art" and "predate" in m]
+        if not hits:
+            fails.append("ops/build_app_icons.py committed after the store art did not warn")
+
+        # 4. Missing git history (a shallow checkout, or a file never
+        # committed) must not be read as "definitely stale".
+        preflight.WARN.clear()
+        preflight.FAIL.clear()
+        epochs.clear()
+        preflight.gate_store_art()
+        if any(g == "store-art" and "predate" in m for g, m in preflight.WARN):
+            fails.append("no commit history anywhere was still read as staleness")
+    finally:
+        preflight._last_commit_epoch = real
+        preflight.WARN.clear()
+        preflight.FAIL.clear()
+
+
 def main() -> int:
     fails = []
     check_png_header(fails)
     check_listing_lengths(fails)
+    check_staleness(fails)
 
     if fails:
         print("test_gate_store_art FAILED:")
@@ -136,6 +202,9 @@ def main() -> int:
     print("  png_header: sizes, colour types, transposition and a non-PNG all correct")
     print("  store_listing_overruns: compliant silent, overrun caught at its true length,")
     print("    a reworded heading reports FIELD MISSING rather than falling silent")
+    print("  staleness: clean when the generator predates the art, warns when either")
+    print("    ops/build_icons.py or ops/build_app_icons.py moved after it, silent with")
+    print("    no history at all")
     print("test_gate_store_art: all cases pass")
     return 0
 

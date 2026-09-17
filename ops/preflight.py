@@ -3431,6 +3431,28 @@ def gate_store_art():
     in a listing until an entirely new build is reviewed. The app shipped with
     no image of any kind, no icon, no splash, no store art, and nothing noticed
     until the listing was being written, which is what this gate is for.
+
+    Found 2026-09-16, cold-reading ops/build_app_icons.py (5 mentions in
+    ops/NIGHTLY-LOG.md, the lowest of any ops/*.py file, per the standing
+    cold-read method): this function checked size and colour type, which
+    catches a missing or mis-shaped file, but nothing here re-derived the
+    art from its own source the way gate_icons_current and
+    gate_cover_author_current already do for their generators. Its
+    docstring's own line, "build_icons.py says plainly that a second
+    hand-made copy of the mark drifts the first time the palette changes",
+    describes exactly the drift this gate could not have caught: a palette
+    or draw() change in ops/build_icons.py (whose draw/DEEP/CREAM this file
+    imports) would leave every store icon the old colour, correctly sized,
+    correctly typed, gate green throughout. Regenerated locally to check for
+    a live defect first, not assumed: 4 of the 5 files came back pixel
+    identical, the fifth (the feature graphic, the only one with rendered
+    text) differed in 6,743 of 512,000 pixels, all inside the text's own
+    bounding box and shaped like anti-aliasing drift between FreeType
+    builds, not a content change, the same non-reproducible-encoding shape
+    gate_icons_current's own docstring already paid for once with PNG
+    compression. So a pixel-diff gate here would be a false-alarm machine
+    across environments; the mtime-style staleness check below is the same
+    one gate_icons_current already uses for exactly this reason.
     """
     for rel, size, colour in STORE_ART:
         path = os.path.join(ROOT, *rel.split("/"))
@@ -3447,6 +3469,16 @@ def gate_store_art():
             fail("store-art", "%s is %s, must be %s%s"
                  % (rel, PNG_COLOUR.get(ct, "type %d" % ct),
                     PNG_COLOUR.get(colour, colour), extra))
+
+    gen_ts = max((_last_commit_epoch("ops/build_icons.py") or 0),
+                 (_last_commit_epoch("ops/build_app_icons.py") or 0))
+    art_ts = min((_last_commit_epoch(rel) or 0) for rel, _size, _colour in STORE_ART)
+    if gen_ts and art_ts and gen_ts > art_ts:
+        warn("store-art",
+             "ops/build_icons.py or ops/build_app_icons.py was committed "
+             "after the store art it draws, so the shipped icons may predate "
+             "a palette or draw() change. Run: python ops/build_app_icons.py "
+             "and commit the result if anything changed.")
 
     if os.path.exists(APP_JSON):
         cfg = json.load(io.open(APP_JSON, encoding="utf-8")).get("expo", {})
