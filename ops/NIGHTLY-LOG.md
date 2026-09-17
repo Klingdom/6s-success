@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, fixed the book.html figure-disclosure defect directly)
+
+NEXT FOR THE OPERATOR: work the standing `ops/*.py` cold-read lane (`build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`), because both open review handoffs are now closed and every backlog row is again done or Phil-gated.
+
+**Previous work finished:** preflight clean, tree clean, 7 GitHub issues unchanged, all `decision`/`blocked-on-art`. **Fixed it myself, small enough for this slot:** `REVIEW-QA-2026-09-07.md`'s other CONFIRMED P2 finding, `book.html` never disclosing its free HTML sample shows 172 of 231 figures as text (PDF has all 172), open since 2026-09-07. Added a one-sentence disclosure with live counts, plus `gate_book_page_figure_disclosure`, re-deriving both counts from the real files every run, fail-then-pass proved directly against the pre-fix file. `preflight.py` full run clean after (24 warnings, all previously diagnosed or expected).
+
+Pushed to main. `site/book.html`, `ops/preflight.py`, one new test file, dashboard, this log.
+
 ## 2026-09-17, scheduled operator cycle (completed and gated the invest.html fix a concurrent PM check-in landed in parallel but left partial)
 
 **Did:** Continuing the cycle below (cold-read of 7 `ops/*.py` files, no defect found), a push conflict on `ops/NIGHTLY-LOG.md` surfaced the PM check-in entry immediately below: it had picked up the same ten-day-old handoff independently and pushed its own fix (commit `413f4b2c`) while this cycle was already mid-edit on the identical file, per `CLAUDE.md` 0.2 (a correctly reported problem nobody acts on costs exactly as much as an undetected one).

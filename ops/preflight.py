@@ -14616,6 +14616,9 @@ def gate_us_spelling_consistency() -> None:
 SAMPLE_PDF_REL = os.path.join(
     "site", "downloads",
     "6S Success Home Edition - Sample (Chapters 1-30).pdf")
+SAMPLE_HTML_REL = os.path.join(
+    "site", "downloads",
+    "6S Success Home Edition - Sample (Chapters 1-30).html")
 
 
 def gate_sample_pdf_spelling() -> None:
@@ -14700,6 +14703,70 @@ def gate_sample_pdf_spelling() -> None:
              f"spelling this gate cannot safely rewrite in place: "
              f"{named}. Needs a source-manuscript edit and recompile, "
              f"not a binary patch.")
+
+
+def check_book_page_figure_disclosure(book_html: str, sample_html: str,
+                                       sample_pdf_bytes: bytes):
+    """None if book.html's figure-format disclosure matches the real sample
+    files, else a string describing the mismatch."""
+    total_figures = len(re.findall(r"<figure\b", sample_html))
+    described = sample_html.count("Figure description")
+    pdf_images = len(re.findall(rb"/Subtype\s*/Image", sample_pdf_bytes))
+
+    m = re.search(
+        r"shows (\d+) of its (\d+) figures as a text description",
+        book_html)
+    if not m:
+        return ("site/book.html carries no disclosure that its free HTML "
+                 "sample and its PDF sample differ in which figures they "
+                 "show; see REVIEW-QA-2026-09-07.md's \"CONFIRMED, P2: the "
+                 "free HTML book has none of the book's pictures\" finding.")
+    cited_described, cited_total = int(m.group(1)), int(m.group(2))
+    if cited_described != described or cited_total != total_figures:
+        return (f"book.html's figure disclosure says {cited_described} of "
+                f"{cited_total}, but the live sample HTML currently has "
+                f"{described} of {total_figures} figures rendered as a "
+                f"text description. Update the disclosure to match.")
+    if pdf_images < described:
+        return (f"book.html's disclosure implies the PDF carries every "
+                f"figure the HTML degrades ({described}), but the live "
+                f"sample PDF only has {pdf_images} embedded image(s). "
+                f"Re-check before claiming the PDF is complete.")
+    return None
+
+
+def gate_book_page_figure_disclosure() -> None:
+    """book.html must disclose, accurately, that its free HTML sample and
+    its PDF sample differ in which figures they show.
+
+    Found 2026-09-07 (REVIEW-QA-2026-09-07.md, "CONFIRMED, P2: the free
+    HTML book has none of the book's pictures"): book.html offered "Read
+    chapters 1 to 30 free" (HTML) beside "Download... (PDF, 31 MB)" with
+    nothing saying they differ. ops/build_sample_html.py degrades every
+    figure whose source image is not in this repository (1.78 GB, kept
+    only on Phil's own machine) to a text description; 172 of the sample's
+    231 figures degrade this way, while the PDF, compiled with the real
+    images available, carries all 172 as embedded image objects.
+
+    Fixed 2026-09-17: a one-sentence disclosure added to book.html's hero,
+    naming both counts. This gate re-derives both counts from the real
+    shipped files on every run, so a future edit to either sample (more
+    chapters added, more source images supplied) fails loudly instead of
+    leaving a disclosure that quietly understates or overstates the gap.
+    """
+    book_path = os.path.join(SITE, "book.html")
+    html_path = os.path.join(ROOT, SAMPLE_HTML_REL)
+    pdf_path = os.path.join(ROOT, SAMPLE_PDF_REL)
+    if not (os.path.exists(book_path) and os.path.exists(html_path)
+            and os.path.exists(pdf_path)):
+        return
+    book_html = io.open(book_path, encoding="utf-8", errors="replace").read()
+    sample_html = io.open(html_path, encoding="utf-8", errors="replace").read()
+    pdf_bytes = open(pdf_path, "rb").read()
+    problem = check_book_page_figure_disclosure(
+        book_html, sample_html, pdf_bytes)
+    if problem:
+        fail("book-page-figure-disclosure", problem)
 
 
 BINARY_EXTS = (".pdf", ".epub", ".mobi", ".png", ".jpg", ".jpeg", ".webp",
@@ -15067,6 +15134,7 @@ def main() -> int:
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
     run_gate(gate_sample_pdf_spelling)
+    run_gate(gate_book_page_figure_disclosure)
     run_gate(gate_binary_files_protected)
     run_gate(gate_test_rotation_isolated)
     run_gate(gate_routine_prompt_current)
