@@ -44,8 +44,10 @@
   "verdict": "ok"
  },
  "family-room--board-game-and-puzzle-zone": {
-  "sha": "b1324fda5d",
-  "verdict": "no"
+  "verdict": "ok",
+  "sha": "ea5ba21d52",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "family-room--charging-and-device-zone": {
   "sha": "87b062123e",
@@ -209,8 +211,10 @@
   "verdict": "ok"
  },
  "kitchen--primary-prep-counter": {
-  "sha": "a33b1faad8",
-  "verdict": "no"
+  "verdict": "ok",
+  "sha": "db1a77690d",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "kitchen--refrigerator-and-freezer": {
   "sha": "637af8499c",
@@ -285,9 +289,10 @@
   "verdict": "ok"
  },
  "mudroom--family-hook-zone": {
-  "sha": "18293aa6d5",
-  "verdict": "no",
-  "why": "does not show the zone. The file is an empty mudroom entry: a glass door, a closed cabinet, two small hooks on a far wall. No family hooks, no named columns, no coats. The page is about giving each person a column."
+  "verdict": "ok",
+  "sha": "d031240358",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "mudroom--pet-station": {
   "sha": "cfc5146572",
@@ -314,9 +319,10 @@
   "verdict": "ok"
  },
  "nursery--crib-and-sleep-zone": {
-  "sha": "5b33d2c31f",
-  "verdict": "no",
-  "why": "malformed cot. The crib on the left has its front rail rendered at an impossible angle with a detached white box floating at its foot. A broken cot is the worst place on this site for a generation artefact."
+  "verdict": "ok",
+  "sha": "6d7aca3570",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "nursery--diaper-and-care-backstock": {
   "sha": "80a366ccc4",
@@ -387,8 +393,10 @@
   "verdict": "ok"
  },
  "primary-bathroom--under-sink-cabinet": {
-  "sha": "ff32167bd2",
-  "verdict": "no"
+  "verdict": "ok",
+  "sha": "d7705aef18",
+  "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
+  "note": "regenerated after an earlier 'no'; best of 3 seeds"
  },
  "primary-bathroom--vanity-counter": {
   "sha": "8c3689482a",

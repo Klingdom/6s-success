@@ -343,17 +343,25 @@ drift back into the background.
 | Job | Images | Flash | Flash batch | Pro |
 |---|---|---|---|---|
 | Entryway deck card art | 89 | $3.47 | $1.74 | $11.93 |
-| Zone hero gaps, measured | 8 | $0.31 | $0.16 | $1.07 |
+| Zone hero gaps, measured | 3 | $0.12 | $0.06 | $0.40 |
 | A second full deck | 89 | $3.47 | $1.74 | $11.93 |
 | Web app and room imagery | 40 | $1.56 | $0.78 | $5.36 |
-| **Everything** | **226** | **$8.81** | **$4.42** | **$30.29** |
+| **Everything** | **221** | **$8.62** | **$4.32** | **$29.62** |
 
 Under thirty-one dollars for the entire illustration backlog at the best
 model, and under five at the cheapest. Both figures fell on 2026-09-04 when
 the zone hero row was first measured rather than assumed: 106 of those 114
 images already exist and are live, so the backlog is 226 images, not 332.
-The zone hero row itself needs none of this money: all eight are a free
-local retry, priced here only so the table's own total stays honest.
+The zone hero row itself needs none of this money: the remaining three are a
+free local retry, priced here only so the table's own total stays honest.
+**Updated 2026-09-17:** five of the eight were regenerated locally, reviewed
+and accepted that day (kitchen prep counter, nursery crib, under-sink cabinet,
+mudroom hook zone, family-room game zone), so 111 of 114 zone pages now carry
+a picture. The three that remain (home office file storage, home office
+printer station, workshop material rack) failed three seeds each: the local
+model renders the room and omits the one object the zone is about, which is
+the same wall the nine Entryway cards hit. They need a stronger model or a
+photograph, not another retry.
 
 **Corrected 2026-09-07, this operator, checked against `ops/hero-verdicts.json`
 directly rather than trusting this row.** The zone hero row above had read 4

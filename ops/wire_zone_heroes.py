@@ -223,7 +223,7 @@ def derivatives(png: str, stem: str) -> dict:
     return made
 
 
-def _srcset(stem: str, prefix: str) -> str:
+def _srcset(stem: str, prefix: str, ext: str = "webp") -> str:
     """The widths that exist, at the widths they really are.
 
     Two faults here at once. The 320 wide variant was generated for all 114
@@ -239,11 +239,15 @@ def _srcset(stem: str, prefix: str) -> str:
     from PIL import Image
     parts = []
     for tag in ("sm", "md", "lg"):
-        f = os.path.join(WEB, f"{stem}-{tag}.webp")
+        f = os.path.join(WEB, f"{stem}-{tag}.{ext}")
         if not os.path.exists(f):
             continue
-        w = Image.open(f).width
-        parts.append((w, f"{prefix}assets/zones/{stem}-{tag}.webp {w}w"))
+        # Width is read from the WebP sibling: Pillow cannot open an AVIF
+        # without a plugin, and both come from the same resize, so the width
+        # is identical by construction.
+        ref = os.path.join(WEB, f"{stem}-{tag}.webp")
+        w = Image.open(ref if os.path.exists(ref) else f).width
+        parts.append((w, f"{prefix}assets/zones/{stem}-{tag}.{ext} {w}w"))
     # Deduplicate by width: on a 768 wide source, md and lg can collapse to
     # the same size, and offering one width twice tells a browser nothing.
     seen, out = set(), []
@@ -406,9 +410,18 @@ def figure(stem: str, meta: dict, prefix: str = "../",
     alt = ALT_VERIFIED.get(stem) or f"{zone} in the {room}, illustrated."
     b = f"{prefix}assets/zones/{stem}"
     srcset = _srcset(stem, prefix)
+    # AVIF first when it exists, WebP behind it. ops/build_avif.py adds that
+    # source to every page it can, and until 2026-09-17 this function did not
+    # know it: re-running --apply for ONE new hero rewrote all 111 matched
+    # pages WITHOUT the avif source, silently undoing about 41 per cent of the
+    # image weight site-wide. Two tools writing the same markup have to agree.
+    avif = _srcset(stem, prefix, "avif")
+    avif_tag = ('    <source type="image/avif" srcset="%s" '
+                'sizes="(max-width:720px) 92vw, 1100px">\n' % avif) if avif else ""
     return (
         f'\n<figure class="zone-hero" id="zone-hero">\n'
         f'  <picture>\n'
+        f'{avif_tag}'
         f'    <source type="image/webp" srcset="{srcset}" '
         f'sizes="(max-width:720px) 92vw, 1100px">\n'
         f'    <img src="{b}-md.jpg" alt="{alt}" width="640" height="480" '
