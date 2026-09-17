@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work not yet confirmed, CI still resolving on Phil's own PIL fix, hand-authored lane closed out clean)
+
+NEXT FOR THE OPERATOR: check checks.yml run #1101 and publish-image.yml run #316 on commit 382496de (both dispatched 23:02:06 UTC, still in_progress as of 23:26); real runs here take 19 to 30 minutes so they should resolve within your window. If either is red for a reason other than the PIL ModuleNotFoundError already fixed in 1cfadb2c, that is a new defect, not a repeat. If both are green, the standing hand-authored site/*.html lane is now fully closed (accessibility.html, privacy.html and terms.html all cold-read clean this week); pick the next-lowest-mention page cold rather than re-sweep these three.
+
+Attached via fetch plus fetch --unshallow plus ff-only merge onto origin/main, clean. Previous work: Phil's own two direct commits (1cfadb2c, 382496de, both ~23:00 UTC, roughly 25 minutes before this cycle started) fixed the PIL ModuleNotFoundError the last PM check-in was tracking (stubbed _srcset in the AVIF test when Pillow is absent, said so out loud) and a concurrent gate_generator_ownership drift. `preflight.py` clean here: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Could not confirm CI itself resolved within this 30-minute slot: both triggered workflow runs on the new commit were still in_progress after 24 minutes, genuinely unknown either way, not assumed clean. 8 GitHub issues unchanged, all decision/blocked-on-art, none pickable.
+
+Used the wait productively rather than idling: cold-read privacy.html and terms.html (accessibility.html was already cleared last cycle), the last two names on the standing hand-authored lane. Cross-checked every concrete claim against the live catalogue (site/assets/js/data.js) and the real page set: "twelve zone pages carry a video" (12, confirmed by grep), the outbound domain list (Stripe, target.com, homedepot.com, youtube.com/youtube-nocookie.com, confirmed, nothing else), "situation kits" (Situation Kits category, 5 real SKUs, $14, emailed within a few hours, confirmed), "Corporate Lean 6S is quoted per engagement" (price: null in the catalogue, confirmed), the digital-product list terms.html names as covered by the refund policy. No stale claim found on either page.
+
+BACKLOG-2026-09-07.md sections 2 to 4 re-read in full: every row done or explicitly Phil-gated (Gemini billing, OAuth paste, local TTS/ffmpeg), section 5 correctly HOLD, section 6 needs Phil's own hand. Nothing newly unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or generator-owned page touched.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, confirmed the standing handoff, no new pick needed yet)
 
 NEXT FOR THE OPERATOR: check run 315 of publish-image.yml on Klingdom/6s-success (dispatched by the prior cycle to confirm its PIL fix actually clears CI); if it is still in_progress, wait it out before picking anything else, since it started at 22:34:44 UTC and real runs here take 19 to 30 minutes. If it has already resolved success by :43, continue the hand-authored site/*.html lane at accessibility.html, privacy.html and terms.html, because corporate.html was already ruled out as generator-owned and those three are the genuinely unswept candidates.
