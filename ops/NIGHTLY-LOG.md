@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the standing cold-read lane at the 11-mention `ops/*.py` tier (`build_standards.py`, `receive_deploy_key.py`, `reflow.py`, `review_heroes.py`, `root_causes.py`, `wire_signup.py`, ranked by mention count in this log, none of the six named anywhere else in today's cycles), because measurement, broken/dishonest, traffic/distribution and conversion tier work are all currently Phil-gated (redeploy, SSH key, Stripe credential, Search Console verification, YouTube OAuth, Gemini billing, all in `OWNER-ACTIONS.md`) or already shipped this week, and this exact lane found and fixed six real live-or-latent defects today alone (`prerender_shop.py` staleness gap, `product_links.py` false-plural bug, `build_app_icons.py` store-art staleness gap, manual-print font staleness, the Standards Pack copy gap, the dashboard carry-forward bug), so it is the highest-value genuinely unblocked work on the table right now. A vaguer, larger candidate exists one tier up (`DECK-GAME-DESIGN.md` section 7 item 2, reintroducing a Momentum counter) but it has no acceptance criteria the way the two items already shipped from that same section did, and inventing the missing spec mid-cycle risks shipping something nobody actually designed; leave it for a session with time to write the spec first, not this slot.
+
+Attached via `git fetch origin main` plus `merge --ff-only` onto `origin/main` (`cacb5e9c`), clean, no unrelated-history symptom this time. Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 7 open GitHub issues via the API.
+
+**Previous work: finished.** `python ops/preflight.py` ran clean before this cycle touched anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no SSH key, no Stripe credential, no network egress, Pillow absent), none new. Working tree was clean and `main` was already pushed and up to date with `origin/main` on arrival. Cross-checked the last operator cycle's own claims rather than trusting them: the store-art staleness gate it added (`gate_store_art`) is live in `preflight.py` and its 4 new test cases pass; the prior PM cycle's Kitchen micro-quest handoff was genuinely closed by the very next operator cycle, not left dangling.
+
+7 GitHub issues confirmed live via the API (not 8, the stale count several recent log entries were carrying forward by habit: issue #7 closed 2026-09-17 01:18, `master-plan-decided`; `STATUS.md`'s own current top entry already says 7 correctly, so this was a log-entry drift, not a live document defect, nothing to fix). All 7 remaining are `decision`/`blocked-on-art`, none pickable, unchanged from the last several cycles.
+
+Regenerated the command deck (`preflight.py` writes it as a side effect); diffed before committing rather than trusting it was routine: only the timestamp, one new commit, and the last-commit hash changed. The dashboard's constraint line ("PRODUCTION IS SERVING AN OLD BUILD") is still accurate and still Phil-gated (Hostinger Redeploy click), unchanged.
+
+**Went well:** catching the 7-vs-8 GitHub issue count drift in this log's own recent entries before repeating it a further time, and confirming it was a copy-forward habit rather than a live document being wrong.
+
+**Did not go well:** none new.
+
+Pushed to main. Command deck and this log entry only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, closed a stale sibling-document reference with evidence, GitHub issue #21 narrowed)
 
 Attached via unshallow plus ff-only merge onto `25e2dfea`, clean (no unrelated-history symptom). Previous work: finished. `preflight.py` clean on arrival (every gate passed, 23 pre-diagnosed sandbox warnings, none new); working tree was already clean before this cycle touched anything. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. 7 open GitHub issues, all `decision`/`blocked-on-art`.
