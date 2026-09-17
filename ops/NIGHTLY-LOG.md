@@ -22,6 +22,26 @@ NEXT FOR THE OPERATOR: get VPS access to re-run the Umami traffic query and reco
 
 Pushed to main. `GOALS.md`, `RISKS.md`, command deck, this entry. No price or product touched, no site page changed. IndexNow not applicable.
 
+## 2026-09-17, scheduled operator cycle (full unbackgrounded preflight run, clean; no new defect; two money-domain files cold-read clean)
+
+**Did:** Attached via unshallow plus ff-only merge onto `origin/main` (`6b5b3c96`), clean, 388-commit fast-forward, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s header, and the last several log entries before touching anything. Sections 2, 3 and 4 of the backlog (micro zones/app, decks, images/video) are each fully done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth); section 1b's one open decision (23 kits/bundles named on no page) already has issue #32 filed, unchanged since 2026-09-16, still correctly Phil's to decide, not mine to force. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. No mail credential; `inbox_agent.py --apply` reports UNCHECKED, not empty, same as every prior cycle.
+
+**Ran `python ops/preflight.py` to real completion in the background** rather than foreground-killed (the recurring risk this log has flagged repeatedly): took about 9 minutes end to end, `gate_tests` (full `ops/tests/` suite) and `gate_scheduled_workflow_cadence` (live GitHub Actions API) the two slow steps. Result: **every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress to the live site, no Stripe/mail/ssh credential, no Pillow), 0 new.** Confirmed the mid-run dirty tree (`gate_etsy_pdfs_current` regenerating and re-diffing the three Etsy PDFs) was restored to the committed state before treating anything as clean, not assumed from the gate's own PASS alone.
+
+**Cold-read two low-mention `ops/*.py` files in the money domain** (`revenue_model.py`, 5 mentions; ran `check_sellable.py`/`stripe_fulfil.py` by name check only, both already covered this week): ran `revenue_model.py` directly rather than reading it cold, confirmed it executes clean against the live 159-item catalogue with no `KeyError`/`ZeroDivisionError`, and that its own labelled assumptions (the n=7 checkout ratio, the 1-3% visit-to-checkout band) still match `LEARNINGS.md`'s LRN-0010. No defect found; this is an analysis tool with no customer-facing artifact and nothing to gate.
+
+**Verified:** `ops/state.json`'s revenue/customer/traffic fields all read as honest carry-forward with a dated citation (`revenue_month: $0, carried forward... because this run could not reach Stripe this month`), not a silent zero; checked against `EXECUTIVE-DASHBOARD-LIVE.md`'s rendered text directly. `deploy_verdict` reads `current` (carried from `2026-09-17T17:10:04Z`), no redeploy gap open right now. Regenerated the command deck (`ops/dashboard.py`) last, after preflight's own run.
+
+**Went well:** backgrounding the full run instead of letting a wrapper timeout kill it mid-gate, which has cost prior cycles a false "unknown" reading.
+
+**Did not go well:** none new. The standing sandbox limits (no egress, no Stripe/mail/ssh credential) are unchanged and already documented in every prior entry.
+
+**Changing next cycle:** none; no new defect, no new gate to write. The cold-read and hand-authored-page lanes both remain reported exhausted by today's prior cycles; the next unblocked slot is either a fresh angle on an already-read file or waiting on a GitHub/mail event.
+
+**Next:** all 7 GitHub issues remain decision/blocked-on-art, none pickable without Phil. Standing owner-gate list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the six on-device screenshots, item 1f VPS disk cleanup).
+
+Pushed to main. Command deck only; no code, content, price or product touched. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished; six-page hand-authored cross-check closed clean)
 
 **Previous work: finished.** Attached clean (386-commit ff-forward). `preflight.py` foreground-killed by the 100s timeout (recurring risk), working tree checked before acting: only an honest command-deck regen was dirty, no generator caught mid-chain. Reran backgrounded to completion: every gate passed, 22 warnings, all pre-diagnosed, 0 new. 7 GitHub issues unchanged, all decision/blocked-on-art, none pickable.
