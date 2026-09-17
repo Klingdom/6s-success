@@ -68,6 +68,39 @@ def test_matcher_requires_a_whole_word():
           P.matches("3m-safety-glasses-clear", "safety-glass"))
 
 
+def test_matcher_plural_does_not_fabricate_a_different_word():
+    """The bug found 2026-09-17, cold-reading this file.
+
+    An unconditional "+es" plural made "can" also match "canes" (walking
+    canes), "tub" match "tubes", "pan" match "panes" (window panes) and "mat"
+    match "mates": four real, unrelated words, none of them the plural of
+    the keyword. That is the exact failure this file's own docstring names
+    for substrings, just reached a different way: a verification that
+    certifies the wrong product is worse than none, because it looks like
+    evidence. None of the 120 links live today happened to depend on it
+    (checked against ops/product-links-evidence.json's own recorded
+    matches), so this closes a live loophole, not an active wrong link.
+    """
+    check("'can' does not match 'canes'",
+          not P.matches("folding-walking-canes-3-pack", "can"))
+    check("'tub' does not match 'tubes'",
+          not P.matches("cardboard-mailing-tubes-12in", "tub"))
+    check("'pan' does not match 'panes'",
+          not P.matches("replacement-window-panes-clear", "pan"))
+    check("'mat' does not match 'mates'",
+          not P.matches("bunk-bed-mates-hardware-kit", "mat"))
+    # The rule this replaces still has to work where "-es" is genuinely the
+    # English plural: box/glass/brush/latch all end the way that requires it.
+    check("'box' still matches 'boxes'",
+          P.matches("small-parts-storage-boxes-clear", "box"))
+    check("'glass' still matches 'glasses'",
+          P.matches("3m-safety-glasses-clear", "glass"))
+    check("'brush' still matches 'brushes'",
+          P.matches("stiff-bristle-scrub-brushes-2pk", "brush"))
+    check("'latch' still matches 'latches'",
+          P.matches("child-safety-cabinet-latches-4pk", "latch"))
+
+
 def test_judge_states():
     slugs = "".join(f'href="/p/microfiber-cloth-{i}/-/A-{i}"' for i in range(6))
     state, hits, n, _ = P.judge("target", slugs, ["microfiber"])

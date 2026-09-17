@@ -698,12 +698,23 @@ def matches(slug: str, keyword: str) -> bool:
     ordinary plurals a retailer uses. A keyword written with a hyphen is a
     phrase ("safety-glass", "dry-erase") and is matched across the slug,
     because that is the only way to pin a two-word type.
+
+    The "-es" plural was tried unconditionally at first and that was also
+    wrong, the same shape of bug this function's own docstring already
+    describes for substrings: "can" + "es" is "canes", a real word for a
+    real, unrelated product (walking canes), and the same happens for
+    "tub" -> "tubes", "pan" -> "panes", "mat" -> "mates", none of which are
+    plurals of the keyword at all. English only appends "-es" after s, x, z,
+    ch or sh ("box" -> "boxes", "brush" -> "brushes"), so that is the only
+    case this checks for it. A keyword's plain "-s" form is always allowed.
     """
     kw = keyword.lower()
     if "-" in kw:
         return kw in slug
-    return any(t == kw or t == kw + "s" or t == kw + "es"
-               for t in slug.split("-"))
+    forms = {kw, kw + "s"}
+    if kw.endswith(("s", "x", "z", "ch", "sh")):
+        forms.add(kw + "es")
+    return any(t in forms for t in slug.split("-"))
 
 
 def judge(merchant: str, html: str, keywords: list) -> tuple:
