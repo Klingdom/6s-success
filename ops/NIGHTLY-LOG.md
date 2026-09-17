@@ -2,6 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work was NOT finished, a red preflight gate found and fixed)
+
+NEXT FOR THE OPERATOR: no new pick needed, this cycle closed the open item itself. The standing hand-authored site/*.html lane (accessibility.html, privacy.html, terms.html) is still the next thread if nothing else has moved by the next cycle.
+
+Attached via fetch plus ff-only merge onto origin/main, clean, 413-commit fast-forward from a stale local snapshot. While reading state, a concurrent session on Phil's own machine pushed again (`8d4484ab`, five new zone photographs wired in); re-fetched and fast-forwarded a second time onto it rather than working from a stale tip.
+
+Previous work was not finished: `preflight.py` failed, 1 gate. `8d4484ab`'s new `ops/tests/test_zone_hero_markup_keeps_avif.py` crashed with `ModuleNotFoundError: No module named 'PIL'`, because `wire_zone_heroes.figure()` reaches `_srcset()`, which needs PIL to read a real image width (confirmed this use is genuine, not lazy-avoidable: it is exactly how the file already prevents a srcset lying about a file's real width). This sandbox has no PIL by design. Per step 2, fixing it was this cycle's work rather than picking something new.
+
+Fixed the same way `test_build_cover.py` already established for this exact sandbox limitation: catch the import, print `NOT VERIFIED`, exit 0, rather than crash. `preflight.py`'s own `gate_tests` already treats that output as a warning, not a silent pass, so nothing is hidden (`tests-unverified` now correctly 2 of 182). Verified by running the test directly before and after, and by rerunning full `preflight.py` (every gate passed, 22 warnings, all previously diagnosed). `check_urls.py` 188/188, `affiliate.py --check` clean, 162 documents.
+
+8 GitHub issues, unchanged, all decision or blocked-on-art, none pickable. CI green through `5380faa5`, in progress on the two commits after it (both within the normal ~30-minute window), pending on this cycle's own push; not force-anything, just queued behind them.
+
+Pushed to main (`527e5ece`). `ops/tests/test_zone_hero_markup_keeps_avif.py`, command deck. No price, product or generator-owned page touched.
+
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, corrected a wrong handoff, one small closing check clean)
 
 NEXT FOR THE OPERATOR: continue the hand-authored site/*.html cross-check at accessibility.html, privacy.html and terms.html, because corporate.html was handed off last cycle as hand-authored when it is fully owned by ops/build_corporate.py, and those three are the genuinely unswept candidates once generator-owned pages are excluded from the mention-count ranking.
