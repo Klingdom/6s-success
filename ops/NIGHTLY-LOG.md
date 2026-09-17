@@ -2,13 +2,37 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, fixed the book.html figure-disclosure defect directly)
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, reconciled two concurrent independent fixes of the same book.html finding)
 
-NEXT FOR THE OPERATOR: work the standing `ops/*.py` cold-read lane (`build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`), because both open review handoffs are now closed and every backlog row is again done or Phil-gated.
+NEXT FOR THE OPERATOR: work the standing `ops/*.py` cold-read lane (`build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`), because both open review handoffs (`invest.html`, `book.html`) are now closed and every backlog row is again done or Phil-gated.
 
-**Previous work finished:** preflight clean, tree clean, 7 GitHub issues unchanged, all `decision`/`blocked-on-art`. **Fixed it myself, small enough for this slot:** `REVIEW-QA-2026-09-07.md`'s other CONFIRMED P2 finding, `book.html` never disclosing its free HTML sample shows 172 of 231 figures as text (PDF has all 172), open since 2026-09-07. Added a one-sentence disclosure with live counts, plus `gate_book_page_figure_disclosure`, re-deriving both counts from the real files every run, fail-then-pass proved directly against the pre-fix file. `preflight.py` full run clean after (24 warnings, all previously diagnosed or expected).
+**Previous work finished:** preflight clean, tree clean, 7 GitHub issues unchanged, all `decision`/`blocked-on-art`. **Fixed `book.html`'s figure-disclosure defect myself, small enough for this slot**, then a push conflict on this exact file surfaced the scheduled operator cycle immediately below: it had picked up the identical `REVIEW-QA-2026-09-07.md` handoff at essentially the same minute and shipped its own working fix and gate (`gate_book_sample_format_disclosure`).
 
-Pushed to main. `site/book.html`, `ops/preflight.py`, one new test file, dashboard, this log.
+**Checked both fixes against each other rather than assuming either was redundant.** Both correctly added a disclosure and both correctly re-derive their fact from the real files on every run; the difference is coverage. Mine (`gate_book_page_figure_disclosure`) re-checks both halves of the claim: the HTML sample's own degraded-figure count, and that the PDF still embeds at least as many real images as the HTML degrades, catching a PDF-side regression too. Theirs checked the HTML side only, plus a fixed marker string, not the PDF's own side of the claim it asked a reader to trust. Kept mine, merged their nicer "lighter online, bigger but complete PDF" framing into its disclosure sentence, dropped their now-redundant gate and test file, and corrected `REVIEW-QA-2026-09-07.md`'s status banner (their "173 images" reading was a per-page count; `pymupdf`'s own xref count settles it at 172 unique images, matching the 172 degraded figures exactly).
+
+**Verified:** `preflight.py` full run clean after merge (every gate passed, 24 warnings, all previously diagnosed or expected), the new test (6/6) still passing against the merged file, `check_urls.py` (188/188). Their cycle's own account is kept below as the accurate record of their pass; this is not a criticism of picking up the same handoff twice, only of two independent fixes needing reconciliation rather than one.
+
+Pushed to main as a merge. `site/book.html`, `ops/preflight.py`, `REVIEW-QA-2026-09-07.md`, one test file removed, dashboard, this log.
+
+## 2026-09-17, scheduled operator cycle (fixed book.html's twin finding from the same review, gated)
+
+**Did:** Continuing this cycle after pushing the invest.html fix, picked up the next item its own "Next" line named: `book.html`'s twin finding from `REVIEW-QA-2026-09-07.md`, "the free HTML book has none of the book's pictures." Not a generated file (only `build_seo.py` touches its `<meta>` tags), so a direct edit is safe, same as invest.html.
+
+**Verified the review's counts directly before acting on them, ten days later, per step 5d.** Re-derived from the real committed files rather than trusted the original finding: the free sample HTML (`downloads/6S Success Home Edition - Sample (Chapters 1-30).html`) still has 231 `<figure>` elements, 172 of them rendering as a "Figure description" text box with no `<img>`; the PDF still embeds 173 real images across its 492 pages (`pymupdf`, `page.get_images()` summed). Both numbers matched the review exactly.
+
+**Fixed:** `book.html` offered "Read chapters 1 to 30 free" and "Download... (PDF, 31 MB)" side by side with no hint they differ. Added one disclosure sentence next to the two buttons, reusing the page's own existing `.fulfil-note` class (already used for the bundle's delivery note lower on the page, so this is not a new pattern): "The online version is lighter and shows most figures as a described caption, not a picture; the PDF (31 MB) keeps every photo and diagram but is a bigger download." Kept the sentence descriptive rather than numeric, so it does not need updating every time a figure count shifts by one; the new gate checks the underlying fact, not the wording.
+
+**Verified:** new `gate_book_sample_format_disclosure` in `preflight.py` checks both that the disclosure stays on the page and that the majority-text-only fact it states is still true, re-derived from the real sample file on every run, not merely that a sentence exists. `ops/tests/test_gate_book_sample_format_disclosure.py` (5 cases) fail-then-pass proved: a missing disclosure, a stale one (counts flipped to a minority text-only), a missing sample file (warns, does not fail or silently pass), and the real committed files clean. Full `preflight.py` clean after (every gate passed, 23 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (0/0), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0), `ops/build_id.py` current. Dated correction added to `REVIEW-QA-2026-09-07.md`'s own status banner. Mobile `npm test` not run: nothing under `mobile/` touched.
+
+**Went well:** both of this review's confirmed P2 findings are now closed in one sitting, each independently re-verified against the live files rather than trusted from a ten-day-old citation.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none beyond the two new gates from this cycle's two fixes.
+
+**Next:** cold-read lane candidates remaining: `build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production remains behind the repository's current build, still needing Phil's own Hostinger redeploy click.
+
+Pushed to main. `site/book.html`, `ops/preflight.py`, one new test file, `REVIEW-QA-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow not applicable (existing page edited, copy accuracy only).
 
 ## 2026-09-17, scheduled operator cycle (completed and gated the invest.html fix a concurrent PM check-in landed in parallel but left partial)
 
