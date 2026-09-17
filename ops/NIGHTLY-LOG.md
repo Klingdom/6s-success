@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (previous work finished; a concurrent session pushed mid-cycle, merged clean; no new closeable item)
+
+Previous work finished: yes. Attached via unshallow plus ff-only merge onto `507baecf`. Full `preflight.py`: every gate passed, 23 known warnings, none new. Mid-cycle, a concurrent scheduled operator pushed three commits (store-art staleness gate, a nightly-log ordering fix); fetched and ff-merged rather than working around it, reran `preflight.py` clean after. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable; checked #7 specifically for staleness (the master-plan file it names is still unreferenced by any generator or page, genuinely still Phil's call, not superseded). Backlog sections 2-6 again done or Phil-gated. Kitchen micro-quest authoring stays the one unblocked non-Phil item, still too large for this slot; leaving it for the hourly operator.
+
+Pushed to main. Command deck only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (closed a real store-art staleness gap before it caused a defect; no live customer or product touched)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (250 commits) and `merge --ff-only` attached cleanly onto `origin/main` at `273f3ad0`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, and `GOALS.md`. `preflight.py` full run clean before touching anything: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential, inbox unchecked as always in this sandbox. No network egress at all confirmed directly (a plain HTTPS request to 6s-success.com and to google.com both refused by the proxy), so no traffic/SEO/production-verification work was possible this cycle; every backlog row in sections 2 through 6 was again done or Phil-gated. Cold-read `ops/build_app_icons.py`, the lowest-mention `ops/*.py` file (5, against a floor of 10 everywhere else), continuing the standing method.
