@@ -166,7 +166,15 @@ on:
 # all, so this should fire far less often going forward.
 concurrency:
   group: checks-${{ github.ref }}
-  cancel-in-progress: true
+  # main is never cancelled; branches still are. Measured 2026-09-17: of the
+  # last 12 Checks runs, 5 were cancelled, and a successful run takes 28 to 31
+  # minutes while concurrent sessions push every few minutes. Under
+  # cancel-in-progress: true that meant main's own verification rarely
+  # finished, so 'CI is green' was usually a claim about some older commit.
+  # This repository is public, so Actions minutes are free and the only cost
+  # of letting main's runs finish is queue time. On a branch, superseding a
+  # stale run is still the right trade.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   checks:

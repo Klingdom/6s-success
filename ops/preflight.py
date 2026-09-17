@@ -6671,6 +6671,54 @@ def gate_workflow_no_raw_expr_in_run(wf_dir=None) -> None:
              % ", ".join(offenders))
 
 
+def gate_checks_main_not_cancelled(wf_path=None) -> None:
+    """A push to main must never cancel main's own in-flight verification.
+
+    Found 2026-09-17 by measuring instead of assuming: of the last 12 Checks
+    runs, 5 were cancelled, and a successful run takes 28 to 31 minutes
+    (measured from the Actions API, createdAt to updatedAt) while concurrent
+    sessions push every few minutes. checks.yml carried
+    cancel-in-progress: true for every ref, so on main the usual outcome was
+    that no run ever finished and "CI is green" was a statement about some
+    older commit. The paths filter added 2026-09-13 reduced how often the
+    bookkeeping commit triggered this; it could not fix the case where two
+    real commits land minutes apart, which is normal here.
+
+    Fixed by making cancellation conditional on the ref. Branches still
+    supersede stale runs, which is the right trade there. The repository is
+    public, so the only cost of letting main's runs finish is queue time.
+
+    This gate reads the file, not GitHub: it proves the expression is still
+    ref-conditional and still names main, so a future edit cannot quietly
+    restore the unconditional form.
+    """
+    path = wf_path or os.path.join(ROOT, ".github", "workflows", "checks.yml")
+    if not os.path.exists(path):
+        return
+    text = open(path, encoding="utf-8", errors="replace").read()
+    body = "\n".join(l.split("#", 1)[0] for l in text.splitlines())
+    m = re.search(r"cancel-in-progress:\s*(.+)", body)
+    if not m:
+        fail("checks-main-not-cancelled",
+             "checks.yml no longer declares cancel-in-progress at all; this "
+             "gate cannot tell whether main's own verification can be "
+             "cancelled by the next push")
+        return
+    value = m.group(1).strip()
+    if value in ("true", "'true'", '"true"'):
+        fail("checks-main-not-cancelled",
+             "checks.yml has cancel-in-progress: true again. On 2026-09-17 "
+             "that meant 5 of the last 12 runs were cancelled and main was "
+             "usually unverified, because a run takes 28-31 minutes and "
+             "pushes arrive faster than that. Make it conditional on the ref.")
+        return
+    if "github.ref" not in value or "refs/heads/main" not in value:
+        fail("checks-main-not-cancelled",
+             "checks.yml's cancel-in-progress is %r: it no longer excludes "
+             "main by name, so main's own verification can be cancelled by "
+             "the next push" % value)
+
+
 def gate_checks_excludes_generated_files(wf_path=None) -> None:
     """checks.yml must not retrigger itself on its own generated output.
 
@@ -15309,6 +15357,7 @@ def main() -> int:
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
     run_gate(gate_checks_excludes_generated_files)
+    run_gate(gate_checks_main_not_cancelled)
     run_gate(gate_ci_path_filter_covers_preflight_inputs)
     run_gate(gate_ops_test_suite_matches_gate_tests)
     run_gate(gate_no_hardcoded_git_history)

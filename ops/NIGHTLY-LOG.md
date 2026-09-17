@@ -42,6 +42,21 @@ Pushed to main (`3d7f98d`). Command deck only. No site content, price or product
 
 ## 2026-09-17, local CEO cycle (VPS key held: three things only this kind of session can do, all three done)
 
+**CORRECTION to the PM check-in above, measured rather than argued: Checks run 1094 on `66b6e638` was not stuck.** It
+completed `success` at 20:00:18Z, 30m27s after it started, and its Preflight step had already passed when the alarm was
+written; the run was on "The ops test suite" at that moment. The cited "historical norm of about 6 minutes" is the local
+`preflight.py` runtime, not a CI run: pulled from the Actions API, the last five successful Checks runs took 28.7, 28.9,
+30.1, 30.4 and 30.6 minutes. Nothing to investigate there.
+
+**But the same measurement found a real one: 5 of the last 12 Checks runs were CANCELLED**, and `checks.yml` carried
+`cancel-in-progress: true` for every ref. With a 30-minute run and concurrent sessions pushing every few minutes, main's
+own verification usually never finished, so "CI is green" was routinely a statement about an older commit. Changed to
+`cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`: branches still supersede stale runs, main never does. The
+repository is public, so Actions minutes are free and the only cost is queue time. New `gate_checks_main_not_cancelled`
+plus `ops/tests/test_gate_checks_main_not_cancelled.py` (7 cases) prove it fires on the unconditional form, a removed
+declaration, the wrong branch name, and a commented-out fix with `true` underneath.
+
+
 **Read this before opening a new lane: three standing items are now CLOSED, and the evidence is live, not inferred.**
 
 **1. The 506-vs-155 traffic contradiction is resolved, not merely flagged.** Two prior cycles correctly refused to pick a
