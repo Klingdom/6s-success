@@ -2,19 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, CI confirmation on the newest commit handed to the operator)
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified locally; a real CI anomaly found and handed to the operator, not a routine "still running")
 
-NEXT FOR THE OPERATOR: confirm CI green on `66b6e638` (Checks run 1094, still `in_progress` after 6+ minutes at this cycle's close), because that commit carries the traffic-reconciliation fix into every gate-checked file and nobody has watched it land yet.
+NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://github.com/Klingdom/6s-success/actions/runs/35265222032), because its "Preflight" step has been `in_progress` for 15+ minutes against a historical norm of about 6 minutes total, and my own follow-up push (`3d7f98d`) has not even queued a new `checks.yml` run behind it, both of which are abnormal, not routine "not yet confirmed."
 
-**Previous work: finished.** Unshallowed and ff-only merged onto `origin/main` clean. A concurrent local session (real VPS access) resolved the 506-vs-155 contradiction the last PM check-in named: both numbers were real, just mismatched units (pageviews vs. events) on one session's row. Fixed and propagated into GOALS.md, RISKS.md, STATUS.md, OWNER-ACTIONS.md, `ops/roadmap_report.py`, `ops/experiments.json`, all in one commit. CI on the prior commit (`ce887165`) confirmed green directly via the GitHub API, closing the last cycle's own open question.
+**Previous work: finished, verified independently, not just cited.** Unshallowed and ff-only merged onto `origin/main` clean. A concurrent local session (real VPS access) resolved the 506-vs-155 traffic contradiction the last PM check-in named: both numbers were real, just mismatched units (pageviews vs. events) on one session's row. Fixed and propagated into GOALS.md, RISKS.md, STATUS.md, OWNER-ACTIONS.md, `ops/roadmap_report.py`, `ops/experiments.json`, all in one commit. CI on the prior commit (`ce887165`) confirmed green directly via the GitHub API, closing the last cycle's own open question. Ran `preflight.py` to real completion here (backgrounded, about 4 minutes): every gate passed, 22 standing warnings, all previously diagnosed sandbox limits, 0 new.
 
-**Checked, not fixed further:** 8 open issues, all `decision` or `blocked-on-art`, none pickable per STEP 3. The three reordered owner gates (Search Console, YouTube OAuth, Stripe description) all need Phil's own login. `preflight.py` was still running `gate_tests` after 6+ minutes at close; not confirmed here.
+**The finding: the same commit's own CI run has not finished a fast preflight in over 15 minutes**, per `list_workflow_jobs` on run 1094: the "Preflight" step alone started at 19:31:39 and was still `in_progress` past 19:47. Local preflight on the identical commit finished clean in about 4 minutes, so this is not the work being slow, it looks like a stuck or starved runner. Per CLAUDE.md 0.4, an unfinished check must be reported as unfinished, not assumed to be "about to pass."
 
-**Went well:** verifying the prior cycle's CI claim instead of citing it.
+**Checked, not fixed further:** 8 open issues, all `decision` or `blocked-on-art`, none pickable per STEP 3. The three reordered owner gates (Search Console, YouTube OAuth, Stripe description) all need Phil's own login.
 
-**Did not go well:** could not get either CI or local preflight to a confirmed state within the 30-minute slot; both handed forward.
+**Went well:** verifying the prior cycle's CI claim instead of citing it, and catching that this cycle's own "still running" was actually anomalous rather than routine.
 
-Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+**Did not go well:** could not get CI to a confirmed state within the 30-minute slot; a real possible CI-runner problem is now the operator's first job at :43, ahead of anything else.
+
+Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
 
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, one real tracking gap found and filed, no new closeable item)
 
