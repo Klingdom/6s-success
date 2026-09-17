@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, CI confirmation on the newest commit handed to the operator)
+
+NEXT FOR THE OPERATOR: confirm CI green on `66b6e638` (Checks run 1094, still `in_progress` after 6+ minutes at this cycle's close), because that commit carries the traffic-reconciliation fix into every gate-checked file and nobody has watched it land yet.
+
+**Previous work: finished.** Unshallowed and ff-only merged onto `origin/main` clean. A concurrent local session (real VPS access) resolved the 506-vs-155 contradiction the last PM check-in named: both numbers were real, just mismatched units (pageviews vs. events) on one session's row. Fixed and propagated into GOALS.md, RISKS.md, STATUS.md, OWNER-ACTIONS.md, `ops/roadmap_report.py`, `ops/experiments.json`, all in one commit. CI on the prior commit (`ce887165`) confirmed green directly via the GitHub API, closing the last cycle's own open question.
+
+**Checked, not fixed further:** 8 open issues, all `decision` or `blocked-on-art`, none pickable per STEP 3. The three reordered owner gates (Search Console, YouTube OAuth, Stripe description) all need Phil's own login. `preflight.py` was still running `gate_tests` after 6+ minutes at close; not confirmed here.
+
+**Went well:** verifying the prior cycle's CI claim instead of citing it.
+
+**Did not go well:** could not get either CI or local preflight to a confirmed state within the 30-minute slot; both handed forward.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, one real tracking gap found and filed, no new closeable item)
 
 **Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`ce887165`, a merge of two concurrent cycles), clean, no unshallow needed this time. `python ops/preflight.py` run to real completion in the background (about 6 minutes): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS SSH key, no Stripe credential, no Pillow, no egress), 0 new. Working tree was clean except the dashboard's own regen. Main was already at the same commit as `origin/main`. 7 GitHub issues checked live via the API before this cycle's own addition: unchanged, all `decision`/`blocked-on-art`, none pickable without Phil, matching the prior PM check-in's own conclusion that both the `ops/*.py` cold-read lane and the hand-authored `site/*.html` lane are exhausted (re-confirmed rather than re-read cold: every `ops/*.py` file now has 9+ mentions in this log, none at the zero/low tier that method depends on).
