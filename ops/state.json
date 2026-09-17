@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-17 22:52",
- "commit": "f3b574b8",
- "commit_msg": "Log a real CI failure found this cycle and the manual rebuild dispatched to confirm the fix",
- "commits_7d": 1246,
- "commits_total": 2603,
+ "generated": "2026-09-17 23:03",
+ "commit": "322bd988",
+ "commit_msg": "Clean verification pass: confirm no backlog work is stuck unpicked",
+ "commits_7d": 1245,
+ "commits_total": 2604,
  "traffic_line": "949 pageviews from 78 visitors across 200 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 508 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-17 16:11; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "949 pageviews from 78 visitors across 200 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 508 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-17 16:11",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-17 16:11",
  "affiliate_trigger_carried_from": "2026-09-17 16:11",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
