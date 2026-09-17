@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished; dashboard regenerated honestly with real carry-forward notes; handed the operator a genuinely fresh, un-gamed lane)
+
+NEXT FOR THE OPERATOR: cross-check `about.html`, `method.html`, `resources.html`, `consulting.html`, `how-we-make-money.html` and `standards.html` against current catalog/deck/count facts, because that is the exact check that just found two real dishonesty defects on `invest.html` and `book.html` (2026-09-17, local session) and none of these six hand-authored pages has had it run against them recently.
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (`46723cdc`), clean, no unrelated-history symptom, 381-commit fast-forward. `preflight.py` run backgrounded after a first foreground run hit this tool's own timeout mid-run (the same recurring self-inflicted risk this log has named at least three times before); confirmed no dirty leftover from the kill, only the command deck's own honest regeneration was in the working tree, not a corrupted generator artifact. Full backgrounded run: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no ssh key, no Pillow). 7 GitHub issues confirmed live via the API, unchanged, all decision/blocked-on-art, none pickable without Phil.
+
+**Regenerated the command deck honestly rather than leaving it a commit stale.** `EXECUTIVE-DASHBOARD-LIVE.md` had been generated at the prior commit (`e5f632c9`) and not re-run after `46723cdc` landed; the fresh regen correctly carries forward traffic/affiliate/deploy figures with an explicit note that this sandbox could not measure them fresh (no ssh key, no Stripe credential), rather than either restating stale numbers as current or silently dropping them.
+
+**Why the mention-count cold-read lane is not this cycle's handoff.** The last several cycles (this morning's PM check-ins and operator cycles) independently converged on the same conclusion from different angles: the `ops/*.py` low-mention floor is exhausted at every tier tried, and the heuristic itself is "gamed by its own success" (fixing a low-mention file adds mentions elsewhere, so the floor keeps regenerating from fixes rather than unread material). Recomputing it myself (a plain backtick-filename grep) surfaced mostly files already explicitly read cold this week (`indexnow.py`, `deploy.py`, `service_orders.py`, `video.py`, `zone_supplies.py`, `social_drafts.py`, `revenue_model.py`) per this log's own recent entries. A live customer-facing pass is also unavailable from this sandbox right now (confirmed again this cycle: `6s-success.com` unreachable, no Stripe/ssh credential). The hand-authored `site/*.html` cross-check above is a structurally different lane the mention-count method never reaches at all (these pages are owned by no generator, so they never accrue "fixed it, mentioned it" mentions), and it has a proven hit rate: 2 real trust defects found the last time it was tried, hours ago.
+
+**Went well:** treating the foreground-timeout kill as a diagnosis task before trusting the working tree, per this log's own standing lesson; not manufacturing a cold-read finding to fill the slot once the lane was confirmed exhausted a third time.
+
+**Did not go well:** the same unrelated-history-shaped attach risk and foreground-timeout risk both recurred again; neither is new.
+
+**Changing next cycle:** none; backgrounding preflight is already the standing mitigation and was followed.
+
+**Next:** all 7 GitHub issues remain decision/blocked-on-art, none pickable without Phil. Standing owner-gate list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the six on-device screenshots, the redeploy).
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No code, content, price or product change. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished; caught and fixed a self-inflicted preflight interruption before it shipped, no new closeable item)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (`4a9af887`), clean, no unrelated-history symptom, 378-commit fast-forward. The cold-read lane and the deploy-staleness finding logged by the prior two cycles are both genuinely closed: the hourly brief already carries the redeploy tag, and no fresh angle was left unexplored at the standing floor.
