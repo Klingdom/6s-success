@@ -61,6 +61,22 @@ the text-only causes are fixed free, the pixels need this same billing gate. Ear
 
 ## Open, ranked by what they unblock
 
+### Start here: 20 minutes, in this order
+
+Added 2026-09-17 because this list had grown to 20 items and its own ordering
+put a disk-space item it calls "not urgent" above the two that decide whether
+anybody ever arrives. Everything else on this page can wait behind these three.
+
+| # | Do | Time | Why it is first |
+|---|---|---|---|
+| **1a** | Verify the site in Google Search Console | 3 min | Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since. Whether that is "read and judged not worth indexing" or something we can fix is the single most valuable unknown in the business, and Search Console is the only instrument that answers it. Nothing I can build substitutes for you being logged into your own Google account. |
+| **1** | Authorise YouTube uploads | 5 min | 102 finished, narrated, captioned videos are on a disk. The 12 that are public went up by your own hand. This category is searched on YouTube as much as on Google. |
+| **1d** | Paste the business description into Stripe | 2 min | The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today. |
+
+The rest of this file stays as it is, in its original order. If you only ever do
+three things from it, do these.
+
+
 ### 1f. The VPS disk is 79% full, and 46 GB of it is throwaway. One command, about a minute.
 
 **Found 2026-09-16 by this operator, first direct look at the host in days** (cloud
