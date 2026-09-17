@@ -993,7 +993,15 @@ internet.
 **Why it matters:** analytics and mailing infrastructure should not be publicly
 addressable. Low likelihood, real consequence.
 
-### 9. HTTP/2, HSTS, and www to apex redirect.
+### 9. HTTP/2 and HSTS. (www to apex: done by me 2026-09-17, no longer needs you.)
+
+**www to apex is fixed and did not need the proxy.** The site's own nginx config
+(`site/nginx/default.conf`, in Git, shipped by the normal image build and
+`ops/deploy.py`) now answers any `www.` host with a 301 to
+`https://6s-success.com` plus the original path and query. Guarded by
+`ops/tests/test_nginx_www_redirect.py`. The measurement below is kept as the
+reason. HTTP/2 and HSTS still live in Nginx Proxy Manager and remain open, low
+priority.
 
 **Why it matters:** performance and search. Small, and needs the reverse proxy
 config that lives on the VPS.
