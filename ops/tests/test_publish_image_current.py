@@ -64,10 +64,20 @@ def _head(repo):
                           check=True).stdout.strip()
 
 
-def _run_with(repo, latest, goods, token="fake-token"):
+def _run_with(repo, latest, goods, token="fake-token", workflow=None):
+    """workflow controls the simulated GITHUB_WORKFLOW value, defaulting to
+    unset. Found 2026-09-17: this gate itself runs as a step inside
+    publish-image.yml, whose real name IS "Publish site image", so GitHub
+    Actions sets that exact value on GITHUB_WORKFLOW for every test in this
+    file whether or not the test cares. A test that does not pin this
+    explicitly inherits whatever the real ambient environment happens to be
+    (unset here, "Publish site image" there) instead of the one it means to
+    test, which is exactly how three "outside own workflow" tests passed
+    locally and failed for real in CI without any code regression."""
     old_root = preflight.ROOT
     old_runs = preflight._publish_image_runs
     old_gh_token = dashboard.gh_token
+    old_wf = os.environ.get("GITHUB_WORKFLOW")
     preflight.FAIL.clear()
     preflight.WARN.clear()
     try:
@@ -76,12 +86,20 @@ def _run_with(repo, latest, goods, token="fake-token"):
             lambda tok, name, extra_qs="", per_page=1:
             goods if "status=success" in extra_qs else latest)
         dashboard.gh_token = lambda: token
+        if workflow is None:
+            os.environ.pop("GITHUB_WORKFLOW", None)
+        else:
+            os.environ["GITHUB_WORKFLOW"] = workflow
         preflight.gate_publish_image_current()
         return list(preflight.FAIL), list(preflight.WARN)
     finally:
         preflight.ROOT = old_root
         preflight._publish_image_runs = old_runs
         dashboard.gh_token = old_gh_token
+        if old_wf is None:
+            os.environ.pop("GITHUB_WORKFLOW", None)
+        else:
+            os.environ["GITHUB_WORKFLOW"] = old_wf
 
 
 def test_failed_run_with_real_unpublished_diff_fails():
@@ -245,24 +263,19 @@ def test_inside_own_workflow_warns_instead_of_deadlocking():
     # fix, hits this same FAIL forever. Inside that one workflow this must
     # warn, not fail, so the job can finish and become the new good baseline.
     repo, good_sha = _make_repo(differs=True)
-    old_env = os.environ.get("GITHUB_WORKFLOW")
-    os.environ["GITHUB_WORKFLOW"] = "Publish site image"
     try:
         fails, warns = _run_with(
             repo,
             latest=[{"status": "completed", "conclusion": "failure",
                     "head_sha": "deadbeef"}],
             goods=[{"status": "completed", "conclusion": "success",
-                   "head_sha": good_sha}])
+                   "head_sha": good_sha}],
+            workflow="Publish site image")
         assert fails == [], (fails, warns)
         assert len(warns) == 1, (fails, warns)
         assert "publish-image-current" == warns[0][0]
         assert good_sha[:8] in warns[0][1]
     finally:
-        if old_env is None:
-            os.environ.pop("GITHUB_WORKFLOW", None)
-        else:
-            os.environ["GITHUB_WORKFLOW"] = old_env
         shutil.rmtree(repo, ignore_errors=True)
 
 
@@ -271,22 +284,17 @@ def test_outside_own_workflow_still_fails():
     # different (or absent) GITHUB_WORKFLOW value; none of them are the
     # delivery attempt itself, so the loud FAIL must survive there.
     repo, good_sha = _make_repo(differs=True)
-    old_env = os.environ.get("GITHUB_WORKFLOW")
-    os.environ["GITHUB_WORKFLOW"] = "Checks"
     try:
         fails, warns = _run_with(
             repo,
             latest=[{"status": "completed", "conclusion": "failure",
                     "head_sha": "deadbeef"}],
             goods=[{"status": "completed", "conclusion": "success",
-                   "head_sha": good_sha}])
+                   "head_sha": good_sha}],
+            workflow="Checks")
         assert len(fails) == 1, (fails, warns)
         assert "publish-image-current" == fails[0][0]
     finally:
-        if old_env is None:
-            os.environ.pop("GITHUB_WORKFLOW", None)
-        else:
-            os.environ["GITHUB_WORKFLOW"] = old_env
         shutil.rmtree(repo, ignore_errors=True)
 
 
