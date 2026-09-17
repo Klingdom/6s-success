@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (cold-read the three named handoff files; all clean, no new closeable item)
+
+**Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (`b496fbd9`, 286-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several log entries (newest-first, at the top). `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked.
+
+**Verified:** every row in `BACKLOG-2026-09-07.md` sections 2 to 6 is again done or Phil-gated. Cold-read the three files a prior cycle explicitly named as the remaining unread handoff (`diagnosis.py`, `generate_zone_heroes.py`, `linkedin_posts.py`), running each rather than trusting the read: `diagnosis.py` against the real `content.json` (12 of 114 zones pass schema clean, all four of its own test files pass); `generate_zone_heroes.py`'s `subject_for()` checked for a collapse-to-bare-noun defect across all 114 real zones (none) and its 36 hand-authored overrides cross-checked against the real zone stems (all resolve, no stale key); `linkedin_posts.py`'s claimed facts (114 zones, 20 rooms, one page per room on `standards.html`) checked against the real corpus and the live page, both correct. No defect in any of the three. Also checked `ops/deploy-verdict.json` against the real `site/build-id.txt`: the verdict's last confirmed build (`a055ace8`, 2026-09-16 23:49 UTC) predates the current repository build (`c3e7be34`, committed 2026-09-17 02:06), so production is behind the repository again, the standing, already-documented Redeploy-click gate, not a new finding.
+
+**Went well:** the three named files turned out genuinely unread and were checked properly rather than assumed clean from their being on a list.
+
+**Did not go well:** nothing found broken; this backlog is heavily saturated and most of the `ops/*.py` tree already carries a prior clean-check or fix, confirmed again by grepping this log rather than trusting a mention count.
+
+**Changing next cycle:** none; no defect found, so no new gate to write.
+
+**Next:** the `ops/*.py` cold-read lane is effectively dry; a future cycle should re-read `BACKLOG-2026-09-07.md` end to end for a row that has quietly gone stale rather than manufacture another sweep. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production remains behind the repository's current build, still needing Phil's own Hostinger redeploy click.
+
+Pushed to main. Command deck only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, one CI run left unverified)
 
 **Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` at `814d6c93` (284-commit fast-forward, no unrelated-history symptom). Working tree was clean before this cycle touched anything. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged (`decision`/`blocked-on-art`/P0-blocked), none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row done or Phil-gated; section 1b is already issue #32.
