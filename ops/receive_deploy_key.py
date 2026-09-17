@@ -70,7 +70,14 @@ def harvest():
             key = " ".join(m.group(0).split())
             found.append((msg.get("Subject", ""), msg.get("From", ""), key))
     M.logout()
-    # de-duplicate on the key material itself, keeping the first sighting
+    return dedupe(found)
+
+
+def dedupe(found):
+    """De-duplicate on the key material itself, keeping the first sighting.
+
+    Pure and IMAP-free so it can be tested without a mailbox.
+    """
     seen, unique = set(), []
     for subj, frm, key in found:
         material = key.split()[1]
@@ -81,8 +88,20 @@ def harvest():
 
 
 def existing():
+    """Return the key material already on the repo, or raise if the GitHub
+    call itself failed.
+
+    A failed call and an empty repo look identical in stdout alone: both are
+    "". Trusting stdout without checking returncode would read a broken `gh`
+    auth or a network failure as "no keys installed yet", and --install would
+    then try to add every mailbox key as if new. Unknown is not unused.
+    """
     out = subprocess.run(["gh", "api", f"repos/{REPO}/keys", "--jq",
                           ".[] | .key"], capture_output=True, text=True)
+    if out.returncode != 0:
+        raise RuntimeError(
+            "could not read the repo's existing deploy keys: %s"
+            % (out.stderr.strip()[:200] or "gh api exited %d" % out.returncode))
     return {l.split()[1] for l in out.stdout.splitlines() if len(l.split()) > 1}
 
 
@@ -94,7 +113,13 @@ def main(mode):
         print('  cat ~/.ssh/id_ed25519.pub | mail -s "VPS deploy key" support@6s-success.com')
         return 1
 
-    have = existing()
+    try:
+        have = existing()
+    except RuntimeError as exc:
+        print(f"UNCHECKED: {exc}")
+        print("Refusing to guess which mailbox keys are already installed.")
+        return 1
+
     print(f"Found {len(keys)} public key(s) in the mailbox:\n")
     for subj, frm, key in keys:
         kind, material = key.split()[0], key.split()[1]
