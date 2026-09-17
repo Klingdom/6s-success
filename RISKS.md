@@ -356,6 +356,17 @@ evidence:
     pageviews came from 2 automated sessions. This is a hand-transcribed
     snapshot, not a live feed, and goes stale the same way any
     hand-transcribed number does.
+  - unreconciled as of 2026-09-17: a 2026-09-16 local session read the
+    identical 947-pageview, 2026-08-20-to-2026-09-14 dataset from the same
+    VPS and named the noise differently, a single unattributed
+    `?|iOS|mobile` session carrying 792 of 947 pageviews (84%), leaving
+    roughly 155 real events rather than the 506 the row above states.
+    Neither session checked whether its own filter subsumes or overlaps the
+    other's, so this is two different readings of one dataset, not two
+    confirmations of the same number. The 30-day traffic figure this repo
+    prioritizes work against should be treated as genuinely uncertain
+    between "506 real pageviews" and "155 real pageviews" until a session
+    with VPS access re-runs both filters side by side and explains the gap.
 impact: >
   Traffic now has one real, dated data point instead of none, so "every
   growth claim is unfalsifiable" no longer fully holds. There is still no
