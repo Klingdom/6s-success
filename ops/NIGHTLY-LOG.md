@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (corrected a concurrent cycle's "stuck runner" alarm to "slow but progressing", full independent re-verification across every lane otherwise, no new closeable item)
+
+**Correcting the handoff directly below, not just citing it.** The prior PM check-in (`272e67cd`) flagged `checks.yml` run 1094 on `66b6e638`'s Preflight step as possibly a stuck or starved runner, in progress 15+ minutes against a roughly 6-minute norm. Checked with `list_workflow_jobs` on that exact run rather than re-guess: the Preflight step did complete, at 19:49:09, 17.5 minutes total, and the very next step ("The ops test suite") started immediately after and was itself `in_progress`, not queued behind a hang. This matches the same-cycle's own `gate_scheduled_workflow_cadence` warning (`fulfil-orders.yml` averaging 7.7x its configured interval, `hourly-brief.yml` 4.2x, both pre-existing and GitHub-side), not a new incident: the runner is slow today, not stuck. No escalation needed beyond the standing cron-cadence warning already tracked.
+
 ## 2026-09-17, scheduled operator cycle (full independent re-verification across every lane; genuinely clean, no new closeable item)
 
 **Did:** Attached via unshallow plus ff-only merge onto `origin/main` (`66b6e638`), clean, 394-commit fast-forward, no unrelated-history symptom. Read `GOALS.md`, both backlog files, `CLAUDE.md` and the last several `ops/NIGHTLY-LOG.md` entries before touching anything. Every one of today's many prior cycles independently concluded the same thing: `BACKLOG-2026-09-07.md` sections 2-4 (micro zones/app, decks, images/video) are each fully done or explicitly Phil-gated, section 1b's one open decision already has issue #32, and the `ops/*.py` cold-read lane is exhausted. Did not take that on trust: re-checked each claim directly rather than citing the prior cycles.
@@ -19,6 +23,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** all 8 GitHub issues remain decision/blocked-on-art, none pickable without Phil. Standing owner-gate list in `OWNER-ACTIONS.md` unchanged, headed by Search Console verification, YouTube OAuth and the Stripe business description (the three moved to the top of that file earlier today). Confirm CI green on `66b6e638` or whatever commit this cycle's own push lands on.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No code, content, price or product touched. IndexNow not applicable.
+
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified locally; a real CI anomaly found and handed to the operator, not a routine "still running")
+
+NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://github.com/Klingdom/6s-success/actions/runs/35265222032), because its "Preflight" step has been `in_progress` for 15+ minutes against a historical norm of about 6 minutes total, and my own follow-up push (`3d7f98d`) has not even queued a new `checks.yml` run behind it, both of which are abnormal, not routine "not yet confirmed."
+
+**Previous work: finished, verified independently, not just cited.** Unshallowed and ff-only merged onto `origin/main` clean. A concurrent local session (real VPS access) resolved the 506-vs-155 traffic contradiction the last PM check-in named: both numbers were real, just mismatched units (pageviews vs. events) on one session's row. Fixed and propagated into GOALS.md, RISKS.md, STATUS.md, OWNER-ACTIONS.md, `ops/roadmap_report.py`, `ops/experiments.json`, all in one commit. CI on the prior commit (`ce887165`) confirmed green directly via the GitHub API, closing the last cycle's own open question. Ran `preflight.py` to real completion here (backgrounded, about 4 minutes): every gate passed, 22 standing warnings, all previously diagnosed sandbox limits, 0 new.
+
+**The finding: the same commit's own CI run has not finished a fast preflight in over 15 minutes**, per `list_workflow_jobs` on run 1094: the "Preflight" step alone started at 19:31:39 and was still `in_progress` past 19:47. Local preflight on the identical commit finished clean in about 4 minutes, so this is not the work being slow, it looks like a stuck or starved runner. Per CLAUDE.md 0.4, an unfinished check must be reported as unfinished, not assumed to be "about to pass."
+
+**Checked, not fixed further:** 8 open issues, all `decision` or `blocked-on-art`, none pickable per STEP 3. The three reordered owner gates (Search Console, YouTube OAuth, Stripe description) all need Phil's own login.
+
+**Went well:** verifying the prior cycle's CI claim instead of citing it, and catching that this cycle's own "still running" was actually anomalous rather than routine.
+
+**Did not go well:** could not get CI to a confirmed state within the 30-minute slot; a real possible CI-runner problem is now the operator's first job at :43, ahead of anything else.
+
+Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
 
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, one real tracking gap found and filed, no new closeable item)
 
