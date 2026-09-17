@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (cold-read lane's remaining three candidates checked clean; lane exhausted at this tier)
+
+**Did:** Finished the standing cold-read lane named across the last several handoffs. `ops/review_heroes.py` (the image-review gate before any generated hero image reaches a page): read end to end, no dedicated test exists, but the logic is self-contained and low risk (a manual Phil-run tool, not customer-facing); `sha()`'s verdict-invalidation-on-regeneration and `expand()`'s range parsing both check out against their own stated contracts, no defect found. `ops/root_causes.py` (the frozen 17-cause vocabulary shared by the deck, app and articles): ran its own `_self_check()` (passes, as it must for `preflight.py` to be green at all, since this module raises at import time), then independently verified every one of the 17 `article` slugs actually resolves to a real file under `site/articles/`, zero missing. Confirmed `unknown_ids_in()` is genuinely wired into a live `preflight.py` gate (not merely defined and unused), which cross-checks the docstring's own claimed-unmapped set against the real data.
+
+**No new defect found in any of the three.** All three are already either self-checking at import/run time or covered by an existing `preflight.py` gate; this pass corroborated rather than discovered.
+
+**Went well:** confirming clean rather than assuming clean, per this file's own standing method: `build_standards.py` was diffed byte-for-byte against the live served copy, `root_causes.py`'s article claims were checked against the filesystem directly, not read as asserted.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** the 11-mention `ops/*.py` cold-read tier (`build_standards.py`, `receive_deploy_key.py`, `reflow.py`, `review_heroes.py`, `root_causes.py`) is now fully read this cycle; one real defect found and fixed (`reflow.py`). Recompute the mention floor and move a tier over next time, per the standing method, rather than re-reading this same list cold again.
+
+**Next:** recompute the `ops/*.py` cold-read mention floor and move to the next tier. All 7 GitHub issues stay decision/blocked-on-art; no mail credential this session.
+
+Pushed to main. Command deck and this log only; no code, content, price or product changed in this entry's own work (the reflow.py fix above was already pushed separately). IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (cold-read ops/reflow.py; a real live typo-shaped defect found and fixed, a hardcoded test-count bug fixed alongside it)
 
 **Did:** With the publish-image.yml/checks.yml incident closed and confirmed live, resumed the standing cold-read lane named in the prior handoff. `ops/build_standards.py`: ran it, diffed the output against both the committed generator artifact and the served `site/downloads/6S-Standards-Pack.html`, byte-identical both ways, no defect. `ops/reflow.py` (joins chopped-up LinkedIn draft paragraphs back into prose, used live by `corpus_posts.py`'s `clean()` on every draft the `linkedin-drafts.yml` workflow emails Phil): read the colon-merge rule, which lowercases whatever follows a colon to read as one continuing sentence, with a guard meant to keep the pronoun "I" capitalised regardless of position. The guard only matched a literal `"I "` (a trailing space), so a contraction with no space before the apostrophe was never caught.
