@@ -7768,19 +7768,36 @@ def gate_hourly_brief_stripe_checks() -> None:
 
     problems = []
 
-    # With no credential here, each summary must read as UNCHECKED or OK,
-    # never silently crash and never claim a problem it never measured.
-    for label, fn in (("price-claims", hb.price_claims_summary),
-                      ("duplicate-sku", hb.duplicate_sku_summary),
-                      ("brand", hb.brand_summary)):
-        problem, lines = fn()
+    # With no credential, each summary must read as UNCHECKED, never silently
+    # crash and never claim a problem it never measured.
+    #
+    # Corrected 2026-09-17: this used to call the summaries for real and assume
+    # the environment held no credential. On a machine that does hold one (Phil's
+    # workstation, which is also the one that deploys) brand_summary() correctly
+    # reported the live account's real gap ("No product description set",
+    # OWNER-ACTIONS 1d) and this gate failed preflight over a TRUE finding. The
+    # no-credential case is now simulated by stubbing each underlying call to
+    # fail the way a missing key does, so the gate tests the wiring the same way
+    # everywhere and a real live gap stays the hourly brief's job to report.
+    def _no_key():
+        raise SystemExit("STRIPE_SECRET_KEY not in .env.secrets")
+    for label, fn, mod, attr in (
+            ("price-claims", hb.price_claims_summary, hb.sc, "price_claim_gaps"),
+            ("duplicate-sku", hb.duplicate_sku_summary, hb.stripe_dedupe, "duplicates"),
+            ("brand", hb.brand_summary, hb.stripe_brand, "check")):
+        saved = getattr(mod, attr)
+        setattr(mod, attr, _no_key)
+        try:
+            problem, lines = fn()
+        finally:
+            setattr(mod, attr, saved)
         text = "\n".join(lines)
         if problem:
-            problems.append(f"{label}: read as a problem with no credential "
-                            f"in this environment: {text!r}")
-        if "UNCHECKED" not in text and "OK" not in text:
-            problems.append(f"{label}: neither OK nor UNCHECKED with no "
-                            f"credential here: {text!r}")
+            problems.append(f"{label}: read as a problem with no credential: "
+                            f"{text!r}")
+        if "UNCHECKED" not in text:
+            problems.append(f"{label}: did not read UNCHECKED with no "
+                            f"credential: {text!r}")
 
     # Exercise the real branch logic directly, without touching Stripe: stub
     # the underlying library call each summary wraps, not the summary itself,
