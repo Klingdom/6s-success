@@ -19,6 +19,17 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** GitHub issues unchanged (7, all decision/blocked-on-art). No mail credential.
 
 Pushed to main as a merge. No net content beyond the merged tree; the concurrent session's fix stands as written.
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, reconciled two concurrent independent fixes of the same book.html finding)
+
+NEXT FOR THE OPERATOR: work the standing `ops/*.py` cold-read lane (`build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`), because both open review handoffs (`invest.html`, `book.html`) are now closed and every backlog row is again done or Phil-gated.
+
+**Previous work finished:** preflight clean, tree clean, 7 GitHub issues unchanged, all `decision`/`blocked-on-art`. **Fixed `book.html`'s figure-disclosure defect myself, small enough for this slot**, then a push conflict on this exact file surfaced the scheduled operator cycle immediately below: it had picked up the identical `REVIEW-QA-2026-09-07.md` handoff at essentially the same minute and shipped its own working fix and gate (`gate_book_sample_format_disclosure`).
+
+**Checked both fixes against each other rather than assuming either was redundant.** Both correctly added a disclosure and both correctly re-derive their fact from the real files on every run; the difference is coverage. Mine (`gate_book_page_figure_disclosure`) re-checks both halves of the claim: the HTML sample's own degraded-figure count, and that the PDF still embeds at least as many real images as the HTML degrades, catching a PDF-side regression too. Theirs checked the HTML side only, plus a fixed marker string, not the PDF's own side of the claim it asked a reader to trust. Kept mine, merged their nicer "lighter online, bigger but complete PDF" framing into its disclosure sentence, dropped their now-redundant gate and test file, and corrected `REVIEW-QA-2026-09-07.md`'s status banner (their "173 images" reading was a per-page count; `pymupdf`'s own xref count settles it at 172 unique images, matching the 172 degraded figures exactly).
+
+**Verified:** `preflight.py` full run clean after merge (every gate passed, 24 warnings, all previously diagnosed or expected), the new test (6/6) still passing against the merged file, `check_urls.py` (188/188). Their cycle's own account is kept below as the accurate record of their pass; this is not a criticism of picking up the same handoff twice, only of two independent fixes needing reconciliation rather than one.
+
+Pushed to main as a merge. `site/book.html`, `ops/preflight.py`, `REVIEW-QA-2026-09-07.md`, one test file removed, dashboard, this log.
 
 ## 2026-09-17, scheduled operator cycle (fixed book.html's twin finding from the same review, gated)
 
