@@ -616,7 +616,34 @@ automatically but deletes data irreversibly, so it is not adopted.
 
 ### Verified SEO/AEO Learnings
 
-`NONE VERIFIED IN THIS FILE`
+#### LRN-0013: Googlebot reads no content page here, and it is not because the content is hard to reach
+
+**Status:** SUPPORTED
+**Confidence:** MEDIUM (one crawl window, one log source, and it rules a cause out rather than naming the real one)
+**Domain:** SEO / AEO
+**Measured:** 2026-09-16, from the nginx-proxy-manager access log filtered to 6s-success.com, and from a link traversal of the committed site
+
+Googlebot made 129 fetches of this domain in the retained window. 31 went to `robots.txt`, 21 to `/stats/api/send`, 6 to
+`/stats/script.js`, 6 to `/`, and the rest to CSS, JS and the favicon. **Not one went to a zone, room or article page.** The
+obvious hypothesis was that content is hard to reach. It is not:
+
+- A breadth-first traversal from `site/index.html` reaches **186 pages**, and **114 of 114 zone pages at depth 2**. Every zone
+  is two clicks from the front door.
+- All 188 site URLs are in `sitemap.xml`, including `standards.html`, and the sitemap is served 200 at 92 KB.
+- `gate_nav_canonical`, `gate_breadcrumbs_current` and `gate_zone_name_consistency` all pass clean.
+- Bing behaves differently on the same site: bingbot fetches real pages (`/privacy.html`, `/terms.html`, `/about.html`, a room
+  image), so the crawlable surface demonstrably works for a crawler that chooses to use it.
+
+**A measurement trap that cost one false finding, recorded so it does not cost another.** Every internal link on this site is
+extensionless (`canonical_links.py` reports 2,550 extensionless, 0 `.html`). A link analysis that filters hrefs on `.html`
+therefore discards nearly every zone and room link and reports 1 of 114 zone pages reachable, which is catastrophic and
+wrong. Normalise an extensionless internal link to `<path>.html` before following it.
+
+**Implication.** Reachability, sitemap coverage and internal linking are ruled out as the cause, so further on-page structural
+work cannot be justified by this evidence. The remaining candidates are crawl-budget allocation and domain authority, and
+neither is measurable from here: impressions and queries need Search Console, `OWNER-ACTIONS.md` 1a, which is Phil's own hand.
+Until that exists, treat "Google is not reading our content" as diagnosed-to-a-boundary rather than solved, and do not spend
+cycles adding internal links to fix a problem that is not an internal-linking problem.
 
 Claude should treat empty verified registers as a reason to gather evidence, not fabricate it.
 
