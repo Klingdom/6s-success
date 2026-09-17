@@ -105,21 +105,38 @@ def measure(exe, extra, html_path, w, h) -> dict | None:
 
 
 def verify_png(png: str, w: int, h: int) -> tuple:
+    """("ok"|"bad"|"unchecked", message).
+
+    Chromium can write a real, correctly sized screenshot in an environment
+    that has no PIL or numpy to open and measure it with: this sandbox is
+    exactly that case, proved directly (a manual shoot() call here produced
+    a genuine 750x1050 PNG while this function still reported "will not
+    open"). The old two-way True/False conflated that missing-dependency
+    case with a real bad render (a truncated file, a blank page), both
+    printed as FAIL and both deleted the file main() had just written,
+    which destroys a good screenshot for a reason that has nothing to do
+    with the screenshot. CLAUDE.md 0.4: unchecked is not the same claim as
+    failed, and must not overwrite the one measurement (the browser's own
+    exit) that did succeed.
+    """
     if not os.path.exists(png):
-        return False, "no file was written"
+        return "bad", "no file was written"
     try:
         from PIL import Image
         import numpy as np
+    except ImportError as e:
+        return "unchecked", f"cannot verify pixels, {e.name} is not installed here"
+    try:
         im = Image.open(png)
         im.load()
     except Exception as e:                                     # noqa: BLE001
-        return False, f"will not open ({type(e).__name__})"
+        return "bad", f"will not open ({type(e).__name__})"
     if im.size != (w, h):
-        return False, f"{im.size} rather than {(w, h)}"
+        return "bad", f"{im.size} rather than {(w, h)}"
     a = np.asarray(im.convert("L"), dtype=np.float32)
     if a.std() < 8:
-        return False, f"standard deviation {a.std():.1f}, the page did not render"
-    return True, ""
+        return "bad", f"standard deviation {a.std():.1f}, the page did not render"
+    return "ok", ""
 
 
 def main() -> int:
@@ -142,7 +159,7 @@ def main() -> int:
 
     measure_only = "--measure" in sys.argv
     os.makedirs(out, exist_ok=True)
-    ok, bad, sizes = [], [], {}
+    ok, bad, unchecked, sizes = [], [], [], {}
     floor_px = S.pt(S.FLOOR_PT)
 
     for f in files:
@@ -175,9 +192,14 @@ def main() -> int:
         if os.path.exists(png):
             os.remove(png)
         shoot(exe, extra, f, png, w, h)
-        good, why = verify_png(png, w, h)
-        if good:
+        status, why = verify_png(png, w, h)
+        if status == "ok":
             ok.append((code, os.path.getsize(png)))
+        elif status == "unchecked":
+            # The screenshot itself is real (shoot() already ran and wrote
+            # it); only the pixel verification could not run. Keep the file
+            # rather than delete a good render over a missing dependency.
+            unchecked.append((code, why))
         else:
             bad.append((code, why))
             if os.path.exists(png):
@@ -195,15 +217,23 @@ def main() -> int:
 
     print()
     for code, why in bad:
-        print(f"    FAIL  {code}  {why}")
+        print(f"    FAIL       {code}  {why}")
+    for code, why in unchecked:
+        print(f"    UNCHECKED  {code}  {why}")
     if not measure_only:
-        print(f"\n  rendered {len(ok)} of {len(files)} to "
-              f"{os.path.relpath(out, ROOT).replace(os.sep, '/')}/")
+        print(f"\n  rendered {len(ok) + len(unchecked)} of {len(files)} to "
+              f"{os.path.relpath(out, ROOT).replace(os.sep, '/')}/, "
+              f"{len(ok)} pixel-verified")
+        if unchecked:
+            print(f"  {len(unchecked)} written but not pixel-verified: "
+                  f"not the same as passing")
     else:
         print(f"\n  measured {len(ok)} of {len(files)} clean")
     print(f"  {w}x{h}, which is {w/S.DPI:.2f} x {h/S.DPI:.2f} inches at "
           f"{S.DPI} dpi" + ("  [bleed sheet]" if bleed else "  [trim]"))
-    return 1 if bad else 0
+    if bad:
+        return 1
+    return 2 if unchecked else 0
 
 
 if __name__ == "__main__":
