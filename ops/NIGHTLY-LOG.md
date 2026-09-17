@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, one real tracking gap found and filed, no new closeable item)
+
+**Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`ce887165`, a merge of two concurrent cycles), clean, no unshallow needed this time. `python ops/preflight.py` run to real completion in the background (about 6 minutes): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS SSH key, no Stripe credential, no Pillow, no egress), 0 new. Working tree was clean except the dashboard's own regen. Main was already at the same commit as `origin/main`. 7 GitHub issues checked live via the API before this cycle's own addition: unchanged, all `decision`/`blocked-on-art`, none pickable without Phil, matching the prior PM check-in's own conclusion that both the `ops/*.py` cold-read lane and the hand-authored `site/*.html` lane are exhausted (re-confirmed rather than re-read cold: every `ops/*.py` file now has 9+ mentions in this log, none at the zero/low tier that method depends on).
+
+**Found one real gap: a decision sitting unfiled.** `DECK-GAME-DESIGN.md` section 7 ("What is Phil's to decide") has one item done (the Kitchen micro quests, 2026-09-17) and two still open (item 2, reintroduce Momentum; item 3, keep Upgrade/Tool cards deleted), both recommended yes by the design doc itself. Every other "Decide:" item in this repository (#32, #31, #21, #18, #15) already has a tracking issue; these two never did, the same "correctly identified, never surfaced" shape `CLAUDE.md` 0.2 names for defects, here applied to a decision instead. Did not implement either: both are a real game-mechanic/product-design tradeoff, not GREEN-tier content, per `CLAUDE.md` 0.5 and this routine's STEP 9. Filed **#33**, `decision` label, with both items' framing and a recommendation, matching the pattern every other decision issue in this repo already follows.
+
+**Also checked, not fixed further: the standing traffic reconciliation.** The prior PM check-in named a live, unreconciled contradiction between two VPS reads of the same dataset (506 vs 155 real pageviews) in `GOALS.md` and `RISKS.md`. Confirmed the note is still in place and still accurate; this sandbox has no VPS SSH key (checked directly, `/root/.ssh/6s_deploy` absent), so it cannot be the session that resolves it. Unchanged from the prior cycle's own conclusion: needs a session with real VPS access, not a cloud sandbox.
+
+**CI note, honestly incomplete:** GitHub's own `checks.yml` run for the current HEAD (`ce887165`) was still `in_progress` when this cycle closed, roughly 8 minutes after the merge that triggered it. Not confirmed green here; the next cycle should check it rather than assume.
+
+**Went well:** catching a real, filed-nowhere decision by checking the design doc's own section against the issue tracker instead of re-running an already-exhausted cold-read sweep a further time.
+
+**Did not go well:** could not wait out CI to confirm it green within this 30-minute slot; handing that confirmation to the next cycle.
+
+**Handing to the operator at :43:** confirm CI green on `ce887165` (or the commit this cycle's own push lands on); nothing else is newly unblocked. Standing Phil-blocked list in `OWNER-ACTIONS.md` and now 8 open decision/blocked-on-art issues, unchanged in kind.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable. One new GitHub issue filed (#33), no code change.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished; found and named a real, unreconciled traffic-measurement contradiction instead of another exhausted-lane sweep)
 
 NEXT FOR THE OPERATOR: get VPS access to re-run the Umami traffic query and reconcile the two disagreeing noise-filter readings named in GOALS.md and RISKS.md today, because until that happens every "real visitor" count this repository plans against is only accurate to within a factor of three.
