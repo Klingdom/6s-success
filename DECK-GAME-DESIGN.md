@@ -305,6 +305,33 @@ has seen any of this.
 3. **Upgrade and Tool cards stay deleted?** Recommended yes, and this one I
    would argue for: it is where buying pressure would re-enter a product about
    owning less.
-4. **Print the side-quest edges?** Recommended yes, content already exists.
+4. ~~**Print the side-quest edges?**~~ **Partially done 2026-09-17, operator,
+   scoped to the Kitchen deck.** Recommended yes, content already exists, and
+   this half did not need to wait either: reversible content on an existing
+   free, ungated page, `CLAUDE.md` 0.5's GREEN tier. Checked before building:
+   the Entryway half of this (644 `related_path` edges) targets the
+   photographed, pixel-exact card back, and `ops/build_card_template.py`'s
+   own docstring already measured that back as full at the 8.5pt floor (158px
+   free, 193px needed for one more labelled block) and cut `related_path` for
+   exactly that reason, a real, already-reasoned space constraint this
+   section's "printed on nothing" framing had not checked against. Forcing it
+   in risked the same "shipped without verifying it renders" defect this
+   project keeps finding elsewhere, and this sandbox has no
+   `build/cards-rendered` to even attempt the image-based render or check it.
+   Left for Phil or a future session with the local image pipeline. The
+   Kitchen half was reachable today: `related` existed on 53 of 72 cards and
+   was never rendered anywhere; the 18 missing it were all ACTION cards, and
+   the zone/standard/root-cause edges were already plain fields on every one
+   (`a["zone"]`, `a["causes"]`), never grouped or printed. Added `related` to
+   all 18 (14 zone actions get `zone`+`standard`+`root_causes`; the 4
+   whole-kitchen actions, KA-015 to KA-018, get only their real root causes,
+   never an invented zone) and to KR-001 (a range, the same table-of-contents
+   shape ER-001 already uses, not a graph edge), bringing the field to 72 of
+   72. Rendered as real anchor links on `site/kitchen-deck.html`'s ACTION
+   CARD back ("If this keeps happening" for root causes, "Part of:" for the
+   zone/standard), reusing the exact link pattern the ROOT CAUSE card back
+   already used for its own `related.actions`, nothing new invented. New
+   `gate_kitchen_action_related` in `ops/preflight.py`, fail-then-pass proved
+   directly against the real committed page.
 5. **Fix the 9 rejected card heroes?** Blocked on image generation billing,
    already `OWNER-ACTIONS.md` item 1b.

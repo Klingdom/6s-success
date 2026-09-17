@@ -1184,6 +1184,20 @@ def cause_card(rec) -> dict:
 
 
 def action_card(a: dict) -> dict:
+    # DECK-GAME-DESIGN.md 4.2: the 644-edge Entryway graph has a Kitchen
+    # equivalent in the zone/standard/root-cause edges every action already
+    # carries as plain fields (a["zone"], a["causes"]). 14 of 18 actions
+    # belong to one zone and its one standard; the 4 whole-kitchen actions
+    # (KA-015 to KA-018) do not, and get only their real root causes, never
+    # a zone or standard invented to fill the shape.
+    zone_id = ZONES[a["zone"]]["id"] if a.get("zone") else None
+    standard_id = (f"KS-{ZONES[a['zone']]['order']:03d}"
+                   if a.get("zone") else None)
+    related = {"root_causes": a["causes"]}
+    if zone_id:
+        related["zone"] = zone_id
+    if standard_id:
+        related["standard"] = standard_id
     return {
         "id": a["id"], "title": a["title"], "type": "ACTION CARD",
         "room": ROOM, "zone": a["zone"],
@@ -1197,6 +1211,7 @@ def action_card(a: dict) -> dict:
         "inputs": a["inputs"],
         "steps": a["steps"],
         "root_causes": a["causes"],
+        "related": related,
         "victory_condition": a["victory"],
         "next_card": a["next"],
         "source": "hand authored, steps grounded in the Manual passes",
@@ -1308,6 +1323,14 @@ def room_card(zones: dict) -> dict:
         "safety_first": "Do KA-016 The Hot Zone Walk before any rebuild. It "
                         "takes fifteen minutes and the rebuilds move heavy "
                         "and sharp things around.",
+        # A range, not a graph edge: same table-of-contents shape ER-001 uses
+        # in the Entryway corpus. This card's own zones_in_order/how_to_play
+        # already are the map; this just brings the field to 72 of 72. One
+        # "contents" key rather than the usual per-category keys, so this
+        # range never collides with gate()'s per-category id checks below.
+        "related": {"contents": "KZ-001 to KZ-007, KF-001 to KF-021, "
+                                 "KC-001 to KC-012, KA-001 to KA-018, "
+                                 "KS-001 to KS-007, KE-001 to KE-006"},
         "source": "content/manual/source/content.json",
         "art": {"framing": "Room",
                 "subject": "a wide establishing view of a whole modern "
@@ -1394,6 +1417,22 @@ def gate(cards: list, zmap: dict) -> None:
             assert ref in known, f"{c['id']} points at unknown card {ref}"
         nxt = c.get("next_card")
         assert not nxt or nxt in known, f"{c['id']} next_card {nxt} unknown"
+
+    # DECK-GAME-DESIGN.md 4.2: every card carries the "related" field now
+    # (72 of 72, up from 53), so this checks the two references the render
+    # side actually reads back out for an ACTION CARD, the type that had
+    # none of them: the zone it belongs to, and that zone's one standard.
+    for c in cards:
+        assert c.get("related"), f"{c['id']} has no related field"
+        if c["type"] != "ACTION CARD":
+            continue
+        rel = c["related"]
+        z, s = rel.get("zone"), rel.get("standard")
+        assert not z or z in known, f"{c['id']} related.zone {z} unknown"
+        assert not s or s in known, f"{c['id']} related.standard {s} unknown"
+        assert (z is None) == (s is None), (
+            f"{c['id']} has a zone without a standard or a standard without "
+            f"a zone: {rel}")
 
     # A root cause nobody can reach is a card that never gets drawn.
     reachable = set()

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-17 01:17 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-17 02:04 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 947 pageviews from 75 visitors across 196 visits, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 506 from 73 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-14 18:32; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 24 |
-| Commits (7 days) | 1193 of 2452 total |
+| Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
+| Closed to date | 25 |
+| Commits (7 days) | 1194 of 2454 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `52d29472` Command deck: final regen for this cycle |
+| Last commit | `163fed99` Hourly check-in record |
 
 ## Product readiness
 
@@ -62,7 +62,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
 - **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
-- **#7** Decide: keep or discard the 2,786-card master plan
 
 ## Open issues
 
@@ -74,5 +73,4 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
 | 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
-| 7 | Decide: keep or discard the 2,786-card master plan | decision |
 | 2 | Regenerate 9 remaining stale card images | P0, blocked-on-art |

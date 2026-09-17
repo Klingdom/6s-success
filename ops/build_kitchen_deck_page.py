@@ -204,6 +204,22 @@ def back_body(card: dict, by_id: dict) -> str:
                     + "</ol>")
         out.append(f'<p class="kcall"><strong>Victory.</strong> '
                     f'{esc(card["victory_condition"])}</p>')
+        rel = card.get("related") or {}
+        causes = [c for c in rel.get("root_causes", []) if c in by_id]
+        if causes:
+            out.append('<h4>If this keeps happening</h4><ul>' + "".join(
+                f'<li><a href="#{esc(c)}">{esc(by_id[c]["title"])}</a></li>'
+                for c in causes) + "</ul>")
+        zid, sid = rel.get("zone"), rel.get("standard")
+        if zid in by_id or sid in by_id:
+            parts = []
+            if zid in by_id:
+                parts.append(f'<a href="#{esc(zid)}">'
+                              f'{esc(by_id[zid]["title"])}</a>')
+            if sid in by_id:
+                parts.append(f'<a href="#{esc(sid)}">'
+                              f'{esc(by_id[sid]["title"])}</a>')
+            out.append(f'<p>Part of: {" and ".join(parts)}</p>')
         nxt = card.get("next_card")
         if nxt and nxt in by_id:
             out.append(f'<p>Next: <a href="#{esc(nxt)}">'

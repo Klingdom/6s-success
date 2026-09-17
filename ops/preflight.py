@@ -3302,6 +3302,101 @@ def gate_kitchen_micro_quests() -> None:
         fail("kitchen-micro-quests", "; ".join(problems))
 
 
+def check_kitchen_action_related(cards: list, page: str) -> list:
+    """Pure logic for gate_kitchen_action_related, testable without real
+    files. `cards` is ops/cardtext/build_kitchen_deck.py's own card list;
+    `page` is the full text of site/kitchen-deck.html.
+
+    DECK-GAME-DESIGN.md 4.2 named the Kitchen deck's `related` field, then on
+    53 of 72 cards, as "the single cheapest combinatorial gain available,
+    because the content is already authored", and asked for it on all 72.
+    The 18 ACTION cards were the 18 missing it (root causes, zone and
+    standard were already plain fields on every action, just never grouped
+    or printed). This checks the shipped page actually carries what the
+    corpus now says for every one of them, the same drift this project has
+    repeatedly found between a corrected source and an un-regenerated page.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    by_id = {c["id"]: c for c in cards}
+    problems = []
+    no_related = [c["id"] for c in cards if not c.get("related")]
+    if no_related:
+        problems.append(f"{len(no_related)} card(s) have no related field, "
+                        f"e.g. {no_related[:3]}")
+
+    for c in cards:
+        if c["type"] != "ACTION CARD":
+            continue
+        rel = c.get("related") or {}
+        for cid in rel.get("root_causes", []):
+            title = by_id.get(cid, {}).get("title")
+            if not title:
+                continue
+            needle = f'<a href="#{_html.escape(cid, quote=True)}">' \
+                     f'{_html.escape(str(title), quote=True)}</a>'
+            if needle not in page:
+                problems.append(f"{c['id']}'s root cause link to {cid} is "
+                                f"not on the rendered page")
+        zid = rel.get("zone")
+        if zid and zid in by_id:
+            needle = f'<a href="#{_html.escape(zid, quote=True)}">' \
+                     f'{_html.escape(str(by_id[zid]["title"]), quote=True)}</a>'
+            if needle not in page:
+                problems.append(f"{c['id']}'s zone link to {zid} is not on "
+                                f"the rendered page")
+        sid = rel.get("standard")
+        if sid and sid in by_id:
+            needle = f'<a href="#{_html.escape(sid, quote=True)}">' \
+                     f'{_html.escape(str(by_id[sid]["title"]), quote=True)}</a>'
+            if needle not in page:
+                problems.append(f"{c['id']}'s standard link to {sid} is not "
+                                f"on the rendered page")
+    return problems
+
+
+def gate_kitchen_action_related() -> None:
+    """DECK-GAME-DESIGN.md 4.2: the Kitchen deck's `related` cross-reference
+    field, missing from all 18 ACTION cards, must actually render as links
+    on site/kitchen-deck.html, not just exist in the gated cardtext corpus.
+
+    ops/cardtext/build_kitchen_deck.py's own gate() already proves every
+    related.zone/related.standard resolves to a real card id; this proves
+    the shipped page still turns each one into an anchor link, verbatim,
+    which a hand edit to the page template or a generator that stops
+    reading `related` would not otherwise catch (the same shape
+    gate_kitchen_micro_quests already covers for the standard cards'
+    micro quests).
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_kitchen_deck as KD
+        import importlib
+        importlib.reload(KD)
+        deck = KD.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kitchen-action-related",
+             f"could not build the Kitchen cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "kitchen-deck.html")
+    if not os.path.exists(page_path):
+        fail("kitchen-action-related",
+             "ops/cardtext/build_kitchen_deck.py's corpus exists but "
+             "site/kitchen-deck.html does not. Run "
+             "ops/build_kitchen_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_kitchen_action_related(deck["cards"], page)
+    if problems:
+        fail("kitchen-action-related", "; ".join(problems))
+
+
 def check_kitchen_deck_print_tracked(page: str) -> list:
     """Pure logic for gate_kitchen_deck_print_tracked, testable without real
     files. `page` is the full text of site/kitchen-deck.html.
@@ -14623,6 +14718,7 @@ def main() -> int:
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)
     run_gate(gate_kitchen_micro_quests)
+    run_gate(gate_kitchen_action_related)
     run_gate(gate_kitchen_deck_print_tracked)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)

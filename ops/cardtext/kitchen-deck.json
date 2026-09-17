@@ -54,6 +54,9 @@
    "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
    "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
    "safety_first": "Do KA-016 The Hot Zone Walk before any rebuild. It takes fifteen minutes and the rebuilds move heavy and sharp things around.",
+   "related": {
+    "contents": "KZ-001 to KZ-007, KF-001 to KF-021, KC-001 to KC-012, KA-001 to KA-018, KS-001 to KS-007, KE-001 to KE-006"
+   },
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Room",
@@ -1942,6 +1945,14 @@
     "KC-001",
     "KC-008"
    ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-008"
+    ],
+    "zone": "KZ-001",
+    "standard": "KS-001"
+   },
    "victory_condition": "Your largest cutting board lies flat with room on both sides, and nothing else is on the run.",
    "next_card": "KS-001",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -1985,6 +1996,15 @@
     "KC-004",
     "KC-007"
    ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-004",
+     "KC-007"
+    ],
+    "zone": "KZ-001",
+    "standard": "KS-001"
+   },
    "victory_condition": "You can cut, season, and reach a mixing bowl without taking a step or turning around.",
    "next_card": "KA-001",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2026,6 +2046,14 @@
     "KC-001",
     "KC-007"
    ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-007"
+    ],
+    "zone": "KZ-002",
+    "standard": "KS-002"
+   },
    "victory_condition": "With your feet still, you can reach oil, salt and a turner, and you have somewhere to set a hot pan down.",
    "next_card": "KS-002",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2068,6 +2096,14 @@
     "KC-005",
     "KC-010"
    ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-010"
+    ],
+    "zone": "KZ-002",
+    "standard": "KS-002"
+   },
    "victory_condition": "Pot holders found without looking, weekly spices in the front row, nothing that burns within reach of a burner, and every burner lighting evenly.",
    "next_card": "KA-016",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2109,6 +2145,14 @@
     "KC-009",
     "KC-008"
    ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-008"
+    ],
+    "zone": "KZ-003",
+    "standard": "KS-003"
+   },
    "victory_condition": "Dry basin, two tools standing, nothing lying in water.",
    "next_card": "KS-003",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2152,6 +2196,15 @@
     "KC-002",
     "KC-001"
    ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "KC-001"
+    ],
+    "zone": "KZ-003",
+    "standard": "KS-003"
+   },
    "victory_condition": "One tray, three bottles, and bare pipes you can see all the way around.",
    "next_card": "KA-016",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2193,6 +2246,14 @@
     "KC-004",
     "KC-006"
    ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-006"
+    ],
+    "zone": "KZ-004",
+    "standard": "KS-004"
+   },
    "victory_condition": "You can take a plate and a mug down with one hand each, moving nothing else.",
    "next_card": "KS-004",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2235,6 +2296,15 @@
     "KC-010",
     "KC-001"
    ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-010",
+     "KC-001"
+    ],
+    "zone": "KZ-004",
+    "standard": "KS-004"
+   },
    "victory_condition": "The shortest person in the house can lay the table without climbing or asking.",
    "next_card": "KA-016",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2276,6 +2346,14 @@
     "KC-004",
     "KC-001"
    ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-001"
+    ],
+    "zone": "KZ-005",
+    "standard": "KS-005"
+   },
    "victory_condition": "Each of your three most used pans comes out in one motion, moving nothing else.",
    "next_card": "KS-005",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2319,6 +2397,15 @@
     "KC-010",
     "KC-007"
    ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-010",
+     "KC-007"
+    ],
+    "zone": "KZ-005",
+    "standard": "KS-005"
+   },
    "victory_condition": "Nothing has to come out to reach anything else, and nothing heavy is stored above your shoulder.",
    "next_card": "KA-016",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2362,6 +2449,15 @@
     "KC-010",
     "KC-008"
    ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "KC-010",
+     "KC-008"
+    ],
+    "zone": "KZ-006",
+    "standard": "KS-006"
+   },
    "victory_condition": "You can name each drawer's job, and each one closes with one push.",
    "next_card": "KS-006",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2405,6 +2501,15 @@
     "KC-008",
     "KC-010"
    ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "KC-010"
+    ],
+    "zone": "KZ-006",
+    "standard": "KS-006"
+   },
    "victory_condition": "Every drawer has a name written inside it, and nothing swallowable is stored at child height.",
    "next_card": "KS-006",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2449,6 +2554,15 @@
     "KC-010",
     "KC-011"
    ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-010",
+     "KC-011"
+    ],
+    "zone": "KZ-007",
+    "standard": "KS-007"
+   },
    "victory_condition": "Nothing raw above anything ready to eat, every leftover dated, and one bin at the front that tells you what to cook tonight.",
    "next_card": "KS-007",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2493,6 +2607,16 @@
     "KC-011",
     "KC-012"
    ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-010",
+     "KC-011",
+     "KC-012"
+    ],
+    "zone": "KZ-007",
+    "standard": "KS-007"
+   },
    "victory_condition": "Anyone unpacking the shopping can put it away correctly without being told, and the thermometer reads in range.",
    "next_card": "KA-017",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2533,6 +2657,11 @@
    "root_causes": [
     "KC-009"
    ],
+   "related": {
+    "root_causes": [
+     "KC-009"
+    ]
+   },
    "victory_condition": "Five minutes, five things, and tomorrow starts from zero.",
    "next_card": "KE-001",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2574,6 +2703,12 @@
     "KC-010",
     "KC-006"
    ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-006"
+    ]
+   },
    "victory_condition": "Six checks done, and you can say out loud which ones failed. Anything involving gas, a scorch mark, a frayed cord, or a burner that will not light is a call to a qualified person and not a job for this card.",
    "next_card": "KS-001",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2614,6 +2749,12 @@
     "KC-011",
     "KC-005"
    ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "KC-005"
+    ]
+   },
    "victory_condition": "One shop where you bought nothing you already had, and threw nothing away that week.",
    "next_card": "KA-013",
    "source": "hand authored, steps grounded in the Manual passes",
@@ -2655,6 +2796,12 @@
     "KC-012",
     "KC-008"
    ],
+   "related": {
+    "root_causes": [
+     "KC-012",
+     "KC-008"
+    ]
+   },
    "victory_condition": "One sentence, two signatures, on the wall, and neither person had to lose.",
    "next_card": "KS-003",
    "source": "hand authored, steps grounded in the Manual passes",
