@@ -2,7 +2,7 @@
  "generatedFrom": "site/assets/js/quest-data.js",
  "generatedBy": "ops/build_mobile_corpus.py",
  "doNotEdit": "Regenerate instead. This is a build product.",
- "sourceSha256": "93985daaa0ee149aa2a1b4b54b3c358a4e115ebd7cbfd106b237f0ba887433fc",
+ "sourceSha256": "ccadca4ff702c4195fc916cd67c8fa555a3993e9152fc6af2f3e8b8c13e39359",
  "roomCount": 20,
  "zoneCount": 114,
  "cardCount": 684,
@@ -1222,7 +1222,7 @@
      "text": "The count happens as the box goes back, not as it comes out, done by whoever played. Two minutes at the end of a game instead of ruining the start of the next one. The lids carry the dates, so slip reads from the doorway: a box with no date, or an old one, has not been verified since. Recovery is counting that one box and bagging what is loose inside its own lid. A missing piece is never found by the person who lost it. It is found weeks later, by somebody who has just set up."
     }
    ],
-   "img": null,
+   "img": "family-room--board-game-and-puzzle-zone",
    "video": null
   },
   {
@@ -1978,7 +1978,7 @@
      "text": "Every time the sheet comes off for the wash, the crib goes back together with a sheet and nothing else, by whoever is changing it. Ten seconds, and not a weekly check but the act of remaking the bed itself. The signal is anything crossing the rail: a muslin over the top rail, a toy at the foot, a folded blanket. All of it comes out then, and that is the entire recovery. What loads this zone is other people's kindness, which is why the photo lives inside the closet door where a grandparent can meet the standard unprompted."
     }
    ],
-   "img": null,
+   "img": "nursery--crib-and-sleep-zone",
    "video": null
   },
   {
@@ -2266,7 +2266,7 @@
      "text": "Every hand soap refill is a leak check: crouch, run your eyes over the cabinet floor and the trap joint, then close the doors. Ten seconds, by whoever refilled the soap. Slip is anything stacked on the pale tray or standing where it hides the trap, because the tray only works if it can show you a drip you were not expecting. Recovery is giving the migrant back to its own bin. This cabinet is the one place where the reason for the standard stays invisible until the moment it becomes a floor."
     }
    ],
-   "img": null,
+   "img": "primary-bathroom--under-sink-cabinet",
    "video": null
   },
   {
@@ -3526,7 +3526,7 @@
      "text": "When you hang your own coat up at the end of the day, look along the wall and move anything on the wrong column back to its owner's. Everyone does their own, and it costs the seconds you are already standing there. The floor is the honest signal: bare floor along the whole run means the hooks are holding what they were given, and a bag on the floor means a column is over one coat, one bag, one hat. Overflow moves sideways onto the next person's column long before it reaches the floor."
     }
    ],
-   "img": null,
+   "img": "mudroom--family-hook-zone",
    "video": null
   },
   {

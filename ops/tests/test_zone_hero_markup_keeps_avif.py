@@ -37,6 +37,30 @@ def markup(stem, room="Dining Room", zone="Dining Table"):
     return W.figure(stem, {"room": room, "zone": zone, "subject": ""}, "../")
 
 
+def markup_without_pillow(stem, avif_widths, webp_widths):
+    """figure() with _srcset stubbed, so this runs where Pillow is absent.
+
+    CI has no Pillow (it needs none: it does not generate images), and the
+    first version of this test imported it transitively through _srcset and
+    failed the whole suite. The behaviour under test is which <source> tags
+    get emitted for a given pair of srcsets, which is a string question, not
+    an image one.
+    """
+    real = W._srcset
+
+    def fake(stem_, prefix, ext="webp"):
+        widths = avif_widths if ext == "avif" else webp_widths
+        return ", ".join("%sassets/zones/%s-%s.%s %dw"
+                         % (prefix, stem_, tag, ext, w)
+                         for tag, w in widths)
+    W._srcset = fake
+    try:
+        return W.figure(stem, {"room": "Dining Room", "zone": "Dining Table",
+                               "subject": ""}, "../")
+    finally:
+        W._srcset = real
+
+
 def main():
     failures = []
 
@@ -45,11 +69,22 @@ def main():
     web = os.path.join(ROOT, "site", "assets", "zones")
     have_webp = os.path.exists(os.path.join(web, stem + "-md.webp"))
     have_avif = os.path.exists(os.path.join(web, stem + "-md.avif"))
-    if not (have_webp and have_avif):
-        print("SKIP: %s has no webp/avif pair on disk" % stem)
-        return 0
 
-    html = markup(stem)
+    try:
+        import PIL  # noqa: F401
+        real_pillow = True
+    except ImportError:
+        real_pillow = False
+
+    if real_pillow and have_webp and have_avif:
+        html = markup(stem)
+    else:
+        # Stubbed srcsets, same assertions. Says which path it took rather
+        # than reporting a pass it did not earn.
+        print("  (Pillow or the image pair is absent here, so the srcsets are "
+              "stubbed and only the markup logic is exercised)")
+        html = markup_without_pillow(stem, [("sm", 320), ("md", 640)],
+                                     [("sm", 320), ("md", 640)])
     has_avif = 'type="image/avif"' in html
     has_webp = 'type="image/webp"' in html
     if not has_avif:
@@ -64,7 +99,8 @@ def main():
 
     # A stem with no files at all must degrade to webp-only markup rather than
     # emit an empty srcset, which would be worse than not emitting the source.
-    ghost = markup("this-stem-does-not-exist--anywhere")
+    ghost = (markup("this-stem-does-not-exist--anywhere") if real_pillow
+             else markup_without_pillow("ghost", [], []))
     if 'type="image/avif" srcset=""' in ghost:
         failures.append("emitted an empty avif srcset for a stem with no files")
 
