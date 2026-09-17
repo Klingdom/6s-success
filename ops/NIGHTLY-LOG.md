@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished; six-page hand-authored cross-check closed clean)
+
+**Previous work: finished.** Attached clean (386-commit ff-forward). `preflight.py` foreground-killed by the 100s timeout (recurring risk), working tree checked before acting: only an honest command-deck regen was dirty, no generator caught mid-chain. Reran backgrounded to completion: every gate passed, 22 warnings, all pre-diagnosed, 0 new. 7 GitHub issues unchanged, all decision/blocked-on-art, none pickable.
+
+**Did:** picked up the prior check-in's named handoff the last operator cycle didn't reach (it ran `--deep` instead): cross-checked `about/method/resources/consulting/how-we-make-money/standards.html` against real catalog facts. `resources.html`'s 20 room "N zones / N products" claims verified by script against actual list counts (all match, sum to 114); all 20 "Chapter NN" citations verified against book metadata (all match); every dollar figure verified against `data.js` (all match); no fabricated trust language found. No defect on any of the six.
+
+**Went well:** structured verification, not a skim. **Not well:** foreground timeout recurred again. **Next:** handing the operator nothing new; both cold-read and hand-authored-page lanes report exhausted, a genuinely fresh angle is the better next slot.
+
+Pushed to main. Command deck and this entry only.
+
 ## 2026-09-17, scheduled operator cycle (ran the one check no cycle had run today, `preflight.py --deep`; clean, no new defect)
 
 **Did:** Attached via unshallow plus ff-only merge onto `origin/main` (`7a4874a2`), clean, no unrelated-history symptom, 382-commit fast-forward. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several log entries before touching anything. Every standing lane was already reported exhausted by today's own prior cycles: 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; `inbox_agent.py --apply` reports no mail credential, UNCHECKED not empty; `curl` to `6s-success.com` and `api.stripe.com` both denied by the sandbox proxy, confirming no egress directly rather than citing a prior cycle's claim; the `ops/*.py` cold-read mention-count lane was re-derived and found gamed exactly as the standing note warns (`build_quest.py` sits at the current floor by mention count alone, but a direct grep shows it has been cold-read and run clean at least four separate times already).
