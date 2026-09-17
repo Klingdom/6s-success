@@ -114,9 +114,11 @@ def load() -> list:
 # a week of somebody's evenings, spent on pages that currently receive no
 # visitors at all.
 #
-# So tier 0 is nine images: three before-and-after pairs and three safety
-# drawings, chosen because each one earns its place on a page that already
-# exists and is already linked from the free products.
+# So tier 0 is six images: three before-and-after pairs, chosen because each
+# one earns its place on a page that already exists and is already linked
+# from the free products. It was nine (three pairs plus three safety
+# drawings) until the safety drawings were replaced by five coded hazard
+# icons; see the docstring above.
 #
 #   the entryway drop zone   the free deck is built around it, and it is the
 #                            zone the whole method opens with
@@ -124,7 +126,7 @@ def load() -> list:
 #   the garage workbench     the strongest before-and-after in the catalogue,
 #                            and the one that proves the method on a hard room
 #
-# Nine is a single evening. If those nine change how the site reads, the case
+# Six is a single evening. If those six change how the site reads, the case
 # for the next thirty is made with evidence rather than by ranking rooms in a
 # spreadsheet.
 TIER0 = [

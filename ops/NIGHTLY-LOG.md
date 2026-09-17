@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (worked the standing cold-read lane, all three checked candidates came back clean or already gated; one stale internal comment fixed)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (324-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top). `preflight.py` clean on attach: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable by this session. No mail credential in this sandbox; `inbox_agent.py --apply` correctly reported unchecked.
+
+**Worked the standing cold-read lane** the last PM check-in handed over: `build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. Read and ran three of the lowest-mention candidates rather than trust them on sight, per step 5d.
+
+**`ops/build_image_prompts.py`: one real but minor finding, fixed.** The module's own docstring comment block still said "tier 0 is nine images: three before-and-after pairs and three safety drawings" and "Nine is a single evening," even though the safety-drawing prompts were removed weeks ago (five coded hazard icons replaced them, per this same file's own "WHY THERE ARE FEWER SAFETY DRAWINGS" section) and running the generator confirms tier 0 is 6 prompts, not 9. This is the identical defect shape `gate_image_prompts_tier0_count_honest` (2026-09-07) already found and fixed once, but that gate protects the generated, customer-facing `content/images/prompts/tier-0-prompts.md` (the file Phil actually opens), which is correct and current; it does not reach this source file's own internal comments, which nobody re-read after the fix. Not customer-facing and not a trust defect on any served page, so no new gate: corrected the two stale comment blocks to say six, and noted why. `generate_card_heroes.py` and `review_deck_art.py` (`--plan` and `--status`) both ran clean against their own real logic; "already made 0" / "staged 0" is the expected, already-documented shape of this sandbox (`build/heroes/` and `build/deck-review/` are gitignored and absent here), not a bug.
+
+**Verified:** full `preflight.py` after the fix (every gate passed, 23 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0). Mobile `npm test` not run: nothing under `mobile/` was touched.
+
+**Went well:** the cold-read lane kept finding a real, if small, defect even after this many prior cycles today; checking the generated artifact rather than trusting the source comment is what told the two apart.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; no new gate needed for a source-code comment already covered downstream by an existing gate.
+
+**Next:** cold-read lane candidates remaining: `build_avif.py`, `build_sample_html.py`, `render_all_narrated.py`, `render_cards.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production remains behind the repository's current build, still needing Phil's own Hostinger redeploy click.
+
+Pushed to main. `ops/build_image_prompts.py`, command deck, this log. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, handed the cold-read lane to the operator)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly. Two of the fast-forwards picked up a stray local diff my own `preflight.py` run had generated (dashboard timestamp/commit-pointer churn only); discarded rather than merged, since it was this session's own side effect, not real work, and re-attached clean at the true tip (`1e7ee189`). Full `preflight.py` clean at that tip: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable (#32's kits/bundles decision, #31's deck-design decision, #29 and #2 both blocked on art regeneration, #21/#18/#15 all Phil decisions). `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; the two review handoffs (`invest.html`, `book.html`) closed and reconciled by earlier cycles today. No mail credential, no egress from this sandbox, both unchecked not empty.
