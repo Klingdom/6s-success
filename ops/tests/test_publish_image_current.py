@@ -237,6 +237,59 @@ def test_no_token_warns_unchecked_not_healthy():
         shutil.rmtree(repo, ignore_errors=True)
 
 
+def test_inside_own_workflow_warns_instead_of_deadlocking():
+    # Found 2026-09-17, live: this gate runs inside publish-image.yml's own
+    # "Preflight, including generator ownership" step. A FAIL there blocks
+    # "Build and push", so `goods` can never advance past the run that first
+    # failed, and every later attempt, including the one carrying the real
+    # fix, hits this same FAIL forever. Inside that one workflow this must
+    # warn, not fail, so the job can finish and become the new good baseline.
+    repo, good_sha = _make_repo(differs=True)
+    old_env = os.environ.get("GITHUB_WORKFLOW")
+    os.environ["GITHUB_WORKFLOW"] = "Publish site image"
+    try:
+        fails, warns = _run_with(
+            repo,
+            latest=[{"status": "completed", "conclusion": "failure",
+                    "head_sha": "deadbeef"}],
+            goods=[{"status": "completed", "conclusion": "success",
+                   "head_sha": good_sha}])
+        assert fails == [], (fails, warns)
+        assert len(warns) == 1, (fails, warns)
+        assert "publish-image-current" == warns[0][0]
+        assert good_sha[:8] in warns[0][1]
+    finally:
+        if old_env is None:
+            os.environ.pop("GITHUB_WORKFLOW", None)
+        else:
+            os.environ["GITHUB_WORKFLOW"] = old_env
+        shutil.rmtree(repo, ignore_errors=True)
+
+
+def test_outside_own_workflow_still_fails():
+    # checks.yml, a local run, or an agent's preflight all run under a
+    # different (or absent) GITHUB_WORKFLOW value; none of them are the
+    # delivery attempt itself, so the loud FAIL must survive there.
+    repo, good_sha = _make_repo(differs=True)
+    old_env = os.environ.get("GITHUB_WORKFLOW")
+    os.environ["GITHUB_WORKFLOW"] = "Checks"
+    try:
+        fails, warns = _run_with(
+            repo,
+            latest=[{"status": "completed", "conclusion": "failure",
+                    "head_sha": "deadbeef"}],
+            goods=[{"status": "completed", "conclusion": "success",
+                   "head_sha": good_sha}])
+        assert len(fails) == 1, (fails, warns)
+        assert "publish-image-current" == fails[0][0]
+    finally:
+        if old_env is None:
+            os.environ.pop("GITHUB_WORKFLOW", None)
+        else:
+            os.environ["GITHUB_WORKFLOW"] = old_env
+        shutil.rmtree(repo, ignore_errors=True)
+
+
 if __name__ == "__main__":
     test_failed_run_with_real_unpublished_diff_fails()
     test_failed_run_with_no_real_diff_does_not_fail()
@@ -247,5 +300,7 @@ if __name__ == "__main__":
     test_same_commit_run_succeeded_stays_quiet()
     test_same_commit_all_concluded_without_success_falls_through()
     test_no_token_warns_unchecked_not_healthy()
+    test_inside_own_workflow_warns_instead_of_deadlocking()
+    test_outside_own_workflow_still_fails()
     print("ok  gate_publish_image_current tells undelivered fixes apart from "
           "a routine failure with nothing real behind it")

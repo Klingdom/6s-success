@@ -6440,25 +6440,48 @@ def gate_publish_image_current() -> None:
     not routine, it is undelivered work, and preflight should say so loudly
     enough that someone re-triggers the build rather than reading past it.
 
-    Found broken 2026-09-17: this gate ran *inside* an active publish-image.yml
-    attempt for HEAD (run 306) and failed on itself. A redundant manual
-    workflow_dispatch (run 307) had raced the real push-triggered run and
-    completed (cancelled) a few seconds sooner, so the API's single
-    newest-by-creation-time run was that duplicate, not the still-executing
-    real attempt. The old code took whatever run the API listed first as "the
-    latest", with no check that it was not simply another attempt at this
-    exact commit. A same-commit duplicate is not history to compare against;
-    it is noise from the attempt already in flight. Fixed by pulling several
-    recent runs and setting aside every one that shares HEAD's own commit
-    before deciding whether "the latest attempt" is unresolved, succeeded, or
-    genuinely stuck: only once every attempt at HEAD's own commit has actually
-    concluded, with none of them a success, does this fall back to comparing
-    against the last real prior success.
+    Found broken 2026-09-17, two independent causes converging on run 306
+    (badd2e904), both fixed here rather than picking one.
+
+    First, this gate ran *inside* an active publish-image.yml attempt for
+    HEAD and failed on itself. A redundant manual workflow_dispatch (run 307)
+    had raced the real push-triggered run and completed (cancelled) a few
+    seconds sooner, so the API's single newest-by-creation-time run was that
+    duplicate, not the still-executing real attempt. The old code took
+    whatever run the API listed first as "the latest", with no check that it
+    was not simply another attempt at this exact commit. A same-commit
+    duplicate is not history to compare against; it is noise from the attempt
+    already in flight. Fixed by pulling several recent runs and setting aside
+    every one that shares HEAD's own commit before deciding whether "the
+    latest attempt" is unresolved, succeeded, or genuinely stuck: only once
+    every attempt at HEAD's own commit has actually concluded, with none of
+    them a success, does this fall back to comparing against the last real
+    prior success.
+
+    Second, and more fundamentally: this same preflight.py, unconditionally
+    including this gate, is also the "Preflight, including generator
+    ownership" step INSIDE publish-image.yml itself, the one job whose own
+    success is what would clear the drift this gate reports. Even with the
+    first fix, a genuine (non-duplicate) failure of that workflow on a
+    site/-touching commit would leave every later attempt, including the one
+    carrying the real fix, staring at the same still-failed prior history and
+    the same real diff, so `goods` could never advance and the condition
+    could never clear itself: a deadlock, not an alert. Inside that one
+    workflow, where this run IS the delivery attempt, warn instead of fail so
+    the job can finish, publish, and become the new `goods` baseline;
+    everywhere else (checks.yml, a local or agent run) this stays a FAIL,
+    since there the loud alert is exactly the point and nothing here would
+    resolve it by staying quiet.
     """
     wf_name = "publish-image.yml"
     wf_dir = os.path.join(ROOT, ".github", "workflows")
     if not os.path.isfile(os.path.join(wf_dir, wf_name)):
         return
+
+    # See the docstring above: demote to warn only where this run's own
+    # success is the fix, i.e. inside publish-image.yml's own job.
+    in_own_workflow = os.environ.get("GITHUB_WORKFLOW") == "Publish site image"
+    report = warn if in_own_workflow else fail
 
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import dashboard
@@ -6505,10 +6528,10 @@ def gate_publish_image_current() -> None:
         return  # currently building, or the latest attempt already succeeded
 
     if not goods:
-        fail("publish-image-current",
-             "publish-image.yml has never once succeeded, and its most "
-             "recent attempt failed. Nothing under site/ has ever been "
-             "published to the image the host pulls.")
+        report("publish-image-current",
+               "publish-image.yml has never once succeeded, and its most "
+               "recent attempt failed. Nothing under site/ has ever been "
+               "published to the image the host pulls.")
         return
 
     good_sha = goods[0].get("head_sha")
@@ -6536,13 +6559,13 @@ def gate_publish_image_current() -> None:
          "site/", "Dockerfile"],
         cwd=ROOT, capture_output=True)
     if diff.returncode != 0:
-        fail("publish-image-current",
-             f"publish-image.yml's most recent attempt ({latest_conclusion}) "
-             f"never published: HEAD's site/ or Dockerfile differs from the "
-             f"last commit it actually shipped ({good_sha[:8]}). Real "
-             "content changes are sitting unpublished. Fix whatever failed "
-             "and re-trigger the workflow (workflow_dispatch), or push a "
-             "site/-touching commit so the path filter fires again.")
+        report("publish-image-current",
+               f"publish-image.yml's most recent attempt ({latest_conclusion}) "
+               f"never published: HEAD's site/ or Dockerfile differs from the "
+               f"last commit it actually shipped ({good_sha[:8]}). Real "
+               "content changes are sitting unpublished. Fix whatever failed "
+               "and re-trigger the workflow (workflow_dispatch), or push a "
+               "site/-touching commit so the path filter fires again.")
 
 
 def gate_workflow_push_permissions(wf_dir=None) -> None:
