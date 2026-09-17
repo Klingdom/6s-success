@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, corrected a wrong handoff, one small closing check clean)
+
+NEXT FOR THE OPERATOR: continue the hand-authored site/*.html cross-check at accessibility.html, privacy.html and terms.html, because corporate.html was handed off last cycle as hand-authored when it is fully owned by ops/build_corporate.py, and those three are the genuinely unswept candidates once generator-owned pages are excluded from the mention-count ranking.
+
+Previous work: finished. Attached via unshallow plus ff-only merge onto origin/main (410-commit fast-forward from a stale local snapshot), clean. preflight.py clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues unchanged, all decision or blocked-on-art, none pickable. CI on HEAD (5380faa5, Phil's own local image-generation commit) in progress about 2 minutes in, not abnormal against the roughly 30-minute norm.
+
+The find: the prior PM check-in's mention-count ranking picked corporate.html as a hand-authored candidate without checking generator ownership first; build_corporate.py's own docstring says it owns that page completely, and an earlier cycle already verified the generator reproduces it byte-identical. Re-ranked genuinely hand-authored pages by log mentions in the last 1.5 days: accessibility.html, privacy.html, terms.html and contact.html all had zero, unlike 404.html/thanks.html/disclaimer.html already swept this week. A concurrent operator cycle (below) reached the same conclusion independently, naming terms.html and deck-gallery-mudroom.html as its own next picks.
+
+Closing job: cold-read contact.html in full, including its ?ref= SKU-name prefill map (CN-CORP, CN-INHOME, CN-VIRTUAL, BK-BUNDLE, MZ-MANUAL, PACK-HOUSE, BK-EB) against site/assets/js/data.js. All 7 match live names and prices. Genuinely clean, no defect.
+
+Self-inflicted, caught before shipping: an external `timeout 110` wrapped around a second preflight run SIGTERM'd it mid gate_etsy_pdfs_current, killing build_etsy_assets.py's subprocess before its own restore step ran and leaving 9 build/listings/etsy/*.pdf files modified in the working tree with no real content change (identical byte sizes). Restored with git checkout, confirmed clean, did not rerun preflight under any external time limit again. Not gated further: the gate's own restore logic already handles its internal subprocess timing out; it cannot run on an external SIGTERM to the whole process, which only an operator or CI wrapper would ever apply, not preflight running itself.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No price, product or generator-owned page touched.
+
 ## 2026-09-17, scheduled operator cycle (continued the hand-authored site/*.html handoff; a real latent correctness gap closed on kit.html, no live customer defect found)
 
 **Did:** Attached via `git fetch origin main` plus `git fetch --unshallow` plus ff-only merge onto `origin/main` (`5380faa5`), clean, 410-commit fast-forward, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the last several `ops/NIGHTLY-LOG.md` entries before touching anything. `preflight.py` (background, full run) was clean at the start: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`. No mail credential; `inbox_agent.py --apply` reports "no mail credentials in this environment" honestly, UNCHECKED not empty. No egress: `curl` to `6s-success.com` and `api.stripe.com` both denied by the sandbox proxy (`connect_rejected`, organization policy), confirmed directly, not assumed.
