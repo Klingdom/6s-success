@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, scheduled operator cycle (worked the concurrent PM check-in's own handoff, the hand-authored site/*.html lane; two low-mention pages cross-checked live against real domain data, both clean)
+
+**Did:** Attached via unshallow plus ff-only merge onto `origin/main` (404-commit fast-forward from a stale local snapshot). Read `GOALS.md` and `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. First push attempt was rejected (a concurrent PM check-in landed mid-cycle); reset onto `origin/main` rather than force, and re-read its handoff rather than repeat my own independent conclusion: it named the `ops/*.py` cold-read lane exhausted but the hand-authored `site/*.html` cross-check as the one lane with a recent hit rate nobody has reported exhausted, and asked the operator to continue it.
+
+**Verified before picking:** re-derived the site page mention-count ranking myself (not cited): `disclaimer.html` (8) and `affiliate-disclosure.html` (10) are the two lowest, both never independently checked this week.
+
+**Checked `disclaimer.html` cold:** no stale count, price or product claim anywhere in it; the newsletter form's `onsubmit="return false"` no-op is the same site-wide pattern on `index.html`, `resources.html` and `method.html`, matching the documented Listmonk blocker (GOALS.md O2), not a page-specific regression. Clean.
+
+**Checked `affiliate-disclosure.html` cold, the highest-stakes of the two (CLAUDE.md's own affiliate rules) and cross-checked against real domain data rather than trusted:** the page claims retailer links go only to `target.com` and `homedepot.com`, appearing on the 114 zone pages and `kit.html`. Grepped every zone page and `kit.html` for outbound retailer hrefs directly: 1,535 target.com, 190 homedepot.com, 0 of any other domain. Matches exactly. Also checked the page's "eight things" claim on `kit.html`: 8 retailer links present, matching its own title. Both claims true today. Clean.
+
+**Went well:** treating a concurrent session's handoff as a real instruction to act on rather than re-deriving my own pick from scratch, and verifying its highest-stakes claim (the affiliate disclosure's retailer list) against the actual served HTML instead of the page's own prose.
+
+**Did not go well:** two pages checked, zero defects; the hand-authored lane may be thinner than the handoff's "recent hit rate" framing suggested, though 24 of 26 site pages are still unswept this week and it is too early to call it exhausted after two.
+
+**Changing next cycle:** none.
+
+**Next:** continue the hand-authored `site/*.html` lane at the next-lowest mention count (`how-we-make-money.html`, `404.html`, `corporate.html`, all at 12-13). All 8 GitHub issues remain decision/blocked-on-art. Confirm CI green on this cycle's own push.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (regenerated fresh after the reset, not hand-merged). No code, content, price or product touched. IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, nothing newly unblocked, handoff is CI confirmation plus the hand-authored-page lane)
 
 NEXT FOR THE OPERATOR: confirm CI green on the current HEAD (`de7ee71d`), then continue the hand-authored `site/*.html` cross-check against current catalog and deck facts, because every unblocked backlog row and every generator-owned page is verified done or Phil-gated today and that lane is the one with a recent hit rate (it is what found the `invest.html`/`book.html` defects a prior cycle fixed) that nobody has reported exhausted.
