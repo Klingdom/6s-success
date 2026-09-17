@@ -648,6 +648,94 @@ def gate_shop_prerendered() -> None:
              "shop. Run: python ops/prerender_shop.py" % cards)
 
 
+PRERENDER_SHOP_TIMEOUT_SECONDS = 120
+
+
+def gate_prerender_shop_current() -> None:
+    """The pre-rendered product grid in site/shop.html must still match what
+    the live catalogue renders today, not whatever it rendered the day
+    ops/prerender_shop.py was last run by hand.
+
+    Found 2026-09-17: ops/prerender_shop.py is a real generator, the exact
+    shape gate_generator_ownership and gate_every_generator_has_a_protection_
+    plan exist to catch drift in (it writes a committed block into
+    site/shop.html by driving a headless browser, the same class of tool as
+    build_etsy_assets.py and build_kdp_cover.py, both of which already have
+    a dedicated regenerate-and-diff gate). It is neither in
+    GENERATOR_OWNERSHIP_CHAIN nor in GENERATOR_PROTECTED_ELSEWHERE, and
+    gate_every_generator_has_a_protection_plan's own glob only ever looks
+    for `build_*.py`, so a file named prerender_shop.py is invisible to that
+    meta-gate too, not merely unlisted by it. gate_shop_prerendered above
+    only checks that a pre-rendered block exists and clears a 100-card
+    floor; it would not notice the shop's 159 cards silently staying 159
+    while every price or product actually changed, the same "a crawler and
+    a search engine see a stale storefront" defect class gate_copy_vs_control
+    exists for on ordinary prose, just never checked here.
+
+    No live defect today: confirmed by actually running
+    ops/prerender_shop.py against the real, committed tree before writing
+    this gate. It produced a byte-for-byte identical site/shop.html, twice
+    in a row, so the comparison below is a raw diff, not normalized text:
+    unlike build_etsy_assets.py's PDFs (which embed their own render
+    metadata and can hyphenate a line break differently between browsers),
+    this generator's own idempotency was proved directly rather than
+    assumed, so a byte diff will not flap on a clean re-render of unchanged
+    content.
+
+    Same posture as gate_etsy_pdfs_current: no Chromium-family browser
+    found, a dirty site/shop.html already sitting ahead of HEAD, or the
+    render script itself timing out are all UNCHECKED, never a pass and
+    never a false FAIL for a sandbox limitation rather than a real defect.
+    """
+    page_rel = "site/shop.html"
+    page = os.path.join(ROOT, page_rel)
+    if not os.path.exists(page):
+        warn("prerender-shop-current", "site/shop.html is missing; not checked.")
+        return
+    script = os.path.join(ROOT, "ops", "prerender_shop.py")
+    if not os.path.exists(script):
+        return
+    dirty = [p for p in worktree_changes() if p == page_rel]
+    if dirty:
+        fail("prerender-shop-current",
+             "could not check: site/shop.html already differs from HEAD, so "
+             "a diff afterward would not mean anything. Commit or stash "
+             "first.")
+        return
+    if not B.find_browser():
+        warn("prerender-shop-current",
+             "could not check: no Chromium-family browser found here, so "
+             "the shop's pre-rendered grid could not be re-derived from "
+             "the current catalogue. Unchecked, not clean.")
+        return
+
+    before = io.open(page, encoding="utf-8").read()
+    try:
+        p = subprocess.run([PY, script], capture_output=True, text=True,
+                           cwd=ROOT, timeout=PRERENDER_SHOP_TIMEOUT_SECONDS)
+    except subprocess.TimeoutExpired:
+        warn("prerender-shop-current",
+             "could not check: ops/prerender_shop.py did not finish within "
+             "%d seconds. Unchecked, not clean." % PRERENDER_SHOP_TIMEOUT_SECONDS)
+        _restore([page_rel])
+        return
+
+    after = io.open(page, encoding="utf-8").read()
+    _restore([page_rel])
+
+    if after != before:
+        fail("prerender-shop-current",
+             "site/shop.html's pre-rendered product grid no longer matches "
+             "what the current catalogue renders, so a JS-less crawler or "
+             "search engine sees a stale shop. Run: "
+             "python ops/prerender_shop.py")
+    elif p.returncode != 0:
+        warn("prerender-shop-current",
+             "could not check: ops/prerender_shop.py exited %d (%s). "
+             "Unchecked, not clean." %
+             (p.returncode, (p.stderr or p.stdout or "").strip()[-200:]))
+
+
 GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_pages.py", "build_resources.py",
     "wire_generated_catalog.py", "build_product_schema.py",
@@ -694,6 +782,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_manual_print.py": ("gate_front_matter_filled",
                                "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
+    "prerender_shop.py": ("gate_prerender_shop_current",),
     "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
                       "gate_site_verification_declared",
                       "gate_sameas_backed_by_onsite_link"),
@@ -14851,6 +14940,7 @@ def main() -> int:
     run_gate(gate_downloads_current)
     run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
+    run_gate(gate_prerender_shop_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
     run_gate(gate_risks_register_current)
