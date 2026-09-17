@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-17 17:53",
- "commit": "7a4874a2",
- "commit_msg": "Social drafts: advance rotation",
- "commits_7d": 1254,
- "commits_total": 2566,
+ "generated": "2026-09-17 17:54",
+ "commit": "94f73b3c",
+ "commit_msg": "Run preflight --deep to completion, the one check not exercised today; clean, no new defect. Verify dashboard carry-forward honesty after a no-egress regen. Command deck and log only.",
+ "commits_7d": 1255,
+ "commits_total": 2567,
  "traffic_line": "949 pageviews from 78 visitors across 200 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 508 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-17 11:26; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "949 pageviews from 78 visitors across 200 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 508 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-17 11:26",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-17 11:26",
  "affiliate_trigger_carried_from": "2026-09-17 11:26",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
