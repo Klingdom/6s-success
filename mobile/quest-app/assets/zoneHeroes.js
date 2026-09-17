@@ -51,6 +51,7 @@ module.exports = {
   "kids-bedroom--toy-storage-zone": require("./zones/kids-bedroom--toy-storage-zone.jpg"),
   "kitchen--cooking-zone": require("./zones/kitchen--cooking-zone.jpg"),
   "kitchen--lower-cabinet-and-cookware-zone": require("./zones/kitchen--lower-cabinet-and-cookware-zone.jpg"),
+  "kitchen--primary-prep-counter": require("./zones/kitchen--primary-prep-counter.jpg"),
   "kitchen--refrigerator-and-freezer": require("./zones/kitchen--refrigerator-and-freezer.jpg"),
   "kitchen--sink-and-dishwashing-zone": require("./zones/kitchen--sink-and-dishwashing-zone.jpg"),
   "kitchen--upper-cabinet-zone": require("./zones/kitchen--upper-cabinet-zone.jpg"),
