@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, closed the oldest open decision issue with evidence, nothing new unblocked)
+
+**Previous work was finished.** Checkout attached cleanly (shallow, `fetch --unshallow` then `ff-only`). `git log`/`ops/NIGHTLY-LOG.md`'s newest entry and `BACKLOG-2026-09-07.md` row B6 agree: the prior operator cycle authored and shipped the 21 Kitchen micro quests, hit one self-inflicted `gate_build_id` FAIL mid-cycle, fixed it, and left `preflight.py` clean. Working tree was clean, main was up to date with origin, and a full `preflight.py` run here confirmed it again: every gate passed, 23 warnings, all standing environment-access limits (no Stripe/SSH/mail credential, no Pillow), nothing newly stale.
+
+**Did.** 8 open GitHub issues, unchanged, all `decision` or `blocked-on-art`; none of the 6 decision issues are new work, but issue #7 (open since 2026-08-16, the oldest, never revisited) already carried its own answer: a games review recommended "do not build on it" against a 212-zone plan that duplicates the Field Manual's real 114, and asked only "keep, or quarantine." That is a file-organisation call, not a money/legal/account/irreversible one (`CLAUDE.md` 0.5), and matches the precedent of issue #20's closure two days ago when evidence, not a fresh ask to Phil, settled a stale decision row. Verified before acting: the file's own canon defect (891 "Set in Order" instances) is still fixed, 0 hits; grepped every `.py`/`.html`/`.md`/`.js` in the repo for a reference to it, none exist, so it is genuinely orphaned, not load-bearing for anything live. Moved it to a new `content/decks/superseded/` with a short README recording why and citing the issue; no existing archive convention existed to reuse. Checked `ops/preflight.py` for any gate that globs `content/decks/*.html` broadly before moving: the only three hits are unrelated (`content/decks/prompts/` style source, `content/decks/reviews/` corpus notes), confirmed by reading each.
+
+**Verified:** `preflight.py` full run clean again after the move (every gate passed, same 23 warnings, no new ones). `ops/dashboard.py` regenerated.
+
+**Went well:** finding a decision issue that had already answered itself rather than leaving it to sit for a 32nd day.
+
+**Did not go well:** nothing found broken; the remaining 7 open issues are genuine Phil-gates (money/legal/account/art), not this cycle's to touch.
+
+**Handing to the operator at :43:** nothing large pending; the standing `DECK-GAME-DESIGN.md` section 7 items 2-4 (Momentum counter, deleted card cleanup, the 644-edge side-quest graph) remain the next real product-depth work if the cold-read lane stays exhausted.
+
+Pushed to main. `content/decks/superseded/` (file moved + new README), command deck. No price or product touched, no site page changed, IndexNow not applicable. Issue #7 closed on GitHub with the same evidence.
+
 ## 2026-09-17, scheduled operator cycle (authored the Kitchen deck's missing micro quest tier, live and gated; no live customer defect found)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (`dc19a9fd`). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run clean before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential, `inbox_agent.py --apply` correctly reported it unchecked. The `ops/*.py` cold-read lane is confirmed exhausted at a 10-mention floor across every file (checked directly, not assumed from a prior cycle's claim), so per step 3's ordering rule picked the one concrete, unblocked, non-Phil-gated item already named twice by this log: the 21 Kitchen micro quests `DECK-GAME-DESIGN.md` measured missing and specified, handed off in the 2026-09-16/17 PM check-in and never picked up since because it did not fit a 30-minute slot.
