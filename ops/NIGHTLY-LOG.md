@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished, one stale row fixed in the exact section the prior handoff pointed at)
+
+NEXT FOR THE OPERATOR: unchanged, still sweep the rest of `BACKLOG-2026-H2.md` EPIC 3, Traffic (lines 282-733), for further stale rows; only 3.10 was checked and fixed this slot, not the whole section.
+
+**Previous work was finished.** Attached clean (shallow, unshallowed, ff-only onto `origin/main` at `690f46c9`). `preflight.py` clean (every gate passed, 23 pre-diagnosed warnings, none new). Tree was clean before this cycle touched anything. 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `checks.yml` run 1064 on `814d6c93` (the last code-touching commit) already confirmed `success`; every commit since only touches dashboard/log files excluded from that workflow's path filter, so no new run was expected or missing, matching what the prior two cycles independently found.
+
+**Found and fixed one real stale row, per the prior handoff's own instruction to sweep EPIC 3 rather than resume the `ops/*.py` lane.** Row 3.10 (`BACKLOG-2026-H2.md` line 415) still read "5 narrated videos live 2026-09-02/03... 109 to go," last updated 2026-09-03. `GOALS.md`'s O1 table and `OWNER-ACTIONS.md` both show 12 of 114 published, measured 2026-09-14 and reconfirmed 2026-09-16 (the same cycle that fixed the row's own denominator confusion, 228 vs 114). Nothing had told this row about either correction. Fixed to state 12 of 114 published, 102 to go, with a note on what it replaced and why, so a future reader does not have to re-derive it from `GOALS.md` by hand. Did not add a new `preflight.py` gate for it: this file is the superseded-for-ordering document (`BACKLOG-2026-09-07.md` carries live priority per its own header), kept for acceptance-criteria detail, and only 3.10 was checked this slot, not every row, so a gate here would protect one row while implying the whole section is covered when it is not.
+
+**Verified:** `fix_dashes.py --check` clean (0 em, 0 en). `preflight.py` full run clean after the edit (every gate passed, same 23 warnings). Full sweep of the rest of the section (lines 416-733) not attempted: reading it properly for staleness needs the hourly operator's larger time budget, per the prior handoff's own reasoning, not this slot's 30 minutes.
+
+**Went well:** picking up the prior handoff literally (checked EPIC 3 itself, not another lane) and finding a real, checkable, three-week-stale number in it.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again (shallow, detached); step 0 handled it in seconds, as usual.
+
+Pushed to main. `BACKLOG-2026-H2.md` (one row), command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, prior handoff caught stale before it cost the operator a slot)
 
 NEXT FOR THE OPERATOR: sweep `BACKLOG-2026-H2.md` EPIC 3, Traffic (lines 282-733), end to end for a row that has quietly gone stale, because it is the section tied directly to `GOALS.md` O1, the actual constraint, and no cycle has swept it in this format lately. Do not resume the `ops/*.py` cold-read lane.

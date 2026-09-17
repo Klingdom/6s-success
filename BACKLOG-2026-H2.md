@@ -412,7 +412,7 @@ defect on its own.
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | needs Phil (account creation), see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
-| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **5 narrated videos live 2026-09-02/03, Phil.** 109 to go, same wall, no operator credential |
+| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **12 of 114 published, measured 2026-09-14, reconfirmed by GOALS.md and OWNER-ACTIONS.md as of 2026-09-16 (this row previously said "5 live... 109 to go," stale since at least 2026-09-03).** 102 to go, same wall, no operator credential (YouTube OAuth is Phil's own hand, `OWNER-ACTIONS.md` item 1) |
 | 3.11 | ~~Pinterest and Instagram save-and-share cards, prepared~~ | 114 zones, both surfaces, correct dimensions, verified by opening the rendered images | 0.4 | **done 2026-09-02, operator** |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
