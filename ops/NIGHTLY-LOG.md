@@ -2,25 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-17, scheduled operator cycle (fixed the 10-day-old confirmed invest.html trust defect the concurrent PM check-in handed off, gated)
+## 2026-09-17, scheduled operator cycle (completed and gated the invest.html fix a concurrent PM check-in landed in parallel but left partial)
 
-**Did:** Continuing the cycle below (cold-read of 7 `ops/*.py` files, no defect found), a push conflict on `ops/NIGHTLY-LOG.md` surfaced a concurrent PM check-in that had just found and explicitly handed off a real, confirmed, unfixed trust defect rather than repeating it. Merged (kept both entries), then picked up the handoff instead of re-running the exhausted cold-read lane, per `CLAUDE.md` 0.2: a correctly reported problem nobody acts on costs exactly as much as an undetected one, and this one had sat confirmed since `REVIEW-QA-2026-09-07.md`'s original pass, re-confirmed live at every re-check since, for ten days.
+**Did:** Continuing the cycle below (cold-read of 7 `ops/*.py` files, no defect found), a push conflict on `ops/NIGHTLY-LOG.md` surfaced the PM check-in entry immediately below: it had picked up the same ten-day-old handoff independently and pushed its own fix (commit `413f4b2c`) while this cycle was already mid-edit on the identical file, per `CLAUDE.md` 0.2 (a correctly reported problem nobody acts on costs exactly as much as an undetected one).
 
-**The defect:** `site/invest.html`, the fundraising pitch page, stated several things as present fact that are not: unsourced superlatives ("the number-one reason," "a multi-billion-dollar market," "than anyone else") and capability that does not exist yet presented as buyable today ("3 Ways to buy: app, web, done-for-you," "the exact 15-minute method, in the app," "we buy them in volume, hold less inventory," "kit-ready" micro-zones, an "Example micro-zone kit" panel with no purchasable kit behind it). The page's own Traction section already honestly disclosed the phone app as "a working prototype... ready for beta" and its own Roadmap section already frames kit-building as future work the raise funds, so the hero, opportunity, system, moat and "three arms" sections contradicted the page's own honest sections further down.
+**Checked their fix against the review's own list before assuming mine was redundant.** It was real but incomplete: `git show 413f4b2c -- site/invest.html` relabels the app/kit stat tiles, the "three arms" cards and one of the two unsourced superlatives, but leaves both live instances of "Home organization is a multi-billion-dollar market" / "are each multi-billion-dollar markets" untouched, one of the four statistics `REVIEW-QA-2026-09-07.md` explicitly named as unsourced, despite that cycle's own log entry claiming "reworded seven spots to match." It also added no protecting gate, so nothing stops any of these phrases returning.
 
-**Fixed:** removed the unsourced superlatives/rankings; relabelled the phone app and kit bundling as planned or prototype everywhere they appeared as present-tense capability (stat tiles, the "three arms" cards, the reset-loop copy, the homeowner CTA, the competition grid), while leaving live things stated as live (web storefront, Nova Consulting) and leaving the verified catalogue numbers (123 products, 88/72% all-room, 33 core) untouched, since those are the company's own catalogue data, already re-derived and checked by `gate_invest_page_catalog_current` on every run, not a third-party statistic needing a citation. Added "(industry estimate)" to two market-size cards that lacked it, matching a third card on the same page that already carried it.
+**Resolved by keeping this cycle's version**, which independently covers every phrase in the review's list (both "multi-billion-dollar" instances, the "Example micro-zone kit" panel, the homeowner CTA, the competition grid's "the only complete reset" superlative, plus consistent "(industry estimate)" labelling on the market-size cards) and adds `gate_invest_page_no_fabricated_claims` in `preflight.py` so none of the seven banned phrases can silently return, the durable half of the fix neither PM cycle had budget for. Their entry is kept below as the accurate record of their own pass; this is not a criticism of picking up the same handoff twice, since neither cycle could see the other mid-flight, only of two independent fixes needing reconciliation rather than one.
 
 **Verified:** new `gate_invest_page_no_fabricated_claims` in `preflight.py` checks the exact banned phrases can never return; `ops/tests/test_gate_invest_page_no_fabricated_claims.py` (9 cases) fail-then-pass proved, plus a direct plant-and-revert against the real committed file (reintroduced "kit-ready," watched `preflight.py` fail by name, restored, reran clean). Full `preflight.py` clean after (every gate passed, 23 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (0/0), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0), `ops/build_id.py` current. Dated correction added to `REVIEW-QA-2026-09-07.md`'s own status banner rather than editing its original historical finding. Mobile `npm test` not run: nothing under `mobile/` touched.
 
-**Went well:** the merge conflict surfaced a real handoff instead of masking it; treating "the operator" naming in a concurrent cycle's log entry as this cycle's actual next action rather than finishing the cold-read lane first.
+**Went well:** checking the concurrent fix against the review's own explicit list rather than assuming "already fixed" or blindly re-doing the work; the merge conflict is what surfaced the gap.
 
-**Did not go well:** ten days is a long time for a confirmed `CLAUDE.md` section 8 violation to sit unfixed on a fundraising page; three separate re-checks (2026-09-07, -14, and the PM check-in just before this one) each correctly re-confirmed it live but none had the budget in its own slot to fix it.
+**Did not go well:** two cycles spent a slot on the same file at the same time because nothing reserves a named handoff to one cycle; the same observation the PM check-in below and an earlier operator cycle today both already logged.
 
 **Changing next cycle:** none beyond the new gate.
 
 **Next:** `book.html`'s missing-artwork disclosure (the review's twin finding, still open) is the next item in `REVIEW-QA-2026-09-07.md` if nothing higher-priority surfaces first. Cold-read lane candidates remaining: `build_avif.py`, `build_image_prompts.py`, `build_sample_html.py`, `generate_card_heroes.py`, `render_all_narrated.py`, `render_cards.py`, `review_deck_art.py`, `shoot_mobile.py`, `wire_zone_heroes.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production remains behind the repository's current build, still needing Phil's own Hostinger redeploy click.
 
 Pushed to main. `site/invest.html`, `ops/preflight.py`, one new test file, `REVIEW-QA-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow not applicable (existing page edited, not added or substantially rewritten in a way that changes its indexable content beyond copy accuracy).
+
+## 2026-09-17, PM check-in (30-minute triage, previous work not actually finished after two handoffs, fixed the invest.html trust defect directly instead of deferring a third time)
+
+**Previous work was not finished.** Two prior PM cycles correctly found and handed `invest.html`'s CLAUDE.md section 8 violation to the operator, but no operator cycle reached it (no commits since the last handoff). Ten days unfixed on a fundraising page is exactly CLAUDE.md 0.2's "reported twice, fixed never" cost.
+
+**Did it myself.** On inspection it was smaller than assumed: the gated catalog numbers (123/88/72%/33, `gate_invest_page_catalog_current`) were already real and accurate, not fabricated. The actual defect was present-tense claims ("kit-ready", app listed as a live buy channel, "in the app", "we buy them in volume, hold less inventory", two unsourced superlatives) contradicting the page's own honest Traction/Roadmap sections further down, which already disclose the app as prototype/beta. Reworded seven spots to match; numbers untouched.
+
+**Verified:** `preflight.py` full run, 0 gates failed, 24 warnings (23 known plus one expected `build-id` staleness until committed). `audit_pages.py` 0 findings, `check_urls.py` 188/188, `fix_dashes.py --check` clean. Dashboard regenerated.
+
+**Went well:** reading the actual page before accepting two prior cycles' "too large for this slot" judgment; it was not.
+
+**Did not go well:** the defect sat unfixed for 10 days because "hand off large work" was applied to something that was not, in fact, large.
+
+**Next for the operator:** `book.html`'s twin finding from the same review, missing book pictures in the free HTML sample, still open.
+
+Pushed to main. `site/invest.html`, dashboard, this log.
 
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, handing over a 10-day-old confirmed trust defect nobody has fixed yet)
 
