@@ -40,6 +40,45 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
 
+## 2026-09-17, local CEO cycle (VPS key held: three things only this kind of session can do, all three done)
+
+**Read this before opening a new lane: three standing items are now CLOSED, and the evidence is live, not inferred.**
+
+**1. The 506-vs-155 traffic contradiction is resolved, not merely flagged.** Two prior cycles correctly refused to pick a
+side. Re-derived both from one query on the VPS: the 155 came from `947 - 792`, subtracting one session's TOTAL EVENTS
+(792) from the site's PAGEVIEWS (947). That session is 431 pageviews + 361 custom events. Honest figure, measured
+2026-09-17 17:55 UTC: **78 visitors / 200 visits / 949 pageviews / 30 days, 518 human pageviews from 77 visitors** (501
+from 76 excluding a second high-rate session). The 506 reading was right in method. Carried into `GOALS.md`, `RISKS.md`,
+`STATUS.md` section 9, `OWNER-ACTIONS.md` item 1 (with a freshly pulled per-source table), `ops/roadmap_report.py` and
+`ops/experiments.json` in one commit; both traffic gates pass. `ops/traffic_query.sh` now prints pageviews and all_events
+side by side per session so the units cannot be confused again. LRN-0015.
+
+**2. LRN-0013 was wrong and is corrected.** "Googlebot reads no content page here" came from the current, unrotated proxy
+log only. Across the rotated logs, genuine Googlebot (66.249.x, 373 zone fetches) read **all 115 zone URLs twice** on
+23-27 August, then dropped to a handful a week. Google has read the content and chose not to return. Do not spend cycles
+on reachability or internal linking on the strength of the old wording; the live candidates are page value as judged on
+first read, and authority, and testing either needs Search Console (OWNER-ACTIONS 1a).
+
+**3. One URL per page, live.** `www.` answered 200 with the whole site, and every zone/room/article also answered 200 at
+its `.html` twin, which is how Googlebot came to read all 114 zone pages twice. Both now 301 to the canonical
+(`site/nginx/default.conf`), index pages excluded by a negative lookahead after a redirect loop was caught in a VPS test
+container. Deployed and verified live (production `6c155b8b48679497` -> `128f51debc58e79e`). Guarded by
+`ops/tests/test_nginx_www_redirect.py`. Closes the www half of OWNER-ACTIONS item 9, parked since 2026-09-03 as a
+reverse-proxy change it never needed.
+
+**Also this cycle:** `gate_hourly_brief_stripe_checks` was failing preflight on any machine holding a real Stripe key,
+because it assumed no credential and read a TRUE live finding ("No product description set", OWNER-ACTIONS 1d) as a test
+failure; it now simulates the no-credential case by stubbing the underlying call. `OWNER-ACTIONS.md` gained a three-row
+"start here" block (1a, 1, 1d) because its own ordering put a disk item it calls not urgent above Search Console.
+Payment path re-verified end to end: every live payment link active in Stripe, three real checkout pages open.
+Investigated and dropped: `/null` (71 fetches, Meta's agent only, no page or script on this site produces it) and the
+`/downloads/...` 404s (an August version of the book sample; the current file is self-contained).
+
+**Not done, deliberately:** the 340 dashboard-regen commits this week (27% of 1,247) are a cadence decision of Phil's
+routines, not a generator bug, and `ops/send_brief.py` refuses a `state.json` older than 12 hours, so freezing the
+timestamp would break the daily brief. Raised to Phil instead of re-engineered.
+
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, one real tracking gap found and filed, no new closeable item)
 
 **Previous work: finished.** Attached via ff-only fast-forward onto `origin/main` (`ce887165`, a merge of two concurrent cycles), clean, no unshallow needed this time. `python ops/preflight.py` run to real completion in the background (about 6 minutes): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS SSH key, no Stripe credential, no Pillow, no egress), 0 new. Working tree was clean except the dashboard's own regen. Main was already at the same commit as `origin/main`. 7 GitHub issues checked live via the API before this cycle's own addition: unchanged, all `decision`/`blocked-on-art`, none pickable without Phil, matching the prior PM check-in's own conclusion that both the `ops/*.py` cold-read lane and the hand-authored `site/*.html` lane are exhausted (re-confirmed rather than re-read cold: every `ops/*.py` file now has 9+ mentions in this log, none at the zero/low tier that method depends on).
