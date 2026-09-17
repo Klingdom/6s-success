@@ -1076,12 +1076,38 @@ def gate_generator_ownership() -> None:
     # still report the rest as a clean bill of health for the whole site.
     _heroes = os.path.join(ROOT, "build", "heroes", "zones")
     _no_heroes = not os.path.isdir(_heroes) or not os.listdir(_heroes)
-    _unchecked = ""
+    _unchecked = []
     if _no_heroes:
         gens = [g for g in gens if g != "build_zone_pages.py"]
-        _unchecked = ("build/heroes/ is absent here, so the 114 zone pages and "
-                      "their generator were NOT checked. Run this where the "
-                      "source photographs are.")
+        _unchecked.append(
+            "build/heroes/ is absent here, so the 114 zone pages and "
+            "their generator were NOT checked. Run this where the "
+            "source photographs are.")
+
+    # build_epub.py degrades gracefully with no local book images or fonts,
+    # by its own handle_images() docstring: "The text-only mirror of this
+    # repository intentionally omits binaries, so an absent file is NOT
+    # evidence of a broken book." Found 2026-09-17: this gate ran it anyway,
+    # producing an EPUB with 0 images/0 fonts embedded that differed from
+    # the real, asset-complete committed file, reading as generator drift
+    # when it was actually this environment lacking an input, the identical
+    # shape build_zone_pages.py/_no_heroes above already exists to prevent.
+    # Caught before it did damage: fixing this the wrong way (committing the
+    # degraded rebuild to "clear" the gate) would have shipped a worse book
+    # over a correct one. Same treatment: skip the generator, exclude its
+    # output, and say so out loud rather than pass silently or fail falsely.
+    _book_images = glob.glob(os.path.join(ROOT, "content", "book", "**", "*.jpg"),
+                             recursive=True)
+    _no_book_images = not _book_images
+    _epub_out = "build/6S-Success-Home-Edition.epub"
+    if _no_book_images:
+        gens = [g for g in gens if g != "build_epub.py"]
+        _unchecked.append(
+            "content/book/ has no local .jpg files here, so the EPUB "
+            "generator was NOT checked (it correctly degrades images to "
+            "text descriptions with none present, which would read as "
+            "drift against the real, asset-complete committed file). Run "
+            "this where the book's source images are.")
 
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
@@ -1094,6 +1120,8 @@ def gate_generator_ownership() -> None:
     changed = [f for f in worktree_changes() if f not in _own_output]
     if _no_heroes:
         changed = [f for f in changed if not f.startswith("site/zones/")]
+    if _no_book_images:
+        changed = [f for f in changed if f != _epub_out]
     if changed:
         files = changed[:4]
         fail("generator-ownership",
@@ -1116,8 +1144,8 @@ def gate_generator_ownership() -> None:
     # Said out loud whether the gate passed or failed. A partial check that
     # reports like a full one is the failure this whole week has been about:
     # a run that could not look must not read as a clean bill of health.
-    if _unchecked:
-        warn("generator-ownership", _unchecked)
+    for msg in _unchecked:
+        warn("generator-ownership", msg)
 
 
 def gate_every_generator_has_a_protection_plan() -> None:
