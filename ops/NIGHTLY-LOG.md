@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, no new closeable item, handed off cleanly)
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge, clean, no conflict. Ran `python ops/preflight.py` full (backgrounded rather than foreground-killed, per this log's own prior lesson about external timeouts): 0 gates failed, 23 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow, no JRE). Working tree clean, main up to date with origin before and after.
+
+**Checked rather than assumed the two cron-cadence warnings were new: they are not.** `fulfil-orders.yml` and `hourly-brief.yml` both run slower than their configured cron; both are already root-caused (GitHub deprioritises frequent schedules, not an outage), documented in the workflow files' own comments since 2026-09-09, and mitigated (`fulfil-orders.yml` also fires on every push to main). No fresh action needed.
+
+All 7 GitHub issues remain decision/blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. The standing `ops/*.py` cold-read lane was declared exhausted in an earlier entry today; did not force a finding to fill the slot.
+
+**Handing to the operator:** a fresh-angle verification pass (a live customer-facing surface, or the newest-touched file run live) rather than another cold-read sweep, per the standing note two entries below. Same Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Command deck only, no code/content/price/product change. IndexNow not applicable.
+
 ## 2026-09-17, local session (deployed 95 commits of other sessions' finished work, including two P2 trust fixes nobody could see; dropped my own duplicate)
 
 **The headline is not what I built. It is what was already built and invisible.** Production had been sitting at `a055ace82941078e` while the repository moved to `6c155b8b48679497`, with **10 `site/` files changed across 95 commits**. Measured before deploying, by diff-derived markers rather than by eye: of the lines those commits added, **0 of 32 were live on `kitchen-deck.html`, 0 of 21 on `invest.html`, 0 of 1 on `book.html`**. Two of those are P2 trust fixes that had been finished, gated and unseen: `invest.html` still served unsourced superlatives and described unbuilt app/kit capability as present fact, and `book.html` still failed to disclose that its free HTML sample degrades 172 of 231 figures to text while the PDF carries every image. That is `CLAUDE.md` 0.2 in its plainest form, and this machine is the only session that can deploy.
