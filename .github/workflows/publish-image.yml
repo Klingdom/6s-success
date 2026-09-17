@@ -28,7 +28,12 @@ jobs:
     # A 20 second job with no timeout can sit for six hours
     # holding its concurrency group. Nothing has hung yet; this is
     # so that a hang cannot become a silent outage of the report.
-    timeout-minutes: 20
+    # Raised 20 to 35 on 2026-09-17: run 303's own Preflight step took
+    # 16m48s inside a successful, un-timed-out job (18m13s total against
+    # the old 20m limit, run 305 finally tipped over it and was cancelled,
+    # not failed, losing a real fix). preflight.py's own runtime is not
+    # shrinking on its own; this buys headroom, it does not fix the cause.
+    timeout-minutes: 35
     permissions:
       contents: read
       packages: write
