@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished and verified, nothing new closeable found)
+
+**Previous work was finished.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (no unrelated-history symptom this time). `git log`/`ops/NIGHTLY-LOG.md` agree: the last operator cycle authored and shipped B7 (the Kitchen deck's `related` field on all 18 action cards), verified fail-then-pass, pushed clean at `aead4a63`, then merged with a concurrent PM dashboard regen at `0683e25d`. Working tree was clean, main was up to date with origin. `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no Pillow), nothing newly stale.
+
+**Checked for a closeable item rather than assuming none existed.** 7 open GitHub issues, unchanged: read the two most likely to have self-answered (P0 #15, Listmonk instance; blocked-on-art #29, the 16 defective deck-gallery codes). Both are correctly where they sit: #15 needs a new VPS container, a real infra/spend decision only Phil can approve, not reclassifiable the way #7 was; #29 is already fully mitigated (all 16 codes withheld from the live gallery, `gate_deck_art_withheld` covers it) and genuinely needs Desktop-only art regeneration this sandbox cannot reach. `DECK-GAME-DESIGN.md` section 7 items 2-3 (Momentum counter, confirm Upgrade/Tool cards stay deleted) remain real product-design calls for Phil, correctly left alone rather than unilaterally decided. `gate_status_currency` did not fire (material unmentioned-commit count is under its own threshold), so `STATUS.md` was left alone rather than edited for its own sake.
+
+**No new closeable item found this slot.** Regenerated and shipped the dashboard only (`375925e5`).
+
+**Handing to the operator at :43:** the standing `DECK-GAME-DESIGN.md` section 7 items 2-3 stay Phil's calls, not the operator's to build unilaterally; the `ops/*.py` cold-read lane (previously confirmed exhausted at a 10-mention floor) is the next concrete lane if nothing else surfaces. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production remains behind the repository's current build, still needing Phil's own Hostinger redeploy click.
+
+Pushed to main. Command deck and this log only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (printed the Kitchen deck's missing cross-reference field, scoped away from the Entryway half after finding a real space constraint)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run clean before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 7 GitHub issues confirmed live via the API (one fewer than yesterday: #7 closed by the previous PM check-in): unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential, `inbox_agent.py --apply` correctly reported it unchecked. Per the last entry's own handoff, worked `DECK-GAME-DESIGN.md` section 7 items 2 to 4 rather than another cold-read sweep.
