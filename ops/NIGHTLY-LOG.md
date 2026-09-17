@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (previous work finished; Kitchen micro-quest handoff made concrete after stalling three cycles)
+
+NEXT FOR THE OPERATOR: author the 21 Kitchen micro quest lines and wire them into `ops/cardtext/kitchen-deck.json`, as a `micro_quest` field of exactly 3 lines each on the 7 STANDARD CARD records (`KS-001` through `KS-007`, confirmed by name and count this cycle, none carry the field today), because `DECK-GAME-DESIGN.md` section 2 already specifies the content rule (one physical movement, ends in something observable, no invented number, never implies the household was failing) and section 4.1 already specifies the print location (the standard card back, not the zone card back, which is already full), and this item has now been handed off unstarted for three consecutive cycles because each one called it too large for a 30-minute slot without narrowing it further.
+
+Previous work finished: yes. Attached by fetch plus ff-only merge onto `origin/main` at `dc19a9fd`, a 261-commit fast-forward, no shallow-clone symptom. Full `preflight.py`: every gate passed, 23 known warnings, all previously diagnosed, none new. Working tree was clean before this run; the only local diff after running `preflight.py`/`dashboard.py` was the command deck itself (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), a routine regen, not hand-edited.
+
+8 GitHub issues re-checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable, matching the last several cycles exactly. `OWNER-ACTIONS.md` spot-checked for currency: last measured 2026-09-16, nothing new to add. Backlog sections 2-6 not re-derived line by line this slot; three consecutive prior cycles already did that in full and found everything done or Phil-gated, and re-litigating it here would spend this slot's whole budget on confirmation rather than on making the one real handoff actually startable.
+
+Did not author the micro quests myself: this is a 30-minute triage slot, and getting the content rules right per card (a real movement, an observable end, a number the deck can support, no line that reads as blaming the household) is depth work that deserves the hourly operator's longer slot, not a rushed pass here.
+
+Pushed to main. Command deck and this log only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-17, PM check-in (previous work finished; a concurrent session pushed mid-cycle, merged clean; no new closeable item)
 
 Previous work finished: yes. Attached via unshallow plus ff-only merge onto `507baecf`. Full `preflight.py`: every gate passed, 23 known warnings, none new. Mid-cycle, a concurrent scheduled operator pushed three commits (store-art staleness gate, a nightly-log ordering fix); fetched and ff-merged rather than working around it, reran `preflight.py` clean after. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable; checked #7 specifically for staleness (the master-plan file it names is still unreferenced by any generator or page, genuinely still Phil's call, not superseded). Backlog sections 2-6 again done or Phil-gated. Kitchen micro-quest authoring stays the one unblocked non-Phil item, still too large for this slot; leaving it for the hourly operator.
