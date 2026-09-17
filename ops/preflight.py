@@ -870,6 +870,45 @@ GENERATOR_PROTECTED_ELSEWHERE = {
 }
 
 
+def _zip_content_identical(path: str, committed_bytes=None) -> bool:
+    """True when a rebuilt archive holds exactly the committed entries.
+
+    Found 2026-09-17. build/6S-Success-Home-Edition.epub is a zip. Rebuilt on
+    this workstation it came out byte-different from the committed copy while
+    every one of its 62 entries was byte-identical, so the ownership gate read
+    "hand edits will be lost" about a file nobody had edited, and no deploy
+    could pass until the committed bytes were restored.
+
+    The cause is not the generator: Python 3.14 links zlib-ng and CI's Python
+    links stock zlib 1.3.1, and the two produce different DEFLATE streams for
+    the same input. The archive's container is therefore not reproducible
+    across environments, and comparing it byte-for-byte compares an
+    implementation detail of whoever ran the build last.
+
+    What the gate actually means to ask is "does the generator still produce
+    this content", so for archives it asks that instead. Any entry added,
+    removed or changed still fails, which is the case that matters.
+    """
+    import zipfile
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return False
+    if committed_bytes is None:
+        committed = subprocess.run(
+            ["git", "show", "HEAD:" + path], cwd=ROOT,
+            capture_output=True)
+        if committed.returncode != 0 or not committed.stdout:
+            return False
+        committed_bytes = committed.stdout
+    try:
+        with zipfile.ZipFile(io.BytesIO(committed_bytes)) as a,                 zipfile.ZipFile(full) as b:
+            if set(a.namelist()) != set(b.namelist()):
+                return False
+            return all(a.read(n) == b.read(n) for n in a.namelist())
+    except (zipfile.BadZipFile, OSError, ValueError):
+        return False
+
+
 def gate_generator_ownership() -> None:
     """No file may be hand edited if a generator rewrites it.
 
@@ -1118,6 +1157,14 @@ def gate_generator_ownership() -> None:
     # started, and no generator in the list below writes them. Without this the
     # gate reports its own host as generator drift.
     changed = [f for f in worktree_changes() if f not in _own_output]
+    # An archive whose entries are all identical is not drift; see
+    # _zip_content_identical. Restore the committed bytes so the working tree
+    # does not carry a pointless rewrite of a 9 MB binary.
+    repacked = [f for f in changed
+                if f.endswith((".epub", ".zip")) and _zip_content_identical(f)]
+    if repacked:
+        _restore(repacked)
+        changed = [f for f in changed if f not in repacked]
     if _no_heroes:
         changed = [f for f in changed if not f.startswith("site/zones/")]
     if _no_book_images:
