@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work not actually finished after two handoffs, fixed the invest.html trust defect directly instead of deferring a third time)
+
+**Previous work was not finished.** Two prior PM cycles correctly found and handed `invest.html`'s CLAUDE.md section 8 violation to the operator, but no operator cycle reached it (no commits since the last handoff). Ten days unfixed on a fundraising page is exactly CLAUDE.md 0.2's "reported twice, fixed never" cost.
+
+**Did it myself.** On inspection it was smaller than assumed: the gated catalog numbers (123/88/72%/33, `gate_invest_page_catalog_current`) were already real and accurate, not fabricated. The actual defect was present-tense claims ("kit-ready", app listed as a live buy channel, "in the app", "we buy them in volume, hold less inventory", two unsourced superlatives) contradicting the page's own honest Traction/Roadmap sections further down, which already disclose the app as prototype/beta. Reworded seven spots to match; numbers untouched.
+
+**Verified:** `preflight.py` full run, 0 gates failed, 24 warnings (23 known plus one expected `build-id` staleness until committed). `audit_pages.py` 0 findings, `check_urls.py` 188/188, `fix_dashes.py --check` clean. Dashboard regenerated.
+
+**Went well:** reading the actual page before accepting two prior cycles' "too large for this slot" judgment; it was not.
+
+**Did not go well:** the defect sat unfixed for 10 days because "hand off large work" was applied to something that was not, in fact, large.
+
+**Next for the operator:** `book.html`'s twin finding from the same review, missing book pictures in the free HTML sample, still open.
+
+Pushed to main. `site/invest.html`, dashboard, this log.
+
 ## 2026-09-17, PM check-in (30-minute triage, previous work finished, handing over a 10-day-old confirmed trust defect nobody has fixed yet)
 
 NEXT FOR THE OPERATOR: fix `invest.html` per `REVIEW-QA-2026-09-07.md`'s own "CONFIRMED, P2: invest.html carries unsourced statistics and a product that does not exist" finding (source or remove every unsourced number: 72%/88-of-123-products, "number-one reason," "multi-billion-dollar," "than anyone else"; relabel capability that does not exist yet, "3 Ways to buy: app, web, done-for-you" and "in the app" against `GOALS.md` O5's own "Verified on a real phone: no, Store listings: none," "we buy them in volume, hold less inventory" against a business that has never sold or held a physical product, "kit-ready" zones against no kit that exists), because it is a real, confirmed, unfixed violation of this file's own section 8 (no fabricated statistics, no fabricated capability) sitting on the highest-stakes page on the domain (a fundraising document), first found 2026-09-07, still open at the last re-check 2026-09-14, and CLAUDE.md 0.2 is explicit that a correctly reported problem nobody acts on costs exactly as much as an undetected one. The review's own acceptance criterion: every number sourced or removed, every capability labelled by its real state, the app not described as a way to buy until it is one. Not a generated file (`build_seo.py` only touches its `<meta>` tags), so a direct edit is safe. The same review's twin finding, "the free HTML book has none of the book's pictures" (`book.html`), is the next item in that file if there is time left after `invest.html`.
