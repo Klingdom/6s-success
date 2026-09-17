@@ -64,20 +64,24 @@ def _head(repo):
                           check=True).stdout.strip()
 
 
-def _run_with(repo, latest, goods, token="fake-token", workflow=None):
-    """workflow controls the simulated GITHUB_WORKFLOW value, defaulting to
-    unset. Found 2026-09-17: this gate itself runs as a step inside
-    publish-image.yml, whose real name IS "Publish site image", so GitHub
-    Actions sets that exact value on GITHUB_WORKFLOW for every test in this
-    file whether or not the test cares. A test that does not pin this
-    explicitly inherits whatever the real ambient environment happens to be
-    (unset here, "Publish site image" there) instead of the one it means to
-    test, which is exactly how three "outside own workflow" tests passed
-    locally and failed for real in CI without any code regression."""
+def _run_with(repo, latest, goods, token="fake-token", github_workflow=None):
+    """github_workflow is always set explicitly, never inherited from the
+    ambient environment. Found 2026-09-17: when this exact test module runs
+    for real inside publish-image.yml's own "Publish site image" job (via
+    gate_tests), the real GITHUB_WORKFLOW env var genuinely equals "Publish
+    site image" for the whole process, so every test here that never touched
+    the variable was silently exercising the "inside own workflow" branch
+    instead of the plain one it meant to test, and a handful started failing
+    the moment that fix shipped and this suite actually ran there. Every
+    caller must now say which context it means, default None (cleared, i.e.
+    "some other workflow, or a local/agent run") for the tests that predate
+    that branch entirely.
+    """
     old_root = preflight.ROOT
     old_runs = preflight._publish_image_runs
     old_gh_token = dashboard.gh_token
-    old_wf = os.environ.get("GITHUB_WORKFLOW")
+    had_env = "GITHUB_WORKFLOW" in os.environ
+    old_env = os.environ.get("GITHUB_WORKFLOW")
     preflight.FAIL.clear()
     preflight.WARN.clear()
     try:
@@ -86,20 +90,20 @@ def _run_with(repo, latest, goods, token="fake-token", workflow=None):
             lambda tok, name, extra_qs="", per_page=1:
             goods if "status=success" in extra_qs else latest)
         dashboard.gh_token = lambda: token
-        if workflow is None:
+        if github_workflow is None:
             os.environ.pop("GITHUB_WORKFLOW", None)
         else:
-            os.environ["GITHUB_WORKFLOW"] = workflow
+            os.environ["GITHUB_WORKFLOW"] = github_workflow
         preflight.gate_publish_image_current()
         return list(preflight.FAIL), list(preflight.WARN)
     finally:
         preflight.ROOT = old_root
         preflight._publish_image_runs = old_runs
         dashboard.gh_token = old_gh_token
-        if old_wf is None:
-            os.environ.pop("GITHUB_WORKFLOW", None)
+        if had_env:
+            os.environ["GITHUB_WORKFLOW"] = old_env
         else:
-            os.environ["GITHUB_WORKFLOW"] = old_wf
+            os.environ.pop("GITHUB_WORKFLOW", None)
 
 
 def test_failed_run_with_real_unpublished_diff_fails():
@@ -262,6 +266,15 @@ def test_inside_own_workflow_warns_instead_of_deadlocking():
     # failed, and every later attempt, including the one carrying the real
     # fix, hits this same FAIL forever. Inside that one workflow this must
     # warn, not fail, so the job can finish and become the new good baseline.
+    #
+    # github_workflow is passed to _run_with rather than set on os.environ
+    # directly: found 2026-09-17, live, that this exact scenario (this test
+    # module actually running for real inside the "Publish site image" job)
+    # broke every OTHER test in this file the moment this branch shipped,
+    # because they never touched GITHUB_WORKFLOW and silently inherited
+    # whatever ambient value the real CI job happened to be running under.
+    # _run_with now owns that variable exclusively so no test's expectation
+    # depends on what workflow is actually executing the suite.
     repo, good_sha = _make_repo(differs=True)
     try:
         fails, warns = _run_with(
@@ -270,7 +283,7 @@ def test_inside_own_workflow_warns_instead_of_deadlocking():
                     "head_sha": "deadbeef"}],
             goods=[{"status": "completed", "conclusion": "success",
                    "head_sha": good_sha}],
-            workflow="Publish site image")
+            github_workflow="Publish site image")
         assert fails == [], (fails, warns)
         assert len(warns) == 1, (fails, warns)
         assert "publish-image-current" == warns[0][0]
@@ -291,7 +304,7 @@ def test_outside_own_workflow_still_fails():
                     "head_sha": "deadbeef"}],
             goods=[{"status": "completed", "conclusion": "success",
                    "head_sha": good_sha}],
-            workflow="Checks")
+            github_workflow="Checks")
         assert len(fails) == 1, (fails, warns)
         assert "publish-image-current" == fails[0][0]
     finally:
