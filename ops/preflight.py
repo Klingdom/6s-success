@@ -10422,6 +10422,83 @@ def gate_no_stale_card_deck_decision() -> None:
              "drop it from the 'Items waiting on Phil' list.")
 
 
+def gate_no_stale_affiliate_apply_instruction() -> None:
+    """OWNER-ACTIONS.md and BACKLOG-2026-H2.md must not tell Phil to go
+    apply to, confirm, or finish an affiliate application today, and must
+    never name a declined programme as a near-term fit.
+
+    Found 2026-09-17, this operator, the end-to-end read of
+    BACKLOG-2026-H2.md the PM check-in handed off. Its "Items waiting on
+    Phil" item 9 said "do not apply to Amazon" and named Etsy, Office Depot
+    and "the legacy Home Depot programme" as "the best near-term fits."
+    OWNER-ACTIONS.md item 4's own closing line said "open those four
+    emails from 29 August and finish each one." Both were written 2026-08
+    to 2026-09-01, before PLAN-AFFILIATE-MONETISATION.md (Phil, finalised
+    2026-09-07) settled the actual call: "do not apply to anything today.
+    Not Amazon, not Impact, not CJ, not Rakuten," held until trigger T2
+    fires. GOALS.md's O4 already carries this as "deliberately held, not
+    blocked" (gate_no_stale_affiliate_blocker protects that row); neither
+    sibling document had been told, the same "source corrected, sibling
+    never told" shape as gate_no_stale_card_deck_decision one function up.
+    Home Depot's inclusion was independently just wrong: it is one of the
+    five Impact-routed programmes declined 29 August, not a near-term fit,
+    checked directly against ops/affiliate-accounts.json before writing
+    this gate.
+
+    Two checks, both narrow and reusable-if-wrong rather than an attempt
+    to prove either document current: the exact retired instruction
+    phrase cannot reappear, and no programme ops/affiliate-accounts.json
+    records as declined can be named as a fit to apply to.
+    """
+    accounts_path = os.path.join(ROOT, "ops", "affiliate-accounts.json")
+    if not os.path.exists(accounts_path):
+        return
+    try:
+        accounts = json.loads(io.open(accounts_path, encoding="utf-8").read())
+    except (ValueError, OSError):
+        warn("no-stale-affiliate-apply-instruction",
+             "ops/affiliate-accounts.json could not be parsed; skipped.")
+        return
+    declined = [k for k, v in accounts.items()
+                if not k.startswith("_") and v.get("status") == "declined"]
+
+    owner_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if os.path.exists(owner_path):
+        text = io.open(owner_path, encoding="utf-8").read()
+        if re.search(
+                r"open those four emails from 29 august and finish each one",
+                text, re.IGNORECASE):
+            fail("no-stale-affiliate-apply-instruction",
+                 "OWNER-ACTIONS.md item 4 still tells Phil to finish the "
+                 "29 August affiliate applications, but "
+                 "PLAN-AFFILIATE-MONETISATION.md (2026-09-07) holds all "
+                 "affiliate applications until trigger T2 fires.")
+
+    h2_path = os.path.join(ROOT, "BACKLOG-2026-H2.md")
+    if os.path.exists(h2_path) and declined:
+        text = io.open(h2_path, encoding="utf-8").read()
+        m = re.search(r"Apply to retail affiliate programmes.{0,1500}",
+                       text, re.IGNORECASE | re.DOTALL)
+        block = m.group(0) if m else ""
+        # A dated correction narrating its own old, wrong wording in quotes
+        # must not trip this: strip quoted spans before matching, the same
+        # technique gate_no_stale_session_label uses for the identical
+        # false-positive shape.
+        block = re.sub(r'"[^"]*"', "", block)
+        NAME_TO_KEY = {"home depot": "home-depot", "lowes": "lowes",
+                       "lowe's": "lowes", "walmart": "walmart",
+                       "target": "target", "ace": "ace"}
+        for name, key in NAME_TO_KEY.items():
+            if key in declined and re.search(
+                    re.escape(name) + r".{0,60}(near-term fit|best)",
+                    block, re.IGNORECASE):
+                fail("no-stale-affiliate-apply-instruction",
+                     "BACKLOG-2026-H2.md's affiliate item names %s as a "
+                     "near-term fit to apply to, but "
+                     "ops/affiliate-accounts.json records it declined." %
+                     name.title())
+
+
 # (superseded file, the successor filename it must name in its own banner)
 _SUPERSESSION_CHAIN = [
     ("BACKLOG.md", "BACKLOG-2026-H2.md"),
@@ -11134,6 +11211,61 @@ def gate_goals_published_videos_current() -> None:
              f"but ops/state-checkin.json's last real measurement says "
              f"{measured} (as of "
              f"{state.get('youtube_published_measured_at', 'unknown time')})")
+
+
+def gate_backlog_h2_video_count_current() -> None:
+    """BACKLOG-2026-H2.md's 3.10 row must not repeat a stale published-video
+    count from its own last dated note.
+
+    Found 2026-09-17, this operator, an end-to-end read of BACKLOG-2026-H2.md
+    per the standing PM handoff to sweep it for a row that quietly went
+    stale. gate_goals_published_videos_current (2026-09-02) already protects
+    GOALS.md's own count against ops/state-checkin.json, but nothing checked
+    the identical fact where it is repeated a second time, in this file's
+    own 3.10 row: it still read "5 narrated videos live 2026-09-02/03" and
+    "109 to go" two weeks after the real count reached 12 of 114 (measured
+    2026-09-17 01:34), the same "source corrected, artifact never re-derived"
+    shape this file's own section 7 names as the dominant defect class, just
+    never before caught in this specific row. Narrow and reusable-if-wrong,
+    same shape as gate_no_stale_narration_blocker: it does not try to prove
+    the whole file current, only that this one already-measured fact cannot
+    silently regress back to a stale number.
+    """
+    state_path = os.path.join(ROOT, "ops", "state-checkin.json")
+    path = os.path.join(ROOT, "BACKLOG-2026-H2.md")
+    if not os.path.exists(state_path) or not os.path.exists(path):
+        return
+    try:
+        state = json.load(io.open(state_path, encoding="utf-8"))
+    except (ValueError, OSError):
+        warn("backlog-h2-video-count-current",
+             "ops/state-checkin.json could not be parsed; skipped.")
+        return
+    measured = state.get("youtube_published_last_measured")
+    if measured is None:
+        return
+
+    text = io.open(path, encoding="utf-8").read()
+    m = re.search(r"\|\s*3\.10\s*\|.*", text)
+    if not m:
+        warn("backlog-h2-video-count-current",
+             "BACKLOG-2026-H2.md's 3.10 row has moved or changed shape; "
+             "this gate could not find it and needs updating to match.")
+        return
+    row = m.group(0)
+    claim = re.search(r"\*\*(\d+)\s+narrated videos live", row)
+    if not claim:
+        # Row no longer states a bare count this way (e.g. rewritten as
+        # done); nothing to check.
+        return
+    claimed = int(claim.group(1))
+    if claimed != measured:
+        fail("backlog-h2-video-count-current",
+             f"BACKLOG-2026-H2.md's 3.10 row says {claimed} narrated videos "
+             f"live, but ops/state-checkin.json's last real measurement "
+             f"says {measured} (as of "
+             f"{state.get('youtube_published_measured_at', 'unknown time')})"
+             f". Update the row, not just GOALS.md.")
 
 
 def gate_linkedin_drafts_price_current() -> None:
@@ -14955,6 +15087,7 @@ def main() -> int:
     run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_no_stale_narration_blocker)
     run_gate(gate_no_stale_card_deck_decision)
+    run_gate(gate_no_stale_affiliate_apply_instruction)
     run_gate(gate_doc_supersession_chain_current)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
@@ -14965,6 +15098,7 @@ def main() -> int:
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
     run_gate(gate_goals_published_videos_current)
+    run_gate(gate_backlog_h2_video_count_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_affiliate_trigger)
