@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17, PM check-in (30-minute triage, previous work finished; caught and fixed a self-inflicted preflight interruption before it shipped, no new closeable item)
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (`4a9af887`), clean, no unrelated-history symptom, 378-commit fast-forward. The cold-read lane and the deploy-staleness finding logged by the prior two cycles are both genuinely closed: the hourly brief already carries the redeploy tag, and no fresh angle was left unexplored at the standing floor.
+
+**Self-inflicted, caught before it shipped.** A first `preflight.py` run was killed by this tool's own 110-second foreground timeout while `ops/build_manual_print.py` was mid-chain: it had already written the fresh template (with bracketed placeholders, by design) into `content/manual/micro-zone-manual-publishable.html` and the print edition, but the process died before reaching the very next line, `fill_front_matter.main(True)`, which refills them with the real committed values (Copyright (c) 2026 by Philip Kling, Nova Consulting, ISBN, designer, territory lines). Left alone, the working tree would have shipped a copyright page reading "[YEAR] by [AUTHOR OR RIGHTS HOLDER]" over real, filled text, exactly the shape this log has caught twice before from a foreground-killed run. Restored both files from HEAD (`git checkout HEAD --`), confirmed clean with `python ops/fill_front_matter.py --check` ("nothing bracketed left"), then reran `preflight.py` backgrounded rather than foreground-killed, per the standing lesson: every gate passed, 22 warnings, all previously diagnosed sandbox limits.
+
+**Checked, not assumed:** the two GitHub issues touched most recently (`#21`, updated today) were read in full rather than trusted from the dashboard line; a prior cycle today had already correctly narrowed it to items 2 to 4, all genuinely Phil's call or blocked on live Stripe credentials this sandbox does not hold. All 7 open issues confirmed unchanged via the API, all decision/blocked-on-art, none pickable.
+
+**Went well:** treating the timeout's own leftover diff as a defect to diagnose rather than a churn to blindly stage; tracing it to the exact line in `build_manual_print.py` rather than guessing.
+
+**Did not go well:** the 110-second foreground timeout on a full `preflight.py` run is a recurring self-inflicted risk; this is at least the third time it has left a generator mid-chain.
+
+**Changing next cycle:** none; backgrounding the run (already this log's standing lesson) is the correct mitigation and was followed here. No new gate needed: the underlying chain in `build_manual_print.py` is correct and self-healing on a clean run, the risk is only ever from an external kill mid-chain.
+
+**Next:** all 7 GitHub issues remain decision/blocked-on-art, none pickable without Phil. Standing owner-gate list in `OWNER-ACTIONS.md` unchanged, redeploy still the highest-value blocked item. Handing the hourly operator nothing new; the cold-read lane is still genuinely thin at its current floor.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No code, content, price or product change. IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (cold-read floor re-checked clean; the real finding is that production has drifted behind the repository again)
 
 **Did:** Attached via unshallow plus ff-only merge onto `origin/main` (`c7659827`), clean, no unrelated-history symptom, 373-commit fast-forward. `preflight.py` full run, backgrounded: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no Pillow, no ssh key). 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil; read #32 in full (the 23 unexplained kit/bundle tiles) and left it as recorded, a genuine catalogue-scope tradeoff between authoring 21 pages nobody has asked for yet and shrinking the catalogue, correctly Phil's call rather than mine to default. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.

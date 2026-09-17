@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-17 16:54",
- "commit": "1bc786ac",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
- "commits_7d": 1255,
- "commits_total": 2561,
+ "generated": "2026-09-17 17:18",
+ "commit": "4a9af887",
+ "commit_msg": "Command deck regen only, post-merge",
+ "commits_7d": 1252,
+ "commits_total": 2562,
  "traffic_line": "948 pageviews from 78 visitors across 199 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 507 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-17 09:03; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "948 pageviews from 78 visitors across 199 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 507 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-17 09:03",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-17 09:03",
  "affiliate_trigger_carried_from": "2026-09-17 09:03",
  "clean": false,
- "ahead": "2",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
