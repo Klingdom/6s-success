@@ -15743,6 +15743,67 @@ def gate_decisions_index_current() -> None:
              "; ".join(problems))
 
 
+def check_learnings_index(text) -> list:
+    """Pure logic: return problem strings for LEARNINGS.md's own index table.
+
+    Section 31 calls its table "Maintain," the same living-index framing
+    section 43 of DECISIONS.md uses for its own table, and that sibling
+    table already got a dedicated gate (`gate_decisions_index_current`,
+    found 2026-09-10) after eight decisions went missing from it. Nobody
+    had checked whether LEARNINGS.md's own index had the same gap: it did.
+    Found 2026-09-18, this operator, on the standing "cold-read DECISIONS.md
+    / LEARNINGS.md for citation staleness" handoff several prior cycles had
+    deferred as hours-sized. Section 31 indexed LRN-0001 through LRN-0008
+    only; the Verified Learning Registers (section 33) had grown to
+    LRN-0016, so eight real, evidence-backed learnings were invisible to
+    anyone skimming the index for "what have we learned" -- LRN-0009 among
+    them, which is itself the learning that names this exact defect class
+    ("source corrected, artifact never re-derived") and recommends gating
+    it rather than re-describing it. Fixed by adding the eight rows. This
+    function checks both directions, matching `check_decisions_index`'s own
+    shape: every `### LRN-NNNN` / `#### LRN-NNNN` heading in the body must
+    have a matching index row, and every index row must have a matching
+    body heading, so neither a new undocumented learning nor a stale index
+    entry for a removed one can recur unnoticed.
+    """
+    problems = []
+    body_ids = set(re.findall(
+        r"^#{3,4}\s+(LRN-\d{4})\b", text, re.MULTILINE))
+    index_m = re.search(
+        r"## 31\. Learning Index.*?\n((?:\|.*\n)+)", text, re.DOTALL)
+    if not index_m:
+        problems.append("LEARNINGS.md has no section 31 index table to check.")
+        return problems
+    index_ids = set(re.findall(
+        r"^\|\s*(LRN-\d{4})\s*\|", index_m.group(1), re.MULTILINE))
+    missing_from_index = sorted(body_ids - index_ids)
+    stale_in_index = sorted(index_ids - body_ids)
+    if missing_from_index:
+        problems.append(
+            "recorded but not indexed: %s" % ", ".join(missing_from_index))
+    if stale_in_index:
+        problems.append(
+            "indexed but no matching learning: %s" % ", ".join(stale_in_index))
+    return problems
+
+
+def gate_learnings_index_current() -> None:
+    """LEARNINGS.md's own section 31 index must name every learning the
+    file actually records, in both directions. See check_learnings_index()
+    for the finding this closes.
+    """
+    p = os.path.join(ROOT, "LEARNINGS.md")
+    if not os.path.exists(p):
+        return
+    text = io.open(p, encoding="utf-8", errors="replace").read()
+    problems = check_learnings_index(text)
+    if problems:
+        fail("learnings-index-current",
+             "LEARNINGS.md section 31's index is out of step with the "
+             "learnings actually recorded in the file: %s" %
+             "; ".join(problems))
+
+
 def gate_thanks_page_refund_promises() -> None:
     """thanks.html's own per-SKU steps must repeat any refund promise the
     live catalogue makes for that SKU.
@@ -16616,6 +16677,7 @@ def main() -> int:
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
+    run_gate(gate_learnings_index_current)
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)

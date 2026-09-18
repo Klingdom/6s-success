@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (the DECISIONS.md/LEARNINGS.md staleness handoff closed a real index gap; a real preflight FAIL found mid-cycle and closed the same run)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (`7f9e51fd`) cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries (newest-first). Every backlog row was again done or Phil-gated (8 GitHub issues checked directly via the API, unchanged, all decision/blocked-on-art). Picked up the prior PM check-in's own named handoff: an independent citation-staleness read of `DECISIONS.md`/`LEARNINGS.md`, not re-run since 2026-09-10.
+
+**Found:** `LEARNINGS.md`'s own section 31 "Learning Index" table indexed LRN-0001 through LRN-0008 only. The Verified Learning Registers (section 33) had grown to LRN-0016; eight real, evidence-backed learnings were invisible to the index, LRN-0009 among them, the learning that names exactly this defect class ("source corrected, artifact never re-derived") and recommends gating it, not re-describing it. The sibling table in `DECISIONS.md` (section 43) already got this exact fix and gate on 2026-09-10; nobody had checked whether `LEARNINGS.md` had the same gap. Fixed the index (8 rows added), and added `gate_learnings_index_current`/`check_learnings_index` to `preflight.py`, mirroring `gate_decisions_index_current`'s own two-directional shape. `ops/tests/test_gate_learnings_index_current.py` (9 cases) fail-then-pass proved directly against the real committed file via `git stash` (gate correctly failed naming all 8 missing IDs, restored, reran clean).
+
+**A real, live preflight FAIL turned up mid-cycle, not from my own edits.** A clean background `preflight.py` run failed 2 gates: `gate_srt_captions_current` (114 of 114 committed video captions stale) and the test suite entry for it. Root-caused before touching anything: Phil's own `af16a257` (same day, 15:16) deliberately added a new "where it is" beat to the zone videos and committed it knowing the gate would fail, per his own commit message, "the render is restarted and the captions follow in one commit." The caption sidecars are pure-Python text derived from `beats()`, no audio or ffmpeg needed, so regenerating them does not depend on his still-running local render. Ran `python ops/video_srt.py` (114 written), verified `gate_srt_captions_current` and its own test both pass clean.
+
+**Verified:** Full `preflight.py` clean (every gate passed, 22 warnings, all previously diagnosed sandbox limits), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0). No mail credential; GitHub issues unchanged.
+
+**Went well:** the fresh angle the prior PM check-in asked for found a real gap on the first pass; catching the srt regression before it sat red for a full cycle.
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; both gaps are now gated.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open issues, unchanged.
+
+Pushed to main. `LEARNINGS.md`, `ops/preflight.py`, `ops/tests/test_gate_learnings_index_current.py`, 114 `build/video/zones/*.srt`, command deck. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished, two stale decision issues re-verified as still genuinely open, no new defect)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (5c1ad229) cleanly, no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last two log entries, and 8 open GitHub issues via the API. Ran `preflight.py` fresh myself: every gate passed, 22 warnings, all previously diagnosed (no VPS/Stripe/mail credential, no egress, the standing `cron-cadence` and `page-art`/`deck-art` set). Confirmed CI directly rather than citing: `checks.yml` run 1158 on the latest content-bearing commit is `success`; `publish-image.yml` has no run past `2992502a` because nothing since has touched `site/**`, which is its own correct trigger scope, not a gap.

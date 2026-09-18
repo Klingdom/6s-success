@@ -311,6 +311,14 @@ Maintain:
 | LRN-0006 | The mailing list 500s; the recorded blocker was stale and named the wrong setting | LIFECYCLE | SUPPORTED | HIGH |
 | LRN-0007 | `quest-first-start` has zero events because it deployed after the last visit | MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0008 | Every buy-click came from a page that never priced the thing on the button | CONVERSION | SUPPORTED | MEDIUM |
+| LRN-0009 | "Source corrected, artifact never re-derived" is a recurring defect class, now structurally gated | ENGINEERING / RELIABILITY | SUPPORTED | HIGH |
+| LRN-0010 | Every buy and quote signal since 7 September traced to the owner's own household | CONVERSION / DATA QUALITY | SUPPORTED | HIGH (attribution) / MEDIUM (stranger estimate) |
+| LRN-0011 | A re-render gate is only as current as the untracked intermediates it reads | DATA QUALITY / BUILD | SUPPORTED | HIGH |
+| LRN-0012 | The local image model draws the room, not the micro zone; a close-up of one or two objects is the shape that works | MEDIA / BUILD | SUPPORTED | MEDIUM |
+| LRN-0013 | Googlebot read every zone page once in late August and chose not to come back; not a reachability problem | SEO / AEO | SUPPORTED | MEDIUM |
+| LRN-0014 | A conflict in a newest-first file must be resolved by date order, not by marker order | PROCESS / GIT | SUPPORTED | HIGH |
+| LRN-0015 | A count is not a count until its unit is named; pageviews and events are not interchangeable | MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0016 | Fixing a generator does not fix what it already rendered; the expensive artifacts are the ones nobody checks | QUALITY / RELEASE | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
