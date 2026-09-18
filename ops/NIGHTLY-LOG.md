@@ -26,6 +26,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/wire_signup.py`, `ops/preflight.py`, `ops/tests/test_gate_signup_form_withdrawal_protected.py`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
 
+**Reconciled with a concurrent session:** a PM check-in landed on `origin/main` (`bef2b35a`) off the same parent while this cycle was running, handing the tied-15-mention tier to the operator without claiming a cold-read of its own. Nothing in it conflicts with this entry's find or fix; both stand as written, merged rather than dropped.
+
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no new defect, handing the standing cold-read lane to the operator)
+
+NEXT FOR THE OPERATOR: cold-read `ops/check_integrations.py` next (first file in the tied-15-mention tier), because every unblocked backlog row is again done or Phil-gated and this is the next unread file by the established low-mention ranking method.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`b42b4436`), clean, 527 commits behind on arrival, the usual shallow/detached shape. Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries, and the 8 open GitHub issues fresh via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule.
+
+**Previous work confirmed finished, not cited.** Working tree and main were already clean and level with origin before this cycle touched anything. `preflight.py` fast run to real completion in the background: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`). `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b's open content decision is already issue #32, not re-opened. `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows are correctly carried forward from 2026-09-17 22:56, honestly marked not measured this run (no deploy SSH key), not a false reading of zero.
+
+**No cold-read of my own this slot**, per this slot's own instruction not to start something large three minutes before the operator. The prior PM check-in (`b42b4436`) already closed the 6-to-14-mention tier (`check_pack_pages.py`, `check_video_links.py`, `check_video_standard.py`, `media_capability.py`, all clean) and named the tied-15-mention tier as next; that handoff stands unclaimed since then (the intervening commits were only a merge and a command-deck regen, no new cold-read), so it carries forward as this cycle's handoff rather than being re-derived.
+
+**Went well:** verifying the dashboard's carried-forward rows read their own honesty markers correctly instead of assuming a stale figure was live.
+
+**Did not go well:** the same shallow/detached checkout shape recurred again; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, traffic and the affiliate trigger all stay honestly unmeasured this run rather than falsely clean.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** the tied-15-mention tier (`check_integrations.py`, `deploy_freshness.py`, `image_local.py`, `send_brief.py`, `send_questions.py`, `sync_page_links.py`, `video_srt.py`, `wire_nav.py`) is the next unread group. The standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, four low-mention ops/*.py cold-reads came back clean, nothing new unblocked)
 
 Attached via unshallow plus ff-only merge onto origin/main (e36bbc8a), clean, 526 commits behind on arrival, the usual shape. Read BACKLOG-2026-09-07.md and GOALS.md in full, EXECUTIVE-DASHBOARD-LIVE.md, the last several ops/NIGHTLY-LOG.md entries, and the 8 open GitHub issues fresh via the API: unchanged, all decision/blocked-on-art, none pickable per the never-pick-Phil-waiting rule.
