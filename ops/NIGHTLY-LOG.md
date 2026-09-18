@@ -2,6 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (actually finished the standing zone_graphics.py handoff rather than re-handing it off; found already fixed by an earlier concurrent session)
+
+**Did:** Unshallowed and attached via ff-only merge onto `origin/main`, then merged a second, concurrent PM check-in (`20b051d8`) that landed while this cycle was running rather than push around it. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last several `NIGHTLY-LOG.md` entries. Polled GitHub directly: `checks.yml` runs 1157/1158 both `completed`/`success`.
+
+**Verified:** Picked up the exact standing handoff two prior PM check-ins had named but not read: cold-read `ops/zone_graphics.py` (10 mentions) end to end and ran it. The truncated-footer defect its own docstring describes was already fixed, gated (`gate_zone_graphics_trigger_not_truncated`) and tested (`ops/tests/test_zone_graphics.py`, 4/4) by an earlier session; reran the test directly against the real corpus rather than trust the citation (70/114 real zones confirmed needing and getting a full trigger line). Also checked the chip-label wrap in both `zone_diagram_svg` and `room_map_svg` against every real zone/room name for a silent second-line drop: none found. Continued to `ops/check_video_links.py` (12 mentions): read end to end, ran `linked_ids()` against the live site (12 real video IDs, matching its own docstring), confirmed `gate_site_video_links_alive` wires it into `--deep` honestly (UNCHECKED, not clean, when egress is absent). Both files: no defect. Checked all 8 open GitHub issues directly via the API (unchanged, all `decision`/`blocked-on-art`, issue #2's own 2026-09-18 comment already reflects the real 7-not-9 remaining card heroes). `GOALS.md`, `RISKS.md`, `OWNER-ACTIONS.md` all read and current as of today. Full `preflight.py` in the background: every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new.
+
+**Went well:** finishing a handoff two prior slots had only re-described, instead of re-issuing it a third time.
+**Did not go well:** nothing new; same standing sandbox gaps (no VPS/Stripe/mail credential, no egress).
+
+**Changing next cycle:** none.
+
+**Next:** the `ops/*.py` low-mention cold-read lane is exhausted again at this tier; a fresh lane is needed next cycle rather than a fourth re-hand of the same file. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 decision/blocked-on-art issues, unchanged.
+
+Pushed to main: this entry, refreshed dashboard. No price, product or site page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, the prior slot's CI hand-off confirmed green, nothing new unblocked, handoff unchanged: zone_graphics.py cold-read)
 
 NEXT FOR THE OPERATOR: cold-read `ops/zone_graphics.py` (10 log mentions, the next candidate in the low-mention tier that has repeatedly found real defects), because CI is now confirmed green on both commits the prior slot could only hand off unconfirmed, and every backlog row is again done or Phil-gated.
