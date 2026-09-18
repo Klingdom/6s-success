@@ -8,326 +8,330 @@ Make a drink and hand it over without
 crossing into the kitchen.
 
 3
-00:00:07,272 --> 00:00:09,970
+00:00:07,272 --> 00:00:10,048
 What done looks like
 
 4
-00:00:09,970 --> 00:00:12,667
-1 Sugar running left to right along one
-liftable tray
+00:00:10,048 --> 00:00:12,824
+1 Machine, grounds, mugs, then spoons and
+sugar running left to right along one
 
 5
-00:00:12,667 --> 00:00:15,365
+00:00:12,824 --> 00:00:15,600
+liftable tray
+
+6
+00:00:15,600 --> 00:00:18,376
 2 Mugs capped at the number of daily
 drinkers plus two
 
-6
-00:00:15,365 --> 00:00:18,062
+7
+00:00:18,376 --> 00:00:21,152
 3 A marked fill line on the bean jar
 
-7
-00:00:18,062 --> 00:00:20,760
+8
+00:00:21,152 --> 00:00:23,928
 4 A hand's width of clear air behind the
 kettle
 
-8
-00:00:20,760 --> 00:00:26,112
+9
+00:00:23,928 --> 00:00:29,280
 One session Beverage or Coffee Station
 30-45 min
 
-9
-00:00:26,112 --> 00:00:32,040
+10
+00:00:29,280 --> 00:00:35,208
 Sort Line up every tea box, syrup bottle,
 and pod sleeve and check the
 
-10
-00:00:32,040 --> 00:00:36,924
+11
+00:00:35,208 --> 00:00:40,092
 Sort Line up every tea box, syrup bottle,
 and pod sleeve and check the dates, then
 
-11
-00:00:36,924 --> 00:00:41,808
+12
+00:00:40,092 --> 00:00:44,976
 open the travel mugs and match them to
 their lids.
 
-12
-00:00:41,808 --> 00:00:48,072
+13
+00:00:44,976 --> 00:00:51,240
 Sort Anything past date, any mug missing
 its lid, and the promotional
 
-13
-00:00:48,072 --> 00:00:52,416
+14
+00:00:51,240 --> 00:00:55,584
 Sort Anything past date, any mug missing
 its lid, and the promotional glassware you
 
-14
-00:00:52,416 --> 00:00:56,760
+15
+00:00:55,584 --> 00:00:59,928
 have never once poured into are out.
 
-15
-00:00:56,760 --> 00:01:00,564
+16
+00:00:59,928 --> 00:01:03,732
 Straighten Set the station in the order
 your hands actually move: machine, then
-
-16
-00:01:00,564 --> 00:01:04,368
-grounds or pods,
 
 17
-00:01:04,368 --> 00:01:08,264
+00:01:03,732 --> 00:01:07,536
+grounds or pods,
+
+18
+00:01:07,536 --> 00:01:11,432
 Straighten Set the station in the order
 your hands actually move: machine, then
 
-18
-00:01:08,264 --> 00:01:12,160
+19
+00:01:11,432 --> 00:01:15,328
 grounds or pods, then mugs, then spoons
 and sugar, then the way out toward the
 
-19
-00:01:12,160 --> 00:01:16,056
+20
+00:01:15,328 --> 00:01:19,224
 table.
 
-20
-00:01:16,056 --> 00:01:20,496
+21
+00:01:19,224 --> 00:01:23,664
 Straighten Leave a hand's width behind the
 kettle so its steam
 
-21
-00:01:20,496 --> 00:01:23,652
+22
+00:01:23,664 --> 00:01:26,820
 Straighten Leave a hand's width behind the
 kettle so its steam is not hitting the
 
-22
-00:01:23,652 --> 00:01:26,808
+23
+00:01:26,820 --> 00:01:29,976
 underside of a shelf.
 
-23
-00:01:26,808 --> 00:01:30,372
+24
+00:01:29,976 --> 00:01:33,540
 Shine Descale the machine on the interval
 its manual gives, lift the drip tray
-
-24
-00:01:30,372 --> 00:01:33,936
-grate and wash
 
 25
-00:01:33,936 --> 00:01:37,832
+00:01:33,540 --> 00:01:37,104
+grate and wash
+
+26
+00:01:37,104 --> 00:01:41,000
 Shine Descale the machine on the interval
 its manual gives, lift the drip tray
 
-26
-00:01:37,832 --> 00:01:41,728
+27
+00:01:41,000 --> 00:01:44,896
 grate and wash underneath it where mould
 starts, and get the sticky ring from under
 
-27
-00:01:41,728 --> 00:01:45,624
+28
+00:01:44,896 --> 00:01:48,792
 the syrup bottle.
 
-28
-00:01:45,624 --> 00:01:49,200
+29
+00:01:48,792 --> 00:01:52,368
 Shine Rinse the kettle and look at the
 element
 
-29
-00:01:49,200 --> 00:01:53,808
+30
+00:01:52,368 --> 00:01:56,976
 Shine Rinse the kettle and look at the
 element for scale while you are there.
 
-30
-00:01:53,808 --> 00:01:58,092
+31
+00:01:56,976 --> 00:02:01,260
 Safety Water and electricity share this
 counter, so give the machine and kettle
-
-31
-00:01:58,092 --> 00:02:02,376
-their own outlet, keep cords back from
 
 32
-00:02:02,376 --> 00:02:06,936
+00:02:01,260 --> 00:02:05,544
+their own outlet, keep cords back from
+
+33
+00:02:05,544 --> 00:02:10,104
 Safety Water and electricity share this
 counter, so give the machine and kettle
 
-33
-00:02:06,936 --> 00:02:11,496
+34
+00:02:10,104 --> 00:02:14,664
 their own outlet, keep cords back from the
 edge where a sleeve can hook them, and
 
-34
-00:02:11,496 --> 00:02:16,056
+35
+00:02:14,664 --> 00:02:19,224
 never refill a plugged-in machine over its
 own base.
 
-35
-00:02:16,056 --> 00:02:22,272
+36
+00:02:19,224 --> 00:02:25,440
 Safety If wine or spirits live here, they
 belong behind a latch or high
 
-36
-00:02:22,272 --> 00:02:26,976
+37
+00:02:25,440 --> 00:02:30,144
 Safety If wine or spirits live here, they
 belong behind a latch or high up, not on
 
-37
-00:02:26,976 --> 00:02:31,680
+38
+00:02:30,144 --> 00:02:34,848
 an open shelf at a child's eye level.
 
-38
-00:02:31,680 --> 00:02:38,016
-Standardize Mugs are capped at daily
-drinkers plus two, and the bean or pod jar
-
 39
-00:02:38,016 --> 00:02:42,564
+00:02:34,848 --> 00:02:41,184
 Standardize Mugs are capped at daily
 drinkers plus two, and the bean or pod jar
 
 40
-00:02:42,564 --> 00:02:47,112
+00:02:41,184 --> 00:02:45,732
+Standardize Mugs are capped at daily
+drinkers plus two, and the bean or pod jar
+
+41
+00:02:45,732 --> 00:02:50,280
 carries a marked fill line that tells you
 when to buy more.
 
-41
-00:02:47,112 --> 00:02:52,992
+42
+00:02:50,280 --> 00:02:56,160
 Standardize Everything sits on one tray
 you can lift with one hand,
 
-42
-00:02:52,992 --> 00:02:57,240
+43
+00:02:56,160 --> 00:03:00,408
 Standardize Everything sits on one tray
 you can lift with one hand, so the counter
 
-43
-00:02:57,240 --> 00:03:01,488
+44
+00:03:00,408 --> 00:03:04,656
 underneath cleans in a single wipe.
 
-44
-00:03:01,488 --> 00:03:07,776
-Sustain The reset happens while the coffee
-is already brewing, by whoever is first
-
 45
-00:03:07,776 --> 00:03:12,840
+00:03:04,656 --> 00:03:10,944
 Sustain The reset happens while the coffee
 is already brewing, by whoever is first
 
 46
-00:03:12,840 --> 00:03:17,904
+00:03:10,944 --> 00:03:16,008
+Sustain The reset happens while the coffee
+is already brewing, by whoever is first
+
+47
+00:03:16,008 --> 00:03:21,072
 up: wipe the tray, top the bean jar to its
 marked line.
 
-47
-00:03:17,904 --> 00:03:21,336
+48
+00:03:21,072 --> 00:03:24,504
 Sustain Forty seconds inside a wait
 
-48
-00:03:21,336 --> 00:03:26,112
+49
+00:03:24,504 --> 00:03:29,280
 Sustain Forty seconds inside a wait that
 was happening anyway.
 
-49
-00:03:26,112 --> 00:03:32,208
+50
+00:03:29,280 --> 00:03:35,376
 Sustain Two signals need no touching, a
 jar below its line and mugs
 
-50
-00:03:32,208 --> 00:03:36,588
+51
+00:03:35,376 --> 00:03:39,756
 Sustain Two signals need no touching, a
 jar below its line and mugs standing
 
-51
-00:03:36,588 --> 00:03:40,968
+52
+00:03:39,756 --> 00:03:44,136
 outside the tray because the cap has been
 passed.
 
-52
-00:03:40,968 --> 00:03:45,912
+53
+00:03:44,136 --> 00:03:49,080
 Sustain Recovery is one wipe and one
 refill, and the
 
-53
-00:03:45,912 --> 00:03:49,380
+54
+00:03:49,080 --> 00:03:52,548
 Sustain Recovery is one wipe and one
 refill, and the extra mug goes to the
 kitchen
 
-54
-00:03:49,380 --> 00:03:52,848
+55
+00:03:52,548 --> 00:03:56,016
 that day.
 
-55
-00:03:52,848 --> 00:03:57,816
+56
+00:03:56,016 --> 00:04:00,984
 Sustain Nothing else in this room is used
 every morning by somebody half
 
-56
-00:03:57,816 --> 00:04:01,908
+57
+00:04:00,984 --> 00:04:05,076
 Sustain Nothing else in this room is used
 every morning by somebody half awake,
 
-57
-00:04:01,908 --> 00:04:06,000
+58
+00:04:05,076 --> 00:04:09,168
 which is why the habit sits inside the
 brew.
 
-58
-00:04:06,000 --> 00:04:09,498
+59
+00:04:09,168 --> 00:04:12,666
 The call There are at least two ways to
 make a hot drink on this counter, and one
 
-59
-00:04:09,498 --> 00:04:12,996
+60
+00:04:12,666 --> 00:04:16,164
 of them is kept for the person you meant
 to become.
 
-60
-00:04:12,996 --> 00:04:16,494
+61
+00:04:16,164 --> 00:04:19,662
 Do not settle it from memory, because
 memory is generous about the press you
 used
 
-61
-00:04:16,494 --> 00:04:19,992
+62
+00:04:19,662 --> 00:04:23,160
 enthusiastically for three weeks the
 summer you bought it.
 
-62
-00:04:19,992 --> 00:04:23,490
+63
+00:04:23,160 --> 00:04:26,658
 Put a sticky note on each machine and make
 a mark every time it produces a drink
 
-63
-00:04:23,490 --> 00:04:26,988
+64
+00:04:26,658 --> 00:04:30,156
 someone actually drinks.
 
-64
-00:04:26,988 --> 00:04:30,486
+65
+00:04:30,156 --> 00:04:33,654
 Give it one full week, weekend included.
 
-65
-00:04:30,486 --> 00:04:33,984
+66
+00:04:33,654 --> 00:04:37,152
 Any machine with fewer than three marks
 comes off the counter and goes into a
 
-66
-00:04:33,984 --> 00:04:37,482
+67
+00:04:37,152 --> 00:04:40,650
 cupboard for one more month, and if it is
 still unused at the end of that month it
 
-67
-00:04:37,482 --> 00:04:40,980
+68
+00:04:40,650 --> 00:04:44,148
 leaves the house.
 
-68
-00:04:40,980 --> 00:04:44,478
+69
+00:04:44,148 --> 00:04:47,646
 The same test settles the mug shelf: the
 mugs you reach past every single morning
 
-69
-00:04:44,478 --> 00:04:47,976
+70
+00:04:47,646 --> 00:04:51,144
 are not favorites, they are furniture.
 
-70
-00:04:47,976 --> 00:04:54,696
+71
+00:04:51,144 --> 00:04:57,864
 Beverage or Coffee Station The full reset,
 free at 6s-success.com

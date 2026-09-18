@@ -8,260 +8,261 @@ for the work you are actually doing
 right now.
 
 3
-00:00:06,264 --> 00:00:08,947
+00:00:06,264 --> 00:00:09,062
 What done looks like
 
 4
-00:00:08,947 --> 00:00:11,630
-1 Mouse in fixed positions
+00:00:09,062 --> 00:00:11,861
+1 The monitor, keyboard, and mouse in
+fixed positions
 
 5
-00:00:11,630 --> 00:00:14,314
-2 One inbox tray holding fewer than a
-dozen sheets
+00:00:11,861 --> 00:00:14,659
+2 One notebook
 
 6
-00:00:14,314 --> 00:00:16,997
-3 No sticky notes on the monitor bezel
+00:00:14,659 --> 00:00:17,458
+3 One inbox tray holding fewer than a
+dozen sheets
 
 7
-00:00:16,997 --> 00:00:19,680
-4 The power strip hooked off the floor so
-the chair rolls over bare carpet
+00:00:17,458 --> 00:00:20,256
+4 No sticky notes on the monitor bezel + 1
+more on the zone page
 
 8
-00:00:19,680 --> 00:00:24,816
+00:00:20,256 --> 00:00:25,392
 One session Primary Desk 45-75 min
 
 9
-00:00:24,816 --> 00:00:30,696
+00:00:25,392 --> 00:00:31,272
 Sort Take everything off the surface and
 onto the floor, then put back only
 
 10
-00:00:30,696 --> 00:00:35,280
+00:00:31,272 --> 00:00:35,856
 Sort Take everything off the surface and
 onto the floor, then put back only what
 
 11
-00:00:35,280 --> 00:00:39,864
+00:00:35,856 --> 00:00:40,440
 the task in front of you needs, plus the
 inbox tray.
 
 12
-00:00:39,864 --> 00:00:44,952
+00:00:40,440 --> 00:00:45,528
 Sort The dead pens, the second mug, and
 the fringe of sticky
 
 13
-00:00:44,952 --> 00:00:48,588
+00:00:45,528 --> 00:00:49,164
 Sort The dead pens, the second mug, and
 the fringe of sticky notes around the
 
 14
-00:00:48,588 --> 00:00:52,224
+00:00:49,164 --> 00:00:52,800
 screen do not go back up.
 
 15
-00:00:52,224 --> 00:00:56,628
+00:00:52,800 --> 00:00:57,204
 Straighten Keyboard square in front of the
 monitor, notebook on your writing-hand
 
 16
-00:00:56,628 --> 00:01:01,032
+00:00:57,204 --> 00:01:01,608
 side, phone face down beyond it, and
 
 17
-00:01:01,032 --> 00:01:05,384
+00:01:01,608 --> 00:01:05,960
 Straighten Keyboard square in front of the
 monitor, notebook on your writing-hand
 
 18
-00:01:05,384 --> 00:01:09,736
+00:01:05,960 --> 00:01:10,312
 side, phone face down beyond it, and the
 whole sweep the mouse travels left bare so
 
 19
-00:01:09,736 --> 00:01:14,088
+00:01:10,312 --> 00:01:14,664
 you are never steering around a stapler.
 
 20
-00:01:14,088 --> 00:01:18,132
+00:01:14,664 --> 00:01:18,708
 Shine Power down, wipe the screen with
 cleaner sprayed onto the microfiber cloth,
 
 21
-00:01:18,132 --> 00:01:22,176
+00:01:18,708 --> 00:01:22,752
 then do the desk edge and
 
 22
-00:01:22,176 --> 00:01:26,552
+00:01:22,752 --> 00:01:27,128
 Shine Power down, wipe the screen with
 cleaner sprayed onto the microfiber cloth,
 
 23
-00:01:26,552 --> 00:01:30,928
+00:01:27,128 --> 00:01:31,504
 then do the desk edge and the underside
 lip where your forearms rest, which is the
 
 24
-00:01:30,928 --> 00:01:35,304
+00:01:31,504 --> 00:01:35,880
 grubbiest part of the whole room.
 
 25
-00:01:35,304 --> 00:01:40,632
+00:01:35,880 --> 00:01:41,208
 Safety Lift the power strip off the floor
 onto a hook on the desk leg,
 
 26
-00:01:40,632 --> 00:01:45,348
+00:01:41,208 --> 00:01:45,924
 Safety Lift the power strip off the floor
 onto a hook on the desk leg, and check
 
 27
-00:01:45,348 --> 00:01:50,064
+00:01:45,924 --> 00:01:50,640
 that no charging cable crosses the arc the
 chair rolls through.
 
 28
-00:01:50,064 --> 00:01:52,872
+00:01:50,640 --> 00:01:53,448
 Safety Your feet should find
 
 29
-00:01:52,872 --> 00:01:56,328
+00:01:53,448 --> 00:01:56,904
 Safety Your feet should find nothing under
 there.
 
 30
-00:01:56,328 --> 00:02:02,736
+00:01:56,904 --> 00:02:03,312
 Standardize Photograph the cleared desk
 and tape the print inside the top drawer,
 so
 
 31
-00:02:02,736 --> 00:02:07,884
+00:02:03,312 --> 00:02:08,460
 Standardize Photograph the cleared desk
 and tape the print inside the top drawer,
 
 32
-00:02:07,884 --> 00:02:13,032
+00:02:08,460 --> 00:02:13,608
 so the word clear stops being a matter of
 opinion in this household.
 
 33
-00:02:13,032 --> 00:02:18,192
+00:02:13,608 --> 00:02:18,768
 Sustain When you shut the laptop lid at
 the end of the working day,
 
 34
-00:02:18,192 --> 00:02:22,608
+00:02:18,768 --> 00:02:23,184
 Sustain When you shut the laptop lid at
 the end of the working day, reset the
 
 35
-00:02:22,608 --> 00:02:27,024
+00:02:23,184 --> 00:02:27,600
 surface to match the photo before you
 stand up.
 
 36
-00:02:27,024 --> 00:02:33,768
+00:02:27,600 --> 00:02:34,344
 Sustain Two minutes, and it is yours
 alone. Next morning is too late, because
 by
 
 37
-00:02:33,768 --> 00:02:37,216
+00:02:34,344 --> 00:02:37,792
 Sustain Two minutes, and it is yours
 alone.
 
 38
-00:02:37,216 --> 00:02:40,664
+00:02:37,792 --> 00:02:41,240
 Next morning is too late, because by then
 the pile has been there since last night
 
 39
-00:02:40,664 --> 00:02:44,112
+00:02:41,240 --> 00:02:44,688
 and reads as normal.
 
 40
-00:02:44,112 --> 00:02:50,640
+00:02:44,688 --> 00:02:51,216
 Sustain Slip is the photo comparison plus
 one number, since an inbox tray holding
 
 41
-00:02:50,640 --> 00:02:55,428
+00:02:51,216 --> 00:02:56,004
 Sustain Slip is the photo comparison plus
 one number, since an inbox tray holding
 
 42
-00:02:55,428 --> 00:03:00,216
+00:02:56,004 --> 00:03:00,792
 more than about a dozen sheets has stopped
 being an inbox.
 
 43
-00:03:00,216 --> 00:03:05,832
+00:03:00,792 --> 00:03:06,408
 Sustain Recovery is the reset, and
 emptying that tray is a longer
 
 44
-00:03:05,832 --> 00:03:09,376
+00:03:06,408 --> 00:03:09,952
 Sustain Recovery is the reset, and
 emptying that tray is a longer job worth
 booking
 
 45
-00:03:09,376 --> 00:03:12,920
+00:03:09,952 --> 00:03:13,496
 separately.
 
 46
-00:03:12,920 --> 00:03:16,464
+00:03:13,496 --> 00:03:17,040
 Familiarity defeats this desk, not volume.
 
 47
-00:03:16,464 --> 00:03:20,693
+00:03:17,040 --> 00:03:21,269
 The call One corner of the desk is held by
 a project you have not touched in weeks
 
 48
-00:03:20,693 --> 00:03:24,923
+00:03:21,269 --> 00:03:25,499
 and cannot put away, because putting it
 away feels like admitting it is over.
 
 49
-00:03:24,923 --> 00:03:29,152
+00:03:25,499 --> 00:03:29,728
 Say the next physical action out loud in
 one sentence.
 
 50
-00:03:29,152 --> 00:03:33,381
+00:03:29,728 --> 00:03:33,957
 If you can name it ("call the insurer",
 "sign page four"), it is live: write that
 
 51
-00:03:33,381 --> 00:03:37,611
+00:03:33,957 --> 00:03:38,187
 sentence on a card, clip it to the papers,
 and it goes in the inbox tray, not on
 
 52
-00:03:37,611 --> 00:03:41,840
+00:03:38,187 --> 00:03:42,416
 the desk.
 
 53
-00:03:41,840 --> 00:03:46,069
+00:03:42,416 --> 00:03:46,645
 If you cannot name a next action, it is
 not stalled, it is abandoned.
 
 54
-00:03:46,069 --> 00:03:50,299
+00:03:46,645 --> 00:03:50,875
 Box it, write today's date on the lid, put
 it on the shelf, and if the box is still
 
 55
-00:03:50,299 --> 00:03:54,528
+00:03:50,875 --> 00:03:55,104
 unopened on that date next year, it leaves
 unopened.
 
 56
-00:03:54,528 --> 00:04:00,504
+00:03:55,104 --> 00:04:01,080
 Primary Desk The full reset, free at
 6s-success.com

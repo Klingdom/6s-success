@@ -67,29 +67,44 @@ def slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
 
-def rendered_items(srt_path: str) -> list:
-    """The numbered checklist as the video's own captions carry it.
+def rendered_segment(srt_path: str) -> str:
+    """The checklist part of the captions, as one normalised string.
 
-    The renderer numbers each item ("1 One coat per person on the rail") and
-    the list follows the "What done looks like" title card, so items are the
-    numbered blocks after that card and before the next unnumbered one.
+    Rewritten 2026-09-18, after the first version called 88 correctly
+    re-rendered videos stale. It read the numbered items as one caption block
+    each, and neither assumption survives contact with real narration:
+
+      - a long item is split across several caption blocks, so the parser
+        captured "... one named category and you can see the" and reported the
+        rest missing;
+      - the "+ N more on the zone page" line lands inside the last block, so
+        the item came back as "Umbrellas standing in the stand + 1 more on the
+        zone page" and failed an equality test.
+
+    Both are the checker being naive about captions, not the video being
+    wrong, and a guard that cries wolf on correct work is worse than none: it
+    would have held every re-rendered video back from YouTube for ever.
+
+    Comparing normalised text rather than parsed items keeps what matters. The
+    defect this exists to catch DROPS WORDS ("One wallet and one phone per
+    adult" became "One phone per adult"), and a dropped word still fails a
+    substring test.
     """
     if not os.path.exists(srt_path):
-        return []
+        return ""
     text = io.open(srt_path, encoding="utf-8", errors="replace").read()
-    seen_title, items = False, []
-    for _idx, body in blocks(text):
-        if not seen_title:
-            if body.lower().startswith("what done looks like"):
-                seen_title = True
-            continue
-        m = re.match(r"^(\d+)\s+(.+)$", body)
-        if not m:
-            break
-        if int(m.group(1)) != len(items) + 1:
-            break
-        items.append(m.group(2).strip().rstrip("."))
-    return items
+    body = []
+    for _idx, chunk in blocks(text):
+        body.append(chunk)
+    joined = " ".join(body)
+    m = re.search(r"What done looks like(.*?)(?:One session|The call|$)",
+                  joined, re.S | re.I)
+    seg = m.group(1) if m else ""
+    return " ".join(seg.split())
+
+
+def norm(s: str) -> str:
+    return " ".join(re.sub(r"[^a-z0-9 ]+", " ", s.lower()).split())
 
 
 def _discloses_more(srt_path: str, n: int) -> bool:
@@ -118,24 +133,20 @@ def compare():
         wide = os.path.join(NARRATED, stem + "-16x9.srt")
         srt_used = (wide if os.path.exists(wide)
                     else os.path.join(NARRATED, stem + ".srt"))
-        got = rendered_items(srt_used)
         current = [c.rstrip(".") for c in V.done_items(z)]
-        # The slide holds four (ops/video_zone.py), so a zone with more than
-        # four items is expected to show the first four AND say so with a
-        # "+ N more on the zone page" line. Comparing against an open-ended
-        # prefix, which this did until 2026-09-17, accepted a video showing
-        # one correct item out of six as fresh; it also accepted the china
-        # cabinet video silently dropping "The cabinet strapped to a wall
-        # stud" under the heading "What done looks like".
         expected = current[:4]
-        if not got:
+        seg = norm(rendered_segment(srt_used))
+        if not seg:
             unreadable.append((stem, current, []))
-        elif got != expected:
-            stale.append((stem, current, got))
-        elif len(current) > 4 and not _discloses_more(srt_used, len(current) - 4):
-            stale.append((stem, current, got + ["(no '+ N more' line)"]))
+            continue
+        missing = [item for item in expected if norm(item) not in seg]
+        if missing:
+            stale.append((stem, current, ["MISSING: " + missing[0][:60]]))
+        elif len(current) > 4 and ("%d more on the zone page"
+                                   % (len(current) - 4)) not in seg:
+            stale.append((stem, current, ["(no '+ N more' line)"]))
         else:
-            fresh.append((stem, current, got))
+            fresh.append((stem, current, expected))
     return stale, fresh, unreadable
 
 

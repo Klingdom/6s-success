@@ -8,306 +8,307 @@ in the house where things get fixed,
 glued, cut, and assembled.
 
 3
-00:00:08,064 --> 00:00:09,984
+00:00:08,064 --> 00:00:10,522
 What done looks like
 
 4
-00:00:09,984 --> 00:00:11,904
+00:00:10,522 --> 00:00:12,979
 1 A bare bench top holding only the vise
+and the task light
 
 5
-00:00:11,904 --> 00:00:13,824
-2 The task light
+00:00:12,979 --> 00:00:15,437
+2 One tray with the current job in it
 
 6
-00:00:13,824 --> 00:00:15,744
-3 One tray with the current job in it
+00:00:15,437 --> 00:00:17,894
+3 Clamps racked on the rail
 
 7
-00:00:15,744 --> 00:00:17,664
-4 Clamps racked on the rail
+00:00:17,894 --> 00:00:20,352
+4 Swept concrete visible under the bench
 
 8
-00:00:17,664 --> 00:00:22,320
+00:00:20,352 --> 00:00:25,008
 One session Primary Workbench 60-90 min
 
 9
-00:00:22,320 --> 00:00:24,888
+00:00:25,008 --> 00:00:27,576
 Sort Clear the top down
 
 10
-00:00:24,888 --> 00:00:27,984
+00:00:27,576 --> 00:00:30,672
 Sort Clear the top down to bare wood.
 
 11
-00:00:27,984 --> 00:00:31,992
+00:00:30,672 --> 00:00:34,680
 Sort Every screw living in a jar lid,
 every glue bottle with a plugged nozzle,
 and
 
 12
-00:00:31,992 --> 00:00:36,000
+00:00:34,680 --> 00:00:38,688
 every offcut you saved
 
 13
-00:00:36,000 --> 00:00:40,328
+00:00:38,688 --> 00:00:43,016
 Sort Every screw living in a jar lid,
 every glue bottle with a plugged nozzle,
 and
 
 14
-00:00:40,328 --> 00:00:44,656
+00:00:43,016 --> 00:00:47,344
 every offcut you saved because the grain
 looked too good to bin gets a verdict
 
 15
-00:00:44,656 --> 00:00:48,984
+00:00:47,344 --> 00:00:51,672
 before anything is allowed back up.
 
 16
-00:00:48,984 --> 00:00:54,792
+00:00:51,672 --> 00:00:57,480
 Straighten Give the vise its own corner
 and keep a full arm's length of open top
 
 17
-00:00:54,792 --> 00:00:59,616
+00:00:57,480 --> 00:01:02,304
 Straighten Give the vise its own corner
 and keep a full arm's length of open top
 in
 
 18
-00:00:59,616 --> 00:01:04,440
+00:01:02,304 --> 00:01:07,128
 front of it, because that is the space a
 long board swings through.
 
 19
-00:01:04,440 --> 00:01:08,376
+00:01:07,128 --> 00:01:11,064
 Straighten Clamps go on the rail within
 reach and
 
 20
-00:01:08,376 --> 00:01:11,508
+00:01:11,064 --> 00:01:14,196
 Straighten Clamps go on the rail within
 reach and fasteners in the drawer directly
 
 21
-00:01:11,508 --> 00:01:14,640
+00:01:14,196 --> 00:01:17,328
 beneath.
 
 22
-00:01:14,640 --> 00:01:19,896
+00:01:17,328 --> 00:01:22,584
 Straighten The post that comes in, the
 half-tin of paint, and the parcel
 
 23
-00:01:19,896 --> 00:01:23,976
+00:01:22,584 --> 00:01:26,664
 Straighten The post that comes in, the
 half-tin of paint, and the parcel waiting
 to
 
 24
-00:01:23,976 --> 00:01:28,056
+00:01:26,664 --> 00:01:30,744
 go back are not bench items and never
 were.
 
 25
-00:01:28,056 --> 00:01:31,572
+00:01:30,744 --> 00:01:34,260
 Shine Vacuum sawdust and metal filings out
 of the bench dog holes and the seam
 
 26
-00:01:31,572 --> 00:01:35,088
+00:01:34,260 --> 00:01:37,776
 where the top meets
 
 27
-00:01:35,088 --> 00:01:38,800
+00:01:37,776 --> 00:01:41,488
 Shine Vacuum sawdust and metal filings out
 of the bench dog holes and the seam
 
 28
-00:01:38,800 --> 00:01:42,512
+00:01:41,488 --> 00:01:45,200
 where the top meets the back wall, then
 wipe the vise screw down and put a drop of
 
 29
-00:01:42,512 --> 00:01:46,224
+00:01:45,200 --> 00:01:48,912
 oil on it.
 
 30
-00:01:46,224 --> 00:01:49,272
+00:01:48,912 --> 00:01:51,960
 Safety Check the bench outlet and the task
 light cord for nicks, and confirm you
 
 31
-00:01:49,272 --> 00:01:52,320
+00:01:51,960 --> 00:01:55,008
 can plug
 
 32
-00:01:52,320 --> 00:01:57,072
+00:01:55,008 --> 00:01:59,760
 Safety Check the bench outlet and the task
 light cord for nicks, and confirm you
 
 33
-00:01:57,072 --> 00:02:01,824
+00:01:59,760 --> 00:02:04,512
 can plug the sander in without a lead
 crossing the strip of floor you stand on.
 
 34
-00:02:01,824 --> 00:02:06,360
+00:02:04,512 --> 00:02:09,048
 Safety Chisels and utility blades never
 rest edge-up on the
 
 35
-00:02:06,360 --> 00:02:10,176
+00:02:09,048 --> 00:02:12,864
 Safety Chisels and utility blades never
 rest edge-up on the top, where a hand
 
 36
-00:02:10,176 --> 00:02:13,992
+00:02:12,864 --> 00:02:16,680
 sweeps sawdust without looking.
 
 37
-00:02:13,992 --> 00:02:19,944
+00:02:16,680 --> 00:02:22,632
 Standardize Tape a photo of the cleared
 bench, vise and task light and
 
 38
-00:02:19,944 --> 00:02:24,504
+00:02:22,632 --> 00:02:27,192
 Standardize Tape a photo of the cleared
 bench, vise and task light and nothing
 
 39
-00:02:24,504 --> 00:02:29,064
+00:02:27,192 --> 00:02:31,752
 else, on the wall directly behind it at
 eye height.
 
 40
-00:02:29,064 --> 00:02:34,296
+00:02:31,752 --> 00:02:36,984
 Standardize When you look up and see a
 paint tin or a coil of wire
 
 41
-00:02:34,296 --> 00:02:38,580
+00:02:36,984 --> 00:02:41,268
 Standardize When you look up and see a
 paint tin or a coil of wire that the photo
 
 42
-00:02:38,580 --> 00:02:42,864
+00:02:41,268 --> 00:02:45,552
 does not show, that is the next thing to
 leave.
 
 43
-00:02:42,864 --> 00:02:45,912
+00:02:45,552 --> 00:02:48,600
 Sustain A project is not over
 
 44
-00:02:45,912 --> 00:02:49,824
+00:02:48,600 --> 00:02:52,512
 Sustain A project is not over when the
 glue sets.
 
 45
-00:02:49,824 --> 00:02:55,080
+00:02:52,512 --> 00:02:57,768
 Sustain It is over when the clamps are
 back on the rail, the offcuts are in the
 
 46
-00:02:55,080 --> 00:02:59,676
+00:02:57,768 --> 00:03:02,364
 Sustain It is over when the clamps are
 back on the rail, the offcuts are in the
 
 47
-00:02:59,676 --> 00:03:04,272
+00:03:02,364 --> 00:03:06,960
 scrap bin and the top is swept, all before
 the task light goes off.
 
 48
-00:03:04,272 --> 00:03:09,912
+00:03:06,960 --> 00:03:12,600
 Sustain Pulling the last plug out of the
 bench outlet is the signal to sweep,
 
 49
-00:03:09,912 --> 00:03:13,248
+00:03:12,600 --> 00:03:15,936
 Sustain Pulling the last plug out of the
 bench outlet is the signal to sweep, not
 
 50
-00:03:13,248 --> 00:03:16,584
+00:03:15,936 --> 00:03:19,272
 the clock on your phone.
 
 51
-00:03:16,584 --> 00:03:19,920
+00:03:19,272 --> 00:03:22,608
 Ten minutes, by whoever ran the job.
 
 52
-00:03:19,920 --> 00:03:23,148
+00:03:22,608 --> 00:03:25,836
 Sustain Slip is anything on the bench the
 photo behind it does not show.
 
 53
-00:03:23,148 --> 00:03:26,376
+00:03:25,836 --> 00:03:29,064
 Projects here
 
 54
-00:03:26,376 --> 00:03:30,064
+00:03:29,064 --> 00:03:32,752
 Sustain Slip is anything on the bench the
 photo behind it does not show.
 
 55
-00:03:30,064 --> 00:03:33,752
+00:03:32,752 --> 00:03:36,440
 Projects here do not end, they pause, and
 after a fortnight a pause looks like
 
 56
-00:03:33,752 --> 00:03:37,440
+00:03:36,440 --> 00:03:40,128
 abandonment.
 
 57
-00:03:37,440 --> 00:03:41,499
+00:03:40,128 --> 00:03:44,187
 The call Name the half-finished thing
 sitting on your bench right now.
 
 58
-00:03:41,499 --> 00:03:45,557
+00:03:44,187 --> 00:03:48,245
 It gets one of three verdicts today: a
 specific weekend written on it to finish
 it,
 
 59
-00:03:45,557 --> 00:03:49,616
+00:03:48,245 --> 00:03:52,304
 a breakdown that returns the timber,
 hardware, and hinges to stock, or the
 skip.
 
 60
-00:03:49,616 --> 00:03:53,675
+00:03:52,304 --> 00:03:56,363
 The rule that settles it is that anything
 which has sat untouched through one full
 
 61
-00:03:53,675 --> 00:03:57,733
+00:03:56,363 --> 00:04:00,421
 season is not a project any more, it is
 furniture with your intentions stacked on
 
 62
-00:03:57,733 --> 00:04:01,792
+00:04:00,421 --> 00:04:04,480
 top.
 
 63
-00:04:01,792 --> 00:04:05,851
+00:04:04,480 --> 00:04:08,539
 Do not solve this by lifting it onto a
 shelf.
 
 64
-00:04:05,851 --> 00:04:09,909
+00:04:08,539 --> 00:04:12,597
 That only moves the decision somewhere
 darker and costs you the bench in the
 
 65
-00:04:09,909 --> 00:04:13,968
+00:04:12,597 --> 00:04:16,656
 meantime, which is the one surface the
 whole garage depends on.
 
 66
-00:04:13,968 --> 00:04:20,112
+00:04:16,656 --> 00:04:22,800
 Primary Workbench The full reset, free at
 6s-success.com
