@@ -26,7 +26,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, unchanged. `check_pack_pages.py` and `refresh_hero_fallback.py` (10 mentions each) are the next untouched low-mention tier if nothing higher-value surfaces first.
 
-Pushed to main: `ops/check_video_standard.py`, `ops/preflight.py`, two new test files, command deck. No price, product or site page touched; IndexNow not applicable.
+**Addendum, pushing:** two concurrent operators/Phil pushed while this cycle ran. The push needed two real merges (not fast-forward), both resolved by keeping both sides' prose entries in this log and regenerating the three command-deck files fresh rather than hand-merging generator output. The second merge brought in Phil's own zone-numbering and product-wording pushes (`2d8e91fc`, `0a006d06`), which correctly turned `gate_etsy_pdfs_current` and `gate_prerender_shop_current` red: the five delivered Etsy PDFs and `site/shop.html`'s pre-rendered grid (what a JS-less crawler or search engine reads of the storefront) had drifted from the updated catalogue. Regenerated both (`build/listings/build_etsy_assets.py`, `ops/prerender_shop.py`) and `site/build-id.txt` after; card/page counts unchanged (159 shop cards, same PDF page counts), only text content updated to match the current source. `preflight.py` clean after each step, fail-then-pass by construction (each gate correctly refused the dirty/stale tree, then passed once regenerated and committed).
+
+Pushed to main: `ops/check_video_standard.py`, `ops/preflight.py`, two new test files, the regenerated Etsy PDFs, `site/shop.html`, `site/build-id.txt`, two merge commits, command deck. No price or product touched; IndexNow not applicable to the regenerated pages (existing pages/PDFs corrected, not added).
 
 ## 2026-09-18, PM check-in (30-minute triage, previous work NOT confirmed finished on arrival: a second, different gate_generator_ownership failure on Phil's own aa209d21, already self-fixed by his next push, CI confirmation handed forward again)
 
