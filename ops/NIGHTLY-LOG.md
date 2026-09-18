@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished; fixed a real gate that was crying wolf)
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`9716a042`), clean. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated). **Previous work was finished**: `preflight.py` clean, tree clean, main pushed. Backlog sections 2-6 all done or Phil-gated, nothing newly unblocked.
+
+**Found the actual defect while confirming CI health, not by cold-reading `ops/*.py`.** `gate_workflows_healthy` warned "failing: checks.yml", true but misleading: the failing run was on `2cb09036`, and the next two commits fixed the real cause (a misfiled log entry) but touched only paths `checks.yml`'s own trigger excludes (the log/dashboard files), so the warning would have read "failing" forever with no way to tell a live break from an already-fixed one. Same shape `gate_publish_image_current` already exists to catch for the other workflow, never built for this one. Fixed: `_workflow_run_via_api`/`_workflow_run_via_cli` now also return the failing run's `head_sha`; new `_commits_behind_head` names the gap when that sha is an ancestor of HEAD, so the warning now says "unconfirmed, not proven broken" instead of implying HEAD is broken. Confirmed live against real GitHub state before and after (24 warnings before, correct new wording; 23 after pushing, since our own push re-triggered a fresh run). Tests extended (6 cases, all pass), 183/184 `ops/tests/test_*.py` pass (`test_generator_ownership.py` the standing known-slow exclusion), `check_urls`/`audit_pages`/`fix_dashes --check` all clean.
+
+**Next for the operator:** watch `checks.yml` run 1123 on `bdcafb430` (our own fix commit) to completion; it just started and has not reported yet.
+
+Pushed to main (`bdcafb430`, `e21a6b39f`). `ops/preflight.py`, `ops/tests/test_workflows_healthy.py`, command deck. No price, product or site page touched.
+
 ## 2026-09-18, scheduled operator cycle, closing (five rejected pushes in a row during an unusually busy window; landed clean, CI not yet confirmed on this exact push)
 
 **Did:** this cycle's push was rejected five times in a row by concurrent sessions (a PM check-in, a local CEO session doing real VPS work, and at least one more scheduled cycle, all landing commits inside the same half hour). Fetched, merged and re-ran `preflight.py` after every single merge rather than trusting an earlier green result or a marker-free auto-merge, per this file's own step 2 and the practice this cycle already used twice. One merge auto-resolved with no conflict markers but silently duplicated a relocated log entry (caught by grepping for its title and finding two byte-identical copies, not by any tool flagging it); every other merge either needed the generated dashboard files regenerated fresh or a real conflict resolved by hand.
