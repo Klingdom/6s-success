@@ -16,6 +16,25 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
+**Did (2026-09-18 early, local session with VPS access):** two things only this kind of session can do.
+**(1) The YouTube authorisation was a trap and is now safe.** `video_zone.done_items()` was corrected 2026-09-15; every
+narrated video was rendered 7-8 September; 100 of 114 therefore show a checklist their own zone page no longer agrees
+with ("One wallet and one phone per adult" reads "One phone per adult"). `ops/youtube_upload.py` now refuses those by
+name, so authorising publishes the 14 that are correct; `ops/check_video_standard.py` measures it and
+`gate_zone_videos_match_standard` reports the count every cycle. Reading an actual extracted frame then found a second
+defect the captions could not show: the slide holds four items and 16 zones have more, so the china cabinet video was
+silently dropping "The cabinet strapped to a wall stud", a safety standard, under the heading "What done looks like".
+The slide now says "+ N more on the zone page", matching what the cards already did. 99 videos are being re-rendered
+unattended, with a second process that re-runs the batch until the checker reads zero. **(2) OWNER-ACTIONS item 8, two
+publicly-exposed ports, went from blocked to a five-minute job.** Both still answer the open internet and the host runs no
+firewall; they could not be closed because this site reached them through the host's public address. Rewired to the
+Docker bridge, deployed (`a53458d8` -> `8f2400c02ff063f2`) and proved live with a labelled probe event that is in the
+analytics database. The compose change is left for Phil because those stacks are shared with other sites. Also corrected
+a hazard I had introduced in my own instructions (they briefly told him the ports were safe to close before the enabling
+build was live) and cross-linked item 20 to item 1 so he does not paste into 12 descriptions he may replace. Verified
+clean and recorded so nobody re-audits: the 228 social cards, the social captions, the Etsy PDFs, the Standards Pack and
+the phone app all carry complete, current standards. Full account in `ops/NIGHTLY-LOG.md`; the lesson is LRN-0016.
+
 **Last Updated:** 2026-09-18, PM check-in. **Closed a real `gate_status_currency` warning (35 material commits unmentioned since this file's prior edit `de7ee71d`) by describing what actually shipped rather than opening a fresh sweep, per `CLAUDE.md` 0.2.** Attached via unshallow plus ff-only merge onto `origin/main` (`4418ee0a`), clean. `preflight.py` fast: every gate passed, 23 pre-diagnosed sandbox warnings, none new. 8 GitHub issues confirmed live via the API (up from 7: `#32` and `#33` opened since, both `decision`), 2 P0, 2 `blocked-on-art`, 6 `decision`, 0 open PRs. The two threads that account for nearly all 35 commits, both shipped and independently verified:
 
 1. **The zone-picture batch is deployed and confirmed live, not just built.** A local CEO session added photographs to 2 free-deck cards (EH-004, EP-007) and 5 zone pages (kitchen prep counter, nursery crib/sleep, under-sink cabinet, mudroom hooks, family-room games), taking the free deck from 79/88 to 81/88 illustrated and zone pages from 106/114 to 111/114. It surfaced and fixed four real defects along the way: `wire_zone_heroes.py` silently stripping AVIF from 106 unrelated pages (`1cfadb2c`), a hand-written `ops/hero-fallback.json` that had gone stale and hidden four already-live pictures from the phone app (`a11df9dc`), the placing generators outrunning the consuming ones (product schema, sitemap, `data.js`) until `gate_generator_ownership` caught it, and `build_card_template.py` silently no-op-ing without `--all` so the first rebuilt deck PDF carried neither new card. Production confirmed moved `128f51de` to `a53458d8` on the live URLs by that same local session, which holds the deploy key (`4418ee0a`; the git identity on this machine is Phil's, so a local agent session and Phil himself are indistinguishable in the log, worth knowing when reading attribution here): five hero figures serving AVIF, the new deck PDF, the disclosure reading 81/7, `quest-data.js` carrying the new `img` keys. Honest yield, not a pending retry: 7 of 9 stale cards and 3 of 8 stale zones remain rejected, because the local image model cannot render an object-specific scene (umbrella stand, cork board, whiteboard, boot tray, printer station, material rack) without inventing an unrelated room around it; needs a stronger model or a real photograph, not another prompt attempt (see `31722d48`).
