@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-18, scheduled operator cycle (a recurring merge-duplication defect turned into a gate; no new customer-facing defect found)
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, both handed-off cold-reads closed clean)
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`5e28abeb`), clean. `preflight.py` full: every gate passed, 23 warnings, same sandbox limits. 8 GitHub issues unchanged, decision/blocked-on-art. Backlog sections 2-6 again done or Phil-gated.
+
+**Previous work finished, not just committed:** the two prior pushes (`fccdf7a4`, `5e28abeb`) were still CI `in_progress` at 14-26 minutes, inside this account's normal 17-30 minute range, not stuck. Cold-read the two files the last PM check-in handed off, `refresh_hero_fallback.py` and `check_video_standard.py`: both already correct, tested and gated (`--check` clean, 0 drift). No defect found.
+
+**Next for operator:** confirm runs 1127/1128 land green. Cold-read lane dry again.
+
+Pushed (`9e224141`). Command deck only, no code/content/price/page touched.
 
 **Did:** Unshallowed, ff-only merged onto `origin/main` (`2adf7cb7`). Read the backlog, roadmap, `GOALS.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean first. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs; no mail credential. Backlog sections 2-6 again done or Phil-gated; every cold-read lane dry. Scanned content for AI filler phrases: only literal, correct uses of "at the end of the day"; no fix needed.
 
