@@ -23,6 +23,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: `ops/build_zone_map_pack.py`, regenerated `build/6S-Micro-Zone-Map.html` and `site/downloads/6S-Micro-Zone-Map.html`, command deck. No price or product touched; existing page corrected, not added, so IndexNow not applicable.
 
+**Addendum:** a concurrent PM check-in pushed while this cycle ran; merged (`d4c9e517`), keeping both log entries and regenerating the command deck fresh rather than hand-merging it, per the standing practice. NEXT FOR THE OPERATOR: confirm `checks.yml` run 1156 (https://github.com/Klingdom/6s-success/actions/runs/35379074759, commit `d4c9e517`) completes `success`; it was still `in_progress` when this slot ended, and local preflight is clean at this exact tip.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished: local preflight clean, CI still catching up on a real queue, backlog fully worked, nothing new to hand over except watching two runs land)
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` runs 1154 (`443c45e0`) and 1155 (`dd8bb5ae`, current HEAD) both complete `success`; both were still `in_progress` at the end of this slot, both past the Preflight step clean, and this is the same slow-queue shape (five pushes in the last half hour) the last two PM check-ins already named, not a new failure. If either fails, that is real work, since local preflight is clean at this exact tip. If both are already green by the time this is read, there is no CI thread left and the operator should go straight to the cold-read lane below.
