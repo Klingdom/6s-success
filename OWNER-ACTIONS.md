@@ -1034,12 +1034,47 @@ is a mailbox that really is read. It also fires a `list-signup` event, so for th
 first time there will be a count of how many people wanted on. It is not a
 substitute for a list.
 
-### 8. Close two public ports.
+### 8. Close two public ports. Two lines and a restart, about five minutes.
 
 **What:** Umami on 32769 and Listmonk on 8081 are reachable from the open
 internet.
 **Why it matters:** analytics and mailing infrastructure should not be publicly
 addressable. Low likelihood, real consequence.
+
+**Re-measured 2026-09-17, so this is current rather than remembered.** Both are
+still open and answering: `http://187.77.25.50:32769/login` serves Umami's
+login page and `http://187.77.25.50:8081/` serves Listmonk, both HTTP 200 from
+outside. `docker ps` shows them published on `0.0.0.0`, and the host runs **no
+firewall at all** (`ufw status` reports inactive), so nothing else is standing
+in front of them.
+
+**Why it stayed open: closing it would have broken this site, until today.**
+`site/nginx/default.conf` reached both services through the host's own public
+address, so binding them privately would have taken the analytics beacon and
+the signup form down with them. That dependency is now gone: the site's
+upstreams point at the Docker bridge (`172.17.0.1`) instead, proved from
+inside the running container first (`172.17.0.1:32769/api/heartbeat` returns
+`{"ok":true}`) and then end to end in a test container against the real
+services. Closing the ports can no longer break this site.
+
+**Your part.** In each of these two compose files on the VPS, change the
+published address from `0.0.0.0` to the bridge, then recreate:
+
+```
+ssh root@187.77.25.50
+sed -i 's/"32769:3000"/"172.17.0.1:32769:3000"/' /docker/umami-analytics-vi0p/docker-compose.yml
+sed -i 's/"8081:9000"/"172.17.0.1:8081:9000"/'   /docker/listmonk-fhzc/docker-compose.yml
+cd /docker/umami-analytics-vi0p && docker compose up -d
+cd /docker/listmonk-fhzc     && docker compose up -d
+```
+
+**Check the quoting in each file before running the sed** (the port may be
+written unquoted), and afterwards confirm two things: `curl -m 5
+http://187.77.25.50:32769/` fails from your laptop, and 6s-success.com still
+records a visit. These are Hostinger-managed stacks shared with other sites on
+the host, which is why I have not run it for you: if another site's tracker
+points at the public address, it would stop reporting, and that is somebody
+else's analytics to decide about.
 
 ### 9. HTTP/2 and HSTS. (www to apex: done by me 2026-09-17, no longer needs you.)
 
