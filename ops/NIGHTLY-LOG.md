@@ -287,6 +287,54 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
 
+## 2026-09-17, local CEO cycle, second half (pictures: the free deck and 5 zone pages, deployed and verified live)
+
+**What shipped.** Production `128f51debc58e79e` -> `a53458d85a904f9e`. Two free-deck cards (EH-004 SORT MAIL DAILY,
+EP-007 MISSING DOG LEASH) and five zone pages (kitchen prep counter, nursery crib and sleep zone, under-sink cabinet,
+mudroom family hook zone, family-room game and puzzle zone) now carry a photograph. Free deck 79 -> 81 of 88 illustrated;
+zone pages 106 -> 111 of 114. Checked on the live URLs, not in the repository: five hero figures present with AVIF, the
+still-rejected home-office page correctly has none, the deck PDF is the new one, the disclosure reads 81 and 7, and
+`quest-data.js` carries the new `img` keys so the Home Quest app shows them too.
+
+**The blocker was not what OWNER-ACTIONS said.** Issue #2 recorded "dies for lack of free system RAM on your machine".
+It did not reproduce: with 2.7 GB free the pipeline loaded in 7 seconds. `ops/image_local.py` needs the **Python 3.12**
+install (torch 2.11+cu128, CUDA), while the default `python` here is 3.14, where `import torch` fails outright. Anyone
+retrying this must run it with py312.
+
+**Honest yield: 7 of 9 cards and 3 of 8 zones stay rejected, and that is a finding, not a pending retry.** 48 candidate
+images reviewed by eye. The local model renders a wall-mounted letter rack, a drawer of tangled cables, a prep counter,
+a bare crib, a mudroom hook wall and basket shelving convincingly. It cannot render an umbrella stand, a cork notice
+board, a whiteboard, a boot tray, a printer station or a material rack: it produces a pleasant room with the one object
+the card or zone is about missing. Simpler noun-led prompts (the zone-hero lesson) did not move it. Those need a
+stronger model or a photograph. OWNER-ACTIONS' zone row now says 3, not 8, and says why.
+
+**Four defects this work exposed, all fixed, three of them mine:**
+
+1. `wire_zone_heroes.py` did not know about AVIF. Placing five heroes rewrote all 111 matched pages WITHOUT their AVIF
+   source, silently undoing about 41 per cent of image weight on 106 unrelated pages. Caught by reading the diff. Both
+   tools now emit the same markup and are idempotent; `ops/tests/test_zone_hero_markup_keeps_avif.py` pins it and runs
+   without Pillow, which CI lacks.
+2. `ops/hero-fallback.json` was written once by hand and never updated. `build_quest.py` uses it as the PUBLISHED set,
+   so four pictures that were live on the web stayed invisible to the phone app, and every stored figure predated AVIF.
+   New `ops/refresh_hero_fallback.py` regenerates it from the pages themselves; 111 of 111 entries now carry AVIF.
+3. A picture is not only a picture: it feeds zone pack imagery in `data.js`, the shop's product schema and the sitemap's
+   image entries. Running the placing generators without the consuming ones is what `gate_generator_ownership` caught.
+4. `build_card_template.py` with no `--all` silently lists instead of writing, so the first rebuilt deck PDF was made
+   from 14 September card HTML and contained neither new picture. Verified by opening the finished card faces.
+
+**A self-inflicted deploy block, recorded because the shape recurs.** I committed my own rebuild of
+`build/6S-Success-Home-Edition.epub`, a file that was already correct, and it blocked three publish-image runs. Rebuilt
+here the archive is byte-different from the committed copy while all 62 entries inside are byte-identical: Python 3.14
+links zlib-ng, 3.12 links stock zlib, and the two emit different DEFLATE streams for the same input. Restored the
+committed bytes and taught `gate_generator_ownership` to ask archives whether their ENTRIES changed.
+
+**Correction to my own commit message, per CLAUDE.md 0.4.** That commit said CI's difference was container-only. I did
+not verify that: I measured it between two interpreters on this machine and inferred CI. A concurrent session
+independently diagnosed CI's case differently and probably correctly (`fbe8ba12`): CI has no `content/book/*.jpg` at all
+(zero are tracked in git), so its rebuild degrades images and genuinely differs in content, and it now skips the EPUB
+generator there. Both fixes are in and complementary; the claim I could not check is the one about CI, and it is
+withdrawn.
+
 ## 2026-09-17, local CEO cycle (VPS key held: three things only this kind of session can do, all three done)
 
 **CORRECTION to the PM check-in above, measured rather than argued: Checks run 1094 on `66b6e638` was not stuck.** It
