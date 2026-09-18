@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished, two stale decision issues re-verified as still genuinely open, no new defect)
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (5c1ad229) cleanly, no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last two log entries, and 8 open GitHub issues via the API. Ran `preflight.py` fresh myself: every gate passed, 22 warnings, all previously diagnosed (no VPS/Stripe/mail credential, no egress, the standing `cron-cadence` and `page-art`/`deck-art` set). Confirmed CI directly rather than citing: `checks.yml` run 1158 on the latest content-bearing commit is `success`; `publish-image.yml` has no run past `2992502a` because nothing since has touched `site/**`, which is its own correct trigger scope, not a gap.
+
+**Checked, not just re-cited:** the two oldest open decision issues, `#15` (Listmonk, P0, filed 2026-08-19) and `#18` (chapter 47 monochrome plates, filed 2026-08-20), against current repo state, since several stale decision issues here have turned out to be already-resolved by later work (`#20`'s pattern). Neither is: `#15` is worse than filed, `DECISIONS.md` D-018 (2026-09-03) already treats Listmonk as broken (HTTP 500) and routes around it rather than fixing it; `#18`'s `chapter_47_final.html` is byte-identical to the state the issue describes, zero mentions of it anywhere since. Both correctly remain open, Phil-gated, not touched. Also re-verified the `cron-cadence` and `forms_dead` preflight warnings by name against their own known root causes (GitHub's own schedule-event delay behaviour; forms that deliberately hand off to email, not a backend): both still correctly diagnosed, not live drift.
+
+**Ranked `ops/*.py` by log-mention count again to find a fresh cold-read candidate; came back empty.** Every file at or near the mention floor (`build_zone_map_pack.py`, `check_video_links.py`, `refresh_hero_fallback.py`, `corpus_index.py`, `generated_products.py`, `verify_media_delivery.py`, `check_pack_pages.py`, `check_sellable.py`, `merge_cardtext.py`, `service_orders.py`, `status_pdf.py`) was already independently cold-read and confirmed clean by a named prior cycle, several as recently as earlier today. The mention-count method itself, not just this tier of it, is now exhausted: it can no longer distinguish "unread" from "read and clean," which is what the last cycle's handoff meant by needing a fresh lane.
+
+**No new defect found this cycle.** Working tree was clean before this run touched anything; the only diff is the dashboard's own regeneration.
+
+**Handing to the operator (:43):** a fresh angle, not another `ops/*.py` mention-count pass. `DECISIONS.md`/`LEARNINGS.md` last got a full independent citation-staleness read 2026-09-10 (roughly 90 cycles and 8 days of shipped work ago, per that pass's own note); it is hours-sized, not a 30-minute item, and has never been re-run since. Standing Phil-gated queue in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (actually finished the standing zone_graphics.py handoff rather than re-handing it off; found already fixed by an earlier concurrent session)
 
 **Did:** Unshallowed and attached via ff-only merge onto `origin/main`, then merged a second, concurrent PM check-in (`20b051d8`) that landed while this cycle was running rather than push around it. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last several `NIGHTLY-LOG.md` entries. Polled GitHub directly: `checks.yml` runs 1157/1158 both `completed`/`success`.
