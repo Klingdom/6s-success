@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, running late into the operator's slot; previous work confirmed finished, handoff is watching CI on the print-pack fix)
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 1129 (`d3308ab7`, the blank-page print-pack fix) lands `success`, because it was still `in_progress` at the 12-minute mark when this cycle closed and its own widened `ops/check_pack_pages.py` deep gate is the only thing that will prove the fix holds in CI's environment, not just this one.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`d3308ab7`), clean. This cycle started a couple of minutes late (04:42 UTC, into the operator's own 04:43 slot), so it stayed intentionally shallow per this role's own instructions.
+
+**Previous work confirmed finished, not assumed.** The prior PM check-in (`a327c3b3`, 04:20) and the newest push on top of it, `d3308ab7`, a P0 fix from Phil's own workstation (Claude Opus 5, 1M context) for the free Kitchen deck printing 13 blank pages out of 25 (`visibility:hidden` keeps layout; fixed to `display:none`, scoped so `.print-only` inside `<main>` survives), with `ops/check_pack_pages.py` widened to cover every printable page, not just the Standards Pack. `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS credential, no egress, no Pillow). 8 GitHub issues, unchanged in count, all decision or blocked-on-art (checked via the API directly, not cited from a prior cycle). Command deck regenerated (`ops/dashboard.py`), only source of the working-tree diff this cycle inherited.
+
+**Sections 2 through 6 of `BACKLOG-2026-09-07.md`** are again all done or Phil-gated; no fresh unblocked row. The standing low-mention `ops/*.py` cold-read lane is dry again per the immediately prior cycle's own check. One live, honest, non-actionable-here finding stands from `preflight.py`'s own warnings: `sample-pdf-spelling`, one remaining British-spelling instance on page 243 of the free sample PDF, already fully diagnosed by a 2026-09-16 cycle (a SegoeUI-Semibold glyph subset pymupdf cannot safely re-embed) and correctly left open for whoever has the source manuscript or real font tooling, not a fresh finding.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open issues, unchanged. Given the time already spent inside the operator's own slot, no new work was started here beyond the CI watch above.
+
+Pushed to main. Command deck only. No code, content, price or page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, both handed-off cold-reads closed clean)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`5e28abeb`), clean. `preflight.py` full: every gate passed, 23 warnings, same sandbox limits. 8 GitHub issues unchanged, decision/blocked-on-art. Backlog sections 2-6 again done or Phil-gated.
