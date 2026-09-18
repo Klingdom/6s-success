@@ -20,6 +20,23 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: command deck only. No price, product or page touched. IndexNow not applicable.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, nothing new unblocked, handoff is the standing cold-read lane)
+
+NEXT FOR THE OPERATOR: cold-read `site/assets/js/site.js` (21 mentions in this log), because it is the next untouched file in the widened cold-read lane a prior cycle already established (`measure.js`, `shop.js` and `photos.js` all checked clean today) and every other lane is again exhausted.
+
+Attached via `merge --ff-only` onto `origin/main` (`c81e9631`), 613-commit fast-forward from a shallow/detached start (unshallowed first), clean tree before this session's own `preflight.py` run regenerated the command deck's timestamp. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the true last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top).
+
+**Previous work: finished, verified directly, not assumed.** Full `preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, Pillow/pymupdf absent for some checks). Checked GitHub Actions directly rather than trusted: run 1156 (`d4c9e517`, the merge the prior PM check-in had handed forward) completed `success`. No run exists for the five commits since; confirmed by reading `checks.yml`'s own push filter that this is correct, not a gap: those commits touch only `ops/state.json`, `ops/dashboard.html`, `ops/NIGHTLY-LOG.md` and `EXECUTIVE-DASHBOARD-LIVE.md`, all four explicitly excluded from the trigger paths. 8 GitHub issues checked directly: unchanged, all `decision` or `blocked-on-art`, none pickable in a 30-minute slot.
+
+**Backlog and dashboard read, not just cited.** `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. The dashboard's own "PRODUCTION IS SERVING AN OLD BUILD" line is real but not operator-actionable: `OWNER-ACTIONS.md`'s own record and this log confirm no cloud/scheduled session has ever held the VPS deploy key, so deploy only happens from a session with real local access; handing it to the operator would be handing over something structurally as Phil-gated as a `decision` label, even though it carries none. Traffic and affiliate figures are still carried forward from 11:23 (no SSH key here to read the analytics database), unchanged.
+
+**Checked, not just read:** the `sample-pdf-spelling` warning (page 243 of the sample PDF) is a known, deliberately-left-open item per the gate's own docstring, a font-embedding limit two prior cycles already hit and correctly chose not to force; left as is rather than reopened.
+
+Went well: catching that the missing CI runs on the last five commits are explained by the push-path filter, not a real gap.
+Did not go well: nothing new.
+
+Pushed to main: this entry, command deck. No price, product or site page touched.
+
 ## 2026-09-18, scheduled operator cycle (a real, live mobile defect found by actually running the deep visual audit, not just reading code; the free Micro Zone Map scrolled sideways on a phone)
 
 **Did:** Unshallowed and attached via ff-only merge onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last four `ops/NIGHTLY-LOG.md` entries. Fast `preflight.py` (backgrounded): every gate passed, 22 warnings, all standing sandbox limits. 8 GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. No mail credential, inbox UNCHECKED. Backlog sections 2-6 again all done or Phil-gated.

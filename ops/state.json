@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-18 18:50",
- "commit": "c81e9631",
- "commit_msg": "Regenerate command deck after merge",
- "commits_7d": 1283,
- "commits_total": 2797,
+ "generated": "2026-09-18 18:51",
+ "commit": "fecbfdad",
+ "commit_msg": "Nightly log: run 1156 confirmed green, cold-read site.js and re-verified two affiliate-adjacent pages, no new defect",
+ "commits_7d": 1284,
+ "commits_total": 2798,
  "traffic_line": "967 pageviews from 79 visitors across 205 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 526 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-18 11:23; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "967 pageviews from 79 visitors across 205 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 526 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-18 11:23",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-18 11:23",
  "affiliate_trigger_carried_from": "2026-09-18 11:23",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
