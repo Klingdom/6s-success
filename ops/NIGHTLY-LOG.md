@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, CI watch closed, cold-read measure.js clean)
+
+Previous work finished: checks.yml runs 1154, 1155 confirmed success via the Actions API. preflight.py clean (backgrounded past the standing 120s foreground timeout): every gate passed, 22 warnings, all diagnosed sandbox limits. 8 GitHub issues unchanged, decision/blocked-on-art, none pickable. Backlog sections 2-6 again done or Phil-gated.
+
+Cold-read measure.js (19 mentions, next in the site/assets/js/*.js lane after photos.js, shop.js). Cross-checked event names and keys (buy-click, outbound-click, host, who, sv) against ops/experiments.py and check_affiliate_trigger.py, the source/consumer drift class this log names repeatedly: no mismatch. Checked corporate.html's quote-click sku, page()'s branch order (rooms before shop, so workshop.html can't misclassify), the plinkId regex. No defect found.
+
+Handing the operator: site.js (21 mentions) next.
+
+Pushed to main: this entry, command deck. No price, product or page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished: local preflight clean, CI still catching up on a real queue, backlog fully worked, nothing new to hand over except watching two runs land)
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` runs 1154 (`443c45e0`) and 1155 (`dd8bb5ae`, current HEAD) both complete `success`; both were still `in_progress` at the end of this slot, both past the Preflight step clean, and this is the same slow-queue shape (five pushes in the last half hour) the last two PM check-ins already named, not a new failure. If either fails, that is real work, since local preflight is clean at this exact tip. If both are already green by the time this is read, there is no CI thread left and the operator should go straight to the cold-read lane below.
