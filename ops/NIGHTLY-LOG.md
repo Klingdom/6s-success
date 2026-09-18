@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle, continued a third time (a third concurrent push fixed the same ordering defect independently; the auto-merge duplicated the entry, not the fix; deduplicated)
+
+**Did:** a third push attempt was rejected by a further concurrent commit (`9716a042`, another session's own fix for the exact `gate_nightly_log_ordering` failure this cycle had already fixed two pushes ago). Merged rather than force-pushed; `ops/NIGHTLY-LOG.md` auto-merged with no conflict markers, but git's three-way merge kept both sessions' copies of the relocated entry ("2026-09-18 early, local CEO cycle, fourth part") rather than recognising them as the same move, since each session's diff touched a slightly different surrounding hunk. Checked before assuming a clean auto-merge was correct, per this cycle's own standing practice this run: grepped for the entry's title and found it twice, byte-identical, 113 lines apart. Removed the second copy.
+
+**Verified:** `preflight.py` clean after (every gate passed, 23 warnings, none new); re-grepped to confirm exactly one copy of the entry remains and no conflict markers survived anywhere in the file.
+
+**Went well:** not trusting a marker-free auto-merge as proof of correctness; the duplication here was silent, no `<<<<<<<` to notice.
+
+**Did not go well:** three independent sessions (or scheduled/PM cycles) fixed the identical gate failure in the same short window with no coordination signal beyond git's own rejection-on-push; a fourth or fifth concurrent writer at this cadence would make silent content duplication, not just merge conflicts, a real recurring risk.
+
+**Changing next cycle:** worth flagging to whoever reads this: when a push is rejected more than once in a single cycle, treat every auto-merge (not just ones with conflict markers) as unproven until grepped for duplication, not just preflight-clean.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` (deduplicated), command deck. No code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle, continued (a second merge surfaced a real ordering defect a concurrent session's own gate fix had not touched; fixed)
 
 **Did:** this cycle's push was rejected twice in a row by concurrent sessions landing work first. The first merge brought in a PM check-in (`5c71b020`) plus a local CEO session's port-rewire and item-8 resolution (`741f5ea5`, `11802a8a`); the second brought in that PM check-in's own retitled, fuller entry describing a gate failure it found and fixed mid-cycle, plus a separate session's CI-fix retraction and a video-link checker. Took the fuller, later PM check-in entry over this cycle's own earlier partial copy of the same event (below) rather than duplicate it.
