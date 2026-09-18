@@ -8,7 +8,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Found:** `LEARNINGS.md`'s own section 31 "Learning Index" table indexed LRN-0001 through LRN-0008 only. The Verified Learning Registers (section 33) had grown to LRN-0016; eight real, evidence-backed learnings were invisible to the index, LRN-0009 among them, the learning that names exactly this defect class ("source corrected, artifact never re-derived") and recommends gating it, not re-describing it. The sibling table in `DECISIONS.md` (section 43) already got this exact fix and gate on 2026-09-10; nobody had checked whether `LEARNINGS.md` had the same gap. Fixed the index (8 rows added), and added `gate_learnings_index_current`/`check_learnings_index` to `preflight.py`, mirroring `gate_decisions_index_current`'s own two-directional shape. `ops/tests/test_gate_learnings_index_current.py` (9 cases) fail-then-pass proved directly against the real committed file via `git stash` (gate correctly failed naming all 8 missing IDs, restored, reran clean).
 
-**A real, live preflight FAIL turned up mid-cycle, not from my own edits.** A clean background `preflight.py` run failed 2 gates: `gate_srt_captions_current` (114 of 114 committed video captions stale) and the test suite entry for it. Root-caused before touching anything: Phil's own `af16a257` (same day, 15:16) deliberately added a new "where it is" beat to the zone videos and committed it knowing the gate would fail, per his own commit message, "the render is restarted and the captions follow in one commit." The caption sidecars are pure-Python text derived from `beats()`, no audio or ffmpeg needed, so regenerating them does not depend on his still-running local render. Ran `python ops/video_srt.py` (114 written), verified `gate_srt_captions_current` and its own test both pass clean.
+**A real, live preflight FAIL turned up mid-cycle, not from my own edits.** A clean background `preflight.py` run failed 2 gates: `gate_srt_captions_current` (114 of 114 committed video captions stale) and the test suite entry for it. Root-caused before touching anything: Phil's own `af16a257` (same day, 15:16) deliberately added a new "where it is" beat to the zone videos and committed it knowing the gate would fail, per his own commit message, "the render is restarted and the captions follow in one commit." The caption sidecars are pure-Python text derived from `beats()`, no audio or ffmpeg needed, so regenerating them does not depend on his still-running local render. Ran `python ops/video_srt.py` (114 written), verified `gate_srt_captions_current` and its own test both pass clean. **Converged with a concurrent PM check-in fixing the identical defect the same way** (`5e5c5da0`, pushed first): both regenerations are deterministic from the same `beats()` output, so the merge produced 0 conflicts across all 114 `.srt` files, confirming independent agreement rather than one side overwriting the other.
 
 **Verified:** Full `preflight.py` clean (every gate passed, 22 warnings, all previously diagnosed sandbox limits), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0). No mail credential; GitHub issues unchanged.
 
@@ -20,6 +20,30 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open issues, unchanged.
 
 Pushed to main. `LEARNINGS.md`, `ops/preflight.py`, `ops/tests/test_gate_learnings_index_current.py`, 114 `build/video/zones/*.srt`, command deck. No price or product touched, no site page changed. IndexNow not applicable.
+
+## 2026-09-18, PM check-in (30-minute triage, previous work was NOT finished: CI was red on the "where it is" beat commit, root cause fixed)
+
+NEXT FOR THE OPERATOR: confirm CI turns green on this cycle's fix commit, because this run could not wait long enough to see the actual GitHub run complete before the operator's own slot starts.
+
+**Attached cleanly.** Unshallowed and fast-forwarded onto `origin/main` (`7f9e51fd`), no unrelated-history symptom this run.
+
+**Previous work: NOT finished.** The prior PM cycle's own log entry (`7f9e51fd`, 21:23) claimed `checks.yml` run 1158 was green "on the latest content-bearing commit," but 1158 was actually for `9671399b`, an older commit; the real latest content-bearing commit at that point was `af16a257` ("Add the 'where it is' beat to the zone videos"), and CI run 1160 on that exact commit is `FAILURE` (confirmed directly via the GitHub API this cycle, not cited). Per STEP 2, finishing this became this cycle's work rather than picking something new.
+
+**Root cause:** `af16a257` added a new "where it is" beat to every zone video's `beats()` in `ops/video_zone.py`, changing the caption source for all 114 zones, but the committed sidecars in `build/video/zones/*.srt` were never regenerated. `gate_srt_captions_current` (added 2026-09-18, compares committed captions against `beats()` directly, no rendered video needed) correctly failed: local `preflight.py` showed 2 gates failed (`tests`, `srt-captions-current`), 114 of 114 captions stale, exactly matching the live CI failure.
+
+**Fixed:** ran `python ops/video_srt.py`, which regenerated all 114 `build/video/zones/*.srt` sidecars from the current `beats()` output (the tool's own suggested fix). `test_gate_srt_captions_current.py` now passes 4/4. Full `preflight.py` fast rerun after: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail credential, no egress). Did not hand-edit any `.srt` file; the generator owns them.
+
+**Checked, not assumed:** confirmed the CI failure directly against the GitHub API (run 1160, commit `af16a257`, conclusion `failure`) before treating it as real, rather than trusting the prior cycle's citation. 8 open GitHub issues unchanged (6 decision, 2 P0 blocked-on-art), 0 open PRs.
+
+**Dashboard's own top line:** production is serving an older build (confirmed current at 2026-09-18T17:20:47Z, repository has since moved on); the Redeploy button in Hostinger is the only step left, and no VPS deploy key exists in this environment (confirmed: `ops/deploy.py --check` reports "no deploy key at /root/.ssh/6s_deploy"). This is `OWNER-ACTIONS.md` item 1b, unchanged, Phil-gated, not touched here.
+
+**Did not go well:** the previous cycle's CI citation was stale in exactly the way `CLAUDE.md` 0.3/0.4 warns against, checking an old commit and reporting it as current. A same-day commit that changes a generator's source without re-running the generator is the repository's known dominant defect class; this is another instance of it.
+
+**Changing next cycle:** when citing "CI green," name the exact commit SHA checked and confirm it against the actual current HEAD/latest content-bearing commit before citing it, not the last commit a prior cycle happened to check.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (redeploy, 6 decision issues, 2 art-blocked P0s). If CI is confirmed green on this cycle's fix, the next genuinely unblocked non-Phil item is the `DECISIONS.md`/`LEARNINGS.md` citation-staleness read the 21:23 cycle already named (last done 2026-09-10, hours-sized, not a 30-minute item).
+
+Pushed to main. `build/video/zones/*.srt` (114 files), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched. IndexNow not applicable.
 
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished, two stale decision issues re-verified as still genuinely open, no new defect)
 
