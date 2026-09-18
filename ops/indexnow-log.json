@@ -413,17 +413,24 @@
    "offered": 187,
    "accepted": 187,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-18T19:47:51Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
-  "https://6s-success.com/": "23bc5d24aaaf8042",
-  "https://6s-success.com/method.html": "26b0323515a07b56",
+  "https://6s-success.com/": "18d86f41af9334d4",
+  "https://6s-success.com/method.html": "e262961fe7dbfe44",
   "https://6s-success.com/resources.html": "4efb1a7e9148e96a",
-  "https://6s-success.com/book.html": "9ec21311a0ad1a75",
-  "https://6s-success.com/shop.html": "f6e688e019b9da3c",
+  "https://6s-success.com/book.html": "4213d86ec49c59b0",
+  "https://6s-success.com/shop.html": "8f2e7afdd8cfa64d",
   "https://6s-success.com/consulting.html": "f778c94ca4890d6a",
   "https://6s-success.com/about.html": "dcfd5312014351c0",
-  "https://6s-success.com/contact.html": "e2eec08a5aea50f8",
+  "https://6s-success.com/contact.html": "930cbc3f7bfbf2df",
   "https://6s-success.com/privacy.html": "ddebab6199c20cec",
   "https://6s-success.com/terms.html": "852f32e76027a455",
   "https://6s-success.com/accessibility.html": "4e45d04d4e0cd3dd",
