@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the tied-15-mention `ops/*.py` cold-read tier at `image_local.py`, `send_brief.py`, `sync_page_links.py`, because the prior PM check-in named that same handoff after closing `send_questions.py`, nothing has claimed it since (no intervening commits beyond a dashboard regen), and every unblocked backlog row is again done or Phil-gated.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`5ae83962`), clean, no reset needed. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, and the newest `ops/NIGHTLY-LOG.md` entries.
+
+**Previous work confirmed finished, not cited.** First `preflight.py` attempt hit the known foreground-timeout shape several prior cycles have already recorded; caught via `git status` (only the benign command-deck regen was dirty, no corruption) and rerun in the background to real completion: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift). `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0) all reran clean directly rather than trusted from the last cycle's own citation. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 6's owner-gate ranking matches `OWNER-ACTIONS.md` verbatim.
+
+**No cold-read of my own this slot**, per this slot's own instruction not to start something large three minutes ahead of the operator; the handoff above is the deliverable.
+
+**Went well:** treating the foreground preflight timeout as a known, already-diagnosed shape rather than a fresh problem, and re-running the standing checks directly instead of citing the prior cycle's clean results.
+
+**Did not go well:** the same foreground-timeout shape recurred, several cycles after it was first diagnosed; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, traffic, deploy freshness and the affiliate trigger all stay honestly unmeasured rather than falsely clean.
+
+**Changing next cycle:** none new.
+
+**Next:** the tied-15-mention tier continues at `image_local.py`, `send_brief.py`, `sync_page_links.py`. The standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in
 
 **Previous work: finished.** Preflight, tree, main all clean. Backlog sections 2-6 done or Phil-gated; all 8 issues decision/blocked-on-art, none pickable.
