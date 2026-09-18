@@ -8786,6 +8786,51 @@ def check_print_and_play_art_count(text, illustrated, missing) -> list:
     return problems
 
 
+def gate_standards_pack_paginates(deep: bool = False) -> None:
+    """The free Standards Pack must print as the 20 sheets it claims.
+
+    Found 2026-09-18 by printing it: 21 pages, the extra carrying ten words of
+    signature strip orphaned off the Kitchen sheet by its seven zones. Nothing
+    else here could see it. The HTML is valid, the links resolve, the visual
+    audit passes at two widths, and every one of those is equally true of a
+    document that paginates wrong, because pagination only exists once
+    something lays pages out.
+
+    It matters because this pack is the one asset search measurably sends
+    people to, and printing it is the entire point of it.
+
+    Deep only: it needs a browser and pypdf. Reports UNCHECKED rather than
+    clean when either is missing, and never turns "could not render" into "the
+    pack is fine".
+    """
+    if not deep:
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import check_pack_pages as C
+        pages, claimed, orphans, note = C.audit()
+    except Exception as e:                                      # noqa: BLE001
+        warn("standards-pack-pagination",
+             "could not print the pack to check it (%s), so this is UNCHECKED"
+             % type(e).__name__)
+        return
+    if pages is None:
+        warn("standards-pack-pagination",
+             "the printed pack was NOT checked here: %s" % note)
+        return
+    if claimed and pages != claimed:
+        fail("standards-pack-pagination",
+             "the free Standards Pack prints %d pages and calls itself %d "
+             "sheets, so a reader printing it wastes %d page(s)"
+             % (pages, claimed, pages - claimed))
+        return
+    if orphans:
+        fail("standards-pack-pagination",
+             "the free Standards Pack prints %d page(s) carrying no sheet at "
+             "all (page %s), which is a wasted sheet with a stray footer on it"
+             % (len(orphans), orphans[0]))
+
+
 def gate_site_video_links_alive(deep: bool = False) -> None:
     """Every YouTube video this site links must still be watchable.
 
@@ -15939,6 +15984,7 @@ def main() -> int:
     run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_zone_videos_match_standard)
     run_gate(gate_site_video_links_alive, deep)
+    run_gate(gate_standards_pack_paginates, deep)
     run_gate(gate_invest_page_catalog_current)
     run_gate(gate_invest_page_no_fabricated_claims)
     run_gate(gate_caption_line_length)

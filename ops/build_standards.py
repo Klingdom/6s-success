@@ -128,6 +128,18 @@ body{margin:0;background:#EFE7D6;color:#2B2622;
   .sheet{margin:0;border:0;border-top:6px solid #6E8B5B;min-height:0;
     page-break-after:always;break-after:page}
   .sheet:last-child{page-break-after:auto;break-after:auto}
+  /* 7 or more zones on one page: tighten enough to fit, no further. Proved by
+     printing to PDF and counting pages, not by eye. */
+  /* In POINTS, like the base rules above, and every value BELOW its base.
+     The first attempt used px against pt bases (14px is 10.5pt against a
+     10pt base), so it made dense sheets bigger and took the pack from 21
+     printed pages to 23. Caught by printing to PDF and counting, which is
+     the only check that can see this. */
+  .sheet.dense .lede{font-size:8.6pt;line-height:1.38;margin:0 0 9px}
+  .sheet.dense .z{padding:6px 0}
+  .sheet.dense .z h3{font-size:8pt;margin-bottom:2px}
+  .sheet.dense .std{font-size:9.1pt;line-height:1.34;margin:0 0 3px}
+  .sheet.dense .trg{font-size:7.9pt;line-height:1.32}
 }
 """
 
@@ -144,7 +156,18 @@ def sheet(room: dict, idx: int, total: int) -> str:
 
     plural = "zone" if len(zs) == 1 else "zones"
     return (
-        '<section class="sheet">'
+        # A sheet with many zones overflows its page and prints a second
+        # one carrying nothing but the signature strip. Measured
+        # 2026-09-18 by printing the real pack to PDF with headless
+        # Edge: 21 pages for a pack whose own sheets say "1 of 20" to
+        # "20 of 20", the extra being page 3, ten words of orphaned
+        # footer from the Kitchen's 7 zones. Somebody printing the free
+        # pack, which is the one asset search actually sends people to,
+        # wastes a sheet and gets something that looks broken.
+        #
+        # Dense sheets get slightly tighter type in print only. The
+        # screen layout is untouched.
+        f'<section class="sheet{" dense" if len(zs) >= 7 else ""}">'
         f'<div class="rhead"><h2>{esc(room["room"])}</h2>'
         f'<span class="n">{len(zs)} {plural} &middot; sheet {idx} of {total}</span></div>'
         '<p class="lede">This is what the room holds to, and the moment that '
@@ -228,7 +251,14 @@ def main() -> int:
           "which is why this is free")
 
     assert zones == 114 and trigs == 114, f"expected 114/114, got {zones}/{trigs}"
-    assert html.count('class="sheet"') == total, "a sheet was lost in layout"
+    # Counts the opening tag, not one exact class string: a sheet with 7 or
+    # more zones carries "sheet dense" so it can fit its page, and the
+    # older exact match silently turned that into "a sheet was lost".
+    # Counts the opening tag, not one exact class string: a sheet with 7
+    # or more zones carries "sheet dense" so it can fit its page, and the
+    # older exact match silently turned that into "a sheet was lost".
+    assert html.count(chr(60) + 'section class="sheet') == total, (
+        "a sheet was lost in layout")
     print(f"  claims checked: {zones} standards and {trigs} triggers "
           "present, 20 sheets, Safety named as the fourth S")
     return 0
