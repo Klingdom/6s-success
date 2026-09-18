@@ -2026,6 +2026,36 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     if _ans:
         out.append(_ans)
 
+    # THE MICRO ZONE, DRAWN.
+    #
+    # Added 2026-09-18. Every picture on these pages was a generated room
+    # photograph: pleasant, generic, and silent about the one idea that makes
+    # the page worth reading, which is that this is a small named place with a
+    # job, a finish line and a trigger, sitting among the other small named
+    # places in its room. The diagram says that in one look, is built from the
+    # same content.json the prose is built from so it cannot drift, and costs
+    # nothing per page. It is inlined rather than linked so the page's own
+    # fonts and colours apply and no extra request is made.
+    #
+    # No try/except around it on purpose: if the graphics module cannot build
+    # a zone, the build should stop and say so rather than quietly publish 114
+    # pages with a hole where the differentiator was.
+    import zone_graphics as _zg
+    import video_zone as _vz
+    _sibs = [display(room["room"], z["zone"]) for z in room["zones"]]
+    _zone_for_svg = dict(zone)
+    _zone_for_svg["zone"] = name
+    out.append(
+        '<figure class="zone-diagram">'
+        + _zg.zone_diagram_svg(room["room"], _zone_for_svg, _sibs,
+                               _vz.done_items(zone), uid=zs)
+        # The display name already carries its article ("The Primary Prep
+        # Counter"), so a second "The" in front of it reads as a typo, which
+        # it was until this was read back off a rendered page.
+        + '<figcaption>%s is one of %d micro zones in the %s. '
+          'Finish one before you start the next.</figcaption></figure>'
+          % (esc(name), len(_sibs), esc(room["room"])))
+
     if zone.get("done_looks_like"):
         out.append('<h2>What done looks like</h2>')
         out.append(f'<p>{esc(zone["done_looks_like"])}</p>')
@@ -2452,6 +2482,22 @@ def room_page(room, header, footer, all_rooms=()):
     # uses. Eleven room pages had no image at all while most of their zones
     # had an approved picture; the chapter lead figure above stays the room
     # art, and gate_pages_missing_art keys on that figure, not on these.
+    # THE ROOM AS A MAP OF ITS MICRO ZONES.
+    #
+    # Added 2026-09-18. A room page is a list of zones, and a list is the one
+    # shape that hides the idea: that the room is a set of small named places
+    # you finish one at a time. The map numbers them in working order and puts
+    # each one's session length on it, so the whole room reads in a glance,
+    # and it is generated from the same data as the list below it.
+    import zone_graphics as _zg
+    _map_zones = [dict(z, zone=display(room["room"], z["zone"]))
+                  for z in room["zones"]]
+    out.append('<figure class="room-map-figure">'
+               + _zg.room_map_svg(room["room"], _map_zones, uid=slug(rm))
+               + '<figcaption>The %d micro zones of the %s, in the order to '
+                 'work them. Each one is a session that finishes on its own.'
+                 '</figcaption></figure>' % (len(_map_zones), esc(rm)))
+
     out.append('<ol class="zone-rows">')
     pictured = 0
     for z in room["zones"]:

@@ -825,6 +825,24 @@ main:focus{outline:none}
    space is reserved before the file arrives and the text below does not jump.
    The caption is small and quiet on purpose: it is a provenance note, not a
    thing to read. */
+/* The micro zone diagram. Inlined SVG, so it inherits the page's fonts and
+   scales to any width without a second request. It carries its own panel and
+   border inside the artwork, so the figure adds only spacing.
+
+   Added 2026-09-18: the diagram is the differentiator made visible, and it is
+   the first picture on the page on purpose. */
+.zone-diagram{margin:26px 0 32px}
+.zone-diagram svg{display:block;width:100%;height:auto}
+.zone-diagram figcaption{margin:10px 0 0;font-family:var(--sans);font-size:13px;
+  line-height:1.5;color:var(--mute)}
+.room-map-figure{margin:22px 0 30px}
+.room-map-figure svg{display:block;width:100%;height:auto}
+.room-map-figure figcaption{margin:10px 0 0;font-family:var(--sans);
+  font-size:13px;line-height:1.5;color:var(--mute)}
+@media print{
+  .zone-diagram,.room-map-figure{break-inside:avoid;page-break-inside:avoid}
+}
+
 .zone-hero{margin:22px 0 30px}
 .zone-hero img{display:block;width:100%;height:auto;border-radius:14px}
 .zone-hero figcaption{margin:10px 0 0;font-family:var(--sans);font-size:13px;

@@ -39,12 +39,20 @@ def _run():
 def main() -> int:
     fails = []
 
-    # 0. No local .mp4s in this sandbox, confirmed, so check #1 below proves
-    #    the gate now runs without one, not that it happened to find one.
+    # 0. Check #1 below is meant to prove the gate runs with no .mp4 beside
+    #    the captions, which is every CI checkout. On the machine that
+    #    actually renders the videos they are all present, and that is the
+    #    normal state there, not a fault: failing on it made this test
+    #    unrunnable on the one machine where the corpus is produced.
+    #
+    #    Corrected 2026-09-18: say the sub-case was not exercised, and carry
+    #    on with the rest. Reporting "unchecked" is the honest move; failing
+    #    on a healthy machine teaches people to ignore the suite.
     mp4s = [f for f in os.listdir(video_srt.OUT) if f.endswith(".mp4")]
     if mp4s:
-        fails.append("unexpected local .mp4(s) present, test #1 below no "
-                      "longer proves the mp4-free path: %r" % mp4s)
+        print("  UNCHECKED: %d local .mp4(s) present, so check #1 does not "
+              "prove the mp4-free path here. Run this where the videos have "
+              "not been rendered to exercise it." % len(mp4s))
 
     # 1. The real, committed captions: clean.
     f, w = _run()

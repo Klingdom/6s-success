@@ -9528,7 +9528,8 @@ def gate_srt_captions_current() -> None:
             stale.append(slug)
     if stale:
         fail("srt-captions-current",
-             "%d caption file(s) do not match their own video's beats: %s. "
+             "%d caption file(s) do not match their own video's beats, "
+             "first few: %s. "
              "Run: python ops/video_srt.py" % (len(stale), stale[:5]))
 
 
