@@ -862,6 +862,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
                                "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
     "prerender_shop.py": ("gate_prerender_shop_current",),
+    "refresh_hero_fallback.py": ("gate_hero_fallback_current",),
     "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
                       "gate_site_verification_declared",
                       "gate_sameas_backed_by_onsite_link"),
@@ -5771,6 +5772,88 @@ def gate_zone_heroes_stable() -> None:
              f"explain the drop. A rebuild in an environment without "
              f"build/heroes/zones/ just unpublished approved photographs; "
              f"the fallback in wire_zone_heroes.py did not restore them.")
+
+
+def check_hero_fallback_current(fresh: dict, committed: dict) -> list:
+    """Pure logic for gate_hero_fallback_current. Returns a list of problem
+    strings, empty when the committed ops/hero-fallback.json still matches
+    what ops/refresh_hero_fallback.py would write from the real zone pages.
+    """
+    added = sorted(set(fresh) - set(committed))
+    dropped = sorted(set(committed) - set(fresh))
+    changed = sorted(k for k in set(fresh) & set(committed)
+                      if fresh[k] != committed[k])
+    problems = []
+    if added:
+        problems.append(
+            "%d zone page(s) now carry a wired hero absent from "
+            "ops/hero-fallback.json: %s. Until it is regenerated, "
+            "wire_zone_heroes.fallback_wire() cannot restore this figure in "
+            "any environment without build/heroes/zones/ (every CI checkout), "
+            "and build_quest.py treats an entry's absence there as no "
+            "picture, so the Home Quest app will show none for a zone whose "
+            "page already carries one. Run "
+            "python ops/refresh_hero_fallback.py --apply." %
+            (len(added), added[:5]))
+    if dropped:
+        problems.append(
+            "%d entry(ies) in ops/hero-fallback.json no longer match any "
+            "wired zone page: %s. Run "
+            "python ops/refresh_hero_fallback.py --apply." %
+            (len(dropped), dropped[:5]))
+    if changed:
+        problems.append(
+            "%d entry(ies) in ops/hero-fallback.json have a stale figure or "
+            "preview URL against the real page: %s. Run "
+            "python ops/refresh_hero_fallback.py --apply." %
+            (len(changed), changed[:5]))
+    return problems
+
+
+def gate_hero_fallback_current() -> None:
+    """ops/hero-fallback.json is the committed record refresh_hero_fallback.py
+    itself says it should be regenerated FROM, not hand-maintained: it was
+    written once by hand and never updated again until 2026-09-17, when five
+    newly approved zone heroes went live on their pages while four of them
+    stayed missing from this file. That mattered twice over: it is what
+    wire_zone_heroes.fallback_wire() restores in every environment without
+    build/heroes/zones/ (every CI checkout, since that folder is gitignored),
+    and build_quest.py treats an entry's absence here as "no picture", so the
+    Home Quest app kept showing no photo for zones whose picture was already
+    live on the web page, a real inconsistency between two channels showing
+    the same content.
+
+    refresh_hero_fallback.py fixes the drift once it is run, but nothing
+    re-asserted that it had been run, or would need to be run again the next
+    time a hero is approved: this file is not a build_*.py name, so
+    gate_every_generator_has_a_protection_plan's own glob cannot see it
+    either, the same blind spot prerender_shop.py had before it got its own
+    gate. This closes that gap with the same regenerate-and-diff pattern:
+    rebuild the record from the real, committed zone pages and fail if it
+    would differ from what is actually committed.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import refresh_hero_fallback as RHF
+        import importlib
+        importlib.reload(RHF)
+        fresh = RHF.build()
+    except Exception as e:                                        # noqa: BLE001
+        warn("hero-fallback-current",
+             f"could not rebuild the hero-fallback record to check "
+             f"against: {e}")
+        return
+
+    if not os.path.exists(RHF.OUT):
+        fail("hero-fallback-current",
+             "ops/hero-fallback.json does not exist. Run "
+             "python ops/refresh_hero_fallback.py --apply.")
+        return
+    committed = json.load(io.open(RHF.OUT, encoding="utf-8"))
+
+    problems = check_hero_fallback_current(fresh, committed)
+    if problems:
+        fail("hero-fallback-current", "; ".join(problems))
 
 
 def _pymupdf_importable() -> bool:
@@ -15656,6 +15739,7 @@ def main() -> int:
     run_gate(gate_site_verification_declared)
     run_gate(gate_room_images_stable)
     run_gate(gate_zone_heroes_stable)
+    run_gate(gate_hero_fallback_current)
     run_gate(gate_deck_gallery_identity)
     run_gate(gate_deck_pdf_download_current)
     run_gate(gate_status_report_network_unknown)

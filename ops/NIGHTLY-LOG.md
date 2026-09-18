@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (a hand-maintained hero-photo record found gated once, never protected against drifting stale a second time)
+
+**Did:** Unshallowed and attached to `main` (fetch, `git fetch --unshallow`, ff-only merge; caught up 445 commits with no history conflict). `preflight.py` clean first (22 known warnings). 8 GitHub issues unchanged (2 P0/2 blocked-on-art/6 decision, all Phil-gated per the last two check-ins). No mail credential, inbox UNCHECKED. Per the standing "cold-read the lowest-mention `ops/*.py` file" fallback, ranked every file in `ops/*.py` by mentions in this log: `refresh_hero_fallback.py` had 2, the next-lowest 12. Read it cold. Its own docstring names a real 2026-09-17 incident it was written to fix: five newly approved zone heroes went live on their pages while four stayed missing from `ops/hero-fallback.json`, so `build_quest.py` (which treats this file as the published set) kept showing no picture in the Home Quest app for zones whose photo the web page already carried. The fix tool exists and works, but nothing re-runs it automatically and nothing re-checks that it has been run: the filename does not match `gate_every_generator_has_a_protection_plan`'s own `build_*.py` glob, so the meta-gate that exists specifically to catch an unprotected generator could not see this one either.
+
+**Checked before fixing:** ran `python ops/refresh_hero_fallback.py --check` against the real committed file: 0 added, 0 dropped, 0 changed. No live defect today, a closed loophole, not a repair.
+
+**Fixed:** added `gate_hero_fallback_current` to `preflight.py` (pure logic in `check_hero_fallback_current`, regenerates the record straight from `site/zones/*.html` and diffs it against the committed JSON), registered `refresh_hero_fallback.py` in `GENERATOR_PROTECTED_ELSEWHERE` for documentation (honestly noted in the gate's own docstring that the glob would not reach it by name regardless, same as `prerender_shop.py`'s entry).
+
+**Verified:** `ops/tests/test_gate_hero_fallback_current.py`, 7 cases, fail-then-pass proved twice: once against synthetic fixtures (added/dropped/changed/missing-file), once by planting the exact 2026-09-17 regression shape directly in the real committed `ops/hero-fallback.json` (dropped one live entry), watching the gate fail by name, then restoring the file byte for byte and reconfirming clean. Full `preflight.py` (every gate passed, 22 warnings, all previously diagnosed sandbox limits), all 184 `ops/tests/test_*.py` files individually, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0) all clean after.
+
+**Went well:** the mention-count ranking found a file whose own docstring already contained a documented, real, customer-visible incident that had never been turned into a gate.
+
+**Did not go well:** nothing new this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** the standing Phil-blocked list (8 issues) is unchanged; the next fresh lane is the next-lowest-mention `ops/*.py` cold-read (12 mentions: `build_youtube_metadata.py`, `split_deck_cards.py`, `verify_media_delivery.py`, or `wire_pwa.py`).
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_hero_fallback_current.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified live; closed a real 35-commit STATUS.md staleness gap instead of starting fresh)
 
 Previous work was finished: preflight clean (2 P0/2 blocked-on-art/6 decision issues, all Phil-gated), the price-derivation fix in three generators (`8af64f4b`) and the zone-picture batch (`31722d48`, `4418ee0a`) both shipped and confirmed live at build `a53458d8` by Phil's own verification. Nothing new was operator-actionable in the backlog: sections 2-6 remain done or Phil-gated, all 8 GitHub issues carry `decision`/`blocked-on-art`.
