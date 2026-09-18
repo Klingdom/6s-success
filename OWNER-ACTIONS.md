@@ -1556,6 +1556,18 @@ before anything else is built on top of it.
 
 ### 20. Add one link to each of the 12 published video descriptions. About ten minutes, once.
 
+**Decide item 1 first, added 2026-09-18: this may be ten minutes you do not
+need to spend.** Those same 12 videos are among the 100 whose on-screen
+checklist contradicts their own zone page (see item 1). Anything uploaded from
+now on carries this "KEEP IT THIS WAY" block automatically, so if you choose to
+replace the 12 with the corrected re-renders, pasting into the old descriptions
+is work that gets thrown away. If you choose to leave the 12 as they are, this
+item stands exactly as written below.
+
+Worth knowing before choosing: replacing means new URLs, because YouTube cannot
+swap the file behind an existing one. On a channel this size that costs little,
+and the corrected versions are being rendered now at no cost.
+
 **Added 2026-09-13, this operator, closing `PLAN-MICROZONES-DECKS-APP.md`'s
 S5 row.** That row has said since 2026-09-07 that each pilot zone's YouTube
 description should link its own page's Sustain habit, "so the drift signal
