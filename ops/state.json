@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-18 03:49",
- "commit": "2adf7cb7",
- "commit_msg": "PM check-in: previous work confirmed finished, video-link fix independently re-verified, nothing new unblocked",
- "commits_7d": 1272,
- "commits_total": 2680,
+ "generated": "2026-09-18 03:51",
+ "commit": "fccdf7a4",
+ "commit_msg": "PM check-in: correct the free deck's stale card-hero count (9 to 7) in OWNER-ACTIONS.md and BACKLOG-2026-09-07.md, confirm prior cycle's CI green",
+ "commits_7d": 1273,
+ "commits_total": 2681,
  "traffic_line": "952 pageviews from 78 visitors across 201 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 511 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-17 18:09; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "952 pageviews from 78 visitors across 201 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 511 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-17 18:09",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-17 18:09",
  "affiliate_trigger_carried_from": "2026-09-17 18:09",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
