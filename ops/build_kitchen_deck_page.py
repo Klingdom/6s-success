@@ -598,8 +598,8 @@ CSS = """
 .ktitle{font-size:19px;margin:0 0 3px}
 .ktag{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.05em;
   color:var(--mute);margin:0 0 8px;text-transform:uppercase}
-.kplace{font-family:Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7a7168;margin:0 0 4px}
-.tplace{font-family:Arial,sans-serif;font-size:6.6pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#777;margin:0 0 2pt}
+.kplace{font-family:Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6A625A;margin:0 0 4px}
+.tplace{font-family:Arial,sans-serif;font-size:6.6pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#666;margin:0 0 2pt}
 .kdiff{display:block;font-size:12px;letter-spacing:2px;color:var(--terra-d);margin:0 0 8px}
 .klede{margin:0;line-height:1.5}
 .kback{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}

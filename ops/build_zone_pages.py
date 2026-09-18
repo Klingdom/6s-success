@@ -2047,8 +2047,8 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     _zone_for_svg["zone"] = name
     out.append(
         '<figure class="zone-diagram">'
-        + _zg.zone_diagram_svg(room["room"], _zone_for_svg, _sibs,
-                               _vz.done_items(zone), uid=zs)
+        + _zg.zone_diagram_html(room["room"], _zone_for_svg, _sibs,
+                                _vz.done_items(zone))
         # The display name already carries its article ("The Primary Prep
         # Counter"), so a second "The" in front of it reads as a typo, which
         # it was until this was read back off a rendered page.
@@ -2493,7 +2493,7 @@ def room_page(room, header, footer, all_rooms=()):
     _map_zones = [dict(z, zone=display(room["room"], z["zone"]))
                   for z in room["zones"]]
     out.append('<figure class="room-map-figure">'
-               + _zg.room_map_svg(room["room"], _map_zones, uid=slug(rm))
+               + _zg.room_map_html(room["room"], _map_zones)
                + '<figcaption>The %d micro zones of the %s, in the order to '
                  'work them. Each one is a session that finishes on its own.'
                  '</figcaption></figure>' % (len(_map_zones), esc(rm)))

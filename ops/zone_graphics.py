@@ -315,3 +315,85 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+# ---------------------------------------------------------------- web ----
+#
+# WHY THE PAGE GETS HTML AND THE PRINTABLE GETS SVG
+#
+# The first version inlined the SVG on the zone page. It looked right on a
+# desktop and was unreadable on a phone: an 1160px wide drawing scaled into a
+# 390px column puts its body text at about six pixels. Checked by shooting the
+# live page at phone width rather than by assuming, because most household use
+# of this site is on a phone and that is where it was worst.
+#
+# A drawing cannot reflow. HTML can, so the page now gets HTML and CSS that
+# collapses to one column, keeps real selectable text, scales with the
+# reader's font size, and costs less to send. The SVG stays exactly where a
+# fixed canvas is the right answer: the printable Micro Zone Map.
+
+
+def zone_diagram_html(room, zone, siblings, done_items):
+    """The same diagram as markup, so it reflows on a phone."""
+    name = zone.get("zone", "")
+    session = zone.get("session", "")
+    purpose = zone.get("purpose", "")
+    trigger = (zone.get("leave_behind") or {}).get("trigger", "")
+
+    chips = "".join(
+        '<li class="zd-chip%s"><span class="zd-n">%d</span>%s</li>'
+        % (" is-here" if s_name == name else "", i + 1, esc(s_name))
+        for i, s_name in enumerate(siblings))
+
+    shown = done_items[:4]
+    items = "".join('<li>%s</li>' % esc(item) for item in shown)
+    more = len(done_items) - len(shown)
+    more_html = ('<p class="zd-more">+ %d more on this page</p>' % more
+                 if more > 0 else "")
+
+    foot = ""
+    if session or trigger:
+        foot = ('<div class="zd-foot">%s%s</div>'
+                % ('<span class="zd-time">%s</span>' % esc(session)
+                   if session else "",
+                   '<span class="zd-trigger"><b>Reset trigger:</b> %s</span>'
+                   % esc(trigger) if trigger else ""))
+
+    return (
+        '<div class="zd">'
+        '<div class="zd-ribbon" aria-hidden="true">%s</div>'
+        '<div class="zd-cols">'
+        '<div class="zd-where">'
+        '<p class="zd-eyebrow">Where it is</p>'
+        '<p class="zd-room">%s</p>'
+        '<p class="zd-count">%d micro zones, one session each</p>'
+        '<ol class="zd-chips">%s</ol>'
+        '</div>'
+        '<div class="zd-done">'
+        '<p class="zd-eyebrow zd-green">What done looks like</p>'
+        '<p class="zd-purpose">%s</p>'
+        '<ul class="zd-items">%s</ul>%s'
+        '</div></div>%s</div>'
+        % ("".join('<i style="background:%s"></i>' % c for c in S_COLOURS),
+           esc(room), len(siblings), chips, esc(purpose), items, more_html,
+           foot))
+
+
+def room_map_html(room, zones):
+    """Every micro zone in the room, as markup that reflows."""
+    tiles = "".join(
+        '<li class="rm-tile"><span class="rm-n" style="background:%s">%d</span>'
+        '<span class="rm-name">%s</span>%s</li>'
+        % (S_COLOURS[i % 6], i + 1, esc(z.get("zone", "")),
+           '<span class="rm-time">%s</span>' % esc(z["session"])
+           if z.get("session") else "")
+        for i, z in enumerate(zones))
+    return (
+        '<div class="rm">'
+        '<div class="zd-ribbon" aria-hidden="true">%s</div>'
+        '<p class="zd-eyebrow">The micro zones of this room</p>'
+        '<p class="rm-room">%s</p>'
+        '<p class="zd-count">%d zones. Finish one before you start the next.'
+        '</p><ol class="rm-tiles">%s</ol></div>'
+        % ("".join('<i style="background:%s"></i>' % c for c in S_COLOURS),
+           esc(room), len(zones), tiles))
