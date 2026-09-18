@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (clean verification pass, cold-read lane genuinely exhausted, no new defect)
+
+**Did:** Checkout arrived shallow and detached, local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape). Unshallowed, `git checkout main`, `git merge --ff-only origin/main`: clean fast-forward onto `497b7c52`, no reset needed. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md` in full, `CLAUDE.md` section 0, and the true last four `ops/NIGHTLY-LOG.md` entries (this file prepends). `preflight.py` full run before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, known cron-cadence drift). 8 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED, not empty. `affiliate.py --check`: clean, 162 documents. `git log` confirmed no unreviewed commits landed since the last logged cycle.
+
+**Verified:** `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b (23 kits/bundles, issue #32) correctly still open as a catalogue-scope decision, not something to execute unilaterally either direction (writing 21 unrequested pages contradicts GOALS.md decision rule 1 and section 5's own "Decks 3 to 20" precedent; shrinking the catalogue changes what is sellable, Phil's call). Checked whether the standing low-mention `ops/*.py` cold-read lane had a genuine untouched candidate before accepting today's repeated "exhausted" declarations: the two lowest-count files (`check_pack_pages.py`, `check_video_links.py`) were both re-verified clean by at least two separate cycles earlier today. Widened the search to a lane not tracked by the ops/*.py mention count: hand-maintained `site/assets/js/*.js` files. `photos.js` (1 mention) was already cold-read clean earlier today. Cold-read `shop.js` (2 mentions, never independently re-verified) directly: the dynamic filter-row build from `CATALOG` rather than hardcoded buttons, the rebind-after-`innerHTML`-replace fix its own comment documents, and the `?cat=` URL fallback all check out against the live `data.js` categories; no defect found.
+
+**Went well:** widening past the exhausted ops/*.py lane to a genuinely less-checked one instead of re-running an already-exhausted sweep to manufacture a finding.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect means no new gate to write, per CLAUDE.md 0.2 that is not a shortfall.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. Highest-value unblocked item remains distribution work that needs no account (SEO, internal linking, structured data), already built out extensively across prior cycles; no untouched surface found there this cycle either. Next operator: continue widening past the ops/*.py lane (site/assets/js/*.js, mobile/ source) before re-declaring exhaustion.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no new defect, command deck regenerated)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`c2654fc1`), clean, no reset needed.
