@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-09-18, scheduled operator cycle (a hand-maintained hero-photo record found gated once, never protected against drifting stale a second time)
 
-**Did:** Unshallowed and attached to `main` (fetch, `git fetch --unshallow`, ff-only merge; caught up 445 commits with no history conflict). `preflight.py` clean first (22 known warnings). 8 GitHub issues unchanged (2 P0/2 blocked-on-art/6 decision, all Phil-gated per the last two check-ins). No mail credential, inbox UNCHECKED. Per the standing "cold-read the lowest-mention `ops/*.py` file" fallback, ranked every file in `ops/*.py` by mentions in this log: `refresh_hero_fallback.py` had 2, the next-lowest 12. Read it cold. Its own docstring names a real 2026-09-17 incident it was written to fix: five newly approved zone heroes went live on their pages while four stayed missing from `ops/hero-fallback.json`, so `build_quest.py` (which treats this file as the published set) kept showing no picture in the Home Quest app for zones whose photo the web page already carried. The fix tool exists and works, but nothing re-runs it automatically and nothing re-checks that it has been run: the filename does not match `gate_every_generator_has_a_protection_plan`'s own `build_*.py` glob, so the meta-gate that exists specifically to catch an unprotected generator could not see this one either.
+**Did:** Unshallowed and attached to `main` (fetch, `git fetch --unshallow`, ff-only merge; caught up 445 commits with no history conflict). `preflight.py` clean first (22 known warnings). 8 GitHub issues unchanged (2 P0/2 blocked-on-art/6 decision, all Phil-gated per the last two check-ins). No mail credential, inbox UNCHECKED. Per the standing "cold-read the lowest-mention `ops/*.py` file" fallback, ranked every file in `ops/*.py` by mentions in this log: `refresh_hero_fallback.py` was the floor, the next-lowest 12. Read it cold. **Converged with the PM check-in entry directly below, which was pushed while this cycle was already mid-build and named the same file in its own NEXT FOR THE OPERATOR handoff, with the same diagnosis and the same recommendation.** Two sessions reached it independently from the same ranking method; this entry is the one that shipped the gate, that one is the handoff. It read 0 prior mentions and this cycle read 2, the difference being its own entry landing in the file between the two counts, so the ranking itself did not disagree. Its own docstring names a real 2026-09-17 incident it was written to fix: five newly approved zone heroes went live on their pages while four stayed missing from `ops/hero-fallback.json`, so `build_quest.py` (which treats this file as the published set) kept showing no picture in the Home Quest app for zones whose photo the web page already carried. The fix tool exists and works, but nothing re-runs it automatically and nothing re-checks that it has been run: the filename does not match `gate_every_generator_has_a_protection_plan`'s own `build_*.py` glob, so the meta-gate that exists specifically to catch an unprotected generator could not see this one either.
 
 **Checked before fixing:** ran `python ops/refresh_hero_fallback.py --check` against the real committed file: 0 added, 0 dropped, 0 changed. No live defect today, a closed loophole, not a repair.
 
@@ -21,6 +21,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** the standing Phil-blocked list (8 issues) is unchanged; the next fresh lane is the next-lowest-mention `ops/*.py` cold-read (12 mentions: `build_youtube_metadata.py`, `split_deck_cards.py`, `verify_media_delivery.py`, or `wire_pwa.py`).
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_hero_fallback_current.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified; handed the operator a genuinely untouched generator with no protecting gate)
+
+NEXT FOR THE OPERATOR: cold-read `ops/refresh_hero_fallback.py`, because it has zero prior mentions in this log (the lowest of any file under `ops/`), sits outside `gate_generator_ownership`'s chain and every other preflight gate, and is the one tool that rebuilds `ops/hero-fallback.json`, the file both CI's fallback-figure restore and `build_quest.py`'s published-image set read as truth. Its own docstring names the exact failure it exists to prevent: on 2026-09-17 five newly approved zone heroes went live on their pages while four stayed out of this hand-maintained file, so the Home Quest app kept showing "no picture" for zones whose picture was already on the web. Ran `python ops/refresh_hero_fallback.py --check` this cycle: 0 drift today (111 wired, 0 new, 0 no-longer-wired, 0 moved), so this is a live gap, not a live defect, the same "source corrected, artifact never rederived" shape this backlog has closed a dozen times over, just not protected here yet.
+
+Attached via fetch, unshallow (445-commit fast-forward from a stale snapshot), ff-only merge onto `origin/main` (`2e4693f9`), clean. Read `GOALS.md`'s decision rules, `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry (the prior PM check-in, 00:26), `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
+
+**Previous work was finished, not merely committed.** The prior cycle's STATUS.md fix and its own dashboard regen were both already pushed and clean on arrival. `preflight.py` (backgrounded to real completion, not foreground-killed): every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new. `checks.yml` run 1106 on the STATUS.md fix commit (`0c52d323`) was still `in_progress` at 21+ minutes when checked, inside this account's measured 19 to 30 minute normal range, not yet a second defect; the two commits since (the log entry and the hourly check-in) are log/dashboard-only and correctly skipped by the path filter, per that filter's own documented intent. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none newly pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all read done or explicitly Phil-gated; section 1b's 23-kits-need-pages decision (#32) and B6/B7's Momentum decision (#33) are the two open asks nearest the top, both already filed, neither mine to decide. `OWNER-ACTIONS.md` current as of 2026-09-17, nothing new to surface.
+
+**Small closing check:** ranked every `ops/*.py` file by mention count in this log to find the next genuinely cold candidate rather than re-sweep an exhausted tier; `refresh_hero_fallback.py` (0 mentions) is the actual floor, one below the 3-mention tier the last several cycles have been working through. Read it end to end and ran its own `--check` mode rather than trust the docstring alone, per this file's own step 5d.
+
+Went well: the mention-count ranking method keeps surfacing a real next candidate even after two weeks of the same lane.
+
+Did not go well: nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil in the Routines UI).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No code, content or price touched, no new page, IndexNow not applicable.
 
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified live; closed a real 35-commit STATUS.md staleness gap instead of starting fresh)
 
@@ -322,6 +338,37 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 **Did not go well:** could not get CI to a confirmed state within the 30-minute slot; a real possible CI-runner problem is now the operator's first job at :43, ahead of anything else.
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-17, local CEO cycle, third part (the YouTube authorisation would have published 100 contradictions)
+
+**Checked whether OWNER-ACTIONS item 1 would actually pay off before Phil spends the five minutes on it. It would not
+have.** `video_zone.done_items()` writes the "What done looks like" checklist into every zone video; it was corrected
+2026-09-15; every narrated video on disk was rendered 7-8 September. Measured zone by zone, the wide file's captions
+against the live standard: **100 of 114 disagree with their own zone page.** "One wallet and one phone per adult" is on
+screen and in the voice track as "One phone per adult"; "a full stride wide between the door and the rack" stops at
+"between the door"; Entryway's coat zone drops an item. Twelve are already public (item 1's known problem). The other 88
+are exactly what `ops/youtube_upload.py` posts the moment the credential exists, and a YouTube video cannot be swapped
+for a corrected file without changing its URL.
+
+**Made the authorisation safe rather than blocking it.** `ops/check_video_standard.py` measures it; `youtube_upload.py`
+holds the stale slugs back by name and prints why. Authorising now publishes the 14 that are correct. Limits stated in
+both files: captions are compared, not pixels, and a checker that cannot run holds nothing back rather than reporting a
+clean list it never produced.
+
+**The 88 (99 including the published ones) are being re-rendered on this machine, free, about 4.5 minutes each**, started
+2026-09-17 23:xx via a detached py312 process (`edge_tts` and the render pipeline need Python 3.12; the default 3.14 here
+cannot even import them). One was re-rendered first and proved the fix: `entryway--landing-zone-16x9` now carries the
+corrected four-item standard.
+
+**HANDOFF, two things the next session must do:**
+
+1. The batch rewrites tracked `.srt` files in `build/video/zones-narrated/`, so it leaves working-tree churn. When it
+   finishes, run `python ops/check_video_standard.py` (expect STALE 0), then commit the corrected captions. Until then,
+   expect deleted/modified `.srt` paths in `git status` mid-run; that is the batch working, not damage.
+2. I ran `git stash -u` twice while the batch was live to rebase around a concurrent push. That is unsafe during this
+   batch: a stash can capture a caption file mid-render and the pop can restore a stale one. Nothing looked wrong
+   afterwards, but it was not verified file by file, so treat the stash window as UNCHECKED and let the checker's own
+   re-run be the proof rather than this note.
 
 ## 2026-09-17, local CEO cycle, second half (pictures: the free deck and 5 zone pages, deployed and verified live)
 

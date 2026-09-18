@@ -466,6 +466,30 @@ built and 12 are public, because those 12 were posted by hand. 102 finished
 narrated videos, with captions, titles, descriptions and tags, are sitting on a
 disk where nobody can find them.
 
+**Read this before you do it, added 2026-09-17: authorising is still worth
+doing and is now safe, but it will publish 14 videos, not 102.** Checking
+whether the five minutes would actually pay off found that it would not have.
+`video_zone.done_items()`, which writes the "What done looks like" checklist
+into every video, was corrected on 15 September. Every narrated video on disk
+was rendered on 7 and 8 September, before that. Measured zone by zone against
+the live standard: **100 of 114 videos say something different from their own
+zone page.** "One wallet and one phone per adult" is on screen, and in the
+voice track, as "One phone per adult". One Entryway zone drops an item
+outright. A YouTube video cannot be swapped for a corrected file without
+changing its URL, so publishing them would have made the existing 12-video
+problem nine times larger and permanent.
+
+`ops/youtube_upload.py` now refuses those by name and prints why, so nothing
+here is a trap: authorise whenever you like and the 14 correct videos go up.
+`ops/check_video_standard.py` is the measurement, and it reads captions rather
+than pixels, which is said plainly because it is a real limit.
+
+**The other 88 are being re-rendered now**, on this machine, free, about 4.5
+minutes each, started 2026-09-17. One was re-rendered first to prove it fixes
+the text, and it does. When the batch finishes they stop being held back with
+no further action from you. If it was interrupted, running
+`python ops/check_video_standard.py` shows what is left.
+
 **Measured 2026-09-17 17:55 UTC by a direct database read, breakdown re-pulled in the same query.** Traffic is 78 visitors, 200 visits and 949 pageviews, 2.6 a day (77 visitors and 518 pageviews once the one automated session is excluded; 76 and 501 once a second high-rate session goes too):
 
 | Source | Visitors, 30 days |
