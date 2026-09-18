@@ -9080,6 +9080,53 @@ def gate_site_video_links_alive(deep: bool = False) -> None:
              "to nothing: %s" % (len(dead), "; ".join(dead[:3])))
 
 
+def gate_zone_diagram_points_at_its_own_zone() -> None:
+    """Each zone page's diagram must light the zone the page is about.
+
+    Added 2026-09-18 with the diagram itself. It is generated, so the failure
+    mode is not a typo: it is an off-by-one or a name-matching change lighting
+    the wrong chip, which would be nearly invisible to a reader (a plausible
+    diagram, confidently pointing at the wrong place) and would quietly teach
+    the opposite of what the page says.
+
+    Checks three things a reader would rely on: exactly one chip is lit, the
+    lit chip's name appears in the page's own h1, and the chips are numbered
+    1..N with no gaps. A page with no diagram fails too: the diagram is the
+    page's answer to "where is this", and losing it silently is the
+    regression this exists to catch.
+    """
+    pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
+    pages = [p for p in pages if not p.endswith("index.html")]
+    if not pages:
+        return
+    bad = []
+    for path in pages:
+        text = io.open(path, encoding="utf-8", errors="replace").read()
+        name = os.path.basename(path)
+        if 'class="zd"' not in text:
+            bad.append("%s: no diagram" % name)
+            continue
+        chips = re.findall(
+            r'<li class="zd-chip( is-here)?"><span class="zd-n">(\d+)</span>'
+            r'([^<]+)</li>', text)
+        lit = [c for c in chips if c[0].strip() == "is-here"]
+        if len(lit) != 1:
+            bad.append("%s: %d chips lit" % (name, len(lit)))
+            continue
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", text, re.S)
+        h1_text = re.sub(r"<[^>]+>", "", h1.group(1)).strip() if h1 else ""
+        if lit[0][2].strip() not in h1_text:
+            bad.append("%s: lit chip %r is not this page's zone (%r)"
+                       % (name, lit[0][2].strip(), h1_text[:40]))
+        nums = [int(c[1]) for c in chips]
+        if nums != list(range(1, len(chips) + 1)):
+            bad.append("%s: chips numbered %r" % (name, nums[:6]))
+    if bad:
+        fail("zone-diagram-self-consistent",
+             "%d zone page(s) have a diagram that does not match the page: %s"
+             % (len(bad), "; ".join(bad[:3])))
+
+
 def gate_zone_videos_match_standard() -> None:
     """Rendered zone videos must say what their zone page says.
 
@@ -16668,6 +16715,7 @@ def main() -> int:
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
+    run_gate(gate_zone_diagram_points_at_its_own_zone)
     run_gate(gate_zone_videos_match_standard)
     run_gate(gate_site_video_links_alive, deep)
     run_gate(gate_standards_pack_paginates, deep)
