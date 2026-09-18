@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (through `581e611c`), clean. `preflight.py` full run, not just the fast gates: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS credential, no egress, no Pillow, no ffmpeg/TTS). `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated: nothing in the app/deck/image queues is genuinely open, section 5 correctly on hold, section 6 owner gates unchanged. 8 GitHub issues confirmed live via the API, unchanged (2 P0, 2 blocked-on-art, 4 decision, 0 open PRs), all correctly Phil-gated per this cycle's own rule against picking a Phil-waiting item.
+
+**Independently re-verified the immediately prior cycle's own claim rather than cite it.** That cycle (finished minutes before this one started) widened `ops/check_video_links.py` to catch a latent gap in its own regex and added `ops/tests/test_check_video_links.py`. Re-ran that test file fresh: 7/7 pass. Ran `check_video_links.py` itself against the real repo: 12 video links found, all 12 correctly reported UNCHECKED (proxy returns 403 Forbidden, no egress in this sandbox), never misread as clean. Checked the two most recent `checks.yml` runs (1125, 1126) rather than assume green: both were still `in_progress` at the 15-20 minute mark, which matches this account's own measured normal (the last completed run's Preflight step alone took 17 minutes, `ops/tests` another 11), not a stuck run; not yet a confirmed pass, handed to the operator below.
+
+**Did not duplicate work.** The standing low-mention `ops/*.py` cold-read lane, the hand-authored `site/*.html` lane, and the root-`*.md` lane have each been declared exhausted by multiple cycles today and on prior days; re-checked the mention-count floor fresh rather than trust that conclusion, and the two lowest-count files (`check_pack_pages.py`, `check_video_links.py`, both 0 mentions) are exactly the two files the last two cycles just wrote and tested, not unread candidates.
+
+**Next for the operator:** confirm `checks.yml` runs 1125 (`1601e9aa`) and 1126 (`581e611c`, HEAD) both land green; neither had reported by the time this cycle closed. No fresh unblocked backlog item exists; the next genuinely new thread is another low-mention `ops/*.py` file once one of today's own new files ages out of the "just touched" set, or a fresh read of a hand-maintained document not touched this week.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (closed a latent gap in the new video-link checker; no live customer defect found)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, ff-only merged onto `origin/main` (through `69cab3e5`, then a second ff-only merge after three more concurrent pushes landed, through `1601e9aa`). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the newest `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean both times (every gate passed, 23 warnings, all previously diagnosed sandbox limits: no egress to the live site or Stripe, no mail credential, no Pillow, no ffmpeg/TTS). 8 GitHub issues, all decision or blocked-on-art, unchanged. Every backlog row in sections 2-4 was already done or Phil-gated; section 5 correctly on hold; section 6 owner gates unchanged.
