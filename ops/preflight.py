@@ -8740,6 +8740,50 @@ def check_print_and_play_art_count(text, illustrated, missing) -> list:
     return problems
 
 
+def gate_site_video_links_alive(deep: bool = False) -> None:
+    """Every YouTube video this site links must still be watchable.
+
+    Added 2026-09-18. 12 zone pages send a reader to a published video and
+    nothing checked they still exist. That became a live risk the same day:
+    those 12 show a checklist their own zone page no longer agrees with, so
+    replacing them with corrected re-renders is a reasonable decision, and
+    YouTube cannot swap the file behind a URL. Replacing means new URLs, and
+    deleting the old ones would dead-end every link here silently.
+
+    Network check, so it only runs on --deep, and it reports UNCHECKED rather
+    than clean when it cannot reach YouTube. A gate that turns "no egress"
+    into "all links fine" is the defect this repository has paid for most.
+    """
+    if not deep:
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import check_video_links as C
+        ids = C.linked_ids()
+    except Exception as e:                                      # noqa: BLE001
+        warn("site-video-links", "could not read the site's video links (%s), "
+                                 "so this is UNCHECKED" % type(e).__name__)
+        return
+    if not ids:
+        return
+    dead, unchecked = [], 0
+    for vid in sorted(ids):
+        ok, detail = C.available(vid)
+        if ok is False:
+            dead.append("%s (%s, linked from %s)"
+                        % (vid, detail, ids[vid][0]))
+        elif ok is None:
+            unchecked += 1
+    if unchecked:
+        warn("site-video-links",
+             "%d of %d linked video(s) could not be checked from here, so "
+             "they are UNCHECKED, not confirmed alive" % (unchecked, len(ids)))
+    if dead:
+        fail("site-video-links",
+             "%d linked YouTube video(s) are gone, so a reader clicks through "
+             "to nothing: %s" % (len(dead), "; ".join(dead[:3])))
+
+
 def gate_zone_videos_match_standard() -> None:
     """Rendered zone videos must say what their zone page says.
 
@@ -15848,6 +15892,7 @@ def main() -> int:
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_zone_videos_match_standard)
+    run_gate(gate_site_video_links_alive, deep)
     run_gate(gate_invest_page_catalog_current)
     run_gate(gate_invest_page_no_fabricated_claims)
     run_gate(gate_caption_line_length)
