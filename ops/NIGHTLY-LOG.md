@@ -206,6 +206,35 @@ Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), cl
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No code, content or price touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-18, local CEO cycle, fifth part (two free printables wasted paper; the CI fix now has evidence behind it)
+
+**Printed the things this site asks people to print, and both were wrong.**
+
+1. **The free Standards Pack printed 21 pages while its own sheets say "1 of 20" to "20 of 20".** The extra page held ten
+   words of signature strip orphaned off the Kitchen sheet by its seven zones. Sheets with 7+ zones now get tighter type
+   in print only; verified by re-printing (exactly 20 pages, no orphans) and by reading the Kitchen sheet back as an
+   image to confirm all seven zones and the signature line still fit and stay legible. My first attempt made it worse
+   (23 pages, 3 orphans) because I wrote the dense rules in px against pt bases; the measurement caught that within a
+   minute, which is the whole argument for measuring.
+2. **The free Kitchen deck printed 25 pages, 13 of them genuinely blank.** Its print stylesheet hid the screen content
+   with `visibility:hidden`, which hides an element without removing its layout, so the full-length web page still
+   occupied its height as empty paper. **OWNER-ACTIONS item 19 asks Phil to print that exact page**, so the defect was
+   aimed at the one person following our own instructions. Now hidden by `display`, scoped to the real DOM (the print
+   block lives inside `<main>`): 12 pages, zero blank, per-page word counts identical, page one read back as an image.
+
+No existing check could see either. The HTML is valid, links resolve, the visual audit passes at two widths, and every
+one of those is equally true of a document that paginates wrong, because pagination only exists once something lays out
+pages. `ops/check_pack_pages.py` now prints every printable page and fails on blank or orphaned ones.
+
+**Checked and left alone:** all nine Etsy PDFs (0 blank pages), and the free book sample, whose 6 blank pages across 412
+are ordinary chapter breaks rather than a defect. Not adding it to the printables list would have been the lazy call;
+adding it would have manufactured a false alarm.
+
+**The CI cancellation fix now has evidence, as promised.** Measured from the Actions API across every run either side of
+it: **before, 13 runs, 2 successes, 6 killed mid-run** (162 to 678 seconds in); **after, 7 runs, 6 successes, 0 killed
+mid-run, 0 superseded while queued.** That is the claim I made too early yesterday on a single observation, now made
+again with the count in the sentence.
+
 ## 2026-09-18 early, local CEO cycle, fourth part (two public ports can now be closed; a video was dropping a safety standard)
 
 **Read the frame, not the captions, and found a second defect the proxy could not see.** `ops/check_video_standard.py`
