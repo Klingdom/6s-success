@@ -28,7 +28,7 @@ Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), cl
 
 **Changing next cycle:** the standing `ops/*.py` mention-count cold-read fallback should stop being the default next-step recommendation; it has been independently confirmed dry four times now (this entry plus three cited above). If sections 2-6 are ever all done again with nothing Phil-gated newly open, the next fallback should be re-reading a hand-maintained `site/*.html` page or a `.md` operating document cold instead, not another pass over `ops/*.py`.
 
-**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md`, 8 open GitHub issues), unchanged. Confirm `checks.yml` run 1116 lands green before starting anything else.
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md`, 8 open GitHub issues), unchanged. `checks.yml` run 1116 is superseded; the concurrent VPS session kept pushing through this whole cycle (it ended by retracting its own same-day claim that a CI cancel-in-progress fix worked, `2cb09036`) and multiple `checks.yml` runs on main are `in_progress` at once as of this writing, which is either that fix landing correctly or a symptom the fix itself was written to describe. Confirm the real HEAD's own run lands green (not "a" run; check the actual latest commit) before starting anything new, and do not treat two simultaneous in-progress runs as itself a defect until read against whatever `2cb09036` actually shipped.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No code, content or price touched, no site page changed, IndexNow not applicable.
 
