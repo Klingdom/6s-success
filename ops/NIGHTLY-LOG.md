@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no fresh unblocked item, three small re-verifications rather than a fourth blind sweep)
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 1131 (`47b2cc0e`, the dashboard zones-with-deck derivation fix) lands success, because it was still in_progress 22 minutes in when this cycle closed, inside the account's normal 17 to 30 minute range but not yet confirmed.
+
+Attached via unshallow plus ff-only merge onto origin/main (`47b2cc0e`), clean, 510 commits behind on arrival (the usual shallow/detached checkout shape). `preflight.py` full run to completion: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, no Pillow, cron-cadence drift on fulfil-orders.yml/hourly-brief.yml root-caused since 09-09, standing art gaps). Working tree was already clean and main already level with origin/main before this cycle touched anything.
+
+**Previous work confirmed finished, not cited.** The last PM check-in's own fix (zones_with_deck derived from the real card corpora instead of a bare literal) reran clean: `ops/dashboard.py` still computes it live at dashboard.py:1257, not a literal; the three dashboard test files it touched (`test_dashboard_prev_state_fallback.py`, `test_gate_dashboard_issue_payload.py`, `test_dashboard_dead_links.py`) all still pass, rerun directly rather than trusted from the commit message. 8 GitHub issues pulled fresh via the API: unchanged, all decision/blocked-on-art (#33, #32, #31, #29, #21, #18, #15, #2), none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2 through 6 read in full: every row still struck through done or explicitly Phil-gated, section 5 correctly HOLD on the traffic constraint, section 1b's 23-unlinked-kits question already filed as issue #32.
+
+**No fresh unblocked item exists.** This is the same honest finding many prior cycles today have already reached; it is not being restated as new work, only reconfirmed rather than inherited.
+
+**Went well:** rerunning the prior cycle's own test claim instead of trusting the commit message; catching that CI on the current head was still mid-flight rather than assuming green.
+
+**Did not go well:** same shallow/detached checkout shape on arrival, same standing sandbox limits (no egress, no Stripe/mail/SSH credential).
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only; no code, content, price or page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished including live production verification, one stale-literal dashboard defect found and fixed)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`976dc93c`), clean. `preflight.py` full: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
