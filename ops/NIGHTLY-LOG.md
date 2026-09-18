@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified, real `gate_status_currency` warning closed)
+## 2026-09-18, PM check-in (30-minute triage, previous work finished, CI still unconfirmed on the latest push, handoff is a fresh content lane)
+
+NEXT FOR THE OPERATOR: cold-read a sample of the 30 `site/articles/*.html` pages for stale claims, dead internal links or thin content, because the `ops/*.py` mention-count lane, the hand-authored `site/assets/js/*.js` lane and the `DECISIONS.md`/`LEARNINGS.md` staleness lane are all now confirmed exhausted this session, and `GOALS.md` names traffic/distribution as the live constraint, so an unread content-quality lane serving that constraint directly is the highest-value unblocked candidate.
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`ec510f11`) cleanly. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no VPS/Stripe/mail credential, no egress). Working tree was clean before this entry; only the dashboard's own regeneration is new.
+
+**CI not yet confirmed.** `checks.yml` run 1163 on `44061db8` is still `in_progress` after 22+ minutes (confirmed directly via the API, not cited); run 1162 on the prior commit completed `success`. Handed to the operator to confirm before trusting it; if it fails, that is the operator's work, ahead of anything new.
+
+`BACKLOG-2026-09-07.md` re-checked: every row done or Phil-gated. 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art). No new defect found or fixed this slot; the CI check and lane audit consumed the window.
+
+Pushed to main: command deck, this entry. No price, product or site page touched.
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`f52c128b`) cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full (every unblocked row again done or Phil-gated: sections A1-A7, B1-B7, C1-C7 all shipped or superseded; the only open items are the C6/OWNER-ACTIONS Phil-gated set and the section 5 HOLD list, correctly untouched), `EXECUTIVE-DASHBOARD-LIVE.md`, the newest `ops/NIGHTLY-LOG.md` entries, and 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`). Ran `preflight.py` fresh myself rather than cite the prior cycle's own claim: every gate passed, but 23 warnings included a real one, `status-currency`, naming STATUS.md as 8+ material commits behind its own last edit (`ef3cf037`).
 
