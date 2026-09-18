@@ -8,310 +8,313 @@ where a project actually gets built, cut,
 glued, and repaired.
 
 3
-00:00:07,800 --> 00:00:10,072
+00:00:07,800 --> 00:00:11,248
 What done looks like
 
 4
-00:00:10,072 --> 00:00:12,344
-1 A bare bench top except the vise
+00:00:11,248 --> 00:00:14,696
+1 A bare bench top except the vise and the
+task lamp, one project tray holding the
 
 5
-00:00:12,344 --> 00:00:14,616
-2 The task lamp
+00:00:14,696 --> 00:00:18,144
+current job's parts, and a clear run of
+bench in front of the vise long enough to
 
 6
-00:00:14,616 --> 00:00:16,888
-3 One project tray holding the current
-job's parts
+00:00:18,144 --> 00:00:21,592
+lay a board across
 
 7
-00:00:16,888 --> 00:00:19,160
-4 A clear run of bench in front of the
-vise long enough to lay a board across.
+00:00:21,592 --> 00:00:25,040
+2 Every chisel and square back on its
+traced outline, the dog holes empty, and
+no
 
 8
-00:00:19,160 --> 00:00:21,432
-Every chisel
+00:00:25,040 --> 00:00:28,488
+offcuts or glue squeeze-out under the
+bench
 
 9
-00:00:21,432 --> 00:00:25,584
+00:00:28,488 --> 00:00:32,640
 One session Main Workbench 60-90 min
 
 10
-00:00:25,584 --> 00:00:29,136
+00:00:32,640 --> 00:00:36,192
 Sort Clear the bench top and the shelf
 beneath it completely, then give every
 
 11
-00:00:29,136 --> 00:00:32,688
+00:00:36,192 --> 00:00:39,744
 half-finished project a
 
 12
-00:00:32,688 --> 00:00:36,664
+00:00:39,744 --> 00:00:43,720
 Sort Clear the bench top and the shelf
 beneath it completely, then give every
 
 13
-00:00:36,664 --> 00:00:40,640
+00:00:43,720 --> 00:00:47,696
 half-finished project a verdict: back on
 the bench with a date, or broken down into
 
 14
-00:00:40,640 --> 00:00:44,616
+00:00:47,696 --> 00:00:51,672
 parts and stock.
 
 15
-00:00:44,616 --> 00:00:49,200
+00:00:51,672 --> 00:00:56,256
 Sort Snapped blades, glue bottles gone
 solid, and
 
 16
-00:00:49,200 --> 00:00:52,692
+00:00:56,256 --> 00:00:59,748
 Sort Snapped blades, glue bottles gone
 solid, and brackets you cannot identify
 
 17
-00:00:52,692 --> 00:00:56,184
+00:00:59,748 --> 00:01:03,240
 leave now.
 
 18
-00:00:56,184 --> 00:01:00,468
+00:01:03,240 --> 00:01:07,524
 Straighten Hang the tools your hand
 reaches for mid-cut, the marking knife,
 the
 
 19
-00:01:00,468 --> 00:01:04,752
+00:01:07,524 --> 00:01:11,808
 combination square, the block plane,
 within
 
 20
-00:01:04,752 --> 00:01:09,144
+00:01:11,808 --> 00:01:16,200
 Straighten Hang the tools your hand
 reaches for mid-cut, the marking knife,
 the
 
 21
-00:01:09,144 --> 00:01:13,536
+00:01:16,200 --> 00:01:20,592
 combination square, the block plane,
 within arm's reach of the vise, and put
 
 22
-00:01:13,536 --> 00:01:17,928
+00:01:20,592 --> 00:01:24,984
 everything you use once a project on the
 wall behind.
 
 23
-00:01:17,928 --> 00:01:22,056
+00:01:24,984 --> 00:01:29,112
 Straighten Traced silhouettes mean a
 missing chisel shows
 
 24
-00:01:22,056 --> 00:01:24,888
+00:01:29,112 --> 00:01:31,944
 Straighten Traced silhouettes mean a
 missing chisel shows up before you finish
 
 25
-00:01:24,888 --> 00:01:27,720
+00:01:31,944 --> 00:01:34,776
 vacuuming.
 
 26
-00:01:27,720 --> 00:01:30,816
+00:01:34,776 --> 00:01:37,872
 Shine Vacuum the bench top and the dog
 holes rather than brushing them out, then
 
 27
-00:01:30,816 --> 00:01:33,912
+00:01:37,872 --> 00:01:40,968
 scrape
 
 28
-00:01:33,912 --> 00:01:37,496
+00:01:40,968 --> 00:01:44,552
 Shine Vacuum the bench top and the dog
 holes rather than brushing them out, then
 
 29
-00:01:37,496 --> 00:01:41,080
+00:01:44,552 --> 00:01:48,136
 scrape dried glue drips off the surface
 before they telegraph into the next
 
 30
-00:01:41,080 --> 00:01:44,664
+00:01:48,136 --> 00:01:51,720
 workpiece.
 
 31
-00:01:44,664 --> 00:01:47,904
+00:01:51,720 --> 00:01:54,960
 Shine Wipe the vise screw and give
 
 32
-00:01:47,904 --> 00:01:52,008
+00:01:54,960 --> 00:01:59,064
 Shine Wipe the vise screw and give it a
 drop of oil.
 
 33
-00:01:52,008 --> 00:01:55,212
+00:01:59,064 --> 00:02:02,268
 Safety Check the vise jaws still bite a
 test piece without slipping, and move the
 
 34
-00:01:55,212 --> 00:01:58,416
+00:02:02,268 --> 00:02:05,472
 lamp cord
 
 35
-00:01:58,416 --> 00:02:03,300
+00:02:05,472 --> 00:02:10,356
 Safety Check the vise jaws still bite a
 test piece without slipping, and move the
 
 36
-00:02:03,300 --> 00:02:08,184
+00:02:10,356 --> 00:02:15,240
 lamp cord so it does not lie across the
 part of the bench a handsaw crosses.
 
 37
-00:02:08,184 --> 00:02:12,720
+00:02:15,240 --> 00:02:19,776
 Safety A chisel lying edge up in an open
 tray is what your
 
 38
-00:02:12,720 --> 00:02:16,380
+00:02:19,776 --> 00:02:23,436
 Safety A chisel lying edge up in an open
 tray is what your hand finds when you
 
 39
-00:02:16,380 --> 00:02:20,040
+00:02:23,436 --> 00:02:27,096
 reach across the bench without looking.
 
 40
-00:02:20,040 --> 00:02:24,384
+00:02:27,096 --> 00:02:31,440
 Standardize Trace the outlines on the tool
 wall in permanent marker so a gap reads
 
 41
-00:02:24,384 --> 00:02:28,728
+00:02:31,440 --> 00:02:35,784
 as a missing chisel, then take one photo
 
 42
-00:02:28,728 --> 00:02:33,640
+00:02:35,784 --> 00:02:40,696
 Standardize Trace the outlines on the tool
 wall in permanent marker so a gap reads
 
 43
-00:02:33,640 --> 00:02:38,552
+00:02:40,696 --> 00:02:45,608
 as a missing chisel, then take one photo
 of the cleared bench and tape it at eye
 
 44
-00:02:38,552 --> 00:02:43,464
+00:02:45,608 --> 00:02:50,520
 level where you stand, because that photo
 is what bare means here.
 
 45
-00:02:43,464 --> 00:02:47,148
+00:02:50,520 --> 00:02:54,204
 Sustain The last part of every session is
 the bench clear down, done before you
 
 46
-00:02:47,148 --> 00:02:50,832
+00:02:54,204 --> 00:02:57,888
 take your safety glasses
 
 47
-00:02:50,832 --> 00:02:54,784
+00:02:57,888 --> 00:03:01,840
 Sustain The last part of every session is
 the bench clear down, done before you
 
 48
-00:02:54,784 --> 00:02:58,736
+00:03:01,840 --> 00:03:05,792
 take your safety glasses off, because once
 the glasses come off you are finished
 
 49
-00:02:58,736 --> 00:03:02,688
+00:03:05,792 --> 00:03:09,744
 for the day and you know it.
 
 50
-00:03:02,688 --> 00:03:06,120
+00:03:09,744 --> 00:03:13,176
 Sustain Ten minutes, by whoever
 
 51
-00:03:06,120 --> 00:03:10,320
+00:03:13,176 --> 00:03:17,376
 Sustain Ten minutes, by whoever was
 working.
 
 52
-00:03:10,320 --> 00:03:16,104
+00:03:17,376 --> 00:03:23,160
 Sustain The photo taped at eye level
 settles what bare means, so slip is a
 
 53
-00:03:16,104 --> 00:03:21,540
+00:03:23,160 --> 00:03:28,596
 Sustain The photo taped at eye level
 settles what bare means, so slip is a
 
 54
-00:03:21,540 --> 00:03:26,976
+00:03:28,596 --> 00:03:34,032
 comparison rather than a judgement, and
 occupied dog holes are the early version.
 
 55
-00:03:26,976 --> 00:03:32,568
+00:03:34,032 --> 00:03:39,624
 Sustain This is the only large flat
 surface in a room full of things
 
 56
-00:03:32,568 --> 00:03:36,900
+00:03:39,624 --> 00:03:43,956
 Sustain This is the only large flat
 surface in a room full of things needing
 
 57
-00:03:36,900 --> 00:03:41,232
+00:03:43,956 --> 00:03:48,288
 somewhere to go, so every other zone leans
 on it.
 
 58
-00:03:41,232 --> 00:03:45,099
+00:03:48,288 --> 00:03:52,155
 The call You have a half-assembled
 something occupying your best surface, and
 you
 
 59
-00:03:45,099 --> 00:03:48,965
+00:03:52,155 --> 00:03:56,021
 have not touched it in months because the
 next step is one you are unsure how to do.
 
 60
-00:03:48,965 --> 00:03:52,832
+00:03:56,021 --> 00:03:59,888
 Here is the rule that settles it: say out
 loud what the next physical action is and
 
 61
-00:03:52,832 --> 00:03:56,699
+00:03:59,888 --> 00:04:03,755
 what date this month you will do it.
 
 62
-00:03:56,699 --> 00:04:00,565
+00:04:03,755 --> 00:04:07,621
 If you cannot name both in one breath, the
 project is finished.
 
 63
-00:04:00,565 --> 00:04:04,432
+00:04:07,621 --> 00:04:11,488
 Take it apart, put the hardware back in
 the fastener drawers, put the stock back
 on
 
 64
-00:04:04,432 --> 00:04:08,299
+00:04:11,488 --> 00:04:15,355
 the rack, and let the bench go back to
 being a bench.
 
 65
-00:04:08,299 --> 00:04:12,165
+00:04:15,355 --> 00:04:19,221
 Keeping it assembled is not keeping the
 project alive, it is only keeping the
 
 66
-00:04:12,165 --> 00:04:16,032
+00:04:19,221 --> 00:04:23,088
 surface unusable.
 
 67
-00:04:16,032 --> 00:04:21,672
+00:04:23,088 --> 00:04:28,728
 Main Workbench The full reset, free at
 6s-success.com

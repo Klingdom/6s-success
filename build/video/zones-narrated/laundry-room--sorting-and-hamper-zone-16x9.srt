@@ -9,293 +9,289 @@ straight into the machine without being
 handled twice.
 
 3
-00:00:08,112 --> 00:00:10,613
+00:00:08,112 --> 00:00:11,304
 What done looks like
 
 4
-00:00:10,613 --> 00:00:13,114
+00:00:11,304 --> 00:00:14,496
 1 Three labeled bags standing clear of the
-walking line
+walking line, each below half full
 
 5
-00:00:13,114 --> 00:00:15,614
-2 Each below half full
-
-6
-00:00:15,614 --> 00:00:18,115
-3 A small dish on the shelf holding
+00:00:14,496 --> 00:00:17,688
+2 A small dish on the shelf holding
 nothing older than today
 
-7
-00:00:18,115 --> 00:00:20,616
-4 Bare floor in front of the washer door
+6
+00:00:17,688 --> 00:00:20,880
+3 Bare floor in front of the washer door
 
-8
-00:00:20,616 --> 00:00:25,704
+7
+00:00:20,880 --> 00:00:25,968
 One session Sorting and Hamper Zone 30-45
 min
 
-9
-00:00:25,704 --> 00:00:29,952
+8
+00:00:25,968 --> 00:00:30,216
 Sort Empty every hamper and see what a
 real week
 
-10
-00:00:29,952 --> 00:00:34,812
+9
+00:00:30,216 --> 00:00:35,076
 Sort Empty every hamper and see what a
 real week actually produces: whites,
 darks,
 
-11
-00:00:34,812 --> 00:00:39,672
+10
+00:00:35,076 --> 00:00:39,936
 towels, delicates, work clothes.
 
-12
-00:00:39,672 --> 00:00:45,384
+11
+00:00:39,936 --> 00:00:45,648
 Sort Any stream that never fills on its
 own gets merged into another, and
 
-13
-00:00:45,384 --> 00:00:49,884
+12
+00:00:45,648 --> 00:00:50,148
 Sort Any stream that never fills on its
 own gets merged into another, and the
 spare
 
-14
-00:00:49,884 --> 00:00:54,384
+13
+00:00:50,148 --> 00:00:54,648
 hampers you were holding for those streams
 leave the room.
 
-15
-00:00:54,384 --> 00:00:59,832
+14
+00:00:54,648 --> 00:01:00,096
 Straighten One bag per stream, standing
 where clothes are actually taken
 
-16
-00:00:59,832 --> 00:01:03,588
+15
+00:01:00,096 --> 00:01:03,852
 Straighten One bag per stream, standing
 where clothes are actually taken off
 rather
 
-17
-00:01:03,588 --> 00:01:07,344
+16
+00:01:03,852 --> 00:01:07,608
 than where the bags happen to fit.
 
-18
-00:01:07,344 --> 00:01:10,632
+17
+00:01:07,608 --> 00:01:10,896
 Straighten Add a small dish on the shelf
 for pocket contents, because coins, hair
 
-19
-00:01:10,632 --> 00:01:13,920
+18
+00:01:10,896 --> 00:01:14,184
 ties and
 
-20
-00:01:13,920 --> 00:01:19,320
+19
+00:01:14,184 --> 00:01:19,584
 Straighten Add a small dish on the shelf
 for pocket contents, because coins, hair
 
-21
-00:01:19,320 --> 00:01:24,720
+20
+00:01:19,584 --> 00:01:24,984
 ties and the occasional memory stick need
 somewhere to land that is not the drum.
 
-22
-00:01:24,720 --> 00:01:28,032
+21
+00:01:24,984 --> 00:01:28,296
 Shine Damp gym kit is what makes
 
-23
-00:01:28,032 --> 00:01:32,760
+22
+00:01:28,296 --> 00:01:33,024
 Shine Damp gym kit is what makes a hamper
 smell, not dirt.
 
-24
-00:01:32,760 --> 00:01:37,872
+23
+00:01:33,024 --> 00:01:38,136
 Shine Wipe the inside of each bin while it
 is empty, and never let a
 
-25
-00:01:37,872 --> 00:01:42,024
+24
+00:01:38,136 --> 00:01:42,288
 Shine Wipe the inside of each bin while it
 is empty, and never let a wet towel
 
-26
-00:01:42,024 --> 00:01:46,176
+25
+00:01:42,288 --> 00:01:46,440
 spend the night in a lined bag with the
 lid down.
 
-27
-00:01:46,176 --> 00:01:51,120
+26
+00:01:46,440 --> 00:01:51,384
 Safety A hamper parked on a landing or at
 the top of a step is
 
-28
-00:01:51,120 --> 00:01:54,996
+27
+00:01:51,384 --> 00:01:55,260
 Safety A hamper parked on a landing or at
 the top of a step is a fall you take with
 
-29
-00:01:54,996 --> 00:01:58,872
+28
+00:01:55,260 --> 00:01:59,136
 your arms full and your view blocked.
 
-30
-00:01:58,872 --> 00:02:03,336
+29
+00:01:59,136 --> 00:02:03,600
 Safety Keep the bags out of the walking
 line entirely, and
 
-31
-00:02:03,336 --> 00:02:07,056
+30
+00:02:03,600 --> 00:02:07,320
 Safety Keep the bags out of the walking
 line entirely, and never carry a basket
 
-32
-00:02:07,056 --> 00:02:10,776
+31
+00:02:07,320 --> 00:02:11,040
 loaded higher than your eyeline.
 
-33
-00:02:10,776 --> 00:02:15,456
+32
+00:02:11,040 --> 00:02:15,720
 Standardize Label each bag with the load
 it makes rather than
 
-34
-00:02:15,456 --> 00:02:19,680
+33
+00:02:15,720 --> 00:02:19,944
 Standardize Label each bag with the load
 it makes rather than the colour it holds:
 
-35
-00:02:19,680 --> 00:02:23,904
+34
+00:02:19,944 --> 00:02:24,168
 hot towels, cold darks, gentle.
 
-36
-00:02:23,904 --> 00:02:28,560
+35
+00:02:24,168 --> 00:02:28,824
 Standardize Anyone in the house can then
 start a machine
 
-37
-00:02:28,560 --> 00:02:31,956
+36
+00:02:28,824 --> 00:02:32,220
 Standardize Anyone in the house can then
 start a machine without asking which
 
-38
-00:02:31,956 --> 00:02:35,352
+37
+00:02:32,220 --> 00:02:35,616
 setting the bag wants.
 
-39
-00:02:35,352 --> 00:02:40,056
+38
+00:02:35,616 --> 00:02:40,320
 Sustain Pockets get checked as the item
 goes into the bag, not
 
-40
-00:02:40,056 --> 00:02:44,220
+39
+00:02:40,320 --> 00:02:44,484
 Sustain Pockets get checked as the item
 goes into the bag, not later at the
 
-41
-00:02:44,220 --> 00:02:48,384
+40
+00:02:44,484 --> 00:02:48,648
 machine, and every person does their own.
 
-42
-00:02:48,384 --> 00:02:51,888
+41
+00:02:48,648 --> 00:02:52,152
 Sustain The dish on the shelf is where a
 
-43
-00:02:51,888 --> 00:02:57,312
+42
+00:02:52,152 --> 00:02:57,576
 Sustain The dish on the shelf is where a
 lip balm stops being a ruined load.
 
-44
-00:02:57,312 --> 00:03:02,544
+43
+00:02:57,576 --> 00:03:02,808
 Sustain Slip is a bag past half full, or a
 bag standing in
 
-45
-00:03:02,544 --> 00:03:06,684
+44
+00:03:02,808 --> 00:03:06,948
 Sustain Slip is a bag past half full, or a
 bag standing in the walking line,
 
-46
-00:03:06,684 --> 00:03:10,824
+45
+00:03:06,948 --> 00:03:11,088
 visible as you come through the door.
 
-47
-00:03:10,824 --> 00:03:16,272
+46
+00:03:11,088 --> 00:03:16,536
 Sustain Recovery is running that load now,
 because a bag past half full
 
-48
-00:03:16,272 --> 00:03:20,652
+47
+00:03:16,536 --> 00:03:20,916
 Sustain Recovery is running that load now,
 because a bag past half full gets lifted
 
-49
-00:03:20,652 --> 00:03:25,032
+48
+00:03:20,916 --> 00:03:25,296
 rather than carried and ends up on the
 floor.
 
-50
-00:03:25,032 --> 00:03:29,424
+49
+00:03:25,296 --> 00:03:29,688
 Sustain This is the cheapest place in the
 house to catch an
 
-51
-00:03:29,424 --> 00:03:33,552
+50
+00:03:29,688 --> 00:03:33,816
 Sustain This is the cheapest place in the
 house to catch an expensive mistake, and
 
-52
-00:03:33,552 --> 00:03:37,680
+51
+00:03:33,816 --> 00:03:37,944
 the price is two seconds a garment.
 
-53
-00:03:37,680 --> 00:03:41,275
+52
+00:03:37,944 --> 00:03:41,539
 The call You sort into five streams
 because a care label once told you to, and
 one
 
-54
-00:03:41,275 --> 00:03:44,870
+53
+00:03:41,539 --> 00:03:45,134
 of those bags has been sitting a third
 full for three weeks while the thing you
 
-55
-00:03:44,870 --> 00:03:48,466
+54
+00:03:45,134 --> 00:03:48,730
 actually wanted washed waits inside it.
 
-56
-00:03:48,466 --> 00:03:52,061
+55
+00:03:48,730 --> 00:03:52,325
 The rule: a stream earns its own bag only
 if it has run as a full load, by itself,
 
-57
-00:03:52,061 --> 00:03:55,656
+56
+00:03:52,325 --> 00:03:55,920
 in the last month.
 
-58
-00:03:55,656 --> 00:03:59,251
+57
+00:03:55,920 --> 00:03:59,515
 Everything that fails that test merges
 into cold and gentle with a mesh bag
 inside
 
-59
-00:03:59,251 --> 00:04:02,846
+58
+00:03:59,515 --> 00:04:03,110
 the drum.
 
-60
-00:04:02,846 --> 00:04:06,442
+59
+00:04:03,110 --> 00:04:06,706
 Sorting is only worth doing when it
 produces a load you can run today, and a
 bag
 
-61
-00:04:06,442 --> 00:04:10,037
+60
+00:04:06,706 --> 00:04:10,301
 that waits three weeks is not sorting, it
 is a small pile of clothes you have taken
 
-62
-00:04:10,037 --> 00:04:13,632
+61
+00:04:10,301 --> 00:04:13,896
 out of circulation.
 
-63
-00:04:13,632 --> 00:04:19,920
+62
+00:04:13,896 --> 00:04:20,184
 Sorting and Hamper Zone The full reset,
 free at 6s-success.com
