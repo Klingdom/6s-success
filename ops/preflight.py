@@ -11314,6 +11314,49 @@ def gate_no_stale_stripe_website_blocker() -> None:
              "the still-open industry/MCC and Stripe Climate decisions.")
 
 
+def gate_no_stale_stripe_setup_book_blocker() -> None:
+    """ops/stripe_setup.py must not tell an operator the book and manual
+    are still blocked on front matter, issue #3.
+
+    Found 2026-09-18, this operator, the standing low-mention ops/*.py
+    cold-read tier the prior cycle's own handoff named next
+    (import_room_images.py, mailer.py, stripe_setup.py,
+    wire_breadcrumbs.py). stripe_setup.py's own --plan/--apply output
+    printed "Book and manual        blocked on front matter, issue #3"
+    under "Not created, deliberately," unconditionally, on every run.
+    Issue #3 closed 2026-08-25 (confirmed by reading the issue directly,
+    not a citation of it); ops/front-matter.json today carries zero
+    unanswered fields (checked directly: `front_matter_blockers()`'s own
+    logic against the real file returns 0). Both products have in fact
+    been selling live via Stripe Payment Links since 2026-08-21, created
+    through the separate catalogue-driven ops/stripe_catalog.py, which
+    already re-derives deliverability from front-matter.json fresh on
+    every run rather than a hardcoded string. STRIPE.md's own equivalent
+    table was already corrected for this exact drift on 2026-09-12; this
+    script's own stdout was the one place nobody had told. The same
+    "source corrected, artifact never re-derived" shape gate_no_stale_
+    listmonk_blocker, gate_no_stale_affiliate_blocker and this file's
+    other gate_no_stale_* siblings already exist to catch.
+
+    This gate does not try to prove the whole file current, only that
+    the retired issue-#3-blocks-the-book claim cannot regress back into
+    this script's printed output.
+    """
+    path = os.path.join(ROOT, "ops", "stripe_setup.py")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    if re.search(r"Book and manual.{0,40}blocked on front matter",
+                 text, re.IGNORECASE):
+        fail("no-stale-stripe-setup-book-blocker",
+             "ops/stripe_setup.py still prints the book and manual as "
+             "blocked on front matter, issue #3, closed 2026-08-25. Both "
+             "sell live today via ops/stripe_catalog.py. Update the "
+             "'Not created, deliberately' line to name the real reason "
+             "(a different, catalogue-driven script creates them), not "
+             "a closed issue.")
+
+
 # (superseded file, the successor filename it must name in its own banner)
 _SUPERSESSION_CHAIN = [
     ("BACKLOG.md", "BACKLOG-2026-H2.md"),
@@ -16027,6 +16070,7 @@ def main() -> int:
     run_gate(gate_no_stale_card_deck_decision)
     run_gate(gate_no_stale_affiliate_apply_instruction)
     run_gate(gate_no_stale_stripe_website_blocker)
+    run_gate(gate_no_stale_stripe_setup_book_blocker)
     run_gate(gate_doc_supersession_chain_current)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)

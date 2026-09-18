@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 """
-Create the 6S Success products and prices in Stripe.
+Create the two invoiced consulting products and prices in Stripe.
 
-Only what is genuinely deliverable is created. The catalogue lists 41 items;
-three are deliverable today and all three are consulting. Creating Stripe
-products for reset kits with no supplier, or courses with no platform, would put
-a buy path in front of something that does not exist.
+This script only ever creates the two hourly/day-rate consulting services
+below, priced flat and sold on Invoicing rather than a catalogue Payment
+Link. Corrected 2026-09-18: it previously described the whole 159-item
+catalogue here ("41 items; three are deliverable today and all three are
+consulting"), a stale count from before the catalogue grew past its launch
+size. The catalogue itself, including the book and the Micro Zone Manual,
+is created and kept live by `ops/stripe_catalog.py`, which re-derives what
+is genuinely deliverable from the real files on disk on every run rather
+than a number hardcoded here. Creating Stripe products for reset kits with
+no supplier, or courses with no platform, would put a buy path in front of
+something that does not exist, which is why this script's own list below
+stays this short on purpose.
 
 Everything here is idempotent. It looks up by a stable lookup_key before
 creating, so running it twice does not produce duplicates, and running it after
@@ -119,7 +127,7 @@ def main(apply_it):
     print("  Reset kits, 4 SKUs     no supplier and no stock")
     print("  Courses, 4 SKUs        no platform and no schedule")
     print("  Tools, 24 SKUs         no supplier")
-    print("  Book and manual        blocked on front matter, issue #3")
+    print("  Book and manual        catalogue SKUs, created by ops/stripe_catalog.py, not here")
 
     if not apply_it:
         print("\nRun with --apply to create the missing ones.")

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (a real stale-blocker defect found in the standing low-mention cold-read tier, fixed and gated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (`f956745c`), clean. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` full before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Pulled the 8 open GitHub issues directly: unchanged, all decision or blocked-on-art, none pickable per the never-pick-Phil-waiting rule. Continued the prior PM check-in's own named handoff, the next ungated low-mention `ops/*.py` cold-read tier: `mailer.py` and `wire_breadcrumbs.py` read clean. `stripe_setup.py`'s "Not created, deliberately" block unconditionally printed "Book and manual        blocked on front matter, issue #3" on every `--plan`/`--apply` run.
+
+**Verified before fixing, per step 5d:** read issue #3 directly rather than cite a summary of it, closed 2026-08-25. Checked `ops/front-matter.json` directly: zero unanswered fields today. Confirmed both products (`BK-EB`, `MZ-MANUAL`) carry live Stripe Payment Links in `site/assets/js/data.js` and have sold since 2026-08-21 per `RISKS.md`, created through a separate catalogue-driven script, `ops/stripe_catalog.py`, whose own `front_matter_blockers()` re-derives deliverability from the real file on every run rather than a hardcoded string. `STRIPE.md`'s equivalent table was already corrected for this exact drift on 2026-09-12; `stripe_setup.py`'s own stdout was the one place nobody had told, the same "source corrected, artifact never re-derived" shape this backlog's own closing section names as dominant.
+
+**Fixed:** the stale line, and the file's opening docstring, which also still described the whole catalogue as "41 items; three deliverable today," a stale count from before the catalogue grew to its real 159 SKUs (confirmed by grep against `data.js`). New `gate_no_stale_stripe_setup_book_blocker` in `preflight.py`, joining the file's existing `gate_no_stale_*` family. `ops/tests/test_gate_no_stale_stripe_setup_book_blocker.py` (5 cases), fail-then-pass proved directly: `git stash` on the source alone reproduced the pre-fix failure by name against the real committed file, restored and reran clean.
+
+**Verified:** full `preflight.py` run to completion twice (once before, once after the backlog write-up), both clean, every gate passed, 23 warnings, all previously diagnosed. `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0) all clean. `python3 -c "import ast"` parsed both changed files before treating the edits as done, not after. `ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. No price, product or site page touched; IndexNow not applicable (an ops tool's own stdout, not a page).
+
+**Went well:** treating an operator-tooling stale claim as a real defect worth fixing and gating rather than only noting it, even though it never reached a customer; verifying the closed issue and the zero-blocker state directly instead of trusting the backlog's own prior citations of it.
+
+**Did not go well:** the standard shallow/detached checkout shape on arrival; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, the affiliate trigger, delivery confirmation and the KDP cover check all stay honestly UNCHECKED.
+
+**Changing next cycle:** none; the new gate covers this defect class going forward.
+
+**Next:** `import_room_images.py` is the one file in the prior handoff's named tier not yet re-read this cycle. The 8 open decision/blocked-on-art issues and `OWNER-ACTIONS.md` are unchanged.
+
+Pushed to main. `ops/preflight.py`, `ops/stripe_setup.py`, `ops/tests/test_gate_no_stale_stripe_setup_book_blocker.py`, `BACKLOG-2026-09-07.md`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this entry.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, three ungated cold-reads came back clean, nothing new unblocked)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`ca42a7bc`), clean, 515 commits behind on arrival (usual shallow/detached shape). `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
