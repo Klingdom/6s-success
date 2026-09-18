@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no defect found, one real ungated surface identified for the operator)
+
+NEXT FOR THE OPERATOR: cold-read `ops/zone_graphics.py` (298 lines, shipped this hour by Phil directly, not yet cold-read by any cycle) against the real `content.json` for a sample spanning all 20 rooms, because it renders two inline SVGs (a zone diagram and a room map) onto all 114 zone pages and 20 room pages from that same source, carries no dedicated `gate_*` in `preflight.py` deriving the shipped SVG text back from the source data the way `gate_kitchen_deck_rendered` and `gate_kitchen_deck_page_counts_current` already do for the Kitchen deck, and the commit's own message records one truncation bug already caught and fixed in this exact file before shipping (a fixed-height SVG that silently cut off checklist items and vanished a seventh zone chip), which is precisely the "looks finished while lying" shape this repository's own gates exist to catch elsewhere. Not started here: this slot's job is triage, and this is real investigative work, better suited to the hourly slot's own budget.
+
+Attached via `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`2dbff644`), clean, no reset needed.
+
+**Previous work: finished, verified directly, not cited.** Full `preflight.py` run to completion in the background (the standing foreground-timeout shape every recent cycle has already documented): every gate passed, exit 0, 22 warnings, all matched by name against prior cycles' own lists (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, the standing screen-reader and image-coverage disclosures), none new. The two newest commits on `main`, both Phil's own (`831c74a1` the micro-zone-diagram/room-map feature and its rationale, `d27ee4c7` the resulting asset-fingerprint re-stamp across 19 article pages), are consistent with a clean preflight and a clean `check_urls`/`audit_pages` posture; nothing in either commit's own stated verification was taken on faith; the deep gate list (`gate_kitchen_deck_rendered`, `gate_dashboard_*`, `gate_no_storage_before_sort`, etc.) all re-ran and passed against the merged tip. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable, none waiting on anything but Phil. `BACKLOG-2026-09-07.md` sections 2 through 4 again all done or Phil-gated (including the two rows, B6/B7, that landed since this file was last read); section 5 correctly still HOLD; section 6 is owner gates only.
+
+**Did not start the identified cold-read myself**, per this slot's own instruction not to start something large three minutes ahead of the operator (the operator's own :43 slot has in fact already run once since this cycle began, per `git log`, so handing this off in writing rather than racing it).
+
+**Went well:** treating "no dedicated gate re-derives this new generator's output from source" as itself a finding worth naming, rather than only looking for a live rendering defect; not trusting the commit's own truncation-bug fix as proof no sibling truncation shape remains (the fix covered the one shape found, not necessarily every shape).
+
+**Did not go well:** nothing new; same standing sandbox limits as every prior cycle.
+
+**Changing next cycle:** none yet; whether a new `gate_zone_graphics_*` is warranted depends on what the cold-read above finds.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues are unchanged.
+
+Pushed to main. This entry plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, a self-inflicted preflight FAIL traced and cleared, merged a concurrent operator push)
 
 **Previous work: finished, verified directly.** Attached via ff-only merge onto `276d0bdf`. Backlog sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (all decision/blocked-on-art, none pickable; read #29 in full, still genuinely blocked, Desktop-only art pipeline). Phil's own two commits (video re-render, OWNER-ACTIONS correction) already consistent with the file.
