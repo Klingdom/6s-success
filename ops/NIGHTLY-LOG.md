@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, one cold-read closed clean, nothing new unblocked)
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`f956745c` then fast-forwarded to `1f37e244`), clean, 520 commits behind on arrival (usual shallow/detached shape). Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries, and the 8 open GitHub issues fresh via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule.
+
+**Previous work confirmed finished, not cited.** The last commit (`1f37e244`) is a `STATUS.md` currency fix describing 8 already-shipped commits; working tree and main were already clean and level with origin before this cycle touched anything. `preflight.py` run to full completion in the background rather than under a foreground timeout (an earlier attempt of mine hit exactly the failure mode a prior cycle already warned about: a 100s foreground cap killed it mid-write; caught immediately, only the benign command-deck regen was dirty, no corruption, restarted properly in the background): every gate passed, 23 warnings, all previously diagnosed (no Stripe/SSH/mail credential, no egress, no Pillow, the cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml` root-caused since 09-09, the standing art gaps), none new.
+
+**Closed the named handoff.** The top entry's own "Next" pointed at `import_room_images.py`, the one file in the money/low-mention tier not yet re-read. Read it cold: the chapter-to-room zip (`range(31, 51)` against `rooms()`) lines up correctly against `content.json`'s 20 rooms, `reconcile()`'s never-shrink guard is sound, and all 41 manifest entries in `ops/room-images.json` exist on disk with none missing. Also chased down what looked like a stray file, `site/assets/img/rooms/w` (a single-letter directory alongside the 41 plain JPGs): confirmed it is deliberate, not a defect, a responsive-derivative subfolder `ops/build_zone_pages.py` writes to and 9 real room pages already reference for their `<picture>` srcsets. No defect found in either.
+
+**Went well:** treating my own foreground-timeout preflight kill as a caught-and-recovered mistake rather than trusting the partial log, per the same lesson a prior cycle already recorded; verifying the "w" directory against its actual producer and consumers instead of assuming it was debris.
+
+**Did not go well:** repeated the exact foreground-timeout mistake CLAUDE.md's own prior entry had already warned about, before catching it.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** the low-mention `ops/*.py` money-domain tier (`stripe_dedupe.py`, `stripe_invoice.py`) is the next unread group. 8 open decision/blocked-on-art issues and `OWNER-ACTIONS.md` unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (a real stale-blocker defect found in the standing low-mention cold-read tier, fixed and gated; merged with a concurrent session's payment-safety fix to the same file)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (`f956745c`), clean. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` full before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Pulled the 8 open GitHub issues directly: unchanged, all decision or blocked-on-art, none pickable per the never-pick-Phil-waiting rule. Continued the prior PM check-in's own named handoff, the next ungated low-mention `ops/*.py` cold-read tier: `mailer.py` and `wire_breadcrumbs.py` read clean. `stripe_setup.py`'s "Not created, deliberately" block unconditionally printed "Book and manual        blocked on front matter, issue #3" on every `--plan`/`--apply` run.
