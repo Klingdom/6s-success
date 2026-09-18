@@ -1232,7 +1232,32 @@ try:
     S["zones"] = sum(len(r["zones"]) for r in c["rooms"])
 except Exception:
     S["rooms"] = S["zones"] = 0
-S["zones_with_deck"] = 9
+
+# A bare literal (9) sat here with no derivation, the one number in this
+# section not measured, contradicting this file's own header. Derive it: a
+# real zone counts as deck-covered when some card corpus carries a "ZONE
+# CARD" whose title exact-matches that zone's real name (case-insensitive),
+# the same standard used to certify Kitchen's own KZ-001..007 against
+# content.json in BACKLOG-2026-09-07.md row B1. Exact match, not fuzzy:
+# Entryway's own EM-* zone cards predate the current 114-zone spine and use
+# a different naming scheme (e.g. "Key Station", "Backpack Station") that
+# does not stand for any of the room's 5 real zones, so most of them
+# correctly do not count here even though the deck itself is shipped.
+_zone_card_titles = set()
+for _cf in (glob.glob(os.path.join(ROOT, "build", "*cardtext.json"))
+            + glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json"))):
+    try:
+        _cd = json.load(open(_cf, encoding="utf-8"))
+    except Exception:                                             # noqa: BLE001
+        continue
+    _cd_cards = _cd if isinstance(_cd, list) else _cd.get("cards", [])
+    for _card in _cd_cards:
+        if "ZONE CARD" in str(_card.get("type", "")).upper():
+            _zone_card_titles.add(str(_card.get("title", "")).strip().lower())
+S["zones_with_deck"] = sum(
+    1 for _r in c.get("rooms", []) for _z in _r["zones"]
+    if _z["zone"].strip().lower() in _zone_card_titles
+) if S["zones"] else 0
 
 # --- content corpus
 S["social_files"] = len(glob.glob(os.path.join(MASTER, "**", "*.md"), recursive=True))

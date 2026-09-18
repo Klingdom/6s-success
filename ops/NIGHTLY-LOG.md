@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished including live production verification, one stale-literal dashboard defect found and fixed)
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`976dc93c`), clean. `preflight.py` full: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
+
+**Previous work is finished, verified past the point CI alone can prove.** The 13-blank-page Kitchen print-pack fix (`d3308ab7`) is CI green (run 1129, `success`), and Phil's own workstation then printed both live URLs to PDF rather than trusting the build (`4ec947d8`): the free Standards Pack is 20 pages with no orphan, the free Kitchen deck is 12 pages with no blanks, against 21-with-an-orphan and 25-with-13-blanks before. That is stronger evidence than this role normally gets to cite. Run 1130 (`4ec947d8` itself, a dashboard-only commit) was still `in_progress` at the 15-minute mark, inside the account's normal 17-30 minute range, not stuck.
+
+**Found and fixed while reading `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows per this role's own step 1.** `ops/dashboard.py`'s "Card decks" row carried `S["zones_with_deck"] = 9`, a bare literal with no derivation, the one number in that whole section not measured, directly contradicting the file's own header ("Every figure is measured, not typed"). Traced rather than assumed it was fine because the visible number looked plausible: no gate covers this field, and grepping this log found zero prior mentions, so nobody had ever checked it. Derived it for real: a zone counts as deck-covered when some card corpus (`build/entryway-cardtext.json`, `ops/cardtext/kitchen-deck.json`, and the batch files) carries a "ZONE CARD" whose title exact-matches that zone's real name in `content.json`, the same standard `BACKLOG-2026-09-07.md` row B1 already used to certify Kitchen's KZ-001..007. Exact match, not fuzzy, because Entryway's own EM-* zone cards predate the current 114-zone spine and mostly do not stand for any of the room's 5 real zones (only "Landing Zone" does). The computed answer is 9 again, coincidentally: 1 Entryway (Landing Zone) + 7 Kitchen (full room) + 1 Mudroom (Pet Station, a name collision with an unrelated Entryway-deck card), confirmed by printing the actual matches rather than trusting the total. Same number, now honestly earned instead of typed.
+
+**Verified:** `ops/dashboard.py` reruns clean, `preflight.py` full clean after, the three dashboard-related test files (`test_dashboard_prev_state_fallback.py`, `test_gate_dashboard_issue_payload.py`, `test_dashboard_dead_links.py`) all pass.
+
+**Went well:** reading the two named sections (Traffic, Affiliate) led straight past them into the one hardcoded figure sitting a few lines below, instead of stopping once Traffic/Affiliate themselves checked out honest (both already correctly say "not measured" for lack of an ssh key, unchanged).
+
+**Did not go well:** same shallow/detached checkout shape every cycle.
+
+**Next for the operator:** confirm run 1130 lands green. No fresh unblocked backlog row: sections 2 through 6 of `BACKLOG-2026-09-07.md` are again all done or Phil-gated, 8 GitHub issues unchanged (all decision or blocked-on-art).
+
+Pushed to main. `ops/dashboard.py`, command deck. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (full verification pass, honest finding: none new, run 1129 confirmed already in flight)
 
 **Did:** Unshallowed and ff-only merged onto `origin/main` (`e3c99ef1`, two PM check-ins ahead of the `d3308ab7` print-pack fix this cycle started against; neither made by this cycle). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md`, the last four log entries. Ran `preflight.py` full before touching anything. Tried three genuinely fresh angles rather than repeat an exhausted sweep: (1) tested real network egress to `6s-success.com` and `api.stripe.com` directly, both denied by the sandbox proxy, same as every prior cycle, so no new production check was possible; (2) read `disclaimer.html`, the least-mentioned hand-authored page (11 hits) with no generator behind it, end to end against current facts, no defect; (3) traced the footer's `foot-newsletter` form (0 prior log mentions) through `site.js`'s `wireNewsletter()` and confirmed it already discloses the mailto-only mechanism honestly before asking, per issue #15's standing diagnosis, no defect.
