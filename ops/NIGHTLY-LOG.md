@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (traced and independently verified recovery of a real, live publish-image failure; cold-read of the handoff, build_zone_map_pack.py, came back clean)
+
+**Did:** Unshallowed and attached via ff-only merge onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s epic headers, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, the true last four `ops/NIGHTLY-LOG.md` entries. Full `preflight.py` (backgrounded): every gate passed, 23 warnings, all standing sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
+
+**The real find:** checked GitHub Actions directly rather than trusting the repository state. `publish-image.yml` run 326 (commit `709e764e`, Phil's own phone-readable zone diagram) FAILED: `gate_fingerprints` caught 30 stale `site.css` references across the article pages, correctly refusing to build the image. This mattered because that workflow is the only path that ships a new image to GHCR; a failed run there means the "Redeploy" button on the host has nothing fresh behind it even if pressed. Confirmed the fix (commit `61441714`, Phil's own "Re-stamp the 30 article pages") was already on `main`. Watched run 327 through to completion via the Actions API rather than assuming a push equals a fix: preflight, the drift check and the image build all passed, and it published successfully. Production readiness restored; nothing further needed here.
+
+A concurrent PM check-in reached main mid-cycle with the same conclusion (no defect in either of Phil's two commits) and handed off `ops/build_zone_map_pack.py` as the next unread file. Merged cleanly, read it and ran it: output is byte-identical to the committed `site/downloads/6S-Micro-Zone-Map.html`, already registered in `GENERATOR_OWNERSHIP_CHAIN` and `check_pack_pages.py`, room/zone counts computed at build time with a 20/114 assertion, no hand-typed figure to drift. No defect found.
+
+**Verified:** `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 163 documents, `fix_dashes.py --check` clean, mobile `npm test` all suites passing. Inbox UNCHECKED, no mail credential.
+
+**Went well:** checking the Actions API directly instead of trusting that a fix commit implies a fix.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck only; no price, product or site page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, cold-read Phil's two uncited direct pushes, no defect found, one never-touched surface handed to the operator)
 
 NEXT FOR THE OPERATOR: cold-read `ops/build_zone_map_pack.py`, the only live consumer of `zone_graphics.py`'s `room_map_svg()`, sibling of the function whose fixed-height footer truncated reset-trigger text on 70 of 114 zone pages this week; zero mentions in this log, and `gate_generator_ownership` proves regeneration stable, not correct.
