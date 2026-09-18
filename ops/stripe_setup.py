@@ -2,25 +2,49 @@
 """
 Create the two invoiced consulting products and prices in Stripe.
 
-This script only ever creates the two hourly/day-rate consulting services
-below, priced flat and sold on Invoicing rather than a catalogue Payment
-Link. Corrected 2026-09-18: it previously described the whole 159-item
-catalogue here ("41 items; three are deliverable today and all three are
-consulting"), a stale count from before the catalogue grew past its launch
-size. The catalogue itself, including the book and the Micro Zone Manual,
-is created and kept live by `ops/stripe_catalog.py`, which re-derives what
-is genuinely deliverable from the real files on disk on every run rather
-than a number hardcoded here. Creating Stripe products for reset kits with
-no supplier, or courses with no platform, would put a buy path in front of
-something that does not exist, which is why this script's own list below
-stays this short on purpose.
+SUPERSEDED, found 2026-09-18, cold-reading the money-domain ops/*.py tier
+per CLAUDE.md step 5d. The same finding `ops/stripe_links.py` already
+carries (found 2026-09-10) applies here: the two consulting SKUs this file
+manages (6s_consult_virtual / 6s_consult_inhome, by Stripe's lookup_key)
+have been live on the site under a different identity since 2026-08-27.
+Commit `d5226967` moved the whole catalogue, consulting included, onto
+SKU-tagged prices (metadata.sku = CN-VIRTUAL / CN-INHOME) managed by
+`ops/stripe_catalog.py`, and `site/consulting.html`'s real buy buttons
+point at those, not at anything this file has ever created. This file's
+own idempotency guarantee is real but scoped to the wrong identity: a live
+`--apply` run would not find or update the live checkout (it looks up by
+lookup_key, the live prices carry metadata.sku instead), so it would create
+a second, orphaned product and price beside the ones already live, the same
+duplicate-checkout shape that once left a live page charging $18 next to an
+advertised $9.99. The `STRIPE_ALLOW_LIVE=1` guard below still stands between
+a live key and that outcome; this docstring is the second look it demands.
+Left in place as a record, not deleted, for the same reason `stripe_links.py`
+was: deleting a Stripe-writing tool is not a decision to make on grep alone.
 
-Everything here is idempotent. It looks up by a stable lookup_key before
-creating, so running it twice does not produce duplicates, and running it after
-a partial failure finishes the job rather than doubling it.
+This script only ever creates the two hourly/day-rate consulting services
+below, priced flat, under its own now-superseded identity. Corrected
+2026-09-18, a second finding the same cycle: this paragraph previously
+described the whole 159-item catalogue here ("41 items; three are
+deliverable today and all three are consulting"), a stale count from
+before the catalogue grew past its launch size, and the "Not created,
+deliberately" list below separately told an operator the book and the
+Micro Zone Manual were still blocked on front matter, issue #3, months
+after that issue closed (2026-08-25) and after both started selling live
+through `ops/stripe_catalog.py`. Creating Stripe products for reset kits
+with no supplier, or courses with no platform, would put a buy path in
+front of something that does not exist, which is why this script's own
+list stays short on purpose; the book and manual are not on it because a
+different script already owns them, not because anything blocks them.
+
+Everything here is idempotent within its own lookup_key namespace. It looks
+up by a stable lookup_key before creating, so running it twice does not
+produce duplicates of what it already made, and running it after a partial
+failure finishes the job rather than doubling it. It does not know about,
+and cannot reconcile with, the SKU-tagged prices `stripe_catalog.py` now
+manages for the same two offers.
 
 Run:  python ops/stripe_setup.py --plan      show what it would do, change nothing
-      python ops/stripe_setup.py --apply     create anything missing
+      python ops/stripe_setup.py --apply     create anything missing (superseded, see above)
 """
 import json
 import os

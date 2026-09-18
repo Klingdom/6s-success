@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-18, scheduled operator cycle (a real stale-blocker defect found in the standing low-mention cold-read tier, fixed and gated)
+## 2026-09-18, scheduled operator cycle (a real stale-blocker defect found in the standing low-mention cold-read tier, fixed and gated; merged with a concurrent session's payment-safety fix to the same file)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (`f956745c`), clean. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` full before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Pulled the 8 open GitHub issues directly: unchanged, all decision or blocked-on-art, none pickable per the never-pick-Phil-waiting rule. Continued the prior PM check-in's own named handoff, the next ungated low-mention `ops/*.py` cold-read tier: `mailer.py` and `wire_breadcrumbs.py` read clean. `stripe_setup.py`'s "Not created, deliberately" block unconditionally printed "Book and manual        blocked on front matter, issue #3" on every `--plan`/`--apply` run.
 
@@ -20,7 +20,27 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** `import_room_images.py` is the one file in the prior handoff's named tier not yet re-read this cycle. The 8 open decision/blocked-on-art issues and `OWNER-ACTIONS.md` are unchanged.
 
+**Reconciled with a concurrent session:** a PM check-in landed on `origin/main` (`6cc18f5b`) while this cycle was running, editing the same file's docstring to flag a real, more significant payment-safety gap: the file's two consulting SKUs were themselves superseded 2026-08-27 by SKU-tagged prices `ops/stripe_catalog.py` now manages, so a live `--apply` would orphan a duplicate product/price rather than update the real one. That finding stands as written; merged it with this cycle's fix (the stale "book and manual blocked, issue #3" print line and the stale "41 items" docstring count) rather than dropping either. Re-verified after merging: `preflight.py` full clean (every gate passed, 23 warnings), the new `gate_no_stale_stripe_setup_book_blocker` and its test still pass against the merged file, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean.
+
 Pushed to main. `ops/preflight.py`, `ops/stripe_setup.py`, `ops/tests/test_gate_no_stale_stripe_setup_book_blocker.py`, `BACKLOG-2026-09-07.md`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this entry.
+
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, a real live-payment foot-gun found and closed)
+
+NEXT FOR THE OPERATOR: cold-read `ops/mailer.py`, `ops/stripe_dedupe.py` or `ops/stripe_invoice.py` next (the standing low-mention lane, money-domain tier), because `wire_breadcrumbs.py` and `stripe_setup.py` both checked out this cycle and the money-domain files are the highest-value untouched group left.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`f956745c`), clean, 516 commits behind on arrival (usual shallow/detached shape). `preflight.py` full: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Working tree and main were already clean and level with origin before this cycle touched anything. 8 GitHub issues, unchanged, all decision or blocked-on-art, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2 through 4 again all struck through done or Phil-gated; section 5 correctly HOLD on the traffic constraint. No fresh unblocked backlog row exists.
+
+**Cold-read two files from the standing low-mention `ops/*.py` lane the prior cycle handed off** (`wire_breadcrumbs.py`, `stripe_setup.py`, both at 14 mentions). `wire_breadcrumbs.py --check` came back genuinely clean (0 would-change, 27 already correct, already gated by `gate_wire_breadcrumbs` or equivalent). `stripe_setup.py` had a real, undocumented foot-gun: `gate_stripe_write_tools_guarded`'s own docstring (2026-09-10) already established that this file's two consulting SKUs (6s_consult_virtual / 6s_consult_inhome, matched by lookup_key) were superseded 2026-08-27 when `d5226967` moved the live consulting checkout onto SKU-tagged prices (metadata.sku = CN-VIRTUAL / CN-INHOME) managed by `ops/stripe_catalog.py`. `ops/stripe_links.py` got the matching "SUPERSEDED" docstring warning the same day this was found for it (2026-09-10), citing the exact duplicate-checkout shape that once left a live page charging $18 next to an advertised $9.99. `stripe_setup.py` never got the same treatment: its docstring still read "Everything here is idempotent... running it twice does not produce duplicates," true only within its own stale lookup_key namespace, with nothing telling a reader that a live `--apply` (still correctly gated behind `STRIPE_ALLOW_LIVE=1`) would create a second, orphaned product and price beside the ones actually live, not update them. This is a live payment-safety document gap (CLAUDE.md 37), not an active incident: no evidence `--apply` has been run against a live key.
+
+**Fixed:** added the same SUPERSEDED warning `stripe_links.py` carries, naming the real commit, the real live identity scheme, and the real consequence, without deleting the tool (same reasoning `stripe_links.py`'s own docstring gives for being left in place). No code path changed: the `STRIPE_ALLOW_LIVE` guard already there is real and untouched. No new gate: matching the existing precedent, `stripe_links.py`'s own docstring fix carries no dedicated gate either, and inventing one for a single narrative string would be bureaucracy CLAUDE.md 56 warns against.
+
+**Verified:** `ast.parse` on the edited file, `python ops/stripe_setup.py --plan` still runs and fails safely with no credential (unchanged behaviour). `preflight.py` full rerun clean (every gate passed, 23 warnings). One self-inflicted false alarm caught and fixed during this cycle: a `timeout 110` on an earlier preflight run killed it mid-write during Etsy PDF regeneration, corrupting one committed listing image to 0 bytes and leaving several PDFs byte-different from HEAD; caught by the next full run's own `etsy-pdfs-current` gate correctly refusing on a dirty tree, restored via `git checkout -- build/listings/etsy/`, reran to completion uninterrupted, clean.
+
+**Went well:** the money-domain cold-read lane found a real, if latent, payment-safety gap on the first file checked; the preflight gate that caught my own interrupted run did exactly its job.
+
+**Did not go well:** same shallow/detached checkout shape; no egress, Stripe, mail, or SSH credential in this sandbox; running `preflight.py` under a foreground timeout is unsafe when it writes generated artifacts, noted for future cycles.
+
+Pushed to main. `ops/stripe_setup.py`, command deck. No price or product touched, no live Stripe object touched, no site page changed. IndexNow not applicable.
 
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, three ungated cold-reads came back clean, nothing new unblocked)
 
