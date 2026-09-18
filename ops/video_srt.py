@@ -39,6 +39,12 @@ MAX_CHARS = 84      # two of them; longer than this is a wall over the picture
 def visible_text(fragment: str) -> str:
     """The words a viewer actually sees in one beat, in reading order."""
     s = re.sub(r"(?is)<(script|style).*?</\1>", " ", fragment)
+    # A block marked data-quiet is on screen for the eye, not the ear:
+    # the "where it is" beat shows the room's other micro zones as
+    # chips, and a narrator reading seven zone names aloud turns a
+    # three second orientation into a list nobody listens to.
+    # Added 2026-09-18 with that beat.
+    s = re.sub(r"(?is)<div[^>]*data-quiet[^>]*>.*?</div>", " ", s)
     # A block boundary is a line break to a reader, so keep it as a space
     # rather than letting two words run together into one.
     s = re.sub(r"(?i)</(p|div|h[1-6]|li|section)\s*>", " ", s)

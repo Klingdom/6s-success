@@ -139,6 +139,14 @@ li b{{flex:0 0 54px;height:54px;border-radius:50%;background:{accent};
 .std{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:56px;
   line-height:1.3}}
 .rule{{height:5px;background:{honey};width:180px;margin:0 0 40px}}
+/* The room's other micro zones, as chips, with this one lit. Uses the tokens
+   the shell already passes rather than new ones, so a dark beat and a light
+   beat both stay legible. */
+.zonelist{{display:flex;flex-wrap:wrap;gap:14px;margin-top:44px}}
+.zchip{{font-size:29px;font-weight:600;padding:11px 19px;border-radius:999px;
+  border:2px solid {footer};color:{fg};opacity:.72}}
+.zchip.on{{background:{accent};border-color:{accent};color:{paper};
+  font-weight:700;opacity:1}}
 .trig{{font:700 44px/1.35 Inter;letter-spacing:.01em}}
 .foot{{position:absolute;left:{foot_left};bottom:{foot_bottom};font:600 30px/1 Inter;
   letter-spacing:.18em;text-transform:uppercase;color:{footer}}}
@@ -327,6 +335,21 @@ def _sentence_chunks(text, budget=30):
     return chunks or [text]
 
 
+_SIBLINGS = {}
+
+
+def siblings(room):
+    """Every micro zone name in this room, in working order.
+
+    Cached, because beats() is called once per zone and zones() re-reads and
+    re-shapes the whole manual each time.
+    """
+    if not _SIBLINGS:
+        for r, z in zones():
+            _SIBLINGS.setdefault(r, []).append(z["zone"])
+    return _SIBLINGS.get(room, [])
+
+
 def beats(room: str, z: dict) -> list:
     """(seconds, html, dark). Every word comes from content.json."""
     name = z["zone"]
@@ -368,6 +391,27 @@ def beats(room: str, z: dict) -> list:
         f'<p style="font-size:46px;line-height:1.35;margin-top:44px;'
         f'color:#ffffffcc">{purpose}</p>'
         f'<p class="foot">6S Success</p>', dark=True), True))
+
+    # WHERE IT IS: the zone among its siblings.
+    #
+    # Added 2026-09-18 on Phil's direction to make the micro zone what the
+    # graphics are about. The video opened on a zone name with no sense of
+    # scale: a viewer could not tell whether this was a whole afternoon or one
+    # of seven small places they could finish tonight. The chips carry
+    # data-quiet, so the narrator says the sentence and not seven zone names.
+    sibs = siblings(room)
+    if sibs:
+        chips = "".join(
+            '<span class="zchip%s">%d. %s</span>'
+            % (" on" if s_name == name else "", i + 1, s_name)
+            for i, s_name in enumerate(sibs))
+        out.append((3.0, page(
+            '<p class="eyebrow">Where it is</p><h2>%s</h2>'
+            '<p class="std">One of %d micro zones in the %s. Each one is a '
+            'session that finishes on its own.</p>'
+            '<div class="zonelist" data-quiet>%s</div>'
+            '<p class="foot">6S Success</p>' % (name, len(sibs), room, chips)),
+            False))
 
     if done:
         items = "".join(f"<li><b>{i+1}</b><span>{d}</span></li>"
