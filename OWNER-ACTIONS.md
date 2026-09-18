@@ -81,6 +81,26 @@ anybody ever arrives. Everything else on this page can wait behind these three.
 The rest of this file stays as it is, in its original order. If you only ever do
 three things from it, do these.
 
+**Every item here was checked end to end on 2026-09-18, not just listed.** The
+question asked of each was "if Phil did this today, what would actually
+happen?", and it found one real trap and one real blocker:
+
+- **1 (YouTube)** would have published 100 videos whose on-screen checklist
+  contradicts their own zone page. Now guarded: 14 correct ones publish, the
+  rest are held back and being re-rendered.
+- **8 (two open ports)** could not be done at all without breaking this site.
+  Rewired and deployed, so it is now a two-line change.
+- **20** would have been ten wasted minutes if you replace the 12 videos;
+  cross-linked to item 1 so you choose once.
+- **14 (KDP)** is honest: the book's description promises no illustrations, and
+  the EPUB carries none beyond the cover, so publishing it claims nothing it
+  does not deliver.
+- **16 (Pinterest and Instagram)** is safe: a rendered card was read end to end
+  and carries the corrected, complete standard.
+- **19 (print the Kitchen deck)** is exactly what it says: the live page serves
+  its 72 cards and the 7 micro-quest sections, and the only thing left is a
+  real printer, which no agent here has.
+
 
 ### 1f. The VPS disk is 79% full, and 46 GB of it is throwaway. One command, about a minute.
 
