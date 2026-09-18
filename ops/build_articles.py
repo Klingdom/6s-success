@@ -384,7 +384,9 @@ A1_STEPS = [
 ]
 
 
-def article_one():
+def article_one(rooms):
+    n_rooms = len(rooms)
+    n_zones = sum(len(r["zones"]) for r in rooms)
     b = []
     b.append(crumb([("Home", "../index.html"),
                     ("The Method", "../method.html"),
@@ -600,21 +602,22 @@ def article_one():
                             "The Cleaning Supply Zone") +
              ", where Sort and Safety do the work together</li>"
              "</ul>")
-    b.append('<p>The full model is 20 rooms broken into 114 micro zones, each '
+    b.append('<p>The full model is %d rooms broken into %d micro zones, each '
              'one sized to finish in a single sitting. You can '
              '<a href="../resources.html">work through every room and micro '
              'zone free</a>, or read '
              '<a href="how-long-does-it-take-to-organise-a-room.html">how long '
              'a room actually takes</a> before you give an afternoon to '
-             'one.</p>')
+             'one.</p>' % (n_rooms, n_zones))
 
     b.append(SAFETY)
     b.append("<h2>Keep going</h2>")
     b.append("<ul>"
              '<li><a href="../method.html">The six steps in full</a>, with the '
              "worked example each one came from</li>"
-             '<li><a href="../resources.html">All 20 rooms and 114 micro '
-             "zones</a>, in the order to work them</li>"
+             '<li><a href="../resources.html">All %d rooms and %d micro '
+             "zones</a>, in the order to work them</li>" % (n_rooms, n_zones)
+             +
              '<li><a href="how-long-does-it-take-to-organise-a-room.html">How '
              "long it takes to organize a room</a>, with the real session time "
              "for every room</li>"
@@ -639,21 +642,24 @@ def article_one():
 
 A2_FILE = "how-long-does-it-take-to-organise-a-room.html"
 A2_TITLE = ("How long does it actually take to organize a room? | 6S Success")
-A2_DESC = ("Real session times for all 20 rooms, summed from the 114 micro "
-           "zones. A room is 3 to 7 sessions, not one afternoon, and that is "
-           "why whole-room attempts fail.")
 
 
 def article_two(rooms):
+    n_rooms = len(rooms)
     t = timing(rooms)
     by_room = {x["room"]: x for x in t}
     total_zones = sum(x["zones"] for x in t)
+    a2_desc = ("Real session times for all %d rooms, summed from the %d "
+               "micro zones. A room is 3 to 7 sessions, not one afternoon, "
+               "and that is why whole-room attempts fail."
+               % (n_rooms, total_zones))
     shortest = min(t, key=lambda x: x["hi"])
     longest = max(t, key=lambda x: x["hi"])
     los = sorted(x["lo"] for x in t)
     his = sorted(x["hi"] for x in t)
-    med_lo = (los[9] + los[10]) // 2
-    med_hi = (his[9] + his[10]) // 2
+    mid = len(los) // 2
+    med_lo = los[mid] if len(los) % 2 else (los[mid - 1] + los[mid]) // 2
+    med_hi = his[mid] if len(his) % 2 else (his[mid - 1] + his[mid]) // 2
     bnd = bands(rooms)
     sh = sort_heavy(rooms)
     min_z = min(x["zones"] for x in t)
@@ -661,11 +667,11 @@ def article_two(rooms):
 
     answer = ("A room takes %s to %s of hands-on work, depending which room it "
               "is, and it is never a single job. The 6S model splits a home "
-              "into %d micro zones across 20 rooms, and each zone carries its "
+              "into %d micro zones across %d rooms, and each zone carries its "
               "own session of 15 to 90 minutes. A room is %d to %d of those "
               "sessions, worked on separate days." %
               (hm(shortest["lo"]), hm(longest["hi"]), total_zones,
-               min_z, max_z))
+               n_rooms, min_z, max_z))
 
     faq = [
         ("How long does it take to organize a room?",
@@ -707,9 +713,9 @@ def article_two(rooms):
           dict(bnd).get("15-30 min", 0))),
         ("How long does it take to organize a whole house?",
          "We do not publish a whole-house figure, on purpose. No house has all "
-         "20 rooms, no two garages hold the same amount, and a single large "
+         "%d rooms, no two garages hold the same amount, and a single large "
          "number is the exact thing that stops people starting. The useful "
-         "number is the next session, which is 15 to 90 minutes."),
+         "number is the next session, which is 15 to 90 minutes." % n_rooms),
     ]
 
     b = [TABLE_CSS]
@@ -730,9 +736,9 @@ def article_two(rooms):
              'flag along the way, or the days in between.</p>' % total_zones)
 
     b.append("<h2>How long does each room take?</h2>")
-    b.append("<p>Twenty rooms, %d micro zones, sorted here in the order the "
+    b.append("<p>%d rooms, %d micro zones, sorted here in the order the "
              "manual works them. The total column is the sum of that room's "
-             "session times, low end to high end.</p>" % total_zones)
+             "session times, low end to high end.</p>" % (n_rooms, total_zones))
 
     rows = []
     for x in t:
@@ -885,13 +891,13 @@ def article_two(rooms):
     b.append("<h2>How long does the whole house take?</h2>")
     b.append("<p>We do not publish that number, and the omission is "
              "deliberate.</p>")
-    b.append("<p>Three reasons. No house has all 20 rooms, so any total would "
+    b.append("<p>Three reasons. No house has all %d rooms, so any total would "
              "describe a home nobody lives in. The rooms that vary most between "
              "households are the ones that dominate the total, and a garage "
              "with two cars in it is not the same job as a garage with a decade "
              "of boxes in it. And a single large number is the exact thing that "
              "stops people starting, which makes it worse than useless even "
-             "when it is accurate.</p>")
+             "when it is accurate.</p>" % n_rooms)
     b.append("<p>If you want a house-level figure, add the rows in the table "
              "for the rooms you actually have. The arithmetic is yours to do "
              "and it will be more honest than ours. What we would rather you "
@@ -925,7 +931,7 @@ def article_two(rooms):
              "zones, %s</li>"
              '<li><a href="%sgarage.html">Garage</a>, %d zones, %s, the longest '
              "room in the model</li>"
-             '<li><a href="../resources.html">All 20 rooms and %d micro '
+             '<li><a href="../resources.html">All %d rooms and %d micro '
              "zones</a></li>"
              '<li><a href="what-is-6s.html">What is 6S</a>, if you want the '
              "method before the schedule</li>"
@@ -942,19 +948,19 @@ def article_two(rooms):
                      by_room["Primary Bathroom"]["hi"]),
                 R, by_room["Garage"]["zones"],
                 span(by_room["Garage"]["lo"], by_room["Garage"]["hi"]),
-                total_zones))
+                n_rooms, total_zones))
     b.append(offer("the session times above are what it takes to work a zone "
                    "on your own."))
 
-    ld = graph(BASE + "/articles/" + A2_FILE[:-5], A2_TITLE, A2_DESC,
+    ld = graph(BASE + "/articles/" + A2_FILE[:-5], A2_TITLE, a2_desc,
                [("Home", "/"), ("Rooms and micro zones", "/resources.html"),
                 ("How long a room takes", "/articles/" + A2_FILE[:-5])], faq)
-    return write(A2_FILE, A2_TITLE, A2_DESC, ld, "\n".join(b))
+    return write(A2_FILE, A2_TITLE, a2_desc, ld, "\n".join(b))
 
 
 def main():
     rooms = json.load(io.open(SRC, encoding="utf-8"))["rooms"]
-    for path, doc in (article_one(), article_two(rooms)):
+    for path, doc in (article_one(rooms), article_two(rooms)):
         bad = [c for c in "–—" if c in doc]
         assert not bad, "dash found in " + path
         assert "Set in Order" not in doc, "banned step name in " + path

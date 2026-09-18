@@ -815,6 +815,98 @@ def gate_kit_page_zone_counts_current() -> None:
         fail("kit-page-zone-counts", "; ".join(problems))
 
 
+def check_articles_room_zone_counts(n_rooms: int, n_zones: int,
+                                    pages: dict) -> list:
+    """Pure logic for gate_articles_room_zone_counts_current, testable
+    without real files. `n_rooms`/`n_zones` are the real counts from
+    content/manual/source/content.json. `pages` maps a filename to its full
+    text.
+
+    Found 2026-09-18, cold-reading ops/build_articles.py per the standing
+    handoff (0-2 mentions in this log). Both AEO articles hand-typed "20
+    rooms" and "114 micro zones" as plain prose literals in several places
+    (what-is-6s.html's closing "Keep going" list and its "full model"
+    paragraph; how-long-does-it-take-to-organise-a-room.html's meta
+    description, its opening answer, its own "How long does each room
+    take?" heading paragraph, its whole-house-figure answer and its closing
+    room list), while every zone-per-room figure on the same pages was
+    already computed fresh from the real manual. Both numbers matched
+    reality today (verified directly: 20 rooms, 114 zones in
+    content.json), so this closes a latent gap rather than a live defect,
+    the same shape gate_kit_page_zone_counts_current and
+    gate_invest_page_catalog_current already closed for a frozen catalogue
+    column and an investor page. Fixed at the source: article_one() and
+    article_two() now derive both counts from the real room list on every
+    build, including the room count feeding the article's own median-time
+    calculation, which had silently assumed exactly 20 rooms (an even
+    count, averaging index 9 and 10) rather than computing a real median.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+    for fname, text in pages.items():
+        wrong_rooms = sorted({int(m) for m in re.findall(r"\b(\d+)\s+rooms\b", text)
+                              if int(m) != n_rooms})
+        if wrong_rooms or re.search(r"\btwenty\s+rooms\b", text, re.I):
+            found = wrong_rooms or "a spelled-out number"
+            problems.append(f"{fname}: names a room count other than the "
+                            f"real {n_rooms} (found {found}), a bare "
+                            f"hand-typed figure instead of the live one")
+        # Only a *total* zone count counts here. "A kitchen is 7 micro
+        # zones" and "across 7 micro zones" name one room's own zone
+        # count, a real and independently varying number this same page
+        # states correctly for every room; only the whole-model total
+        # ("the 114 micro zones", "into 114 micro zones") is this gate's
+        # concern, and every genuine total mention in the real generator's
+        # output is preceded by "the"/"All", never "is"/"across".
+        wrong_zones = sorted({
+            int(m.group(1)) for m in
+            re.finditer(r"\b(\d+)\s+micro\s+zones?\b", text)
+            if int(m.group(1)) != n_zones
+            and not re.search(r"\b(?:is|across)\s*$", text[:m.start()])
+        })
+        if wrong_zones:
+            problems.append(f"{fname}: names a total micro zone count "
+                            f"other than the real {n_zones} "
+                            f"(found {wrong_zones})")
+    return problems
+
+
+def gate_articles_room_zone_counts_current() -> None:
+    """The two AEO articles' room and zone counts must match
+    content/manual/source/content.json, not a number typed once by hand.
+
+    See check_articles_room_zone_counts's docstring for the full history.
+    This re-derives both counts independently of ops/build_articles.py's
+    own arithmetic (reading content.json directly here, not importing that
+    module) so a future regression in the generator itself is still
+    caught, not just a regenerate-and-diff of the generator against
+    itself, which would stay green even if both trusted the same wrong
+    number.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source",
+                            "content.json")
+    a1_path = os.path.join(SITE, "articles", "what-is-6s.html")
+    a2_path = os.path.join(SITE, "articles",
+                           "how-long-does-it-take-to-organise-a-room.html")
+    if not (os.path.exists(src_path) and os.path.exists(a1_path)
+            and os.path.exists(a2_path)):
+        warn("articles-room-zone-counts",
+             "could not check: a required file is missing.")
+        return
+
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    n_rooms = len(rooms)
+    n_zones = sum(len(r["zones"]) for r in rooms)
+    pages = {os.path.basename(p): io.open(p, encoding="utf-8",
+                                          errors="replace").read()
+             for p in (a1_path, a2_path)}
+
+    problems = check_articles_room_zone_counts(n_rooms, n_zones, pages)
+    if problems:
+        fail("articles-room-zone-counts", "; ".join(problems))
+
+
 _KDECK_WORDS = {0: "zero", 1: "one", 2: "two", 3: "three", 4: "four",
                 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine",
                 10: "ten", 11: "eleven", 12: "twelve"}
@@ -16444,6 +16536,7 @@ def main() -> int:
     run_gate(gate_shop_prerendered)
     run_gate(gate_prerender_shop_current)
     run_gate(gate_kit_page_zone_counts_current)
+    run_gate(gate_articles_room_zone_counts_current)
     run_gate(gate_kitchen_deck_page_counts_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
