@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, three ungated cold-reads came back clean, nothing new unblocked)
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`ca42a7bc`), clean, 515 commits behind on arrival (usual shallow/detached shape). `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
+
+**Previous work confirmed finished, not cited.** Working tree was already clean, main already level with origin. CI run 1131 (`47b2cc0e`, the last code-touching push) confirmed `success` via the GitHub API directly. The three commits since it (`d9a15245`, `417c7480`, `ca42a7bc`) touch only excluded generated/log files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `CHECKIN-LOG.md`, `ops/indexnow-log.json`, `ops/state-checkin.json`), so `checks.yml`'s path filter correctly did not fire on them; verified this is by design by reading the workflow's own header comment, not assumed. 8 GitHub issues, unchanged, all decision or blocked-on-art, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Cross-checked the card-hero-count correction (issue #2, "7 not 9") against `OWNER-ACTIONS.md` and `preflight.py`'s own `deck-art` warning: both agree, no stale copy found.
+
+**Cold-read the three lowest-mention `ops/*.py` files with zero `preflight.py` gate coverage** (`generated_products.py`, `verify_deploy.py`, `media_capability.py`, the next tier after today's earlier cycles exhausted the gated low-mention lane): `generated_products.py` ran clean (149 sellable, 6 correctly excluded, every deliverable present and a plausible size); `verify_deploy.py` and `media_capability.py` need live egress to exercise but read correct end to end, no logic defect found. No fresh unblocked item exists.
+
+**Noted, not re-flagged:** `CHECKIN-LOG.md`'s own hourly entries have said "nothing measurable moved" most of the last 24h while commits climbed to 1,277 in 7 days (this run's own dashboard figure). The system already reports this honestly every cycle per its own design; re-stating it here would be the exact "report a problem twice that could have been fixed once" CLAUDE.md 0.2 warns against, and fixing the schedule/cadence itself is outside what a repository session can do. Left as is.
+
+**Went well:** verifying the CI-gap on the last three commits was by design rather than assuming a stuck pipeline.
+
+**Did not go well:** same shallow/detached checkout shape; no egress, Stripe, mail, or SSH credential in this sandbox.
+
+**Handoff for the operator:** the next ungated, low-mention cold-read tier is `import_room_images.py`, `mailer.py`, `stripe_setup.py`, `wire_breadcrumbs.py` (12 mentions each, some already partially gated); nothing here needs the operator's larger time budget more than that.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (full verification pass, honest finding: nothing new, three independent lanes re-checked rather than trusted)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (`47b2cc0e`), clean. Read `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` full before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Checked GitHub directly rather than cite a prior cycle's count: 8 open issues, unchanged in number and content since the last PM check-in (2 P0/blocked-on-art, 6 decision). Confirmed CI run 1130 (the print-fix verification commit, `4ec947d8`) landed `success`; run 1131 (this session's own starting point, `47b2cc0e`) was `in_progress`, not stuck. Ran `ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED rather than treated as empty.
