@@ -56,6 +56,15 @@ body{margin:0;background:#EFE8DC;color:var(--ink);
   .intro{display:none}
   .sheet{width:auto;margin:0;border:0;padding:0}
 }
+/* Screen only, same shape build_standards.py already fixed once: a fixed
+   7.9in sheet is 758px, so a 390px phone had to pan sideways to read a
+   single sheet. The printed page (@media print, above) is untouched;
+   the SVG already scales to its container (.sheet svg{width:100%}), so
+   letting the container itself shrink is the whole fix. */
+@media screen and (max-width:800px){
+  .sheet{width:auto;max-width:100%;margin:0 12px 18px;padding:0.3in 0.24in}
+  .foot{font-size:13px}
+}
 """
 
 
