@@ -262,12 +262,31 @@ def back_body(card: dict, by_id: dict) -> str:
     return "\n".join(out)
 
 
+ZONE_TOTAL = [0]
+
+
+def zone_place(card: dict, total_zones: int) -> str:
+    """"Zone 3 of 7" on a zone card, and nothing anywhere else.
+
+    Added 2026-09-18. A zone card named a place and never said where that
+    place sits, so the deck read as a pile of tips rather than as a room
+    broken into a countable set of small jobs. The number is the card's own
+    `order` field, and the total is counted from the deck, so neither can be
+    typed wrong.
+    """
+    if card.get("type") != "ZONE CARD" or not card.get("order"):
+        return ""
+    return ('<p class="kplace">Zone %d of %d &middot; %s</p>'
+            % (card["order"], total_zones, esc(card.get("room", ""))))
+
+
 def card_html(card: dict, by_id: dict) -> str:
     return (
         f'<article class="kcard" id="{esc(card["id"])}">'
         f'<div class="kfront">{band(card)}'
         f'{art_panel(card)}'
         f'<h3 class="ktitle">{esc(card["title"])}</h3>'
+        f'{zone_place(card, ZONE_TOTAL[0])}'
         f'<p class="ktag">{esc(card["tagline"])}</p>'
         f'{diff_html(card)}'
         f'<p class="klede">{esc(front_text(card))}</p>'
@@ -285,6 +304,7 @@ def print_tile(card: dict) -> str:
         f'<div class="tband">{esc(fam)} · {esc(card["id"])}</div>'
         f'<div class="tglyph" aria-hidden="true">{glyph}</div>'
         f'<h4 class="ttitle">{esc(card["title"])}</h4>'
+        f'{zone_place(card, ZONE_TOTAL[0]).replace("kplace", "tplace")}'
         f'<p class="ttag">{esc(card["tagline"])}</p>'
         f'<p class="tlede">{esc(short(front_text(card)))}</p>'
         f'</div>'
@@ -296,6 +316,7 @@ def print_tile(card: dict) -> str:
 def build_body(deck: dict) -> str:
     cards = deck["cards"]
     by_id = {c["id"]: c for c in cards}
+    ZONE_TOTAL[0] = sum(1 for c in cards if c.get("type") == "ZONE CARD")
     zmap = {c["zone"]: c for c in cards if c["type"] == "ZONE CARD"}
     fr = {}
     ac = {}
@@ -577,6 +598,8 @@ CSS = """
 .ktitle{font-size:19px;margin:0 0 3px}
 .ktag{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.05em;
   color:var(--mute);margin:0 0 8px;text-transform:uppercase}
+.kplace{font-family:Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7a7168;margin:0 0 4px}
+.tplace{font-family:Arial,sans-serif;font-size:6.6pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#777;margin:0 0 2pt}
 .kdiff{display:block;font-size:12px;letter-spacing:2px;color:var(--terra-d);margin:0 0 8px}
 .klede{margin:0;line-height:1.5}
 .kback{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
