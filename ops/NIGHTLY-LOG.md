@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (closed a latent gap in the new video-link checker; no live customer defect found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, ff-only merged onto `origin/main` (through `69cab3e5`, then a second ff-only merge after three more concurrent pushes landed, through `1601e9aa`). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the newest `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean both times (every gate passed, 23 warnings, all previously diagnosed sandbox limits: no egress to the live site or Stripe, no mail credential, no Pillow, no ffmpeg/TTS). 8 GitHub issues, all decision or blocked-on-art, unchanged. Every backlog row in sections 2-4 was already done or Phil-gated; section 5 correctly on hold; section 6 owner gates unchanged.
+
+**Cold-read `ops/check_video_links.py` (0 mentions anywhere in this log, never previously reviewed), added earlier today by a concurrent session.** Its own job is "every YouTube video this site links to must still exist," checked via YouTube's oEmbed endpoint, but `linked_ids()`'s regex only matched a literal `youtube.com/watch?v=` or `youtu.be/` URL. Checked the real site before fixing: the zone pages' actual click-to-play embed uses `youtube-nocookie.com/embed/ID` and a `data-yt="ID"` attribute, and the app (`quest.js`) builds its own "watch on YouTube" link at runtime from a bare `"video":"ID"` field in `quest-data.js`, no URL in that file's own text at all. All three surfaces resolve to the same 12 IDs the old pattern already found, only because each zone page also carries its own JSON-LD `contentUrl` with the identical ID, generated from one shared file (`ops/youtube-published.json`). That is an accident of the current generators, not something this checker actually enforced: nothing stopped a future zone shipping a real, working `data-yt` embed with no matching literal watch/embed URL anywhere in the same file, in which case a dead video there would go unchecked forever. Not a live defect today; confirmed by re-running `linked_ids()` before and after, both find exactly the same 12 real IDs, now attributed to both real link surfaces instead of one.
+
+Widened the regex to also match `youtube(-nocookie)?.com/embed/ID`, `data-yt="ID"` and `"video":"ID"`; checked for false positives across the whole site first (every `data-yt=` and JSON `"video":` value on the real site is already an 11-character YouTube ID, none short or unrelated). New `ops/tests/test_check_video_links.py` (7 cases) proves each new surface is matched because the pattern reaches it, not because a literal URL happens to sit nearby: fail-then-pass proved directly via `git stash` on the source file alone (4 of 7 cases failed against the old regex, 0 after). `gate_tests()` already globs every `ops/tests/test_*.py` file, so no new wiring was needed.
+
+**Verified:** `preflight.py` clean after (every gate passed, 23 warnings, none new), `check_urls.py` (188/188), `audit_pages.py` (191 pages, 0 findings), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0) all clean. No price or product touched, no site page changed, IndexNow not applicable. Mobile `npm test` not run: nothing under `mobile/` was touched. No mail credential in this environment (`inbox_agent.py --apply`: unchecked, not empty).
+
+**Went well:** the standing low/no-mention `ops/*.py` cold-read lane kept finding a real, if latent, gap even in a file added the same day.
+
+**Did not go well:** nothing new; the usual sandbox limits (no live egress, no Stripe credential, no ffmpeg/TTS for the 102 stale zone-video re-renders) held throughout.
+
+**Changing next cycle:** none; the new test and the existing `gate_tests()` wiring already cover this class of regression.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md`, 8 GitHub issues) unchanged. `zone-videos-match-standard` (102 of 114 rendered videos stale against their zone's own standard) remains real and needs a machine with ffmpeg/TTS to re-render, not available in this or any prior operator sandbox this week.
+
+Pushed to main. `ops/check_video_links.py`, `ops/tests/test_check_video_links.py`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous cycle's work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` run 1123 on `bdcafb430` lands green before trusting it, because it was still `in_progress` at the 19-minute mark when this cycle closed, inside the account's normal 19-30 minute range but not yet a second data point.

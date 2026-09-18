@@ -22,6 +22,17 @@ YouTube's oEmbed endpoint answers 200 for a video anybody can watch and 401 or
 test, unlike fetching the watch page, which returns 200 with "Video
 unavailable" in the body.
 
+A literal `youtube.com/watch?v=` or `youtu.be/` URL is not the only way this
+site names a video. The zone pages' own click-to-play embed uses
+`youtube-nocookie.com/embed/ID` and a `data-yt="ID"` attribute, and the app
+(quest.js) builds its "watch on YouTube" link at runtime from a bare
+`"video":"ID"` field in quest-data.js, no URL in the source text at all. Today
+every one of those IDs also happens to appear in the same zone page's own
+JSON-LD `contentUrl`, which the original pattern alone already caught, only
+because both are generated from the one file, `ops/youtube-published.json`.
+That is an accident of the current generators, not something this checker
+enforced, so it is checked directly rather than relied on.
+
 Needs egress. Without it this says UNCHECKED and exits 0, because "could not
 look" and "all fine" are different claims.
 
@@ -40,7 +51,12 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
-ID = re.compile(r"(?:youtube\.com/watch\?v=|youtu\.be/)([A-Za-z0-9_-]{6,})")
+ID = re.compile(
+    r'(?:youtube\.com/watch\?v=|youtu\.be/|'
+    r'youtube(?:-nocookie)?\.com/embed/|'
+    r'data-yt="|'
+    r'"video"\s*:\s*"'
+    r')([A-Za-z0-9_-]{6,})')
 OEMBED = ("https://www.youtube.com/oembed?url="
           "https://www.youtube.com/watch%3Fv%3D{}&format=json")
 
