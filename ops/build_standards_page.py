@@ -268,6 +268,7 @@ def main() -> int:
       and the everyday moment that brings it back.</p>
       <div class="cta-row">
         <a class="btn btn-on-deep btn-lg" href="downloads/6S-Standards-Pack.html">Open all twenty sheets</a>
+        <a class="btn btn-on-deep btn-lg" href="downloads/6S-Micro-Zone-Map.html">Or the Micro Zone Map, free</a>
       </div>
       <p style="color:#C9BFA9;font-size:14px;margin-top:14px">Opens in your
       browser. Print from there, or save it as a PDF. No email, no account.</p>

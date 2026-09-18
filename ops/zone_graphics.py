@@ -226,12 +226,22 @@ def zone_diagram_svg(room, zone, siblings, done_items, uid=""):
                "".join(out)))
 
 
-def room_map_svg(room, zones, uid=""):
-    """Every micro zone in one room, numbered, with the time each takes."""
+def room_map_svg(room, zones, uid="", cols=None, cw=330, chh=84):
+    """Every micro zone in one room, numbered, with the time each takes.
+
+    cols, cw and chh are parameters because one map serves two shapes.
+    On a room page it sits in a wide column, where two or three narrow
+    columns read best. On a printed sheet it owns a portrait page, and
+    the two-column version left the bottom third of the paper empty,
+    which reads as something that failed to print. The printable pack
+    passes one wide column with taller chips instead. Measured by
+    printing the pack, not by eye.
+    """
     n = len(zones)
-    cols = 2 if n <= 8 else 3
+    if cols is None:
+        cols = 2 if n <= 8 else 3
     rowcount = (n + cols - 1) // cols
-    cw, chh, gap, pad = 330, 84, 14, 34
+    gap, pad = 14, 34
     W = pad * 2 + cols * cw + (cols - 1) * gap
     H = pad * 2 + 104 + rowcount * (chh + gap)
 

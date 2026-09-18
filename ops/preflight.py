@@ -914,7 +914,11 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_pages.py", "build_resources.py",
     "wire_generated_catalog.py", "build_product_schema.py",
     "build_articles.py", "build_quest.py", "build_printpack.py",
-    "build_standards.py", "build_deck_gallery.py",
+    "build_standards.py",
+    # The printable Micro Zone Map, added 2026-09-18: 20 room sheets built
+    # from ops/zone_graphics.py, so a sheet cannot claim a zone the site
+    # does not have.
+    "build_zone_map_pack.py", "build_deck_gallery.py",
     "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
     "build_kit_page.py", "build_corporate.py",
     "build_kitchen_deck_page.py",

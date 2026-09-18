@@ -38,6 +38,7 @@ PACK = os.path.join(ROOT, "site", "downloads", "6S-Standards-Pack.html")
 PRINTABLES = [
     ("site/downloads/6S-Standards-Pack.html", "the free Standards Pack"),
     ("site/kitchen-deck.html", "the free Kitchen deck"),
+    ("site/downloads/6S-Micro-Zone-Map.html", "the free Micro Zone Map"),
 ]
 MARKER = re.compile(r"SHEET (\d+) OF (\d+)", re.I)
 
