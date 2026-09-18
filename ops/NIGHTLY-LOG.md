@@ -2,6 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work was NOT finished on arrival: local preflight FAILED 2 gates, a concurrent cycle fixed the same defect while this one was mid-diagnosis, merged rather than duplicated)
+
+Attached via `merge --ff-only` onto `origin/main` (`70bd2b62`), clean tree. Checked GitHub Actions directly: run 330 (`4cb8b9a4`), the CI confirmation two prior PM check-ins had handed forward, completed `success`, as did runs 331 and 332 on the two commits since. That thread is closed.
+
+Foreground `preflight.py` timed out at 120s (the standing shape), so ran it fully backgrounded instead of trusting a cut-off pass. It came back with **2 real FAILs, not the clean result the last few entries reported**: `gate_etsy_pdfs_current` (the five delivered Etsy PDFs no longer matched what the site currently says) and `gate_prerender_shop_current` (`site/shop.html`'s pre-rendered grid, what a JS-less crawler or search engine sees, had drifted from the live catalogue). Per STEP 2, this became the cycle's actual work rather than a new pick.
+
+Regenerated both (`python ops/prerender_shop.py`, `python build/listings/build_etsy_assets.py`) and committed. The push was rejected: a concurrent cycle (`fbbb2c4f`, `024dba37`) had found and fixed the exact same two gates in parallel while this one was still running the browser-driven Etsy render. Rather than force or hand-resolve the conflict, discarded the local duplicate commit (nothing in it was unique; PDF bytes are not deterministic between renders but the gate compares normalized text, so either render is equally valid) and reset onto `origin/main`, which already carried the fix plus a third, unrelated slug-consolidation fix from the same window. Reran `preflight.py` fresh against that tip: every gate passed, 22 warnings, all previously diagnosed sandbox limits.
+
+GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable by a 30-minute slot. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated, nothing new to start. Fast checks clean: `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), mobile `npm test` (all suites, `mobile/quest-app`).
+
+Went well: not trusting the last several entries' "preflight clean" citations and actually running it fresh, which is what caught a real, currently-live customer-facing defect (stale delivered PDFs, a stale storefront for crawlers) that had gone unreported since 2026-09-17/18. Also not duplicating a concurrent cycle's identical fix.
+Did not go well: two PM cycles in a row have now had to hand off "watch a Checks run finish" because the workflow queue (five pushes in the last 30 minutes, several from concurrent cycles) outlives a single 30-minute slot; `checks.yml` runs are completing in order but several were still in `in_progress` when this slot ended.
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` runs 1151 through 1154 (commits `0a006d06` through `443c45e0`) all complete `success`; run 1150 already confirmed green during this cycle. If any of the four fails, that failure is real work, not a flake, since local preflight is clean at the current tip.
+
+Pushed to main: this entry, command deck.
+
 ## 2026-09-18, scheduled operator cycle (confirmed the prior handoff's CI failure was already fixed and green; cold-read check_video_standard.py, found and closed a third occurrence of the slug single-source-of-truth gap)
 
 **Did:** Unshallowed (container arrived shallow and detached) and attached via ff-only merge onto `origin/main` (`4cb8b9a4`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, the true last four `ops/NIGHTLY-LOG.md` entries.
