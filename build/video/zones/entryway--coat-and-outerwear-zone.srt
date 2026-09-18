@@ -8,304 +8,305 @@ outerwear you will actually wear this
 week, at the moment you reach for it.
 
 3
-00:00:03,200 --> 00:00:04,120
+00:00:03,200 --> 00:00:04,240
 What done looks like
 
 4
-00:00:04,120 --> 00:00:05,040
+00:00:04,240 --> 00:00:05,280
 1 One coat per person on the rail
 
 5
-00:00:05,040 --> 00:00:05,960
+00:00:05,280 --> 00:00:06,320
 2 One bag
 
 6
-00:00:05,960 --> 00:00:06,880
+00:00:06,320 --> 00:00:07,360
 3 Hats and gloves together in a single
 labeled bin on the shelf above
 
 7
-00:00:06,880 --> 00:00:07,800
-4 Umbrellas standing in the stand
+00:00:07,360 --> 00:00:08,400
+4 Umbrellas standing in the stand + 1 more
+on the zone page
 
 8
-00:00:07,800 --> 00:00:10,000
+00:00:08,400 --> 00:00:10,600
 One session Coat and Outerwear Zone 45-75
 min
 
 9
-00:00:10,000 --> 00:00:11,900
+00:00:10,600 --> 00:00:12,500
 Sort Take every coat
 
 10
-00:00:11,900 --> 00:00:14,000
+00:00:12,500 --> 00:00:14,600
 Sort Take every coat down.
 
 11
-00:00:14,000 --> 00:00:14,950
+00:00:14,600 --> 00:00:15,550
 Sort Anything that did not go outdoors
 once through the last cold season leaves,
 
 12
-00:00:14,950 --> 00:00:15,900
+00:00:15,550 --> 00:00:16,500
 and so
 
 13
-00:00:15,900 --> 00:00:16,950
+00:00:16,500 --> 00:00:17,550
 Sort Anything that did not go outdoors
 once through the last cold season leaves,
 
 14
-00:00:16,950 --> 00:00:18,000
+00:00:17,550 --> 00:00:18,600
 and so do the single gloves you kept in
 case the other one turned up.
 
 15
-00:00:18,000 --> 00:00:19,900
+00:00:18,600 --> 00:00:20,500
 Sort Off-season coats go to a bedroom
 closet, not to
 
 16
-00:00:19,900 --> 00:00:22,000
+00:00:20,500 --> 00:00:22,600
 Sort Off-season coats go to a bedroom
 closet, not to the far end of the same
 rail.
 
 17
-00:00:22,000 --> 00:00:23,900
+00:00:22,600 --> 00:00:24,500
 Straighten Hooks for what goes on and off
 daily, hangers
 
 18
-00:00:23,900 --> 00:00:24,950
+00:00:24,500 --> 00:00:25,550
 Straighten Hooks for what goes on and off
 daily, hangers only for the wool coat
 
 19
-00:00:24,950 --> 00:00:26,000
+00:00:25,550 --> 00:00:26,600
 that creases.
 
 20
-00:00:26,000 --> 00:00:27,900
+00:00:26,600 --> 00:00:28,500
 Straighten Set the lowest hook at the
 height of the shortest person who uses
 
 21
-00:00:27,900 --> 00:00:28,950
+00:00:28,500 --> 00:00:29,550
 Straighten Set the lowest hook at the
 height of the shortest person who uses it,
 
 22
-00:00:28,950 --> 00:00:30,000
+00:00:29,550 --> 00:00:30,600
 and keep the two hooks nearest the door
 empty for visitors.
 
 23
-00:00:30,000 --> 00:00:31,900
+00:00:30,600 --> 00:00:32,500
 Shine Brush the shoulders of the hanging
 coats, wipe the shelf where dust settles
 
 24
-00:00:31,900 --> 00:00:32,950
+00:00:32,500 --> 00:00:33,550
 Shine Brush the shoulders of the hanging
 coats, wipe the shelf where dust settles
 
 25
-00:00:32,950 --> 00:00:34,000
+00:00:33,550 --> 00:00:34,600
 on top of the hat bin, and tip out the
 umbrella stand.
 
 26
-00:00:34,000 --> 00:00:35,900
+00:00:34,600 --> 00:00:36,500
 Shine There is always water and grit
 
 27
-00:00:35,900 --> 00:00:38,000
+00:00:36,500 --> 00:00:38,600
 Shine There is always water and grit in
 the bottom of it.
 
 28
-00:00:38,000 --> 00:00:39,900
+00:00:38,600 --> 00:00:40,500
 Safety Hang your full weight on each hook
 before you
 
 29
-00:00:39,900 --> 00:00:40,950
+00:00:40,500 --> 00:00:41,550
 Safety Hang your full weight on each hook
 before you trust it with a soaked winter
 
 30
-00:00:40,950 --> 00:00:42,000
+00:00:41,550 --> 00:00:42,600
 coat.
 
 31
-00:00:42,000 --> 00:00:43,900
+00:00:42,600 --> 00:00:44,500
 Safety Hooks driven into plasterboard
 without an anchor pull out later, with the
 
 32
-00:00:43,900 --> 00:00:44,950
+00:00:44,500 --> 00:00:45,550
 Safety Hooks driven into plasterboard
 without an anchor pull out later, with the
 
 33
-00:00:44,950 --> 00:00:46,000
+00:00:45,550 --> 00:00:46,600
 coat still attached and a lump of wall
 behind it.
 
 34
-00:00:46,000 --> 00:00:46,950
+00:00:46,600 --> 00:00:47,550
 Standardize Write the contents and the
 season on the shelf bin, hats and gloves,
 
 35
-00:00:46,950 --> 00:00:47,900
+00:00:47,550 --> 00:00:48,500
 winter, so whoever reaches
 
 36
-00:00:47,900 --> 00:00:48,600
+00:00:48,500 --> 00:00:49,200
 Standardize Write the contents and the
 season on the shelf bin, hats and gloves,
 
 37
-00:00:48,600 --> 00:00:49,300
+00:00:49,200 --> 00:00:49,900
 winter, so whoever reaches up for it in
 October knows without opening the lid
 
 38
-00:00:49,300 --> 00:00:50,000
+00:00:49,900 --> 00:00:50,600
 whether they have the right bin.
 
 39
-00:00:50,000 --> 00:00:51,900
+00:00:50,600 --> 00:00:52,500
 Sustain Whoever loads the washing machine
 walks the rail on the way past, under a
 
 40
-00:00:51,900 --> 00:00:52,950
+00:00:52,500 --> 00:00:53,550
 Sustain Whoever loads the washing machine
 walks the rail on the way past, under a
 
 41
-00:00:52,950 --> 00:00:54,000
+00:00:53,550 --> 00:00:54,600
 minute, returning whatever was left on a
 chair back or the bannister.
 
 42
-00:00:54,000 --> 00:00:55,900
+00:00:54,600 --> 00:00:56,500
 Sustain The count does the telling: two
 hooks stay empty, so a full
 
 43
-00:00:55,900 --> 00:00:56,950
+00:00:56,500 --> 00:00:57,550
 Sustain The count does the telling: two
 hooks stay empty, so a full rail read from
 
 44
-00:00:56,950 --> 00:00:58,000
+00:00:57,550 --> 00:00:58,600
 the doorway means the room is already
 over.
 
 45
-00:00:58,000 --> 00:00:59,900
+00:00:58,600 --> 00:01:00,500
 Sustain Recovery is carrying the two coats
 nobody wore this month up to
 
 46
-00:00:59,900 --> 00:01:00,600
+00:01:00,500 --> 00:01:01,200
 Sustain Recovery is carrying the two coats
 nobody wore this month up to a bedroom,
 
 47
-00:01:00,600 --> 00:01:01,300
+00:01:01,200 --> 00:01:01,900
 not rehanging the rail.
 
 48
-00:01:01,300 --> 00:01:02,000
+00:01:01,900 --> 00:01:02,600
 Weather outruns the habit here.
 
 49
-00:01:02,000 --> 00:01:03,900
+00:01:02,600 --> 00:01:04,500
 Sustain One cold snap adds a layer per
 person in a day,
 
 50
-00:01:03,900 --> 00:01:04,950
+00:01:04,500 --> 00:01:05,550
 Sustain One cold snap adds a layer per
 person in a day, and nobody takes it back
 
 51
-00:01:04,950 --> 00:01:06,000
+00:01:05,550 --> 00:01:06,600
 off when it warms.
 
 52
-00:01:06,000 --> 00:01:06,243
+00:01:06,600 --> 00:01:06,843
 The call Somewhere on this rail is a good
 coat that cost real money and goes
 
 53
-00:01:06,243 --> 00:01:06,486
+00:01:06,843 --> 00:01:07,086
 outside roughly never.
 
 54
-00:01:06,486 --> 00:01:06,729
+00:01:07,086 --> 00:01:07,329
 It survives every clear-out because
 getting rid of it feels like admitting to
 the
 
 55
-00:01:06,729 --> 00:01:06,971
+00:01:07,329 --> 00:01:07,571
 money.
 
 56
-00:01:06,971 --> 00:01:07,214
+00:01:07,571 --> 00:01:07,814
 The rule is that coats are counted by
 weather, not by number.
 
 57
-00:01:07,214 --> 00:01:07,457
+00:01:07,814 --> 00:01:08,057
 Each person gets one coat per kind of
 weather your climate genuinely produces:
 wet,
 
 58
-00:01:07,457 --> 00:01:07,700
+00:01:08,057 --> 00:01:08,300
 cold, and something in between.
 
 59
-00:01:07,700 --> 00:01:07,943
+00:01:08,300 --> 00:01:08,543
 A second coat in the same category has to
 beat the first one on a specific,
 
 60
-00:01:07,943 --> 00:01:08,186
+00:01:08,543 --> 00:01:08,786
 nameable day.
 
 61
-00:01:08,186 --> 00:01:08,429
+00:01:08,786 --> 00:01:09,029
 If you cannot name that day, that is the
 coat that leaves.
 
 62
-00:01:08,429 --> 00:01:08,671
+00:01:09,029 --> 00:01:09,271
 The expensive one is not exempt, because
 the money is already spent whether it
 
 63
-00:01:08,671 --> 00:01:08,914
+00:01:09,271 --> 00:01:09,514
 hangs here or keeps someone else warm.
 
 64
-00:01:08,914 --> 00:01:09,157
+00:01:09,514 --> 00:01:09,757
 Give it one trial: front hook, most
 reachable spot, two weeks.
 
 65
-00:01:09,157 --> 00:01:09,400
+00:01:09,757 --> 00:01:10,000
 If you did not reach for it, you have your
 answer and you had it before you started.
 
 66
-00:01:09,400 --> 00:01:11,800
+00:01:10,000 --> 00:01:12,400
 Coat and Outerwear Zone The full reset,
 free at 6s-success.com

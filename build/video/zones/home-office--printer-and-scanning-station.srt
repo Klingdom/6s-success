@@ -8,298 +8,299 @@ Turn paper into files and files into
 paper, without hunting for either.
 
 3
-00:00:03,200 --> 00:00:03,967
+00:00:03,200 --> 00:00:04,067
 What done looks like
 
 4
-00:00:03,967 --> 00:00:04,733
+00:00:04,067 --> 00:00:04,933
 1 Paper in a bin directly beneath the
 printer with a min line and a max line
 drawn
 
 5
-00:00:04,733 --> 00:00:05,500
+00:00:04,933 --> 00:00:05,800
 inside it
 
 6
-00:00:05,500 --> 00:00:06,267
+00:00:05,800 --> 00:00:06,667
 2 One spare cartridge in a labelled box
 beside it
 
 7
-00:00:06,267 --> 00:00:07,033
+00:00:06,667 --> 00:00:07,533
 3 A single scan tray with a to-do side and
 a done side
 
 8
-00:00:07,033 --> 00:00:07,800
-4 Clear air behind the machine
+00:00:07,533 --> 00:00:08,400
+4 Clear air behind the machine + 1 more on
+the zone page
 
 9
-00:00:07,800 --> 00:00:10,000
+00:00:08,400 --> 00:00:10,600
 One session Printer and Scanning Station
 30-45 min
 
 10
-00:00:10,000 --> 00:00:11,900
+00:00:10,600 --> 00:00:12,500
 Sort Keep only ink or toner that matches
 the model
 
 11
-00:00:11,900 --> 00:00:12,950
+00:00:12,500 --> 00:00:13,550
 Sort Keep only ink or toner that matches
 the model number on the printer currently
 
 12
-00:00:12,950 --> 00:00:14,000
+00:00:13,550 --> 00:00:14,600
 plugged in.
 
 13
-00:00:14,000 --> 00:00:15,900
+00:00:14,600 --> 00:00:16,500
 Sort The half reams of odd paper, the
 letterhead with the old
 
 14
-00:00:15,900 --> 00:00:16,950
+00:00:16,500 --> 00:00:17,550
 Sort The half reams of odd paper, the
 letterhead with the old address, and the
 
 15
-00:00:16,950 --> 00:00:18,000
+00:00:17,550 --> 00:00:18,600
 envelopes from two houses ago go out.
 
 16
-00:00:18,000 --> 00:00:18,950
+00:00:18,600 --> 00:00:19,550
 Straighten Paper goes directly under the
 printer, the spare cartridge in a labelled
 
 17
-00:00:18,950 --> 00:00:19,900
+00:00:19,550 --> 00:00:20,500
 box beside it, and the scan pile gets one
 tray with
 
 18
-00:00:19,900 --> 00:00:20,600
+00:00:20,500 --> 00:00:21,200
 Straighten Paper goes directly under the
 printer, the spare cartridge in a labelled
 
 19
-00:00:20,600 --> 00:00:21,300
+00:00:21,200 --> 00:00:21,900
 box beside it, and the scan pile gets one
 tray with a to-do side and a done side,
 
 20
-00:00:21,300 --> 00:00:22,000
+00:00:21,900 --> 00:00:22,600
 so you can tell at a glance what has
 already been through the glass.
 
 21
-00:00:22,000 --> 00:00:23,900
+00:00:22,600 --> 00:00:24,500
 Shine Powered off, lift the lid and clean
 the scanner glass with cleaner on
 
 22
-00:00:23,900 --> 00:00:24,950
+00:00:24,500 --> 00:00:25,550
 Shine Powered off, lift the lid and clean
 the scanner glass with cleaner on the
 
 23
-00:00:24,950 --> 00:00:26,000
+00:00:25,550 --> 00:00:26,600
 cloth, never sprayed onto the glass where
 it can run inside.
 
 24
-00:00:26,000 --> 00:00:27,900
+00:00:26,600 --> 00:00:28,500
 Shine Use a dry cloth for toner dust and
 vacuum
 
 25
-00:00:27,900 --> 00:00:30,000
+00:00:28,500 --> 00:00:30,600
 Shine Use a dry cloth for toner dust and
 vacuum the paper lint around the feed
 tray.
 
 26
-00:00:30,000 --> 00:00:30,950
+00:00:30,600 --> 00:00:31,550
 Safety Leave clear air at the back of the
 machine, because the fuser runs genuinely
 
 27
-00:00:30,950 --> 00:00:31,900
+00:00:31,550 --> 00:00:32,500
 hot, and plug
 
 28
-00:00:31,900 --> 00:00:32,600
+00:00:32,500 --> 00:00:33,200
 Safety Leave clear air at the back of the
 machine, because the fuser runs genuinely
 
 29
-00:00:32,600 --> 00:00:33,300
+00:00:33,200 --> 00:00:33,900
 hot, and plug the printer straight into a
 wall outlet rather than into a strip
 
 30
-00:00:33,300 --> 00:00:34,000
+00:00:33,900 --> 00:00:34,600
 chained off another strip.
 
 31
-00:00:34,000 --> 00:00:35,900
+00:00:34,600 --> 00:00:36,500
 Safety Nothing sits on top of the lid, not
 
 32
-00:00:35,900 --> 00:00:38,000
+00:00:36,500 --> 00:00:38,600
 Safety Nothing sits on top of the lid, not
 the plant and not your drink.
 
 33
-00:00:38,000 --> 00:00:39,900
+00:00:38,600 --> 00:00:40,500
 Standardize Draw a min line and a max
 
 34
-00:00:39,900 --> 00:00:42,000
+00:00:40,500 --> 00:00:42,600
 Standardize Draw a min line and a max line
 inside the paper bin.
 
 35
-00:00:42,000 --> 00:00:43,900
+00:00:42,600 --> 00:00:44,500
 Standardize When the stack drops to the
 min line, the next ream goes on
 
 36
-00:00:43,900 --> 00:00:44,950
+00:00:44,500 --> 00:00:45,550
 Standardize When the stack drops to the
 min line, the next ream goes on the
 
 37
-00:00:44,950 --> 00:00:46,000
+00:00:45,550 --> 00:00:46,600
 shopping list that day, not the day it
 runs out mid-job.
 
 38
-00:00:46,000 --> 00:00:47,900
+00:00:46,600 --> 00:00:48,500
 Sustain When you pull the last sheet from
 the bin, refill it from the
 
 39
-00:00:47,900 --> 00:00:48,950
+00:00:48,500 --> 00:00:49,550
 Sustain When you pull the last sheet from
 the bin, refill it from the shelf before
 
 40
-00:00:48,950 --> 00:00:50,000
+00:00:49,550 --> 00:00:50,600
 you walk away, while you are already
 standing there.
 
 41
-00:00:50,000 --> 00:00:51,900
+00:00:50,600 --> 00:00:52,500
 Sustain Ten seconds, by whoever
 
 42
-00:00:51,900 --> 00:00:54,000
+00:00:52,500 --> 00:00:54,600
 Sustain Ten seconds, by whoever took that
 sheet.
 
 43
-00:00:54,000 --> 00:00:55,900
+00:00:54,600 --> 00:00:56,500
 Sustain The min line inside the bin is the
 earlier signal, because at the
 
 44
-00:00:55,900 --> 00:00:56,950
+00:00:56,500 --> 00:00:57,550
 Sustain The min line inside the bin is the
 earlier signal, because at the line the
 
 45
-00:00:56,950 --> 00:00:58,000
+00:00:57,550 --> 00:00:58,600
 next ream goes on the shopping list that
 day.
 
 46
-00:00:58,000 --> 00:00:59,900
+00:00:58,600 --> 00:01:00,500
 Sustain Anything on the machine lid is the
 other tell, since a lid used
 
 47
-00:00:59,900 --> 00:01:00,950
+00:01:00,500 --> 00:01:01,550
 Sustain Anything on the machine lid is the
 other tell, since a lid used as a shelf
 
 48
-00:01:00,950 --> 00:01:02,000
+00:01:01,550 --> 00:01:02,600
 is a scanner about to stop being one.
 
 49
-00:01:02,000 --> 00:01:03,900
+00:01:02,600 --> 00:01:04,500
 Sustain Everything here fails mid job,
 when you are
 
 50
-00:01:03,900 --> 00:01:04,950
+00:01:04,500 --> 00:01:05,550
 Sustain Everything here fails mid job,
 when you are least willing to stop and fix
 
 51
-00:01:04,950 --> 00:01:06,000
+00:01:05,550 --> 00:01:06,600
 it.
 
 52
-00:01:06,000 --> 00:01:06,283
+00:01:06,600 --> 00:01:06,883
 The call The old printer is still in the
 corner, or on the floor of the cupboard,
 
 53
-00:01:06,283 --> 00:01:06,567
+00:01:06,883 --> 00:01:07,167
 because it might be a backup.
 
 54
-00:01:06,567 --> 00:01:06,850
+00:01:07,167 --> 00:01:07,450
 Settle it before you leave this corner
 today: plug it in and print a test page
 
 55
-00:01:06,850 --> 00:01:07,133
+00:01:07,450 --> 00:01:07,733
 right now.
 
 56
-00:01:07,133 --> 00:01:07,417
+00:01:07,733 --> 00:01:08,017
 If it prints, and you are prepared to keep
 a spare cartridge for it in stock, it is
 
 57
-00:01:07,417 --> 00:01:07,700
+00:01:08,017 --> 00:01:08,300
 a backup and it gets a home.
 
 58
-00:01:07,700 --> 00:01:07,983
+00:01:08,300 --> 00:01:08,583
 If you will not plug it in today, it is
 not a backup, it is a large object you
 have
 
 59
-00:01:07,983 --> 00:01:08,267
+00:01:08,583 --> 00:01:08,867
 not decided about, and it goes to
 electronics recycling this week.
 
 60
-00:01:08,267 --> 00:01:08,550
+00:01:08,867 --> 00:01:09,150
 Apply the same blade to the sealed
 cartridges: hold each box against the
 model
 
 61
-00:01:08,550 --> 00:01:08,833
+00:01:09,150 --> 00:01:09,433
 number on the machine you actually use.
 
 62
-00:01:08,833 --> 00:01:09,117
+00:01:09,433 --> 00:01:09,717
 Anything unmatched sells this week for
 more than it will ever be worth again,
 
 63
-00:01:09,117 --> 00:01:09,400
+00:01:09,717 --> 00:01:10,000
 because cartridge value only falls.
 
 64
-00:01:09,400 --> 00:01:11,800
+00:01:10,000 --> 00:01:12,400
 Printer and Scanning Station The full
 reset, free at 6s-success.com

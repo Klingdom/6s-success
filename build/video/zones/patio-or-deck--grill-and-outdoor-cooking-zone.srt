@@ -9,356 +9,360 @@ grill to find a tool or wondering if there
 is gas.
 
 3
-00:00:03,200 --> 00:00:04,120
+00:00:03,200 --> 00:00:04,067
 What done looks like
 
 4
-00:00:04,120 --> 00:00:05,040
+00:00:04,067 --> 00:00:04,933
 1 Grates scraped bare
 
 5
-00:00:05,040 --> 00:00:05,960
+00:00:04,933 --> 00:00:05,800
 2 Grease tray emptied and back in its
 rails
 
 6
-00:00:05,960 --> 00:00:06,880
+00:00:05,800 --> 00:00:06,667
 3 Four tools on the grill's own hooks and
 no fifth anywhere
 
 7
-00:00:06,880 --> 00:00:07,800
+00:00:06,667 --> 00:00:07,533
 4 The propane tank upright with its level
-written on the collar
+written on the collar + 1 more on the
 
 8
-00:00:07,800 --> 00:00:10,000
+00:00:07,533 --> 00:00:08,400
+zone page
+
+9
+00:00:08,400 --> 00:00:10,600
 One session Grill and Outdoor Cooking Zone
 60-90 min
 
-9
-00:00:10,000 --> 00:00:11,900
+10
+00:00:10,600 --> 00:00:12,500
 Sort Empty the side shelf and the
 
-10
-00:00:11,900 --> 00:00:14,000
+11
+00:00:12,500 --> 00:00:14,600
 Sort Empty the side shelf and the cabinet
 under the grill.
 
-11
-00:00:14,000 --> 00:00:14,950
+12
+00:00:14,600 --> 00:00:15,550
 Sort Out comes a bag of dried-out lighter
 cubes, three sets of tongs, a thermometer
-
-12
-00:00:14,950 --> 00:00:15,900
-with
 
 13
-00:00:15,900 --> 00:00:16,600
+00:00:15,550 --> 00:00:16,500
+with
+
+14
+00:00:16,500 --> 00:00:17,200
 Sort Out comes a bag of dried-out lighter
 cubes, three sets of tongs, a thermometer
 
-14
-00:00:16,600 --> 00:00:17,300
+15
+00:00:17,200 --> 00:00:17,900
 with a dead battery, and sauce bottles
 that spent a whole summer at outdoor
 
-15
-00:00:17,300 --> 00:00:18,000
+16
+00:00:17,900 --> 00:00:18,600
 temperature.
 
-16
-00:00:18,000 --> 00:00:19,900
+17
+00:00:18,600 --> 00:00:20,500
 Sort Keep one long-handled tong, one
 spatula, one
 
-17
-00:00:19,900 --> 00:00:20,950
+18
+00:00:20,500 --> 00:00:21,550
 Sort Keep one long-handled tong, one
 spatula, one instant-read thermometer, and
 one
 
-18
-00:00:20,950 --> 00:00:22,000
+19
+00:00:21,550 --> 00:00:22,600
 basting brush.
 
-19
-00:00:22,000 --> 00:00:23,900
+20
+00:00:22,600 --> 00:00:24,500
 Straighten Hang the tongs and spatula on
 the grill's own hooks so you
 
-20
-00:00:23,900 --> 00:00:24,950
+21
+00:00:24,500 --> 00:00:25,550
 Straighten Hang the tongs and spatula on
 the grill's own hooks so you never walk
 
-21
-00:00:24,950 --> 00:00:26,000
+22
+00:00:25,550 --> 00:00:26,600
 away from a lit grill to go looking.
 
-22
-00:00:26,000 --> 00:00:26,950
+23
+00:00:26,600 --> 00:00:27,550
 Straighten Fuel keeps its distance from
 heat: the propane tank upright and
-
-23
-00:00:26,950 --> 00:00:27,900
-outdoors, the
 
 24
-00:00:27,900 --> 00:00:28,950
+00:00:27,550 --> 00:00:28,500
+outdoors, the
+
+25
+00:00:28,500 --> 00:00:29,550
 Straighten Fuel keeps its distance from
 heat: the propane tank upright and
 
-25
-00:00:28,950 --> 00:00:30,000
+26
+00:00:29,550 --> 00:00:30,600
 outdoors, the charcoal bag sealed and off
 the ground, the chimney starter beside it.
 
-26
-00:00:30,000 --> 00:00:30,950
+27
+00:00:30,600 --> 00:00:31,550
 Shine Burn the grates off, then pull the
 flavorizer bars and scrape the grease tray
-
-27
-00:00:30,950 --> 00:00:31,900
-and drip pan
 
 28
-00:00:31,900 --> 00:00:32,600
+00:00:31,550 --> 00:00:32,500
+and drip pan
+
+29
+00:00:32,500 --> 00:00:33,200
 Shine Burn the grates off, then pull the
 flavorizer bars and scrape the grease tray
 
-29
-00:00:32,600 --> 00:00:33,300
+30
+00:00:33,200 --> 00:00:33,900
 and drip pan out into the bin rather than
 leaving a rendered layer to feed the next
 
-30
-00:00:33,300 --> 00:00:34,000
+31
+00:00:33,900 --> 00:00:34,600
 flare-up.
 
-31
-00:00:34,000 --> 00:00:35,900
-Shine While the burners are exposed, look
-up into the tubes; a spider web in a
-
 32
-00:00:35,900 --> 00:00:36,950
+00:00:34,600 --> 00:00:36,500
 Shine While the burners are exposed, look
 up into the tubes; a spider web in a
 
 33
-00:00:36,950 --> 00:00:38,000
+00:00:36,500 --> 00:00:37,550
+Shine While the burners are exposed, look
+up into the tubes; a spider web in a
+
+34
+00:00:37,550 --> 00:00:38,600
 venturi tube is exactly why the flame runs
 yellow and lazy along one side.
 
-34
-00:00:38,000 --> 00:00:39,900
-Safety Brush soapy water onto the propane
-hose and the regulator fitting, then open
-
 35
-00:00:39,900 --> 00:00:40,600
+00:00:38,600 --> 00:00:40,500
 Safety Brush soapy water onto the propane
 hose and the regulator fitting, then open
 
 36
-00:00:40,600 --> 00:00:41,300
-the valve.
+00:00:40,500 --> 00:00:41,200
+Safety Brush soapy water onto the propane
+hose and the regulator fitting, then open
 
 37
-00:00:41,300 --> 00:00:42,000
+00:00:41,200 --> 00:00:41,900
+the valve.
+
+38
+00:00:41,900 --> 00:00:42,600
 Bubbles mean replace the hose, not tighten
 it and hope.
 
-38
-00:00:42,000 --> 00:00:42,950
+39
+00:00:42,600 --> 00:00:43,550
 Safety Retire any wire brush whose
 bristles you can pull free with your
 fingers,
-
-39
-00:00:42,950 --> 00:00:43,900
-because a loose
 
 40
-00:00:43,900 --> 00:00:44,950
+00:00:43,550 --> 00:00:44,500
+because a loose
+
+41
+00:00:44,500 --> 00:00:45,550
 Safety Retire any wire brush whose
 bristles you can pull free with your
 fingers,
 
-41
-00:00:44,950 --> 00:00:46,000
+42
+00:00:45,550 --> 00:00:46,600
 because a loose bristle ends up in food,
 and switch to a scraper or a coiled brush.
 
-42
-00:00:46,000 --> 00:00:47,900
+43
+00:00:46,600 --> 00:00:48,500
 Standardize The grease tray gets emptied
 on a fixed count of cooks,
 
-43
-00:00:47,900 --> 00:00:48,950
+44
+00:00:48,500 --> 00:00:49,550
 Standardize The grease tray gets emptied
 on a fixed count of cooks, marked off on a
 
-44
-00:00:48,950 --> 00:00:50,000
+45
+00:00:49,550 --> 00:00:50,600
 card taped inside the cabinet door.
 
-45
-00:00:50,000 --> 00:00:51,900
+46
+00:00:50,600 --> 00:00:52,500
 Standardize A tank is written full or
 empty in marker on its collar the same
 
-46
-00:00:51,900 --> 00:00:52,950
+47
+00:00:52,500 --> 00:00:53,550
 Standardize A tank is written full or
 empty in marker on its collar the same day
 it
 
-47
-00:00:52,950 --> 00:00:54,000
+48
+00:00:53,550 --> 00:00:54,600
 changes state, so nobody has to guess by
 lifting it.
 
-48
-00:00:54,000 --> 00:00:55,900
+49
+00:00:54,600 --> 00:00:56,500
 Sustain Every time you close the lid at
 the end of a cook, scrape the grates
 
-49
-00:00:55,900 --> 00:00:56,950
+50
+00:00:56,500 --> 00:00:57,550
 Sustain Every time you close the lid at
 the end of a cook, scrape the grates while
 
-50
-00:00:56,950 --> 00:00:58,000
+51
+00:00:57,550 --> 00:00:58,600
 they are still hot and glance into the
 tray before you walk away.
 
-51
-00:00:58,000 --> 00:00:58,950
+52
+00:00:58,600 --> 00:00:59,550
 Sustain A minute, by whoever cooked.
 
-52
-00:00:58,950 --> 00:00:59,900
+53
+00:00:59,550 --> 00:01:00,500
 The card inside the cabinet door counts
 the cooks between
 
-53
-00:00:59,900 --> 00:01:00,600
+54
+00:01:00,500 --> 00:01:01,200
 Sustain A minute, by whoever cooked.
 
-54
-00:01:00,600 --> 00:01:01,300
+55
+00:01:01,200 --> 00:01:01,900
 The card inside the cabinet door counts
 the cooks between grease tray emptyings,
 so
 
-55
-00:01:01,300 --> 00:01:02,000
+56
+00:01:01,900 --> 00:01:02,600
 that job has a written trigger rather than
 a smell.
 
-56
-00:01:02,000 --> 00:01:03,900
+57
+00:01:02,600 --> 00:01:04,500
 Sustain Slip is a fifth tool appearing on
 the hooks, or a tank collar with
 
-57
-00:01:03,900 --> 00:01:04,600
+58
+00:01:04,500 --> 00:01:05,200
 Sustain Slip is a fifth tool appearing on
 the hooks, or a tank collar with no level
 
-58
-00:01:04,600 --> 00:01:05,300
+59
+00:01:05,200 --> 00:01:05,900
 written on it.
 
-59
-00:01:05,300 --> 00:01:06,000
+60
+00:01:05,900 --> 00:01:06,600
 Recovery is scraping cold, which is
 genuinely worse.
 
-60
-00:01:06,000 --> 00:01:07,900
+61
+00:01:06,600 --> 00:01:08,500
 Sustain The window closes as
 
-61
-00:01:07,900 --> 00:01:10,000
+62
+00:01:08,500 --> 00:01:10,600
 Sustain The window closes as the metal
 cools.
 
-62
-00:01:10,000 --> 00:01:10,243
+63
+00:01:10,600 --> 00:01:10,843
 The call You have two propane tanks and no
 idea which has gas in it, so you keep
 
-63
-00:01:10,243 --> 00:01:10,486
+64
+00:01:10,843 --> 00:01:11,086
 buying a third and the collection grows
 against the wall.
 
-64
-00:01:10,486 --> 00:01:10,729
+65
+00:01:11,086 --> 00:01:11,329
 Settle it with a bathroom scale.
 
-65
-00:01:10,729 --> 00:01:10,971
+66
+00:01:11,329 --> 00:01:11,571
 The tare weight is stamped on the collar
 as TW and a number; weigh the tank,
 
-66
-00:01:10,971 --> 00:01:11,214
+67
+00:01:11,571 --> 00:01:11,814
 subtract that number, and what remains is
 propane.
 
-67
-00:01:11,214 --> 00:01:11,457
+68
+00:01:11,814 --> 00:01:12,057
 If what is left would not carry you
 through one long cook with guests, that is
 a
 
-68
-00:01:11,457 --> 00:01:11,700
+69
+00:01:12,057 --> 00:01:12,300
 refill errand, not a spare.
 
-69
-00:01:11,700 --> 00:01:11,943
+70
+00:01:12,300 --> 00:01:12,543
 Write the answer on the collar in marker,
 and write it again the day a tank comes
 
-70
-00:01:11,943 --> 00:01:12,186
+71
+00:01:12,543 --> 00:01:12,786
 back from the exchange.
 
-71
-00:01:12,186 --> 00:01:12,429
+72
+00:01:12,786 --> 00:01:13,029
 While you are reading the collar, find the
 date stamp: tanks have a requalification
 
-72
-00:01:12,429 --> 00:01:12,671
+73
+00:01:13,029 --> 00:01:13,271
 life and the exchange counter will simply
 refuse an old one, which is worth knowing
 
-73
-00:01:12,671 --> 00:01:12,914
+74
+00:01:13,271 --> 00:01:13,514
 now rather than on a Saturday with people
 arriving.
 
-74
-00:01:12,914 --> 00:01:13,157
+75
+00:01:13,514 --> 00:01:13,757
 Two tanks is the right number.
 
-75
-00:01:13,157 --> 00:01:13,400
+76
+00:01:13,757 --> 00:01:14,000
 Anything beyond two is a storage problem
 pretending to be preparedness.
 
-76
-00:01:13,400 --> 00:01:15,800
+77
+00:01:14,000 --> 00:01:16,400
 Grill and Outdoor Cooking Zone The full
 reset, free at 6s-success.com

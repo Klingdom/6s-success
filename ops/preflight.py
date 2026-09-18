@@ -9389,17 +9389,27 @@ def gate_srt_captions_current() -> None:
     are otherwise baked into the pixels of a typographic slide, which
     YouTube cannot index, a screen reader cannot speak, and a deaf viewer
     cannot read, so the captions are what makes the video reachable at all
-    once it is posted. All 114 committed .mp4/.srt pairs already agree, but
-    nothing chains or checks the two together: ops/video_zone.py's own
-    main() renders one video per call and never touches captions, and
-    ops/render_all_zone_videos.py, the batch driver, never calls
-    video_srt.py either. A future edit to beats() (new zone content, a
-    re-timed slide) could ship a video whose caption text or timing has
-    silently drifted from what plays, the same "generator's real output
-    nothing checks" shape issue #26 already names for a dozen other
-    pipelines this week. Regenerates each committed caption from the same
-    beats() the video itself renders from and compares text, not that
+    once it is posted. Nothing chains or checks the sidecar against its own
+    source: ops/video_zone.py's own main() renders one video per call and
+    never touches captions, and ops/render_all_zone_videos.py, the batch
+    driver, never calls video_srt.py either. A future edit to beats() (new
+    zone content, a re-timed slide) could ship a video whose caption text
+    or timing has silently drifted from what plays, the same "generator's
+    real output nothing checks" shape issue #26 already names for a dozen
+    other pipelines this week. Regenerates each committed caption from the
+    same beats() the video itself renders from and compares text, not that
     anyone remembered to run video_srt.py a second time.
+
+    Checked against the 114 committed build/video/zones/*.srt files, not
+    against build/video/zones/*.mp4: the .mp4s are gitignored and absent in
+    every cloud environment (confirmed empty here), while the .srt sidecars
+    are committed and present everywhere. The previous version gated the
+    whole check on at least one local .mp4 existing, so it returned before
+    comparing a single file in exactly the environment this pipeline is
+    edited in, the same "a gate that cannot fail is theatre" shape
+    gate_deck_count already found and fixed for build/cards-rendered/.
+    Found 2026-09-18 with the gate fixed: 16 of 114 committed captions had
+    already drifted from the zone content that changed under them.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import importlib
@@ -9407,14 +9417,12 @@ def gate_srt_captions_current() -> None:
     import video_zone
     if not os.path.isdir(VS.OUT):
         return
-    have_mp4 = {f[:-4] for f in os.listdir(VS.OUT) if f.endswith(".mp4")}
-    if not have_mp4:
+    have_srt = {f[:-4] for f in os.listdir(VS.OUT) if f.endswith(".srt")}
+    if not have_srt:
         return
     stale = []
     for room, z in video_zone.zones():
         slug = VS.slug(room, z["zone"])
-        if slug not in have_mp4:
-            continue
         path = os.path.join(VS.OUT, slug + ".srt")
         if not os.path.exists(path):
             stale.append(slug + " (missing)")

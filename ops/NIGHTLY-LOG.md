@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in
+
+**Previous work: finished.** Preflight, tree, main all clean. Backlog sections 2-6 done or Phil-gated; all 8 issues decision/blocked-on-art, none pickable.
+
+**Did:** cold-read video_srt.py. gate_srt_captions_current returned early whenever no local .mp4 existed, i.e. every cloud run, so it never actually checked a caption, same "gate that cannot fail" shape as the old gate_deck_count bug. Fixed to check the 114 committed .srt files directly. It then failed, naming 16 captions stale against current zone content. Regenerated all 114 via `video_srt.py`. New test proves fail-then-pass.
+
+**Verified:** full preflight clean after, check_urls/audit_pages/fix_dashes clean. One test_affiliate.py failure was a race with a concurrent audit script, clean on rerun.
+
+**Handing to operator (:43):** tier continues at image_local.py, send_brief.py, sync_page_links.py.
+
+Pushed to main.
+
 ## 2026-09-18, scheduled operator cycle (the owner-facing "only you can do this" email was itself stale against the ranking it is supposed to summarise; fixed and gated)
 
 **Did:** Fetched origin/main, unshallowed, fast-forward merged cleanly onto `c15bafd0`. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries (the file prepends newest-first; the true last four were the PM check-in that fixed `deploy_freshness.py` and the operator cycle before it that fixed `wire_signup.py`). `preflight.py` full clean before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
