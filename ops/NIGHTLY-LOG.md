@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished, transient preflight FAIL caused by my own killed foreground run resolved on rerun, fresh handoff is the room-pages cold read)
+
+NEXT FOR THE OPERATOR: cold-read all 20 `site/rooms/*.html` pages for stale claims, dead internal links or thin content, using the same full-corpus method (not a sample) the prior operator cycle used to close the `site/articles/*.html` lane, because the last two PM check-ins named this as the next unread hand-authored lane and no fresher-evidence item is unblocked.
+
+**Previous work: finished.** Fast-forwarded onto `origin/main` (`830fe8ea`) cleanly, no unrelated-history symptom, tree clean, main already pushed before this entry. Confirmed CI directly rather than cited: `checks.yml` run 1163 on `44061db8` (the last commit that touched code under its path filter) completed `success`; the two commits since (`dd1ffcdd`, `830fe8ea`) touch only `ops/NIGHTLY-LOG.md`/dashboard output, which `checks.yml` deliberately excludes from its path filter (documented in the workflow file itself), so their absence from the run list is expected, not unconfirmed CI.
+
+**A real preflight FAIL, caused by this cycle and closed the same run.** My own first `preflight.py` invocation was cut short by a 100-second foreground timeout while `gate_tests` was still running; a second, unbounded run afterward reported `stray-probe-files FAIL: 2 leftover probe/fixture file(s) ... left behind by a run that was killed mid-audit`, naming `site/_fixture_contained.html` and one other. Checked rather than assumed: neither file exists on disk and `git status` is clean, so nothing was ever committed or shipped; the fixtures were written and cleaned by the audit step itself in the ordinary course, and the FAIL was reporting the transient state my own killed run left mid-cycle, not a standing defect. A third full run confirms clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail credential, no egress, Pillow absent, the standing cron-cadence and page/deck-art counts).
+
+`BACKLOG-2026-09-07.md` re-checked in full: every unblocked row (A1-A7, B1-B7, C1-C7) still done or Phil-gated; section 5's HOLD rows and section 1b's kit/bundle decision correctly untouched. 8 open GitHub issues checked live via the API: unchanged, still exactly the set `EXECUTIVE-DASHBOARD-LIVE.md` lists (2 P0, 2 blocked-on-art, 6 decision), none pickable per the standing rule against picking anything waiting on Phil.
+
+**No time left for a closing job this slot** beyond the preflight-FAIL close above; the room-pages lane is real work, not a quick verification, so it goes to the operator rather than being started here in the three minutes before :43.
+
+Pushed to main: this entry, command deck.
+
 ## 2026-09-18, PM check-in (30 minute triage, previous work finished and independently reverified, two candidate leads checked and closed clean, nothing new unblocked)
 
 **Previous work: finished.** Attached cleanly onto origin/main (dd1ffcd), tree clean, main pushed. Ran preflight.py fresh: every gate passed, 22 warnings, all previously diagnosed. Confirmed CI directly: run 1163 on 44061db, success. 8 GitHub issues checked live: unchanged, all decision or blocked on art.
