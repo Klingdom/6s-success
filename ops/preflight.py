@@ -13083,6 +13083,70 @@ def gate_accept_image_contradicts_name_an_object() -> None:
               ", ".join(f"{s}: {i!r}" for s, i in offenders[1:4])))
 
 
+def gate_zone_graphics_trigger_not_truncated() -> None:
+    """Every real zone's reset-trigger sentence must appear in full inside
+    ops/zone_graphics.py's own zone diagram, not cut to one line.
+
+    Found 2026-09-18 (PM check-in), running zone_diagram_svg() against every
+    real zone in content.json rather than reading the code alone. The
+    footer drew wrap("Reset trigger: " + trigger, 92)[0]: only the first
+    wrapped line, with whatever did not fit silently dropped and no
+    ellipsis to say so. 70 of 114 real triggers need a second line, and the
+    dropped half is usually the point of the sentence ("...the wood stays
+    bare", "...before you close the door", "...checked while you are
+    holding the bag"). This is the exact "looks finished while lying"
+    shape this same function's own docstring already names for the
+    checklist items and the room-strip chips, which grow the canvas
+    instead of truncating; the footer line was the one place that fix
+    never reached.
+
+    Fixed by wrapping the footer height to the real line count instead of
+    a fixed 46px. This gate re-derives every real trigger's wrapped lines
+    on every future cycle and fails if any line does not appear verbatim
+    (HTML-escaped) in the rendered SVG, so a future edit to the footer
+    cannot silently drop content again.
+    """
+    try:
+        import zone_graphics as G
+        import video_zone as V
+    except Exception as e:                                       # noqa: BLE001
+        fail("zone-graphics-trigger",
+             "could not import ops/zone_graphics.py or ops/video_zone.py "
+             "to check the real corpus (%s: %s)" % (type(e).__name__, e))
+        return
+
+    try:
+        zones = V.zones()
+        rooms: dict = {}
+        for room, z in zones:
+            rooms.setdefault(room, []).append(z["zone"])
+
+        offenders = []
+        for room, z in zones:
+            trigger = (z.get("leave_behind") or {}).get("trigger", "")
+            if not trigger:
+                continue
+            svg = G.zone_diagram_svg(room, z, rooms[room], V.done_items(z),
+                                      uid="pf")
+            for line in G.wrap("Reset trigger: " + trigger, 92):
+                if G.esc(line) not in svg:
+                    offenders.append((room, z["zone"], line))
+                    break
+    except Exception as e:                                        # noqa: BLE001
+        fail("zone-graphics-trigger",
+             "could not derive the real zone diagrams to check (%s: %s)" %
+             (type(e).__name__, e))
+        return
+
+    if offenders:
+        room, zone, line = offenders[0]
+        fail("zone-graphics-trigger",
+             "%d zone diagram(s) drop part of their own reset-trigger "
+             "sentence (first: %s / %s, missing %r); %s" %
+             (len(offenders), room, zone, line,
+              ", ".join("%s/%s" % (r, z) for r, z, _ in offenders[1:4])))
+
+
 def gate_zone_hero_rejects_have_subjects() -> None:
     """Every rejected zone hero needs a hand written subject, and
     OWNER-ACTIONS.md's own count of them must match reality.
@@ -16444,6 +16508,7 @@ def main() -> int:
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_image_prompt_negations_handled)
     run_gate(gate_accept_image_contradicts_name_an_object)
+    run_gate(gate_zone_graphics_trigger_not_truncated)
     run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_experiment_owner_actions_surfaced)

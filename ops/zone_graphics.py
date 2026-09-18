@@ -155,7 +155,17 @@ def zone_diagram_svg(room, zone, siblings, done_items, uid=""):
         right_h += 22
 
     body_h = max(left_h, right_h)
-    H = pad + 16 + body_h + 34 + 46 + pad        # body, gap, footer, padding
+
+    # The footer line was capped to wrap(...)[0]: whatever did not fit in the
+    # first 92 characters was silently dropped, the same "looks finished
+    # while lying" defect this function's own docstring describes fixing for
+    # the checklist and the chips. 70 of 114 real triggers need a second
+    # line, and the dropped half is usually the point of the sentence
+    # ("...the wood stays bare", "...before you close the door"). The footer
+    # grows to fit every line instead.
+    trigger_lines = wrap("Reset trigger: " + trigger, 92) if trigger else []
+    footer_h = 46 + max(0, len(trigger_lines) - 1) * 18
+    H = pad + 16 + body_h + 34 + footer_h + pad  # body, gap, footer, padding
 
     out = ['<rect x="0" y="0" width="%s" height="%s" rx="18" fill="%s" '
            'stroke="%s" stroke-width="2"/>' % (W, H, PANEL, LINE),
@@ -199,9 +209,9 @@ def zone_diagram_svg(room, zone, siblings, done_items, uid=""):
                         13, SOFT))
 
     # ---- footer: session and trigger ---------------------------------
-    fy = H - pad - 46
-    out.append('<rect x="%s" y="%s" width="%s" height="46" rx="10" fill="%s"/>'
-               % (pad, fy, W - pad * 2, DEEP))
+    fy = H - pad - footer_h
+    out.append('<rect x="%s" y="%s" width="%s" height="%s" rx="10" fill="%s"/>'
+               % (pad, fy, W - pad * 2, footer_h, DEEP))
     tx = pad + 14
     if session:
         out.append('<rect x="%s" y="%s" width="104" height="22" rx="11" '
@@ -209,9 +219,8 @@ def zone_diagram_svg(room, zone, siblings, done_items, uid=""):
         out.append(_txt(tx + 52, fy + 27, session, SANS, 11.5, "#FFFFFF",
                         "700", anchor="middle", track="0.04em"))
         tx += 124
-    if trigger:
-        out.append(_txt(tx, fy + 28, wrap("Reset trigger: " + trigger, 92)[0],
-                        SANS, 13.5, "#EDE4D2"))
+    for i, ln in enumerate(trigger_lines):
+        out.append(_txt(tx, fy + 28 + i * 18, ln, SANS, 13.5, "#EDE4D2"))
 
     t_id, d_id = "zmt" + uid, "zmd" + uid
     title = "%s in the %s" % (name, room)

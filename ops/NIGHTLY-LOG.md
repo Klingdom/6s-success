@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, did the handed-off zone_graphics.py cold-read myself: a real, live truncation bug found and fixed on 70 of 114 zone pages)
+
+Attached via `merge --ff-only` onto `origin/main` (`46566b6a`), a 571-commit fast-forward (container arrived shallow and detached, unshallowed first), clean.
+
+**Previous work: finished, verified directly.** Full `preflight.py` (backgrounded): every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, 0 PRs, none pickable. The tip commit was the operator's own `e70ccb64` (articles' hand-typed room/zone counts) plus a merge and two deck refreshes; nothing in that chain was left unverified.
+
+**The two most recent PM check-ins named the same handoff twice: cold-read `ops/zone_graphics.py` (298 lines, renders the zone-diagram and room-map SVGs on all 114 zone pages and 20 room pages, no dedicated gate re-deriving its output from `content.json` the way sibling generators get). The operator's last cycle picked a different, older handoff instead, so this one was still standing. Did it myself rather than hand it off a third time.**
+
+Ran both SVG functions against the real 114-zone/20-room corpus, not just read the code. Chips, checklist items and heights all held (the function's own docstring already describes fixing that class once). **The real find:** the footer's reset-trigger line drew `wrap("Reset trigger: " + trigger, 92)[0]`, only the first wrapped line, with the rest silently dropped and no ellipsis. 70 of 114 real triggers need a second line, and the dropped half is usually the point of the sentence: "...the wood stays bare," "...before you close the door," "...checked while you are holding the bag." Same "looks finished while lying" shape the function's own docstring names for the checklist/chips, one spot the earlier fix never reached.
+
+**Fixed:** footer height now grows with the real line count (`footer_h = 46 + max(0, len(trigger_lines) - 1) * 18`) instead of a fixed 46px; every wrapped line is drawn. New `ops/tests/test_zone_graphics.py` (4 cases: a synthetic 2-line trigger, a short 1-line trigger, all 114 real zones, and a direct read of the committed source guarding against the fix being reverted). New `gate_zone_graphics_trigger_not_truncated` in `preflight.py`, re-deriving every real trigger's wrapped lines against the rendered SVG on every future cycle. Both fail-then-pass proved: `git stash` on `zone_graphics.py` alone reproduced the exact 70-zone failure by name in both the test and the gate, restored and reran clean.
+
+**Verified:** `test_zone_graphics.py` (4/4, 70/114 real zones confirmed needing and getting their full line). Full `preflight.py` clean after (22 warnings, none new, the new gate itself ran and passed). `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents) all clean.
+
+**Went well:** doing the handoff instead of reaffirming or relaying it a third cycle running; running the real 114-zone corpus through the function instead of stopping once the docstring's own claimed fix read plausible.
+
+**Did not go well:** nothing new; one transient gitignored probe file (`site/downloads/_visual_probe.html`) turned up mid-run from an unrelated killed audit process, already gone by the next run, the same known race prior cycles have documented.
+
+**Changing next cycle:** none; the new gate closes this shape.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, unchanged. Nothing large-enough to hand to the operator this cycle; the zone_graphics.py lane is now closed.
+
+Pushed to main. `ops/zone_graphics.py`, `ops/preflight.py`, `ops/tests/test_zone_graphics.py`, command deck. No price or product touched; the 114 zone pages read the same content, corrected. IndexNow not applicable (existing pages' inlined SVG corrected, not a new page).
+
 ## 2026-09-18, scheduled operator cycle (closed the standing ops/build_card_prompts.py/build_articles.py/card_spec.py handoff; a real, latent copy-vs-control gap found and gated in the second)
 
 **Did:** Unshallowed, attached via `merge --ff-only` onto `origin/main` (`607e8d8`), a 564-commit fast-forward, clean. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s epic headers, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the true last four `ops/NIGHTLY-LOG.md` entries. Full `preflight.py` (backgrounded, the known foreground-timeout shape): every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable (checked #32 directly: still an accurate, correctly Phil-gated catalogue-scope tradeoff, not stale). No mail credential, `inbox_agent.py --apply` correctly UNCHECKED. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated, so per step 5d closed the most recent PM check-in's own named handoff: `ops/build_card_prompts.py`, `ops/build_articles.py` and `ops/card_spec.py`, none touched since it was named.
