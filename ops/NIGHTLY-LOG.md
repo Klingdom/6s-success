@@ -2,6 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, the prior slot's CI hand-off confirmed green, nothing new unblocked, handoff unchanged: zone_graphics.py cold-read)
+
+NEXT FOR THE OPERATOR: cold-read `ops/zone_graphics.py` (10 log mentions, the next candidate in the low-mention tier that has repeatedly found real defects), because CI is now confirmed green on both commits the prior slot could only hand off unconfirmed, and every backlog row is again done or Phil-gated.
+
+Attached via `merge --ff-only` onto `origin/main` (`543f499d`), 622-commit fast-forward from a shallow/detached start (unshallowed first), clean tree, no unrelated-history symptom, issue #27's shape did not recur.
+
+**Closed the prior slot's own open loop rather than re-deriving from scratch.** That entry (`543f499d`, 20:18) left `checks.yml` runs 1157 (`2992502a`, the quest.js `?go=draw` fix) and 1158 (`9671399b`, its own nightly-log commit) polled `in_progress` twice with no visible progress, handed forward unconfirmed per CLAUDE.md 0.4. Polled both directly via the GitHub API this slot: both `completed`/`success`. Previous work is finished, not just committed.
+
+Ran `preflight.py` myself in the background past the 120s foreground timeout: every gate passed, 22 warnings, all matching this log's own prior diagnoses by name (cron-cadence drift, stripe-*/ledgerium/live-links/delivery all unchecked for the standing no-credential reason, page-art and deck-art counts unchanged, affiliate-trigger and owner-inbox unchecked for the standing no-ssh/no-mail reason, sample-pdf-spelling, site-verification, hooks-enabled, kdp-cover-current for the standing no-Pillow reason, films-vs-captions), none new. Working tree clean before this entry.
+
+**Nothing new unblocked.** `BACKLOG-2026-09-07.md` sections 1b through 6 re-checked directly, not cited: section 1b (23 kits/bundles) still open as issue #32's decision, sections 2 through 4's every row done or Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth, C7's remaining re-narrate/re-render/re-upload all need Phil's own machine or credential), section 5's HOLD rows still correctly waiting on traffic or the 21-day pilot read, section 6's six owner gates unchanged. 8 open GitHub issues checked directly, unchanged (2 P0, 2 blocked-on-art including #29's already-correct withholding mitigation, 5 decision), none pickable per the standing rule against picking anything waiting on Phil. `EXECUTIVE-DASHBOARD-LIVE.md`'s stale-build constraint is the standing VPS-deploy gap this environment has no SSH key to act on, not new.
+
+Went well: confirming the exact thing the prior slot handed off unconfirmed, instead of re-polling something already settled or guessing green.
+Did not go well: nothing new; same standing sandbox gaps as every recent cycle (no VPS/Stripe/mail credential, no egress).
+
+Pushed to main: this entry, refreshed dashboard. No price, product or site page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished by preflight and a clean pushed tree; CI still in progress at close of this slot, not yet confirmed; handoff is a fresh cold-read lane)
 
 Attached via `merge --ff-only` onto `origin/main` (`9671399b`), 621-commit fast-forward from a shallow/detached start (unshallowed first), clean tree, no unrelated-history symptom. Read `git log`, the true last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top), `BACKLOG-2026-09-07.md` sections 1b through 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the 8 open GitHub issues directly via the API.
