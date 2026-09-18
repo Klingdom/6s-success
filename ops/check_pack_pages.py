@@ -29,10 +29,20 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACK = os.path.join(ROOT, "site", "downloads", "6S-Standards-Pack.html")
+# Printable pages this site asks a reader to put on paper, and what each must
+# be true of. Added the Kitchen deck 2026-09-18 after finding it printed 25
+# pages of which 13 were blank: OWNER-ACTIONS item 19 asks Phil to print that
+# very page, so the defect was aimed at the one person following the
+# instructions. Its screen content was hidden with visibility:hidden, which
+# keeps the element's layout and therefore its height.
+PRINTABLES = [
+    ("site/downloads/6S-Standards-Pack.html", "the free Standards Pack"),
+    ("site/kitchen-deck.html", "the free Kitchen deck"),
+]
 MARKER = re.compile(r"SHEET (\d+) OF (\d+)", re.I)
 
 
-def render(pdf_path: str):
+def render(pdf_path: str, source: str = None):
     """(ok, detail). ok is None when this environment cannot render at all."""
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     try:
@@ -42,7 +52,7 @@ def render(pdf_path: str):
         return None, "no browser here (%s)" % type(e).__name__
     if not exe:
         return None, "no browser here"
-    src = os.path.abspath(PACK).replace(os.sep, "/")
+    src = os.path.abspath(source or PACK).replace(os.sep, "/")
     cmd = ([exe, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
             "--print-to-pdf=" + pdf_path, "--virtual-time-budget=8000"]
            + list(extra or []) + ["file:///" + src])
@@ -53,6 +63,26 @@ def render(pdf_path: str):
     if not os.path.exists(pdf_path):
         return None, "renderer wrote no file"
     return True, ""
+
+
+def blank_pages(path: str):
+    """(pages, blanks, note). A page carrying almost no text and no drawing is
+    paper somebody wasted."""
+    tmp = os.path.join(tempfile.mkdtemp(), "print.pdf")
+    full = os.path.join(ROOT, *path.split("/"))
+    if not os.path.exists(full):
+        return None, [], "not in this checkout"
+    ok, detail = render(tmp, full)
+    if ok is None:
+        return None, [], detail
+    try:
+        from pypdf import PdfReader
+    except ImportError:
+        return None, [], "pypdf is not installed here"
+    r = PdfReader(tmp)
+    blanks = [i + 1 for i, pg in enumerate(r.pages)
+              if len((pg.extract_text() or "").split()) < 8]
+    return len(r.pages), blanks, ""
 
 
 def audit():
@@ -80,23 +110,32 @@ def audit():
 
 
 def main() -> int:
+    bad = 0
     pages, claimed, orphans, note = audit()
     if pages is None:
         print("  UNCHECKED: %s. This run proves nothing about the printed pack."
               % note)
-        return 0
-    print("  pages when printed  %d" % pages)
-    print("  sheets it claims    %s" % claimed)
-    print("  pages with no sheet marker  %s" % (orphans or "none"))
-    if claimed and pages != claimed:
-        print("\n  The pack prints %d pages and calls itself %d sheets. A "
-              "reader printing it wastes paper on %d page(s)."
-              % (pages, claimed, pages - claimed))
-        return 1
-    if orphans:
-        print("\n  Orphaned page(s) carrying no sheet: %s" % orphans)
-        return 1
-    return 0
+    else:
+        print("  Standards Pack: %d pages, claims %s sheets, orphans %s"
+              % (pages, claimed, orphans or "none"))
+        if claimed and pages != claimed:
+            print("    A reader printing it wastes %d page(s)." % (pages - claimed))
+            bad = 1
+        elif orphans:
+            print("    Orphaned page(s): %s" % orphans)
+            bad = 1
+
+    for path, label in PRINTABLES:
+        total, blanks, note = blank_pages(path)
+        if total is None:
+            print("  UNCHECKED: %s (%s)" % (label, note))
+            continue
+        print("  %s: %d pages, %d blank" % (label, total, len(blanks)))
+        if blanks:
+            print("    Blank pages: %s. Printing this wastes %d sheet(s)."
+                  % (blanks[:6], len(blanks)))
+            bad = 1
+    return bad
 
 
 if __name__ == "__main__":

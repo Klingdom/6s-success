@@ -92,9 +92,15 @@
 .print-only{display:none}
 @media print{
   @page{size:letter;margin:0.35in}
-  body *{visibility:hidden}
-  .print-only,.print-only *{visibility:visible}
-  .print-only{display:block;position:absolute;left:0;top:0;width:100%}
+  /* Hidden with display, not visibility. visibility:hidden keeps the
+     element's LAYOUT, so the whole screen page still occupied its full height
+     and printed as blank paper after the cards: measured 2026-09-18 by
+     printing this page, 25 pages of which 13 were genuinely empty. Item 19
+     asks Phil to print this deck at home, so the defect was aimed straight at
+     the one person following the instructions. */
+  body > *:not(main){display:none !important}
+  main > *:not(.print-only){display:none !important}
+  .print-only{display:block;position:static;width:auto}
   .ksheet{display:grid;grid-template-columns:repeat(3,2.5in);gap:0.18in;justify-content:center}
   .ktile{width:2.5in;height:3.5in;border:1px solid #ccc;border-radius:0.12in;
     box-sizing:border-box;padding:0.14in;break-inside:avoid;position:relative;

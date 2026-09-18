@@ -8830,6 +8830,20 @@ def gate_standards_pack_paginates(deep: bool = False) -> None:
              "all (page %s), which is a wasted sheet with a stray footer on it"
              % (len(orphans), orphans[0]))
 
+    # Every printable page, not just the pack: the Kitchen deck printed 25
+    # pages of which 13 were blank until 2026-09-18, and OWNER-ACTIONS item 19
+    # asks Phil to print that page by hand.
+    for path, label in getattr(C, "PRINTABLES", []):
+        total, blanks, note = C.blank_pages(path)
+        if total is None:
+            warn("standards-pack-pagination",
+                 "%s was NOT checked here: %s" % (label, note))
+            continue
+        if blanks:
+            fail("standards-pack-pagination",
+                 "%s prints %d page(s) that are blank (%s), so printing it "
+                 "wastes that much paper" % (label, len(blanks), blanks[:4]))
+
 
 def gate_site_video_links_alive(deep: bool = False) -> None:
     """Every YouTube video this site links must still be watchable.
