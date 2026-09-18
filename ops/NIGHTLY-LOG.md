@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (confirmed the prior handoff's CI failure was already fixed and green; cold-read check_video_standard.py, found and closed a third occurrence of the slug single-source-of-truth gap)
+
+**Did:** Unshallowed (container arrived shallow and detached) and attached via ff-only merge onto `origin/main` (`4cb8b9a4`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, the true last four `ops/NIGHTLY-LOG.md` entries.
+
+**First: closed the previous PM check-in's open handoff rather than assuming it was fine.** That entry left publish-image.yml run 329 (on `aa209d21`) unconfirmed after failing with `gate_generator_ownership`: `site/method.html` differed from what its generator produces, because Phil's own hand-written link used `rooms/kitchen.html` where this site links every content page extensionless. Checked directly: his very next commit, `4cb8b9a4` (current HEAD), already corrects the link and regenerates `site/build-id.txt`. Confirmed by running `preflight.py --own` locally on this exact HEAD (clean, no FAIL), then watched run 330 through to completion via the Actions API rather than assuming the push implied success: SUCCESS. CI is green on `main`.
+
+**Then, per step 5d, cold-read `ops/check_video_standard.py`** (12 mentions in this log, the lowest untouched tier; `check_video_links.py` at 9 mentions read clean first, no defect). This module decides whether a rendered zone video is safe to publish to YouTube; `ops/youtube_upload.py` refuses anything it calls stale, and a YouTube video cannot be swapped for a corrected file without changing its URL.
+
+**The real find:** its stem construction was a local, regex-based `slug()`, not `video_zone.zone_slug()`, the exact single-source-of-truth gap `gate_video_slug_single_source` already exists to catch and had already fixed twice (`video_narrated.py`'s dead `hasattr` fallback, `render_all_narrated.py`'s own copy). This file was added after that gate, so a third reimplementation went unseen. It agreed with the canonical slug on all 114 real zone names only by coincidence, proved directly rather than assumed: for a synthetic zone named "Coats & Boots", `video_zone.zone_slug()` keeps the "&" while the old local `slug()` collapsed it away, two different stems. The existing gate's own synthetic case (a name with "/") would NOT have caught this specific file, because both normalisers happen to collapse "/" the same way; only the ampersand exposes it. A real divergence would have made `youtube_upload.py`'s stale-video hold-back silently match nothing.
+
+**Fixed:** `check_video_standard.py` now has `stem_for(room, zone)`, which calls `video_zone.zone_slug()` directly; the old local `slug()` and the now-orphaned, never-called `_discloses_more()` helper were removed. Extended `gate_video_slug_single_source` to also check `check_video_standard.stem_for()` against the canonical function, both across the real 114-zone corpus and with the ampersand synthetic case. Fail-then-pass proved directly: reverted `stem_for()` to the old local-slug shape, watched the gate fail by name ("an ampersand produced disagreeing slugs"), restored, reran clean.
+
+**New tests:** `ops/tests/test_check_video_standard.py` (this file had zero coverage before, 7 cases: `stem_for()` against the canonical slug including the ampersand case, `blocks()` joining a wrapped caption, `rendered_segment()` extracting only the checklist and degrading cleanly on a missing file, `norm()`, and `compare()` accounting for every zone exactly once). `ops/tests/test_gate_video_slug_single_source.py` (5 cases, also new; the gate itself had no test file either). Both fail-then-pass proved directly against the real committed files.
+
+**Verified:** `check_video_standard.py` standalone, before and after: 114 compared, 0 stale, identical to pre-fix output on real data. Full `preflight.py` clean (every gate passed, 22 warnings, all previously diagnosed sandbox limits). `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean after. `ops/inbox_agent.py --apply`: no mail credential. GitHub: 8 open issues, checked directly, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Went well:** confirming the handoff's CI outcome with the Actions API instead of trusting that a fix commit implies a fix; catching a third occurrence of a defect class the codebase had already named and partly gated, in a file the existing gate's own scope did not reach.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the extended gate closes this specific shape, and `check_video_links.py`/`check_video_standard.py` are now both read and, where warranted, tested.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, unchanged. `check_pack_pages.py` and `refresh_hero_fallback.py` (10 mentions each) are the next untouched low-mention tier if nothing higher-value surfaces first.
+
+Pushed to main: `ops/check_video_standard.py`, `ops/preflight.py`, two new test files, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work was NOT confirmed finished on arrival: a real self-inflicted preflight FAIL traced to root cause and confirmed already fixed by the next push, CI confirmation handed forward)
 
 Attached via ff-only merge onto origin/main (aa209d21), 8 commits ahead of the last log entry, clean tree. Full preflight.py locally: every gate passed, 23 warnings, all standing sandbox limits, none new.

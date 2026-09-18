@@ -9950,11 +9950,27 @@ def gate_video_slug_single_source() -> None:
     video_zone.zone_slug() the one real implementation and pointing both
     call sites at it. This gate proves the two are still wired together,
     not just currently coincidentally equal.
+
+    ops/check_video_standard.py was a third data point, found 2026-09-18
+    cold-reading it per this repository's own step 5d: its stem construction
+    was its own regex-based slug(), not video_zone.zone_slug(), agreeing with
+    the canonical form on all 114 real zones only by coincidence, the same
+    trap this gate's other two data points already fell into. The "/"
+    synthetic case below would NOT have caught it, because a bare "/" happens
+    to collapse to "-" under both normalisers; proved instead with a name
+    carrying "&", which the two disagreed on ("coats-&-boots" vs
+    "coats-boots"). Fixed by making check_video_standard.stem_for() call
+    video_zone.zone_slug() directly rather than reimplement it. A real
+    divergence here would have made ops/youtube_upload.py's stale-video
+    hold-back silently match nothing, the one guard between a corrected
+    re-render and a 102-video batch upload with the wrong captions and no way
+    to swap the file after.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import importlib
     video_zone = importlib.import_module("video_zone")
     render_all_narrated = importlib.import_module("render_all_narrated")
+    check_video_standard = importlib.import_module("check_video_standard")
     if not hasattr(video_zone, "zone_slug"):
         fail("video-slug-single-source",
              "video_zone.py has no zone_slug(); the canonical slug function is missing")
@@ -9963,11 +9979,14 @@ def gate_video_slug_single_source() -> None:
     for room, z in video_zone.zones():
         canonical = video_zone.zone_slug(room, z["zone"])
         batch = render_all_narrated.slug(room, z["zone"])
+        checker = check_video_standard.stem_for(room, z["zone"])
         if canonical != batch:
-            mismatches.append((room, z["zone"], canonical, batch))
+            mismatches.append(("render_all_narrated", room, z["zone"], canonical, batch))
+        if canonical != checker:
+            mismatches.append(("check_video_standard", room, z["zone"], canonical, checker))
     if mismatches:
         fail("video-slug-single-source",
-             "%d zone(s) where render_all_narrated.slug() disagrees with "
+             "%d zone(s) where a slug reimplementation disagrees with "
              "video_zone.zone_slug(): %s" % (len(mismatches), mismatches[:3]))
         return
     synthetic_room, synthetic_zone = "Guest/Powder", "Towel Bar/Ring"
@@ -9978,6 +9997,15 @@ def gate_video_slug_single_source() -> None:
              "a room/zone name with a slash produced disagreeing or unsafe "
              "slugs: zone_slug=%r render_all_narrated.slug=%r"
              % (canonical, batch))
+        return
+    amp_room, amp_zone = "Kids Room", "Coats & Boots"
+    canonical = video_zone.zone_slug(amp_room, amp_zone)
+    checker = check_video_standard.stem_for(amp_room, amp_zone)
+    if canonical != checker:
+        fail("video-slug-single-source",
+             "a room/zone name with an ampersand produced disagreeing "
+             "slugs: zone_slug=%r check_video_standard.stem_for=%r"
+             % (canonical, checker))
 
 
 def gate_done_items_single_source() -> None:

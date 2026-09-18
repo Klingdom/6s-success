@@ -63,8 +63,29 @@ def blocks(text: str):
     return out
 
 
-def slug(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+def stem_for(room: str, zone: str) -> str:
+    """The one filename stem every zone-video writer and reader must agree
+    on: video_zone.zone_slug(), not a local reimplementation.
+
+    Found 2026-09-18. This file used to build the stem itself with its own
+    regex-based slug(), the exact single-source-of-truth gap
+    gate_video_slug_single_source already exists to catch and had already
+    fixed twice (video_narrated.py's dead hasattr fallback,
+    render_all_narrated.py's own copy), except that gate only checks those
+    two files by name, so a third reimplementation added after it went
+    unseen. Proved live on a synthetic case rather than assumed: for a zone
+    named "Coats & Boots", video_zone.zone_slug() keeps the "&"
+    ("kids-room--coats-&-boots") while the old local slug() collapsed it
+    away ("kids-room--coats-boots"). The two agreed on all 114 real zone
+    names today only because none currently contains "&" or similar
+    punctuation, the identical coincidental-agreement trap the sibling
+    gate's own docstring describes. A real divergence would have made
+    ops/youtube_upload.py's stale-video hold-back silently match nothing,
+    the one guard standing between a corrected re-render and a 102-video
+    batch upload with the wrong captions and no way to swap the file after.
+    """
+    import video_zone as V
+    return V.zone_slug(room, zone)
 
 
 def rendered_segment(srt_path: str) -> str:
@@ -107,26 +128,12 @@ def norm(s: str) -> str:
     return " ".join(re.sub(r"[^a-z0-9 ]+", " ", s.lower()).split())
 
 
-def _discloses_more(srt_path: str, n: int) -> bool:
-    """Does the video admit that the slide is a summary?
-
-    The renderer adds "+ N more on the zone page" when a zone has more than
-    the four items a slide holds. Narration reads it, so it lands in the
-    captions and can be checked from here.
-    """
-    if not os.path.exists(srt_path):
-        return False
-    text = io.open(srt_path, encoding="utf-8", errors="replace").read()
-    flat = " ".join(text.split()).lower()
-    return ("%d more on the zone page" % n) in flat
-
-
 def compare():
     """(stale, fresh, unreadable) lists of (stem, current, rendered)."""
     import video_zone as V
     stale, fresh, unreadable = [], [], []
     for room, z in V.zones():
-        stem = "%s--%s" % (slug(room), slug(z["zone"]))
+        stem = stem_for(room, z["zone"])
         # The wide file is the one ops/youtube_upload.py posts, so it is the
         # one that decides whether publishing is safe. The vertical render is
         # only consulted when no wide caption exists.
