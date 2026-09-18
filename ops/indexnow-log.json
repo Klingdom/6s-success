@@ -399,6 +399,13 @@
    "offered": 123,
    "accepted": 123,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-18T06:05:07Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -589,6 +596,6 @@
   "https://6s-success.com/zones/workshop-the-material-rack": "c6c26c4f04772c3f",
   "https://6s-success.com/zones/workshop-the-power-tool-storage": "c41d74e7684c8555",
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "364fca63dbe588b6",
-  "https://6s-success.com/kitchen-deck.html": "2753fd591c60e2c9"
+  "https://6s-success.com/kitchen-deck.html": "d3a9b0f8039f56f3"
  }
 }
