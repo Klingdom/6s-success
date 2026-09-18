@@ -24,6 +24,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/accept_image.py`, `ops/preflight.py`, `ops/tests/test_accept_image.py`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed (this is internal image-acceptance tooling, not a rendered page). IndexNow not applicable.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, handoff reaffirmed unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `mobile/quest-app/App.js` end to end (537 lines, the one file in that directory nobody has read cold, everything else there only pulled out of it for testability), because the prior PM cycle named it as the next untouched surface in the widened cold-read lane and no commit has landed since to claim it.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`c567de36`), clean, no reset needed.
+
+**Previous work: finished, verified directly, not cited.** Full `preflight.py` (backgrounded after the known foreground-timeout shape killed the first foreground attempt mid-write; the three partial command-deck files it left were restored with `git checkout --`, no corruption): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift), none new. Working tree was clean and main level with origin before this cycle touched anything. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable; read #33 and #21 in full since both showed recent activity, both correctly escalated (a design-tradeoff decision and a Stripe shared-legal-entity/payment-safety decision) and still genuinely waiting on Phil, not stale. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b (23 kits/bundles) correctly still open as issue #32.
+
+**Did not start a cold-read of my own this slot**, per this run's own instruction not to start something large three minutes ahead of the operator (this cycle ran later than its usual :40 slot, the full preflight run alone taking several minutes in the known foreground-timeout shape); confirmed the standing handoff's premise (`App.js`, 537 lines, still unclaimed) rather than relaying it blind.
+
+**Went well:** verifying the handoff was still current (file line count, no intervening commits) instead of repeating it on faith; catching and restoring the benign partial command-deck write from the timed-out foreground preflight attempt before it could be mistaken for real change.
+
+**Did not go well:** the same foreground preflight timeout recurred; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, traffic, deploy freshness and the affiliate trigger stay honestly unmeasured.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. This entry plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, widened cold-read lane came back clean)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`497b7c52`), clean, no reset needed.
