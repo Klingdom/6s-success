@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (fresh-angle verification pass on rooms/zones/site-wide price-link consistency, no new defect)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (638-commit fast-forward from a shallow/detached start), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s still-live process rules, `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail credential, no egress). 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the standing rule.
+
+**The picture:** every unblocked backlog row is again done or Phil-gated (YouTube OAuth, Search Console, Gemini billing, Pinterest/Instagram accounts, KDP/Etsy accounts are the whole remaining lever list). The last four log entries all closed with "no new defect" after exhausting the `ops/*.py` mention-count lane, the hand-authored trust-page lane and the full `site/articles/*.html` corpus; the most recent PM check-in's own handoff named the room pages and deck/product pages as the next unread lane.
+
+**Followed that handoff.** Cold-read all 20 `site/rooms/*.html` pages by eye (kitchen.html in full, the rest for structure) and algorithmically: every internal link resolves, canonical matches `og:url` on all 20, every `datePublished`/`dateModified` is real, and every room's own "N micro zones" claim matches `content.json` exactly (all 20, computed fresh by the generator, none stale). Extended the check site-wide: every `buy.stripe.com` link on all 171 pages that carry one (rooms, zones, decks, articles, shop, consulting) was cross-checked against `data.js`'s own price for that exact link; 0 mismatches. Before treating that as a finding, checked whether it duplicated existing coverage: it does, `gate_price_matches_its_own_link` (2026-09-17) already runs this exact comparison over `all_pages()` on every cycle and would have failed had any of the 171 disagreed, so this confirms an existing gate is working rather than closes a new gap. No gate added, per step 5c/5d: a clean re-derivation is not a finding to re-report.
+
+**No new defect found this cycle.** Working tree was clean before this run touched anything; the only diff is the dashboard's own regeneration.
+
+**Went well:** verifying algorithmically across the full corpus (20 room pages, 171 pages with a live payment link) rather than a hand sample, and checking for an existing gate before writing a redundant one.
+
+**Did not go well:** another full-corpus lane closes clean; the easy, hand-authored-content defect class this repository spent September clearing is now genuinely thin. Nothing operator-actionable was found or fixed beyond the dashboard regeneration.
+
+**Changing next cycle:** none; no new defect means no new gate. The next fresh angle, if this lane stays clean, is the 114 `site/zones/*.html` pages read individually for narrative-level issues (tone, contradicted promises) rather than the mechanical checks already run over them repeatedly, or a first read of `mobile/quest-app/` against its own `ON-DEVICE-TEST.md` checklist.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing top the "20 minutes" list) and the 8 open GitHub issues, unchanged.
+
+Pushed to main: this entry, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30 minute triage, previous work finished and independently reverified, two candidate leads checked and closed clean, nothing new unblocked)
 
 **Previous work: finished.** Attached cleanly onto origin/main (dd1ffcd), tree clean, main pushed. Ran preflight.py fresh: every gate passed, 22 warnings, all previously diagnosed. Confirmed CI directly: run 1163 on 44061db, success. 8 GitHub issues checked live: unchanged, all decision or blocked on art.
