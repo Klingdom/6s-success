@@ -77,17 +77,34 @@ def discover_files() -> list:
             + glob.glob(os.path.join(SITE, "**", "*.js"), recursive=True))
 
 
-def main(apply_it: bool) -> int:
-    live_for = current_by_sku()
+def links_from_stripe() -> tuple:
+    """Every link ever made (sku_of), and every link that is active right now
+    (active), tracked independently of each other.
 
-    # Every link ever made, active or not, so a retired URL still resolves.
+    An active link with no sku metadata is still a real, live link: some
+    payment links (an ad hoc quote, a one off) are created outside the
+    catalogue and never carry a sku. Before this fix `active` only ever
+    gained a url when that same url also had a sku, so an active,
+    sku-less link fell out of `active`, was then classified `dead` by
+    `main()`, and printed as an unresolvable orphan needing attention it
+    did not need. `main()`'s `--apply` pass never touches an orphan, so
+    no live link was ever rewritten by the bug, but a false alarm on a
+    perfectly working link is exactly the kind of report CLAUDE.md 0.2
+    warns against manufacturing.
+    """
     sku_of, active = {}, set()
     for l in sc.list_all("payment_links"):
         s = (l.get("metadata") or {}).get("sku")
         if s:
             sku_of[l["url"]] = s
-            if l.get("active"):
-                active.add(l["url"])
+        if l.get("active"):
+            active.add(l["url"])
+    return sku_of, active
+
+
+def main(apply_it: bool) -> int:
+    live_for = current_by_sku()
+    sku_of, active = links_from_stripe()
 
     files = discover_files()
     seen = collections.Counter()

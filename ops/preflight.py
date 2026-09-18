@@ -12753,6 +12753,71 @@ def gate_hero_prompt_budget_checked() -> None:
                  "model with nobody warned." % name)
 
 
+def gate_image_prompt_negations_handled() -> None:
+    """No real image-hero subject may still carry a bare negation after
+    ops/image_local.split_negations() has run on it.
+
+    Found 2026-09-18: ops/card-subjects.json's own shipped EP-001 override,
+    "an empty console table with no keys on it, a jacket thrown over a
+    chair", does not put "no" at the start of its clause, so the
+    pre-fix matcher (anchored to the start of a comma-separated clause)
+    left "no keys" sitting in the positive prompt. A diffusion model
+    draws toward the nouns it is given regardless of the word "no" in
+    front of them: the exact lesson split_negations()'s own docstring
+    already paid to learn twice, on a nursery crib and a kitchen
+    counter, both at the start of a clause. This is the same failure
+    one word later in the sentence, on a card whose entire point is
+    that nobody gave keys a home, so drawing keys onto the table draws
+    the opposite of the problem.
+
+    Fixed by also matching a mid-clause "with no X". This gate re-runs
+    split_negations() against every real subject the two local
+    generators would actually send to the model today (not a synthetic
+    case) and fails if a bare "no" or "without" survives into the
+    positive half, so a future hand-authored override with the same
+    shape cannot ship silently again. Both generator modules import
+    cleanly without a GPU (confirmed: only image_local.pipe(), never
+    called here, touches torch); no Desktop/GPU access is required to
+    run this check.
+    """
+    try:
+        import generate_zone_heroes as gzh
+        import generate_card_heroes as gch
+        from image_local import split_negations
+    except Exception as e:                                      # noqa: BLE001
+        fail("image-prompt-negations",
+             "could not import the local image generators to check their "
+             "real prompts (%s: %s)" % (type(e).__name__, e))
+        return
+
+    bare = re.compile(r"\b(no|without)\b", re.I)
+    offenders = []
+    try:
+        for row in gzh.plan():
+            pos, _neg = split_negations(row["subject"])
+            if bare.search(pos):
+                offenders.append(("zone " + row["stem"], pos))
+        for row in gch.plan():
+            pos, _neg = split_negations(row["subject"])
+            if bare.search(pos):
+                offenders.append(("card " + row["id"], pos))
+    except Exception as e:                                      # noqa: BLE001
+        fail("image-prompt-negations",
+             "could not build the real subjects to check (%s: %s)" %
+             (type(e).__name__, e))
+        return
+
+    if offenders:
+        name, text = offenders[0]
+        fail("image-prompt-negations",
+             "%d real image prompt(s) still carry a bare 'no'/'without' "
+             "after split_negations(), which a diffusion model reads as "
+             "the object it is meant to suppress, not its absence "
+             "(first: %s -> %r); %s" %
+             (len(offenders), name, text,
+              ", ".join(n for n, _t in offenders[1:4])))
+
+
 def gate_zone_hero_rejects_have_subjects() -> None:
     """Every rejected zone hero needs a hand written subject, and
     OWNER-ACTIONS.md's own count of them must match reality.
@@ -16112,6 +16177,7 @@ def main() -> int:
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_generator_chains_fingerprint)
     run_gate(gate_hero_prompt_budget_checked)
+    run_gate(gate_image_prompt_negations_handled)
     run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_experiment_owner_actions_surfaced)

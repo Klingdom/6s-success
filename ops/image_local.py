@@ -200,8 +200,27 @@ def split_negations(subject: str) -> tuple:
             body = re.sub(r"^else\s+", "", body, flags=re.I).strip()
             if body:
                 drop.append(re.sub(r"\s+or\s+", ", ", body))
-        else:
-            keep.append(p)
+            continue
+        # Found 2026-09-18 against a real, shipped override
+        # (EP-001, "an empty console table with no keys on it"): the clause
+        # does not START with "no", so it fell all the way through to
+        # `keep` untouched and handed the model the tokens "no keys",
+        # which a diffusion model reads as "keys". Same trap the docstring
+        # above already paid for once, just one word later in the
+        # sentence. "with no X" is the one mid-clause shape checked for
+        # here, not a bare "no" anywhere: matching every "no" substring
+        # mid-clause (a name, "not", "known") would drop real content.
+        m = re.search(r"\bwith\s+no\s+(.+)$", p, flags=re.I)
+        if m:
+            prefix = p[:m.start()].rstrip(" ,")
+            obj = re.sub(r"\s+on\s+(it|them|there)\s*$", "", m.group(1),
+                        flags=re.I).strip()
+            if prefix:
+                keep.append(prefix)
+            if obj:
+                drop.append(re.sub(r"\s+or\s+", ", ", obj))
+            continue
+        keep.append(p)
     return ", ".join(keep), ", ".join(drop)
 
 
