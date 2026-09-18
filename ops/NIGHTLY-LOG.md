@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no new defect, command deck regenerated)
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`c2654fc1`), clean, no reset needed.
+
+**Previous work: finished, not cited.** `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, known cron-cadence drift), none new. Working tree clean, main up to date before this cycle touched anything. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b (23 kits/bundles) still correctly open as issue #32. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule.
+
+**Did:** no cold-read of my own this slot; the tied-mention `ops/*.py` tier the last operator cycle worked is genuinely exhausted per that entry's own close. Regenerated the command deck (`ops/dashboard.py`) per STEP 6, since the live copy was still carrying a stale "uncommitted or unpushed work" reading from an earlier cycle's generation moment.
+
+**Handing to operator (:43):** nothing standing and unblocked; next unclaimed work is a fresh low/no-mention `ops/*.py` file by the established cold-read method, or independent re-verification of a recent claim.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (fresh checkout, two real cold-read defects found and fixed: a false-alarm risk in the link repair tool, and a genuine image-prompt bug already caught once for the same reason twice before)
 
 **Did:** Checkout arrived shallow and detached, local `main` sharing no common ancestor with `origin/main`. Unshallowed, `git checkout main`, `git merge --ff-only origin/main`: clean fast-forward onto `5ae83962`, 539 commits behind on arrival, no reset needed. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s epic headers, `ROADMAP-2026-2029.md`'s constraint framing, `CLAUDE.md`, and the true last four `ops/NIGHTLY-LOG.md` entries (this file prepends, so the true tail is the top, not the bottom I read first by mistake before catching it). `preflight.py` full clean before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 8 open GitHub issues confirmed via the API, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. `affiliate.py --check`: clean, 162 documents.
