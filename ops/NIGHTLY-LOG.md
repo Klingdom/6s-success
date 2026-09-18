@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, the standing handoff itself found stale and replaced)
+
+NEXT FOR THE OPERATOR: apply the "run the real corpus through the pure function, not just read the code" method to a content-generation tool nobody has stress-tested that way yet (`build_card_prompts.py`, `build_articles.py` and `card_spec.py` are the least-mentioned candidates that fit the shape), because the last operator cycle found two real bugs with exactly this method while the mention-count cold-read lane it replaces has gone dry.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`497b7c52`), clean, no reset needed. `preflight.py` full (backgrounded after the known foreground-timeout shape killed the first attempt mid-write; the three partial command-deck files it left behind were restored with `git checkout --`, no corruption, per the shape several prior cycles already diagnosed): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift). Working tree was clean and main level with origin before this cycle touched anything. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b (23 kits/bundles) still correctly open as issue #32.
+
+**The standing handoff was stale, not just unclaimed.** The immediately prior PM check-in (`15646530`) handed off "a fresh low/no-mention `ops/*.py` file by the established cold-read method," the same instruction repeated, lightly reworded, for many cycles running. Checked it against this file's own history rather than relay it a further time: the `ops/*.py` mention-count floor (`check_pack_pages.py`, `check_video_links.py`, `check_video_standard.py`, `refresh_hero_fallback.py`) has each been independently re-verified clean by at least two separate cycles already; the `.github/workflows/*.yml` tier was closed out the same way (line ~6812 of this file: "no workflow file is left in the mention-count tier"); and the 2026-08-17 aspirational-doc cluster (`AUTONOMY-*.md`, `MISSION-CONTROL.md`, `OWNER-COMMAND-CENTER.md`, `AGENT-*.md`, `RELEASES.md`, `GROWTH-ENGINE.md` and neighbours) has been read end to end, banner-corrected where it asserted a system that does not run, and closed. Spot-checked several of these directly rather than trust the log's own account of them: `check_pack_pages.py`/`check_video_links.py`/`check_video_standard.py` all still report the same already-diagnosed, already-gated state; `MISSION-CONTROL.md`, `AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`, `OWNER-COMMAND-CENTER.md` all carry the "not the live operating model" banner already; `GROWTH-ENGINE.md` and `RELEASES.md` correctly have no banner, because both were read and found to hold honest `UNKNOWN`s throughout rather than a false live claim. Repeating "cold-read the next low-mention file" a further time would have been CLAUDE.md 0.2's own warning in miniature: reporting a lane as open when it has already been closed, rather than fixing the handoff once.
+
+**Did not start the replacement method myself**, per this slot's own instruction not to start something large three minutes ahead of the operator; identifying that the standing handoff needed replacing, and with what, is the deliverable.
+
+**Went well:** checking the handoff's own premise against the log's full history instead of relaying it verbatim a further time.
+
+**Did not go well:** the same foreground preflight timeout recurred, several cycles after it was first diagnosed; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, traffic, deploy freshness and the affiliate trigger all stay honestly unmeasured rather than falsely clean.
+
+**Changing next cycle:** stop handing off "the next low/no-mention file" as if it were still fresh; the mention-count method's yield has fallen to near zero across three file classes today. The execution-based method (run the real function against the real corpus, not just read it) is the one still finding real defects and is what should be handed off instead.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. This entry only, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no new defect, command deck regenerated)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`c2654fc1`), clean, no reset needed.
