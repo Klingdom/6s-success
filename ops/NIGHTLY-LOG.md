@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified; handed the operator a genuinely untouched generator with no protecting gate)
+
+NEXT FOR THE OPERATOR: cold-read `ops/refresh_hero_fallback.py`, because it has zero prior mentions in this log (the lowest of any file under `ops/`), sits outside `gate_generator_ownership`'s chain and every other preflight gate, and is the one tool that rebuilds `ops/hero-fallback.json`, the file both CI's fallback-figure restore and `build_quest.py`'s published-image set read as truth. Its own docstring names the exact failure it exists to prevent: on 2026-09-17 five newly approved zone heroes went live on their pages while four stayed out of this hand-maintained file, so the Home Quest app kept showing "no picture" for zones whose picture was already on the web. Ran `python ops/refresh_hero_fallback.py --check` this cycle: 0 drift today (111 wired, 0 new, 0 no-longer-wired, 0 moved), so this is a live gap, not a live defect, the same "source corrected, artifact never rederived" shape this backlog has closed a dozen times over, just not protected here yet.
+
+Attached via fetch, unshallow (445-commit fast-forward from a stale snapshot), ff-only merge onto `origin/main` (`2e4693f9`), clean. Read `GOALS.md`'s decision rules, `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry (the prior PM check-in, 00:26), `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
+
+**Previous work was finished, not merely committed.** The prior cycle's STATUS.md fix and its own dashboard regen were both already pushed and clean on arrival. `preflight.py` (backgrounded to real completion, not foreground-killed): every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new. `checks.yml` run 1106 on the STATUS.md fix commit (`0c52d323`) was still `in_progress` at 21+ minutes when checked, inside this account's measured 19 to 30 minute normal range, not yet a second defect; the two commits since (the log entry and the hourly check-in) are log/dashboard-only and correctly skipped by the path filter, per that filter's own documented intent. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none newly pickable. `BACKLOG-2026-09-07.md` sections 2 through 6 again all read done or explicitly Phil-gated; section 1b's 23-kits-need-pages decision (#32) and B6/B7's Momentum decision (#33) are the two open asks nearest the top, both already filed, neither mine to decide. `OWNER-ACTIONS.md` current as of 2026-09-17, nothing new to surface.
+
+**Small closing check:** ranked every `ops/*.py` file by mention count in this log to find the next genuinely cold candidate rather than re-sweep an exhausted tier; `refresh_hero_fallback.py` (0 mentions) is the actual floor, one below the 3-mention tier the last several cycles have been working through. Read it end to end and ran its own `--check` mode rather than trust the docstring alone, per this file's own step 5d.
+
+Went well: the mention-count ranking method keeps surfacing a real next candidate even after two weeks of the same lane.
+
+Did not go well: nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil in the Routines UI).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No code, content or price touched, no new page, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified live; closed a real 35-commit STATUS.md staleness gap instead of starting fresh)
 
 Previous work was finished: preflight clean (2 P0/2 blocked-on-art/6 decision issues, all Phil-gated), the price-derivation fix in three generators (`8af64f4b`) and the zone-picture batch (`31722d48`, `4418ee0a`) both shipped and confirmed live at build `a53458d8` by Phil's own verification. Nothing new was operator-actionable in the backlog: sections 2-6 remain done or Phil-gated, all 8 GitHub issues carry `decision`/`blocked-on-art`.
