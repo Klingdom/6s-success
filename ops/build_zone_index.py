@@ -145,6 +145,13 @@ def main() -> int:
                 "purpose": " ".join((z.get("purpose") or "").split()),
                 "session": z.get("session", ""),
                 "bucket": bucket(z.get("session", ""))[0],
+                # Position in its own room, added 2026-09-18 so this index
+                # says the same thing as the zone page, the room map, the
+                # deck card, the app and the shop: a zone is one of a
+                # countable set worked in order. Taken from the manual's own
+                # ordering rather than written down.
+                "place": "%d of %d" % (r["zones"].index(z) + 1,
+                                       len(r["zones"])),
             })
 
     rooms = sorted({z["room"] for z in zones})
@@ -169,7 +176,8 @@ def main() -> int:
             f'<li class="zcard" data-bucket="{z["bucket"]}" '
             f'data-room="{esc(z["roomSlug"])}">'
             f'<a href="{esc(z["url"])}">'
-            f'<span class="zroom">{esc(z["room"])}</span>'
+            f'<span class="zroom">{esc(z["room"])} '
+            f'<i class="zplace">zone {esc(z["place"])}</i></span>'
             f'<span class="zname">{esc(z["name"])}</span>'
             f'<span class="zpurpose">{esc(z["purpose"][:120])}</span>'
             f'<span class="zsession">{esc(z["session"])}</span>'
@@ -237,6 +245,7 @@ def main() -> int:
 .zname{font-family:var(--display),Georgia,serif;font-size:19px;line-height:1.2;
   color:#2B2622}
 .zpurpose{font-size:14.5px;line-height:1.45;color:#584f46;flex:1}
+.zplace{font-style:normal;font-weight:600;color:#6A625A;letter-spacing:0}
 .zsession{font:700 11px/1 var(--sans),system-ui,sans-serif;letter-spacing:.08em;
   text-transform:uppercase;color:#3f6647;margin-top:3px}
 .zempty{margin:20px 0;color:#584f46}
