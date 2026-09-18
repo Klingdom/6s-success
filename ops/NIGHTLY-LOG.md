@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (full verification pass, run 1156 confirmed green, honest finding: no new defect)
+
+**Did:** Unshallowed and attached via ff-only merge onto `origin/main` (`c81e9631`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last several `NIGHTLY-LOG.md` entries (newest-first, at the top).
+
+**Confirmed rather than trusted:** run 1156 (`d4c9e517`), the prior cycle's own open handoff, checked directly via the Actions API: `success`. Full `preflight.py` (backgrounded past the standing 120s foreground timeout): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, Pillow absent), none new. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential, inbox UNCHECKED. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b (23 kits/bundles, issue #32) correctly still open as a catalogue-scope decision.
+
+**Cold-read, per step 5d:** `site/assets/js/site.js` (the handed-off next candidate, 21 mentions) read end to end; cross-checked `pictureSources()`'s three width tiers against `gate_product_images_exist`'s own mirror in `preflight.py` and `room_image_variants.py`'s real output, no drift. Also independently re-verified `affiliate-disclosure.html` and `disclaimer.html` (both already found clean by an earlier cycle today): retailer links still only `target.com`/`homedepot.com`, both plain searches with no tracking code, matching `ops/affiliate-accounts.json`'s real approval statuses (all declined/pending, none approved); GOALS.md traffic baseline measured 2026-09-17, still current. No defect found in any of it.
+
+**Went well:** confirming the handoff's CI run rather than assuming green; independently re-deriving the affiliate-link claims against the real catalogue rather than trusting the page's own prose.
+
+**Did not go well:** nothing new; the cold-read lanes this session tried are heavily worked already by concurrent sessions today.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main: command deck only. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (a real, live mobile defect found by actually running the deep visual audit, not just reading code; the free Micro Zone Map scrolled sideways on a phone)
 
 **Did:** Unshallowed and attached via ff-only merge onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last four `ops/NIGHTLY-LOG.md` entries. Fast `preflight.py` (backgrounded): every gate passed, 22 warnings, all standing sandbox limits. 8 GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. No mail credential, inbox UNCHECKED. Backlog sections 2-6 again all done or Phil-gated.
