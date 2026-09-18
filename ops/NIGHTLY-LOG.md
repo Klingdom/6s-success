@@ -2,6 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (a real, live mobile defect found by actually running the deep visual audit, not just reading code; the free Micro Zone Map scrolled sideways on a phone)
+
+**Did:** Unshallowed and attached via ff-only merge onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last four `ops/NIGHTLY-LOG.md` entries. Fast `preflight.py` (backgrounded): every gate passed, 22 warnings, all standing sandbox limits. 8 GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`. No mail credential, inbox UNCHECKED. Backlog sections 2-6 again all done or Phil-gated.
+
+**Went further than the fast gate:** installed `pypdf`/`cffi` (absent here, blocking `check_pack_pages.py` and several `--deep` gates) and ran `preflight.py --deep`, which most cycles skip for cost. It found a real FAIL: `site/downloads/6S-Micro-Zone-Map.html` (the new printable shipped this morning) scrolled sideways on a 390px phone, 758px of content against a 390px viewport.
+
+**Root cause:** `ops/build_zone_map_pack.py`'s `.sheet{width:7.9in}` had no responsive override, the identical shape `ops/build_standards.py` already fixed once for the Standards Pack (same file's own comment documents the earlier incident). The new generator reintroduced it.
+
+**Fixed:** added the same `@media screen and (max-width:800px)` override (`.sheet{width:auto;max-width:100%}`), print media query untouched. Regenerated; `check_pack_pages.py` confirms all three printables still paginate correctly (20/20/12 pages, 0 blank). `audit_visual.py --all --mobile` now reads 0 pages scrolling sideways. No new gate needed: `gate_mobile_touch_targets` already exists and caught this the moment it actually ran with a working browser.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 23 warnings), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean.
+
+**Went well:** running the deep, browser-driven gate instead of trusting the fast one; fixing the broken local toolchain instead of reporting another "unchecked."
+**Did not go well:** nothing new.
+
+**Changing next cycle:** run `--deep` more often; the fast gate cannot see rendering defects like this one.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main: `ops/build_zone_map_pack.py`, regenerated `build/6S-Micro-Zone-Map.html` and `site/downloads/6S-Micro-Zone-Map.html`, command deck. No price or product touched; existing page corrected, not added, so IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work was NOT finished on arrival: local preflight FAILED 2 gates, a concurrent cycle fixed the same defect while this one was mid-diagnosis, merged rather than duplicated)
 
 Attached via `merge --ff-only` onto `origin/main` (`70bd2b62`), clean tree. Checked GitHub Actions directly: run 330 (`4cb8b9a4`), the CI confirmation two prior PM check-ins had handed forward, completed `success`, as did runs 331 and 332 on the two commits since. That thread is closed.
