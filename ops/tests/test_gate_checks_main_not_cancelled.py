@@ -22,20 +22,27 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import preflight as P                                          # noqa: E402
 
-GOOD = ("concurrency:\n  group: checks-${{ github.ref }}\n"
-        "  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}\n")
+GOOD = ("concurrency:\n  group: checks-${{ github.ref }}-"
+        "${{ github.ref == 'refs/heads/main' && github.sha || 'branch' }}\n"
+        "  cancel-in-progress: true\n")
+
+PER_REF_EXPR = ("concurrency:\n  group: checks-${{ github.ref }}\n"
+                "  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}\n")
+
+PER_REF_TRUE = ("concurrency:\n  group: checks-${{ github.ref }}\n"
+                "  cancel-in-progress: true\n")
+
+SHA_ONLY = ("concurrency:\n  group: checks-${{ github.sha }}\n"
+            "  cancel-in-progress: true\n")
 
 CASES = [
-    ("correct shape", GOOD, False),
+    ("correct shape (group unique per commit on main)", GOOD, False),
     ("real checks.yml", None, False),
-    ("unconditional true", "concurrency:\n  cancel-in-progress: true\n", True),
-    ("quoted true", "concurrency:\n  cancel-in-progress: 'true'\n", True),
-    ("declaration removed", "concurrency:\n  group: checks\n", True),
-    ("excludes the wrong branch",
-     "concurrency:\n  cancel-in-progress: ${{ github.ref != 'refs/heads/dev' }}\n", True),
-    ("correct line commented out, true underneath",
-     "concurrency:\n  # cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}\n"
-     "  cancel-in-progress: true\n", True),
+    ("the 2026-09-17 attempt: expression in cancel-in-progress",
+     PER_REF_EXPR, True),
+    ("one group per ref, cancel true", PER_REF_TRUE, True),
+    ("declaration removed", "jobs:\n  checks:\n", True),
+    ("group keeps the sha but drops main", SHA_ONLY, True),
 ]
 
 

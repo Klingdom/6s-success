@@ -165,7 +165,23 @@ on:
 # single largest source of those superseding pushes from triggering a run at
 # all, so this should fire far less often going forward.
 concurrency:
-  group: checks-${{ github.ref }}
+  # On main every commit gets its OWN group, so there is never a sibling to
+  # cancel; on a branch the group stays per-ref and a stale run is superseded.
+  #
+  # Corrected 2026-09-18, and the first attempt is worth writing down because
+  # it looked right and was not. That attempt kept one group per ref and set
+  # `cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`, which is a
+  # documented pattern and which I then reported as working on the strength of
+  # ONE observation: a run survived while a newer one queued behind it. The
+  # next fifteen runs disproved it. Measured from the Actions API rather than
+  # watched: after that change, runs on main were still being cancelled 162,
+  # 267, 301, 419 and 678 seconds in, which is work in flight being killed,
+  # not a queued run being superseded. An expression here evaluates to the
+  # STRING "false", and a non-empty string is truthy, so cancellation stayed
+  # on for every ref.
+  #
+  # Uniqueness of the group does not depend on how a string is coerced.
+  group: checks-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || 'branch' }}
   # main is never cancelled; branches still are. Measured 2026-09-17: of the
   # last 12 Checks runs, 5 were cancelled, and a successful run takes 28 to 31
   # minutes while concurrent sessions push every few minutes. Under
@@ -174,7 +190,7 @@ concurrency:
   # This repository is public, so Actions minutes are free and the only cost
   # of letting main's runs finish is queue time. On a branch, superseding a
   # stale run is still the right trade.
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+  cancel-in-progress: true
 
 jobs:
   checks:
