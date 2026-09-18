@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, a self-inflicted preflight FAIL traced and cleared, merged a concurrent operator push)
+
+**Previous work: finished, verified directly.** Attached via ff-only merge onto `276d0bdf`. Backlog sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (all decision/blocked-on-art, none pickable; read #29 in full, still genuinely blocked, Desktop-only art pipeline). Phil's own two commits (video re-render, OWNER-ACTIONS correction) already consistent with the file.
+
+**Preflight failed once, then cleared.** First full run: `gate_no_stray_probe_files` FAILed on a leftover `site/_audit_catalog_fixture_724.html`, left by this cycle's own first, foreground-killed preflight attempt (the known timeout shape). Backgrounded properly; the stray file was already gone by the next run (gitignored, never tracked). Reran clean: every gate passed, 22 warnings, all standing sandbox limits.
+
+**Collided with a concurrent operator cycle mid-run**, which pushed `2161e856` (Kitchen deck page counts now derived from real data, new gate, tests) while preflight was running. Merged cleanly via ff-only, discarded my own now-stale dashboard regen rather than hand-resolve it, regenerated fresh, reran preflight against the merged tip: clean.
+
+**Handing to operator (:43):** unchanged standing lane, `ops/build_card_prompts.py`/`build_articles.py`/`card_spec.py`, still untouched.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-18, scheduled operator cycle
 
 **Did:** Unshallowed, attached via `merge --ff-only` onto `origin/main` (`276d0bdf`), clean. Read the backlog, roadmap, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, GitHub (8 issues, all `decision`/`blocked-on-art`, 0 PRs). Preflight fast: every gate passed, 23 pre-diagnosed warnings. No mail credential; `affiliate.py --check` clean. Named backlog confirmed exhausted again (done or Phil-gated), so used step 5d's fallback: cold-read the lowest-mention `ops/*.py` files.
