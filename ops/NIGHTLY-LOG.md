@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle, closing (five rejected pushes in a row during an unusually busy window; landed clean, CI not yet confirmed on this exact push)
+
+**Did:** this cycle's push was rejected five times in a row by concurrent sessions (a PM check-in, a local CEO session doing real VPS work, and at least one more scheduled cycle, all landing commits inside the same half hour). Fetched, merged and re-ran `preflight.py` after every single merge rather than trusting an earlier green result or a marker-free auto-merge, per this file's own step 2 and the practice this cycle already used twice. One merge auto-resolved with no conflict markers but silently duplicated a relocated log entry (caught by grepping for its title and finding two byte-identical copies, not by any tool flagging it); every other merge either needed the generated dashboard files regenerated fresh or a real conflict resolved by hand.
+
+**Checked before trusting the local `workflows-healthy` warning that appeared partway through:** it named `checks.yml` as failing, sourced from the GitHub Actions API. Traced to the actual run rather than assuming it described the current tree: the failure was on commit `2cb090360f`, which predates every fix this cycle made and is already an ancestor of this cycle's own HEAD (`git merge-base --is-ancestor` confirmed it), so the warning describes a already-superseded state, not a live defect in what is about to be pushed. The commit itself (a real, separate fix for a GitHub Actions concurrency-group bug that had been silently cancelling in-flight `main` runs) is included.
+
+**Verified:** `preflight.py` clean on the final merged tree (every gate passed, 23 warnings, all previously diagnosed). `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check` all clean. Pushed successfully on the sixth attempt.
+
+**Not yet verified: CI on this exact push.** Checked the Actions API twice after pushing, roughly a minute apart; no new `checks.yml` run had registered for this commit yet, and the account's own measured cron/CI cadence (`ops/check_cron_cadence.py`'s findings, and this same log's repeated "still in_progress" notes) shows real queue delay is normal at this push volume, not evidence of a stuck or failed run. Per CLAUDE.md 0.3/0.4, saying so rather than assuming green: whoever picks up the next cycle should confirm `checks.yml` actually completed successfully on this push's head commit before treating this as closed.
+
+**Went well:** treating a stale API-sourced warning as a claim to trace to its source commit rather than either dismissing it or treating it as a live failure without checking; catching a silent (marker-free) duplication a second time this cycle.
+
+**Did not go well:** an unusually high concurrency window (five rejected pushes in roughly 30 minutes, at least three other sessions active) made every merge a real hazard, and generated-file conflicts on `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` fired on nearly every single one, adding overhead to every push in this window.
+
+**Changing next cycle:** none; no new gate needed, the ones that fired worked. Worth naming for whoever reads this next: at this push cadence, resolving generated-file conflicts by regenerating fresh (rather than trying to hand-merge `ops/dashboard.py`'s own output) is the reliable move, and grepping for duplicated section titles after any marker-free auto-merge is worth doing as a matter of course, not just when something looks off.
+
+**Next:** confirm `checks.yml` lands green on this push's head commit. Standing Phil-blocked list in `OWNER-ACTIONS.md` (8 issues) unchanged, item 8 now a live five-minute job rather than blocked. Every cold-read lane remains dry per this cycle's own earlier entries below.
+
+Pushed to main. Command deck plus the merge/dedup fixes already described in the entries immediately below. No code, content or price touched beyond gate-file fixes already detailed, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle, continued a third time (a third concurrent push fixed the same ordering defect independently; the auto-merge duplicated the entry, not the fix; deduplicated)
 
 **Did:** a third push attempt was rejected by a further concurrent commit (`9716a042`, another session's own fix for the exact `gate_nightly_log_ordering` failure this cycle had already fixed two pushes ago). Merged rather than force-pushed; `ops/NIGHTLY-LOG.md` auto-merged with no conflict markers, but git's three-way merge kept both sessions' copies of the relocated entry ("2026-09-18 early, local CEO cycle, fourth part") rather than recognising them as the same move, since each session's diff touched a slightly different surrounding hunk. Checked before assuming a clean auto-merge was correct, per this cycle's own standing practice this run: grepped for the entry's title and found it twice, byte-identical, 113 lines apart. Removed the second copy.
