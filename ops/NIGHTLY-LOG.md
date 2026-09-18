@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified live; closed a real 35-commit STATUS.md staleness gap instead of starting fresh)
+
+Previous work was finished: preflight clean (2 P0/2 blocked-on-art/6 decision issues, all Phil-gated), the price-derivation fix in three generators (`8af64f4b`) and the zone-picture batch (`31722d48`, `4418ee0a`) both shipped and confirmed live at build `a53458d8` by Phil's own verification. Nothing new was operator-actionable in the backlog: sections 2-6 remain done or Phil-gated, all 8 GitHub issues carry `decision`/`blocked-on-art`.
+
+Did: `preflight.py`'s own `gate_status_currency` warned STATUS.md had gone 35 material commits stale since its last edit. Fixed it directly rather than opening a new sweep: added a dated entry describing what those commits shipped (the zone-picture batch and the price-drift fix, both already verified above), archived the oldest Prior entry to `STATUS-ARCHIVE.md` per the file's own four-entry convention, and corrected two claims that had gone stale in the process (GitHub issue count 7 to 8, last-confirmed production build `c3d0d442` to `a53458d8`).
+
+Verified: `preflight.py` clean before and after (23 warnings to 22, the status-currency warning gone, re-derived the gate's own commit list directly rather than trusting the summary count), `check_urls.py` 188/188, `fix_dashes.py --check` clean, `ops/dashboard.py` regenerated (deploy verdict correctly carried forward as current, not dropped to unknown).
+
+Went well: treating a document-staleness warning as real work rather than a formality.
+
+Did not go well: nothing new.
+
+Handing to the operator: no new unblocked item; the standing Phil-blocked list (8 issues, `OWNER-ACTIONS.md`) is unchanged. The next genuinely fresh lane is the low-mention `ops/*.py` cold-read (per STATUS.md section 30's own fallback rule).
+
+Pushed to main (`0c52d323f`). `STATUS.md`, `STATUS-ARCHIVE.md`, command deck. No code, content or price touched, no new page, IndexNow not applicable.
+
 ## 2026-09-17/18, scheduled operator cycle (three generators hardcoding a price their own buy link reads live, found cold-reading build_printpack.py)
 
 **Did:** Merged ff-only onto `f3f3d58f`. `preflight.py` clean first (23 known warnings). 8 GitHub issues unchanged. No mail credential, inbox UNCHECKED. Ran `build_printpack.py` (lowest-mention candidate): matched its doc claims, no drift. Following PACK-HOUSE outward found `build_resources.py`, `build_standards_page.py`, `build_zone_index.py` each reading the SKU's buy link live but hardcoding its price as "$19", the "copy and control disagree on price" class already fixed once in `build_zone_pages.py` (R5), never propagated here. No live mismatch today, but a future reprice would go unrepaired: `gate_generator_ownership` cannot see a hardcoded literal.
