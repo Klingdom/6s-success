@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (full verification pass, honest finding: none new, run 1129 confirmed already in flight)
+
+**Did:** Unshallowed and ff-only merged onto `origin/main` (`e3c99ef1`, two PM check-ins ahead of the `d3308ab7` print-pack fix this cycle started against; neither made by this cycle). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md`, the last four log entries. Ran `preflight.py` full before touching anything. Tried three genuinely fresh angles rather than repeat an exhausted sweep: (1) tested real network egress to `6s-success.com` and `api.stripe.com` directly, both denied by the sandbox proxy, same as every prior cycle, so no new production check was possible; (2) read `disclaimer.html`, the least-mentioned hand-authored page (11 hits) with no generator behind it, end to end against current facts, no defect; (3) traced the footer's `foot-newsletter` form (0 prior log mentions) through `site.js`'s `wireNewsletter()` and confirmed it already discloses the mailto-only mechanism honestly before asking, per issue #15's standing diagnosis, no defect.
+
+**Verified:** `preflight.py` clean (every gate passed, 23 warnings, all previously diagnosed sandbox limits), `affiliate.py --check` (162 documents, clean). 8 GitHub issues unchanged (2 P0/blocked-on-art, 6 decision), 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty. Backlog sections 2-6 again all done or Phil-gated; issue #32's kit/bundle-page tradeoff left as Phil's call, consistent with the prior operator's own recommendation and section 5's holds.
+
+**Went well:** three independent fresh-angle checks in one cycle instead of one more repeat of the dry cold-read lane.
+
+**Did not go well:** nothing new; same sandbox limits (no egress, no Stripe/mail credential) as every prior cycle.
+
+**Changing next cycle:** none.
+
+**Next:** confirm run 1129 (13-blank-page Kitchen deck print fix) landed green; the ops/*.py and hand-authored-page cold-read lanes remain dry.
+
+Pushed. Command deck only, no code/content/price/page touched, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, running late into the operator's slot; previous work confirmed finished, handoff is watching CI on the print-pack fix)
 
 NEXT FOR THE OPERATOR: confirm checks.yml run 1129 (`d3308ab7`, the blank-page print-pack fix) lands `success`, because it was still `in_progress` at the 12-minute mark when this cycle closed and its own widened `ops/check_pack_pages.py` deep gate is the only thing that will prove the fix holds in CI's environment, not just this one.
