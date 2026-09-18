@@ -141,6 +141,20 @@
    * real, reachable unit, so it is the number the start screen leads with.
    * Total computed once from the same data the deck is built from, so it can
    * never drift from it. */
+  /* "  (zone 3 of 7)" for a zone the manual knows, "" for anything else. */
+  function zonePlace(roomName, zoneName) {
+    for (var i = 0; i < Q.rooms.length; i++) {
+      if (Q.rooms[i].room !== roomName) { continue; }
+      var zs = Q.rooms[i].zones;
+      for (var j = 0; j < zs.length; j++) {
+        if (zs[j].zone === zoneName) {
+          return "  (zone " + (j + 1) + " of " + zs.length + ")";
+        }
+      }
+    }
+    return "";
+  }
+
   var TOTAL_ZONES = Q.rooms.reduce(function (n, r) { return n + r.zones.length; }, 0);
 
   var reduceMotion = !!(window.matchMedia &&
@@ -1097,7 +1111,15 @@
     if (cthumb) {
       cthumb.innerHTML = picture(c.zone, { cls: "q-thumb", sizes: "74px" });
     }
-    $("#c-where").textContent = c.room + "  >  " + c.zone.zone;
+    /* WHERE THIS ZONE SITS, NOT JUST ITS NAME.
+       Added 2026-09-18. The card said "Kitchen > Primary Prep Counter",
+       which names a place without saying it is one of seven, so the app read
+       as a pile of tips rather than a room broken into a countable set of
+       small jobs you can finish. The position is computed from window.QUEST
+       at render time, so it cannot be typed wrong or drift when a zone is
+       added. */
+    $("#c-where").textContent = c.room + "  >  " + c.zone.zone
+      + zonePlace(c.room, c.zone.zone);
     $("#c-count").textContent = run.queue.length > 1
       ? (run.i + 1) + " of " + run.queue.length : "one card";
     $("#c-purpose").textContent = Q.purpose[c.step.s] || "";

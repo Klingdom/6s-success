@@ -862,6 +862,50 @@ Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), cl
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No code, content or price touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-18, local session (Phil's direction: better graphics, and triple down on the micro zone)
+
+**The diagnosis, before any pixels.** Every picture on a zone page was a generated room photograph. Pleasant, generic,
+and silent about the one idea that makes the page worth reading: that this is a small named place with a job, a finish
+line and a trigger, sitting among the other small named places in its room. A photograph of a nice kitchen teaches none
+of that, and the local model could not reliably draw the specific object a zone is about anyway (see today's earlier
+entry: 7 cards and 3 zones still have no picture for exactly that reason). So the answer was not better photographs. It
+was drawing the thing nobody else has.
+
+**Shipped and verified live:**
+
+1. **A micro zone diagram on all 114 zone pages.** The room's zones as numbered chips with this one lit, the zone's
+   purpose, its finish line as ticked items, and a footer carrying the session length and the reset trigger. Built from
+   content.json, the same source as the prose, so the two cannot drift.
+2. **A micro zone map on all 20 room pages.** Every zone numbered in working order with the time one session takes.
+3. **A new free product, the Micro Zone Map:** 20 printable sheets, one per room, all 114 zones. Linked from the rooms
+   hub and from standards.html, the page search actually lands people on. Verified by printing: exactly 20 pages, zero
+   blank.
+4. **The home page leads with the unit, not the method.** Every organizing book sells a method; nobody else has 114
+   named micro zones. The six S's stay, immediately after, still above the fold.
+5. **Every deck zone card says "Zone 3 of 7".** The number is the card's own order field and the total is counted from
+   the deck, so neither can be typed wrong.
+6. **A "where it is" beat added to the zone videos**, with the room's other zones as chips. Narration deliberately skips
+   the chips (new data-quiet rule in video_srt) so the voice says one sentence rather than reading seven zone names.
+
+**Three defects of my own, each caught by looking rather than assuming:**
+
+- The first diagram had a fixed height and truncated: checklist items ended mid-sentence and the seventh chip vanished
+  behind the footer. A diagram looks finished while lying, which is worse than prose that does. It now sizes to content.
+- **The version I shipped first was unreadable on a phone.** An 1160px SVG scaled into a 390px column puts body text at
+  about six pixels, and most household use of this site is on a phone. Caught by shooting the LIVE page at phone width.
+  The page version is now HTML that reflows, keeps selectable text, and costs a fifth of the bytes; the SVG stays where
+  a fixed canvas is right, in the printable pack.
+- The visual audit caught a contrast failure I introduced the same hour: the new "Zone 4 of 7" line sat at 4.48:1
+  against a 4.5 minimum. Now 5.6:1.
+
+**Also caught by the gates, and worth noting because both were mine:** a British "organising" in the new hero copy, and
+30 article pages left pointing at the old stylesheet hash after the CSS change, which the publish gate refused to build.
+
+**Running unattended:** all 228 zone videos (114 wide, then 114 vertical) are re-rendering to pick up the new beat,
+about ten hours. The code for that beat is deliberately NOT committed yet: adding a beat makes every committed caption
+stale at once, and gate_srt_captions_current would fail the build for the whole render window. Code and finished
+captions get committed together when it lands, so main stays green and deployable throughout.
+
 ## 2026-09-18, local CEO cycle, fifth part (two free printables wasted paper; the CI fix now has evidence behind it)
 
 **Printed the things this site asks people to print, and both were wrong.**
