@@ -11062,6 +11062,71 @@ def gate_no_stale_listmonk_blocker() -> None:
              " and ".join(bad))
 
 
+def gate_signup_form_withdrawal_protected() -> None:
+    """ops/wire_signup.py must refuse to silently restore the withdrawn
+    signup form, and the live pages must still carry the withdrawal while
+    issue #15 is open.
+
+    Found 2026-09-18, this operator, cold-reading ops/wire_signup.py per
+    the standing low-mention lane and then actually running it rather than
+    only reading it, per step 5d. The script's own docstring said nothing
+    about the fact that all six pages it touches (site/standards.html,
+    deck.html, quest.html, resources.html, articles/index.html,
+    method.html) currently carry a SIGNUP:BEGIN/END comment explaining a
+    deliberate 2026-08-23 withdrawal: the shared Listmonk instance's SMTP
+    credential belongs to a different business, Compassion Benchmark, and
+    553s every 6S opt-in confirmation email, so restoring the form would
+    500 on every visitor who submits it. A plain, undocumented run of
+    ops/wire_signup.py overwrote that comment on all six pages with the
+    real, broken form in this very cycle, caught only because the working
+    tree was diffed before committing. GitHub issue #15 (P0, decision) is
+    where Phil decides the fix; nothing in the repository closed it.
+
+    Fixed ops/wire_signup.py to refuse a page whose existing block says
+    "withdrawn" unless --force is passed. This gate does two things a
+    hand read cannot: proves that refusal logic is still in the source (a
+    future edit cannot quietly drop it), and proves none of the six live
+    pages have been restored without it, since restoring is exactly the
+    action this gate exists to catch. If issue #15 is genuinely resolved
+    and Phil wants the form back, this gate has to be updated in the same
+    change that runs --force, the same "corrected sibling told" discipline
+    gate_no_stale_listmonk_blocker already holds this file to.
+    """
+    src_path = os.path.join(ROOT, "ops", "wire_signup.py")
+    if not os.path.exists(src_path):
+        return
+    src = io.open(src_path, encoding="utf-8").read()
+
+    if '"withdrawn" in existing.lower()' not in src or "--force" not in src:
+        fail("signup-form-withdrawal-protected",
+             "ops/wire_signup.py no longer refuses to overwrite a "
+             "withdrawn signup block without --force. Running it as-is "
+             "would silently restore a form that 500s on every visitor, "
+             "since the shared Listmonk SMTP identity still 553s every 6S "
+             "opt-in email (issue #15, open).")
+        return
+
+    pages = ["standards.html", "deck.html", "quest.html", "resources.html",
+             os.path.join("articles", "index.html"), "method.html"]
+    restored = []
+    for rel in pages:
+        p = os.path.join(SITE, rel)
+        if not os.path.exists(p):
+            continue
+        html = io.open(p, encoding="utf-8").read()
+        m = re.search(r"<!-- SIGNUP:BEGIN -->(.*?)<!-- SIGNUP:END -->",
+                      html, re.S)
+        if m and "withdrawn" not in m.group(1).lower():
+            restored.append(rel)
+    if restored:
+        fail("signup-form-withdrawal-protected",
+             "%s now carry a live signup form even though issue #15 (the "
+             "shared Listmonk SMTP identity 553ing every 6S opt-in email) "
+             "is not recorded as resolved anywhere in this repository. If "
+             "Phil genuinely fixed it, update this gate's page list in the "
+             "same change." % ", ".join(restored))
+
+
 def gate_no_stale_affiliate_blocker() -> None:
     """GOALS.md's O4 must not claim every affiliate application is still
     "waiting on us, not on the networks" once ops/affiliate-accounts.json
@@ -16065,6 +16130,7 @@ def main() -> int:
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
+    run_gate(gate_signup_form_withdrawal_protected)
     run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_no_stale_narration_blocker)
     run_gate(gate_no_stale_card_deck_decision)

@@ -31,6 +31,23 @@ ORDER MATTERS: this appends to site.css, so run ops/fingerprint_assets.py
 AFTER it, not before. Getting that backwards is what failed the CI gate the
 first time this shipped, which is the gate doing its job.
 
+THIS FORM IS CURRENTLY WITHDRAWN ON EVERY PAGE IT TOUCHES
+-----------------------------------------------------------
+The shared Listmonk instance's SMTP credential belongs to a different
+business, Compassion Benchmark, and 553s every 6S opt-in confirmation email,
+so a visitor who submits this form sees a 500. Each page carries a
+SIGNUP:BEGIN/END comment explaining the withdrawal instead of the form.
+GitHub issue #15 (P0, decision) is where Phil decides between a separate
+Listmonk instance for 6S or moving Compassion Benchmark off the shared one.
+
+Found 2026-09-18: this script has no awareness of that withdrawal, so a
+plain, undocumented run silently overwrites the withdrawal comment on all
+six pages with the real, broken form, the exact "do not hand edit a file a
+generator owns, and do not blindly rerun a generator either" trap CLAUDE.md
+step 5b names. Because of that, main() now refuses to touch a page whose
+existing block says "withdrawn" unless --force is passed, and says why.
+Pass --force only once issue #15 is actually resolved.
+
 Run:  python ops/wire_signup.py && python ops/fingerprint_assets.py
 """
 from __future__ import annotations
@@ -39,6 +56,7 @@ import glob
 import io
 import os
 import re
+import sys
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -127,7 +145,9 @@ def main() -> int:
         print(f"  WARNING: could not reach {FORM_SRC} to verify the list ({e}).")
         print("  Wiring anyway, but re-run this when the host is reachable.")
 
+    force = "--force" in sys.argv
     n = 0
+    withheld = 0
     for rel in PAGES:
         path = os.path.join(SITE, rel)
         if not os.path.exists(path):
@@ -136,6 +156,17 @@ def main() -> int:
         s = io.open(path, encoding="utf-8").read()
         blk = block("../" * rel.count("/"))
         if MARK in s:
+            existing = re.search(re.escape(MARK) + r"(.*?)" + re.escape(END),
+                                 s, flags=re.S).group(1)
+            if "withdrawn" in existing.lower() and not force:
+                print(f"  REFUSED {rel}: the signup block there says it was "
+                      f"withdrawn (issue #15, still open). The shared "
+                      f"Listmonk SMTP identity 553s every 6S opt-in email, "
+                      f"so restoring this form would 500 on every visitor "
+                      f"who submits it. Pass --force once issue #15 is "
+                      f"actually resolved.")
+                withheld += 1
+                continue
             s2 = re.sub(re.escape(MARK) + r".*?" + re.escape(END), blk, s, flags=re.S)
         else:
             # Immediately before the footer, so it is the last thing on the page
@@ -148,7 +179,9 @@ def main() -> int:
         if s2 != s:
             io.open(path, "w", encoding="utf-8", newline="").write(s2)
         n += 1
-    print(f"  signup form on {n} pages")
+    print(f"  signup form on {n} pages"
+          + (f", {withheld} withheld (withdrawn, issue #15 open)"
+             if withheld else ""))
 
     # The styles live in the shared stylesheet, once.
     css_path = os.path.join(SITE, "assets", "css", "site.css")
