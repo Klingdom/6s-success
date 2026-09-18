@@ -338,7 +338,19 @@ def beats(room: str, z: dict) -> list:
 
     # The finished standard, split into the things a person can actually
     # check without losing any of its words. A slide holds at most four.
-    done = done_items(z)[:4]
+    #
+    # Found 2026-09-17 by extracting a real frame and reading it against the
+    # standard: 16 of 114 zones have more than four items, and the slide was
+    # dropping the rest in silence under the heading "What done looks like".
+    # For the china cabinet that silently removed "The cabinet strapped to a
+    # wall stud", a safety standard, from a video whose whole claim is that it
+    # shows what done looks like. ops/build_social_pins.py already solved the
+    # identical problem for the cards with a "+ 1 more on the zone page" line;
+    # same treatment here, so the slide is honest about being a summary
+    # instead of presenting four sixths of a standard as the whole of it.
+    all_done = done_items(z)
+    done = all_done[:4]
+    more = len(all_done) - len(done)
 
     call_d = z.get("the_call") or {}
     if isinstance(call_d, dict):
@@ -360,9 +372,12 @@ def beats(room: str, z: dict) -> list:
     if done:
         items = "".join(f"<li><b>{i+1}</b><span>{d}</span></li>"
                         for i, d in enumerate(done))
-        out.append((4.6, page(
+        overflow = ("" if not more else
+                    f'<p style="font-size:34px;margin-top:26px;opacity:.72">'
+                    f'+ {more} more on the zone page</p>')
+        out.append((4.6 if not more else 5.2, page(
             f'<p class="eyebrow">What done looks like</p>'
-            f'<ul>{items}</ul><p class="foot">6S Success</p>'), False))
+            f'<ul>{items}</ul>{overflow}<p class="foot">6S Success</p>'), False))
 
     if session:
         out.append((2.2, page(

@@ -92,6 +92,20 @@ def rendered_items(srt_path: str) -> list:
     return items
 
 
+def _discloses_more(srt_path: str, n: int) -> bool:
+    """Does the video admit that the slide is a summary?
+
+    The renderer adds "+ N more on the zone page" when a zone has more than
+    the four items a slide holds. Narration reads it, so it lands in the
+    captions and can be checked from here.
+    """
+    if not os.path.exists(srt_path):
+        return False
+    text = io.open(srt_path, encoding="utf-8", errors="replace").read()
+    flat = " ".join(text.split()).lower()
+    return ("%d more on the zone page" % n) in flat
+
+
 def compare():
     """(stale, fresh, unreadable) lists of (stem, current, rendered)."""
     import video_zone as V
@@ -102,15 +116,26 @@ def compare():
         # one that decides whether publishing is safe. The vertical render is
         # only consulted when no wide caption exists.
         wide = os.path.join(NARRATED, stem + "-16x9.srt")
-        got = rendered_items(wide if os.path.exists(wide)
-                             else os.path.join(NARRATED, stem + ".srt"))
+        srt_used = (wide if os.path.exists(wide)
+                    else os.path.join(NARRATED, stem + ".srt"))
+        got = rendered_items(srt_used)
         current = [c.rstrip(".") for c in V.done_items(z)]
+        # The slide holds four (ops/video_zone.py), so a zone with more than
+        # four items is expected to show the first four AND say so with a
+        # "+ N more on the zone page" line. Comparing against an open-ended
+        # prefix, which this did until 2026-09-17, accepted a video showing
+        # one correct item out of six as fresh; it also accepted the china
+        # cabinet video silently dropping "The cabinet strapped to a wall
+        # stud" under the heading "What done looks like".
+        expected = current[:4]
         if not got:
             unreadable.append((stem, current, []))
-        elif got == current[:len(got)]:
-            fresh.append((stem, current, got))
-        else:
+        elif got != expected:
             stale.append((stem, current, got))
+        elif len(current) > 4 and not _discloses_more(srt_used, len(current) - 4):
+            stale.append((stem, current, got + ["(no '+ N more' line)"]))
+        else:
+            fresh.append((stem, current, got))
     return stale, fresh, unreadable
 
 
