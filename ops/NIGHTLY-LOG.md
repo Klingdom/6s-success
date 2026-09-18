@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle, continued (closed the concurrent PM check-in's own handoff: cold-read all 29 site/articles/*.html, no defect)
+
+**Did:** A concurrent PM check-in (`f276967a`) pushed while this cycle's own verification pass was running, handing off "cold-read a sample of the 30 `site/articles/*.html` pages for stale claims, dead internal links or thin content." Merged cleanly (conflicts only in the append-only log and the generated dashboard files; resolved by keeping both log entries and regenerating the dashboard fresh rather than hand-merging JSON/HTML), then did the full 29, not a sample, since none had been read this session yet.
+
+**Checked, not skimmed:** confirmed `ops/build_articles.py` only generates 2 of the 29 (`what-is-6s.html`, `how-long-does-it-take-to-organise-a-room.html`, both already re-verified today per `STATUS.md`'s own log); the other 27 are hand-authored and owned by nothing. Verified every internal `../zones/...` link (37 across the corpus) resolves to a real file. Checked every numeric claim about zone/room/card counts (114 micro zones, 20 rooms, 684 cards, and the smaller per-band/per-room figures) and found all correct against the real catalogue; `gate_unsourced_stats` already covers unsourced claims specifically and passed clean in this cycle's own preflight run. Checked word counts: shortest article is 1,530 words, none thin. Checked `datePublished`/`dateModified` JSON-LD across all 27: all August 2026, consistent with the site's real age, none stale or future-dated. Checked canonical vs `og:url` consistency: no mismatches.
+
+**The real find, verified rather than assumed wrong:** 27 of the 29 articles carry a hardcoded Stripe payment link in a promotional CTA band (26 to the Print Pack at $19, one to the Virtual Consult at $250), the exact "a price change leaves the old link charging the old amount" risk this repository's own history warns about (the retired $18 book-checkout incident). Checked both link IDs directly against `site/assets/js/data.js`, the catalogue's own source of truth: `buy.stripe.com/00wdR223kfwK9fQ9440kF28` is PACK-HOUSE's current live link at the current $19 price, and `buy.stripe.com/5kQaEQ9vMacq63E2FG0kF2a` is CN-VIRTUAL's current live link at the current $250 price. Both match exactly; no stale link found. Also confirmed every one of the 29 pages is linked from `site/articles/index.html` (no orphans).
+
+**No new defect found.** The articles lane, the last one this session's own audit had not yet touched, is now read and clean.
+
+**Went well:** finishing the handoff in full rather than a sample, and verifying the two hardcoded Stripe links against the catalogue source rather than assuming a hand-authored page had drifted from it the way past incidents in this repository actually have.
+
+**Did not go well:** the concurrent push forced a merge mid-cycle; handled cleanly, no content lost, but worth noting for anyone reading this cold.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Every hand-authored hand-read lane this session attempted (`ops/*.py` mention-count, trust/legal pages, `site/articles/*.html`) is now exhausted; a future cycle's fresh angle should look elsewhere, for example the room pages (`site/rooms/*.html`) or the deck/product pages not yet given the same full-corpus read.
+
+Pushed to main: this entry. No price, product or site page touched. IndexNow not applicable (no page added or rewritten).
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished, CI still unconfirmed on the latest push, handoff is a fresh content lane)
 
 NEXT FOR THE OPERATOR: cold-read a sample of the 30 `site/articles/*.html` pages for stale claims, dead internal links or thin content, because the `ops/*.py` mention-count lane, the hand-authored `site/assets/js/*.js` lane and the `DECISIONS.md`/`LEARNINGS.md` staleness lane are all now confirmed exhausted this session, and `GOALS.md` names traffic/distribution as the live constraint, so an unread content-quality lane serving that constraint directly is the highest-value unblocked candidate.
