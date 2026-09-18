@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished; corrected a stale handoff instead of repeating it, dashboard was 4 commits behind reality)
+
+NEXT FOR THE OPERATOR: watch `checks.yml` run 1116 on HEAD (`08b70ae5`) to completion before trusting it, because a concurrent session with real VPS access pushed four commits after this cycle's own last PM check-in and none of them has been confirmed green yet; if it fails, that is this cycle's real work, not a fresh cold-read.
+
+Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), clean, no history conflict. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated).
+
+**Previous work was finished, not merely committed.** Working tree clean, main up to date with origin. `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits. `BACKLOG-2026-09-07.md` sections 2-6 again read end to end: every unblocked row is done or Phil-gated.
+
+**Found the last PM check-in's own handoff was stale before repeating it.** That entry (`87313e73`) named `build_youtube_metadata.py`, `split_deck_cards.py` and `wire_pwa.py` as the next cold-read tier. Checked their actual history in this file rather than trusting the mention count: all three carry a dozen-plus prior entries each (a full-corpus read of `build_youtube_metadata.py` on 2026-09-17, `wire_pwa.py` explicitly flagged at line 1567 as "already carries a dozen prior fix entries here, so mention count is not proof of an unread file", `split_deck_cards.py` last touched 2026-09-15/16 on the deck-art withholding logic). This matches at least three earlier independent conclusions in this same log (lines ~2981, ~3001, ~7256) that the mention-count cold-read lane is dry. Not repeating a confirmed-dry sweep a fourth time.
+
+**What actually changed since the last PM check-in:** a concurrent session with real VPS/production access pushed four commits (`bdd28233` captions, `d63ec527` fixed a video slide silently dropping a safety item from "what done looks like" and tightened `check_video_standard.py`, `0e999dbf` LRN-0016 recording that lesson, `7838f8d2` rewired nginx off two publicly-exposed ports onto the Docker bridge, `08b70ae5` added `OWNER-ACTIONS.md` item 8 naming that the port fix is committed but not yet deployed). None of this needed action from this cycle; all of it is real, already verified by that session's own commit messages (frame extraction, a live test container against the real services). The gap was operational-honesty only: `EXECUTIVE-DASHBOARD-LIVE.md` still cited commit `87313e73` as the last commit, four commits stale.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`) so it reflects the real HEAD; diff is timestamp/commit-count/last-commit-hash only, all carried-forward figures (revenue, traffic, affiliate) correctly still marked carried forward. Checked CI on the four new commits: `checks.yml` correctly cancelled its runs on the three superseded pushes (GitHub's own concurrency behavior, not a failure) and is `in_progress` on HEAD as of this writing, inside the account's normal 19-30 minute range, not yet a second data point. `publish-image.yml` run 319 on `7838f8d2` (the last commit touching `site/`) already completed `success`. `08b70ae5` is docs-only (`OWNER-ACTIONS.md`) and correctly did not trigger `publish-image.yml`.
+
+**Verified:** `preflight.py` clean before and after the dashboard regen (23 warnings, none new). Did not touch `OWNER-ACTIONS.md` item 8 itself: its own precondition (production must be redeployed with the port fix before anything else changes) is accurate and not this sandbox's to clear, no VPS access here.
+
+**Went well:** checking a handoff's own claim against the fuller log history before repeating it, rather than trusting the most recent entry on its own.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; nothing new.
+
+**Changing next cycle:** the standing `ops/*.py` mention-count cold-read fallback should stop being the default next-step recommendation; it has been independently confirmed dry four times now (this entry plus three cited above). If sections 2-6 are ever all done again with nothing Phil-gated newly open, the next fallback should be re-reading a hand-maintained `site/*.html` page or a `.md` operating document cold instead, not another pass over `ops/*.py`.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md`, 8 open GitHub issues), unchanged. Confirm `checks.yml` run 1116 lands green before starting anything else.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified; a quiet cycle, dashboard regenerated, nothing new unblocked)
 
 Attached via fetch, unshallow, ff-only merge onto `origin/main` (`18160d23`), clean, no history conflict. Read `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
