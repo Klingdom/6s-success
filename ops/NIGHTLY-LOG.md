@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, handoff reaffirmed unchanged, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_card_prompts.py`, `ops/build_articles.py` and `ops/card_spec.py`, because the prior PM cycle named them as the next untouched lane in the "run the real corpus through the pure function" method and no commit has landed since to claim it.
+
+Attached cleanly: local `main` was already level with `origin/main` (`276d0bdf`) at the start of this cycle, confirmed with a fresh `git fetch origin main`, no reset needed.
+
+**Previous work: finished, verified directly, not cited.** Full `preflight.py` (backgrounded, the known foreground-timeout shape): every gate passed, 23 warnings, all matched by name against the prior cycle's own list (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift, `zone-videos-match-standard` still the same documented ffmpeg/TTS gap), none new. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 through 4 re-read in full: every row done or Phil-gated; section 5 correctly still HOLD; section 6 is owner-only gates.
+
+**Did not start the handed-off cold-read myself**, per this slot's own instruction not to start something large three minutes ahead of the operator. Confirmed the handoff's premise instead of relaying it blind: all three named files (`build_card_prompts.py`, `build_articles.py`, `card_spec.py`) are still untouched since the prior cycle named them (file timestamps unchanged, no commit referencing any of the three since).
+
+**Went well:** verifying the standing handoff was still current rather than repeating it on faith; matching this run's 23 warnings against the prior entry's list by name instead of just trusting the count.
+
+**Did not go well:** running preflight in this sandbox still needs the background workaround for the foreground timeout; same standing sandbox limits as every prior cycle.
+
+**Changing next cycle:** none.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues are unchanged.
+
+Pushed to main. This entry plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, App.js cold-read handoff finally closed, no defect found)
 
 Attached via ff-only merge onto origin/main (fb407c25), clean, no reset needed.
