@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (full verification pass, honest finding: nothing new, three independent lanes re-checked rather than trusted)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (`47b2cc0e`), clean. Read `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` full before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Checked GitHub directly rather than cite a prior cycle's count: 8 open issues, unchanged in number and content since the last PM check-in (2 P0/blocked-on-art, 6 decision). Confirmed CI run 1130 (the print-fix verification commit, `4ec947d8`) landed `success`; run 1131 (this session's own starting point, `47b2cc0e`) was `in_progress`, not stuck. Ran `ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED rather than treated as empty.
+
+**Tried one genuinely fresh angle before accepting the standing "no egress" finding:** tested real HTTPS CONNECT to `6s-success.com` and `api.stripe.com` directly through this session's own proxy rather than assume the same denial every prior cycle hit. Both refused with a 403 policy denial at the gateway (confirmed via `$HTTPS_PROXY/__agentproxy/status`'s own relay-failure log, not just the curl exit code), so this is still a real, current limitation of this environment, not a stale assumption carried forward. Also re-checked whether the standing low-mention `ops/*.py` cold-read lane had a genuine untouched candidate rather than trust today's earlier declarations of "exhausted": both files below the 10-mention floor (`check_video_standard.py`, `check_video_links.py`) were independently re-verified correct by at least two separate cycles earlier today; nothing under that floor is unread.
+
+**Verified:** `preflight.py` clean, `ops/dashboard.py` regenerated cleanly (revenue correctly carried forward and marked as such, not reported as zero-and-current). No defect found in any of the three checked lanes (GitHub, network egress, cold-read floor).
+
+**Went well:** re-testing the egress and cold-read claims directly instead of repeating them on trust, per step 5d.
+
+**Went not well:** same shallow/detached checkout shape every cycle; no Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, the affiliate trigger, delivery confirmation and the KDP cover check all stay honestly UNCHECKED rather than falsely clean.
+
+**Changing next cycle:** none; no new defect class to gate.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged. No fresh unblocked backlog row exists in `BACKLOG-2026-09-07.md` sections 2 through 6.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished including live production verification, one stale-literal dashboard defect found and fixed)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`976dc93c`), clean. `preflight.py` full: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
