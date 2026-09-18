@@ -79,6 +79,9 @@ def main(apply_it: bool) -> int:
         s = (p.get("metadata") or {}).get("sku")
         if s and p.get("active"):
             by.setdefault(s, []).append(p)
+    if not by:
+        raise RuntimeError("no active products with a sku came back from "
+                            "Stripe, which is not a believable account state")
 
     dupes = {k: v for k, v in by.items() if len(v) > 1}
     print(f"  {sum(len(v) for v in by.values())} active products across "

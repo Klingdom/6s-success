@@ -22,7 +22,31 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged. The low-mention `ops/*.py` cold-read lane continues at `media_capability.py`, `build_app_icons.py`, `check_integrations.py` (13-14 mentions, next tier up).
 
+**Reconciled with a concurrent session:** a PM check-in landed on `origin/main` (`e27161b2`, below) while this cycle was running, cold-reading the same file (`stripe_dedupe.py`) and finding a real gap this cycle's own read of it missed: `main()`'s CLI entry point rebuilt `duplicates()`'s product-scanning loop inline without its sibling's "raise on zero active skus" guard, so an unreachable or misbehaving Stripe account would have printed a false "nothing to do" instead of an honest UNCHECKED. That fix stands as written below; nothing in this entry contradicts it.
+
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price, product or site page touched. IndexNow not applicable.
+
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, a real unchecked-not-clean gap found and closed in stripe_dedupe.py)
+
+NEXT FOR THE OPERATOR: cold-read `ops/check_pack_pages.py` next (4 mentions, the lowest in the standing low-mention lane), because every unblocked backlog row is again done or Phil-gated and this is the next unread file by the established ranking method.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`62361c95`), clean, 521 commits behind on arrival (usual shallow/detached shape). Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries, and the 8 open GitHub issues fresh via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule.
+
+**Previous work confirmed finished, not cited.** Working tree and main were already clean and level with origin before this cycle touched anything. First `preflight.py` attempt hit the exact foreground-timeout failure a prior cycle already warned about (a 110s cap killed it mid-write during Etsy PDF/dashboard regeneration); caught immediately via `git status`, the seven partial files restored with `git checkout --`, no corruption, rerun clean in the background to full completion: every gate passed, 23 warnings, all previously diagnosed (no Stripe/SSH/mail credential, no egress, no Pillow, the standing cron-cadence and art gaps), none new.
+
+**Continued the prior PM check-in's own named handoff.** Cold-read `ops/stripe_dedupe.py` (17 mentions, next in the money-domain tier after `stripe_setup.py`/`wire_breadcrumbs.py`). Found a real gap: `duplicates()` deliberately raises when Stripe returns zero active products with a `sku`, per its own docstring, "an empty dict means 'checked, none found' and a caller that cannot tell those apart will report a clean account it never read." `main()`, the actual `--check`/`--apply` CLI entry point, rebuilt the identical product-scanning loop inline without that guard, so the exact failure shape the docstring names would have printed "0 active products across 0 skus, 0 duplicated / nothing to do" for an unreachable or misbehaving account, the CLAUDE.md 0.4 shape by name. Fixed by adding the same raise to `main()`'s loop.
+
+**Verified, not assumed:** new `ops/tests/test_stripe_dedupe.py` (3 cases: empty account raises, a real single-sku account reports clean, a real duplicate resolves to the price-matching product under `--check` with zero write calls). Fail-then-pass proved directly: stashed the fix, reran, watched case 1 fail by name ("empty account returned normally instead of raising"), restored, reran clean. No dedicated gate added: this mirrors `stripe_invoice.py`'s own precedent (`test_stripe_invoice.py`, 2026-09-06) of a test with no separate `preflight.py` gate for a guard inside a manually-run CLI tool, not a generator whose drift a gate exists to catch. `preflight.py` full rerun clean after (every gate passed, 23 warnings, none new); the new test file is picked up automatically by `gate_tests`'s own glob, no registration needed. `check_urls.py`, `audit_pages.py`, `affiliate.py --check` not touched by this change (no page, price or product involved); ran anyway as part of the full preflight pass, clean.
+
+**Went well:** catching my own foreground-timeout mistake before it corrupted anything, per the same lesson already recorded in this log; the low-mention cold-read method found a real, if narrow, "unknown reported as unused" gap on the first file checked.
+
+**Did not go well:** repeated the foreground-timeout mistake a prior cycle had already named, before catching it; same unrelated-history checkout shape on arrival.
+
+**Changing next cycle:** none; the new test covers this defect class for this file, and the precedent (test without a dedicated gate for a CLI guard) already existed.
+
+**Next:** `ops/check_pack_pages.py` (4 mentions) is the next unread file in the low-mention lane. 8 open decision/blocked-on-art issues and `OWNER-ACTIONS.md` unchanged.
+
+Pushed to main. `ops/stripe_dedupe.py`, `ops/tests/test_stripe_dedupe.py`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
 
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, one cold-read closed clean, nothing new unblocked)
 
