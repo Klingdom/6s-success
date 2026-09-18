@@ -335,7 +335,7 @@ Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard
 
 **Verified, not assumed:** ran `python ops/preflight.py` to real completion in the background (about 12 minutes, not foreground-killed): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail/ssh credential, no Pillow), 0 new. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per STEP 3. `BACKLOG-2026-09-07.md` re-read in full: every unblocked row in sections 2-4 is done, section 5 is correctly held on traffic/evidence gates, section 6 is Phil's own owner-gate list. `STATUS.md` and `OWNER-ACTIONS.md` both cross-checked against the latest log entries: current, no drift found.
 
-**CI note, honest:** `checks.yml` run 1095 on the current HEAD (`dbf3b1f0`) was still `in_progress` at close, about 14 minutes after it started against the just-measured ~30-minute norm. Not stuck, not yet confirmed either; the ref-based `cancel-in-progress` fix this same commit shipped means my own push below will not cancel it.
+**CI note, honest:** `checks.yml` run 1095 on the current HEAD (`dbf3b1f0`) was still `in_progress` at close, about 14 minutes after it started against the just-measured ~30-minute norm. Not stuck, not yet confirmed either; the ref-based `cancel-in-progress` fix this same commit shipped means my own push below will not cancel it. **That last clause is wrong, corrected 2026-09-18: the fix did not take effect (string coercion), and pushes did keep cancelling in-flight runs until the group was made unique per commit.**
 
 **Went well:** checking the prior cycle's "stuck runner, corrected" claim against the Actions API directly instead of taking the correction on trust a second time.
 
@@ -518,7 +518,7 @@ written; the run was on "The ops test suite" at that moment. The cited "historic
 **But the same measurement found a real one: 5 of the last 12 Checks runs were CANCELLED**, and `checks.yml` carried
 `cancel-in-progress: true` for every ref. With a 30-minute run and concurrent sessions pushing every few minutes, main's
 own verification usually never finished, so "CI is green" was routinely a statement about an older commit. Changed to
-`cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`: branches still supersede stale runs, main never does. The
+`cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`. **RETRACTED 2026-09-18: that did not work and I reported it as working.** An expression there evaluates to the string "false", which is truthy, so cancellation stayed on for every ref; runs on main kept being killed 162 to 678 seconds in, measured from the Actions API across fifteen runs rather than watched once. The working shape makes the concurrency GROUP unique per commit on main, so there is no sibling to cancel, and `gate_checks_main_not_cancelled` now rejects the expression form by name. The
 repository is public, so Actions minutes are free and the only cost is queue time. New `gate_checks_main_not_cancelled`
 plus `ops/tests/test_gate_checks_main_not_cancelled.py` (7 cases) prove it fires on the unconditional form, a removed
 declaration, the wrong branch name, and a commented-out fix with `true` underneath.
