@@ -2,17 +2,39 @@
 """
 Create the 6S Success products and prices in Stripe.
 
+SUPERSEDED, found 2026-09-18, cold-reading the money-domain ops/*.py tier
+per CLAUDE.md step 5d. The same finding `ops/stripe_links.py` already
+carries (found 2026-09-10) applies here: the two consulting SKUs this file
+manages (6s_consult_virtual / 6s_consult_inhome, by Stripe's lookup_key)
+have been live on the site under a different identity since 2026-08-27.
+Commit `d5226967` moved the whole catalogue, consulting included, onto
+SKU-tagged prices (metadata.sku = CN-VIRTUAL / CN-INHOME) managed by
+`ops/stripe_catalog.py`, and `site/consulting.html`'s real buy buttons
+point at those, not at anything this file has ever created. This file's
+own idempotency guarantee is real but scoped to the wrong identity: a live
+`--apply` run would not find or update the live checkout (it looks up by
+lookup_key, the live prices carry metadata.sku instead), so it would create
+a second, orphaned product and price beside the ones already live, the same
+duplicate-checkout shape that once left a live page charging $18 next to an
+advertised $9.99. The `STRIPE_ALLOW_LIVE=1` guard below still stands between
+a live key and that outcome; this docstring is the second look it demands.
+Left in place as a record, not deleted, for the same reason `stripe_links.py`
+was: deleting a Stripe-writing tool is not a decision to make on grep alone.
+
 Only what is genuinely deliverable is created. The catalogue lists 41 items;
 three are deliverable today and all three are consulting. Creating Stripe
 products for reset kits with no supplier, or courses with no platform, would put
 a buy path in front of something that does not exist.
 
-Everything here is idempotent. It looks up by a stable lookup_key before
-creating, so running it twice does not produce duplicates, and running it after
-a partial failure finishes the job rather than doubling it.
+Everything here is idempotent within its own lookup_key namespace. It looks
+up by a stable lookup_key before creating, so running it twice does not
+produce duplicates of what it already made, and running it after a partial
+failure finishes the job rather than doubling it. It does not know about,
+and cannot reconcile with, the SKU-tagged prices `stripe_catalog.py` now
+manages for the same two offers.
 
 Run:  python ops/stripe_setup.py --plan      show what it would do, change nothing
-      python ops/stripe_setup.py --apply     create anything missing
+      python ops/stripe_setup.py --apply     create anything missing (superseded, see above)
 """
 import json
 import os

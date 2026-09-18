@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, a real live-payment foot-gun found and closed)
+
+NEXT FOR THE OPERATOR: cold-read `ops/mailer.py`, `ops/stripe_dedupe.py` or `ops/stripe_invoice.py` next (the standing low-mention lane, money-domain tier), because `wire_breadcrumbs.py` and `stripe_setup.py` both checked out this cycle and the money-domain files are the highest-value untouched group left.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`f956745c`), clean, 516 commits behind on arrival (usual shallow/detached shape). `preflight.py` full: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Working tree and main were already clean and level with origin before this cycle touched anything. 8 GitHub issues, unchanged, all decision or blocked-on-art, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2 through 4 again all struck through done or Phil-gated; section 5 correctly HOLD on the traffic constraint. No fresh unblocked backlog row exists.
+
+**Cold-read two files from the standing low-mention `ops/*.py` lane the prior cycle handed off** (`wire_breadcrumbs.py`, `stripe_setup.py`, both at 14 mentions). `wire_breadcrumbs.py --check` came back genuinely clean (0 would-change, 27 already correct, already gated by `gate_wire_breadcrumbs` or equivalent). `stripe_setup.py` had a real, undocumented foot-gun: `gate_stripe_write_tools_guarded`'s own docstring (2026-09-10) already established that this file's two consulting SKUs (6s_consult_virtual / 6s_consult_inhome, matched by lookup_key) were superseded 2026-08-27 when `d5226967` moved the live consulting checkout onto SKU-tagged prices (metadata.sku = CN-VIRTUAL / CN-INHOME) managed by `ops/stripe_catalog.py`. `ops/stripe_links.py` got the matching "SUPERSEDED" docstring warning the same day this was found for it (2026-09-10), citing the exact duplicate-checkout shape that once left a live page charging $18 next to an advertised $9.99. `stripe_setup.py` never got the same treatment: its docstring still read "Everything here is idempotent... running it twice does not produce duplicates," true only within its own stale lookup_key namespace, with nothing telling a reader that a live `--apply` (still correctly gated behind `STRIPE_ALLOW_LIVE=1`) would create a second, orphaned product and price beside the ones actually live, not update them. This is a live payment-safety document gap (CLAUDE.md 37), not an active incident: no evidence `--apply` has been run against a live key.
+
+**Fixed:** added the same SUPERSEDED warning `stripe_links.py` carries, naming the real commit, the real live identity scheme, and the real consequence, without deleting the tool (same reasoning `stripe_links.py`'s own docstring gives for being left in place). No code path changed: the `STRIPE_ALLOW_LIVE` guard already there is real and untouched. No new gate: matching the existing precedent, `stripe_links.py`'s own docstring fix carries no dedicated gate either, and inventing one for a single narrative string would be bureaucracy CLAUDE.md 56 warns against.
+
+**Verified:** `ast.parse` on the edited file, `python ops/stripe_setup.py --plan` still runs and fails safely with no credential (unchanged behaviour). `preflight.py` full rerun clean (every gate passed, 23 warnings). One self-inflicted false alarm caught and fixed during this cycle: a `timeout 110` on an earlier preflight run killed it mid-write during Etsy PDF regeneration, corrupting one committed listing image to 0 bytes and leaving several PDFs byte-different from HEAD; caught by the next full run's own `etsy-pdfs-current` gate correctly refusing on a dirty tree, restored via `git checkout -- build/listings/etsy/`, reran to completion uninterrupted, clean.
+
+**Went well:** the money-domain cold-read lane found a real, if latent, payment-safety gap on the first file checked; the preflight gate that caught my own interrupted run did exactly its job.
+
+**Did not go well:** same shallow/detached checkout shape; no egress, Stripe, mail, or SSH credential in this sandbox; running `preflight.py` under a foreground timeout is unsafe when it writes generated artifacts, noted for future cycles.
+
+Pushed to main. `ops/stripe_setup.py`, command deck. No price or product touched, no live Stripe object touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, three ungated cold-reads came back clean, nothing new unblocked)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`ca42a7bc`), clean, 515 commits behind on arrival (usual shallow/detached shape). `preflight.py` fast: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
