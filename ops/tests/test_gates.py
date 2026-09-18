@@ -142,6 +142,54 @@ def main() -> int:
                        "copy and must not be counted, count moved from %d to %d"
                        % (base, stale_count()))
 
+    # A price printed beside a buy link must be that exact link's own price,
+    # not merely a number that exists somewhere in the catalogue (that laxer
+    # question is gate_copy_vs_control's job). Found 2026-09-17: three
+    # generators (build_resources.py, build_standards_page.py, build_zone_
+    # index.py) already read PACK-HOUSE's buy link live but still hardcoded
+    # its price as a "$19" string, the same defect class REVIEW-COMMERCE-
+    # 2026-09-07.md R5 fixed elsewhere. gate_generator_ownership cannot catch
+    # this (a hardcoded literal regenerates identical to itself), so this
+    # gate checks the rendered page directly.
+    import json as _json2
+    _js2 = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                   encoding="utf-8").read()
+    _cat2 = {i["sku"]: i for i in
+             _json2.loads(_js2[_js2.index("["):_js2.rindex("]") + 1])}
+    if "PACK-HOUSE" in _cat2:
+        _buy = _cat2["PACK-HOUSE"]["buy"]
+        _price = _cat2["PACK-HOUSE"]["price"]
+
+        case("price disagrees with its own link", P.gate_price_matches_its_own_link,
+             "price-matches-its-own-link", "_gate_fixture_price_link.html",
+             PAGE % {"head": "",
+                     "body": '<h1>Fixture</h1><p><a href="%s">The Print Pack, '
+                             '$%d</a></p>' % (_buy, int(_price) + 6)})
+
+        # The correct price, written the way the real generators write it,
+        # must be left alone.
+        with Planted("_gate_fixture_price_link_ok.html",
+                     PAGE % {"head": "",
+                             "body": '<h1>Fixture</h1><p><a href="%s">The '
+                                     'Print Pack, $%d</a></p>'
+                                     % (_buy, int(_price))}):
+            if fired(P.gate_price_matches_its_own_link,
+                     "price-matches-its-own-link"):
+                bad.append("price matches its own link: the correct price "
+                           "next to the real buy link was reported as wrong")
+
+        # A price next to some OTHER link, or a page with no buy link at all,
+        # must never fire: this gate only judges a price against the SKU its
+        # own surrounding link actually sells.
+        with Planted("_gate_fixture_price_no_link.html",
+                     PAGE % {"head": "",
+                             "body": "<h1>Fixture</h1><p>All 114 zones for "
+                                     "$%d.</p>" % (int(_price) + 6)}):
+            if fired(P.gate_price_matches_its_own_link,
+                     "price-matches-its-own-link"):
+                bad.append("price matches its own link: a price with no buy "
+                           "link next to it must not fire")
+
     # The bundle's stated saving must equal its parts minus its price. "Save
     # $17" and "bought separately they are $66" were both true until the ebook
     # moved from $18 to $9.99, at which point they quietly became false and
@@ -245,12 +293,14 @@ def main() -> int:
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  8 gates fire on a planted fault and stay quiet without "
+        print("  ok  10 gates fire on a planted fault and stay quiet without "
               "it; stale-claims counts visitor copy only, bundle-maths "
               "accepts the true figures and looks in subdirectories, "
-              "roadmap-prices-current ignores a stray scratch page, and "
-              "owner-waiting surfaces owner_inbox's third-party check even "
-              "with OWNER_EMAIL missing")
+              "price-matches-its-own-link judges a price against the SKU "
+              "its own surrounding link sells, roadmap-prices-current "
+              "ignores a stray scratch page, and owner-waiting surfaces "
+              "owner_inbox's third-party check even with OWNER_EMAIL "
+              "missing")
     return 1 if bad else 0
 
 

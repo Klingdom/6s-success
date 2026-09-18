@@ -1318,6 +1318,69 @@ def gate_copy_vs_control() -> None:
              f"catalogue: {uniq}")
 
 
+def gate_price_matches_its_own_link() -> None:
+    """A price printed beside a buy link must be THAT link's own price, not
+    merely a number that exists somewhere in the catalogue.
+
+    Found 2026-09-17 cold-reading ops/build_printpack.py and following what
+    else touches PACK-HOUSE: ops/build_resources.py, ops/build_standards_
+    page.py and ops/build_zone_index.py each already read the SKU's buy link
+    live from data.js (a fix for an earlier dead-link defect), but the price
+    text next to it, "$19", was still a plain string literal. That is
+    REVIEW-COMMERCE-2026-09-07.md R5's exact defect ("copy and a control
+    disagreeing about a price"), already found and fixed in ops/build_zone_
+    pages.py and ops/build_articles.py, just never propagated to these three.
+    No live mismatch today: the price has not moved since. But if it ever
+    does, gate_generator_ownership cannot catch it, because a hardcoded
+    literal regenerates identical to itself every run, and gate_copy_vs_
+    control cannot either, because it only asks whether a price exists
+    ANYWHERE in the catalogue, not whether it is the price of the specific
+    product the surrounding link sells; a stale $19 next to a repriced link
+    would still pass that check as long as $19 remained valid for some other
+    SKU. This gate closes that gap directly: for every <a href="...">text</a>
+    whose href is a live catalogue buy link, if text also states a price, that
+    price must equal the catalogue price for that exact SKU. All three
+    generators above were fixed the same cycle this gate was written, by
+    reading the price live (PACK_PRICE / MANUAL_PRICE) the same way
+    PACK_BUY already was, so this both proves the fix and stops it recurring.
+    """
+    js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    by_buy = {i["buy"]: (i["sku"], i["price"]) for i in cat
+              if i.get("buy") and isinstance(i.get("price"), (int, float))}
+    if not by_buy:
+        return
+
+    anchor_re = re.compile(r'<a\b([^>]*)>(.*?)</a>', re.S)
+    href_re = re.compile(r'href="([^"]+)"')
+    dollar_re = re.compile(r'\$([\d,]+(?:\.\d+)?)')
+    words_re = re.compile(r'([\d,]+(?:\.\d+)?)\s+dollars')
+
+    bad = []
+    for f in all_pages():
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        for m in anchor_re.finditer(s):
+            hm = href_re.search(m.group(1))
+            if not hm or hm.group(1) not in by_buy:
+                continue
+            sku, real = by_buy[hm.group(1)]
+            text = m.group(2)
+            dm = dollar_re.search(text) or words_re.search(text)
+            if not dm:
+                continue
+            claimed = float(dm.group(1).replace(",", ""))
+            if claimed != float(real):
+                bad.append((os.path.basename(f), sku,
+                            claimed, float(real)))
+    if bad:
+        uniq = sorted(set(bad))[:5]
+        fail("price-matches-its-own-link",
+             f"{len(bad)} link(s) state a price that does not match the "
+             f"catalogue price of the exact SKU they buy: "
+             f"(file, sku, price shown, real price) {uniq}")
+
+
 def gate_bundle_maths() -> None:
     """The bundle's saving must equal its parts minus its price.
 
@@ -15401,6 +15464,7 @@ def main() -> int:
     run_gate(gate_third_party)
     run_gate(gate_unsourced_stats)
     run_gate(gate_copy_vs_control)
+    run_gate(gate_price_matches_its_own_link)
     run_gate(gate_bundle_maths)
     run_gate(gate_affiliate)
     run_gate(gate_stale_claims)

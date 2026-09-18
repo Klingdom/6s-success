@@ -49,17 +49,29 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 # payment links, and nothing caught it because no gate reads .js files for
 # dead links. Reading the one place Stripe sync actually writes to means
 # this cannot go stale again the same way.
-def _live_buy(sku):
+#
+# The price text next to the link used to be a plain "$19" string, same bug
+# REVIEW-COMMERCE-2026-09-07.md R5 found and fixed in build_zone_pages.py/
+# build_articles.py, just not propagated here: the buy link moved with a
+# reprice but the digits next to it did not, and gate_generator_ownership
+# could not catch it, because a hardcoded literal regenerates identical to
+# itself every time. Read live for the same reason PACK_BUY already is.
+def _live_field(sku, field):
     src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                   encoding="utf-8").read()
     catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
     for p in catalog:
         if p.get("sku") == sku:
-            return p["buy"]
+            return p[field]
     raise KeyError(f"{sku} not in data.js")
 
 
+def _live_buy(sku):
+    return _live_field(sku, "buy")
+
+
 PACK_BUY = _live_buy("PACK-HOUSE")
+PACK_PRICE = int(_live_field("PACK-HOUSE", "price"))
 
 
 def esc(t):
@@ -268,7 +280,7 @@ def main() -> int:
     Pack is the same {len(zones)} zones as 684 printable cards, nine to a page,
     so you carry the zone into the room instead of the room to a screen.</p>
     <div class="cta-row" style="margin-top:18px">
-      <a class="btn btn-primary btn-lg" data-sku="PACK-HOUSE" href="{PACK_BUY}" rel="noopener">The Print Pack, $19</a>
+      <a class="btn btn-primary btn-lg" data-sku="PACK-HOUSE" href="{PACK_BUY}" rel="noopener">The Print Pack, ${PACK_PRICE}</a>
       <a class="btn btn-on-deep btn-lg" href="../quest.html">Or use the free app</a>
     </div>
   </div>

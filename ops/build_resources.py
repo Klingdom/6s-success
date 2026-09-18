@@ -23,18 +23,32 @@ OUT = os.path.join(SITE, "resources.html")
 # payment links, and nothing caught it because no gate reads .js files for
 # dead links. Reading the one place Stripe sync actually writes to means
 # this cannot go stale again the same way.
-def _live_buy(sku):
+#
+# The price text below the link used to be a plain "$19"/"$29" string,
+# same bug REVIEW-COMMERCE-2026-09-07.md R5 found and fixed in
+# build_zone_pages.py/build_articles.py, just not propagated here: the buy
+# link moved with a reprice but the digits next to it did not, and
+# gate_generator_ownership could not catch it, because a hardcoded literal
+# regenerates identical to itself every time. Read live for the same reason
+# PACK_BUY/MANUAL_BUY already are.
+def _live_field(sku, field):
     src = open(os.path.join(SITE, "assets", "js", "data.js"),
                encoding="utf-8").read()
     catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
     for p in catalog:
         if p.get("sku") == sku:
-            return p["buy"]
+            return p[field]
     raise KeyError(f"{sku} not in data.js")
+
+
+def _live_buy(sku):
+    return _live_field(sku, "buy")
 
 
 PACK_BUY = _live_buy("PACK-HOUSE")
 MANUAL_BUY = _live_buy("MZ-MANUAL")
+PACK_PRICE = int(_live_field("PACK-HOUSE", "price"))
+MANUAL_PRICE = int(_live_field("MZ-MANUAL", "price"))
 
 
 # Extract the site chrome from a real page at runtime. Depending on separate
@@ -241,8 +255,8 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <ul>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
-    <li><a href="{PACK_BUY}" data-sku="PACK-HOUSE" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
-    <li><a href="{MANUAL_BUY}" data-sku="MZ-MANUAL" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
+    <li><a href="{PACK_BUY}" data-sku="PACK-HOUSE" rel="noopener">The Whole House Print Pack, ${PACK_PRICE}</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
+    <li><a href="{MANUAL_BUY}" data-sku="MZ-MANUAL" rel="noopener">The Micro Zone Manual, ${MANUAL_PRICE}</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
     <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
     <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
     <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-17/18, scheduled operator cycle (three generators hardcoding a price their own buy link reads live, found cold-reading build_printpack.py)
+
+**Did:** Merged ff-only onto `f3f3d58f`. `preflight.py` clean first (23 known warnings). 8 GitHub issues unchanged. No mail credential, inbox UNCHECKED. Ran `build_printpack.py` (lowest-mention candidate): matched its doc claims, no drift. Following PACK-HOUSE outward found `build_resources.py`, `build_standards_page.py`, `build_zone_index.py` each reading the SKU's buy link live but hardcoding its price as "$19", the "copy and control disagree on price" class already fixed once in `build_zone_pages.py` (R5), never propagated here. No live mismatch today, but a future reprice would go unrepaired: `gate_generator_ownership` cannot see a hardcoded literal.
+
+**Fixed** at the source, deriving price live like `build_zone_pages.py` does. Output byte-identical to before.
+
+**Gated:** new `gate_price_matches_its_own_link`, checking each buy link's catalogue price against the text beside it, closing a gap `gate_copy_vs_control` leaves (it only checks a price exists somewhere in the catalogue, not that SKU's). Fail then pass proved twice: on the gate (simulated reprice, 166 links failed, restored clean) and a `test_gates.py` case (broke gate, test failed, restored).
+
+**Verified:** full `preflight.py`, `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check`, clean.
+
+**Went well:** following one file's references outward.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read `browser.py` or `stripe_links.py`. Phil-blocked list, 8 issues, unchanged.
+
+Pushed to main. `preflight.py`, three generators, `test_gates.py`, command deck. No price changed, IndexNow not applicable.
+
 ## 2026-09-17, scheduled operator cycle (same session, continued: reconciled with a concurrent identical fix on merge, then caught and gated a near-miss on the book's own EPUB)
 
 **Reconciled, not duplicated.** Pushing the fix below collided with `a11df9dc`, a concurrent local session's own independent fix for the exact same root cause (five new zone photos never propagated past the room pages), found within minutes of this one. Merged rather than force-pushed over it; took their version for every generated/data file (theirs also rebuilt the mobile zone-hero JPEGs and the EPUB, which this fix had not reached), keeping only this session's own log entry as the record of independent discovery. `preflight.py --own` on the merged tree still failed on one thing neither fix had touched: `build/6S-Success-Home-Edition.epub` differed from what `build_epub.py` produces here.
