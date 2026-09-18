@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (full verification pass, fresh-angle trust-page read, no new defect)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (`81cefcfb`, 633-commit fast-forward from a shallow/detached start), clean tree, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the newest `ops/NIGHTLY-LOG.md` entries, `STATUS.md`, `OWNER-ACTIONS.md`. Every unblocked backlog row (A1-A7, B1-B7, C1-C7) again done or Phil-gated; section 1b (23 kits/bundles) correctly still open as issue #32's decision; section 5's HOLD rows correctly still waiting on traffic or the pilot read.
+
+**Verified, not cited:** ran `preflight.py` myself in the background (past the foreground timeout; `gate_tests` alone runs 201 files): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail credential, no egress, Pillow absent, the standing cron-cadence and page-art/deck-art counts). `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all run and clean independently, not inherited. `inbox_agent.py --apply`: no mail credential, nothing to read. 8 open GitHub issues checked directly via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the standing rule against picking anything waiting on Phil.
+
+**A fresh angle, not another `ops/*.py` mention-count pass (that lane is exhausted at every tier, confirmed again: lowest is 6 mentions, already touched this week).** Read the three lowest-mention hand-authored trust/legal pages end to end as a stranger would (`affiliate-disclosure.html`, `how-we-make-money.html`, both 13-15 mentions) plus `thanks.html` (19 mentions, the page an actual paying customer lands on). Checked the affiliate-disclosure page's claims against `ops/affiliate-accounts.json` directly rather than trusted: every named programme (Amazon, Lowe's, Target, Walmart, Home Depot, Ace) is genuinely unapproved or declined, so "no link here earns a commission today" and "carry no code of any kind" are both still true. Checked the footer's `onsubmit="return false"` newsletter form against `site.js`'s `wireNewsletter()`: it is a deliberate, disclosed mailto fallback (Listmonk returns HTTP 500, documented in `OWNER-ACTIONS.md` item 7), not a dead button; the JS rewrites the button text and adds a visible explanation before the field is used, so a no-JS visitor gets an honest do-nothing form rather than a lying one. Checked `thanks.html`'s per-SKU confirmation script: 6 of 159 SKUs get a tailored plan, the rest fall to an explicitly generic message the code's own comment explains was chosen so an unrecognised SKU "cannot promise the wrong thing"; the generic promise ("anything digital arrives by email, usually within a few hours") holds even against the cron-cadence warning's worst measured gap (358 minutes), so no defect. No live customer-facing problem found in any of the three.
+
+**No new defect found this cycle.** Working tree was clean before this run touched anything; the only diff is the dashboard's own regeneration.
+
+**Went well:** independently re-deriving trust-page accuracy from the underlying data file (`affiliate-accounts.json`) rather than trusting the page's own prose; confirmed the newsletter form and the thanks-page fallback are both deliberate, honest designs rather than defects that look like ones.
+
+**Did not go well:** nothing new; same standing sandbox gaps as every recent cycle (no VPS/Stripe/mail credential, no egress, Pillow absent).
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, Stripe business description, Gemini/KDP/Etsy/Apple/Play accounts) and the 8 open GitHub issues, unchanged. The `ops/*.py` mention-count cold-read lane remains exhausted; a future cycle's fresh angle should keep reading live customer-facing surfaces (remaining hand-authored `site/*.html` pages) rather than re-deriving a ranking that no longer distinguishes unread from already-clean.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified, real `gate_status_currency` warning closed)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`f52c128b`) cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full (every unblocked row again done or Phil-gated: sections A1-A7, B1-B7, C1-C7 all shipped or superseded; the only open items are the C6/OWNER-ACTIONS Phil-gated set and the section 5 HOLD list, correctly untouched), `EXECUTIVE-DASHBOARD-LIVE.md`, the newest `ops/NIGHTLY-LOG.md` entries, and 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`). Ran `preflight.py` fresh myself rather than cite the prior cycle's own claim: every gate passed, but 23 warnings included a real one, `status-currency`, naming STATUS.md as 8+ material commits behind its own last edit (`ef3cf037`).
