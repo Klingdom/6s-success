@@ -44,9 +44,23 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 NARRATED = os.path.join(ROOT, "build", "video", "zones-narrated")
 
-ITEM = re.compile(
-    r"\d+\s+(?:\d\d:\d\d:\d\d,\d+\s+-->\s+\d\d:\d\d:\d\d,\d+\s+)?"
-    r"(\d)\s+([A-Z][^0-9]{4,160}?)(?=\s+\d+\s+\d\d:|\s*$)")
+def blocks(text: str):
+    """(index, text) for every subtitle block, each block's lines joined.
+
+    An SRT block is an index line, a timing line, then one or more text lines.
+    The text of a single checklist item is wrapped across those lines by the
+    renderer, so anything that reads line by line sees "Hats and gloves
+    together in a single" and stops. The first version of this file did
+    exactly that and would have held back correctly re-rendered videos for
+    ever, which is the failure mode a guard must not have.
+    """
+    out = []
+    for raw in re.split(r"\r?\n\r?\n", text):
+        lines = [l.strip() for l in raw.strip().splitlines() if l.strip()]
+        if len(lines) < 2 or "-->" not in lines[1]:
+            continue
+        out.append((lines[0], " ".join(lines[2:]).strip()))
+    return out
 
 
 def slug(text: str) -> str:
@@ -54,15 +68,28 @@ def slug(text: str) -> str:
 
 
 def rendered_items(srt_path: str) -> list:
-    """The numbered checklist as the video's own captions carry it."""
+    """The numbered checklist as the video's own captions carry it.
+
+    The renderer numbers each item ("1 One coat per person on the rail") and
+    the list follows the "What done looks like" title card, so items are the
+    numbered blocks after that card and before the next unnumbered one.
+    """
     if not os.path.exists(srt_path):
         return []
     text = io.open(srt_path, encoding="utf-8", errors="replace").read()
-    m = re.search(r"What done looks like(.{0,1200})", text, re.S)
-    if not m:
-        return []
-    segment = " ".join(m.group(1).split())
-    return [t.strip().rstrip(".") for _, t in ITEM.findall(segment)]
+    seen_title, items = False, []
+    for _idx, body in blocks(text):
+        if not seen_title:
+            if body.lower().startswith("what done looks like"):
+                seen_title = True
+            continue
+        m = re.match(r"^(\d+)\s+(.+)$", body)
+        if not m:
+            break
+        if int(m.group(1)) != len(items) + 1:
+            break
+        items.append(m.group(2).strip().rstrip("."))
+    return items
 
 
 def compare():
