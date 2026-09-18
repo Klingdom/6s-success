@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle, continued (merging a concurrent push found two real gate failures, both fixed: a misplaced log entry and a stale OWNER-ACTIONS header)
+
+**Did:** this cycle's own push was rejected (a concurrent session had landed three commits since the last fetch). Fetched and merged rather than force-pushing; the three incoming commits (`5c71b020` PM check-in, `741f5ea5` OWNER-ACTIONS item 8 precondition resolved, `11802a8a` a backdated local-CEO log entry) conflicted with this cycle's own `ops/NIGHTLY-LOG.md` and command-deck edits. Resolved the log by keeping both entries in push order and adding a one-line postscript to this cycle's own entry noting that the precondition it verified as correctly-tracked-but-unmet has since been met; took the generated dashboard files from the incoming side and regenerated them fresh afterward rather than hand-merging generated content.
+
+**Per STEP 2, ran preflight after the merge rather than assuming a clean merge is a clean state, and it was not clean.** Two real gate failures, both introduced by the incoming commits, neither self-inflicted by the merge mechanics: `gate_nightly_log_ordering` fired because the incoming backdated entry ("2026-09-18 early, local CEO cycle, fourth part") had been inserted after the file's sequence had already moved on to 2026-09-17 entries, the exact append-not-prepend shape that gate exists to catch; `gate_owner_actions_last_measured_current` fired because `OWNER-ACTIONS.md`'s header still read "2026-09-17" while item 8's body text now cites "2026-09-18 01:47" (the deploy timestamp the same incoming commits added).
+
+**Fixed both directly, this becoming the cycle's real work per STEP 2:** moved the misplaced entry (45 lines) to sit immediately after the last genuine 2026-09-18 entry and before the first 2026-09-17 one, verified by re-running the exact regex the gate itself uses against the file; updated the header to "Last measured: 2026-09-18" with a one-line summary of what changed (item 8's precondition met).
+
+**Verified:** `preflight.py` clean after (every gate passed, 23 warnings, same set as before the merge, none new). `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check` all still clean. Command deck regenerated against the real merged HEAD.
+
+**Went well:** treating a clean merge as unproven until preflight actually re-ran, per this file's own step 2 instruction and CLAUDE.md 0.3's "an exit code is not an observation" applied to git merges specifically.
+
+**Did not go well:** a second, independent session's own commit shipped with a real gate-catchable ordering defect; the gate caught it correctly on the very next run that actually executed it, which is what happened here, but it would have stayed broken on `main` until then had this cycle force-pushed instead of merging and re-checking.
+
+**Changing next cycle:** none; both gates worked exactly as designed, this is a case for merging and re-verifying, not a new check.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (8 issues) unchanged, item 8 now a live five-minute job rather than blocked. Every cold-read lane remains dry per this cycle's own earlier entry below.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` (reordered), `OWNER-ACTIONS.md` (header), command deck. No code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (every cold-read lane reconfirmed dry; one live safety precondition verified correctly enforced, no defect)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (465-commit fast-forward, no history conflict). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run clean first: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/analytics/VPS/mail credential, no egress, no Pillow). 8 GitHub issues confirmed unchanged via the API (2 P0, 2 blocked-on-art, 6 decision), none newly pickable. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED not empty.
@@ -119,6 +139,51 @@ Did not go well: nothing new.
 Handing to the operator: no new unblocked item; the standing Phil-blocked list (8 issues, `OWNER-ACTIONS.md`) is unchanged. The next genuinely fresh lane is the low-mention `ops/*.py` cold-read (per STATUS.md section 30's own fallback rule).
 
 Pushed to main (`0c52d323f`). `STATUS.md`, `STATUS-ARCHIVE.md`, command deck. No code, content or price touched, no new page, IndexNow not applicable.
+
+## 2026-09-18 early, local CEO cycle, fourth part (two public ports can now be closed; a video was dropping a safety standard)
+
+**Read the frame, not the captions, and found a second defect the proxy could not see.** `ops/check_video_standard.py`
+passed `dining-room--china-or-display-cabinet`. Extracting its actual frame with ffmpeg showed four items under "What
+done looks like" against a standard of six, and the two missing were **"The cabinet strapped to a wall stud"**, a safety
+standard, and the finished-shelves photo, with nothing on screen saying anything had been left out. The four-item cap is
+deliberate (`video_zone.beats`, "a slide holds at most four"); presenting four sixths as the whole standard is not.
+`ops/build_social_pins.py` had already solved this for the cards with "+ 1 more on the zone page", so the video slide now
+does the same and holds 5.2s instead of 4.6s when it does. **16 of 114 zones are affected; one drops a safety item.**
+
+The checker was also too lenient in a way I had not noticed: it compared against an open-ended prefix, so a video showing
+one correct item out of six passed as fresh. It now requires the first four exactly plus the disclosure line. Stale moved
+97 to 102 of 114, which is the count becoming honest rather than the situation worsening.
+
+**OWNER-ACTIONS item 8 (two public ports) went from blocked to a five-minute job.** Re-measured rather than recalled:
+Umami (32769) and Listmonk (8081) still answer the open internet, Umami's login page included, and the host runs **no
+firewall at all** (`ufw` inactive). The reason it sat open since August is that closing it would have broken this site:
+`site/nginx/default.conf` reached both through the host's PUBLIC address. Rewired to the Docker bridge (172.17.0.1),
+proved from inside the running production container first, then end to end, then deployed (`a53458d8` ->
+`8f2400c02ff063f2`) and proved live: a labelled probe event posted to the real beacon (`operator-probe-bridge`) is in the
+analytics database at 01:49:16. Item 8 now carries the tested two-line compose change. **Not run here on purpose**: these
+are Hostinger-managed stacks shared with other sites, and another site's tracker pointing at the public address would
+silently stop reporting. That is a YELLOW action on somebody else's infrastructure.
+
+**Caught a hazard in my own instructions before it could bite:** for about half an hour item 8 told Phil the ports were
+safe to close while production was still serving the old build that needed them. Named the precondition in the file with
+the build id to check, then cleared it once the deploy was confirmed.
+
+**Checked and found clean, so nobody re-audits:** the 228 Pinterest/Instagram cards (read one rendered card end to end),
+the social captions (0 of 460 standard items missing), the Etsy pack PDFs (they carry the six-S pass cards by design, not
+the checklist), the free Standards Pack (uses `leave_behind.standard`, a different field) and the phone app (carries the
+full standard as prose). Only the videos were affected by the splitter fix.
+
+**Too early to read: Googlebot and the new redirects.** Since the 17:00Z deploy the only Googlebot traffic in the live
+log is robots.txt and assets; the one `.html` fetch it made today predates the deploy. 301s are being served (4 to bots
+so far, mostly my own verification). This needs days, not hours, and Search Console to read properly.
+
+**Two processes are running unattended; neither needs a human:**
+1. `scratchpad/rerender_stale.py`, the wide re-render, 19 of 99 done at the time of writing.
+2. `scratchpad/rerender_until_clean.py`, which waits for the first to exit and then re-runs it until the checker reports
+   zero stale or a pass makes no progress. It exists because the first batch started before the "+ N more" change, so the
+   dozen it finished first would otherwise have stayed stale with nobody here to notice.
+
+When both stop, run `python ops/check_video_standard.py` (expect 0 stale) and commit the corrected `.srt` files.
 
 ## 2026-09-17/18, scheduled operator cycle (three generators hardcoding a price their own buy link reads live, found cold-reading build_printpack.py)
 
@@ -404,51 +469,6 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 **Did not go well:** could not get CI to a confirmed state within the 30-minute slot; a real possible CI-runner problem is now the operator's first job at :43, ahead of anything else.
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
-
-## 2026-09-18 early, local CEO cycle, fourth part (two public ports can now be closed; a video was dropping a safety standard)
-
-**Read the frame, not the captions, and found a second defect the proxy could not see.** `ops/check_video_standard.py`
-passed `dining-room--china-or-display-cabinet`. Extracting its actual frame with ffmpeg showed four items under "What
-done looks like" against a standard of six, and the two missing were **"The cabinet strapped to a wall stud"**, a safety
-standard, and the finished-shelves photo, with nothing on screen saying anything had been left out. The four-item cap is
-deliberate (`video_zone.beats`, "a slide holds at most four"); presenting four sixths as the whole standard is not.
-`ops/build_social_pins.py` had already solved this for the cards with "+ 1 more on the zone page", so the video slide now
-does the same and holds 5.2s instead of 4.6s when it does. **16 of 114 zones are affected; one drops a safety item.**
-
-The checker was also too lenient in a way I had not noticed: it compared against an open-ended prefix, so a video showing
-one correct item out of six passed as fresh. It now requires the first four exactly plus the disclosure line. Stale moved
-97 to 102 of 114, which is the count becoming honest rather than the situation worsening.
-
-**OWNER-ACTIONS item 8 (two public ports) went from blocked to a five-minute job.** Re-measured rather than recalled:
-Umami (32769) and Listmonk (8081) still answer the open internet, Umami's login page included, and the host runs **no
-firewall at all** (`ufw` inactive). The reason it sat open since August is that closing it would have broken this site:
-`site/nginx/default.conf` reached both through the host's PUBLIC address. Rewired to the Docker bridge (172.17.0.1),
-proved from inside the running production container first, then end to end, then deployed (`a53458d8` ->
-`8f2400c02ff063f2`) and proved live: a labelled probe event posted to the real beacon (`operator-probe-bridge`) is in the
-analytics database at 01:49:16. Item 8 now carries the tested two-line compose change. **Not run here on purpose**: these
-are Hostinger-managed stacks shared with other sites, and another site's tracker pointing at the public address would
-silently stop reporting. That is a YELLOW action on somebody else's infrastructure.
-
-**Caught a hazard in my own instructions before it could bite:** for about half an hour item 8 told Phil the ports were
-safe to close while production was still serving the old build that needed them. Named the precondition in the file with
-the build id to check, then cleared it once the deploy was confirmed.
-
-**Checked and found clean, so nobody re-audits:** the 228 Pinterest/Instagram cards (read one rendered card end to end),
-the social captions (0 of 460 standard items missing), the Etsy pack PDFs (they carry the six-S pass cards by design, not
-the checklist), the free Standards Pack (uses `leave_behind.standard`, a different field) and the phone app (carries the
-full standard as prose). Only the videos were affected by the splitter fix.
-
-**Too early to read: Googlebot and the new redirects.** Since the 17:00Z deploy the only Googlebot traffic in the live
-log is robots.txt and assets; the one `.html` fetch it made today predates the deploy. 301s are being served (4 to bots
-so far, mostly my own verification). This needs days, not hours, and Search Console to read properly.
-
-**Two processes are running unattended; neither needs a human:**
-1. `scratchpad/rerender_stale.py`, the wide re-render, 19 of 99 done at the time of writing.
-2. `scratchpad/rerender_until_clean.py`, which waits for the first to exit and then re-runs it until the checker reports
-   zero stale or a pass makes no progress. It exists because the first batch started before the "+ N more" change, so the
-   dozen it finished first would otherwise have stayed stale with nobody here to notice.
-
-When both stop, run `python ops/check_video_standard.py` (expect 0 stale) and commit the corrected `.srt` files.
 
 ## 2026-09-17, local CEO cycle, third part (the YouTube authorisation would have published 100 contradictions)
 
