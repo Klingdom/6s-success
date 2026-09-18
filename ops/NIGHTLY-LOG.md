@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, cold-read Phil's two uncited direct pushes, no defect found, one never-touched surface handed to the operator)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_zone_map_pack.py`, the only live consumer of `zone_graphics.py`'s `room_map_svg()`, sibling of the function whose fixed-height footer truncated reset-trigger text on 70 of 114 zone pages this week; zero mentions in this log, and `gate_generator_ownership` proves regeneration stable, not correct.
+
+Attached ff-only onto `origin/main` (`61441714`), clean. Previous work finished, verified: `preflight.py` exit 0, every gate passed, 23 warnings, standing limits. 8 issues unchanged, none pickable. Backlog sections 2-6 done or Phil-gated.
+
+Cold-read Phil's two uncited pushes, `709e764e`/`61441714`: the phone diagram wraps reset-trigger text with CSS flex-wrap, no fixed height or ellipsis, so the truncation bug just fixed twice cannot recur; the restamp is mechanical. No defect found.
+
+Pushed: this entry, command deck. No price, product or page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, did the handed-off zone_graphics.py cold-read myself: a real, live truncation bug found and fixed on 70 of 114 zone pages)
 
 Attached via `merge --ff-only` onto `origin/main` (`46566b6a`), a 571-commit fast-forward (container arrived shallow and detached, unshallowed first), clean.
