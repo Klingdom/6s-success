@@ -92,6 +92,35 @@ def jobs(room: str | None):
     return out
 
 
+def stale_slugs() -> set:
+    """Zones whose rendered video contradicts the zone's current standard.
+
+    Added 2026-09-17. Every narrated video on disk was rendered 7 to 8
+    September; video_zone.done_items(), which writes the "What done looks
+    like" checklist into them, was corrected on the 15th. Measured, not
+    assumed: 100 of 114 rendered videos now disagree with their own zone
+    page. "One wallet and one phone per adult" is on screen as "One phone
+    per adult"; one Entryway zone loses an item outright.
+
+    Twelve are already public (OWNER-ACTIONS item 1). The remaining 102 are
+    exactly what this tool uploads the moment Phil authorises it, and a
+    YouTube video cannot be replaced with a corrected file without changing
+    its URL. So this refuses them here rather than leaving the five minute
+    authorisation to publish a hundred contradictions.
+
+    Fails open ONLY if the checker itself cannot run, and says so, because a
+    checker that silently returns "nothing stale" is worse than none.
+    """
+    try:
+        import check_video_standard as C
+        stale, _fresh, _unreadable = C.compare()
+        return {stem for stem, _c, _g in stale}
+    except Exception as e:                                      # noqa: BLE001
+        print("  WARNING: could not check videos against their standards "
+              "(%s: %s). Nothing was verified." % (type(e).__name__, e))
+        return set()
+
+
 def service():
     from google.auth.transport.requests import Request
     from google.oauth2.credentials import Credentials
@@ -196,9 +225,19 @@ def main() -> int:
     a = ap.parse_args()
 
     todo = jobs(a.room)
+    stale = stale_slugs()
+    held = [m["slug"] for m, _, _ in todo if m["slug"] in stale]
+    todo = [t for t in todo if t[0]["slug"] not in stale]
     if a.limit:
         todo = todo[:a.limit]
     done = ledger()
+    if held:
+        print("  HELD BACK         : %d video(s) whose on-screen checklist no "
+              "longer matches the zone's standard" % len(held))
+        print("                      %s%s"
+              % (", ".join(held[:3]), " ..." if len(held) > 3 else ""))
+        print("                      Re-render them first: "
+              "python ops/check_video_standard.py")
 
     print("  already published : %d" % len(done))
     print("  ready to publish  : %d%s"
