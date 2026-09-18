@@ -1846,10 +1846,23 @@
       }
     }
 
-    /* Launcher shortcuts and the manifest start_url land here with a hint. */
+    /* Launcher shortcuts and the manifest start_url land here with a hint.
+     * manifest.webmanifest wires "Draw a card" to exactly this URL, so this
+     * is the one deep link a returning, engaged visitor is likely to use
+     * over and over, unlike zone= and room=, each usually followed once from
+     * an article. The same emptied-queue case those two already fall through
+     * on (every card in scope already done) was left unhandled here: with no
+     * `if (run)` guard, an unconditional return skipped both releaseHero()
+     * and renderStart() whenever the whole 684-card deck was finished,
+     * leaving the page on its raw markup state, hero still hidden, and
+     * #first-run (visible by default, for the no-JS case) telling somebody
+     * who just finished every zone in the house to "start at the door".
+     * Fixed to the same fall-through shape as zone= and room= above. */
     var go = params.get("go");
-    if (go === "draw") { begin("draw"); return; }
-    if (go === "map") { renderMap(); return; }
+    if (go === "draw") {
+      begin("draw");
+      if (run) { return; }
+    } else if (go === "map") { renderMap(); return; }
 
     releaseHero();
     renderStart();
