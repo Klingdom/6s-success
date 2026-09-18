@@ -79,6 +79,24 @@ BLOCKING = [
      "The clock does not start until somebody registers the property, so every "
      "day of delay moves month twelve back by a day.",
      "5 minutes"),
+    ("Authorise YouTube uploads",
+     "Paste a YouTube OAuth token so ops/youtube_upload.py can publish.",
+     "OWNER-ACTIONS.md calls this the biggest single lever on the business "
+     "right now. 102 narrated, captioned videos are built and sitting on a "
+     "disk where nobody can find them; only the 12 you posted by hand are "
+     "public. Authorising today publishes the 14 that already match their "
+     "own zone page; the tool itself refuses the rest by name rather than "
+     "risk a wrong video landing on a URL that can never be swapped, and "
+     "those are being re-rendered on a local machine, no further action "
+     "from you once that finishes.",
+     "5 minutes, once"),
+    ("Paste the business description into Stripe",
+     "Open the Stripe dashboard and fill in the account's public business "
+     "description.",
+     "Needs the Stripe dashboard, which only you are signed into. The live "
+     "account still has no product description; it is the first thing a "
+     "buyer reads about us at checkout, and the gap is visible today.",
+     "2 minutes"),
 ]
 
 # Stripe live onboarding and the book/manual front matter both used to be here.
@@ -210,7 +228,11 @@ def build():
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "--preview"
     text = build()
-    subject = ("6S Success: 2 things only you can do, and 3 decisions")
+    # Counted, not typed: a hardcoded "2 things... 3 decisions" already went
+    # stale once (found 2026-09-18) while the two lists it describes kept
+    # growing underneath it.
+    subject = (f"6S Success: {len(BLOCKING)} things only you can do, "
+               f"and {len(DECISIONS)} decisions")
 
     # Next weekday morning at 9am Denver, which is 15:00 UTC.
     now = datetime.datetime.now(datetime.timezone.utc)

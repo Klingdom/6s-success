@@ -124,12 +124,37 @@ def main() -> int:
         fails.append("--preview produced no preview output: %r" %
                      proc.stdout[-300:])
 
+    # 9. Found 2026-09-18: BLOCKING carried Search Console but omitted
+    #    OWNER-ACTIONS.md's own top two "biggest single lever" items,
+    #    YouTube authorisation and the Stripe business description. Both
+    #    must stay present by name.
+    titles = [t for t, *_ in sq.BLOCKING]
+    if not any("YouTube" in t for t in titles):
+        fails.append("BLOCKING no longer mentions YouTube: %r" % titles)
+    if not any("Stripe" in t for t in titles):
+        fails.append("BLOCKING no longer mentions the Stripe business "
+                     "description: %r" % titles)
+
+    # 10. The subject line must be counted, not typed: it went stale once
+    #     already (found 2026-09-18) while BLOCKING/DECISIONS kept growing
+    #     underneath a hardcoded "2 things... 3 decisions".
+    proc = subprocess.run(
+        [sys.executable, os.path.join(ROOT, "ops", "send_questions.py"), "--preview"],
+        capture_output=True, text=True, cwd=ROOT)
+    subject_line = next((l for l in proc.stdout.splitlines()
+                         if l.startswith("SUBJECT:")), "")
+    want = "%d things only you can do, and %d decisions" % (
+        len(sq.BLOCKING), len(sq.DECISIONS))
+    if want not in subject_line:
+        fails.append("subject line does not match live list lengths: "
+                     "got %r, wanted %r in it" % (subject_line, want))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: send_questions site-status honesty, 8/8 checks pass")
+    print("OK: send_questions site-status honesty, 10/10 checks pass")
     return 0
 
 

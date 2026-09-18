@@ -11970,6 +11970,83 @@ def gate_send_questions_current() -> None:
              "ops/send_questions.py: " + "; ".join(bad))
 
 
+def gate_send_questions_covers_top_owner_actions() -> None:
+    """ops/send_questions.py's BLOCKING list must mention every item
+    OWNER-ACTIONS.md's own "Start here" table ranks as the top few things
+    Phil can do.
+
+    Found 2026-09-18, reading ops/send_questions.py cold in the standing
+    low-mention ops/*.py lane. OWNER-ACTIONS.md's own "Start here: 20
+    minutes, in this order" table names Google Search Console, authorising
+    YouTube uploads and pasting Stripe's business description as the three
+    highest-value single actions on the whole page ("If you only ever do
+    three things from it, do these"); YouTube is separately called "the
+    biggest single lever on the business right now" there, unblocking 14
+    videos immediately with 88 more rendering in the background. send_
+    questions.py is the one email whose own opening line claims "This is
+    only the list that cannot" be done without Phil, and its BLOCKING list
+    carried Search Console but neither YouTube nor the Stripe description,
+    the same "source corrected, artifact never re-derived" class this
+    repository's other gates already catch on pages, here in a real email
+    instead. Re-derives the ranked "Do" column fresh from the real
+    committed OWNER-ACTIONS.md on every run, matched loosely (a capitalised
+    keyword from each row, e.g. "YouTube" or "Stripe") against the real
+    BLOCKING list text rather than a frozen copy of today's three items, so
+    a future re-ranking cannot go silently unmentioned here again.
+    """
+    oa = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    sq = os.path.join(ROOT, "ops", "send_questions.py")
+    if not os.path.exists(oa):
+        warn("send-questions-covers-owner-actions",
+             "OWNER-ACTIONS.md does not exist, so its top-ranked items "
+             "were not checked against send_questions.py. Unchecked, not "
+             "covered.")
+        return
+    if not os.path.exists(sq):
+        warn("send-questions-covers-owner-actions",
+             "ops/send_questions.py does not exist, so OWNER-ACTIONS.md's "
+             "top-ranked items were not checked against it. Unchecked, not "
+             "covered.")
+        return
+    oa_src = io.open(oa, encoding="utf-8").read()
+    sq_src = io.open(sq, encoding="utf-8").read()
+
+    m = re.search(r"Start here.*?(\n\|[^\n]*\n\|[-\s|]*\n(?:\|[^\n]*\n)+)",
+                  oa_src, re.S)
+    if not m:
+        warn("send-questions-covers-owner-actions",
+             "could not find OWNER-ACTIONS.md's own \"Start here\" table, "
+             "so its top-ranked items were not checked against "
+             "send_questions.py. Unchecked, not covered.")
+        return
+    rows = [r for r in m.group(1).splitlines() if r.startswith("|")][1:]
+
+    blk = re.search(r"BLOCKING\s*=\s*\[(.*?)\n\]", sq_src, re.S)
+    blocking_text = blk.group(1) if blk else ""
+    if not blk:
+        warn("send-questions-covers-owner-actions",
+             "ops/send_questions.py's BLOCKING list could not be found, so "
+             "OWNER-ACTIONS.md's top-ranked items were not checked against "
+             "it. Unchecked, not covered.")
+        return
+
+    missing = []
+    for row in rows:
+        cols = [c.strip() for c in row.strip("|").split("|")]
+        do = cols[1] if len(cols) > 1 else ""
+        keywords = [w.strip(".,") for w in do.split()[1:]
+                    if w[:1].isupper() and len(w) > 2]
+        if keywords and not any(k in blocking_text for k in keywords):
+            missing.append(do)
+
+    if missing:
+        fail("send-questions-covers-owner-actions",
+             "%d of OWNER-ACTIONS.md's own top-ranked \"Start here\" "
+             "item(s) are not mentioned anywhere in send_questions.py's "
+             "BLOCKING list: %s. Fix: add each one, in its own words, to "
+             "BLOCKING." % (len(missing), "; ".join(missing)))
+
+
 def gate_no_frozen_deck_link() -> None:
     """The owner-facing mail tools must not link a deck nothing here can update.
 
@@ -16143,6 +16220,7 @@ def main() -> int:
     run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
+    run_gate(gate_send_questions_covers_top_owner_actions)
     run_gate(gate_no_frozen_deck_link)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)

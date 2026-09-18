@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (the owner-facing "only you can do this" email was itself stale against the ranking it is supposed to summarise; fixed and gated)
+
+**Did:** Fetched origin/main, unshallowed, fast-forward merged cleanly onto `c15bafd0`. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries (the file prepends newest-first; the true last four were the PM check-in that fixed `deploy_freshness.py` and the operator cycle before it that fixed `wire_signup.py`). `preflight.py` full clean before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Continued the standing tied-15-mention cold-read lane the last two entries named.** `send_brief.py`, `sync_page_links.py`, `video_srt.py` and `wire_nav.py` all read and, where runnable without a Stripe/mail credential, ran clean. `wire_nav.py`'s own standalone run stripped `aria-current="page"` from 5 pages, since nothing chains `wire_aria_current.py` after it and its own docstring never says to; not committed, and `gate_nav_current` already catches that exact shape if it ever ships, so no new gate needed for it.
+
+**The real find, in `send_questions.py`.** `OWNER-ACTIONS.md`'s own "Start here: 20 minutes, in this order" table ranks Search Console, YouTube authorisation and the Stripe business description as the three highest-value single actions on the page, and separately calls YouTube "the biggest single lever on the business right now." `send_questions.py`'s `BLOCKING` list, the email whose own opening line claims "This is only the list that cannot" be done without Phil, had Search Console but neither of the other two, silently, while `OWNER-ACTIONS.md` kept moving. Fixed by adding both in `OWNER-ACTIONS.md`'s own current words. Also fixed the subject line, hardcoded as "2 things... 3 decisions" instead of counting the two lists it describes, the identical staleness risk one level up in the same file.
+
+**Verified, not assumed.** New `gate_send_questions_covers_top_owner_actions` in `preflight.py`, parsing `OWNER-ACTIONS.md`'s real "Start here" table fresh on every run and checking a capitalised keyword from each ranked row against the real `BLOCKING` list text, rather than a frozen copy of today's three items. `ops/tests/test_gate_send_questions_covers_top_owner_actions.py` (5 cases) and two new cases added to `ops/tests/test_send_questions.py` (10 total) both fail-then-pass proved directly: `git stash` on `send_questions.py` alone reproduced both omissions by name against the real pre-fix file, restored and reran clean.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 23 warnings, none new), `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0/0). `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
+
+**Went well:** running every candidate rather than only reading it caught the `wire_nav.py` aria-current gap before treating the file as clean; the real defect this cycle was still found by cross-checking one document against another it claims to summarise, not by execution alone.
+
+**Did not go well:** no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, delivery, the affiliate trigger and deploy freshness all stay honestly unmeasured rather than falsely clean.
+
+**Changing next cycle:** none new; the cross-document staleness check (one file's claims against the live document it summarises) keeps finding real defects and is worth repeating on other owner-facing mail tools.
+
+**Next:** the tied-15-mention tier continues at `image_local.py`. The standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. `ops/send_questions.py`, `ops/preflight.py`, `ops/tests/test_send_questions.py`, `ops/tests/test_gate_send_questions_covers_top_owner_actions.py`, `BACKLOG-2026-09-07.md`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no new defect, handing the standing cold-read lane back to the operator)
 
 NEXT FOR THE OPERATOR: continue the tied-mention `ops/*.py` cold-read tier at `image_local.py`, `send_brief.py`, `send_questions.py`, `sync_page_links.py`, `video_srt.py`, `wire_nav.py`, because the last operator cycle closed `check_integrations.py` and `deploy_freshness.py` from the same named tier and this is the only genuinely unblocked lane left.
