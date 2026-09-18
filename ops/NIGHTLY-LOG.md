@@ -24,6 +24,34 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No code, content or price touched, no site page changed, IndexNow not applicable.
 
+**Postscript, same push:** the push above was rejected and had to merge in three concurrent commits, one of which (a local CEO session, logged separately below at its own correct chronological slot) resolved the exact precondition this entry verified as correctly tracked-but-unmet: production is now redeployed with the port fix (`8f2400c0...` confirmed live), so `OWNER-ACTIONS.md` item 8 is a live five-minute job for Phil, not blocked. The finding above (the carry-forward machinery honestly reported "stale" rather than a false "current") still stands as a real, correct verification of the state at the time; it is simply no longer the current state.
+
+## 2026-09-18, PM check-in (30-minute triage, previous work finished; corrected a stale handoff instead of repeating it, dashboard was 4 commits behind reality)
+
+NEXT FOR THE OPERATOR: watch `checks.yml` run 1116 on HEAD (`08b70ae5`) to completion before trusting it, because a concurrent session with real VPS access pushed four commits after this cycle's own last PM check-in and none of them has been confirmed green yet; if it fails, that is this cycle's real work, not a fresh cold-read.
+
+Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), clean, no history conflict. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated).
+
+**Previous work was finished, not merely committed.** Working tree clean, main up to date with origin. `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits. `BACKLOG-2026-09-07.md` sections 2-6 again read end to end: every unblocked row is done or Phil-gated.
+
+**Found the last PM check-in's own handoff was stale before repeating it.** That entry (`87313e73`) named `build_youtube_metadata.py`, `split_deck_cards.py` and `wire_pwa.py` as the next cold-read tier. Checked their actual history in this file rather than trusting the mention count: all three carry a dozen-plus prior entries each (a full-corpus read of `build_youtube_metadata.py` on 2026-09-17, `wire_pwa.py` explicitly flagged at line 1567 as "already carries a dozen prior fix entries here, so mention count is not proof of an unread file", `split_deck_cards.py` last touched 2026-09-15/16 on the deck-art withholding logic). This matches at least three earlier independent conclusions in this same log (lines ~2981, ~3001, ~7256) that the mention-count cold-read lane is dry. Not repeating a confirmed-dry sweep a fourth time.
+
+**What actually changed since the last PM check-in:** a concurrent session with real VPS/production access pushed four commits (`bdd28233` captions, `d63ec527` fixed a video slide silently dropping a safety item from "what done looks like" and tightened `check_video_standard.py`, `0e999dbf` LRN-0016 recording that lesson, `7838f8d2` rewired nginx off two publicly-exposed ports onto the Docker bridge, `08b70ae5` added `OWNER-ACTIONS.md` item 8 naming that the port fix is committed but not yet deployed). None of this needed action from this cycle; all of it is real, already verified by that session's own commit messages (frame extraction, a live test container against the real services). The gap was operational-honesty only: `EXECUTIVE-DASHBOARD-LIVE.md` still cited commit `87313e73` as the last commit, four commits stale.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`) so it reflects the real HEAD; diff is timestamp/commit-count/last-commit-hash only, all carried-forward figures (revenue, traffic, affiliate) correctly still marked carried forward. Checked CI on the four new commits: `checks.yml` correctly cancelled its runs on the three superseded pushes (GitHub's own concurrency behavior, not a failure) and is `in_progress` on HEAD as of this writing, inside the account's normal 19-30 minute range, not yet a second data point. `publish-image.yml` run 319 on `7838f8d2` (the last commit touching `site/`) already completed `success`. `08b70ae5` is docs-only (`OWNER-ACTIONS.md`) and correctly did not trigger `publish-image.yml`.
+
+**Verified:** `preflight.py` clean before and after the dashboard regen (23 warnings, none new). Did not touch `OWNER-ACTIONS.md` item 8 itself: its own precondition (production must be redeployed with the port fix before anything else changes) is accurate and not this sandbox's to clear, no VPS access here.
+
+**Went well:** checking a handoff's own claim against the fuller log history before repeating it, rather than trusting the most recent entry on its own.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; nothing new.
+
+**Changing next cycle:** the standing `ops/*.py` mention-count cold-read fallback should stop being the default next-step recommendation; it has been independently confirmed dry four times now (this entry plus three cited above). If sections 2-6 are ever all done again with nothing Phil-gated newly open, the next fallback should be re-reading a hand-maintained `site/*.html` page or a `.md` operating document cold instead, not another pass over `ops/*.py`.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md`, 8 open GitHub issues), unchanged. Confirm `checks.yml` run 1116 lands green before starting anything else.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified; a quiet cycle, dashboard regenerated, nothing new unblocked)
 
 Attached via fetch, unshallow, ff-only merge onto `origin/main` (`18160d23`), clean, no history conflict. Read `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
@@ -376,6 +404,51 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 **Did not go well:** could not get CI to a confirmed state within the 30-minute slot; a real possible CI-runner problem is now the operator's first job at :43, ahead of anything else.
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-18 early, local CEO cycle, fourth part (two public ports can now be closed; a video was dropping a safety standard)
+
+**Read the frame, not the captions, and found a second defect the proxy could not see.** `ops/check_video_standard.py`
+passed `dining-room--china-or-display-cabinet`. Extracting its actual frame with ffmpeg showed four items under "What
+done looks like" against a standard of six, and the two missing were **"The cabinet strapped to a wall stud"**, a safety
+standard, and the finished-shelves photo, with nothing on screen saying anything had been left out. The four-item cap is
+deliberate (`video_zone.beats`, "a slide holds at most four"); presenting four sixths as the whole standard is not.
+`ops/build_social_pins.py` had already solved this for the cards with "+ 1 more on the zone page", so the video slide now
+does the same and holds 5.2s instead of 4.6s when it does. **16 of 114 zones are affected; one drops a safety item.**
+
+The checker was also too lenient in a way I had not noticed: it compared against an open-ended prefix, so a video showing
+one correct item out of six passed as fresh. It now requires the first four exactly plus the disclosure line. Stale moved
+97 to 102 of 114, which is the count becoming honest rather than the situation worsening.
+
+**OWNER-ACTIONS item 8 (two public ports) went from blocked to a five-minute job.** Re-measured rather than recalled:
+Umami (32769) and Listmonk (8081) still answer the open internet, Umami's login page included, and the host runs **no
+firewall at all** (`ufw` inactive). The reason it sat open since August is that closing it would have broken this site:
+`site/nginx/default.conf` reached both through the host's PUBLIC address. Rewired to the Docker bridge (172.17.0.1),
+proved from inside the running production container first, then end to end, then deployed (`a53458d8` ->
+`8f2400c02ff063f2`) and proved live: a labelled probe event posted to the real beacon (`operator-probe-bridge`) is in the
+analytics database at 01:49:16. Item 8 now carries the tested two-line compose change. **Not run here on purpose**: these
+are Hostinger-managed stacks shared with other sites, and another site's tracker pointing at the public address would
+silently stop reporting. That is a YELLOW action on somebody else's infrastructure.
+
+**Caught a hazard in my own instructions before it could bite:** for about half an hour item 8 told Phil the ports were
+safe to close while production was still serving the old build that needed them. Named the precondition in the file with
+the build id to check, then cleared it once the deploy was confirmed.
+
+**Checked and found clean, so nobody re-audits:** the 228 Pinterest/Instagram cards (read one rendered card end to end),
+the social captions (0 of 460 standard items missing), the Etsy pack PDFs (they carry the six-S pass cards by design, not
+the checklist), the free Standards Pack (uses `leave_behind.standard`, a different field) and the phone app (carries the
+full standard as prose). Only the videos were affected by the splitter fix.
+
+**Too early to read: Googlebot and the new redirects.** Since the 17:00Z deploy the only Googlebot traffic in the live
+log is robots.txt and assets; the one `.html` fetch it made today predates the deploy. 301s are being served (4 to bots
+so far, mostly my own verification). This needs days, not hours, and Search Console to read properly.
+
+**Two processes are running unattended; neither needs a human:**
+1. `scratchpad/rerender_stale.py`, the wide re-render, 19 of 99 done at the time of writing.
+2. `scratchpad/rerender_until_clean.py`, which waits for the first to exit and then re-runs it until the checker reports
+   zero stale or a pass makes no progress. It exists because the first batch started before the "+ N more" change, so the
+   dozen it finished first would otherwise have stayed stale with nobody here to notice.
+
+When both stop, run `python ops/check_video_standard.py` (expect 0 stale) and commit the corrected `.srt` files.
 
 ## 2026-09-17, local CEO cycle, third part (the YouTube authorisation would have published 100 contradictions)
 
