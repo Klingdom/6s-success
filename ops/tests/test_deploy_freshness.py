@@ -14,6 +14,8 @@ exactly the state a partial deploy leaves behind.
 
 Run:  python ops/tests/test_deploy_freshness.py
 """
+import contextlib
+import io as iomod
 import os
 import sys
 
@@ -74,9 +76,45 @@ def main() -> int:
     if r["verdict"] != "unknown" or r["reachable"] is not False:
         fails.append(f"unreachable must be unknown, never current, got {r['verdict']}")
 
+    # Home page reachable, assets identical, but the one page the content
+    # marker is probed on cannot be fetched: the marker was never confirmed,
+    # so it must not be reported as checked even though the verdict is still
+    # "current" on the assets alone.
+    def home_ok_marker_unreachable(u, timeout=25):
+        if u.endswith("/"):
+            return home(ok)
+        if "/zones/" in u:
+            return None
+        return MARKER_PRESENT
+    r = run(home_ok_marker_unreachable)
+    if r["verdict"] != "current" or r["zone_hero_live"] is not None:
+        fails.append(f"identical assets with an unreachable marker page should "
+                     f"stay current on assets while leaving zone_hero_live "
+                     f"None (unconfirmed, not checked), got verdict="
+                     f"{r['verdict']!r} zone_hero_live={r['zone_hero_live']!r}")
+
+    # main()'s own printed CURRENT line must not claim the content marker was
+    # checked when it was not: the dict can be right while the human-facing
+    # message still overclaims, which is what actually shipped here.
+    real_fetch, D.fetch = D.fetch, home_ok_marker_unreachable
+    real_argv, sys.argv = sys.argv, ["deploy_freshness.py"]
+    buf = iomod.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf):
+            D.main()
+    finally:
+        D.fetch, sys.argv = real_fetch, real_argv
+    printed = buf.getvalue()
+    if "CURRENT" not in printed:
+        fails.append(f"expected a CURRENT verdict line, got: {printed!r}")
+    elif "content marker" in printed:
+        fails.append("main() claimed a content marker was checked while the "
+                     "one page it is probed on could not be fetched: "
+                     f"{printed!r}")
+
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {4 - len(fails)} of 4 cases pass")
+    print(f"  {6 - len(fails)} of 6 cases pass")
     return 1 if fails else 0
 
 

@@ -221,8 +221,15 @@ def main() -> int:
               f"{'present' if r['zone_hero_local'] else 'absent'}")
 
     if r["verdict"] == "current":
+        # zone_hero_live stays None, not True, when the marker page itself
+        # could not be fetched (site reachable, that one page was not) or no
+        # local page carries the marker to compare against. Either way the
+        # marker was never actually confirmed, so it must not be counted as
+        # checked: that is the exact "unchecked reported as checked" shape
+        # this file exists to refuse.
+        marker_note = " and 1 content marker" if r["zone_hero_live"] is not None else ""
         print(f"\n  CURRENT  production matches this repository on everything "
-              f"checked ({r['checked_assets']} assets and 1 content marker).")
+              f"checked ({r['checked_assets']} assets{marker_note}).")
         return 0
     print(f"\n  STALE    {r['stale_assets']} of {r['checked_assets']} assets on "
           f"production differ from this repository.")
