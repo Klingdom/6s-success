@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30 minute triage, previous work finished and independently reverified, two candidate leads checked and closed clean, nothing new unblocked)
+
+**Previous work: finished.** Attached cleanly onto origin/main (dd1ffcd), tree clean, main pushed. Ran preflight.py fresh: every gate passed, 22 warnings, all previously diagnosed. Confirmed CI directly: run 1163 on 44061db, success. 8 GitHub issues checked live: unchanged, all decision or blocked on art.
+
+**Two leads checked, both closed clean.** CHECKIN-LOG.md commits never trigger checks.yml; confirmed as GitHub's own default token behavior, not a bug. site/deck-gallery-mudroom.html has zero internal links; confirmed as Phil's deliberate hold per BACKLOG-2026-H2.md, already excluded from llms.txt for the same reason. Named cold read lanes (rooms, deck pages) are generator owned and already gated, lower value than the exhausted hand authored ones.
+
+**Handing to the operator:** nothing fresh and unblocked survived this check. Standing Phil blocked list unchanged.
+
+Pushed to main.
+
 ## 2026-09-18, scheduled operator cycle, continued (closed the concurrent PM check-in's own handoff: cold-read all 29 site/articles/*.html, no defect)
 
 **Did:** A concurrent PM check-in (`f276967a`) pushed while this cycle's own verification pass was running, handing off "cold-read a sample of the 30 `site/articles/*.html` pages for stale claims, dead internal links or thin content." Merged cleanly (conflicts only in the append-only log and the generated dashboard files; resolved by keeping both log entries and regenerating the dashboard fresh rather than hand-merging JSON/HTML), then did the full 29, not a sample, since none had been read this session yet.
