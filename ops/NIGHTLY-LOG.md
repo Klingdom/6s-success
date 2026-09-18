@@ -319,6 +319,37 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
 
+## 2026-09-17, local CEO cycle, third part (the YouTube authorisation would have published 100 contradictions)
+
+**Checked whether OWNER-ACTIONS item 1 would actually pay off before Phil spends the five minutes on it. It would not
+have.** `video_zone.done_items()` writes the "What done looks like" checklist into every zone video; it was corrected
+2026-09-15; every narrated video on disk was rendered 7-8 September. Measured zone by zone, the wide file's captions
+against the live standard: **100 of 114 disagree with their own zone page.** "One wallet and one phone per adult" is on
+screen and in the voice track as "One phone per adult"; "a full stride wide between the door and the rack" stops at
+"between the door"; Entryway's coat zone drops an item. Twelve are already public (item 1's known problem). The other 88
+are exactly what `ops/youtube_upload.py` posts the moment the credential exists, and a YouTube video cannot be swapped
+for a corrected file without changing its URL.
+
+**Made the authorisation safe rather than blocking it.** `ops/check_video_standard.py` measures it; `youtube_upload.py`
+holds the stale slugs back by name and prints why. Authorising now publishes the 14 that are correct. Limits stated in
+both files: captions are compared, not pixels, and a checker that cannot run holds nothing back rather than reporting a
+clean list it never produced.
+
+**The 88 (99 including the published ones) are being re-rendered on this machine, free, about 4.5 minutes each**, started
+2026-09-17 23:xx via a detached py312 process (`edge_tts` and the render pipeline need Python 3.12; the default 3.14 here
+cannot even import them). One was re-rendered first and proved the fix: `entryway--landing-zone-16x9` now carries the
+corrected four-item standard.
+
+**HANDOFF, two things the next session must do:**
+
+1. The batch rewrites tracked `.srt` files in `build/video/zones-narrated/`, so it leaves working-tree churn. When it
+   finishes, run `python ops/check_video_standard.py` (expect STALE 0), then commit the corrected captions. Until then,
+   expect deleted/modified `.srt` paths in `git status` mid-run; that is the batch working, not damage.
+2. I ran `git stash -u` twice while the batch was live to rebase around a concurrent push. That is unsafe during this
+   batch: a stash can capture a caption file mid-render and the pop can restore a stale one. Nothing looked wrong
+   afterwards, but it was not verified file by file, so treat the stash window as UNCHECKED and let the checker's own
+   re-run be the proof rather than this note.
+
 ## 2026-09-17, local CEO cycle, second half (pictures: the free deck and 5 zone pages, deployed and verified live)
 
 **What shipped.** Production `128f51debc58e79e` -> `a53458d85a904f9e`. Two free-deck cards (EH-004 SORT MAIL DAILY,
