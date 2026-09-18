@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (every cold-read lane reconfirmed dry; one live safety precondition verified correctly enforced, no defect)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` attached cleanly onto `origin/main` (465-commit fast-forward, no history conflict). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run clean first: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/analytics/VPS/mail credential, no egress, no Pillow). 8 GitHub issues confirmed unchanged via the API (2 P0, 2 blocked-on-art, 6 decision), none newly pickable. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED not empty.
+
+**BACKLOG-2026-09-07.md sections 2 through 6 are again all done or Phil-gated**, section 1b's issue #32 the only open ask nearest the top. Checked whether the standing "cold-read the lowest-mention `ops/*.py` file" fallback had a genuine candidate rather than trust the last handoff: `check_video_standard.py` (2 mentions, the real floor) reads correctly, and re-verified end to end against its actual caller, `youtube_upload.py`'s `stale_slugs()`, which does import and filter by it (an early grep of mine returned only the filename with no content shown, which I initially misread as "no caller"; rechecking with content output showed the wiring is real and correct). The `ops/*.py`, hand-authored `site/*.html`, `mobile/quest-app`, `.github/workflows/*.yml` and root-`*.md` cold-read lanes have each been independently declared exhausted by multiple prior cycles today and on 2026-09-13/17; re-derived the `ops/*.py` mention floor fresh rather than cite that conclusion, and every remaining low-count file resolves to one already read and cleared on inspection, confirming rather than repeating it.
+
+**One live thing worth checking rather than assuming: OWNER-ACTIONS item 8's own stated precondition.** Phil's own commit `7838f8d2` (2026-09-17) rewired `site/nginx/default.conf` off the host's public address so Umami/Listmonk's ports can finally close, but the item's own text says closing them before the new build is live would break the beacon and signup form, and named the exact build id (`8f2400c0...`) to check for first. Verified rather than trusted: `site/build-id.txt` at HEAD is `8f2400c0...` (that same commit), while `ops/deploy-verdict.json`'s last confirmed-live build is `a53458d8...`, older. Ran `ops/dashboard.py` and read `ops/state.json` directly: `resolve_deploy_verdict()` correctly compares the marker's build id against the repo's current one and reports `deploy_verdict: stale`, not a false `current`, so the precondition is honestly tracked and nobody reading the dashboard would be misled into running item 8's commands early. No defect; the carry-forward machinery built for exactly this shape is working.
+
+**Also independently re-verified** the video-standard chain Phil's own same-evening commits (`2cc38e00`, `d63ec527`, `bdd28233`) touched: `check_video_standard.py`'s tightened comparison (exact first four plus a "+N more" disclosure) matches the live `preflight.py` warning verbatim (102 of 114 stale, the number the commit's own message says is the honest one, not a regression), and `video_zone.py`'s new overflow line reads correctly from the diff. No new gate needed; existing coverage already reflects the fix.
+
+**Verified:** `check_urls.py` (188/188), `audit_pages.py` (191 pages, 0 findings), `affiliate.py --check` (162 documents), `fix_dashes.py --check` (0 em/en dashes) all clean.
+
+**Went well:** catching my own Grep-tool misread (default file-list mode, not content) before writing it up as a false "youtube_upload.py never calls the checker" finding.
+
+**Did not go well:** nothing new; the same shallow/detached checkout shape recurred, issue #27's usual pattern.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (8 issues) unchanged. Every cold-read lane is dry; the next genuinely fresh thread, if this state holds, is likely a fresh angle nobody has tried yet (e.g. reading `PLAN-*.md`/`RISKS.md` end to end against current reality) rather than another pass over `ops/*.py` or hand-authored pages.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified; a quiet cycle, dashboard regenerated, nothing new unblocked)
 
 Attached via fetch, unshallow, ff-only merge onto `origin/main` (`18160d23`), clean, no history conflict. Read `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
