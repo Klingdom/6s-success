@@ -6566,10 +6566,10 @@ def _workflow_run_via_api(token, name):
     """One workflow's most recent run on the default branch, over the REST
     API rather than the gh CLI.
 
-    Returns (conclusion, created_at, error_kind); error_kind is one of None,
-    "not-on-default-branch" (the file is not a workflow GitHub knows about:
-    added locally and not pushed, or pushed to another branch) or "unknown"
-    (a real query failure: network, auth, rate limit).
+    Returns (conclusion, created_at, head_sha, error_kind); error_kind is one
+    of None, "not-on-default-branch" (the file is not a workflow GitHub knows
+    about: added locally and not pushed, or pushed to another branch) or
+    "unknown" (a real query failure: network, auth, rate limit).
     """
     import urllib.request, urllib.error
     url = ("https://api.github.com/repos/klingdom/6s-success/actions/"
@@ -6582,14 +6582,14 @@ def _workflow_run_via_api(token, name):
         with urllib.request.urlopen(req, timeout=20) as r:
             data = json.loads(r.read().decode("utf-8", "replace"))
     except urllib.error.HTTPError as e:
-        return None, None, "not-on-default-branch" if e.code == 404 else "unknown"
+        return None, None, None, "not-on-default-branch" if e.code == 404 else "unknown"
     except Exception:                                         # noqa: BLE001
-        return None, None, "unknown"
+        return None, None, None, "unknown"
     rows = data.get("workflow_runs") or []
     if not rows:
-        return None, None, "never-run"
+        return None, None, None, "never-run"
     row = rows[0]
-    return row.get("conclusion"), row.get("created_at"), None
+    return row.get("conclusion"), row.get("created_at"), row.get("head_sha"), None
 
 
 def _workflow_run_via_cli(name):
@@ -6602,21 +6602,55 @@ def _workflow_run_via_cli(name):
     try:
         r = subprocess.run(
             ["gh", "run", "list", "--workflow", name, "--limit", "1",
-             "--json", "conclusion,createdAt"],
+             "--json", "conclusion,createdAt,headSha"],
             cwd=ROOT, capture_output=True, text=True, timeout=90)
         out = (r.stdout or "").strip()
         if r.returncode != 0:
             err = (r.stderr or "").lower()
             if "404" in err and "not found on the default branch" in err:
-                return None, None, "not-on-default-branch"
-            return None, None, "unknown"
+                return None, None, None, "not-on-default-branch"
+            return None, None, None, "unknown"
         rows = json.loads(out) if out else []
     except Exception:                                         # noqa: BLE001
-        return None, None, "unknown"
+        return None, None, None, "unknown"
     if not rows:
-        return None, None, "never-run"
+        return None, None, None, "never-run"
     row = rows[0]
-    return row.get("conclusion"), row.get("createdAt"), None
+    return row.get("conclusion"), row.get("createdAt"), row.get("headSha"), None
+
+
+def _commits_behind_head(sha):
+    """How many commits sit between `sha` (exclusive) and HEAD, or None if
+    that cannot be determined (no sha, sha not an ancestor of HEAD, shallow
+    history, or any other git failure).
+
+    Lets gate_workflows_healthy tell "this workflow is failing right now, at
+    HEAD" apart from "the one real attempt on record failed on an older
+    commit, and every push since has only touched a path this workflow's own
+    trigger excludes, so it has never had a chance to confirm HEAD either
+    way." Found live 2026-09-18: `2cb09036`'s own checks.yml run failed on a
+    stale `ops/NIGHTLY-LOG.md` ordering defect that the next two commits
+    fixed, but both touched only paths `checks.yml` is deliberately not
+    triggered by (the log and dashboard files), so the failing run stayed
+    "latest" forever with nothing to say HEAD had already moved past it.
+    """
+    if not sha:
+        return None
+    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                          capture_output=True, text=True).stdout.strip()
+    if not head or sha == head:
+        return None
+    anc = subprocess.run(["git", "merge-base", "--is-ancestor", sha, "HEAD"],
+                         cwd=ROOT, capture_output=True, text=True)
+    if anc.returncode != 0:
+        return None
+    out = subprocess.run(["git", "rev-list", "--count", f"{sha}..HEAD"],
+                         cwd=ROOT, capture_output=True, text=True)
+    try:
+        n = int(out.stdout.strip())
+    except ValueError:
+        return None
+    return n or None
 
 
 def gate_workflows_healthy() -> None:
@@ -6660,9 +6694,9 @@ def gate_workflows_healthy() -> None:
     now = dt.datetime.now(dt.timezone.utc)
     for n in names:
         if token:
-            conclusion, when, err = _workflow_run_via_api(token, n)
+            conclusion, when, head_sha, err = _workflow_run_via_api(token, n)
         else:
-            conclusion, when, err = _workflow_run_via_cli(n)
+            conclusion, when, head_sha, err = _workflow_run_via_cli(n)
         if err == "not-on-default-branch":
             stale.append("%s (not on the default branch)" % n)
             continue
@@ -6673,7 +6707,15 @@ def gate_workflows_healthy() -> None:
             unknown.append(n)
             continue
         if conclusion == "failure":
-            failing.append(n)
+            behind = _commits_behind_head(head_sha)
+            if behind:
+                failing.append(
+                    "%s (failing attempt is %d commit(s) behind HEAD; "
+                    "nothing pushed since has touched a path that "
+                    "re-triggers it, so HEAD's own state here is "
+                    "unconfirmed, not proven broken)" % (n, behind))
+            else:
+                failing.append(n)
         try:
             age = (now - dt.datetime.fromisoformat(
                 (when or "").replace("Z", "+00:00"))).days

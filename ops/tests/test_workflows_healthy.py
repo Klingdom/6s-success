@@ -68,28 +68,52 @@ def _run_with(fake_names, fake_lookup, token):
 def test_all_healthy_produces_no_warning():
     warnings = _run_with(
         ["checks.yml", "publish-image.yml"],
-        lambda n: ("success", RECENT, None),
+        lambda n: ("success", RECENT, "deadbeef", None),
         token="fake-token")
     assert warnings == [], warnings
 
 
-def test_a_real_failure_is_named():
-    warnings = _run_with(
-        ["checks.yml", "publish-image.yml"],
-        lambda n: ("failure", RECENT, None)
-                  if n == "publish-image.yml"
-                  else ("success", RECENT, None),
-        token="fake-token")
+def test_a_real_failure_at_head_is_named_plainly():
+    old_commits_behind_head = preflight._commits_behind_head
+    try:
+        preflight._commits_behind_head = lambda sha: None
+        warnings = _run_with(
+            ["checks.yml", "publish-image.yml"],
+            lambda n: ("failure", RECENT, "current-head-sha", None)
+                      if n == "publish-image.yml"
+                      else ("success", RECENT, "deadbeef", None),
+            token="fake-token")
+    finally:
+        preflight._commits_behind_head = old_commits_behind_head
     assert len(warnings) == 1, warnings
     assert "publish-image.yml" in warnings[0][1], warnings
     assert "failing" in warnings[0][1], warnings
+    assert "behind HEAD" not in warnings[0][1], warnings
+
+
+def test_a_failure_already_superseded_by_head_says_so():
+    old_commits_behind_head = preflight._commits_behind_head
+    try:
+        preflight._commits_behind_head = lambda sha: 2 if sha == "stale-sha" else None
+        warnings = _run_with(
+            ["checks.yml", "publish-image.yml"],
+            lambda n: ("failure", RECENT, "stale-sha", None)
+                      if n == "checks.yml"
+                      else ("success", RECENT, "deadbeef", None),
+            token="fake-token")
+    finally:
+        preflight._commits_behind_head = old_commits_behind_head
+    assert len(warnings) == 1, warnings
+    assert "checks.yml" in warnings[0][1], warnings
+    assert "2 commit(s) behind HEAD" in warnings[0][1], warnings
+    assert "not proven broken" in warnings[0][1], warnings
 
 
 def test_a_never_run_workflow_is_named_not_hidden_as_healthy():
     warnings = _run_with(
         ["checks.yml", "new-workflow.yml"],
-        lambda n: (None, None, "never-run") if n == "new-workflow.yml"
-                  else ("success", RECENT, None),
+        lambda n: (None, None, None, "never-run") if n == "new-workflow.yml"
+                  else ("success", RECENT, "deadbeef", None),
         token="fake-token")
     assert len(warnings) == 1, warnings
     assert "new-workflow.yml (never run)" in warnings[0][1], warnings
@@ -98,7 +122,7 @@ def test_a_never_run_workflow_is_named_not_hidden_as_healthy():
 def test_total_query_failure_reads_as_unchecked_not_healthy():
     warnings = _run_with(
         ["checks.yml", "publish-image.yml"],
-        lambda n: (None, None, "unknown"),
+        lambda n: (None, None, None, "unknown"),
         token="fake-token")
     assert len(warnings) == 1, warnings
     assert "Unchecked, not healthy" in warnings[0][1], warnings
@@ -107,8 +131,9 @@ def test_total_query_failure_reads_as_unchecked_not_healthy():
 if __name__ == "__main__":
     importlib.reload(preflight)
     test_all_healthy_produces_no_warning()
-    test_a_real_failure_is_named()
+    test_a_real_failure_at_head_is_named_plainly()
+    test_a_failure_already_superseded_by_head_says_so()
     test_a_never_run_workflow_is_named_not_hidden_as_healthy()
     test_total_query_failure_reads_as_unchecked_not_healthy()
-    print("ok  gate_workflows_healthy tells healthy, failing, never-run and "
-          "unqueryable apart")
+    print("ok  gate_workflows_healthy tells healthy, failing, already-"
+          "superseded, never-run and unqueryable apart")
