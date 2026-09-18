@@ -271,9 +271,16 @@ def catalogue(d) -> list:
                          else f"{z['zone']} Pack, {r['room']}"),
                 "room": r["room"], "zones": [(r["room"], z)],
                 "cards": n,
-                "blurb": (f"{z['zone']} in the {r['room']}, on two printable "
-                          f"pages: {n} cards, the standard that keeps it, and "
-                          "the hazards to check first."),
+                # Says where the zone sits in its room, added 2026-09-18.
+                # A buyer reading "Upper Cabinet Zone Pack" cannot tell
+                # whether that is the whole kitchen or a twentieth of it; the
+                # position is the product's own argument for costing four
+                # dollars, and it is counted from the manual rather than
+                # written down, so it cannot drift when a zone is added.
+                "blurb": (f"{z['zone']} in the {r['room']}, zone "
+                          f"{r['zones'].index(z) + 1} of {len(r['zones'])}, "
+                          f"on two printable pages: {n} cards, the standard "
+                          "that keeps it, and the hazards to check first."),
             })
 
         cards = sum(1 for z in r["zones"] for k in SIX if (z.get("passes") or {}).get(k))

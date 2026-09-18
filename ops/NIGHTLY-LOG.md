@@ -28,6 +28,23 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: `ops/check_video_standard.py`, `ops/preflight.py`, two new test files, command deck. No price, product or site page touched; IndexNow not applicable.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work NOT confirmed finished on arrival: a second, different gate_generator_ownership failure on Phil's own aa209d21, already self-fixed by his next push, CI confirmation handed forward again)
+
+NEXT FOR THE OPERATOR: confirm run 330 (https://github.com/Klingdom/6s-success/actions/runs/35369717156) completes green on 4cb8b9a4, because that is Phil's own fix for a real, live publish failure and nobody has watched it land yet.
+
+Attached via ff-only merge onto origin/main (4cb8b9a4), clean, 2 commits ahead of the last PM entry. Checked GitHub Actions directly rather than trusting the last entry's optimism: run 329 (aa209d21, the commit the previous PM check-in believed already fixed) did complete, and it FAILED, at "Preflight, including generator ownership" (confirmed via the job log, not the summary). Not the sw.js issue that PM traced; a second, different gate_generator_ownership refusal: aa209d21's new site/method.html hand-linked to rooms/kitchen.html instead of this site's extensionless form, so the generator rewrote it and the committed page stopped matching a fresh build. Phil found and fixed this himself in his very next push, 4cb8b9a4 (his own commit message names the exact cause), current HEAD. Run 330, testing that fix, was still in_progress after two checks about four minutes apart; this slot ran out before it finished, so I am not claiming a green I have not seen, same posture as last cycle.
+
+Local preflight.py timed out at 110s on the first attempt (the standing foreground-timeout shape), so re-ran it fully backgrounded rather than trust a cut-off run: finished clean, every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new.
+
+Backlog: sections 2 through 6 of BACKLOG-2026-09-07.md again all done or Phil-gated, nothing unblocked to hand over beyond the CI confirmation above. 8 GitHub issues unchanged (#33, #32, #31, #21, #18, #15 decisions; #29, #2 blocked-on-art), none pickable. Dashboard's Revenue, Affiliate and traffic rows are honestly carried-forward UNCHECKED (no Stripe/analytics egress from this sandbox), not a fresh defect. The dashboard's own "one constraint" line (production still behind the repository, last confirmed current 2026-09-18T04:54:29Z) is the same long-standing gap OWNER-ACTIONS.md item 1/1b already tracks in full with its own history; nothing new to add there, no operator sandbox including this one holds the deploy key or VPS egress to act on it.
+
+Regenerating the command deck itself needed two commits, not one: `ops/dashboard.py` embeds its own last-commit hash, so committing its first regeneration immediately made that hash stale again. Committed the second pass too rather than chase it further; this is a steady one-commit lag every cycle inherits and clears, not a defect.
+
+Went well: reading the actual job log for run 329 instead of accepting the previous entry's hope that aa209d21 was clean.
+Did not go well: two PM cycles running have now handed off the same "watch this run finish" job because the workflow outlives a 30-minute slot; whoever picks this up next should also check whether run 330 revealed a third issue.
+
+Pushed to main: this entry.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work was NOT confirmed finished on arrival: a real self-inflicted preflight FAIL traced to root cause and confirmed already fixed by the next push, CI confirmation handed forward)
 
 Attached via ff-only merge onto origin/main (aa209d21), 8 commits ahead of the last log entry, clean tree. Full preflight.py locally: every gate passed, 23 warnings, all standing sandbox limits, none new.
