@@ -12818,6 +12818,79 @@ def gate_image_prompt_negations_handled() -> None:
               ", ".join(n for n, _t in offenders[1:4])))
 
 
+def gate_accept_image_contradicts_name_an_object() -> None:
+    """Every 'contradicts' phrase ops/accept_image.py derives from a real
+    zone's own done_looks_like/leave_behind text must name something a
+    vision model can actually be asked about.
+
+    Found 2026-09-18, cold-reading ops/accept_image.py's own
+    _negative_clauses() against every real zone in content.json rather
+    than only reading the code: six zones' own wording ("a seat with
+    nothing on it at all", "the counter carries one liftable tray and
+    nothing beside it", a tray "holding nothing that was there
+    yesterday", "filled level with the rim and no higher") produced
+    checklist items that name no object at all, only a pronoun or a bare
+    comparative with nothing to compare against. score() treats an
+    unanswered or true 'contradicts' item as a HARD FAIL
+    ("shows the before state" / "not answered"), so
+    all_questions()'s own "Is on it at all visible in this image?" or
+    "Is beside it visible in this image?" was a real, live question with
+    no coherent answer sitting in the path of a hero photo's accept/reject
+    decision, the same "unknown is not unused" shape CLAUDE.md 0.4 warns
+    about, one level further than the sibling bug
+    gate_image_prompt_negations_handled already catches in
+    ops/image_local.py (a pronoun tail on an otherwise real noun, not the
+    entire remainder).
+
+    Fixed with _FILLER_EDGE/_NO_OBJECT_LEFT in accept_image.py. This gate
+    re-derives every real zone's checklist on every future cycle and fails
+    if any contradicts phrase reduces to a bare pronoun-preposition, a
+    noun-free relative clause, or a bare comparative, so a future zone
+    rewrite with the same shape cannot ship silently again. No vision
+    call, no credential: pure text derivation against the real committed
+    corpus.
+    """
+    try:
+        import accept_image as AI
+    except Exception as e:                                      # noqa: BLE001
+        fail("accept-image-contradicts",
+             "could not import ops/accept_image.py to check its real "
+             "checklists (%s: %s)" % (type(e).__name__, e))
+        return
+
+    no_object = re.compile(
+        r"^(?:on|in|under|beside|behind|above|below|outside)\s+"
+        r"(?:it|them|there|this|that)\.?$"
+        r"|^(?:that|which|who)\b"
+        r"|^(?:at all|anywhere|ever|higher|lower)\.?$",
+        re.I)
+
+    offenders = []
+    try:
+        for stem, zone in AI._zones_by_stem().items():
+            try:
+                checklist = AI.checklist_for_zone(zone)
+            except Exception:                                    # noqa: BLE001
+                continue
+            for item in checklist.get("contradicts", []):
+                if no_object.match(item.strip()):
+                    offenders.append((stem, item))
+    except Exception as e:                                      # noqa: BLE001
+        fail("accept-image-contradicts",
+             "could not derive the real zone checklists to check (%s: %s)" %
+             (type(e).__name__, e))
+        return
+
+    if offenders:
+        stem, item = offenders[0]
+        fail("accept-image-contradicts",
+             "%d 'contradicts' checklist item(s) name no object a vision "
+             "model can answer about, only a pronoun or bare comparative "
+             "(first: zone %s -> %r); %s" %
+             (len(offenders), stem, item,
+              ", ".join(f"{s}: {i!r}" for s, i in offenders[1:4])))
+
+
 def gate_zone_hero_rejects_have_subjects() -> None:
     """Every rejected zone hero needs a hand written subject, and
     OWNER-ACTIONS.md's own count of them must match reality.
@@ -16178,6 +16251,7 @@ def main() -> int:
     run_gate(gate_generator_chains_fingerprint)
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_image_prompt_negations_handled)
+    run_gate(gate_accept_image_contradicts_name_an_object)
     run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_experiment_owner_actions_surfaced)

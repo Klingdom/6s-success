@@ -85,6 +85,38 @@ def main() -> int:
     if got != ["mail or coupons on the counter"]:
         fails.append(f"a real 'no X or Y' forbidden pair was dropped: {got}")
 
+    # 4c. A pronoun with no noun left to check names no object. Found live
+    # 2026-09-18 against six real zones: "a seat with nothing on it at
+    # all" and "nothing beside it" each produced a checklist item asking a
+    # vision model "Is on it at all visible in this image?" or "Is beside
+    # it visible in this image?", a question about nothing. Before the fix
+    # these returned ["on it at all"] and ["beside it"].
+    for src in ("a seat with nothing on it at all",
+                "the counter carries one liftable tray and nothing beside it"):
+        got = AI._negative_clauses(src)
+        if got != []:
+            fails.append(f"a pronoun-only remainder should name no "
+                          f"object, got {got} from {src!r}")
+
+    # 4d. A relative clause with no noun of its own ("nothing that was
+    # there yesterday") is the same shape: dropped, not emitted whole.
+    got = AI._negative_clauses("a tray holding nothing that was there yesterday")
+    if got != []:
+        fails.append(f"a noun-free relative clause should be dropped, got {got}")
+
+    # 4e. Filler stripped from an edge without losing real content
+    # underneath it: "nothing at all sitting on either lid" must still
+    # name the lid, not just the filler in front of it.
+    got = AI._negative_clauses("nothing at all sitting on either lid")
+    if got != ["sitting on either lid"]:
+        fails.append(f"filler-edge stripping lost real content: {got}")
+
+    # 4f. A bare comparative with nothing to compare against names no
+    # object either: "filled level with the rim and no higher".
+    got = AI._negative_clauses("filled level with the rim and no higher")
+    if got != []:
+        fails.append(f"a bare comparative should name no object, got {got}")
+
     # 5. A checklist item with no answer at all is a failure, not a pass:
     #    "unknown is not unused" (CLAUDE.md 0.4) applies here too.
     cl = {"must_show": ["a tray"], "must_not_show": [], "contradicts": []}

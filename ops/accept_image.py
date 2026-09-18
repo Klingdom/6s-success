@@ -139,6 +139,34 @@ def _noun_phrases(text: str, cap: int = 6) -> list:
     return out[:cap]
 
 
+# Filler that carries no visible-object content on its own, stripped from
+# either end of a captured phrase before it is judged. "nothing at all
+# sitting on either lid" would otherwise hand the vision model "at all
+# sitting on either lid" instead of the real phrase underneath.
+_FILLER_EDGE = re.compile(r"^(?:at all|anywhere|ever)\b\s*|\s*\b(?:at all|anywhere|ever)$",
+                           flags=re.I)
+
+# What is left after filler is stripped sometimes names no object at all:
+# only a preposition pointing at a pronoun ("on it", "beside it"), or a
+# relative clause with no noun of its own ("that was there yesterday").
+# image_local.py's split_negations() already strips a TRAILING pronoun tail
+# off an otherwise real noun ("no keys on it" -> "keys"); this is the same
+# shape one step further, where the pronoun IS the entire remainder and no
+# noun is left to keep. Asking a vision model "Is on it at all visible in
+# this image?" or "Is beside it visible in this image?" is not a question
+# about anything, found live 2026-09-18 against six real zones' own
+# done_looks_like/leave_behind text ("a seat with nothing on it at all",
+# "nothing beside it").
+_NO_OBJECT_LEFT = re.compile(
+    r"^(?:on|in|under|beside|behind|above|below|outside)\s+"
+    r"(?:it|them|there|this|that)\.?$"
+    r"|^(?:that|which|who)\b.*$"
+    # A bare comparative with nothing to compare against: "filled level
+    # with the rim and no higher" names no object, only a limit on one.
+    r"|^(?:higher|lower)\.?$",
+    flags=re.I)
+
+
 def _negative_clauses(text: str) -> list:
     """Phrases already written as a negative in the zone's own words.
 
@@ -162,6 +190,12 @@ def _negative_clauses(text: str) -> list:
         # a photograph correctly showing the labelled bins would fail the
         # accept test for contradicting a standard it actually satisfies.
         if re.match(r"^or\b", phrase, flags=re.I):
+            continue
+        prev = None
+        while prev != phrase:
+            prev = phrase
+            phrase = _FILLER_EDGE.sub("", phrase).strip()
+        if not phrase or _NO_OBJECT_LEFT.match(phrase):
             continue
         if phrase:
             out.append(phrase)

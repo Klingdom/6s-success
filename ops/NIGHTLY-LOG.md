@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (a real, live checklist defect in the image accept test: four zones' own wording produced a vision-model question about nothing)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `git checkout main`, `git merge --ff-only origin/main`: clean fast-forward onto `c567de36`, no reset needed. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s epic headers, `ROADMAP-2026-2029.md`'s constraint framing, `CLAUDE.md`, and the true last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run (backgrounded, the known foreground-timeout shape): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress). 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.
+
+**Cold-read `mobile/quest-app/App.js` end to end** (the last named untouched file in the standing `site/assets/js`/`mobile/` handoff): no defect found; its diagnostics promise, font loading, card-visibility logging and pronoun-free event details all check out, and `gate_mobile_diagnostics_promise_kept` already re-derives the six-event promise from the real file on every cycle.
+
+**The real find, in `ops/accept_image.py`.** `_negative_clauses()` extracts a zone's own "no X"/"nothing X" wording into a `contradicts` checklist item, fed to a vision model as "Is X visible in this image?" and scored as a HARD FAIL if unanswered or true. Ran it against all 228 real `done_looks_like`/`leave_behind.standard` strings in `content.json`, not synthetic cases: six zones' own wording produced a checklist item naming no object at all, only a pronoun or a bare comparative with nothing to compare against. "A seat with nothing on it at all" (primary-bedroom) produced `['on it at all']`, asked as "Is on it at all visible in this image?"; "the counter carries one liftable tray and nothing beside it" (primary-bathroom) produced `['beside it']`; a guest-linen tray "smelling of nothing at all" produced `['at all']`; a stair console holding "nothing that was there yesterday" produced the whole relative clause; "filled level with the rim and no higher" (nursery) produced `['higher']`. Every one of these is a real, live question with no coherent answer sitting in the accept/reject path of a hero photo, one step past the sibling bug `gate_image_prompt_negations_handled` already caught in `ops/image_local.py` today (there the pronoun trails a real noun and gets stripped; here the pronoun or comparative IS the entire remainder, and nothing correctly stripped it, because this file had never been checked this way before).
+
+**Fixed** with `_FILLER_EDGE` (strips leading/trailing "at all"/"anywhere"/"ever" so real content underneath survives, e.g. "nothing at all sitting on either lid" now correctly reduces to `['sitting on either lid']` instead of losing the lid) and `_NO_OBJECT_LEFT` (drops a phrase that reduces to nothing but a preposition-plus-pronoun, a noun-free relative clause, or a bare comparative). 6 new cases in `ops/tests/test_accept_image.py` (13 total), fail-then-pass proved directly against the real pre-fix file (`git stash` on the source alone reproduces all five broken outputs by name, restored and reran clean). New `gate_accept_image_contradicts_name_an_object` in `preflight.py`, re-deriving every real zone's checklist from the committed `content.json` on every future cycle; fail-then-pass proved the same way (`git stash` reproduces the exact 4-zone failure by name).
+
+**Verified, not assumed.** `python ops/tests/test_accept_image.py` (13/13), `accept_image.check_all()` (89 card + 114 zone checklists derived, 0 errors) and `accept_image.self_test()` (4/4 historical outcomes) all clean after. Full `preflight.py` (every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after.
+
+**Went well:** running the real corpus through the pure function again (the method that found today's earlier `image_local.py` bug) rather than stopping once that sibling file was fixed; checking whether the same defect class existed anywhere else in the same subsystem instead of declaring the lesson learned after one file.
+
+**Did not go well:** none new; same sandbox limits as every prior cycle.
+
+**Changing next cycle:** none; the new gate closes this shape the same way `gate_image_prompt_negations_handled` closes its sibling. Worth repeating the "run the real corpus through the pure function" method on other content-derivation tools next: `_object_only()` and `_noun_phrases()` in the same file were read but not exhaustively fuzzed against the full corpus this cycle.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. `ops/accept_image.py`, `ops/preflight.py`, `ops/tests/test_accept_image.py`, plus the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed (this is internal image-acceptance tooling, not a rendered page). IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, widened cold-read lane came back clean)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`497b7c52`), clean, no reset needed.
