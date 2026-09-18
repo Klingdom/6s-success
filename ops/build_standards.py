@@ -83,6 +83,7 @@ body{margin:0;background:#EFE7D6;color:#2B2622;
 .z:last-of-type{border-bottom:0}
 .z h3{font-family:"Inter",Arial,sans-serif;font-size:8.4pt;font-weight:700;
   letter-spacing:.08em;text-transform:uppercase;color:#5A714A;margin:0 0 4px}
+.z h3 .zn{display:inline-block;min-width:1.35em;color:#BC4B2A;font-weight:700}
 .std{font-size:10pt;line-height:1.42;margin:0 0 4px}
 .trg{font-size:8.6pt;line-height:1.4;color:#584f46;margin:0;
   padding-left:9px;border-left:2px solid #DDA63A}
@@ -151,7 +152,13 @@ def sheet(room: dict, idx: int, total: int) -> str:
         lb = z["leave_behind"]
         trg = (f'<p class="trg"><b>The reset happens when</b>{esc(lb["trigger"])}</p>'
                if lb.get("trigger") else "")
-        rows.append(f'<div class="z"><h3>{esc(z["zone"])}</h3>'
+        # Numbered to match the Micro Zone Map and the working order on the
+        # room page, added 2026-09-18: a sheet that lists zone names without
+        # their number is the one place in the system where the order stops
+        # being visible, and the order is the instruction ("finish one before
+        # you start the next").
+        rows.append(f'<div class="z"><h3><span class="zn">{zs.index(z) + 1}'
+                    f'</span>{esc(z["zone"])}</h3>'
                     f'<p class="std">{esc(lb["standard"])}</p>{trg}</div>')
 
     plural = "zone" if len(zs) == 1 else "zones"
