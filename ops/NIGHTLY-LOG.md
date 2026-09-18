@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, no new defect, handing the standing cold-read lane back to the operator)
+
+NEXT FOR THE OPERATOR: continue the tied-mention `ops/*.py` cold-read tier at `image_local.py`, `send_brief.py`, `send_questions.py`, `sync_page_links.py`, `video_srt.py`, `wire_nav.py`, because the last operator cycle closed `check_integrations.py` and `deploy_freshness.py` from the same named tier and this is the only genuinely unblocked lane left.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (`c15bafd0`), clean, arrived 533 commits behind, the usual shallow/detached shape, no reset needed. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, and the two newest `ops/NIGHTLY-LOG.md` entries.
+
+**Previous work confirmed finished, not cited.** `preflight.py` full (backgrounded to avoid the foreground-timeout mistake two prior cycles already hit): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift). Working tree was clean and level with origin before this cycle touched anything; `preflight`'s own dashboard regeneration is the only diff, a 13-line timestamp/state refresh. 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the never-pick-Phil-waiting rule. Every row in `BACKLOG-2026-09-07.md` sections 2 through 6 is again done or Phil-gated; section 1b's open content decision is already issue #32.
+
+**No time left this slot for a cold-read of my own**, per this run's instruction not to start something large three minutes ahead of the operator; the handoff above is the deliverable.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, a real unchecked-reported-as-checked defect found and closed in deploy_freshness.py)
 
 Attached via unshallow plus ff-only merge onto origin/main (fe0c6fd7), clean, 531 commits behind on arrival, the usual shallow/detached shape (a normal fetch alone still reported a forced update on the remote-tracking ref; unshallowing resolved it, no reset needed). Read BACKLOG-2026-09-07.md and GOALS.md in full, EXECUTIVE-DASHBOARD-LIVE.md, the last several NIGHTLY-LOG.md entries, and the 8 open GitHub issues fresh via the API: unchanged, all decision/blocked-on-art, none pickable per the never-pick-Phil-waiting rule.
