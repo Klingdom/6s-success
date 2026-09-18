@@ -9,337 +9,347 @@ kitchen
 out in four trips.
 
 3
-00:00:03,200 --> 00:00:04,120
-What done looks like
+00:00:03,200 --> 00:00:04,700
+Where it is Outdoor Dining Zone One of 6
+micro zones in the Patio or Deck.
 
 4
-00:00:04,120 --> 00:00:05,040
+00:00:04,700 --> 00:00:06,200
+Each one is a session that finishes on its
+own.
+
+5
+00:00:06,200 --> 00:00:07,120
+What done looks like
+
+6
+00:00:07,120 --> 00:00:08,040
 1 A bare tabletop except the umbrella and
 one weighted tray
 
-5
-00:00:05,040 --> 00:00:05,960
+7
+00:00:08,040 --> 00:00:08,960
 2 Six chairs tucked fully under
 
-6
-00:00:05,960 --> 00:00:06,880
+8
+00:00:08,960 --> 00:00:09,880
 3 String lights clipped along the rail
 with no cord crossing the floor
 
-7
-00:00:06,880 --> 00:00:07,800
+9
+00:00:09,880 --> 00:00:10,800
 4 Nothing stored beneath the table
 
-8
-00:00:07,800 --> 00:00:10,000
+10
+00:00:10,800 --> 00:00:13,000
 One session Outdoor Dining Zone 30-45 min
 
-9
-00:00:10,000 --> 00:00:10,950
-Sort Clear the table down to bare surface
-and face what has been living on it: a
-
-10
-00:00:10,950 --> 00:00:11,900
-citronella bucket burned to the rim, a
-lighter
-
 11
-00:00:11,900 --> 00:00:12,425
+00:00:13,000 --> 00:00:13,950
 Sort Clear the table down to bare surface
 and face what has been living on it: a
 
 12
-00:00:12,425 --> 00:00:12,950
+00:00:13,950 --> 00:00:14,900
+citronella bucket burned to the rim, a
+lighter
+
+13
+00:00:14,900 --> 00:00:15,425
+Sort Clear the table down to bare surface
+and face what has been living on it: a
+
+14
+00:00:15,425 --> 00:00:15,950
 citronella bucket burned to the rim, a
 lighter that no longer sparks, placemats
 
-13
-00:00:12,950 --> 00:00:13,475
+15
+00:00:15,950 --> 00:00:16,475
 gone pale on the upper side only, and the
 melamine plates from a barbecue two
 
-14
-00:00:13,475 --> 00:00:14,000
+16
+00:00:16,475 --> 00:00:17,000
 summers ago.
 
-15
-00:00:14,000 --> 00:00:15,900
+17
+00:00:17,000 --> 00:00:18,900
 Sort Settle the dishware question below
 
-16
-00:00:15,900 --> 00:00:18,000
+18
+00:00:18,900 --> 00:00:21,000
 Sort Settle the dishware question below
 before anything goes back.
 
-17
-00:00:18,000 --> 00:00:19,900
+19
+00:00:21,000 --> 00:00:22,900
 Straighten Chairs tuck fully under the
 table so nobody has to
 
-18
-00:00:19,900 --> 00:00:20,950
+20
+00:00:22,900 --> 00:00:23,950
 Straighten Chairs tuck fully under the
 table so nobody has to sidestep a chair
 leg
 
-19
-00:00:20,950 --> 00:00:22,000
+21
+00:00:23,950 --> 00:00:25,000
 carrying a hot dish.
 
-20
-00:00:22,000 --> 00:00:23,900
+22
+00:00:25,000 --> 00:00:26,900
 Straighten One weighted tray holds the
 salt, the pepper, and the napkin weight,
 
-21
-00:00:23,900 --> 00:00:24,950
+23
+00:00:26,900 --> 00:00:27,950
 Straighten One weighted tray holds the
 salt, the pepper, and the napkin weight,
 so
 
-22
-00:00:24,950 --> 00:00:26,000
+24
+00:00:27,950 --> 00:00:29,000
 laying the table is one trip out rather
 than four.
 
-23
-00:00:26,000 --> 00:00:26,950
-Shine Wash the tabletop along the grain
-and pay attention to the collar where the
-
-24
-00:00:26,950 --> 00:00:27,900
-umbrella
-
 25
-00:00:27,900 --> 00:00:28,600
+00:00:29,000 --> 00:00:29,950
 Shine Wash the tabletop along the grain
 and pay attention to the collar where the
 
 26
-00:00:28,600 --> 00:00:29,300
+00:00:29,950 --> 00:00:30,900
+umbrella
+
+27
+00:00:30,900 --> 00:00:31,600
+Shine Wash the tabletop along the grain
+and pay attention to the collar where the
+
+28
+00:00:31,600 --> 00:00:32,300
 umbrella pole passes through, since that
 ring collects grit and holds water against
 
-27
-00:00:29,300 --> 00:00:30,000
+29
+00:00:32,300 --> 00:00:33,000
 the table.
 
-28
-00:00:30,000 --> 00:00:31,900
+30
+00:00:33,000 --> 00:00:34,900
 Shine Wipe the underside edges too, which
 is where hands
 
-29
-00:00:31,900 --> 00:00:32,950
+31
+00:00:34,900 --> 00:00:35,950
 Shine Wipe the underside edges too, which
 is where hands go and where wasps like to
 
-30
-00:00:32,950 --> 00:00:34,000
+32
+00:00:35,950 --> 00:00:37,000
 start building.
 
-31
-00:00:34,000 --> 00:00:35,900
+33
+00:00:37,000 --> 00:00:38,900
 Safety An open umbrella is
 
-32
-00:00:35,900 --> 00:00:38,000
+34
+00:00:38,900 --> 00:00:41,000
 Safety An open umbrella is a sail.
 
-33
-00:00:38,000 --> 00:00:38,950
-Safety Match the base weight to the canopy
-size, crank the umbrella down whenever
-
-34
-00:00:38,950 --> 00:00:39,900
-you
-
 35
-00:00:39,900 --> 00:00:40,950
+00:00:41,000 --> 00:00:41,950
 Safety Match the base weight to the canopy
 size, crank the umbrella down whenever
 
 36
-00:00:40,950 --> 00:00:42,000
+00:00:41,950 --> 00:00:42,900
+you
+
+37
+00:00:42,900 --> 00:00:43,950
+Safety Match the base weight to the canopy
+size, crank the umbrella down whenever
+
+38
+00:00:43,950 --> 00:00:45,000
 you leave the table, and close it before
 wind arrives rather than during it.
 
-37
-00:00:42,000 --> 00:00:42,950
-Safety Run string lights on hooks along
-the rail using outdoor-rated cord on a
-
-38
-00:00:42,950 --> 00:00:43,900
-socket with a
-
 39
-00:00:43,900 --> 00:00:44,600
+00:00:45,000 --> 00:00:45,950
 Safety Run string lights on hooks along
 the rail using outdoor-rated cord on a
 
 40
-00:00:44,600 --> 00:00:45,300
+00:00:45,950 --> 00:00:46,900
+socket with a
+
+41
+00:00:46,900 --> 00:00:47,600
+Safety Run string lights on hooks along
+the rail using outdoor-rated cord on a
+
+42
+00:00:47,600 --> 00:00:48,300
 socket with a residual current device,
 never a household extension lead lying
 
-41
-00:00:45,300 --> 00:00:46,000
+43
+00:00:48,300 --> 00:00:49,000
 across boards that get wet.
 
-42
-00:00:46,000 --> 00:00:46,950
-Standardize The table's resting state is
-bare except for the umbrella and the one
-
-43
-00:00:46,950 --> 00:00:47,900
-weighted tray.
-
 44
-00:00:47,900 --> 00:00:48,600
+00:00:49,000 --> 00:00:49,950
 Standardize The table's resting state is
 bare except for the umbrella and the one
 
 45
-00:00:48,600 --> 00:00:49,300
+00:00:49,950 --> 00:00:50,900
 weighted tray.
 
 46
-00:00:49,300 --> 00:00:50,000
+00:00:50,900 --> 00:00:51,600
+Standardize The table's resting state is
+bare except for the umbrella and the one
+
+47
+00:00:51,600 --> 00:00:52,300
+weighted tray.
+
+48
+00:00:52,300 --> 00:00:53,000
 Anything else arrives with a meal and
 leaves with it, including the candles.
 
-47
-00:00:50,000 --> 00:00:51,900
-Sustain Whoever carries the last plate
-inside closes the umbrella and lifts the
-
-48
-00:00:51,900 --> 00:00:52,600
-Sustain Whoever carries the last plate
-inside closes the umbrella and lifts the
-
 49
-00:00:52,600 --> 00:00:53,300
-tray on the way past.
+00:00:53,000 --> 00:00:54,900
+Sustain Whoever carries the last plate
+inside closes the umbrella and lifts the
 
 50
-00:00:53,300 --> 00:00:54,000
-One pass, no extra trip.
+00:00:54,900 --> 00:00:55,600
+Sustain Whoever carries the last plate
+inside closes the umbrella and lifts the
 
 51
-00:00:54,000 --> 00:00:55,900
-Sustain Slip reads from the kitchen window
-as anything on the table other than the
+00:00:55,600 --> 00:00:56,300
+tray on the way past.
 
 52
-00:00:55,900 --> 00:00:56,950
+00:00:56,300 --> 00:00:57,000
+One pass, no extra trip.
+
+53
+00:00:57,000 --> 00:00:58,900
 Sustain Slip reads from the kitchen window
 as anything on the table other than the
 
-53
-00:00:56,950 --> 00:00:58,000
+54
+00:00:58,900 --> 00:00:59,950
+Sustain Slip reads from the kitchen window
+as anything on the table other than the
+
+55
+00:00:59,950 --> 00:01:01,000
 umbrella and the one weighted tray,
 including the candles that arrived with
 dinner.
 
-54
-00:00:58,000 --> 00:00:59,900
+56
+00:01:01,000 --> 00:01:02,900
 Sustain Recovery is a single clearing
 
-55
-00:00:59,900 --> 00:01:02,000
+57
+00:01:02,900 --> 00:01:05,000
 Sustain Recovery is a single clearing
 pass, two minutes.
 
-56
-00:01:02,000 --> 00:01:02,950
-Sustain The umbrella is the part that
-matters most and the part most often
-skipped,
-
-57
-00:01:02,950 --> 00:01:03,900
-because closing
-
 58
-00:01:03,900 --> 00:01:04,600
+00:01:05,000 --> 00:01:05,950
 Sustain The umbrella is the part that
 matters most and the part most often
 skipped,
 
 59
-00:01:04,600 --> 00:01:05,300
+00:01:05,950 --> 00:01:06,900
+because closing
+
+60
+00:01:06,900 --> 00:01:07,600
+Sustain The umbrella is the part that
+matters most and the part most often
+skipped,
+
+61
+00:01:07,600 --> 00:01:08,300
 because closing it feels like ending the
 evening, and one left open can damage
 
-60
-00:01:05,300 --> 00:01:06,000
+62
+00:01:08,300 --> 00:01:09,000
 everything else here.
 
-61
-00:01:06,000 --> 00:01:06,283
+63
+00:01:09,000 --> 00:01:09,283
 The call Decide once whether this table
 gets dishware of its own, because the
 
-62
-00:01:06,283 --> 00:01:06,567
+64
+00:01:09,283 --> 00:01:09,567
 half-answer is what keeps it covered.
 
-63
-00:01:06,567 --> 00:01:06,850
+65
+00:01:09,567 --> 00:01:09,850
 Count the meals you genuinely ate out here
 last season.
 
-64
-00:01:06,850 --> 00:01:07,133
+66
+00:01:09,850 --> 00:01:10,133
 If it was more than a handful, buy one
 stackable set, plates, tumblers, and
 
-65
-00:01:07,133 --> 00:01:07,417
+67
+00:01:10,133 --> 00:01:10,417
 flatware for the number of seats, and keep
 it in a lidded tote in the deck box so
 
-66
-00:01:07,417 --> 00:01:07,700
+68
+00:01:10,417 --> 00:01:10,700
 eating outdoors costs one trip.
 
-67
-00:01:07,700 --> 00:01:07,983
+69
+00:01:10,700 --> 00:01:10,983
 If it was two or three meals all year,
 admit that, and carry the indoor plates
 out
 
-68
-00:01:07,983 --> 00:01:08,267
+70
+00:01:10,983 --> 00:01:11,267
 on those few occasions.
 
-69
-00:01:08,267 --> 00:01:08,550
+71
+00:01:11,267 --> 00:01:11,550
 What you must stop is the middle option:
 storing four faded plates, a mismatched
 
-70
-00:01:08,550 --> 00:01:08,833
+72
+00:01:11,550 --> 00:01:11,833
 tumbler, and a serving bowl outdoors for a
 set you will never complete.
 
-71
-00:01:08,833 --> 00:01:09,117
+73
+00:01:11,833 --> 00:01:12,117
 That orphaned half-set is precisely why
 the table always has something standing on
 
-72
-00:01:09,117 --> 00:01:09,400
+74
+00:01:12,117 --> 00:01:12,400
 it, and why it never looks ready to sit
 down at.
 
-73
-00:01:09,400 --> 00:01:11,800
+75
+00:01:12,400 --> 00:01:14,800
 Outdoor Dining Zone The full reset, free
 at 6s-success.com
