@@ -8740,6 +8740,54 @@ def check_print_and_play_art_count(text, illustrated, missing) -> list:
     return problems
 
 
+def gate_zone_videos_match_standard() -> None:
+    """Rendered zone videos must say what their zone page says.
+
+    Found 2026-09-17 by asking whether OWNER-ACTIONS item 1 (authorise
+    YouTube) would pay off when Phil spends the five minutes. It would not
+    have. video_zone.done_items() writes the "What done looks like" checklist
+    into every video; it was corrected 2026-09-15; every narrated video on
+    disk was rendered 7-8 September. 100 of 114 disagreed with their own zone
+    page: "One wallet and one phone per adult" on screen as "One phone per
+    adult", an item dropped outright in one Entryway zone.
+
+    ops/youtube_upload.py refuses those by name, which makes the action safe.
+    This exists so the state is visible on every cycle and in Phil's hourly
+    brief rather than only to whoever runs the upload tool, because the fix is
+    a multi-hour re-render that somebody has to keep an eye on.
+
+    WARNS rather than FAILS on purpose: nothing customer-facing is broken by a
+    stale file sitting on a disk, and failing here would hold every unrelated
+    change hostage to a render queue. The customer-facing case, publishing
+    one, is blocked in the tool that does the publishing.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import check_video_standard as C
+        stale, fresh, unreadable = C.compare()
+    except Exception as e:                                      # noqa: BLE001
+        warn("zone-videos-match-standard",
+             "could not check rendered videos against their zone standards "
+             "(%s), so this is UNCHECKED, not clean" % type(e).__name__)
+        return
+    total = len(stale) + len(fresh) + len(unreadable)
+    if not total:
+        return
+    if unreadable:
+        warn("zone-videos-match-standard",
+             "%d of %d rendered video(s) have no readable checklist in their "
+             "captions, so they were NOT checked against the standard: %s"
+             % (len(unreadable), total,
+                ", ".join(s for s, _c, _g in unreadable[:3])))
+    if stale:
+        warn("zone-videos-match-standard",
+             "%d of %d rendered zone video(s) show a checklist that no longer "
+             "matches the zone's own standard, so they are held back from "
+             "YouTube by ops/youtube_upload.py until re-rendered (%s ...). "
+             "Captions were compared, not pixels."
+             % (len(stale), total, ", ".join(s for s, _c, _g in stale[:2])))
+
+
 def gate_print_and_play_art_count_current() -> None:
     """site/deck/entryway-print-and-play.html's illustrated-card count must
     match ops/card-hero-verdicts.json, not a stale or invented number.
@@ -15799,6 +15847,7 @@ def main() -> int:
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
+    run_gate(gate_zone_videos_match_standard)
     run_gate(gate_invest_page_catalog_current)
     run_gate(gate_invest_page_no_fabricated_claims)
     run_gate(gate_caption_line_length)
