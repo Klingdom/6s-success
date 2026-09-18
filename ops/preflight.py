@@ -815,6 +815,101 @@ def gate_kit_page_zone_counts_current() -> None:
         fail("kit-page-zone-counts", "; ".join(problems))
 
 
+_KDECK_WORDS = {0: "zero", 1: "one", 2: "two", 3: "three", 4: "four",
+                5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine",
+                10: "ten", 11: "eleven", 12: "twelve"}
+
+
+def check_kitchen_deck_page_counts(cards: list, page: str) -> list:
+    """Pure logic for gate_kitchen_deck_page_counts_current, testable
+    without real files. `cards` is ops/cardtext/kitchen-deck.json's own
+    `cards` list. `page` is the full text of site/kitchen-deck.html.
+
+    Found 2026-09-18, cold-reading ops/build_kitchen_deck_page.py (3
+    mentions in this log, per step 5d): its page copy states, in prose,
+    "72 cards", "Seven kitchen zones", "twelve root causes", and, naming
+    the exact four cards, "Four cards that are not one zone's job: the
+    nightly close, the safety walk..., the shopping list loop, and the
+    conversation...". Every one of those was a Python literal typed once,
+    not read from the deck; nothing checked that a card added, removed or
+    reclassified would leave the prose still true. All four numbers matched
+    the real 72-card deck today (verified directly, not assumed), so this
+    closes a latent gap rather than a live defect. Fixed at the source:
+    the generator now derives every count from deck data
+    (ops/build_kitchen_deck_page.py's own num_word()) and asserts the
+    whole-kitchen card set is still the four the sentence names, but that
+    assertion only runs inside the generator itself, and
+    gate_generator_ownership's own per-generator loop does not check each
+    script's exit code, only the net file diff afterward (see its own
+    `for g in gens: run(g, ...)`), so a future assertion failure there
+    would raise, leave site/kitchen-deck.html unwritten and thus
+    unchanged from HEAD, and be read as a clean, undirtied tree, not a
+    caught defect. This re-derives every count independently, straight
+    from the committed source JSON, so a regression that snuck past that
+    blind spot is still caught here, the same reason
+    gate_kit_page_zone_counts_current re-derives rather than trusts
+    ops/build_kit_page.py's own arithmetic: two files trusting the same
+    wrong number would stay green together.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+    n_total = len(cards)
+    if ("%d cards" % n_total) not in page:
+        problems.append("page never says '%d cards' anywhere (the real "
+                         "total, from kitchen-deck.json)" % n_total)
+
+    n_zones = len({c["zone"] for c in cards if c["type"] == "ZONE CARD"})
+    zone_word = _KDECK_WORDS.get(n_zones, str(n_zones)).capitalize()
+    if ("%s kitchen zones" % zone_word) not in page:
+        problems.append("meta description does not say '%s kitchen zones' "
+                         "(the real zone count)" % zone_word)
+
+    n_causes = len([c for c in cards if c["type"] == "ROOT CAUSE CARD"])
+    cause_word = _KDECK_WORDS.get(n_causes, str(n_causes))
+    if ("points at one of these %s." % cause_word) not in page:
+        problems.append("root-causes section does not say 'one of these "
+                         "%s' (the real root-cause count)" % cause_word)
+
+    whole_ids = sorted(c["id"] for c in cards
+                        if c["type"] == "ACTION CARD" and not c.get("zone"))
+    n_whole = len(whole_ids)
+    whole_word = _KDECK_WORDS.get(n_whole, str(n_whole)).capitalize()
+    if ("%s cards that are not one zone" % whole_word) not in page:
+        problems.append("whole-kitchen section does not say '%s cards' "
+                         "(the real count of zoneless action cards)"
+                         % whole_word)
+    if whole_ids != ["KA-015", "KA-016", "KA-017", "KA-018"]:
+        problems.append("the zoneless action-card set changed to %s; the "
+                         "hardcoded 'nightly close/safety walk/shopping "
+                         "list loop/two cook treaty' sentence in "
+                         "build_kitchen_deck_page.py no longer names the "
+                         "real cards and must be rewritten by hand"
+                         % whole_ids)
+    return problems
+
+
+def gate_kitchen_deck_page_counts_current() -> None:
+    """site/kitchen-deck.html's card/zone/root-cause counts, stated in
+    prose, must match the real deck in ops/cardtext/kitchen-deck.json.
+
+    See check_kitchen_deck_page_counts's docstring for the full history.
+    """
+    kdeck_path = os.path.join(ROOT, "ops", "cardtext", "kitchen-deck.json")
+    page_path = os.path.join(SITE, "kitchen-deck.html")
+    if not (os.path.exists(kdeck_path) and os.path.exists(page_path)):
+        warn("kitchen-deck-page-counts",
+             "could not check: a required file is missing.")
+        return
+
+    cards = json.load(io.open(kdeck_path, encoding="utf-8"))["cards"]
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_kitchen_deck_page_counts(cards, page)
+    if problems:
+        fail("kitchen-deck-page-counts", "; ".join(problems))
+
+
 GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_pages.py", "build_resources.py",
     "wire_generated_catalog.py", "build_product_schema.py",
@@ -16344,6 +16439,7 @@ def main() -> int:
     run_gate(gate_shop_prerendered)
     run_gate(gate_prerender_shop_current)
     run_gate(gate_kit_page_zone_counts_current)
+    run_gate(gate_kitchen_deck_page_counts_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
     run_gate(gate_risks_register_current)

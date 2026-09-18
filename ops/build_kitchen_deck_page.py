@@ -78,6 +78,20 @@ def esc(v) -> str:
     return html.escape(str(v), quote=True)
 
 
+_NUM_WORDS = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five",
+              6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten",
+              11: "Eleven", 12: "Twelve"}
+
+
+def num_word(n: int) -> str:
+    """Small counts read as prose everywhere on this page (card kinds,
+    zones, root causes, the whole-kitchen cards); spelling them out by hand
+    is how "seven zones"/"twelve root causes"/"Four cards" drifted silently
+    from the real corpus size before. Falls back to digits past twelve,
+    which nothing on this page currently needs."""
+    return _NUM_WORDS.get(n, str(n))
+
+
 def short(text: str, limit: int = 118) -> str:
     """First sentence if it is short enough, else a word-boundary cut.
 
@@ -151,7 +165,8 @@ def back_body(card: dict, by_id: dict) -> str:
     if t == "ROOM CARD":
         out.append(f'<p class="kcall"><strong>Start here.</strong> '
                     f'{esc(card["start_here"])}</p>')
-        out.append('<h4>The seven zones, in order</h4><ol class="ktight">'
+        out.append(f'<h4>The {num_word(len(card["zones_in_order"])).lower()} '
+                    f'zones, in order</h4><ol class="ktight">'
                     + "".join(f"<li>{esc(z)}</li>"
                               for z in card["zones_in_order"]) + "</ol>")
         out.append('<h4>How to play</h4><ol>'
@@ -303,7 +318,8 @@ def build_body(deck: dict) -> str:
         block = [f'<section class="kzone"><h2>{esc(name)}</h2>',
                   card_html(zmap[name], by_id)]
         block.append('<div class="ksub"><p class="keyebrow">'
-                      'Three frictions, then the fix</p>')
+                      f'{num_word(len(fr.get(name, [])))} frictions, '
+                      f'then the fix</p>')
         for c in fr.get(name, []):
             block.append(card_html(c, by_id))
         for c in ac.get(name, []):
@@ -313,17 +329,27 @@ def build_body(deck: dict) -> str:
         block.append('</div></section>')
         parts.append("".join(block))
 
+    # The paragraph below names what each whole-kitchen card is about, not
+    # just how many there are; a word count alone cannot prove the naming
+    # still matches, so the exact card set is asserted here. If this ever
+    # fires, the fix is to rewrite the sentence, not the assertion.
+    whole_ids = [c["id"] for c in whole]
+    assert whole_ids == ["KA-015", "KA-016", "KA-017", "KA-018"], (
+        "whole-kitchen action cards changed (%s); the 'nightly close/safety "
+        "walk/shopping list loop/two cook treaty' sentence in "
+        "build_body() no longer describes the real four and must be "
+        "rewritten by hand" % whole_ids)
     parts.append('<section class="kzone"><h2>Whole kitchen</h2>'
-                  '<p class="klead-p">Four cards that are not one zone’s '
-                  'job: the nightly close, the safety walk to do before any '
-                  'rebuild, the shopping list loop, and the conversation two '
-                  'cooks need to have once.</p>'
+                  f'<p class="klead-p">{num_word(len(whole))} cards that are '
+                  'not one zone’s job: the nightly close, the safety walk to '
+                  'do before any rebuild, the shopping list loop, and the '
+                  'conversation two cooks need to have once.</p>'
                   + "".join(card_html(c, by_id) for c in whole)
                   + '</section>')
     parts.append('<section class="kzone"><h2>Root causes, the shared deck</h2>'
-                  '<p class="klead-p">Every friction card in the kitchen '
-                  'points at one of these twelve. Pull one when a friction '
-                  'card sends you here.</p>'
+                  f'<p class="klead-p">Every friction card in the kitchen '
+                  f'points at one of these {num_word(len(causes)).lower()}. '
+                  f'Pull one when a friction card sends you here.</p>'
                   + "".join(card_html(c, by_id) for c in causes)
                   + '</section>')
     parts.append('<section class="kzone"><h2>Events, the day that tests it</h2>'
@@ -361,8 +387,8 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Kitchen Deck: 72 cards, typeset and free to read or print</title>
-<meta name="description" content="Seven kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. 72 cards, typeset, free.">
+<title>The Kitchen Deck: __N__ cards, typeset and free to read or print</title>
+<meta name="description" content="__NZONES__ kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <!-- SEO:BEGIN -->
 <link rel="canonical" href="https://6s-success.com/kitchen-deck.html">
 <meta name="robots" content="index, follow">
@@ -370,13 +396,13 @@ PAGE = """<!doctype html>
 <meta property="og:site_name" content="6S Success">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://6s-success.com/kitchen-deck.html">
-<meta property="og:title" content="The Kitchen Deck: 72 cards, typeset and free to read or print">
-<meta property="og:description" content="Seven kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. 72 cards, typeset, free.">
+<meta property="og:title" content="The Kitchen Deck: __N__ cards, typeset and free to read or print">
+<meta property="og:description" content="__NZONES__ kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <meta property="og:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
-<meta name="twitter:title" content="The Kitchen Deck: 72 cards, typeset and free to read or print">
-<meta name="twitter:description" content="Seven kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. 72 cards, typeset, free.">
+<meta name="twitter:title" content="The Kitchen Deck: __N__ cards, typeset and free to read or print">
+<meta name="twitter:description" content="__NZONES__ kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <meta name="theme-color" content="#22323C">
 <script type="application/ld+json">
 {
@@ -397,10 +423,10 @@ PAGE = """<!doctype html>
   "url": "https://6s-success.com/kitchen-deck.html",
   "inLanguage": "en",
   "numberOfPlayers": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 6},
-  "gameItem": {"@type": "Thing", "name": "72 printable cards, front and back, typeset, no illustrations yet"},
+  "gameItem": {"@type": "Thing", "name": "__N__ printable cards, front and back, typeset, no illustrations yet"},
   "publisher": {"@id": "https://6s-success.com/#organization"},
   "genre": "Household organization",
-  "abstract": "A 72 card deck for the kitchen: seven zones, the frictions each one causes, the twelve root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
+  "abstract": "A __N__ card deck for the kitchen: __NZONES_LOWER__ zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
 }
 </script>
 <!-- SEO:END -->
@@ -455,9 +481,9 @@ __CSS__
     <div class="hero-copy">
       <p class="eyebrow on-deep">The deck</p>
       <h1>The <em>Kitchen</em> Deck</h1>
-      <p class="sub">72 cards: seven zones, the frictions each one causes, the twelve root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset and free. No illustrations yet, so every card reads as text, not a photograph.</p>
+      <p class="sub">__N__ cards: __NZONES_LOWER__ zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset and free. No illustrations yet, so every card reads as text, not a photograph.</p>
       <div class="cta-row">
-        <button class="btn btn-primary btn-lg" type="button" onclick="if(window.Measure){window.Measure.track('free-download',{what:'kitchen-deck-print',from:'kitchen-deck'});}window.print()">Print the 72 fronts</button>
+        <button class="btn btn-primary btn-lg" type="button" onclick="if(window.Measure){window.Measure.track('free-download',{what:'kitchen-deck-print',from:'kitchen-deck'});}window.print()">Print the __N__ fronts</button>
         <a class="btn btn-on-deep btn-lg" href="#kitchen-cards">Read the deck</a>
       </div>
       <p class="fulfil-note">The Entryway deck, illustrated: <a href="deck.html" style="color:inherit">deck.html</a>.</p>
@@ -476,7 +502,7 @@ __CSS__
 
 <section class="section band" id="whats-in-it">
   <div class="wrap">
-    <p class="eyebrow">72 cards, seven kinds</p>
+    <p class="eyebrow">__N__ cards, __NKINDS_LOWER__ kinds</p>
     <h2>One zone, one friction, one cause, one fix, one standard</h2>
     <p class="lede">A Zone card names the place. Friction cards say what a household actually complains about there. Each friction points at a Root Cause, and each cause names the Action that fixes it. A Standard card is what you write down and keep. Event cards are the days that test whether it held.</p>
     <ul class="spine">__SPINE__</ul>
@@ -613,13 +639,23 @@ def main() -> int:
     src = json.load(io.open(KD.SRC, encoding="utf-8"))
     kitchen_intro = [r for r in src["rooms"] if r["room"] == "Kitchen"][0]["intro"]
 
+    n_total = deck["count"]
+    n_zones = len(ZONE_ORDER)
+    n_causes = len([c for c in deck["cards"] if c["type"] == "ROOT CAUSE CARD"])
+    n_kinds = len(TYPE_COUNT_ORDER)
+
     page = (PAGE
             .replace("__CSS__", CSS)
             .replace("__INTRO__", esc(kitchen_intro))
             .replace("__SPINE__", type_spine(deck))
             .replace("__BODY__", build_body(deck))
             .replace("__SHEET__", build_print_sheet(deck))
-            .replace("__UMAMI__", UMAMI))
+            .replace("__UMAMI__", UMAMI)
+            .replace("__N__", str(n_total))
+            .replace("__NZONES_LOWER__", num_word(n_zones).lower())
+            .replace("__NZONES__", num_word(n_zones))
+            .replace("__NCAUSES_LOWER__", num_word(n_causes).lower())
+            .replace("__NKINDS_LOWER__", num_word(n_kinds).lower()))
 
     io.open(OUT, "w", encoding="utf-8", newline="").write(page)
 

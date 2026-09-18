@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle
+
+**Did:** Unshallowed, attached via `merge --ff-only` onto `origin/main` (`276d0bdf`), clean. Read the backlog, roadmap, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, GitHub (8 issues, all `decision`/`blocked-on-art`, 0 PRs). Preflight fast: every gate passed, 23 pre-diagnosed warnings. No mail credential; `affiliate.py --check` clean. Named backlog confirmed exhausted again (done or Phil-gated), so used step 5d's fallback: cold-read the lowest-mention `ops/*.py` files.
+
+**Found:** `build_kitchen_deck_page.py`'s page copy hand-typed its own card/zone/root-cause counts ("72 cards", "Seven kitchen zones", "twelve root causes", naming the exact four whole-kitchen cards) across title, meta, JSON-LD and hero, none read from the deck. Checked against `ops/cardtext/kitchen-deck.json`: all correct today, no live defect, but an unguarded "copy and control disagree" gap this repo has already gated twice elsewhere. Fixed at the source (every count now derives from real deck data; an assert guards the four named cards). Added independent `gate_kitchen_deck_page_counts_current`, since `gate_generator_ownership`'s loop does not check exit codes, only the net diff. 5 test cases fail-then-pass proved, plus a real regression planted directly on the committed page and caught by name.
+
+**Verified:** Full `preflight.py` clean (23 warnings, none new), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py`/`fix_dashes.py --check` clean. Regenerated page byte-identical to HEAD.
+
+**Went well:** verifying against real data before writing, per 5d.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. Generator, gate, test, `STATUS.md`/archive, command deck. No price/product touched, no site content actually changed. IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, App.js cold-read handoff finally closed, no defect found)
 
 Attached via ff-only merge onto origin/main (fb407c25), clean, no reset needed.
