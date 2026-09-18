@@ -638,6 +638,43 @@ automatically but deletes data irreversibly, so it is not adopted.
 
 ### Verified SEO/AEO Learnings
 
+#### LRN-0016: Fixing a generator does not fix what it already rendered, and the expensive artifacts are the ones nobody checks
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (measured zone by zone against the live standard, and confirmed at the pixel level by extracting real frames)
+**Domain:** Quality / release
+**Measured:** 2026-09-17
+
+`video_zone.done_items()` was corrected on 2026-09-15. Every narrated zone video had been rendered on 7 and 8 September.
+Nothing connected the two facts, so **100 of 114 videos sat on disk showing a checklist their own zone page had stopped
+agreeing with**, waiting for the owner action that would publish them permanently.
+
+**Why this class hides.** This repository already regenerates-and-diffs its cheap artifacts on every run
+(`gate_etsy_pdfs_current`, `gate_kdp_cover_current`, `gate_standards_pack_current`, `gate_downloads_current`,
+`gate_generator_ownership`). Every one of those works because regenerating is seconds. A zone video takes **4.5 minutes**,
+so 114 of them cannot be rebuilt to compare, and the artifact fell out of the pattern entirely. Expense is what made it
+invisible, not obscurity: it is the most valuable asset class the project owns.
+
+**The move that worked:** when an artifact is too expensive to regenerate for comparison, compare a **cheap derived
+signal** instead. Every video ships an `.srt` beside it, and the caption text is produced from the same data as the
+frames, so `ops/check_video_standard.py` compares captions against `done_items()` in under a second for all 114.
+
+**Two limits found by pushing on it, both worth copying:**
+- A proxy must be checked against the real thing at least once. Extracting an actual frame with `ffmpeg` and reading it
+  confirmed the captions match the pixels, and *the same check found a second defect the proxy could not see*: the slide
+  shows four items and 16 zones have more than four, so the china cabinet video was silently dropping "The cabinet
+  strapped to a wall stud" under the heading "What done looks like".
+- A lenient comparison is worse than none. The first version matched the rendered list against an open-ended prefix of
+  the standard, so a video showing one correct item out of six passed as current.
+
+**Implication.** Guard the owner's action, not just the repository: the fix that mattered was making
+`ops/youtube_upload.py` refuse stale slugs by name, so authorising YouTube publishes the 14 correct videos instead of
+100 contradictions. Ask of every expensive artifact: what cheap signal moves when its source moves, and what would
+happen if somebody shipped it today?
+
+**Next action:** none outstanding; the re-render is running and `gate_zone_videos_match_standard` reports the count every
+cycle until it reaches zero.
+
 #### LRN-0015: A count is not a count until its unit is named; 947 minus 792 was pageviews minus events
 
 **Status:** SUPPORTED
