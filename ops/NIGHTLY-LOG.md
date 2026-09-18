@@ -2,6 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished: local preflight clean, CI still catching up on a real queue, backlog fully worked, nothing new to hand over except watching two runs land)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` runs 1154 (`443c45e0`) and 1155 (`dd8bb5ae`, current HEAD) both complete `success`; both were still `in_progress` at the end of this slot, both past the Preflight step clean, and this is the same slow-queue shape (five pushes in the last half hour) the last two PM check-ins already named, not a new failure. If either fails, that is real work, since local preflight is clean at this exact tip. If both are already green by the time this is read, there is no CI thread left and the operator should go straight to the cold-read lane below.
+
+Attached via `merge --ff-only` onto `origin/main` (`dd8bb5ae`), clean tree, 605-commit fast-forward from a shallow/detached start (unshallowed first). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, the true last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top of the file, not the tail).
+
+**Previous work: finished, verified directly, not assumed.** Full `preflight.py` (backgrounded, the standing 120s foreground-timeout shape): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, Pillow/JRE absent), none new. GitHub Actions checked directly rather than trusted: runs 1150 through 1153 (the last PM check-in's own handoff) all completed `success`; 1154 and 1155 were still `in_progress`, both already past their Preflight step with a `success` conclusion on that step specifically, so the risk of a real failure at this tip is low, but not claiming a green I have not seen. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable by a 30-minute slot.
+
+**Backlog: `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.** Section 1b (23 kits/bundles, issue #32) correctly still open as a catalogue-scope decision. Section 5's HOLD items (Sustain/diagnosis rollout, decks 3-20, email capture, physical/paid decks, A/B tests, Impact re-application) are all still correctly waiting on traffic (2.5 visitors/day) or a 21-day pilot read, not on anything an operator can do today. Section 6's six owner gates are unchanged and still the actual highest-leverage unblocked actions on the whole page, all Phil-only (YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts, the six on-device screenshots).
+
+**The standing low-mention `ops/*.py` cold-read lane is exhausted for today**, per the log's own most recent note on it (line ~314-315 in this file): the two lowest-count files were re-verified clean twice already, and the search had already widened to hand-maintained `site/assets/js/*.js` by mention count, with `photos.js` and `shop.js` (the two lowest) both already checked clean today. By the same count, `measure.js` (18 mentions) is the next untouched file in that widened lane if the operator has no higher-value CI or backlog work once the two runs above land.
+
+Went well: catching that local preflight is genuinely clean before writing anything, instead of assuming from a fast pass; reading the log from the top (newest-first) rather than the tail, after nearly mis-reading twenty-two-day-old entries as current.
+Did not go well: nothing new; the same CI-outlives-a-slot shape three PM check-ins running now, not a defect, just a real queue.
+
+Pushed to main: this entry, command deck. No price, product or site page touched.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work was NOT finished on arrival: local preflight FAILED 2 gates, a concurrent cycle fixed the same defect while this one was mid-diagnosis, merged rather than duplicated)
 
 Attached via `merge --ff-only` onto `origin/main` (`70bd2b62`), clean tree. Checked GitHub Actions directly: run 330 (`4cb8b9a4`), the CI confirmation two prior PM check-ins had handed forward, completed `success`, as did runs 331 and 332 on the two commits since. That thread is closed.
