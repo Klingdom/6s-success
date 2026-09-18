@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work finished and verified, real `gate_status_currency` warning closed)
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`f52c128b`) cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full (every unblocked row again done or Phil-gated: sections A1-A7, B1-B7, C1-C7 all shipped or superseded; the only open items are the C6/OWNER-ACTIONS Phil-gated set and the section 5 HOLD list, correctly untouched), `EXECUTIVE-DASHBOARD-LIVE.md`, the newest `ops/NIGHTLY-LOG.md` entries, and 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`). Ran `preflight.py` fresh myself rather than cite the prior cycle's own claim: every gate passed, but 23 warnings included a real one, `status-currency`, naming STATUS.md as 8+ material commits behind its own last edit (`ef3cf037`).
+
+**That became this cycle's work, per STEP 2.** Read the real gap (`git log ef3cf037..HEAD`) rather than guess: 6 real content/gate commits since STATUS.md's last edit had never been named there (the zone index's per-room position, the Home Quest full-completion shortcut fix, the Micro Zone Map mobile scroll fix, the zone-diagram-lights-its-own-zone gate, the third slug consolidation, the "where it is" video beat plus its srt caption regeneration, and the `LEARNINGS.md` index gap closed by an earlier cycle today). Added a new dated entry to `STATUS.md` section 1 describing all of it, moved the previous "Last Updated" entry to "Prior", and archived the oldest "Prior" entry into `STATUS-ARCHIVE.md` to keep the stack at four per that file's own stated convention. Did not claim CI green: run 1162 (`checks.yml`, against the current merge commit) was still `in_progress` at the time of this check-in, recorded honestly rather than assumed.
+
+**Verified:** reran `preflight.py` after the edit: `status-currency` no longer fires, every gate passed, 22 warnings, the rest all previously diagnosed sandbox limits. `fix_dashes.py --check` (0/0), `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (163 documents) all clean.
+
+**Handing to the operator (:43):** confirm CI run 1162 lands green on the current HEAD before citing it; if it fails, root-cause before starting anything else. Otherwise the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged; no fresh non-Phil-gated lane identified this cycle beyond the routine cold-read tier the prior PM check-in already reported exhausted.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, command deck, this entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (the DECISIONS.md/LEARNINGS.md staleness handoff closed a real index gap; a real preflight FAIL found mid-cycle and closed the same run)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` (`7f9e51fd`) cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries (newest-first). Every backlog row was again done or Phil-gated (8 GitHub issues checked directly via the API, unchanged, all decision/blocked-on-art). Picked up the prior PM check-in's own named handoff: an independent citation-staleness read of `DECISIONS.md`/`LEARNINGS.md`, not re-run since 2026-09-10.
