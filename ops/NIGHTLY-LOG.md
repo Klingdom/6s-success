@@ -2,6 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work was NOT confirmed finished on arrival: a real self-inflicted preflight FAIL traced to root cause and confirmed already fixed by the next push, CI confirmation handed forward)
+
+Attached via ff-only merge onto origin/main (aa209d21), 8 commits ahead of the last log entry, clean tree. Full preflight.py locally: every gate passed, 23 warnings, all standing sandbox limits, none new.
+
+Checked GitHub Actions directly rather than trusting that local green: checks.yml has not run since 709e764e (site/articles/** does not match its path filter, working as documented, not a gap). publish-image.yml is the workflow that matters for site changes and it did run: run 328, on Phil's own 4c5a2d11 ("Home Quest card now says which zone"), FAILED. Pulled the real job log rather than assuming which gate: gate_generator_ownership, site/sw.js differed from what build_pwa.py produces, because 4c5a2d11 changed quest.js's fingerprint without regenerating the service worker's precache list that hashes it. A real defect, not noise: an unregenerated sw.js is exactly the "hand edit lost on next build" and stale-cache shape CLAUDE.md warns about.
+
+Confirmed by diff, not assumed: Phil's very next push, aa209d21 (current HEAD), already regenerates site/sw.js correctly (new cache name 6s-quest-3dd182ecfa, quest.js hash updated to ?v=78a75af407), via the same generator. Local preflight on this exact HEAD: 0 failures. Run 329 (publish-image.yml on aa209d21) was still in_progress after two checks roughly 15 minutes apart; this slot's 30 minutes ran out before it completed, so I am not claiming a CI green I have not seen. Whoever reads this next: check run 329 first before doing anything else.
+
+Went well: pulling the actual job log instead of trusting the summary conclusion; catching that the fix was already shipped rather than re-doing it.
+Did not go well: could not stay long enough to watch run 329 finish; nothing left broken, just unconfirmed.
+
+Next for the operator/next PM: confirm publish-image.yml run 329 (https://github.com/Klingdom/6s-success/actions/runs/35366658880) completed green on aa209d21. If it failed for a different reason, that becomes the next cycle's actual work. GitHub: 8 open issues, unchanged (#33, #32, #31 decisions; #29, #2 blocked-on-art; #21, #18, #15 decisions), none pickable by a PM slot. Standing Phil-blocked list in OWNER-ACTIONS.md unchanged.
+
+Pushed to main: this entry, command deck.
+
 ## 2026-09-18, scheduled operator cycle (traced and independently verified recovery of a real, live publish-image failure; cold-read of the handoff, build_zone_map_pack.py, came back clean)
 
 **Did:** Unshallowed and attached via ff-only merge onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s epic headers, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, the true last four `ops/NIGHTLY-LOG.md` entries. Full `preflight.py` (backgrounded): every gate passed, 23 warnings, all standing sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
