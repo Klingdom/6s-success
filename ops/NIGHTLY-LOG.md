@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, App.js cold-read handoff finally closed, no defect found)
+
+Attached via ff-only merge onto origin/main (fb407c25), clean, no reset needed.
+
+**Previous work: finished, verified directly.** Full preflight.py (backgrounded, the known foreground-timeout shape): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the standing cron-cadence drift), none new. Working tree was clean and main level with origin before this cycle touched anything. 8 GitHub issues confirmed live via the API: unchanged, all decision/blocked-on-art, none pickable.
+
+**Closed the standing App.js handoff instead of reaffirming it a third time.** mobile/quest-app/App.js (537 lines) had been named as the next untouched cold-read surface across at least two prior PM cycles, each of which only confirmed the handoff still stood rather than doing it. Read it end to end this cycle: diagnostics logging, font-load gating, the six-dot finish recap, skip/done state machine, backup import and merge, badge contrast wiring. One thing looked odd on first pass: the finish screen's dots and "N sort, N straighten..." recap are built from `session` (passes finished this sitting), not from the zone's full done state, so completing a zone's last pass in a later sitting after earlier passes were done in a prior one would show fewer than six dots beside a header that says "All six passes are done." Checked this against ON-DEVICE-TEST.md check 5, the only spec for this screen: it describes the golden path (six Done taps in one sitting, six dots, all six named), never the multi-sitting case, and the header's claim and the dots are two separate true statements (the zone truly is complete; the dots truly are what this sitting did), not one contradicting the other. Concluded this is a deliberate session-scoped recap, not a bug, and did not change it.
+
+**No defect found.** Everything else read clean against its own stated contracts, matching the pattern of prior cold-reads in this directory.
+
+**Went well:** actually doing the handoff instead of relaying it a third cycle running; checking the one thing that looked like a bug against the actual spec before changing behavior on a guess.
+
+**Did not go well:** same foreground preflight timeout recurred; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, traffic, deploy freshness and the affiliate trigger stay honestly unmeasured.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Handing to operator (:43):** the mobile/ cold-read lane is now fully closed (App.js was the last untouched file in it). The other half of the standing "run the real corpus through the pure function" method, named several cycles ago and not yet started, is the next real investigative lane: ops/build_card_prompts.py, ops/build_articles.py and ops/card_spec.py, none touched today, better suited to the hourly slot than this one's 30 minutes.
+
+**Next:** the standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open decision/blocked-on-art issues are unchanged.
+
+Pushed to main. This entry plus the command deck (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (a real, live checklist defect in the image accept test: four zones' own wording produced a vision-model question about nothing)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `git checkout main`, `git merge --ff-only origin/main`: clean fast-forward onto `c567de36`, no reset needed. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s epic headers, `ROADMAP-2026-2029.md`'s constraint framing, `CLAUDE.md`, and the true last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run (backgrounded, the known foreground-timeout shape): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress). 8 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.
