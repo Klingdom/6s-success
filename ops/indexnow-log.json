@@ -420,6 +420,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-18T22:42:58Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -442,7 +449,7 @@
   "https://6s-success.com/deck-gallery.html": "3ec9c872fc51e95c",
   "https://6s-success.com/deck.html": "5400f16c6d8b5358",
   "https://6s-success.com/kit.html": "1d5e57dd4ff1f81a",
-  "https://6s-success.com/quest.html": "8c77ea69f7f001bc",
+  "https://6s-success.com/quest.html": "d76e3eaaa69f9657",
   "https://6s-success.com/standards.html": "e69228ffde603fe1",
   "https://6s-success.com/articles/decluttering-vs-organizing": "0d7a9cde77c5b815",
   "https://6s-success.com/articles/everyday-things-out-of-reach": "e603277d436c32d7",
@@ -539,7 +546,7 @@
   "https://6s-success.com/zones/home-office-the-primary-desk": "2059b4d7b2b257ff",
   "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "ef1d82aca0db52fb",
   "https://6s-success.com/zones/home-office-the-supply-cabinet": "135f3aebb767ad62",
-  "https://6s-success.com/zones/": "0273512b810a65a9",
+  "https://6s-success.com/zones/": "d05a7b0d2e762c67",
   "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "be390510bd5b4f6c",
   "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "53061065b2cb8c52",
   "https://6s-success.com/zones/kids-bedroom-the-dresser-drawers": "11c1a439bc75c09b",
