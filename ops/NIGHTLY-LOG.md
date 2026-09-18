@@ -2,9 +2,9 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-18, PM check-in (30-minute triage, previous work finished; corrected a stale handoff instead of repeating it, dashboard was 4 commits behind reality)
+## 2026-09-18, PM check-in (30-minute triage, previous work finished; corrected a stale handoff, then a real gate failure landed mid-cycle and became the actual work)
 
-NEXT FOR THE OPERATOR: watch `checks.yml` run 1116 on HEAD (`08b70ae5`) to completion before trusting it, because a concurrent session with real VPS access pushed four commits after this cycle's own last PM check-in and none of them has been confirmed green yet; if it fails, that is this cycle's real work, not a fresh cold-read.
+NEXT FOR THE OPERATOR: watch `checks.yml` on the real HEAD to completion before trusting it, because a concurrent session with real VPS access kept pushing through this cycle (six commits total, one of them a genuine gate failure this cycle fixed) and CI has not yet confirmed green on the final one.
 
 Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), clean, no history conflict. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated).
 
@@ -16,11 +16,13 @@ Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), cl
 
 **Did:** regenerated the command deck (`ops/dashboard.py`) so it reflects the real HEAD; diff is timestamp/commit-count/last-commit-hash only, all carried-forward figures (revenue, traffic, affiliate) correctly still marked carried forward. Checked CI on the four new commits: `checks.yml` correctly cancelled its runs on the three superseded pushes (GitHub's own concurrency behavior, not a failure) and is `in_progress` on HEAD as of this writing, inside the account's normal 19-30 minute range, not yet a second data point. `publish-image.yml` run 319 on `7838f8d2` (the last commit touching `site/`) already completed `success`. `08b70ae5` is docs-only (`OWNER-ACTIONS.md`) and correctly did not trigger `publish-image.yml`.
 
-**Verified:** `preflight.py` clean before and after the dashboard regen (23 warnings, none new). Did not touch `OWNER-ACTIONS.md` item 8 itself: its own precondition (production must be redeployed with the port fix before anything else changes) is accurate and not this sandbox's to clear, no VPS access here.
+**Verified:** `preflight.py` clean before and after the dashboard regen (23 warnings, none new).
 
-**Went well:** checking a handoff's own claim against the fuller log history before repeating it, rather than trusting the most recent entry on its own.
+**A real gate failure landed mid-cycle, and became this cycle's actual work per STEP 2.** While pushing the dashboard regen, the same concurrent VPS session landed a sixth commit (`741f5ea5`): production had redeployed to build `8f2400c02ff063f2` and the rewired analytics path was proved end to end (a labelled probe event reached the live beacon), so `OWNER-ACTIONS.md` item 8's own precondition is now met and the two-line VPS change is safe to run. That edit updated the file's body (dated 2026-09-18) but not its own `Last measured: 2026-09-17` header, which `gate_owner_actions_last_measured_current` exists specifically to catch. `ops/ship.py` merged it in on push and `preflight.py` correctly failed (`1 gate(s) failed`) on the very next run. Fixed directly: updated the header to 2026-09-18 with a one-line summary of what changed, per the file's own convention of prepending new entries before older ones. `preflight.py` clean after (every gate passed, 23 warnings).
 
-**Did not go well:** the same unrelated-history checkout shape recurred again; nothing new.
+**Went well:** checking a handoff's own claim against the fuller log history before repeating it; re-running `preflight.py` after the ship instead of trusting the first clean result, which is exactly what caught the real regression.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; a hand edit to a Phil-gated document skipped its own header convention, same class this gate was written to catch the first time.
 
 **Changing next cycle:** the standing `ops/*.py` mention-count cold-read fallback should stop being the default next-step recommendation; it has been independently confirmed dry four times now (this entry plus three cited above). If sections 2-6 are ever all done again with nothing Phil-gated newly open, the next fallback should be re-reading a hand-maintained `site/*.html` page or a `.md` operating document cold instead, not another pass over `ops/*.py`.
 
