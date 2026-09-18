@@ -1057,6 +1057,14 @@ inside the running container first (`172.17.0.1:32769/api/heartbeat` returns
 `{"ok":true}`) and then end to end in a test container against the real
 services. Closing the ports can no longer break this site.
 
+**ONE PRECONDITION, and it is mine, not yours.** The rewire above is committed
+but production is still serving the older build at the time of writing, so the
+live site still reaches those services through the public address. Closing the
+ports before the new build is live WOULD break the beacon and the signup form.
+This line is removed the moment the deploy is confirmed; if you are reading it
+still here, check `ops/deploy-verdict.json` carries build `8f2400c02ff063f2`
+or later before running anything below.
+
 **Your part.** In each of these two compose files on the VPS, change the
 published address from `0.0.0.0` to the bridge, then recreate:
 
