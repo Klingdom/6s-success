@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, scheduled operator cycle (a recurring merge-duplication defect turned into a gate; no new customer-facing defect found)
+
+**Did:** Unshallowed, ff-only merged onto `origin/main` (`2adf7cb7`). Read the backlog, roadmap, `GOALS.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean first. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs; no mail credential. Backlog sections 2-6 again done or Phil-gated; every cold-read lane dry. Scanned content for AI filler phrases: only literal, correct uses of "at the end of the day"; no fix needed.
+
+**Per step 10b:** the log already showed one defect three times in one push window: a marker-free merge silently keeping two byte-identical copies of an entry, caught only by manually grepping its title each time. Added `gate_nightly_log_no_duplicate_entries` to `preflight.py`: splits the file on `## ` headings, fails if two full entries are byte-identical, without flagging legitimate reuse of the same heading on different days. New test (6 cases) fail-then-pass proved against fixtures and the real file (planted the real duplication, gate failed by name, restored, clean).
+
+**Verified:** `preflight.py` clean (23 warnings, none new), 185 non-slow test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 docs), `fix_dashes.py --check` (0/0).
+
+**Went well:** turning a defect named twice in prose into a gate instead of a third restatement.
+
+**Did not go well:** nothing new; same sandbox limits as every prior cycle today.
+
+**Changing next cycle:** none; new gate covers this shape.
+
+**Next:** standing Phil-blocked list unchanged. Cold-read lanes remain dry.
+
+Pushed to main. `ops/preflight.py`, new test, command deck. No price/product/page touched, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (through `581e611c`), clean. `preflight.py` full run, not just the fast gates: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS credential, no egress, no Pillow, no ffmpeg/TTS). `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated: nothing in the app/deck/image queues is genuinely open, section 5 correctly on hold, section 6 owner gates unchanged. 8 GitHub issues confirmed live via the API, unchanged (2 P0, 2 blocked-on-art, 4 decision, 0 open PRs), all correctly Phil-gated per this cycle's own rule against picking a Phil-waiting item.

@@ -11728,6 +11728,54 @@ def gate_nightly_log_ordering() -> None:
             left_newest = True
 
 
+def gate_nightly_log_no_duplicate_entries() -> None:
+    """A marker-free git merge must never leave two byte-identical copies
+    of the same ops/NIGHTLY-LOG.md entry in the committed file.
+
+    Found 2026-09-18, three separate cycles inside the same push window:
+    concurrent sessions each moved or added the identical entry against
+    slightly different surrounding context, so git's three-way merge saw
+    no overlapping hunk and produced no `<<<<<<<` marker, yet the merged
+    file carried both copies, word for word. Every one of the three times
+    this happened, the only thing that caught it was a cycle manually
+    grepping for the entry's own title after the merge and counting two
+    hits, an instruction the log itself had to restate each time ("treat
+    every auto-merge as unproven until grepped for duplication"). Per
+    CLAUDE.md step 10b, the same defect class recurring three times in one
+    day gets a gate instead of a fourth restatement in prose.
+
+    Deliberately narrower than "no two entries share a heading": this file
+    legitimately reuses near-identical headings for unrelated cycles (many
+    "PM check-in (30-minute triage...)" entries on different dates, each
+    with its own real body), so heading collision alone is not a defect.
+    What a marker-free duplication merge actually produces is two entries
+    whose full text, heading and body together, is byte-for-byte the same.
+    That is the one shape this checks.
+    """
+    path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    starts = [m.start() for m in re.finditer(r"(?m)^## ", text)]
+    if len(starts) < 2:
+        return
+    starts.append(len(text))
+    entries = [text[starts[i]:starts[i + 1]].strip()
+               for i in range(len(starts) - 1)]
+    seen = {}
+    for i, entry in enumerate(entries):
+        if entry in seen:
+            heading = entry.splitlines()[0].lstrip("# ").strip()
+            fail("nightly-log-duplicate-entry",
+                 "ops/NIGHTLY-LOG.md contains two byte-identical copies "
+                 "of the entry %r (entries #%d and #%d in file order), "
+                 "the exact shape a marker-free merge produces when two "
+                 "concurrent sessions move or add the same block. Remove "
+                 "one copy." % (heading, seen[entry] + 1, i + 1))
+            return
+        seen[entry] = i
+
+
 def gate_send_questions_current() -> None:
     """ops/send_questions.py must not tell Phil something already false.
 
@@ -15849,6 +15897,7 @@ def main() -> int:
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
     run_gate(gate_nightly_log_ordering)
+    run_gate(gate_nightly_log_no_duplicate_entries)
     run_gate(gate_nav_current)
     run_gate(gate_nav_canonical)
     run_gate(gate_resources_page_wired)
