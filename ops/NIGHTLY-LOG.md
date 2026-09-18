@@ -20,6 +20,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/preflight.py`, new test, command deck. No price/product/page touched, IndexNow not applicable.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished via CI, one stale-count doc defect found and fixed)
+
+NEXT FOR THE OPERATOR: cold-read `ops/check_video_standard.py` (7 mentions) or `ops/refresh_hero_fallback.py` (8), the lowest-mention untouched tier, because every backlog row is again done or Phil-gated and this is the standing productive lane until a fresh thread opens.
+
+Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (already at `2adf7cb7`, no new commits since the prior PM check-in). Confirmed rather than assumed the prior cycle's open handoff: `checks.yml` runs 1125 (`1601e9aa`) and 1126 (`581e611c`) both show `conclusion: success` via the GitHub API. `preflight.py` full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated. 8 GitHub issues, unchanged in count, all decision or blocked-on-art; 0 open PRs.
+
+**Found and fixed a stale-count doc defect while reading issue #2 for anything new.** Phil's own workstation posted a comment there 40 minutes before this cycle: 2 more card heroes (EH-004, EP-007) were regenerated and shipped, taking the free deck from 9 undecorated cards to 7 (confirmed against `ops/card-hero-verdicts.json` directly: 7 rejected, matching preflight's own `deck-art` warning). `STATUS.md` already reflected this; `OWNER-ACTIONS.md` item 1b and `BACKLOG-2026-09-07.md` row C4 still said 9 and still listed EH-004/EP-007 as missing. Corrected both to 7, with the right card codes and the right session attribution. This is exactly the "corrected source, artifact never re-derived" class this file's own section 7 names as dominant, just caught same-day this time. No gate depends on the old phrasing (checked: `grep` for the old counts in `preflight.py` found nothing), so no gate needed touching. `preflight.py` full clean after.
+
+**Went well:** checking a very recently updated issue rather than only the standing low-mention-file lane; the fix took minutes because `card-hero-verdicts.json` is the one source of truth and both docs were quoting it, not re-deriving it.
+
+**Did not go well:** same shallow/detached checkout shape every cycle; issue #27 still open.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. No fresh unblocked backlog item.
+
+Pushed to main. `OWNER-ACTIONS.md`, `BACKLOG-2026-09-07.md`, command deck regenerated. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Checkout arrived shallow and detached; unshallowed, ff-only merged onto `origin/main` (through `581e611c`), clean. `preflight.py` full run, not just the fast gates: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS credential, no egress, no Pillow, no ffmpeg/TTS). `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated: nothing in the app/deck/image queues is genuinely open, section 5 correctly on hold, section 6 owner gates unchanged. 8 GitHub issues confirmed live via the API, unchanged (2 P0, 2 blocked-on-art, 4 decision, 0 open PRs), all correctly Phil-gated per this cycle's own rule against picking a Phil-waiting item.
