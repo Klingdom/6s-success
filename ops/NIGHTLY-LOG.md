@@ -2,6 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous work confirmed finished independently, nothing new unblocked, handoff is quest.js)
+
+Attached via `merge --ff-only` onto `origin/main` (`8801993b`), unshallowed first, clean tree, no unrelated-history symptom (issue #27's fix confirmed still holding). Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the true last several `ops/NIGHTLY-LOG.md` entries (newest-first, at the top).
+
+**Previous work: finished, verified directly, not cited.** Ran full `preflight.py` myself (backgrounded past the 120s foreground timeout, since `gate_tests` alone runs the whole suite): every gate passed, 22 warnings, each checked by name against this log's own prior diagnoses (cron-cadence, stripe-*, ledgerium, page-art, deck-art, affiliate-trigger, no Stripe/SSH/mail credential, no egress, Pillow absent), none new. Checked GitHub Actions directly: run 1156 (`d4c9e517`) completed `success`; no run exists for the five commits since, correctly, because they touch only `ops/state.json`, `ops/dashboard.html`, `ops/NIGHTLY-LOG.md` and `EXECUTIVE-DASHBOARD-LIVE.md`, all excluded from `checks.yml`'s push filter. 8 open GitHub issues checked directly via the API: unchanged, all `decision` or `blocked-on-art`, none pickable in a 30-minute slot. Issue #2 and #29 (the two P0s) both genuinely blocked on art generation this sandbox cannot do.
+
+**Backlog: `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated.** Section 1b (23 kits/bundles) correctly still open as issue #32's decision. Section 5's HOLD items correctly still waiting on traffic or the 21-day pilot read. Section 6's six owner gates unchanged, all Phil-only.
+
+**The cold-read lane is exhausted at today's tier.** The prior operator cycle already cold-read `site/assets/js/site.js` (21 mentions) clean; `measure.js`, `shop.js` and `photos.js` were checked clean earlier today. Ranked the remaining hand-authored files in that lane by mention count (`quest-data.js` and `data.js` are both generator output, not hand-authored, confirmed by grep for their own write path; neither belongs in this lane): `quest.js` (36 mentions, 1857 lines) is next and has not itself been the direct subject of a cold-read today, only referenced in passing. Left for the operator rather than read cold in a 30-minute slot with an already-long preflight wait behind it.
+
+Went well: independently re-deriving that the missing CI runs are explained by the push-path filter rather than assumed; confirming issue #27's fix is still holding rather than re-diagnosing the shallow-clone shape from scratch.
+Did not go well: nothing new; `preflight.py`'s `gate_tests` step alone took several minutes in this sandbox, most of this slot.
+
+Pushed to main: this entry, command deck (regenerated, no other file changed). No price, product or site page touched.
+
 ## 2026-09-18, scheduled operator cycle (full verification pass, run 1156 confirmed green, honest finding: no new defect)
 
 **Did:** Unshallowed and attached via ff-only merge onto `origin/main` (`c81e9631`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the true last several `NIGHTLY-LOG.md` entries (newest-first, at the top).
