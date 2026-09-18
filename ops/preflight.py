@@ -6974,49 +6974,53 @@ def gate_workflow_no_raw_expr_in_run(wf_dir=None) -> None:
 def gate_checks_main_not_cancelled(wf_path=None) -> None:
     """A push to main must never cancel main's own in-flight verification.
 
-    Found 2026-09-17 by measuring instead of assuming: of the last 12 Checks
-    runs, 5 were cancelled, and a successful run takes 28 to 31 minutes
-    (measured from the Actions API, createdAt to updatedAt) while concurrent
-    sessions push every few minutes. checks.yml carried
-    cancel-in-progress: true for every ref, so on main the usual outcome was
-    that no run ever finished and "CI is green" was a statement about some
-    older commit. The paths filter added 2026-09-13 reduced how often the
-    bookkeeping commit triggered this; it could not fix the case where two
-    real commits land minutes apart, which is normal here.
+    Found 2026-09-17 by measuring: a successful Checks run takes 28 to 31
+    minutes, sessions push to main faster than that, and 5 of the last 12 runs
+    had been cancelled, so "CI is green" was usually a statement about an older
+    commit.
 
-    Fixed by making cancellation conditional on the ref. Branches still
-    supersede stale runs, which is the right trade there. The repository is
-    public, so the only cost of letting main's runs finish is queue time.
+    Corrected 2026-09-18, and the correction is the point. The first fix kept
+    one concurrency group per ref and set
+    `cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`. I reported it
+    working on one observation. The next fifteen runs disproved it: runs on
+    main were still cancelled 162, 267, 301, 419 and 678 seconds in, which is
+    work in flight being killed. An expression there yields the STRING "false",
+    and a non-empty string is truthy, so cancellation never turned off.
 
-    This gate reads the file, not GitHub: it proves the expression is still
-    ref-conditional and still names main, so a future edit cannot quietly
-    restore the unconditional form.
+    The shape that does not depend on string coercion is a group that is unique
+    per commit on main, so there is no sibling to cancel, while branches keep
+    one group per ref. This checks for that, and explicitly rejects the earlier
+    shape so it cannot be reintroduced as a "simplification".
     """
     path = wf_path or os.path.join(ROOT, ".github", "workflows", "checks.yml")
     if not os.path.exists(path):
         return
     text = open(path, encoding="utf-8", errors="replace").read()
     body = "\n".join(l.split("#", 1)[0] for l in text.splitlines())
-    m = re.search(r"cancel-in-progress:\s*(.+)", body)
+    m = re.search(r"concurrency:\s*\n\s*group:\s*(.+)", body)
     if not m:
         fail("checks-main-not-cancelled",
-             "checks.yml no longer declares cancel-in-progress at all; this "
-             "gate cannot tell whether main's own verification can be "
-             "cancelled by the next push")
+             "checks.yml declares no concurrency group, so this gate cannot "
+             "tell whether main's own verification can be cancelled")
         return
-    value = m.group(1).strip()
-    if value in ("true", "'true'", '"true"'):
-        fail("checks-main-not-cancelled",
-             "checks.yml has cancel-in-progress: true again. On 2026-09-17 "
-             "that meant 5 of the last 12 runs were cancelled and main was "
-             "usually unverified, because a run takes 28-31 minutes and "
-             "pushes arrive faster than that. Make it conditional on the ref.")
+    group = m.group(1).strip()
+    cancel = re.search(r"cancel-in-progress:\s*(.+)", body)
+    cancel_value = cancel.group(1).strip() if cancel else ""
+    if "github.sha" in group and "refs/heads/main" in group:
         return
-    if "github.ref" not in value or "refs/heads/main" not in value:
+    if "github.ref" in cancel_value:
         fail("checks-main-not-cancelled",
-             "checks.yml's cancel-in-progress is %r: it no longer excludes "
-             "main by name, so main's own verification can be cancelled by "
-             "the next push" % value)
+             "checks.yml is back to deciding cancellation with an expression "
+             "(%s). That evaluates to the string 'false' on main, which is "
+             "truthy, and measurably did NOT stop runs being killed mid-flight "
+             "on 2026-09-17. Make the GROUP unique per commit on main instead."
+             % cancel_value)
+        return
+    if cancel_value in ("true", "'true'", '"true"'):
+        fail("checks-main-not-cancelled",
+             "checks.yml cancels in progress with one group per ref (%s), so "
+             "the next push to main kills main's own verification. A run takes "
+             "28-31 minutes and pushes arrive faster than that." % group)
 
 
 def gate_checks_excludes_generated_files(wf_path=None) -> None:
@@ -8738,6 +8742,50 @@ def check_print_and_play_art_count(text, illustrated, missing) -> list:
         problems.append("page says %d do not, the real count is %d" %
                          (got_missing, missing))
     return problems
+
+
+def gate_site_video_links_alive(deep: bool = False) -> None:
+    """Every YouTube video this site links must still be watchable.
+
+    Added 2026-09-18. 12 zone pages send a reader to a published video and
+    nothing checked they still exist. That became a live risk the same day:
+    those 12 show a checklist their own zone page no longer agrees with, so
+    replacing them with corrected re-renders is a reasonable decision, and
+    YouTube cannot swap the file behind a URL. Replacing means new URLs, and
+    deleting the old ones would dead-end every link here silently.
+
+    Network check, so it only runs on --deep, and it reports UNCHECKED rather
+    than clean when it cannot reach YouTube. A gate that turns "no egress"
+    into "all links fine" is the defect this repository has paid for most.
+    """
+    if not deep:
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import check_video_links as C
+        ids = C.linked_ids()
+    except Exception as e:                                      # noqa: BLE001
+        warn("site-video-links", "could not read the site's video links (%s), "
+                                 "so this is UNCHECKED" % type(e).__name__)
+        return
+    if not ids:
+        return
+    dead, unchecked = [], 0
+    for vid in sorted(ids):
+        ok, detail = C.available(vid)
+        if ok is False:
+            dead.append("%s (%s, linked from %s)"
+                        % (vid, detail, ids[vid][0]))
+        elif ok is None:
+            unchecked += 1
+    if unchecked:
+        warn("site-video-links",
+             "%d of %d linked video(s) could not be checked from here, so "
+             "they are UNCHECKED, not confirmed alive" % (unchecked, len(ids)))
+    if dead:
+        fail("site-video-links",
+             "%d linked YouTube video(s) are gone, so a reader clicks through "
+             "to nothing: %s" % (len(dead), "; ".join(dead[:3])))
 
 
 def gate_zone_videos_match_standard() -> None:
@@ -15848,6 +15896,7 @@ def main() -> int:
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
     run_gate(gate_zone_videos_match_standard)
+    run_gate(gate_site_video_links_alive, deep)
     run_gate(gate_invest_page_catalog_current)
     run_gate(gate_invest_page_no_fabricated_claims)
     run_gate(gate_caption_line_length)

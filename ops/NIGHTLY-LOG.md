@@ -2,25 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-18, scheduled operator cycle, continued (merging a concurrent push found two real gate failures, both fixed: a misplaced log entry and a stale OWNER-ACTIONS header)
+## 2026-09-18, scheduled operator cycle, continued (a second merge surfaced a real ordering defect a concurrent session's own gate fix had not touched; fixed)
 
-**Did:** this cycle's own push was rejected (a concurrent session had landed three commits since the last fetch). Fetched and merged rather than force-pushing; the three incoming commits (`5c71b020` PM check-in, `741f5ea5` OWNER-ACTIONS item 8 precondition resolved, `11802a8a` a backdated local-CEO log entry) conflicted with this cycle's own `ops/NIGHTLY-LOG.md` and command-deck edits. Resolved the log by keeping both entries in push order and adding a one-line postscript to this cycle's own entry noting that the precondition it verified as correctly-tracked-but-unmet has since been met; took the generated dashboard files from the incoming side and regenerated them fresh afterward rather than hand-merging generated content.
+**Did:** this cycle's push was rejected twice in a row by concurrent sessions landing work first. The first merge brought in a PM check-in (`5c71b020`) plus a local CEO session's port-rewire and item-8 resolution (`741f5ea5`, `11802a8a`); the second brought in that PM check-in's own retitled, fuller entry describing a gate failure it found and fixed mid-cycle, plus a separate session's CI-fix retraction and a video-link checker. Took the fuller, later PM check-in entry over this cycle's own earlier partial copy of the same event (below) rather than duplicate it.
 
-**Per STEP 2, ran preflight after the merge rather than assuming a clean merge is a clean state, and it was not clean.** Two real gate failures, both introduced by the incoming commits, neither self-inflicted by the merge mechanics: `gate_nightly_log_ordering` fired because the incoming backdated entry ("2026-09-18 early, local CEO cycle, fourth part") had been inserted after the file's sequence had already moved on to 2026-09-17 entries, the exact append-not-prepend shape that gate exists to catch; `gate_owner_actions_last_measured_current` fired because `OWNER-ACTIONS.md`'s header still read "2026-09-17" while item 8's body text now cites "2026-09-18 01:47" (the deploy timestamp the same incoming commits added).
+**Per STEP 2, ran preflight after each merge rather than assuming a clean merge is a clean state.** The first merge was not clean: `gate_nightly_log_ordering` failed because the incoming local-CEO entry ("2026-09-18 early, local CEO cycle, fourth part") had been inserted after the log's sequence had already moved on to 2026-09-17 entries; `gate_owner_actions_last_measured_current` also failed, `OWNER-ACTIONS.md`'s header still reading "2026-09-17" against a body now dated 2026-09-18. Fixed both directly. The concurrent PM check-in, it turns out, independently hit and fixed the exact same header gate around the same time (`2acfebcf`, confirmed by reading its own log entry after the second merge); that fix is the one kept below, not this cycle's now-redundant copy. **The ordering fix was not duplicated anywhere else**: the misplaced entry was still misplaced at origin's tip when this cycle re-checked, so that fix (moving it to sit after the last genuine 2026-09-18 entry) is this cycle's own, real contribution.
 
-**Fixed both directly, this becoming the cycle's real work per STEP 2:** moved the misplaced entry (45 lines) to sit immediately after the last genuine 2026-09-18 entry and before the first 2026-09-17 one, verified by re-running the exact regex the gate itself uses against the file; updated the header to "Last measured: 2026-09-18" with a one-line summary of what changed (item 8's precondition met).
+**Verified:** `preflight.py` clean after both merges (every gate passed, 23 warnings, none new). `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check` all clean. Command deck regenerated against the real merged HEAD.
 
-**Verified:** `preflight.py` clean after (every gate passed, 23 warnings, same set as before the merge, none new). `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check` all still clean. Command deck regenerated against the real merged HEAD.
+**Went well:** re-reading a concurrent session's own log entry in full before claiming credit for the same fix it had already made, rather than assuming this cycle's local diff was the only one.
 
-**Went well:** treating a clean merge as unproven until preflight actually re-ran, per this file's own step 2 instruction and CLAUDE.md 0.3's "an exit code is not an observation" applied to git merges specifically.
+**Did not go well:** three separate sessions edited overlapping ground (the header, the log ordering, the PM check-in narrative) inside the same half hour with no coordination beyond git's own conflict detection; it resolved cleanly here, but a fourth concurrent writer would have made this a real merge hazard, not just a bookkeeping one.
 
-**Did not go well:** a second, independent session's own commit shipped with a real gate-catchable ordering defect; the gate caught it correctly on the very next run that actually executed it, which is what happened here, but it would have stayed broken on `main` until then had this cycle force-pushed instead of merging and re-checking.
-
-**Changing next cycle:** none; both gates worked exactly as designed, this is a case for merging and re-verifying, not a new check.
+**Changing next cycle:** none; every gate that fired worked exactly as designed.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (8 issues) unchanged, item 8 now a live five-minute job rather than blocked. Every cold-read lane remains dry per this cycle's own earlier entry below.
 
-Pushed to main. `ops/NIGHTLY-LOG.md` (reordered), `OWNER-ACTIONS.md` (header), command deck. No code, content or price touched, no site page changed, IndexNow not applicable.
+Pushed to main. `ops/NIGHTLY-LOG.md` (reordered), command deck. No code, content or price touched, no site page changed, IndexNow not applicable.
 
 ## 2026-09-18, scheduled operator cycle (every cold-read lane reconfirmed dry; one live safety precondition verified correctly enforced, no defect)
 
@@ -46,9 +44,9 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No code, content or pri
 
 **Postscript, same push:** the push above was rejected and had to merge in three concurrent commits, one of which (a local CEO session, logged separately below at its own correct chronological slot) resolved the exact precondition this entry verified as correctly tracked-but-unmet: production is now redeployed with the port fix (`8f2400c0...` confirmed live), so `OWNER-ACTIONS.md` item 8 is a live five-minute job for Phil, not blocked. The finding above (the carry-forward machinery honestly reported "stale" rather than a false "current") still stands as a real, correct verification of the state at the time; it is simply no longer the current state.
 
-## 2026-09-18, PM check-in (30-minute triage, previous work finished; corrected a stale handoff instead of repeating it, dashboard was 4 commits behind reality)
+## 2026-09-18, PM check-in (30-minute triage, previous work finished; corrected a stale handoff, then a real gate failure landed mid-cycle and became the actual work)
 
-NEXT FOR THE OPERATOR: watch `checks.yml` run 1116 on HEAD (`08b70ae5`) to completion before trusting it, because a concurrent session with real VPS access pushed four commits after this cycle's own last PM check-in and none of them has been confirmed green yet; if it fails, that is this cycle's real work, not a fresh cold-read.
+NEXT FOR THE OPERATOR: watch `checks.yml` on the real HEAD to completion before trusting it, because a concurrent session with real VPS access kept pushing through this cycle (six commits total, one of them a genuine gate failure this cycle fixed) and CI has not yet confirmed green on the final one.
 
 Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), clean, no history conflict. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated).
 
@@ -60,11 +58,13 @@ Attached via fetch, unshallow, ff-only merge onto `origin/main` (`08b70ae5`), cl
 
 **Did:** regenerated the command deck (`ops/dashboard.py`) so it reflects the real HEAD; diff is timestamp/commit-count/last-commit-hash only, all carried-forward figures (revenue, traffic, affiliate) correctly still marked carried forward. Checked CI on the four new commits: `checks.yml` correctly cancelled its runs on the three superseded pushes (GitHub's own concurrency behavior, not a failure) and is `in_progress` on HEAD as of this writing, inside the account's normal 19-30 minute range, not yet a second data point. `publish-image.yml` run 319 on `7838f8d2` (the last commit touching `site/`) already completed `success`. `08b70ae5` is docs-only (`OWNER-ACTIONS.md`) and correctly did not trigger `publish-image.yml`.
 
-**Verified:** `preflight.py` clean before and after the dashboard regen (23 warnings, none new). Did not touch `OWNER-ACTIONS.md` item 8 itself: its own precondition (production must be redeployed with the port fix before anything else changes) is accurate and not this sandbox's to clear, no VPS access here.
+**Verified:** `preflight.py` clean before and after the dashboard regen (23 warnings, none new).
 
-**Went well:** checking a handoff's own claim against the fuller log history before repeating it, rather than trusting the most recent entry on its own.
+**A real gate failure landed mid-cycle, and became this cycle's actual work per STEP 2.** While pushing the dashboard regen, the same concurrent VPS session landed a sixth commit (`741f5ea5`): production had redeployed to build `8f2400c02ff063f2` and the rewired analytics path was proved end to end (a labelled probe event reached the live beacon), so `OWNER-ACTIONS.md` item 8's own precondition is now met and the two-line VPS change is safe to run. That edit updated the file's body (dated 2026-09-18) but not its own `Last measured: 2026-09-17` header, which `gate_owner_actions_last_measured_current` exists specifically to catch. `ops/ship.py` merged it in on push and `preflight.py` correctly failed (`1 gate(s) failed`) on the very next run. Fixed directly: updated the header to 2026-09-18 with a one-line summary of what changed, per the file's own convention of prepending new entries before older ones. `preflight.py` clean after (every gate passed, 23 warnings).
 
-**Did not go well:** the same unrelated-history checkout shape recurred again; nothing new.
+**Went well:** checking a handoff's own claim against the fuller log history before repeating it; re-running `preflight.py` after the ship instead of trusting the first clean result, which is exactly what caught the real regression.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; a hand edit to a Phil-gated document skipped its own header convention, same class this gate was written to catch the first time.
 
 **Changing next cycle:** the standing `ops/*.py` mention-count cold-read fallback should stop being the default next-step recommendation; it has been independently confirmed dry four times now (this entry plus three cited above). If sections 2-6 are ever all done again with nothing Phil-gated newly open, the next fallback should be re-reading a hand-maintained `site/*.html` page or a `.md` operating document cold instead, not another pass over `ops/*.py`.
 
@@ -422,7 +422,7 @@ Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard
 
 **Verified, not assumed:** ran `python ops/preflight.py` to real completion in the background (about 12 minutes, not foreground-killed): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail/ssh credential, no Pillow), 0 new. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per STEP 3. `BACKLOG-2026-09-07.md` re-read in full: every unblocked row in sections 2-4 is done, section 5 is correctly held on traffic/evidence gates, section 6 is Phil's own owner-gate list. `STATUS.md` and `OWNER-ACTIONS.md` both cross-checked against the latest log entries: current, no drift found.
 
-**CI note, honest:** `checks.yml` run 1095 on the current HEAD (`dbf3b1f0`) was still `in_progress` at close, about 14 minutes after it started against the just-measured ~30-minute norm. Not stuck, not yet confirmed either; the ref-based `cancel-in-progress` fix this same commit shipped means my own push below will not cancel it.
+**CI note, honest:** `checks.yml` run 1095 on the current HEAD (`dbf3b1f0`) was still `in_progress` at close, about 14 minutes after it started against the just-measured ~30-minute norm. Not stuck, not yet confirmed either; the ref-based `cancel-in-progress` fix this same commit shipped means my own push below will not cancel it. **That last clause is wrong, corrected 2026-09-18: the fix did not take effect (string coercion), and pushes did keep cancelling in-flight runs until the group was made unique per commit.**
 
 **Went well:** checking the prior cycle's "stuck runner, corrected" claim against the Actions API directly instead of taking the correction on trust a second time.
 
@@ -560,7 +560,7 @@ written; the run was on "The ops test suite" at that moment. The cited "historic
 **But the same measurement found a real one: 5 of the last 12 Checks runs were CANCELLED**, and `checks.yml` carried
 `cancel-in-progress: true` for every ref. With a 30-minute run and concurrent sessions pushing every few minutes, main's
 own verification usually never finished, so "CI is green" was routinely a statement about an older commit. Changed to
-`cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`: branches still supersede stale runs, main never does. The
+`cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}`. **RETRACTED 2026-09-18: that did not work and I reported it as working.** An expression there evaluates to the string "false", which is truthy, so cancellation stayed on for every ref; runs on main kept being killed 162 to 678 seconds in, measured from the Actions API across fifteen runs rather than watched once. The working shape makes the concurrency GROUP unique per commit on main, so there is no sibling to cancel, and `gate_checks_main_not_cancelled` now rejects the expression form by name. The
 repository is public, so Actions minutes are free and the only cost is queue time. New `gate_checks_main_not_cancelled`
 plus `ops/tests/test_gate_checks_main_not_cancelled.py` (7 cases) prove it fires on the unconditional form, a removed
 declaration, the wrong branch name, and a commented-out fix with `true` underneath.

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-18 02:06",
- "commit": "9ef0b5e9",
- "commit_msg": "Merge concurrent cycle: OWNER-ACTIONS item 8 precondition resolved live",
- "commits_7d": 1273,
- "commits_total": 2654,
+ "generated": "2026-09-18 01:57",
+ "commit": "5c71b020",
+ "commit_msg": "PM check-in: corrected a stale cold-read handoff, dashboard was 4 commits behind reality",
+ "commits_7d": 1272,
+ "commits_total": 2651,
  "traffic_line": "952 pageviews from 78 visitors across 201 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 511 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-17 18:09; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "952 pageviews from 78 visitors across 201 visits, 2026-08-20 to 2026-09-17. **441 of those pageviews came from 2 automated session(s)**, leaving 511 from 76 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-17 18:09",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-17 18:09",
  "affiliate_trigger_carried_from": "2026-09-17 18:09",
  "clean": false,
- "ahead": "2",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

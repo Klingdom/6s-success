@@ -6,9 +6,12 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-18, item 8: the precondition (production redeployed
-with the port rewire) is now met and confirmed live, so closing the two ports
-is a plain five-minute job for Phil rather than blocked. Earlier: 2026-09-17, item 4 corrected: superseded the "open those
+**Last measured:** 2026-09-18, item 8's precondition resolved: a concurrent
+session with real VPS access confirmed production redeployed to build
+`8f2400c02ff063f2` and proved the rewired analytics path end to end (a
+labelled probe event reached the live beacon), so the "wait for the deploy"
+line is gone and the two-line VPS change is now safe to run. Earlier:
+2026-09-17, item 4 corrected: superseded the "open those
 four emails and finish each one" instruction, which `PLAN-AFFILIATE-MONETISATION.md`
 (2026-09-07) had already overridden with a hold until trigger T2 fires, ten
 days before this file was told. Earlier: 2026-09-16, item 1f added by a local session with real VPS access, the first direct look at the host in days: the disk is 79% full (76G of 96G) and 45.96 GB of that is reclaimable Docker build cache, one command to reclaim it, not run because the host also carries Ledgerium's live billing and a prune on shared infrastructure is a YELLOW action not decided here. Same session confirmed analytics alive end to end (a 45-hour quiet gap looked dead, was not) and traced two crash-looping containers (177/197 restarts) to Ledgerium's own half-finished deploy, not ours; no action needed on either. Earlier: 2026-09-15 (PM check-in), item 1b: a local session with real VPS access ran `ops/deploy.py` and moved production from `587d80befe8bd586` to `c3d0d442441b24df` (confirmed `2026-09-15T21:13:31Z`), carrying `8e7401b7`'s storage-before-Sort fix that had built green but sat undeployed for several hours. No action needed. Earlier same day: briefly flagged as one commit behind (production last confirmed at `346c043b56385f64`, 11:17:08Z, against a repository already on `587d80befe8bd586`), then confirmed resolved before that note shipped: a concurrent local session's own `11cfb6fd` redeployed and verified production current at `587d80befe8bd586` (16:47:49Z). Earlier: 2026-09-15 (night), item 1 extended: 11 of the 12 published YouTube videos say and show the wrong "what done looks like" list (the generator bug is fixed; only re-narrating, re-rendering and re-uploading those 11 needs you). Earlier same day, item 1b corrected: the free print-and-play deck now has 9 cards without a photograph, not 12 (EP-008, ET-004 and EU-011 got locally generated, reviewed heroes, verified live in the served PDF). Earlier: 2026-09-14 (evening), item 1c extended: the 12 Sept quote click, the 14 Sept buy-click and the 7 Sept checkout burst all traced to your own home connection (LRN-0010). Earlier: 2026-09-14, item 1's traffic figure carried forward to the
@@ -1557,6 +1560,18 @@ before anything else is built on top of it.
 ---
 
 ### 20. Add one link to each of the 12 published video descriptions. About ten minutes, once.
+
+**Decide item 1 first, added 2026-09-18: this may be ten minutes you do not
+need to spend.** Those same 12 videos are among the 100 whose on-screen
+checklist contradicts their own zone page (see item 1). Anything uploaded from
+now on carries this "KEEP IT THIS WAY" block automatically, so if you choose to
+replace the 12 with the corrected re-renders, pasting into the old descriptions
+is work that gets thrown away. If you choose to leave the 12 as they are, this
+item stands exactly as written below.
+
+Worth knowing before choosing: replacing means new URLs, because YouTube cannot
+swap the file behind an existing one. On a channel this size that costs little,
+and the corrected versions are being rendered now at no cost.
 
 **Added 2026-09-13, this operator, closing `PLAN-MICROZONES-DECKS-APP.md`'s
 S5 row.** That row has said since 2026-09-07 that each pilot zone's YouTube
