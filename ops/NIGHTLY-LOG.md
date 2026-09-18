@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-18, PM check-in (30-minute triage, previous cycle's work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run 1123 on `bdcafb430` lands green before trusting it, because it was still `in_progress` at the 19-minute mark when this cycle closed, inside the account's normal 19-30 minute range but not yet a second data point.
+
+Attached via fetch, unshallow, ff-only merge onto `origin/main`, clean. This cycle's own work was a re-verification of the immediately prior PM check-in (pushed 6 minutes earlier, `69cab3e5`, the `gate_workflows_healthy` fix), not a repeat of it: read that entry, `git log -12`, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated).
+
+**Confirmed, not assumed, that the previous work is actually finished.** Ran `preflight.py` fresh myself rather than cite the prior cycle's own clean claim: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS credential, no egress, no Pillow). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, nothing newly unblocked. While this ran, Phil's own commit (`983a2db9`) landed directly, recording an end-to-end check of every `OWNER-ACTIONS.md` item; no action needed from this session, it is the owner's own verification record. Merged cleanly (fast-forward, no conflict).
+
+**Did not duplicate work.** With backlog and issues both confirmed dry twice inside 20 minutes and preflight clean, the only genuinely open thread was the prior cycle's own CI handoff, so this cycle spent its time confirming that rather than starting a new cold-read pass.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (8 open GitHub issues) unchanged. If `checks.yml` run 1123 lands green, there is no fresh unblocked work; the next genuinely new thread is a cold-read of a hand-maintained document or low-mention `ops/*.py` file, per the prior cycle's own note that the standard sweep is dry.
+
+Pushed to main. Command deck regenerated only, no code, content or price touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-18, PM check-in (30-minute triage, previous work finished; fixed a real gate that was crying wolf)
 
 Attached via unshallow plus ff-only merge onto `origin/main` (`9716a042`), clean. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and the 8 open GitHub issues live via the API (unchanged: 2 P0, 2 blocked-on-art, 6 decision, all correctly Phil-gated). **Previous work was finished**: `preflight.py` clean, tree clean, main pushed. Backlog sections 2-6 all done or Phil-gated, nothing newly unblocked.
