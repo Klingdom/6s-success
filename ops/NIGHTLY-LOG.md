@@ -381,6 +381,51 @@ NEXT FOR THE OPERATOR: investigate `checks.yml` run 1094 on `66b6e638` (https://
 
 Pushed to main (`3d7f98d`). Command deck only. No site content, price or product touched. IndexNow not applicable.
 
+## 2026-09-18 early, local CEO cycle, fourth part (two public ports can now be closed; a video was dropping a safety standard)
+
+**Read the frame, not the captions, and found a second defect the proxy could not see.** `ops/check_video_standard.py`
+passed `dining-room--china-or-display-cabinet`. Extracting its actual frame with ffmpeg showed four items under "What
+done looks like" against a standard of six, and the two missing were **"The cabinet strapped to a wall stud"**, a safety
+standard, and the finished-shelves photo, with nothing on screen saying anything had been left out. The four-item cap is
+deliberate (`video_zone.beats`, "a slide holds at most four"); presenting four sixths as the whole standard is not.
+`ops/build_social_pins.py` had already solved this for the cards with "+ 1 more on the zone page", so the video slide now
+does the same and holds 5.2s instead of 4.6s when it does. **16 of 114 zones are affected; one drops a safety item.**
+
+The checker was also too lenient in a way I had not noticed: it compared against an open-ended prefix, so a video showing
+one correct item out of six passed as fresh. It now requires the first four exactly plus the disclosure line. Stale moved
+97 to 102 of 114, which is the count becoming honest rather than the situation worsening.
+
+**OWNER-ACTIONS item 8 (two public ports) went from blocked to a five-minute job.** Re-measured rather than recalled:
+Umami (32769) and Listmonk (8081) still answer the open internet, Umami's login page included, and the host runs **no
+firewall at all** (`ufw` inactive). The reason it sat open since August is that closing it would have broken this site:
+`site/nginx/default.conf` reached both through the host's PUBLIC address. Rewired to the Docker bridge (172.17.0.1),
+proved from inside the running production container first, then end to end, then deployed (`a53458d8` ->
+`8f2400c02ff063f2`) and proved live: a labelled probe event posted to the real beacon (`operator-probe-bridge`) is in the
+analytics database at 01:49:16. Item 8 now carries the tested two-line compose change. **Not run here on purpose**: these
+are Hostinger-managed stacks shared with other sites, and another site's tracker pointing at the public address would
+silently stop reporting. That is a YELLOW action on somebody else's infrastructure.
+
+**Caught a hazard in my own instructions before it could bite:** for about half an hour item 8 told Phil the ports were
+safe to close while production was still serving the old build that needed them. Named the precondition in the file with
+the build id to check, then cleared it once the deploy was confirmed.
+
+**Checked and found clean, so nobody re-audits:** the 228 Pinterest/Instagram cards (read one rendered card end to end),
+the social captions (0 of 460 standard items missing), the Etsy pack PDFs (they carry the six-S pass cards by design, not
+the checklist), the free Standards Pack (uses `leave_behind.standard`, a different field) and the phone app (carries the
+full standard as prose). Only the videos were affected by the splitter fix.
+
+**Too early to read: Googlebot and the new redirects.** Since the 17:00Z deploy the only Googlebot traffic in the live
+log is robots.txt and assets; the one `.html` fetch it made today predates the deploy. 301s are being served (4 to bots
+so far, mostly my own verification). This needs days, not hours, and Search Console to read properly.
+
+**Two processes are running unattended; neither needs a human:**
+1. `scratchpad/rerender_stale.py`, the wide re-render, 19 of 99 done at the time of writing.
+2. `scratchpad/rerender_until_clean.py`, which waits for the first to exit and then re-runs it until the checker reports
+   zero stale or a pass makes no progress. It exists because the first batch started before the "+ N more" change, so the
+   dozen it finished first would otherwise have stayed stale with nobody here to notice.
+
+When both stop, run `python ops/check_video_standard.py` (expect 0 stale) and commit the corrected `.srt` files.
+
 ## 2026-09-17, local CEO cycle, third part (the YouTube authorisation would have published 100 contradictions)
 
 **Checked whether OWNER-ACTIONS item 1 would actually pay off before Phil spends the five minutes on it. It would not
