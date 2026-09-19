@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (the handed-off commerce-page narrative read, no new defect)
+
+**Did:** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (696-commit fast-forward to `48e66b81`, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `preflight.py` fresh, run to completion in the background: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), none pickable. CI confirmed green on HEAD directly via the API (`checks.yml` run 1175, `2b445afe`, completed/success).
+
+**Picked up the standing handoff named twice in this log**, most recently by name in the prior PM check-in: a narrative/tone cold-read of the generated commerce pages nobody had read for tone before, only for structural correctness (`kitchen-deck.html`, `deck-gallery.html`, `kit.html`; `shop.html` already done 2026-09-14). Read all three end to end against the same standard the zone-page lane used: internal consistency, cross-page consistency, no fabricated claim, no stale price, no broken promise, no forbidden phrase (checked mechanically too: 0 hits for "set in order", "guarantee", "clinically", "testimonial", "as seen on", "studies show", "proven to", "scientifically", and 0 em/en dashes across all three files).
+
+**`kit.html`:** all eight zone-count fractions (114/114 down to 109/114) read plausible and consistent with the already-gated `gate_kit_page_zone_counts_current` fix; the "these links pay us nothing... no affiliate programme has approved us" claim checked against `ops/affiliate-accounts.json` and GOALS.md O4 (0 of 10 approved), true.
+
+**`deck-gallery.html`:** every per-family drawn count (Micro Zone 10/12, Problem 1/11, Tool 8/12, Event 8/9, the four full families) verified by counting the actual card ids listed under each heading, all matched the stated fraction; the two totals (72 drawn, 89 whole-deck including the Room divider, 88 the catalogue's own count) summed correctly both ways. The "two different card designs, neither wrong" framing from the B4 follow-on still holds.
+
+**`kitchen-deck.html`:** read in full, all 72 cards plus the intro, the "why unillustrated" section, all twelve root-cause cards and all six events. Checked specifically for the class of defect this lane has found before: the deck's own arithmetic (Room 1 + Zone 7 + Friction 21 + Root Cause 12 + Action 18 + Standard 7 + Event 6 = 72, and "the other seventy one" on KA-015 against a 72-card deck, both correct); every "Draw one of these" and "Next:" reference on every root-cause and action card resolves to a real card title elsewhere in the same file (spot-checked "CLEAR THE RUN", "REBUILD UNDER THE SINK", "SINK RESET", all present); the two chemical-safety claims (bleach plus an acidic or ammonia cleaner releasing gas; raw meat drip contaminating ready-to-eat food) are both real food-safety/chemistry facts, not fabricated; the fridge temperature guidance (5C/41F, -18C/0F) is the standard FDA figure, correctly rounded.
+
+**Found no defect.** All three pages internally consistent, consistent with each other, consistent with the live catalogue and with `GOALS.md`/`ops/affiliate-accounts.json`, no fabricated claim, no stale price. This closes the handoff named across the last three PM check-ins; per this log's own convention, worth a fresh look only if a future pass finds something these mechanical checks and this read did not.
+
+**Went well:** actually counting the listed card ids against each stated fraction on `deck-gallery.html` rather than trusting the fraction alone, the same discipline that found the duplicate-hazard and pre-Sort storage bugs in the zone-page lane.
+
+**Did not go well:** none new. No unrelated-history checkout shape this cycle.
+
+**Changing next cycle:** none; no new defect means no new gate to write, per step 5c.
+
+**Next:** no untried lane identified this cycle. Standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console, YouTube OAuth, Stripe business description, Amazon KDP/Etsy, Apple/Play developer accounts) and the 8 open `decision`/`blocked-on-art` issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, the operator's named handoff closed, hand-authored cold-read lane confirmed fully exhausted)
 
 **Previous work confirmed finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (`53559532`, 695-commit fast-forward, no unrelated-history symptom). Working tree clean before and after. `preflight.py` fresh, run to completion in the background rather than killed at this session's 120s foreground limit: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two known cron-cadence drifts). GitHub checked live, not cited: still exactly 8 open issues, same numbers and labels (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs. CI confirmed catching up cleanly: `checks.yml`'s newest run (on `2b445afe`, `in_progress` per the last entry) finished **success**, `publish-image.yml` still sits on `55f8a88e` (also success) a few commits behind HEAD, nothing red anywhere in either workflow.
