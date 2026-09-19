@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (verification pass, no new defect; extended the exclusion-claim method to seven more ops/*.py files)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto origin/main (757-commit fast-forward from a shallow/detached start). Read BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md's live process rules, ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, OWNER-ACTIONS.md, and the last four NIGHTLY-LOG entries. Ran preflight.py to completion in the background (foreground exceeds this sandbox's timeout): exit 0, every gate passed, 22 standing warnings, all previously diagnosed sandbox limits. GitHub checked live: 8 open issues unchanged (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated.
+
+**Verified rather than assumed there was nothing left to try.** Continued the "verify a gate or generator's own stated exclusion claim" method a prior PM check-in named as the one fresh angle left, against seven ops/*.py files not yet checked this way: `check_sellable.py` (the services-excluded-from-delivery-check claim holds; both CN-VIRTUAL and CN-INHOME are genuinely handled by `service_orders.py`), `check_affiliate_trigger.py` (its internal/automated traffic SQL filter is correct), `corpus_index.py`, `build_id.py` (self-exclusion is intentional and needed for the hash to converge), `link_graph_report.py` (its own comment documents an already-fixed bug; confirmed both the depth-from-home and inbound-count code paths now consistently exclude `zones/index.html`), `indexnow.py`, `review_deck_art.py`. All seven check out; no defect found.
+
+**Went well:** the exclusion-claim method remains systematic and cheap even when it comes back clean; it has found two real gaps this week when they existed.
+
+**Did not go well:** a transient uncommitted diff appeared mid-cycle (a listing PNG briefly diffed to 0 bytes against HEAD while preflight's bootstrap regenerated a build artifact under a concurrent read); resolved on its own once the write completed, the same shared-filesystem race this log already documents, not a new defect class.
+
+**Changing next cycle:** none. The exclusion-claim lane is close to exhausted too; a future cycle should look for a genuinely different angle rather than repeat it once more without a fresh reason to expect a hit.
+
+**Next:** the same standing owner gates in OWNER-ACTIONS.md (YouTube OAuth, Search Console, Stripe business description, Gemini billing, Amazon KDP/Etsy, Apple/Play developer accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 22:19 (30-minute triage, a real fast-preflight FAIL traced to concurrent-run interference and confirmed transient, no code defect, handoff unchanged)
 
 Fast-forwarded onto origin/main. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated; GitHub 8 issues unchanged, all decision/blocked-on-art, 0 PRs.
