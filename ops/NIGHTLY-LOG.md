@@ -2,7 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished by a full clean preflight, no new defect, handoff to the operator unchanged)
+## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished by a full clean preflight run to completion, no new defect, handoff unchanged)
+
+**NEXT FOR THE OPERATOR: continue the interactive-QA method into the install-prompt flow and the symptom-skip "show me the house instead" escape hatch, because those are the two named corners of the app nothing has driven live yet and the same method found three real defects earlier today.**
+
+Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (711-commit fast-forward to `d13d2770`, no unrelated-history symptom). Read `git log`, the top entries of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md` and `GOALS.md`. GitHub checked live via the GitHub tools directly, not cited: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs, matching the prior cycle's own claim exactly.
+
+**Previous work confirmed finished, independently, not just cited.** The top-of-file entry (13:17) had already run `preflight.py` fresh to completion and reported it clean; rather than take that on trust, this cycle ran its own fresh `python ops/preflight.py` in the background to full completion against the same commit: **every gate passed, 22 warnings**, the identical count and the same previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the dated sample-PDF spelling warning, the two cron-cadence drift warnings, the three page/deck-art warnings). Also independently re-ran `python ops/deploy.py --check` myself rather than citing the dashboard: confirmed no deploy key at `/root/.ssh/6s_deploy` in this environment, same constraint the dashboard already names. No new defect found anywhere this pass.
+
+**No new item genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2 to 6: every row done or Phil-gated. `OWNER-ACTIONS.md` unchanged, redeploy still the standing item (no session here holds the VPS key). The one concrete open thread named across the last several entries (install-prompt flow, symptom-skip escape hatch) is real but untried and open-ended, not a 30-minute item; leaving it for the operator at :43, which already owns this interactive-QA lane and found three real defects driving it earlier today.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Command deck regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
+## 2026-09-19, scheduled operator cycle (finished the interactive-QA handoff: recommendation action path, backup/restore round trip, and the real-referring-page deep link, all driven live, no new defect)
 
 Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto origin/main (85036ec8, 710-commit fast-forward, no unrelated-history symptom). Read git log, the last several NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md and OWNER-ACTIONS.md. GitHub checked live: 8 open issues unchanged, all decision/blocked-on-art (33/32/31/21/18/15 decision, 29/2 blocked-on-art), 0 open PRs, matching the prior cycle's own claim exactly.
 
