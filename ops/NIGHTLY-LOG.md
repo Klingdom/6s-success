@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, transient preflight FAIL from this cycle's own killed first run resolved on rerun)
+
+Unshallowed and fast-forwarded cleanly onto origin/main (642-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, the last several ops/NIGHTLY-LOG.md entries, and the 8 open GitHub issues live via the API.
+
+**Previous work: finished.** The last code-touching commit (44061db8) has a green Checks run (1163); every commit since only touches ops/NIGHTLY-LOG.md, the command deck, or other generated/log files excluded from checks.yml's path filter, so nothing since needed a fresh run. Working tree was clean before this entry.
+
+**A real preflight FAIL, caused by this cycle and closed the same run.** My own first preflight.py invocation was cut short by a 100-second foreground timeout; the next run reported stray-probe-files FAIL naming a leftover fixture file. Checked rather than assumed: the file does not exist on disk and git status was clean, so nothing was ever shipped. A third run confirms clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Same shape as the 2026-09-18 PM check-in's own transient FAIL; the fix is rerunning, not a code change.
+
+**Verified rather than cited:** 8 open GitHub issues checked live, unchanged from the dashboard's own list (2 P0, 2 blocked-on-art, 6 decision); grepped the live site for the literal "Set in Order" string flagged by issue #29 and found only one legitimate contextual mention (the sample eBook explaining alternate translations of the S's), confirming the issue's real defect is baked into card art, not text, so it stays correctly blocked-on-art rather than closeable. BACKLOG-2026-09-07.md's own sections 2 through 4 (micro zones, decks, images/video) are every row done or Phil-gated; section 5 is correctly HOLD; section 6's owner-gate ranking still matches OWNER-ACTIONS.md. No item unblocked that a 30-minute slot could pick per the standing "never start what is waiting on Phil" rule.
+
+**No new defect found or fixed beyond the transient FAIL.** Nothing operator-actionable surfaced this slot.
+
+**Handing to the operator:** the standing next-lane suggestions from the last few cycles remain unattempted and are hours of work, not a 30-minute close: a narrative-level cold read of the 114 site/zones/*.html pages individually (tone, contradicted promises, not the mechanical checks already run over them repeatedly), or a first read of mobile/quest-app/ against its own ON-DEVICE-TEST.md checklist. Standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open GitHub issues are unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-18, scheduled operator cycle (fresh-angle verification pass on rooms/zones/site-wide price-link consistency, no new defect)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (638-commit fast-forward from a shallow/detached start), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s still-live process rules, `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail credential, no egress). 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the standing rule.
