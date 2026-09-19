@@ -12822,6 +12822,77 @@ def gate_linkedin_drafts_price_current() -> None:
              "stated as fact." % (expected, line))
 
 
+# Only small, realistic counts: this business has one sale, ever, as of
+# 2026-09-19. A word past "ten" would mean the site changed shape enough
+# that this whole check needs rewriting anyway.
+_CUSTOMER_COUNT_WORDS = {"zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
+                          "five": 5, "six": 6, "seven": 7, "eight": 8,
+                          "nine": 9, "ten": 10}
+
+
+def gate_linkedin_drafts_customer_count_current() -> None:
+    """The daily LinkedIn draft email's own honesty block states the
+    lifetime customer count as a literal string ("Customers to date: 1,
+    and that one was a referral."), unlike every other line in that same
+    block, which is read from a live source at generation time per this
+    file's own stated hard rule.
+
+    Found 2026-09-19, cold-reading ops/linkedin_drafts.py per the standing
+    low-mention ops/*.py lane: gate_linkedin_drafts_price_current already
+    exists to stop exactly this shape of drift one line above, for the
+    eBook price, after that exact literal-vs-live gap once shipped a false
+    price to Phil's inbox. This line has no live source to read from (no
+    Stripe credential reaches this repository, and revenue is hand-recorded
+    in STATUS.md and GOALS.md, not a queryable file), so it cannot be fixed
+    the same way. What it CAN do is stop disagreeing with GOALS.md's own
+    canonical baseline sentence ("$19 lifetime, one customer, one sale"),
+    the single fact this whole file's decision rules say to read first. The
+    day a second sale lands and every markdown file is updated to say so,
+    this hardcoded literal, mailed to Phil every morning, would otherwise
+    keep claiming "1" forever with nothing to catch it.
+    """
+    draft_path = os.path.join(ROOT, "ops", "linkedin_drafts.py")
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    if not os.path.exists(draft_path) or not os.path.exists(goals_path):
+        return
+
+    draft_src = io.open(draft_path, encoding="utf-8").read()
+    m = re.search(r"Customers to date:\s*(\d+)", draft_src)
+    if not m:
+        # Rewritten to something this gate does not recognise, or removed;
+        # either way there is no literal left here to fall out of step.
+        return
+    drafted = int(m.group(1))
+
+    goals = io.open(goals_path, encoding="utf-8").read()
+    gm = re.search(r"\$[\d.,]+ lifetime,\s*(\w+) customer", goals)
+    if not gm:
+        warn("linkedin-drafts-customer-count",
+             "GOALS.md's '$... lifetime, N customer' baseline sentence "
+             "could not be found; this gate needs updating to match, and "
+             "ops/linkedin_drafts.py's 'Customers to date: %d' line is "
+             "unverified in the meantime." % drafted)
+        return
+    word = gm.group(1).lower()
+    measured = _CUSTOMER_COUNT_WORDS.get(word)
+    if measured is None:
+        warn("linkedin-drafts-customer-count",
+             "GOALS.md's baseline sentence names '%s customer', not a "
+             "number word this gate recognises; ops/linkedin_drafts.py's "
+             "'Customers to date: %d' line is unverified in the meantime."
+             % (word, drafted))
+        return
+
+    if drafted != measured:
+        fail("linkedin-drafts-customer-count",
+             "ops/linkedin_drafts.py's daily draft email states 'Customers "
+             "to date: %d', but GOALS.md's own baseline says '%s customer' "
+             "(%d). This literal is mailed to Phil every morning and must "
+             "be re-derived by hand to match, the same drift "
+             "gate_linkedin_drafts_price_current already guards one line "
+             "above it." % (drafted, word, measured))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -17126,6 +17197,7 @@ def main() -> int:
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_backlog_h2_video_count_current)
     run_gate(gate_linkedin_drafts_price_current)
+    run_gate(gate_linkedin_drafts_customer_count_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)
