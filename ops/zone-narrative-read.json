@@ -3,9 +3,9 @@
   "_pre_manifest_note": "Room-level mentions in ops/NIGHTLY-LOG.md before this file existed (2026-09-19 and earlier) named a roughly 49-of-114 sample across most rooms, but never at page granularity. That prior work is real but is NOT reflected as read:true below, because doing so would fabricate precision the log itself admits it does not have (CLAUDE.md 0.4: unknown is not unused). Treat pre-2026-09-19-manifest coverage as a soft prior, not a record.",
   "pages": {
     "dining-room-the-beverage-or-coffee-station": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. HowTo, FAQ and visible hazard list agree on all three hazard categories."
     },
     "dining-room-the-china-or-display-cabinet": {
       "read": false,
@@ -43,9 +43,9 @@
       "note": null
     },
     "entryway-the-landing-spot": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Diagnosed pilot zone (M4): cause-chosen FAQ entries verified matching the visible diagnostic block."
     },
     "entryway-the-shoes-and-boots": {
       "read": false,
@@ -53,9 +53,9 @@
       "note": null
     },
     "family-room-the-blanket-and-comfort-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "family-room-the-board-game-and-puzzle-zone": {
       "read": false,
@@ -83,9 +83,9 @@
       "note": null
     },
     "garage-the-automotive-care-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Three hazard categories match across all three surfaces."
     },
     "garage-the-bulk-and-overhead-storage": {
       "read": false,
@@ -143,9 +143,9 @@
       "note": null
     },
     "guest-bedroom-the-guest-bed-and-linens": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "guest-bedroom-the-guest-closet": {
       "read": false,
@@ -168,9 +168,9 @@
       "note": null
     },
     "hall-closet-the-cleaning-equipment-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "hall-closet-the-cleaning-supply-zone": {
       "read": false,
@@ -193,9 +193,9 @@
       "note": null
     },
     "home-office-the-bookshelf-and-reference-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "home-office-the-desk-drawers-and-pedestal": {
       "read": false,
@@ -223,9 +223,9 @@
       "note": null
     },
     "kids-bedroom-the-bed-and-sleep-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "kids-bedroom-the-clothing-closet": {
       "read": false,
@@ -253,9 +253,9 @@
       "note": null
     },
     "kitchen-the-cooking-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Diagnosed pilot zone (M4): cause-chosen FAQ entries verified matching the visible diagnostic block."
     },
     "kitchen-the-lower-cabinets-and-cookware": {
       "read": false,
@@ -288,9 +288,9 @@
       "note": null
     },
     "laundry-room-the-detergent-and-treatment-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "laundry-room-the-folding-surface": {
       "read": false,
@@ -318,9 +318,9 @@
       "note": null
     },
     "living-room-the-bookshelves-and-display": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "living-room-the-coffee-table": {
       "read": false,
@@ -348,9 +348,9 @@
       "note": null
     },
     "mudroom-the-bench-and-transition-surface": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "mudroom-the-cleaning-and-utility-zone": {
       "read": false,
@@ -408,9 +408,9 @@
       "note": null
     },
     "pantry-the-backstock-and-bulk": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "pantry-the-baking-zone": {
       "read": false,
@@ -433,9 +433,9 @@
       "note": null
     },
     "patio-or-deck-the-garden-and-plant-care-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "patio-or-deck-the-grill-and-outdoor-cooking-zone": {
       "read": false,
@@ -543,9 +543,9 @@
       "note": null
     },
     "workshop-the-fastener-and-hardware-zone": {
-      "read": false,
-      "read_date": null,
-      "note": null
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
     },
     "workshop-the-finishing-and-chemical-zone": {
       "read": false,
