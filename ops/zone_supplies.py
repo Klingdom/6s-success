@@ -470,14 +470,25 @@ def render(room: str, manual_zone: str, display_name: str,
         # ("automotive care zone", "medicine cabinet"), NOT the site's
         # display name. "Only if your The Automotive Care Zone has one"
         # is what the display name produces, and it shipped once.
+        #
+        # A second bug in the same sentence, found 2026-09-19: many of these
+        # nouns are plural or a plural compound ("towels", "dresser drawers",
+        # "bed and linens", "cleaning supplies"), and the old wording put the
+        # noun where English requires it to agree with the verb: "Only if
+        # your towels has one" and "Not every towels needs these" are both
+        # wrong regardless of which noun lands there. Verified live on
+        # guest-bathroom-the-guest-linen-zone.html before fixing. Rewritten
+        # so the noun is never the subject of a verb, which makes it correct
+        # for every noun in ops/zone-search-terms.json without a plural/
+        # singular branch to keep in sync as that file grows.
         noun = _esc(display_name.strip().lower())
         out.append('<details style="margin:18px 0 0">'
                    f'<summary style="cursor:pointer;font-family:var(--sans);'
-                   f'font-weight:600">Only if your {noun} has one: '
+                   f'font-weight:600">Only if it applies to the {noun}: '
                    f'{len(k["maybe"])} more</summary>'
-                   f'<p style="margin:12px 0 8px">Not every {noun} needs '
-                   'these. Each one is here because some do, and the reason '
-                   'is next to it.</p>'
+                   f'<p style="margin:12px 0 8px">Not every home needs '
+                   f'these for the {noun}. Each one is here because some '
+                   'do, and the reason is next to it.</p>'
                    '<ul class="kit-list">')
         out += [_row_html(r) for r in k["maybe"]]
         out.append('</ul></details>')
@@ -533,14 +544,17 @@ def render_storage(room: str, manual_zone: str, display_name: str,
         out.append('</ul>')
 
     if k["storage_maybe"]:
+        # Same subject-verb-agreement fix as render(), same reason: the noun
+        # here can be plural ("towels", "dresser drawers"), and the old
+        # wording made it the subject of a singular verb.
         noun = _esc(display_name.strip().lower())
         out.append('<details style="margin:18px 0 0">'
                    f'<summary style="cursor:pointer;font-family:var(--sans);'
-                   f'font-weight:600">Only if your {noun} has one: '
+                   f'font-weight:600">Only if it applies to the {noun}: '
                    f'{len(k["storage_maybe"])} more</summary>'
-                   f'<p style="margin:12px 0 8px">Not every {noun} needs '
-                   'these. Each one is here because some do, and the reason '
-                   'is next to it.</p>'
+                   f'<p style="margin:12px 0 8px">Not every home needs '
+                   f'these for the {noun}. Each one is here because some '
+                   'do, and the reason is next to it.</p>'
                    '<ul class="kit-list">')
         out += [_row_html(r) for r in k["storage_maybe"]]
         out.append('</ul></details>')

@@ -1,0 +1,576 @@
+{
+  "_purpose": "Tracks which of the 114 site/zones/*.html pages have had a narrative-level cold read (tone, contradicted promises, hazard/FAQ/JSON-LD agreement) rather than a mechanical check. Exists because three consecutive ops/NIGHTLY-LOG.md entries (2026-09-19) recorded the same gap as a Did-not-go-well: no manifest existed, so coverage had to be inferred from commit messages naming rooms, not pages, which is imprecise.",
+  "_pre_manifest_note": "Room-level mentions in ops/NIGHTLY-LOG.md before this file existed (2026-09-19 and earlier) named a roughly 49-of-114 sample across most rooms, but never at page granularity. That prior work is real but is NOT reflected as read:true below, because doing so would fabricate precision the log itself admits it does not have (CLAUDE.md 0.4: unknown is not unused). Treat pre-2026-09-19-manifest coverage as a soft prior, not a record.",
+  "pages": {
+    "dining-room-the-beverage-or-coffee-station": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "dining-room-the-china-or-display-cabinet": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "dining-room-the-dining-table": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "dining-room-the-sideboard-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "dining-room-the-sideboard-surface": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "entryway-the-bench-or-console": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "entryway-the-coats-and-outerwear": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "entryway-the-door-mat-and-immediate-floor": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "entryway-the-landing-spot": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "entryway-the-shoes-and-boots": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "family-room-the-blanket-and-comfort-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "family-room-the-board-game-and-puzzle-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "family-room-the-charging-and-device-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "family-room-the-craft-and-activity-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "family-room-the-primary-media-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "family-room-the-toy-and-play-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-automotive-care-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-bulk-and-overhead-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-hand-tool-wall-and-cabinets": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-lawn-and-garden-tool-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-power-tool-and-battery-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-primary-workbench": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "garage-the-sports-and-recreation-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bathroom-the-guest-linen-zone": {
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Found and fixed the subject-verb-agreement bug (see zone_supplies.py); otherwise clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
+    },
+    "guest-bathroom-the-guest-vanity-counter": {
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Sibling-zone cross-link to primary-bathroom-the-vanity-counter verified correct."
+    },
+    "guest-bathroom-the-guest-vanity-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bathroom-the-shower-or-tub": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bathroom-the-toilet-area": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bedroom-the-guest-bed-and-linens": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bedroom-the-guest-closet": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bedroom-the-guest-dresser": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bedroom-the-guest-nightstand": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "guest-bedroom-the-guest-welcome-and-work-surface": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "hall-closet-the-cleaning-equipment-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "hall-closet-the-cleaning-supply-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "hall-closet-the-linen-shelf-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "hall-closet-the-paper-and-household-backstock": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "hall-closet-the-seasonal-and-guest-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "home-office-the-bookshelf-and-reference-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "home-office-the-desk-drawers-and-pedestal": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "home-office-the-file-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "home-office-the-primary-desk": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "home-office-the-printer-and-scanning-station": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "home-office-the-supply-cabinet": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kids-bedroom-the-bed-and-sleep-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kids-bedroom-the-clothing-closet": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kids-bedroom-the-dresser-drawers": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kids-bedroom-the-school-and-activity-launch-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kids-bedroom-the-study-desk": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kids-bedroom-the-toy-storage-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-cooking-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-lower-cabinets-and-cookware": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-primary-prep-counter": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-refrigerator-and-freezer": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-sink-and-dishwashing-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-upper-cabinets": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "kitchen-the-utensil-and-utility-drawers": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "laundry-room-the-detergent-and-treatment-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "laundry-room-the-folding-surface": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "laundry-room-the-hanging-and-air-dry-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "laundry-room-the-sorting-and-hamper-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "laundry-room-the-utility-and-cleaning-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "laundry-room-the-washer-and-dryer": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "living-room-the-bookshelves-and-display": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "living-room-the-coffee-table": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "living-room-the-floor-and-circulation-path": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "living-room-the-media-center": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "living-room-the-side-tables-and-lighting": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "living-room-the-sofa-and-seating": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "mudroom-the-bench-and-transition-surface": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "mudroom-the-cleaning-and-utility-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "mudroom-the-family-hook-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "mudroom-the-pet-station": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "mudroom-the-seasonal-outdoor-gear": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "mudroom-the-shoe-and-boot-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "nursery-the-baby-clothing-zone": {
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
+    },
+    "nursery-the-books-and-quiet-play-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "nursery-the-changing-station": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "nursery-the-crib-and-sleep-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "nursery-the-diaper-and-care-backstock": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "nursery-the-feeding-station": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "pantry-the-backstock-and-bulk": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "pantry-the-baking-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "pantry-the-canned-and-jarred-goods": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "pantry-the-dry-goods-shelves": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "pantry-the-snack-and-lunch-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "patio-or-deck-the-garden-and-plant-care-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "patio-or-deck-the-grill-and-outdoor-cooking-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "patio-or-deck-the-outdoor-dining-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "patio-or-deck-the-outdoor-seating-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "patio-or-deck-the-outdoor-storage-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "patio-or-deck-the-surface-rail-and-safety-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bathroom-the-linen-and-towel-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bathroom-the-medicine-cabinet": {
+      "read": true,
+      "read_date": "2026-09-19",
+      "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Correctly does not over-claim medical authority."
+    },
+    "primary-bathroom-the-shower-or-tub": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bathroom-the-toilet-area": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bathroom-the-under-sink-cabinet": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bathroom-the-vanity-counter": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bathroom-the-vanity-drawers": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bedroom-the-bed-and-bedding-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bedroom-the-dresser-drawers": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bedroom-the-dresser-top": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bedroom-the-other-sleeper-s-nightstand": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bedroom-the-primary-closet": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "primary-bedroom-your-own-nightstand": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "stair-landing-the-landing-surface-or-console": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "stair-landing-the-stair-and-floor-path": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "stair-landing-the-wall-and-display-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "workshop-the-fastener-and-hardware-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "workshop-the-finishing-and-chemical-zone": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "workshop-the-main-workbench": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "workshop-the-material-rack": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "workshop-the-power-tool-storage": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    },
+    "workshop-the-safety-and-ppe-station": {
+      "read": false,
+      "read_date": null,
+      "note": null
+    }
+  }
+}

@@ -15359,6 +15359,59 @@ def gate_no_storage_before_sort() -> None:
          f"against {len(files)} zone page(s): none recommended before Sort")
 
 
+def gate_zone_kit_disclosure_grammar() -> None:
+    """The optional-kit disclosure on a zone page must not disagree with
+    its own subject.
+
+    Found 2026-09-19, the narrative-level cold read of site/zones/*.html
+    (the standing lane several prior ops/NIGHTLY-LOG.md entries named
+    but had not yet reached these specific pages). ops/zone_supplies.py's
+    render() and render_storage() built "Only if your {noun} has one: N
+    more" and "Not every {noun} needs these" for the collapsed, optional
+    part of the kit list. That is correct only when {noun} is singular
+    ("medicine cabinet"). ops/zone-search-terms.json's own overrides
+    include plural and plural-compound nouns ("towels", "bed and linens",
+    "dresser drawers", "cleaning supplies"), and searchable()'s own
+    fallback produces more ("coats and outerwear", "shoes and boots").
+    Verified live before fixing: guest-bathroom-the-guest-linen-zone
+    shipped "Only if your towels has one" and "Not every towels needs
+    these", both real subject-verb disagreements on a real page.
+
+    Fixed by rewording so the noun is never the subject of a verb ("Only
+    if it applies to the {noun}" / "Not every home needs these for the
+    {noun}"), correct for any noun regardless of number. This gate reads
+    the real shipped HTML, not zone_supplies.py's own logic, and fails on
+    the exact old phrase reappearing on any real zone page.
+    """
+    zone_dir = os.path.join(ROOT, "site", "zones")
+    files = sorted(glob.glob(os.path.join(zone_dir, "*.html")))
+    if not files:
+        warn("zone-kit-grammar",
+             "no site/zones/*.html found, so the optional-kit disclosure "
+             "sentence could not be checked here.")
+        return
+
+    bad = []
+    for f in files:
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        if re.search(r"Only if your [a-z0-9 &;#x27-]*? has one", s) or \
+           re.search(r"Not every (?!home\b)[a-z0-9 &;#x27-]*? needs these",
+                     s):
+            bad.append(os.path.relpath(f, ROOT))
+
+    if bad:
+        fail("zone-kit-grammar",
+             "%d zone page(s) carry the old subject-verb-disagreement "
+             "sentence for the optional kit list (\"Only if your X has "
+             "one\" / \"Not every X needs these\", wrong whenever X is "
+             "plural). First few: %s. Fix in ops/zone_supplies.py's "
+             "render()/render_storage(), then regenerate; do not hand-"
+             "edit the page." % (len(bad), bad[:4]))
+        return
+    print(f"  {len(files)} zone page(s) checked for the optional-kit "
+         "disclosure's subject-verb agreement: none regressed")
+
+
 def gate_feed_current() -> None:
     """site/feed.xml must match what ops/build_feed.py would write right now.
 
@@ -16745,6 +16798,7 @@ def main() -> int:
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_no_storage_before_sort)
+    run_gate(gate_zone_kit_disclosure_grammar)
     run_gate(gate_data_sources_current)
     run_gate(gate_growth_playbook_linkedin_current)
     run_gate(gate_mobile_overflow, deep)
