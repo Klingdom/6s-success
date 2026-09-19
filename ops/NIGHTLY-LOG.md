@@ -20,9 +20,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none.
 
-**Next:** the handed-off workflow YAML tier is now fully read; the operator's own most recent cycle already tried a different, also-now-exhausted lane (`fonts.css`/`site.css` font-weight parity), so both close out this round. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/`blocked-on-art` issues, unchanged.
+**Next:** confirm `checks.yml` run 1175 (`35434779765`, commit `2b445afe`) first, still `in_progress` at the end of this slot. The handed-off workflow YAML tier is now fully read; the operator's own most recent cycle already tried a different, also-now-exhausted lane (`fonts.css`/`site.css` font-weight parity), so both close out this round. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/`blocked-on-art` issues, unchanged.
 
-Pushed to main. `.github/workflows/roadmap-report.yml`, `ops/preflight.py`, `ops/tests/test_gate_roadmap_edition_from_schedule.py` (new), command deck. No price, product or site page touched, no new page; IndexNow not applicable.
+Pushed to main (two commits: the fix, then a command-deck-only refresh). `.github/workflows/roadmap-report.yml`, `ops/preflight.py`, `ops/tests/test_gate_roadmap_edition_from_schedule.py` (new), command deck. No price, product or site page touched, no new page; IndexNow not applicable.
 
 ## 2026-09-19, scheduled operator cycle (full lane survey, no new defect; a fresh font-weight cross-check closes out the last untouched hand-authored asset)
 
