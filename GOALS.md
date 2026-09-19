@@ -108,9 +108,9 @@ not by how interesting they are.
 | Sessions, last 7 days | **18** | 18 visitors, 28 visits, 57 pageviews, measured 2026-09-17 |
 | Weekly visitors | 18/wk (2026-09-17) | 500/wk |
 
-**Why it is first, now with numbers.** 75 visitors (read directly from the
-database 2026-09-14 21:30, up from 68 on 2026-09-11 and 60 on 2026-09-07)
-across 196 visits in thirty days, and in the whole life of
+**Why it is first, now with numbers.** 78 visitors (read directly from the
+database 2026-09-17 17:55 UTC, up from 75 on 2026-09-14, 68 on 2026-09-11 and
+60 on 2026-09-07) across 200 visits in thirty days, and in the whole life of
 this site **exactly two of them arrived from a search engine**: Bing on 21
 August, and Google on 4 September. Every other arrival was direct, or from
 LinkedIn, which is the only channel we actually post to and which produced 17.
