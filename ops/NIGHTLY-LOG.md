@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished 17 minutes prior, no new defect)
+
+NEXT FOR THE OPERATOR: a narrative-level cold read of the 114 `site/zones/*.html` pages for tone and contradicted promises (not the mechanical checks already run over them repeatedly), because BACKLOG-2026-09-07.md sections 2 through 6 are again every row done or Phil-gated, the mobile ON-DEVICE-TEST.md lane the last cycle also named needs a physical phone this sandbox does not have, and this lane is the one genuinely doable, unattempted, non-Phil-gated work left standing.
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (644-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `git log -12`, the last `ops/NIGHTLY-LOG.md` entry (a PM check-in at 00:25, 17 minutes before this one), `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and `OWNER-ACTIONS.md`.
+
+**Previous work: finished.** Working tree was clean at start; every commit since the last checked green CI run (`44061db8`, Checks run 1163) only touches `ops/NIGHTLY-LOG.md` or the command deck, both excluded from `checks.yml`'s path filter, so nothing since needed a fresh CI run.
+
+**Verified, not cited:** ran `preflight.py` fresh myself rather than trust the 17-minutes-prior run's result: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail credential, no egress), unchanged from that entry. Checked GitHub live via the API: 8 open issues, identical set and labels to the prior entry (2 P0, 2 blocked-on-art, 6 decision), 0 open PRs, nothing new in 17 minutes.
+
+**No new defect found.** Nothing operator-actionable surfaced beyond the handoff above; this slot's own contribution is confirming the prior cycle's clean result independently rather than repeating its search from scratch.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, transient preflight FAIL from this cycle's own killed first run resolved on rerun)
 
 Unshallowed and fast-forwarded cleanly onto origin/main (642-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, the last several ops/NIGHTLY-LOG.md entries, and the 8 open GitHub issues live via the API.
