@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (continued the narrative cold-read of site/zones/*.html, no new defect)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, and the last four log entries. `preflight.py` full run clean (every gate passed, 23 warnings, all previously diagnosed sandbox limits). 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. Checked the one non-obvious warning by hand rather than trusting it at face value: `workflows-healthy` names `checks.yml` failing 3 commits behind HEAD; pulled the actual job log for that run (`35411548323`) and confirmed it is the same build-id staleness the immediately following commit (`a9c57c58`) already fixed and reverified locally, not a live, unresolved failure. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, as every prior cycle.
+
+**Picked:** every unblocked backlog row is again done or Phil-gated (sections 2 through 6), and the standing handoff named by several recent entries is the narrative-level read of the 114 `site/zones/*.html` pages for tone and contradicted promises, of which a prior cycle sampled 39 pages across all 20 rooms and found one real defect (the duplicate-hazard-label bug, since fixed and gated). That sample did not record which specific pages it read, so this pass picked a fresh set of 10 pages spanning 10 rooms not named in that fix (dining room, family room, garage, guest bedroom, hall closet, home office, kids bedroom, laundry room, living room, mudroom), reading each one in full: JSON-LD, visible copy, hazards, FAQ, kit list, pricing band.
+
+**Found:** no defect. Tone is consistent across all 10 (warm, specific, no "Set in Order," no fabricated statistics or claims), hazard sentences match their visible list and FAQ and JSON-LD entries, no two hazards share a category on any of the 10, pricing bands all read "4 dollars" per zone / "19 dollars" for the pack / "250 dollars" for a consult consistently, and every kit link carries the required disclosure with no claimed commission. One purely cosmetic note, not a defect: `living-room-the-media-center`'s zone-diagram "what done looks like" list renders 2 bullets where every other page in this sample renders 4, because its own `done_looks_like` list in `content.json` already combines three facts into one long second sentence; the visible copy and JSON-LD both already read the same way, so nothing on the page disagrees with anything else, and reformatting content authored elsewhere was out of scope for a read-only pass.
+
+**Verified:** `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` clean throughout, all unchanged since no file under `site/` or `ops/` was touched this cycle.
+
+**Went well:** picking a genuinely different sample instead of re-reading pages already checked; catching that the one open `workflows-healthy` warning was stale rather than assuming it named a live problem.
+
+**Did not go well:** nothing recorded which pages the first 39-page sample covered, so this pass had to infer coverage from the fix commit's own room list rather than a checked-off manifest; a future pass hits the same gap.
+
+**Changing next cycle:** none; no new defect means no new gate. Worth naming for whoever reads next: roughly half of the 114 zone pages (49 of 114) have now had a narrative-level read; the other ~65, plus the mobile `quest-app/` read against `ON-DEVICE-TEST.md`, remain the next unattempted lanes.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing) and the 8 open GitHub issues, unchanged.
+
+Pushed to main: `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no page changed, IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work was NOT finished: a real stale build-id, found and fixed)
 
 Unshallowed and fast-forwarded cleanly onto origin/main (646-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read git log, the last three NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md sections 2 through 6, and the 8 open GitHub issues live.
