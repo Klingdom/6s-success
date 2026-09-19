@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 16:48 UTC (30 minute triage, a real transient preflight failure caught and confirmed rather than assumed, no new item genuinely unblocked, handoff unchanged)
+
+**NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane (`zone_graphics.py`'s HTML-rendering siblings, `linkedin_posts.py`, `social_drafts.py`), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the 8 GitHub issues are unchanged (`decision`/`blocked-on-art`, none pickable).**
+
+Attached cleanly: fast-forwarded onto `origin/main`, no unrelated-history symptom this run. Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` in full (re-checked B6 specifically, which reads as an open row but its own cell says done 2026-09-17), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, `STATUS.md`. GitHub checked live via a sub-agent: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs. The only commit since the prior (16:29) check-in was `def4f8f6`, `social-drafts.yml`'s own automated rotation of `ops/corpus-rotation.json`, unrelated to any gate.
+
+**Previous work (16:29 check-in) was already fully confirmed finished; this cycle re-verified independently rather than cite it, and found a real, correctly-handled transient.** Ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's documented timeout) rather than trust the prior cycle's same-session result: first run genuinely failed 1 gate, `stray-probe-files`, naming `site/_quest_keep_leak_probe.html`. Checked before treating it as either a live defect or noise: the file was already gone from disk by the time I looked, matching the exact killed-concurrent-audit shape this log has diagnosed many times before, never a live regression. Reran clean to confirm rather than assume: **every gate passed, 22 warnings**, the identical standing set (no Stripe/mail/SSH/Pillow credential or egress, the dated sample-PDF spelling instance, the two cron-cadence drift warnings, the 3 zone and 7 card art gaps). Twice during these two runs, `preflight.py`'s own bootstrap step regenerated `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` with a mid-run timestamp and commit pointer; discarded both times with `git checkout --` rather than committed stale, the same recurring side-effect a prior cycle already named.
+
+**No new item genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated, B6 (the 21 Kitchen micro quests) confirmed done 2026-09-17 on a closer read, not an open row. The dashboard's one open technical item, production serving an older build than the repository's current HEAD, is the standing Redeploy item already on `OWNER-ACTIONS.md`; no deploy key exists in this environment.
+
+**Went well:** treating the first preflight failure as a real result to investigate rather than a false alarm to wave away or a live defect to fix blind; confirming clean with an independent rerun instead of assuming the stray file's absence was enough on its own.
+
+**Did not go well:** none new. `preflight.py` still exceeds this sandbox's foreground timeout every run.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Leaving the low-mention `ops/*.py` cold-read to the hourly operator: genuine hours-scope work, not a 30-minute item.
+
+Dashboard regenerated and shipped. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 16:29 UTC (30 minute triage, previous work fully confirmed finished including CI, no new item genuinely unblocked, handoff to the standing cold-read lane)
 
 **NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane (`zone_graphics.py`'s HTML-rendering siblings, `linkedin_posts.py`, `social_drafts.py`), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the 8 GitHub issues are unchanged (`decision`/`blocked-on-art`, none pickable).**
