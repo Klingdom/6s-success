@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, cold-read the handed-off workflow YAML tier and found a real live edition-mislabelling defect)
+
+**Previous work confirmed finished.** Unshallowed and fast-forwarded onto `origin/main` (`8d6508a7`) clean, no unrelated-history symptom. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 open GitHub issues checked live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. Working tree clean before starting.
+
+**Picked up the handoff two cycles back had named** (cold-read `mobile-checks.yml`, `publish-mcp.yml`, `roadmap-report.yml`, `status-email.yml`) rather than the most recent cycle's own choice of a different, also-untried lane; both are legitimate, this one was still open. Read all four. `mobile-checks.yml`, `publish-mcp.yml` and `status-email.yml` clean, no defect.
+
+**Found a real, live defect in `roadmap-report.yml`.** Its "Work out which edition this is" step read `date -u +%H` at the moment the job actually started and matched it against the four cron hours (14, 18, 23, 03 UTC), but the file's own header measures this workflow's queuing delay at a mean 2.86h and max 4.95h. Checked against 10 real runs via the Actions API rather than assumed: 7 of 10 had already fallen through to the `*` default, which always resolves to edition 8 ("Morning", full report), and 1 landed on a different cron's exact hour and was silently mislabelled as that other, wrong, edition. Since `full = edition in (8, 21)` and the label (`Morning`/`Midday`/`Afternoon`/`Evening`) are both driven by this same number, most of the four-times-daily report to Phil has been sending the wrong depth under the wrong header for as long as this delay has held, not an edge case.
+
+**Fixed by matching `github.event.schedule`** instead, the exact cron string GitHub Actions records at trigger time, immune to how late the runner actually starts. New `gate_roadmap_edition_from_schedule` in `preflight.py`, text-only (no PyYAML), checks the step still reads `github.event.schedule` and does not fall back to `date -u +%H`; comment lines are stripped first so the gate's own explanatory prose naming the old pattern cannot trip itself. `ops/tests/test_gate_roadmap_edition_from_schedule.py`, 5 cases, fail-then-pass proved, plus a direct check against the real pre-fix file pulled from git history (`8d6508a7:.github/workflows/roadmap-report.yml`), which fails by name.
+
+**Verified, not assumed.** `roadmap-report.yml` re-parses clean with `yaml.safe_load`. Full `preflight.py` twice: the first run produced two FAILs (`fingerprints`, `tests` on `test_gate_head_scripts_non_blocking.py`), neither touching anything this cycle changed; re-ran both standalone with nothing else running and both passed clean, the same concurrency-caused transient shape this log has hit before, so re-ran the full suite a second time end to end rather than just the two gates: every gate passed, 22 warnings, all previously diagnosed.
+
+**Went well:** checking the actual Actions API history instead of trusting the header comment's own delay measurement in the abstract; that number is what turned "could this misfire" into "this misfires on 8 of the last 10 runs."
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** the handed-off workflow YAML tier is now fully read; the operator's own most recent cycle already tried a different, also-now-exhausted lane (`fonts.css`/`site.css` font-weight parity), so both close out this round. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/`blocked-on-art` issues, unchanged.
+
+Pushed to main. `.github/workflows/roadmap-report.yml`, `ops/preflight.py`, `ops/tests/test_gate_roadmap_edition_from_schedule.py` (new), command deck. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (full lane survey, no new defect; a fresh font-weight cross-check closes out the last untouched hand-authored asset)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (683-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress). `inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`, none pickable. CI confirmed green on the latest code commit (run 1174, `c3fdbdce`).

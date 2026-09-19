@@ -7282,6 +7282,58 @@ def gate_workflow_no_raw_expr_in_run(wf_dir=None) -> None:
              % ", ".join(offenders))
 
 
+def gate_roadmap_edition_from_schedule(wf_path=None) -> None:
+    """roadmap-report.yml must pick its edition from the cron string, not the clock.
+
+    Found 2026-09-19 while cold-reading the workflow YAML tier. The "Work out
+    which edition this is" step used to read `date -u +%H` at the moment the
+    job actually started and match it against the four cron hours (14, 18,
+    23, 03 UTC). This file's own header measures a mean 2.86h/max 4.95h
+    queuing delay between the cron firing and the job starting, so by the
+    time the clock was read the hour had usually already moved on. Checked
+    against 10 real runs via the Actions API rather than assumed: 7 fell
+    through to the "*" default, which always resolves to edition 8
+    ("Morning", the full report) regardless of which edition actually fired,
+    and 1 landed on a different cron's exact hour and was silently
+    mislabelled as that other, wrong, edition. Fixed by matching
+    `github.event.schedule`, the exact cron string GitHub Actions records at
+    trigger time, which does not move no matter how late the runner starts.
+
+    Text-only, no PyYAML, the same reason gate_workflow_no_raw_expr_in_run
+    gives: this checks that the fix cannot regress back to wall-clock time,
+    not that the report itself is correct on any given day.
+    """
+    path = wf_path or os.path.join(ROOT, ".github", "workflows", "roadmap-report.yml")
+    if not os.path.exists(path):
+        return
+    text = open(path, encoding="utf-8", errors="replace").read()
+    m = re.search(r"- name: Work out which edition this is\s*\n(.*?)(?=\n\s*- name:|\Z)",
+                  text, re.S)
+    if not m:
+        fail("roadmap-edition-walltime",
+             "roadmap-report.yml no longer has a step named \"Work out which "
+             "edition this is\"; cannot check how it picks the edition")
+        return
+    step = m.group(1)
+    # Only the env: values and the run: shell script decide behaviour; the
+    # explanatory comments above them are prose and may legitimately name
+    # the old `date -u +%H` shape while describing why it was replaced.
+    live = "\n".join(l for l in step.split("\n")
+                      if not l.strip().startswith("#"))
+    if "github.event.schedule" not in live:
+        fail("roadmap-edition-walltime",
+             "roadmap-report.yml's edition step no longer reads "
+             "github.event.schedule, so a late-starting run (this workflow's "
+             "own header measures a mean 2.86h delay) will read the wrong "
+             "wall-clock hour and mislabel or misconfigure the edition again")
+        return
+    if re.search(r"date\s+-u\s+\+%H", live):
+        fail("roadmap-edition-walltime",
+             "roadmap-report.yml's edition step still reads `date -u +%H` "
+             "alongside github.event.schedule; a late run's wall-clock hour "
+             "can still leak back into the edition decision")
+
+
 def gate_checks_main_not_cancelled(wf_path=None) -> None:
     """A push to main must never cancel main's own in-flight verification.
 
@@ -16880,6 +16932,7 @@ def main() -> int:
     run_gate(gate_publish_image_current)
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
+    run_gate(gate_roadmap_edition_from_schedule)
     run_gate(gate_checks_excludes_generated_files)
     run_gate(gate_checks_main_not_cancelled)
     run_gate(gate_ci_path_filter_covers_preflight_inputs)

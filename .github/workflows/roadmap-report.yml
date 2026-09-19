@@ -97,13 +97,24 @@ jobs:
           # block would hand shell metacharacters in that field to bash, in
           # the same job that later holds the Stripe and SMTP secrets.
           EDITION_INPUT: ${{ github.event.inputs.edition }}
+          # github.event.schedule is the exact cron string GitHub matched to
+          # fire this run, set once at trigger time. `date -u +%H` was read
+          # here instead until 2026-09-19: it reads the clock at the moment
+          # the job actually starts, and this workflow's own header measures
+          # a mean 2.86h/max 4.95h queuing delay, so most runs' wall-clock
+          # hour no longer matched the cron that fired them. Checked against
+          # 10 real runs (Actions API): 7 silently fell through to the "*"
+          # default (always 8, "Morning", full report, regardless of which
+          # edition actually fired) and 1 landed exactly on a different
+          # cron's hour and was mislabelled as that edition instead. Matching
+          # the cron string itself is immune to how late the runner starts.
+          SCHEDULE: ${{ github.event.schedule }}
         run: |
-          H=$(date -u +%H)
-          case "$H" in
-            14) E=8 ;;
-            18) E=12 ;;
-            23) E=17 ;;
-            03) E=21 ;;
+          case "$SCHEDULE" in
+            "41 14 * * *") E=8 ;;
+            "41 18 * * *") E=12 ;;
+            "41 23 * * *") E=17 ;;
+            "41 3 * * *")  E=21 ;;
             *)  E="$EDITION_INPUT"; E="${E:-8}" ;;
           esac
           echo "edition=$E" >> "$GITHUB_OUTPUT"
