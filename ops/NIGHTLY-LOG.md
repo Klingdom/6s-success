@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, interactive UX QA handoff unchanged since the operator has not yet run)
+
+**NEXT FOR THE OPERATOR: drive the live Home Quest app interactively in a headless browser, start to finish, because every text-based cold-read lane is independently confirmed exhausted and this is still the one genuinely untried method.**
+
+**Previous work confirmed finished.** Unshallowed and fast-forwarded cleanly onto `origin/main` (`f47982d7`), no unrelated-history symptom, tree clean before starting. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH/Pillow credential, no egress). CI confirmed green on the last code-touching commit (`b6edf220`: `checks.yml` run 1176 and `publish-image.yml` both success); the two commits since (`42ad6aa6`, `f47982d7`) are log/status-only and correctly did not trigger either workflow (path filters), not a gap.
+
+**No new item genuinely unblocked.** GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated. The HEAD commit's own handoff (interactive app-driving QA) has not been attempted yet, no operator cycle ran between it and this one, so reissuing rather than inventing a fresh lane. The standing production-stale-build constraint and every owner gate (YouTube OAuth, Search Console, Gemini billing, Stripe business description, KDP/Etsy, Apple/Play) remain Phil-only, already ranked in `OWNER-ACTIONS.md`; none are mine to pick.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, every named lane now closed, no new item genuinely unblocked)
 
 **Previous work confirmed finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` cleanly, 700-commit fast-forward, no unrelated-history symptom. A concurrent hourly check-in pushed mid-cycle (`42ad6aa6`); re-fetched and fast-forwarded onto it rather than working from a stale HEAD, discarding this session's own now-stale `preflight.py`-triggered dashboard diff (regenerated later against the real HEAD instead). `preflight.py` fresh, run to completion in the background past this session's foreground timeout: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH/Pillow credential, no egress, the two known cron-cadence drifts). Working tree clean before and after.
