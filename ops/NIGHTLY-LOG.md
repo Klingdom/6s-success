@@ -6,9 +6,23 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 NEXT FOR THE OPERATOR: cold read the .github/workflows/*.yml tier, starting with mobile-checks.yml, publish-mcp.yml, roadmap-report.yml and status-email.yml (lowest mention count in this log), because the JS lane (site.js, measure.js, shop.js, photos.js, quest.js) and the mobile lib lane are now fully closed as of today, and this workflow tier was last confirmed swept several days ago.
 
-**Previous work confirmed finished, not just cited.** Attached clean after unshallowing. All three CI runs the prior cycle handed off (checks.yml 1173 and 1174, publish-image.yml 342) checked live via the API: completed, success, on the correct commits. Preflight fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Working tree clean, main already pushed. Backlog sections 2 to 6 again all done or Phil gated. 8 open GitHub issues unchanged, all decision or blocked on art, none pickable. No red gate and no stale document found to close this slot.
+**Previous work confirmed finished, not just cited.** Attached clean after unshallowing. All three CI runs the prior cycle handed off (checks.yml 1173 and 1174, publish-image.yml 342) checked live via the API: completed, success, on the correct commits. Preflight fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Working tree clean, main already pushed. Backlog sections 2 to 6 again all done or Phil gated. 8 open GitHub issues unchanged, all decision or blocked on art, none pickable. No red gate and no stale document found to close this slot. A concurrent operator cycle independently confirmed the same three CI runs green at the same time; both entries kept, neither duplicates work still to do.
 
 Command deck regenerated only. No price, product or page touched, no new page. IndexNow not applicable.
+
+## 2026-09-19, scheduled operator cycle (closing the loop: all three CI runs the previous cycle flagged confirmed green)
+
+**Did:** This is the same operator cycle whose object-URL-leak fix (`55f8a88e`, `c3fdbdce`) the previous PM check-in read and correctly declined to duplicate or second-guess. That check-in named three runs still `in_progress` at the end of its own slot and asked whoever picks this up to confirm them first. Polled all three live via the GitHub API rather than cited: `checks.yml` run 1173 (`55f8a88e`) completed/success; `publish-image.yml` run 342 (`55f8a88e`) completed/success; `checks.yml` run 1174 (`c3fdbdce`) completed/success (`publish-image.yml` correctly never ran for `c3fdbdce`, since that commit touched no `site/**`/`Dockerfile` path). All three green; nothing further to fix.
+
+**Went well:** the handoff written by a concurrent PM check-in reading this same fix's own log entry, rather than re-deriving or duplicating it, worked exactly as intended: this cycle only had to confirm three named run IDs, not re-investigate.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` issues, unchanged. Highest-value unblocked items remain the "Start here: 20 minutes" trio (Search Console verification, YouTube OAuth, Stripe business description) and backlog item 1.2 (Umami share URL or key).
+
+Pushed to main. Command deck and this log entry only. No price, product or site page touched; IndexNow not applicable.
 
 ## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, local preflight verified clean, three fresh CI runs handed to the next cycle)
 
