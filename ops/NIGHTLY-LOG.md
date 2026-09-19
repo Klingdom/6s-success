@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, local preflight verified clean, three fresh CI runs handed to the next cycle)
+
+NEXT FOR WHOEVER PICKS THIS UP: before starting anything new, check the conclusion of `checks.yml` run 1173 (`35430905333`, commit `55f8a88e`), `checks.yml` run 1174 (`35431327358`, commit `c3fdbdce`) and `publish-image.yml` run 342 (`35430905445`, commit `55f8a88e`). All three were still `in_progress` at the end of this slot; a real failure in any of them is this session's fix to verify, since both commits are the operator cycle's own object-URL-leak fix and its gate, not a fresh finding.
+
+**Attached cleanly:** shallow, detached checkout; unshallowed and fast-forwarded onto `origin/main`. Working tree was briefly dirty mid-cycle from a killed foreground `preflight.py` run's stale dashboard regen (reflecting an older commit than HEAD); discarded rather than committed, since it was superseded generated output, not real work, then fast-forwarded cleanly a second time onto three more commits that landed while this cycle was reading.
+
+**Previous handoff confirmed finished, not just cited.** Two prior PM check-ins had left `checks.yml` run 1172 and `publish-image.yml` run 341 (attempt 2, after a real GHA cache-export infra flake) unverified. Checked both live via the GitHub API: both `completed`/`success`. That closed the open loop before anything new started, per STEP 2.
+
+**Picked up mid-flight, not collided with, a concurrent operator cycle.** While this slot was reading state, a scheduled operator cycle independently found and fixed a real defect (`releaseUrls()` skipped on 2 of 5 `renderKeep()` call sites in the Home Quest Keep screen, an object-URL leak on the everyday nav path), gated it (`gate_quest_keep_releases_urls_first`), and pushed two commits (`55f8a88e`, `c3fdbdce`). Read its own log entry in full rather than re-derive the same finding independently; nothing left to add or second-guess in the time available, so this slot did not open a competing item.
+
+**Verified rather than assumed finished.** Ran `preflight.py` fresh in the background past this session's own foreground timeout, watched it to completion: every gate passed, 22 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH/Pillow/JRE credential, the two known `cron-cadence` drifts, `deploy-fresh` unreachable, `tests-unverified` on the same 2 known files). `check_urls.py` 188/188. `affiliate.py --check` clean, 163 documents. `mobile/quest-app`'s `npm test`: all suites pass, including `videoLink`. No new defect found in any of these.
+
+**Checked for a fresh unblocked item in case CI comes back clean.** 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`; read issue #2's full thread directly rather than cite its label: still a genuine art/hardware limit (local SDXL cannot render 7 of the remaining card subjects; a stronger hosted model or real photographs, both outside this sandbox), correctly not pickable. `BACKLOG-2026-09-07.md` sections 2-6 again every row done or Phil-gated. The three CI runs above are the one live, time-sensitive item; per the standing rule in this log, an unverified CI run outranks opening a fresh lane, so none was opened this slot.
+
+**Went well:** distinguishing a stale generated-file diff (safe to discard) from real uncommitted work before touching anything with `git checkout --`, per CLAUDE.md 35 on shell safety.
+
+**Did not go well:** none new. The recurring shallow/detached checkout shape (issue #27) recurred again, same as every prior cycle.
+
+**Changing next cycle:** none.
+
+**Next:** confirm the three named CI runs first. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/`blocked-on-art` issues, unchanged. Highest-value unblocked items remain the "Start here: 20 minutes" trio (Search Console verification, YouTube OAuth, Stripe business description) and backlog item 1.2 (Umami share URL or key).
+
+Pushed to main. Command deck regenerated only (reflecting `c3fdbdce`); no code, content or price changed this slot. No new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (a real object-URL leak in the Home Quest Keep screen found, fixed and gated; both handed-off CI runs confirmed green)
 
 **Did:** Checkout arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` (678-commit fast-forward, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s standing process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md` and the last several `NIGHTLY-LOG.md` entries. `preflight.py` clean first (every gate passed, 22 warnings, all previously diagnosed sandbox limits).
