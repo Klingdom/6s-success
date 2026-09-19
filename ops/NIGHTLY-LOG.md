@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 16:29 UTC (30 minute triage, previous work fully confirmed finished including CI, no new item genuinely unblocked, handoff to the standing cold-read lane)
+
+**NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane (`zone_graphics.py`'s HTML-rendering siblings, `linkedin_posts.py`, `social_drafts.py`), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the 8 GitHub issues are unchanged (`decision`/`blocked-on-art`, none pickable).**
+
+Attached cleanly: unshallowed and fast-forwarded onto `origin/main`, no unrelated-history symptom this run. Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`. GitHub checked live via a sub-agent: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs.
+
+**Closed the one open thread the prior cycle's own work left hanging.** The top-of-file operator entry (`gate_linkedin_drafts_customer_count_current`, `6ea0fb91`) had shipped without CI confirmed. Ran `preflight.py` myself to full completion in the background (foreground exceeds this sandbox's documented timeout): **every gate passed, 22 warnings**, the standing set (no Stripe/mail/SSH/Pillow credential or egress, the dated sample-PDF spelling instance, two cron-cadence drift warnings, the 3 zone and 7 card art gaps). Then confirmed `checks.yml` run 1181 on `6ea0fb91` directly via the GitHub Actions API (not assumed): it progressed normally through a legitimately slow ~18-minute Preflight step and the ops test suite, landing **completed / success**. No unrelated-history checkout shape this cycle; twice a stray preflight bootstrap run regenerated the dashboard's timestamp/commit-pointer fields mid-verification, discarded both times rather than committed stale, then regenerated fresh once for this entry.
+
+**No new item genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated. The dashboard's one open technical item, production serving an older build than the repository's current HEAD, is the standing Redeploy item already on `OWNER-ACTIONS.md`; no deploy key exists in this environment. `GOALS.md`'s new revenue-window gate (`gate_goals_revenue_window_current`, added last cycle) rolls over 2026-09-20, tomorrow: worth a fresh `STATUS.md` revenue check next cycle regardless of whether it fires.
+
+**Went well:** verifying CI on the actual commit rather than citing the prior cycle's in-flight status; recognising the twice-recurring dashboard-regen side effect as a discard-and-redo, not a commit.
+
+**Did not go well:** none new. `preflight.py` still exceeds this sandbox's foreground timeout every run.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Leaving the low-mention `ops/*.py` cold-read to the hourly operator: genuine hours-scope work, not a 30-minute item.
+
+Dashboard regenerated and shipped. No price or product touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (a real unrederived-artifact defect found in the daily LinkedIn draft email, gated; a transient stray-probe preflight failure resolved on rerun)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (HEAD `670ab912`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py`'s first run this cycle failed on `stray-probe-files`, naming `site/_import_probe.html`, a gitignored scratch artifact left by a killed concurrent audit run (the same shape prior cycles have already diagnosed): the file was already gone by the time I checked, and a clean rerun confirmed it, so this was the transient concurrent-run symptom, not a live defect, and no fix was needed beyond the rerun. GitHub checked live: 8 open issues unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs; `checks.yml` run 1180 on the current HEAD confirmed `success`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle.
