@@ -1,9 +1,9 @@
 {
  "generated": "2026-09-19 07:44",
- "commit": "d87a9608",
- "commit_msg": "PM check-in log update: checks.yml never retriggered on the build-id fix push, dispatched manually (run 1172), handing CI confirmation to next cycle",
- "commits_7d": 1249,
- "commits_total": 2862,
+ "commit": "c3d95c44",
+ "commit_msg": "PM check-in: previous work still not confirmed finished, found and requeued a real GHA cache-export infra flake on the build-id fix's publish-image run, handed both open CI runs to the operator",
+ "commits_7d": 1250,
+ "commits_total": 2863,
  "traffic_line": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-18 15:10; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-18 15:10",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-18 15:10",
  "affiliate_trigger_carried_from": "2026-09-18 15:10",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
