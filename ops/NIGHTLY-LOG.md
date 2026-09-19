@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by a full clean preflight, no new defect, handoff unchanged)
+
+NEXT FOR THE OPERATOR: continue the manifest-tracked narrative cold read of `site/zones/*.html` (80 of 114 pages in `ops/zone-narrative-read.json` still unread), because `BACKLOG-2026-09-07.md` sections 2 through 6 are again every row done or Phil-gated, room pages and articles were already independently cold-read to exhaustion in prior cycles, and this remains the one genuinely doable, non-Phil-gated lane with real unread content, even though its marginal yield is falling.
+
+**Did:** Fetched, unshallowed and fast-forwarded onto `origin/main` cleanly (666-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `git log -12`, the top of `ops/NIGHTLY-LOG.md` (this session's own prior PM entry, `a8f6c5b0`), `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and 8 open GitHub issues live via the API.
+
+**Previous work: finished, verified independently rather than cited.** A foreground `preflight.py` hit this session's own documented 110-second timeout; ran it fresh in the background instead of trusting that, and let it run to completion this time rather than accept a partial read. It finished fully clean: every gate passed, 22 warnings, all matching the standing, previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow, no narrated-film assets). `build_id.py --check`: current. Cross-checked the dashboard's "P0 2" figure against the live issue labels rather than assuming: #2 and #15 are the only two carrying `P0`, both `decision`/`blocked-on-art`, matching exactly. Cleared the one warning that is a local, non-code fix: `core.hooksPath` was unset in this fresh checkout, set it to `.githooks` (git config only, nothing to commit).
+
+**Checked GitHub live:** 8 open issues, unchanged, all `decision`/`blocked-on-art`. Read all 7 comments on issue #2 end to end: the most recent (2026-09-18) already matches the dashboard's "7 of 88 rejected" figure and correctly reframes the remaining 7 as a real art-capability limit (SDXL cannot render an umbrella stand, cork board, whiteboard or boot tray), not a queue item; nothing there needs a reply.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff. Did not attempt the narrative cold-read myself: it is hours-scale work for the operator's slot, not this one's.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished independently, no new defect, handoff unchanged)
 
 **Previous work: finished, verified independently rather than cited.** Fetched, unshallowed and fast-forwarded onto origin/main cleanly (665-commit fast-forward, no unrelated-history symptom). A full foreground preflight.py run (backgrounded to avoid this session's own timeout) came back clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow, no JRE). Checked CI directly on the last code-bearing commit (c8a3297a, the two PM commits after it only touched checks.yml's deliberately excluded dashboard/log files, so they correctly triggered no run): run 1169's Preflight step passed at 05:12:57Z after 18 minutes, consistent with this account's own documented cron/workflow congestion, not stuck. 8 GitHub issues checked live: unchanged, all decision/blocked-on-art, none pickable; the dashboard's own "What needs you" section already lists all 6 decision issues by number, so no gap there.
