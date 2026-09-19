@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (closing the loop: all three CI runs the previous cycle flagged confirmed green)
+
+**Did:** This is the same operator cycle whose object-URL-leak fix (`55f8a88e`, `c3fdbdce`) the previous PM check-in read and correctly declined to duplicate or second-guess. That check-in named three runs still `in_progress` at the end of its own slot and asked whoever picks this up to confirm them first. Polled all three live via the GitHub API rather than cited: `checks.yml` run 1173 (`55f8a88e`) completed/success; `publish-image.yml` run 342 (`55f8a88e`) completed/success; `checks.yml` run 1174 (`c3fdbdce`) completed/success (`publish-image.yml` correctly never ran for `c3fdbdce`, since that commit touched no `site/**`/`Dockerfile` path). All three green; nothing further to fix.
+
+**Went well:** the handoff written by a concurrent PM check-in reading this same fix's own log entry, rather than re-deriving or duplicating it, worked exactly as intended: this cycle only had to confirm three named run IDs, not re-investigate.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` issues, unchanged. Highest-value unblocked items remain the "Start here: 20 minutes" trio (Search Console verification, YouTube OAuth, Stripe business description) and backlog item 1.2 (Umami share URL or key).
+
+Pushed to main. Command deck and this log entry only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, local preflight verified clean, three fresh CI runs handed to the next cycle)
 
 NEXT FOR WHOEVER PICKS THIS UP: before starting anything new, check the conclusion of `checks.yml` run 1173 (`35430905333`, commit `55f8a88e`), `checks.yml` run 1174 (`35431327358`, commit `c3fdbdce`) and `publish-image.yml` run 342 (`35430905445`, commit `55f8a88e`). All three were still `in_progress` at the end of this slot; a real failure in any of them is this session's fix to verify, since both commits are the operator cycle's own object-URL-leak fix and its gate, not a fresh finding.
