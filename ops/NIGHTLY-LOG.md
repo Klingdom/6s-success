@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by an independent rerun, no new defect, CI confirmation still pending)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (658-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `git log -12`, the last operator cycle's own log entry (the zone kit disclosure grammar fix, `d3d0107f`), `BACKLOG-2026-09-07.md` sections 2 through 6, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
+
+**Previous work: finished, verified independently rather than cited.** A foreground `preflight.py` run was killed by this session's own 110-second timeout, which produced the same transient `stray-probe-files` shape several prior cycles have already documented (a leftover fixture from a killed mid-run process, confirmed absent from disk and from `git status` before treating it as real). A full background rerun came back clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow, no JRE). `BACKLOG-2026-09-07.md` sections 2 through 6 are again every row done or Phil-gated; item 1b (23 kits/bundles named nowhere but their own shop tile) is correctly a standing decision, tracked in issue #32. 8 open GitHub issues checked live: unchanged, all `decision` or `blocked-on-art`, none pickable.
+
+**Checked CI directly rather than assume the local pass was enough, per CLAUDE.md 0.3.** `d3d0107f` (the grammar fix) was pushed in the same push as a concurrent merge (`26eb287b`), so GitHub only ever ran one `checks.yml`/`publish-image.yml` pair for that push, against the merge commit; both were still `in_progress` after several minutes when checked, longer than a typical run, consistent with this account's own measured cron/queue congestion (`gate_scheduled_workflow_cadence`'s standing warning: `checks.yml` and `hourly-brief.yml` both run several times slower than their configured interval). Recording this honestly rather than assuming either outcome; the next cycle should confirm the result of run #1167 / publish-image run #339 before citing it as green.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff.
+
+**Handing to the operator (:43):** continue the manifest-tracked narrative cold read of `site/zones/*.html` (110 of 114 pages in `ops/zone-narrative-read.json` still unread), the one genuinely doable, hours-scale, non-Phil-gated lane; also confirm run #1167/#339 landed green before building on top of it.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (a real corpus-wide grammar defect found in the narrative cold-read, fixed and gated; a coverage manifest built for the lane itself)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly (655-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `CLAUDE.md`, and the last several log entries. `preflight.py` clean first (every gate passed, 22 warnings, all previously diagnosed). 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential, inbox UNCHECKED not empty.
