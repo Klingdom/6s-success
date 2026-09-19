@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, same cycle continued (closed a real `gate_status_currency` warning the merge above triggered)
+
+**Did:** After merging with a concurrent PM check-in and pushing, reran `preflight.py` in the background to confirm the pushed state rather than assume the pre-push clean run still applied. It came back with one new warning, `status-currency`: `STATUS.md` had not mentioned 8 material commits since its own last edit (`c3fdbdce`), including this cycle's own `9bb578d2`. A warning, not a failure, but per `CLAUDE.md` 0.2 ("a correctly reported problem that nobody acts on costs exactly as much as an undetected one") this is the moment to fix it, not the next cycle's candidate.
+
+**Fixed:** Wrote a new `Last Updated` entry in `STATUS.md` section 1 describing this cycle's chapter-SVG-importer gate, and named the other 7 material commits in one paragraph (the LinkedIn draft customer-count gate, the GOALS.md revenue-window gate, the install-prompt dead-button fix, the whole-house-draw guard, the Back-button fix, the commerce-page narrative-read closure, and the `roadmap-report.yml` edition fix), matching how this file has closed the same warning several times before. Demoted the previous `Last Updated` entry to `Prior`, archived the oldest `Prior` entry (`build_kitchen_deck_page.py`) into `STATUS-ARCHIVE.md` verbatim to keep the standing four-entry window, and corrected the archive's own entry count (47 to 48).
+
+**Verified:** `gate_status_currency()` and the four sibling stale-claim gates that also scan `STATUS.md`/`STATUS-ARCHIVE.md` (`gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`) all called directly and confirmed clean. Full `preflight.py` rerun in the background: every gate passed, 22 warnings, the `status-currency` warning gone, everything else identical to baseline.
+
+**Went well:** treating the warning as this cycle's work rather than the next cycle's, since it was this cycle's own commit that tipped it over the threshold.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** unchanged from the entry below. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, command deck. No price or product touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (a latent staleness gap closed in the chapter-SVG importer, no live defect; two more low-mention ops/*.py files read clean)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (727-commit fast-forward, no unrelated-history symptom this run). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md` in full, `CLAUDE.md`, the top of `ops/NIGHTLY-LOG.md`. GitHub checked live via a sub-agent, independent of the log's own claim: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs, `checks.yml` and `publish-image.yml` both green on their last 3 runs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. `preflight.py` run to completion in the background before touching anything (foreground exceeds this sandbox's documented timeout): every gate passed, 22 warnings, all previously diagnosed sandbox limits.
