@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (15 more pages of the narrative cold-read, no defect found, marginal yield still falling)
+
+**Did:** Checkout arrived shallow and detached as documented. Unshallowed (`git fetch --unshallow`) and fast-forwarded cleanly onto `origin/main` (662-commit fast-forward, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the last several log entries. `preflight.py` clean before starting (every gate passed, 22 warnings, all previously diagnosed sandbox limits).
+
+**Checked whether anything upstream of the standing handoff had opened up, rather than assuming not.** A subagent confirmed live via the GitHub API: 8 open issues, all `decision`/`blocked-on-art`, none pickable (two, #15 and #18, are 30+ days stale with zero comments and worth a nudge back to Phil, not an agent action); CI green on the last two runs of both `checks.yml` and `publish-image.yml`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. `GOALS.md`'s own decision rules and `OWNER-ACTIONS.md`'s "Start here" three items confirmed nothing in epics 1-5 is open and unblocked: SEO/internal-linking groundwork (llms.txt, robots.txt, 0-orphan link graph) is already built, Search Console/YouTube/Stripe-description all need Phil's own login. That left the standing epic-6 handoff: 95 of 114 zone pages outside `ops/zone-narrative-read.json`'s tracked coverage.
+
+**Read 15 zone pages cold**, one still-unread page from each of 15 rooms (dining room, entryway, family room, garage, guest bathroom, guest bedroom, hall closet, home office, kids bedroom, kitchen, laundry room, living room, mudroom, nursery, pantry): full JSON-LD (HowTo + FAQPage), visible copy, the hazard block, the kit-disclosure sentence and the FAQ block, cross-checked against each other rather than trusted individually. Also ran a fresh mechanical scan of the batch for the corpus-wide forbidden-phrase list: 0 hits.
+
+**Found no defect.** All 15: hazard sentences match their FAQ and JSON-LD entries verbatim, no two hazards share a category, the 2026-09-19 kit-disclosure grammar fix holds on every plural noun in the batch, pricing bands consistent, safety copy specific rather than generic, cross-room links resolve. Updated `ops/zone-narrative-read.json` with real page-level entries and a note per page (34 of 114 now individually tracked, up from 19).
+
+**Verified after:** `preflight.py` foreground hit this session's own known timeout; reran in the background, came back clean (every gate passed, matching the pre-change baseline). No price, product or page touched; IndexNow not applicable.
+
+**Went well:** re-checking upstream epics with real tool output (a live GitHub check, `OWNER-ACTIONS.md`, GOALS.md's own SEO status) before defaulting to the familiar lane, rather than assuming it is still the only option.
+
+**Did not go well:** this lane's marginal yield keeps falling; five consecutive batches (75 pages total across several cycles) have now come back clean. Worth naming plainly: if the next one or two passes also find nothing, the right move is to retire this as the default handoff and spend the cycle on a genuinely new angle instead of a sixth repetition.
+
+**Changing next cycle:** none; no new defect means no new gate. If the next narrative-cold-read pass also comes back clean, stop defaulting to it and look for a different lane (a fresh low-mention `ops/*.py` cold-read tier, or a direct look at whether any epic-3/4 SEO or conversion work has quietly become unblocked).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("Start here": Search Console, YouTube OAuth, Stripe business description) and the 8 open GitHub issues (all `decision`/`blocked-on-art`), unchanged. 80 of 114 zone pages remain outside the narrative-read manifest.
+
+Pushed to main: `ops/zone-narrative-read.json`, `BACKLOG-2026-09-07.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by a full background preflight rerun, no new defect, handoff unchanged)
 
 NEXT FOR THE OPERATOR: continue the manifest-tracked narrative cold read of `site/zones/*.html` (95 of 114 pages in `ops/zone-narrative-read.json` still unread), because `BACKLOG-2026-09-07.md` sections 2 through 6 are again every row done or Phil-gated, and this remains the one genuinely doable, non-Phil-gated lane.
