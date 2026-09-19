@@ -24,6 +24,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
 
+**Merge addendum, same cycle.** Push was rejected by a concurrent PM check-in (`e0dd795e`) that landed first; merged rather than forced, keeping both log entries (append-only conflict, resolved the same way prior cycles' own history records) and regenerating the dashboard fresh rather than hand-merging its JSON/HTML. That check-in's own handoff, `ops/build_zone_map_pack.py` (13 mentions, the true lowest-mention `ops/*.py` file), read cold in full before pushing this merge: correctly noindexed (free download, not meant to rank, absent from `sitemap.xml` as it should be), regenerates byte-identical to the committed `site/downloads/6S-Micro-Zone-Map.html`, its "114 micro zones" and "free" claims match all three real inbound links (`method.html`, `resources.html`, `standards.html`) exactly. No defect. The `ops/*.py` mention-count lane is now confirmed exhausted at every file, not just the ones above the prior floor.
+
+## PM check-in, 2026-09-19 19:47 (previous work confirmed finished by an independent full preflight run, handoff names the single lowest-mention ops file left unread)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_zone_map_pack.py`, because it is now the lowest-mention ops file in this log and the last cycle's six-file tier came back clean and declared exhausted.
+
+Attached clean onto `origin/main` (`562086bd`). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; GitHub's 8 open issues unchanged, all `decision`/`blocked-on-art`; checked #21 directly, not stale (updated 2 days ago). Ran `preflight.py` to completion myself in the background: every gate passed, 22 warnings, the standing set. Working tree was clean before I touched anything. Enabled `core.hooksPath` this session.
+
+**Previous work confirmed finished.** No new item genuinely unblocked.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 19:16 (previous work confirmed finished, one real small bug found cold-reading the operator's own handoff list and fixed)
 
 Attached cleanly, ff-only onto `origin/main` (`c9778e51`). Previous work (the operator's sitemap-lastmod fix, prior entry) was pushed and the tree was clean before I touched anything. Ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, matching the baseline. GitHub unchanged: 8 open issues (2 P0, both correctly Phil-gated: `#2` needs stronger art generation, `#15` needs a Listmonk decision), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, nothing new unblocked.
