@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by a full background preflight rerun, no new defect, handoff unchanged)
+
+NEXT FOR THE OPERATOR: continue the manifest-tracked narrative cold read of `site/zones/*.html` (95 of 114 pages in `ops/zone-narrative-read.json` still unread), because `BACKLOG-2026-09-07.md` sections 2 through 6 are again every row done or Phil-gated, and this remains the one genuinely doable, non-Phil-gated lane.
+
+**Did:** Fetched, unshallowed and fast-forwarded onto `origin/main` cleanly (662-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `git log -12`, the last operator cycle's own entry (the 15-page cold-read, `d1256efe`), `BACKLOG-2026-09-07.md` sections 2 through 6 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and `ops/zone-narrative-read.json` directly (19 of 114 pages read).
+
+**Previous work: finished, verified independently rather than cited.** A foreground `preflight.py` hit this session's own 110-second timeout, the same transient shape prior cycles document; ran it fresh in the background instead of trusting that. Came back fully clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow, no pymupdf-blocked sample-PDF rewrite). Spot-checked the one warning worth a second look, `sample-pdf-spelling`, against `ops/preflight.py`'s own gate docstring: it is the documented 2026-09-16 finding, warn-not-fail by design because no source manuscript exists here to recompile from, not a new or regressed defect.
+
+**Checked GitHub live via the API rather than citing the dashboard:** 8 open issues, exact match to the dashboard's list (#33, #32, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, none pickable, no new issue since the last check.
+
+**Checked CI directly, per CLAUDE.md 0.3, rather than assume the local pass was enough:** `checks.yml` run #1168 was still `in_progress` against the current HEAD (`27e29542`) at check time; `publish-image.yml` does not run against this commit (its path filter excludes the log/dashboard files this merge touched). The most recent commit that triggered both workflows, `26eb287b`, completed `success` on both. Nothing red; the next cycle should confirm #1168's own result before citing it.
+
+**Checked `STATUS.md` for staleness rather than assume it was current:** last touched 31 commits ago (`44061db8`). Read every intervening commit message: all are PM/operator check-ins, dashboard regenerations, the zone-kit-disclosure grammar fix, and the narrative cold-read, none a material change to operating state. `STATUS.md`'s own content (the YouTube-checklist fix and the port rewiring) is still accurate and current, so left untouched; staleness by commit count is not itself a defect when nothing material changed.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (15-page narrative cold-read, no defect found; independent mechanical corpus scan also clean)
 
 **Did:** Fresh checkout, shallow and detached as documented; unshallowed (`git fetch --unshallow`) and attached to `main` (659-commit fast-forward onto `origin/main`, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `ROADMAP-2026-2029.md` (arithmetic and horizons), `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` full run clean before starting (every gate passed, 22 warnings, all previously diagnosed sandbox limits: no VPS/Stripe/mail/SSH credential, no egress, no Pillow, no JRE). 8 open GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, as every prior cycle.
