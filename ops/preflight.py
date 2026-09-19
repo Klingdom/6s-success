@@ -10869,6 +10869,49 @@ def gate_goals_revenue_current() -> None:
              f"same window.")
 
 
+def gate_goals_revenue_window_current() -> None:
+    """GOALS.md names the exact date its own 30-day revenue framing expires,
+    and nothing re-derives that sentence once the date passes.
+
+    Found 2026-09-19: section 1 says the one $19 sale (2026-08-21) is
+    "inside the trailing 30-day window until 2026-09-20, after which the
+    30-day figure genuinely becomes zero unless a new sale lands first."
+    That sentence is true today and becomes either still-true (a second
+    sale landed) or silently wrong the day after the date it names, the
+    same "corrected once, never re-derived" class gate_goals_revenue_current
+    exists to catch one level up. Nothing was checking the date itself.
+
+    Cannot fail before the cited date passes, by construction: this gate
+    exists to catch the day after, not to predict it.
+    """
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    if not os.path.exists(goals_path):
+        return
+    goals = io.open(goals_path, encoding="utf-8").read()
+
+    m = re.search(
+        r"trailing 30-day window until (\d{4}-\d{2}-\d{2}), after which "
+        r"the 30-day figure genuinely becomes zero unless a new sale "
+        r"lands first",
+        goals)
+    if not m:
+        # Sentence already rewritten (a second sale landed, or a later
+        # cycle already re-derived it past the rollover). Nothing to check.
+        return
+
+    rollover = dt.date.fromisoformat(m.group(1))
+    today = dt.datetime.now(dt.timezone.utc).date()
+    if today > rollover:
+        fail("goals-revenue-window-current",
+             f"GOALS.md still frames the one $19 sale as inside a "
+             f"'trailing 30-day window until {rollover.isoformat()}'. "
+             f"Today is {today.isoformat()}, past that date, so this "
+             f"needs re-deriving against a fresh STATUS.md revenue read: "
+             f"a new sale keeps the sentence, its absence means the "
+             f"30-day figure is now genuinely $0 and the prose must say "
+             f"so, not describe a window that has already closed.")
+
+
 def gate_risks_register_current() -> None:
     """RISKS.md must not go stale against its own stated review cadence, and
     its section 8 summary must not drift from its own table.
@@ -17053,6 +17096,7 @@ def main() -> int:
     run_gate(gate_kitchen_deck_page_counts_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
+    run_gate(gate_goals_revenue_window_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_risk_cross_references_current)

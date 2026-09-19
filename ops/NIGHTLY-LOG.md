@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (closed the open CI thread, found and gated a dated claim in GOALS.md one day from going stale unwatched, no live defect otherwise)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` clean before starting (every gate passed, 22 warnings, all previously diagnosed sandbox limits). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle.
+
+**Closed the top-of-file entry's own open thread rather than reissue it.** That PM check-in had left `checks.yml` run 1179 on the install-button fix (`3097fdf1`) `in_progress` and unconfirmed. Checked live via the GitHub API: both `checks.yml` (run 1179) and `publish-image.yml` (run 345) completed `success` on that commit. 8 open issues confirmed unchanged, all `decision`/`blocked-on-art`; 0 open PRs. (A concurrent PM check-in reached the identical CI-confirmation independently and pushed first; this entry's own finding below is separate and unaffected.)
+
+**Verified the backlog claim rather than trust it, again.** `BACKLOG-2026-09-07.md` sections 2 to 6: every row done or Phil-gated, including section 1b (the 23 unexplained catalogue kits/bundles, issue #32), already correctly parked as Phil's own catalogue-scope call, not something to execute unilaterally in either direction (writing 21 unrequested pages or shrinking the sellable catalogue). The interactive-QA lane on the Home Quest app is closed for every named corner as of the prior cycle; text cold-read lanes (`ops/*.py`, hand-authored JS, zone/commerce pages) are independently exhausted by many separate cycles today.
+
+**The find:** `GOALS.md` section 1 states the one real sale is "inside the trailing 30-day window until 2026-09-20, after which the 30-day figure genuinely becomes zero unless a new sale lands first." Today is 2026-09-19, one day before that date. The sentence is correct right now and was on track to become either still-true (silently, if a second sale lands and nobody updates the prose) or quietly wrong (if none does and the file keeps describing an open window that has closed) the moment it passed, the exact "corrected once, never re-derived" class this repository's own dominant defect list already names, one level below where `gate_goals_revenue_current` already watches. Nothing was checking the date itself.
+
+**Fixed:** new `gate_goals_revenue_window_current` in `preflight.py`, registered in `main()` right after `gate_goals_revenue_current`. It finds the exact cited sentence, parses the date it names, and fails once today is past it, pointing whoever reads the failure at a fresh `STATUS.md` revenue read rather than guessing. Cannot fail before 2026-09-20 by construction; it exists to catch the day after, not to predict it. New `ops/tests/test_gate_goals_revenue_window_current.py` (5 cases: a past rollover date fails, a future one and a rewritten/absent sentence and a missing file all pass clean, and the real committed `GOALS.md` passes clean today), fail-then-pass proved directly against synthetic dates and against the real file.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 22 warnings, identical count and set to the pre-change baseline; `gate_tests()` already globs the new test file, no separate wiring needed). No price, product or site page touched; not a customer-facing change. IndexNow not applicable.
+
+**Went well:** treating "the file is correct today" as insufficient once it names its own expiry date; the fix generalises (re-derive from STATUS.md, don't guess) rather than hardcoding a new date that would just repeat the same failure shape next time.
+
+**Did not go well:** none new this cycle. No unrelated-history checkout shape. Genuine duplicate CI-confirmation work with a concurrent PM check-in, the same collision shape this log has already recorded once before; caught by git's own push rejection, no defect resulted.
+
+**Changing next cycle:** none; if GOALS.md's own weekly re-measurement lands a second sale or a genuine $0 reading before 2026-09-20, the sentence should be rewritten either way and this gate will go quiet on its own (no sentence to match).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console, YouTube OAuth, Stripe business description, Gemini billing, Amazon KDP/Etsy, Apple/Play developer accounts) and the 8 open `decision`/`blocked-on-art` issues, unchanged. Whoever runs the next cycle on or after 2026-09-20: check whether this new gate fired, and if so, re-derive `GOALS.md` section 1 against a fresh `STATUS.md` revenue read rather than editing the sentence to just push the date forward.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_goals_revenue_window_current.py`, command deck. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 (30 minute triage, previous work now confirmed finished including CI, no new item genuinely unblocked, handoff to the standing low-mention ops/*.py cold-read lane)
 
 **NEXT FOR THE OPERATOR: cold-read one of the current lowest-mention `ops/*.py` files (`build_zone_map_pack.py`, `indexnow.py`, `zone_graphics.py`, all 3 mentions in this log; `build_cover.py`, `build_kitchen_deck_page.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`, `linkedin_drafts.py`, `product_links.py`, `social_drafts.py`, all 4), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated, all 8 GitHub issues are unchanged (`decision`/`blocked-on-art`, none pickable), and this standing method has found a real, live defect in most prior cycles that tried it.**
