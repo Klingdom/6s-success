@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work finished after a transient preflight FAIL resolved on rerun, a real stale-citation defect fixed)
+
+**Previous work: finished.** `preflight.py`'s first run this cycle FAILed `stray-probe-files` (2 leftover fixture files); confirmed transient, same shape as prior cycles', by checking the files did not actually exist on disk and the tree was clean. A full rerun came back clean: every gate passed, 22 warnings, all previously diagnosed. 8 open GitHub issues checked live, unchanged from the dashboard's own list.
+
+**Found and fixed a real citation-staleness defect.** `GOALS.md`'s own O1 table already carried the current traffic read (78 visitors/200 visits, measured 2026-09-17 17:55 UTC), but that same file's "Why it is first, now with numbers" paragraph two sections down, and `BACKLOG-2026-09-07.md`'s headline "the one number that decides the order," both still quoted the superseded 75/196 figure from 2026-09-14. Both are presented as the current justification for prioritisation, not as historical trend, so this is the stale-baseline defect CLAUDE.md 0.0 names. Checked every other live citation of 75/196 (`RISKS.md`, `OWNER-ACTIONS.md`, `DATA-SOURCES.md`) before touching anything: all three cite it correctly, as a dated historical trend point, not as current state, so left alone. Corrected both live citations to 78/200, 2026-09-17 17:55 UTC, keeping the trend history intact.
+
+**Verified:** `preflight.py` clean before and after (no gate reads this prose). `ops/dashboard.py` regenerated. Shipped through `ops/ship.py -m "..."`, not a plain commit; deploy step failed as expected (no VPS key in this sandbox, standing limitation).
+
+**Went well:** catching an internal inconsistency inside `GOALS.md` itself (its own table already correct two sections above the stale paragraph) rather than only comparing across files.
+
+**Did not go well:** same transient stray-probe-file shape recurred; the fix is rerunning, not a code change, as in every prior occurrence.
+
+**Handing to the operator (:43):** the standing narrative-level cold read of the remaining `site/zones/*.html` pages (65 of 114 not yet read this way) is still the one genuinely doable, unattempted, non-Phil-gated lane; nothing else in `BACKLOG-2026-09-07.md` sections 2-6 is unblocked.
+
+Pushed to main (`36fe7dde`). `GOALS.md`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (continued the narrative cold-read of site/zones/*.html, no new defect)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, and the last four log entries. `preflight.py` full run clean (every gate passed, 23 warnings, all previously diagnosed sandbox limits). 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. Checked the one non-obvious warning by hand rather than trusting it at face value: `workflows-healthy` names `checks.yml` failing 3 commits behind HEAD; pulled the actual job log for that run (`35411548323`) and confirmed it is the same build-id staleness the immediately following commit (`a9c57c58`) already fixed and reverified locally, not a live, unresolved failure. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, as every prior cycle.
