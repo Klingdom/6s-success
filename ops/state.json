@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-19 01:19",
- "commit": "0c62fc6a",
- "commit_msg": "Merge same-category hazard entries so a zone never shows one warning twice",
+ "generated": "2026-09-19 01:21",
+ "commit": "a9c57c58",
+ "commit_msg": "PM check-in: previous work was NOT finished, real preflight FAIL (stale build-id) found and fixed, no new defect",
  "commits_7d": 1262,
- "commits_total": 2830,
+ "commits_total": 2832,
  "traffic_line": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-18 15:10; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-18 15:10",

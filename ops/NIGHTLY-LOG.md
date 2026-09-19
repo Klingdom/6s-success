@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work was NOT finished: a real stale build-id, found and fixed)
+
+Unshallowed and fast-forwarded cleanly onto origin/main (646-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read git log, the last three NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md sections 2 through 6, and the 8 open GitHub issues live.
+
+**Previous work: not finished.** preflight.py failed build-id: site/build-id.txt said 4014216370a1c8b1, the tree hashed to 73ceff57d0a625d5, meaning the last merge (the hazard-label fix) was committed without ops/ship.py or ops/build_id.py. Confirmed real, not transient: git status was clean before I touched anything, ops/build_id.py --check independently reproduced the mismatch.
+
+**Fixed:** ran ops/build_id.py, reran preflight.py fresh in full (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Shipped through ops/ship.py, not a plain commit.
+
+**Backlog check:** sections 2 through 6 again every row done or Phil-gated; all 8 GitHub issues unchanged, decision or blocked-on-art, none pickable.
+
+**Handing to the operator:** publish-image.yml CI confirmation on this push still pending as this entry is written; the standing narrative cold-read of the remaining site/zones/*.html pages and the mobile quest-app/ON-DEVICE-TEST.md read are unchanged next lanes.
+
+Pushed to main. site/build-id.txt, command deck. No price or product touched, no new page.
+
 ## 2026-09-19, scheduled operator cycle (a real duplicate-content defect found by the first genuine narrative cold-read, fixed and gated)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, and the last four log entries. `preflight.py` clean first (every gate passed, 22 warnings, all previously diagnosed). 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`, none pickable; read issue #32 (kits/bundles) directly and left it alone, its own recommendation (hold, revisit on evidence) still correct and not mine to re-litigate without new evidence. No mail credential, inbox UNCHECKED not empty.
