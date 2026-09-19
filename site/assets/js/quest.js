@@ -544,6 +544,14 @@
   /* The Keep view: what you have already fixed, and what holds it there.
      This is the half of the method the app was missing. */
   function renderKeep() {
+    /* Every repaint starts from zero live URLs. Two of the five paths that
+       reach this function (the Keep nav tab and the restore-backup flow)
+       never called releaseUrls() themselves before this fix, so repeatedly
+       opening Keep leaked a blob per photograph per visit, exactly the
+       failure mode releaseUrls()'s own comment above warns about. Doing the
+       release here once, unconditionally, means no future call site can
+       forget it. */
+    releaseUrls();
     var held = heldZones();
     var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
     var el = $("#keep-body");
@@ -1735,7 +1743,6 @@
         /* The photographs are the record of the last time this zone was right.
            Running it again is a new pass, not a reason to destroy the evidence
            of the old one, so they are deliberately kept. */
-        releaseUrls();
         renderKeep();
       });
     }
@@ -1751,7 +1758,6 @@
         var parts = inp.getAttribute("data-shot-in").split("|");
         var kind = inp.getAttribute("data-kind");
         window.QuestPhotos.put(parts[0], parts[1], kind, f).then(function () {
-          releaseUrls();
           renderKeep();
         }).catch(function (e) {
           alertBox(String(e && e.name) === "QuotaExceededError"
@@ -1767,7 +1773,7 @@
         if (!del) { return; }
         var parts = del.getAttribute("data-shot").split("|");
         window.QuestPhotos.del(parts[0], parts[1], del.getAttribute("data-kind"))
-          .then(function () { releaseUrls(); renderKeep(); });
+          .then(function () { renderKeep(); });
       });
     }
 
