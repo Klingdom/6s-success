@@ -890,6 +890,26 @@
     renderSymptomList();
     pendingSymptom = null;
 
+    /* Also above the gate, and just as deliberately. renderStart() is the
+       handler wired to every "back to start" control that exists (m-back,
+       k-back, f-again), not only the page's own initial render, so it is the
+       one place responsible for making #view-start the visible section
+       again. The gate below decides WHAT that section shows, never WHETHER
+       it is shown: a visitor who has done 0 cards and held 0 zones (still
+       "first run" by isFirstRun()'s own definition) can still reach the map
+       or the Keep screen, because "pick a different room" reveals go-map and
+       go-keep without changing either count. Before this line, such a
+       visitor tapping Back or Draw again from there hit the gate's early
+       return with show("start") never called, so #view-map or #view-keep
+       stayed the visible section and the button did nothing they could see:
+       confirmed live, not assumed, by driving the real flow in a headless
+       browser (sym-other, then go-other, then go-map, then m-back, reading
+       the actual hidden attributes after each step). The initial page load
+       is unaffected: #view-start already ships visible in the markup, and
+       show()'s own everShown flag still treats this as the first call, so
+       the no-scroll-on-arrival behaviour is unchanged. */
+    show("start");
+
     if (applyFirstRunGate()) {
       /* Nothing below this point has anything true to say to somebody with
          no history, and saying it anyway is what the gate exists to stop. */
@@ -933,9 +953,11 @@
     renderRecommendation(p);
 
     /* Counts move as cards get done, so the preview is repainted rather than
-       left showing the numbers from before this session. */
+       left showing the numbers from before this session. show("start") is
+       no longer called again here: the call above, before the gate, already
+       made #view-start the visible section, and calling it a second time
+       would only re-run its scroll and focus() side effects for no reason. */
     renderRoomPreview();
-    show("start");
   }
 
   /* WHAT "WORK A ROOM" ACTUALLY MEANS
