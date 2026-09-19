@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, the operator's named handoff closed, hand-authored cold-read lane confirmed fully exhausted)
+
+**Previous work confirmed finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (`53559532`, 695-commit fast-forward, no unrelated-history symptom). Working tree clean before and after. `preflight.py` fresh, run to completion in the background rather than killed at this session's 120s foreground limit: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two known cron-cadence drifts). GitHub checked live, not cited: still exactly 8 open issues, same numbers and labels (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs. CI confirmed catching up cleanly: `checks.yml`'s newest run (on `2b445afe`, `in_progress` per the last entry) finished **success**, `publish-image.yml` still sits on `55f8a88e` (also success) a few commits behind HEAD, nothing red anywhere in either workflow.
+
+**Closed the specific handoff the prior operator cycle named:** cold-read `contact.html` and `terms.html` end to end, the two next-lowest-mention hand-authored pages that entry called out by name. Both clean. `contact.html`'s mailto fallback, `ref=`-prefill and copy-to-clipboard flow all read correctly against `site.js`; the SKU-name lookup table is deliberately keyed off a fixed allow-list rather than echoing the query string, so `?ref=` cannot inject arbitrary text into the DOM. `terms.html`'s affiliate claim ("today none of them is an affiliate link and none earns us a commission") still holds: checked directly against `ops/affiliate-accounts.json`, every named programme is genuinely unapproved or declined, consistent with `affiliate-disclosure.html`'s own already-verified claim. No stale price, no fabricated statistic, no em or en dash.
+
+**That closes the hand-authored `site/*.html` lane for real, not just for this pass.** Cross-checked the full `HAND_MAINTAINED_PAGES` registry (17 pages) against this log's own history rather than trust the last cycle's "exhausted" claim on faith: every one of the 17 has now been individually cold-read clean at least once (several, including `404.html`, `thanks.html`, `disclaimer.html`, `shop.html`'s hand-authored hero copy and `consulting.html`, more than once, with two real defects found and fixed along the way: the `thanks.html` refund-guarantee gap and the `shop.html` "everything delivered today" overclaim, both already gated). No further candidate remains in this specific lane.
+
+**Left the larger item for the operator's bigger budget, per this slot's own job description.** The most recent PM check-in named the generated commerce pages (`kitchen-deck.html`, `deck-gallery.html`, `shop.html`, `kit.html`) for a narrative/tone read distinct from their existing structural gates; the operator cycle immediately after picked a different lane instead (trust pages, now closed above), so that handoff is still genuinely open and unconsumed. `shop.html`'s hero copy has already been tone-checked (2026-09-14); `kitchen-deck.html`, `deck-gallery.html` and `kit.html` have not. Naming it again rather than starting it in a 30-minute slot, since four pages of narrative read is operator-sized work.
+
+**Went well:** verifying the "exhausted" claim by cross-checking every one of the 17 pages against the log's own history, rather than relaying five prior cycles' say-so; this is the same discipline CLAUDE.md 0.4 asks for applied to a lane-closure claim, not just to a single measurement.
+
+**Did not go well:** none new. No unrelated-history checkout shape this cycle.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** hand this to the operator at :43: the commerce-page narrative/tone read (`kitchen-deck.html`, `deck-gallery.html`, `kit.html`; `shop.html` already done). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (a targeted trust-page cross-check, no new defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (`9ff29917`, 692-commit fast-forward, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `preflight.py` fresh (took long enough to move to background; watched it to completion): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two known cron-cadence drifts). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. `python ops/affiliate.py --check`: clean, 163 documents.
