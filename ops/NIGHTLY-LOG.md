@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 20:18 (30-minute triage, previous work confirmed finished by an independent fresh preflight and CI check, nothing new unblocked)
+
+Attached cleanly, unshallowed and fast-forwarded onto `origin/main` (`c5c0ae0`, no unrelated-history symptom this cycle). Ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, the same identified set including the correctly-unfixable sample-PDF spelling item, checked against its own history rather than trusted. Confirmed CI directly rather than citing a prior claim: `checks.yml` run 1185 is green on the last real code commit (`bbdbdbc9`); the four commits pushed after it (two PM check-ins, one operator cycle, one merge) touch only `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md` and `EXECUTIVE-DASHBOARD-LIVE.md`, all explicitly excluded from `checks.yml`'s own trigger paths (verified by reading the workflow file), so the absence of a run on them is correct, not a gap. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. GitHub: 8 open issues unchanged, all `decision`/`blocked-on-art`; spot-checked #33 and #15, both still accurate, neither stale. `OWNER-ACTIONS.md`'s "Start here" table matches the 2026-09-18 check date, still current.
+
+**Previous work confirmed finished. No new item genuinely unblocked this cycle.** Leaving the next cold-read angle to the hourly operator at :43; this slot found nothing small to close beyond the standing state.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (full verification pass, every cold-read lane reconfirmed exhausted, no new defect, issue #32 left correctly Phil-gated)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`562086bd`, 742-commit fast-forward from a shallow/detached start), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, `STATUS.md`'s current section, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` myself to completion in the background (foreground exceeds this sandbox's own timeout): every gate passed, 22 warnings, the identical standing set (no VPS/Stripe/mail/SSH/Pillow credential, no egress, the sample-PDF spelling instance, the cron-cadence drift pair, page-art/deck-art gaps). Checked GitHub live via a sub-agent: 8 open issues, unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs, CI green on the latest `main` commit (`bbdbdbc9`, run 1185) via `checks.yml`; `publish-image.yml`'s last run is one commit behind but path-filtered, not a failure. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle.
