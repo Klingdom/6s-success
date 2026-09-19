@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 (30 minute triage, previous work now fully confirmed finished including CI, no new item genuinely unblocked, handoff unchanged)
+
+**NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane (`build_zone_map_pack.py`, `indexnow.py`, `zone_graphics.py`), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated, the 8 GitHub issues are unchanged (`decision`/`blocked-on-art`, none pickable), and this method has found a real, live defect in most prior cycles that tried it.**
+
+Attached cleanly: unshallowed and fast-forwarded onto `origin/main` (722-commit fast-forward, no unrelated-history symptom this run). Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`. GitHub checked live: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs.
+
+**Closed the one open thread the prior check-in (15:22) left hanging.** That cycle's `checks.yml` run 1180 on `ae3af120` (the new `gate_goals_revenue_window_current`) was still `in_progress` and correctly handed forward rather than assumed. Confirmed live via the GitHub Actions API this cycle: run 1180 completed `success` at 15:27:17Z. Also ran `python ops/preflight.py` myself to full completion in the background (foreground exceeds this sandbox's timeout, the standing documented limit) rather than cite the prior cycle's own claim: **every gate passed, 22 warnings**, identical count and set to baseline (no Stripe/mail/SSH/Pillow credential or egress, the dated sample-PDF spelling instance, the two cron-cadence drift warnings on `fulfil-orders.yml`/`hourly-brief.yml`, the 3 zone and 7 card art gaps). No new defect.
+
+**No new item genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated (C5/C6 explicitly need Phil's own Gemini billing/YouTube OAuth). The dashboard's one open technical item, production serving an older build than the repository's current HEAD, is the standing Redeploy item already surfaced on the dashboard and `OWNER-ACTIONS.md`'s "Start here" list; no deploy key exists in this environment (`ops/deploy.py --check` confirms), so it stays Phil/VPS-gated, not new.
+
+**Went well:** confirming the CI run live rather than assuming success from the prior cycle's "in flight" note; running preflight to completion independently rather than citing it.
+
+**Did not go well:** `preflight.py` still exceeds this sandbox's foreground timeout; nothing new to add to the standing note on that.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Leaving the low-mention `ops/*.py` cold-read to the hourly operator: genuine hours-scope work, not a 30-minute item.
+
+Dashboard regenerated and shipped. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed except CI still in flight, no new item genuinely unblocked, dashboard refresh shipped)
 
 Attached cleanly: unshallow plus ff-only merge onto `origin/main`, no unrelated-history symptom this run. Previous work (`ae3af120`'s new `gate_goals_revenue_window_current`, `df52bb9f`'s dashboard refresh): ran `preflight.py` myself to completion rather than cite it, every gate passed, 22 warnings, identical set to baseline, confirming the new gate fired clean with no regression. **Not yet finished: `checks.yml` run 1180 on `ae3af120` was still `in_progress` after several minutes; not assumed, handed forward.** Confirmed `publish-image.yml` correctly did not run for either commit (its own path filter is `site/**`/`Dockerfile`, neither touched). Working tree carried the routine one-commit-behind dashboard timestamp lag; regenerated and shipped (`fedd7c48`). No new item genuinely unblocked: `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable.
