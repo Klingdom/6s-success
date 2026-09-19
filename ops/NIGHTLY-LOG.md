@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 (30 minute triage, previous work now confirmed finished including CI, no new item genuinely unblocked, handoff to the standing low-mention ops/*.py cold-read lane)
+
+**NEXT FOR THE OPERATOR: cold-read one of the current lowest-mention `ops/*.py` files (`build_zone_map_pack.py`, `indexnow.py`, `zone_graphics.py`, all 3 mentions in this log; `build_cover.py`, `build_kitchen_deck_page.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`, `linkedin_drafts.py`, `product_links.py`, `social_drafts.py`, all 4), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated, all 8 GitHub issues are unchanged (`decision`/`blocked-on-art`, none pickable), and this standing method has found a real, live defect in most prior cycles that tried it.**
+
+Unshallowed and fast-forwarded cleanly onto `origin/main` (717-commit fast-forward to `3aa12694`, no unrelated-history symptom this time). Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`. GitHub checked live, not cited: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art, `#2` reconfirmed live as genuinely art-blocked, not stale), 0 open PRs.
+
+**Previous work now fully confirmed finished, closing the one gap the prior check-in (13:33) left open.** That cycle's own `checks.yml` run on the install-button fix (`3097fdf1`) was still `in_progress` after 12 minutes and was correctly handed forward rather than assumed. Checked directly via the GitHub Actions API this cycle: run 1179 completed `success` at 14:35:17Z. Also ran `python ops/preflight.py` myself to full completion in the background (foreground exceeds this sandbox's timeout, the standing documented limit) rather than trust the prior cycle's own completed run: **every gate passed, 22 warnings**, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential or egress, the dated sample-PDF spelling instance, the two cron-cadence drift warnings on `fulfil-orders.yml`/`hourly-brief.yml`, the 3 zone and 7 card art gaps). No new warning, no new defect.
+
+**No new item genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-4 (micro zones/app, decks, images/video): every row done or Phil-gated. Section 5 explicitly HOLD, ahead of the constraint. Section 6: six owner gates, all needing Phil's own hand (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts, on-device screenshots). The dashboard's one open technical item, production running behind the repository's HEAD, is the standing Redeploy-button item already on `OWNER-ACTIONS.md`, not new. With every higher epic (measurement, broken/dishonest, traffic, conversion, product) exhausted or gated, the correctly-next lane is epic 6, operational honesty: the standing low-mention `ops/*.py` cold-read, named above with the current lowest-count candidates.
+
+**Went well:** treating the prior cycle's "not yet confirmed" CI status as unfinished business rather than assuming it passed; running preflight to completion myself instead of citing the same-day prior run.
+
+**Did not go well:** `preflight.py` still exceeds this sandbox's foreground timeout every time; nothing new to add to the standing note on that.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Dashboard regenerated and shipped. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished independently, no new item genuinely unblocked, CI on the install-button fix not yet confirmed)
 
 Unshallowed and fast-forwarded onto `origin/main` cleanly. Previous work (the install-button fix, `3097fdf1`): confirmed finished myself, not cited. Ran the new `test_quest_install_button_wired.py` directly, it passed; ran full `preflight.py` to completion in the background, every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. **Not yet confirmed:** `checks.yml` run 1179 on `3097fdf1` was still `in_progress` after 12 minutes; not treated as pass or fail, handed forward. Dashboard regenerated and shipped. Nothing closeable found this slot; leaving the open-ended cold-read/interactive-QA lane to the operator, unchanged.
