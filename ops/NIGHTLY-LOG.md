@@ -22,6 +22,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no page changed, IndexNow not applicable.
 
+**Push conflict, resolved.** A concurrent PM check-in pushed its own `ops/NIGHTLY-LOG.md` entry and command-deck regeneration to `origin/main` between this cycle's fetch and its push. `ops/ship.py` correctly refused rather than silently overwriting a real source file; merged by hand (kept both log entries, newest first, no content lost) and regenerated the three dashboard files fresh from the merged tree rather than hand-resolving their conflict markers, per the standing rule that a generated file's conflict is resolved by rerunning the generator, not by editing its output. `build_id.py --check` confirmed current after the merge (no `site/` file touched by either side). Pushed the merge commit (`86c8cf1e`); `checks.yml` run 1165 was still `in_progress` after roughly 20 minutes at the time this entry closes, longer than the ~18 minutes the comparable run 1164 took, consistent with this account's own measured cron/queue congestion (`gate_scheduled_workflow_cadence`'s standing warning); the next cycle should confirm its result rather than assume either outcome.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished and independently re-verified against CI, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the narrative-level cold read of the remaining `site/zones/*.html` pages (75 of 114 not yet read this way), because that is still the one genuinely doable, unattempted, non-Phil-gated lane, and the last cycle's first pass at it found a real live defect on the first try.
