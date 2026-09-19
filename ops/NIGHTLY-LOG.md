@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, no new defect found, handoff continues the workflow YAML tier)
+
+NEXT FOR THE OPERATOR: cold read the .github/workflows/*.yml tier, starting with mobile-checks.yml, publish-mcp.yml, roadmap-report.yml and status-email.yml (lowest mention count in this log), because the JS lane (site.js, measure.js, shop.js, photos.js, quest.js) and the mobile lib lane are now fully closed as of today, and this workflow tier was last confirmed swept several days ago.
+
+**Previous work confirmed finished, not just cited.** Attached clean after unshallowing. All three CI runs the prior cycle handed off (checks.yml 1173 and 1174, publish-image.yml 342) checked live via the API: completed, success, on the correct commits. Preflight fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Working tree clean, main already pushed. Backlog sections 2 to 6 again all done or Phil gated. 8 open GitHub issues unchanged, all decision or blocked on art, none pickable. No red gate and no stale document found to close this slot.
+
+Command deck regenerated only. No price, product or page touched, no new page. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, local preflight verified clean, three fresh CI runs handed to the next cycle)
 
 NEXT FOR WHOEVER PICKS THIS UP: before starting anything new, check the conclusion of `checks.yml` run 1173 (`35430905333`, commit `55f8a88e`), `checks.yml` run 1174 (`35431327358`, commit `c3fdbdce`) and `publish-image.yml` run 342 (`35430905445`, commit `55f8a88e`). All three were still `in_progress` at the end of this slot; a real failure in any of them is this session's fix to verify, since both commits are the operator cycle's own object-URL-leak fix and its gate, not a fresh finding.
