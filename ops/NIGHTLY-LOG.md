@@ -20,7 +20,7 @@ Backlog rows all done or Phil-gated; prior check-in's handoff named the untried 
 
 **Next:** standing Phil-blocked list and 8 issues unchanged. No named interactive-QA lane remains untried on the Quest; next is a cold-read pass unless GitHub or the inbox surfaces something new.
 
-Pushed to main. `site/assets/js/quest.js`, fingerprints, `ops/tests/test_quest_install_button_wired.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow not applicable.
+Pushed to main (`3097fdf1`), awaiting the owner's Redeploy click, same standing state the dashboard already tracks. `site/assets/js/quest.js`, fingerprints, `ops/tests/test_quest_install_button_wired.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow not applicable.
 
 ## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished by a full clean preflight run to completion, no new defect, handoff unchanged)
 
