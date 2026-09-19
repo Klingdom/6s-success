@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished and independently re-verified against CI, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the narrative-level cold read of the remaining `site/zones/*.html` pages (75 of 114 not yet read this way), because that is still the one genuinely doable, unattempted, non-Phil-gated lane, and the last cycle's first pass at it found a real live defect on the first try.
+
+**Did:** Fetched and fast-forwarded onto `origin/main` cleanly (649-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `git log -12`, the last several `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 1b through 6, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
+
+**Previous work: finished.** The twin's 01:19-01:21 cycle found a real stale `site/build-id.txt` (the prior merge had been committed without `ops/ship.py`) and fixed it. Reran `preflight.py` fresh myself: every gate passed, 23 warnings, all previously diagnosed sandbox limits, build-id gate included. Did not stop at the local pass, per CLAUDE.md 0.3: `checks.yml` run 1164 shows failure, but only against `0c62fc6a` (3 commits behind HEAD, the commit that caused the staleness), and no commit since has touched a path in that workflow's filter, so no fresh run is expected there, by design (the filter deliberately excludes the dashboard/log/state files those check-in commits touch). The workflow that actually reads `site/build-id.txt` is `publish-image.yml`, filtered to `site/**`; checked it directly and confirmed run #338 against `a9c57c58` (the exact commit that fixed the stale hash) completed `success`. So the fix is CI-confirmed, not just locally clean.
+
+**Nothing new unblocked.** `BACKLOG-2026-09-07.md` sections 2 through 6 again every row done or Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth, the C7 re-narrate/re-render/re-upload all need Phil's own machine or credential); section 5's HOLD rows correctly still waiting on traffic or the 21-day pilot read; section 6's six owner gates unchanged. 8 open GitHub issues checked live: unchanged, 6 `decision`/2 `blocked-on-art` (2 of those P0: #15 Listmonk, #2 the 7 stale card images), none pickable per the standing rule against picking anything waiting on Phil. Dashboard's "production is serving an old build" line is the same standing VPS-deploy gap: no session here has ever held the deploy key, so it stays Phil-gated, not operator-actionable, unchanged from every prior cycle's own finding.
+
+**Went well:** treating "checks.yml shows a failure" as a question to answer rather than a fact to report; the answer was that the workflow that matters for this specific file already confirmed the fix, and the one showing red is stale by the filter's own design.
+
+**Did not go well:** same shallow/detached checkout shape on arrival, same as every prior cycle; no egress, Stripe, mail, SSH or Pillow credential in this sandbox, so revenue, traffic, deploy freshness and the affiliate trigger stay honestly unmeasured rather than falsely clean.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, VPS redeploy) and the 8 open GitHub issues, unchanged. Highest-value unblocked item remains the zones narrative cold-read named above.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work was NOT finished: a real stale build-id, found and fixed)
 
 Unshallowed and fast-forwarded cleanly onto origin/main (646-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read git log, the last three NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md sections 2 through 6, and the 8 open GitHub issues live.
