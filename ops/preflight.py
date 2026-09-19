@@ -382,6 +382,31 @@ def all_pages() -> list:
                   if os.sep + "downloads" + os.sep not in f)
 
 
+def book_chapter_files() -> list:
+    """The 50 files `ops/build_epub.py` actually reads to build the paid book.
+
+    Found 2026-09-19: `content/**/*.html` and `content/**/*.md` are, as a
+    whole, correctly excluded from `gate_no_stray_dashes` and from
+    `gate_unsourced_stats` (which only scans `all_pages()`, and `all_pages()`
+    itself excludes `downloads/`). That exclusion's own reasoning is right for
+    almost everything under `content/`: pre-existing archives, drafts and
+    review notes that were never going to ship. But `content/book/*hapter*/
+    chapter_*_final.html` is not an archive. It is the literal, only source
+    `ops/build_epub.py`'s own glob (`BOOK.glob("*hapter*/chapter_*_final.html")`)
+    reads to write `build/6S-Success-Home-Edition.epub`, the $19 product this
+    business has actually sold once. Nothing anywhere checked that source for
+    an em dash, an en dash, a fabricated statistic or an uncited appeal to
+    research, the exact three defect classes CLAUDE.md sections 8 and 9 rule
+    out and every other customer-facing surface on this site is already
+    gated against. Checked directly before writing a gate: all 50 chapters
+    are clean today (0 em/en dashes, 0 flagged stat/authority hits), so this
+    closes a latent gap, not a live defect, the same posture as
+    `gate_hero_fallback_current` and `gate_prerender_shop_current`.
+    """
+    return sorted(glob.glob(os.path.join(
+        ROOT, "content", "book", "*hapter*", "chapter_*_final.html")))
+
+
 _HEAD_SCRIPT_RE = re.compile(r"<script\b([^>]*)>", re.I)
 
 
@@ -569,6 +594,30 @@ def gate_unsourced_stats() -> None:
             if not re.search(r"source|according to|cite|footnote",
                              window, re.I):
                 hits.append((os.path.basename(f), window.strip()[:96]))
+
+    # THE BOOK MANUSCRIPT, the actual EPUB build source, not just the site.
+    #
+    # `all_pages()` is `site/**/*.html` and excludes `downloads/` on purpose;
+    # neither ever reaches `content/book/*hapter*/chapter_*_final.html`, the
+    # 50 files `ops/build_epub.py` reads to write the one product this
+    # business has ever sold a copy of. Found 2026-09-19: this class of
+    # defect (a fabricated statistic, an uncited appeal to research) had zero
+    # coverage on the book at all. See `book_chapter_files()`'s own docstring.
+    import html as _html
+    for f in book_chapter_files():
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", s, flags=re.S)
+        text = _html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body)))
+        for m in list(STAT.finditer(text)) + list(STAT_BIG.finditer(text)):
+            window = text[max(0, m.start() - 110):m.end() + 60]
+            if CLAIMY.search(window) and not re.search(
+                    r"source|according to|cite|\[\d\]|footnote", window, re.I):
+                hits.append((os.path.relpath(f, ROOT), window.strip()[:96]))
+        for m in AUTHORITY.finditer(text):
+            window = text[max(0, m.start() - 90):m.end() + 110]
+            if not re.search(r"source|according to|cite|footnote",
+                             window, re.I):
+                hits.append((os.path.relpath(f, ROOT), window.strip()[:96]))
     if hits:
         warn("unsourced-stats",
              f"{len(hits)} claim(s) about people or results with no source "
@@ -6714,6 +6763,12 @@ def gate_no_stray_dashes() -> None:
     actually names, where a violation is cheap to prevent and there is no
     legitimate reason for prose to reach a comment or a string.
 
+    One exception to that blanket content/ exclusion, added 2026-09-19:
+    `book_chapter_files()`, the 50 chapters `ops/build_epub.py` actually
+    builds the paid EPUB from. That subtree is not an archive; it is live
+    shipping product source, and nothing checked it for this rule at all.
+    See that function's own docstring.
+
     A handful of files in this exact codebase legitimately contain the two
     characters as literal data, because their job is to detect or fix them
     (this file included, and fix_dashes.py, audit_pages.py, build_epub.py,
@@ -6748,11 +6803,70 @@ def gate_no_stray_dashes() -> None:
             em, en = body.count(dashes[0]), body.count(dashes[1])
             if em or en:
                 hit.append(f"{rel} ({em} em, {en} en)")
+    for f in book_chapter_files():
+        looked += 1
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        em, en = body.count(dashes[0]), body.count(dashes[1])
+        if em or en:
+            hit.append(f"{os.path.relpath(f, ROOT)} ({em} em, {en} en)")
     if hit:
         fail("no-stray-dashes",
              f"{len(hit)} of {looked} source files outside the exempt "
              f"detector tools carry an em or en dash: {hit[:5]}. CLAUDE.md: "
              f"zero, anywhere, including code comments.")
+
+
+# Chapter 2 of the book deliberately names "Set in Order" once, as one of
+# three translations OTHER 6S/5S books use for the second step, in a
+# paragraph that also names "Straighten" and "Systematize" the same way and
+# is immediately followed by the book's own figure (Figure 2-05) mapping
+# Seiton to "Straighten," the term the book actually uses everywhere else
+# (5 more uses in that same chapter). Read in full before whitelisting:
+# CLAUDE.md's "Straighten, never Set in Order" (D-014) exists so THIS
+# project never uses the retired name as its OWN label for the step, not to
+# forbid an accurate, transparent aside about terminology differing across
+# the field, the kind of thing a reader who has seen another 5S book would
+# otherwise find confusing if it went unmentioned. Keyed to the exact
+# chapter so a NEW, unreviewed occurrence anywhere else still fails.
+_BOOK_SET_IN_ORDER_REVIEWED = {
+    os.path.join("content", "book", "6S-Success-Chapter-2",
+                  "chapter_02_final.html"),
+}
+
+
+def gate_book_no_retired_terminology() -> None:
+    """The paid book must not use "Set in Order" as ITS OWN name for step 2.
+
+    D-014 (settled): "Straighten," never "Set in Order." Every other
+    customer-facing surface (114 zone pages, the card decks, the shop) is
+    already mechanically checked or has been hand-corrected for this by
+    name (GitHub issue #29 pulled 15 deck-gallery cards for exactly this).
+    The book manuscript, `content/book/*hapter*/chapter_*_final.html`, the
+    literal source `ops/build_epub.py` builds the $19 EPUB from, had never
+    been checked at all. Found 2026-09-19 while adding book-chapter coverage
+    to `gate_no_stray_dashes`/`gate_unsourced_stats`: one real hit, chapter 2,
+    reviewed and found to be a legitimate, transparent aside about other
+    books' terminology rather than the book adopting the retired name as its
+    own (see `_BOOK_SET_IN_ORDER_REVIEWED`'s own comment). Whitelisted by
+    exact file so this gate still fails on any occurrence anywhere else,
+    proved directly in `ops/tests/test_gate_book_no_retired_terminology.py`.
+    """
+    pat = re.compile(r"set in order", re.I)
+    hit = []
+    for f in book_chapter_files():
+        rel = os.path.relpath(f, ROOT)
+        if rel in _BOOK_SET_IN_ORDER_REVIEWED:
+            continue
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        text = re.sub(r"<[^>]+>", " ", body)
+        n = len(pat.findall(text))
+        if n:
+            hit.append(f"{rel} ({n})")
+    if hit:
+        fail("book-no-retired-terminology",
+             f"{len(hit)} book chapter(s) use the retired name \"Set in "
+             f"Order\" for step 2 with no review recorded: {hit}. D-014: "
+             f"\"Straighten,\" never \"Set in Order.\"")
 
 
 def gate_indexable_pages_have_schema() -> None:
@@ -17176,6 +17290,7 @@ def main() -> int:
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)
     run_gate(gate_no_stray_dashes)
+    run_gate(gate_book_no_retired_terminology)
     run_gate(gate_indexable_pages_have_schema)
     run_gate(gate_checker_scope)
     run_gate(gate_hooks_enabled)
