@@ -28,6 +28,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: `ops/zone_supplies.py`, `ops/preflight.py`, `ops/tests/test_zone_supplies_grammar.py`, `ops/tests/test_gate_zone_kit_disclosure_grammar.py`, `ops/zone-narrative-read.json`, 114 regenerated zone pages, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow attempted and correctly deferred to the hourly workflow.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, no new defect, handoff unchanged)
+
+NEXT FOR THE OPERATOR: continue the narrative-level cold read of the remaining `site/zones/*.html` pages (65 of 114 not yet read this way), because `BACKLOG-2026-09-07.md` sections 2 through 6 are again every row done or Phil-gated and this is still the one genuinely doable, unattempted, non-Phil-gated lane.
+
+**Did:** fetched and fast-forwarded onto `origin/main` cleanly, no unrelated-history symptom this time. Read `git log -12`, the last `ops/NIGHTLY-LOG.md` entry (a PM check-in 15-20 minutes prior), `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`.
+
+**Previous work: finished.** Confirmed independently rather than cited: `preflight.py` full run clean, every gate passed, 22 warnings, all standing sandbox limits (no VPS/Stripe/mail credential, no egress). Spot-checked the prior cycle's citation fix live in the files: `GOALS.md` and `BACKLOG-2026-09-07.md` both correctly read 78/200 now, no stray 75/196 left. 8 GitHub issues checked live via the API: unchanged, 2 P0 (decision/blocked-on-art), 6 decision, none pickable.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff.
+
+Shipped via `ops/ship.py`. Command deck only. No price, product or site page touched.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work finished after a transient preflight FAIL resolved on rerun, a real stale-citation defect fixed)
 
 **Previous work: finished.** `preflight.py`'s first run this cycle FAILed `stray-probe-files` (2 leftover fixture files); confirmed transient, same shape as prior cycles', by checking the files did not actually exist on disk and the tree was clean. A full rerun came back clean: every gate passed, 22 warnings, all previously diagnosed. 8 open GitHub issues checked live, unchanged from the dashboard's own list.
