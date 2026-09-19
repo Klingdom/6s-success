@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished by a full clean preflight, no new defect, handoff to the operator unchanged)
+
+Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto origin/main (85036ec8, 710-commit fast-forward, no unrelated-history symptom). Read git log, the last several NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md and OWNER-ACTIONS.md. GitHub checked live: 8 open issues unchanged, all decision/blocked-on-art (33/32/31/21/18/15 decision, 29/2 blocked-on-art), 0 open PRs, matching the prior cycle's own claim exactly.
+
+**Previous work confirmed finished.** The top-of-file entry closed the interactive-QA handoff (recommendation action path, Keep backup/restore round trip, real-referring-page deep link), all three driven live in headless Chromium, no defect found. Ran preflight.py fresh to completion in the background: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress) plus the already-documented sample-PDF spelling warning, whose own code comment records it was investigated and partly fixed on 2026-09-16 and the one remaining instance needs font tooling nothing here has. Spot-checked one candidate for a stale finding: the sole live "Set in Order" string is a deliberate sentence in the sample book explaining translators use different English words for the same step, not the rejected-term defect the dashboard's canon-defects row tracks. No new defect found anywhere this pass.
+
+**No new item genuinely unblocked.** BACKLOG-2026-09-07.md sections 2 to 6: every row done or Phil-gated. OWNER-ACTIONS.md unchanged. The one concrete next step the closing entry named (driving the install-prompt flow and the "show me the house instead" escape hatch through the same interactive-QA method) is real but untried and open-ended, not a 30-minute item; leaving it for the operator at :43, which already owns this lane and found three real defects driving it earlier today.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open decision/blocked-on-art issues, unchanged. Operator: continue the interactive-QA method into the install-prompt flow and the symptom-skip escape hatch, the two named corners nothing has driven yet.
+
+Command deck regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (finished the interactive-QA handoff: recommendation action path, backup/restore round trip, and the real-referring-page deep link, all driven live, no new defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (707-commit fast-forward to `0d31b75a`, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` fresh, run to completion in the background past this session's own foreground timeout: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress). GitHub checked live: 8 open issues unchanged, all `decision`/`blocked-on-art` (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs. CI: `checks.yml` run 1178 (`03eab6b8`, already merged into HEAD) confirmed converged to success. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle.
