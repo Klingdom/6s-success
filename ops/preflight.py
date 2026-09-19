@@ -1057,7 +1057,8 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "refresh_hero_fallback.py": ("gate_hero_fallback_current",),
     "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
                       "gate_site_verification_declared",
-                      "gate_sameas_backed_by_onsite_link"),
+                      "gate_sameas_backed_by_onsite_link",
+                      "gate_sitemap_lastmod_current"),
     "build_social_pins.py": ("gate_dashboard_social_pins_live",),
     "build_thumbnails.py": ("gate_dashboard_thumbnails_live",),
 }
@@ -5737,6 +5738,81 @@ def gate_sitemap_images_current() -> None:
         fail("sitemap-images-current",
              f"{len(mismatched)} page(s) where the sitemap's image entry "
              f"disagrees with the page's own og:image: {mismatched[:3]}. "
+             "Run python ops/build_seo.py.")
+
+
+def gate_sitemap_lastmod_current() -> None:
+    """A sitemap lastmod is a crawl-priority hint, and it is worthless once it
+    stops moving.
+
+    Found 2026-09-19: `build_sitemap()` kept whatever lastmod a URL already
+    carried unless the row was deleted by hand ("bump it deliberately by
+    removing the row", its own comment said), and nobody had deleted one
+    since 2026-08-24. 24 of 188 sitemap URLs, the home page and quest.html
+    (the single most-engaged page on the site, per GOALS.md) among them,
+    carried a lastmod that predated a real, committed content change by up
+    to two weeks; `deck/entryway-print-and-play.html` was 15 days stale
+    against a real edit to its own illustrated-card count. Fixed at the
+    source: `ops/build_seo.py`'s `_content_hash()` hashes each page with the
+    `ops/fingerprint_assets.py` cache-bust query string stripped (so one
+    shared-asset edit does not read as all 191 pages changing, the exact
+    self-referential loop a 2026-09-04 attempt at this hit and reverted
+    from), and `build_sitemap()` only moves lastmod when that hash moves.
+    `ops/sitemap-content-hashes.json` carries the hash each URL had at its
+    last build.
+
+    This gate re-derives that hash directly from the real, committed page,
+    independent of `ops/build_seo.py`'s own write path, and fails if it
+    disagrees with what the hash file has on record: that shape means a page
+    was edited without rerunning the generator, the same "source corrected,
+    artifact never re-derived" class this repository's other gates already
+    close elsewhere.
+    """
+    import importlib.util as _u
+    spec = _u.spec_from_file_location(
+        "build_seo", os.path.join(ROOT, "ops", "build_seo.py"))
+    if spec is None or spec.loader is None:
+        warn("sitemap-lastmod-current", "ops/build_seo.py not importable; not checked.")
+        return
+    m = _u.module_from_spec(spec)
+    spec.loader.exec_module(m)
+
+    sitemap_fp = os.path.join(SITE, "sitemap.xml")
+    if not os.path.exists(sitemap_fp):
+        return
+    lastmods = m._existing_lastmods()
+    if not lastmods:
+        return
+    recorded = {}
+    if os.path.exists(m.CONTENT_HASH_FILE):
+        try:
+            recorded = json.load(io.open(m.CONTENT_HASH_FILE, encoding="utf-8"))
+        except (OSError, ValueError):
+            fail("sitemap-lastmod-current",
+                 "ops/sitemap-content-hashes.json exists but is not valid "
+                 "JSON. Run python ops/build_seo.py.")
+            return
+
+    stale = []
+    for url in lastmods:
+        path = url[len(m.BASE):]
+        if path in ("", "/"):
+            fp = os.path.join(SITE, "index.html")
+        elif path.endswith("/"):
+            fp = os.path.join(SITE, path.lstrip("/"), "index.html")
+        else:
+            fp = os.path.join(SITE, path.lstrip("/"))
+        if not os.path.isfile(fp):
+            continue
+        recorded_hash = recorded.get(url)
+        if recorded_hash is None:
+            continue
+        if m._content_hash(fp) != recorded_hash:
+            stale.append(url)
+    if stale:
+        fail("sitemap-lastmod-current",
+             f"{len(stale)} sitemap URL(s) changed since ops/build_seo.py "
+             f"last ran, so their lastmod is stale: {stale[:5]}. "
              "Run python ops/build_seo.py.")
 
 
@@ -17195,6 +17271,7 @@ def main() -> int:
     run_gate(gate_accept_image_derivation)
     run_gate(gate_sitemap_complete)
     run_gate(gate_sitemap_images_current)
+    run_gate(gate_sitemap_lastmod_current)
     run_gate(gate_indexnow_current)
     run_gate(gate_site_verification_declared)
     run_gate(gate_room_images_stable)

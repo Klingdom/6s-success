@@ -23,12 +23,13 @@ every internal link and the on-disk file both use, so the site stays correct
 under any static host and the extensionless variant consolidates into it.
 The home page canonicals to the bare origin.
 """
-import json, os, re, datetime, subprocess
+import hashlib, json, os, re, datetime, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 BASE = "https://6s-success.com"
 IMG = BASE + "/assets/img/"
+CONTENT_HASH_FILE = os.path.join(ROOT, "ops", "sitemap-content-hashes.json")
 
 BEGIN, END = "<!-- SEO:BEGIN -->", "<!-- SEO:END -->"
 
@@ -750,6 +751,51 @@ def _existing_lastmods():
     return dict(re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", src))
 
 
+_FINGERPRINT_REF = re.compile(
+    r"(assets/[A-Za-z0-9_./-]+\.(?:css|js))\?v=[0-9a-f]+")
+
+
+def _content_hash(fp):
+    """A hash of a page's content with the ops/fingerprint_assets.py cache-bust
+    query string stripped, so a shared stylesheet or script picking up a new
+    hash does not, on its own, look like every page that references it changed.
+
+    Found 2026-09-19 checking build_sitemap()'s own "keep the lastmod already
+    recorded" comment against what actually happens: 24 of 188 sitemap URLs,
+    the home page and quest.html among them, had a real committed content
+    change since their recorded lastmod, some over two weeks old, because
+    nothing ever re-derives the date once a page ships; the "bump it
+    deliberately by removing the row" the old comment relied on had not
+    happened once since 2026-08-24. A raw content or git-date comparison was
+    tried before and reverted (see the comment in build_sitemap() below) for
+    exactly the failure this file strips out: every one of the 191 pages
+    shares site.css/site.js/measure.js, so any single asset edit changed the
+    query string on all of them, and a plain diff read that as 191 pages
+    changing at once.
+    """
+    try:
+        src = open(fp, encoding="utf-8").read()
+    except OSError:
+        return None
+    norm = _FINGERPRINT_REF.sub(r"\1", src)
+    return hashlib.sha256(norm.encode("utf-8")).hexdigest()[:16]
+
+
+def _load_content_hashes():
+    if not os.path.exists(CONTENT_HASH_FILE):
+        return {}
+    try:
+        return json.load(open(CONTENT_HASH_FILE, encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _save_content_hashes(hashes):
+    with open(CONTENT_HASH_FILE, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(hashes, f, indent=2, sort_keys=True)
+        f.write("\n")
+
+
 def _xml_escape(text):
     return (text or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
@@ -780,11 +826,30 @@ def page_image(fp):
 
 def build_sitemap():
     """lastmod is per-URL, not a single stamp for the whole file: a page whose
-    working-tree content has not moved since the last commit keeps the
-    lastmod already in sitemap.xml, and only a page that actually changed (or
-    is new) gets today's date. See issue #23: the old version stamped every
-    row with datetime.date.today() on every run, so adding one page rewrote
-    the other 180-plus with a false modification date.
+    own content (fingerprint query strings aside) has not changed since the
+    last run keeps the lastmod already in sitemap.xml, and only a page whose
+    real content changed, or that is new, gets today's date. See issue #23:
+    the old version stamped every row with datetime.date.today() on every
+    run, so adding one page rewrote the other 180-plus with a false
+    modification date.
+
+    2026-09-19: this used to keep the recorded lastmod for any URL already in
+    the sitemap, full stop, with a comment explaining that a raw git-date or
+    working-tree comparison had been tried and reverted because every page
+    shares site.css/site.js/measure.js, so one shared-asset edit changed the
+    fingerprint query string on all 191 pages and looked like all 191
+    changing at once. That was correct, but the fix it settled for (track
+    nothing, bump lastmod by hand by deleting the row) was never actually
+    exercised: 24 of 188 URLs, including the home page and quest.html, had a
+    real content change land after their recorded lastmod, some over two
+    weeks earlier, with nobody deleting a row. `_content_hash()` now strips
+    exactly the query string that caused the false positive and hashes what
+    is left, so a real edit still trips it and a fingerprint-only rebuild
+    still does not; `ops/sitemap-content-hashes.json` carries the hash this
+    build last saw for each URL. A URL with no prior hash on record keeps
+    whatever lastmod is already in the sitemap (matching this function's old
+    behaviour, so a first run after this change does not stamp every page at
+    once); only a hash that has changed since the last run moves lastmod.
     """
     today = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "resources.html": "0.9", "method.html": "0.9",
@@ -797,25 +862,23 @@ def build_sitemap():
                          os.path.join(SITE, fn)))
     entries += scan_extra_pages()
     prev = _existing_lastmods()
+    prev_hashes = _load_content_hashes()
+    new_hashes = {}
     rows = []
     for url, priority, changefreq, fp in entries:
-        # An existing URL keeps the lastmod already recorded; only a URL the
-        # sitemap has never carried gets today.
-        #
-        # This deliberately does NOT ask git when the file last changed. I
-        # tried that on 2026-09-04 to make the value platform independent, and
-        # it is self-referential: the sitemap records commit dates, committing
-        # the sitemap changes those dates, so the next run produces a different
-        # file and generator-ownership fails forever. It also does not ask
-        # whether the working tree differs from HEAD, which was the previous
-        # version and was environment dependent for the same reason the gate
-        # regenerates pages before comparing them.
-        #
-        # The cost is that editing a page no longer bumps its lastmod by
-        # itself. That is the right trade: lastmod is a hint to a crawler, and
-        # a stable build is worth more than an automatic hint. Bump it
-        # deliberately by removing the row.
-        lastmod = prev.get(url) or today
+        # A URL keeps its recorded lastmod unless its content-hash has moved
+        # since the hash this build last saw, or it has none on record yet
+        # (a URL the sitemap has never carried, or one that predates this
+        # tracking file) and none in the sitemap either, in which case it is
+        # new and gets today. See _content_hash()'s own docstring for why a
+        # fingerprint query string does not count as a change.
+        content_hash = _content_hash(fp)
+        new_hashes[url] = content_hash
+        changed = (url in prev_hashes and content_hash != prev_hashes[url])
+        if url in prev and not changed:
+            lastmod = prev[url]
+        else:
+            lastmod = today
         # Google's sitemap image extension: the same og:image already shown
         # when this page is shared, so a stranger's search for a photo of a
         # zone can land here even before organic text ranking does. A page
@@ -850,6 +913,7 @@ def build_sitemap():
            '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
            + "\n".join(rows) + "\n</urlset>\n")
     open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8", newline="\n").write(xml)
+    _save_content_hashes(new_hashes)
     return len(rows)
 
 
