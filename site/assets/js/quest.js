@@ -1481,6 +1481,24 @@
     var room = opts.room != null ? opts.room : ($("#room-select").value || null);
     var zone = opts.zone != null ? opts.zone : null;
     var s = opts.s != null ? opts.s : ($("#s-select").value || null);
+
+    /* "Work a room" and "One S across a room" both carry the caption "Uses
+       the room chosen above", a promise that a room is chosen, not merely
+       optional. build()'s own room filter is skipped entirely when roomName
+       is falsy, on purpose, because mode "draw" passes null there deliberately
+       to mean "anywhere in the house". "room" and "spass" never meant that:
+       before this guard, tapping either button with the dropdown still on
+       its default "Choose a room" silently built a queue from every room in
+       the house (114 cards for a fresh house on "spass"), the copy and the
+       control disagreeing with nobody told. Confirmed live: room-select.value
+       was "" and the card that opened read "1 of 114", not a single room's
+       count. Guarding here, not only on the two click handlers, covers every
+       caller of these two modes, not just today's two buttons. */
+    if ((mode === "room" || mode === "spass") && !room) {
+      alertBox("Choose a room first.");
+      return;
+    }
+
     var queue = build(mode, mode === "draw" ? null : room, zone,
                       mode === "spass" ? s : null);
     if (!queue.length) {
