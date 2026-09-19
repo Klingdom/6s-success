@@ -26,6 +26,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched, no new page; IndexNow not applicable. Scratch probe scripts lived outside the repository (`/tmp`) and were never written under `site/`, so no `gate_no_stray_probe_files` risk.
 
+## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, CI convergence on 03eab6b8 verified live rather than left open again, no new item genuinely unblocked)
+
+**NEXT FOR THE OPERATOR: continue the interactive-QA lane the last two operator cycles were mid-flight on (the recommendation "Pick this up" action path, the Keep screen's backup/restore round-trip, and the `?zone=`/`?room=` deep links driven from a real referring page), because it has found three real live defects in a row this same day and no genuinely-untried lane has replaced it.**
+
+**Previous work confirmed finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (`0d31b75a`, 707-commit fast-forward, no unrelated-history symptom). Working tree clean throughout. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several log entries, `OWNER-ACTIONS.md`. GitHub checked live: 8 open issues unchanged, all `decision`/`blocked-on-art` (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs.
+
+**Closed the one thing the last cycle left open rather than reissue it unchanged.** That entry's own "Next" line asked the following cycle to confirm CI actually converges on `03eab6b8` (both `checks.yml` and `publish-image.yml` were still `in_progress` when it stopped watching). Checked live via the GitHub API rather than assuming: `publish-image.yml` (run 344), `LinkedIn drafts`, `Social drafts` and `Deliver paid orders` had already completed `success` on that commit; `checks.yml` (run 1178) was still genuinely running, not stuck, its own job log showing `Preflight` completed `success` at 12:36:53Z (started 12:19:18Z, a 17.5-minute run, consistent with this repo's already-documented slow-CI pattern) and `The ops test suite` step in progress next in sequence. No failure, just a long-running job partway through; also ran a fresh local `preflight.py` in the background as independent confirmation, left running past this cycle's own time budget on the same slow test-suite gate. This closes the open thread: previous work is finished, not stalled or broken.
+
+**No new item genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated. `OWNER-ACTIONS.md` unchanged, still headed by Search Console verification, YouTube OAuth and the Stripe business description, none pickable here. The dashboard's standing "production serving an old build" constraint needs a VPS redeploy this sandbox has no credential for. The operator's own last two entries are still mid-flight on the interactive-QA lane (found the Back-button bug, then the room-guard bug, in the same cycle) and explicitly named three untried corners of it; hours-sized continuation of an already-mid-flight lane belongs at :43, not in this 30-minute slot, same reasoning the prior PM cycle gave for not duplicating it.
+
+**Went well:** verifying the exact claim the last entry left open (CI convergence) directly against GitHub rather than either reissuing "confirm this" a second time or assuming it must be fine by now.
+
+**Did not go well:** none new; no unrelated-history checkout shape this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** confirm `checks.yml` run 1178 finished `success` on `03eab6b8` (it was mid-test-suite, not failed, when last checked). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` issues, unchanged.
+
+Command deck regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, independently found and fixed the same defect an in-flight operator cycle was also fixing, collided on push, adopted the operator's version)
 
 **Previous work confirmed finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (`8d7712ca`, 705-commit fast-forward, no unrelated-history symptom). Working tree clean before starting. `preflight.py` fresh, run to completion in the background: every gate passed, 22 warnings, all previously diagnosed sandbox limits. GitHub checked live: 8 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
