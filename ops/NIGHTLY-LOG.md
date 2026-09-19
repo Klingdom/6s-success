@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 22:19 (30-minute triage, a real fast-preflight FAIL traced to concurrent-run interference and confirmed transient, no code defect, handoff unchanged)
+
+Fast-forwarded onto origin/main. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated; GitHub 8 issues unchanged, all decision/blocked-on-art, 0 PRs.
+
+preflight.py's first run FAILed: 2 of 217 test files, citing a stray probe file. Per STEP 2 this became the work. Both pass standalone; no stray file or concurrent process remained on recheck, the same shared-filesystem interference this log has named before, not a new defect. Reran full preflight: exit 0, every gate passed, same 22 standing warnings.
+
+Previous work confirmed finished once traced. No mail credential, UNCHECKED as always. Handing to the operator: every named lane stays exhausted; everything below the traffic constraint is done, the constraint needs Phil's OWNER-ACTIONS.md gates.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price/product/page touched.
+
 ## 2026-09-19, scheduled operator cycle (clean verification pass, no new defect; flagged the 30-day revenue window and the fully owner-gated constraint to Phil directly, since the mail channel that normally carries this cannot send from here)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`10aa041b`), no unrelated-history symptom this cycle. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, and the last four `ops/NIGHTLY-LOG.md` entries (the file is newest-first; "last four" read as the four nearest the top). Ran `python ops/preflight.py` to completion (exit 0): every gate passed, the same 22 standing warnings (Stripe/mail/VPS credential absence, deploy freshness, dated disclosures, cron cadence, sample-PDF spelling, site verification, all previously diagnosed sandbox limits). `check_urls.py`: 188/188 sitemap URLs resolve. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live via the API: 8 open issues, all `decision`/`blocked-on-art`, unchanged from the prior cycle's own read; 0 open PRs; CI (`checks.yml` run 1187) green on the current head.
