@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (full lane survey, no new defect; a fresh font-weight cross-check closes out the last untouched hand-authored asset)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (683-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress). `inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`, none pickable. CI confirmed green on the latest code commit (run 1174, `c3fdbdce`).
+
+**Verified:** every exhaustible lane this log names (hand-authored `site/assets/js/*.js`, `mobile/quest-app/App.js` and `lib/*.js`, the `ops/*.py` mention-count floor, the 114-page zone narrative read, 20 room pages, 29 articles, `.github/workflows/*.yml`) is genuinely closed, not just declared so: spot-checked several against their own named closing entries. Tried one lane not previously named: `site/assets/css/fonts.css` (3 mentions, never itself the direct subject). Confirmed all 22 referenced woff2 files exist on disk, then wrote a script cross-checking every `font-family`+`font-weight` pair in `site.css` against the weights `fonts.css` actually declares (400/500/600/900 Fraunces, 400/600/700/800 Inter, 400/500 Newsreader) to catch a repeat of this file's own documented synthetic-bold incident. 0 mismatches. No defect found, so no gate added, per step 5c.
+
+**Went well:** finding a genuinely untried angle (CSS/font-weight parity) rather than re-running an already-exhausted search.
+
+**Did not go well:** epics 1-6 are again fully worked or Phil-gated; nothing operator-actionable surfaced this cycle beyond the clean CSS check.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console, YouTube OAuth, Stripe business description) and the 8 open GitHub issues, unchanged. Dashboard's own constraint line: repository is one deploy ahead of production (`df1d329f8d712d8f` vs confirmed-live `7c765b634045a89c`), a VPS redeploy only Phil or a VPS-access session can trigger.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30 minute triage, previous work confirmed finished, local preflight verified clean, three fresh CI runs handed to the next cycle)
 
 NEXT FOR WHOEVER PICKS THIS UP: before starting anything new, check the conclusion of `checks.yml` run 1173 (`35430905333`, commit `55f8a88e`), `checks.yml` run 1174 (`35431327358`, commit `c3fdbdce`) and `publish-image.yml` run 342 (`35430905445`, commit `55f8a88e`). All three were still `in_progress` at the end of this slot; a real failure in any of them is this session's fix to verify, since both commits are the operator cycle's own object-URL-leak fix and its gate, not a fresh finding.
