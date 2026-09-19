@@ -103,9 +103,9 @@
    "note": null
   },
   "garage-the-power-tool-and-battery-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Battery-charging hazard copy specific, not generic."
   },
   "garage-the-primary-workbench": {
    "read": false,
@@ -248,9 +248,9 @@
    "note": null
   },
   "kids-bedroom-the-toy-storage-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read."
   },
   "kitchen-the-cooking-zone": {
    "read": true,
@@ -273,9 +273,9 @@
    "note": null
   },
   "kitchen-the-sink-and-dishwashing-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Includes root-cause FAQ entries (diagnosed pilot-adjacent zone); those also agree with visible diagnostic copy."
   },
   "kitchen-the-upper-cabinets": {
    "read": false,
@@ -308,9 +308,9 @@
    "note": null
   },
   "laundry-room-the-utility-and-cleaning-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read."
   },
   "laundry-room-the-washer-and-dryer": {
    "read": false,
@@ -363,9 +363,9 @@
    "note": null
   },
   "mudroom-the-pet-station": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read."
   },
   "mudroom-the-seasonal-outdoor-gear": {
    "read": false,
@@ -388,14 +388,14 @@
    "note": "Clean: tone, fall/poison hazards match FAQ, safety-critical copy (button batteries, ribbon tags, wall-fixed ledge) consistent between passes and FAQ, kit disclosure grammar correct."
   },
   "nursery-the-changing-station": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Fall-risk hazard sentence matches across hazard list and FAQ."
   },
   "nursery-the-crib-and-sleep-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus a full narrative read (safety-critical page). Crib mattress-drop-height and loose-bedding hazard copy specific and consistent with the visible hazard list and FAQ; no fabricated claim."
   },
   "nursery-the-diaper-and-care-backstock": {
    "read": false,
@@ -403,9 +403,9 @@
    "note": null
   },
   "nursery-the-feeding-station": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read."
   },
   "pantry-the-backstock-and-bulk": {
    "read": true,
@@ -438,9 +438,9 @@
    "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
   },
   "patio-or-deck-the-grill-and-outdoor-cooking-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Propane/grease hazard copy specific."
   },
   "patio-or-deck-the-outdoor-dining-zone": {
    "read": false,
@@ -473,9 +473,9 @@
    "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Correctly does not over-claim medical authority."
   },
   "primary-bathroom-the-shower-or-tub": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read."
   },
   "primary-bathroom-the-toilet-area": {
    "read": false,
@@ -483,9 +483,9 @@
    "note": null
   },
   "primary-bathroom-the-under-sink-cabinet": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Chemical-storage poison-risk sentence matches across surfaces."
   },
   "primary-bathroom-the-vanity-counter": {
    "read": false,
@@ -533,9 +533,9 @@
    "note": null
   },
   "stair-landing-the-stair-and-floor-path": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Fall-risk hazard copy specific to runners/treads."
   },
   "stair-landing-the-wall-and-display-zone": {
    "read": false,
@@ -548,9 +548,9 @@
    "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent."
   },
   "workshop-the-finishing-and-chemical-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: mechanical cross-check (hazard list vs FAQ risk answers vs JSON-LD, clean-first vs Shine step 1, kit disclosure grammar, forbidden phrases) plus narrative read. Chemical storage safety copy specific (rag self-heating, incompatible storage), no two hazards share a category."
   },
   "workshop-the-main-workbench": {
    "read": false,
@@ -563,14 +563,14 @@
    "note": null
   },
   "workshop-the-power-tool-storage": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same cross-check plus read. Hazard sentences verbatim-match their FAQ risk answers."
   },
   "workshop-the-safety-and-ppe-station": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Clean: same mechanical cross-check plus read. Tone and hazard/FAQ agreement hold."
   }
  }
 }
