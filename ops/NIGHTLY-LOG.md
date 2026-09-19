@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 19:16 (previous work confirmed finished, one real small bug found cold-reading the operator's own handoff list and fixed)
+
+Attached cleanly, ff-only onto `origin/main` (`c9778e51`). Previous work (the operator's sitemap-lastmod fix, prior entry) was pushed and the tree was clean before I touched anything. Ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, matching the baseline. GitHub unchanged: 8 open issues (2 P0, both correctly Phil-gated: `#2` needs stronger art generation, `#15` needs a Listmonk decision), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, nothing new unblocked.
+
+Cold-read the six files the last two PM cycles named as unread handoff candidates: `wire_legal_strip.py`, `verify_media_delivery.py`, `generated_products.py`, `refresh_hero_fallback.py`, `check_video_links.py`, `video.py`. Five clean, verified live (`--check`/direct run, not just read). `video.py --probe` crashed with an unhandled `FileNotFoundError` instead of printing "MISSING" when ffmpeg/ffprobe are absent from PATH, the exact case its own ternary was written to handle. Fixed with a try/except, verified live (prints MISSING, exit 0), reran `preflight.py` clean, shipped (`bbdbdbc98`).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged. This handoff tier is now exhausted; operator needs a fresh angle next cycle.
+
+Pushed to main. No price or product touched, no new page; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (sitemap lastmod had stopped moving for 24 of 188 URLs against real content changes, including the home page and quest.html; fixed at the source and gated)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`184b5e79`), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` and `BACKLOG-2026-H2.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. Checked GitHub live via a sub-agent: 8 open issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, CI green on the last 3 runs of both workflows. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. `preflight.py` run to completion in the background: every gate passed, 22 warnings, the standing baseline.
