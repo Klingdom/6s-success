@@ -272,6 +272,52 @@ def social_pin_line(built, total):
         return f"0/{total}, not yet rendered"
     return f"{built}/{total} zones, Pinterest and Instagram cards ready, not posted anywhere yet"
 
+def top_owner_actions():
+    """Re-derive OWNER-ACTIONS.md's own "Start here" ranked rows.
+
+    Found 2026-09-19: the dashboard's "What needs you" section, the one
+    place CLAUDE.md 24 says the owner should be able to read without
+    inspecting dozens of files, listed the stale-deploy line and the
+    GitHub decision queue, but never the three items OWNER-ACTIONS.md's
+    own "Start here: 20 minutes, in this order" table ranks above
+    everything else on that page ("If you only ever do three things from
+    it, do these"), including YouTube authorisation, separately called
+    "the biggest single lever on the business right now" there.
+    ops/send_questions.py had the identical gap, fixed 2026-09-18
+    (gate_send_questions_covers_top_owner_actions); this is the same
+    "source corrected, artifact never re-derived" shape one document over.
+
+    Parses the real committed OWNER-ACTIONS.md table fresh on every run
+    (same regex gate_send_questions_covers_top_owner_actions already uses)
+    rather than a frozen copy of today's three items, so a future
+    re-ranking of that table changes this list too. Returns a list of
+    (do, time, why_first_sentence) tuples, or [] if the table cannot be
+    found, so a missing/renamed file reports nothing found rather than a
+    stale prior list.
+    """
+    p = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(p):
+        return []
+    src = io.open(p, encoding="utf-8").read()
+    m = re.search(r"Start here.*?(\n\|[^\n]*\n\|[-\s|]*\n(?:\|[^\n]*\n)+)",
+                  src, re.S)
+    if not m:
+        return []
+    rows = [r for r in m.group(1).splitlines() if r.startswith("|")][1:]
+    out = []
+    for row in rows:
+        if re.match(r"^\|[\s|:-]*$", row):
+            continue  # the header separator row (|---|---|...|), not data
+        cols = [c.strip() for c in row.strip("|").split("|")]
+        if len(cols) < 4:
+            continue
+        do = cols[1].strip("*").strip()
+        time_ = cols[2]
+        why = cols[3]
+        first_sentence = re.split(r"(?<=[.!?])\s", why.strip(), maxsplit=1)[0]
+        out.append((do, time_, first_sentence))
+    return out
+
 def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
 
@@ -1787,6 +1833,13 @@ if S["deploy_verdict"] == "stale":
            f"step left. Until then {S['zone_pages_with_image']} reviewed "
            f"pictures and every fix since the last deploy reach nobody.\n")
 
+# The three items OWNER-ACTIONS.md's own "Start here" table ranks above
+# everything else on that page go next, above the decision queue: they are
+# not decisions, they are single steps that unblock real finished work
+# (YouTube uploads, Search Console data, the Stripe checkout description).
+for do, time_, why in top_owner_actions():
+    md += f"- **{do}** ({time_}). {why}\n"
+
 if not S["issues_available"]:
     md += ("- **UNKNOWN.** GitHub could not be reached when this was generated, so the\n"
            "  decision queue could not be read. That is not the same as nothing being\n"
@@ -1954,6 +2007,11 @@ elif S["needs_phil"]:
                     if any(l["name"] == "decision" for l in i.get("labels", [])))
 else:
     needs = "<li>Nothing is blocked on you right now.</li>"
+
+owner_actions_html = "".join(
+    f'<li><b>{esc(do)}</b> ({esc(time_)}). {esc(why)}</li>'
+    for do, time_, why in top_owner_actions())
+needs = owner_actions_html + needs
 
 if S["deploy_verdict"] == "stale":
     needs = (f'<li><b>Redeploy the site.</b> Production is serving an older '

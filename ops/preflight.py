@@ -12747,6 +12747,92 @@ def gate_send_questions_covers_top_owner_actions() -> None:
              "BLOCKING." % (len(missing), "; ".join(missing)))
 
 
+def gate_dashboard_covers_top_owner_actions() -> None:
+    """EXECUTIVE-DASHBOARD-LIVE.md's "What needs you" section must mention
+    every item OWNER-ACTIONS.md's own "Start here" table ranks as the top
+    few things Phil can do.
+
+    Found 2026-09-19, PM check-in: the dashboard is the one document
+    CLAUDE.md 24 says exists specifically so the owner does not need to
+    inspect dozens of operational files, yet its "What needs you" section
+    only ever listed a stale deployment and the GitHub decision queue. It
+    never mentioned Google Search Console verification, YouTube upload
+    authorisation or the Stripe business description, the three items
+    OWNER-ACTIONS.md's own "Start here: 20 minutes, in this order" table
+    ranks above everything else on that page ("If you only ever do three
+    things from it, do these"), with YouTube separately called "the
+    biggest single lever on the business right now" there. The identical
+    gap in ops/send_questions.py was fixed 2026-09-18
+    (gate_send_questions_covers_top_owner_actions); this is the same
+    "source corrected, artifact never re-derived" shape one document over,
+    this time in the page meant to be the single place that never happens.
+
+    Checks the real committed EXECUTIVE-DASHBOARD-LIVE.md, independent of
+    ops/dashboard.py's own write path (the same posture gate_hero_fallback_
+    current and gate_sitemap_lastmod_current already use), so a future
+    edit to the generator that silently drops the section cannot ship
+    clean just because the generator's own logic still looks right on a
+    read. Re-derives the ranked "Do" column fresh from the real committed
+    OWNER-ACTIONS.md on every run, matched loosely (a capitalised keyword
+    from each row) against the dashboard's own "What needs you" text, so a
+    future re-ranking of that table is not frozen here either.
+    """
+    oa = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    dash = os.path.join(ROOT, "EXECUTIVE-DASHBOARD-LIVE.md")
+    if not os.path.exists(oa):
+        warn("dashboard-covers-owner-actions",
+             "OWNER-ACTIONS.md does not exist, so its top-ranked items "
+             "were not checked against the dashboard. Unchecked, not "
+             "covered.")
+        return
+    if not os.path.exists(dash):
+        warn("dashboard-covers-owner-actions",
+             "EXECUTIVE-DASHBOARD-LIVE.md does not exist, so OWNER-"
+             "ACTIONS.md's top-ranked items were not checked against it. "
+             "Unchecked, not covered.")
+        return
+    oa_src = io.open(oa, encoding="utf-8").read()
+    dash_src = io.open(dash, encoding="utf-8").read()
+
+    m = re.search(r"Start here.*?(\n\|[^\n]*\n\|[-\s|]*\n(?:\|[^\n]*\n)+)",
+                  oa_src, re.S)
+    if not m:
+        warn("dashboard-covers-owner-actions",
+             "could not find OWNER-ACTIONS.md's own \"Start here\" table, "
+             "so its top-ranked items were not checked against the "
+             "dashboard. Unchecked, not covered.")
+        return
+    rows = [r for r in m.group(1).splitlines() if r.startswith("|")][1:]
+
+    section = re.search(r"## What needs you\n(.*?)\n## ", dash_src, re.S)
+    needs_text = section.group(1) if section else ""
+    if not section:
+        warn("dashboard-covers-owner-actions",
+             "could not find the dashboard's own \"What needs you\" "
+             "section, so OWNER-ACTIONS.md's top-ranked items were not "
+             "checked against it. Unchecked, not covered.")
+        return
+
+    missing = []
+    for row in rows:
+        if re.match(r"^\|[\s|:-]*$", row):
+            continue  # the header separator row, not data
+        cols = [c.strip() for c in row.strip("|").split("|")]
+        do = cols[1] if len(cols) > 1 else ""
+        keywords = [w.strip(".,*") for w in do.split()
+                    if w.strip("*")[:1].isupper() and len(w.strip("*")) > 2]
+        if keywords and not any(k in needs_text for k in keywords):
+            missing.append(do)
+
+    if missing:
+        fail("dashboard-covers-owner-actions",
+             "%d of OWNER-ACTIONS.md's own top-ranked \"Start here\" "
+             "item(s) are not mentioned in the dashboard's \"What needs "
+             "you\" section: %s. Fix: regenerate with `python "
+             "ops/dashboard.py` after checking top_owner_actions() still "
+             "reads the real table." % (len(missing), "; ".join(missing)))
+
+
 def gate_no_frozen_deck_link() -> None:
     """The owner-facing mail tools must not link a deck nothing here can update.
 
@@ -17446,6 +17532,7 @@ def main() -> int:
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
     run_gate(gate_send_questions_covers_top_owner_actions)
+    run_gate(gate_dashboard_covers_top_owner_actions)
     run_gate(gate_no_frozen_deck_link)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
