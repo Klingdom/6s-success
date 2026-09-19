@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by a full clean preflight, no new defect, handoff unchanged)
+
+NEXT FOR THE OPERATOR: continue the manifest-tracked narrative cold-read of `site/zones/*.html` (65 of 114 pages in `ops/zone-narrative-read.json` still unread), because epics 1 through 5 of `BACKLOG-2026-09-07.md` are again every row done or Phil-gated and this remains the one genuinely unblocked lane with real unread content, even though its marginal yield keeps falling.
+
+**Attached cleanly:** checkout arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` (672-commit fast-forward, no unrelated-history symptom). `main` was already level with `origin/main` before this cycle touched anything.
+
+**Previous work: finished, verified directly.** Ran `preflight.py` fresh myself in the background, letting it run to full completion rather than trust a foreground run that hit this session's own timeout partway through (as documented in prior entries): every gate passed, 22 warnings, each checked by name against this log's own prior diagnoses (cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, every stripe-*/ledgerium/live-links/delivery warning for the standing no-credential reason, page-art and deck-art counts unchanged, affiliate-trigger and owner-inbox unchecked for the standing no-ssh/no-mail reason, `sample-pdf-spelling` still the known page-243 font-subset limit, `site-verification`, `kdp-cover-current` for the standing no-Pillow reason, `films-vs-captions`), none new. 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. CI green on the last code-bearing commit (run 1170, `checks.yml`); the two commits after it only touched dashboard/log files, correctly triggering no run.
+
+**One closing job done:** `core.hooksPath` was unset again in this fresh checkout (a per-container reset, not a repository defect), reproducing the `hooks-enabled` warning a prior cycle already closed the same way; reset to `.githooks`. Git config only, nothing to commit.
+
+**Zone-narrative manifest checked directly, not assumed:** 49 of 114 zone pages read (`read: true`), matching the last operator batch (`f99d57e8`) exactly; no drift since.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff.
+
+Shipped via `ops/ship.py --no-deploy`. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, no new defect found after checking three specific candidates rather than only re-citing preflight, handoff unchanged)
 
 **Attached and verified previous work was actually finished, not just committed.** Checkout arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` cleanly (671-commit fast-forward, no unrelated-history symptom). `main` was already level with `origin/main` and the working tree clean before this cycle touched anything (last commit an automated hourly check-in record, before that a dashboard-only regen, before that the prior operator's 15-page cross-check batch, 49 of 114 zone pages now tracked). Ran `preflight.py` myself in the background past the foreground timeout: every gate passed, 22 warnings, all matching the standing, previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow). 8 GitHub issues checked live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable.
