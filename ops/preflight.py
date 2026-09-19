@@ -4357,6 +4357,15 @@ def gate_hazard_icons_current() -> None:
     hazard_icons.py's own count, so a fallback that makes every call return
     "" (module still imports fine, coverage assertion never runs) cannot
     pass silently either.
+
+    Corrected 2026-09-19: the expected count is now per-zone DISTINCT
+    categories, not raw watch_for entries. build_zone_pages.py's
+    _grouped_watch_for() merges two entries in the same zone that share a
+    category (e.g. a kitchen's unattended-oil and gas-burner risks are both
+    "Burn or fire") into one rendered item with one icon, fixing a real
+    duplicate-heading defect found the same day; a raw entry count would
+    make this gate fail on that correct, deliberate merge. Six zones as of
+    this fix carry one fewer icon than they have watch_for entries.
     """
     code, out = run("hazard_icons.py")
     if code != 0:
@@ -4370,8 +4379,9 @@ def gate_hazard_icons_current() -> None:
         warn("hazard-icons", "content.json not found, could not cross check.")
         return
     d = json.load(io.open(src_path, encoding="utf-8"))
-    expected = sum(len(z.get("watch_for") or [])
-                   for r in d["rooms"] for z in r["zones"])
+    expected = sum(
+        len({w.get("question", "") for w in (z.get("watch_for") or [])})
+        for r in d["rooms"] for z in r["zones"])
 
     pages = glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
     shipped = sum(io.open(f, encoding="utf-8").read().count('class="hz"')
@@ -14289,6 +14299,50 @@ def gate_zone_short_answer_above_fold() -> None:
         fail("zone-short-answer", "; ".join(problems))
 
 
+def gate_no_duplicate_hazard_labels() -> None:
+    """A zone page's "Check these before you start" hazard list, its visible
+    FAQ, and its FAQPage JSON-LD all render one entry per `watch_for` item in
+    content.json, labelled by that item's hazard category (there are only
+    five real categories; see ops/hazard_icons.py). Two real, distinct
+    hazards in one zone can share a category, e.g. a kitchen's unattended-oil
+    fire risk and its gas-burner fire risk are both "Burn or fire".
+
+    Found 2026-09-19 by a narrative read of the rendered pages, not by any
+    prior mechanical check: on 6 of 114 zones this produced the identical
+    bold heading twice in the hazard list, the identical FAQ question asked
+    twice with two different answers, and the identical FAQPage "name" twice
+    in the JSON-LD, in each case only distinguishable by reading the small
+    print underneath. That reads as duplicated or broken content to a
+    skimming visitor and as a malformed FAQPage to anything parsing the
+    schema, not as two warnings. Fixed by merging same-category entries into
+    one item (`_grouped_watch_for()` in `ops/build_zone_pages.py`), so this
+    gate re-derives the real defect shape (a repeated hazard-list heading)
+    straight from the shipped HTML, independent of that helper's own logic.
+    """
+    pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
+    pages = [p for p in pages if os.path.basename(p) != "index.html"
+             and not os.path.basename(p).startswith("_")]
+    if not pages:
+        warn("hazard-labels", "no zone pages built yet, could not check.")
+        return
+    dupes = []
+    for p in pages:
+        html_ = io.open(p, encoding="utf-8", errors="replace").read()
+        m = re.search(r'<ul class="hazard-list">(.*?)</ul>', html_, re.S)
+        if not m:
+            continue
+        labels = re.findall(r'<b>(.*?)</b>', m.group(1))
+        seen = set()
+        for label in labels:
+            if label in seen:
+                dupes.append("%s (%r repeated)" % (os.path.basename(p), label))
+                break
+            seen.add(label)
+    if dupes:
+        fail("hazard-labels", "%d zone page(s) render the same hazard "
+             "heading twice, e.g. %s" % (len(dupes), dupes[0]))
+
+
 def gate_zone_name_consistency() -> None:
     """One real-world zone, three different names, told to three different
     readers: the manual's internal key ("Landing Zone"), the site's own
@@ -16661,6 +16715,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
+    run_gate(gate_no_duplicate_hazard_labels)
     run_gate(gate_zone_name_consistency)
     run_gate(gate_youtube_sustain_anchor)
     run_gate(gate_ledgerium)

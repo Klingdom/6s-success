@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (a real duplicate-content defect found by the first genuine narrative cold-read, fixed and gated)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, and the last four log entries. `preflight.py` clean first (every gate passed, 22 warnings, all previously diagnosed). 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`, none pickable; read issue #32 (kits/bundles) directly and left it alone, its own recommendation (hold, revisit on evidence) still correct and not mine to re-litigate without new evidence. No mail credential, inbox UNCHECKED not empty.
+
+**The picture:** every unblocked backlog row again done or Phil-gated. The standing handoff from the last several cycles, named repeatedly but never actually executed because it needs a real slot rather than a 30-minute check-in, was a narrative-level read of `site/zones/*.html` for tone and contradicted promises rather than the mechanical checks already run over the corpus repeatedly. This cycle had the room, so I ran it.
+
+**Followed that handoff and found a real defect.** A 39-page sample across all 20 rooms turned up no tone or philosophy violations, but did find a structural bug: `ops/hazard_icons.py` deliberately collapses every hazard onto five drawn icon categories, and `build_zone_pages.py` reused that same category string as both the bold hazard-list heading and the literal FAQ question. On 6 of 114 zones, two genuinely distinct hazards share a category (a kitchen's unattended-oil and gas-burner fire risks are both "Burn or fire"), so the page rendered the identical heading twice, the identical FAQ question asked twice with different answers, and the identical FAQPage `"name"` twice in the JSON-LD. Safety is the fourth S (D-014); this is the block meant to be read before starting.
+
+**Verified before fixing:** wrote a one-off script against the real `content.json`, confirmed all 6 zones and both hazard sentences for each, not assumed from the agent's read.
+
+**Fixed:** new `_grouped_watch_for()` in `build_zone_pages.py`, merging same-category entries within a zone into one item with both sentences joined; used by both the hazard-list render and `zone_faq()`, which already fed both the visible FAQ and the JSON-LD, so one fix closed all three surfaces. Regenerating touched exactly the 6 affected pages; a full-corpus scan for repeated FAQ questions read 0 of 114 after (was 6). New `gate_no_duplicate_hazard_labels` in `preflight.py`, fail-then-pass proved directly against the real pre-fix committed file (planted it live, watched preflight fail by name, restored). Also found and fixed in the process: the merge correctly drops 6 rendered icons, which `gate_hazard_icons_current`'s 1:1 entry-count assumption could not survive; corrected it to count distinct categories per zone. `ops/tests/test_gate_no_duplicate_hazard_labels.py` (6 cases) fail-then-pass proved.
+
+**Verified after:** full `preflight.py` (every gate passed, 23 warnings, all previously diagnosed sandbox limits), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean. `indexnow.py --submit` attempted, correctly refused (no egress from this sandbox); `hourly-brief.yml`'s own `--changed` step will pick up the 6 rewritten pages within the hour, per the 2026-09-08 fix.
+
+**Went well:** the handoff other cycles kept naming but never executing turned up a real, if narrow, live defect on the first genuine attempt, and it was in the one section CLAUDE.md ranks P0 (safety), not a stylistic nitpick.
+
+**Did not go well:** a concurrent session pushed a routine dashboard-only commit while this one was running; rebased cleanly, no real conflict, noted so a future cycle does not mistake it for something worse.
+
+**Changing next cycle:** none beyond the new gate; the rest of the 114-page sample (75 pages not yet read this way) is the next unattempted lane if the narrative-read method keeps paying off, or the mobile `quest-app/` read against `ON-DEVICE-TEST.md` if it does not.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing) and the 8 open GitHub issues, unchanged.
+
+Pushed to main: `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_no_duplicate_hazard_labels.py`, the 6 regenerated zone pages, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow attempted and correctly deferred to the hourly workflow.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished 17 minutes prior, no new defect)
 
 NEXT FOR THE OPERATOR: a narrative-level cold read of the 114 `site/zones/*.html` pages for tone and contradicted promises (not the mechanical checks already run over them repeatedly), because BACKLOG-2026-09-07.md sections 2 through 6 are again every row done or Phil-gated, the mobile ON-DEVICE-TEST.md lane the last cycle also named needs a physical phone this sandbox does not have, and this lane is the one genuinely doable, unattempted, non-Phil-gated work left standing.

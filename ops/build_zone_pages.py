@@ -1547,6 +1547,31 @@ def _join_clause(first: str, second: str) -> str:
     return f"{first}. {second.rstrip('.')}."
 
 
+def _grouped_watch_for(zone):
+    """watch_for entries, with any sharing the same category (there are only
+    five; see ops/hazard_icons.py) merged into one.
+
+    Two real, distinct hazards in one zone can carry the same category label:
+    a kitchen has both an unattended-oil fire risk and a gas-burner fire
+    risk, both "Burn or fire". Rendered as two separate list items, that is
+    the same bold heading printed twice with different text underneath; fed
+    into zone_faq() unmerged, it is the same FAQPage question asked twice
+    with two different answers. Either reads as broken/duplicated content to
+    a person skimming or a crawler parsing the schema, not as two warnings.
+    Found 2026-09-19 on 6 of 114 zones by a narrative read of the rendered
+    pages, not by any mechanical check (none of the existing gates compare a
+    zone's own watch_for entries against each other).
+    """
+    merged = {}
+    for w in zone.get("watch_for") or []:
+        q = w.get("question", "")
+        t = w.get("text", "")
+        if not q:
+            continue
+        merged[q] = f"{merged[q]} {t}".strip() if q in merged else t
+    return list(merged.items())
+
+
 def zone_faq(thing, zone):
     """Question/answer pairs for FAQPage, built only from fields the page
     body already renders in full below (done_looks_like, the_call, watch_for,
@@ -1610,8 +1635,7 @@ def zone_faq(thing, zone):
         qa.append((f"What do you clean first in the {thing}?",
                    _clean(f'{first["surface"]}. {first["method"]}')))
 
-    for w in (zone.get("watch_for") or []):
-        q, a = w.get("question", ""), w.get("text", "")
+    for q, a in _grouped_watch_for(zone):
         if q and a:
             qa.append((f"Is there a {q.lower()} risk in the {thing}?", _clean(a)))
 
@@ -2066,14 +2090,13 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     # hazards are a tipping shoe rack and solvents at toddler height. A
     # warning a reader meets after the task it warns about is not a warning,
     # and the heading and its position were contradicting each other.
-    watch = zone.get("watch_for") or []
+    watch = _grouped_watch_for(zone)
     if watch:
         out.append('<h2>Check these before you start</h2>'
                    '<ul class="hazard-list">')
-        for w in watch:
-            q = w.get("question", "")
+        for q, t in watch:
             out.append(f'<li>{hazard_icon(q)}<span><b>{esc(q)}</b>'
-                       f'{esc(w.get("text", ""))}</span></li>')
+                       f'{esc(t)}</span></li>')
         out.append('</ul>')
 
     # THE KIT, WHICH THE METHOD ASSUMED AND THE PAGE NEVER NAMED
