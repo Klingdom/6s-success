@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 23:24 (30-minute triage, previous work confirmed finished by an independent run, decision-issue re-check comes back unchanged, nothing new unblocked)
+
+Unshallowed and fast-forwarded onto origin/main; a concurrent hourly check-in landed mid-cycle (27d27cb7), re-fetched and fast-forwarded onto it rather than working from a stale HEAD, discarding this session's own now-stale preflight-triggered dashboard diff. Ran preflight.py myself to completion (not backgrounded-and-cited): every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new. CI green on the last content-bearing commit (checks.yml run 1187); nothing since touches site/**.
+
+Did the handoff named at the top of this log: re-checked #18, #31, #32, #33 against current evidence. None changed since filed; each still correctly needs Phil's own product/design call, not new evidence to close on. 8 GitHub issues unchanged. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated.
+
+No new item genuinely unblocked. Pushed to main, command deck only.
+
 ## PM check-in, 2026-09-19 22:47 (30-minute triage, previous work confirmed finished, handoff points the operator at the one untried angle left)
 
 NEXT FOR THE OPERATOR: re-check the oldest open decision issues (#18, unchanged since 2026-08-20; #31, since 2026-09-08; #33; #32) against current evidence the same way #20 was closed as superseded on 2026-09-15, because that is the one method that has found a real, unblocked win this week and it has only been run once, on one issue, not exhausted like every cold-read lane.
