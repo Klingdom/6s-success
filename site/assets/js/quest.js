@@ -745,13 +745,32 @@
   function isFirstRun() { return heldZones().length === 0 && progress().done === 0; }
 
   var pendingInstall = null;
+  var installWired = false;
+
+  /* The one place that attaches the click handler which actually calls
+     ev.prompt(). Needed from two call sites: the beforeinstallprompt
+     handler itself, when the event arrives after somebody already has
+     progress, and applyFirstRunGate() below, when the event arrived on a
+     cold landing (the common case, per the handler's own comment) and the
+     button is only unhidden later, on the next render. Wiring it in only
+     one of those two places, as before, left the button visible and inert
+     for every visitor whose first render happened while still on their
+     first run: real, live, found by driving this in a headless browser. */
+  function wireInstallButton(el) {
+    if (!el || !pendingInstall || installWired) { return; }
+    installWired = true;
+    el.addEventListener("click", function () {
+      el.hidden = true;
+      pendingInstall.prompt();
+    }, { once: true });
+  }
 
   function applyFirstRunGate() {
     var first = isFirstRun();
     /* An install prompt the browser offered while the gate was down is
        surfaced the moment somebody has something worth installing for. */
     var ib = $("#go-install");
-    if (ib && !first && pendingInstall) { ib.hidden = false; }
+    if (ib && !first && pendingInstall) { ib.hidden = false; wireInstallButton(ib); }
 
     /* Three screens share the first-run slot: the symptom question, the
        cause it resolves to once one is picked, and the app's original
@@ -1853,10 +1872,7 @@
       pendingInstall = ev;
       if (isFirstRun()) { return; }
       installBtn.hidden = false;
-      installBtn.addEventListener("click", function () {
-        installBtn.hidden = true;
-        ev.prompt();
-      }, { once: true });
+      wireInstallButton(installBtn);
     });
 
     /* A zone page's "Or draw a card free" link carries the exact zone the

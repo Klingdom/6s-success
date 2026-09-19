@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (closed the standing interactive-QA handoff: a real, live dead button found on the install prompt, fixed and gated)
+
+**Did:** Unshallowed onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, last four log entries. Preflight clean before starting. 8 GitHub issues unchanged, all Phil-gated or already mitigated. No mail credential.
+
+Backlog rows all done or Phil-gated; prior check-in's handoff named the untried lane: drive the install-prompt flow and symptom-skip escape hatch live in headless Chromium, the method that already found three defects today. Escape hatch correct throughout. Install prompt was not: `quest.js`'s comment names the common case, a cold-landing `beforeinstallprompt` before any progress. The handler correctly hides the button until then, but wired the click handler only inside that same early-return branch, so a cold-landing prompt never got one attached; `applyFirstRunGate()` later unhides the button but never wires it. A visitor tapping "Install the app" gets no prompt, no error. Confirmed live: `ev.prompt()` called zero times.
+
+**Fixed:** one `wireInstallButton()` called from both sites, guarded to attach once.
+
+**Verified:** new `test_quest_install_button_wired.py`, fail-then-pass proved (`git stash` reproduces `promptCalled: 0`; restored, clean, `promptCalled: 1`). `gate_tests()` globs it automatically. Re-fingerprinted, rebuilt `build-id.txt`. Full `preflight.py` clean (background; foreground times out here).
+
+**Went well:** the handoff pointed straight at a real, confirmed defect.
+
+**Did not go well:** `preflight.py` exceeds this sandbox's foreground timeout.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list and 8 issues unchanged. No named interactive-QA lane remains untried on the Quest; next is a cold-read pass unless GitHub or the inbox surfaces something new.
+
+Pushed to main. `site/assets/js/quest.js`, fingerprints, `ops/tests/test_quest_install_button_wired.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished by a full clean preflight run to completion, no new defect, handoff unchanged)
 
 **NEXT FOR THE OPERATOR: continue the interactive-QA method into the install-prompt flow and the symptom-skip "show me the house instead" escape hatch, because those are the two named corners of the app nothing has driven live yet and the same method found three real defects earlier today.**
