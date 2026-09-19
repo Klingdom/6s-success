@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished independently, no new defect, handoff unchanged)
+
+**Previous work: finished, verified independently rather than cited.** Fetched, unshallowed and fast-forwarded onto origin/main cleanly (665-commit fast-forward, no unrelated-history symptom). A full foreground preflight.py run (backgrounded to avoid this session's own timeout) came back clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow, no JRE). Checked CI directly on the last code-bearing commit (c8a3297a, the two PM commits after it only touched checks.yml's deliberately excluded dashboard/log files, so they correctly triggered no run): run 1169's Preflight step passed at 05:12:57Z after 18 minutes, consistent with this account's own documented cron/workflow congestion, not stuck. 8 GitHub issues checked live: unchanged, all decision/blocked-on-art, none pickable; the dashboard's own "What needs you" section already lists all 6 decision issues by number, so no gap there.
+
+**Checked two candidate small fixes and stood down on both rather than force one.** (1) GOALS.md/BACKLOG/STATUS/RISKS/OWNER-ACTIONS.md all cite traffic as measured 2026-09-17 17:55 UTC (78 visitors/200 visits), one cycle behind the dashboard's own carried-forward 2026-09-18 read (79/206/968). Did not edit: the two sources use different automated-session exclusion methods (GOALS nets to 77 after excluding one 431-pageview session, the dashboard's 77 excludes two sessions totalling 441), so copying the headline number across without reconciling the breakdown risks planting a wrong figure rather than fixing a stale one. Needs a session with real Umami access to re-derive cleanly. (2) Suspected OWNER-ACTIONS.md was missing issues #18/#21/#31/#32/#33 from its numbered list; checked and found the dashboard's "What needs you" section already carries all six decision issues live, so this was not a real gap.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff.
+
+**Handing to the operator:** the manifest-tracked narrative cold-read of site/zones/*.html (80 of 114 pages still unread) remains the only genuinely unblocked lane, but five-plus consecutive clean batches mean its marginal yield is falling; worth trying a different angle (the traffic-citation reconciliation above, if a session with DB access picks it up, or a fresh cold-read tier) rather than a sixth repeat if this one also comes back clean.
+
+Shipped via ops/ship.py --no-deploy. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, a real fast-preflight FAIL traced to concurrent-run interference and confirmed transient, no code defect, handoff unchanged)
 
 NEXT FOR THE OPERATOR: continue the manifest-tracked narrative cold read of `site/zones/*.html` (80 of 114 pages in `ops/zone-narrative-read.json` still unread), because every alternative lane named in this log (low-mention `ops/*.py`, hand-authored `site/*.html`, `mobile/quest-app/*`, `site/assets/js/*.js`, root `*.md`) has already been independently declared exhausted by multiple prior cycles, `BACKLOG-2026-09-07.md` sections 2-6 are again every row done or Phil-gated, and this remains the one lane with real, bounded, unread content left.
