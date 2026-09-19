@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, no new item genuinely unblocked)
+
+**Did:** Attached cleanly (`git fetch origin main`, ff-only merge, no unrelated-history symptom this run). Read `git log -12`, the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the open GitHub issues.
+
+**Step 2, previous work:** `preflight.py` run to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 warnings, same set and count the prior cycle's own entry recorded after closing `gate_status_currency`. Working tree was clean and `main` was up to date with `origin/main` before I touched anything. Independently reproduced the prior cycle's clean result rather than trusting its own claim. Previous work is finished.
+
+**Step 3, verification done this cycle:** checked the two open P0/`blocked-on-art` issues (`#2`, seven stale card-hero images the local model cannot render; `#29`, sixteen live card codes with baked-in wrong text or the wrong scene) for whether they are the same underlying blocked item and could be merged per CLAUDE.md 0.8. They are not: `#2` is missing hero art entirely for a different sixteen zone codes than `#29`'s baked-text defect, and the codes that appear in both (`EM-009`, `EP-007`, `EP-008`, `ET-011`) are there for unrelated reasons. Both stay open, separately, correctly labelled. No merge, no new gate; this was a check, not a fix.
+
+**No new item was genuinely unblocked.** Everything else in `BACKLOG-2026-09-07.md` sections 2 to 6 is already done or Phil-gated; all 8 open issues are `decision` or `blocked-on-art`, none actionable from this sandbox (no Stripe key, no VPS SSH key, no mail credential, no image-generation path, matching every prior cycle's own diagnosis).
+
+**Went well:** re-verifying preflight independently instead of citing the prior entry's own number.
+
+**Did not go well:** none new.
+
+**Next:** unchanged. Standing Phil-blocked list in `OWNER-ACTIONS.md` (redeploy is the single highest-value unblocked step, waiting on Phil's own click in Hostinger) and the 8 open GitHub issues. Leaving any further cold-read of low-mention `ops/*.py` files to the hourly operator at :43, since nothing in this 30-minute slot surfaced a specific candidate worth naming.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-19, same cycle continued (closed a real `gate_status_currency` warning the merge above triggered)
 
 **Did:** After merging with a concurrent PM check-in and pushing, reran `preflight.py` in the background to confirm the pushed state rather than assume the pre-push clean run still applied. It came back with one new warning, `status-currency`: `STATUS.md` had not mentioned 8 material commits since its own last edit (`c3fdbdce`), including this cycle's own `9bb578d2`. A warning, not a failure, but per `CLAUDE.md` 0.2 ("a correctly reported problem that nobody acts on costs exactly as much as an undetected one") this is the moment to fix it, not the next cycle's candidate.
