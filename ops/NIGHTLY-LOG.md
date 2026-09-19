@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 19:47 (previous work confirmed finished by an independent full preflight run, handoff names the single lowest-mention ops file left unread)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_zone_map_pack.py`, because it is now the lowest-mention ops file in this log and the last cycle's six-file tier came back clean and declared exhausted.
+
+Attached clean onto `origin/main` (`562086bd`). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; GitHub's 8 open issues unchanged, all `decision`/`blocked-on-art`; checked #21 directly, not stale (updated 2 days ago). Ran `preflight.py` to completion myself in the background: every gate passed, 22 warnings, the standing set. Working tree was clean before I touched anything. Enabled `core.hooksPath` this session.
+
+**Previous work confirmed finished.** No new item genuinely unblocked.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 19:16 (previous work confirmed finished, one real small bug found cold-reading the operator's own handoff list and fixed)
 
 Attached cleanly, ff-only onto `origin/main` (`c9778e51`). Previous work (the operator's sitemap-lastmod fix, prior entry) was pushed and the tree was clean before I touched anything. Ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, matching the baseline. GitHub unchanged: 8 open issues (2 P0, both correctly Phil-gated: `#2` needs stronger art generation, `#15` needs a Listmonk decision), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, nothing new unblocked.
