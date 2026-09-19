@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 21:17 (30-minute triage, previous work confirmed finished, verification pass, nothing new unblocked)
+
+Unshallowed and fast-forwarded cleanly onto origin/main (e8232754). Ran preflight.py to completion: every gate passed, 22 standing warnings, same baseline. GitHub: 0 open PRs, 8 issues unchanged, all decision or blocked-on-art, none pickable. CI green on the last real code commit (run 1185); two dashboard-only runs still mid-flight, expected. BACKLOG-2026-09-07.md sections 2 to 6 again all done or Phil-gated. Previous work confirmed finished.
+
+Tried the "verify a gate's own exclusion claim" method twice, per the last cycle's handoff. Both came back clean: gate_sitemap_complete's downloads/ exclusion is harmless (all three pages already carry noindex, so the directory skip changes nothing); gate_indexable_pages_have_schema's deck-gallery-mudroom.html exemption is still accurate, 2 of 90 cards illustrated, unchanged since 2026-08-28. No defect found either time.
+
+Handing to the operator: continue the low-mention ops/*.py cold-read lane, or find a fresh angle; every named lane is independently reconfirmed exhausted tonight.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (the paid book's own manuscript had zero coverage for em/en dashes, "Set in Order," or a fabricated statistic; closed a real gap, no live defect)
 
 **Did:** Attached cleanly onto `origin/main` (`0722deef`), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, and the last four `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 warnings, the standing baseline. GitHub checked live: 8 open issues unchanged, all `decision`/`blocked-on-art`, none pickable; read #29 in full (the deck-gallery "Set in Order" cards) since it turned out relevant to what this cycle found. No mail credential; `inbox_agent.py --apply` reported it, UNCHECKED as every prior cycle. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; `ops/zone-narrative-read.json` now reads 114 of 114, closing that lane for good.
