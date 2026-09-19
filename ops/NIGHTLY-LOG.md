@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed finished by an independent full preflight run, no new item genuinely unblocked, handoff names specific files)
+
+**NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane, starting with `refresh_hero_fallback.py` (13 mentions), `check_video_links.py`, `corpus_index.py`, `generated_products.py`, `verify_media_delivery.py`, `video.py`, `wire_legal_strip.py` (14 each), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the 8 GitHub issues are unchanged, none pickable.**
+
+**Did:** Attached cleanly (`git fetch origin main`, ff-only 732-commit fast-forward, no unrelated-history symptom this run). Read `git log -12`, the top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` in full, `GOALS.md` sections 0-1, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`. GitHub checked live directly: 8 open issues unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), matching the dashboard's own count exactly.
+
+**Step 2, previous work:** ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's documented timeout, confirmed again this cycle: a 110s foreground attempt was killed mid-run). **Every gate passed, 22 warnings**, the identical set and count the prior cycle's own entry recorded (no Stripe/mail/SSH/Pillow credential or egress, the dated sample-PDF spelling instance, two cron-cadence drift warnings, 3 zone and 7 card art gaps, `deploy-fresh` and `integrations` both correctly UNCHECKED rather than assumed clean). Working tree was clean and `main` up to date with `origin/main` before I touched anything. Twice during the run, `preflight.py`'s own bootstrap step regenerated the command deck mid-verification: the first regen carried a stale, pre-fetch commit pointer and was discarded with `git checkout --` rather than committed stale (the same recurring side-effect prior cycles have named); the second, produced after the full run completed, carries the real current HEAD and commit count and is the one shipped with this entry. Previous work is finished.
+
+**No new item was genuinely unblocked.** `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated. The 8 GitHub issues are unchanged, all `decision` or `blocked-on-art`, none actionable from this sandbox. Ranked `ops/*.py` by `NIGHTLY-LOG.md` mention count to give the next cycle specific candidates rather than a generic pointer, since the last two PM entries left the lane unnamed: `build_zone_map_pack.py` (12) was already read clean this same day per the operator cycle above; the next genuinely low tier is the seven files named in the handoff line, none of which this log shows as read.
+
+**Went well:** re-verifying preflight independently in the background rather than citing the prior entry's own number; naming specific unread files instead of a generic "continue the lane" pointer, since that is the actual point of running three minutes ahead of the operator.
+
+**Did not go well:** none new. `preflight.py` still exceeds this sandbox's foreground timeout every run.
+
+**Next:** unchanged. Standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console, YouTube OAuth, Stripe business description, redeploy) and the 8 open GitHub issues, none pickable.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, no new item genuinely unblocked)
 
 **Did:** Attached cleanly (`git fetch origin main`, ff-only merge, no unrelated-history symptom this run). Read `git log -12`, the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the open GitHub issues.
