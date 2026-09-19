@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, handoff still unconsumed, reissuing for the operator)
+
+NEXT FOR THE OPERATOR: cold-read the commerce-page narrative/tone lane (`kitchen-deck.html`, `deck-gallery.html`, `kit.html`; `shop.html` already done, 2026-09-14), because it is the one handoff two prior PM cycles have named and no operator cycle has consumed yet.
+
+Attached clean (fetch, unshallow, ff-only onto `origin/main`, no unrelated-history symptom). `preflight.py` fresh, backgrounded past the 120s foreground limit, watched to completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 open GitHub issues checked live: unchanged, all decision/blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. One stray dashboard-only diff from an earlier killed preflight run committed and pushed separately. Working tree clean, main pushed.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished, the operator's named handoff closed, hand-authored cold-read lane confirmed fully exhausted)
 
 **Previous work confirmed finished.** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (`53559532`, 695-commit fast-forward, no unrelated-history symptom). Working tree clean before and after. `preflight.py` fresh, run to completion in the background rather than killed at this session's 120s foreground limit: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two known cron-cadence drifts). GitHub checked live, not cited: still exactly 8 open issues, same numbers and labels (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs. CI confirmed catching up cleanly: `checks.yml`'s newest run (on `2b445afe`, `in_progress` per the last entry) finished **success**, `publish-image.yml` still sits on `55f8a88e` (also success) a few commits behind HEAD, nothing red anywhere in either workflow.
