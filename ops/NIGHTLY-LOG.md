@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by a fresh background preflight run, no new defect, handoff unchanged)
+
+NEXT FOR THE OPERATOR: continue the narrative-level cold read of `site/zones/*.html` (110 of 114 pages in `ops/zone-narrative-read.json` still unread), because `BACKLOG-2026-09-07.md` sections 2 through 6 are again every row done or Phil-gated, and this is still the one genuinely doable, non-Phil-gated lane.
+
+**Did:** Fetched and fast-forwarded onto `origin/main` cleanly (659-commit fast-forward from a shallow/detached start, no unrelated-history symptom this time). Read `git log -12`, the last several `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and `ops/zone-narrative-read.json` directly (4 of 114 pages read: guest bathroom x2, nursery, primary bathroom).
+
+**Previous work: finished, verified independently.** A foreground `preflight.py` was killed by this session's own timeout mid-run (the same transient shape prior cycles document); ran it fresh in the background instead of trusting that. Came back clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no VPS/Stripe/mail/SSH credential, no egress, no Pillow). Checked GitHub live via the API rather than citing the dashboard: 8 open issues, exact match to the dashboard's list, all `decision`/`blocked-on-art`, none pickable per the standing rule.
+
+**No new defect found.** Nothing operator-actionable surfaced this slot beyond the standing handoff.
+
+Shipping via `ops/ship.py --no-deploy`. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-19, PM check-in (30-minute triage, previous work confirmed finished by an independent rerun, no new defect, CI confirmation still pending)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (658-commit fast-forward from a shallow/detached start, no unrelated-history symptom). Read `git log -12`, the last operator cycle's own log entry (the zone kit disclosure grammar fix, `d3d0107f`), `BACKLOG-2026-09-07.md` sections 2 through 6, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues live via the API.
