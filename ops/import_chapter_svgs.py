@@ -262,14 +262,19 @@ def check(svg: str, fig: dict) -> None:
     assert len(svg) > 800, f"{name}: only {len(svg)} bytes, that is not a figure"
 
 
-def wire(page: str, svg: str, fig: dict) -> bool:
-    path = os.path.join(SITE, page.replace("/", os.sep))
-    assert os.path.exists(path), f"no such page: {page}"
-    s = io.open(path, encoding="utf-8").read()
+def fig_id(fig: dict) -> str:
+    return "fig-" + re.sub(r"[^a-z]+", "-", fig["marker"].lower()).strip("-")
 
-    fid = "fig-" + re.sub(r"[^a-z]+", "-", fig["marker"].lower()).strip("-")
-    if fid in s:
-        return False
+
+def render_figure(svg: str, fig: dict) -> tuple:
+    """The one true transform from a raw chapter <svg> to the block this
+    file puts on a zone page. `wire()` and `preflight.py`'s
+    gate_chapter_svgs_current() both call this, so a change here cannot
+    make the two silently disagree about what "current" means.
+
+    Returns (fid, block), block newline-wrapped exactly as wire() writes it.
+    """
+    fid = fig_id(fig)
 
     # Several of these source figures already carry their own role and
     # aria-label, written for the book rather than the site. Strip those
@@ -298,7 +303,20 @@ def wire(page: str, svg: str, fig: dict) -> bool:
     # second time, which reads as a mistake rather than as care. The caption
     # text stays in FIGURES because it is a useful human label for the
     # figure in this file, it just does not belong on the page.
-    block = f'\n<figure id="{fid}" class="zone-figure">\n{svg}\n</figure>\n'
+    block = f'<figure id="{fid}" class="zone-figure">\n{svg}\n</figure>'
+    return fid, block
+
+
+def wire(page: str, svg: str, fig: dict) -> bool:
+    path = os.path.join(SITE, page.replace("/", os.sep))
+    assert os.path.exists(path), f"no such page: {page}"
+    s = io.open(path, encoding="utf-8").read()
+
+    fid, rendered = render_figure(svg, fig)
+    if fid in s:
+        return False
+
+    block = f'\n{rendered}\n'
 
     # Beside the Shine pass, because both figures are cleaning method. A
     # method diagram belongs next to the pass it explains, not at the top of
@@ -314,6 +332,41 @@ def wire(page: str, svg: str, fig: dict) -> bool:
 
     io.open(path, "w", encoding="utf-8", newline="").write(s)
     return True
+
+
+def fresh_state() -> dict:
+    """What every figure's block SHOULD read right now, re-derived straight
+    from the chapter source. Used by gate_chapter_svgs_current to catch the
+    one drift this importer cannot catch itself: wire() only ever checks
+    whether the fid already exists on the page, so if a chapter's own SVG
+    were hand-edited after the import ran, the page would keep showing the
+    old figure forever with no error from anything.
+    """
+    out = {}
+    for fig in FIGURES:
+        svg = extract(chapter_html(fig["chapter"]), fig["marker"])
+        check(svg, fig)
+        fid, block = render_figure(svg, fig)
+        out[fid] = block
+    return out
+
+
+def committed_state() -> dict:
+    """What every figure's block ACTUALLY reads on its committed zone page."""
+    out = {}
+    for fig in FIGURES:
+        fid = fig_id(fig)
+        path = os.path.join(SITE, fig["page"])
+        try:
+            s = io.open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        m = re.search(
+            re.escape(f'<figure id="{fid}" class="zone-figure">') +
+            r'.*?</figure>', s, re.S)
+        if m:
+            out[fid] = m.group(0)
+    return out
 
 
 def main() -> int:

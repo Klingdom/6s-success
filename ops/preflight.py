@@ -1052,6 +1052,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_manual_print.py": ("gate_front_matter_filled",
                                "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
+    "import_chapter_svgs.py": ("gate_chapter_svgs_current",),
     "prerender_shop.py": ("gate_prerender_shop_current",),
     "refresh_hero_fallback.py": ("gate_hero_fallback_current",),
     "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
@@ -6123,6 +6124,67 @@ def gate_hero_fallback_current() -> None:
     problems = check_hero_fallback_current(fresh, committed)
     if problems:
         fail("hero-fallback-current", "; ".join(problems))
+
+
+def check_chapter_svgs_current(fresh: dict, committed: dict) -> list:
+    """Pure logic for gate_chapter_svgs_current. Returns a list of problem
+    strings, empty when every wired zone-page figure still matches a fresh
+    re-derivation from its own book chapter.
+    """
+    missing = sorted(set(fresh) - set(committed))
+    changed = sorted(k for k in set(fresh) & set(committed)
+                      if fresh[k] != committed[k])
+    problems = []
+    if missing:
+        problems.append(
+            "%d chapter figure(s) never made it onto their zone page: %s. "
+            "Run python ops/import_chapter_svgs.py." %
+            (len(missing), missing[:5]))
+    if changed:
+        problems.append(
+            "%d wired figure(s) no longer match a fresh extraction from "
+            "their own book chapter, so a hand edit to the chapter's SVG "
+            "after the import ran is not reflected on the live zone page: "
+            "%s. ops/import_chapter_svgs.py only ever checks whether the "
+            "figure id already exists, never whether its content is "
+            "current, so this is the one drift it cannot catch itself. "
+            "Remove the stale <figure> block from the page and rerun "
+            "python ops/import_chapter_svgs.py." % (len(changed), changed[:5]))
+    return problems
+
+
+def gate_chapter_svgs_current() -> None:
+    """ops/import_chapter_svgs.py imports six hand-authored SVG diagrams out
+    of the book's chapter HTML onto their zone pages, once each: wire() skips
+    a figure the moment its id already exists on the page, by design, so
+    that rerunning the importer is safe. That same design means nothing
+    would notice if chapter 31-39's own SVG source were hand-edited after
+    the import, the exact "source corrected, artifact never re-derived"
+    shape this repository's own gates keep closing elsewhere (hero-fallback,
+    the Standards Pack, the pre-rendered shop grid, the KDP cover). Checked
+    directly before writing this: today, all six wired figures are
+    byte-identical to a fresh extraction, so this closes a latent gap, not
+    a live one, the same posture as gate_hero_fallback_current.
+
+    Re-derives every figure straight from the real, committed chapter HTML
+    (not from import_chapter_svgs.py's own state) and diffs it against what
+    each real, committed zone page actually carries.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import import_chapter_svgs as ICS
+        import importlib
+        importlib.reload(ICS)
+        fresh = ICS.fresh_state()
+    except Exception as e:                                         # noqa: BLE001
+        warn("chapter-svgs-current",
+             f"could not rebuild the chapter figures to check against: {e}")
+        return
+
+    committed = ICS.committed_state()
+    problems = check_chapter_svgs_current(fresh, committed)
+    if problems:
+        fail("chapter-svgs-current", "; ".join(problems))
 
 
 def _pymupdf_importable() -> bool:
@@ -17138,6 +17200,7 @@ def main() -> int:
     run_gate(gate_room_images_stable)
     run_gate(gate_zone_heroes_stable)
     run_gate(gate_hero_fallback_current)
+    run_gate(gate_chapter_svgs_current)
     run_gate(gate_deck_gallery_identity)
     run_gate(gate_deck_pdf_download_current)
     run_gate(gate_status_report_network_unknown)
