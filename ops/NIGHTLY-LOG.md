@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 (30 minute triage, previous work confirmed except CI still in flight, no new item genuinely unblocked, dashboard refresh shipped)
+
+Attached cleanly: unshallow plus ff-only merge onto `origin/main`, no unrelated-history symptom this run. Previous work (`ae3af120`'s new `gate_goals_revenue_window_current`, `df52bb9f`'s dashboard refresh): ran `preflight.py` myself to completion rather than cite it, every gate passed, 22 warnings, identical set to baseline, confirming the new gate fired clean with no regression. **Not yet finished: `checks.yml` run 1180 on `ae3af120` was still `in_progress` after several minutes; not assumed, handed forward.** Confirmed `publish-image.yml` correctly did not run for either commit (its own path filter is `site/**`/`Dockerfile`, neither touched). Working tree carried the routine one-commit-behind dashboard timestamp lag; regenerated and shipped (`fedd7c48`). No new item genuinely unblocked: `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Next:** whoever runs next, confirm `checks.yml` run 1180 (`ae3af120`) landed `success` before treating this cycle's work as finished. Leaving the standing low-mention `ops/*.py` cold-read (`build_zone_map_pack.py`, `indexnow.py`, `zone_graphics.py`) to the hourly operator: genuine hours-scope work, not a 30-minute item. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the redeploy item on the dashboard, unchanged.
+
 ## 2026-09-19, scheduled operator cycle (closed the open CI thread, found and gated a dated claim in GOALS.md one day from going stale unwatched, no live defect otherwise)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` clean before starting (every gate passed, 22 warnings, all previously diagnosed sandbox limits). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle.
