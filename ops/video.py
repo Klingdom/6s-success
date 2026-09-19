@@ -213,8 +213,12 @@ def verify(path: str, want_seconds: float) -> list:
 if __name__ == "__main__":
     if "--probe" in sys.argv:
         for t in ("ffmpeg", "ffprobe"):
-            p = subprocess.run([t, "-version"], capture_output=True, text=True)
-            print(f"  {t}: {p.stdout.splitlines()[0][:60] if p.returncode==0 else 'MISSING'}")
+            try:
+                p = subprocess.run([t, "-version"], capture_output=True, text=True)
+                ok = p.returncode == 0
+            except FileNotFoundError:
+                ok = False
+            print(f"  {t}: {p.stdout.splitlines()[0][:60] if ok else 'MISSING'}")
         print(f"  output: {OUT}")
         raise SystemExit(0)
     raise SystemExit(0)
