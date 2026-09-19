@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (full verification pass, every cold-read lane reconfirmed exhausted, no new defect, issue #32 left correctly Phil-gated)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`562086bd`, 742-commit fast-forward from a shallow/detached start), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, `STATUS.md`'s current section, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` myself to completion in the background (foreground exceeds this sandbox's own timeout): every gate passed, 22 warnings, the identical standing set (no VPS/Stripe/mail/SSH/Pillow credential, no egress, the sample-PDF spelling instance, the cron-cadence drift pair, page-art/deck-art gaps). Checked GitHub live via a sub-agent: 8 open issues, unchanged (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art), 0 open PRs, CI green on the latest `main` commit (`bbdbdbc9`, run 1185) via `checks.yml`; `publish-image.yml`'s last run is one commit behind but path-filtered, not a failure. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle.
+
+**Every named cold-read lane reconfirmed exhausted, not just cited.** `BACKLOG-2026-09-07.md` sections 2-4 (micro zones/app, decks, images/video): every row (A1-A7, B1-B7, C1-C7) again done or Phil-gated. Section 5's HOLD rows correctly still waiting on traffic or the pilot read. Re-derived the `ops/*.py` mention-count floor fresh rather than trust the last count: lowest is 13 mentions (`build_zone_map_pack.py`), confirming the tier has no file left below what earlier cycles already read; the interactive-QA lane (driving the Home Quest app live in headless Chromium) closed its three named untried corners (recommendation action path, Keep backup/restore round-trip, real-referring-page deep link) on 2026-09-19 earlier today with no defect; `.github/workflows/*.yml` confirmed independently exhausted by grepping this log's own history rather than re-reading all 12 files again.
+
+**Read GitHub issue #32 in full rather than re-summarize it.** It asks Phil to choose between writing pages for the 23 unexplained kit/bundle SKUs (real effort, ~21 pages) or shrinking that part of the catalogue, with a clear recorded recommendation (hold, same logic as "decks 3 to 20" in section 5) already in the issue. This is a catalogue-scope tradeoff, not a linking fix or GREEN-tier reversible content task with an obvious default, so it stays correctly assigned to Phil rather than decided here.
+
+**Checked `GOALS.md`'s own traffic baseline for currency, per CLAUDE.md 0.0.** Last real measurement 2026-09-17 17:55 UTC (78 visitors/200 visits); this sandbox has no VPS/SSH key to re-measure it, so it stays carried-forward and correctly marked as such by the dashboard, not silently re-asserted as fresh. The file's own note that the one $19 sale rolls out of the trailing 30-day window after 2026-09-20 is a true, dated statement, not a defect; nothing to fix.
+
+**No new defect found or fixed this cycle.** Working tree was clean before this run touched anything beyond the dashboard's own regeneration.
+
+**Went well:** re-deriving each "exhausted" claim from the real file counts and the real issue text rather than citing a prior cycle's summary.
+
+**Did not go well:** no genuinely fresh, non-Phil-gated angle turned up this pass; the repository's automatable surface is thoroughly covered and the live constraint (traffic) sits entirely behind owner-only gates.
+
+**Changing next cycle:** none; no new defect means no new gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (redeploy, YouTube OAuth, Search Console verification, Gemini billing, Stripe business description, Amazon KDP/Etsy accounts, Apple/Play developer accounts) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged; already escalated directly to Phil in the 18:48 PM check-in today, not repeated here per CLAUDE.md 0.2.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 19:16 (previous work confirmed finished, one real small bug found cold-reading the operator's own handoff list and fixed)
 
 Attached cleanly, ff-only onto `origin/main` (`c9778e51`). Previous work (the operator's sitemap-lastmod fix, prior entry) was pushed and the tree was clean before I touched anything. Ran `preflight.py` myself to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, matching the baseline. GitHub unchanged: 8 open issues (2 P0, both correctly Phil-gated: `#2` needs stronger art generation, `#15` needs a Listmonk decision), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, nothing new unblocked.
