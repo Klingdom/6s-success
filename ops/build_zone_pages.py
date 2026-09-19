@@ -1506,6 +1506,24 @@ def _clean(t):
     return re.sub(r"\s+", " ", (t or "")).strip()
 
 
+def _cap(t):
+    """Capitalise the first letter only, leaving the rest untouched.
+
+    content.json's per-surface `surface` label is a free-text noun phrase
+    and about a quarter of them (29 of 115 zones, all Entryway plus a
+    scattering elsewhere) are authored lowercase ("the wall and back edge
+    behind the console"). The visible "Cleaning it properly, surface by
+    surface" list already capitalised this on render; two other readers of
+    the same field did not: the FAQPage "What do you clean first" answer
+    (a live sentence that starts mid-word right after a question mark) and
+    the HowToStep JSON-LD "name" a search engine can surface directly.
+    Found 2026-09-19 narrative-cold-reading the un-tracked half of the
+    corpus. `.capitalize()` is wrong here, it also lowercases the rest.
+    """
+    t = t or ""
+    return t[:1].upper() + t[1:]
+
+
 def _session_notice(session: str, note: str) -> str:
     """The visible "One session" line, joined the way _join_clause joins it.
 
@@ -1633,7 +1651,7 @@ def zone_faq(thing, zone):
     if surfaces:
         first = surfaces[0]
         qa.append((f"What do you clean first in the {thing}?",
-                   _clean(f'{first["surface"]}. {first["method"]}')))
+                   _clean(f'{_cap(first["surface"])}. {first["method"]}')))
 
     for q, a in _grouped_watch_for(zone):
         if q and a:
@@ -1953,7 +1971,7 @@ def zone_page(room, zone, header, footer, all_rooms=()):
             sub = []
             for j, sf in enumerate(surfaces, 1):
                 sub.append({"@type": "HowToStep", "position": j,
-                            "name": _clean(sf["surface"])[:110],
+                            "name": _cap(_clean(sf["surface"]))[:110],
                             "url": url + "#shine-detail",
                             "text": _clean(sf["method"])[:900]})
             steps.append({"@type": "HowToSection", "position": i,
@@ -2198,7 +2216,7 @@ def zone_page(room, zone, header, footer, all_rooms=()):
             out.append('<ol class="shine-surfaces">')
             for sf in surfaces:
                 out.append(f'<li style="margin:0 0 14px">'
-                           f'<b>{esc(sf["surface"][:1].upper() + sf["surface"][1:])}'
+                           f'<b>{esc(_cap(sf["surface"]))}'
                            f'</b><br>{esc(sf["method"])}</li>')
             out.append('</ol>')
         if shine.get("inspect_as_you_clean"):

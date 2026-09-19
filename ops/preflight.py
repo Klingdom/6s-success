@@ -15412,6 +15412,85 @@ def gate_zone_kit_disclosure_grammar() -> None:
          "disclosure's subject-verb agreement: none regressed")
 
 
+def gate_zone_shine_step_capitalised() -> None:
+    """A zone page's per-surface Shine step name must start with a capital
+    letter, wherever it opens a sentence.
+
+    Found 2026-09-19, the same narrative cold-read lane that found the kit-
+    disclosure grammar defect above, reading the previously-untracked half
+    of site/zones/*.html. content.json's per-surface "surface" label is
+    free text; 29 of 115 zones (all 5 Entryway zones plus a scattering
+    elsewhere) author it lowercase ("the wall and back edge behind the
+    console"). ops/build_zone_pages.py's render of "Cleaning it properly,
+    surface by surface" already capitalised this field before printing it,
+    but two other readers of the same raw field did not: the FAQPage
+    "What do you clean first" answer (a live sentence in the visible
+    "Questions people ask" block that started mid-word right after a
+    question mark, e.g. "the shelf boards, empty. Take everything...") and
+    the JSON-LD HowToStep "name" for the Shine section's first sub-step,
+    which a search engine can surface directly in a rich result. Verified
+    live on entryway-the-bench-or-console and nursery-the-diaper-and-care-
+    backstock before fixing. Fixed with a shared _cap() helper in
+    build_zone_pages.py, used at all three sites; this gate reads the real
+    shipped HTML (both surfaces) rather than trusting the generator's own
+    logic, and fails on the exact old lowercase-start shape reappearing.
+    """
+    zone_dir = os.path.join(ROOT, "site", "zones")
+    files = sorted(glob.glob(os.path.join(zone_dir, "*.html")))
+    if not files:
+        warn("zone-shine-step-capitalised",
+             "no site/zones/*.html found, so the Shine step capitalisation "
+             "could not be checked here.")
+        return
+
+    bad = []
+    for f in files:
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        m = re.search(
+            r'<dt>What do you clean first in the [^<]*\?</dt><dd>([a-z])',
+            s)
+        if m:
+            bad.append("%s: FAQ answer starts lowercase (%r...)" %
+                       (os.path.relpath(f, ROOT), m.group(0)[-40:]))
+            continue
+        scripts = re.findall(
+            r'<script type="application/ld\+json">(.*?)</script>', s, re.S)
+        for script in scripts:
+            try:
+                objs = json.loads(script)
+            except ValueError:
+                continue
+            if isinstance(objs, dict):
+                objs = [objs]
+            howto = next((o for o in objs
+                          if isinstance(o, dict) and o.get("@type") == "HowTo"),
+                         None)
+            if not howto:
+                continue
+            for section in howto.get("step", []):
+                if not isinstance(section, dict):
+                    continue
+                if section.get("@type") != "HowToSection":
+                    continue
+                for step in section.get("itemListElement", []):
+                    name = step.get("name", "") if isinstance(step, dict) else ""
+                    if name and name[0].islower():
+                        bad.append(
+                            "%s: HowToStep name starts lowercase (%r)" %
+                            (os.path.relpath(f, ROOT), name))
+
+    if bad:
+        fail("zone-shine-step-capitalised",
+             "%d instance(s) of a Shine step name/answer starting with a "
+             "lowercase letter where it opens a sentence. First few: %s. "
+             "Fix content.json's authored surface label or "
+             "build_zone_pages.py's _cap() call, then regenerate; do not "
+             "hand-edit the page." % (len(bad), bad[:4]))
+        return
+    print(f"  {len(files)} zone page(s) checked for Shine step "
+          "capitalisation: none regressed")
+
+
 def gate_feed_current() -> None:
     """site/feed.xml must match what ops/build_feed.py would write right now.
 
@@ -16799,6 +16878,7 @@ def main() -> int:
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_no_storage_before_sort)
     run_gate(gate_zone_kit_disclosure_grammar)
+    run_gate(gate_zone_shine_step_capitalised)
     run_gate(gate_data_sources_current)
     run_gate(gate_growth_playbook_linkedin_current)
     run_gate(gate_mobile_overflow, deep)

@@ -13,19 +13,19 @@
    "note": "Clean: tone, hazard list/FAQ/JSON-LD agree on both hazard categories (tip-over, lead glaze), kit disclosure grammar correct, pricing band consistent."
   },
   "dining-room-the-dining-table": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "dining-room-the-sideboard-storage": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "dining-room-the-sideboard-surface": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "entryway-the-bench-or-console": {
    "read": true,
@@ -33,14 +33,14 @@
    "note": "Clean: tone, hazard list/FAQ/JSON-LD agree on both hazard categories (tip-over, small parts), kit disclosure grammar correct, diagnostic branch table internally consistent."
   },
   "entryway-the-coats-and-outerwear": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "entryway-the-door-mat-and-immediate-floor": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "entryway-the-landing-spot": {
    "read": true,
@@ -48,9 +48,9 @@
    "note": "Clean: tone, hazards, FAQ/JSON-LD agreement, pricing band all consistent. Diagnosed pilot zone (M4): cause-chosen FAQ entries verified matching the visible diagnostic block."
   },
   "entryway-the-shoes-and-boots": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "family-room-the-blanket-and-comfort-zone": {
    "read": true,
@@ -63,24 +63,24 @@
    "note": "Clean: tone, no hazard-category mismatch, kit disclosure grammar correct, hardest-call and FAQ text match verbatim."
   },
   "family-room-the-charging-and-device-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "family-room-the-craft-and-activity-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "family-room-the-primary-media-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "family-room-the-toy-and-play-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "garage-the-automotive-care-zone": {
    "read": true,
@@ -93,14 +93,14 @@
    "note": "Clean: tone, two distinct fall/crush hazard categories both correctly reflected in FAQ, kit disclosure grammar correct."
   },
   "garage-the-hand-tool-wall-and-cabinets": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean."
   },
   "garage-the-lawn-and-garden-tool-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean."
   },
   "garage-the-power-tool-and-battery-zone": {
    "read": true,
@@ -108,14 +108,14 @@
    "note": "Clean: same cross-check plus read. Battery-charging hazard copy specific, not generic."
   },
   "garage-the-primary-workbench": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "garage-the-sports-and-recreation-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "guest-bathroom-the-guest-linen-zone": {
    "read": true,
@@ -133,14 +133,14 @@
    "note": "Clean: tone, poison/fall hazards match FAQ, kit disclosure carries an honest cross-zone annotation ('not in this zone's list, but...'), grammar correct."
   },
   "guest-bathroom-the-shower-or-tub": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "guest-bathroom-the-toilet-area": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "guest-bedroom-the-guest-bed-and-linens": {
    "read": true,
@@ -153,19 +153,19 @@
    "note": "Clean: tone, two distinct fall/crush hazard categories match FAQ, kit disclosure grammar correct, cross-room 'same zone in another room' link resolves correctly."
   },
   "guest-bedroom-the-guest-dresser": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "guest-bedroom-the-guest-nightstand": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "guest-bedroom-the-guest-welcome-and-work-surface": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "hall-closet-the-cleaning-equipment-zone": {
    "read": true,
@@ -178,19 +178,19 @@
    "note": "Clean: tone, poison/burn hazards match FAQ, kit disclosure grammar correct, two cross-room links (laundry room, mudroom) both resolve."
   },
   "hall-closet-the-linen-shelf-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "hall-closet-the-paper-and-household-backstock": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "hall-closet-the-seasonal-and-guest-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "home-office-the-bookshelf-and-reference-zone": {
    "read": true,
@@ -203,24 +203,24 @@
    "note": "Clean: tone, single hazard category consistent across list/FAQ, kit disclosure grammar correct."
   },
   "home-office-the-file-storage": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "home-office-the-primary-desk": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "home-office-the-printer-and-scanning-station": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "home-office-the-supply-cabinet": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "kids-bedroom-the-bed-and-sleep-zone": {
    "read": true,
@@ -233,19 +233,19 @@
    "note": "Clean: tone, two distinct fall/crush hazard categories match FAQ, kit disclosure grammar correct, safety-pass rod-lowering claim consistent throughout."
   },
   "kids-bedroom-the-dresser-drawers": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "kids-bedroom-the-school-and-activity-launch-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "kids-bedroom-the-study-desk": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "kids-bedroom-the-toy-storage-zone": {
    "read": true,
@@ -263,14 +263,14 @@
    "note": "Clean: tone, single hazard category consistent, diagnostic branch table internally consistent, kit disclosure grammar correct."
   },
   "kitchen-the-primary-prep-counter": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "kitchen-the-refrigerator-and-freezer": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "kitchen-the-sink-and-dishwashing-zone": {
    "read": true,
@@ -278,14 +278,14 @@
    "note": "Clean: same cross-check plus read. Includes root-cause FAQ entries (diagnosed pilot-adjacent zone); those also agree with visible diagnostic copy."
   },
   "kitchen-the-upper-cabinets": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "kitchen-the-utensil-and-utility-drawers": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "laundry-room-the-detergent-and-treatment-zone": {
    "read": true,
@@ -298,14 +298,14 @@
    "note": "Clean: tone, burn/crush hazards match FAQ, kit disclosure grammar correct."
   },
   "laundry-room-the-hanging-and-air-dry-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "laundry-room-the-sorting-and-hamper-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "laundry-room-the-utility-and-cleaning-zone": {
    "read": true,
@@ -313,9 +313,9 @@
    "note": "Clean: same cross-check plus read."
   },
   "laundry-room-the-washer-and-dryer": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "living-room-the-bookshelves-and-display": {
    "read": true,
@@ -328,24 +328,24 @@
    "note": "Clean: tone, fall/burn hazards match FAQ, kit disclosure carries an honest cross-zone annotation for glass cleaner, grammar correct."
   },
   "living-room-the-floor-and-circulation-path": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "living-room-the-media-center": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "living-room-the-side-tables-and-lighting": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "living-room-the-sofa-and-seating": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "mudroom-the-bench-and-transition-surface": {
    "read": true,
@@ -358,9 +358,9 @@
    "note": "Clean: tone, three distinct hazard categories (poison, water/electricity, fall) all correctly reflected in FAQ, two cross-room links resolve, kit disclosure grammar correct."
   },
   "mudroom-the-family-hook-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "mudroom-the-pet-station": {
    "read": true,
@@ -368,14 +368,14 @@
    "note": "Clean: same cross-check plus read."
   },
   "mudroom-the-seasonal-outdoor-gear": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "mudroom-the-shoe-and-boot-storage": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "nursery-the-baby-clothing-zone": {
    "read": true,
@@ -398,9 +398,9 @@
    "note": "Clean: same cross-check plus a full narrative read (safety-critical page). Crib mattress-drop-height and loose-bedding hazard copy specific and consistent with the visible hazard list and FAQ; no fabricated claim."
   },
   "nursery-the-diaper-and-care-backstock": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean. Also carried the corpus-wide Shine-step capitalisation fix (gate_zone_shine_step_capitalised, 2026-09-19): its own surface label was authored lowercase and is now capitalised in the FAQ answer and the HowToStep JSON-LD name."
   },
   "nursery-the-feeding-station": {
    "read": true,
@@ -418,19 +418,19 @@
    "note": "Clean: tone, poison/fall hazards match FAQ, allergen cross-contact guidance consistent across Safety pass, cleaning steps and FAQ, kit disclosure grammar correct."
   },
   "pantry-the-canned-and-jarred-goods": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "pantry-the-dry-goods-shelves": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "pantry-the-snack-and-lunch-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "patio-or-deck-the-garden-and-plant-care-zone": {
    "read": true,
@@ -443,29 +443,29 @@
    "note": "Clean: same cross-check plus read. Propane/grease hazard copy specific."
   },
   "patio-or-deck-the-outdoor-dining-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean."
   },
   "patio-or-deck-the-outdoor-seating-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "patio-or-deck-the-outdoor-storage-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "patio-or-deck-the-surface-rail-and-safety-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean."
   },
   "primary-bathroom-the-linen-and-towel-storage": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bathroom-the-medicine-cabinet": {
    "read": true,
@@ -478,9 +478,9 @@
    "note": "Clean: same cross-check plus read."
   },
   "primary-bathroom-the-toilet-area": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bathroom-the-under-sink-cabinet": {
    "read": true,
@@ -488,49 +488,49 @@
    "note": "Clean: same cross-check plus read. Chemical-storage poison-risk sentence matches across surfaces."
   },
   "primary-bathroom-the-vanity-counter": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bathroom-the-vanity-drawers": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bedroom-the-bed-and-bedding-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bedroom-the-dresser-drawers": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bedroom-the-dresser-top": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bedroom-the-other-sleeper-s-nightstand": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bedroom-the-primary-closet": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "primary-bedroom-your-own-nightstand": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "stair-landing-the-landing-surface-or-console": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "stair-landing-the-stair-and-floor-path": {
    "read": true,
@@ -538,9 +538,9 @@
    "note": "Clean: same cross-check plus read. Fall-risk hazard copy specific to runners/treads."
   },
   "stair-landing-the-wall-and-display-zone": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Mechanical cross-check clean: hazard-list/FAQ/JSON-LD verbatim agreement (name+text vs FAQ answer), no duplicate hazard category, kit-disclosure grammar, forbidden-phrase scan (0 hits). Not a full narrative read of the prose."
   },
   "workshop-the-fastener-and-hardware-zone": {
    "read": true,
@@ -553,14 +553,14 @@
    "note": "Clean: mechanical cross-check (hazard list vs FAQ risk answers vs JSON-LD, clean-first vs Shine step 1, kit disclosure grammar, forbidden phrases) plus narrative read. Chemical storage safety copy specific (rag self-heating, incompatible storage), no two hazards share a category."
   },
   "workshop-the-main-workbench": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean."
   },
   "workshop-the-material-rack": {
-   "read": false,
-   "read_date": null,
-   "note": null
+   "read": true,
+   "read_date": "2026-09-19",
+   "note": "Full narrative read (hazard/FAQ risk text checked for accuracy and plausibility, not just structural agreement) plus the same mechanical cross-check. Clean."
   },
   "workshop-the-power-tool-storage": {
    "read": true,
