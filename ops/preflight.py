@@ -4814,6 +4814,74 @@ def gate_quest_symptom_entry() -> None:
             return
 
 
+def check_quest_keep_releases_urls_first(src):
+    """Return a problem string, or None if renderKeep() releases the
+    previous visit's photo blob URLs before doing anything else.
+
+    Pure logic, independent of parsing the rest of the file, so a test can
+    hand it a synthetic source string without needing the real corpus.
+    """
+    m = re.search(r"function renderKeep\s*\(\s*\)\s*\{", src)
+    if not m:
+        return "renderKeep() is missing entirely from quest.js"
+    rest = src[m.end():]
+    i = 0
+    while True:
+        stripped = rest[i:].lstrip()
+        i += len(rest[i:]) - len(stripped)
+        if stripped.startswith("/*"):
+            end = stripped.find("*/")
+            if end == -1:
+                return "renderKeep()'s opening comment never closes"
+            i += end + 2
+            continue
+        if stripped.startswith("//"):
+            end = stripped.find("\n")
+            if end == -1:
+                return "renderKeep() is only a comment"
+            i += end + 1
+            continue
+        break
+    if not rest[i:].startswith("releaseUrls();"):
+        return ("renderKeep()'s first real statement is %r, not "
+                "releaseUrls(); a repaint can once again show a photograph "
+                "without revoking the previous visit's blob URLs first"
+                % rest[i:i + 24])
+    return None
+
+
+def gate_quest_keep_releases_urls_first() -> None:
+    """The Keep screen must release the previous visit's photo URLs before
+    it ever repaints, on every path that reaches it, not just some.
+
+    Found 2026-09-19, this operator, cold-reading site/assets/js/photos.js
+    (the lowest-mention JS file) for the standing lane. renderKeep() has
+    five real call sites: the #go-keep nav button (the normal, everyday way
+    anyone opens this screen) and the restore-backup flow never called
+    releaseUrls() first; only the reset-zone, photo-upload and photo-delete
+    paths did. URL.revokeObjectURL() is never called automatically by the
+    browser, so every ordinary visit to Keep leaked one blob per
+    photograph, for the life of the tab, on the one feature (the
+    before/after record) whose value depends on a long-running session
+    staying usable. Fixed by moving the release inside renderKeep() itself,
+    so every path gets it for free and no future call site can forget it
+    the way two of the five already had.
+
+    This gate re-derives the invariant from the real committed file rather
+    than trusting the fix stays in place; ops/tests/test_quest_keep_url_leak.py
+    proves the same fix end to end in a real browser (IndexedDB itself is
+    unreachable in this sandbox, so window.QuestPhotos is stubbed there;
+    this gate needs no browser at all).
+    """
+    path = os.path.join(ROOT, "site", "assets", "js", "quest.js")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+    problem = check_quest_keep_releases_urls_first(src)
+    if problem:
+        fail("quest-keep-url-leak", problem)
+
+
 def gate_quest_data_heroes_current() -> None:
     """Every hero image quest-data.js names must still be an approved one.
 
@@ -16761,6 +16829,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
+    run_gate(gate_quest_keep_releases_urls_first)
     run_gate(gate_home_hero_card_real)
     run_gate(gate_quest_data_heroes_current)
     run_gate(gate_quest_data_videos_published)
