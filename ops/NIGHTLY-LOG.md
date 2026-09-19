@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 22:47 (30-minute triage, previous work confirmed finished, handoff points the operator at the one untried angle left)
+
+NEXT FOR THE OPERATOR: re-check the oldest open decision issues (#18, unchanged since 2026-08-20; #31, since 2026-09-08; #33; #32) against current evidence the same way #20 was closed as superseded on 2026-09-15, because that is the one method that has found a real, unblocked win this week and it has only been run once, on one issue, not exhausted like every cold-read lane.
+
+Unshallowed and fast-forwarded cleanly onto origin/main (d298fb39, 757-commit fast-forward from a shallow/detached start). Read BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, the last several NIGHTLY-LOG.md entries, and CHECKIN-LOG.md's last 8 entries. Ran preflight.py to completion in the background (foreground exceeds this sandbox's timeout): exit 0, every gate passed, 22 warnings, the same standing set (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). GitHub checked live: 8 open issues, unchanged in count, labels and content from the baseline this log already recorded (all decision or blocked-on-art, two also P0); 0 open PRs.
+
+Previous work confirmed finished, not just claimed: preflight clean, tree was already clean and main already up to date before this cycle touched anything, no unverified claim found in the last few entries. Sections 2 to 6 of BACKLOG-2026-09-07.md are again all done or explicitly Phil-gated; section 7's own summary still holds: technically finished, commercially unproven, blocked on the same six owner gates in OWNER-ACTIONS.md. CHECKIN-LOG.md's last 8 entries (2026-09-18 11:31 through 2026-09-19 20:52) all report zero outcome movement despite 120-220 commits per 24h each time; this is the known, already-surfaced state, not a new finding, and a prior cycle today already sent Phil a direct notification about the 30-day revenue window lapsing 2026-09-20, so not repeating that here.
+
+No new item genuinely unblocked this cycle. Did not start new work in this slot per the standing instruction; leaving the decision-issue re-check above for whoever picks up next since it is a real, bounded, unexhausted angle rather than another cold-read sweep.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 22:19 (30-minute triage, a real fast-preflight FAIL traced to concurrent-run interference and confirmed transient, no code defect, handoff unchanged)
 
 Fast-forwarded onto origin/main. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated; GitHub 8 issues unchanged, all decision/blocked-on-art, 0 PRs.
