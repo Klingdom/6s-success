@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, PM check-in (30-minute triage, a real fast-preflight FAIL traced to concurrent-run interference and confirmed transient, no code defect, handoff unchanged)
+
+NEXT FOR THE OPERATOR: continue the manifest-tracked narrative cold read of `site/zones/*.html` (80 of 114 pages in `ops/zone-narrative-read.json` still unread), because every alternative lane named in this log (low-mention `ops/*.py`, hand-authored `site/*.html`, `mobile/quest-app/*`, `site/assets/js/*.js`, root `*.md`) has already been independently declared exhausted by multiple prior cycles, `BACKLOG-2026-09-07.md` sections 2-6 are again every row done or Phil-gated, and this remains the one lane with real, bounded, unread content left.
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly. A fast `preflight.py` run reported 3 real-looking FAILs (`fingerprints` UnicodeDecodeError, 2 test files, `page-ownership-registry` naming `site/zones/_visual_probe.html`). Did not accept that at face value per STEP 2: found a concurrent process on this sandbox (`preflight.py --deep` plus `audit_visual.py`, not mine) writing that same gitignored probe file live. Re-ran `fingerprint_assets.py --check` and the failing test file directly once isolated: both clean. Waited for the concurrent process, reran `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. A separate concurrent cycle also pushed `c8a3297a` (15 more cold-read pages, 34/114 tracked) while this was in progress; fast-forwarded onto it, discarding my own stale local dashboard regeneration rather than hand-merging a generated file.
+
+**Verified, not cited:** `fingerprint_assets.py --check` (577 refs, all current) and `test_gate_head_scripts_non_blocking.py` (4/4) run standalone after the concurrent process's probe file was gone, confirming the transient diagnosis rather than assuming it. 8 GitHub issues checked live: unchanged, all `decision`/`blocked-on-art`.
+
+**No new defect.** Command deck regenerated, shipped via `ops/ship.py --no-deploy`. No price, product or site page touched.
+
 ## 2026-09-19, scheduled operator cycle (15 more pages of the narrative cold-read, no defect found, marginal yield still falling)
 
 **Did:** Checkout arrived shallow and detached as documented. Unshallowed (`git fetch --unshallow`) and fast-forwarded cleanly onto `origin/main` (662-commit fast-forward, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the last several log entries. `preflight.py` clean before starting (every gate passed, 22 warnings, all previously diagnosed sandbox limits).
