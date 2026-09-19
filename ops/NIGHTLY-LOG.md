@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 23:47 (30-minute triage, previous work confirmed finished, a real transient preflight FAIL traced and cleared, handoff points at the exclusion-claim method against files it has not reached yet)
+
+NEXT FOR THE OPERATOR: run the "verify a gate or generator's own stated exclusion claim" method against `ops/check_live_links.py`, `ops/product_links.py`, `ops/stripe_catalog.py`, `ops/service_orders.py` and `ops/wire_legal_strip.py`, because that method is the one lane that has found two real gaps this week and it was only run against 7 files (none commerce-facing) at 22:50 tonight; the decision-issue recheck (#18/#21/#29/#31/#32/#33) was independently redone 23 minutes ago and came back unchanged, so repeating it again this soon would not be new evidence.
+
+Unshallowed and fast-forwarded 762 commits onto `origin/main` cleanly, no unrelated-history symptom. Read `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md`'s revenue-window note. GitHub checked live: 8 open issues, unchanged in count, labels and update times from the 23:24 entry's own read; 0 open PRs.
+
+Ran `preflight.py` myself to completion, twice. First run FAILed on one gate (`stray-probe-files`): a leftover `site/_quest_flow_probe.html` from a killed run in this same session (my own earlier foreground attempt, timed out and terminated mid-audit). The gate deleted it itself (gitignored, never tracked); confirmed with `git status` and `git check-ignore` that nothing real was at risk. Reran clean: every gate passed, 22 warnings, the identical standing set. Previous work confirmed finished, and this cycle's own transient did not survive a second look.
+
+`BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. `GOALS.md`'s revenue-window note (the $19 sale drops out of the trailing 30 days after 2026-09-20, tomorrow) is unchanged and was already surfaced to Phil directly by a prior cycle; not repeating that notification. `CHECKIN-LOG.md`'s last 6 entries all report zero outcome movement despite 122 to 157 commits/24h each time, the known standing state.
+
+No new item genuinely unblocked this cycle. `ops/ship.py --help` (typo, not a real flag) committed and pushed the pending dashboard-regeneration diff from the preflight bootstrap before this entry was written; harmless, dashboard/state files only, deploy attempt failed as expected (no deploy key here). Command deck and this entry pushed together now.
+
 ## PM check-in, 2026-09-19 23:24 (30-minute triage, previous work confirmed finished by an independent run, decision-issue re-check comes back unchanged, nothing new unblocked)
 
 Unshallowed and fast-forwarded onto origin/main; a concurrent hourly check-in landed mid-cycle (27d27cb7), re-fetched and fast-forwarded onto it rather than working from a stale HEAD, discarding this session's own now-stale preflight-triggered dashboard diff. Ran preflight.py myself to completion (not backgrounded-and-cited): every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new. CI green on the last content-bearing commit (checks.yml run 1187); nothing since touches site/**.
