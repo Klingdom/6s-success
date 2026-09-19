@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-19, scheduled operator cycle (full verification pass, no new defect; 54th entry today, every lane independently reconfirmed exhausted)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (762-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, `CHECKIN-LOG.md`'s last 6 entries, and the last several `ops/NIGHTLY-LOG.md` entries (file is newest-first). Ran `python ops/preflight.py` to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live via a sub-agent: 8 open issues, unchanged in number, labels and content (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art); no comments or activity after 2026-09-19 23:00 UTC on any of them; 0 open PRs.
+
+**Verified rather than assumed each lane was still exhausted.** Re-derived the `ops/*.py` mention-count floor fresh: every file in `ops/*.py` now carries 15+ mentions in this log, confirming that cold-read lane has no unread file left. Checked two more of `gate_sitemap_complete`'s own stated exclusions (`nginx/`, `assets/`) directly rather than trusting the already-verified `downloads/` one: both directories contain zero `.html` files, so the exclusion is genuinely inert, not hiding a gap. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `CHECKIN-LOG.md`'s last 6 hourly entries (06:04 through 23:16 today) all report zero outcome movement despite 120-160 commits/24h each time; this is the known, already-surfaced state (a direct owner notification about the 30-day revenue window and the fully owner-gated constraint was already sent by an earlier cycle today), not repeated here per CLAUDE.md 0.2.
+
+**A transient race, not a defect:** during preflight's background run, `git status` briefly showed four `build/listings/etsy/**` PDF/PNG files as modified (preflight's own test/bootstrap step regenerating build artifacts under a concurrent read, the same shared-filesystem race this log has documented before). Resolved on its own once preflight finished; working tree was clean and byte-identical to HEAD immediately after. Not treated as a finding.
+
+**Push conflict, resolved by merge and fresh regeneration, not hand-merge.** A concurrent session's own dashboard-only commit (`ebebc14a`) landed between this cycle's fetch and push. Merged rather than forced, took the incoming dashboard files, then reran `ops/dashboard.py` fresh against the merged HEAD so the deck reflects real current state rather than either side's stale write, per this log's own established pattern for command-deck conflicts.
+
+**No new item genuinely unblocked this cycle; no new defect found or fixed.**
+
+**Went well:** treating the "22 standing warnings" and "8 unchanged issues" claims as things to re-derive, not cite; extending the exclusion-claim method to two more directories cheaply rather than assuming it was exhausted just because the one prior check on `downloads/` came back clean.
+
+**Did not go well:** none new; the transient build-artifact race and the command-deck push conflict are both already-diagnosed, non-defect shapes.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("Start here": Search Console verification, YouTube upload authorisation, Stripe business description) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. The repository's automatable surface remains thoroughly covered; the live constraint (traffic) sits entirely behind owner-only gates.
+
+Pushed to main. Command deck regenerated (post-merge) plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 23:24 (30-minute triage, previous work confirmed finished by an independent run, decision-issue re-check comes back unchanged, nothing new unblocked)
 
 Unshallowed and fast-forwarded onto origin/main; a concurrent hourly check-in landed mid-cycle (27d27cb7), re-fetched and fast-forwarded onto it rather than working from a stale HEAD, discarding this session's own now-stale preflight-triggered dashboard diff. Ran preflight.py myself to completion (not backgrounded-and-cited): every gate passed, 22 warnings, all previously diagnosed sandbox limits, none new. CI green on the last content-bearing commit (checks.yml run 1187); nothing since touches site/**.
