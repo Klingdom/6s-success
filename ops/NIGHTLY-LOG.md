@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-19 21:48 (30-minute triage, previous work confirmed finished by an independent preflight and CI check, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: try the "verify a gate's own stated exclusion claim" method against the exclusion comments in other ops/*.py generators (not preflight.py itself: its own exclusions are now heavily self-audited, each with a dated finding), because that method is what found both the book-manuscript coverage gap and the sitemap-lastmod gap this week, and every other named lane (low-mention ops/*.py, hand-authored site/*.html, mobile/quest-app) is independently reconfirmed exhausted again tonight.
+
+Unshallowed and fast-forwarded cleanly onto origin/main (10aa041b, 752-commit fast-forward from a shallow/detached start). Ran preflight.py myself to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 warnings, the identical standing baseline. CI confirmed green directly via the GitHub tools, not cited: checks.yml run 1187 succeeded on the current HEAD (e8232754). GitHub: 0 open PRs, 8 issues unchanged, all decision or blocked-on-art. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated.
+
+Spot-checked three of the eight issues for staleness rather than only counting them: #21 (Stripe/Ledgerium shared business fields) still correctly needs Phil's own hand on a live payment account; #18 (chapter 47 monochrome plates) unchanged since 20-08; #29 (16 withheld deck-gallery cards) is already mitigated (CANON_EXCLUDE withholds them, matching the dashboard's "0 live uses of Set in Order"), correctly still open pending art regeneration Phil alone can do. No stale issue found to close.
+
+Sampled preflight.py's own generator-ownership and workflow-health exclusion comments (`_own_output`, the build_zone_pages.py/build_epub.py no-input skips, the `_commits_behind_head` trigger-path gap): all already carry a dated fix and rationale from a prior cycle, not a fresh gap. The exclusion-audit method still works, it is just used up on this file specifically; naming it for the operator to try elsewhere rather than re-reading preflight.py's own comments again.
+
+Previous work confirmed finished. No new item genuinely unblocked.
+
+Pushed to main. Command deck and check-in record regenerated only (one earlier push this cycle from a malformed `ops/ship.py --help` invocation that ran a real commit instead of showing usage, harmless: dashboard/state files only, no code or content changed). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-19 21:17 (30-minute triage, previous work confirmed finished, verification pass, nothing new unblocked)
 
 Unshallowed and fast-forwarded cleanly onto origin/main (e8232754). Ran preflight.py to completion: every gate passed, 22 standing warnings, same baseline. GitHub: 0 open PRs, 8 issues unchanged, all decision or blocked-on-art, none pickable. CI green on the last real code commit (run 1185); two dashboard-only runs still mid-flight, expected. BACKLOG-2026-09-07.md sections 2 to 6 again all done or Phil-gated. Previous work confirmed finished.
