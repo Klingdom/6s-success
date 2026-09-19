@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-19 20:18 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-19 20:50 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-18 15:10; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 25 |
-| Commits (7 days) | 1239 of 2929 total |
+| Commits (7 days) | 1238 of 2930 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `c5c0ae00` Merge remote-tracking branch 'origin/main' |
+| Last commit | `0722deef` PM check-in: previous work confirmed finished, independent p |
 
 ## Product readiness
 
@@ -57,6 +57,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 ## What needs you
 
 - **Redeploy the site.** Production is serving an older build: 1 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 111 reviewed pictures and every fix since the last deploy reach nobody.
+- **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
+- **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
+- **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#32** Decide: 23 kits/bundles are named on no page but their own shop tile
 - **#31** Decide: the deck gallery and the deck download are two different card designs
