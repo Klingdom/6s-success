@@ -751,6 +751,20 @@ def _existing_lastmods():
     return dict(re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", src))
 
 
+# Attributes that exist only so a click can be measured. They are invisible
+# to a reader and meaningless to a search engine, so a page that gains one
+# has not changed in the sense <lastmod> is asking about.
+#
+# Added 2026-09-20, when data-sku went onto all 455 buy links (289 had none).
+# That single sweep touched 161 of 188 pages, and without this the sitemap
+# would have told every crawler that 86% of the site changed today while
+# nothing a visitor can see was different on any of them. This site's
+# scarcest resource is crawler attention, Google fetches it rarely, and a
+# sitemap that cries change over a no-op spends that attention for nothing
+# and teaches the crawler to discount lastmod here in future. Same reasoning
+# as the fingerprint exclusion below, same shape of problem.
+_MEASURE_ATTR = re.compile(r'\s+data-sku="[^"]*"')
+
 _FINGERPRINT_REF = re.compile(
     r"(assets/[A-Za-z0-9_./-]+\.(?:css|js))\?v=[0-9a-f]+")
 
@@ -778,6 +792,7 @@ def _content_hash(fp):
     except OSError:
         return None
     norm = _FINGERPRINT_REF.sub(r"\1", src)
+    norm = _MEASURE_ATTR.sub("", norm)
     return hashlib.sha256(norm.encode("utf-8")).hexdigest()[:16]
 
 
@@ -860,8 +875,13 @@ def _git_content_date(fp, depth=15):
         r = run(["git", "show", "%s:%s" % (commit, rel)], text=False)
         if not r or not r.stdout:
             return None
-        return _FINGERPRINT_REF.sub(
-            r"\1", r.stdout.decode("utf-8", "replace"))
+        raw = r.stdout.decode("utf-8", "replace")
+        # Strips exactly what _content_hash() strips, deliberately. If
+        # dating normalised less than detection did, a measurement-only edit
+        # would be invisible to the hash and still move the date, which is
+        # the same wrong answer arriving through the other door.
+        raw = _FINGERPRINT_REF.sub(r"\1", raw)
+        return _MEASURE_ATTR.sub("", raw)
 
     for i in range(len(rows) - 1):
         newer, date = rows[i][0], rows[i][1]
