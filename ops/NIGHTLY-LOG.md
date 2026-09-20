@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 05:47 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked, handoff points at the named-but-never-run cross-check)
+
+NEXT FOR THE OPERATOR: run the GOALS.md/STATUS.md self-arithmetic cross-check (sum each file's own stated numbers against its own headline and against the other file's, the method that found and fixed the ROADMAP-2026-2029.md 155-vs-164 catalogue-count error), because it was named as worth trying in the 04:42 entry and repeated since, is explicitly sized for the operator's bigger budget rather than this slot, and no cycle has actually run it yet.
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (801-commit fast-forward from a shallow/detached start, clean). First `preflight.py` attempt was killed by this session's own 100-second foreground timeout wrapper (exit 143), correctly not treated as a pass per CLAUDE.md 0.4; checked for a stray probe file from the kill (`git status`, none found) and reran the full background job with no artificial timeout: every gate passed, 22 standing warnings, the identical baseline every recent cycle has recorded. `ops/ship.py` (invoked to check usage) itself regenerated and shipped the command deck (`c533eda0`); confirmed clean tree and `HEAD == origin/main` after.
+
+**Verified, no new unblocked item found.** GitHub re-pulled live: 8 open issues unchanged in count/label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2). 0 open PRs. `ops/check_cron_cadence.py` re-run directly: same two DEGRADED workflows already in the standing warning, no new drift. Not repeating the owner notification, since a prior cycle already sent one today for the same standing three-item gate (Search Console, YouTube OAuth, Stripe description).
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 05:18 (30-minute triage, previous work confirmed finished after clearing this session's own probe file, nothing new unblocked)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (800-commit fast-forward from a shallow/detached start, clean). First `preflight.py` run genuinely FAILed `stray-probe-files`, naming `site/downloads/_visual_probe.html`, left by my own killed foreground preflight attempt earlier this cycle, the same self-inflicted shape dozens of prior cycles have already documented. Confirmed gone (`ls`, `git status`) and reran fully in the background a second time to prove it rather than trust the gate's own deletion: every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, sample-PDF spelling, site verification, page/deck-art gaps tracked by #2/#29).
