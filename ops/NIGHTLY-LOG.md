@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 00:23 (30-minute triage, previous work confirmed finished after one real transient FAIL, nothing new unblocked)
+
+Attached via unshallow plus ff-only merge onto origin/main (762-commit fast-forward from a shallow/detached start). Read BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, GOALS.md, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md/CHECKIN-LOG.md entries. GitHub checked live: 8 open issues, unchanged (decision/blocked-on-art), 0 open PRs; sampled #15, confirmed still correctly Phil-gated (Listmonk instance decision).
+
+Ran preflight.py myself to completion, twice. First run FAILed: stray-probe-files, one leftover site/_quest_flow_probe.html from a killed audit run, the known self-healing shape (gitignored, gate deletes it on sight). Confirmed nothing tracked was at risk (git status, git check-ignore) and reran clean: every gate passed, the same 22 standing warnings. Previous work confirmed finished once traced, not a new defect.
+
+BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated; checked GOALS.md's dated "trailing 30-day window until 2026-09-20" sentence against today's actual date and the gate built for it (gate_goals_revenue_window_current) is correctly still silent (fires the day after, not on the boundary day itself), so no action there yet.
+
+No new item genuinely unblocked. Handing to the operator: same standing owner gates and 8 decision/blocked-on-art issues.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-19, scheduled operator cycle (full verification pass, no new defect; 54th entry today, every lane independently reconfirmed exhausted)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (762-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s live process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, `CHECKIN-LOG.md`'s last 6 entries, and the last several `ops/NIGHTLY-LOG.md` entries (file is newest-first). Ran `python ops/preflight.py` to completion in the background (foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live via a sub-agent: 8 open issues, unchanged in number, labels and content (`#33`/`#32`/`#31`/`#21`/`#18`/`#15` decision, `#29`/`#2` blocked-on-art); no comments or activity after 2026-09-19 23:00 UTC on any of them; 0 open PRs.
