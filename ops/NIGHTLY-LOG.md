@@ -18,6 +18,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-20 04:42 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked, handoff points at a named-but-never-run angle)
+
+NEXT FOR THE OPERATOR: sum `GOALS.md`'s and `STATUS.md`'s own stated numbers against their own headlines and against each other, the same method that found and fixed the `ROADMAP-2026-2029.md` 155-vs-164 catalogue-count error two cycles ago, because that cycle's own "changing next cycle" note named this exact pair as worth trying and no entry since has actually done it (checked: the traffic-contradiction fix at line ~3408 of this file is a different, already-closed defect, not this check).
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (797-commit fast-forward from a shallow/detached start, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own timeout first, correctly not treated as a pass per `CLAUDE.md` 0.4): every gate passed, 22 standing warnings, the identical baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on two workflows, sample-PDF British spelling, site verification, 3 zones/7 cards missing art already tracked by open issues #2/#29). Working tree was clean before this run; no concurrent push landed on `origin/main` while working.
+
+**Verified, no new unblocked item found.** GitHub re-pulled live via the API: 8 open issues, unchanged in count, number and label from the 04:13 entry (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2); 0 open PRs. `BACKLOG-2026-09-07.md` re-read: sections 2-6 again all done or Phil-gated. `CHECKIN-LOG.md`'s hourly entries continue to report zero outcome movement despite 120-190 commits/24h; the standing state, not a new finding, and already surfaced to Phil via `OWNER-ACTIONS.md`'s "Start here" three (Search Console, YouTube OAuth, Stripe business description), which remain the only real lever and are unchanged. `GOALS.md`'s dated revenue-window sentence: today is 2026-09-20, the boundary date itself; `gate_goals_revenue_window_current` correctly stays silent until tomorrow.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** the same standing owner gates in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. Re-check `GOALS.md`'s revenue-window sentence after 2026-09-21 00:00 UTC. The GOALS.md/STATUS.md self-arithmetic check above is sized for the operator's bigger budget, not this slot.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 04:13 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (794-commit fast-forward from a shallow/detached start, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own timeout first, correctly not treated as a pass per `CLAUDE.md` 0.4): every gate passed on the first try, no stray probe file this time, 22 standing warnings, the identical baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on two workflows, sample-PDF British spelling, site verification, 3 zones/7 cards missing art already tracked by open issues #2/#29). Working tree was clean before this run.
