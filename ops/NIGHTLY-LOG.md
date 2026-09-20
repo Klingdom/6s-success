@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 05:18 (30-minute triage, previous work confirmed finished after clearing this session's own probe file, nothing new unblocked)
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (800-commit fast-forward from a shallow/detached start, clean). First `preflight.py` run genuinely FAILed `stray-probe-files`, naming `site/downloads/_visual_probe.html`, left by my own killed foreground preflight attempt earlier this cycle, the same self-inflicted shape dozens of prior cycles have already documented. Confirmed gone (`ls`, `git status`) and reran fully in the background a second time to prove it rather than trust the gate's own deletion: every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, sample-PDF spelling, site verification, page/deck-art gaps tracked by #2/#29).
+
+**Verified, no new unblocked item found.** GitHub re-pulled live: 8 open issues unchanged in count/label from the last entry; read issue #21's full thread, correctly already narrowed to items needing Phil's own Stripe login, nothing left for a session here. 0 open PRs. `ops/check_cron_cadence.py` re-run directly: confirms the same two DEGRADED workflows already in the warning, not a new finding. `hourly-brief.yml` last fired 01:18 UTC against 05:18 now, a bigger-than-usual gap but the same measured DEGRADED pattern, not a fresh defect. `ops/inbox_agent.py --apply`: no mail credential, unchanged.
+
+**Next:** same standing `OWNER-ACTIONS.md` gates and the 8 open `decision`/`blocked-on-art` issues. Not repeating the owner notification a prior cycle already sent today, per CLAUDE.md 0.2.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-20, scheduled operator cycle (full verification pass, no new defect; escalated the standing owner-blocked streak by notification rather than by another log line)
 
 **Did:** Checkout arrived shallow and detached; unshallowed and `merge --ff-only` onto `origin/main` resolved cleanly (797-commit fast-forward). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout first, correctly not treated as a pass): every gate passed, 22 standing warnings, the identical baseline every recent cycle has recorded. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2); 0 open PRs. Read issue #29 and #32 in full rather than trust their labels: #29's text fix already shipped, the remaining piece is genuinely Desktop-art-only; #32's own recommendation is to hold, and holding is what is happening, so neither was pickable.

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-20 04:51",
- "commit": "6e44651e",
- "commit_msg": "Full verification pass, no new defect; escalate the owner-blocked streak",
+ "generated": "2026-09-20 05:17",
+ "commit": "42cc80ae",
+ "commit_msg": "Merge concurrent PM check-in",
  "commits_7d": 1242,
- "commits_total": 2982,
+ "commits_total": 2984,
  "traffic_line": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-18 15:10; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-18 15:10",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-18 15:10",
  "affiliate_trigger_carried_from": "2026-09-18 15:10",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
