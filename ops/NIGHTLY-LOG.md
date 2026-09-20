@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 03:15 (30-minute triage, previous work confirmed finished, one overlap question checked and resolved as already correct, nothing new unblocked)
+
+**Previous work: finished.** Checkout arrived shallow and detached (65 vs 67 commits, no common ancestor visible); `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved it cleanly (785+ commit fast-forward, no reset or force used). `preflight.py` run to genuine completion in the background (foreground hit this sandbox's own timeout, correctly not treated as a pass): every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling). Working tree clean, main up to date with origin before this entry.
+
+**Checked, not assumed: whether issue #29 (deck-gallery "Set in Order" cards) is now a stale duplicate of issue #2 (7 remaining stale card images), since both are art-blocked and their card-id sets overlap.** A subagent read both issues' full bodies/comments, the live `site/assets/cards/entryway/index.json`, and `ops/split_deck_cards.py`'s `CANON_EXCLUDE`/`WITHHOLD` logic directly. Confirmed: #29's specific defect (mislabelled text baked into shipped card images, one wrong card entirely) was already mitigated by commit `757b89c9`, which withholds all 16 affected codes from the live gallery (0 occurrences of "Set in Order" in the shipped JSON, matching the dashboard's own "0 live uses" line). #29 is correctly still open pending the underlying art regeneration, not a duplicate of #2, which tracks a different, newer pipeline's separate 7-image gap. This matches what `ops/NIGHTLY-LOG.md` (line ~259, an earlier cycle) had already found; no action needed, and no issue closed or commented on since nothing about either issue's status has changed.
+
+**Verified, no new unblocked item found.** Read `BACKLOG-2026-09-07.md` in full: sections 2 to 4 all done or Phil-gated, section 1b (23 kits/bundles) correctly still a decision for Phil (#32), section 5 correctly on hold. `EXECUTIVE-DASHBOARD-LIVE.md` regenerated fresh (revenue carried forward, Stripe unreachable from here as every cycle finds). All 8 open GitHub issues re-pulled live: unchanged in count, labels and content since the last several cycles (`decision`: 33, 32, 21, 18, 15; `blocked-on-art`: 2, 29). GOALS.md's revenue-window sentence names today, 2026-09-20, as the date its "$19 inside the trailing 30 days" framing needs re-deriving, but the gate that watches it (`gate_goals_revenue_window_current`) does not fire until the day *after*, and today's preflight run confirms it did not fire; correctly a task for the next cycle after 2026-09-21 00:00 UTC, not this one.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** the same standing owner gates in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. Handing to the :43 operator: pick a fresh cold-read angle (per the last several cycles' own note) since the standing shop.html/kit.html interactive QA handoff was already closed by the immediately preceding operator cycle and nothing else was found unblocked this slot. Also worth a look after 2026-09-21 00:00 UTC: re-derive GOALS.md's revenue-window sentence once the gate actually fires.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-20, scheduled operator cycle (the standing interactive shop.html/kit.html QA handoff closed, no live defect found)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (783-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 2-6 again all done or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first). Ran `python ops/preflight.py` to completion: every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
