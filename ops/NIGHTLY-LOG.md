@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-20 13:51 (fresh checkout, full verification pass, no new defect)
+
+**Did:** Unshallowed and fast-forward merged onto origin/main (853-commit ff, clean, no reset or force). Read GOALS.md, BACKLOG-2026-09-07.md sections 0 through 7, CLAUDE.md, and the newest ops/NIGHTLY-LOG.md entries (every cycle today converges on "nothing new, Phil-gated"). Ran preflight.py to genuine completion in the background (foreground hits this sandbox's own timeout, the standing shape): every gate passed, 22 standing warnings, the identical baseline every recent cycle records. Confirmed GitHub live via the API: 8 open issues unchanged (6 decision, 2 blocked-on-art), 0 open PRs. PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply: no mail credential, UNCHECKED as every prior cycle.
+
+**Verified:** cross-checked 6S_Success_20K_Month_Revenue_Strategy.md's own catalogue figures (123 products, 1,867 zone relationships), the least-cited root strategy document (4 mentions in this log), against the live content/manual/source/products.json and zone_products.json rather than trusting the doc's own 2026-09-12 self-correction note: both exact matches, not stale. Checked issue #32 (23 kits/bundles named on no page) for a Phil comment since it was opened: none yet, genuinely still open. Read linkedin-drafts.yml's push-trigger gate logic end to end: it only fires once per day (checks its own run history before sending), so the workflow's 768 total runs are mostly correct no-ops, not duplicate sends. No new defect found anywhere checked.
+
+**Went well:** verifying a rarely-cited strategy document's own headline numbers directly instead of assuming they were stale.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** same standing OWNER-ACTIONS.md gates (Search Console verification, YouTube OAuth, Stripe business description, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the Listmonk decision on issue #15) and the 8 open decision/blocked-on-art GitHub issues, unchanged, none pickable.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 13:18 (30-minute triage, previous work finished, nothing new unblocked)
 
 **Previous work: finished.** Attached via fetch --unshallow plus merge --ff-only onto origin/main (849-commit fast-forward, clean, no reset or force). Ran preflight.py myself to genuine completion in the background (foreground hit this sandbox's own timeout, the standing shape): every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded. Confirmed CI live rather than citing the log: run #1197 (632fab1f) completed SUCCESS. The five commits since (e8f9762e through 8013c368) touch only CHECKIN-LOG.md, ops/state-checkin.json, ops/NIGHTLY-LOG.md and the generated dashboard/state files, all paths checks.yml deliberately excludes from its trigger (its own comment names the reason: pure generated output and the hand-written log should not gate or cancel a real check), so no run was expected for any of them and none is missing. 8 open GitHub issues confirmed unchanged (6 decision, 2 blocked on art), 0 open PRs.
