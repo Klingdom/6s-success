@@ -6,7 +6,11 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-18, item 8's precondition resolved: a concurrent
+**Last measured:** 2026-09-20, item 1b reopened: production is stale again,
+233 commits behind the repository (last confirmed current 2026-09-18T17:20:47Z,
+build `7c765b634045a89c`; repository now at `5e905bdd45e222e9`), and no
+operator sandbox holds the deploy key or VPS egress, so redeploying is yours.
+Earlier: 2026-09-18, item 8's precondition resolved: a concurrent
 session with real VPS access confirmed production redeployed to build
 `8f2400c02ff063f2` and proved the rewired analytics path end to end (a
 labelled probe event reached the live beacon), so the "wait for the deploy"
