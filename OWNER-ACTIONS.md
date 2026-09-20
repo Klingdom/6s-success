@@ -519,7 +519,7 @@ on the zone page" rather than presenting four sixths of a standard as the
 whole of it. One of those hidden items was "The cabinet strapped to a wall
 stud", which is a safety line.
 
-**Measured 2026-09-17 17:55 UTC by a direct database read, breakdown re-pulled in the same query.** Traffic is 78 visitors, 200 visits and 949 pageviews, 2.6 a day (77 visitors and 518 pageviews once the one automated session is excluded; 76 and 501 once a second high-rate session goes too):
+**Measured 2026-09-20 15:40 UTC by a direct database read.** Traffic is 76 visitors, 193 visits and 946 pageviews, 2.5 a day (75 visitors and 515 pageviews once the one automated session is excluded). The last 7 days: 14 visitors, down from 18 the week before:
 
 | Source | Visitors, 30 days |
 |---|---|

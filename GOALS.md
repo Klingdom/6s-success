@@ -38,15 +38,9 @@ measurably work better.**
 Both halves are load-bearing. Revenue without the outcome is churn with extra
 steps, and the outcome without revenue is a hobby.
 
-**Baseline 2026-09-02, corrected 2026-09-10:** $19 lifetime, one customer, one
-sale (2026-08-21). This line originally claimed zero revenue in the trailing
-30 days, which was wrong the day it was written: 2026-09-02 sits only 12 days
-after the sale, inside any 30-day trailing window, and `STATUS.md`'s own
-measured revenue row has said "$19... Last 30 days" the whole time. The two
-files disagreed on the one number the main goal is measured against. There
-has been no second sale, so the honest statement is: one $19 sale, ever,
-which is inside the trailing 30-day window until 2026-09-20, after which the
-30-day figure genuinely becomes zero unless a new sale lands first.
+**Baseline 2026-09-02, corrected 2026-09-10, and the predicted moment has now arrived (2026-09-20):** $19 lifetime, one customer, one sale (2026-08-21), confirmed again today by reading the Stripe charge list directly: one paid charge, ever. This line used to say the sale sits inside any trailing 30-day window, and noted that it would stop being true on 2026-09-20. Today is that day. **Trailing-30-day revenue is now $0**, and the honest statement is: one $19 sale ever, none in the last 30 days, no second customer in the 30 days since.
+
+That is the number the whole plan is measured against, and nothing shipped since has moved it, because nothing shipped since has moved arrivals: 14 visitors in the last 7 days against 18 the week before.
 
 ---
 
@@ -61,7 +55,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **78 visitors / 200 visits / 30 days** | measured 2026-09-17 17:55 UTC by a direct Umami database read from a session holding the VPS key (`ops/traffic_query.sh`). 949 pageviews, of which **431 are one automated session** (no browser string, iOS/mobile, 431 pageviews in 28 minutes on 7 Sept), leaving **518 from 77 visitors**; excluding a second high-rate session (17 pageviews in 8 minutes) as well leaves **501 from 76**. Up from 75/196 (2026-09-14 21:30), 68 (2026-09-11), 60/161 (2026-09-07). In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. **The 506-vs-155 contradiction flagged 2026-09-17 is resolved, by re-deriving both from one query rather than picking a side: 155 came from `947 - 792`, which subtracts that session's 792 TOTAL EVENTS from the site's 947 PAGEVIEWS. Its 792 events are 431 pageviews plus 361 custom events. Same units both sides, the human figure is 518 of 949, not 155, and the earlier 506 reading was right in method. Units trap recorded as LRN-0015.** |
+| Stranger to Visitor | **76 visitors / 193 visits / 30 days** | measured 2026-09-20 15:40 UTC by a direct Umami database read (`ops/traffic_query.sh`). 946 pageviews, of which **431 are one automated session** (no browser string, iOS/mobile, 431 pageviews in 28 minutes on 7 Sept), leaving **515 human pageviews from 75 visitors**. Down from 78/200 on 2026-09-17: the last 7 days brought **14 visitors, 21 visits, 35 pageviews**, against 18/28/57 the week before. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. Units trap recorded as LRN-0015. |
 | Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
@@ -104,9 +98,9 @@ not by how interesting they are.
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
 | Published videos | **12 of 114, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30. Corrected 2026-09-16: this row read "12 of 228" for six weeks, conflating the 228 total rendered video FILES (114 vertical plus 114 horizontal, two orientations of the same 114 zones) with the YouTube publishing target. `ops/youtube_upload.py`'s own docstring states only the wide 16:9 file is ever uploaded ("Shorts are a separate distribution decision and are not posted by this tool"), so the real denominator is 114, one per zone, matching `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md`'s own "102 of 114 remaining" framing, which was right the whole time. The numerator (12) was never wrong.** | all 114 |
-| Sessions from organic search | **4 visits from 3 visitors, whole life of the site, reconfirmed 2026-09-17** | one visit from Bing (21 August) and three visits from two Google visitors (4 to 12 September), read directly from the Umami database 2026-09-14. Four of Google's six landing pageviews were `/standards.html`, the other two the home page: the Standards Pack is the one page search is currently sending anyone to. Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05. |
-| Sessions, last 7 days | **18** | 18 visitors, 28 visits, 57 pageviews, measured 2026-09-17 |
-| Weekly visitors | 18/wk (2026-09-17) | 500/wk |
+| Sessions from organic search | **5 visits from 4 visitors, whole life of the site, as of 2026-09-20** | one visit from Bing (21 August) and three visits from two Google visitors (4 to 12 September), read directly from the Umami database 2026-09-14. Four of Google's six landing pageviews were `/standards.html`, the other two the home page: the Standards Pack is the one page search is currently sending anyone to. Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05. |
+| Sessions, last 7 days | **14** | 14 visitors, 21 visits, 35 pageviews, measured 2026-09-20 |
+| Weekly visitors | 14/wk (2026-09-20, down from 18) | 500/wk |
 
 **Why it is first, now with numbers.** 78 visitors (read directly from the
 database 2026-09-17 17:55 UTC, up from 75 on 2026-09-14, 68 on 2026-09-11 and

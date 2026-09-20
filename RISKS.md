@@ -367,8 +367,12 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
-  - current baseline, direct Umami database read, 2026-09-17 17:55 UTC: 78
-    visitors/200 visits/949 pageviews/30 days, 518 human pageviews.
+  - current baseline, direct Umami database read, 2026-09-20 15:40 UTC:
+    76 visitors/193 visits/946 pageviews/30 days, 515 human pageviews from
+    75 visitors. The week to 2026-09-20 brought 14 visitors against 18 the
+    week before, so arrivals are flat to falling rather than growing, and
+    the one $19 sale (2026-08-21) has now fallen out of the trailing 30-day
+    window: 30-day revenue is $0.
 impact: >
   Traffic now has one real, dated data point instead of none, so "every
   growth claim is unfalsifiable" no longer fully holds. There is still no
@@ -745,10 +749,13 @@ evidence:
   - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
     catalog has not moved revenue because almost nobody is arriving at the
     site yet. Discovery, not what can be bought, is the constraint now."
-  - GOALS.md baseline, direct Umami database read, 2026-09-17 17:55 UTC: 78
-    visitors/200 visits/949 pageviews/30 days (518 human pageviews once the
-    one automated session is excluded), up from 75/196 on 2026-09-14, 68/161
-    on 2026-09-11 and 60/161 on 2026-09-07. Four organic referrals exist in the site's
+  - GOALS.md baseline, direct Umami database read, 2026-09-20 15:40 UTC:
+    76 visitors/193 visits/946 pageviews/30 days (515 human pageviews once
+    the one automated session is excluded). DOWN from 78/200 on 2026-09-17,
+    and the trailing week fell to 14 visitors from 18: the 30-day window is
+    now rolling past a busier fortnight, so this is flat-to-falling traffic,
+    not growth. Earlier: 75/196 on 2026-09-14, 68/161 on 2026-09-11, 60/161
+    on 2026-09-07. Four organic referrals exist in the site's
     whole life: one from Bing (21 August) and three from Google (4 to 12
     September), read directly from the database. A live feed is still
     blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)

@@ -447,8 +447,8 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 78 | Last 30 days | MEASURED 2026-09-17 17:55 UTC (visitors; 200 visits, 949 pageviews of which 431 are a single automated session, leaving 518 human pageviews from 77 visitors), direct Umami database read over ssh from a session holding the VPS key; previous 75 (2026-09-14 21:30), 68 (2026-09-11), 60 (2026-09-07) |
-| Sessions | 18 | Last 7 days | Same source, 2026-09-17: 18 visitors, 28 visits, 57 pageviews |
+| Sessions | 76 | Last 30 days | MEASURED 2026-09-20 15:40 UTC (visitors; 193 visits, 946 pageviews of which 431 are a single automated session, leaving 515 human pageviews from 75 visitors), direct Umami database read over ssh; previous 78 (2026-09-17), 75 (2026-09-14), 68 (2026-09-11) |
+| Sessions | 14 | Last 7 days | Same source, 2026-09-20: 14 visitors, 21 visits, 35 pageviews, down from 18/28/57 |
 | Organic sessions | 4 visits from 3 visitors, whole life of the site, reconfirmed 2026-09-17 (1 Bing, 21 August; 3 Google visits from 2 visitors, 4 to 12 September) | Last 30 days | Same source and same caveat. Corrected 2026-09-20: this row still carried GOALS.md's own retired 2026-09-05 reading (2 visits, 1 Bing/1 Google) 15 days after GOALS.md itself moved to the current count; see `gate_goals_organic_search_row_current`, widened this cycle to check the actual visit total, not just the earlier "zero from Google" phrasing, so this specific number cannot drift silently again. |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |
