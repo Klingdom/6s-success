@@ -123,11 +123,28 @@ jobs:
         #
         # The runner has Docker, and the image the site actually runs on can
         # check its own config in about two seconds.
+        #
+        # The mkdir is not decoration. This step runs the config against a
+        # STOCK nginx image, which is not what ships: the real image comes
+        # from the Dockerfile, and since 2026-09-20 that Dockerfile creates
+        # /var/log/nginx/persist, because the config writes the crawl log
+        # there. Without the same mkdir here the two environments differ,
+        # and this step rejected a config that the real image builds and
+        # runs perfectly well. A check that disagrees with production is not
+        # a stricter check, it is a wrong one, and failing in the direction
+        # of refusing good work is how a gate teaches people to bypass it.
+        #
+        # The authoritative validation is the Dockerfile's own `RUN nginx -t`,
+        # which runs after that mkdir in the real filesystem and fails the
+        # build if anyone removes the mkdir while the config still logs
+        # there. This step stays only because it fails in two seconds
+        # instead of four minutes.
         run: |
           set -euo pipefail
           docker run --rm \
             -v "$PWD/site/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro" \
-            nginx:1.27-alpine nginx -t
+            nginx:1.27-alpine \
+            sh -c 'mkdir -p /var/log/nginx/persist && nginx -t'
           echo "nginx config parses and would start"
 
       - name: Set up buildx
