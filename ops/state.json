@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-20 14:20",
- "commit": "9ab4cd09",
- "commit_msg": "Refresh command deck after clean post-merge preflight reconfirmation",
- "commits_7d": 1218,
- "commits_total": 3041,
+ "generated": "2026-09-20 14:22",
+ "commit": "23256916",
+ "commit_msg": "checks.yml: document why CHECKIN-LOG.md and ops/state-checkin.json need no explicit path exclusion",
+ "commits_7d": 1220,
+ "commits_total": 3043,
  "traffic_line": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-18 15:10; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-18 15:10",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-18 15:10",
  "affiliate_trigger_carried_from": "2026-09-18 15:10",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
