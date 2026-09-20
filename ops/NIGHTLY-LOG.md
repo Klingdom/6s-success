@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 20:10 (30-minute triage, previous work now confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: D3 (sizing/capacity guidance for the same 12-zone pilot cohort), named unblocked and unpicked across three prior check-ins (18:40, 19:20, 19:40) now. Also worth a glance: `checks.yml` runs #1216 (`197c3a68`) and #1217 (`10d1b5e5`) were still `in_progress` at the time of this check-in, this repo's normal run length; not a new concern, just unconfirmed.
+
+**Attached clean:** shallow, detached checkout, no common ancestor until `fetch --unshallow`; `merge --ff-only` onto `origin/main` (905-commit fast-forward), no reset or force.
+
+**Previous work: now confirmed finished.** The 19:40 check-in found `publish-image.yml`'s real failure on the D4 sitemap commit and confirmed the concurrent fix (`197c3a68`/`10d1b5e5`) resolved it locally, but left CI confirmation open. Checked GitHub directly rather than trust that local read: `publish-image.yml` run #354, the actual run against `197c3a68` (the commit carrying the fix), completed `success` at 20:11:29Z. That was the one gate that had actually broken (`gate_generator_ownership` on the stale sitemap), so its own CI run going green is the real close, not an inference from local preflight alone. `checks.yml`, a separate workflow, is still `in_progress` on both `197c3a68` and `10d1b5e5`; reported as unconfirmed, not assumed green, per CLAUDE.md 0.4.
+
+**Verified, not cited:** full `python ops/preflight.py` run to completion (not just fast pass): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress, the two cron-cadence drifts, the one real open sample-PDF font limitation from 2026-09-16 that nothing in this sandbox can safely fix). GitHub confirmed live: 8 open issues unchanged (5 `decision`, 2 `blocked-on-art`/P0, 1 `P0`/`decision`), 0 open PRs, none pickable here, matching every recent cycle. `BACKLOG-2026-09-07.md` section 2 re-read: A1-A7 all done or Phil-gated. `REVIEW-DISCOVERY-2026-09-07.md` re-checked: D3 still reads "Blocked on. Nothing," ~3 operator-days, too large for this slot.
+
+**Went well:** re-polling the specific gate that had actually failed (`publish-image.yml`) rather than treating "CI still in progress" as an unresolved question needing another cycle; it had, in fact, already resolved.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape (issue #27).
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 19:40 (30-minute triage, previous work was NOT finished at the start of this cycle, found the real cause and confirmed the fix)
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` #1217 and `publish-image.yml` (queued behind #354) both land `success` on HEAD `10d1b5e5`, then start D3 (sizing/capacity guidance for the same 12-zone pilot cohort), because D3 is the one item this cohort's own discovery review still lists as open and unblocked, named twice already (18:40 and 19:20 PM check-ins) without being picked up.
