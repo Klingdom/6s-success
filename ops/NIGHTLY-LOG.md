@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 13:18 (30-minute triage, previous work finished, nothing new unblocked)
+
+**Previous work: finished.** Attached via fetch --unshallow plus merge --ff-only onto origin/main (849-commit fast-forward, clean, no reset or force). Ran preflight.py myself to genuine completion in the background (foreground hit this sandbox's own timeout, the standing shape): every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded. Confirmed CI live rather than citing the log: run #1197 (632fab1f) completed SUCCESS. The five commits since (e8f9762e through 8013c368) touch only CHECKIN-LOG.md, ops/state-checkin.json, ops/NIGHTLY-LOG.md and the generated dashboard/state files, all paths checks.yml deliberately excludes from its trigger (its own comment names the reason: pure generated output and the hand-written log should not gate or cancel a real check), so no run was expected for any of them and none is missing. 8 open GitHub issues confirmed unchanged (6 decision, 2 blocked on art), 0 open PRs.
+
+**Verified, no new unblocked item found.** Ran inbox_agent.py --apply myself: no mail credential, reported unchecked, same as every prior cycle. ops/state-checkin.json unchanged since the last hourly run (youtube_published 12, products_live 159): no owner gate has moved. Read BACKLOG-2026-09-07.md sections 1b through 7 in full: all rows again done or Phil-gated. Checked STATUS.md sections 17 and 30 and GOALS.md's own flagged revenue-window rollover (the $19 sale falls out of the trailing 30-day window as of today; gate_goals_revenue_window_current only fires the day after, so it is correctly still green, not a defect to fix yet): all already correctly current from the 12:53 cycle's own pass, no fresh contradiction found. That same cycle, 19 minutes before this one, already declared the low-mention ops/*.py cold-read lane exhausted with real evidence; found no new evidence since to justify repeating it, so did not, per CLAUDE.md 21.
+
+**Went well:** confirming CI's own path-filter design explained the apparent gap in run numbers rather than assuming a missing check.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival, same as every recent cycle. Ran ops/ship.py once without --no-deploy by mistake (a --help query, not a real flag on this script, fell through to a live run); the deploy step failed safely on the standing missing-deploy-key limit, as it always does from this sandbox, no other effect. The commit and push it made are the same harmless dashboard regen this cycle would have shipped anyway.
+
+**Changing next cycle:** none.
+
+**Next:** same standing OWNER-ACTIONS.md gates and the 8 open decision/blocked-on-art issues, unchanged, none pickable. Handing the operator the cold-read/cross-document lane again only once fresh evidence surfaces a genuinely new candidate; nothing else is currently unblocked.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 12:42 (30-minute triage, previous work finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read and cross-document consistency lane, because the backlog and owner-gate lists are again fully done or Phil-gated and that lane is the only one still finding real defects.
