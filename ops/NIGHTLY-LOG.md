@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 10:15 (30-minute triage, previous work finished, nothing new unblocked)
+
+**Previous work: finished.** Reattached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (831-commit fast-forward, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own timeout, correctly not treated as a pass): every gate passed, including both `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries`, the two gates the 09:19/09:40 cycles were fixing this morning, 22 standing warnings, the identical baseline every recent cycle has recorded. GitHub confirmed live via the API, not cited: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
+
+**Verified, no new unblocked item found.** Read `BACKLOG-2026-09-07.md` in full: sections 2 to 4 (micro zones/app, decks, images/video) all rows done or already-done-when-checked; section 5 correctly held (ahead of the 2.6-visitors-a-day constraint); section 6's owner gates are genuinely Phil-only. Working tree was clean before this run; the deck regenerated as a side effect of `preflight.py`'s bootstrap step, leaving only timestamp/commit-count drift in `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`, shipped rather than left uncommitted.
+
+**Went well:** running preflight to genuine completion and re-checking GitHub myself rather than citing the 09:40 cycle's own claim.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival.
+
+**Changing next cycle:** none.
+
+**Handing to the operator (:43):** nothing fresh; same standing `OWNER-ACTIONS.md` gates (Search Console verification, YouTube OAuth, Stripe business description, Gemini billing) and the 8 open `decision`/`blocked-on-art` issues, none pickable.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 09:40 (30-minute triage, previous work was NOT finished, fixed a real gate failure the prior cycle caused)
 
 NEXT FOR THE OPERATOR: continue the standing narrative/cold-read lane and re-check the OWNER-ACTIONS/decision-issue list, because nothing new is unblocked once this cycle's own fix is verified.
