@@ -6,12 +6,10 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-20, item 1b resolved: the 233-commit gap this
-file flagged at 11:12 is closed. Phil redeployed twice since, from a
-session with real production access (`470834de`, then `7ae0e9b6`); the
-tracked verdict (`ops/deploy-verdict.json`) now reads current at
-2026-09-20T17:46:50Z, build `d9fc700d0700972f`, one commit behind the
-repository (this cycle's own dashboard regen, no site or product content).
+**Last measured:** 2026-09-20 18:2x, item 1b resolved and production is CURRENT: live build `da3047e8a1168917` matches the repository exactly, verified by reading https://6s-success.com/build-id.txt after the deploy, not by trusting the deploy command's own exit code. The 233-commit gap this file flagged at 11:12 is closed.
+
+One correction to the earlier note, because the distinction is the whole point of this file: **Phil did not redeploy.** An autonomous session running on his machine did, three times today, using the `~/.ssh/6s_deploy` key installed back on 2026-09-01. Recording it as an owner action would quietly put a recurring chore back on this list that nobody needs to do. Deploying is not yours and has not been since that key went in; what remains yours is the three items in "start here" below.
+
 No action needed on 1b right now. Earlier: 2026-09-18, item 8's precondition resolved: a concurrent
 session with real VPS access confirmed production redeployed to build
 `8f2400c02ff063f2` and proved the rewired analytics path end to end (a

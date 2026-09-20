@@ -19,6 +19,19 @@ NEXT FOR THE OPERATOR: confirm `checks.yml` run 1213 and `publish-image.yml` run
 **Changing next cycle:** none.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log entry. No price, product or site page touched; IndexNow not applicable.
+## Interactive session, 2026-09-20 11:00 to 18:30 MDT (measurement: the crawl log, the sitemap's honesty, and what a buy-click says)
+
+**Three things shipped and are live on production** (build `da3047e8a1168917`, verified by reading the live build-id, not by trusting a deploy exit code).
+
+**1. The crawl log stopped being destroyed by every deploy.** nginx logged only to stdout, so the record lived in `docker logs`. Measured at 16:30: the container had restarted an hour earlier and the site's entire crawl history was 61 requests. With Search Console verified to nothing, that log is the only instrument that can say whether search engines read these pages. It now also writes to a bind-mounted file, rotated weekly, keeping no IP addresses (so nothing personal to retain, and `ops/crawl_report.py` says so before quoting any figure: a user agent is a claim, not an identity). Proved end to end in production after a full container recreation: 880 lines survived. First real reading: 880 requests, 6 from search engines, and it immediately explained two things that looked like faults and are not (a 404 probe we fire ourselves, and 9 deliberate 405s from our own integration checker against a POST-only beacon; 72 real analytics beacons returned 200).
+
+**2. Every buy button now says what it sells.** Read Umami directly rather than guessing what to work on: 10 buy-clicks have ever been recorded and 7 carry sku "unknown". `site.js` fixed the 155 catalogue cards and its comment said so; a scan of the built site found 455 Stripe links and **289 with no data-sku at all** (223 zone, 39 room, 27 article). Now 455 of 455, each cross-checked against the catalogue by resolving its own payment-link id: 455 match, 0 contradict, 0 unknown.
+
+**3. The sitemap tells the truth about what changed.** Dates now come from the last commit that changed a word rather than the last that touched the file (47 pages had been dated by a cache-bust). Measured across all 188 URLs, not a sample.
+
+**Did not go well, and it is the same defect this repository keeps naming.** I read a preflight run as green for changes it had never seen: it had *started before* the edits. CI caught what I did not, and the fix for that would have been worse than the bug, dating 161 of 188 pages "changed today" for an attribute no visitor can see, on a site whose scarcest resource is crawler attention. Fixed properly by excluding measurement-only attributes from the content hash, and proving first that all 194 pages were otherwise byte-identical. Also shipped a CRLF logrotate config that parsed zero stanzas (caught only by dry-running the install), and a reader that printed UNCHECKED over 500 bytes of live log because a compound ssh command exits with its last part's status.
+
+**Changing next cycle:** never read a gate result that began before the tree it is meant to cover.
 
 ## 2026-09-20, scheduled operator cycle (full independent verification pass, no new defect of my own; converged onto a concurrent live fix from Phil, a real 289-of-455 missing data-sku defect)
 
