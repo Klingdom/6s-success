@@ -15343,6 +15343,111 @@ def gate_kit_compact_rendered() -> None:
         fail("kit-compact-rendered", "; ".join(problems[:6]))
 
 
+def check_zone_direct_answer(answer_map, page_bodies, word_ceiling=140) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    D1 (REVIEW-DISCOVERY-2026-09-07.md section 2, "Blocked on. Nothing."):
+    "the first 60 words under the H1 should answer the question the title
+    asks: what goes in this zone, what does not, and where it goes... On
+    every zone page, the first paragraph after the H1 names the room,
+    names the zone in the words a person would use, and states what
+    belongs there. No zone page opens with a supply list or a
+    disclaimer." Unlike D3/D4/D5, this row is scoped to all 114 zones, not
+    a 12-zone pilot (its own effort line: "~2 operator-days for all 114,
+    template-driven... safe to do now").
+
+    `answer_map` is {filename: expected_lede} built fresh from
+    content.json by `ops.build_zone_pages.direct_answer()`, the same
+    function `zone_page()` calls to render it, so this cannot drift from
+    what the generator actually produces; `page_bodies` is {filename:
+    html} for every real site/zones/*.html file. Checks that the first
+    `<p class="lede">` on the page matches that derived text byte for
+    byte (escaped the same way `esc()` escapes it), that it is not the
+    disclosure/kit block ("Only if your", "What to have on hand"), and
+    that it stays under `word_ceiling` words so a future content change
+    growing it unboundedly does not ship silently.
+    """
+    import html as _html
+    problems = []
+    want_files = set(answer_map)
+    got_files = set(page_bodies)
+    missing = sorted(want_files - got_files)
+    if missing:
+        problems.append("%d zone page(s) in the corpus have no built file: "
+                         "%s" % (len(missing), ", ".join(missing[:3])))
+
+    disclosure_markers = ("Only if your", "What to have on hand",
+                          "This zone's full kit list")
+    for f in sorted(want_files & got_files):
+        body = page_bodies[f]
+        m = re.search(r'<p class="lede">(.*?)</p>', body, re.S)
+        if not m:
+            problems.append("%s: no <p class=\"lede\"> found at all" % f)
+            continue
+        rendered = m.group(1)
+        want = _html.escape(answer_map[f], quote=True)
+        if rendered != want:
+            problems.append(
+                "%s: opening paragraph does not match content.json's own "
+                "purpose/done_looks_like text: got %r, want %r"
+                % (f, rendered[:80], want[:80]))
+        text = _html.unescape(rendered)
+        if any(text.startswith(marker) for marker in disclosure_markers):
+            problems.append(
+                "%s: opening paragraph is a supply list or disclosure, "
+                "not a direct answer" % f)
+        n = len(text.split())
+        if n > word_ceiling:
+            problems.append(
+                "%s: opening paragraph is %d words, over the %d-word "
+                "ceiling this gate holds it to" % (f, n, word_ceiling))
+    return problems
+
+
+def gate_zone_direct_answer_current() -> None:
+    """The shipped-HTML half of D1 (see `check_zone_direct_answer`'s own
+    docstring for what this catches). `gate_variants_rendered`-shaped:
+    re-derives the expected opening paragraph from the real corpus via
+    `ops.build_zone_pages.direct_answer()` and diffs it against the real
+    site/zones/*.html files, so a hand edit to the template or a stale
+    build cannot ship silently.
+
+    Proved to fail on three planted regressions (a page with the old
+    purpose-only opening restored, a page whose opening paragraph was
+    replaced by the kit disclosure text, and an oversized opening
+    paragraph): ops/tests/test_gate_zone_direct_answer_current.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("zone-direct-answer", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    answer_map = {}
+    for r in rooms:
+        for z in r.get("zones", []):
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            thing = bzp.searchable(r["room"], z["zone"], name)
+            answer_map[f"{rs}-{zs}.html"] = bzp.direct_answer(
+                r["room"], thing, z)
+    if not answer_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("zone-direct-answer", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_zone_direct_answer(answer_map, page_bodies)
+    if problems:
+        fail("zone-direct-answer", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=35) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -18117,6 +18222,7 @@ def main() -> int:
     run_gate(gate_variants_rendered)
     run_gate(gate_capacity_rendered)
     run_gate(gate_kit_compact_rendered)
+    run_gate(gate_zone_direct_answer_current)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)

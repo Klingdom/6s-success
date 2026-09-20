@@ -154,6 +154,45 @@ def short_answer(zone: dict) -> str:
             '<p class="answer-note">Each step in full, with what to have on '
             'hand and what done looks like, below.</p></div>' % items)
 
+
+def direct_answer(room_name: str, thing: str, zone: dict) -> str:
+    """D1 (REVIEW-DISCOVERY-2026-09-07.md section 2, "Blocked on. Nothing."):
+    the first paragraph after the H1 has to answer the question the title
+    asks, "what goes in this zone, what does not, and where it goes", not
+    open with a description of the zone's job alone.
+
+    Before this, the first paragraph was `purpose` on its own (a phrase like
+    "The spot where pockets empty on the way in and refill on the way out."),
+    and the actual list of what belongs, `done_looks_like`, first appeared
+    three blocks later, inside the zone diagram figure, and again under the
+    "What done looks like" heading below that. Nothing here is newly
+    authored: this reuses those same two fields, in the same words, and puts
+    them first, per the review's own "template-driven, reusing existing
+    copy" effort estimate. The diagram, the heading, the visible FAQ and the
+    FAQPage JSON-LD all keep rendering `done_looks_like` exactly as they did;
+    this does not delete anything, it only says it first.
+
+    `purpose` is a sentence fragment, and the corpus writes it in every shape
+    from "The spot where..." to a bare imperative ("Holds the coats..." with
+    an implied "it"). Splicing a lowercased copy of it into a hand-built
+    lead sentence broke on the imperative shape ("In the Mudroom, holds the
+    coats..." has no subject), found reading a sample across all 114 before
+    shipping this, not after. So `purpose` is never rewritten: it is quoted
+    verbatim, exactly as it already rendered and was already correct, after
+    a standalone naming sentence built from fields with no grammar of their
+    own to collide with (`thing`, the search-term common noun, and the
+    room). `thing`, not `name`: 113 of 114 zones display as "The [Noun]",
+    and the room's own display name for it is what a person would type.
+    """
+    purpose = _clean(zone.get("purpose", ""))
+    done = _clean(zone.get("done_looks_like", ""))
+    if not purpose:
+        return ""
+    out = f"The {thing}, in the {room_name}. {purpose}"
+    if done:
+        out = f"{out} {done}"
+    return out
+
 # The site and the manual name the same 114 zones differently. The manual says
 # "Landing Zone", the site and the book say "The Landing Spot". Shipping pages
 # in the manual's vocabulary would put two names for one zone in front of the
@@ -2123,7 +2162,10 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     _h1 = ("%s, %s" % (name, room["room"])
            if name in _shared_display_names() else name)
     out.append(f'<h1>{esc(_h1)}</h1>')
-    out.append(f'<p class="lede">{esc(zone.get("purpose", ""))}</p></div>')
+    # D1 (REVIEW-DISCOVERY-2026-09-07.md section 2): the first paragraph
+    # after the H1 answers what belongs here, not just what the zone is for.
+    # See direct_answer()'s own docstring.
+    out.append(f'<p class="lede">{esc(direct_answer(room["room"], thing, zone))}</p></div>')
 
     out.append('<p class="notice" style="max-width:60ch">'
                + _session_notice(zone.get("session", ""), zone.get("time_note", ""))
