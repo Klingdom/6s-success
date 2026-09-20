@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (full verification pass, exclusion-claim method completed against the last four commerce-facing files; no new defect)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (771-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (file is newest-first). Ran `python ops/preflight.py` to completion (backgrounded, foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live via a sub-agent: 8 open issues, unchanged in count, labels and content from the 2026-09-19 23:47 baseline (all `decision`/`blocked-on-art`, two also carry `P0`); 0 open PRs; CI green on the last content-bearing commit, no run yet on the 11 dashboard-only commits since (confirmed this is the workflow's own path-filter design, not a gap: every one of those 11 commits touches only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`).
+
+**Completed the standing handoff.** The 2026-09-19 23:47 PM check-in named five commerce-facing files not yet run through the "verify a gate or generator's own stated exclusion claim" method: `check_live_links.py`, `product_links.py`, `stripe_catalog.py`, `service_orders.py`, `wire_legal_strip.py`. A same-day addendum already checked `stripe_catalog.py` (SELLABLE exclusion holds). Checked the remaining four this cycle:
+- `check_live_links.py`'s `PAGES` list (a spread of page types, not all 189) only samples deploy freshness against production HTTP; verified separately that `repo_links()` globs **every** `site/**/*.html` file and checks every slug found against Stripe's account-wide `active` flag, so the 27 article pages, `deck.html`, `method.html`, `quest.html`, `resources.html` and `standards.html` (all of which carry direct `buy.stripe.com` links but are absent from `PAGES`) are still covered by the comprehensive check, just through a different code path. Not a gap.
+- `product_links.py`'s own `checkable()`/`check()` functions already carry a documented, gated fix for the exact "excluded rows read as checked" shape (the 2026-09-04 "UNCHECKED 0 while 37 rows sit unexamined" incident); re-read the fix, still correct.
+- `service_orders.py`'s `find_time()` deliberately returns `None` on any ambiguous date rather than guess; verified this is a documented safety choice, not a silent exclusion.
+- `wire_legal_strip.py`'s docstring claims `site/invest.html`, the print-and-play deck sheet and the two `site/downloads/` files are "left exactly as they are." Verified directly: all five files carry zero occurrences of `foot-bottom` in their markup, so the regex-driven skip is inert (nothing to wire), not a silent gap.
+
+All four check out; no defect found. This closes the exclusion-claim lane against every file it was pointed at this week.
+
+**Verified rather than assumed:** re-ran `python ops/dashboard.py` fresh; revenue line correctly reads "carried forward from 2026-09-18... this run could not reach Stripe this month," not silently zeroed. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated.
+
+**Went well:** finishing a named, bounded handoff (the four remaining files) rather than starting a new unbounded sweep; verifying the `check_live_links.py` sampling design against the actual set of pages carrying direct payment links instead of assuming the sample was representative.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; four clean checks did not surface a new gate to write. The exclusion-claim method has now been run against every file named for it; a fresh angle will be needed next, or hand off cleanly to the standing owner gates.
+
+**Next:** the same standing owner gates in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, six on-device screenshots) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged since 2026-09-16 at the earliest.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 00:23 (30-minute triage, previous work confirmed finished after one real transient FAIL, nothing new unblocked)
 
 Attached via unshallow plus ff-only merge onto origin/main (762-commit fast-forward from a shallow/detached start). Read BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, GOALS.md, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md/CHECKIN-LOG.md entries. GitHub checked live: 8 open issues, unchanged (decision/blocked-on-art), 0 open PRs; sampled #15, confirmed still correctly Phil-gated (Listmonk instance decision).
