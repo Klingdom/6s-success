@@ -824,6 +824,56 @@ def page_image(fp):
     return im.group(1), (dm.group(1) if dm else "")
 
 
+def _git_content_date(fp, depth=15):
+    """Date of the newest commit that changed this page's real content.
+
+    Used only to DATE a change, never to detect one: detection stays with
+    _content_hash(), because every page shares site.css and a fingerprint
+    rebuild would otherwise look like all 188 pages changing at once. That
+    distinction is what made the earlier git-date attempt wrong.
+
+    It walks back through the file's own commits and returns the first one
+    whose content differs from its predecessor once fingerprint query strings
+    are stripped. The simpler version, "date of the last commit that touched
+    the file", was measured against a 10-page sample and overstated 1 of
+    them, because a cache-bust commit touches a page without changing a word
+    of it. Bounded at `depth` commits so a long history cannot make a build
+    crawl; returns "" rather than a guess if nothing conclusive is found.
+    """
+    import subprocess
+    rel = os.path.relpath(fp, ROOT).replace(os.sep, "/")
+
+    def run(args, text=True):
+        try:
+            return subprocess.run(args, capture_output=True, text=text,
+                                  cwd=ROOT, timeout=25)
+        except Exception:                                      # noqa: BLE001
+            return None
+
+    log = run(["git", "log", "-%d" % depth, "--format=%H %ad",
+               "--date=short", "--", rel])
+    if not log or not log.stdout.strip():
+        return ""
+    rows = [l.split() for l in log.stdout.strip().splitlines() if l.strip()]
+
+    def body(commit):
+        r = run(["git", "show", "%s:%s" % (commit, rel)], text=False)
+        if not r or not r.stdout:
+            return None
+        return _FINGERPRINT_REF.sub(
+            r"\1", r.stdout.decode("utf-8", "replace"))
+
+    for i in range(len(rows) - 1):
+        newer, date = rows[i][0], rows[i][1]
+        older = rows[i + 1][0]
+        a, b = body(newer), body(older)
+        if a is None or b is None:
+            return date
+        if a != b:
+            return date
+    return ""
+
+
 def build_sitemap():
     """lastmod is per-URL, not a single stamp for the whole file: a page whose
     own content (fingerprint query strings aside) has not changed since the
@@ -877,6 +927,26 @@ def build_sitemap():
         changed = (url in prev_hashes and content_hash != prev_hashes[url])
         if url in prev and not changed:
             lastmod = prev[url]
+            # THE BACKLOG CASE, found 2026-09-20.
+            #
+            # Hash tracking started on 2026-09-19, and it recorded each URL's
+            # hash as it stood THAT DAY. Any real edit made before then is
+            # therefore invisible to it for ever: the hash matches, so the row
+            # keeps its old date. Measured against git rather than assumed:
+            # 163 of 188 URLs were telling Google they had not changed since
+            # 2026-09-04, including 114 zone pages that gained a whole
+            # diagram and 30 articles whose body text was corrected, all on
+            # 2026-09-18.
+            #
+            # So when the hash says "unchanged" but git says the file's last
+            # content change is NEWER than the recorded lastmod, trust git for
+            # the date. Detection still belongs to the hash; this only dates a
+            # change that demonstrably happened. The condition is self-
+            # clearing: once the row carries the real date, git stops being
+            # newer and this branch never fires again for that URL.
+            git_date = _git_content_date(fp)
+            if git_date and git_date > lastmod:
+                lastmod = git_date
         else:
             lastmod = today
         # Google's sitemap image extension: the same og:image already shown
