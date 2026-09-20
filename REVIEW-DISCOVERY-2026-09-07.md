@@ -50,6 +50,43 @@ committed file (`ops/tests/test_gate_variants_rendered.py`, 7 cases). Still
 open, in report order: D15 (as above), D1-D3/D5/D8-D10/D12-D14 (larger-scope
 pilot work), D19-D21 (Phil-gated). Full account in `ops/NIGHTLY-LOG.md`.
 
+**Status, 2026-09-20, PM check-in:** the paragraph above went stale within a
+week; **D1, D3 and D5 have since shipped** (operator cycles, 2026-09-20, full
+detail in `ops/NIGHTLY-LOG.md` and `BACKLOG-2026-09-07.md` rows A5/A8/A9,
+all 114 zone pages for D1, the same 12-zone pilot cohort for D3/D5). **D6's
+own H1-and-grammar half is done, not merely "partially advanced" as the
+09-14 note said**, verified live this cycle rather than carried forward: all
+114 zone pages checked for duplicate H1 text, 0 found; the three exact pairs
+this report measured (shower or tub, toilet area, two of the four dresser
+drawers pages) each now carry a room-qualified H1 (`"The Shower or Tub, Guest
+Bathroom"` vs `"...Primary Bathroom"`, etc.), and all six pages carry the
+sibling cross-link section, not only the two the 09-14 note happened to
+sample. D1's own `direct_answer()` also differentiates each sibling's opening
+paragraph in practice (spot-checked the shower/tub pair: genuinely different
+first sentences, not templated filler), satisfying D6's "states what makes it
+different" acceptance line as a side effect, though this was not built for
+that purpose and the ten groups were not all re-checked against it. The one
+part of D6 still genuinely open is what the report itself gates: deciding
+which page in each group is the primary answer for the shared query, blocked
+on Search Console (`OWNER-ACTIONS.md` 1a), not guessed here. Also fixed this
+cycle: the Day 0-7 checklist's own last row, "fix the `deck-gallery-mudroom.html`
+orphan: it is in the sitemap with zero internal links. Link it or drop it
+from the sitemap." Checked live: still a real orphan, zero inbound links,
+present in `sitemap.xml`. `BACKLOG-2026-H2.md` 2.7/2.11 already record
+Phil's explicit decision to hold the mudroom deck back from promotion until
+the Entryway deck has evidence; `ops/build_deck_gallery.py` already gates
+its `ImageGallery` schema on `deck == "entryway"` for that reason, but its
+`<meta name="robots">` line was not gated the same way, so the page kept
+asking to be indexed and kept landing in `scan_extra_pages()`'s sitemap
+scan regardless. Gated `robots` the same way (`noindex` for any non-Entryway
+deck, `follow` unchanged); regenerated, confirmed `site/sitemap.xml` 188 to
+187 URLs, the mudroom page gone, `check_urls.py` (187/187) and
+`audit_pages.py` (191/0) clean after. Dropped rather than linked, matching
+the decision already on record rather than reversing it. Still open, in
+report order: D2 (Phil-blocked), D6 (primary-page decision only), D8-D10,
+D12-D14 (larger-scope pilot/decision work), D15 (traced, needs the SSH key
+this environment lacks), D19-D21 (Phil-gated).
+
 ---
 
 ## 0. Bottom line

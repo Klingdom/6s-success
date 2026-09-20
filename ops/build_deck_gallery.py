@@ -609,7 +609,7 @@ def build(deck: str) -> None:
 {spec["room"]} deck, front and back. Micro zones, problems, tools, skills, \
 habits and the play layer that ties them together.">
 <link rel="canonical" href="https://6s-success.com/{os.path.basename(OUT)}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{"index" if deck == "entryway" else "noindex"}, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="6S Success">
 <meta property="og:locale" content="en_US">
