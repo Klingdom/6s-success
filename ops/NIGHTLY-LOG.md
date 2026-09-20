@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 22:1x (30-minute triage, D5 still not CI-confirmed after ~10 minutes, normal range, handed forward rather than reported green)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run #1221 and `publish-image.yml` run #358 (both on `115946ca`, the D5 tip) land `success`. If they do, D5 is genuinely closed and D1 (a direct, extractable 60-word answer at the top of each of the 114 zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "Blocked on. Nothing," ~2 operator-days template-driven) is the next unblocked row; D2 is Phil-blocked (his own photographs) so skip it. If either run is red, fixing whatever it names comes first.
+
+**Attached clean:** shallow, detached checkout, no common ancestor until `fetch --unshallow`; `merge --ff-only` onto `origin/main` (three commits past the prior session's tip: `00cf53f0` D5 itself, `115946ca` a command-deck regen, `74bc8f0b` the prior cycle's own CI-status log addendum), no reset or force.
+
+**Previous work (D5): not yet finished by this cycle's own definition, shipped and verified, not merely committed.** It is shipped, and it is extensively verified locally, by the operator cycle that built it and by the addendum cycle after it, both already on record in this log and in `BACKLOG-2026-09-07.md`'s own D5 row (new `render_compact()`, a real mobile tap-target regression caught and fixed before shipping, a new gate and a 7-case fail-then-pass test, full `preflight.py`/`check_urls.py`/`audit_pages.py`/`audit_visual.py` clean). What is not yet finished is CI: `checks.yml` #1221 and `publish-image.yml` #358 against the real tip (`115946ca`) were still `in_progress` when the prior cycle wrote its addendum, and polled three more times across this cycle (roughly ten minutes apart), still `in_progress` throughout, no conclusion either way. That is inside this repo's own normal 13-to-20-minute range for these two workflows, not a stall, so reported as unconfirmed, not assumed green and not assumed stuck.
+
+**Verified directly rather than cited:** reran `python ops/preflight.py` in full myself: every gate passed, 22 warnings, matching the standing baseline exactly. `git status` clean, `main` up to date with `origin/main`. GitHub: 8 open issues, unchanged since the last four check-ins (`updated_at` matches), all `decision`/`blocked-on-art`, none pickable; 0 open PRs. Checked `BACKLOG-2026-09-07.md`'s D5 row against `REVIEW-DISCOVERY-2026-09-07.md` section 2: consistent, marked Done with the same detail this log already carries, no document drift.
+
+**Went well:** treating "shipped and locally verified" and "CI-confirmed" as two different claims rather than collapsing them, per CLAUDE.md 0.3/0.4; not manufacturing new work while the actual next item (D5's CI) was still genuinely open.
+
+**Did not go well:** same recurring shallow/detached checkout shape (issue #27, unchanged). Three consecutive log entries now (the addendum before this one, and this one) have had to hand off the same unconfirmed CI read for the same commit, because the runs simply take longer than a single 30-minute PM slot; not a defect in any gate, just the real shape of a 15-to-20-minute suite against 30-minute cycles.
+
+**Changing next cycle:** none; no new gate needed, this was a wait, not a defect.
+
+**Handing to the operator (:43):** confirm the two runs above, close D5 for real once they read `success`, then start D1 if nothing higher-priority has surfaced. This slot's work was verification, not new work, per STEP 2 of this session's own instructions.
+
+Pushed to main. This log entry and command-deck regeneration only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-20, cycle addendum (D5's own CI status, and the dashboard refresh that followed)
 
 Pushed D5 as two commits: `00cf53f0` (the content/code change) then `115946ca` (a command-deck-only regeneration, because `preflight.py`'s own run of `gate_etsy_pdfs_current` had touched the dashboard's commit-count field between the first commit and this entry being written; not a hand edit, `ops/dashboard.py` rerun and the real diff committed). No concurrent push collided with either (`git fetch` before each, 0 commits behind both times).
