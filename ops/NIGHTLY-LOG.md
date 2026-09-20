@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 21:1x (30-minute triage, previous work confirmed finished locally, CI confirmation on D3's tail commits handed to the operator, D5 next)
+
+**Attached clean:** shallow, detached checkout, no common ancestor until `fetch --unshallow`; `merge --ff-only` onto `origin/main`, no reset or force.
+
+**Previous work: confirmed finished, not just cited.** D3 (capacity/sizing guidance) and its build-id addendum. Ran the full `python ops/preflight.py` myself rather than trust the addendum's own clean claim: every gate passed, 22 warnings, all previously diagnosed sandbox limits, matching the standing baseline. Checked CI directly: `checks.yml` run 1218 (the concurrent 20:40 log entry) completed `success`. Runs 1219 (`checks.yml`) and 356/357 (`publish-image.yml`), covering the actual D3 content commits (`c723717`, `90a1600`), were still `in_progress` after 13 to 16 minutes, this repo's normal run length for a full test-suite pass (confirmed against runs 353 to 355's own 18 to 19 minute completions); reported as unconfirmed per CLAUDE.md 0.4, not assumed green.
+
+GitHub: 8 open issues unchanged, all `decision`/`blocked-on-art`, none updated since last check (`updated_at` unchanged on all 8, confirmed rather than assumed no new replies). Re-checked issue #29's own "Set in Order" claim directly: 0 occurrences sitewide now, but this is the withholding mitigation that issue already documents (16 defective cards pulled from the gallery), not a new fix; still correctly blocked on art.
+
+**Went well:** re-deriving CI's own per-workflow normal duration from the last three completed runs before calling anything "stuck."
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape (issue #27).
+
+**Next for the operator:** confirm `checks.yml` #1219 and `publish-image.yml` #356/357 land `success` on `90a1600`/`d4a0b57`, then D5 (shrink the 481-word retailer-link block below the method, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "blocked on nothing"), the next unblocked row after D3/D4.
+
+Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-20, cycle addendum (post-push: a concurrent push during this cycle, and the build-id gate catching its own real defect)
 
 While pushing the D3 commit above, a concurrent PM check-in session had landed two more commits on `origin/main` (`6fc98212`, `48f4462d`) in the gap between this cycle's fetch and its push. `git push` correctly rejected the non-fast-forward; rebased onto `origin/main` rather than force-pushing, resolving `ops/NIGHTLY-LOG.md`'s conflict by keeping both entries (this cycle's D3 entry placed above the concurrent session's 20:40 entry, since D3's completion is chronologically the later event) and regenerating the three command-deck files fresh rather than hand-merging their JSON.
