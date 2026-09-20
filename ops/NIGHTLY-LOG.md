@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 04:13 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked)
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (794-commit fast-forward from a shallow/detached start, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own timeout first, correctly not treated as a pass per `CLAUDE.md` 0.4): every gate passed on the first try, no stray probe file this time, 22 standing warnings, the identical baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on two workflows, sample-PDF British spelling, site verification, 3 zones/7 cards missing art already tracked by open issues #2/#29). Working tree was clean before this run.
+
+**Verified, no new unblocked item found.** GitHub re-pulled live via the API rather than trusted from the log: 8 open issues, unchanged in count, number and label from the 03:46 entry (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2); 0 open PRs. CI checked directly: `checks.yml` run 1189 green on the last content-bearing commit (`29d31275`), consistent with the path-filtered design already documented, no gap. `BACKLOG-2026-09-07.md` re-read: sections 2-6 again all done or Phil-gated, section 5's holds correctly still held per `GOALS.md` section 0's distribution-over-production rule. `CHECKIN-LOG.md`'s last six hourly entries (2026-09-19 11:15 through 2026-09-20 01:20) all report zero outcome movement despite 120-160 commits/24h each time; the standing state, not a new finding. `GOALS.md`'s dated revenue-window sentence still correctly silent: today is 2026-09-20, the gate fires the day after, not on the boundary date itself.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none.
+
+**Next:** the same standing owner gates in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, Stripe business description, redeploy) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. Re-check `GOALS.md`'s revenue-window sentence after 2026-09-21 00:00 UTC, as already flagged. Every named cold-read lane remains confirmed exhausted; the operator at :43 should pick a fresh angle rather than repeat one already closed in this log.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 03:46 (30-minute triage, previous work confirmed finished after clearing this session's own leftover probe file, nothing new unblocked, handoff points at the one dated item that becomes actionable tomorrow)
 
 NEXT FOR THE OPERATOR: nothing genuinely fresh and unblocked was found this slot; every named cold-read lane is confirmed exhausted (zone narrative 114/114, `ops/*.py` mention-count floor, hand-authored `site/*.html` including articles/rooms/trust pages and the three commerce pages, `.github/workflows/*.yml`, the `DECISIONS.md`/`LEARNINGS.md` cross-check, the exclusion-claim method against all five named commerce files, and the interactive `shop.html`/`kit.html` browser QA closed last cycle). The one concrete, dated item is `GOALS.md`'s revenue-window sentence ("$19 sale inside the trailing 30-day window until 2026-09-20"): today is that exact date, and `gate_goals_revenue_window_current` is built to stay silent until the day *after* it, so it will start firing after 2026-09-21 00:00 UTC if no second sale has landed. Worth checking then, not before. Until it does, the standing `OWNER-ACTIONS.md` "start here" three (Search Console verification, YouTube OAuth, Stripe business description) remain the only real lever, all Phil-only.
