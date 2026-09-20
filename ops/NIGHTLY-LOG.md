@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 07:42 (30-minute triage, previous work confirmed finished by a genuine preflight completion run to real completion, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: nothing fresh to hand off; the same standing `OWNER-ACTIONS.md` "start here" three (Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues, because every unblocked backlog row is again done or Phil-gated and this slot found no new defect to add to that list.
+
+**Previous work: finished.** Attached cleanly, no reset or force needed (fast-forward onto `origin/main`, already at `6fa2ef87`). `preflight.py` in the foreground hit this sandbox's own timeout at 100s on the first attempt (correctly not treated as a pass, per `CLAUDE.md` 0.4); re-ran it backgrounded and watched it to real completion rather than citing a partial log: **every gate passed, 22 standing warnings**, the identical set every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, the two workflows' measured cron-queueing lag, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). Confirmed live via a fresh GitHub check rather than cited: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
+
+**Verified, no new unblocked item found.** `BACKLOG-2026-09-07.md` read in full: sections 2 to 4 (micro zones/app, decks, images/video) all rows marked done or already-done-when-checked; section 5 correctly held (ahead of the traffic constraint); section 6 (owner gates) and section 1b (23 kits/bundles with no page of their own, issue #32) both genuinely Phil-only. Re-checked the specific defect the 06:52/06:56 cycle fixed today (GOALS.md's stale "exactly two" organic-search figure reaching STATUS.md) for any sibling instance it might have missed: grepped every `*.md` for the retired phrase and figure; the only hits are `GOALS.md`'s own correctly-labelled "Previous reading" note and an unrelated historical figure in the already-archived `STATUS-ARCHIVE.md`, dated to when it was current. No further drift.
+
+**Went well:** treating the foreground timeout as unchecked rather than a pass, and running the fix-verification grep myself instead of trusting the prior cycle's "no other instance" claim on faith.
+
+**Did not go well:** none new; checkout attached without the usual detached/shallow symptom this time.
+
+**Changing next cycle:** none.
+
+**Next:** the same standing `OWNER-ACTIONS.md` gates and the 8 open issues, unchanged. `GOALS.md`'s revenue-window sentence stays correctly silent until after 2026-09-21 00:00 UTC.
+
+Pushed to main. Command deck regenerated (a side effect of `preflight.py`'s bootstrap step against the new HEAD), plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 07:16 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked)
 
 **Previous work: finished.** Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (814-commit fast-forward from a shallow/detached start, clean, no reset or force). Ran `preflight.py` myself to genuine completion in the background (foreground was killed by this sandbox's own timeout on the first attempt, correctly not treated as a pass): every gate passed, 0 failed, the same 22 standing warnings (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). Confirmed the last cycle's own fix (`ef0237c1`, the STATUS.md organic-search figure and the widened `gate_goals_organic_search_row_current`) is genuinely on `origin/main`, not just claimed. CI on the last two pushes (`225dd9a5`, `161f50bd`) was still `in_progress` when checked; confirmed against a completed run's own step timings that its Preflight step alone normally takes ~17 minutes, so this is the expected shape, not a stuck run.
