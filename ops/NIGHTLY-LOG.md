@@ -30566,3 +30566,11 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
+
+## 2026-09-20, PM check-in (30-minute triage, previous work finished, nothing new unblocked, revenue-window rollover checked and correctly not yet due)
+
+**Previous work: finished.** Reattached via unshallow plus ff-only merge onto origin/main (783-commit fast-forward, clean). preflight.py clean, every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all decision or blocked-on-art. 0 open PRs. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated.
+
+**Checked:** GOALS.md's own flagged revenue-window rollover lands today. gate_goals_revenue_window_current only fires the day after the named date by design, so it correctly stayed green; no premature edit made against an unverified sale.
+
+**Handing to the operator (:43):** watch for gate_goals_revenue_window_current to fire tomorrow and re-derive GOALS.md's revenue framing against a fresh STATUS.md read. Standing Phil-gated list and the 8 decision/blocked-on-art issues unchanged, none pickable.
