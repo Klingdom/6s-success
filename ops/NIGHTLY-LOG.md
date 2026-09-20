@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, cycle addendum (D5's own CI status, and the dashboard refresh that followed)
+
+Pushed D5 as two commits: `00cf53f0` (the content/code change) then `115946ca` (a command-deck-only regeneration, because `preflight.py`'s own run of `gate_etsy_pdfs_current` had touched the dashboard's commit-count field between the first commit and this entry being written; not a hand edit, `ops/dashboard.py` rerun and the real diff committed). No concurrent push collided with either (`git fetch` before each, 0 commits behind both times).
+
+**CI, checked directly rather than assumed:** `checks.yml` run #1221, the real run against `115946ca` (the commit that actually carries every ops/site change from this cycle, since it is the tip), was still `in_progress` at the time of this entry, this repo's normal 13-to-20-minute run length. Not asserted green here, per CLAUDE.md 0.4; the next cycle to touch this repository should confirm it before treating D5 as fully closed, the same way the 21:4x check-in caught D3's own CI having actually failed after an earlier cycle called it "unconfirmed" and moved on. `social-drafts.yml` and `linkedin-drafts.yml` on the same push both completed `success` already (docs/JSON-only paths they read, unaffected by this content change either way).
+
 ## 2026-09-20, scheduled operator cycle (D5: shrunk and relocated the retailer-link supply block for the 12-zone pilot cohort; a real mobile tap-target regression found and fixed while verifying)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (918-commit fast-forward), no reset or force. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `python ops/preflight.py` clean before touching anything: every gate passed, 22 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. D5 had been handed to the operator by name in both the 21:1x and 21:4x PM check-ins as the next unblocked row once D3/D4 closed: `REVIEW-DISCOVERY-2026-09-07.md` section 2, "the current retailer-link approach... at 481 words it is the single largest block on the page... shrink it to a compact list and move it below the method," blocked on nothing.
