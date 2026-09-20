@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 16:40 (30-minute triage, previous work finished per local re-verification, CI confirmation handed forward again)
+
+NEXT FOR THE OPERATOR: no new unblocked item, so re-verify CI on `0eef7519` (or later) finishes green, then keep this slot's standing lane going (cold-read an unread `ops/*.py` file, or the self-arithmetic cross-document check on a file not yet swept today), because sections 2 through 6 of `BACKLOG-2026-09-07.md` are again done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`/`P0`, none pickable.
+
+**Attached clean:** shallow, detached checkout; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, fast-forward, no reset. Working tree was clean at HEAD (`ce14df1d`), the 16:2x check-in's own log-entry commit.
+
+**Previous work: the 16:2x check-in left CI unconfirmed on purpose (its own words: "leaving confirmation to the :43 operator rather than block").** Checked rather than re-deferred. `checks.yml` run 1201 on `470834de` (16:07) is the FAIL that check-in was reacting to: `gate_goals_organic_search_row_current`, exactly as its log entry says. The three fix commits after it (`7fd5063`, `d959f87f`, `0eef7519`) each triggered their own CI run; `ce14df1d` (log/dashboard only) correctly triggered none, matching `checks.yml`'s own documented path-ignore for exactly that file set. Ran `python ops/preflight.py` locally to full completion on HEAD rather than trust three separate in-flight CI runs: **every gate passed, 22 warnings**, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress). Polled the newest real-code run (1204, `0eef7519`) directly rather than assuming: its Preflight step, the one that failed on `470834de`, now completed **success** at 16:46, confirming the fix in the actual CI environment, not just here. `ops test suite` and the product-copy-drift step were still running at the time of this entry; a local full-suite pass plus a green CI Preflight step is strong evidence, not final confirmation, so the actual completion is still the next check-in's to read, not assumed here.
+
+**Verified further:** GitHub 8 open issues unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs. `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows both correctly carried forward and labelled not-measured-fresh (no VPS ssh key here), not overwritten with a guess.
+
+**Went well:** treating "left to the operator" as a claim to check, not a reason to skip past it; reading the actual CI job steps instead of trusting the run's still-`in_progress` top-level status, which would have said nothing useful on its own.
+
+**Did not go well:** same unrelated-history checkout shape recurred; nothing new.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only (dashboard timestamp/commit-count refresh from the local preflight run). No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 16:2x (30-minute triage, previous work NOT finished: a live GOALS.md self-contradiction found and fixed twice)
 
 **Not finished.** Preflight FAILed: GOALS.md still said 4/3 (the 16:05 cycle's own revert) while Phil's concurrent commits had since measured 5/4 from Umami, per his own log entry that the earlier "reconfirmed" was an unmeasured carry-forward. Updated GOALS.md to match his fresher reading. A second preflight run found the row was fixed but its own "now with numbers" narrative paragraph still said 4/3, unread by any check. Widened `gate_goals_organic_search_row_current` a third time, fail-then-pass proved against the real file.
