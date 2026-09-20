@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 15:44 (30-minute triage, previous work finished, a self-inflicted preflight FAIL diagnosed and closed, no new unblocked item)
+
+NEXT FOR THE OPERATOR: no genuinely new unblocked item found this pass, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all done or Phil-gated and all 8 open GitHub issues are `decision`/`blocked-on-art`/`P0`, none pickable; keep the standing cold-read/cross-document lane going if a fresh angle turns up, otherwise a clean re-verification pass is the honest output of this slot.
+
+**Previous work: finished, but preflight FAILed on arrival, so that became this cycle's work per STEP 2.** Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (868-commit fast-forward, clean, no reset or force). Started a preflight run, then, before it finished, started a second one through this session's own background-task tooling: the two raced, exactly the shape the 14:44 PM check-in already diagnosed once today. `gate_tests` reported `tests` FAIL: `test_affiliate.py: AssertionError: a real probe file was already here` and `test_gate_page_ownership_registry.py: 5 of 6 cases`. Did not trust the FAIL or the file's own truncated one-line summary; traced it. `test_affiliate.py`'s own docstring names the exact mechanism: `test_audit_visual_reduced_motion.py` (alphabetically after it in `gate_tests`' sorted file list, so overlapping only when two `preflight.py` processes run at once) calls `audit_visual.py`, which writes a scratch `site/downloads/_visual_probe.html` and deletes it moments later; a second, concurrent `preflight.py` reaching `test_affiliate.py` while that file exists trips its own guard assertion. Confirmed rather than assumed: no `_visual_probe.html` present, no leftover preflight/audit_visual process running, both failing test files reran individually and passed clean (`test_gate_page_ownership_registry.py`: 6 of 6; `test_affiliate.py`: prints its own "ok" line). Ran a third, genuinely single-instance `preflight.py` to completion in the background: every gate passed, 22 standing warnings, the identical baseline every recent cycle records (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29).
+
+**Also checked, per STEP 3:** `BACKLOG-2026-09-07.md` sections 1b through 7 read in full, all rows again done or Phil-gated (section 1b, the 23 kits/bundles with no page, is issue #32, a content decision). GitHub confirmed live via the API directly, not cited: 8 open issues unchanged in count/number/label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs. No genuinely new unblocked item; this cycle's real work was diagnosing the FAIL above, not a fresh sweep.
+
+**Went well:** treating the FAIL as this cycle's work per STEP 2 rather than working around it; tracing the exact mechanism (a known race class this repository has already named and fixed once) instead of re-running until it happened to go green.
+
+**Did not go well:** caused the race myself, by starting an exploratory background preflight run and then a second, proper one without confirming the first had exited first. The gate did exactly what it is supposed to do.
+
+**Changing next cycle:** run only one `preflight.py` at a time; check for and kill any stray earlier invocation before starting the one whose result will be trusted.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art/P0 issues, unchanged. Handing to the operator (:43): nothing new to hand off beyond the standing owner gates, since this slot's work was closing the self-inflicted FAIL, not opening new ground.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 15:20 (30-minute triage, previous work was NOT finished: a real preflight FAIL found and fixed)
 
 **Previous work: not finished.** `preflight.py` failed on arrival: `gate_nightly_log_ordering` caught a real instance of the exact defect it exists to catch, a 2026-09-20 entry (the "clean verification pass ... flagged the owner-action backlog itself as the constraint" cycle) had been appended to the physical end of this 30,849-line file instead of prepended near the top, landing it after weeks of older entries where "read the last few entries" would never find it. Fixing this was the cycle's actual work, per STEP 2.
