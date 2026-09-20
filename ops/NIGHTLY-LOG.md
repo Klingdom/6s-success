@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 18:40 (30-minute triage, previous work finished locally, CI confirmation on the latest commit handed to the operator)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run 1213 and `publish-image.yml` run 352 (both on `1aeda1df`) land `success`, because both were still `in_progress` after 17+ minutes at the time of this check-in and that commit is the tail of the CI-red-then-fixed chain (`7ae0e9b6` broke `gate_generator_ownership` by shipping pages without a regenerated sitemap, `c97c79c4` fixed it locally but dated 161 of 188 pages for an invisible attribute, `220a2f9c`/`1aeda1df` from Phil kept the date-preserving sitemap and merged both sessions' work); no new unblocked backlog item was found this pass, so once CI is confirmed green the standing cold-read/cross-document lane is the default next move.
+
+**Attached clean:** shallow, detached checkout; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (899-commit fast-forward, no reset or force). Working tree was already clean and level with `origin/main` at HEAD (`1aeda1df`) before this cycle touched anything.
+
+**Previous work: finished, as far as this environment can prove it.** Full `python ops/preflight.py` run to genuine completion (not the fast pass alone, since the last several cycles found real defects only `--deep`/full runs caught): every gate passed, 0 FAIL, 22 warnings, all previously-diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress; cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml` already mitigated 2026-09-09; page/deck-art gaps tracked by open issues #2/#29). `BACKLOG-2026-09-07.md` sections 2 through 6 read in full again: every row done or Phil-gated, nothing new. GitHub confirmed live via the API: 8 open issues unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs, each already carrying a recommendation or shipped mitigation, none pickable here.
+
+**CI on the latest commit is the one thing this pass could not close.** Commit `c97c79c4` (this operator's own sitemap regen after the SKU fix) confirmed `success` on both `checks.yml` and `publish-image.yml`. Phil's two commits on top of it, `220a2f9c` (kept the sitemap dates stable instead of stamping 161 pages for an attribute no visitor can see) and `1aeda1df` (build-id restamp after that merge), triggered fresh runs that were both still `in_progress` after 17+ minutes, this repo's documented normal run length, so their result is likely but not proven.
+
+**Went well:** running the full `preflight.py` to completion rather than the fast pass, matching the pattern that has repeatedly caught real defects on this cycle's slot; reading the actual commit chain (three commits deep) to understand what Phil's merge had actually resolved rather than trusting the top log entry's own framing.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape, issue #27's usual pattern. This check-in ran later in its slot than usual (started attach near :42) because the full preflight and a CI poll both take several minutes each; worth starting the full preflight run immediately on attach next time rather than after the reading pass, so it has more of the 30-minute window to finish.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-20, scheduled operator cycle (full independent verification pass, no new defect of my own; converged onto a concurrent live fix from Phil, a real 289-of-455 missing data-sku defect)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (893-commit fast-forward, clean, no reset or force). Read `BACKLOG-2026-09-07.md` in full (sections 1 through 7), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md` sections 0 through 4, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to full completion in the background: every gate passed, 22 standing warnings, the identical set every recent cycle records (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness unmeasured, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, already diagnosed and mitigated 2026-09-09 with a `push`-triggered second path, not a live gap; sample-PDF spelling; site verification; page/deck-art gaps tracked by open issues #2/#29).
