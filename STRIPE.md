@@ -40,8 +40,10 @@ data (`site/assets/js/data.js`) rather than re-typing the old numbers: it is
 159 items today, not 41, and the "Reset kits," "Courses" and "Tools and
 supplies" rows describe a physical-product plan the catalogue never grew
 into. The real current shape is 109 Micro Zone Packs, 19 Room Packs, 15
-Situation Kits, 6 Area Bundles, 6 Books & Guides and 3 Consulting offers, all
-digital or invoiced, no physical SKU exists to be blocked on a supplier.
+Situation Kits, 6 Area Bundles, 6 Books & Guides, 3 Consulting offers and 1
+free app (the six category counts summed to 158, one short of the 159 stated
+above; the missing item is `APP-FREE`, The Home Quest), all digital, invoiced
+or free to use, no physical SKU exists to be blocked on a supplier.
 `EXECUTIVE-DASHBOARD-LIVE.md` (regenerated every cycle) is the current source
 of truth: 158 of 159 catalog items carry a live Stripe Payment Link or a real
 free download; the one exception is Corporate Lean 6S, which is quote-based

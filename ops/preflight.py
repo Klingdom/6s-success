@@ -12454,6 +12454,75 @@ def gate_architecture_doc_current() -> None:
              "see GOALS.md for the one real sale this contradicts.")
 
 
+def gate_architecture_workflow_count_current() -> None:
+    """Every '<N> workflows' claim in ARCHITECTURE.md must agree with each
+    other and with the real file count in .github/workflows/.
+
+    Found 2026-09-20, this operator, self-arithmetic cross-check pass:
+    section 8 was corrected on 2026-09-13 to say "10 workflows as of
+    2026-09-13, corrected from 9: `social-drafts.yml` had shipped and was
+    never added to this list", and named all ten files including
+    `social-drafts.yml`. But five lines later, in the same section's bullet
+    list, the sibling mention still read "9 workflows exist, see above",
+    the exact number the correction had just replaced. One correction
+    landed and a second citation of the identical fact, in the identical
+    section, never got it: the same "source fixed, one artifact never
+    re-derived" shape CLAUDE.md 0.0 and this file's own docstring both
+    name. Corrected the same cycle this gate was added.
+
+    Re-derives the real count from .github/workflows/ on every run rather
+    than trusting either number in the document, so a future addition or
+    removal of a workflow file that the document is not updated for fails
+    here too, not just a repeat of this exact wording.
+    """
+    doc_path = os.path.join(ROOT, "ARCHITECTURE.md")
+    workflows_dir = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.exists(doc_path) or not os.path.isdir(workflows_dir):
+        return
+    text = io.open(doc_path, encoding="utf-8").read()
+
+    real_files = sorted(f for f in os.listdir(workflows_dir)
+                         if f.endswith((".yml", ".yaml")))
+    real_count = len(real_files)
+
+    said_counts = [int(n) for n in
+                   re.findall(r"(\d+)\s+workflows\b", text)]
+    bad = []
+    for n in said_counts:
+        if n != real_count:
+            bad.append(f"says '{n} workflows' but .github/workflows/ "
+                        f"holds {real_count} file(s)")
+
+    if len(set(said_counts)) > 1:
+        bad.append("cites more than one distinct workflow count in the "
+                    "same document: %s" %
+                    ", ".join(str(n) for n in sorted(set(said_counts))))
+
+    # The document also names every workflow file by filename in backticks
+    # right after "under `.github/workflows/`:". Compare that named set
+    # directly against the real directory so an add or remove that nobody
+    # updates the prose list for fails here too.
+    inventory = re.search(r"under `\.github/workflows/`:(.*?)\)", text,
+                           re.DOTALL)
+    if inventory:
+        named = set(re.findall(r"`([\w-]+\.ya?ml)`", inventory.group(1)))
+        missing_from_doc = set(real_files) - named
+        stale_in_doc = named - set(real_files)
+        if missing_from_doc:
+            bad.append("`.github/workflows/` has file(s) the document's "
+                        "own named list omits: %s" %
+                        ", ".join(sorted(missing_from_doc)))
+        if stale_in_doc:
+            bad.append("the document names file(s) that no longer exist "
+                        "in `.github/workflows/`: %s" %
+                        ", ".join(sorted(stale_in_doc)))
+
+    if bad:
+        fail("architecture-workflow-count-current",
+             "ARCHITECTURE.md's workflow count has drifted: %s" %
+             "; ".join(bad))
+
+
 def gate_visual_strategy_truncation_current() -> None:
     """PLAN-VISUAL-STRATEGY.md must not claim the video-truncation defect is
     live without also saying it was fixed, and the fix it names must still
@@ -17672,6 +17741,7 @@ def main() -> int:
     run_gate(gate_doc_supersession_chain_current)
     run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
+    run_gate(gate_architecture_workflow_count_current)
     run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
