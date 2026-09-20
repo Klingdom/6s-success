@@ -34,9 +34,21 @@ re-derives the real corpus on every run. **D15** (crawler log split) traced
 review refers to is VPS access-log analysis, which needs the SSH key this
 environment has never had (the same standing gap `deploy-fresh`/
 `live-links`/`owner-waiting` already warn about every cycle), so it is not
-actually unblocked here. Still open, in report order: D15 (as above),
-D1-D5/D8-D10/D12-D14 (larger-scope pilot work), D19-D21 (Phil-gated). Full
-account in `ops/NIGHTLY-LOG.md`.
+actually unblocked here. **D4** (household variants) shipped 2026-09-20,
+operator, for the same 12-zone pilot cohort M4's diagnosis block already
+uses (Entryway 5, Kitchen 7), per `BACKLOG-2026-09-07.md` section 5's
+pilot-before-rollout rule. Each pilot zone now carries an "If your `<thing>`
+is not like this" section with 2 real household conditions (no console/rents
+and cannot drill/shared by several people/small kitchen/mobility limits,
+chosen per zone from its own real purpose and done-looks-like text, nothing
+invented) and concrete, different guidance under each, matching the
+acceptance text verbatim. New `variants` field on `content.json`, rendered
+by `variants_html()` in `ops/build_zone_pages.py`; new `gate_variants_rendered`
+in `preflight.py` re-derives the block from the corpus and checks it against
+the shipped HTML byte for byte, fail-then-pass proved against the real
+committed file (`ops/tests/test_gate_variants_rendered.py`, 7 cases). Still
+open, in report order: D15 (as above), D1-D3/D5/D8-D10/D12-D14 (larger-scope
+pilot work), D19-D21 (Phil-gated). Full account in `ops/NIGHTLY-LOG.md`.
 
 ---
 

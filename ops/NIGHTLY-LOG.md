@@ -33,6 +33,20 @@ Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `o
 
 **Changing next cycle:** never read a gate result that began before the tree it is meant to cover.
 
+## 2026-09-20, scheduled operator cycle (D4 household variants shipped for the 12-zone pilot cohort, breaking the epic-6 cold-read pattern)
+
+**Did:** Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and the last log entries. `preflight.py` was green (23 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, all `decision`/`blocked-on-art`, none pickable. Checked epics 1-4 directly rather than defaulting to another narrative cold-read: BACKLOG's own A1-A7/B1-B7/C1-C7 rows are all done or Phil-gated, but `REVIEW-DISCOVERY-2026-09-07.md`'s D3/D4 ("blocked on nothing") were still measurably open (0 occurrences of "apartment"/"inches" sitewide, checked fresh, not carried forward). Shipped D4: a household-variants section ("If your `<thing>` is not like this") on the same 12-zone pilot cohort M4's diagnosis already covers, 2 real conditions and distinct guidance per zone, grounded in each zone's own purpose text, nothing invented.
+
+**Verified:** new `gate_variants_rendered` in `preflight.py`, `ops/tests/test_gate_variants_rendered.py` (7 cases including the real site), fail-then-pass proved twice on the real committed file (a stale sentence, a dropped block, both restored clean). Full `preflight.py` (every gate passed, 23 warnings), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean after. `inbox_agent.py`: no mail credential, unchecked, not empty. `indexnow.py --submit`: no egress, correctly refused rather than guessed.
+
+**Went well:** actually checking whether epics 1-4 were exhausted rather than trusting the claim; found real, unblocked, blocked-on-nothing work in a two-week-old report nobody had returned to.
+
+**Did not go well:** D3 (capacity/sizing guidance) is the same size of work and still open; one cycle could not do both.
+
+**Changing next cycle:** none.
+
+**Next:** D3 for the same 12-zone cohort. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision issues, unchanged.
+
 ## 2026-09-20, scheduled operator cycle (full independent verification pass, no new defect of my own; converged onto a concurrent live fix from Phil, a real 289-of-455 missing data-sku defect)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (893-commit fast-forward, clean, no reset or force). Read `BACKLOG-2026-09-07.md` in full (sections 1 through 7), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md` sections 0 through 4, and the last several `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to full completion in the background: every gate passed, 22 standing warnings, the identical set every recent cycle records (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness unmeasured, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, already diagnosed and mitigated 2026-09-09 with a `push`-triggered second path, not a live gap; sample-PDF spelling; site verification; page/deck-art gaps tracked by open issues #2/#29).

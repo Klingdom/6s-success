@@ -1364,6 +1364,39 @@ def diagnosis_faq(thing, zone):
     return qa
 
 
+def variants_html(thing, zone):
+    """REVIEW-DISCOVERY-2026-09-07.md D4: 'a short conditional block: what
+    changes if the entryway is a corridor with no console, if you cannot
+    drill the wall, if three people share it.' CLAUDE.md section 5 already
+    commits to not assuming the same room functions identically for every
+    household; this is that commitment made visible rather than implied.
+
+    Every word here comes from `zone["variants"]` (hand-authored, 12 pilot
+    zones only, the same Entryway 5 plus Kitchen 7 that already carry
+    `diagnosis`, per the pilot-before-rollout rule in
+    `BACKLOG-2026-09-07.md` section 5). Zones with no `variants` yet render
+    nothing, same as every other optional block on this page.
+    """
+    variants = zone.get("variants")
+    if not variants:
+        return ""
+    out = [f'<section id="variants"><h2>If your {esc(thing)} is not like '
+           f'this</h2>',
+           '<p class="notice" style="max-width:66ch">The passes above '
+           f'assume a fairly ordinary {esc(thing)}. A few real households '
+           'are not, and the fix is not to skip the method, it is to run it '
+           'against a different starting shape.</p>',
+           '<dl class="faq-list">']
+    for v in variants:
+        cond = _clean(v.get("condition", ""))
+        guide = _clean(v.get("guidance", ""))
+        if not cond or not guide:
+            continue
+        out.append(f'<dt>{esc(cond)}</dt><dd>{esc(guide)}</dd>')
+    out.append('</dl></section>')
+    return "".join(out)
+
+
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
      "How long this room actually takes",
@@ -2235,6 +2268,9 @@ def zone_page(room, zone, header, footer, all_rooms=()):
         if leave.get("trigger"):
             out.append(f'<p><b>Reset trigger.</b> {esc(leave["trigger"])}</p>')
 
+    _variants = variants_html(thing, zone)
+    if _variants:
+        out.append(_variants)
     out.append(SAFETY)
 
     # The whole room, in working order, not just the zone either side.

@@ -154,7 +154,17 @@
        "action": "Empty the tray and the paper stack onto the surface, then give every sheet a verdict: act, file, or recycle, before anything goes back.",
        "victory": "One tray holds only keys and sunglasses, and no loose paper sits anywhere on the surface."
       }
-     }
+     },
+     "variants": [
+      {
+       "condition": "No console or bench, only a wall by the door",
+       "guidance": "A single shallow shelf or a wall-mounted tray does the same job as a console top. Keep it to one shelf's width so the wall does not turn into extra storage, and hang the folder pocket on a hook beside it rather than trying to stand a folder on a ledge too narrow to hold it upright."
+      },
+      {
+       "condition": "Three or more people land here within the same few minutes",
+       "guidance": "One shared tray becomes a scramble at rush hour. Give each person their own small tray or a labeled section of one long tray, so a lost key search never involves lifting someone else's things out of the way first."
+      }
+     ]
     },
     {
      "zone": "Coat and Outerwear Zone",
@@ -291,7 +301,17 @@
        "action": "Take down every coat that did not go outside once this cold season, and clear the two hooks nearest the door.",
        "victory": "Two hooks stand empty nearest the door, and every coat still on the rail was worn this season."
       }
-     }
+     },
+     "variants": [
+      {
+       "condition": "One rail for a household of four or more",
+       "guidance": "Split the rail by person rather than by season. A short length of rail per person, marked with a label or a colored hook, holds that person to their own share and makes it obvious whose coat is spilling over."
+      },
+      {
+       "condition": "You rent and cannot put a hole in the wall for hooks",
+       "guidance": "An over-the-door hook rack or a freestanding coat rack does the same job without a drill. Weight the freestanding kind at the base, since a full rack of wet winter coats is heavier than the rack expects."
+      }
+     ]
     },
     {
      "zone": "Shoe and Boot Zone",
@@ -428,7 +448,17 @@
        "action": "Pull every shoe off the rack, pair them up on the floor, and put back only two pairs per person, soles down.",
        "victory": "Two pairs per person stand on the rack, soles down, and the floor between the door and the rack is bare."
       }
-     }
+     },
+     "variants": [
+      {
+       "condition": "No room for a rack, only floor space by the door",
+       "guidance": "A shallow boot tray on the floor, sized to the number of people using the door, holds the same two pairs per person the rack would, and it is easier to wipe out after a muddy week."
+      },
+      {
+       "condition": "Young children who cannot yet manage a rack on their own",
+       "guidance": "Put their shoes on the lowest shelf or directly on the floor tray, not the rack shelf built for an adult reach. A child who can reach their own shoes is a child who can put them away."
+      }
+     ]
     },
     {
      "zone": "Entry Console or Bench",
@@ -561,7 +591,17 @@
        "action": "Tip the drawer out onto the bench and take out anything you would not want while wearing your outdoor shoes.",
        "victory": "Three items or fewer sit on the top, the seat is empty, and every drawer section holds one named category."
       }
-     }
+     },
+     "variants": [
+      {
+       "condition": "No console or bench fits the space at all",
+       "guidance": "A single wall hook at seat height plus a floor mat to sit on for a moment covers the console's real job, which is somewhere to pause, not somewhere to display objects. Do not let the floor mat become the new catch-all."
+      },
+      {
+       "condition": "The console doubles as the household's mail or paperwork spot",
+       "guidance": "Keep the drawer's paper section physically separate from the coat and shoe items sharing the same surface. Paper belongs to the Landing Zone's own tray and folder nearby, not spread across the console drawer, or the two systems compete for the same few inches of space."
+      }
+     ]
     },
     {
      "zone": "Door, Mat, and Immediate Floor",
@@ -694,7 +734,17 @@
        "action": "Lift both mats, vacuum the floor underneath, and check both faces of the inside mat for a flattened line where grit is riding across instead of catching.",
        "victory": "Both mats lie flat with no curled corners, and the floor inside the door's swing is bare."
       }
-     }
+     },
+     "variants": [
+      {
+       "condition": "An apartment hallway with no room outside your own door for a mat",
+       "guidance": "Move the coarse, grit-catching mat just inside the door instead of outside it, and accept that the first three feet of your own floor does the job the outside mat usually would."
+      },
+      {
+       "condition": "A household with a dog or cat that tracks in mud alongside people",
+       "guidance": "A dedicated paw-wipe towel on a hook beside the mat, used before anyone crosses the threshold, keeps pet mud out of the same floor the people mat is already protecting."
+      }
+     ]
     }
    ]
   },
@@ -846,7 +896,17 @@
        "victory": "Your largest cutting board lies flat with room on both sides, and nothing else is on the run."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "A galley kitchen with one short counter run total",
+       "guidance": "When there is no second counter to hold the kettle and toaster, they earn a fixed spot at one end of the run instead of the middle, so a clear run the width of your cutting board still exists at the other end every time."
+      },
+      {
+       "condition": "Two people cook at the same counter regularly",
+       "guidance": "Split the run visually: one end for cutting and prep, the other for staging finished ingredients before they go to the stove, so two sets of hands are not reaching across the same six inches of board."
+      }
+     ]
     },
     {
      "zone": "Cooking Zone",
@@ -991,7 +1051,17 @@
        "victory": "With your feet still, you can reach oil, salt and a turner, and you have somewhere to set a hot pan down."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "Renting with an old stove and no range hood",
+       "guidance": "Without a hood pulling grease away, the wall and cabinet fronts either side of the burners collect it faster. Wipe them on the same schedule as the Shine pass below rather than waiting for them to look obviously dirty."
+      },
+      {
+       "condition": "A small kitchen where the cooking zone and the prep counter are the same six feet",
+       "guidance": "The oil, salt, and utensil crock from this zone and the cutting board from the prep counter cannot both sit out at once in that space. Keep the crock at the back near the burners; the board comes out only while you are actively using it, then returns to a vertical slot rather than lying on the counter."
+      }
+     ]
     },
     {
      "zone": "Sink and Dishwashing Zone",
@@ -1127,7 +1197,17 @@
        "victory": "Dry basin, two tools standing, nothing lying in water."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "No dishwasher, everything washed by hand",
+       "guidance": "The drying rack has to hold more volume for longer, so give it the counter space on both sides of the sink, not squeezed to one side, and empty it fully at least once a day rather than letting clean dishes wait there until the next meal needs the space."
+      },
+      {
+       "condition": "A shared house or apartment where people wash up on different schedules",
+       "guidance": "The single under-sink tray of cleaners works only if everyone uses the same one. Label it and put it back in the same spot every time, since a shared kitchen's usual failure is three half-used bottles from three different people instead of one."
+      }
+     ]
     },
     {
      "zone": "Upper Cabinet Zone",
@@ -1262,7 +1342,17 @@
        "victory": "You can take a plate and a mug down with one hand each, moving nothing else."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "Shelves higher than you can reach without a step stool",
+       "guidance": "Move daily-use items down to a shelf or cabinet you can reach without help, and let the true top shelf hold only what already goes there less than once a month. A daily mug you need a stool for is not actually stored at eye level, whatever the shelf is called."
+      },
+      {
+       "condition": "A household member who cannot use a step stool or reach a high shelf",
+       "guidance": "Reassign daily-use dishes to whichever shelf that person can reach without help, even if it means the upper shelves hold slightly less-used items for everyone else. The zone's job is daily access for the people using it, not a fixed shelf height."
+      }
+     ]
     },
     {
      "zone": "Lower Cabinet and Cookware Zone",
@@ -1395,7 +1485,17 @@
        "victory": "Each of your three most used pans comes out in one motion, moving nothing else."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "Only one low cabinet for all the cookware in a small kitchen",
+       "guidance": "Prioritize by the two pans you cook with nightly. Everything else, the roasting pan, the stockpot, the seasonal bakeware, moves to the highest shelf of this same cabinet or to a different storage spot entirely, since one cabinet cannot hold the whole kitchen's cookware at equal priority."
+      },
+      {
+       "condition": "Bending to floor-level shelves is painful or difficult",
+       "guidance": "A pull-out drawer or a lazy Susan insert brings the back of a low cabinet to the front without kneeling. Where that is not available, keep the nightly pans on the shelf closest to standing height, even if the less-used pieces go lower."
+      }
+     ]
     },
     {
      "zone": "Utensil and Utility Drawers",
@@ -1527,7 +1627,17 @@
        "victory": "You can name each drawer's job, and each one closes with one push."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "Only one shallow drawer total, not several",
+       "guidance": "Flatware and the handful of tools you use daily take the divided insert. Foil, wrap, and baking paper move to a narrow vertical slot in a nearby cabinet instead of competing for the same drawer, since one drawer cannot be four zones at once."
+      },
+      {
+       "condition": "A rental where the drawers have no dividers built in",
+       "guidance": "A drop-in tray insert, sized to the drawer rather than screwed to it, gives the same divided-and-named result without altering the drawer itself."
+      }
+     ]
     },
     {
      "zone": "Refrigerator and Freezer",
@@ -1667,7 +1777,17 @@
        "victory": "Nothing raw above anything ready to eat, every leftover dated, and one bin at the front that tells you what to cook tonight."
       },
       "source": "ops/cardtext/kitchen-deck.json, character-for-character"
-     }
+     },
+     "variants": [
+      {
+       "condition": "A small apartment-sized fridge with limited shelves",
+       "guidance": "The eat-this-week bin still comes first, at eye level, even if it means the door holds fewer condiments to make room. A smaller fridge fails faster when nothing has a fixed spot, not slower."
+      },
+      {
+       "condition": "A shared fridge among roommates who shop and cook separately",
+       "guidance": "Split the fridge by shelf, not by item, and label each person's shelf the same way leftovers get labeled with a name and date. The eat-this-week bin can still be one shared bin near the door if everyone agrees to check it before it becomes everyone's problem."
+      }
+     ]
     }
    ]
   },

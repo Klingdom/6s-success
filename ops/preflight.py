@@ -14996,6 +14996,116 @@ def gate_diagnosis_rendered() -> None:
         fail("diagnosis-rendered", "; ".join(problems[:6]))
 
 
+def check_variants_rendered(variant_map: dict, page_bodies: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    REVIEW-DISCOVERY-2026-09-07.md D4 ("a short conditional block: what
+    changes if the entryway is a corridor with no console, if you cannot
+    drill the wall, if three people share it") shipped 2026-09-20 for the
+    same 12-zone pilot cohort M4's diagnosis block already uses (Entryway 5,
+    Kitchen 7). This is that block's own render-matches-source check, the
+    same shape `check_diagnosis_rendered` already runs for the sibling
+    block: `variant_map` is {filename: [(condition, guidance), ...]} read
+    fresh from content.json, `page_bodies` is {filename: html} for every
+    real site/zones/*.html file. Every condition/guidance pair must appear
+    on its own page byte for byte (escaped the same way `esc()` in
+    ops/build_zone_pages.py escapes it), a page not in the corpus must not
+    carry the block at all, and no two of the 12 pilot zones may ship an
+    identical pair of guidance sentences (the same anti-boilerplate check
+    `check_diagnosis_rendered` already runs on the related-reading block).
+    """
+    import html as _html
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items() if 'id="variants"' in b}
+    want_files = set(variant_map)
+    got_files = set(rendered)
+    extra = sorted(got_files - want_files)
+    missing = sorted(want_files - got_files)
+    if extra:
+        problems.append("%d page(s) render a variants block the corpus "
+                         "does not authorise: %s" % (len(extra), ", ".join(extra[:3])))
+    if missing:
+        problems.append("%d pilot zone(s) carry variants in content.json "
+                         "but ship no variants block: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+
+    seen_guidance = {}
+    for f in sorted(want_files & got_files):
+        body = rendered[f]
+        m = re.search(r'<section id="variants">.*?</section>', body, re.S)
+        if not m:
+            problems.append("%s: variants block malformed, could not "
+                             "isolate the <section>" % f)
+            continue
+        block = m.group(0)
+        pairs = re.findall(r'<dt>(.*?)</dt><dd>(.*?)</dd>', block, re.S)
+        want = variant_map[f]
+        if len(pairs) < 2:
+            problems.append("%s: %d variant(s) rendered, D4 requires at "
+                             "least 2" % (f, len(pairs)))
+        if len(pairs) != len(want):
+            problems.append("%s: corpus has %d variant(s), page renders %d"
+                             % (f, len(want), len(pairs)))
+        for (cond, guide), (dt_html, dd_html) in zip(want, pairs):
+            want_cond = _html.escape(cond, quote=True)
+            want_guide = _html.escape(guide, quote=True)
+            if dt_html != want_cond:
+                problems.append("%s: rendered condition does not match "
+                                 "content.json's own text: %r" % (f, dt_html[:80]))
+            if dd_html != want_guide:
+                problems.append("%s: rendered guidance does not match "
+                                 "content.json's own text: %r" % (f, dd_html[:80]))
+            key = dd_html
+            if key in seen_guidance:
+                problems.append("%s and %s ship identical variant guidance"
+                                 % (seen_guidance[key], f))
+            seen_guidance[key] = f
+    return problems
+
+
+def gate_variants_rendered() -> None:
+    """The shipped-HTML half of D4 (see `check_variants_rendered`'s own
+    docstring for what this catches). `gate_diagnosis_authoring`-shaped:
+    checks the real corpus against the real site/zones/*.html files, not
+    the generator's own logic.
+
+    Proved to fail on three planted regressions (a page missing its block,
+    a stale/paraphrased guidance sentence, and two zones sharing one
+    sentence): ops/tests/test_gate_variants_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("variants-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    variant_map = {}
+    for r in rooms:
+        for z in r.get("zones", []):
+            vs = z.get("variants")
+            if not vs:
+                continue
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            variant_map[f"{rs}-{zs}.html"] = [
+                (v.get("condition", ""), v.get("guidance", "")) for v in vs]
+    if not variant_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("variants-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_variants_rendered(variant_map, page_bodies)
+    if problems:
+        fail("variants-rendered", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=35) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -17767,6 +17877,7 @@ def main() -> int:
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)
+    run_gate(gate_variants_rendered)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
