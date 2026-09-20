@@ -18,6 +18,24 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-20 08:47 (30-minute triage, previous work confirmed finished by a genuine preflight run to real completion, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: nothing fresh to hand off; the same standing `OWNER-ACTIONS.md` "start here" three (Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues, because every unblocked backlog row is again done or Phil-gated and this slot found no new defect to add to that list.
+
+**Previous work: finished.** Attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main` (822-commit fast-forward from a shallow/detached start, clean, no reset or force). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own 110s timeout, correctly not treated as a pass): every gate passed, 22 standing warnings, the identical baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, the two workflows' measured cron-cadence drift, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). Confirmed GitHub live rather than cited: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
+
+**Verified, no new unblocked item found.** Read `BACKLOG-2026-09-07.md` in full: sections 2-4 (micro zones/app, decks, images/video) all rows done or already-done-when-checked; section 5 correctly held (ahead of the 2.6-visitors-a-day constraint); section 1b's 23 unlinked kits/bundles and section 6's owner gates are genuinely Phil-only. `EXECUTIVE-DASHBOARD-LIVE.md` read: still YELLOW on the same 2 P0 items (production behind the repository's build, and revenue), both already tracked, neither actionable from this sandbox (no deploy key, no Stripe credential).
+
+**Went well:** running preflight to genuine completion in the background rather than trusting the prior cycle's own citation of it, since a stale claim of green is exactly the failure class this repository has paid for before.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape (issue #27's), reattached cleanly with no reset or force.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 08:16 (30-minute triage, previous work confirmed finished by independent re-derivation of both its fixes, nothing new unblocked)
 
 **Previous work: finished.** Attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main` (821-commit fast-forward from a shallow/detached start, clean, no reset or force). Ran `preflight.py` fresh in the background to genuine completion rather than citing the prior cycle's own claim: every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, the two workflows' measured cron-queueing lag, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). Independently re-derived, not just re-read, both of the last cycle's own fixes: `ls .github/workflows/` returns 10 files, matching both citations in `ARCHITECTURE.md` and the new `gate_architecture_workflow_count_current`; `STRIPE.md`'s six category counts (109+19+15+6+6+3) sum to 158, matching its own corrected headline. Confirmed live via GitHub: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
