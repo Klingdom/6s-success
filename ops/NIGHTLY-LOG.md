@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (fresh checkout, full verification pass, no new defect and no new unblocked item)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved cleanly (822-commit fast-forward, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s live process rules, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries (the last several, all today, all PM check-ins or scheduled cycles finding the same standing state). Ran `python ops/preflight.py` to genuine completion in the background rather than trusting a partial foreground run: every gate passed, 22 warnings, the identical standing set (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, the two workflows' measured cron-cadence drift, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29).
+
+**Verified:** GitHub live: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED. Tested direct egress to `6s-success.com` and `api.stripe.com` from this sandbox: both 403 at the proxy CONNECT, confirming production still cannot be reached from here, not assumed from a prior cycle's note. `ops/state-checkin.json` unchanged since the last hourly run (`youtube_published` still 12, `products_live` still 159): no owner gate has moved. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated; section 5's holds and section 6's owner-gate ranking are unchanged. Regenerated the command deck; `EXECUTIVE-DASHBOARD-LIVE.md` now dated this run.
+
+**Went well:** checking live state (GitHub, state-checkin.json, direct egress) myself before concluding "nothing changed," rather than citing the prior cycle's identical conclusion on faith.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival as most cycles.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** the same standing `OWNER-ACTIONS.md` gates (Search Console verification, YouTube OAuth, Stripe business description, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts) and the 8 open `decision`/`blocked-on-art` GitHub issues, all genuinely Phil-only. Not re-escalating by notification this cycle since the standing streak was already surfaced this way earlier today with no change since.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 08:16 (30-minute triage, previous work confirmed finished by independent re-derivation of both its fixes, nothing new unblocked)
 
 **Previous work: finished.** Attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main` (821-commit fast-forward from a shallow/detached start, clean, no reset or force). Ran `preflight.py` fresh in the background to genuine completion rather than citing the prior cycle's own claim: every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, the two workflows' measured cron-queueing lag, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). Independently re-derived, not just re-read, both of the last cycle's own fixes: `ls .github/workflows/` returns 10 files, matching both citations in `ARCHITECTURE.md` and the new `gate_architecture_workflow_count_current`; `STRIPE.md`'s six category counts (109+19+15+6+6+3) sum to 158, matching its own corrected headline. Confirmed live via GitHub: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
