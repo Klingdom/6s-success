@@ -6,11 +6,13 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-20, item 1b reopened: production is stale again,
-233 commits behind the repository (last confirmed current 2026-09-18T17:20:47Z,
-build `7c765b634045a89c`; repository now at `5e905bdd45e222e9`), and no
-operator sandbox holds the deploy key or VPS egress, so redeploying is yours.
-Earlier: 2026-09-18, item 8's precondition resolved: a concurrent
+**Last measured:** 2026-09-20, item 1b resolved: the 233-commit gap this
+file flagged at 11:12 is closed. Phil redeployed twice since, from a
+session with real production access (`470834de`, then `7ae0e9b6`); the
+tracked verdict (`ops/deploy-verdict.json`) now reads current at
+2026-09-20T17:46:50Z, build `d9fc700d0700972f`, one commit behind the
+repository (this cycle's own dashboard regen, no site or product content).
+No action needed on 1b right now. Earlier: 2026-09-18, item 8's precondition resolved: a concurrent
 session with real VPS access confirmed production redeployed to build
 `8f2400c02ff063f2` and proved the rewired analytics path end to end (a
 labelled probe event reached the live beacon), so the "wait for the deploy"
@@ -832,6 +834,8 @@ stands. Left the tracked verdict file untouched rather than guess at it.
 **Briefly reopened, then resolved, same 2026-09-15 afternoon.** Between the 11:17:08Z verdict above and this note, exactly one commit touched `site/`: `790a5d05` (a phone review by Phil himself, fixing the "One session: 30-45 min. most of it in Sort" grammar on 113 of 114 zone pages and labelling the empty zone-picture slot on room pages), moving the repository to build `587d80befe8bd586` with no newer verdict committed. This PM check-in flagged that gap; before it shipped, the same local session's own `11cfb6fd` landed, confirming production redeployed and current at `587d80befe8bd586` (checked 16:47:49Z). No action needed here now; recorded for continuity in case the tracked verdict ever falls behind again without a fresh commit to explain it.
 
 **Reopened again, 2026-09-20 11:12, PM check-in, a real and growing gap: item 1b now stands, unconfirmed since.** A session with real production access last confirmed current at 2026-09-18T17:20:47Z, build `7c765b634045a89c` (`ops/deploy-verdict.json`, checked directly this cycle, not cited). `site/build-id.txt` now reads `5e905bdd45e222e9`: the repository has moved 233 commits past that confirmation, at least 14 touching `site/**` or `ops/build_*.py` (measured directly with `git log --since`), including the storage-before-Sort fix, the Home Quest symptom-entry and Keep-screen fixes, the Kitchen deck micro-quests and related-card links, and the sitemap-lastmod fix. None of this has reached a customer yet. `STATUS.md`'s own "Production Knowledge" line had gone stale claiming a match that stopped being true after 2026-09-18; corrected there this same cycle. As before, no operator sandbox holds the deploy key's private half or egress to the VPS or 6s-success.com, so this is yours: press Redeploy in Hostinger's Docker Manager, or run `python ops/deploy.py` on the machine holding the key. Everything up to the gate is ready; the fresh image is on GHCR and both workflows are green.
+
+**Resolved, 2026-09-20, this PM check-in, verified against `ops/deploy-verdict.json` directly, not cited.** Phil redeployed twice today from a session with real production access: `470834de` (10:06:22 -0600, "Production moved `7c765b634045a89c` to `5e905bdd45e222e9`, two days of concurrent work that had built green and never shipped") and `7ae0e9b6` (11:51:59 -0600, the data-sku coverage fix, which also carried the deploy-verdict bump to `d9fc700d0700972f` at `2026-09-20T17:46:50Z`). The repository has since moved exactly one commit past that confirmed build (`1dd78484`, a command-deck regen only, no `site/**` or `ops/build_*.py` change), so the live gap is effectively zero, not 233 commits. `STATUS.md`'s BLOCKER-001 corrected to match, same cycle. No redeploy needed right now.
 
 ### 2. Run the 16 on-device app checks. About 20 minutes.
 

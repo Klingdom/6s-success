@@ -875,10 +875,15 @@ operator session has ever held the VPS deploy key or egress to
 `6s-success.com`, so this half genuinely cannot be verified from here on
 any cycle, not just this one; it is a standing structural limit, not an
 unstarted task. What IS known: the repository's own deploy-freshness
-check (`ops/deploy_freshness.py`, `ops/deploy-verdict.json`) last confirmed
-production current 2026-09-18T17:20:47Z (build `7c765b634045a89c`); the
-repository has since moved on (`site/build-id.txt` now `5e905bdd45e222e9`),
-so production is currently known-stale, not unknown, tracked live in
+check (`ops/deploy_freshness.py`, `ops/deploy-verdict.json`) previously
+went stale at 233 commits behind (last confirmed 2026-09-18T17:20:47Z,
+build `7c765b634045a89c`), flagged by the 2026-09-20 11:12 PM check-in.
+Phil redeployed twice since, from a session with real production access
+(`470834de`, then `7ae0e9b6`): the tracked verdict now reads current at
+2026-09-20T17:46:50Z, build `d9fc700d0700972f`. `site/build-id.txt` at
+HEAD is one commit ahead (`da3047e8a1168917`, this cycle's own dashboard
+regen, no `site/**` or `ops/build_*.py` content in it), so production is
+effectively current, not known-stale, tracked live in
 `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` item 1b.
 
 Impact:
