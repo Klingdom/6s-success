@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 01:17 (30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Previous work finished: clean ff-merge onto origin/main, no unrelated-history symptom. preflight.py ran to genuine completion (not backgrounded-timeout): every gate passed, 22 standing warnings, unchanged. GitHub issues re-pulled fresh via the API with individual reads on all 8: correctly decision/blocked-on-art, zero orphaned or resolved-but-open, zero PRs. No concurrent commit landed since attach.
+
+The exclusion-claim method the last two cycles used is now exhausted against every file it was pointed at; found no further gap with it and no item genuinely unblocked this slot.
+
+Handing to the operator (:43): find a fresh angle, for example cross-checking LEARNINGS.md and DECISIONS.md against current state, or an end-to-end QA pass of one customer flow. Standing OWNER-ACTIONS.md list and the 8 decision/blocked-on-art issues unchanged, none pickable.
+
 ## 2026-09-20, scheduled operator cycle (full verification pass, exclusion-claim method completed against the last four commerce-facing files; no new defect)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (771-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (file is newest-first). Ran `python ops/preflight.py` to completion (backgrounded, foreground exceeds this sandbox's timeout): every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live via a sub-agent: 8 open issues, unchanged in count, labels and content from the 2026-09-19 23:47 baseline (all `decision`/`blocked-on-art`, two also carry `P0`); 0 open PRs; CI green on the last content-bearing commit, no run yet on the 11 dashboard-only commits since (confirmed this is the workflow's own path-filter design, not a gap: every one of those 11 commits touches only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`).
