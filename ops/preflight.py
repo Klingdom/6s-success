@@ -17206,25 +17206,39 @@ def gate_us_spelling_consistency() -> None:
     (the largest single contributor, present on every zone, room and
     article page), ops/build_kit_page.py and ops/product_links.py
     ("organiser"), ops/build_standards_page.py, ops/linkedin_posts.py, the
-    free sample book manuscript, and one stray "reorganising" in
-    content/manual/source/content.json itself (the nightstand zone's own
-    shine_summary, which no generator could have caught because it is
+    free sample book manuscript under site/, and one stray "reorganising"
+    in content/manual/source/content.json itself (the nightstand zone's
+    own shine_summary, which no generator could have caught because it is
     hand-authored data, not a template string). This gate re-derives the
     real corpus on every run rather than trusting the fix to hold: it fails
     by name if a British spelling reappears anywhere in site/*.html outside
     the one whitelisted href.
+
+    Extended 2026-09-20: this gate only ever scanned site/**/*.html, so it
+    never reached content/book/*hapter*/chapter_*_final.html, the 50 files
+    ops/build_epub.py actually reads to build the one product this
+    business has sold a copy of. The free sample PDF/HTML got normalized
+    by D11; the full paid manuscript, a different source in a different
+    directory, did not. Checked directly: 17 live instances of
+    organis*/organising/organisation survived across 9 of the 50 chapters
+    (4, 6, 12, 13, 14, 15, 16, 34, 37), including inside figure alt text a
+    screen reader would read aloud. Fixed at the source (organise ->
+    organize, preserving the matched suffix) and rebuilt the EPUB to
+    confirm the shipped file now carries zero. This gate now also scans
+    book_chapter_files() so it cannot silently reappear there again.
     """
     bad = []
     for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"),
-                               recursive=True)):
+                               recursive=True)) + book_chapter_files():
         text = io.open(p, encoding="utf-8", errors="replace").read()
         hits = check_us_spelling(text)
         if hits:
-            bad.append((os.path.relpath(p, SITE), hits))
+            base = SITE if p.startswith(SITE) else ROOT
+            bad.append((os.path.relpath(p, base), hits))
     if bad:
         names = [f"{p} ({', '.join(h)})" for p, h in bad[:5]]
         fail("us-spelling-consistency",
-             f"{len(bad)} page(s) carry a British organis*/organiz* "
+             f"{len(bad)} page(s)/file(s) carry a British organis*/organiz* "
              f"spelling outside the one whitelisted URL: {names}")
 
 

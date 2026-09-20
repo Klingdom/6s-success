@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Prove three new checks on the book manuscript can actually fail.
+Prove four new checks on the book manuscript can actually fail.
 
 Found 2026-09-19: `content/book/*hapter*/chapter_*_final.html`, the 50
 files `ops/build_epub.py` reads to build `build/6S-Success-Home-Edition.epub`
@@ -14,8 +14,18 @@ in a temp directory (monkeypatching `book_chapter_files()` so the real,
 clean, committed chapters are never at risk), then confirms the real
 committed corpus is clean on all three.
 
+Found 2026-09-20: the same manuscript had a fourth, live gap.
+`gate_us_spelling_consistency` (D11) only ever scanned `site/**/*.html`
+and never reached this directory, so 17 British organis*/organising/
+organisation instances across 9 of the 50 chapters survived in the actual
+paid product, inconsistent with the same book's own American spelling
+everywhere else. Fixed at the source and the gate extended to also scan
+`book_chapter_files()`; this file proves that extension the same
+fail-then-pass way as the other three.
+
 Run:  python ops/tests/test_gate_book_chapters_house_style.py
 """
+import glob
 import io
 import os
 import shutil
@@ -125,15 +135,41 @@ def main():
         check("unsourced stat in a book chapter warns via gate_unsourced_stats",
               any("unsourced-stats" == g for g, _ in warns))
 
-        # 7. The real, committed book manuscript, all 50 chapters: every
-        #    extension must come back clean today (a latent gap, not a live
-        #    defect, checked directly rather than assumed).
+        # 8. A British "organised" in a synthetic chapter must fail
+        #    gate_us_spelling_consistency. Patch all_pages()/SITE's own glob
+        #    contribution to empty by pointing site glob at the tmp dir too,
+        #    so only the planted book chapter can produce a hit.
+        brit = write_chapter(tmp, "94", "<p>A drawer that stays organised.</p>")
+        real_site_glob = glob.glob
+        def _site_glob_only_book(pattern, recursive=False):
+            if pattern.startswith(preflight.SITE):
+                return []
+            return real_site_glob(pattern, recursive=recursive)
+        preflight.glob.glob = _site_glob_only_book
+        try:
+            fails, _ = with_files([brit],
+                lambda: run_gate_capture(preflight.gate_us_spelling_consistency))
+        finally:
+            preflight.glob.glob = real_site_glob
+        check("planted British spelling in a book chapter fails "
+              "gate_us_spelling_consistency",
+              any("us-spelling-consistency" == g for g, _ in fails))
+        check("failure names the planted file",
+              any("chapter_94_final.html" in m for _, m in fails))
+
+        # 9. The real, committed book manuscript, all 50 chapters: every
+        #    extension must come back clean today (this row's 17 live
+        #    instances were fixed at the source, this cycle, before this
+        #    test was written).
         real_chapters = preflight.book_chapter_files()
         check("50 real chapter files found", len(real_chapters) == 50)
         fails, _ = run_gate_capture(preflight.gate_no_stray_dashes)
         check("real book manuscript clean on gate_no_stray_dashes", fails == [])
         fails, _ = run_gate_capture(preflight.gate_book_no_retired_terminology)
         check("real book manuscript clean on gate_book_no_retired_terminology",
+              fails == [])
+        fails, _ = run_gate_capture(preflight.gate_us_spelling_consistency)
+        check("real book manuscript clean on gate_us_spelling_consistency",
               fails == [])
 
     finally:
