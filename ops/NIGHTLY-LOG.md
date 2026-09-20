@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 14:17 (30-minute triage, previous work finished, one real documentation gap closed)
+
+**Previous work: finished.** Attached via fetch --unshallow plus merge --ff-only onto origin/main (857-commit fast-forward, clean, no reset or force). preflight.py run to genuine completion in the background twice (foreground hits this sandbox's own timeout, the standing shape): every gate passed both times, 22 standing warnings, unchanged before and after this cycle's edit. Confirmed GitHub live via the tools directly: 8 open issues unchanged (2 P0, rest decision or blocked-on-art), 0 open PRs, checks.yml run #1197 (632fab1f) still the last real run, green.
+
+**Verified a claim two prior cycles made and did not check.** The 13:18 and 13:47 entries both said the commits since 632fab1f "touch only CHECKIN-LOG.md, ops/state-checkin.json and the generated dashboard/state files, all paths checks.yml deliberately excludes from its trigger." That is not literally true: only four paths are negated in the YAML (ops/state.json, ops/dashboard.html, ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md); CHECKIN-LOG.md and ops/state-checkin.json are matched by the broad *.md and ops/** patterns and are not excluded by the filter at all. Confirmed directly against live GitHub run history that no run fired for any of the twelve consecutive commits after #1197, including one (e8f9762e) that touched only those two non-excluded files. The real reason, verified rather than assumed: every "Hourly check-in record" commit in the whole history is authored by github-actions actions@github.com, pushed by hourly-brief.yml's own commit step using the default GITHUB_TOKEN, and GitHub does not start a new workflow run from a GITHUB_TOKEN push. So the two prior cycles' conclusion (no gap, nothing to fix) was correct, but the stated reason was wrong, and the next cold reader of the YAML would have re-opened the same question. Documented the real mechanism directly in checks.yml with a dated comment. No functional change; preflight and CI both confirmed unaffected.
+
+**Went well:** checking a specific, checkable factual claim in the log rather than accepting it because the underlying conclusion happened to be right.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival.
+
+**Changing next cycle:** none.
+
+**Next:** same standing OWNER-ACTIONS.md gates and the 8 open decision/blocked-on-art/P0 issues, unchanged, none pickable. Handing the operator the same cold-read/cross-document lane; nothing else is currently unblocked.
+
+Pushed to main (two commits: the checks.yml documentation fix, then a command-deck refresh). No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-20 13:51 (fresh checkout, full verification pass, no new defect)
 
 **Did:** Unshallowed and fast-forward merged onto origin/main (853-commit ff, clean, no reset or force). Read GOALS.md, BACKLOG-2026-09-07.md sections 0 through 7, CLAUDE.md, and the newest ops/NIGHTLY-LOG.md entries (every cycle today converges on "nothing new, Phil-gated"). Ran preflight.py to genuine completion in the background (foreground hits this sandbox's own timeout, the standing shape): every gate passed, 22 standing warnings, the identical baseline every recent cycle records. Confirmed GitHub live via the API: 8 open issues unchanged (6 decision, 2 blocked-on-art), 0 open PRs. PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply: no mail credential, UNCHECKED as every prior cycle.
