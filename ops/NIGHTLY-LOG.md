@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 19:20 (30-minute triage, previous work finished and verified, nothing new unblocked)
+
+**Attached clean:** shallow, detached checkout, no common ancestor between local `main` and `origin/main` until `fetch --unshallow` restored one (issue #27's usual shape). `merge --ff-only` onto `origin/main`, no reset or force. A concurrent operator cycle (`f84306de`, D4 household variants) and its own command-deck regen (`619824e2`) landed mid-cycle; fetched and fast-forwarded onto both rather than colliding, discarding only my own already-superseded local dashboard regen.
+
+**Previous work: finished.** The D4 cycle's own log entry claimed a clean full `preflight.py`, `check_urls.py`, `audit_pages.py`, `affiliate.py --check` and `fix_dashes.py --check`; re-ran all five myself independently rather than trust the citation, all clean (188/188 URLs, 0 duplicate titles/descriptions, 163 documents, 0/0 dashes). Full `preflight.py` also run this cycle: every gate passed, 22 warnings, the standing sandbox set. `GOALS.md`'s revenue baseline checked against the dashboard rather than assumed current: both agree, $19 lifetime, $0 trailing 30 days, the predicted rollover already recorded as having happened today. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs, none pickable here.
+
+**CI on the two newest commits is the one thing this pass could not close.** `f84306de` (D4 content change) still `in_progress` on both `checks.yml` and `publish-image.yml` at last check, this repo's normal run length; `619824e2` (docs-only command-deck regen) has triggered no run on either workflow, consistent with the path filters added earlier this month, not a stuck job.
+
+**The dashboard's "production is serving an old build" line is real, not stale:** the repository moved to a new build (`cbbafc3e643cc3dc`, D4's content change) after production was last confirmed current at `da3047e8a1168917`; deploying is a VPS-access action this environment does not have, and per `OWNER-ACTIONS.md` it is not Phil's either since the automated deploy key went in 2026-09-01. No action for this session.
+
+**Went well:** re-deriving the last cycle's clean claims independently instead of citing them, and merging the concurrent D4 push cleanly instead of resetting past it.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape.
+
+**Changing next cycle:** none.
+
+**Next:** D3 (capacity/sizing guidance for the same 12-zone pilot cohort), named by the D4 cycle as the same size of work it could not also fit this cycle; left for the hourly operator at :43 rather than started here, per the 30-minute PM slot's own "small and closing" preference. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 18:40 (30-minute triage, previous work finished locally, CI confirmation on the latest commit handed to the operator)
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` run 1213 and `publish-image.yml` run 352 (both on `1aeda1df`) land `success`, because both were still `in_progress` after 17+ minutes at the time of this check-in and that commit is the tail of the CI-red-then-fixed chain (`7ae0e9b6` broke `gate_generator_ownership` by shipping pages without a regenerated sitemap, `c97c79c4` fixed it locally but dated 161 of 188 pages for an invisible attribute, `220a2f9c`/`1aeda1df` from Phil kept the date-preserving sitemap and merged both sessions' work); no new unblocked backlog item was found this pass, so once CI is confirmed green the standing cold-read/cross-document lane is the default next move.
