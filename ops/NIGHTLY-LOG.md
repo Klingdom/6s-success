@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 02:24 (30-minute triage, previous work confirmed finished, one self-inflicted preflight failure diagnosed and cleared, nothing new unblocked)
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto origin/main (783-commit fast-forward from a shallow/detached start, clean). The prior operator cycle's ROADMAP-2026-2029.md arithmetic fix (b2a5c82a) verified independently: preflight clean, gate present and passing by name, GitHub issues unchanged (8 open, all `decision`/`blocked-on-art`).
+
+**Found and correctly self-resolved, not a repository defect:** my own first `preflight.py` run was killed by an outer timeout mid-audit and left `site/_quest_draw_shortcut_probe.html` behind, exactly the SIGTERM shape `gate_no_stray_probe_files` exists to catch. The very next full run reported it as 1 gate failed, deleted it per its own documented behaviour, and a third clean run confirmed every gate passed, 22 warnings. Recorded here rather than silently rerun, per CLAUDE.md 0.4: this was this session's own tooling artifact, not something left by a prior cycle.
+
+**Checked, not fixed:** `gate_goals_revenue_window_current` names today, 2026-09-20, as the exact date GOALS.md's "$19 sale inside the trailing 30-day window" framing expires. Read the gate's own logic: it deliberately does not fail until the day *after* the named date ("cannot fail before the cited date passes, by construction"), so today it is correctly silent, not stale. No Stripe credential in this sandbox to check whether a second sale has landed since 2026-08-21, so re-deriving the sentence now would be guessing, not measuring. Flagging for whichever cycle runs after 2026-09-21 00:00 UTC: that is when this gate will fail if nobody has re-derived GOALS.md's revenue framing by then.
+
+**Verified, no new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. All 8 open GitHub issues unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2). Production redeploy remains the standing P0 named on the dashboard (`EXECUTIVE-DASHBOARD-LIVE.md`), genuinely Phil-gated: no VPS deploy key in this sandbox, no webhook path exists per `DEPLOYMENT.md`.
+
+**Did not go well:** wasted one preflight cycle on my own truncated first run instead of letting it complete; the gate caught it correctly regardless.
+
+**Next:** the standing handoff named twice already (interactive `shop.html`/`kit.html` browser QA, clicking every filter and buy link, confirming disclosure order) is genuinely still open and correctly sized for the operator's bigger budget, not this slot; leaving it there rather than starting and abandoning it. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-20, scheduled operator cycle (a real arithmetic error found in ROADMAP-2026-2029.md's own catalogue-size claim; fixed and gated)
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (779-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (file is newest-first). Ran `python ops/preflight.py` to completion in the background: every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged (`decision`/`blocked-on-art`, two `P0`), 0 open PRs; read issue #32 (the 23 kits/bundles decision) in full and confirmed it is correctly Phil-gated with a clear recommendation already recorded, not something to act on unilaterally.
