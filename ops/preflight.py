@@ -12630,6 +12630,18 @@ def gate_goals_organic_search_row_current() -> None:
     arithmetic and requires the headline to equal it, so the row can
     never again disagree with itself regardless of what any other file
     says.
+
+    Found 2026-09-20 (third instance, same day): Phil's own direct database
+    read (`7fd50637`) corrected the row to "5 visits from 4 visitors", the
+    real number, but the "Why it is first, now with numbers" narrative
+    paragraph three lines below it, which restates the same fact in prose,
+    still said "exactly four visits from three visitors" with the retired
+    Bing/Google breakdown. Both checks above passed: the row agreed with
+    itself and with STATUS.md, because neither one reads the narrative
+    paragraph below the table. Fixed the paragraph and widened this gate a
+    third way: it now re-derives the narrative's own "exactly N visits from
+    M visitors arrived from a search engine" claim and requires it to equal
+    the row's headline too.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -12749,6 +12761,38 @@ def gate_goals_organic_search_row_current() -> None:
                              (goals_visits, goals_visitors, detail_visits,
                               detail_visitors, bing_m.group(1),
                               google_m.group(1), google_m.group(2)))
+
+            # Found 2026-09-20 (third instance, same day): the table row was
+            # corrected to "5 visits from 4 visitors" but the "Why it is
+            # first, now with numbers" narrative three lines below, which
+            # restates the same fact in prose for a human reader, still said
+            # "exactly four visits from three visitors" and repeated the
+            # retired Bing/Google breakdown. The row-vs-row and
+            # row-vs-detail-cell checks above both passed because neither
+            # one reads this paragraph. Re-derive its own "exactly N visits
+            # from M visitors arrived from a search engine" claim and
+            # require it to equal the row's headline, so a fix to the row
+            # cannot leave the prose paragraph silently stale a fourth time.
+            narrative_m = re.search(
+                r"exactly\s+(\w+)\s+visits?\s+from\s+(\w+)\s+visitors?\s+"
+                r"arrived\s+from\s+a\s+search\s+engine",
+                goals_text, re.IGNORECASE)
+            if narrative_m:
+                narrative_visits = _spelled_number(narrative_m.group(1))
+                narrative_visitors = _spelled_number(narrative_m.group(2))
+                if (narrative_visits is not None
+                        and narrative_visitors is not None
+                        and (narrative_visits != goals_visits
+                             or narrative_visitors != goals_visitors)):
+                    fail("goals-organic-search-row-current",
+                         "GOALS.md's 'Why it is first, now with numbers' "
+                         "paragraph says exactly %s visits from %s visitors "
+                         "arrived from a search engine, but the 'Sessions "
+                         "from organic search' row above it now says %d "
+                         "visits from %d visitors. The row was corrected "
+                         "and the paragraph restating it below was not." %
+                         (narrative_m.group(1), narrative_m.group(2),
+                          goals_visits, goals_visitors))
 
 
 def gate_nightly_log_ordering() -> None:

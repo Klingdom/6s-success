@@ -91,6 +91,37 @@ STATUS_MATCHING_BAD_READING = (
     "site, as of 2026-09-20 | Last 30 days | current. |\n"
 )
 
+GOALS_ROW_FIXED_NARRATIVE_STALE = (
+    "# Goals\n\n"
+    "| Sessions from organic search | **5 visits from 4 visitors, whole "
+    "life of the site, measured 2026-09-20** | one visit from Bing "
+    "(21 August) and four visits from three Google visitors (4 to 18 "
+    "September). |\n\n"
+    # Line-wrapped like the real file's hard-wrapped prose, on purpose:
+    # the first regex written for this check used literal spaces and
+    # silently never matched GOALS.md's own wrapped paragraph, passing
+    # this test while leaving the real file's check dead. Wrapping here
+    # is what would have caught that.
+    "**Why it is first, now with numbers.** In the whole life of this "
+    "site exactly four visits from three visitors arrived from a search\n"
+    "engine, per the row above.\n\n"
+    "**Corrected 2026-09-05: the earlier wording here is no longer true: "
+    "not one visit from Google.** A Google referral landed 4 September.\n"
+)
+
+GOALS_ROW_AND_NARRATIVE_CURRENT = (
+    "# Goals\n\n"
+    "| Sessions from organic search | **5 visits from 4 visitors, whole "
+    "life of the site, measured 2026-09-20** | one visit from Bing "
+    "(21 August) and four visits from three Google visitors (4 to 18 "
+    "September). |\n\n"
+    "**Why it is first, now with numbers.** In the whole life of this "
+    "site exactly five visits from four visitors arrived from a search\n"
+    "engine, per the row above.\n\n"
+    "**Corrected 2026-09-05: the earlier wording here is no longer true: "
+    "not one visit from Google.** A Google referral landed 4 September.\n"
+)
+
 
 def _run(goals, status, risks):
     tmp = tempfile.mkdtemp()
@@ -176,12 +207,30 @@ def main() -> int:
         fails.append("an internally consistent GOALS.md row was wrongly "
                       "flagged by the self-arithmetic check: %r" % (r,))
 
+    # 9. Found 2026-09-20, third instance: the row was corrected to
+    #    "5 visits from 4 visitors" but the "Why it is first, now with
+    #    numbers" narrative paragraph below it still said "exactly four
+    #    visits from three visitors". Neither the row-self-arithmetic nor
+    #    the STATUS.md comparison reads this paragraph, so this must be a
+    #    dedicated check.
+    r = _run(GOALS_ROW_FIXED_NARRATIVE_STALE, STATUS_MATCHING_BAD_READING, None)
+    if not r or not any("now with numbers" in f[1] for f in r):
+        fails.append("a narrative paragraph restating a retired visit "
+                      "count was not caught by name: %r" % (r,))
+
+    # 10. The row and its narrative paragraph both current and agreeing:
+    #     no failure.
+    r = _run(GOALS_ROW_AND_NARRATIVE_CURRENT, STATUS_MATCHING_BAD_READING, None)
+    if r:
+        fails.append("a narrative paragraph that agrees with its own "
+                      "row was wrongly flagged: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_goals_organic_search_row_current, 8/8 checks pass")
+    print("OK: gate_goals_organic_search_row_current, 10/10 checks pass")
     return 0
 
 

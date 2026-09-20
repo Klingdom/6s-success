@@ -105,11 +105,13 @@ not by how interesting they are.
 **Why it is first, now with numbers.** 76 visitors (read directly from the
 database 2026-09-20 15:40 UTC, down from 78 on 2026-09-17, 75 on 2026-09-14
 and 68 on 2026-09-11) across 193 visits in thirty days, and in the whole life
-of this site **exactly four visits from three visitors arrived from a search
-engine**, per the "Sessions from organic search" row above, reconfirmed
-unchanged today: one visit from Bing (21 August), and three visits from two
-Google visitors (4 to 12 September). Every other arrival was direct, or from
-LinkedIn, which is the only channel we actually post to and which produced 17.
+of this site **exactly five visits from four visitors arrived from a search
+engine**, per the "Sessions from organic search" row above, corrected today
+after the earlier "reconfirmed unchanged" line turned out to be an
+unmeasured carry-forward: one visit from Bing (21 August), and four visits
+from three Google visitors (4 to 18 September). Every other arrival was
+direct, or from LinkedIn, which is the only channel we actually post to and
+which produced 17.
 
 **Corrected 2026-09-05: "not one visit from Google" is no longer true, and the
 crawl evidence behind it is the better news.** Read from the production access
