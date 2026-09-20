@@ -10592,6 +10592,110 @@ def gate_roadmap_prices_current() -> None:
              "live catalogue: %s" % "; ".join(bad))
 
 
+def roadmap_catalogue_count_drift(text: str, live_counts: dict) -> list:
+    """Pure logic behind gate_roadmap_catalogue_count_current, testable
+    without touching the real file.
+
+    `live_counts` maps the four component names to the real counts read
+    fresh from ops/build_catalog.py's own catalogue() (e.g.
+    {"zone packs": 114, "room packs": 20, "situation kits": 15,
+    "area bundles": 6}).
+
+    Found 2026-09-20: section 3c's own headline, "The catalogue is 164
+    items, not 10," sits one clause before the very breakdown that
+    contradicts it: 114 zone packs + 20 room packs + 15 situation kits + 6
+    area bundles is 155, not 164, and has been since this paragraph was
+    written 2026-08-26. gate_roadmap_prices_current already polices this
+    same document's section 1 price table and page count; nobody had ever
+    summed this section's own four numbers against its own headline, or
+    checked any of the four against the live generator. Both checks are
+    the same copy-vs-control shape CLAUDE.md 0.2 and this file's own
+    section 5 promise to catch, just in the one sentence neither gate
+    happened to parse.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+    m = re.search(
+        r"The catalogue is ([\d,]+) items, not 10\.(.*?)"
+        r"all\s+generated and all deliverable",
+        text, re.DOTALL)
+    if not m:
+        return problems
+    claimed_total = int(m.group(1).replace(",", ""))
+    body = re.sub(r"\s+", " ", m.group(2))
+
+    patterns = {
+        "zone packs": r"(\d+)\s+zone packs at \$4",
+        "room packs": r"(\d+)\s+room packs at \$9",
+        "situation kits": r"(\d+)\s+curated situation kits at \$14",
+        "area bundles": r"(\d+)\s+area bundles at \$16",
+    }
+    found = {}
+    for name, pattern in patterns.items():
+        pm = re.search(pattern, body)
+        if not pm:
+            problems.append(f"could not find the stated {name} count in "
+                             f"section 3c's own breakdown")
+            continue
+        found[name] = int(pm.group(1))
+
+    if len(found) == len(patterns):
+        real_sum = sum(found.values())
+        if claimed_total != real_sum:
+            problems.append(
+                "section 3c says the catalogue is %d items, but its own "
+                "breakdown (%s) sums to %d" % (
+                    claimed_total,
+                    " + ".join(str(v) for v in found.values()),
+                    real_sum))
+
+    for name, claimed in found.items():
+        real = live_counts.get(name)
+        if real is not None and claimed != real:
+            problems.append(
+                f"{name}: section 3c says {claimed}, the live catalogue "
+                f"(ops/build_catalog.py) has {real}")
+    return problems
+
+
+def gate_roadmap_catalogue_count_current() -> None:
+    """ROADMAP-2026-2029.md section 3c's catalogue-size arithmetic must add
+    up and match the live generator.
+
+    See roadmap_catalogue_count_drift's docstring for the regression this
+    closes. Re-derives the four component counts from
+    ops/build_catalog.py's own catalogue() directly, independent of the
+    document's prose, so a future edit to either side is still caught.
+    """
+    path = os.path.join(ROOT, "ROADMAP-2026-2029.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_catalog as bc                                # noqa: E402
+    try:
+        items = bc.catalogue(bc.load())
+    except Exception as exc:                                  # noqa: BLE001
+        warn("roadmap-catalogue-count-current",
+             f"could not load the live catalogue to check against: {exc}")
+        return
+
+    live_counts = {
+        "zone packs": sum(1 for i in items if i["sku"].startswith("ZP-")),
+        "room packs": sum(1 for i in items if i["sku"].startswith("RP-")),
+        "situation kits": sum(1 for i in items if i["sku"].startswith("KIT-")),
+        "area bundles": sum(1 for i in items if i["sku"].startswith("AB-")),
+    }
+
+    problems = roadmap_catalogue_count_drift(text, live_counts)
+    if problems:
+        fail("roadmap-catalogue-count-current",
+             "ROADMAP-2026-2029.md section 3c's catalogue-size arithmetic "
+             "has drifted: %s" % "; ".join(problems))
+
+
 def pricing_deck_ladder_problems(text: str, live_count: str) -> list:
     """Pure logic for gate_pricing_deck_ladder_current, testable without
     real files. `text` is PRICING.md's full content; `live_count` is the
@@ -17493,6 +17597,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_roadmap_catalogue_count_current)
     run_gate(gate_pricing_deck_ladder_current)
     run_gate(gate_roadmap_site_age_current)
     run_gate(gate_revenue_model_checkout_caveat)
