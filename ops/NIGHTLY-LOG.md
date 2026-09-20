@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 14:44 (30-minute triage, previous work finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no genuinely new unblocked item found this pass, because the backlog, the dashboard and GitHub all independently agree that every unblocked row is done and everything left needs either Phil's own hand (redeploy, Search Console, YouTube OAuth, Stripe description) or a decision on one of the 8 open issues, none of which are pickable here; keep the standing cold-read/cross-document lane going if a fresh angle turns up, otherwise a clean re-verification pass is the honest output of this slot.
+
+**Previous work: finished.** Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (862-commit fast-forward, clean, no reset or force). Ran `preflight.py` to genuine completion in the background (foreground hits this sandbox's own timeout, the standing shape). First background run FAILed `tests` (2 of 220 files), traced rather than trusted: I had accidentally started a second, overlapping `preflight.py --check-only` invocation while the first was still running, and the two raced on the same generated files under `site/downloads/`. Confirmed by rerunning `test_affiliate.py` alone (passed) and then a single, isolated `preflight.py` run with nothing else concurrent: every gate passed, 22 standing warnings, the identical baseline every recent cycle records (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). Working tree was clean and pushed before this cycle touched anything.
+
+**Verified, no new unblocked item found.** `BACKLOG-2026-09-07.md` read in full: sections 2-4 again all done or Phil-gated, section 1b (23 kits/bundles, issue #32) still a content decision, sections 5-6 correctly held. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 14:23) matches: same P0 count, same "production serving an old build" constraint waiting on Phil's redeploy click, same 8 open issues. Confirmed GitHub live via a subagent rather than cited: 8 open issues unchanged in count/number/label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs. The 14:17 PM entry's conclusion still holds; nothing has moved since.
+
+**Went well:** catching my own race condition by re-testing in isolation instead of logging a false FAIL.
+
+**Did not go well:** starting a second preflight invocation while the first was still running, costing about 6 minutes of this slot; same standing shallow/detached checkout shape on arrival.
+
+**Changing next cycle:** run only one `preflight.py` at a time; do not fire a second check while an earlier one is still in flight.
+
+**Next:** same standing `OWNER-ACTIONS.md` gates and the 8 open decision/blocked-on-art/P0 issues, unchanged, none pickable here.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 14:17 (30-minute triage, previous work finished, one real documentation gap closed)
 
 **Previous work: finished.** Attached via fetch --unshallow plus merge --ff-only onto origin/main (857-commit fast-forward, clean, no reset or force). preflight.py run to genuine completion in the background twice (foreground hits this sandbox's own timeout, the standing shape): every gate passed both times, 22 standing warnings, unchanged before and after this cycle's edit. Confirmed GitHub live via the tools directly: 8 open issues unchanged (2 P0, rest decision or blocked-on-art), 0 open PRs, checks.yml run #1197 (632fab1f) still the last real run, green.
