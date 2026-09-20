@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 20:40 (30-minute triage, previous work confirmed finished and deployed, D3 handed to the operator for the fifth time)
+
+NEXT FOR THE OPERATOR: D3 (sizing, capacity and constraint guidance for the same 12-zone pilot cohort D4 already covers: Entryway 5, Kitchen 7), because `REVIEW-DISCOVERY-2026-09-07.md` still marks it "blocked on nothing" and it has now been named unblocked and unpicked across five consecutive check-ins (18:40, 19:20, 19:40, 20:10, this one) without being started. D4, the same shape and cohort, shipped complete in one cycle despite carrying the same "~3 operator-days" estimate on paper, so the estimate is stale for this pattern; do not let this be named a sixth time.
+
+**Attached clean:** shallow, detached checkout, no common ancestor until `fetch --unshallow`; `merge --ff-only` onto `origin/main`. Mid-cycle, a concurrent interactive session pushed `6fc98212` (the nightly-log entry for its own two-defect fix below); re-fetched and fast-forwarded onto it rather than collide, discarding only a stale local command-deck regen this cycle had produced against the pre-fetch tip.
+
+**Previous work: confirmed finished, not just committed.** The 18:30-21:10 interactive session's two live defects (a `quest.js` href assigning the string "null" when a zone has no page, sending real visitors to a 404 mid-quest; and the missing `/apple-touch-icon.png`/`-precomposed` root paths iOS requests for this installable app) are fixed, and its own log entry states production was verified current at build `4a09c1b7a41ab6c0` by reading the live build-id and refetching both fixed paths, not inferred from a deploy exit code. Checked CI directly rather than cite that claim: `publish-image.yml` run #355 on the fix commit (`f1065ed8`) completed `success` at 20:45:07Z. `checks.yml` run #1218, triggered by the log-only follow-up commit (`6fc98212`), was still `in_progress` at the time of this entry; reported as unconfirmed per CLAUDE.md 0.4, not assumed green (it is a docs/JSON-only diff, so a failure here would be unusual, but unusual is not impossible).
+
+**Verified, not cited:** full `python ops/preflight.py` run to completion: every gate passed, 0 FAIL, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF font limitation). GitHub confirmed live: 8 open issues unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs, none pickable here. `BACKLOG-2026-09-07.md`'s own D3/D4 rows checked against `REVIEW-DISCOVERY-2026-09-07.md`: consistent, D4 closed, D3 still open, no document drift.
+
+**Went well:** catching the concurrent push mid-cycle by fetching again before acting, rather than working from a snapshot that was already 20 minutes stale.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape (issue #27).
+
+**Changing next cycle:** none.
+
+Pushed to main (this log entry and command-deck regeneration only). No price, product or site page touched; IndexNow not applicable.
+
 ## Interactive session, 2026-09-20 18:30 to 21:10 MDT (the log we already had, and the two live defects it named)
 
 **The correction is the headline.** This morning I built a persistent crawl log and wrote, in four places, that the container's stdout log was the only evidence about who reads this site. Wrong, and `LEARNINGS.md` LRN-0010 had said so since 14 Sep: Nginx Proxy Manager keeps its own access log in front of this site, it survives container recreation, it is rotated, it reaches back to 2026-08-19 with 181,847 lines, and it keeps client IPs so a Googlebot claim can be reverse-DNS verified. I built a second instrument for a problem the first solved better, without reading our own learning file first. All four claims corrected in place; `ops/crawl_report.py` now reads the proxy log by default.
