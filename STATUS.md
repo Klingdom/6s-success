@@ -323,19 +323,27 @@ The first production discovery cycle should reconcile:
 
 Owner: `github-manager`
 
+**Corrected 2026-09-20, scheduled operator cycle.** This table had stood as an
+unfilled bootstrap template, every row UNKNOWN, since the file's creation,
+even though this same document's own section 1 narrative and
+`EXECUTIVE-DASHBOARD-LIVE.md` report most of these facts on every cycle. Filled
+with what is genuinely known and live-checked this cycle via the GitHub API; a
+row stays UNKNOWN only where this operator sandbox truly cannot see the
+answer (no admin/security-alerts scope confirmed either way).
+
 | Area | Status | Notes |
 |---|---|---|
-| Repository identified | UNKNOWN | Confirm authoritative repository |
-| Default branch | UNKNOWN | Inspect |
-| Branch protections | UNKNOWN | Inspect |
-| Open PRs | UNKNOWN | Inspect |
-| Active branches | UNKNOWN | Inspect |
-| CI health | UNKNOWN | Inspect GitHub Actions |
-| Deployment workflow | UNKNOWN | Inspect |
-| Security/dependency alerts | UNKNOWN | Inspect if available |
-| Release convention | UNKNOWN | Establish or confirm |
-| Production traceability | UNKNOWN | Map deployed version to Git |
-| Repository hygiene | UNKNOWN | Initial audit required |
+| Repository identified | `Klingdom/6s-success` | Confirmed via the GitHub API this cycle |
+| Default branch | `main` | Confirmed; it is also the only branch that exists |
+| Branch protections | NONE | `main` returns `protected: false` via the API |
+| Open PRs | 0 | Confirmed live this cycle |
+| Active branches | 1 (`main` only) | Confirmed live this cycle; no stray/abandoned branches |
+| CI health | GREEN | `checks.yml` green on its last 3 runs (#1187-1189); `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml` all green on their latest scheduled runs |
+| Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; production is a manual Hostinger "Redeploy" click per `DEPLOYMENT.md`. Whether that click has been made since the VPS deploy key was installed 2026-09-01 is unverified from every sandboxed session to date |
+| Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
+| Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
+| Production traceability | UNKNOWN | No sandboxed session has ever held the private half of the VPS deploy key; whether the live site matches HEAD is unconfirmed by design (see section 2 above) |
+| Repository hygiene | 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md` |
 
 ### GitHub Priority
 
