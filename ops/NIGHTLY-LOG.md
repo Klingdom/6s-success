@@ -2,6 +2,42 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+
+## 2026-09-20, local session (the render landed, the weekly numbers were re-measured, and one of them had been faked by carry-forward)
+
+**The 228-video re-render finished: 584 minutes, 0 failures, every caption carrying the "where it is" beat.** Verified
+rather than assumed after the last attempt lost its own code: 114 of 114 wide captions and 114 of 114 vertical captions
+contain the beat, and `ops/check_video_standard.py` still reads 114 of 114 matching their zone's standard. Captions
+committed before any further git work, which is the rule that attempt bought.
+
+**Production was two days behind and is now current.** 7c765b634045a89c to 5e905bdd45e222e9, 242 commits of concurrent
+work that had built green and never shipped. Six live paths checked afterwards, all 200, diagram and zone-index numbering
+confirmed live.
+
+**Weekly re-measure, read from the database rather than carried:**
+- Traffic **76 visitors / 193 visits / 946 pageviews** over 30 days, 515 human pageviews. DOWN from 78/200 on 09-17, and
+  the trailing week fell to **14 visitors from 18**. Flat to falling, not growth.
+- Revenue: the moment GOALS.md predicted on 2026-09-10 arrived. The single $19 sale (2026-08-21) has fallen out of the
+  trailing 30-day window. **30-day revenue is $0**, confirmed by reading the Stripe charge list directly: one paid
+  charge, ever.
+
+**A number had been "reconfirmed" without being measured.** GOALS.md's organic-search row read "4 visits from 3 visitors
+... reconfirmed unchanged 2026-09-20". The database says 5 visits from 4 visitors (bing 1/1, google 3/4). No cloud
+session holds the VPS key, so none can read that table: "reconfirmed" meant "carried forward" in the language of a
+measurement. Corrected with the source named.
+
+**Early crawl signal, labelled early because that is what it is.** Since the duplicate-URL redirects shipped on 17 Sept:
+Googlebot has fetched **13 content pages in three days** against roughly six a week before, including three room pages;
+29 fetches to www/.html duplicates now receive a 301 instead of a second copy of the page; and Google's most recent
+referral visit is 18 Sept. One data point, three days, no Search Console. Not proof.
+
+**Repo hygiene fix with real teeth:** `gate_srt_captions_current` compares each caption byte for byte against what
+`ops/video_srt.py` produces, and that generator writes LF, but git's autocrlf rewrote them to CRLF on checkout. So the
+gate failed on every Windows working tree while passing in CI, and a plain `git checkout` on those files silently broke
+it until the generator ran again. 114 files reported stale immediately after a checkout that changed nothing but line
+endings. `.gitattributes` now pins `*.srt` to LF, same family as the PDF corruption that file was created for. Also
+cleared a stray `site/_audit_catalog_fixture_*.html` left behind by a killed audit, which was failing two gates.
+
 ## Scheduled operator cycle, 2026-09-20 16:05 (a real, live self-contradiction in GOALS.md's own organic-search row found and fixed, gate widened to catch it by construction, not just by luck)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (871-commit fast-forward, clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s live process rules, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (today's own history: dozens of cycles, all converging on "sections 2-6 done or Phil-gated, 8 standing GitHub issues, nothing new"). Confirmed live via a subagent rather than cited: 8 open issues unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs, `checks.yml` green on the last two completed runs.
