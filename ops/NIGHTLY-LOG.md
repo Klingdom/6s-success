@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 11:12 (30-minute triage, previous work not finished, closed the handoff and found a real stale claim in the process)
+
+**Previous work: not finished.** The 10:40 PM check-in handed the operator a real, named item (fix STATUS.md's still-templated sections). The 10:46 operator cycle ran a full verification pass instead and did not touch it, so it was still open. Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (836-commit fast-forward, clean). Ran `preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout): every gate passed, 22 standing warnings, the same baseline every recent cycle records. 8 GitHub issues confirmed live via the API, unchanged (`decision`/`blocked-on-art`), 0 open PRs.
+
+**While reading the dashboard to plan this cycle's work, found a real, live dishonest-document defect, not the handoff itself.** `EXECUTIVE-DASHBOARD-LIVE.md` correctly reports "PRODUCTION IS SERVING AN OLD BUILD" (last confirmed current 2026-09-18T17:20:47Z, build `7c765b634045a89c`; repository now at `5e905bdd45e222e9`, 233 commits and at least 14 site-touching ones since). But `STATUS.md` section 30's own "Production Knowledge" line still asserted the prior, superseded reading (`a53458d85a904f9e`, 2026-09-18T00:07:30Z) and claimed "production and the repository match", a claim that stopped being true after that date and was never re-derived, the exact "source corrected, artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 already names as the dominant defect class here. `OWNER-ACTIONS.md` item 1b had the identical staleness (last resolution note dated 2026-09-15). Per CLAUDE.md 0.2, fixed both rather than filing it: corrected `STATUS.md`'s claim to the real current build gap, and added a dated reopening note to `OWNER-ACTIONS.md` 1b with the same evidence, since production redeploy remains genuinely Phil-only (no operator sandbox holds the deploy key or VPS egress). No gate currently protects this specific claim from drifting again; flagging for a future cycle rather than building one in this slot, since `gate_deploy_fresh` already exists for the live-reachability half and this is a narrower, document-only gap.
+
+**Went well:** treating the operator's skipped handoff as unfinished work per STEP 2, and catching a live contradiction between two of this file's own sections while doing so, rather than doing the handoff mechanically.
+
+**Did not go well:** same unrelated-history checkout shape recurred on arrival; the operator cycle silently passed over an explicit PM handoff without saying why, so the 30-minute gap between cycles briefly displayed self-contradictory documents to anyone reading them.
+
+**Changing next cycle:** none yet; if this specific staleness recurs, a `gate_status_currency`-style check comparing `STATUS.md`'s cited build id against `ops/deploy-verdict.json`/`site/build-id.txt` would be worth building.
+
+**Next:** `STATUS.md` sections 4, 7, 8, 10, 13, 17 and 18 are still the unfilled 2026-08-16 bootstrap template, unchanged from the 10:40 handoff; the correction made this cycle to section 30 is a different, higher-value finding, not that handoff. Handing the bootstrap-template fix to the operator again, since it is real cross-referencing work deserving a full slot, not a few minutes before :43. Same standing `OWNER-ACTIONS.md` gates and the 8 open `decision`/`blocked-on-art` issues, unchanged, none pickable.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-20 10:46 (fresh checkout, full verification pass, no new defect, no new unblocked item)
 
 **Did:** Unshallowed and ff-only merged onto `origin/main` (832-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. Ran `ops/preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout): every gate passed, 22 warnings, the identical standing set (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29).
