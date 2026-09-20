@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-20 11:48 (a real live CI break found and fixed independently, then found already fixed on origin by a concurrent PM cycle; kept the merged state rather than duplicating)
+
+**Did:** Unshallowed and `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (837-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the newest `ops/NIGHTLY-LOG.md` entries. Started `preflight.py` in the background per step 2, and rather than trust the log's own repeated "CI green" claim on faith, had a subagent pull GitHub live: 8 open issues unchanged, 0 open PRs, but `checks.yml` run #1194 (triggered by the immediately preceding push, `8ba585f6`) had genuinely **FAILED**. A second subagent pulled the real job log: `gate_owner_actions_last_measured_current` failed because that push had reopened item 1b in `OWNER-ACTIONS.md`'s body (dated 2026-09-20) without bumping the file's own "Last measured" header, the identical "source corrected, artifact never re-derived" shape this repository's gates keep closing, this time caught live by an existing gate rather than by a cold read.
+
+**Fixed it locally, then found a concurrent PM check-in cycle had reached and pushed the identical fix at the same minute (11:48:47).** Bumped the header myself, re-derived the gate's regex logic by hand against the fix, and let the background `preflight.py` reach that gate clean; committed and went to push, and the push was rejected, `origin/main` already carrying `f70f657c`, a PM cycle's own bump of the same header to the same date. Rather than record the same fix twice or fight the merge, reset to `origin/main` (my own commit had never left this machine, so nothing was lost) and kept the already-pushed state. No independent value survived in my version worth re-adding: same file, same line, same date.
+
+**Went well:** checking GitHub's live CI conclusion rather than repeating the log's own "green" citation, which is what surfaced this in the first place; the existing gate (`gate_owner_actions_last_measured_current`, built 2026-09-08) worked exactly as designed the moment CI actually ran it.
+
+**Did not go well:** two sessions spent real effort converging on one two-line fix because neither could see the other running; the push that caused the break sat live on `main` failing CI for roughly 30 minutes before either of us caught it, and nothing currently re-checks CI status in the same cycle that pushes.
+
+**Changing next cycle:** worth building: a final step after every push that re-checks the just-triggered `checks.yml` run's conclusion before ending the cycle, so a break like this is caught in the cycle that caused it rather than a later one, and worth checking whether two autonomous sessions are genuinely running concurrently against this repository right now, since this is at least the second same-minute duplicate collision today (the other was `gate_nightly_log_ordering`, 09:40).
+
+**Next:** `STATUS.md` sections 4, 7, 8, 10, 13, 17 and 18 remain the unfilled 2026-08-16 bootstrap template (handed off by the 11:12 PM check-in, still not done). Same standing `OWNER-ACTIONS.md` gates and the 8 open `decision`/`blocked-on-art` issues, unchanged, none pickable.
+
+Nothing pushed by this entry beyond itself and a fresh command-deck regeneration; the substantive fix was already on `main` before this cycle could push it. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 11:12 (30-minute triage, previous work not finished, closed the handoff and found a real stale claim in the process)
 
 **Previous work: not finished.** The 10:40 PM check-in handed the operator a real, named item (fix STATUS.md's still-templated sections). The 10:46 operator cycle ran a full verification pass instead and did not touch it, so it was still open. Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (836-commit fast-forward, clean). Ran `preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout): every gate passed, 22 standing warnings, the same baseline every recent cycle records. 8 GitHub issues confirmed live via the API, unchanged (`decision`/`blocked-on-art`), 0 open PRs.
