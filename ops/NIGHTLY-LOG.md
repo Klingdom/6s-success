@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 10:40 (30-minute triage, previous work finished once my own noise was excluded, handing the operator a genuinely new stale-documentation item)
+
+NEXT FOR THE OPERATOR: correct `STATUS.md` sections 4 (Production Status), 7 (Hostinger VPS/Docker Status), 8 (Customer Experience Status), 10 (Search/Discovery Status), 13 (Content Portfolio Status), 17 (Current Blockers) and 18 (Known Risks), because they are still the unfilled 2026-08-16 bootstrap template ("UNKNOWN", "Verify") even where this same document's own section 1 narrative and `EXECUTIVE-DASHBOARD-LIVE.md` already state the answer, the exact shape section 6 was corrected for earlier today and never revisited for these seven.
+
+**Previous work: finished.** Reattached via `fetch --unshallow` then `merge --ff-only` onto `origin/main` (832-commit fast-forward, clean, no reset or force). `preflight.py` foreground hit this sandbox's own 100s timeout on my first attempt, backgrounded it, and it then reported one real-looking `FAIL`: `stray-probe-files`, `site/_quest_draw_shortcut_probe.html`. Traced rather than assumed: the file no longer existed by the time I checked, because the gate deletes what it finds and only fails the run it was caught in (`gate_no_stray_probe_files`'s own documented self-heal). My own killed foreground run, not a prior cycle's leftover, is the only thing that could have written it in the minute between my two commands. Reran `preflight.py` clean from a fresh background start: **every gate passed, 22 standing warnings**, the identical baseline every recent cycle has recorded. GitHub confirmed live via the API, not cited: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
+
+**Verified, no new unblocked item found in the backlog itself.** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Instead of re-running an already-exhausted cold-read lane, read `STATUS.md` end to end for internal consistency, since no prior cycle today had. Found it self-contradicts: section 6 (GitHub Status) carries today's own correction noting it "had stood as an unfilled bootstrap template... since the file's creation, even though this same document's own section 1 narrative and `EXECUTIVE-DASHBOARD-LIVE.md` report most of these facts on every cycle," and fixed itself; sections 4, 7, 8, 10, 13, 17 and 18 are the identical template, still unfixed. Section 17's `BLOCKER-003: Executive Dashboard Not Yet Established` is contradicted by the dashboard this very cycle regenerated; `DASHBOARD.md`, `METRICS.md` and `DATA-SOURCES.md` all exist on disk. Grepped the whole log for `BLOCKER-001`/`BLOCKER-002`/`BLOCKER-003`: zero prior mentions, so this is a genuinely new finding, not a repeat. Left unfixed myself since correcting seven sections against sourced evidence, several rows of which (VPS internals, tax handling, AOV) may legitimately still be UNKNOWN, is real cross-referencing work, not a 3-minutes-before-:43 job; wrong sourcing here would trade one dishonest document for another.
+
+**Went well:** reading `STATUS.md` for self-consistency instead of re-treading today's already-exhausted lanes; catching that my own diagnostic command, not a real defect, caused the one `FAIL` before writing it up as a finding.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; my own first preflight attempt left transient debris that a less careful read would have logged as someone else's unfinished work.
+
+**Changing next cycle:** none; the gate that caught the stray file worked exactly as designed.
+
+**Next:** same standing `OWNER-ACTIONS.md` gates (Search Console verification, YouTube OAuth, Stripe business description, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts) and the 8 open `decision`/`blocked-on-art` GitHub issues, all genuinely Phil-only, unchanged.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 10:15 (30-minute triage, previous work finished, nothing new unblocked)
 
 **Previous work: finished.** Reattached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (831-commit fast-forward, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own timeout, correctly not treated as a pass): every gate passed, including both `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries`, the two gates the 09:19/09:40 cycles were fixing this morning, 22 standing warnings, the identical baseline every recent cycle has recorded. GitHub confirmed live via the API, not cited: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
