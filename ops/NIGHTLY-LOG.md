@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 16:2x (30-minute triage, previous work NOT finished: a live GOALS.md self-contradiction found and fixed twice)
+
+**Not finished.** Preflight FAILed: GOALS.md still said 4/3 (the 16:05 cycle's own revert) while Phil's concurrent commits had since measured 5/4 from Umami, per his own log entry that the earlier "reconfirmed" was an unmeasured carry-forward. Updated GOALS.md to match his fresher reading. A second preflight run found the row was fixed but its own "now with numbers" narrative paragraph still said 4/3, unread by any check. Widened `gate_goals_organic_search_row_current` a third time, fail-then-pass proved against the real file.
+
+Preflight clean locally, pushed `0eef7519`. **CI still in progress at time of writing, not confirmed**; this repo's own runs can take 15-20 minutes, leaving confirmation to the :43 operator rather than block. No new unblocked item: 8 issues unchanged, none pickable.
+
 
 ## 2026-09-20, local session (the render landed, the weekly numbers were re-measured, and one of them had been faked by carry-forward)
 
