@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Interactive session, 2026-09-20 18:30 to 21:10 MDT (the log we already had, and the two live defects it named)
+
+**The correction is the headline.** This morning I built a persistent crawl log and wrote, in four places, that the container's stdout log was the only evidence about who reads this site. Wrong, and `LEARNINGS.md` LRN-0010 had said so since 14 Sep: Nginx Proxy Manager keeps its own access log in front of this site, it survives container recreation, it is rotated, it reaches back to 2026-08-19 with 181,847 lines, and it keeps client IPs so a Googlebot claim can be reverse-DNS verified. I built a second instrument for a problem the first solved better, without reading our own learning file first. All four claims corrected in place; `ops/crawl_report.py` now reads the proxy log by default.
+
+**What three weeks of existing evidence then answered, in one session rather than in days.**
+- The `Disallow: /stats/` shipped 16 Sep **worked completely**: Googlebot's fetches of the analytics beacon ran 10 to 20 a day with bursts of 239, and have been **0 every day since 17 Sep**. About a third of its budget here returned to content. First shipped SEO change on this site provable to have changed crawler behaviour.
+- Content fetches today are 15, highest since 6 Sep after ten days at 0 to 6. Three changes landed in that window, no control: recorded as an **early signal, not a result**.
+- Googlebot's addresses verify (`crawl-66-249-*.googlebot.com`). Bing indexes at least 10 URLs, measured through its RSS endpoint with no credential.
+- **365 requests claimed a Google referrer against Umami's 7**, 130 of them to `/quest.html`, from 220 AWS and Alibaba Cloud addresses. Scrapers wearing a referrer. Reading that as arrivals would overstate organic traffic fiftyfold, so the tool now prints the warning and the address spread above the list.
+
+**Two real defects, found by triaging what the server actually answered.** Most apparent breakage in a log is our own tooling, and three of the top five error paths were exactly that. The two that were not: quest.js assigned a possibly-absent `c.zone.url` straight to an href, which sets the string "null" and sent **58 real browsers to a 404 from inside the card they were working**; and iOS had been asking for `/apple-touch-icon.png` at the root for a month, 404 every time, on a site that invites households to install it. Both fixed, deployed, verified live.
+
+**The recurrence, fixed where it happens.** "Publish site image" went red twice today, hours apart, from two different sessions, both committing pages while the sitemap still described the previous tree. `ops/check_sitemap_current.py` now runs in `.githooks/pre-commit`, proved fail-then-pass through the hook itself.
+
+**Went well:** running a control before believing a search-engine query, which stopped me reporting "no zone pages indexed" from an endpoint that cannot answer that question at all.
+
+**Did not go well:** building before reading LEARNINGS.md. The whole morning's instrument was half redundant on arrival.
+
 ## PM check-in, 2026-09-20 20:10 (30-minute triage, previous work now confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: D3 (sizing/capacity guidance for the same 12-zone pilot cohort), named unblocked and unpicked across three prior check-ins (18:40, 19:20, 19:40) now. Also worth a glance: `checks.yml` runs #1216 (`197c3a68`) and #1217 (`10d1b5e5`) were still `in_progress` at the time of this check-in, this repo's normal run length; not a new concern, just unconfirmed.
