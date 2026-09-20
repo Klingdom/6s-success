@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (full verification pass against three genuinely untried angles; no new defect, no unblocked item found)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved cleanly (a large fast-forward, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` ran to completion: every gate passed, 22 standing warnings, the identical baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged in count, labels and content (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
+
+**Verified, did not just trust, three things before concluding nothing was unblocked.** (1) Read issue #32 (23 kits/bundles with no page) in full: its own recommendation is option 2, hold rather than write 21 speculative pages, consistent with `GOALS.md`'s "distribution beats production" rule and `BACKLOG-2026-09-07.md` section 5's other holds; writing those pages now would go against the recommendation, not fulfil it, so left as Phil's call. (2) Checked this sandbox's own credentials and egress directly rather than citing prior cycles' results: no SSH key, no Stripe/Gemini/SMTP env var, `.env` holds only the public VPS domain and ACME email, and the agent proxy denies both `6s-success.com` and `api.stripe.com` by policy. Identical to every prior cycle's finding, now independently reconfirmed rather than assumed. (3) Checked `linkedin-drafts.yml`'s health directly via the GitHub API (721 runs, all `success`) rather than trusting its own comments: the push-trigger dedup gate is working as designed, standing down on same-day and pre-14:19-UTC pushes, sending only when the schedule has not.
+
+**Confirmed, not repeated as new:** the `DECISIONS.md`/`LEARNINGS.md` cross-check (closed as a dead end, no `key=value` citation style to gate), the zone-narrative cold-read (114/114), and the `ops/*.py` mention-count floor lane are all already recorded elsewhere in this log as exhausted by more than one cycle each; did not re-run any of them.
+
+**Went well:** three independently-verified angles instead of trusting the log's own account of what is exhausted; none manufactured a finding to justify the cycle.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; `GOALS.md`'s revenue-window sentence becomes re-derivable after 2026-09-21 00:00 UTC if no second sale has landed by then, per the gate's own logic. That is the next dated thing to check, not before.
+
+**Next:** the same standing owner gates in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, six on-device screenshots) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 03:15 (30-minute triage, previous work confirmed finished, one overlap question checked and resolved as already correct, nothing new unblocked)
 
 **Previous work: finished.** Checkout arrived shallow and detached (65 vs 67 commits, no common ancestor visible); `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved it cleanly (785+ commit fast-forward, no reset or force used). `preflight.py` run to genuine completion in the background (foreground hit this sandbox's own timeout, correctly not treated as a pass): every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling). Working tree clean, main up to date with origin before this entry.
