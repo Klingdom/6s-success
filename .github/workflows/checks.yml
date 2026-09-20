@@ -102,7 +102,20 @@ name: Checks
 # names it as the one root doc regenerated on every cycle rather than a real
 # input. GitHub's path-glob semantics mean a bare '*.md' with no '**/' prefix
 # matches only root-level files, not content/**/*.md or site/**/*.md, so this
-# does not widen the trigger into either of those trees.
+# CHECKIN-LOG.md and ops/state-checkin.json are not listed among the four
+# negations above even though they are root/ops paths matched by '*.md' and
+# 'ops/**'. Verified 2026-09-20 rather than assumed: every commit that ever
+# touched only those two files (grep the log for "Hourly check-in record")
+# is authored by github-actions <actions@github.com>, pushed by
+# hourly-brief.yml's own "Commit the check-in record" step using the
+# default GITHUB_TOKEN with no personal access token involved. GitHub does
+# not start a new workflow run from a push made with GITHUB_TOKEN, so these
+# two files can never trigger this workflow regardless of what the paths
+# filter says, and confirmed against live run history: none of the twelve
+# consecutive commits after run #1197 (632fab1f) produced a Checks run,
+# each one touching only these two files plus the four already-excluded
+# generated files above. Nothing to fix here; recorded so the next reader
+# does not re-derive this from a cold read of the YAML alone.
 on:
   push:
     branches: [main]
