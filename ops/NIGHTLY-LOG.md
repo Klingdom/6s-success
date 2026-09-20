@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (the D4 push's own CI failure independently found and fixed, then converged onto a concurrent, more complete fix already pushed)
+
+**Did:** Fresh checkout, fast-forwarded onto `origin/main`. `python ops/preflight.py` FAILED: `publish-image-current` reported `f84306de` (the D4 household-variants commit) as unpublished. Checked GitHub directly rather than trust the local gate alone: run 353, the workflow attempt for this exact HEAD commit, really did fail, on `gate_generator_ownership`, naming `ops/sitemap-content-hashes.json` and `site/sitemap.xml` as stale against `build_seo.py`. Per CLAUDE.md 0.1, a failing preflight IS the cycle's work. Reran `ops/build_seo.py` locally and confirmed the same root cause a concurrent session (Phil's own automated session) had already diagnosed and pushed while this fix was being prepared: `ops/build_zone_pages.py`'s own `main()` does not chain `build_seo.py`, so D4's real content change to 12 zone pages (5 Entryway, 7 Kitchen) shipped without its sitemap dating. Fetching before push found `197c3a68` already on `origin/main`, regenerating the identical 12 URLs and, more durably, adding `.githooks/pre-commit` plus `ops/check_sitemap_current.py` so a stale sitemap is refused at commit time instead of caught three failed CI runs later.
+
+**Verified:** rebased this session's own commit (the log entry and a matching backlog note) onto `origin/main` rather than force anything; `git rebase` dropped this session's now-redundant sitemap-file changes automatically, since both sessions derived the exact same bytes from the exact same generator. Full `preflight.py` rerun locally after rebasing: `check_urls.py` (188/188), `audit_pages.py` (191/0), `fix_dashes.py --check` (0/0) all clean. `publish-image-current` still reads FAIL locally against this pre-push tree because it compares HEAD to the last GitHub-confirmed success and nothing has run CI on this exact commit yet, exactly as its own docstring describes. `inbox_agent.py --apply`: no mail credential in this sandbox, UNCHECKED, not empty. No egress to 6s-success.com or Stripe from here (confirmed, not assumed).
+
+**Went well:** catching the CI failure through the gate this repository already built for exactly this purpose; fetching before pushing caught the concurrent fix instead of colliding with it or reverting good work.
+
+**Did not go well:** nothing new; the underlying gap (`build_zone_pages.py` not chaining `build_seo.py`) is the same one this cycle first diagnosed, and it is now closed at the commit boundary by the concurrent session's pre-commit hook rather than by fixing the generator chain itself, which is still open.
+
+**Changing next cycle:** none; the pre-commit hook is the right layer for this (a generator that silently redates pages behind the author would be worse), and `build_zone_pages.py` chaining `build_seo.py` directly remains a smaller, optional hardening for later.
+
+**Next:** push and confirm `publish-image.yml` goes green on the resulting commit. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
 ## PM check-in, 2026-09-20 19:20 (30-minute triage, previous work finished and verified, nothing new unblocked)
 
 **Attached clean:** shallow, detached checkout, no common ancestor between local `main` and `origin/main` until `fetch --unshallow` restored one (issue #27's usual shape). `merge --ff-only` onto `origin/main`, no reset or force. A concurrent operator cycle (`f84306de`, D4 household variants) and its own command-deck regen (`619824e2`) landed mid-cycle; fetched and fast-forwarded onto both rather than colliding, discarding only my own already-superseded local dashboard regen.
