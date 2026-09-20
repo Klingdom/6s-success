@@ -164,7 +164,11 @@
        "condition": "Three or more people land here within the same few minutes",
        "guidance": "One shared tray becomes a scramble at rush hour. Give each person their own small tray or a labeled section of one long tray, so a lost key search never involves lifting someone else's things out of the way first."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "One tray, sized for keys and sunglasses plus one wallet and one phone per adult who uses this door, and a single upright folder that stays under ten sheets.",
+      "does_not_fit": "If a real folder, worked down honestly every week, still will not stay under ten sheets, or the tray will not hold one phone and wallet per adult without lifting something out first, the tray and folder are undersized for this household, not badly kept."
+     }
     },
     {
      "zone": "Coat and Outerwear Zone",
@@ -311,7 +315,11 @@
        "condition": "You rent and cannot put a hole in the wall for hooks",
        "guidance": "An over-the-door hook rack or a freestanding coat rack does the same job without a drill. Weight the freestanding kind at the base, since a full rack of wet winter coats is heavier than the rack expects."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "One current-season coat per person on the rail, with at least two hooks left empty for a visitor.",
+      "does_not_fit": "If one coat per person, with every off-season coat already moved to a bedroom closet, still leaves no hook free, the rail itself is too short for the household using this door."
+     }
     },
     {
      "zone": "Shoe and Boot Zone",
@@ -458,7 +466,11 @@
        "condition": "Young children who cannot yet manage a rack on their own",
        "guidance": "Put their shoes on the lowest shelf or directly on the floor tray, not the rack shelf built for an adult reach. A child who can reach their own shoes is a child who can put them away."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "Two everyday pairs per person on the rack, plus one pair of slippers each, with a full stride of clear floor between the door and the rack.",
+      "does_not_fit": "If two honest pairs per person, with every off-season pair already boxed and moved to a closet, still will not sit on the rack without crowding the floor stride, the rack is too small for the household, not the pairs too many."
+     }
     },
     {
      "zone": "Entry Console or Bench",
@@ -601,7 +613,11 @@
        "condition": "The console doubles as the household's mail or paperwork spot",
        "guidance": "Keep the drawer's paper section physically separate from the coat and shoe items sharing the same surface. Paper belongs to the Landing Zone's own tray and folder nearby, not spread across the console drawer, or the two systems compete for the same few inches of space."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "Three items or fewer standing on the top, and a drawer where each named section still shows its own base between things.",
+      "does_not_fit": "If the honest, daily-use set for this household is genuinely more than three items, or a named drawer section is packed flat with no base showing even after duplicates and expired items leave, the bench top or the drawer is smaller than the job asked of it."
+     }
     },
     {
      "zone": "Door, Mat, and Immediate Floor",
@@ -744,7 +760,11 @@
        "condition": "A household with a dog or cat that tracks in mud alongside people",
        "guidance": "A dedicated paw-wipe towel on a hook beside the mat, used before anyone crosses the threshold, keeps pet mud out of the same floor the people mat is already protecting."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "Two mats only: a coarse one outside long enough to scrape both feet, an absorbent one inside long enough that both feet land on it mid-stride, not just the first one.",
+      "does_not_fit": "If the inside mat is already the longest one that fits the doorway and a normal walking stride still lands past its far edge onto bare floor, the doorway itself is shorter than the stride it needs to catch, and a longer mat cannot fix a length the doorway does not have."
+     }
     }
    ]
   },
@@ -906,7 +926,11 @@
        "condition": "Two people cook at the same counter regularly",
        "guidance": "Split the run visually: one end for cutting and prep, the other for staging finished ingredients before they go to the stove, so two sets of hands are not reaching across the same six inches of board."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "One clear run of counter at least as wide as the household's largest cutting board, holding only the board, the knife block or strip, and the salt.",
+      "does_not_fit": "If the largest board this household actually uses still overhangs the clear run even after the kettle and toaster are moved back against the wall, the counter run itself is narrower than the job, not cluttered."
+     }
     },
     {
      "zone": "Cooking Zone",
@@ -1061,7 +1085,11 @@
        "condition": "A small kitchen where the cooking zone and the prep counter are the same six feet",
        "guidance": "The oil, salt, and utensil crock from this zone and the cutting board from the prep counter cannot both sit out at once in that space. Keep the crock at the back near the burners; the board comes out only while you are actively using it, then returns to a vertical slot rather than lying on the counter."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "A utensil crock holding six tools or fewer, every one used in the last month, and a landing space beside the hob wide enough to set down a hot pan.",
+      "does_not_fit": "If the honest, used-this-month count is still more than six tools, or a genuinely hot-pan-sized landing space will not fit beside the hob without moving something else first, the counter beside the hob is smaller than the cooking this household actually does."
+     }
     },
     {
      "zone": "Sink and Dishwashing Zone",
@@ -1207,7 +1235,11 @@
        "condition": "A shared house or apartment where people wash up on different schedules",
        "guidance": "The single under-sink tray of cleaners works only if everyone uses the same one. Label it and put it back in the same spot every time, since a shared kitchen's usual failure is three half-used bottles from three different people instead of one."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "One tray under the sink holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes still visible around it.",
+      "does_not_fit": "If those three items, in a tray small enough to leave the pipes visible, still will not fit without wedging against the plumbing, the under-sink cavity is too shallow for even the minimum kit, and the tray belongs somewhere else in the kitchen instead."
+     }
     },
     {
      "zone": "Upper Cabinet Zone",
@@ -1352,7 +1384,11 @@
        "condition": "A household member who cannot use a step stool or reach a high shelf",
        "guidance": "Reassign daily-use dishes to whichever shelf that person can reach without help, even if it means the upper shelves hold slightly less-used items for everyone else. The zone's job is daily access for the people using it, not a fixed shelf height."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "Everyday plates and bowls at eye level, stacks no more than about six high, with the top shelf reserved for what gets used less than once a month.",
+      "does_not_fit": "If the household's everyday plate count still needs a seventh plate on the stack to fit at eye level, or the once-a-month items on the top shelf are the only thing keeping the eye-level shelves clear, the cabinet holds less than this household's daily set, and a second, low-use shelf elsewhere is the honest fix, not a taller stack."
+     }
     },
     {
      "zone": "Lower Cabinet and Cookware Zone",
@@ -1495,7 +1531,11 @@
        "condition": "Bending to floor-level shelves is painful or difficult",
        "guidance": "A pull-out drawer or a lazy Susan insert brings the back of a low cabinet to the front without kneeling. Where that is not available, keep the nightly pans on the shelf closest to standing height, even if the less-used pieces go lower."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "Pans nested no more than three deep, or stood on edge in a divider, with the two pans cooked with nightly at the front nearest the hob.",
+      "does_not_fit": "If the pots and pans actually used this month, with any duplicate or long-unused piece already gone, still will not sit at a three-deep nest or in the divider, the cabinet is smaller than the cookware this kitchen runs on, and a second home for the least-used pieces is the honest fix, not a deeper stack."
+     }
     },
     {
      "zone": "Utensil and Utility Drawers",
@@ -1637,7 +1677,11 @@
        "condition": "A rental where the drawers have no dividers built in",
        "guidance": "A drop-in tray insert, sized to the drawer rather than screwed to it, gives the same divided-and-named result without altering the drawer itself."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "One job per drawer, with flatware in a divided insert sized so nothing loose sits beside it.",
+      "does_not_fit": "If the household's real flatware count still overflows every section of the insert even after duplicates and mismatched pieces leave, the insert was built for a smaller household than this one, and a larger insert or a second drawer is the honest fix, not forcing the count down to match it."
+     }
     },
     {
      "zone": "Refrigerator and Freezer",
@@ -1787,7 +1831,11 @@
        "condition": "A shared fridge among roommates who shop and cook separately",
        "guidance": "Split the fridge by shelf, not by item, and label each person's shelf the same way leftovers get labeled with a name and date. The eat-this-week bin can still be one shared bin near the door if everyone agrees to check it before it becomes everyone's problem."
       }
-     ]
+     ],
+     "capacity": {
+      "rule": "One eat-first bin sized to hold a week's worth of leftovers and near-date items, sitting where the door opens straight onto it, with the back vents still clear.",
+      "does_not_fit": "If a genuine week's worth of leftovers for this household still will not fit the eat-first bin without pressing food against the back vents, the fridge itself is undersized for how often this household shops and cooks, and shopping more often in smaller amounts is the honest fix, not a fuller bin against the vents."
+     }
     }
    ]
   },

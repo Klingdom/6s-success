@@ -15106,6 +15106,131 @@ def gate_variants_rendered() -> None:
         fail("variants-rendered", "; ".join(problems[:6]))
 
 
+def check_capacity_rendered(capacity_map: dict, page_bodies: dict,
+                             article_has_anchor: bool = True) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    REVIEW-DISCOVERY-2026-09-07.md D3 ("each pilot page states a concrete
+    capacity rule for its zone in the customer's units, and the 'does not
+    fit' case links to the existing article with a specific anchor")
+    shipped 2026-09-20 for the same 12-zone pilot cohort D4's variants
+    block already uses. `capacity_map` is {filename: (rule, does_not_fit)}
+    read fresh from content.json, `page_bodies` is {filename: html} for
+    every real site/zones/*.html file. The rule and the does-not-fit
+    sentence must appear on the page byte for byte (escaped the same way
+    `esc()` in ops/build_zone_pages.py escapes it), the does-not-fit
+    sentence must carry a link to the article's own #honest-count anchor
+    (not a bare page link, the exact gap this row exists to close), a page
+    not in the corpus must not carry the block at all, and no two of the
+    12 pilot zones may ship an identical rule (the same anti-boilerplate
+    check `check_variants_rendered` already runs on its own block).
+    `article_has_anchor` lets the caller confirm the anchor this links to
+    actually exists on the target page, not just that the href is well
+    formed.
+    """
+    import html as _html
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items() if 'id="capacity"' in b}
+    want_files = set(capacity_map)
+    got_files = set(rendered)
+    extra = sorted(got_files - want_files)
+    missing = sorted(want_files - got_files)
+    if extra:
+        problems.append("%d page(s) render a capacity block the corpus "
+                         "does not authorise: %s" % (len(extra), ", ".join(extra[:3])))
+    if missing:
+        problems.append("%d pilot zone(s) carry capacity in content.json "
+                         "but ship no capacity block: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+    if not article_has_anchor:
+        problems.append("the honest-count anchor the capacity block links "
+                         "to does not exist on the target article")
+
+    seen_rule = {}
+    anchor_href = "zone-too-small-for-what-it-holds.html#honest-count"
+    for f in sorted(want_files & got_files):
+        body = rendered[f]
+        m = re.search(r'<section id="capacity">.*?</section>', body, re.S)
+        if not m:
+            problems.append("%s: capacity block malformed, could not "
+                             "isolate the <section>" % f)
+            continue
+        block = m.group(0)
+        rule, fit = capacity_map[f]
+        want_rule = _html.escape(rule, quote=True)
+        if f'<p>{want_rule}</p>' not in block:
+            problems.append("%s: rendered rule does not match content.json's "
+                             "own text: %r" % (f, want_rule[:80]))
+        if fit:
+            want_fit = _html.escape(fit, quote=True)
+            if want_fit not in block:
+                problems.append("%s: rendered does-not-fit text does not "
+                                 "match content.json's own text: %r" %
+                                 (f, want_fit[:80]))
+            if anchor_href not in block:
+                problems.append("%s: capacity block does not link the "
+                                 "honest-count anchor" % f)
+        key = want_rule
+        if key in seen_rule:
+            problems.append("%s and %s ship identical capacity rule text"
+                             % (seen_rule[key], f))
+        seen_rule[key] = f
+    return problems
+
+
+def gate_capacity_rendered() -> None:
+    """The shipped-HTML half of D3 (see `check_capacity_rendered`'s own
+    docstring for what this catches). `gate_variants_rendered`-shaped:
+    checks the real corpus against the real site/zones/*.html files, not
+    the generator's own logic, and additionally confirms the article this
+    block links to actually carries the anchor, not just that the href
+    string looks right.
+
+    Proved to fail on four planted regressions (a page missing its block,
+    a stale/paraphrased rule, a missing honest-count link, and two zones
+    sharing one rule): ops/tests/test_gate_capacity_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("capacity-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    capacity_map = {}
+    for r in rooms:
+        for z in r.get("zones", []):
+            cap = z.get("capacity")
+            if not cap or not cap.get("rule"):
+                continue
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            capacity_map[f"{rs}-{zs}.html"] = (
+                cap.get("rule", ""), cap.get("does_not_fit", ""))
+    if not capacity_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("capacity-rendered", "no zone pages built yet, could not check.")
+        return
+
+    article_path = os.path.join(SITE, "articles",
+                                 "zone-too-small-for-what-it-holds.html")
+    article_has_anchor = (os.path.exists(article_path) and
+                           'id="honest-count"' in io.open(
+                               article_path, encoding="utf-8",
+                               errors="replace").read())
+
+    problems = check_capacity_rendered(capacity_map, page_bodies,
+                                        article_has_anchor)
+    if problems:
+        fail("capacity-rendered", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=35) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -17878,6 +18003,7 @@ def main() -> int:
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_variants_rendered)
+    run_gate(gate_capacity_rendered)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)

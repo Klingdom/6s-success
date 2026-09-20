@@ -1364,6 +1364,40 @@ def diagnosis_faq(thing, zone):
     return qa
 
 
+CAPACITY_ARTICLE = "../articles/zone-too-small-for-what-it-holds.html#honest-count"
+
+
+def capacity_html(thing, zone):
+    """REVIEW-DISCOVERY-2026-09-07.md D3: 'a concrete capacity rule for its
+    zone in the customer's units, and the "does not fit" case links to the
+    existing article with a specific anchor.' `ops/root_causes.py` already
+    names inadequate capacity (KC-007) as its own root cause, distinct from
+    excess; this is that root cause made checkable on the page itself,
+    before a reader is sent anywhere else.
+
+    Every word comes from `zone["capacity"]` (hand-authored, the same 12
+    pilot zones as `diagnosis` and `variants`: Entryway 5, Kitchen 7, per
+    the pilot-before-rollout rule in `BACKLOG-2026-09-07.md` section 5).
+    A zone with no `capacity` yet renders nothing, same as every other
+    optional block on this page.
+    """
+    cap = zone.get("capacity")
+    if not cap:
+        return ""
+    rule = _clean(cap.get("rule", ""))
+    fit = _clean(cap.get("does_not_fit", ""))
+    if not rule:
+        return ""
+    out = [f'<section id="capacity"><h2>How much this {esc(thing)} can '
+           'actually hold</h2>',
+           f'<p>{esc(rule)}</p>']
+    if fit:
+        out.append(f'<p>{esc(fit)} <a href="{CAPACITY_ARTICLE}">Run the '
+                   'honest count</a>.</p>')
+    out.append('</section>')
+    return "".join(out)
+
+
 def variants_html(thing, zone):
     """REVIEW-DISCOVERY-2026-09-07.md D4: 'a short conditional block: what
     changes if the entryway is a corridor with no console, if you cannot
@@ -2268,6 +2302,9 @@ def zone_page(room, zone, header, footer, all_rooms=()):
         if leave.get("trigger"):
             out.append(f'<p><b>Reset trigger.</b> {esc(leave["trigger"])}</p>')
 
+    _capacity = capacity_html(thing, zone)
+    if _capacity:
+        out.append(_capacity)
     _variants = variants_html(thing, zone)
     if _variants:
         out.append(_variants)
