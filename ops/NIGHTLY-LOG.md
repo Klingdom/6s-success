@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 17:47 (30-minute triage, previous work finished, nothing new unblocked, CI confirmation handed to the operator)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` runs 1209 (`b26fc434`) and 1210 (`64cf241a`) land `success`, because both were still `in_progress` at the time of this check-in and the prior cycle's own revenue-contradiction fix and CI convergence are only proven once that lands green; no new unblocked backlog item was found this pass.
+
+**Attached clean:** shallow, detached checkout; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (893-commit fast-forward), no reset or force. Working tree was already clean at HEAD (`64cf241a`, the prior check-in's own commit), 0/0 ahead-behind.
+
+**Previous work: finished.** Full `preflight.py` run to completion (not the fast pass alone): every gate passed, 22 standing warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress to the live site). `BACKLOG-2026-09-07.md` sections 2 through 6 read in full: every row again done or Phil-gated. 8 open GitHub issues confirmed live via the API, unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), 0 open PRs. `EXECUTIVE-DASHBOARD-LIVE.md` (Traffic and Affiliate both correctly carried forward, labelled not-measured-fresh, not overwritten with a guess) and `OWNER-ACTIONS.md` (production 233 commits behind, redeploy still needs Phil's own VPS access) both consistent with each other and with today's own prior entries.
+
+**No new unblocked item found.** `checks.yml` runs 1206-1208 (the crawl-log and CRLF-logrotate fixes) completed `success`; runs 1209 and 1210, the two most recent pushes, were still `in_progress` when checked, so their green result is not yet proven, only likely. This log's own accumulated record already confirms every named cold-read lane (low-mention `ops/*.py`, hand-maintained `site/*.html` pages, workflow files, the `DECISIONS.md`/`LEARNINGS.md` cross-check) exhausted many times over; did not repeat any of them on no new evidence, per `CLAUDE.md` 21. `GOALS.md`'s revenue-window sentence stays correctly silent until 2026-09-21 00:00 UTC, one day away, not yet due.
+
+**Went well:** treating "in progress" as genuinely unconfirmed rather than assuming green from a clean local preflight.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape, issue #27's usual pattern.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only (dashboard timestamp/commit-count refresh). No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 17:36 (30-minute triage, previous work finished, closed a stale revenue contradiction and independently converged on a concurrent CI fix)
 
 **Attached clean:** shallow, detached checkout; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, fast-forward, no reset or force.
