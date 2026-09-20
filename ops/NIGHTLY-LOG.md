@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (the standing interactive shop.html/kit.html QA handoff closed, no live defect found)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (783-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 2-6 again all done or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the last several `ops/NIGHTLY-LOG.md` entries (newest-first). Ran `python ops/preflight.py` to completion: every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs.
+
+Every unblocked row in `BACKLOG-2026-09-07.md` was again done or Phil-gated, so this cycle picked up the most recent PM check-in's own explicit handoff (2026-09-20 02:24 entry, below): "the standing handoff named twice already, interactive `shop.html`/`kit.html` browser QA, clicking every filter and buy link, confirming disclosure order, is genuinely still open." Checked first, per step 5d, whether it really was still open rather than trusted: every existing shop check (`gate_prerender_shop_current`, `gate_shop_buy_claim_honest`, `gate_price_matches_its_own_link`) reads static HTML text against the catalogue; none had ever actually clicked a filter button or followed a rendered action link. Genuinely open.
+
+`kit.html` has no JS-driven grid to click (static retailer-search links, already gated for zone counts and disclosure order); read it cold instead: all 8 Target search-term URLs decode to sensible, correctly-encoded terms (`storage totes with lids`, `cleaning caddy`, `ph neutral all purpose cleaner`, and five more), disclosure sits above the list, no defect.
+
+Built `ops/tests/test_shop_interactive.py`, a headless-Chromium probe driven the same iframe/dump-dom way `ops/tests/test_quest_flow.py` already drives the Quest (an iframe loads `shop.html` at a real width, a wrapper script clicks buttons and hands results back through `document.title`, `--headless=new --dump-dom --virtual-time-budget`, no CDP driver needed). It clicks all 8 real filter buttons (All plus the 7 live categories) and for each: checks the rendered tile count against a fresh, independent parse of `data.js`'s own `window.CATALOG` (read straight from the file, not the browser's copy, so the check cannot share a bug with the thing it is checking); checks exactly one button reads `aria-pressed="true"`; checks every rendered action link has a non-empty href; for every Stripe buy link, checks it is well-formed, carries the `data-sku` `measure.js` needs to attribute a click, resolves to a real catalogue SKU, and that SKU's own `buy` field matches the rendered href; and, across every buy link seen on the whole page, checks no two different SKUs ever share one Stripe payment link. That last check is the one with real teeth: a Stripe payment link's line items are immutable once created, so two SKUs sharing one link would either misattribute a sale to the wrong product or let a buyer pay one price and receive a different item.
+
+**Ran clean on the real site first try:** 155 distinct Stripe buy links across 8 category passes, every category rendering exactly the tile count the catalogue itself has for it (159 total under "All"), no shared links, no orphaned or malformed hrefs.
+
+**Verified the check can actually fail, not just pass by construction.** Copied `data.js`, edited the copy so two real SKUs (`PACK-HOUSE`, the $19 Whole House Print Pack, and `BK-EB`, the ebook) pointed at the same Stripe URL, reran the probe against the live repository with that one file swapped: it failed, correctly, naming both SKUs and the exact shared link. Restored the real file from the backup and confirmed `git diff` showed no change (byte-identical), reran clean. `gate_tests()` already globs every `ops/tests/test_*.py` file by pattern, so no separate `preflight.py` registration was needed; a fresh full `preflight.py` run after adding the file confirmed it executes as part of `gate_tests` and the whole suite still passes.
+
+**Verified:** full `preflight.py` re-run to completion (every gate passed, 22 warnings, identical set, 219 test files including the new one), `check_urls.py` (188/188), `affiliate.py --check` (163 documents) all clean. No price, product or page touched; this is new automated test coverage exercising an existing page, not a content or code change to anything customer-facing. IndexNow not applicable.
+
+**Went well:** picking up the exact handoff the immediately preceding PM check-in named, rather than re-running an already-exhausted cold-read lane; proving the new check can fail before trusting its clean result, the same discipline every gate in this repository is supposed to meet.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; one clean new test does not by itself suggest a new class of check, and this closes the specific handoff rather than opening a new lane.
+
+**Next:** the same standing owner gates in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, six on-device screenshots) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. No other unblocked, non-Phil-gated item was found this cycle; the next session should pick a fresh cold-read angle (per the last several cycles' own method) if nothing has changed by then.
+
+Pushed to main. `ops/tests/test_shop_interactive.py`, `BACKLOG-2026-09-07.md`, `STATUS.md`, `STATUS-ARCHIVE.md`, command deck. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 02:24 (30-minute triage, previous work confirmed finished, one self-inflicted preflight failure diagnosed and cleared, nothing new unblocked)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto origin/main (783-commit fast-forward from a shallow/detached start, clean). The prior operator cycle's ROADMAP-2026-2029.md arithmetic fix (b2a5c82a) verified independently: preflight clean, gate present and passing by name, GitHub issues unchanged (8 open, all `decision`/`blocked-on-art`).
