@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 11:40 (previous work not finished, fixed it, then found a concurrent operator cycle had already pushed the identical fix)
+
+NEXT FOR THE OPERATOR: `STATUS.md` sections 4, 7, 8, 10, 13, 17 and 18 are still the unfilled 2026-08-16 bootstrap template, because this is now the third handoff of the same item and the first pass at :43 skipped it.
+
+**Previous work: not finished.** `preflight.py` failed `gate_owner_actions_last_measured_current`: the 11:12 cycle's own commit added a dated body note without bumping the header. Fixed it, confirmed the same failure live on `checks.yml` run 1194 via the GitHub API, then hit a push conflict: `origin/main` already carried `f70f657c`, a concurrent operator cycle's byte-identical header fix, converging within the same minute. Reset to `origin/main` rather than duplicate; nothing local was lost, it had never pushed.
+
+**Went well:** independent convergence on the same real fix from two directions.
+
+**Did not go well:** two sessions spent effort on one two-line fix with no visibility into each other; the same gap the converging entry above already names.
+
+Nothing pushed beyond this entry; the substantive fix is already on `main`. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-09-20 11:48 (a real live CI break found and fixed independently, then found already fixed on origin by a concurrent PM cycle; kept the merged state rather than duplicating)
 
 **Did:** Unshallowed and `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (837-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the newest `ops/NIGHTLY-LOG.md` entries. Started `preflight.py` in the background per step 2, and rather than trust the log's own repeated "CI green" claim on faith, had a subagent pull GitHub live: 8 open issues unchanged, 0 open PRs, but `checks.yml` run #1194 (triggered by the immediately preceding push, `8ba585f6`) had genuinely **FAILED**. A second subagent pulled the real job log: `gate_owner_actions_last_measured_current` failed because that push had reopened item 1b in `OWNER-ACTIONS.md`'s body (dated 2026-09-20) without bumping the file's own "Last measured" header, the identical "source corrected, artifact never re-derived" shape this repository's gates keep closing, this time caught live by an existing gate rather than by a cold read.
