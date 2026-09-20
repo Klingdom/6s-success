@@ -50,6 +50,30 @@ RISKS_CURRENT = (
 
 STATUS_CURRENT = "# Status\n\nTraffic: 60 visitors, 161 visits, 30 days.\n"
 
+GOALS_LATER_READING = (
+    "# Goals\n\n"
+    "| Sessions from organic search | **4 visits from 3 visitors, whole "
+    "life of the site, reconfirmed 2026-09-17** | one visit from Bing "
+    "(21 August) and three visits from two Google visitors (4 to 12 "
+    "September). Previous reading: 2 visits (Bing 1, Google 1), "
+    "2026-09-05. |\n\n"
+    "**Corrected 2026-09-05: the earlier wording here is no longer true: "
+    "not one visit from Google.** A Google referral landed 4 September.\n"
+)
+
+STATUS_STALE_ORGANIC_ROW = (
+    "# Status\n\n"
+    "| Organic sessions | 2, whole life of the site, as of 2026-09-05 "
+    "(1 Bing, 1 Google) | Last 30 days | stale. |\n"
+)
+
+STATUS_CURRENT_ORGANIC_ROW = (
+    "# Status\n\n"
+    "| Organic sessions | 4 visits from 3 visitors, whole life of the "
+    "site, reconfirmed 2026-09-17 (1 Bing, 21 August; 3 Google visits "
+    "from 2 visitors, 4 to 12 September) | Last 30 days | current. |\n"
+)
+
 
 def _run(goals, status, risks):
     tmp = tempfile.mkdtemp()
@@ -98,12 +122,30 @@ def main() -> int:
         fails.append("the real committed GOALS.md/STATUS.md/RISKS.md "
                       "failed: %r" % (preflight.FAIL,))
 
+    # 5. Found 2026-09-20: GOALS.md moved a second time, to 4 visits from
+    #    3 visitors, and STATUS.md's own "Organic sessions" row still
+    #    carried the retired 2-visit reading. The old text-only check
+    #    (case 1/2 above) does not see this, since it never says "zero" or
+    #    omits Google; only the numeric comparison catches it.
+    r = _run(GOALS_LATER_READING, STATUS_STALE_ORGANIC_ROW, None)
+    if not r or not any("STATUS.md" in f[1] and "2" in f[1] and "4" in f[1]
+                         for f in r):
+        fails.append("a stale STATUS.md 'Organic sessions' visit total "
+                      "not caught by name: %r" % (r,))
+
+    # 6. STATUS.md's row updated to match GOALS.md's current 4-visit
+    #    reading: no failure.
+    r = _run(GOALS_LATER_READING, STATUS_CURRENT_ORGANIC_ROW, None)
+    if r:
+        fails.append("a corrected STATUS.md 'Organic sessions' row was "
+                      "wrongly flagged: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_goals_organic_search_row_current, 4/4 checks pass")
+    print("OK: gate_goals_organic_search_row_current, 6/6 checks pass")
     return 0
 
 

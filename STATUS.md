@@ -442,7 +442,7 @@ rather than being estimated.
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
 | Sessions | 78 | Last 30 days | MEASURED 2026-09-17 17:55 UTC (visitors; 200 visits, 949 pageviews of which 431 are a single automated session, leaving 518 human pageviews from 77 visitors), direct Umami database read over ssh from a session holding the VPS key; previous 75 (2026-09-14 21:30), 68 (2026-09-11), 60 (2026-09-07) |
 | Sessions | 18 | Last 7 days | Same source, 2026-09-17: 18 visitors, 28 visits, 57 pageviews |
-| Organic sessions | 2, whole life of the site, as of 2026-09-05 (1 Bing, 1 Google) | Last 30 days | Same source and same caveat. Corrected 2026-09-09: this row said "1 from Bing, 0 from Google" for four days after `GOALS.md`'s own 2026-09-05 correction retired that claim. |
+| Organic sessions | 4 visits from 3 visitors, whole life of the site, reconfirmed 2026-09-17 (1 Bing, 21 August; 3 Google visits from 2 visitors, 4 to 12 September) | Last 30 days | Same source and same caveat. Corrected 2026-09-20: this row still carried GOALS.md's own retired 2026-09-05 reading (2 visits, 1 Bing/1 Google) 15 days after GOALS.md itself moved to the current count; see `gate_goals_organic_search_row_current`, widened this cycle to check the actual visit total, not just the earlier "zero from Google" phrasing, so this specific number cannot drift silently again. |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |
 | Quest starts | UNKNOWN | Last 30 days | UNKNOWN |

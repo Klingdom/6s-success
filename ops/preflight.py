@@ -12533,6 +12533,18 @@ def gate_goals_organic_search_row_current() -> None:
     list, the same one-document-corrected-sibling-never-told shape as the
     STATUS.md fix above, just in a third file. Fixed both entries and
     widened the checked list to RISKS.md.
+
+    Found 2026-09-20: the "zero from Google" text check above is narrow
+    enough that GOALS.md moved a second time (2 visits, 2026-09-05, to
+    4 visits from 3 visitors, reconfirmed 2026-09-17, with the "2 visits"
+    reading explicitly named "Previous reading" in GOALS.md's own text)
+    and STATUS.md's Business Metrics row still carried the retired "2,
+    ... as of 2026-09-05" figure 15 days later, silently, because it
+    mentioned Google at all and did not say "zero", so neither existing
+    check fired. Fixed STATUS.md's row and widened this gate to compare
+    the actual whole-life visit total in GOALS.md's own baseline cell
+    against STATUS.md's "Organic sessions" row, not just a fixed phrase,
+    so a future re-reading cannot go silently untold a third time.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -12580,6 +12592,33 @@ def gate_goals_organic_search_row_current() -> None:
                  "2026-09-05 correction says a Google referral landed. "
                  "Read GOALS.md's current row, don't repeat the retired "
                  "claim." % name)
+
+    goals_baseline_m = re.search(
+        r"\|\s*Sessions from organic search\s*\|\s*\**([^|]*?)\**\s*\|",
+        goals_text)
+    if goals_baseline_m:
+        goals_visits_m = re.search(
+            r"(\d+)\s+visits?\s+from\s+(\d+)\s+visitors?",
+            goals_baseline_m.group(1))
+        if goals_visits_m:
+            goals_visits = int(goals_visits_m.group(1))
+            status_path = os.path.join(ROOT, "STATUS.md")
+            if os.path.exists(status_path):
+                status_text = io.open(status_path, encoding="utf-8").read()
+                status_row_m = re.search(
+                    r"\|\s*Organic sessions\s*\|\s*\**(\d+)",
+                    status_text)
+                if status_row_m:
+                    status_visits = int(status_row_m.group(1))
+                    if status_visits != goals_visits:
+                        fail("goals-organic-search-row-current",
+                             "STATUS.md's 'Organic sessions' row states %d "
+                             "whole-life organic visit(s), but GOALS.md's "
+                             "own 'Sessions from organic search' row "
+                             "currently states %d, a later reading that "
+                             "superseded it. Update STATUS.md's row to "
+                             "match GOALS.md's current count." %
+                             (status_visits, goals_visits))
 
 
 def gate_nightly_log_ordering() -> None:
