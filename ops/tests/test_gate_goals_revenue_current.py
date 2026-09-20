@@ -54,6 +54,15 @@ def main() -> int:
     if not r or "goals-revenue-current" != r[0][0]:
         fails.append("the real regression shape was not caught: %r" % (r,))
 
+    # 1b. The real 2026-09-20 shape: GOALS.md says "revenue is now $0"
+    #     (not the literal "in the last 30 days" phrasing), STATUS.md's
+    #     row still says $19. Must fail.
+    r, w = _run("Trailing-30-day revenue is now $0, none in the trailing "
+                "30 days.", "$19 gross / $18.15 net")
+    if not r or "goals-revenue-current" != r[0][0]:
+        fails.append("the 2026-09-20 'revenue is now $0' phrasing was not "
+                     "caught: %r" % (r,))
+
     # 2. Both agree on zero: no failure.
     r, w = _run("Baseline: $0 lifetime, $0 in the last 30 days.", "$0")
     if r:

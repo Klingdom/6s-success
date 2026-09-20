@@ -22,11 +22,14 @@ Before starting work, ask three questions in this order:
 Work that fails any of these is what "busy and useless" looks like, and this
 repository has produced a lot of it: hundreds of commits most weeks (see
 `EXECUTIVE-DASHBOARD-LIVE.md`'s live count, regenerated every run rather than
-typed here) against $19 of revenue, ever, one sale, as of 2026-09-10. The
+typed here) against $19 of revenue, ever, one sale (2026-08-21), and, as of
+2026-09-20, **$0 in the trailing 30 days**: the sale fell out of the rolling
+window that day with no second sale since (section 1, `f32c0d8c`). The
 original "427 commits... against $0 of revenue" version of this line was
-already stale the moment it was checked 2026-09-10: the one real sale
-(2026-08-21) sits inside any 30-day window since, so revenue has never
-actually read $0 in the way this sentence implied.
+stale when it was checked 2026-09-10, because the sale was still inside every
+30-day window then; that is no longer true today, and this sentence is what
+now needs re-deriving the day a second sale lands or the reading otherwise
+goes stale again.
 
 ---
 

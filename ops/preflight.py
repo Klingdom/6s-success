@@ -11198,6 +11198,19 @@ def gate_goals_revenue_current() -> None:
     moment a real second sale happens; it re-reads STATUS.md's own measured
     row instead, the same cross-document check gate_goals_traffic_current
     already makes for the two numbers above this one.
+
+    Widened 2026-09-20, PM check-in: the predicted rollover this gate's own
+    docstring anticipated arrived, and GOALS.md was corrected in `f32c0d8c`
+    ("Trailing-30-day revenue is now $0"), but that commit's own message
+    claimed the fix was "carried into every file the gates cross-check,"
+    including "STATUS.md section 9," and it was not: STATUS.md's own
+    "Revenue | ... | Last 30 days" row still read the stale "$19 gross /
+    $18.15 net | Same single transaction" for the same window GOALS.md had
+    just corrected. The original regex only matched "$0 ... in the last 30
+    days" verbatim, which is not the phrasing either file actually used
+    ("trailing 30 days", "revenue is now $0"), so this exact live
+    contradiction passed clean for hours. Widened to catch both phrasings
+    and fixed STATUS.md by hand to match.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     status_path = os.path.join(ROOT, "STATUS.md")
@@ -11215,7 +11228,10 @@ def gate_goals_revenue_current() -> None:
     status_zero = bool(re.match(r"^\$?0(\.0+)?\b", sm.group(1).strip()))
 
     goals_claims_zero = bool(re.search(
-        r"\$0(?:\.0+)? (?:of revenue )?(?:earned )?in the last 30 days",
+        r"\$0(?:\.0+)? (?:of revenue )?(?:earned )?(?:in|over) the "
+        r"(?:last|trailing) 30 days",
+        goals, re.I)) or bool(re.search(
+        r"(?:trailing-30-day )?revenue is now \$0(?:\.0+)?\b",
         goals, re.I))
 
     if goals_claims_zero and not status_zero:
