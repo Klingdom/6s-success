@@ -34,3 +34,11 @@
 # 2026-09-20: 114 files reported stale immediately after a checkout that
 # changed nothing but line endings.
 *.srt   text eol=lf
+
+# Host config files that get copied to a Linux box verbatim. With
+# core.autocrlf=true a Windows checkout gives them CRLF, and logrotate does
+# not parse a stanza whose lines end in ^M: it reports "Handling 0 logs" and
+# rotates nothing, silently, for ever. Measured 2026-09-20 by installing one
+# and dry-running it, which is the only reason it was caught before the log it
+# guards existed.
+ops/host/*   text eol=lf
