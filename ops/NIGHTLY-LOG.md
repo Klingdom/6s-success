@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, cycle addendum (post-push: a concurrent push during this cycle, and the build-id gate catching its own real defect)
+
+While pushing the D3 commit above, a concurrent PM check-in session had landed two more commits on `origin/main` (`6fc98212`, `48f4462d`) in the gap between this cycle's fetch and its push. `git push` correctly rejected the non-fast-forward; rebased onto `origin/main` rather than force-pushing, resolving `ops/NIGHTLY-LOG.md`'s conflict by keeping both entries (this cycle's D3 entry placed above the concurrent session's 20:40 entry, since D3's completion is chronologically the later event) and regenerating the three command-deck files fresh rather than hand-merging their JSON.
+
+The rebased `preflight.py` run then failed one real gate: `build-id`, because `site/build-id.txt` still carried the pre-D3 hash. This is a genuine, correctly-caught defect, not a false positive: the tool is a deliberate whole-repo stamp (`ops/build_id.py`'s own docstring: "the question 'is production serving THIS build' is a question about the whole site") that nothing else chains automatically, by design, the same way the command deck is a separate, always-last step. Regenerated with `ops/build_id.py`, reconfirmed with `--check`, reran the full `preflight.py`: every gate passed, 22 warnings, matching the standing baseline exactly. No new gate needed: the existing one caught it correctly, on the first run after the defect existed.
+
+CI (`checks.yml` #1219, `publish-image.yml` #356/#357) was still `in_progress` on both the rebase commit and the build-id-fix commit at the time this entry was written, this repo's normal run length; reported as unconfirmed per CLAUDE.md 0.4, not assumed green. Working tree fully clean and pushed (`d4a0b570`).
+
 ## 2026-09-20, cycle (D3: capacity and sizing guidance, the same 12-zone pilot cohort as D4)
 
 **Did:** Attached clean (shallow, detached checkout, `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 910-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean (every gate passed, 22 warnings) before touching anything. GitHub: 8 open issues, unchanged, all decision/blocked-on-art, none pickable. D3 (sizing/capacity guidance for the 12-zone pilot cohort) had been named unblocked and unpicked across the day's PM check-ins (18:40 through 20:10 at the point this cycle started, later confirmed to have reached 20:40 by push time); picked it up. `REVIEW-DISCOVERY-2026-09-07.md` D3: "a concrete capacity rule for its zone in the customer's units, and the 'does not fit' case links to the existing article with a specific anchor," blocked on nothing.
