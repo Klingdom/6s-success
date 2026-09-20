@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (full verification pass, no new defect; escalated the standing owner-blocked streak by notification rather than by another log line)
+
+**Did:** Checkout arrived shallow and detached; unshallowed and `merge --ff-only` onto `origin/main` resolved cleanly (797-commit fast-forward). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout first, correctly not treated as a pass): every gate passed, 22 standing warnings, the identical baseline every recent cycle has recorded. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. GitHub checked live: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2); 0 open PRs. Read issue #29 and #32 in full rather than trust their labels: #29's text fix already shipped, the remaining piece is genuinely Desktop-art-only; #32's own recommendation is to hold, and holding is what is happening, so neither was pickable.
+
+**Verified:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `CHECKIN-LOG.md`'s hourly entries: 104 of them now read "No outcome moved" since 2026-09-02. `youtube_published_last_measured` is still 12 of 114, unchanged since roughly 2026-09-08, despite `OWNER-ACTIONS.md` naming YouTube OAuth "the biggest single lever on the business right now," a 5-minute action.
+
+**Went well:** confirming this pattern by measurement (the check-in log's own count) rather than by impression.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; every named cold-read lane remains exhausted per this log's own accumulated record.
+
+**Next:** the standing owner gates in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues, unchanged. Sent a push notification to the owner this cycle rather than only a log line, since 104 hourly check-ins recording no outcome movement while three 5-minute actions sit undone is the shape `CLAUDE.md` section 0.2 names directly: a correctly reported problem nobody has acted on.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 04:13 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (794-commit fast-forward from a shallow/detached start, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own timeout first, correctly not treated as a pass per `CLAUDE.md` 0.4): every gate passed on the first try, no stray probe file this time, 22 standing warnings, the identical baseline every recent cycle has recorded (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on two workflows, sample-PDF British spelling, site verification, 3 zones/7 cards missing art already tracked by open issues #2/#29). Working tree was clean before this run.
