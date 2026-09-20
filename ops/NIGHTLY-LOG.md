@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 23:4x (30-minute triage, D1's CI confirmed green for real, D9 handed to the operator)
+
+NEXT FOR THE OPERATOR: start D9 (route link equity into the zone pages: real zone-to-zone links along genuine relationships, entryway shoes to mudroom shoe storage, kitchen sink to under-sink, nightstand to nightstand, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "Blocked on. Nothing," ~1 operator-day), because it is the smallest unblocked traffic/distribution row (ordering rule 3), it strengthens the zone pages the review itself calls "the entire long-tail thesis and the least supported pages on the site" (median in-degree 8 versus articles' 115-132), and it is more surgical than D8's full per-zone link-template rebuild (~2 days) or D10's room-hub rewrite (~3 days).
+
+**Previous work: finished, confirmed rather than carried forward unconfirmed.** D1's own two CI runs, still `in_progress` as of the 23:1x check-in, read directly from the GitHub API this cycle: `checks.yml` run #1222 and `publish-image.yml` run #359, both `success` against `44e8598e`, D1's real tip. D1 is genuinely closed now, not merely shipped and locally verified.
+
+**Verified directly, not cited:** shallow, detached checkout again (issue #27's usual shape); `fetch --unshallow` then `merge --ff-only` onto `origin/main` (927-commit fast-forward, no reset or force). Ran `python ops/preflight.py` myself in full: every gate passed, 22 warnings, all the standing, previously diagnosed sandbox limits (no Stripe credential, no SSH key, no Pillow, site unreachable from here), same baseline as recent cycles. 8 GitHub issues, unchanged, all `decision`/`blocked-on-art`, none pickable. The prior check-in's own fix (`8cc21c15`, the stale-status-note and mudroom-`robots` correction) has its `checks.yml` run #1223 still `in_progress`, started under two minutes before this entry; inside the normal 13-to-20-minute range, not reported either way. Checked `EXECUTIVE-DASHBOARD-LIVE.md`'s own top-line "PRODUCTION IS SERVING AN OLD BUILD" constraint against `STATUS.md` and `OWNER-ACTIONS.md` before treating it as new: it is the standing, already-tracked deploy-key gap (no `~/.ssh/6s_deploy` in this sandbox since 2026-09-01), redeployed periodically by a separate session with real VPS access, not something this check-in can or should act on.
+
+**Went well:** treating "shipped and locally verified" and "CI-confirmed" as two different claims per CLAUDE.md 0.3/0.4, same as the last several check-ins; checking the dashboard's headline constraint against the record before escalating it as new.
+
+**Did not go well:** same recurring shallow/detached checkout shape (issue #27, unchanged).
+
+**Changing next cycle:** none.
+
+**Handing to the operator (:43):** start D9 as above. D2 stays Phil-blocked (his own photographs); D6's remaining piece (primary-page choice per shared-query group) stays Search-Console-gated.
+
+Pushed to main. This log entry and command-deck regeneration only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 23:1x (30-minute triage, D1 confirmed finished locally, a real stale-document and a real live orphan found and fixed)
 
 **Previous work: finished locally, CI still unconfirmed.** D1 (the operator's own top-of-log entry) is shipped and extensively locally verified (`preflight.py` clean, `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check`, `link_graph_report.py`, `audit_visual.py --all --mobile` all clean, per its own entry). `checks.yml` #1222 and `publish-image.yml` #359 on `44e8598e` were still `in_progress` after roughly 20 minutes, past this repo's usual 13-to-20-minute range but not yet a stall; not reported green, per CLAUDE.md 0.3/0.4. Handing confirmation to the operator.
