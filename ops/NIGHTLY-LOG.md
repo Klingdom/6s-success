@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 13:47 (30-minute triage, previous work finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no genuinely new unblocked item found this pass; the cold-read/cross-document lane was already declared exhausted with real evidence at 12:53 and reaffirmed at 13:18, and nothing has changed since to reopen it, because the ordering rule (measurement, broken/dishonest, traffic, conversion, product, operational honesty) has nothing left unblocked below Phil's own gate list.
+
+**Previous work: finished.** Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (853-commit fast-forward, clean, no reset or force). Ran `preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout again, the standing shape): every gate passed, 22 warnings, the identical baseline every recent cycle records. Confirmed GitHub live via a subagent rather than citing the log: 8 open issues unchanged (2 `P0`, the rest `decision`/`blocked-on-art`), 0 open PRs; `checks.yml` green on the current head (run #1197, SHA `632fab1f`, with the five later commits all touching only generated/log files `checks.yml` deliberately excludes from its trigger, so no run is missing).
+
+**Verified, no new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b (23 kits/bundles with no page) is issue #32, a content decision, not implementable here. Checked `GOALS.md`'s own flagged revenue-window rollover directly against `gate_goals_revenue_window_current`'s source: the gate only fires when today is *past* the named 2026-09-20 date, not on it, so it is correctly still green today, one day early to touch. `OWNER-ACTIONS.md`'s "Last measured" header matches today's real production-staleness finding (233 commits behind, no sandbox holds the deploy key), consistent with `EXECUTIVE-DASHBOARD-LIVE.md` and `ops/state.json`. `ops/state.json`/`CHECKIN-LOG.md` confirm no owner gate has moved since the last hourly read (12:32). Did not repeat the low-mention `ops/*.py` cold-read myself on no new evidence, per `CLAUDE.md` 21: the two immediately preceding cycles already exhausted it with real method (mention-count ranking plus spot-checks) and nothing has changed since.
+
+**Went well:** re-deriving the revenue-window gate's exact trigger condition from source instead of trusting the prior cycle's paraphrase.
+
+**Did not go well:** none new; same shallow/detached checkout shape on arrival. `preflight.py`'s foreground run hit this sandbox's timeout again and had to be restarted in the background, the same standing limitation every recent cycle records; cost about 3 minutes this cycle, landing past this slot's own :43 handoff target.
+
+**Changing next cycle:** none.
+
+**Next:** same standing `OWNER-ACTIONS.md` gates and the 8 open `decision`/`blocked-on-art`/`P0` issues, unchanged, none pickable. A genuinely fresh angle on the cold-read/cross-document lane is the only thing that would reopen it; absent that, nothing else is currently unblocked.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 13:18 (30-minute triage, previous work finished, nothing new unblocked)
 
 **Previous work: finished.** Attached via fetch --unshallow plus merge --ff-only onto origin/main (849-commit fast-forward, clean, no reset or force). Ran preflight.py myself to genuine completion in the background (foreground hit this sandbox's own timeout, the standing shape): every gate passed, 22 standing warnings, the same baseline every recent cycle has recorded. Confirmed CI live rather than citing the log: run #1197 (632fab1f) completed SUCCESS. The five commits since (e8f9762e through 8013c368) touch only CHECKIN-LOG.md, ops/state-checkin.json, ops/NIGHTLY-LOG.md and the generated dashboard/state files, all paths checks.yml deliberately excludes from its trigger (its own comment names the reason: pure generated output and the hand-written log should not gate or cancel a real check), so no run was expected for any of them and none is missing. 8 open GitHub issues confirmed unchanged (6 decision, 2 blocked on art), 0 open PRs.
