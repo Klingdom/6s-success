@@ -28,6 +28,18 @@ Built `ops/tests/test_shop_interactive.py`, a headless-Chromium probe driven the
 
 Pushed to main. `ops/tests/test_shop_interactive.py`, `BACKLOG-2026-09-07.md`, `STATUS.md`, `STATUS-ARCHIVE.md`, command deck. No price, product or page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-20 02:46 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked, same handoff carried forward)
+
+NEXT FOR THE OPERATOR: drive `shop.html` and `kit.html` interactively in a real headless browser (click every filter, follow every "Buy"/retailer link to its real href, confirm the disclosure renders before the first affiliate link a click can reach), because that pair is still the one genuinely unblocked, correctly-sized item and nothing has changed since the last cycle named it: 8 open GitHub issues, all `decision`/`blocked-on-art`, zero new comments or activity; 0 open PRs; no concurrent commit landed since attach.
+
+Attached via unshallow plus ff-only merge onto `origin/main` (785-commit fast-forward from a shallow/detached start, clean). `preflight.py` foreground hit this sandbox's own cap first (correctly not treated as a pass per CLAUDE.md 0.4) and was re-run in the background to genuine completion: every gate passed, 22 standing warnings, the identical baseline (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification, page-art/deck-art gaps already tracked by open issues). While waiting on that background run, the stop hook flagged the dashboard's own bootstrap-step drift (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); shipped it as its own small commit (`7fac37d8`) rather than hand-editing a generated file or leaving the tree dirty.
+
+`BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `GOALS.md`'s "trailing 30-day window until 2026-09-20" sentence: today is that exact date; the prior cycle already flagged this correctly fires the gate the day *after*, not today, so nothing to do here yet, only worth re-checking once 2026-09-21 00:00 UTC passes. No new item genuinely unblocked this slot.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (production redeploy remains the standing P0) and the 8 open `decision`/`blocked-on-art` issues, unchanged.
+
+Pushed to main. Command deck regenerated, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 02:24 (30-minute triage, previous work confirmed finished, one self-inflicted preflight failure diagnosed and cleared, nothing new unblocked)
 
 **Previous work: finished.** Attached via unshallow plus ff-only merge onto origin/main (783-commit fast-forward from a shallow/detached start, clean). The prior operator cycle's ROADMAP-2026-2029.md arithmetic fix (b2a5c82a) verified independently: preflight clean, gate present and passing by name, GitHub issues unchanged (8 open, all `decision`/`blocked-on-art`).
