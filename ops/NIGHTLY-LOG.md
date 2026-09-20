@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-20, scheduled operator cycle (fixed the preflight-failing defect: a prior cycle's own log entry had landed at the physical end of the file instead of the top)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, ff-only merge onto `origin/main` resolved cleanly (826-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s section 3c arithmetic, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion: 1 gate failed, `gate_nightly_log_ordering`. Per step 2, fixing that was this run's work rather than picking a backlog item.
+
+**Verified:** the failing entry was the "2026-09-20, PM check-in ... revenue-window rollover checked" entry, physically the last thing in the whole file, appearing after the 2026-09-04 legacy entries near the bottom, exactly the "appended instead of prepended" shape `gate_nightly_log_ordering`'s own docstring names. Most likely cause: the `e5cfb162` "Merge concurrent cycle" commit in the recent history merged two branches that had each prepended their own entry without a text conflict, and one entry landed at the wrong offset, the same shape `gate_nightly_log_no_duplicate_entries`'s docstring describes for duplicates rather than misplacement. Cut the entry from the end of the file and moved it, verbatim, to the top, above the file's other 2026-09-20 entries, per the gate's own instruction ("move it above the other 2026-09-20 entries"). Independently re-derived the gate's own ordering check in a standalone script against the fixed file before trusting it: no date now reappears after the sequence has moved to an older one. Full `preflight.py` clean after: every gate passed, 22 warnings, identical set to the pre-existing standing sandbox limits (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). No second defect surfaced.
+
+**Went well:** the existing gate caught the defect correctly and named the fix in its own failure message; no new gate was needed, since this is exactly the class it already exists to catch, and it fired.
+
+**Did not go well:** the entry had apparently sat misplaced through at least one prior cycle's own preflight run without being caught, suggesting an intervening commit (most likely the concurrent merge) introduced it after that cycle's own preflight passed, not that preflight missed it.
+
+**Changing next cycle:** none. `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries` together cover both known shapes of this failure (misplacement and duplication) from a concurrent merge; a third gate for "concurrent merge scrambles this file" in the abstract would have nothing new to check.
+
+**Next:** 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 1b's 23-kits-with-no-page item and section 6's owner gates remain the standing Phil-blocked list. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. Highest-value unblocked item remains the same standing pair: 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+## 2026-09-20, PM check-in (30-minute triage, previous work finished, nothing new unblocked, revenue-window rollover checked and correctly not yet due)
+
+**Previous work: finished.** Reattached via unshallow plus ff-only merge onto origin/main (783-commit fast-forward, clean). preflight.py clean, every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all decision or blocked-on-art. 0 open PRs. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated.
+
+**Checked:** GOALS.md's own flagged revenue-window rollover lands today. gate_goals_revenue_window_current only fires the day after the named date by design, so it correctly stayed green; no premature edit made against an unverified sale.
+
+**Handing to the operator (:43):** watch for gate_goals_revenue_window_current to fire tomorrow and re-derive GOALS.md's revenue framing against a fresh STATUS.md read. Standing Phil-gated list and the 8 decision/blocked-on-art issues unchanged, none pickable.
+
 ## 2026-09-20, scheduled operator cycle (fresh checkout, full verification pass, no new defect and no new unblocked item)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved cleanly (822-commit fast-forward, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s live process rules, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries (the last several, all today, all PM check-ins or scheduled cycles finding the same standing state). Ran `python ops/preflight.py` to genuine completion in the background rather than trusting a partial foreground run: every gate passed, 22 warnings, the identical standing set (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, the two workflows' measured cron-cadence drift, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29).
@@ -30565,12 +30587,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-
-## 2026-09-20, PM check-in (30-minute triage, previous work finished, nothing new unblocked, revenue-window rollover checked and correctly not yet due)
-
-**Previous work: finished.** Reattached via unshallow plus ff-only merge onto origin/main (783-commit fast-forward, clean). preflight.py clean, every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all decision or blocked-on-art. 0 open PRs. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated.
-
-**Checked:** GOALS.md's own flagged revenue-window rollover lands today. gate_goals_revenue_window_current only fires the day after the named date by design, so it correctly stayed green; no premature edit made against an unverified sale.
-
-**Handing to the operator (:43):** watch for gate_goals_revenue_window_current to fire tomorrow and re-derive GOALS.md's revenue framing against a fresh STATUS.md read. Standing Phil-gated list and the 8 decision/blocked-on-art issues unchanged, none pickable.
