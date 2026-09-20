@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 00:47 (30-minute triage, previous work confirmed finished by a real preflight completion, nothing new unblocked, handoff points at the one exclusion-claim method not yet exhausted)
+
+NEXT FOR THE OPERATOR: run the "verify a gate or generator's own stated exclusion claim" method against `ops/check_live_links.py`, `ops/product_links.py`, `ops/service_orders.py` and `ops/wire_legal_strip.py`, because `stripe_catalog.py`'s own SELLABLE claim was the only one of the five commerce-facing files named 2026-09-19 23:47 that a later cycle actually checked (verified clean, addendum to the 2026-09-19 operator entry below); the other four are still untried and this is the one lane that has found two real gaps this week, unlike the cold-read lanes, which are all confirmed exhausted (114/114 zones, all rooms, `ops/*.py` mention-count floor, hand-authored `site/*.html`).
+
+Attached via unshallow plus ff-only merge onto origin/main (771-commit fast-forward from a shallow/detached start, clean, no unrelated-history symptom). Read `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s "Start here" table and item 1b, `GOALS.md`'s revenue-window sentence and its gate. GitHub checked live via the API: 8 open issues, unchanged in count, labels and content from the last several entries' own reads (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2); 0 open PRs.
+
+Ran `preflight.py` myself to genuine completion, not a timeout. First attempt hit this sandbox's foreground cap (exit 124 at 110s, still on `gate_tests`) and was correctly NOT treated as a pass, per `CLAUDE.md` 0.4: a run that could not finish has not proved anything, so it was re-run in the background with no cap and watched to real completion. Result: exit 0, every gate passed, 22 warnings, the identical standing set (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift on two workflows, sample-PDF British spelling, site verification, and the rest). No live defect found.
+
+Checked `GOALS.md`'s dated "trailing 30-day window until 2026-09-20" sentence against today's actual date, since today is that exact boundary date: re-read `gate_goals_revenue_window_current`'s own logic (`ops/preflight.py`), which fires only when `today > rollover`, deliberately not on the boundary day itself. Today equals the rollover date, so the gate is correctly still silent; it fires tomorrow if no second sale has landed by then. Not a defect, not yet actionable.
+
+Confirmed no deploy key in this sandbox (`ops/deploy.py --check`: "no deploy key at /root/.ssh/6s_deploy"), so the dashboard's own "PRODUCTION IS SERVING AN OLD BUILD" line stays genuinely owner/local-session gated, same as every prior cycle; not re-litigated here.
+
+`BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. `CHECKIN-LOG.md`'s last 4 entries (14:33 through 23:16 today) all report zero outcome movement despite 122 to 154 commits/24h each time, the known standing state; not repeating that notification since a prior cycle already sent it.
+
+No new item genuinely unblocked this cycle. Working tree had a small drift from preflight's own bootstrap step (a dashboard regeneration, timestamp and commit-count only); committed and pushed separately as its own commit before this entry, per this log's standing practice of never hand-editing a generated file.
+
+Pushed to main. Command deck regenerated (this entry triggers one more pass) plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 00:23 (30-minute triage, previous work confirmed finished after one real transient FAIL, nothing new unblocked)
 
 Attached via unshallow plus ff-only merge onto origin/main (762-commit fast-forward from a shallow/detached start). Read BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, GOALS.md, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md/CHECKIN-LOG.md entries. GitHub checked live: 8 open issues, unchanged (decision/blocked-on-art), 0 open PRs; sampled #15, confirmed still correctly Phil-gated (Listmonk instance decision).
