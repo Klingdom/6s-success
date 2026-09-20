@@ -97,4 +97,30 @@ if [ -n "$SITE_CHANGED" ]; then
         exit 1
     fi
 fi
+
+# Refuse a commit that changes a PAGE while leaving the sitemap describing the
+# previous tree.
+#
+# Exactly the same shape as the build-id control above, and added for exactly
+# the same reason: on 2026-09-20 "Publish site image" went red TWICE, hours
+# apart, from two different sessions, because pages were committed while
+# site/sitemap.xml and ops/sitemap-content-hashes.json still described the
+# tree before them. gate_generator_ownership catches it, but only in CI,
+# minutes later, behind a full suite. Nothing ran at the moment the mistake
+# entered history.
+#
+# Scoped to .html under site/ because that is what invalidates the sitemap;
+# an image or a stylesheet does not. The check only reads and reports: it
+# does NOT regenerate, because lastmod is a claim made to search engines and
+# a hook that silently redates pages behind the author is worse than a hook
+# that stops them.
+PAGES_CHANGED=$(printf '%s\n' "$FILES" | grep -E '^site/.*\.html$')
+if [ -n "$PAGES_CHANGED" ]; then
+    if ! "$PY" "$HOOK_DIR/../ops/check_sitemap_current.py"; then
+        echo "  pre-commit: the sitemap does not describe the pages being"
+        echo "  committed. See the command printed above."
+        echo "  Bypass, only with a real reason: git commit --no-verify"
+        exit 1
+    fi
+fi
 exit 0

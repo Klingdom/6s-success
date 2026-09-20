@@ -45,6 +45,66 @@ HOST = "root@187.77.25.50"
 KEY = os.path.expanduser("~/.ssh/6s_deploy")
 LOGDIR = "/var/log/6s-success"
 
+# THE CORRECTION THAT MATTERS, 2026-09-20.
+#
+# This file shipped that morning saying the container's own access log was the
+# only evidence about who reads this site. That was WRONG, and it was written
+# into the nginx config, the commit message, DATA-SOURCES and STATUS before
+# anyone checked. LEARNINGS.md LRN-0010 had already named a second log and
+# used it for real attribution work back on 2026-09-14: Nginx Proxy Manager
+# terminates TLS in front of this site and keeps its own access log, which
+# survives container recreation and is rotated with four archives kept.
+#
+# It is not merely an equal alternative, it is the better source:
+#
+#   * It has HISTORY. 42,396 lines in the current file alone when this was
+#     written, reaching back to 2026-09-13, plus four gzipped archives. The
+#     log added this morning starts at zero and can answer nothing about the
+#     past.
+#   * It keeps the CLIENT IP, so "something calling itself Googlebot" can be
+#     checked by reverse DNS against googlebot.com. That is exactly the
+#     limitation the new log documents about itself and cannot fix, because it
+#     deliberately stores no addresses.
+#
+# So this reads the proxy log by default. The container log stays as
+# --source=container: it is this site alone rather than every vhost on a
+# shared box, and it carries no personal data, which makes it the safer thing
+# to keep long term. But a tool that only read it would have thrown away three
+# weeks of evidence that was sitting on the same machine.
+PROXY_LOG = "/data/logs/proxy-host-4_access.log"
+PROXY_CONTAINER = "nginx-proxy-manager"
+
+# [13/Sep/2026:13:00:40 +0000] - 200 200 - GET https 6s-success.com
+# "/robots.txt" [Client 66.249.74.196] [Length 231] [Gzip -]
+# [Sent-to 187.77.25.50] "Mozilla/5.0 (compatible; Googlebot/2.1; ...)" "-"
+# Two shapes, both real, found by counting what did not parse rather than by
+# assuming the first sample was the format:
+#   [ts] - 200 200 - GET https host "/path" [Client ip] [Length n] ... "ua" "ref"
+#   [ts] - -  301 -  GET http  host "/path" [Client ip] [Length n] ... "ua" "ref"
+# The second is the plain-HTTP to HTTPS redirect, where there is no upstream
+# status to report, so the columns shift. 1,162 lines were being dropped as
+# unparseable until this was widened, and dropped lines are the ones that
+# quietly make a crawler look less active than it is.
+PROXY_LINE = re.compile(
+    r'^\[(?P<ts>[^\]]+)\]\s+(?:\S+\s+)*?(?P<status>\d{3})\s+'
+    r'(?:\S+\s+)*?(?P<method>[A-Z]+)\s+(?P<scheme>\S+)\s+(?P<host>\S+)\s+'
+    r'"(?P<path>[^"]*)"\s+\[Client (?P<ip>[^\]]+)\]\s+'
+    r'\[Length (?P<bytes>[^\]]*)\].*?'
+    r'"(?P<ua>[^"]*)"\s+"(?P<ref>[^"]*)"\s*$')
+
+_MONTHS = {"Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05",
+           "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10",
+           "Nov": "11", "Dec": "12"}
+
+
+def _proxy_day(ts):
+    """'13/Sep/2026:13:00:40 +0000' -> '2026-09-13'."""
+    try:
+        d, mon, rest = ts.split("/", 2)
+        return "%s-%s-%s" % (rest[:4], _MONTHS.get(mon, "01"), d)
+    except Exception:                                          # noqa: BLE001
+        return ""
+
 # Ordered: the first pattern that matches wins, so Googlebot-Image is
 # classified before the bare Googlebot can claim it.
 BOTS = [
@@ -81,6 +141,66 @@ def classify(ua):
     if re.search(r"bot|crawl|spider|slurp", ua, re.I):
         return "other bot (unrecognised)"
     return "human or unknown"
+
+
+def fetch_proxy():
+    """Read the Nginx Proxy Manager access log for this site, current plus
+    archives. Returns (lines, note), same contract as fetch()."""
+    if not os.path.exists(KEY):
+        return [], ("no SSH key at %s, so the proxy log could not be read. "
+                    "NOT a measurement of zero." % KEY)
+    inner = ("cat %s 2>/dev/null; zcat -f %s.*.gz 2>/dev/null; "
+             "exit 0" % (PROXY_LOG, PROXY_LOG))
+    cmd = "docker exec %s sh -c %s" % (PROXY_CONTAINER, _shq(inner))
+    try:
+        out = subprocess.run(
+            ["ssh", "-i", KEY, "-o", "StrictHostKeyChecking=no",
+             "-o", "ConnectTimeout=20", HOST, cmd],
+            capture_output=True, text=True, timeout=600)
+    except Exception as exc:                                   # noqa: BLE001
+        return [], "could not reach the VPS (%s). NOT a measurement." % exc
+    if out.returncode != 0:
+        return [], ("ssh/docker exited %d. NOT a measurement of zero."
+                    % out.returncode)
+    lines = [l for l in out.stdout.splitlines() if l.strip()]
+    if not lines:
+        return [], ("the proxy log read back empty. That is not zero traffic; "
+                    "check the container name and path still match "
+                    "(%s:%s)." % (PROXY_CONTAINER, PROXY_LOG))
+    return lines, ""
+
+
+def _shq(text):
+    return "'" + text.replace("'", "'\''") + "'"
+
+
+def verify_bots(ips, limit=14):
+    """Reverse-DNS a sample of addresses that CLAIMED to be a search engine.
+
+    This is the check the container log can never support, because it stores
+    no addresses, and it is the whole reason the proxy log is the better
+    source. Reverse DNS is Google's and Bing's own documented way to tell
+    their crawler from anyone wearing its name.
+
+    Done locally rather than over SSH: it is a public DNS lookup, it needs no
+    production access, and it keeps this out of shell quoting. Sampled rather
+    than exhaustive, because the answer per address is stable and this is a
+    report, not a firewall. An address with no PTR is reported as unverified
+    rather than as a forgery: plenty of legitimate infrastructure has none.
+    """
+    import socket
+    names = {}
+    # Caller order is preserved deliberately: main() passes the most-seen
+    # addresses first. Sorting by IP string meant the sample was entirely
+    # 40.77.x (Bing) and never reached Googlebot's 66.249.x, so the one
+    # crawler this business cares about most was the one never checked.
+    for ip in list(ips)[:limit]:
+        try:
+            socket.setdefaulttimeout(4)
+            names[ip] = socket.gethostbyaddr(ip)[0]
+        except Exception:                                      # noqa: BLE001
+            names[ip] = "(no PTR)"
+    return names
 
 
 def fetch():
@@ -132,12 +252,20 @@ def fetch():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=7)
+    ap.add_argument("--source", choices=("proxy", "container"),
+                    default="proxy",
+                    help="proxy = Nginx Proxy Manager's log, which has weeks "
+                         "of history and client IPs; container = this site's "
+                         "own IP-free log, which starts 2026-09-20")
+    ap.add_argument("--verify", action="store_true",
+                    help="reverse-DNS a sample of addresses claiming to be a "
+                         "search engine")
     ap.add_argument("--bot", default="")
     ap.add_argument("--paths", action="store_true",
                     help="list the most fetched paths")
     args = ap.parse_args()
 
-    raw, note = fetch()
+    raw, note = fetch_proxy() if args.source == "proxy" else fetch()
     if note:
         print("UNCHECKED: " + note)
         return 2
@@ -145,15 +273,18 @@ def main():
     cutoff = (datetime.datetime.now(datetime.timezone.utc)
               - datetime.timedelta(days=args.days)).strftime("%Y-%m-%d")
     rows, unparsed = [], 0
+    pat = PROXY_LINE if args.source == "proxy" else LINE
     for line in raw:
-        m = LINE.match(line)
+        m = pat.match(line)
         if not m:
             unparsed += 1
             continue
         d = m.groupdict()
-        d["day"] = d["ts"][:10]
-        if d["day"] < cutoff:
+        d["day"] = (_proxy_day(d["ts"]) if args.source == "proxy"
+                    else d["ts"][:10])
+        if not d["day"] or d["day"] < cutoff:
             continue
+        d.setdefault("ip", "")
         d["bot"] = classify(d["ua"])
         rows.append(d)
 
@@ -201,6 +332,29 @@ def main():
         print("    per day: " + ", ".join(
             "%s %d" % (d, per_day[d]) for d in sorted(per_day)))
 
+    if args.verify:
+        claim = [ip for ip, _ in collections.Counter(
+            r["ip"] for r in search if r.get("ip")).most_common()]
+        names = verify_bots(claim)
+        if not names:
+            print("    (no addresses to verify: the container log keeps none "
+                  "by design, so use --source proxy)")
+        else:
+            print("")
+            print("  REVERSE DNS on addresses claiming to be a search engine (sampled)")
+            for ip, host in sorted(names.items()):
+                # .spider.yandex.com is Yandex's own documented PTR and it
+                # was missing from the first version of this list, which
+                # reported two genuine Yandex crawlers as UNVERIFIED. A list
+                # that is wrong in the accusing direction is worse than none.
+                good = host.endswith((".googlebot.com", ".google.com",
+                                      ".search.msn.com", ".spider.yandex.com",
+                                      ".yandex.ru", ".yandex.net",
+                                      ".applebot.apple.com",
+                                      ".crawl.baidu.com"))
+                print("    %-16s %-42s %s"
+                      % (ip, host[:42], "verified" if good else "UNVERIFIED"))
+
     if args.paths:
         sel = [r for r in rows
                if not args.bot or args.bot.lower() in r["bot"].lower()]
@@ -211,14 +365,33 @@ def main():
                 r["path"] for r in sel).most_common(25):
             print("    %5d  %s" % (n, path))
 
-    refs = collections.Counter(
-        r["ref"] for r in rows
-        if r["ref"] not in ("-", "") and "6s-success.com" not in r["ref"])
+    ext = [r for r in rows
+           if r["ref"] not in ("-", "") and "6s-success.com" not in r["ref"]]
+    refs = collections.Counter(r["ref"] for r in ext)
     if refs:
         print("")
         print("  EXTERNAL REFERRERS")
+        print("    A REFERRER IS A HEADER THE CLIENT CHOOSES. It is not "
+              "evidence of a click.")
+        # Measured 2026-09-20 and the reason this warning is here rather than
+        # in a doc nobody opens: 365 requests on this log claimed to come from
+        # Google, 130 of them to /quest.html, while Umami recorded 7 Google
+        # pageviews in the same period. The addresses were AWS (34.208.x,
+        # 35.85.x) and Alibaba Cloud (47.79.x) in a burst over five days.
+        # They are scrapers wearing a search engine's referrer. Reading that
+        # 365 as arrivals would have overstated this site's organic traffic
+        # by a factor of fifty.
         for ref, n in refs.most_common(12):
-            print("    %5d  %s" % (n, ref[:90]))
+            who = [r["ip"] for r in ext if r["ref"] == ref and r.get("ip")]
+            uniq = len(set(who))
+            # Always print the address spread rather than flagging on a
+            # ratio. A threshold was tried first and missed the very case
+            # this exists for: the 365 fake Google referrals came from
+            # dozens of different cloud addresses, so concentration was low
+            # and a "few addresses" rule said nothing. The spread is useful
+            # either way and lets the reader judge instead of trusting a
+            # rule that has already been wrong once.
+            print("    %5d  %-58s  %d address(es)" % (n, ref[:58], uniq))
     return 0
 
 

@@ -713,6 +713,24 @@ direction.
 
 #### LRN-0013: Googlebot reads no content page here, and it is not because the content is hard to reach
 
+> **Update 2026-09-20, measuring whether the two fixes actually worked, which nothing had checked.** Same source,
+> now 181,847 lines back to 2026-08-19, read with `ops/crawl_report.py --source proxy`.
+>
+> * **The `Disallow: /stats/` shipped on 2026-09-16 worked, completely.** Googlebot's fetches of the analytics
+>   beacon ran at 10 to 20 a day, with bursts of 239 (23 Aug), 189 (5 Sep) and 104 (22 Aug). From 2026-09-17, the
+>   day after the rule shipped, they are **0, and have stayed 0 for four straight days**. That is roughly a third
+>   of Googlebot's daily budget on this domain returned to content, and it is the first shipped SEO change here
+>   that can be shown to have changed crawler behaviour rather than merely being correct.
+> * **Content fetches show an uptick that is one day old and must not yet be called a trend.** Googlebot fetched
+>   845 content pages in total since 19 Aug, but 551 of those were the 22 to 25 August burst and 156 more on
+>   5 Sep. Through 10 to 19 Sep it ran 0,0,1,0,1,2,6,1,1,1 a day. On **2026-09-20 it is 15**, the highest since
+>   6 September, following the www/`.html` 301s (17 Sep), the corrected sitemap `lastmod` dates (19 to 20 Sep)
+>   and an IndexNow submission of 117 changed pages. Three causes, one day, no control: this is an **early
+>   signal, not a result**, and the honest next step is to keep reading the same log for a week before claiming
+>   anything.
+> * Googlebot is still fetching both URL forms of the same page (`/rooms/kitchen` and `/rooms/kitchen.html`), which
+>   is exactly what a crawler does while it works through 301s it has just discovered, and is expected to fade.
+
 > **Corrected 2026-09-17: the headline observation is false, and the implication changes with it.** The 129-fetch window
 > below was the current, unrotated proxy log only. Reading the rotated files too (164,522 lines back to 2026-08-20),
 > genuine Googlebot (373 zone fetches, all from 66.249.x) **fetched every one of the 115 zone URLs, each twice** (as
