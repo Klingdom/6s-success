@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-20 (fresh checkout, full verification pass, no new unblocked work found)
+
+**Did:** Unshallowed and `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (845-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` to genuine completion in the background (foreground hits this sandbox's own timeout, the standing shape): every gate passed, 22 warnings, the same standing baseline. Confirmed GitHub live rather than citing the log: 8 open issues, unchanged (6 `decision`: 33, 32, 31, 21, 18, 15; 2 `blocked-on-art`: 29, 2), 0 open PRs; `checks.yml` last two completed runs (#1195, #1196) both success, #1197 in progress at read time, correctly not counted as green. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, same as every prior cycle.
+
+**Checked the standing "low-mention `ops/*.py` cold-read" lane before repeating it, rather than assuming it still had yield.** Ranked all 146 `ops/*.py` files by mention count in this log: the floor is now 4 mentions, and spot-checking the lowest tier (`build_social_pins.py`, `browser.py`, `build_card_template.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`, `fix_dashes.py`) found each already individually cold-read and either fixed-and-gated or confirmed clean in a prior cycle this same day or the days before. This is not a new finding; today's own 10:46, 11:12 and several earlier cycles already recorded the same exhaustion. Did not re-read these files again on no new evidence, per `CLAUDE.md` 21 ("do not repeatedly reopen settled decisions without new evidence").
+
+**No item in `BACKLOG-2026-09-07.md` sections 2 to 6 is open and unblocked**; section 1b (23 catalogue entries with no page of their own) is a content decision already escalated as issue #32, not implementable without Phil's choice per that row's own text. `GOALS.md`'s O1 (traffic, the constraint) lists SEO, internal linking, structured data, page speed and the Pinterest/Instagram crops as "not blocked," and all five are recorded done in this log; the remaining O1 levers (YouTube OAuth, Search Console verification) are Phil-only, same as every prior cycle. Found no new defect anywhere checked.
+
+**Also noted, not acted on:** this is at least the fourth cycle today converging on "nothing new, same Phil-gated list," and the log's own 11:48 entry already flagged two same-minute duplicate-fix collisions between concurrent sessions. That is a scheduling question for however this routine's cadence is configured, not something fixable from inside the repository, so it is recorded here rather than built around.
+
+**Verified:** dashboard regenerated (`python ops/dashboard.py`); revenue line correctly still carried forward from 2026-09-18 (this sandbox cannot reach Stripe), not reported as zero. No price, product or page touched.
+
+**Went well:** confirming the cold-read lane's exhaustion against real evidence (mention counts plus direct grep for prior reads) instead of either blindly repeating it or claiming without checking that nothing was left.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` gates (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts, the Listmonk decision on issue #15) and the 8 open `decision`/`blocked-on-art` issues, unchanged, none pickable without Phil.
+
+Pushed to main. Command deck regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 12:16
 
 **Previous work: finished.** Attached cleanly onto `origin/main`; `preflight.py` clean before I touched anything (22 standing warnings); working tree and `main` matched origin.
