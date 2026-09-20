@@ -74,6 +74,23 @@ STATUS_CURRENT_ORGANIC_ROW = (
     "from 2 visitors, 4 to 12 September) | Last 30 days | current. |\n"
 )
 
+GOALS_SELF_CONTRADICTING = (
+    "# Goals\n\n"
+    "| Sessions from organic search | **5 visits from 4 visitors, whole "
+    "life of the site, as of 2026-09-20** | one visit from Bing "
+    "(21 August) and three visits from two Google visitors (4 to 12 "
+    "September). Previous reading: 2 visits (Bing 1, Google 1), "
+    "2026-09-05. |\n\n"
+    "**Corrected 2026-09-05: the earlier wording here is no longer true: "
+    "not one visit from Google.** A Google referral landed 4 September.\n"
+)
+
+STATUS_MATCHING_BAD_READING = (
+    "# Status\n\n"
+    "| Organic sessions | 5 visits from 4 visitors, whole life of the "
+    "site, as of 2026-09-20 | Last 30 days | current. |\n"
+)
+
 
 def _run(goals, status, risks):
     tmp = tempfile.mkdtemp()
@@ -140,12 +157,31 @@ def main() -> int:
         fails.append("a corrected STATUS.md 'Organic sessions' row was "
                       "wrongly flagged: %r" % (r,))
 
+    # 7. Found 2026-09-20, second instance: GOALS.md's own bolded headline
+    #    said "5 visits from 4 visitors" while its own detail sentence,
+    #    one row cell later, still enumerated only one Bing visit plus
+    #    three visits from two Google visitors (4 visits, 3 visitors).
+    #    Even a STATUS.md "helpfully" bumped to match the bad headline
+    #    must not go clean: the row disagrees with its own evidence.
+    r = _run(GOALS_SELF_CONTRADICTING, STATUS_MATCHING_BAD_READING, None)
+    if not r or not any("its own detail sentence" in f[1] for f in r):
+        fails.append("a headline that disagrees with its own row's "
+                      "detail sentence was not caught by name: %r" % (r,))
+
+    # 8. The later, real 4-visits-from-3-visitors reading (case 5/6's
+    #    GOALS_LATER_READING) is internally consistent: no failure from
+    #    the new self-arithmetic check either.
+    r = _run(GOALS_LATER_READING, STATUS_CURRENT_ORGANIC_ROW, None)
+    if r:
+        fails.append("an internally consistent GOALS.md row was wrongly "
+                      "flagged by the self-arithmetic check: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_goals_organic_search_row_current, 6/6 checks pass")
+    print("OK: gate_goals_organic_search_row_current, 8/8 checks pass")
     return 0
 
 

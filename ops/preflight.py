@@ -12614,6 +12614,22 @@ def gate_goals_organic_search_row_current() -> None:
     the actual whole-life visit total in GOALS.md's own baseline cell
     against STATUS.md's "Organic sessions" row, not just a fixed phrase,
     so a future re-reading cannot go silently untold a third time.
+
+    Found 2026-09-20 (second instance, same day): a "Weekly re-measure"
+    commit bumped this row's own bolded headline from "4 visits from 3
+    visitors" to "5 visits from 4 visitors" while leaving the same row's
+    detail cell byte-for-byte unchanged, one visit from Bing plus three
+    visits from two Google visitors, which still sums to 4 and 3, not 5
+    and 4, and still cited the same 2026-09-14 database read. No sibling
+    document caught this: STATUS.md still (correctly) said 4, so the
+    STATUS.md comparison above fired, but for the wrong reason, and would
+    have gone silent forever had STATUS.md been bumped to match the bad
+    number instead of the good one. Reverted the headline to the number
+    its own evidence actually supports, and widened this gate a second
+    way: it now re-derives the detail cell's own Bing-plus-Google
+    arithmetic and requires the headline to equal it, so the row can
+    never again disagree with itself regardless of what any other file
+    says.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -12688,6 +12704,51 @@ def gate_goals_organic_search_row_current() -> None:
                              "superseded it. Update STATUS.md's row to "
                              "match GOALS.md's current count." %
                              (status_visits, goals_visits))
+
+            # Found 2026-09-20: the bolded headline moved from "4 visits
+            # from 3 visitors" to "5 visits from 4 visitors" while the very
+            # same row's own detail cell, one visit from Bing plus three
+            # visits from two Google visitors, still summed to 4 and 3 and
+            # was not touched at all (same 2026-09-14 citation, same
+            # "Previous reading" clause). No sibling document caught it
+            # because STATUS.md still (correctly) said 4, so this gate's
+            # own STATUS.md comparison above fired for the right row but
+            # the wrong reason: it would have stayed silent forever had
+            # STATUS.md been "helpfully" bumped to match the bad number
+            # instead. Re-derive the detail cell's own arithmetic and
+            # require it to sum to the headline, so the row can never
+            # again disagree with itself.
+            goals_visitors = int(goals_visits_m.group(2))
+            bing_m = re.search(
+                r"(\w+) visits? from bing", row_cell_unquoted, re.IGNORECASE)
+            google_m = re.search(
+                r"(\w+) visits? from (\w+) google visitors?",
+                row_cell_unquoted, re.IGNORECASE)
+            if bing_m and google_m:
+                bing_visits = (_spelled_number(bing_m.group(1))
+                               if not bing_m.group(1).isdigit()
+                               else int(bing_m.group(1)))
+                google_visits = (_spelled_number(google_m.group(1))
+                                  if not google_m.group(1).isdigit()
+                                  else int(google_m.group(1)))
+                google_visitors = (_spelled_number(google_m.group(2))
+                                    if not google_m.group(2).isdigit()
+                                    else int(google_m.group(2)))
+                if None not in (bing_visits, google_visits, google_visitors):
+                    detail_visits = bing_visits + google_visits
+                    detail_visitors = bing_visits + google_visitors
+                    if (detail_visits != goals_visits
+                            or detail_visitors != goals_visitors):
+                        fail("goals-organic-search-row-current",
+                             "GOALS.md's 'Sessions from organic search' row "
+                             "headline says %d visits from %d visitors, but "
+                             "its own detail sentence in the same row sums "
+                             "to %d visits from %d visitors (%s from Bing, "
+                             "%s from %s Google visitors). The headline and "
+                             "its own supporting evidence disagree." %
+                             (goals_visits, goals_visitors, detail_visits,
+                              detail_visitors, bing_m.group(1),
+                              google_m.group(1), google_m.group(2)))
 
 
 def gate_nightly_log_ordering() -> None:

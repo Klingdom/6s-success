@@ -98,17 +98,17 @@ not by how interesting they are.
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
 | Published videos | **12 of 114, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30. Corrected 2026-09-16: this row read "12 of 228" for six weeks, conflating the 228 total rendered video FILES (114 vertical plus 114 horizontal, two orientations of the same 114 zones) with the YouTube publishing target. `ops/youtube_upload.py`'s own docstring states only the wide 16:9 file is ever uploaded ("Shorts are a separate distribution decision and are not posted by this tool"), so the real denominator is 114, one per zone, matching `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md`'s own "102 of 114 remaining" framing, which was right the whole time. The numerator (12) was never wrong.** | all 114 |
-| Sessions from organic search | **5 visits from 4 visitors, whole life of the site, as of 2026-09-20** | one visit from Bing (21 August) and three visits from two Google visitors (4 to 12 September), read directly from the Umami database 2026-09-14. Four of Google's six landing pageviews were `/standards.html`, the other two the home page: the Standards Pack is the one page search is currently sending anyone to. Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05. |
+| Sessions from organic search | **4 visits from 3 visitors, whole life of the site, reconfirmed unchanged 2026-09-20** | one visit from Bing (21 August) and three visits from two Google visitors (4 to 12 September), read directly from the Umami database 2026-09-14. Four of Google's six landing pageviews were `/standards.html`, the other two the home page: the Standards Pack is the one page search is currently sending anyone to. Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05. |
 | Sessions, last 7 days | **14** | 14 visitors, 21 visits, 35 pageviews, measured 2026-09-20 |
 | Weekly visitors | 14/wk (2026-09-20, down from 18) | 500/wk |
 
-**Why it is first, now with numbers.** 78 visitors (read directly from the
-database 2026-09-17 17:55 UTC, up from 75 on 2026-09-14, 68 on 2026-09-11 and
-60 on 2026-09-07) across 200 visits in thirty days, and in the whole life of
-this site **exactly four visits from three visitors arrived from a search
-engine**, per the "Sessions from organic search" row above, reconfirmed the
-same day: one visit from Bing (21 August), and three visits from two Google
-visitors (4 to 12 September). Every other arrival was direct, or from
+**Why it is first, now with numbers.** 76 visitors (read directly from the
+database 2026-09-20 15:40 UTC, down from 78 on 2026-09-17, 75 on 2026-09-14
+and 68 on 2026-09-11) across 193 visits in thirty days, and in the whole life
+of this site **exactly four visits from three visitors arrived from a search
+engine**, per the "Sessions from organic search" row above, reconfirmed
+unchanged today: one visit from Bing (21 August), and three visits from two
+Google visitors (4 to 12 September). Every other arrival was direct, or from
 LinkedIn, which is the only channel we actually post to and which produced 17.
 
 **Corrected 2026-09-05: "not one visit from Google" is no longer true, and the
