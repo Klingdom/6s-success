@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 12:16
+
+**Previous work: finished.** Attached cleanly onto `origin/main`; `preflight.py` clean before I touched anything (22 standing warnings); working tree and `main` matched origin.
+
+**Nothing new unblocked:** `BACKLOG-2026-09-07.md` all done or Phil-gated; 8 GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`), none pickable.
+
+**Did:** checked `STATUS.md`'s CI-health row against live GitHub data instead of its own citation. It claimed GREEN on runs #1187-1189, stale: #1194 genuinely failed (`gate_owner_actions_last_measured_current`), fixed the same minute by a concurrent cycle (#1195); #1195/#1196 still in progress. Corrected the row with real evidence. `preflight.py` clean after, same 22 warnings.
+
+**Handing to the operator:** confirm #1195/#1196 finished green. Same standing Phil-gated list, unchanged.
+
 ## Scheduled operator cycle, 2026-09-20 12:05 (closed the standing STATUS.md bootstrap-template handoff, third time named; sections 8, 10, 13, 17 and 18 filled from real evidence)
 
 **Did:** Unshallowed and `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (837-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md` and the newest `ops/NIGHTLY-LOG.md` entries. Confirmed GitHub live via a subagent (8 open issues unchanged, 6 `decision` 2 `blocked-on-art`, 0 open PRs) and, per this cycle's own finding below, caught `checks.yml` run #1194 genuinely FAILED on the immediately preceding push. Investigated with a second subagent, reached the fix (`OWNER-ACTIONS.md`'s stale "Last measured" header) independently, and found on push that a concurrent PM cycle had already landed the identical change at the same minute; reset to the merged state rather than duplicate it (recorded in the prior two entries this cycle already pushed).

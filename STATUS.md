@@ -338,7 +338,7 @@ answer (no admin/security-alerts scope confirmed either way).
 | Branch protections | NONE | `main` returns `protected: false` via the API |
 | Open PRs | 0 | Confirmed live this cycle |
 | Active branches | 1 (`main` only) | Confirmed live this cycle; no stray/abandoned branches |
-| CI health | GREEN | `checks.yml` green on its last 3 runs (#1187-1189); `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml` all green on their latest scheduled runs |
+| CI health | MOSTLY GREEN, one real failure since traced and fixed | `checks.yml` run #1194 genuinely FAILED (2026-09-20 11:18, `gate_owner_actions_last_measured_current`, a stale header the immediately preceding push left behind), caught live and fixed within the same minute by a concurrent cycle (`f70f657c`, run #1195); #1195 and #1196 (the current HEAD) were both still `in_progress` as of this check (12:16), not yet confirmed; the last run to actually complete, #1193, succeeded. `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml` all green on their latest scheduled runs |
 | Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; production is a manual Hostinger "Redeploy" click per `DEPLOYMENT.md`. Whether that click has been made since the VPS deploy key was installed 2026-09-01 is unverified from every sandboxed session to date |
 | Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
 | Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
