@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 01:40 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked, handoff to interactive browser QA on a page pair not yet driven that way)
+
+NEXT FOR THE OPERATOR: drive `shop.html` and `kit.html` interactively in a real headless browser (click every filter, follow every "Buy"/retailer link to its real href, confirm the disclosure renders before the first affiliate link a click can reach), because that specific page pair has only ever been checked by static cold-read and generator-diff (`gate_prerender_shop_current`, `gate_kit_page_zone_counts_current`), never clicked through the way `quest.js` was, and that interactive method is the one that found this week's two real Home Quest bugs (the dead Back button, the object-URL leak) after text-based cold-reads had stopped finding anything.
+
+Attached via unshallow plus ff-only merge onto origin/main (779-commit fast-forward from a shallow/detached start, clean). Ran `preflight.py` myself to genuine completion in the background (foreground hit this sandbox's own cap first, correctly not treated as a pass per CLAUDE.md 0.4): every gate passed, 22 warnings, the identical standing set (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification, page-art and deck-art gaps already tracked by open issues). GitHub checked live via the API: 8 open issues, unchanged in count, labels and content (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2); 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated; section 1b (23 kits/bundles, issue #32) correctly still open as Phil's catalogue-scope call. Checked whether GitHub Actions could redeploy production without the sandbox's missing SSH key before repeating that finding: `DEPLOYMENT.md` confirms the host only ever pulls a tagged image via a manual Hostinger Redeploy click, no webhook path exists, so this stays genuinely owner-gated, not re-litigated as a new finding.
+
+Working tree carried only the generated dashboard's own timestamp/commit-count drift from preflight's bootstrap step; no hand edit needed. Checked the standing cold-read lanes before writing a handoff rather than repeating one from memory: zone narrative (114/114), `ops/*.py` and hand-authored `site/assets/js/*.js` by mention count, `.github/workflows/*.yml`, and the `DECISIONS.md`/`LEARNINGS.md` cross-check are all recorded elsewhere in this log as independently closed by more than one cycle each. No new item genuinely unblocked this slot.
+
+Pushed to main. Command deck regenerated plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 01:17 (30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Previous work finished: clean ff-merge onto origin/main, no unrelated-history symptom. preflight.py ran to genuine completion (not backgrounded-timeout): every gate passed, 22 standing warnings, unchanged. GitHub issues re-pulled fresh via the API with individual reads on all 8: correctly decision/blocked-on-art, zero orphaned or resolved-but-open, zero PRs. No concurrent commit landed since attach.
