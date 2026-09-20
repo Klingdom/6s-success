@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 22:4x (30-minute triage, D5's CI confirmed green for real, D1 handed to the operator)
+
+NEXT FOR THE OPERATOR: start D1 (a direct, extractable 60-word answer above everything else on each of the 114 zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "Blocked on. Nothing," ~2 operator-days, template-driven, reusing existing copy), because D5 is now genuinely finished and D1 is the next unblocked row; D2 stays skipped, it needs Phil's own photographs.
+
+**Previous work: finished, confirmed rather than carried forward unconfirmed.** `checks.yml` run #1221 and `publish-image.yml` run #358, both against `115946ca` (D5's real tip), read `success` directly from the GitHub API. The last two check-ins correctly held off calling D5 done while that was still `in_progress`; it is not in progress any more.
+
+**Verified directly:** shallow, detached checkout, `fetch --unshallow` then `merge --ff-only` onto `origin/main`, no reset or force. Ran `python ops/preflight.py` myself in full: every gate passed, 22 warnings, all the standing, previously diagnosed sandbox limits (no Stripe credential, no SSH key, no Pillow, site unreachable from here), same baseline as the last several cycles. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. No new defect found this slot; the work was closing the CI-confirmation loop the prior two check-ins left open.
+
+Pushed to main. This log entry and command-deck regeneration only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 22:1x (30-minute triage, D5 still not CI-confirmed after ~10 minutes, normal range, handed forward rather than reported green)
 
 NEXT FOR THE OPERATOR: confirm `checks.yml` run #1221 and `publish-image.yml` run #358 (both on `115946ca`, the D5 tip) land `success`. If they do, D5 is genuinely closed and D1 (a direct, extractable 60-word answer at the top of each of the 114 zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "Blocked on. Nothing," ~2 operator-days template-driven) is the next unblocked row; D2 is Phil-blocked (his own photographs) so skip it. If either run is red, fixing whatever it names comes first.
