@@ -490,6 +490,7 @@ def offer(name, zone_slug, room=None, zone=None):
     if pack:
         second = (
             f'<a class="btn btn-on-deep" style="margin-left:10px" '
+            f'data-sku="{esc(pack["sku"])}" '
             f'href="{esc(pack["buy"])}" rel="noopener">'
             f'Just this zone, {int(pack["price"])} dollars</a>')
         compare = (f'<p style="margin:0 0 14px;font-size:14.5px;opacity:.85">'
@@ -508,7 +509,7 @@ def offer(name, zone_slug, room=None, zone=None):
             f'free. The Whole House Print Pack puts {esc(name)} and the other 113 micro '
             'zones on 684 printable cards, so the steps you just read are not stuck '
             'behind a phone screen while your hands are full.</p>'
-            '<p style="margin:0 0 14px"><a class="btn btn-primary" href="' + PACK_BUY + '" '
+            '<p style="margin:0 0 14px"><a class="btn btn-primary" data-sku="PACK-HOUSE" href="' + PACK_BUY + '" '
             f'rel="noopener">The Print Pack, {PACK_PRICE} dollars</a>'
             + second +
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?zone='
@@ -571,7 +572,7 @@ def room_offer(room, room_slug, n):
                 'including these ' + str(n) + ', on 684 cards that print nine to a page. It is '
                 'for the part where you are stood in the room with wet hands and would rather '
                 'not be holding a phone.</p>'
-                '<p style="margin:0"><a class="btn btn-primary" href="' + PACK_BUY + '" '
+                '<p style="margin:0"><a class="btn btn-primary" data-sku="PACK-HOUSE" href="' + PACK_BUY + '" '
                 'rel="noopener">The Print Pack, ' + str(PACK_PRICE) + ' dollars</a>'
                 '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
                 + room_slug + '">'
@@ -595,9 +596,9 @@ def room_offer(room, room_slug, n):
             'room. It is for the part where you are stood in here with wet hands and would '
             'rather not be holding a phone.</p>'
             '<p style="margin:0 0 14px"><a class="btn btn-primary" href="'
-            + esc(pack["buy"]) + '" rel="noopener">The ' + esc(room) + ' Pack, '
+            + esc(pack["buy"]) + '" data-sku="' + esc(pack["sku"]) + '" rel="noopener">The ' + esc(room) + ' Pack, '
             + str(price) + ' dollars</a>'
-            '<a class="btn btn-on-deep" style="margin-left:10px" href="' + PACK_BUY + '" '
+            '<a class="btn btn-on-deep" style="margin-left:10px" data-sku="PACK-HOUSE" href="' + PACK_BUY + '" '
             f'rel="noopener">Or all twenty rooms, {PACK_PRICE} dollars</a>'
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
             + room_slug + '">'

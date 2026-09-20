@@ -93,9 +93,22 @@ def fetch():
     if not os.path.exists(KEY):
         return [], ("no SSH key at %s, so the production log could not be "
                     "read. NOT a measurement of zero." % KEY)
-    cmd = ("cat %s/access.log 2>/dev/null; "
+    # Trailing "exit 0" is load bearing. The rotated-file reads are expected
+    # to find nothing until logrotate has run for the first time, and a
+    # compound command takes the exit status of its LAST part, so a perfectly
+    # good read of a live access.log came back as status 1. The first run of
+    # this script against real production data reported
+    # "UNCHECKED: ssh exited 1" while 500 bytes of log sat in front of it:
+    # the honest-failure path firing on a success, which is worse than no
+    # check, because it teaches the reader to ignore the word UNCHECKED.
+    #
+    # ssh itself still reports connection and auth failures as 255, and that
+    # is kept below, so a real "could not look" is still not confused with
+    # "looked and found nothing".
+    cmd = ("{ cat %s/access.log 2>/dev/null; "
            "zcat -f %s/access.log.*.gz 2>/dev/null; "
-           "cat %s/access.log.[0-9] 2>/dev/null" % (LOGDIR, LOGDIR, LOGDIR))
+           "cat %s/access.log.[0-9] 2>/dev/null; } ; exit 0"
+           % (LOGDIR, LOGDIR, LOGDIR))
     try:
         out = subprocess.run(
             ["ssh", "-i", KEY, "-o", "StrictHostKeyChecking=no",
@@ -104,7 +117,8 @@ def fetch():
     except Exception as exc:                                   # noqa: BLE001
         return [], "could not reach the VPS (%s). NOT a measurement." % exc
     if out.returncode != 0:
-        return [], ("ssh exited %d. NOT a measurement of zero."
+        return [], ("ssh exited %d (255 means it could not connect or "
+                    "authenticate). NOT a measurement of zero."
                     % out.returncode)
     lines = [l for l in out.stdout.splitlines() if l.strip()]
     if not lines:
