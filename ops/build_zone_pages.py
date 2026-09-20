@@ -2196,18 +2196,47 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     # It sits here, after the hazards and before the work, because that is
     # when it is useful: a person who reads it after starting has already
     # made the trip they were trying to avoid.
-    try:
-        # `thing`, not `name`: the common noun the title already uses, so the
-        # folded section reads "Only if your medicine cabinet has one" rather
-        # than "Only if your The Medicine Cabinet has one".
-        out.append(zone_supplies.render(room["room"], zone["zone"], thing))
-    except Exception as e:                                    # noqa: BLE001
-        print(f"  WARNING: no kit rendered for {room['room']} / {name}: {e}")
+    #
+    # D5 (REVIEW-DISCOVERY-2026-09-07.md section 2, "Blocked on. Nothing."):
+    # for the same 12-zone pilot cohort M4/D3/D4 already use (content.json's
+    # `diagnosis` field), this pre-Sort block was the single largest block on
+    # the page at 481 words, and a retailer search page is a weak place to
+    # send a reader. Shrunk (zone_supplies.render_compact(), see its own
+    # docstring) and moved below the six passes for those 12 zones only; the
+    # other 102 keep render() here, unchanged. The "discover it mid-task"
+    # risk that placement guarded against is answered with a one-line
+    # pointer instead of the full list, below.
+    is_pilot = bool(zone.get("diagnosis"))
+    _compact_kit = ""
+    if is_pilot:
+        # Computed here, once, rather than at its render point after the six
+        # passes below: the pointer notice right after the passes heading
+        # must not promise a kit list that turns out empty (kit() can return
+        # nothing for a zone with no products recorded), so the notice is
+        # gated on the same result it points at.
+        try:
+            _compact_kit = zone_supplies.render_compact(
+                room["room"], zone["zone"], thing)
+        except Exception as e:                                # noqa: BLE001
+            print(f"  WARNING: no compact kit rendered for {room['room']} / "
+                  f"{name}: {e}")
+    else:
+        try:
+            # `thing`, not `name`: the common noun the title already uses, so
+            # the folded section reads "Only if your medicine cabinet has
+            # one" rather than "Only if your The Medicine Cabinet has one".
+            out.append(zone_supplies.render(room["room"], zone["zone"], thing))
+        except Exception as e:                                # noqa: BLE001
+            print(f"  WARNING: no kit rendered for {room['room']} / {name}: {e}")
 
     out.append(diagnosis_html(thing, zone))
     out.append('<h2>The six passes, in order</h2>')
     out.append('<p>Work them in this order. Sorting after you have arranged '
                'things means arranging things you were about to remove.</p>')
+    if _compact_kit:
+        out.append('<p class="notice">This zone\'s full kit list is below, '
+                   'after the method. Skim it first if you would rather '
+                   'gather everything before you start.</p>')
     _storage_placed = False
     for i, s in enumerate(SIX, 1):
         body = passes.get(s)
@@ -2238,6 +2267,11 @@ def zone_page(room, zone, header, footer, all_rooms=()):
         # ever did, the storage kit still has to reach the reader somewhere
         # after Sort rather than silently vanish.
         out.append(zone_supplies.render_storage(room["room"], zone["zone"], thing))
+
+    if _compact_kit:
+        # D5's own "move it below the method": the compact kit list for the
+        # 12 pilot zones, right after the six passes rather than before them.
+        out.append(_compact_kit)
 
     call = zone.get("the_call") or {}
     if call.get("text"):

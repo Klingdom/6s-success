@@ -15231,6 +15231,118 @@ def gate_capacity_rendered() -> None:
         fail("capacity-rendered", "; ".join(problems[:6]))
 
 
+def check_kit_compact_rendered(pilot_files, other_files, page_bodies,
+                               word_ceiling=340) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    REVIEW-DISCOVERY-2026-09-07.md D5: "at 481 words it is the single
+    largest block on the page... shrink it to a compact list and move it
+    below the method." For the same 12-zone pilot cohort M4/D3/D4 already
+    use, `id="what-you-need"` must now render AFTER `id="sustain"` (the
+    last of the six passes), not before "The six passes, in order"; for
+    every other zone it must stay exactly where it was, before the passes,
+    so this cannot silently spread past the pilot cohort or silently
+    regress it back. `word_ceiling` keeps "compact" a real, checkable
+    claim rather than a one-time description: the block's own visible word
+    count (tags stripped) must stay under it, so a future edit growing the
+    per-item prose back out cannot ship unnoticed.
+
+    pilot_files/other_files are sorted lists of basenames; page_bodies is
+    {filename: html} for every real site/zones/*.html file.
+    """
+    import html as _html
+    problems = []
+    for f in pilot_files:
+        body = page_bodies.get(f)
+        if body is None:
+            continue
+        w = body.find('id="what-you-need"')
+        s = body.find('id="sustain"')
+        p = body.find('The six passes, in order')
+        if w == -1:
+            continue
+        if s != -1 and w < s:
+            problems.append(
+                "%s: pilot zone still renders the kit list before Sustain "
+                "(id=\"what-you-need\" at %d, id=\"sustain\" at %d); D5 "
+                "asks for it after the six passes" % (f, w, s))
+        if p != -1 and w < p:
+            problems.append(
+                "%s: pilot zone still renders the kit list before the six "
+                "passes heading" % (f, ))
+        m = re.search(r'<h2 id="what-you-need">.*?(?=<h2|</main>)', body,
+                      re.S)
+        if m:
+            text = _html.unescape(re.sub(r'<[^>]+>', ' ', m.group(0)))
+            n = len(text.split())
+            if n > word_ceiling:
+                problems.append(
+                    "%s: compact kit block is %d words, over the %d-word "
+                    "ceiling D5 exists to hold" % (f, n, word_ceiling))
+        if 'kit-compact' not in body:
+            problems.append(
+                "%s: id=\"what-you-need\" present but no kit-compact class "
+                "found; D5's own compact renderer was not used" % f)
+
+    for f in other_files:
+        body = page_bodies.get(f)
+        if body is None:
+            continue
+        w = body.find('id="what-you-need"')
+        p = body.find('The six passes, in order')
+        if w == -1 or p == -1:
+            continue
+        if w > p:
+            problems.append(
+                "%s: not a pilot zone, but its kit list now renders after "
+                "the six passes heading; D5 is scoped to the 12-zone "
+                "cohort only" % f)
+    return problems
+
+
+def gate_kit_compact_rendered() -> None:
+    """The shipped-HTML half of D5 (see `check_kit_compact_rendered`'s own
+    docstring for what this catches). Re-derives which zones count as
+    "pilot" from content.json's own `diagnosis` field, the same signal
+    `gate_diagnosis_rendered`/`gate_variants_rendered`/`gate_capacity_rendered`
+    already use, rather than trusting a hardcoded list that could drift
+    from the corpus.
+
+    Proved to fail on three planted regressions (a pilot page with the
+    block left before the passes, a non-pilot page with it moved after,
+    and an oversized block): ops/tests/test_gate_kit_compact_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("kit-compact-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    pilot, other = [], []
+    for r in rooms:
+        for z in r.get("zones", []):
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            fname = f"{rs}-{zs}.html"
+            (pilot if z.get("diagnosis") else other).append(fname)
+    if not pilot:
+        return
+    pilot, other = sorted(pilot), sorted(other)
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("kit-compact-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_kit_compact_rendered(pilot, other, page_bodies)
+    if problems:
+        fail("kit-compact-rendered", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=35) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -18004,6 +18116,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_variants_rendered)
     run_gate(gate_capacity_rendered)
+    run_gate(gate_kit_compact_rendered)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)

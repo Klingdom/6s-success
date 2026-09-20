@@ -488,6 +488,14 @@ main:focus{outline:none}
 .kit-why{display:block;margin-top:5px;font-size:15px;color:#3F3832}
 .kit-safety{display:block;margin-top:9px;padding-left:9px;border-left:3px solid var(--honey);
   font-family:var(--sans);font-size:13.5px;color:var(--soft)}
+/* D5: the pilot cohort's compact kit list (ops/zone_supplies.py
+   render_compact()) drops .kit-why's full sentence for just the pass
+   names, plain text (not links: see _row_compact()'s own docstring for
+   why a linked version failed the 44px mobile tap-target check), so it
+   needs its own line rule rather than falling back to unstyled inline
+   text sitting flush against the product name. */
+.kit-pass{display:block;margin-top:5px;font-size:13px;color:var(--soft)}
+.kit-item.kit-compact{padding:11px 16px}
 @media (max-width:600px){.kit-list{grid-template-columns:1fr}}
 
 /* ---------- six-S spine ---------- */

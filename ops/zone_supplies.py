@@ -399,6 +399,88 @@ def _styled(block: str) -> str:
                          1)
 
 
+def _row_compact(rec: dict) -> str:
+    """One product, compact: name, quantity, which passes, and the safety
+    note if there is one. Drops render()'s own full "why" sentence (e.g.
+    "Clean glass, mirrors, and polished surfaces, in the Shine and Sustain
+    passes.") down to the pass names alone. Used only by render_compact(),
+    below.
+
+    Plain text, not links: a first version linked each pass name back to
+    its #id, reusing _why()'s own pattern, but this block renders AFTER
+    the passes (that is the point of D5), so the audience is already past
+    them, and ops/audit_visual.py --mobile caught the real cost of linking
+    anyway: short words ("Sort", "Shine") at this block's compact 13px
+    render well under the 44px tap target every other link on the site is
+    held to, e.g. 25x13 and 34x13. A reader can still scroll up two
+    sections; a mistappable link cannot buy back the six words it saves.
+    """
+    qty = ""
+    if rec.get("qty") and str(rec["qty"]) not in ("1", "None"):
+        qty = f' <span class="kit-qty">&times;{_esc(rec["qty"])}</span>'
+    phases = [p for p in PASS_ORDER if p in rec["phase"]]
+    passline = ""
+    if phases:
+        names = ", ".join(p.title() for p in phases)
+        passline = f' <span class="kit-pass">{_esc(names)}</span>'
+    safety = ""
+    if rec["safety"]:
+        safety = f' <span class="kit-safety">{_esc(rec["safety"])}.</span>'
+    return (f'<li class="kit-item kit-compact"><span class="kit-name">'
+            f'{_anchor(rec)}{qty}</span>{passline}{safety}</li>')
+
+
+def render_compact(room: str, manual_zone: str, display_name: str,
+                    prefix: str = "../") -> str:
+    """A shrunk render(), for the pilot cohort only, placed after the six
+    passes rather than before them.
+
+    REVIEW-DISCOVERY-2026-09-07.md D5: "at 481 words it is the single
+    largest block on the page... shrink it to a compact list and move it
+    below the method." Same data, same links, same disclosure honesty as
+    render(); the only thing cut is the per-item "why" prose, replaced with
+    the pass names alone (see _row_compact()). Callers decide which of
+    render()/render_compact() to use per zone; this file has no opinion on
+    which zones count as "pilot" (that is content.json's `diagnosis` field,
+    the same signal ops/build_zone_pages.py already uses for M4/D3/D4).
+    """
+    k = kit(room, manual_zone)
+    if not k["needed"] and not k["maybe"]:
+        return ""
+
+    out = []
+    out.append('<h2 id="what-you-need">The kit this zone called for</h2>')
+    out.append('<p>Everything above assumed you had these already. Types of '
+               'thing, not brands: anything you already own that does the '
+               'job is the right one to use.</p>')
+
+    pre_links = k["needed"] + k["maybe"]
+    if any(r["kind"] for r in pre_links):
+        try:
+            import affiliate as A
+            amazon = any(r["kind"] == "tracked" and r["merchant"] == "amazon"
+                        for r in pre_links)
+            out.append(_styled(A.disclosure(amazon, True, prefix)))
+        except Exception:                                     # noqa: BLE001
+            pass
+
+    if k["needed"]:
+        out.append('<ul class="kit-list kit-compact">')
+        out += [_row_compact(r) for r in k["needed"]]
+        out.append('</ul>')
+
+    if k["maybe"]:
+        noun = _esc(display_name.strip().lower())
+        out.append('<details style="margin:18px 0 0">'
+                   f'<summary style="cursor:pointer;font-family:var(--sans);'
+                   f'font-weight:600">Only if it applies to the {noun}: '
+                   f'{len(k["maybe"])} more</summary>'
+                   '<ul class="kit-list kit-compact">')
+        out += [_row_compact(r) for r in k["maybe"]]
+        out.append('</ul></details>')
+    return "\n".join(out)
+
+
 def render(room: str, manual_zone: str, display_name: str,
            prefix: str = "../") -> str:
     """The "What you need" section, or "" when this zone has no kit recorded.
