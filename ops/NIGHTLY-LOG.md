@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-20 10:46 (fresh checkout, full verification pass, no new defect, no new unblocked item)
+
+**Did:** Unshallowed and ff-only merged onto `origin/main` (832-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. Ran `ops/preflight.py` to genuine completion in the background (foreground hit this sandbox's own timeout): every gate passed, 22 warnings, the identical standing set (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29).
+
+**Verified:** GitHub live via the API: 8 open issues, unchanged in count, number and label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED. `affiliate.py --check` (163 documents) and `check_sellable.py` (153 of 155 buyable products confirmed in Stripe catalogue, delivery entry and file on disk; 2 services correctly excluded) both re-run directly, clean. Tried `WebFetch` against `6s-success.com` directly, a path independent of the Bash egress proxy prior cycles tested: also blocked (`EGRESS_BLOCKED`), confirming no egress by either path, not assumed from one. `ops/state-checkin.json` unchanged since the last hourly run (`youtube_published` 12, `products_live` 159): no owner gate has moved. Spot-checked issues #29 and #2 against the current repo rather than trusting their age: both still describe a real, unfixed gap needing local image generation Phil alone can run. Cold-read `ops/build_feed.py` (untried this lane): sound, `--check` reports current (27 entries), autodiscovery link present on `site/articles/index.html`. No defect found.
+
+**Went well:** confirming "no egress" through a second, independent path instead of citing a prior cycle's identical finding.
+
+**Did not go well:** same shallow/detached checkout shape on arrival as every recent cycle; issue #27 (GitHub's own Routines UI) still open, still needs Phil's hand.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** `EXECUTIVE-DASHBOARD-LIVE.md` flags a real, growing gap: production was last confirmed current 2026-09-18T17:20:47Z (build `7c765b634045a89c`); the repository has moved on since and no automated session here holds a deploy key, so unshipped work is now backing up behind one Redeploy click, worth Phil's next VPS-access session. Standing `OWNER-ACTIONS.md` gates and the 8 open `decision`/`blocked-on-art` issues, unchanged, none pickable.
+
 ## PM check-in, 2026-09-20 10:40 (30-minute triage, previous work finished once my own noise was excluded, handing the operator a genuinely new stale-documentation item)
 
 NEXT FOR THE OPERATOR: correct `STATUS.md` sections 4 (Production Status), 7 (Hostinger VPS/Docker Status), 8 (Customer Experience Status), 10 (Search/Discovery Status), 13 (Content Portfolio Status), 17 (Current Blockers) and 18 (Known Risks), because they are still the unfilled 2026-08-16 bootstrap template ("UNKNOWN", "Verify") even where this same document's own section 1 narrative and `EXECUTIVE-DASHBOARD-LIVE.md` already state the answer, the exact shape section 6 was corrected for earlier today and never revisited for these seven.
