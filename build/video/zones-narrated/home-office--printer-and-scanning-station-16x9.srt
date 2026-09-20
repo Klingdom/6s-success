@@ -8,299 +8,309 @@ Turn paper into files and files into
 paper, without hunting for either.
 
 3
-00:00:07,968 --> 00:00:11,048
-What done looks like
+00:00:07,968 --> 00:00:12,456
+Where it is Printer and Scanning Station
+One of 6 micro zones in the Home Office.
 
 4
-00:00:11,048 --> 00:00:14,128
+00:00:12,456 --> 00:00:16,944
+Each one is a session that finishes on its
+own.
+
+5
+00:00:16,944 --> 00:00:20,024
+What done looks like
+
+6
+00:00:20,024 --> 00:00:23,104
 1 Paper in a bin directly beneath the
 printer with a min line and a max line
 drawn
 
-5
-00:00:14,128 --> 00:00:17,208
+7
+00:00:23,104 --> 00:00:26,184
 inside it
 
-6
-00:00:17,208 --> 00:00:20,288
+8
+00:00:26,184 --> 00:00:29,264
 2 One spare cartridge in a labelled box
 beside it
 
-7
-00:00:20,288 --> 00:00:23,368
+9
+00:00:29,264 --> 00:00:32,344
 3 A single scan tray with a to-do side and
 a done side
 
-8
-00:00:23,368 --> 00:00:26,448
+10
+00:00:32,344 --> 00:00:35,424
 4 Clear air behind the machine + 1 more on
 the zone page
 
-9
-00:00:26,448 --> 00:00:31,824
+11
+00:00:35,424 --> 00:00:40,800
 One session Printer and Scanning Station
 30-45 min
 
-10
-00:00:31,824 --> 00:00:36,216
+12
+00:00:40,800 --> 00:00:45,192
 Sort Keep only ink or toner that matches
 the model
 
-11
-00:00:36,216 --> 00:00:39,480
+13
+00:00:45,192 --> 00:00:48,456
 Sort Keep only ink or toner that matches
 the model number on the printer currently
 
-12
-00:00:39,480 --> 00:00:42,744
+14
+00:00:48,456 --> 00:00:51,720
 plugged in.
 
-13
-00:00:42,744 --> 00:00:47,472
+15
+00:00:51,720 --> 00:00:56,448
 Sort The half reams of odd paper, the
 letterhead with the old
 
-14
-00:00:47,472 --> 00:00:51,528
+16
+00:00:56,448 --> 00:01:00,504
 Sort The half reams of odd paper, the
 letterhead with the old address, and the
 
-15
-00:00:51,528 --> 00:00:55,584
+17
+00:01:00,504 --> 00:01:04,560
 envelopes from two houses ago go out.
 
-16
-00:00:55,584 --> 00:01:00,276
-Straighten Paper goes directly under the
-printer, the spare cartridge in a labelled
-
-17
-00:01:00,276 --> 00:01:04,968
-box beside it, and the scan pile gets one
-tray with
-
 18
-00:01:04,968 --> 00:01:09,712
+00:01:04,560 --> 00:01:09,252
 Straighten Paper goes directly under the
 printer, the spare cartridge in a labelled
 
 19
-00:01:09,712 --> 00:01:14,456
+00:01:09,252 --> 00:01:13,944
+box beside it, and the scan pile gets one
+tray with
+
+20
+00:01:13,944 --> 00:01:18,688
+Straighten Paper goes directly under the
+printer, the spare cartridge in a labelled
+
+21
+00:01:18,688 --> 00:01:23,432
 box beside it, and the scan pile gets one
 tray with a to-do side and a done side,
 
-20
-00:01:14,456 --> 00:01:19,200
+22
+00:01:23,432 --> 00:01:28,176
 so you can tell at a glance what has
 already been through the glass.
 
-21
-00:01:19,200 --> 00:01:25,320
+23
+00:01:28,176 --> 00:01:34,296
 Shine Powered off, lift the lid and clean
 the scanner glass with cleaner on
 
-22
-00:01:25,320 --> 00:01:30,048
+24
+00:01:34,296 --> 00:01:39,024
 Shine Powered off, lift the lid and clean
 the scanner glass with cleaner on the
 
-23
-00:01:30,048 --> 00:01:34,776
+25
+00:01:39,024 --> 00:01:43,752
 cloth, never sprayed onto the glass where
 it can run inside.
 
-24
-00:01:34,776 --> 00:01:39,048
+26
+00:01:43,752 --> 00:01:48,024
 Shine Use a dry cloth for toner dust and
 vacuum
 
-25
-00:01:39,048 --> 00:01:45,192
+27
+00:01:48,024 --> 00:01:54,168
 Shine Use a dry cloth for toner dust and
 vacuum the paper lint around the feed
 tray.
 
-26
-00:01:45,192 --> 00:01:48,768
-Safety Leave clear air at the back of the
-machine, because the fuser runs genuinely
-
-27
-00:01:48,768 --> 00:01:52,344
-hot, and plug
-
 28
-00:01:52,344 --> 00:01:56,296
+00:01:54,168 --> 00:01:57,744
 Safety Leave clear air at the back of the
 machine, because the fuser runs genuinely
 
 29
-00:01:56,296 --> 00:02:00,248
+00:01:57,744 --> 00:02:01,320
+hot, and plug
+
+30
+00:02:01,320 --> 00:02:05,272
+Safety Leave clear air at the back of the
+machine, because the fuser runs genuinely
+
+31
+00:02:05,272 --> 00:02:09,224
 hot, and plug the printer straight into a
 wall outlet rather than into a strip
 
-30
-00:02:00,248 --> 00:02:04,200
+32
+00:02:09,224 --> 00:02:13,176
 chained off another strip.
 
-31
-00:02:04,200 --> 00:02:08,088
+33
+00:02:13,176 --> 00:02:17,064
 Safety Nothing sits on top of the lid, not
 
-32
-00:02:08,088 --> 00:02:13,536
+34
+00:02:17,064 --> 00:02:22,512
 Safety Nothing sits on top of the lid, not
 the plant and not your drink.
 
-33
-00:02:13,536 --> 00:02:17,664
+35
+00:02:22,512 --> 00:02:26,640
 Standardize Draw a min line and a max
 
-34
-00:02:17,664 --> 00:02:23,280
+36
+00:02:26,640 --> 00:02:32,256
 Standardize Draw a min line and a max line
 inside the paper bin.
 
-35
-00:02:23,280 --> 00:02:29,040
+37
+00:02:32,256 --> 00:02:38,016
 Standardize When the stack drops to the
 min line, the next ream goes on
 
-36
-00:02:29,040 --> 00:02:33,384
+38
+00:02:38,016 --> 00:02:42,360
 Standardize When the stack drops to the
 min line, the next ream goes on the
 
-37
-00:02:33,384 --> 00:02:37,728
+39
+00:02:42,360 --> 00:02:46,704
 shopping list that day, not the day it
 runs out mid-job.
 
-38
-00:02:37,728 --> 00:02:42,744
+40
+00:02:46,704 --> 00:02:51,720
 Sustain When you pull the last sheet from
 the bin, refill it from the
 
-39
-00:02:42,744 --> 00:02:47,148
+41
+00:02:51,720 --> 00:02:56,124
 Sustain When you pull the last sheet from
 the bin, refill it from the shelf before
 
-40
-00:02:47,148 --> 00:02:51,552
+42
+00:02:56,124 --> 00:03:00,528
 you walk away, while you are already
 standing there.
 
-41
-00:02:51,552 --> 00:02:54,960
+43
+00:03:00,528 --> 00:03:03,936
 Sustain Ten seconds, by whoever
 
-42
-00:02:54,960 --> 00:02:59,328
+44
+00:03:03,936 --> 00:03:08,304
 Sustain Ten seconds, by whoever took that
 sheet.
 
-43
-00:02:59,328 --> 00:03:04,848
+45
+00:03:08,304 --> 00:03:13,824
 Sustain The min line inside the bin is the
 earlier signal, because at the
 
-44
-00:03:04,848 --> 00:03:08,916
+46
+00:03:13,824 --> 00:03:17,892
 Sustain The min line inside the bin is the
 earlier signal, because at the line the
 
-45
-00:03:08,916 --> 00:03:12,984
+47
+00:03:17,892 --> 00:03:21,960
 next ream goes on the shopping list that
 day.
 
-46
-00:03:12,984 --> 00:03:18,432
+48
+00:03:21,960 --> 00:03:27,408
 Sustain Anything on the machine lid is the
 other tell, since a lid used
 
-47
-00:03:18,432 --> 00:03:22,476
+49
+00:03:27,408 --> 00:03:31,452
 Sustain Anything on the machine lid is the
 other tell, since a lid used as a shelf
 
-48
-00:03:22,476 --> 00:03:26,520
+50
+00:03:31,452 --> 00:03:35,496
 is a scanner about to stop being one.
 
-49
-00:03:26,520 --> 00:03:31,176
+51
+00:03:35,496 --> 00:03:40,152
 Sustain Everything here fails mid job,
 when you are
 
-50
-00:03:31,176 --> 00:03:34,464
+52
+00:03:40,152 --> 00:03:43,440
 Sustain Everything here fails mid job,
 when you are least willing to stop and fix
 
-51
-00:03:34,464 --> 00:03:37,752
+53
+00:03:43,440 --> 00:03:46,728
 it.
 
-52
-00:03:37,752 --> 00:03:41,308
+54
+00:03:46,728 --> 00:03:50,284
 The call The old printer is still in the
 corner, or on the floor of the cupboard,
 
-53
-00:03:41,308 --> 00:03:44,864
+55
+00:03:50,284 --> 00:03:53,840
 because it might be a backup.
 
-54
-00:03:44,864 --> 00:03:48,420
+56
+00:03:53,840 --> 00:03:57,396
 Settle it before you leave this corner
 today: plug it in and print a test page
 
-55
-00:03:48,420 --> 00:03:51,976
+57
+00:03:57,396 --> 00:04:00,952
 right now.
 
-56
-00:03:51,976 --> 00:03:55,532
+58
+00:04:00,952 --> 00:04:04,508
 If it prints, and you are prepared to keep
 a spare cartridge for it in stock, it is
 
-57
-00:03:55,532 --> 00:03:59,088
+59
+00:04:04,508 --> 00:04:08,064
 a backup and it gets a home.
 
-58
-00:03:59,088 --> 00:04:02,644
+60
+00:04:08,064 --> 00:04:11,620
 If you will not plug it in today, it is
 not a backup, it is a large object you
 have
 
-59
-00:04:02,644 --> 00:04:06,200
+61
+00:04:11,620 --> 00:04:15,176
 not decided about, and it goes to
 electronics recycling this week.
 
-60
-00:04:06,200 --> 00:04:09,756
+62
+00:04:15,176 --> 00:04:18,732
 Apply the same blade to the sealed
 cartridges: hold each box against the
 model
 
-61
-00:04:09,756 --> 00:04:13,312
+63
+00:04:18,732 --> 00:04:22,288
 number on the machine you actually use.
 
-62
-00:04:13,312 --> 00:04:16,868
+64
+00:04:22,288 --> 00:04:25,844
 Anything unmatched sells this week for
 more than it will ever be worth again,
 
-63
-00:04:16,868 --> 00:04:20,424
+65
+00:04:25,844 --> 00:04:29,400
 because cartridge value only falls.
 
-64
-00:04:20,424 --> 00:04:27,288
+66
+00:04:29,400 --> 00:04:36,264
 Printer and Scanning Station The full
 reset, free at 6s-success.com

@@ -9,282 +9,298 @@ stays straight and does not fall on
 anyone.
 
 3
-00:00:09,024 --> 00:00:11,004
-What done looks like
+00:00:09,024 --> 00:00:12,912
+Where it is Material Rack One of 6 micro
+zones in the Workshop.
 
 4
-00:00:11,004 --> 00:00:12,984
-1 Boards lying flat
+00:00:12,912 --> 00:00:16,800
+Each one is a session that finishes on its
+own.
 
 5
-00:00:12,984 --> 00:00:14,964
-2 Supported along their length with the
-longest
+00:00:16,800 --> 00:00:19,992
+What done looks like
 
 6
-00:00:14,964 --> 00:00:16,944
-3 Heaviest at the bottom
+00:00:19,992 --> 00:00:23,184
+1 Boards lying flat and supported along
+their length with the longest and heaviest
 
 7
-00:00:16,944 --> 00:00:18,924
-4 Sheet goods standing on edge against the
-wall rather than leaning out into the
+00:00:23,184 --> 00:00:26,376
+at the bottom, sheet goods standing on
+edge against the wall rather than leaning
 
 8
-00:00:18,924 --> 00:00:20,904
-room
+00:00:26,376 --> 00:00:29,568
+out into the room, and an offcut bin with
+its size floor written on the front in
 
 9
-00:00:20,904 --> 00:00:25,224
-One session Material Rack 60-90 min
+00:00:29,568 --> 00:00:32,760
+marker
 
 10
-00:00:25,224 --> 00:00:28,536
-Sort Take the offcut bin apart piece by
+00:00:32,760 --> 00:00:35,952
+2 Nothing stored directly on the floor,
+and the route from the bench to the door
 
 11
-00:00:28,536 --> 00:00:33,672
+00:00:35,952 --> 00:00:39,144
+clear along its full width
+
+12
+00:00:39,144 --> 00:00:43,464
+One session Material Rack 60-90 min
+
+13
+00:00:43,464 --> 00:00:46,776
+Sort Take the offcut bin apart piece by
+
+14
+00:00:46,776 --> 00:00:51,912
 Sort Take the offcut bin apart piece by
 piece against a written size floor.
 
-12
-00:00:33,672 --> 00:00:37,428
+15
+00:00:51,912 --> 00:00:55,668
 Sort Twisted or badly cupped boards,
 anything with hidden nails or an unknown
 
-13
-00:00:37,428 --> 00:00:41,184
+16
+00:00:55,668 --> 00:00:59,424
 coating, and pressure
 
-14
-00:00:41,184 --> 00:00:45,344
+17
+00:00:59,424 --> 00:01:03,584
 Sort Twisted or badly cupped boards,
 anything with hidden nails or an unknown
 
-15
-00:00:45,344 --> 00:00:49,504
+18
+00:01:03,584 --> 00:01:07,744
 coating, and pressure treated scrap all
 leave, and the coated stock does not go on
 
-16
-00:00:49,504 --> 00:00:53,664
+19
+00:01:07,744 --> 00:01:11,904
 the fire.
 
-17
-00:00:53,664 --> 00:00:57,840
+20
+00:01:11,904 --> 00:01:16,080
 Straighten Group by length and thickness
 so you can pull a board without unstacking
 
-18
-00:00:57,840 --> 00:01:02,016
+21
+00:01:16,080 --> 00:01:20,256
 three others, put pipe, trim, and dowel
 
-19
-00:01:02,016 --> 00:01:07,176
+22
+00:01:20,256 --> 00:01:25,416
 Straighten Group by length and thickness
 so you can pull a board without unstacking
 
-20
-00:01:07,176 --> 00:01:12,336
+23
+00:01:25,416 --> 00:01:30,576
 three others, put pipe, trim, and dowel
 upright in a vertical bin, and support
 flat
 
-21
-00:01:12,336 --> 00:01:17,496
+24
+00:01:30,576 --> 00:01:35,736
 stock at intervals close enough that
 nothing sags between brackets.
 
-22
-00:01:17,496 --> 00:01:21,492
+25
+00:01:35,736 --> 00:01:39,732
 Shine Sweep out the gap behind the rack
 where sawdust, spider webs, and mouse
 
-23
-00:01:21,492 --> 00:01:25,488
+26
+00:01:39,732 --> 00:01:43,728
 droppings collect out of sight,
 
-24
-00:01:25,488 --> 00:01:29,752
+27
+00:01:43,728 --> 00:01:47,992
 Shine Sweep out the gap behind the rack
 where sawdust, spider webs, and mouse
 
-25
-00:01:29,752 --> 00:01:34,016
+28
+00:01:47,992 --> 00:01:52,256
 droppings collect out of sight, then wipe
 surface rust off steel stock and give it
 
-26
-00:01:34,016 --> 00:01:38,280
+29
+00:01:52,256 --> 00:01:56,520
 a light oil before it goes back.
 
-27
-00:01:38,280 --> 00:01:43,392
+30
+00:01:56,520 --> 00:02:01,632
 Safety Fix the rack into structural
 framing, not just the wall
 
-28
-00:01:43,392 --> 00:01:47,112
+31
+00:02:01,632 --> 00:02:05,352
 Safety Fix the rack into structural
 framing, not just the wall skin, and load
 it
 
-29
-00:01:47,112 --> 00:01:50,832
+32
+00:02:05,352 --> 00:02:09,072
 heaviest at the bottom.
 
-30
-00:01:50,832 --> 00:01:56,304
+33
+00:02:09,072 --> 00:02:14,544
 Safety A full sheet of ply leaning at too
 shallow an angle will slide flat
 
-31
-00:01:56,304 --> 00:02:00,708
+34
+00:02:14,544 --> 00:02:18,948
 Safety A full sheet of ply leaning at too
 shallow an angle will slide flat without
 
-32
-00:02:00,708 --> 00:02:05,112
+35
+00:02:18,948 --> 00:02:23,352
 warning, and it will take out whatever is
 in front of it.
 
-33
-00:02:05,112 --> 00:02:08,880
+36
+00:02:23,352 --> 00:02:27,120
 Standardize Mark the lengths on the rack
 rails so stock returns to the right bay,
 
-34
-00:02:08,880 --> 00:02:12,648
+37
+00:02:27,120 --> 00:02:30,888
 write the size floor on the
 
-35
-00:02:12,648 --> 00:02:17,048
+38
+00:02:30,888 --> 00:02:35,288
 Standardize Mark the lengths on the rack
 rails so stock returns to the right bay,
 
-36
-00:02:17,048 --> 00:02:21,448
+39
+00:02:35,288 --> 00:02:39,688
 write the size floor on the offcut bin,
 and mark a fill line above which the bin
 is
 
-37
-00:02:21,448 --> 00:02:25,848
+40
+00:02:39,688 --> 00:02:44,088
 full and the shortest piece leaves.
 
-38
-00:02:25,848 --> 00:02:31,080
+41
+00:02:44,088 --> 00:02:49,320
 Sustain Before you unplug the saw at the
 end of a cutting session,
 
-39
-00:02:31,080 --> 00:02:35,508
+42
+00:02:49,320 --> 00:02:53,748
 Sustain Before you unplug the saw at the
 end of a cutting session, every offcut
 
-40
-00:02:35,508 --> 00:02:39,936
+43
+00:02:53,748 --> 00:02:58,176
 gets a verdict: the bin or the fire
 bucket.
 
-41
-00:02:39,936 --> 00:02:44,568
+44
+00:02:58,176 --> 00:03:02,808
 Sustain Not the bench, not the floor, not
 the top of
 
-42
-00:02:44,568 --> 00:02:48,588
+45
+00:03:02,808 --> 00:03:06,828
 Sustain Not the bench, not the floor, not
 the top of the rack.
 
-43
-00:02:48,588 --> 00:02:52,608
+46
+00:03:06,828 --> 00:03:10,848
 Five minutes, by whoever made the cuts.
 
-44
-00:02:52,608 --> 00:02:58,440
+47
+00:03:10,848 --> 00:03:16,680
 Sustain The fill line on the bin is the
 signal, and anything stored directly
 
-45
-00:02:58,440 --> 00:03:03,060
+48
+00:03:16,680 --> 00:03:21,300
 Sustain The fill line on the bin is the
 signal, and anything stored directly on
 the
 
-46
-00:03:03,060 --> 00:03:07,680
+49
+00:03:21,300 --> 00:03:25,920
 shop floor is the other, both readable
 from the door.
 
-47
-00:03:07,680 --> 00:03:13,320
+50
+00:03:25,920 --> 00:03:31,560
 Sustain Recovery is the shortest pieces
 leaving until the bin is back under its
 
-48
-00:03:13,320 --> 00:03:16,584
+51
+00:03:31,560 --> 00:03:34,824
 Sustain Recovery is the shortest pieces
 leaving until the bin is back under its
 
-49
-00:03:16,584 --> 00:03:19,848
+52
+00:03:34,824 --> 00:03:38,088
 line.
 
-50
-00:03:19,848 --> 00:03:23,112
+53
+00:03:38,088 --> 00:03:41,352
 Every cut makes an offcut, and every
 offcut looks useful.
 
-51
-00:03:23,112 --> 00:03:27,014
+54
+00:03:41,352 --> 00:03:45,254
 The call This is the hardest decision in
 the workshop and you already know it.
 
-52
-00:03:27,014 --> 00:03:30,917
+55
+00:03:45,254 --> 00:03:49,157
 Every short piece in that bin is genuinely
 usable, which is exactly why the pile
 
-53
-00:03:30,917 --> 00:03:34,819
+56
+00:03:49,157 --> 00:03:53,059
 never shrinks, and the cost of keeping it
 is invisible while the cost of tossing it
 
-54
-00:03:34,819 --> 00:03:38,722
+57
+00:03:53,059 --> 00:03:56,962
 feels sharp.
 
-55
-00:03:38,722 --> 00:03:42,624
+58
+00:03:56,962 --> 00:04:00,864
 Set two limits and let them decide for you
 instead.
 
-56
-00:03:42,624 --> 00:03:46,526
+59
+00:04:00,864 --> 00:04:04,766
 A size floor, anything shorter than your
 forearm or narrower than your palm, and a
 
-57
-00:03:46,526 --> 00:03:50,429
+60
+00:04:04,766 --> 00:04:08,669
 bin cap, one bin and no overflow.
 
-58
-00:03:50,429 --> 00:03:54,331
+61
+00:04:08,669 --> 00:04:12,571
 When the bin is full, the shortest piece
 in it leaves to make room for the newest.
 
-59
-00:03:54,331 --> 00:03:58,234
+62
+00:04:12,571 --> 00:04:16,474
 You are not judging whether a piece is
 good wood.
 
-60
-00:03:58,234 --> 00:04:02,136
+63
+00:04:16,474 --> 00:04:20,376
 You are only judging whether it is better
 than the worst piece already in the bin.
 
-61
-00:04:02,136 --> 00:04:08,040
+64
+00:04:20,376 --> 00:04:26,280
 Material Rack The full reset, free at
 6s-success.com

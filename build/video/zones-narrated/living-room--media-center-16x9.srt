@@ -9,326 +9,336 @@ cool and
 cabled so a fault is findable.
 
 3
-00:00:08,544 --> 00:00:11,968
-What done looks like
+00:00:08,544 --> 00:00:12,540
+Where it is Media Center One of 6 micro
+zones in the Living Room.
 
 4
-00:00:11,968 --> 00:00:15,392
+00:00:12,540 --> 00:00:16,536
+Each one is a session that finishes on its
+own.
+
+5
+00:00:16,536 --> 00:00:19,960
+What done looks like
+
+6
+00:00:19,960 --> 00:00:23,384
 1 Every cable labelled at both ends,
 running in one bundle to a single labelled
 
-5
-00:00:15,392 --> 00:00:18,816
+7
+00:00:23,384 --> 00:00:26,808
 power strip
 
-6
-00:00:18,816 --> 00:00:22,240
+8
+00:00:26,808 --> 00:00:30,232
 2 Nothing plugged in that serves a device
 you no longer own, a clear hand's gap of
 
-7
-00:00:22,240 --> 00:00:25,664
+9
+00:00:30,232 --> 00:00:33,656
 air around the amplifier and console
 vents, and every game controller and
 remote in
 
-8
-00:00:25,664 --> 00:00:29,088
+10
+00:00:33,656 --> 00:00:37,080
 one bin instead of four locations
 
-9
-00:00:29,088 --> 00:00:33,960
+11
+00:00:37,080 --> 00:00:41,952
 One session Media Center 45-75 min
 
-10
-00:00:33,960 --> 00:00:37,968
+12
+00:00:41,952 --> 00:00:45,960
 Sort Unplug and lay out every cable, then
 
-11
-00:00:37,968 --> 00:00:44,304
+13
+00:00:45,960 --> 00:00:52,296
 Sort Unplug and lay out every cable, then
 name the device each one serves.
 
-12
-00:00:44,304 --> 00:00:47,748
-Sort The composite leads, the disc player
-nobody has loaded in a year, the
-
-13
-00:00:47,748 --> 00:00:51,192
-streaming stick
-
 14
-00:00:51,192 --> 00:00:54,864
+00:00:52,296 --> 00:00:55,740
 Sort The composite leads, the disc player
 nobody has loaded in a year, the
 
 15
-00:00:54,864 --> 00:00:58,536
+00:00:55,740 --> 00:00:59,184
+streaming stick
+
+16
+00:00:59,184 --> 00:01:02,856
+Sort The composite leads, the disc player
+nobody has loaded in a year, the
+
+17
+00:01:02,856 --> 00:01:06,528
 streaming stick from two televisions ago
 and the charger with the old connector all
 
-16
-00:00:58,536 --> 00:01:02,208
+18
+00:01:06,528 --> 00:01:10,200
 leave.
 
-17
-00:01:02,208 --> 00:01:05,688
+19
+00:01:10,200 --> 00:01:13,680
 Sort Discs and games get one decision
 
-18
-00:01:05,688 --> 00:01:11,880
+20
+00:01:13,680 --> 00:01:19,872
 Sort Discs and games get one decision
 each: sell, lend, or recycle.
 
-19
-00:01:11,880 --> 00:01:17,160
+21
+00:01:19,872 --> 00:01:25,152
 Straighten Bundle the cables by device
 path with velcro ties so one
 
-20
-00:01:17,160 --> 00:01:21,276
+22
+00:01:25,152 --> 00:01:29,268
 Straighten Bundle the cables by device
 path with velcro ties so one console can
 be
 
-21
-00:01:21,276 --> 00:01:25,392
+23
+00:01:29,268 --> 00:01:33,384
 pulled out without disturbing the sound
 bar.
 
-22
-00:01:25,392 --> 00:01:28,512
-Straighten Controllers and remotes get one
-ventilated bin, set at the height of
-
-23
-00:01:28,512 --> 00:01:31,632
-whoever
-
 24
-00:01:31,632 --> 00:01:36,408
+00:01:33,384 --> 00:01:36,504
 Straighten Controllers and remotes get one
 ventilated bin, set at the height of
 
 25
-00:01:36,408 --> 00:01:41,184
+00:01:36,504 --> 00:01:39,624
+whoever
+
+26
+00:01:39,624 --> 00:01:44,400
+Straighten Controllers and remotes get one
+ventilated bin, set at the height of
+
+27
+00:01:44,400 --> 00:01:49,176
 whoever plays, not on top of the unit
 where they slide behind it.
 
-26
-00:01:41,184 --> 00:01:44,316
-Shine Vacuum the dust off the console and
-amplifier vents and the whole back panel
-
-27
-00:01:44,316 --> 00:01:47,448
-of
-
 28
-00:01:47,448 --> 00:01:52,776
+00:01:49,176 --> 00:01:52,308
 Shine Vacuum the dust off the console and
 amplifier vents and the whole back panel
 
 29
-00:01:52,776 --> 00:01:58,104
+00:01:52,308 --> 00:01:55,440
+of
+
+30
+00:01:55,440 --> 00:02:00,768
+Shine Vacuum the dust off the console and
+amplifier vents and the whole back panel
+
+31
+00:02:00,768 --> 00:02:06,096
 of the television, because dust is what
 turns a warm device into a hot one.
 
-30
-00:01:58,104 --> 00:02:01,968
+32
+00:02:06,096 --> 00:02:09,960
 Shine Wipe the screen with a dry
 microfiber
 
-31
-00:02:01,968 --> 00:02:07,896
+33
+00:02:09,960 --> 00:02:15,888
 Shine Wipe the screen with a dry
 microfiber cloth only, never a spray.
 
-32
-00:02:07,896 --> 00:02:12,132
-Safety Heat and power are the two hazards
-behind this unit: keep the vents
-
-33
-00:02:12,132 --> 00:02:16,368
-unblocked, never run one power strip
-
 34
-00:02:16,368 --> 00:02:20,928
+00:02:15,888 --> 00:02:20,124
 Safety Heat and power are the two hazards
 behind this unit: keep the vents
 
 35
-00:02:20,928 --> 00:02:25,488
+00:02:20,124 --> 00:02:24,360
+unblocked, never run one power strip
+
+36
+00:02:24,360 --> 00:02:28,920
+Safety Heat and power are the two hazards
+behind this unit: keep the vents
+
+37
+00:02:28,920 --> 00:02:33,480
 unblocked, never run one power strip into
 another, and look at every cable for a
 
-36
-00:02:25,488 --> 00:02:30,048
+38
+00:02:33,480 --> 00:02:38,040
 cracked or scorched section as you handle
 it.
 
-37
-00:02:30,048 --> 00:02:33,108
-Safety Anchor the television to the wall
-or to the unit, because a screen tipping
-
-38
-00:02:33,108 --> 00:02:36,168
-off the
-
 39
-00:02:36,168 --> 00:02:41,040
+00:02:38,040 --> 00:02:41,100
 Safety Anchor the television to the wall
 or to the unit, because a screen tipping
 
 40
-00:02:41,040 --> 00:02:45,912
+00:02:41,100 --> 00:02:44,160
+off the
+
+41
+00:02:44,160 --> 00:02:49,032
+Safety Anchor the television to the wall
+or to the unit, because a screen tipping
+
+42
+00:02:49,032 --> 00:02:53,904
 off the front edge is the single worst
 thing this room can do to a child.
 
-41
-00:02:45,912 --> 00:02:48,972
-Standardize Label both ends of a cable the
-day it goes in and label the strip's
-
-42
-00:02:48,972 --> 00:02:52,032
-outlets
-
 43
-00:02:52,032 --> 00:02:57,348
+00:02:53,904 --> 00:02:56,964
 Standardize Label both ends of a cable the
 day it goes in and label the strip's
 
 44
-00:02:57,348 --> 00:03:02,664
+00:02:56,964 --> 00:03:00,024
+outlets
+
+45
+00:03:00,024 --> 00:03:05,340
+Standardize Label both ends of a cable the
+day it goes in and label the strip's
+
+46
+00:03:05,340 --> 00:03:10,656
 outlets to match, so a cable that belongs
 to nothing is obvious at a glance.
 
-45
-00:03:02,664 --> 00:03:06,480
+47
+00:03:10,656 --> 00:03:14,472
 Standardize See Chapter 14,
 
-46
-00:03:06,480 --> 00:03:11,304
+48
+00:03:14,472 --> 00:03:19,296
 Standardize See Chapter 14, visual
 controls.
 
-47
-00:03:11,304 --> 00:03:17,160
-Sustain The rule fires on an event rather
-than a clock: nothing gets switched on
-
-48
-00:03:17,160 --> 00:03:22,032
-Sustain The rule fires on an event rather
-than a clock: nothing gets switched on
-
 49
-00:03:22,032 --> 00:03:26,904
+00:03:19,296 --> 00:03:25,152
+Sustain The rule fires on an event rather
+than a clock: nothing gets switched on
+
+50
+00:03:25,152 --> 00:03:30,024
+Sustain The rule fires on an event rather
+than a clock: nothing gets switched on
+
+51
+00:03:30,024 --> 00:03:34,896
 until its cable is labelled at both ends,
 by whoever plugged it in.
 
-50
-00:03:26,904 --> 00:03:30,312
+52
+00:03:34,896 --> 00:03:38,304
 Sustain Two minutes with a marker while
 the
 
-51
-00:03:30,312 --> 00:03:35,616
+53
+00:03:38,304 --> 00:03:43,608
 Sustain Two minutes with a marker while
 the bundle is already in your hand.
 
-52
-00:03:35,616 --> 00:03:41,496
+54
+00:03:43,608 --> 00:03:49,488
 Sustain Slip is one unnamed cable at the
 strip, worth chasing because an
 
-53
-00:03:41,496 --> 00:03:46,416
+55
+00:03:49,488 --> 00:03:54,408
 Sustain Slip is one unnamed cable at the
 strip, worth chasing because an unnamed
 
-54
-00:03:46,416 --> 00:03:51,336
+56
+00:03:54,408 --> 00:03:59,328
 cable usually feeds something the house no
 longer owns.
 
-55
-00:03:51,336 --> 00:03:55,536
+57
+00:03:59,328 --> 00:04:03,528
 Sustain Recovery is tracing that single
 cable,
 
-56
-00:03:55,536 --> 00:04:01,656
+58
+00:04:03,528 --> 00:04:09,648
 Sustain Recovery is tracing that single
 cable, not pulling the bundle apart.
 
-57
-00:04:01,656 --> 00:04:06,552
+59
+00:04:09,648 --> 00:04:14,544
 Sustain This zone can go a year unchanged
 and lose its whole
 
-58
-00:04:06,552 --> 00:04:10,872
+60
+00:04:14,544 --> 00:04:18,864
 Sustain This zone can go a year unchanged
 and lose its whole standard in one
 
-59
-00:04:10,872 --> 00:04:15,192
+61
+00:04:18,864 --> 00:04:23,184
 evening, when a console arrives at
 Christmas.
 
-60
-00:04:15,192 --> 00:04:19,094
+62
+00:04:23,184 --> 00:04:27,086
 The call Somewhere in this unit is a
 working device nobody has switched on in a
 
-61
-00:04:19,094 --> 00:04:22,997
+63
+00:04:27,086 --> 00:04:30,989
 year, and a box of cables kept because
 they might fit something.
 
-62
-00:04:22,997 --> 00:04:26,899
+64
+00:04:30,989 --> 00:04:34,891
 You have avoided this because the devices
 cost real money and letting them go feels
 
-63
-00:04:26,899 --> 00:04:30,802
+65
+00:04:34,891 --> 00:04:38,794
 like admitting the money is gone.
 
-64
-00:04:30,802 --> 00:04:34,704
+66
+00:04:38,794 --> 00:04:42,696
 The money is already gone.
 
-65
-00:04:34,704 --> 00:04:38,606
+67
+00:04:42,696 --> 00:04:46,598
 The rule: power each device on now.
 
-66
-00:04:38,606 --> 00:04:42,509
+68
+00:04:46,598 --> 00:04:50,501
 If it does not boot, or it boots and
 nobody in the house asks for it within the
 
-67
-00:04:42,509 --> 00:04:46,411
+69
+00:04:50,501 --> 00:04:54,403
 month, it goes to recycling or resale this
 week.
 
-68
-00:04:46,411 --> 00:04:50,314
+70
+00:04:54,403 --> 00:04:58,306
 For a cable, name the device it serves out
 loud before you finish picking it up, or
 
-69
-00:04:50,314 --> 00:04:54,216
+71
+00:04:58,306 --> 00:05:02,208
 it leaves, because an unnamed cable will
 still be unnamed next year.
 
-70
-00:04:54,216 --> 00:05:00,120
+72
+00:05:02,208 --> 00:05:08,112
 Media Center The full reset, free at
 6s-success.com

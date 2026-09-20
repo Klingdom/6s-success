@@ -9,294 +9,304 @@ threshold so none of it reaches the rest
 of the floors.
 
 3
-00:00:10,800 --> 00:00:13,800
-What done looks like
+00:00:10,800 --> 00:00:15,624
+Where it is Door, Mat, and Immediate Floor
+One of 5 micro zones in the Entryway.
 
 4
-00:00:13,800 --> 00:00:16,800
+00:00:15,624 --> 00:00:20,448
+Each one is a session that finishes on its
+own.
+
+5
+00:00:20,448 --> 00:00:23,448
+What done looks like
+
+6
+00:00:23,448 --> 00:00:26,448
 1 A coarse mat outside the door and an
 absorbent one inside, both lying dead flat
 
-5
-00:00:16,800 --> 00:00:19,800
+7
+00:00:26,448 --> 00:00:29,448
 with no curled corners
 
-6
-00:00:19,800 --> 00:00:22,800
+8
+00:00:29,448 --> 00:00:32,448
 2 Nothing whatsoever on the floor inside
 the door's swing
 
-7
-00:00:22,800 --> 00:00:25,800
+9
+00:00:32,448 --> 00:00:35,448
 3 A door that latches on the first push
 
-8
-00:00:25,800 --> 00:00:32,016
+10
+00:00:35,448 --> 00:00:41,664
 One session Door, Mat, and Immediate Floor
 15-30 min
 
-9
-00:00:32,016 --> 00:00:37,488
+11
+00:00:41,664 --> 00:00:47,136
 Sort Nothing is stored on this patch of
 floor, so the recycling bag, the
 
-10
-00:00:37,488 --> 00:00:41,904
+12
+00:00:47,136 --> 00:00:51,552
 Sort Nothing is stored on this patch of
 floor, so the recycling bag, the parcel
 
-11
-00:00:41,904 --> 00:00:46,320
+13
+00:00:51,552 --> 00:00:55,968
 waiting to go back and the sports kit all
 move tonight.
 
-12
-00:00:46,320 --> 00:00:50,904
+14
+00:00:55,968 --> 00:01:00,552
 Sort Give outgoing returns one named spot
 in another room and
 
-13
-00:00:50,904 --> 00:00:54,408
+15
+00:01:00,552 --> 00:01:04,056
 Sort Give outgoing returns one named spot
 in another room and carry the rest to
 
-14
-00:00:54,408 --> 00:00:57,912
+16
+00:01:04,056 --> 00:01:07,560
 where they actually belong.
 
-15
-00:00:57,912 --> 00:01:02,448
+17
+00:01:07,560 --> 00:01:12,096
 Straighten Two mats and only two. Coarse
 outside
 
-16
-00:01:02,448 --> 00:01:09,552
+18
+00:01:12,096 --> 00:01:19,200
 Straighten Two mats and only two. Coarse
 outside to scrape, absorbent inside to
 dry.
 
-17
-00:01:09,552 --> 00:01:15,072
-Straighten The inside mat needs to be long
-enough that both feet land on it while
-
-18
-00:01:15,072 --> 00:01:20,040
-Straighten The inside mat needs to be long
-enough that both feet land on it while
-
 19
-00:01:20,040 --> 00:01:25,008
+00:01:19,200 --> 00:01:24,720
+Straighten The inside mat needs to be long
+enough that both feet land on it while
+
+20
+00:01:24,720 --> 00:01:29,688
+Straighten The inside mat needs to be long
+enough that both feet land on it while
+
+21
+00:01:29,688 --> 00:01:34,656
 walking, and most are not, which is
 exactly how the grit gets past.
 
-20
-00:01:25,008 --> 00:01:29,664
+22
+00:01:34,656 --> 00:01:39,312
 Shine Vacuum the inside mat on both faces,
 then take
 
-21
-00:01:29,664 --> 00:01:33,240
+23
+00:01:39,312 --> 00:01:42,888
 Shine Vacuum the inside mat on both faces,
 then take it outdoors, beat it and wash
 
-22
-00:01:33,240 --> 00:01:36,816
+24
+00:01:42,888 --> 00:01:46,464
 it.
 
-23
-00:01:36,816 --> 00:01:42,240
+25
+00:01:46,464 --> 00:01:51,888
 Shine Run a cloth along the bottom edge of
 the door and along the threshold
 
-24
-00:01:42,240 --> 00:01:46,920
+26
+00:01:51,888 --> 00:01:56,568
 Shine Run a cloth along the bottom edge of
 the door and along the threshold strip,
 
-25
-00:01:46,920 --> 00:01:51,600
+27
+00:01:56,568 --> 00:02:01,248
 because that dark line is all the grit the
 mat never caught.
 
-26
-00:01:51,600 --> 00:01:56,592
+28
+00:02:01,248 --> 00:02:06,240
 Safety A curled mat corner and a mat that
 slides on hard
 
-27
-00:01:56,592 --> 00:02:00,672
+29
+00:02:06,240 --> 00:02:10,320
 Safety A curled mat corner and a mat that
 slides on hard floor are the two ways
 
-28
-00:02:00,672 --> 00:02:04,752
+30
+00:02:10,320 --> 00:02:14,400
 this threshold puts somebody down.
 
-29
-00:02:04,752 --> 00:02:10,656
+31
+00:02:14,400 --> 00:02:20,304
 Safety Grip or tape the edges flat, and
 dry the floor immediately when
 
-30
-00:02:10,656 --> 00:02:15,216
+32
+00:02:20,304 --> 00:02:24,864
 Safety Grip or tape the edges flat, and
 dry the floor immediately when someone
 
-31
-00:02:15,216 --> 00:02:19,776
+33
+00:02:24,864 --> 00:02:29,424
 comes in soaked rather than leaving it to
 evaporate.
 
-32
-00:02:19,776 --> 00:02:25,824
+34
+00:02:29,424 --> 00:02:35,472
 Standardize Run a thin line of tape around
 where the mat should sit, so a mat kicked
 
-33
-00:02:25,824 --> 00:02:30,792
+35
+00:02:35,472 --> 00:02:40,440
 Standardize Run a thin line of tape around
 where the mat should sit, so a mat
 
-34
-00:02:30,792 --> 00:02:35,760
+36
+00:02:40,440 --> 00:02:45,408
 kicked out of position is obvious to
 anyone walking in rather than only to you.
 
-35
-00:02:35,760 --> 00:02:40,296
+37
+00:02:45,408 --> 00:02:49,944
 Sustain The mat sits on the route back to
 the vacuum cupboard, so
 
-36
-00:02:40,296 --> 00:02:44,712
+38
+00:02:49,944 --> 00:02:54,360
 Sustain The mat sits on the route back to
 the vacuum cupboard, so whoever ran the
 
-37
-00:02:44,712 --> 00:02:49,128
+39
+00:02:54,360 --> 00:02:58,776
 vacuum straightens and cleans it last,
 every time.
 
-38
-00:02:49,128 --> 00:02:54,840
+40
+00:02:58,776 --> 00:03:04,488
 Sustain Overnight the job is smaller: the
 last person in nudges
 
-39
-00:02:54,840 --> 00:02:58,920
+41
+00:03:04,488 --> 00:03:08,568
 Sustain Overnight the job is smaller: the
 last person in nudges it back inside its
 
-40
-00:02:58,920 --> 00:03:03,000
+42
+00:03:08,568 --> 00:03:12,648
 taped outline with a foot.
 
-41
-00:03:03,000 --> 00:03:08,856
+43
+00:03:12,648 --> 00:03:18,504
 Sustain Slip is visible before you reach
 the door, as a curled corner outside
 
-42
-00:03:08,856 --> 00:03:13,404
+44
+00:03:18,504 --> 00:03:23,052
 Sustain Slip is visible before you reach
 the door, as a curled corner outside the
 
-43
-00:03:13,404 --> 00:03:17,952
+45
+00:03:23,052 --> 00:03:27,600
 tape or a grey line of grit along the
 threshold.
 
-44
-00:03:17,952 --> 00:03:22,560
+46
+00:03:27,600 --> 00:03:32,208
 Sustain Recovery is beating both mats
 outdoors, ten
 
-45
-00:03:22,560 --> 00:03:29,112
+47
+00:03:32,208 --> 00:03:38,760
 Sustain Recovery is beating both mats
 outdoors, ten minutes, not a hall clean.
 
-46
-00:03:29,112 --> 00:03:34,080
+48
+00:03:38,760 --> 00:03:43,728
 Sustain Unlike the rest of this room, the
 zone degrades on
 
-47
-00:03:34,080 --> 00:03:37,800
+49
+00:03:43,728 --> 00:03:47,448
 Sustain Unlike the rest of this room, the
 zone degrades on a schedule set by
 
-48
-00:03:37,800 --> 00:03:41,520
+50
+00:03:47,448 --> 00:03:51,168
 weather rather than by habits.
 
-49
-00:03:41,520 --> 00:03:45,151
+51
+00:03:51,168 --> 00:03:54,799
 The call A mat looks perfectly fine long
 after it has stopped working, and the
 
-50
-00:03:45,151 --> 00:03:48,782
+52
+00:03:54,799 --> 00:03:58,430
 decision being dodged is spending money to
 replace something that is not visibly
 
-51
-00:03:48,782 --> 00:03:52,413
+53
+00:03:58,430 --> 00:04:02,061
 broken.
 
-52
-00:03:52,413 --> 00:03:56,043
+54
+00:04:02,061 --> 00:04:05,691
 So test it instead of looking at it.
 
-53
-00:03:56,043 --> 00:03:59,674
+55
+00:04:05,691 --> 00:04:09,322
 Walk in from outside on a dry gritty day,
 wipe your feet the way you actually wipe
 
-54
-00:03:59,674 --> 00:04:03,305
+56
+00:04:09,322 --> 00:04:12,953
 them, then lift the mat and look at both
 the floor beneath it and the fibres
 
-55
-00:04:03,305 --> 00:04:06,936
+57
+00:04:12,953 --> 00:04:16,584
 themselves.
 
-56
-00:04:06,936 --> 00:04:10,567
+58
+00:04:16,584 --> 00:04:20,215
 A working mat holds grit down inside its
 pile and drops a clear line of dirt when
 
-57
-00:04:10,567 --> 00:04:14,198
+59
+00:04:20,215 --> 00:04:23,846
 you shake it out.
 
-58
-00:04:14,198 --> 00:04:17,829
+60
+00:04:23,846 --> 00:04:27,477
 A finished mat has fibres flattened all in
 one direction, and the grit sits on top
 
-59
-00:04:17,829 --> 00:04:21,459
+61
+00:04:27,477 --> 00:04:31,107
 of them and walks straight off on the next
 pair of shoes.
 
-60
-00:04:21,459 --> 00:04:25,090
+62
+00:04:31,107 --> 00:04:34,738
 If it fails that test, replace it this
 month rather than next winter.
 
-61
-00:04:25,090 --> 00:04:28,721
+63
+00:04:34,738 --> 00:04:38,369
 A worn mat is not saving you anything.
 
-62
-00:04:28,721 --> 00:04:32,352
+64
+00:04:38,369 --> 00:04:42,000
 It is quietly sanding the finish off every
 floor between this door and the kitchen.
 
-63
-00:04:32,352 --> 00:04:39,984
+65
+00:04:42,000 --> 00:04:49,632
 Door, Mat, and Immediate Floor The full
 reset, free at 6s-success.com
