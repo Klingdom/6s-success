@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-20 21:16",
- "commit": "1d2f2fd9",
- "commit_msg": "Log addendum: the concurrent push during this cycle, and the build-id gate catch",
+ "generated": "2026-09-20 21:47",
+ "commit": "300c8ad8",
+ "commit_msg": "PM check-in 21:1x: previous work (D3) confirmed finished locally, CI confirmation on tail commits handed to operator, D5 next",
  "commits_7d": 1213,
- "commits_total": 3101,
+ "commits_total": 3102,
  "traffic_line": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-20 10:15",

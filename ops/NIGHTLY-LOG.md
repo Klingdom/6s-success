@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 21:4x (30-minute triage, the prior check-in's own CI claim was wrong, corrected and re-verified rather than handed off unread)
+
+NEXT FOR THE OPERATOR: check `checks.yml`'s latest run against `main` HEAD (manually dispatched this cycle via `workflow_dispatch` since no path-matching push exists to trigger it on its own). If it lands green, start D5 (shrink the 481-word retailer-link block below the method, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "blocked on nothing"), because D3/D4 are both genuinely done and D5 is the next unblocked row in that review. If that dispatched run is red, fixing whatever it names is the actual next item, ahead of D5.
+
+**Attached clean:** shallow, detached checkout, no common ancestor until `fetch --unshallow`; `merge --ff-only` onto `origin/main`, no reset or force.
+
+**The 21:1x check-in reported D3's CI as unconfirmed ("still in_progress"). It was not in progress by the time this cycle checked; it had already finished, and it had failed.** Checked both workflows directly rather than repeat the "unconfirmed" line forward: `checks.yml` run #1219 and `publish-image.yml` run #356, both against the real D3 content commit `c723717`, both completed with conclusion `failure`. Pulled the actual failing step in both: the `build-id` preflight gate, `site/build-id.txt` still reading the pre-D3 hash (`4a09c1b7a41ab6c0`) against a tree that now hashes to `da487ad83eba611b`. This is the same defect the 21:1x entry's own "cycle addendum" section already named and fixed locally (`ops/build_id.py`, commit `90a1600`), and `publish-image.yml` run #357 on that fix commit is confirmed `success`, so that workflow really is closed.
+
+**`checks.yml` was never actually re-confirmed, though, and saying so plainly is the point of this entry.** It only triggers on pushes touching `ops/**`, `build/**`, `content/**`, `mcp/**` or a short allow-list of other paths; the fix commit (`90a1600`) touched only `site/build-id.txt` and the follow-up (`d4a0b57`) only the command deck, so neither matched its filter and no new run ever fired. The last real information `checks.yml` has about D3's `ops/`/`content/` changes is a `failure`. Rather than hand that forward as a third "unconfirmed," dispatched `checks.yml` manually against `main` via `workflow_dispatch` this cycle; it was still running when this entry was written (these full-suite runs take 13-20 minutes here), so its result is for the operator to read, not invented here.
+
+**Also ran `ops/preflight.py` locally in full against current HEAD.** It finished with 1 gate failed: `etsy-pdfs-current` refused to check, reporting `build/listings/etsy/` already dirty. That was self-inflicted, not a real defect: an earlier deep run in this same cycle was cut off by an outer shell timeout while `gate_etsy_pdfs_current`'s own subprocess had already regenerated the five PDFs for comparison, before its `_restore_etsy_all()` cleanup step could run. Confirmed by reading the diff (binary-only, size-identical files, the exact rendering-noise shape that gate's own docstring already describes and the reason it compares normalized text, not bytes) before restoring with `git checkout -- build/listings/etsy/`. A fast rerun after the restore was still in progress at write time; not asserted clean here, the operator's own preflight run at :43 is the next real read.
+
+**Went well:** treating "the last cycle said unconfirmed" as a claim to re-check against GitHub's actual run state rather than a settled fact, which is what surfaced that it had in fact failed.
+
+**Did not go well:** `checks.yml`'s path filter left a real ops/content change (D3) without any confirmed-green CI run for going on 30 minutes, because the only pushes that followed it were build-id and dashboard-only. Worth a standing note: a content/ops commit followed only by generated-file restamps can silently exit CI's coverage this way; `checks.yml`'s own `workflow_dispatch` trigger is the correct escape hatch, used this cycle.
+
+**Changing next cycle:** none; existing gates and workflows are correctly shaped, this was a verification gap, not a broken gate.
+
+Pushed to main. This log entry and command-deck regeneration only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 21:1x (30-minute triage, previous work confirmed finished locally, CI confirmation on D3's tail commits handed to the operator, D5 next)
 
 **Attached clean:** shallow, detached checkout, no common ancestor until `fetch --unshallow`; `merge --ff-only` onto `origin/main`, no reset or force.
