@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-20 11:50",
- "commit": "f70f657c",
- "commit_msg": "OWNER-ACTIONS.md: bump stale Last-measured header to match the 2026-09-20 body date, fixing the real preflight gate FAIL (and CI's checks.yml run 1194) the prior PM cycle's own edit had left behind",
+ "generated": "2026-09-20 11:57",
+ "commit": "5a51f6d1",
+ "commit_msg": "Nightly log: record independently converging on the same CI-break fix a concurrent PM cycle already pushed",
  "commits_7d": 1235,
- "commits_total": 3022,
+ "commits_total": 3023,
  "traffic_line": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-18 15:10; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "968 pageviews from 79 visitors across 206 visits, 2026-08-20 to 2026-09-18. **441 of those pageviews came from 2 automated session(s)**, leaving 527 from 77 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-18 15:10",

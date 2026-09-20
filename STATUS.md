@@ -395,20 +395,27 @@ Supporting agents:
 - `qa-reviewer`
 - `analytics-intelligence`
 
+**Corrected 2026-09-20, scheduled operator cycle.** Every row below had stood
+UNKNOWN even though most journeys are implemented and code-verified. Per
+`CLAUDE.md` 0.3, "verified" here means proved against the repository through
+automated/headless-browser tests, not against live production: this sandbox
+has no egress to `6s-success.com`, so no row claims a live-production check
+it did not make.
+
 | Journey | Status | Notes |
 |---|---|---|
-| Homepage → useful next action | UNKNOWN | Verify |
-| Room discovery | UNKNOWN | Verify implementation |
-| Micro-zone discovery | UNKNOWN | Verify implementation |
-| Personal Function Discovery | UNKNOWN | Determine current implementation |
-| Root-cause guidance | UNKNOWN | Determine current implementation |
-| Quest selection | UNKNOWN | Determine current implementation |
-| Quest completion | UNKNOWN | Determine current implementation |
-| Product discovery | UNKNOWN | Verify |
-| Cart/checkout | UNKNOWN | Verify actual commerce implementation |
-| Purchased content access | UNKNOWN | Verify if implemented |
-| Mobile experience | UNKNOWN | Audit |
-| Accessibility | UNKNOWN | Audit |
+| Homepage → useful next action | IMPLEMENTED | Home page leads to the Home Quest and the shop; `ops/audit_pages.py`/`audit_visual.py` find 0 findings across 190-191 pages, most recently re-run this cycle |
+| Room discovery | IMPLEMENTED | 20 room pages, avg 28.8 inbound content links each, 0 orphans (`ops/link_graph_report.py`, this cycle) |
+| Micro-zone discovery | IMPLEMENTED | 114 zone pages, same source, 0 orphans; `resources.html` links directly to all 114 |
+| Personal Function Discovery | IMPLEMENTED for 5 zones | The Home Quest's first screen (`#symptom-step`) asks "What is annoying you right now?" in household words, then shows the zone, the real cause and a 2-minute action, per `CLAUDE.md` section 5's model. `SYMPTOM_PICKS` currently covers 5 zones (Entryway + Kitchen); the rest fall through to browsing by room |
+| Root-cause guidance | IMPLEMENTED for 12 of 114 zones | Diagnosis block (friction → root cause → action) renders on the 12 pilot zones, gated by `gate_diagnosis_rendered`. The remaining 102 are deliberately held for a 21-day pilot read before widening (`BACKLOG-2026-09-07.md` A1) |
+| Quest selection | IMPLEMENTED, browser-tested | Symptom-first entry plus draw/room/single-pass modes; `ops/tests/test_quest_flow.py` and siblings drive the real flow in headless Chromium end to end |
+| Quest completion | IMPLEMENTED, browser-tested | Victory conditions, Keep screen (photo record), back-button and full-completion edge cases all covered by dedicated headless-Chromium tests, several regressions caught and fixed this week (Keep-screen URL leak, Back button, full-completion shortcut) |
+| Product discovery | IMPLEMENTED, browser-tested | `shop.html`'s filterable grid: `ops/tests/test_shop_interactive.py` (new this week) drives all 8 real category filters and cross-checks rendered tile counts against the live catalogue, 155 distinct buy links, 0 defects found |
+| Cart/checkout | ONE-CLICK STRIPE LINKS | Cart removed 2026-09-08 (was unreachable, no page could add to it); replaced with a per-product Stripe Payment Link. 158 of 159 catalogue SKUs buyable (`ops/check_sellable.py`); Corporate Lean 6S is quote-based by design |
+| Purchased content access | WORKING, one real order | The one recorded sale (Whole House Print Pack, 2026-08-21) fulfilled unattended in about 10 minutes per `ROADMAP-2026-2029.md`. No live-production re-check possible this cycle (no Stripe credential, no egress) |
+| Mobile experience | AUDITED, browser-tested | `ops/audit_visual.py --all --mobile`: 0 pages scrolling sideways (last real defect fixed 2026-09-18), touch-target and badge-contrast gates in `preflight.py`, 5 mobile `npm test` suites passing |
+| Accessibility | AUDITED, browser-tested | `ops/audit_visual.py`: 0 contrast/heading/landmark findings across 190+ pages after the CSS-`opacity`-aware contrast fix (A6); semantic landmarks wired by `wire_landmarks` on every generated page |
 
 ---
 
@@ -467,22 +474,29 @@ Supporting:
 - `content-editor`
 - `analytics-intelligence`
 
-| Metric / Area | Status |
-|---|---|
-| Search Console connected | UNKNOWN |
-| Indexed pages | UNKNOWN |
-| Search impressions | UNKNOWN |
-| Search clicks | UNKNOWN |
-| Organic CTR | UNKNOWN |
-| Top queries | UNKNOWN |
-| Top landing pages | UNKNOWN |
-| Technical SEO health | UNKNOWN |
-| Structured data health | UNKNOWN |
-| Sitemap health | UNKNOWN |
-| Internal-link architecture | UNKNOWN |
-| Room search architecture | UNKNOWN |
-| Micro-zone search architecture | UNKNOWN |
-| AEO/direct-answer coverage | UNKNOWN |
+**Corrected 2026-09-20, scheduled operator cycle.** This table had stood as
+an unfilled bootstrap template, every row UNKNOWN, even though most rows are
+directly checkable from the repository or from evidence already measured
+and cited in `GOALS.md`. Filled with what this cycle could verify directly;
+a row stays UNKNOWN only where the real answer needs a credential
+(Search Console) this sandbox does not hold.
+
+| Metric / Area | Status | Notes |
+|---|---|---|
+| Search Console connected | NO | No `google-site-verification` meta tag or file on the live homepage/repository; confirmed by grep this cycle. Owner gate: `OWNER-ACTIONS.md` item 2, a 3-minute paste from Phil. Every day unverified is gone permanently, no backfill |
+| Indexed pages | UNKNOWN | Needs Search Console. The one indirect signal we have is crawl activity, not indexing: `GOALS.md` recorded Googlebot fetching the site 178 times in 72 hours (2026-09-05), 171 answered 200 |
+| Search impressions | UNKNOWN | Needs Search Console |
+| Search clicks | UNKNOWN | Needs Search Console |
+| Organic CTR | UNKNOWN | Needs Search Console |
+| Top queries | UNKNOWN | Needs Search Console |
+| Top landing pages | PARTIALLY KNOWN | From Umami, not Search Console: of Google's 6 landing pageviews ever, 4 landed on `/standards.html`, 2 on the home page (measured 2026-09-14, reconfirmed 2026-09-17). The Standards Pack is the one page organic search currently sends anyone to |
+| Technical SEO health | GOOD, measured this cycle | `ops/check_urls.py`: all 188 sitemap URLs resolve to a real file. `ops/audit_pages.py`: 191 pages audited, 0 duplicate titles, 0 duplicate descriptions, 0 findings |
+| Structured data health | GOOD, measured this cycle | All 114 zone pages carry both FAQPage and HowTo JSON-LD (grep-confirmed). `gate_zone_name_consistency` and `gate_no_duplicate_hazard_labels` in `ops/preflight.py` protect against two real past defects (a doubled "The" in HowTo names; two distinct hazards sharing one FAQ question) already found and fixed |
+| Sitemap health | GOOD | 188 URLs; `gate_sitemap_lastmod_current` (built 2026-09-19) ties each URL's lastmod to a real content hash rather than letting it go stale or over-fire on a shared-asset change |
+| Internal-link architecture | GOOD, measured this cycle | `ops/link_graph_report.py`: 0 orphans across 114 zone, 20 room and 29 article pages; `resources.html` links directly to all 114 zone and 20 room pages |
+| Room search architecture | LIVE | 20 room pages, avg 28.8 inbound content links each (min 26, max 31), 0 orphans, 0 dead ends |
+| Micro-zone search architecture | LIVE | 114 zone pages, each with visible FAQ, HowTo/FAQPage JSON-LD, a hazard block and a kit disclosure |
+| AEO/direct-answer coverage | PARTIAL, measured this cycle | `site/llms.txt` exists and names every promoted free asset (gated by `gate_llms_txt_current`). Visible `<dl>` FAQ blocks render on all 114 zone pages, not JSON-LD only. `GOALS.md` confirms ClaudeBot (20 fetches) and GPTBot (10 fetches) already crawl the site directly in one 72-hour window (measured 2026-09-05) |
 
 Do not create mass content until the existing site and search state are understood.
 
@@ -564,7 +578,21 @@ Known strategic content architecture includes:
 → **Products / Kits**
 → **Sustainment**
 
-Current production coverage is UNKNOWN until audited.
+**Corrected 2026-09-20, scheduled operator cycle.** Coverage is not
+uniformly UNKNOWN; the counts below are measured directly from the
+committed corpus this cycle.
+
+| Layer | Coverage | Notes |
+|---|---|---|
+| Rooms | 20 of 20 pages live | 0 orphans, `ops/link_graph_report.py` |
+| Micro-zones | 114 of 114 pages live | Every zone carries the six 6S passes, a visible FAQ block, and hazard guidance |
+| Desired functions / root causes | 12 of 114 zones have authored diagnosis depth | Kitchen (7) + Entryway (5) pilot; the other 102 hold a general reading block instead, deliberately gated on a 21-day read of the pilot before widening (`BACKLOG-2026-09-07.md` A1) |
+| Quests | Live app (`quest.html`) plus 684-card Whole House Print Pack | Symptom-first entry covers 5 of 114 zones; the rest enter by room or a full-house draw |
+| Standards | Standards Pack (free, 20 pages) | The one page organic search currently lands anyone on |
+| Products / kits | 158 of 159 catalogue SKUs buyable via direct Stripe checkout | Corporate Lean 6S is quote-based by design, not a gap |
+| Free decks | Entryway (88 cards, illustrated) and Kitchen (72 cards, unillustrated) | Both free and ungated |
+| Articles | 29 published, differentiated per zone (`gate_general_reading_differentiated`) | 0 orphans, avg 26.7 inbound links each |
+| Sustainment | Rewritten across all 114 zones | Median 28 to 94 words per Sustain slot, 0 near-duplicate across the corpus |
 
 `CONTENT-CATALOG.md` should become the authoritative content inventory.
 
@@ -832,7 +860,25 @@ Historical incidents belong in `INCIDENTS.md`.
 
 # 17. Current Blockers
 
-## BLOCKER-001: Production State Not Yet Verified
+**Corrected 2026-09-20, scheduled operator cycle.** This section had stood
+as the unfilled 2026-08-16 bootstrap template naming three blockers as not
+yet started; two of the three have since been substantively resolved and
+the third is narrower than originally stated. Updated against real,
+currently-checkable state rather than left to describe a moment 5 weeks
+past.
+
+## BLOCKER-001: Production State Verifiable Only From a Session With Real Access
+
+**Status: PARTIALLY RESOLVED, structurally recurring.** No sandboxed
+operator session has ever held the VPS deploy key or egress to
+`6s-success.com`, so this half genuinely cannot be verified from here on
+any cycle, not just this one; it is a standing structural limit, not an
+unstarted task. What IS known: the repository's own deploy-freshness
+check (`ops/deploy_freshness.py`, `ops/deploy-verdict.json`) last confirmed
+production current 2026-09-18T17:20:47Z (build `7c765b634045a89c`); the
+repository has since moved on (`site/build-id.txt` now `5e905bdd45e222e9`),
+so production is currently known-stale, not unknown, tracked live in
+`EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` item 1b.
 
 Impact:
 
@@ -846,11 +892,21 @@ Owners:
 
 Resolution:
 
-Perform read-only discovery first.
+Read-only discovery is done wherever it is reachable without a credential.
+The remaining gap is Phil's own Redeploy click or a session holding the
+deploy key; see `OWNER-ACTIONS.md` item 1b.
 
 ---
 
-## BLOCKER-002: Live Business Data Not Yet Established
+## BLOCKER-002: Live Business Data Established, Not Yet a Live Feed
+
+**Status: PARTIALLY RESOLVED.** Real business data exists and is current:
+`GOALS.md` and section 9 above carry a measured revenue, session and
+organic-search baseline (last direct database pull 2026-09-17). What
+remains missing is a wired, credential-free live feed: no Stripe, Umami
+API, or Search Console credential exists in any operator sandbox, so every
+number here is a manual pull re-run periodically, not a continuously
+refreshing one.
 
 Impact:
 
@@ -864,24 +920,31 @@ Owners:
 
 Resolution:
 
-Create metric definitions and data-source map, then connect authoritative sources.
+Metric definitions (`METRICS.md`) and the data-source map (`DATA-SOURCES.md`)
+are both written. Connecting authoritative live sources needs a credential
+only Phil holds (Umami share URL or API key, `OWNER-ACTIONS.md` item 1.2;
+Search Console token, item 2).
 
 ---
 
-## BLOCKER-003: Executive Dashboard Not Yet Established
+## BLOCKER-003: Executive Dashboard Established
 
-Impact:
+**Status: RESOLVED.** `DASHBOARD.md`, `METRICS.md` and `DATA-SOURCES.md`
+all exist; `ops/dashboard.py` regenerates `EXECUTIVE-DASHBOARD-LIVE.md`
+from measured state on every cycle (confirmed regenerated this cycle,
+2026-09-20 11:48). This blocker was flagged as contradicted by a same-day
+PM check-in (2026-09-20 10:40) but never itself corrected until now.
 
-Owner lacks one trusted near-real-time view of business, product, growth, and production.
+Impact (historical):
+
+Owner lacked one trusted near-real-time view of business, product, growth, and production.
 
 Owners:
 
 - `analytics-intelligence`
 - `6s-ceo`
 
-Resolution:
-
-Define `DASHBOARD.md`, then implement live dashboard.
+Resolution: done.
 
 ---
 
@@ -935,7 +998,7 @@ Inventory persistent data, backup mechanism, off-host copy, and restore procedur
 ## RISK-004: Optimization Without Trusted Metrics
 
 **Severity:** MEDIUM-HIGH  
-**Status:** OPEN
+**Status:** PARTIALLY CONTROLLED, corrected 2026-09-20
 
 Risk:
 
@@ -943,7 +1006,12 @@ Autonomous agents may optimize vanity or incorrectly calculated metrics.
 
 Control:
 
-Create `METRICS.md` and `DATA-SOURCES.md`.
+`METRICS.md` and `DATA-SOURCES.md` are both written and in use (this file's
+own section 9 and `GOALS.md` cite them). The residual risk is narrower than
+originally stated: it is that a metric's authoritative source goes stale
+between the manual pulls a missing live credential still forces, not that
+no definition or source map exists. `GOALS.md`'s own opening line already
+names this as the standard to hold every baseline to.
 
 ---
 
