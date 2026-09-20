@@ -1263,7 +1263,25 @@
       if (doneHeading2) { doneHeading2.textContent = "The whole zone is done when"; }
     }
 
-    $("#c-zone-link").href = c.zone.url;
+    /* Guarded, because an unguarded assignment here put 71 real browsers on
+       a 404 between 1 and 11 September: the proxy access log records 58
+       requests for /null referred from quest.html?zone=... and 13 more for
+       /rooms/null, from ordinary Windows and Mac Chrome, not crawlers.
+       Assigning a missing value straight to .href does not leave the link
+       alone, it sets the string "null", which resolves against the site root
+       and navigates the reader to a 404 from inside the card they were
+       working. Hide the link instead: a card with no zone page is a card
+       with nothing to link to, and no link at all is honest where a dead one
+       is not. */
+    var zoneLink = $("#c-zone-link");
+    var zoneUrl = c.zone && c.zone.url;
+    if (zoneUrl) {
+      zoneLink.href = zoneUrl;
+      zoneLink.hidden = false;
+    } else {
+      zoneLink.removeAttribute("href");
+      zoneLink.hidden = true;
+    }
     $("#c-skip").textContent = run.queue.length > 1 ? "Skip this one" : "Draw another";
     startTimer();
     show("card");
