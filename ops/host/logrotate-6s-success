@@ -1,0 +1,36 @@
+# Rotation for the site's persistent crawl log.
+#
+# INSTALL (as root on the VPS, from this repo's copy, so the host matches git):
+#     scp ops/host/logrotate-6s-success root@VPS:/etc/logrotate.d/6s-success
+#     logrotate -d /etc/logrotate.d/6s-success     # dry run, prints its plan
+#
+# The log is /var/log/6s-success/access.log, bind-mounted into the container at
+# /var/log/nginx/persist (docker-compose.hostinger.yml). It is written by
+# nginx's root master process, one line per request, with no IP addresses.
+#
+# Weekly with 26 kept is six months of crawl history in roughly 15 MB
+# compressed, on the measured rate of a few thousand requests a day, almost
+# all of them crawlers. Six months is chosen to cover a full "did the pages we
+# published in the spring ever get fetched" question, which is the actual
+# reason this log exists.
+/var/log/6s-success/access.log {
+    weekly
+    rotate 26
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0644 root root
+    sharedscripts
+    postrotate
+        # nginx keeps writing to the renamed file until told to reopen. USR1
+        # is how it is told. Without this the rotation happens and every
+        # subsequent request is still written into access.log.1, which then
+        # gets rotated away with the lot: a rotation that deletes the log it
+        # was supposed to preserve.
+        #
+        # "|| true" so a stopped or renamed container cannot make the daily
+        # logrotate run fail for every other service on this shared host.
+        docker kill -s USR1 6s-success >/dev/null 2>&1 || true
+    endscript
+}

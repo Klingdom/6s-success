@@ -28,6 +28,18 @@ services:
     pull_policy: always
     ports:
       - "8973:80"
+    volumes:
+      # The crawl record, kept outside the container so it survives a deploy.
+      # Before this, every access log lived in `docker logs` and was destroyed
+      # on each redeploy: on 2026-09-20 the whole searchable crawl history of
+      # this site was 61 requests, because the container had restarted an hour
+      # earlier. Search Console is verified to nothing, so this file is the
+      # only evidence there is about whether search engines read these pages.
+      #
+      # One file per day, named by date, written by nginx itself. No IP
+      # addresses are in it by design; see site/nginx/default.conf.
+      # ops/crawl_report.py reads it. Pruned by ops/crawl_prune.sh.
+      - /var/log/6s-success:/var/log/nginx/persist
     networks:
       proxy:
         aliases:

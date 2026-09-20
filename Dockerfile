@@ -9,6 +9,13 @@ FROM nginx:1.27-alpine
 # our server config (gzip, caching, correct MIME for woff2/pdf, /stats proxy)
 COPY site/nginx/default.conf /etc/nginx/conf.d/default.conf
 
+# default.conf writes a second, date-named access log here. Created in the
+# image so a missing bind mount costs history, not uptime: without this
+# directory nginx cannot open the log and refuses to start, which would mean a
+# logging change could take the whole site down. The mount is in
+# docker-compose.hostinger.yml.
+RUN mkdir -p /var/log/nginx/persist
+
 # Fail the build on a bad config rather than the deploy. Without this a syntax
 # error ships a green image that crash loops on the host, which is a much worse
 # place to find out.

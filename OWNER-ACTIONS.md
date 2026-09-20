@@ -107,7 +107,7 @@ happen?", and it found one real trap and one real blocker:
   real printer, which no agent here has.
 
 
-### 1f. The VPS disk is 79% full, and 46 GB of it is throwaway. One command, about a minute.
+### ~~1f. The VPS disk is 79% full.~~ NO LONGER NEEDED. Re-measured 2026-09-20: 40% used.
 
 **Found 2026-09-16 by this operator, first direct look at the host in days** (cloud
 sessions hold no deploy key; this was run from your own machine).
@@ -138,6 +138,24 @@ because it rebuilds its cache, and that is the whole cost.
 6S Success container is healthy with 0 restarts. It becomes urgent if free space
 drops under about 5G, because Docker writes image layers before it knows whether
 they fit.
+
+---
+
+**CLOSED 2026-09-20, by measuring it again rather than by anyone acting on it.**
+
+`df -h /` now reads **38G used of 96G, 58G free, 40%**, against the 76G used
+and 21G free recorded above on 2026-09-16. `docker system df` reports 5.17 GB
+of build cache (3.71 GB reclaimable) where it once reported 45.96 GB, and
+23.92 GB of images where it reported 62.65 GB. Something reclaimed roughly
+38 GB in four days; this operator did not run it, so either you did or an
+image cleanup ran on the host.
+
+Either way the condition this item describes no longer exists, and leaving it
+on your list would have spent your minute on a problem that had already gone.
+The 3.71 GB of cache still reclaimable is not worth a shared-host action.
+
+Re-open this if `df -h /` ever shows free space under about 5G. The command in
+this item stays correct and safe if it is ever needed again.
 
 ### 1e. Decide about Rakuten's standing access to your support Google account. About two minutes.
 

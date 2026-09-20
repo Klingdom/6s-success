@@ -1802,45 +1802,95 @@ Prefer replacing generic placeholders with verified project-specific procedures 
 This section must be populated from verified discovery.
 
 ```yaml
+# Filled 2026-09-20 from direct inspection, not from memory. Every value here
+# was read off the running system or the repository on that date; the ones that
+# could not be were left UNKNOWN rather than guessed, which is the only reason
+# this block is worth reading. It sat entirely UNKNOWN from creation until
+# then, while sessions verified these same facts over and over elsewhere: the
+# "source corrected, artifact never re-derived" defect, in the file whose job
+# is to be the artifact.
 production_domain: 6S-success.com
 
 github:
-  repository: UNKNOWN
-  default_branch: UNKNOWN
-  production_branch: UNKNOWN
-  ci_system: UNKNOWN
-  deployment_workflow: UNKNOWN
+  repository: Klingdom/6s-success
+  default_branch: main
+  production_branch: main            # no release branch; main is deployed
+  ci_system: GitHub Actions
+  deployment_workflow: >-
+    "Publish site image" builds and pushes ghcr.io/klingdom/6s-success:latest
+    on every push to main (about 18 minutes). It does NOT deploy. Deployment
+    is a separate, deliberate step: python ops/deploy.py, which pulls that
+    image on the VPS. "Checks" runs the gates.
 
 hostinger:
-  vps_identifier: UNKNOWN
-  os: UNKNOWN
-  project_path: UNKNOWN
+  vps_identifier: 187.77.25.50, hPanel VPS 1369835
+  os: Ubuntu 24.04.4 LTS, kernel 6.8.0-134-generic
+  project_path: /opt/6s-success
+  shared_host: >-
+    YES, and this constrains everything. The same box runs Ledgerium AI,
+    Compassion Benchmark, Umami, Listmonk and Cal.com. Ports 80/81/443 belong
+    to Nginx Proxy Manager and 8080 to Compassion Benchmark. See CLAUDE.md 36b.
 
 docker:
-  compose_project: UNKNOWN
-  compose_file: UNKNOWN
-  application_service: UNKNOWN
-  reverse_proxy: UNKNOWN
-  persistent_volumes: UNKNOWN
+  compose_project: 6s-success
+  compose_file: >-
+    /opt/6s-success/docker-compose.yml on the host, which matches
+    docker-compose.hostinger.yml in this repository apart from comments
+    (diffed 2026-09-20). The Hostinger Docker Manager panel holds its own copy
+    of this YAML; a "Redeploy" click from the panel writes the panel's copy
+    over the host file, so any change made here by SSH must also be pasted
+    into the panel or it can be silently reverted.
+  application_service: web
+  container_name: 6s-success
+  published_port: 8973 -> 80 (NOT 80 or 8080; those belong to other products)
+  reverse_proxy: >-
+    jc21/nginx-proxy-manager container, owns 80/81/443 and terminates TLS,
+    then forwards to 6s-success:80 over the 6s-proxy network.
+  network: 6s-proxy, external
+  persistent_volumes: >-
+    /var/log/6s-success -> /var/log/nginx/persist, added 2026-09-20. It holds
+    the crawl log and nothing else. The site image is otherwise stateless:
+    every byte it serves comes from the image, so the container can be
+    destroyed and recreated freely, and that is the normal deploy.
 
 data:
-  database: UNKNOWN
-  user_uploads: UNKNOWN
+  database: >-
+    none for the product. The site is static. Transactional state lives in
+    Stripe; analytics in the Umami Postgres container, which belongs to a
+    different compose project on the same host.
+  user_uploads: >-
+    none. The Home Quest keeps its photos and progress in the browser's own
+    localStorage and never uploads them, which is why there is no customer
+    data at risk on this host.
 
 backup:
-  method: UNKNOWN
-  frequency: UNKNOWN
+  method: Hostinger host-level VPS backup
+  frequency: UNKNOWN (not confirmed from the panel by any session)
   last_verified_artifact: UNKNOWN
-  last_restore_test: UNKNOWN
+  last_restore_test: NEVER. See RISK-0007. A backup that has never been
+    restored is a belief, not a capability.
 
 network:
-  dns_provider: UNKNOWN
-  tls_mechanism: UNKNOWN
+  dns_provider: >-
+    Hostinger. Verified 2026-09-20: the authoritative nameservers are
+    aster.dns-parking.com and helios.dns-parking.com, which are Hostinger's.
+    The apex A record and the www CNAME both resolve to 187.77.25.50, so www
+    reaches the same container, which is why the www canonicalisation had to
+    be a 301 inside site/nginx/default.conf rather than a DNS change.
+  tls_mechanism: Let's Encrypt via Nginx Proxy Manager
 
 observability:
-  uptime_monitor: UNKNOWN
-  error_monitoring: UNKNOWN
-  log_system: UNKNOWN
+  uptime_monitor: >-
+    none external. Liveness is checked on demand by ops/deploy.py and
+    ops/check_live_links.py, and by the container's own HEALTHCHECK.
+  error_monitoring: none. A static site has no application error stream.
+  log_system: >-
+    Docker json-file (10 MB x 3) for stdout, which `docker logs` reads and
+    every deploy destroys, PLUS a persistent nginx access log at
+    /var/log/6s-success/access.log that survives redeploys, rotated weekly by
+    /etc/logrotate.d/6s-success (source of truth: ops/host/logrotate-6s-success
+    in this repository) and read by ops/crawl_report.py. It records no IP
+    addresses by design.
 ```
 
 Claude must replace `UNKNOWN` only with verified evidence.

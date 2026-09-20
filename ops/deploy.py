@@ -169,6 +169,58 @@ def repo_stamp():
                           encoding="utf-8").read())
 
 
+def compose_drift(user):
+    """Compare the compose file production actually deploys from against the
+    one in this repository, ignoring comments and blank lines.
+
+    Added 2026-09-20 with the crawl-log volume, because that volume made the
+    difference matter for the first time. The host file at
+    /opt/6s-success/docker-compose.yml is what `docker compose up` reads, but
+    the Hostinger Docker Manager panel keeps its OWN copy of the same YAML and
+    writes it over the host file whenever somebody clicks Redeploy there. So a
+    change made by SSH can be reverted by a click, months later, by someone who
+    has no idea they did it. Until now the two copies were identical apart from
+    comments (diffed the same day), and nothing ever checked that they stayed
+    that way.
+
+    This does not repair anything. It prints the difference, because a deploy
+    tool that silently rewrites the production compose file is a worse problem
+    than the drift it is fixing. GitHub is the source of truth; this makes it
+    observable whether production still agrees.
+    """
+    import io
+
+    def meaningful(text):
+        return [l.rstrip() for l in text.splitlines()
+                if l.strip() and not l.strip().startswith("#")]
+
+    ok, remote = ssh(user, "cat /opt/6s-success/docker-compose.yml")
+    if not ok:
+        print("  UNCHECKED: could not read the production compose file, so "
+              "whether it still matches this repository is unknown.")
+        return
+    local_fp = os.path.join(ROOT, "docker-compose.hostinger.yml")
+    try:
+        local = io.open(local_fp, encoding="utf-8").read()
+    except OSError:
+        print("  UNCHECKED: docker-compose.hostinger.yml is missing here.")
+        return
+    a, b = meaningful(local), meaningful(remote)
+    if a == b:
+        print("  compose: production matches docker-compose.hostinger.yml")
+        return
+    print("  COMPOSE DRIFT: production does NOT match this repository.")
+    only_repo = [l for l in a if l not in b]
+    only_prod = [l for l in b if l not in a]
+    for l in only_repo[:12]:
+        print("    in repo, not in production : %s" % l.strip())
+    for l in only_prod[:12]:
+        print("    in production, not in repo : %s" % l.strip())
+    print("    Fix by copying the repo file to /opt/6s-success/"
+          "docker-compose.yml AND pasting it into the Hostinger panel, or "
+          "the next Redeploy click puts it back.")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
@@ -218,6 +270,8 @@ def main() -> int:
         print("  could not inspect docker: %s" % out[:200])
         return 1
     print("  docker: %s" % out[:300])
+
+    compose_drift(user)
 
     ok, out = ssh(user,
                   "cd /opt/6s-success && docker compose pull && docker compose up -d",
