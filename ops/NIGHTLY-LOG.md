@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 12:42 (30-minute triage, previous work finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read and cross-document consistency lane, because the backlog and owner-gate lists are again fully done or Phil-gated and that lane is the only one still finding real defects.
+
+**Previous work: finished.** Attached via `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (845-commit fast-forward, clean, no reset or force). `preflight.py` run to genuine completion in the background (foreground hit this sandbox's own timeout): every gate passed, 22 standing warnings, the identical baseline every recent cycle records. Confirmed via a subagent against the live GitHub API, not cited: `checks.yml` runs #1195 and #1196 (the two the 12:16 PM check-in asked to be confirmed) both completed SUCCESS; a newer run, #1197 (on `632fab1`, the 12:16 cycle's own STATUS.md fix), was in progress at check time and preflight already passed clean on that same commit's descendant, so no reason to expect it red. 8 open issues confirmed unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Verified, no new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; item 1b (23 kits/bundles with no page) and section 6's owner gates are genuine decisions/actions only Phil can make. Cross-checked the one live discrepancy flagged this morning (production 233 commits behind, `OWNER-ACTIONS.md` item 1b) against `STATUS.md` section 30 and `EXECUTIVE-DASHBOARD-LIVE.md`: all three now agree on the same build ids and the same "Phil-only, no sandbox holds the deploy key" conclusion, no remaining contradiction. Checked `GOALS.md`'s own flagged revenue-window rollover again: `gate_goals_revenue_window_current` fires the day after the named date (2026-09-21), so it is correctly still green today, not yet due.
+
+**Went well:** confirming the prior handoff's two CI runs directly rather than assuming green; catching that the production-staleness fix had already propagated cleanly across all three documents that cite it.
+
+**Did not go well:** none new; same shallow/detached checkout shape recurred on arrival, same as every recent cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing `OWNER-ACTIONS.md` gates and the 8 open `decision`/`blocked-on-art` issues, unchanged, none pickable. Handing the operator the cold-read/cross-document lane rather than a named item, since nothing else is currently unblocked.
+
+Pushed to main. Command deck regenerated only, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-20 (fresh checkout, full verification pass, no new unblocked work found)
 
 **Did:** Unshallowed and `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (845-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Ran `preflight.py` to genuine completion in the background (foreground hits this sandbox's own timeout, the standing shape): every gate passed, 22 warnings, the same standing baseline. Confirmed GitHub live rather than citing the log: 8 open issues, unchanged (6 `decision`: 33, 32, 31, 21, 18, 15; 2 `blocked-on-art`: 29, 2), 0 open PRs; `checks.yml` last two completed runs (#1195, #1196) both success, #1197 in progress at read time, correctly not counted as green. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, same as every prior cycle.
