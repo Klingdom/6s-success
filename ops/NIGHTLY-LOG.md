@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-20 06:42 (30-minute triage, previous work confirmed finished by a genuine preflight completion, one real self-arithmetic defect found and fixed inside GOALS.md itself)
+
+NEXT FOR THE OPERATOR: finish the GOALS.md/STATUS.md self-arithmetic cross-check that three prior cycles (04:42, 05:47, 06:18) named and handed off without running, because this slot ran a bounded version of it against GOALS.md alone and it immediately found a real, current defect (below); STATUS.md's own 1,282 lines have not been checked against GOALS.md's numbers at all, and that is the piece genuinely sized for the operator's bigger budget, not this one.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved cleanly (809-commit fast-forward, no reset or force). Ran `preflight.py` fresh in the background to genuine completion (foreground hit this sandbox's own timeout first, correctly not treated as a pass per `CLAUDE.md` 0.4): every gate passed, the same 22 standing warnings (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). GitHub re-pulled live via a fresh subagent call: 8 open issues, unchanged in count/number/label (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. `BACKLOG-2026-09-07.md` read in full: every unblocked row again done or Phil-gated; sections 5 and 6 correctly held.
+
+**Found and fixed one real thing, running the handed-off cross-check against GOALS.md's own text (not yet against STATUS.md).** Section O1's "Sessions from organic search" key-result row was reconfirmed 2026-09-17 to "4 visits from 3 visitors" (1 Bing visit, 3 Google visits from 2 Google visitors, spanning 4 to 12 September), and the row itself correctly cites its own superseded prior reading ("Previous reading: 2 visits (Bing 1, Google 1), 2026-09-05"). Three paragraphs below, in the same file's "Why it is first, now with numbers" prose, dated to the same 2026-09-17 17:55 UTC measurement, the sentence still read "exactly two of them arrived from a search engine: Bing on 21 August, and Google on 4 September" — the retired 2026-09-05 figure, word for word, never updated when the row above it was. `gate_goals_organic_search_row_current` does not catch this shape: it only checks whether either file claims "zero/none from Google," not whether the visit/visitor counts agree with each other inside GOALS.md. Confirmed the stale phrase does not also appear in STATUS.md, RISKS.md, ROADMAP-2026-2029.md or BACKLOG-2026-09-07.md before fixing (grep, clean). Corrected the paragraph to state the same 4-visits/3-visitors figure the row above it already carries, attributed to the same measurement. Documentation-only: no price, product or customer-facing page touched.
+
+**Verified:** re-ran `preflight.py --own` after the edit: 21/22 checks reconfirmed passing; the one reported failure was `gate_generator_ownership` correctly refusing to diff against an uncommitted working tree ("commit or stash first"), not a real defect, and cleared once shipped. `ops/dashboard.py` regenerated clean.
+
+**Went well:** treating "sized for the operator's bigger budget" as a reason to scope the check down, not to skip it again a fourth time; the scoped-down version still found a live, current, self-contradicting figure inside a single file's own text.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; this is a documentation-accuracy gap, not a new defect class, and `gate_goals_organic_search_row_current`'s existing scope (the Google-zero claim, not general row/paragraph arithmetic) is still the right boundary for a machine gate here.
+
+**Next:** the same standing `OWNER-ACTIONS.md` gates (Search Console verification, YouTube OAuth, Stripe business description) and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged, all genuinely Phil-only. `GOALS.md`'s revenue-window sentence turns stale after 2026-09-21 00:00 UTC if no second sale lands first; `gate_goals_revenue_window_current` is already built to start firing then, not before.
+
+Pushed to main. `GOALS.md`, command deck, plus this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-20 06:18 (30-minute triage, previous work confirmed finished by a genuine preflight completion, nothing new unblocked, handoff unchanged from the prior cycle)
 
 **Previous work: finished.** Checkout arrived shallow and detached again; `git fetch --unshallow` then `merge --ff-only` onto `origin/main` resolved cleanly (806-commit fast-forward, no reset or force). Ran `preflight.py` fresh in the background rather than citing the prior cycle's result: every gate passed, the same 22 standing warnings (no Stripe/mail/VPS/Pillow/GEMINI credential, no egress, deploy freshness, cron-queueing lag on `fulfil-orders.yml`/`hourly-brief.yml`, the one unfixable font-subset spelling instance on the sample PDF, site verification, page/deck-art gaps tracked by #2/#29). Confirmed `HEAD == origin/main` before and clean after regenerating the command deck.
