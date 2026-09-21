@@ -811,6 +811,32 @@ evidence:
   - ops/state.json email_list=0
   - every form on the site is inert (forms_dead=190)
   - ops/state.json social_units=4408 authored and unused
+  - RE-MEASURED 2026-09-21, because two of the three lines above had gone
+    stale in opposite directions and a stale risk row drives bad work:
+  - "every form on the site is inert" is no longer true as written. The
+    footer form is present on 189 pages and IS wired, by ops/site.js, to a
+    mailto path that opens the visitor's mail client with a one-line message,
+    and it fires a `list-signup` event. forms_dead=190 counts the STATIC
+    markup (`onsubmit="return false"`), which is still accurate for that
+    narrow thing and misleading as a summary.
+  - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
+    analytics export: 0. Not one attempt since the mechanism shipped. With
+    roughly 14 visitors a week the bottleneck here is arrivals, not the form,
+    and no amount of form work changes that.
+  - THE MAILTO IS DELIBERATE AND MUST NOT BE "FIXED" BACK TO LISTMONK. The
+    footer once posted to /subscribe with the shared Listmonk list, and Phil
+    withdrew the in-body signup blocks himself because that list's
+    confirmation mail arrives branded as Compassion Benchmark, a different
+    business (ops/NIGHTLY-LOG.md, 2026-08-24). A later cycle removed the
+    footer's own `action="/subscribe"` for the same reason. /subscribe still
+    answers 200 today, so re-wiring it is easy and would reverse an owner
+    decision about whose brand a customer sees; see CLAUDE.md section 21.
+  - KNOWN AND NOT FIXED: with JavaScript off the form is inert with no
+    feedback at all and carries no <noscript> fallback, so a visitor types an
+    address, presses the button and nothing happens. Not fixed on 2026-09-21
+    because the footer markup is baked into 189 page files across several
+    generators, and the measured demand for the working path is zero. Revisit
+    when anything about arrivals changes.
 impact: >
   Nothing compounds. A visitor who arrives today cannot be reached tomorrow,
   so every unit of attention is spent once and discarded. Roughly 4,408
