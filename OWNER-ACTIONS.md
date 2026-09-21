@@ -157,6 +157,37 @@ The 3.71 GB of cache still reclaimable is not worth a shared-host action.
 Re-open this if `df -h /` ever shows free space under about 5G. The command in
 this item stays correct and safe if it is ever needed again.
 
+### 1g. Confirm one file opens from OneDrive on a different device. Two minutes, and it closes a CRITICAL risk.
+
+**What I found, on your own machine, today.** The 6S product masters on your
+Desktop had no backup of any kind. File History: off. Windows Backup: off. No
+shadow copies. OneDrive was running the whole time, which is what made it
+dangerous: it syncs `OneDrive\Desktop`, which contains 1,398 game shortcuts
+and not one 6S folder, while your real Desktop is somewhere else. It looked
+covered. It was not.
+
+The part that actually mattered: the **89 Entryway deck PNGs**. I hashed every
+one against all 5,162 PNGs in the repository. None of them are in it.
+`DECISIONS.md` D-003 says those images are not a rejected asset, they *are*
+the deck. A finished product existed in exactly one place on earth.
+
+**What I already did.** Copied the irreplaceable set (card decks, image
+prompts, illustration system) into your OneDrive at
+`OneDrive/6S-Success-Masters`: 279 files, 396 MB, every one verified
+identical by checksum, not sampled. I left out the 1.99 GB of rendered video
+on purpose, because the pipeline in this repository regenerates it and it
+would have eaten your quota for no gain.
+
+**Why it still needs you.** A copy inside the OneDrive folder is still on the
+same disk until it uploads, and I cannot see your cloud account from here. At
+the time of writing, 245 of the 279 files carried OneDrive's sync marker, so
+it was working through them.
+
+**The two-minute step:** on your phone or any other device, open the OneDrive
+app, find `6S-Success-Masters`, and open one of the Entryway deck PNGs. If the
+image appears, the upload is real and this risk is closed. If the folder is
+not there, tell me and I will find another route.
+
 ### 1e. Decide about Rakuten's standing access to your support Google account. About two minutes.
 
 Found 2026-09-09 by opening the mailbox rather than reading our own record of
