@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 12:1x (previous work finished and pushed; CI on cbd649d8 not yet confirmed; no new unblocked item)
+
+Attached cleanly onto `cbd649d8` (the crawl_report.py test-coverage commit), fast-forward, no reset.
+
+STEP 2: previous work finished. `preflight.py` fast: every gate passed, 22 warnings, all standing. Tree clean, main pushed. `checks.yml` run #1244 on `cbd649d8` was still `in_progress` after 15 minutes; not yet confirmed green, next cycle should check rather than assume.
+
+STEP 3: read `BACKLOG-2026-09-07.md` sections 2-6 in full and all 8 open GitHub issues: every backlog row is done or Phil/evidence-gated, all 8 issues are `decision` or `blocked-on-art`. `OWNER-ACTIONS.md` and `STATUS.md` both current. No new unblocked, non-Phil-gated item found.
+
+Next: operator continues the low-mention `ops/*.py` cold-read, the standing method; confirm CI on `cbd649d8`.
+
+Pushed to main, command deck only. No price, product or page touched.
+
 ## 2026-09-21, scheduled operator cycle (the handed-off specific_articles.py/check_sitemap_current.py/crawl_report.py cold-read: two clean, one real test-coverage gap closed on the site's only crawl-evidence tool)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (two fast-forwards as concurrent PM check-ins landed while reading, ending on `399028d8`, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md` and the newest `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty.
