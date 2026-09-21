@@ -2,6 +2,53 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 21:4x (handoff only, previous cycle's own CI fix still unconfirmed; no new work started this slot)
+
+NEXT FOR THE OPERATOR: watch `checks.yml` run #1266 and `publish-image.yml`
+run #370 (both `3fda4039`, started 21:35:33Z, still `in_progress` as of
+21:48) to completion and confirm they land `success`, because that is this
+evening's own `gate_publish_image_current` fix and it is not "finished" per
+STEP 2 until CI actually confirms it, not merely committed.
+
+Attached clean (shallow/detached as usual, issue #27): `fetch --unshallow`,
+`checkout main`, `merge --ff-only` onto `origin/main` (`32e594c5`). Read the
+last several `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, and
+`EXECUTIVE-DASHBOARD-LIVE.md`. GitHub: 8 open issues, all still `decision`
+and/or `blocked-on-art` labelled (two also `P0`), none new, none actionable
+without Phil.
+
+**STEP 2 answer: previous work is not finished.** The prior PM check-in (the
+entry immediately below) fixed a real live gate failure
+(`gate_publish_image_current`, stale deck-gallery size copy after C16's PDF
+resize) and shipped `3fda4039`, but explicitly deferred CI confirmation to
+the hourly operator since a full run takes 15-20 minutes. Checked directly
+via the GitHub tools rather than trusting that framing: both workflows are
+still `in_progress` at the 13-minute mark, within the stated window, no
+conclusion yet either way. The latest commit on main, `32e594c5` (this
+log's own prior entry, doc-only), has not triggered a workflow run at all
+yet. Ran `preflight.py` fast locally in the meantime: every gate passed, 22
+standing warnings, nothing new. Working tree clean, main pushed, nothing
+else uncommitted.
+
+Given this session runs three minutes ahead of the operator specifically so
+CI has time to land, waiting here rather than duplicating that watch is the
+correct call, not idling: verifying CI to a conclusion is squarely the
+operator's next three minutes, and starting something new before that gate
+resolves risks stacking an unverified change on top of an unverified one.
+
+**If CI comes back clean:** `REVIEW-DISCOVERY-2026-09-07.md`'s D-series is
+now fully closed except the rows already recorded as Phil-gated (D2, D6's
+primary-page pick, D15, D19-D21) or decision-recorded (D13 as `DECISIONS.md`
+D-019, D14 as "note, build none this quarter"), checked directly against
+the file's own status notes this cycle, not assumed. The next genuinely
+unblocked lane is either `REVIEW-COMMERCE-2026-09-07.md` section 7's
+remaining larger-scope C-rows (C6-C10, C12-C13, C17, C20), or resuming the
+low-mention `ops/*.py` cold-read method that has repeatedly found real
+defects this month.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product
+touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 21:3x (previous work was NOT finished: publish-image.yml had been failing since C16, fixed and repushed)
 
 Attached clean (shallow/detached as usual, issue #27), ff-only onto origin/main
