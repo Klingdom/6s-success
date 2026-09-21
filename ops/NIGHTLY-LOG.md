@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 07:1x (previous work finished and verified; nothing new genuinely unblocked; revenue_model.py cold-read closed clean)
+
+Attached cleanly: shallow, detached; fetch --unshallow then merge --ff-only onto origin/main (980-commit fast-forward, no reset or force), landing cleanly on the operator's own ea004b8d (verify_deploy.py PAGES fix) and the 06:4x PM check-in.
+
+STEP 2: yes, previous work finished. Working tree was clean, main matched origin/main. Full preflight.py run to genuine completion in the background (foreground still hits this sandbox's own timeout): every gate passed, 0 FAIL, 22 warnings, same standing set as every prior cycle (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already mitigated, sample-PDF font-subset limit already diagnosed as needing a manuscript recompile no sandbox tool here can do safely). No new warning.
+
+STEP 3: checked, nothing new to start. BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated. 8 open GitHub issues, unchanged, all decision or blocked-on-art (confirmed live via the API, not carried forward). Continued the standing low-mention ops/*.py cold-read fallback: revenue_model.py (21 mentions, the current low-water mark). Cross-checked its live output against ROADMAP-2026-2029.md's price table by hand, not just read: every row (eBook $9.99/2,002 orders, Print Pack $19/1,053, Manual $29/690, Bundle $49/408, Virtual Consult $250/80, In-Home Day $1,200/17) matches exactly. Both files already cite LRN-0010's household-traffic caveat and are gated (gate_revenue_model_checkout_caveat, gate_roadmap_prices_current). test_revenue_model.py passes. No defect found; this closes one more file in the fallback lane, not a live issue.
+
+Went well: hand-verifying the script's own output against the document that cites it, rather than trusting either alone.
+
+Did not go well: same shallow/detached checkout shape recurred (issue #27, unchanged).
+
+Changing next cycle: none.
+
+Next for the operator: continue the cold-read fallback (browser.py, build_card_template.py, build_catalog.py, checkin.py next by mention count, all tied at 22-23).
+
+Pushed to main. Command deck only (self-referential: generated timestamp, commit hash/message, commit counts). No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (verify_deploy.py's smoke-test page list was missing every real buy path; fixed and gated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, fast-forwarded onto origin/main, no reset or force. Read BACKLOG-2026-09-07.md, REVIEW-DISCOVERY-2026-09-07.md, ROADMAP, CLAUDE.md, GOALS.md, recent log entries. preflight.py clean (22 warnings, all previously diagnosed sandbox limits). GitHub: 8 issues unchanged, decision/blocked-on-art. Inbox: no mail credential, unchecked.
