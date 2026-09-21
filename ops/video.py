@@ -93,8 +93,16 @@ Style: Cap,Arial Black,78,{ass_colour(ACCENT)},{ass_colour(PAPER)},{ass_colour(I
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     def ts(t: float) -> str:
-        h = int(t // 3600); m = int(t % 3600 // 60); s = t % 60
-        return f"{h}:{m:02d}:{s:05.2f}"
+        # Working in float seconds and formatting with %05.2f rounds the
+        # seconds field up independently of the hours/minutes split, so a
+        # time like 59.999 became "0:00:60.00", an invalid ASS timestamp
+        # that corrupts caption timing on every phrase that lands within
+        # 5ms of a minute boundary. Rounding once in whole centiseconds and
+        # splitting from there keeps the seconds field always under 60.
+        cs = round(t * 100)
+        h, cs = divmod(cs, 360000)
+        m, cs = divmod(cs, 6000)
+        return f"{h}:{m:02d}:{cs / 100:05.2f}"
 
     lines = []
     for start, end, text in phrases:

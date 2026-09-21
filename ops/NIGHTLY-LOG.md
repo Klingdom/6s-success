@@ -22,6 +22,26 @@ STEP 3: `BACKLOG-2026-09-07.md` sections 1-7 re-read; every unblocked row is don
 
 Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page. IndexNow not applicable.
 
+## 2026-09-21, scheduled operator cycle (a real caption-timing bug in ops/video.py's ASS timestamp helper found and fixed; gated)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1075 commits). `python ops/preflight.py` clean on the first run: every gate passed, 22 known warnings, same set as every prior cycle today. Read `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, `ROADMAP-2026-2029.md`, and the newest `NIGHTLY-LOG.md` entries. Every backlog row is done or genuinely Phil-gated (section 1b's catalogue-page decision is issue #32, unchanged; section 5 correctly on Hold; the owner-gate list in `OWNER-ACTIONS.md` unchanged). Continued the standing cold-read lane the 19:1x entry above handed off, ranking `ops/*.py` fresh by mention count in this file: `mailer.py`, `stripe_check.py` and `video.py` were the lowest untouched tier (16 mentions each; `backup_analytics.py` had already been cleared earlier today).
+
+**Found a live defect in `ops/video.py`:** the karaoke-caption ASS timestamp helper (`ts()`, inside `build_ass()`) computed seconds as `t % 60` and formatted with `%05.2f`. Formatting rounds independently of the earlier floor division into hours and minutes, so any phrase whose start or end lands within about 5ms of a whole minute (e.g. 59.999s) produced `0:00:60.00`, not a valid ASS timestamp. Reproduced directly: `ts(59.999)` returned `"0:00:60.00"` before the fix. Both `video_zone.py` and `video_zone_photo.py` import this module and use `build_ass()` for their burned-in captions, so any real video with a caption boundary near a minute mark would ship with corrupted timing for that phrase. Checked the three `.ass` files already committed under `build/`: none hit the bug (all short clips, no phrase near a minute boundary), so nothing already shipped needs re-rendering.
+
+**Fixed:** rewrote `ts()` to round once into whole centiseconds and split hours/minutes/seconds from that integer, so the seconds field can never reach 60. Verified against the exact failing case (59.999s, 119.997s, 3599.996s) and against ordinary values (0.0s, 30.5s) - all correct.
+
+**Verified:** wrote `ops/tests/test_video_ass_timestamps.py` (3 cases: a minute-boundary phrase, an hour-boundary phrase, and ordinary timestamps unaffected). Confirmed it fails on the old code (reverted the fix, reran, got `FAIL case1-no-sixty ['0:00:00.00', '0:00:60.00']` etc.) and passes on the fix, before restoring the fix and rerunning clean. It needs no wiring: `gate_tests()` globs `ops/tests/test_*.py` automatically, and `python ops/preflight.py` after the fix shows every gate passed, 22 warnings (test count 232 to 233, same known-unverified two).
+
+**Went well:** the mention-count method kept finding a genuine, previously-unchecked file even on the 24th pass of this exact repository today, and it was a real bug, not a manufactured one.
+
+**Did not go well:** same shallow/detached checkout; issue #27 still open. No mail credential, no SSH key, no Stripe credential in this environment, same standing sandbox limits as every prior cycle; inbox and delivery both correctly reported unchecked rather than clean.
+
+**Changing next cycle:** none; the new test is self-wiring and the fix is minimal.
+
+**Next:** continue the cold-read lane at the next-lowest-mention tier (everything at 17 mentions: `build_printpack.py`, `build_standards_page.py`, `build_thumbnails.py`, and others already partly swept earlier today - re-derive the exact current lowest count rather than trust this list, since concurrent cycles keep moving it). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/video.py`, `ops/tests/test_video_ass_timestamps.py`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 19:1x (previous work finished; closed the dashboard carry-forward gap after three cycles only reported it)
 
 Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1072 commits).
