@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-21 12:46",
- "commit": "5775d57b",
- "commit_msg": "PM check-in 12:1x: previous work finished and pushed, CI on cbd649d8 unconfirmed, no new unblocked item",
+ "generated": "2026-09-21 12:54",
+ "commit": "5bef5d15",
+ "commit_msg": "PM check-in 12:4x: confirm CI green on cbd649d8, hand operator the --deep rerun since it last ran at 10:43 and three commits have landed since",
  "commits_7d": 1212,
- "commits_total": 3188,
+ "commits_total": 3189,
  "traffic_line": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-20 10:15",
