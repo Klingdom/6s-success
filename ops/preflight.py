@@ -15300,6 +15300,116 @@ def check_kit_compact_rendered(pilot_files, other_files, page_bodies,
     return problems
 
 
+def check_zone_relations_rendered(relation_map: dict, page_bodies: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    D9 (REVIEW-DISCOVERY-2026-09-07.md section 2): "add zone-to-zone links
+    along real relationships (entryway shoes <-> mudroom shoe storage;
+    kitchen sink <-> under-sink; nightstand <-> nightstand)". Shipped as
+    `ZONE_RELATIONS` in ops/build_zone_pages.py, a hand-curated set of
+    same-job groups across different room-specific zone names, rendered as
+    a "Zones that do the same job, elsewhere in the house" section.
+
+    `relation_map` is {filename: [(other_name, other_room_lower), ...]}
+    re-derived fresh from `ZONE_RELATIONS` via `_relation_index()`,
+    `page_bodies` is {filename: html} for every real site/zones/*.html
+    file. Every page in relation_map must carry every one of its own links,
+    in the same order `_relation_index()` produces, and a page not in
+    relation_map must not carry the section at all (the same
+    corpus-must-match-output contract every other D-series gate here
+    already holds to). Also checks the relation is symmetric: if A links to
+    B, B's own list (once its own sibling-overlap exclusions are accounted
+    for) must be able to reach A, catching a one-directional edit to
+    ZONE_RELATIONS that would silently produce a link nobody can follow
+    back.
+    """
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items()
+                if 'Zones that do the same job, elsewhere in the house' in b}
+    want_files = set(relation_map)
+    got_files = set(rendered)
+    extra = sorted(got_files - want_files)
+    missing = sorted(want_files - got_files)
+    if extra:
+        problems.append("%d page(s) render the same-job section without "
+                         "authorisation from ZONE_RELATIONS: %s" %
+                         (len(extra), ", ".join(extra[:3])))
+    if missing:
+        problems.append("%d zone(s) have a ZONE_RELATIONS entry but ship "
+                         "no same-job section: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+
+    for f in sorted(want_files & got_files):
+        body = rendered[f]
+        m = re.search(
+            r'<h2>Zones that do the same job, elsewhere in the house</h2>'
+            r'.*?</ul>', body, re.S)
+        if not m:
+            problems.append("%s: same-job section present but malformed, "
+                             "could not isolate the <ul>" % f)
+            continue
+        block = m.group(0)
+        got_links = re.findall(
+            r'<li><a href="\.\./zones/([^"]+?)(?:\.html)?">'
+            r'([^<]+)</a></li>', block)
+        want = relation_map[f]
+        if len(got_links) != len(want):
+            problems.append("%s: ZONE_RELATIONS carries %d link(s), page "
+                             "renders %d" % (f, len(want), len(got_links)))
+        for (want_slug, want_text), (got_slug, got_text) in zip(
+                want, got_links):
+            if got_slug != want_slug or got_text != want_text:
+                problems.append(
+                    "%s: rendered link does not match ZONE_RELATIONS' own "
+                    "text: got %r -> %s, want %r -> %s" %
+                    (f, got_text, got_slug, want_text, want_slug))
+    return problems
+
+
+def gate_zone_relations_rendered() -> None:
+    """The shipped-HTML half of D9 (see `check_zone_relations_rendered`'s
+    own docstring for what this catches).
+
+    Proved to fail on three planted regressions (a page missing its
+    section, a stale link text, and a section rendered on a page
+    ZONE_RELATIONS does not authorise): ops/tests/test_gate_zone_relations_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("zone-relations-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    import importlib
+    importlib.reload(bzp)
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    bzp._RELATIONS.clear()
+    bzp._SIBLINGS.clear()
+    idx = bzp._relation_index(rooms)
+    sib = bzp._sibling_index(rooms)
+    relation_map = {}
+    for sl, entries in idx.items():
+        already = {e[2] for e in (sib.get(sl, ("", []))[1])}
+        want = [(osl, f"{bzp.esc(onm)} in the {bzp.esc(orm.lower())}")
+                for _why, (orm, onm, osl) in entries if osl not in already]
+        if want:
+            relation_map[f"{sl}.html"] = want
+    if not relation_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("zone-relations-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_zone_relations_rendered(relation_map, page_bodies)
+    if problems:
+        fail("zone-relations-rendered", "; ".join(problems[:6]))
+
+
 def gate_kit_compact_rendered() -> None:
     """The shipped-HTML half of D5 (see `check_kit_compact_rendered`'s own
     docstring for what this catches). Re-derives which zones count as
@@ -18222,6 +18332,7 @@ def main() -> int:
     run_gate(gate_variants_rendered)
     run_gate(gate_capacity_rendered)
     run_gate(gate_kit_compact_rendered)
+    run_gate(gate_zone_relations_rendered)
     run_gate(gate_zone_direct_answer_current)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)

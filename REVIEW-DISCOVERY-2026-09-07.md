@@ -107,8 +107,37 @@ anticipate that. Full detail, the transient test failure caught and
 re-verified before shipping, and the exact list of new zone-to-article
 links: `BACKLOG-2026-09-07.md` section 2, `ops/NIGHTLY-LOG.md` 2026-09-21.
 Still open, in report order: D2 (Phil-blocked), D6 (primary-page decision
-only), D9-D10, D12-D14 (larger-scope pilot/decision work), D15 (traced,
+only), D10, D12-D14 (larger-scope pilot/decision work), D15 (traced,
 needs the SSH key this environment lacks), D19-D21 (Phil-gated).
+
+**Status, 2026-09-21, operator: D9 done, honestly partial.** This
+section's own examples (entryway shoes vs mudroom shoe storage; kitchen
+sink vs under-sink; nightstand vs nightstand) are not exact-noun matches,
+so the existing sibling mechanism never linked them, checked directly
+before starting. Built `ZONE_RELATIONS` in `ops/build_zone_pages.py`, 22
+hand-curated real same-job groups across different zone names (workbench,
+hand tools, cleaning chemicals, landing surfaces, shoes, coats, sinks,
+nightstands, dressers, closets, desks, books, linens, charging, seating,
+dining, cooking, garden tools, outdoor gear, paper storage, backstock,
+floor paths, display), each checked against the zone's own real name, not
+invented to hit a count; deliberately not exhaustive, since about a third
+of the 114 zones have no genuine same-job counterpart in this content set
+and forcing one would be the fabrication `CLAUDE.md` section 6 forbids.
+**The floor half of this section's acceptance is met: 0 zones below 8
+in-degree (was 1).** The median half is not: median in-degree 10 to 12,
+average 10.7 to 12.2, against this section's "above 15" target; 17 of 114
+zones now clear 15 (was 6), and 69 of 114 gained at least one new link.
+Recorded honestly, matching D8's own posture immediately above, rather
+than claimed done. Full detail: `BACKLOG-2026-09-07.md` section 2,
+`ops/NIGHTLY-LOG.md` 2026-09-21. Still open, in report order: D2
+(Phil-blocked), D6 (primary-page decision only), D10, D12-D14
+(larger-scope pilot/decision work), D15 (traced, needs the SSH key this
+environment lacks), D19-D21 (Phil-gated). Closing the rest of D9's own gap
+needs either more genuine cross-room relationships than this pass found,
+which risks diluting quality, or a structural change (D10's room-hub
+depth is the more promising lever, since it changes how much link equity
+each room's own hub page distributes rather than searching for more
+pairwise matches).
 
 ---
 

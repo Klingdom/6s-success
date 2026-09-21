@@ -1933,6 +1933,186 @@ def _sibling_index(rooms):
     return _SIBLINGS
 
 
+# D9 (REVIEW-DISCOVERY-2026-09-07.md section 2): "Route link equity into the
+# zone pages... add zone-to-zone links along real relationships (entryway
+# shoes <-> mudroom shoe storage; kitchen sink <-> under-sink; nightstand <->
+# nightstand)." _sibling_index above only catches zones sharing the exact
+# same searchable() noun, which is 17 pages, not the 114 the review is about.
+# The pairs it names in its own example are not exact-noun matches (checked
+# directly: searchable() returns "shoes and boots" for the Entryway zone and
+# "shoe and boot storage" for the Mudroom one, two different strings), so
+# closing this gap needs a second index of real, same-job groups across
+# different room-specific zone names.
+#
+# Every group below is a genuine shared job, not a shared word: a nightstand
+# is a nightstand whether it is "Left", "Right" or "Guest"; a workbench in a
+# garage and a workbench in a workshop are the same kind of surface. Each
+# group's "why" is the actual shared function, not a search-engine phrase,
+# and every (room, zone) pair is checked against the real content.json zone
+# list before this module can build a single page (see
+# _validate_zone_relations below), so a typo here fails loudly instead of
+# silently dropping a link.
+#
+# This is deliberately NOT exhaustive. About a third of the 114 zones (the
+# ones with no genuine same-job counterpart in another room, like the
+# Kitchen's Upper Cabinet Zone or the Nursery's Changing Station) get no
+# group, because inventing one to hit a link count is exactly what CLAUDE.md
+# section 6 and this repository's own standing practice forbid. See the D9
+# row in BACKLOG-2026-09-07.md for the honest resulting numbers.
+ZONE_RELATIONS = [
+    ("workbench", "A work surface built for repairs and projects, not "
+     "everyday living.",
+     [("Garage", "Primary Workbench"), ("Workshop", "Main Workbench")]),
+    ("hand-tools", "Small tools and fasteners kept within reach of where "
+     "they actually get used.",
+     [("Garage", "Hand Tool Wall and Cabinets"),
+      ("Workshop", "Fastener and Hardware Zone")]),
+    ("chemicals", "Cleaning products, solvents or automotive chemicals that "
+     "need the same ventilation and away-from-kids handling.",
+     [("Workshop", "Finishing and Chemical Zone"),
+      ("Garage", "Automotive Care Zone"),
+      ("Laundry Room", "Detergent and Treatment Zone"),
+      ("Laundry Room", "Utility and Cleaning Zone"),
+      ("Mudroom", "Cleaning and Utility Zone"),
+      ("Hall Closet", "Cleaning Equipment Zone"),
+      ("Hall Closet", "Cleaning Supply Zone")]),
+    ("landing-surface", "A catch-all surface where things get set down on "
+     "the way through, not a permanent home for anything.",
+     [("Entryway", "Landing Zone"), ("Entryway", "Entry Console or Bench"),
+      ("Stair Landing", "Landing Surface or Console"),
+      ("Mudroom", "Bench and Transition Surface")]),
+    ("shoes", "Where shoes and boots come off and go back on.",
+     [("Entryway", "Shoe and Boot Zone"),
+      ("Mudroom", "Shoe and Boot Storage")]),
+    ("coats", "Coats, jackets and outdoor gear on the way in or out the "
+     "door.",
+     [("Entryway", "Coat and Outerwear Zone"),
+      ("Mudroom", "Family Hook Zone"),
+      ("Mudroom", "Seasonal Outdoor Gear")]),
+    ("sink", "A sink or vanity, and the cabinet under it.",
+     [("Kitchen", "Sink and Dishwashing Zone"),
+      ("Primary Bathroom", "Vanity Counter"),
+      ("Primary Bathroom", "Under-Sink Cabinet"),
+      ("Guest Bathroom", "Guest Vanity Counter"),
+      ("Guest Bathroom", "Guest Vanity Storage")]),
+    ("nightstand", "A nightstand: the smallest and most personal storage in "
+     "the house.",
+     [("Primary Bedroom", "Nightstand Left"),
+      ("Primary Bedroom", "Nightstand Right"),
+      ("Guest Bedroom", "Guest Nightstand")]),
+    ("dresser", "A dresser's top and the drawers underneath it.",
+     [("Primary Bedroom", "Dresser Top"),
+      ("Primary Bedroom", "Dresser Drawers"),
+      ("Guest Bedroom", "Guest Dresser"),
+      ("Kids Bedroom", "Dresser Drawers")]),
+    ("closet", "A closet holding clothing, on hangers or folded.",
+     [("Primary Bedroom", "Primary Closet"),
+      ("Guest Bedroom", "Guest Closet"),
+      ("Kids Bedroom", "Clothing Closet"),
+      ("Nursery", "Baby Clothing Zone"),
+      ("Laundry Room", "Hanging and Air-Dry Zone")]),
+    ("desk", "A desk or work surface for paperwork, a laptop, or homework.",
+     [("Home Office", "Primary Desk"),
+      ("Home Office", "Desk Drawers and Pedestal"),
+      ("Kids Bedroom", "Study Desk"),
+      ("Guest Bedroom", "Guest Welcome and Work Surface")]),
+    ("books", "Books, and the shelf that holds them.",
+     [("Home Office", "Bookshelf and Reference Zone"),
+      ("Living Room", "Bookshelves and Display"),
+      ("Nursery", "Books and Quiet Play Zone")]),
+    ("linens", "Sheets, towels and bedding.",
+     [("Primary Bathroom", "Linen and Towel Storage"),
+      ("Guest Bathroom", "Guest Linen Zone"),
+      ("Hall Closet", "Linen Shelf Zone"),
+      ("Guest Bedroom", "Guest Bed and Linens"),
+      ("Primary Bedroom", "Bed and Bedding Zone")]),
+    ("charging", "Where phones and devices actually get plugged in and "
+     "charged.",
+     [("Entryway", "Landing Zone"),
+      ("Family Room", "Charging and Device Zone")]),
+    ("seating", "Where people sit.",
+     [("Living Room", "Sofa and Seating Zone"),
+      ("Patio or Deck", "Outdoor Seating Zone")]),
+    ("dining", "The table where meals actually get eaten.",
+     [("Dining Room", "Dining Table"),
+      ("Patio or Deck", "Outdoor Dining Zone")]),
+    ("cooking", "Where food actually gets cooked.",
+     [("Kitchen", "Cooking Zone"),
+      ("Patio or Deck", "Grill and Outdoor Cooking Zone")]),
+    ("garden", "Tools and supplies for keeping plants alive.",
+     [("Garage", "Lawn and Garden Tool Zone"),
+      ("Patio or Deck", "Garden and Plant Care Zone")]),
+    ("outdoor-gear", "Gear that only comes out for a specific season or "
+     "activity.",
+     [("Garage", "Sports and Recreation Zone"),
+      ("Mudroom", "Seasonal Outdoor Gear")]),
+    ("paper", "Household paperwork and the backstock of paper goods.",
+     [("Home Office", "File Storage"),
+      ("Hall Closet", "Paper and Household Backstock")]),
+    ("backstock", "The extra supply kept in reserve, behind what is out "
+     "and in use.",
+     [("Pantry", "Backstock and Bulk Zone"),
+      ("Nursery", "Diaper and Care Backstock"),
+      ("Garage", "Bulk and Overhead Storage"),
+      ("Hall Closet", "Paper and Household Backstock")]),
+    ("floor-path", "The floor people actually walk, and what makes it safe "
+     "or not.",
+     [("Living Room", "Floor and Circulation Path"),
+      ("Entryway", "Door, Mat, and Immediate Floor"),
+      ("Stair Landing", "Stair and Floor Path")]),
+    ("display", "Where the house shows things off rather than uses them.",
+     [("Dining Room", "China or Display Cabinet"),
+      ("Stair Landing", "Wall and Display Zone"),
+      ("Living Room", "Bookshelves and Display")]),
+]
+
+_RELATIONS = {}
+
+
+def _validate_zone_relations(rooms):
+    """Every (room, zone) named above must be a real zone. Typos fail loud."""
+    real = {(r["room"], z["zone"]) for r in rooms for z in r["zones"]}
+    bad = []
+    for key, why, members in ZONE_RELATIONS:
+        for pair in members:
+            if pair not in real:
+                bad.append((key, pair))
+    if bad:
+        raise ValueError(f"ZONE_RELATIONS names {len(bad)} zone(s) that do "
+                          f"not exist in content.json: {bad}")
+
+
+def _relation_index(rooms, cap=6):
+    """Every zone's same-job relatives, deduplicated across every group it
+    belongs to (a zone can be in more than one, e.g. a backstock zone that
+    is also a paper-storage zone), and capped so no page gets a link list
+    longer than the site's other related-content blocks."""
+    if _RELATIONS:
+        return _RELATIONS
+    _validate_zone_relations(rooms)
+    by_pair = {(r["room"], z["zone"]): (r["room"], display(r["room"], z["zone"]))
+               for r in rooms for z in r["zones"]}
+    for key, why, members in ZONE_RELATIONS:
+        entries = [(rm, by_pair[(rm, zn)][1],
+                    f"{slug(rm)}-{slug(by_pair[(rm, zn)][1])}")
+                   for rm, zn in members if (rm, zn) in by_pair]
+        for rm, zn in members:
+            if (rm, zn) not in by_pair:
+                continue
+            _, nm = by_pair[(rm, zn)]
+            sl = f"{slug(rm)}-{slug(nm)}"
+            others = [e for e in entries if e[2] != sl]
+            bucket = _RELATIONS.setdefault(sl, [])
+            existing_slugs = {e[2] for _w, e in bucket}
+            for other in others:
+                if other[2] not in existing_slugs:
+                    bucket.append((why, other))
+                    existing_slugs.add(other[2])
+    for sl in list(_RELATIONS):
+        _RELATIONS[sl] = _RELATIONS[sl][:cap]
+    return _RELATIONS
+
+
 # Published videos, keyed by the video slug room--zone. Written by
 # ops/youtube_upload.py and seeded from the live channel, so this grows by
 # itself as more publish rather than needing a second list kept in step.
@@ -2528,6 +2708,27 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                        f'rather than one page pretending the rooms are '
                        f'interchangeable.</p><ul>')
             for orm, onm, osl in others:
+                out.append(f'<li><a href="../zones/{esc(osl)}.html">'
+                           f'{esc(onm)} in the {esc(orm.lower())}</a></li>')
+            out.append('</ul>')
+        # D9: real, same-job zones with a DIFFERENT name, in another room
+        # (a workbench, a nightstand, a sink). Distinct from the block
+        # above, which only fires on an exact shared noun; skip any zone
+        # already shown there so nothing is listed twice on one page.
+        already = {e[2] for e in (others if sib else [])}
+        rel = _relation_index(all_rooms).get(f"{rs}-{zs}", [])
+        rel = [(why, e) for why, e in rel if e[2] not in already]
+        if rel:
+            out.append('<h2>Zones that do the same job, elsewhere in the '
+                        'house</h2>')
+            out.append('<p>Different room, different name, same real job. '
+                        'Each one is its own page because the room around '
+                        'it changes what actually works.</p><ul>')
+            seen_sl = set()
+            for why, (orm, onm, osl) in rel:
+                if osl in seen_sl:
+                    continue
+                seen_sl.add(osl)
                 out.append(f'<li><a href="../zones/{esc(osl)}.html">'
                            f'{esc(onm)} in the {esc(orm.lower())}</a></li>')
             out.append('</ul>')
