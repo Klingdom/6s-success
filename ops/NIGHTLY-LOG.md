@@ -16,6 +16,22 @@ Checked rather than re-cited the prior cycle's own flagged staleness: `GOALS.md`
 
 Pushed to main. Command deck only (regenerated during this cycle's own preflight run). No price or product touched, no page changed. IndexNow not applicable.
 
+## 2026-09-21, scheduled operator cycle (clean verification pass; escalated the busy-work pattern itself rather than manufacture another marginal fix)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, 1067 commits). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. `python ops/preflight.py` clean (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues (checked via a subagent read), all `decision`/`blocked-on-art`, none newly pickable; 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED not empty.
+
+**Verified:** Sections 1-5 of `BACKLOG-2026-09-07.md` are every row done or explicitly Phil-gated; section 1b is a decision awaiting Phil (issue #32); section 5 correctly Hold. Considered the standing cold-read fallback (`ops/backup_analytics.py`, the next zero-mention candidate) but a concurrent cycle earlier today (line ~191 below) had already read it cold and found no defect, so repeating it would duplicate rather than add. Read `CHECKIN-LOG.md`'s last dozen entries and `ops/dashboard.py`'s own output: 1,219 commits in the last 7 days, every recent check-in reporting "nothing measurable moved." Cross-checked `GOALS.md` directly: weekly visitors have fallen three weeks running (18 to 14 to 10), trailing-30-day revenue is $0 against one $19 sale ever, and `OWNER-ACTIONS.md`'s own "Start here: 20 minutes" list (Search Console verification, YouTube OAuth, Stripe business description) has sat unblocked since 2026-09-17 with no sign any item was done.
+
+**Went well:** did not fabricate a finding to justify a commit; the honest state really is "everything GREEN is exhausted or duplicated by concurrent sessions."
+
+**Did not go well:** same shallow/detached checkout shape; issue #27 still open. Confirmed again that heavy commit volume is not the same as business movement.
+
+**Changing next cycle:** escalated the pattern directly to Phil (push notification) rather than only re-recording it in a file nobody has acted on for four days, per CLAUDE.md 0.2's "a correctly reported problem nobody acts on costs exactly as much as an undetected one."
+
+**Next:** the three "Start here" owner actions, unchanged and still the single highest-leverage unlock. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 18:1x (previous work finished and confirmed; triage only, nothing new started)
 
 Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1066 commits).
