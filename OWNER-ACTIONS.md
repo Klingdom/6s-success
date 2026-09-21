@@ -179,9 +179,10 @@ on purpose, because the pipeline in this repository regenerates it and it
 would have eaten your quota for no gain.
 
 **Why it still needs you.** A copy inside the OneDrive folder is still on the
-same disk until it uploads, and I cannot see your cloud account from here. At
-the time of writing, 245 of the 279 files carried OneDrive's sync marker, so
-it was working through them.
+same disk until it uploads, and I cannot see your cloud account from here.
+Re-checked a couple of hours after copying: **all 279 of 279** files now
+carry OneDrive's sync marker, up from 245, so it has finished processing
+every one on this machine. That is as far as I can see from here.
 
 **The two-minute step:** on your phone or any other device, open the OneDrive
 app, find `6S-Success-Masters`, and open one of the Entryway deck PNGs. If the
