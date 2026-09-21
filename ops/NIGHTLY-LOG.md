@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 03:1x-03:2x (previous work NOT finished: checks.yml red on the prior PM's own HEAD; fixed, converged with a concurrent session's identical fix)
+
+Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, fast-forward). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` (Traffic/Affiliate rows), 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**STEP 2's answer was no, checked directly rather than assumed.** A local fast `preflight.py` was clean, but checking the prior PM cycle's own HEAD (`0f8aa446`) against GitHub directly showed `checks.yml` run 1232 had failed: 2 gates, both the same defect. That commit added D-019 to `DECISIONS.md` but never added its row to section 43's own index, so `gate_decisions_index_current` (and its test) correctly failed on the commit that introduced the gap.
+
+**Fixed:** added the missing `| D-019 | ... | ACTIVE | SEO |` row. Verified narrowly first (`ops/tests/test_gate_decisions_index_current.py`, all 9 cases including "the real committed DECISIONS.md passes right now"), then a full `preflight.py` run: every gate passed, 22 warnings. While shipping, a concurrent session (the 03:40 twin, working the same gap independently) pushed the identical fix first; `ops/ship.py`'s own fetch-and-merge picked it up as `885e030f`, so my commit's own diff against `DECISIONS.md` came out empty, correctly, since the content already matched. No duplicate fix landed.
+
+**Not fully closed, reported honestly rather than inherited as done:** `checks.yml` run 1233 against the merge commit (`885e030f`, the one that actually carries the index fix) was still `in_progress` when this check-in needed to hand off. The next cycle should confirm it went green rather than assume it from this entry.
+
+**Went well:** checking the prior cycle's own CI status directly against the GitHub API instead of trusting a clean local preflight, which is exactly how the failure surfaced; converging with a concurrent session's fix instead of pushing a redundant one.
+
+**Did not go well:** the same defect class (index/body drift in `DECISIONS.md` section 43) already has one gate; nothing new to add, since the gate caught it correctly the moment it ran, same as the sitemap gate earlier tonight. The gap was a PM cycle not running the full gate before shipping a `DECISIONS.md` edit, not a missing check.
+
+**Changing next cycle:** none; worth a standing note for any session editing `DECISIONS.md`: run the specific `test_gate_decisions_index_current.py` (fast, no egress) before shipping, not just a fast `preflight.py` that may not catch every ops/ regression class depending on what changed.
+
+**Next:** D12 (rewrite and re-link the six specific articles) is already underway per the operator's own commit (`ec14a80b`) merged into this window; nothing new handed off beyond confirming `checks.yml` run 1233 lands green. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
+
+Pushed to main (`0cf0a053d`, then `8e1516be5` dashboard refresh). `DECISIONS.md` (superseded by the concurrent merge before push, net no diff of its own), command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (D12: direct answer added to all six specific articles, honest partial on the rest)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (clean fast-forward, no reset). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `python ops/preflight.py` was clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits), so no failing gate was this cycle's forced work. The most recent log entry named D12 (rewrite and re-link the six specific-problem articles, `REVIEW-DISCOVERY-2026-09-07.md`) as the next unblocked substantive row, "Blocked on. Nothing for the writing and linking. Images are blocked on D2."
