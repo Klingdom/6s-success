@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 03:4x (previous work locally verified, CI not yet caught up, reported honestly; three review rows found stale and closed; D9 handed to the operator, genuinely short of its own target)
+
+NEXT FOR THE OPERATOR: D9 (route link equity into the zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 4, add zone-to-zone links along real relationships), because it is measurably short of its own acceptance line today and unblocked.
+
+Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 956-commit fast-forward). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**STEP 2, checked honestly rather than assumed.** The prior PM cycle's own D-019 index fix (`885e030f`) is locally clean: full `preflight.py` and the targeted `test_gate_decisions_index_current.py` both pass. But `checks.yml` run #1233 on that exact commit was still `in_progress` via the GitHub API when checked, and no run yet exists for the two commits after it (including current HEAD). Not asserting green; the next cycle should confirm rather than inherit this. A first local `preflight.py` run of my own also showed 1 gate failing, `stray-probe-files`, on a file (`site/_quest_mode_requires_room_probe.html`) left behind by a preflight run I had killed with a 100s timeout moments earlier, exactly the self-inflicted shape the gate's own message names. The file was gone by the time I looked, and a clean, non-concurrent full rerun passed every gate (22 warnings, all previously diagnosed sandbox limits). Not a real defect; a sandbox-concurrency artifact of my own making, verified rather than assumed.
+
+**Three review rows found stale, checked live and closed rather than re-handed to the operator.** `REVIEW-DISCOVERY-2026-09-07.md` D16 (make the FAQ answers visible) was superseded by A3 the same day the review was written; reverified on a random sample of 6 of 114 zone pages, every `FAQPage` JSON-LD `name` string present in the visible HTML, 0 misses. D7 (four ungrammatical titles) and D6's grammar/duplicate-H1 portion: all four named titles now read as natural English and a full script check found 0 duplicate H1 strings across every zone, room and article page. None of the three had ever been marked done in the review; all three are now, with what was checked.
+
+**D9, checked, not just cited.** `ops/link_graph_report.py`: zone-page inbound links from other content pages currently run min 9, max 20, avg 12.2. D9's own acceptance is "median in-degree above 15, no zone page below 8." The floor is met (min 9); the median is not (avg 12.2, well under 15). Genuinely open, unblocked, ~1 operator-day per the review's own estimate. Also checked D8 (replace the 21-link block) against its acceptance lines while here: max zone-to-article outbound is 5 (floor is 8, met), and the six specific articles' inbound counts match D12's own prior measurement exactly (charger 10-11, others 2-4), already judged by that cycle as correctly capped rather than forceable. D8's one unverified line (no anchor text repeated on more than 20 pages) was not independently checked this cycle; the same top five articles receive 30-32 zone inbound links each, which needs an anchor-text read, not a page count, to judge.
+
+**Went well:** re-deriving D9's own number from the real link graph instead of trusting the review's original 2026-09-07 measurement; catching my own concurrent-preflight artifact before writing it up as a real defect.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); this cycle ran long checking CI and the link graph, past the :43 operator slot, so the handoff below is fast rather than layered with a second closing job.
+
+**Changing next cycle:** none.
+
+**Next:** D9 handed to the operator above. D8's anchor-diversity line is worth a follow-up read if D9 finishes early. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
+
+Pushed to main. `REVIEW-DISCOVERY-2026-09-07.md` (three rows closed with evidence), command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 03:1x-03:2x (previous work NOT finished: checks.yml red on the prior PM's own HEAD; fixed, converged with a concurrent session's identical fix)
 
 Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, fast-forward). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` (Traffic/Affiliate rows), 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.

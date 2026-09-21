@@ -517,19 +517,30 @@ core overlap on the three worst pairs, and four ungrammatical titles.
 human would say aloud. Each page in a group states in its first 60 words what
 makes it different from its sibling, and links to the sibling with a specific
 anchor.
-**Blocked on.** Nothing for the H1 and grammar fixes. Deciding which page in
-each group should be the primary answer for the shared query **is blocked on
+**Grammar and duplicate-H1 portion done, found already satisfied 2026-09-21,
+PM check-in.** Checked live rather than assumed: 0 duplicate H1 text strings
+across all zone, room and article pages (script-checked, not sampled).
+Deciding the primary page in each duplicated-noun group is still **blocked on
 Search Console**, do not guess, because guessing wrong here demotes the page
 that was already winning.
 
 ### D7. Fix the ungrammatical titles now
-Four titles are defective as English and will lose clicks regardless of
+**Done, found already satisfied 2026-09-21, PM check-in.** All four named
+titles now read as natural English: `guest-bedroom-the-guest-nightstand.html`
+→ "How to organize the guest bedroom nightstand",
+`guest-bedroom-the-guest-dresser.html` → "How to organize the guest bedroom
+dresser", `guest-bathroom-the-guest-vanity-counter.html` → "How to organize
+the guest bathroom vanity counter", `guest-bathroom-the-guest-vanity-storage.html`
+→ "How to organize the guest bathroom vanity storage". No PR/commit in this
+log names the fix directly; most likely folded into an unrelated zone-page
+pass. Not re-litigated further.
+Four titles were defective as English and would lose clicks regardless of
 position: `How to organize the primary bedroom your own nightstand`,
 `How to organize the guest bedroom guest dresser`,
 `How to organize the guest bathroom guest vanity counter`,
 `How to organize the guest bathroom guest vanity storage`.
 **Effort.** minutes. **Acceptance.** all 114 titles parse as natural English.
-**Blocked on.** Nothing. Do this in the next cycle.
+**Blocked on.** Nothing.
 
 ---
 
@@ -694,6 +705,19 @@ which retrieval crawlers have and have not fetched us in the last 30 days.
 **Blocked on.** Nothing.
 
 ### D16. Make the FAQ answers visible. This is both an AEO win and a compliance fix.
+**Done, found already satisfied 2026-09-21, PM check-in.** Superseded by A3
+in `BACKLOG-2026-09-07.md` (done 2026-09-07, same day as this report, before
+this row was ever worked): `faq_html()` in `ops/build_zone_pages.py` renders
+every `FAQPage` question as a visible `<dl class="faq-list">` block ahead of
+`related_reading()`. Reverified live this cycle on a random sample of 6 of
+the 114 zone pages (`home-office-the-primary-desk`,
+`garage-the-lawn-and-garden-tool-zone`, `kids-bedroom-the-toy-storage-zone`,
+`pantry-the-baking-zone`, `entryway-the-coats-and-outerwear`,
+`entryway-the-shoes-and-boots`): every `name` string in each page's own
+`FAQPage` JSON-LD is present in the rendered HTML outside `<script>`, 0
+misses. This row was stale, not wrong; the "highest value-per-hour item"
+framing below described a real gap that had already been closed the same
+day the report was written.
 **What.** Render the nine FAQ question-and-answer pairs that already exist in
 each zone page's `FAQPage` JSON-LD as visible question-and-answer content on
 the page.
@@ -827,9 +851,9 @@ Three workstreams, matching the `CLAUDE.md` section 18 limit.
 | Item | Blocked on |
 |---|---|
 | D19 Verify GSC + Bing Webmaster Tools | **Phil, one paste** |
-| D16 Make the FAQ answers visible | nothing |
-| D7 Fix the four ungrammatical titles | nothing |
-| D6 (partial) Eliminate the three duplicate H1s | nothing |
+| D16 Make the FAQ answers visible | done 2026-09-07 (A3), confirmed 2026-09-21 |
+| D7 Fix the four ungrammatical titles | done, confirmed 2026-09-21 |
+| D6 (partial) Eliminate the three duplicate H1s | done, confirmed 2026-09-21 |
 | D15 Split the crawler log by purpose | nothing |
 | D17 Correct the HowTo/FAQ expectation in the operating docs | nothing |
 | D11 Normalise spelling in body copy | done 2026-09-14 |
