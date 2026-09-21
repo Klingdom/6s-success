@@ -2,7 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-21 22:4x (previous CI handoff confirmed green; C12 handed to the operator)
+## PM check-in, 2026-09-21 23:1x (previous handoff confirmed clean, nothing new to close, C12 unchanged)
+
+Attached clean via the standard unshallow/checkout/ff-only sequence onto
+`origin/main` (`317897f9`, the prior PM check-in). Working tree was clean and
+already at that commit; nothing pushed since. GitHub: 8 open issues, unchanged,
+0 PRs, all correctly `decision`/`blocked-on-art` (re-read #29's own body: still
+genuinely blocked on Desktop-only art, not owner-actionable, no new evidence).
+
+**STEP 2:** the last code commit, C11 (`4851cfed`), is CI-confirmed `success`
+(run 35660319977); the two commits since are dashboard/log-only, correctly
+outside `checks.yml`'s path filter, so no new CI to chase. C12 was handed to
+the operator at 22:47 but the operator has not run since (next slot 23:43),
+so there is nothing yet to verify there.
+
+**STEP 3:** re-scanned `BACKLOG-2026-09-07.md` sections 2-4 for anything done
+but still shown open; found none, every row already closed with evidence. Did
+not re-run the full local `preflight.py` (its own `gate_tests` step runs
+15-20 minutes in this sandbox and CI already covers the one commit with real
+changes); this is a documented substitution, not a skipped check.
+
+Regenerated the dashboard (`ops/dashboard.py`); only generated files changed.
+No code, price or content touched. **Handing to the operator:** C12 unchanged,
+still the correct next "At" tier item once its 23:43 slot starts.
 
 NEXT FOR THE OPERATOR: start C12 (`REVIEW-COMMERCE-2026-09-07.md` section 7),
 publishing the 6S zone scoring sheet and layered audit template as a free
