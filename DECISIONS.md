@@ -1404,6 +1404,7 @@ Maintain a compact index as the file grows.
 | D-017 | The service is the product; the free quest is the funnel top | ACTIVE | Strategy |
 | D-018 | Corporate Lean 6S gets a page and an enquiry route, no price | ACTIVE | Commerce |
 | D-019 | No new indexable page until the first Search Console read | ACTIVE | SEO |
+| D-020 | Zone in-degree floor of 8 is the real D9 bar; median above 15 is aspirational | ACTIVE | SEO |
 
 D-004 to D-013 were never assigned; no record exists under those IDs
 anywhere in this repository. Not a gap to fill, just a numbering fact worth
@@ -1895,6 +1896,73 @@ decision, it is D13's own list of what this cap currently defers.
 **Revisit when.** Google Search Console (`OWNER-ACTIONS.md` 1a) is verified
 and has produced at least 28 days of real impressions/query data, per D13's
 own acceptance line, or Phil directs otherwise.
+
+## D-020 | 2026-09-21 | Zone in-degree floor of 8 is the real D9 bar; median above 15 is aspirational, not a gate
+
+**Decision.** `REVIEW-DISCOVERY-2026-09-07.md` D9's acceptance line ("zone page
+median in-degree above 15, no zone page below 8") is met only on its floor.
+Treat the floor (no zone below 8; live measurement: min 9, max 21, avg 12.4,
+`ops/link_graph_report.py` run 2026-09-21) as D9's real, satisfied bar. The
+median-above-15 clause is downgraded to aspirational: worth taking if a
+future, genuinely new mechanism supports it honestly, but not something a
+cycle should keep re-deriving by re-reading all 114 zones' text for one more
+same-job pair.
+
+**Rationale.** D9 was independently reopened four times on 2026-09-21 alone
+(each cycle re-confirming, not moving, the same shape), and its own fourth
+status block already reasoned through this exact call and recommended it as
+"a product-content judgement call within existing GREEN-tier authority
+... not a RED gate," but no session had written the decision anywhere a
+future cold read would find it before re-attempting the search. That is the
+"source corrected, artifact never re-derived" defect class this repository's
+own gates exist to close, applied to a decision instead of a build artifact.
+The underlying constraint is structural, not a gap in effort: `zone_page()`'s
+own room-sibling table of contents already links every zone to every other
+zone in its own room (2 to 6 links depending on room size) before
+`ZONE_RELATIONS` adds anything, so a 3-to-5-zone room (Stair Landing, both
+bathrooms, Pantry, Dining Room, Hall Closet, Entryway) cannot reach a median
+of 15 from siblings alone regardless of how many genuine cross-room same-job
+pairs exist. Two independent exhaustive reads of all 114 zones' real
+`purpose`/`done_looks_like` text found 29 genuine same-job groups total;
+extending further without a shared job actually stated in the zone's own
+text would fabricate a connection, which `CLAUDE.md` section 6 forbids.
+17 of 114 zones clear 15 today; the other 97 are capped by room size or by
+having no genuine same-job counterpart in this content set, not by
+unfinished work.
+
+**Evidence.** `ops/link_graph_report.py`, run live 2026-09-21: zone pages
+min 9, max 21, avg 12.4, 0 orphans, 0 thin pages. `REVIEW-DISCOVERY-2026-09-07.md`
+D9's four 2026-09-21 status blocks (`ZONE_RELATIONS` grown from the original
+22 hand-curated groups to 29, `gate_zone_relations_rendered` passing against
+the real committed site each time). Direct inspection tier: this repository's
+own prior measurement, itself sourced from the live generated site.
+
+**Alternatives.** Keep chasing median-15 by fabricating weaker cross-room
+links (a hallway closet linked to a coat closet on shelf-material alone,
+say): rejected, this is exactly the fabrication `CLAUDE.md` section 6
+forbids and would not survive a narrative read. Leave D9 open indefinitely
+so a future cycle can try yet again: rejected, this is the repeated-
+decision-reopening `CLAUDE.md` section 21 warns against, and four same-day
+reopenings without a recorded decision is the evidence that reopening this
+without new input produces the same answer, not new progress. Escalate to
+Phil as a RED gate: rejected, this is reversible, no price/product/customer
+surface is touched, and `CLAUDE.md` 0.5 reserves owner escalation for
+genuine gates (money, contracts, credentials, irreversible action), none of
+which apply here.
+
+**Consequences.** `BACKLOG-2026-09-07.md` section 2 and
+`REVIEW-DISCOVERY-2026-09-07.md` D9 both now point here instead of a future
+cycle re-deriving the same ceiling from scratch. A session that finds a
+genuinely new, honestly-grounded same-job pair while doing other zone-page
+work may still add it (this does not freeze `ZONE_RELATIONS`), but closing
+D9 as "not yet at median 15" should no longer, by itself, trigger a fresh
+exhaustive search of all 114 zones for more pairs.
+
+**Revisit when.** The zone corpus grows meaningfully (new rooms or zones
+authored, changing which same-job pairs actually exist), or a future
+mechanism (real user behavior data on zone-to-zone navigation, once traffic
+supports it) gives an evidence-based reason to invest further, or Phil
+directs otherwise.
 
 ## D-018 | 2026-09-03 | Corporate Lean 6S gets a real page and a qualified enquiry route, and still gets no price
 

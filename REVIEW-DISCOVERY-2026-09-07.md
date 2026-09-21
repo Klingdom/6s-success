@@ -672,6 +672,14 @@ supported pages on the site.
 **Effort.** ~1 operator-day.
 **Acceptance.** Zone page median in-degree above 15. No zone page below 8.
 **Blocked on.** Nothing.
+**Decided, `DECISIONS.md` D-020, 2026-09-21.** The floor half of this
+acceptance line is met and is now the real bar (live: min 9, max 21, avg
+12.4). The median-above-15 half is downgraded to aspirational, not a gate,
+because the room-sibling table of contents already caps small rooms below
+it structurally and two independent exhaustive reads of all 114 zones found
+every genuine same-job pair the content honestly supports. Do not re-derive
+this ceiling again without new input; see D-020 for the full reasoning and
+its revisit condition.
 
 ### D10. Strengthen the room hubs
 **What.** Room pages are 1,057 words with an H1 of a single word ("Entryway").
