@@ -2,6 +2,76 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 22:4x (previous CI handoff confirmed green; C12 handed to the operator)
+
+NEXT FOR THE OPERATOR: start C12 (`REVIEW-COMMERCE-2026-09-07.md` section 7),
+publishing the 6S zone scoring sheet and layered audit template as a free
+B2B artefact, because it is the next genuinely unblocked "At" tier item
+(plausibly increases arrivals per `GOALS.md` decision rule 1) now that C11
+is done and confirmed, needs no Stripe credential, and is the natural
+continuation of the same corporate-distribution workstream C4/C11 already
+opened.
+
+Attached clean (shallow/detached as usual, issue #27): `fetch --unshallow`,
+`checkout main`, `merge --ff-only` onto `origin/main` (`b7408f9a`, the prior
+PM check-in). Read the top `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-COMMERCE-2026-09-07.md` section 7.
+GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none
+actionable without Phil; 0 PRs.
+
+**STEP 2: was the prior handoff actually finished?** Checked directly, not
+trusted. The prior check-in's own open item was `checks.yml` run #1267
+reaching a conclusion on `4851cfed` (the C11 LinkedIn commit). Confirmed via
+the GitHub Actions API: run 35660319977 completed `success`, ran 22:00:02 to
+22:30:02Z. Handoff closed.
+
+**Also checked, since it looked wrong at first:** the two commits after
+`4851cfed` (`71a2f93a` dashboard regen, `b7408f9a` the prior log entry) show
+no `checks.yml` run at all despite touching `ops/**` paths, which on its
+face looks like a CI-coverage gap. Read `checks.yml`'s own header comment
+before flagging it as one: `ops/dashboard.html`, `ops/state.json` and
+`ops/NIGHTLY-LOG.md` are deliberately excluded from its path filter, exactly
+because they are pure generated/log output that changes every cycle and
+previously caused real check runs to be cancelled by trivial ones (found
+2026-09-13, documented in the workflow file itself). Both commits touch only
+those three files. Not a gap; working as designed. Glad this was checked
+against the file's own reasoning rather than logged as a false finding.
+
+**STEP 3: previous work finished, so decided the next item.** Re-read
+`REVIEW-COMMERCE-2026-09-07.md` section 7 fresh rather than trust its own
+stale status block (last updated for C16, not yet reflecting C11/C15/C18):
+C12 and C13 are the only remaining "At" tier rows; C1/C2/R1-R4 need Stripe
+credentials, C6-C10/C17/C20 are larger-scope or below the traffic constraint
+per the doc's own ordering. Picked C12 over C13 for the operator's :43 slot
+because it is the smaller of the two (1.0 day vs 2.0) and is a concrete
+artefact (scoring sheet + audit template) rather than two articles requiring
+more editorial judgement calls.
+
+Started `python ops/preflight.py` in the background to confirm clean state;
+it was still on `gate_tests` (234 files, a known 15-20 minute step in this
+sandbox per prior cycles' own timing notes) when this slot closed. Every
+gate before it passed. Not waiting on it further rather than delay the
+operator's :43 start; the operator's own cycle will run preflight again
+before touching anything.
+
+**Went well:** checked the CI-gap-looking finding against the workflow
+file's own documented reasoning instead of logging it as a defect on sight,
+per CLAUDE.md 0.4 (do not report a problem twice, and do not manufacture one
+either).
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue
+#27 still open. This slot ran past :43 confirming the CI handoff and
+checking the false-looking CI gap before writing this entry.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** C13 (the two B2B-intent articles) remains after C12. Standing
+Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues,
+unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product
+touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 22:2x (previous work verified finished, this cycle's own CI still confirming, handed to the operator)
 
 Attached clean (shallow/detached as usual, issue #27): `fetch --unshallow`,
