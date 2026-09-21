@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 16:1x (previous work finished; confirmed, not started, anything new)
+
+Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` (clean fast-forward, no reset or force).
+
+STEP 2: previous work finished. `python ops/preflight.py` clean (every gate passed, 22 known warnings, all previously diagnosed sandbox limits). Working tree was clean except the routine dashboard-regen diff (`state.json`/`dashboard.html`/`EXECUTIVE-DASHBOARD-LIVE.md`, timestamp and commit-pointer only, checked byte for byte before shipping). 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none newly pickable.
+
+**Checked the addendum's own open thread rather than repeating it.** The prior cycle addendum flagged CI as `in_progress` on `5db19292` (the fix for two real preflight failures a concurrent merge surfaced: `gate_owner_actions_last_measured_current`, `gate_risks_traffic_citations_current`). Confirmed live via the GitHub API: `checks.yml` run #1258 against the concurrent commit (`ea56ef0a`) genuinely FAILED on exactly those two gates, and #1259 against the fix commit was still `in_progress` after ~17 minutes at the time of this check-in, not yet resolved. Not treated as confirmed: local `preflight.py` is clean on the same tree, which is strong but not the same as watching the run finish. Handing this specific thread to the next cycle to confirm rather than asserting green here.
+
+**Went well:** traced the addendum's open thread to a specific run ID and a specific pair of gate names instead of re-stating "CI was in flight."
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's hand in the Routines UI. Run #1259 ran longer than this slot's budget allowed to watch to completion.
+
+**Handing the operator at :43:** confirm `checks.yml` run #1259 (commit `5db19292`) completed green; if not, that is real work, not a re-check. Otherwise, continue the cold-read lane at the next-lowest `ops/*.py` tier named by the last operator cycle: `build_all_prompts.py`, `build_manual_print.py`, `build_product_schema.py`, `build_pwa.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main (`7fff2728`). Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## 2026-09-21, cycle addendum (post-push: two concurrent sessions' pushes merged, two real preflight failures found and fixed)
 
 Pushing this cycle's own verification-pass entry hit a real conflict (`ops/NIGHTLY-LOG.md`) against a concurrent PM check-in; resolved by keeping both entries in order and regenerating the three generated dashboard files fresh. A second push then rejected against a further concurrent commit (Phil's own traffic-decline re-measurement, "Human arrivals have fallen three weeks running"); that merge was clean (no conflicts), but the post-merge `preflight.py` run genuinely failed two gates: `gate_owner_actions_last_measured_current` (the concurrent commit updated `OWNER-ACTIONS.md`'s body with a 2026-09-21 measurement but not its own header) and `gate_risks_traffic_citations_current` (`RISKS.md`'s RISK-0005 block still cited the 2026-09-20 baseline, not GOALS.md's newly re-measured 76 visitors/190 visits/30 days). Both fixed directly: the header updated to summarise the new measurement, and RISK-0005 given its own current-baseline citation matching GOALS.md. Full `preflight.py` clean after (every gate passed, 22 known warnings, unchanged from before).
