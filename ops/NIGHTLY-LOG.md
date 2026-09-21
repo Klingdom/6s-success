@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 11:1x (previous work finished; the standing preflight --deep handoff was already closed by the 10:43 operator, verified independently; no new unblocked item)
+
+Attached cleanly: shallow, detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main`, 997-commit fast-forward, no reset or force.
+
+STEP 2: previous work finished and verified, not just trusted, and it moved twice while this cycle was reading. First landed on `f4283403` (the 10:4x PM's own handoff, `preflight.py --deep` still not run today). Started `preflight.py` fast (clean, every gate passed, 22 warnings) and `--deep` (backgrounded) myself to close it, then re-fetched before writing anything: two more commits had already landed, `62a209e5` (the 10:43 operator ran `preflight.py --deep` to completion, 24 warnings, all previously diagnosed, and separately corrected a stale "needs Phil's Windows machine" claim in `MARKETPLACE-LISTINGS.md`, verified live that the Etsy PDF renderer has worked from this environment's own Chromium since 2026-09-13) and `fa009860` (a concurrent PM-twin cycle closing `gate_status_currency` in `STATUS.md`, naming all 8 material commits it had not yet mentioned). Fast-forward merged onto `fa009860` rather than force or reset. Read both commits in full rather than trusting the messages: `fa009860`'s eight named commits (D10, the sitemap-lastmod fix, D12, D9's further honest partial, `verify_deploy.py`'s widened smoke test, the `ops/ship.py` fix, D-020, the `--deep`/Etsy correction) all match real, already-read entries in this log; `62a209e5`'s own log entry closes the exact handoff two prior PM slots had named.
+
+**My own background `--deep` run, started before the merge landed, was reading a working tree that changed under it (the `git checkout --`/`merge --ff-only` mutated files mid-run); killed it rather than trust or report its output, since a run contaminated by a concurrent mutation is not evidence either way.** Ran a clean `preflight.py` fast afterward instead, on the settled tree: every gate passed, 22 warnings, identical set to `62a209e5`'s own just-completed `--deep` baseline plus the two now-expected `--deep`-only checks folded back out. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, confirmed live via the API, none pickable per this task's own rule against starting anything waiting on Phil. `BACKLOG-2026-09-07.md` sections 2-6 and `REVIEW-DISCOVERY-2026-09-07.md`'s D1-D21: every row done or Phil-gated, D9's own acceptance line correctly carries the D-020 pointer (checked directly, not assumed). `GOALS.md`'s $0 trailing-30-day revenue line still holds a day later, no new sale.
+
+**Did not start anything new this slot.** Both the standing `--deep` handoff and the standing `gate_status_currency` warning, the two concrete unclaimed items the last several PM check-ins had been naming, were closed by two other concurrent cycles inside this same half hour, before this cycle could act on either. `preflight.py` fast (0 gates failed, 22 warnings) and `git status` (clean except the command deck) confirm the tree this cycle is leaving is sound.
+
+**Went well:** treating the fast-preflight and `--deep` I had already started as provisional rather than final, and re-fetching before writing anything, which is what caught that the work had moved.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); a background `--deep` run was started and then had to be discarded because a concurrent merge invalidated it mid-run, a few minutes of compute spent on a check two other cycles had already made redundant.
+
+**Changing next cycle:** when a long backgrounded check is running, re-fetch before mutating the working tree under it, or wait for it to finish first; do not merge onto a moving `--deep` run.
+
+**Next:** CI (`checks.yml` run #1243) was still `in_progress` against `fa009860` at last check, not yet confirmed green; the next cycle should confirm rather than assume. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No new unblocked, non-Phil-gated item surfaced this slot.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (the handed-off preflight --deep run, then a stale "needs Phil's machine" claim in MARKETPLACE-LISTINGS.md found and corrected, with real evidence in hand)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` landed cleanly on `origin/main` (996-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md` and the newest `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty.
