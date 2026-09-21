@@ -15576,6 +15576,103 @@ def gate_zone_direct_answer_current() -> None:
         fail("zone-direct-answer", "; ".join(problems[:6]))
 
 
+def check_specific_article_direct_answer(answer_map, page_bodies,
+                                          word_ceiling=100) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    D12 (REVIEW-DISCOVERY-2026-09-07.md section 2, "Blocked on. Nothing for
+    the writing and linking."), applied to the six "specific problem"
+    articles section 1.4 names as the only ones with a nameable query
+    behind them (junk drawer, mail, keys, medicine cabinet, charger, too
+    many steps). D1's own reasoning for the 114 zone pages applies here
+    unchanged: "the first 60 words under the H1 should answer the
+    question... it is what AI Overviews, Copilot and ChatGPT extract."
+
+    Before this gate existed, each of these six opened with a true,
+    specific narrative hook and only stated the actual answer in a
+    separate <p class="notice"> block the hook had pushed out of the
+    first-60-words window. `answer_map` is {filename: expected_lede} built
+    fresh from ops.specific_articles.DIRECT_ANSWERS, the single source of
+    truth both the hand-edited HTML and this gate read from, so a future
+    hand edit reverting the opening (or restoring the old notice block
+    alongside it) cannot ship unnoticed the way a generator-owned page is
+    already protected. `page_bodies` is {filename: html} for the real
+    site/articles/*.html files this gate covers.
+    """
+    import html as _html
+    problems = []
+    want_files = set(answer_map)
+    got_files = set(page_bodies)
+    missing = sorted(want_files - got_files)
+    if missing:
+        problems.append("%d specific article(s) in the corpus have no "
+                         "built file: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+
+    for f in sorted(want_files & got_files):
+        body = page_bodies[f]
+        m = re.search(r'<p class="lede">(.*?)</p></div>', body, re.S)
+        if not m:
+            problems.append("%s: no <p class=\"lede\"> found at all" % f)
+            continue
+        rendered = m.group(1)
+        want = _html.escape(answer_map[f], quote=True)
+        if rendered != want:
+            problems.append(
+                "%s: opening paragraph does not match "
+                "ops.specific_articles.DIRECT_ANSWERS' own text: got %r, "
+                "want %r" % (f, rendered[:80], want[:80]))
+        text = _html.unescape(rendered)
+        n = len(text.split())
+        if n > word_ceiling:
+            problems.append(
+                "%s: opening paragraph is %d words, over the %d-word "
+                "ceiling this gate holds it to" % (f, n, word_ceiling))
+        if 'class="notice"' in body and "The short answer." in body:
+            problems.append(
+                "%s: a second, now-redundant \"The short answer.\" notice "
+                "block still exists alongside the direct-answer lede" % f)
+    return problems
+
+
+def gate_specific_article_direct_answer() -> None:
+    """The shipped-HTML half of D12's direct-answer requirement on the six
+    specific-problem articles (see `check_specific_article_direct_answer`'s
+    own docstring for what this catches). Re-derives the expected opening
+    paragraph from `ops.specific_articles.DIRECT_ANSWERS` and diffs it
+    against the real site/articles/*.html files, so a hand edit to one of
+    these six hand-maintained pages cannot silently drop or replace the
+    answer the way the pre-D12 hook-first opening did.
+
+    Proved to fail on three planted regressions: a page with the old
+    hook-first opening restored, an oversized opening paragraph, and a
+    reintroduced duplicate "short answer" notice block:
+    ops/tests/test_gate_specific_article_direct_answer.py.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import specific_articles as sa
+    answer_map = {f"{slug}.html": text
+                  for slug, text in sa.DIRECT_ANSWERS.items()}
+    if not answer_map:
+        return
+
+    page_bodies = {}
+    for slug in sa.DIRECT_ANSWERS:
+        p = os.path.join(SITE, "articles", f"{slug}.html")
+        if os.path.exists(p):
+            page_bodies[f"{slug}.html"] = io.open(
+                p, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("specific-article-direct-answer",
+             "none of the six specific articles were found, could not "
+             "check.")
+        return
+
+    problems = check_specific_article_direct_answer(answer_map, page_bodies)
+    if problems:
+        fail("specific-article-direct-answer", "; ".join(problems[:6]))
+
+
 def check_room_hub_current(job_map, start_map, page_bodies) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
 
@@ -18469,6 +18566,7 @@ def main() -> int:
     run_gate(gate_kit_compact_rendered)
     run_gate(gate_zone_relations_rendered)
     run_gate(gate_zone_direct_answer_current)
+    run_gate(gate_specific_article_direct_answer)
     run_gate(gate_room_hub_current)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)

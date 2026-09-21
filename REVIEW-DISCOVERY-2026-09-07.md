@@ -163,6 +163,50 @@ Full detail: `BACKLOG-2026-09-07.md` section 2, `ops/NIGHTLY-LOG.md`
 work), D15 (traced, needs the SSH key this environment lacks), D19-D21
 (Phil-gated).
 
+**Status, 2026-09-21, operator (second cycle): D12 done for the two
+unblocked parts of its own acceptance line, honestly partial on the rest,
+matching this section's own precedent for D8/D9.** D12's own line: "Blocked
+on. Nothing for the writing and linking. Images are blocked on D2." Took
+that literally and checked each of the four acceptance criteria live rather
+than assumed. **Direct answer above the fold: done, all six.** Each of the
+six articles opened with a true narrative hook and stated the actual answer
+only in a separate `<p class="notice">` block below it, the exact
+first-60-words gap D1 already closed on all 114 zone pages, now confirmed
+present on this second surface too. New `ops/specific_articles.py`
+(`DIRECT_ANSWERS`, one entry per slug, 60-75 words each, the same real
+answer the old notice block already stated, tightened to lead the page
+instead of follow it, nothing newly claimed) is now the single source of
+truth both the hand-edited HTML and a new `gate_specific_article_direct_answer`
+in `preflight.py` read from; the former hook paragraph moved to the second
+paragraph, unchanged in substance. Fail-then-pass proved directly against
+the real committed `why-you-always-lose-your-keys.html` (planted a stale
+answer, watched the gate fail by name citing the file and the mismatched
+text, restored byte for byte, reran clean); `ops/tests/test_gate_specific_article_direct_answer.py`
+(7 cases, including all six real committed articles) green. **10+
+contextual inbound links: already honestly at its ceiling, not newly
+worked this cycle.** Re-measured with `ops/link_graph_report.py --detail
+articles` rather than trusted from A8's own prior figures: charger 11 (over
+the 10-link target), mail 5, keys 4, dig-for-what 4, junk drawer 3, medicine
+cabinet 3. A8 (this file's own record, 2026-09-15) already established most
+homes have only one real zone genuinely about keys, mail, the junk drawer or
+the medicine cabinet, so a fifth or sixth link would fabricate a connection
+`CLAUDE.md` section 6 forbids; nothing found this cycle changes that. **3+
+images and a `Person` author: still blocked, correctly, on D2 and D21
+respectively** (a real photograph and a real bio/profile URL, neither
+fabricable). D12 is therefore closed for its own unblocked scope; the
+remainder is not a task, it is D2/D21 themselves, already tracked. No price
+or product touched, no new page (six existing articles restructured, zero
+added); `ops/build_seo.py` rerun (6 sitemap URLs' content hashes moved,
+nothing else), `site/build-id.txt` regenerated. Full `preflight.py` (every
+gate passed, 22 warnings, all previously diagnosed sandbox limits),
+`check_urls.py` (187/187), `audit_pages.py` (191/0, 0 duplicate
+titles/descriptions), `affiliate.py --check` (163 documents),
+`fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans),
+`ops/audit_visual.py --all --mobile` (0 findings across 194 pages, the one
+already-documented non-blocking `kitchen-deck.html` font-load race) all
+clean after. IndexNow will pick up the six changed articles on its next
+successful run.
+
 ---
 
 ## 0. Bottom line
