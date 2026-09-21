@@ -24,6 +24,22 @@ Every row in `BACKLOG-2026-09-07.md` sections 2-4 is again done or Phil-gated; s
 
 Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
 
+## PM check-in, 2026-09-21 16:4x (previous work finished and confirmed; triage only, no new work started)
+
+NEXT FOR THE OPERATOR: cold-read the next low-mention `ops/*.py` tier (`build_all_prompts.py`, `build_manual_print.py`, `build_product_schema.py`, `build_pwa.py`), because every measurement, broken/dishonest, traffic and product row in `BACKLOG-2026-09-07.md` sections 1 through 4 is done or Phil-gated, section 5 is correctly on Hold pending traffic, and the 8 open GitHub issues are all `decision` or `blocked-on-art`, none newly pickable, leaving the operational-honesty cold-read lane as the only genuinely unblocked work.
+
+Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force.
+
+STEP 2: previous work finished, confirmed rather than assumed. The prior PM cycle (16:1x) had left CI run #1259 (commit `5db19292`) as `in_progress`; checked it directly via the API rather than re-stating that open thread: the entire run completed with conclusion `success`, all 10 job steps green including the ops test suite and product-copy-drift check, not just the Preflight step the earlier addendum had confirmed. `python ops/preflight.py` clean on this cycle's own run (every gate passed, 22 known warnings, all previously diagnosed sandbox limits, unchanged from what the last several cycles reported). Working tree was clean, `main` already matched `origin/main`. `checks.yml` run #1260 (commit `cfee5dfc`, several commits behind current HEAD) was still `in_progress` on the ops test suite step at check time, a normal multi-minute step, not stalled; no checks.yml run exists yet for the current tip (`860009d2`, a dashboard/log-only commit outside the workflow's path trigger), so nothing to confirm there. 8 open GitHub issues confirmed live via the API, unchanged: 6 `decision` (#15, #18, #21, #31, #32, #33), 2 `blocked-on-art` (#2, #29), 0 open PRs.
+
+**Went well:** tracing the prior cycle's open CI thread to its actual full-run conclusion instead of re-asserting "in flight."
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect, no new gate needed this slot.
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 16:1x (previous work finished; confirmed, not started, anything new)
 
 Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` (clean fast-forward, no reset or force).
