@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 07:4x (previous work finished and verified; nothing new genuinely unblocked; browser.py cold-read closed clean)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read fallback (build_card_template.py, build_catalog.py, checkin.py next by mention count), because every backlog row is again done or Phil-gated.
+
+Attached cleanly: shallow, detached; fetched --unshallow, then `git merge --ff-only origin/main` (980-commit fast-forward, no reset or force), landing on the prior PM cycle's own aeb1f1e7.
+
+STEP 2: yes, previous work finished. Working tree was clean, main matched origin/main before this cycle touched anything. Full `preflight.py` run to genuine completion in the background: every gate passed, 0 FAIL, 22 warnings, the same standing set as every prior cycle (no Stripe/mail/SSH/Pillow credential in this sandbox, no egress, cron-cadence drift already diagnosed). No new warning.
+
+STEP 3: checked, nothing new to start. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated (checked the actual rows, not the heading). 8 open GitHub issues, unchanged, all `decision` or `blocked-on-art`, confirmed live via the API. `EXECUTIVE-DASHBOARD-LIVE.md`'s one open P0 (production behind the repository) needs a session with real VPS access and the `~/.ssh/6s_deploy` key, neither present here; per `OWNER-ACTIONS.md` this has not been Phil's own action since 2026-09-01, so it is not handed to him, just recorded as still not reachable from this sandbox.
+
+Continued the standing low-mention `ops/*.py` cold-read fallback: `browser.py` (24 mentions, the next candidate this morning's earlier PM entry named). Read it cold, then verified rather than trusted: `find_browser()` correctly returns the sandbox's real Chromium path and its `--no-sandbox` flag in this environment (`python3 -c` call against the live module, not inferred from the source). Checked all ten real call sites; one caller (`check_pack_pages.py`'s `render()`) unpacks its return value inside a bare `except Exception`, so on a machine with neither Edge nor this sandbox's Chromium the resulting `TypeError` is still caught and reported as "no browser here", the correct outcome by accident rather than by an explicit `if not found` check the other nine callers all use. Not a live defect (the message is still accurate, and this environment does have the browser), so nothing filed; noted here rather than manufactured into an issue nobody asked for.
+
+Went well: running the function against the real environment instead of reading the source and assuming.
+
+Did not go well: same shallow/detached checkout shape recurred (issue #27, unchanged, still needs Phil's own hand in the Routines UI).
+
+Changing next cycle: none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price or product touched, no new page, no code changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 07:1x (previous work finished and verified; nothing new genuinely unblocked; revenue_model.py cold-read closed clean)
 
 Attached cleanly: shallow, detached; fetch --unshallow then merge --ff-only onto origin/main (980-commit fast-forward, no reset or force), landing cleanly on the operator's own ea004b8d (verify_deploy.py PAGES fix) and the 06:4x PM check-in.
