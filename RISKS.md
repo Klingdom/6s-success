@@ -259,6 +259,41 @@ evidence:
     an aesthetic rejection (a distorted object merge), not a trademark one; the
     other eight are unclassified for trademark content, since no OCR exists in
     this environment to sweep them.
+  - VISUAL SWEEP COMPLETED 2026-09-21, closing the "no OCR exists in this
+    environment" gap named above. All 88 card heroes were looked at: the 7
+    currently marked `no` at full resolution, all 88 across the 8 contact
+    sheets built by `ops/review_heroes.py --set cards --sheets`, and 2 flagged
+    ones re-opened at full resolution. Each of the 7 rejected files was first
+    hash-checked against its recorded sha so the image judged is the image the
+    register refers to; all 7 matched.
+  - RESULT: no legible third-party trademark, logo or brand name appears on
+    any of the 88. The two historical defects (EE-001, EP-005, Amazon marks)
+    are confirmed visually absent, the cardboard boxes now carry no markings
+    at all.
+  - THREE IMAGES CARRY PSEUDO-BRANDING, meaning garbled illegible glyphs or
+    emblems placed exactly where a maker's mark would sit. None reproduces an
+    identifiable mark, so none is a copy; the concern is trade dress, not
+    trademark reproduction:
+      * ET-003, currently REJECTED so it does not ship. Three wellington boots
+        each carrying a rectangular plaque in the position and shape of a
+        well-known boot maker's mark. The strongest of the three, and the
+        reason it should stay rejected on IP grounds and not only the
+        aesthetic ones. Its rejection reason was previously unrecorded.
+      * EH-011, APPROVED and shipping. Embossed illegible lettering on a
+        leather pouch flap.
+      * EM-002, APPROVED and shipping. An indistinct shield-crest emblem on a
+        key head, of the kind automotive marks use.
+  - The other 4 rejected files (EE-002, EM-009, ES-007, EU-002, EU-004,
+    EU-009, less ET-003) carry no text, logo or emblem of any kind; their
+    rejections are aesthetic (a distorted umbrella merged into a chest of
+    drawers, a melted coat hanger, incoherent furniture), which matches the
+    one reason previously on record for EE-002.
+  - LIMITS OF THIS SWEEP, stated so it is not read as clearance: it was done
+    by a model with vision, not by an intellectual-property professional, and
+    it finds visible marks rather than answering whether any depiction
+    infringes. 85 of the 88 were judged at contact-sheet resolution (about 320
+    px wide), where a mark smaller than a few pixels could be missed; the 3
+    flagged and the 7 rejected were checked at full resolution.
   - No qualified intellectual-property professional has reviewed the deck.
 impact: >
   The Entryway deck is the pilot for a 20 deck product line. Art that depicts
