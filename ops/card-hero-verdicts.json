@@ -5,7 +5,8 @@
  },
  "EE-002": {
   "sha": "77032ec5a2",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "Aesthetic: an umbrella and a pole merge into the chest of drawers. No text, logo or emblem anywhere in the frame."
  },
  "EE-003": {
   "sha": "aa14d28e4d",
@@ -48,10 +49,10 @@
   "verdict": "ok"
  },
  "EH-004": {
-  "verdict": "ok",
-  "sha": "f32b06180a",
   "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
-  "note": "regenerated after an earlier 'no'; best of 3 seeds"
+  "note": "regenerated after an earlier 'no'; best of 3 seeds",
+  "sha": "f32b06180a",
+  "verdict": "ok"
  },
  "EH-005": {
   "sha": "b80fbb1c81",
@@ -79,7 +80,8 @@
  },
  "EH-011": {
   "sha": "3709c1ce5b",
-  "verdict": "ok"
+  "verdict": "ok",
+  "why": "APPROVED and shipping, noted not rejected: the pouch flap carries embossed illegible lettering where a brand name would sit. No identifiable mark. Flagged for the IP review RISK-0003 requires before any commercial print."
  },
  "EH-012": {
   "sha": "f9b724f9b6",
@@ -91,7 +93,8 @@
  },
  "EM-002": {
   "sha": "860b378c70",
-  "verdict": "ok"
+  "verdict": "ok",
+  "why": "APPROVED and shipping, noted not rejected: an indistinct shield-crest emblem on a key head, of the kind automotive marks use. No identifiable mark. Flagged for the IP review RISK-0003 requires before any commercial print."
  },
  "EM-003": {
   "sha": "aee1213a9a",
@@ -119,7 +122,8 @@
  },
  "EM-009": {
   "sha": "72b845dbae",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "Aesthetic: incoherent furniture, a plinth and an unidentifiable white object. No text, logo or emblem."
  },
  "EM-010": {
   "sha": "e86f8245ce",
@@ -154,10 +158,10 @@
   "verdict": "ok"
  },
  "EP-007": {
-  "verdict": "ok",
-  "sha": "ccada10955",
   "by": "claude-opus-5, looked at the rendered image directly, 2026-09-17",
-  "note": "regenerated after an earlier 'no'; best of 3 seeds"
+  "note": "regenerated after an earlier 'no'; best of 3 seeds",
+  "sha": "ccada10955",
+  "verdict": "ok"
  },
  "EP-008": {
   "sha": "42a6ab1bb4",
@@ -206,7 +210,8 @@
  },
  "ES-007": {
   "sha": "2a0223b025",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "Aesthetic: the centre coat hanger is malformed, reading as melted. No text, logo or emblem."
  },
  "ES-008": {
   "sha": "eb1287b2bb",
@@ -238,7 +243,8 @@
  },
  "ET-003": {
   "sha": "a418d21525",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "IP AND aesthetic. Three wellington boots, each carrying a rectangular plaque in the position and shape of a well-known boot maker's mark (garbled glyphs, not a readable mark, so trade dress rather than trademark reproduction). Also three boots rather than a pair. Do not re-approve without removing the plaques. See RISKS.md RISK-0003, swept 2026-09-21."
  },
  "ET-004": {
   "sha": "18137cd874",
@@ -283,7 +289,8 @@
  },
  "EU-002": {
   "sha": "c0936cc9c8",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "Aesthetic. No text, logo or emblem."
  },
  "EU-003": {
   "sha": "efff109b79",
@@ -291,7 +298,8 @@
  },
  "EU-004": {
   "sha": "4237a1dbf0",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "Aesthetic. No text, logo or emblem."
  },
  "EU-005": {
   "sha": "a6b95439d2",
@@ -311,7 +319,8 @@
  },
  "EU-009": {
   "sha": "29026a90ca",
-  "verdict": "no"
+  "verdict": "no",
+  "why": "Aesthetic. No text, logo or emblem."
  },
  "EU-010": {
   "sha": "d3d019244e",

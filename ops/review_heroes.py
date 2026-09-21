@@ -21,6 +21,8 @@ HOW IT WORKS
   --sheets   builds numbered contact sheets, twelve images to a page, so 114
              images can be judged in ten looks instead of 114.
   --mark     records verdicts: --mark ok 1-6,9 or --mark no 7,8
+  --why      a reason to store beside the verdict, kept across future marks:
+             --mark no 59 --why "boot plaques imitate a real maker's mark"
   --status   what is approved, what is rejected, what nobody has judged.
 
 ops/wire_zone_heroes.py wires only stems marked ok. Unjudged is treated as
@@ -148,7 +150,7 @@ def expand(spec: str) -> list:
     return out
 
 
-def mark(verdict: str, spec: str) -> int:
+def mark(verdict: str, spec: str, why: str = "") -> int:
     idx, v = load(INDEX), load(VERDICTS)
     if not idx:
         print("  no index. Run --sheets first.")
@@ -159,7 +161,21 @@ def mark(verdict: str, spec: str) -> int:
         if not stem:
             print(f"  {n} is not in the index, skipped")
             continue
-        v[stem] = {"verdict": verdict, "sha": sha(stem)}
+        # Preserve anything already recorded against this stem rather than
+        # replacing the record. Until 2026-09-21 this line wrote a fresh
+        # two-key dict, so any reason written beside a verdict was destroyed
+        # silently the next time anybody re-marked that image. That matters
+        # for exactly the case it was about to lose: ET-003 is rejected partly
+        # because its boots carry plaques shaped like a real maker's mark
+        # (RISKS.md RISK-0003), and a future reviewer seeing only "no" with no
+        # reason could reasonably re-approve it.
+        prior = v.get(stem) if isinstance(v.get(stem), dict) else {}
+        rec = dict(prior)
+        rec["verdict"] = verdict
+        rec["sha"] = sha(stem)
+        if why:
+            rec["why"] = why
+        v[stem] = rec
         hit += 1
     save(VERDICTS, v)
     print(f"  marked {hit} as {verdict}")
@@ -185,7 +201,10 @@ def main() -> int:
         return sheets()
     if "--mark" in sys.argv:
         i = sys.argv.index("--mark")
-        return mark(sys.argv[i + 1], sys.argv[i + 2])
+        why = ""
+        if "--why" in sys.argv:
+            why = sys.argv[sys.argv.index("--why") + 1]
+        return mark(sys.argv[i + 1], sys.argv[i + 2], why)
     return status()
 
 
