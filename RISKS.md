@@ -704,7 +704,48 @@ mitigation: >
   in DECISIONS.md.
 closing_condition: >
   A verified second copy of the masters exists and a file has been restored
-  from it successfully.
+  from it successfully. PARTLY MET 2026-09-21: a verified second copy of the
+  irreplaceable subset now exists (below). Stays OPEN until a file has been
+  restored FROM the cloud copy, which needs the owner's OneDrive account to
+  confirm the upload completed; nothing on this machine can prove the cloud
+  side.
+investigation:
+  date: 2026-09-21
+  question: >
+    The mitigation said "establish where those masters are backed up... if
+    nothing backs them up, that is the finding". Answered from the machine
+    itself rather than by asking.
+  finding: >
+    NOTHING BACKED THEM UP. Windows File History service (fhsvc): stopped, no
+    File History data directory. Windows Backup engine (wbengine): stopped. No
+    volume shadow copies. OneDrive IS running, two processes, which is exactly
+    what makes this dangerous: it syncs the OneDrive\Desktop folder, which
+    holds 1,398 files of game shortcuts and ZERO 6S folders, while the live
+    Desktop is %USERPROFILE%\Desktop (confirmed in the registry's User Shell
+    Folders). Anyone glancing at a running OneDrive would reasonably conclude
+    the work was covered. It was not.
+  scale: >
+    65 folders, 6,215 files, 2.47 GB on the live Desktop. 1.99 GB of that is
+    6s-success-videos, which this repository's own pipeline regenerates at
+    compute cost, so it is expensive to lose but not irreplaceable.
+  the_irreplaceable_part: >
+    The 89 Entryway deck PNGs. Hashed every one against every PNG in this
+    repository (5,162 of them): 0 of 89 are present. DECISIONS.md D-003 says
+    those images are not a rejected asset, they ARE the deck, a product. They
+    existed in exactly one place on earth.
+  action_taken: >
+    Copied the irreplaceable subset (6S-Success-Card-Decks, 6S-Image-Prompts,
+    6S-Illustration-System) into the owner's already-running OneDrive at
+    OneDrive/6S-Success-Masters. 279 files, 396.3 MB, every one verified
+    identical by sha256 afterwards, not a sample. The 1.99 GB of regenerable
+    video was deliberately left out so the copy stays small enough to be
+    unremarkable against any quota.
+  what_is_still_unproven: >
+    That the cloud side finished. The files carry OneDrive's reparse-point
+    marker and both sync processes are running, so upload is under way or
+    done, but nothing on this machine can see the owner's cloud account. A
+    copy inside the OneDrive folder on the SAME disk is not yet an off-machine
+    backup, and this row does not claim it is.
 review: monthly
 ```
 
