@@ -917,6 +917,90 @@ ZONE_SPECIFIC_READING = {
          "Still hunting for the right charger here?",
          "Why identical cables cause this every time, and the fix that does not involve buying more cables."),
     ],
+    # REVIEW-DISCOVERY-2026-09-07.md D8/D9, 2026-09-20: each of these five
+    # topical articles was reachable from only the one zone it was
+    # originally written for, well under D8's "at least 10 contextual
+    # links" target and D9's inbound-link floor. Rather than link every
+    # zone to hit a number, every zone below was found by reading its own
+    # real published passes/watch_for text for a genuine, specific mention
+    # of the same friction (a stray charger, a second junk drawer, mail
+    # colonising a surface, an expired-medicine check, a keys-and-wallet
+    # dresser tray), the same standard ZONE_SPECIFIC_READING already holds
+    # its four original entries to. Where no real zone said so, none was
+    # added: not every one of the five reached 10 this way, and that is
+    # the honest result of grounding every link in real text rather than
+    # a defect to paper over (see the note on this dict's own gate below).
+    "dining-room-the-sideboard-surface": [
+        ("../articles/why-mail-piles-up-by-the-door.html",
+         "Another surface losing the fight to the mail?",
+         "This one already admits it: serving, display and mail is three jobs for one surface, and mail always wins."),
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "A lamp, a charger and a warming tray sharing one socket here too?",
+         "The same orphaned-charger problem the media center and the nightstands have, on a surface that was never meant to hold it."),
+    ],
+    "primary-bedroom-the-dresser-top": [
+        ("../articles/why-you-always-lose-your-keys.html",
+         "Is this where the second pile of keys starts?",
+         "One spare set of keys on bare wood is how a tray stops being a tray."),
+    ],
+    "guest-bedroom-the-guest-nightstand": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "An untested charger in this drawer too?",
+         "The household charging drawer only works if every cable in it has actually been proven on a real device."),
+    ],
+    "kids-bedroom-the-study-desk": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "Chained extension strips feeding a laptop charger under this desk?",
+         "One strip, one wall socket is the fix, the same rule the office desk needs."),
+    ],
+    "primary-bathroom-the-toilet-area": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "A phone charger reaching up to the cistern here?",
+         "The same reach-for-it charger habit, in the one room where it should not live."),
+    ],
+    "home-office-the-primary-desk": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "Charger cables crossing the floor under this desk?",
+         "Where the cable actually needs to run, and why the chair's own path decides it."),
+    ],
+    "kitchen-the-sink-and-dishwashing-zone": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "A phone charging within splash distance of this basin?",
+         "Why that habit belongs on the same list as every other orphaned charger in the house."),
+    ],
+    "living-room-the-media-center": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "A charger for a connector nothing in the house uses anymore?",
+         "The same box-of-cables problem this article names, just with a television attached."),
+    ],
+    "living-room-the-side-tables-and-lighting": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "A charger for a phone nobody in this house owns?",
+         "If nobody can name the device, it is not a spare, it is the same clutter this article covers."),
+    ],
+    "entryway-the-bench-or-console": [
+        ("../articles/how-to-organize-a-junk-drawer.html",
+         "Did this drawer become the second junk drawer already?",
+         "The same reset the kitchen utensil drawer needs, on a drawer that was supposed to be empty a month ago."),
+    ],
+    "stair-landing-the-landing-surface-or-console": [
+        ("../articles/why-you-always-lose-your-keys.html",
+         "Keys to nothing collecting on this landing too?",
+         "The same drift the entryway console has, one flight up."),
+        ("../articles/why-mail-piles-up-by-the-door.html",
+         "Mail you already read, still sitting here?",
+         "It is the same undecided paper the front door collects, just further into the house."),
+    ],
+    "nursery-the-diaper-and-care-backstock": [
+        ("../articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
+         "Any infant medicine on this shelf past its date?",
+         "The same expired-medicine check the primary bathroom needs, for a shelf a standing toddler can reach."),
+    ],
+    "primary-bedroom-your-own-nightstand": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "Is the charger the reason something else never gets picked up first?",
+         "Moving the charger across the room is the fix that works when the phone-face-down rule alone does not."),
+    ],
 }
 
 # Causes mapped in root_causes.py to an article that lives outside

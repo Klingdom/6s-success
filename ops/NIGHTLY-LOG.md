@@ -2,9 +2,95 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (D8: five topical articles routed from more real zones, honest partial result)
+
+**Did:** Checkout arrived shallow and detached; `fetch --unshallow` then
+`merge --ff-only` onto `origin/main` (927-commit fast-forward), no reset or
+force. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, the last four log entries. `python ops/preflight.py` clean
+before touching anything: every gate passed, 22 warnings, all previously
+diagnosed sandbox limits. Confirmed D1's CI directly via the GitHub API
+rather than trust the last check-in's handoff: `checks.yml` #1222 and
+`publish-image.yml` #359, both `success` on `44e8598e`. GitHub: 8 issues,
+unchanged, all `decision`/`blocked-on-art`. Verified D6/D7 live rather than
+re-do them: 0 duplicate H1s, all 114 titles grammatical. Picked D8
+(`REVIEW-DISCOVERY-2026-09-07.md` section 4, "Blocked on. Nothing"), the
+next unblocked row the last PM check-in named by name.
+
+Checked the review's own claim live: `why-you-cant-find-the-right-charger`,
+`why-you-always-lose-your-keys`, `why-mail-piles-up-by-the-door`,
+`why-the-medicine-cabinet-never-gets-cleared-out` and
+`how-to-organize-a-junk-drawer` each had 1-2 real inbound zone links, well
+under the section's "at least 10" target. Rather than link zones to hit
+that number, read every zone's own already-published passes/hazards text
+for a genuine, specific mention of the same friction. Found 12 real
+matches (a stray charger genuinely described on 9 more zones across the
+dining room, both bedrooms, kids' desk, primary bathroom, home office,
+kitchen sink zone and both living room surfaces; a second junk drawer on
+the entryway console; mail and keys each on 1-2 more zones; expired
+medicine on the nursery shelf), added one `ZONE_SPECIFIC_READING` entry
+per match in `ops/build_zone_pages.py`, title and description quoting or
+closely paraphrasing that zone's own real sentence, nothing invented.
+
+**Honest result:** charger reaches 10 real inbound links, meeting the
+target. Keys (3), mail (4), junk drawer (2) and medicine cabinet (2) do
+not, because most homes have exactly one real zone genuinely about each of
+those, and no further zone's text supported a link without fabricating a
+connection. Recorded as a partial result in `BACKLOG-2026-09-07.md` and
+the review's own status note, not shipped as a false "done".
+
+**Verified:** No new gate needed. `gate_general_reading_differentiated`
+(the 11 non-diagnosed zones touched) and `gate_diagnosis_rendered` (the 2
+diagnosed zones touched, `entryway-the-bench-or-console` and
+`kitchen-the-sink-and-dishwashing-zone`) both already re-derive
+`ZONE_SPECIFIC_READING` fresh from the module on every run, so the new
+entries are gate-protected without any new code; confirmed directly
+(`ops/tests/test_gate_general_reading.py` and
+`test_gate_diagnosis_rendered.py`, both green, "real site clean if built").
+Regenerating touched 22 zone pages (12 for the new links, 10 more from the
+deterministic general-reading rebalance the freed capacity triggers
+elsewhere, the same documented cascading mechanism the two original
+non-diagnosed entries already exercise).
+
+**A transient failure caught and correctly not shipped on.** A first full
+`preflight.py`, run concurrently with `audit_visual.py --all --mobile`,
+repeated the exact mistake the 2026-09-20 D5 cycle's own "changing next
+cycle" note warned against, and reported `test_gate_page_ownership_registry.py`
+failing 1 of 6 cases. Reran it standalone immediately: 6 of 6 passed. Ran a
+second full `preflight.py` alone, not concurrent with anything: every gate
+passed, 23 warnings, matching the standing baseline. Confirmed the first
+result was this sandbox's own concurrency artifact, not a real defect,
+before committing anything, per `CLAUDE.md` 0.4.
+
+**Went well:** grounding every new link in a real, quoted sentence from the
+zone's own text instead of padding toward the review's raw number, and
+recording the honest shortfall on four of the five articles rather than
+letting the backlog claim full compliance; catching the concurrent-audit
+transient before it reached a commit.
+
+**Did not go well:** ran `preflight.py` and `audit_visual.py` concurrently
+again despite the prior cycle naming this exact risk; cost one extra full
+preflight run to confirm the failure was transient.
+
+**Changing next cycle:** none new; the existing fix (run them sequentially)
+was already the documented lesson, just not followed this time. Restating
+it here since one restatement clearly was not enough.
+
+**Next:** D9 (route link equity into zone pages, median in-degree above
+15) is the next unblocked row in this section; zone in-degree is unchanged
+by this pass (still min 7, max 17, avg 10.7, `ops/link_graph_report.py`
+before and after), a separate ~1 operator-day piece of work. D10 (room hub
+depth) and the standing owner-gated list in `OWNER-ACTIONS.md` are also
+open.
+
+Pushed to main. `ops/build_zone_pages.py`, 22 `site/zones/*.html` pages,
+`BACKLOG-2026-09-07.md`, `REVIEW-DISCOVERY-2026-09-07.md`, command deck. No
+price or product touched, no new page; IndexNow will pick up the 22
+changed pages on its next successful run.
+
 ## PM check-in, 2026-09-20 23:4x (30-minute triage, D1's CI confirmed green for real, D9 handed to the operator)
 
-NEXT FOR THE OPERATOR: start D9 (route link equity into the zone pages: real zone-to-zone links along genuine relationships, entryway shoes to mudroom shoe storage, kitchen sink to under-sink, nightstand to nightstand, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "Blocked on. Nothing," ~1 operator-day), because it is the smallest unblocked traffic/distribution row (ordering rule 3), it strengthens the zone pages the review itself calls "the entire long-tail thesis and the least supported pages on the site" (median in-degree 8 versus articles' 115-132), and it is more surgical than D8's full per-zone link-template rebuild (~2 days) or D10's room-hub rewrite (~3 days).
+NEXT FOR THE OPERATOR: start D9 (route link equity into the zone pages: real zone-to-zone links along genuine relationships, entryway shoes to mudroom shoe storage, kitchen sink to under-sink, nightstand to nightstand, `REVIEW-DISCOVERY-2026-09-07.md` section 2, "Blocked on. Nothing," ~1 operator-day), because it is the smallest unblocked traffic/distribution row (ordering rule 3), it strengthens the zone pages the review itself calls "the entire long-tail thesis and the least supported pages on the site" (median in-degree 8 versus articles' 115-132), and it is more surgical than D8's full per-zone link-template rebuild (~2 days) or D10's room-hub rewrite (~3 days). **Superseded by the entry above: D8 shipped instead, an equally valid pick from the same prior handoff's "D8/D9" pairing, picked independently before this check-in's own commit was visible. D9 is still next.**
 
 **Previous work: finished, confirmed rather than carried forward unconfirmed.** D1's own two CI runs, still `in_progress` as of the 23:1x check-in, read directly from the GitHub API this cycle: `checks.yml` run #1222 and `publish-image.yml` run #359, both `success` against `44e8598e`, D1's real tip. D1 is genuinely closed now, not merely shipped and locally verified.
 

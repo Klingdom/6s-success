@@ -87,6 +87,29 @@ report order: D2 (Phil-blocked), D6 (primary-page decision only), D8-D10,
 D12-D14 (larger-scope pilot/decision work), D15 (traced, needs the SSH key
 this environment lacks), D19-D21 (Phil-gated).
 
+**Status, 2026-09-21, operator: D8 done, honestly partial.** The five
+`ZONE_SPECIFIC_READING` articles this section names (keys, mail, charger,
+medicine cabinet, junk drawer) were each linked from only the one zone
+originally written for it, checked live before starting. Read every zone's
+own published text for a genuine match rather than link zones to hit the
+acceptance number: found 12 more real, specific mentions of the same
+friction (a stray charger on 9 more zones across 5 rooms, mail and keys
+each on 1-2 more, expired medicine on 1 more, a second junk drawer on 1
+more), each grounded in a quoted sentence from that zone's own passes or
+hazards, and added one `ZONE_SPECIFIC_READING` entry per match. The charger
+article now clears this section's "at least 10" target (10 real inbound
+links); keys (3), mail (4), junk drawer (2) and medicine cabinet (2) do
+not, because no further zone's own text supported a genuine link without
+fabricating one, which `CLAUDE.md` forbids. Recording that honestly here
+rather than as a false "done": most homes have exactly one real zone for
+each of those four topics, and this review's "at least 10" figure did not
+anticipate that. Full detail, the transient test failure caught and
+re-verified before shipping, and the exact list of new zone-to-article
+links: `BACKLOG-2026-09-07.md` section 2, `ops/NIGHTLY-LOG.md` 2026-09-21.
+Still open, in report order: D2 (Phil-blocked), D6 (primary-page decision
+only), D9-D10, D12-D14 (larger-scope pilot/decision work), D15 (traced,
+needs the SSH key this environment lacks), D19-D21 (Phil-gated).
+
 ---
 
 ## 0. Bottom line
