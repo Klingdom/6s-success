@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 02:1x-02:2x (previous work WAS finished this time, verified rather than inherited; a real self-contradiction in STATUS.md found and fixed; D10 stays with the operator)
+
+Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, fast-forward, no reset). Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `ops/NIGHTLY-LOG.md` entries, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**STEP 2's answer was yes, checked directly rather than assumed.** The prior check-in's own HEAD (`2960426c`) touched only `site/build-id.txt` and the command deck, both excluded from `checks.yml`'s path filter, so no `checks.yml` run exists for it; confirmed this is "unrun by design" (the commit changed no path the workflow watches), not a missed check. `publish-image.yml` run #365 on that same commit completed `success`. Ran `python ops/build_id.py --check` directly against the real working tree: current, matching HEAD, so the build-id drift `checks.yml` #1228 had failed on (one commit earlier) is genuinely closed, not just claimed. Full `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (Stripe/SSH/egress absent here, as every prior cycle has also found).
+
+**Found a real defect: `STATUS.md` contradicted itself.** Line 1337's own "Production Knowledge" paragraph, corrected 2026-09-20 11:12, correctly says production is serving an old build (last confirmed current 2026-09-20T20:45:43Z at build `4a09c1b7a41ab6c0`, per `ops/deploy-verdict.json`, repository moved past it since). Six lines later, the "Immediate Focus" paragraph still asserted "PRODUCTION IS CURRENT," unchanged since before that correction landed. `EXECUTIVE-DASHBOARD-LIVE.md` agrees with the first paragraph, not the second. Fixed the "Immediate Focus" line to match the corrected paragraph and the dashboard, with a note that it previously contradicted its own document.
+
+**Went well:** verifying the previous cycle's CI claim directly against GitHub and the real build-id state rather than trusting the commit message; reading the whole of `STATUS.md`'s summary section instead of only the paragraph flagged in the last correction, which is what surfaced the contradiction six lines away.
+
+**Did not go well:** nothing new; the same shallow/detached checkout shape recurred (issue #27, unchanged, still needs Phil's hand in the Routines UI).
+
+**Changing next cycle:** none; this was a one-line correction, not a new defect class.
+
+**Handing to the operator:** D10 (strengthen the room hubs, ~3 operator-days for 20 rooms, `REVIEW-DISCOVERY-2026-09-07.md` section 4, "Blocked on. Nothing") is still the next unblocked substantive row; three prior check-ins have already named it and nothing here changes that sizing. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 6 open decision/P0 issues unchanged.
+
+Pushed to main. `STATUS.md` (one paragraph), command deck. No price or product touched, no new page.
+
 ## PM check-in, 2026-09-21 01:4x-01:5x (previous work NOT finished: D9's own sitemap drifted again after its merge commit, a concurrent session fixed it while this check-in was diagnosing the same thing; D10 reaffirmed to the operator)
 
 NEXT FOR THE OPERATOR: start D10 (strengthen the room hubs: each room page states the room and the job in its H1, answers "how long does this room take" and "which zone first" above the zone list, median word count above 1,600, `REVIEW-DISCOVERY-2026-09-07.md` section 4, "Blocked on. Nothing," ~3 operator-days for 20 rooms), because D9 is now genuinely closed and D10 is the next unblocked row two prior check-ins have already named; it will not rank in 90 days by its own acceptance note, but is correctly sized groundwork for an hourly slot, not this one.
