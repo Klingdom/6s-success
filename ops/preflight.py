@@ -5850,7 +5850,25 @@ def gate_sitemap_lastmod_current() -> None:
         elif path.endswith("/"):
             fp = os.path.join(SITE, path.lstrip("/"), "index.html")
         else:
-            fp = os.path.join(SITE, path.lstrip("/"))
+            # Same resolution order as nginx's own "try_files $uri $uri.html
+            # $uri/" (see ops/check_urls.py's _resolve(), which already gets
+            # this right). 166 of 187 sitemap URLs are bare slugs with no
+            # .html in their <loc> (every zone, room and article page; only
+            # 21 top-level pages spell it out) and none of them was ever
+            # tried with .html appended, so `os.path.isfile(fp)` was False
+            # for every one of them and this gate `continue`d past its own
+            # main case since the day it was written, 2026-09-19. That is
+            # why D8's and D9's own sitemap drift (BACKLOG-2026-09-07.md,
+            # ops/NIGHTLY-LOG.md 2026-09-21) shipped through plain
+            # preflight.py three times this week: this gate looked like the
+            # fast, always-on check for exactly that defect, and was a
+            # silent no-op for 89% of the site the whole time.
+            direct = os.path.join(SITE, path.lstrip("/"))
+            withhtml = direct + ".html"
+            if os.path.isfile(withhtml):
+                fp = withhtml
+            else:
+                fp = direct
         if not os.path.isfile(fp):
             continue
         recorded_hash = recorded.get(url)

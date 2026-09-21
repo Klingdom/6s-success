@@ -139,6 +139,30 @@ depth is the more promising lever, since it changes how much link equity
 each room's own hub page distributes rather than searching for more
 pairwise matches).
 
+**Status, 2026-09-21, operator: D10 done, against this section's own
+acceptance line.** Verified live before building anything: every room
+page's H1 was still the bare room name ("Entryway"), and the manual's own
+"Where to start" tip (already the FAQ answer to "where should you start")
+sat inside "For this room", three sections below the zone list it should
+answer for. Built `ROOM_JOB` in `ops/build_zone_pages.py`, one short
+clause per room paraphrased from that room's own authored `intro`, not a
+new claim; H1 is now "{Room}: {job}" on all 20 pages. Moved the "which
+zone first" answer to a notice block directly above the zone list,
+beside the existing hours total, and removed it from "For this room" so
+it is not said twice. Room-page median word count, re-measured live
+rather than carried over from this section's own 1,057-word figure, was
+already 1,742 before this change and 1,752 after, above the "1,600"
+acceptance figure in guidance rather than link-list growth. All three of
+this section's acceptance lines are met (H1 states the room and the job;
+both "how long" and "which zone first" answer above the zone list;
+median word count above 1,600 in guidance). New `gate_room_hub_current`
+in `preflight.py`, fail-then-pass proved on three planted regressions.
+Full detail: `BACKLOG-2026-09-07.md` section 2, `ops/NIGHTLY-LOG.md`
+2026-09-21. Still open, in report order: D2 (Phil-blocked), D6
+(primary-page decision only), D12-D14 (larger-scope pilot/decision
+work), D15 (traced, needs the SSH key this environment lacks), D19-D21
+(Phil-gated).
+
 ---
 
 ## 0. Bottom line
