@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-21 03:52",
- "commit": "fca13b29",
- "commit_msg": "PM check-in: close D16/D7/D6-grammar as already-satisfied with live verification, hand D9 (zone-to-zone link equity, measurably short of its own median target) to the operator",
- "commits_7d": 1223,
- "commits_total": 3141,
+ "generated": "2026-09-21 03:54",
+ "commit": "0f29ced0",
+ "commit_msg": "Merge remote-tracking branch 'origin/main'",
+ "commits_7d": 1225,
+ "commits_total": 3144,
  "traffic_line": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-20 10:15",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "1",
+ "ahead": "2",
  "deploy": {
   "reachable": false,
   "assets": [],
