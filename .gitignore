@@ -130,3 +130,4 @@ build/video/frames/
 # ffmpeg still held open. The rebase that followed could not replace the
 # working copy and wedged into a detached HEAD. A log is not a deliverable.
 build/video/*.err
+backups/

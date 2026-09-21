@@ -273,6 +273,46 @@ regeneration; it has to be done through its UI):
 
 ---
 
+# 7d. The analytics history now has an off-host copy, and it was proved by using it
+
+**The exposure, named 2026-09-21.** Every traffic figure this business has
+ever quoted comes from one Postgres container on one VPS. Nothing in this
+repository held a copy, and the host-level backup has never been restored. The
+site itself is static and loses nothing, but the measurement history is the
+only evidence of what anyone has ever done here, and it was one machine away
+from gone.
+
+**What now exists.** `ops/backup_analytics.py` pulls this website's rows to a
+local, gitignored `backups/` directory as gzipped CSV, and re-reads each file
+after writing it, because writing a file is not the same as having the data.
+
+**It exports this site only, on purpose.** That container serves three
+websites. A whole-database `pg_dump` would copy another business's analytics
+onto the owner's machine, which is not ours to move (`CLAUDE.md` 36b, and the
+privacy rule in section 47). Only rows belonging to the 6S Success website id
+are taken; the child tables are reached through `website_event`, because only
+`website` and `website_event` carry the id directly.
+
+**CSV, not a database dump, also on purpose.** The goal is that the numbers
+survive, not that the container can be cloned. A CSV of a few thousand rows is
+readable in ten years by anything; a dump is hostage to a Postgres version.
+
+**First export, 2026-09-21:** 1,422 `website_event` rows, 1,230 `event_data`
+rows, 1 `website` row, covering 2026-08-20 to 2026-09-21. 123 KB compressed.
+
+**Proved by using it, not by trusting it.** The headline metrics were
+recomputed from the CSV alone, with no access to the VPS: 973 pageviews, 80
+visitors, 210 visits, and the same top pages. The live database read hours
+earlier gave 971 / 80 / 208, the two-event difference being traffic that
+arrived in between. So the copy reproduces the numbers this business actually
+reports.
+
+**What it does not cover.** It is a point-in-time copy on the owner's own
+machine, taken when someone runs it. There is no schedule, no off-site third
+copy, and no retention policy. It is one honest copy where there were none.
+
+---
+
 # 8. Initial Recovery Objective Framework
 
 Until measured and approved:
