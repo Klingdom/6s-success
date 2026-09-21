@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle, self-correction (my own C16 push broke publish-image.yml; a concurrent session found and fixed it before I checked CI)
+
+**What happened.** My own C16 commit (`514abe61`) recompressed the free deck PDF but never reran `ops/build_deck_gallery.py` or `ops/build_seo.py`, both of which derive claims from that file (`deck-gallery.html`'s own "25 MB PDF" line, and the sitemap's lastmod/content-hash). I ran `python ops/preflight.py` (fast) clean before pushing, twice, and both came back "every gate passed." Fast preflight does not run `gate_generator_ownership`'s regenerate-and-diff check; that lives behind `preflight.py --own`, which I did not run. `publish-image.yml` (which does run it in CI) correctly failed on my commit. Checked live rather than assumed: `mcp__github__actions_list` shows run #369 on `514abe61` as `conclusion: failure`.
+
+**Not my fix.** A concurrent session found it independently (its own commit message: "Found by gate_publish_image_current after a concurrent GitHub check") and pushed `3fda4039`, "Fix generator drift from C16's PDF resize; point PRICING.md at D-022," rerunning both generators. `publish-image.yml` run #370 on that commit is `success`. Several more concurrent commits landed on top since (C11 corporate LinkedIn posts, C12 the zone scoring sheet, three "regenerate after concurrent rebase" merges), all green. Pulled clean via `merge --ff-only`, no conflict.
+
+**The lesson, stated plainly rather than left implicit:** this is exactly the class of defect `gate_generator_ownership` exists to catch, and it caught it correctly, in the place built for it (CI). My own gap was procedural: fast `preflight.py` is not a substitute for `--own` when a change touches any file a generator also derives text from (a byte count, a price, a card count), even when the change itself is to a committed binary artifact rather than to the generator's source. Recording this here rather than adding a new gate, because the gate that would have caught it earlier already exists and already worked; the miss was mine, not a hole in the repository's own checks.
+
+**Verified clean after pulling:** `preflight.py` fast rerun on the current HEAD (see below); no new defect found.
+
+Nothing pushed this entry alone; folded into the next dashboard/log commit.
+
+## 2026-09-21, scheduled operator cycle (C15/C18: the paid-deck decision and BK-EB's $9.99 recorded in DECISIONS.md, same cycle as C16)
+
 ## 2026-09-21, scheduled operator cycle (C12: the free B2B zone scoring sheet and layered audit template)
 
 **Did:** Unshallowed and attached to main cleanly (`git fetch --unshallow`,
