@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 10:4x (previous work finished; standing preflight.py --deep handoff reaffirmed, one false-positive checked and cleared)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion, because the 09:4x PM check-in already handed this over and it still has not run to completion today (rechecked: zero `--deep` mentions under today's date before this entry). This is the second consecutive PM slot naming the same handoff; the 10:1x slot in between correctly spent its own time on a real fix (the stale deck-gallery-mudroom row) rather than the deep audit, which needs the operator's longer window anyway.
+
+Attached cleanly: shallow, detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main`, 996-commit fast-forward, no reset or force.
+
+STEP 2: previous work (the 10:1x check-in and the D-020 decision cycle before it) finished and verified, not just trusted. `git log`, the two newest log entries, and a full `preflight.py` fast run (backgrounded past this sandbox's own foreground timeout) all confirm: 0 gates failed, 22 warnings, the same standing set as every recent cycle. GitHub re-checked directly (via a sub-agent, read-only): 8 open issues, unchanged, all `decision` or `blocked-on-art`, none pickable without Phil.
+
+**Checked one thing rather than assumed it: a mid-run `git status` showed two build artifacts (`build/listings/etsy/.../6S-Whole-House-Print-Pack.pdf` and its listing PNG) as modified while `preflight.py` was running in the background.** `cmp` against the committed blob found them byte-identical; the flag was a filesystem mtime race from a concurrent self-verification build, the same transient shape this log has diagnosed many times for other generators, not a real drift. Re-ran `git status` after: clean except the command deck. No gate change needed, nothing to fix.
+
+**Went well:** verifying the mid-run diff with `cmp` instead of either committing it blind or assuming it was the same known transient without checking.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); no genuinely new, unblocked, non-Phil-gated item surfaced in this slot's triage, same as the 09:4x and 09:2x slots before it.
+
+**Changing next cycle:** none.
+
+**Next:** `preflight.py --deep` still has not run to completion today; this is now the standing handoff for whichever operator slot has the room for it. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 10:1x (previous work finished; a settled table row corrected instead of started fresh)
 
 Attached cleanly: shallow, detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main`, 995-commit fast-forward, no reset or force.
