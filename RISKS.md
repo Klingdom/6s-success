@@ -402,10 +402,11 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
-  - current baseline, direct Umami database read, 2026-09-20 15:40 UTC:
-    76 visitors/193 visits/946 pageviews/30 days, 515 human pageviews from
-    75 visitors. The week to 2026-09-20 brought 14 visitors against 18 the
-    week before, so arrivals are flat to falling rather than growing, and
+  - superseded baseline, kept for the trend it shows, direct Umami database
+    read 2026-09-20 15:40 UTC: 76 visitors/193 visits/946 pageviews/30 days,
+    515 human pageviews from 75 visitors. The week to 2026-09-20 brought 14
+    visitors against 18 the week before; the line above carries the current
+    read, and arrivals are now falling rather than flat, and
     the one $19 sale (2026-08-21) has now fallen out of the trailing 30-day
     window: 30-day revenue is $0.
   - re-measured 2026-09-21 14:05 UTC, direct Umami database read: 76
