@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 09:2x (previous work finished and verified; the 08:4x handoff was itself wrong, corrected; the cold-read ranking method is the real defect)
+
+NEXT FOR THE OPERATOR: do not trust a mention-count ranking of `ops/*.py` files at face value before spending a slot on it. Grep the full log text for the bare filename (no `ops/` prefix requirement) and read the surrounding context before treating a file as unread; three consecutive cycles now (07:4x to 08:1x, 08:1x to 08:4x, 08:4x to this one) handed off files that turned out already read, because the ranking only ever grepped `ops/<name>.py` literally and missed every mention that dropped the prefix. If picking up the fallback lane, treat this as an open lane-hygiene problem, not a solved one.
+
+Attached cleanly: shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, no reset or force, landing on the 08:4x PM commit, then two more commits from a concurrent operator cycle (`5868011b` a real ship.py fix, `585f0b27` a dashboard regen) fast-forwarded in mid-cycle with no collision.
+
+STEP 2: previous work finished and verified, not just trusted. First `preflight.py` run FAILED on `gate_no_stray_probe_files` (`site/_quest_back_button_probe.html`, left by a run killed mid-audit); checked rather than assumed: the file does not exist on disk, is not tracked by git, and is gitignored (`.gitignore:56`), the same transient concurrent-test-fixture race this log has diagnosed many times. A full clean rerun confirmed: every gate passed, 22 warnings, the same standing set as every recent cycle. Also verified independently: `5868011b`'s claimed fix (a new-file-only commit was silently never pushed by `ops/ship.py`, because its `dirty()` excluded untracked files) is real and now tested (`test_ship_new_file_committed.py`), not just asserted.
+
+**Found and fixed:** the 08:4x PM check-in corrected the 08:1x handoff's three named files, but its own replacement list (`specific_articles.py`, `check_sitemap_current.py`, `crawl_report.py`) was wrong too, for the same root cause it thought it had fixed. All three had already been read: `check_sitemap_current.py` and `crawl_report.py` were cold-read clean together in an earlier cycle ("cold-read two low-mention `ops/*.py` files... `check_sitemap_current.py`... and `crawl_report.py`... No defect found in either file"), and `specific_articles.py` is not a legacy unread file at all, it is a generator built and gated this month (`gate_specific_article_direct_answer`, `ops/tests/test_gate_specific_article_direct_answer.py`, 7 cases) with its own full build-and-verify entry in this log. The 08:4x cycle's method (`grep` for `ops/<name>.py`) undercounts any mention that drops the `ops/` prefix, which is most of them in prose; it is not a low-mention signal, it is a measurement of how often the file was typed with its full path. Did not spend this slot re-deriving a trustworthy ranking (that needs git blame/last-substantive-commit dates, not log-text grepping, and is real building, not triage): recording the method itself as broken, so the next cycle stops re-discovering the same three files.
+
+Went well: checking the correction's own replacement list instead of taking "corrected" at face value.
+
+Did not go well: the same shallow/detached checkout shape recurred (issue #27, unchanged); this is the third consecutive cycle whose only find was a defect in the prior cycle's own handoff rather than a live product/customer defect.
+
+Changing next cycle: retire mention-count-in-the-log-text as the ranking signal for the cold-read fallback. A reliable version needs `git log -1 --format=%ad -- ops/<file>.py` (or similar) cross-checked against whether that commit's message says the file was read for defects, not grepped against this prose log.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price or product touched, no new page, no code changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 08:4x (previous work finished and verified; corrected a stale handoff; nothing new genuinely unblocked)
 
 NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read fallback with `specific_articles.py` (3 mentions), `check_sitemap_current.py` (5) and `crawl_report.py` (8), because those are the genuinely lowest-mention unread files, not `ship.py`/`build_card_template.py`/`build_catalog.py` as the last handoff said.
