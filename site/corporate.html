@@ -388,6 +388,11 @@
     <h2>Tell us enough to scope it</h2></div>
     <div class="enq">
     <div class="howto">
+      <p class="eyebrow" style="margin:0 0 6px">Before you write anything</p>
+      <p><b>The free zone scoring sheet and layered audit template.</b> The same instrument the assessment above uses: a blank sheet to score every zone in a baseline, and the layered audit log that reuses it afterwards so a later score means something against the first one. No email, nothing filled in for you, just a page you print.</p>
+      <p><a class="btn btn-ghost" id="corp-asset-link" href="downloads/6S-Zone-Scoring-and-Audit-Template.html">Download the scoring sheet and audit template</a></p>
+    </div>
+    <div class="howto">
       <p><b>How this works, before you type anything.</b> There is no ticket system behind this form. Pressing the button opens your own mail app with the message already written and addressed to <b>support@6s-success.com</b>. You press send there.</p>
       <p>Phil reads it himself, usually within one working day. If your browser has no mail app attached, the same text appears in a box you can copy and send yourself. Nothing is stored on this site and nobody is added to a mailing list.</p>
       <p>Put a date and time in the last field and a calendar invite for a one-hour scoping call comes back attached to the reply.</p>
@@ -469,6 +474,21 @@
   var link = document.getElementById("corp-mailto");
   var copyBox = document.getElementById("corp-copy");
   var copyBtn = document.getElementById("corp-copy-btn");
+  var assetLink = document.getElementById("corp-asset-link");
+
+  /* The generic site-wide handler in measure.js already fires
+     "free-download" for any /downloads/ link, with from:"corporate"
+     (page()'s own fallback branch reads the path). This is the more
+     specific event REVIEW-COMMERCE-2026-09-07.md C12 asks for, tracked
+     alongside it rather than instead of it, the same way corporate-enquiry
+     sits alongside quote-click for the enquiry form. */
+  if (assetLink) {
+    assetLink.addEventListener("click", function () {
+      if (window.Measure && window.Measure.track) {
+        window.Measure.track("corporate-asset-download", { sv: 1 });
+      }
+    });
+  }
 
   function v(id) {
     var el = document.getElementById(id);

@@ -110,6 +110,45 @@ leak between cases. No price or product touched, no new page; this adds
 one email block Phil can post or skip, the same as the existing daily
 draft.
 
+**C12 done, 2026-09-21, operator.** The one honest B2B lead magnet section
+4.2 item 2 names: a blank zone scoring sheet and layered audit template, the
+engagement's own first deliverable published as a template rather than a
+worked example, since no corporate engagement has been sold through 6S
+Success and a filled-in example would have to invent a client and a score.
+New `ops/build_corporate_asset.py` writes
+`site/downloads/6S-Zone-Scoring-and-Audit-Template.html` (and the same bytes
+to `build/`, one generator, one write, following `build_zone_map_pack.py`'s
+pattern rather than `build_standards.py`'s older shape of a build/ copy and a
+hand-copied site/downloads/ copy that can drift): six Zone Scoring Sheets
+(one per zone in a baseline, Sort/Straighten/Shine/Safety/Standardize each
+scored 1-5 against a plain rubric, Standardize's five levels running from
+"not started" to "holds without reminding"), and one Layered Audit Log
+(team leader daily or per shift, supervisor weekly, manager monthly, all
+three against the same sheet the baseline used, matching
+`build_corporate.py`'s own "Audit and sustain" component word for word,
+checked directly against the live page in `main()` rather than assumed
+static). No price, no client claim, no testimonial; both asserted in
+`main()`. `corporate.html` gained a callout beside the enquiry form ("Before
+you write anything") linking the download, plus a dedicated
+`corporate-asset-download` tracking event alongside the generic
+`free-download` one every `/downloads/` link already fires. Registered in
+`preflight.py`'s `GENERATOR_OWNERSHIP_CHAIN` and in
+`ops/check_pack_pages.py`'s `PRINTABLES` list. Verified: rendered via
+headless Chromium at desktop and phone widths (no horizontal overflow once
+the scoring table got its own scroll wrapper, a real mobile defect found
+while checking, not assumed clean) and printed to PDF, 7 pages for 6 sheets
+plus 1 audit log, no orphan or blank page, matching the printed "sheet X of
+6" markers; `ops/check_pack_pages.py` itself could not confirm this the same
+way (`pypdf` fails to import in this sandbox, a `cryptography`/`pyo3`
+conflict, not a code defect), recorded as UNCHECKED there rather than
+claimed clean, with the independent Chromium/print verification standing in
+its place. `preflight.py` fast clean before and after (every gate passed, 23
+warnings, all previously diagnosed sandbox limits), `check_urls.py`
+(187/187), `audit_pages.py` (191/0), `affiliate.py --check` (164 documents),
+`fix_dashes.py --check` (0/0). No price or product touched; one free page
+added, excluded from the sitemap and noindexed like every other
+`site/downloads/` page, so no `IndexNow` submission applies.
+
 ---
 
 ## 0. What is actually true this morning

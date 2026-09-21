@@ -2,6 +2,89 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (C12: the free B2B zone scoring sheet and layered audit template)
+
+**Did:** Unshallowed and attached to main cleanly (`git fetch --unshallow`,
+`checkout main`, `merge --ff-only`, landing on `71a2f93a`). Confirmed the
+prior PM handoff's own open question first: `checks.yml` run #1267 against
+`4851cfed` (C11) was `completed`/`success`. GitHub: 8 open issues,
+unchanged, all `decision`/`blocked-on-art`, none actionable without Phil.
+Per `GOALS.md`'s ordering and the PM handoff, picked up
+`REVIEW-COMMERCE-2026-09-07.md` section 7's C12: the free zone scoring
+sheet and layered audit template, the last unbuilt "At" tier B2B item. Two
+concurrent PM check-ins (`317897f9`, `eb8c6984`) independently reached the
+same conclusion and handed C12 to the operator by name while this cycle
+was already building it; fetched and rebased onto each new head before
+pushing, no collision on substance.
+
+**Built.** New `ops/build_corporate_asset.py` writes
+`site/downloads/6S-Zone-Scoring-and-Audit-Template.html` (and the same
+bytes to `build/`, one generator, one write, `build_zone_map_pack.py`'s
+pattern rather than the older build/-plus-hand-copy shape
+`gate_standards_pack_current` exists to catch drift on): six blank Zone
+Scoring Sheets and one Layered Audit Log, no filled-in example anywhere
+since no engagement has been sold. `main()` asserts no price, no client
+claim, and that the audit cadence text still matches the live
+`corporate.html` word for word. Added a callout beside the enquiry form
+("Before you write anything") linking the download, and a dedicated
+`corporate-asset-download` tracking event. Registered in
+`GENERATOR_OWNERSHIP_CHAIN` and `check_pack_pages.py`'s `PRINTABLES`.
+
+**Found and fixed while verifying, not after shipping:** `audit_visual.py
+--mobile` on the new page found a real 3.63:1 and 4.44:1 contrast failure
+(the score-dot text and the audit-tier labels); both recoloured to pass
+4.5:1, proved by rerunning the same audit clean. A first mobile screenshot
+via the CLI `--screenshot` flag looked like real horizontal overflow
+(text missing mid-word); cross-checked with Playwright's own
+`scrollWidth`/`clientWidth` (390/390, no overflow) before concluding the
+CLI screenshot was a font-load timing artifact, not a real defect,
+per step 5d/5e ("verify before you act on a finding").
+
+**Verified:** rendered to PDF via headless Chromium, 7 pages for 6 sheets
+plus 1 audit log, no orphan page, matching the printed "sheet X of 6"
+markers. `ops/check_pack_pages.py` itself could not confirm this
+(`pypdf` fails to import here, a `cryptography`/`pyo3` conflict, not a
+code defect); recorded as UNCHECKED there, not claimed clean, with the
+Chromium/print check standing in its place. `preflight.py` fast clean
+before and after (every gate passed, 23 warnings, all previously
+diagnosed sandbox limits, plus one genuine catch: a stale `build-id.txt`
+after the rebase, fixed by rerunning `ops/build_id.py`), `check_urls.py`
+(187/187), `audit_pages.py` (191/0), `affiliate.py --check` (164
+documents), `fix_dashes.py --check` (0/0), `audit_visual.py` desktop and
+mobile on both the new page and the edited `corporate.html` (0 findings
+each).
+
+**Went well:** the contrast defect was real and would have shipped
+without the mobile audit; catching it before commit cost minutes, not a
+second cycle.
+
+**Did not go well:** `pypdf`/`cryptography` is broken in this sandbox
+(pip-installable but fails at import with a Rust panic), so
+`check_pack_pages.py` cannot verify any printable page here, including
+two that predate this cycle. Not fixed this cycle: no clear safe fix
+available without pinning a different crypto backend, and it is a
+sandbox limit, not a live defect. Two concurrent PM check-ins landed
+mid-cycle, each requiring a fresh rebase of the same generated-file
+conflicts (dashboard/state/log); routine, but three rebases in one cycle
+is more churn than usual.
+
+**Changing next cycle:** none; no new gate needed, `check_pack_pages.py`
+and `audit_visual.py` already covered this file's real defect classes
+once it was registered.
+
+**Next:** `REVIEW-COMMERCE-2026-09-07.md` section 7's remaining C13 (two
+B2B-intent articles), C6-C10/C17/C20 (larger-scope or below the traffic
+constraint), C1/C2/R1-R4 (need Stripe credentials).
+
+Pushed to main. `ops/build_corporate_asset.py`, `ops/build_corporate.py`,
+`ops/preflight.py`, `ops/check_pack_pages.py`,
+`REVIEW-COMMERCE-2026-09-07.md`, `site/corporate.html`,
+`site/downloads/6S-Zone-Scoring-and-Audit-Template.html`,
+`build/6S-Zone-Scoring-and-Audit-Template.html`, command deck. No price or
+product touched; one free page added, excluded from the sitemap and
+noindexed like every other `site/downloads/` page, so no IndexNow
+submission applies.
+
 ## PM check-in, 2026-09-21 23:1x (previous handoff confirmed clean, nothing new to close, C12 unchanged)
 
 Attached clean via the standard unshallow/checkout/ff-only sequence onto
@@ -25,6 +108,8 @@ changes); this is a documented substitution, not a skipped check.
 Regenerated the dashboard (`ops/dashboard.py`); only generated files changed.
 No code, price or content touched. **Handing to the operator:** C12 unchanged,
 still the correct next "At" tier item once its 23:43 slot starts.
+
+## PM check-in, 2026-09-21 22:4x (previous CI handoff confirmed green; C12 handed to the operator)
 
 NEXT FOR THE OPERATOR: start C12 (`REVIEW-COMMERCE-2026-09-07.md` section 7),
 publishing the 6S zone scoring sheet and layered audit template as a free

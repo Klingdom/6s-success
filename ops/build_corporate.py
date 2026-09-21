@@ -107,6 +107,14 @@ SUBJECT = "Corporate Lean 6S enquiry"
 TO = "support@6s-success.com"
 DATE_EXAMPLE = "14 October at 2pm"
 
+# The one free B2B artefact (REVIEW-COMMERCE-2026-09-07.md section 4.2 item
+# 2): a blank zone scoring sheet and layered audit template, built by
+# ops/build_corporate_asset.py. Linked here, beside the enquiry form, not
+# gated on an email.
+ASSET_HREF = "downloads/6S-Zone-Scoring-and-Audit-Template.html"
+ASSET_PATH = os.path.join(SITE, "downloads",
+                          "6S-Zone-Scoring-and-Audit-Template.html")
+
 # CREDENTIAL SOURCING. Nothing on this page is stated that is not either
 # already published on the live site or Phil's own written assertion about
 # himself, and the distinction is recorded here so nobody has to re-derive it.
@@ -547,6 +555,21 @@ def script() -> str:
   var link = document.getElementById("corp-mailto");
   var copyBox = document.getElementById("corp-copy");
   var copyBtn = document.getElementById("corp-copy-btn");
+  var assetLink = document.getElementById("corp-asset-link");
+
+  /* The generic site-wide handler in measure.js already fires
+     "free-download" for any /downloads/ link, with from:"corporate"
+     (page()'s own fallback branch reads the path). This is the more
+     specific event REVIEW-COMMERCE-2026-09-07.md C12 asks for, tracked
+     alongside it rather than instead of it, the same way corporate-enquiry
+     sits alongside quote-click for the enquiry form. */
+  if (assetLink) {
+    assetLink.addEventListener("click", function () {
+      if (window.Measure && window.Measure.track) {
+        window.Measure.track("corporate-asset-download", { sv: 1 });
+      }
+    });
+  }
 
   function v(id) {
     var el = document.getElementById(id);
@@ -866,6 +889,19 @@ def build() -> str:
         '    <h2>Tell us enough to scope it</h2></div>\n',
         '    <div class="enq">\n',
         '    <div class="howto">\n',
+        '      <p class="eyebrow" style="margin:0 0 6px">Before you write '
+        'anything</p>\n',
+        '      <p><b>The free zone scoring sheet and layered audit '
+        'template.</b> The same instrument the assessment above uses: a '
+        'blank sheet to score every zone in a baseline, and the layered '
+        'audit log that reuses it afterwards so a later score means '
+        'something against the first one. No email, nothing filled in for '
+        'you, just a page you print.</p>\n',
+        '      <p><a class="btn btn-ghost" id="corp-asset-link" '
+        'href="%s">Download the scoring sheet and audit template</a></p>\n'
+        % ASSET_HREF,
+        '    </div>\n',
+        '    <div class="howto">\n',
         '      <p><b>How this works, before you type anything.</b> There is no '
         'ticket system behind this form. Pressing the button opens your own '
         'mail app with the message already written and addressed to '
@@ -1032,6 +1068,15 @@ def main() -> int:
     assert corp[0].get("quote") == "corporate.html", \
         "CN-CORP does not point at this page"
     assert "buy" not in corp[0], "CN-CORP has acquired a payment link"
+
+    # 6. The free scoring/audit download this page links must actually be on
+    #    disk, or a visitor who presses the button gets a 404. Built by
+    #    ops/build_corporate_asset.py, which runs after this generator in
+    #    GENERATOR_OWNERSHIP_CHAIN and checks the reverse direction itself
+    #    (that this page still states the audit cadence it assumes).
+    assert os.path.exists(ASSET_PATH), (
+        "corporate.html links %s but it does not exist; run "
+        "ops/build_corporate_asset.py" % ASSET_HREF)
 
     print("  wrote site/corporate.html  (%d KB)" % (len(doc) // 1024))
     print("  no dollar figure on the page; CN-CORP still price: null, no link")

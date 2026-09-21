@@ -39,6 +39,8 @@ PRINTABLES = [
     ("site/downloads/6S-Standards-Pack.html", "the free Standards Pack"),
     ("site/kitchen-deck.html", "the free Kitchen deck"),
     ("site/downloads/6S-Micro-Zone-Map.html", "the free Micro Zone Map"),
+    ("site/downloads/6S-Zone-Scoring-and-Audit-Template.html",
+     "the free corporate scoring sheet and audit template"),
 ]
 MARKER = re.compile(r"SHEET (\d+) OF (\d+)", re.I)
 

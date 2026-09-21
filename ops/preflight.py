@@ -1062,6 +1062,7 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_map_pack.py", "build_deck_gallery.py",
     "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
     "build_kit_page.py", "build_corporate.py",
+    "build_corporate_asset.py",
     "build_kitchen_deck_page.py",
     "build_youtube_metadata.py",
     "build_social_captions.py",
