@@ -2,6 +2,63 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 05:1x (previous work finished and verified fresh; closed D15, the code half; live 30-day read stays unmeasured here)
+
+Attached cleanly onto `origin/main` (`a5e61638`, 967-commit fast-forward from a
+shallow detached checkout, no reset or force). Read `git log -12`, the two
+newest log entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`,
+8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`),
+0 open PRs.
+
+**Previous work checked, not inherited.** Working tree was clean, `main`
+matched origin. A full, non-timed-out `preflight.py` run (backgrounded past
+this sandbox's 170s tool ceiling, same shape prior cycles hit): every gate
+passed, 22 warnings, all previously diagnosed sandbox limits. The prior
+cycle's D9 partial (7 new genuine zone relations) and its own recorded
+judgement call (treat the floor, met, as D9's real bar rather than keep
+re-deriving the same ceiling against "median above 15") both hold.
+
+**Started D15** (`REVIEW-DISCOVERY-2026-09-07.md` section 6, "Blocked on
+Nothing", the only other genuinely unblocked item once D9's own status
+settled the ceiling question). `ops/crawl_report.py` now classifies every
+bot into training (GPTBot, ClaudeBot, CCBot, Google-Extended) or retrieval
+(OAI-SearchBot, PerplexityBot, Bingbot, Googlebot, Applebot) via a new
+`purpose()` function, prints a BY PURPOSE section with both totals, and
+names exactly which retrieval crawlers had zero fetches in the window,
+meeting the section's acceptance line word for word. Google-Extended had
+to be split out of the old combined Google-Other bucket first or it would
+have vanished from the training count. New
+`ops/tests/test_crawl_report_purpose.py` proves the classification and the
+"NOT seen" line against synthetic data, no SSH key needed; run directly,
+not just added to the suite. **Honestly partial:** the actual 30-day
+retrieval-crawler read still needs a real run against the VPS log, which
+this sandbox cannot do (no key at `~/.ssh/6s_deploy`, the same limit every
+other VPS-dependent gate here carries). Recorded as a Status block in
+`REVIEW-DISCOVERY-2026-09-07.md` under D15.
+
+**Went well:** picking a small, genuinely unblocked, code-only slice of a
+"Blocked on nothing" item that fits a 30-minute slot instead of touching
+D12 (4 operator-days) or waiting on D6 (Search Console).
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue
+#27, unchanged); the live crawler read D15 exists to produce is still
+unmeasured, so this is a tool built, not yet a finding.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** D12 (rewrite and re-link the six specific
+articles, writing/linking half unblocked, ~4 operator-days) is the next
+genuinely unblocked substantive item if there is time for it; otherwise
+run `python ops/crawl_report.py --days 30` from wherever the SSH key
+lives and record the real training/retrieval split. Standing Phil-blocked
+list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues
+unchanged.
+
+Pushed to main (`fa9ae3c1`). `ops/crawl_report.py`,
+`ops/tests/test_crawl_report_purpose.py`, `REVIEW-DISCOVERY-2026-09-07.md`
+(D15 status), command deck. No price or product touched, no new page.
+IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (D9 further honest partial; found the room-sibling mechanism already sets most of a zone's baseline and a second cold read of all 114 zones found 7 more genuine relations, worth exactly +1 each)
 
 **Did.** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (964-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md`, `REVIEW-DISCOVERY-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the four newest log entries above. `preflight.py` clean on the first run. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Picked up the standing handoff: D9, route more link equity into zone pages, or find a structural lever other than D10 (confirmed by the 04:1x cycle to not move D9's number). Before adding more `ZONE_RELATIONS` pairs, checked whether an already-shipped mechanism was under-used: `zone_page()`'s own "The rest of the {room}, in working order" table of contents already links every zone to every other zone in its own room on all 114 pages, and room size (3 to 7 zones) sets a hard ceiling under that baseline regardless of same-job pairs. Read all 114 zones' real `purpose`/`done_looks_like` text cold a second time and found 7 more genuine cross-room same-job pairs the first pass missed (both bathrooms' Toilet Area and Shower or Tub, Living Room Media Center/Family Room Primary Media Zone, Family Room Toy and Play Zone/Kids Bedroom Toy Storage Zone, Entryway Landing Zone/Kids Bedroom School and Activity Launch Zone, Kids Bedroom Bed and Sleep Zone/Nursery Crib and Sleep Zone, Garage Power Tool and Battery Zone/Workshop Power Tool Storage), added as new two-member `ZONE_RELATIONS` groups, plus two zones added to existing groups by job (Home Office Supply Cabinet into `backstock`, Patio or Deck Surface/Rail/Safety Zone into `floor-path`, that group's own "why" text broadened from "floor" to "floor or walking surface," still true of every member).
