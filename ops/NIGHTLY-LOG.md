@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 15:2x (previous work finished; a transient preflight failure traced and confirmed gone, not fixed by this session; no new defect)
+
+Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (1033-commit fast-forward, no reset or force).
+
+STEP 2: previous work finished. First `preflight.py` run this cycle FAILED on `stray-probe-files`: two leftover files in `site/` (`_fixture_narrow.html`, `_shoot_wrapper*`). Did not treat that as this cycle's defect to fix without checking first: both files were already gone from disk by the time I looked, and `git status` showed nothing untracked, confirming this was the same known transient shape prior cycles already diagnosed (a concurrent session's `--deep` audit writes and cleans up gitignored scratch fixtures mid-run). Fetched origin again, found three new commits from an interactive session (Phil's own crawl-signal/RISK-0007/RISK-0011/RISK-0003 work, `a75cb846`/`90c7fd04`/`755de917`), fast-forward merged, no conflict. Reran `preflight.py` full in the background: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Confirms the failure was transient concurrency noise, not a live defect; nothing needed fixing here.
+
+STEP 3/4: `BACKLOG-2026-09-07.md` read in full (sections 0-7): every unblocked row across epics 1 through 4 is done; section 5 (Hold) correctly stays unstarted, waiting on traffic or a stranger buying something; section 6 is entirely Phil-gated (YouTube OAuth, Search Console, Gemini billing, store accounts, screenshots). 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none newly pickable. Cold-read the two files the prior cycle handed off (`ops/build_app_icons.py`, `ops/video_zone_photo.py`): both correct and already gated (`gate_store_art`; the `gate_done_items_single_source` chain already forces `video_zone_photo.py` through the one real `VZ.done_items()` implementation). `video_zone_photo.py --plan` reports 0 of 114 zones with an approved picture, which reads alarming until checked against `build/heroes/zones/` being gitignored and absent from this sandbox by design, the same standing limitation `image-coverage` already warns about every run; not a live defect. `DECISIONS.md`'s index carries D-021 correctly (checked after the interactive session recorded it, since a missing index row is this repository's own repeat defect class).
+
+**Went well:** not assuming the failed gate was real work to do before checking whether it was still failing; re-fetching before drawing a conclusion caught three genuine concurrent commits that would otherwise have been silently overwritten by a stale push.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's hand in the Routines UI.
+
+**Handing the operator at :43:** no live defect found this slot. Next lowest-mention `ops/*.py` tier: `check_sitemap_current.py` and `specific_articles.py` (14 mentions each, below the 16+ tier already covered).
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (four more low-mention ops/*.py files cold-read and live-verified clean, including the zero-mention backup_analytics.py; no new defect)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (a 1027-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md` sections 0-7, `CLAUDE.md` and the newest `NIGHTLY-LOG.md`/PM check-in entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly pickable; 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty. Every backlog/review row is done or Phil-gated; nothing newly unblocked, so continued the standing low-mention `ops/*.py` cold-read fallback. A concurrent PM check-in (14:4x, below) had just named `backup_analytics.py` as the handoff, having triaged it but not read its logic; picked that up and added three more from the same tier: `build_printpack.py`, `check_pack_pages.py`, `build_zone_map_pack.py` (15-16 mentions each).
