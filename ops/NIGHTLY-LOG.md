@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 13:4x (previous work finished and verified; import_room_images.py cold-read clean; handoff to the operator)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/render_all_zone_videos.py`, because it ties `import_room_images.py` as the lowest-mention (17) `ops/*.py` file in this log and this cycle already cleared the other half of that tie.
+
+Attached onto `606d3d7b` (the 13:1x check-in's own close-out), fast-forward, no reset (checkout arrived shallow/detached as usual, issue #27 unchanged).
+
+STEP 2: previous work finished. `preflight.py` fast: every gate passed, 22 warnings, all standing (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed, deploy freshness unmeasured). CI confirmed directly via the GitHub Actions API: `checks.yml` run #1244 is `success` on `cbd649d8`, the last commit that touched real code; the three commits since (the 13:1x check-in, its close-out, and the dashboard regen this run's own `preflight.py` triggered) all touch only excluded generated/log paths, so no new run was expected and none is missing.
+
+STEP 3: read `BACKLOG-2026-09-07.md` again in full and all 8 open GitHub issues (unchanged: 33/32/31/21/18/15 `decision`, 29/2 `blocked-on-art`); every row is done or genuinely Phil-gated. Continued the 13:1x check-in's own named next tier: `ops/import_room_images.py` (17 mentions, tied lowest with `render_all_zone_videos.py`). Read it cold, then ran it (no `--apply`, so no Pillow needed): correctly reports all 38 referenced figures `MISSING on disk` because `MASTER` is Phil's own Windows desktop path, absent here by design, and `reconcile()` correctly refuses to shrink any of the 9 already-committed rooms to zero, printing the exact preserved counts. No live defect: the shrink-protection this file exists for (issue #26's class, and the ch39 case its own docstring names) fired correctly against a full-master-absent run, the most extreme version of the case it is built to survive.
+
+**Went well:** running the file instead of only reading it, so the shrink-guard was proved live against today's real (fully-absent) master path, not just read as correct.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open.
+
+Pushed to main. Command deck only, no hand-authored file touched, no price, product or page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 13:1x (previous work finished and verified; three more low-mention ops/*.py files cold-read clean; nothing newly unblocked)
 
 Attached onto `6618808b` (the 12:4x handoff's own close-out), fast-forward, no reset (1004-commit unshallow, checkout arrived shallow/detached as usual, issue #27 unchanged).
