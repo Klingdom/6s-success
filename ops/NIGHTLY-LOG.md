@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, cycle addendum (post-push: two concurrent sessions' pushes merged, two real preflight failures found and fixed)
+
+Pushing this cycle's own verification-pass entry hit a real conflict (`ops/NIGHTLY-LOG.md`) against a concurrent PM check-in; resolved by keeping both entries in order and regenerating the three generated dashboard files fresh. A second push then rejected against a further concurrent commit (Phil's own traffic-decline re-measurement, "Human arrivals have fallen three weeks running"); that merge was clean (no conflicts), but the post-merge `preflight.py` run genuinely failed two gates: `gate_owner_actions_last_measured_current` (the concurrent commit updated `OWNER-ACTIONS.md`'s body with a 2026-09-21 measurement but not its own header) and `gate_risks_traffic_citations_current` (`RISKS.md`'s RISK-0005 block still cited the 2026-09-20 baseline, not GOALS.md's newly re-measured 76 visitors/190 visits/30 days). Both fixed directly: the header updated to summarise the new measurement, and RISK-0005 given its own current-baseline citation matching GOALS.md. Full `preflight.py` clean after (every gate passed, 22 known warnings, unchanged from before).
+
+**Went well:** treating a clean merge as still needing a real preflight run rather than assuming "no conflicts" meant "still passing"; both failures were genuine, not merge artifacts.
+
+**Did not go well:** three concurrent sessions pushing to `main` within about 15 minutes of each other made this cycle's own close-out take three push attempts instead of one.
+
+**Next:** same as the cycle's own entry below. CI (`checks.yml`) was still `in_progress` against this commit (`5db19292`) at the time of writing; not yet confirmed green here.
+
+Pushed to main. `OWNER-ACTIONS.md`, `RISKS.md`, command deck. No price or product touched, no page changed. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (full verification pass across a fresh set of low-mention ops/*.py files and the open trademark risk; no new defect)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (a 1038-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md` sections 0-7, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, the newest `NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub confirmed live via the API: 8 open issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs; both `checks.yml` and `publish-image.yml` green on their last 3 runs.
