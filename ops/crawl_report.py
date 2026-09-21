@@ -111,7 +111,8 @@ BOTS = [
     ("Googlebot-Image", r"Googlebot-Image"),
     ("Googlebot-News", r"Googlebot-News"),
     ("Googlebot", r"Googlebot(?!-)"),
-    ("Google-Other", r"GoogleOther|Google-InspectionTool|Google-Extended"),
+    ("Google-Extended", r"Google-Extended"),
+    ("Google-Other", r"GoogleOther|Google-InspectionTool"),
     ("Bingbot", r"bingbot|BingPreview"),
     ("YandexBot", r"Yandex"),
     ("DuckDuckBot", r"DuckDuckBot|DuckAssistBot"),
@@ -123,11 +124,31 @@ BOTS = [
     ("ChatGPT-User", r"ChatGPT-User"),
     ("ClaudeBot", r"ClaudeBot|Claude-Web|anthropic"),
     ("PerplexityBot", r"Perplexity"),
+    ("CCBot", r"CCBot"),
     ("Meta/FacebookBot", r"facebookexternalhit|meta-external"),
     ("SEO tools", r"AhrefsBot|SemrushBot|MJ12bot|DotBot|DataForSeo"),
     ("Uptime/monitor", r"UptimeRobot|Pingdom|StatusCake|wget|curl"),
 ]
 BOT_RE = [(name, re.compile(pat, re.I)) for name, pat in BOTS]
+
+# D15 (REVIEW-DISCOVERY-2026-09-07.md section 6): a fetch is a licensing event
+# or a discovery event, and counting them together hides which one is
+# missing. TRAINING crawlers feed a model's corpus and never send this site a
+# visitor. RETRIEVAL crawlers are the ones that can put a page in front of a
+# person right now, by an index, a live search fetch, or a citation. A bot
+# not in either set (YandexBot, PetalBot, SEO tools, ...) is left unclassified
+# rather than guessed into the nearer-sounding bucket.
+TRAINING_BOTS = {"GPTBot", "ClaudeBot", "CCBot", "Google-Extended"}
+RETRIEVAL_BOTS = {"OAI-SearchBot", "PerplexityBot", "Bingbot", "Googlebot",
+                   "Applebot"}
+
+
+def purpose(bot_name):
+    if bot_name in TRAINING_BOTS:
+        return "training"
+    if bot_name in RETRIEVAL_BOTS:
+        return "retrieval"
+    return None
 
 LINE = re.compile(
     r'^(?P<ts>\S+) (?P<status>\d{3}) (?P<method>\S+) (?P<path>\S+) '
@@ -317,6 +338,24 @@ def main():
             extra.append("%d error" % errs)
         print("    %-26s %5d  %s"
               % (name, n, ", ".join(extra) if extra else ""))
+
+    print("")
+    print("  BY PURPOSE (a training fetch is a licensing event, not a "
+          "discovery event; only a retrieval crawler can put this site in "
+          "front of a person)")
+    training_n = sum(n for name, n in by_bot.items() if purpose(name) == "training")
+    retrieval_n = sum(n for name, n in by_bot.items() if purpose(name) == "retrieval")
+    print("    training  : %5d  (%s)" % (
+        training_n,
+        ", ".join(sorted(n for n in by_bot if purpose(n) == "training")) or "none seen"))
+    print("    retrieval : %5d  (%s)" % (
+        retrieval_n,
+        ", ".join(sorted(n for n in by_bot if purpose(n) == "retrieval")) or "none seen"))
+    seen_retrieval = {n for n in by_bot if purpose(n) == "retrieval"}
+    missing_retrieval = sorted(RETRIEVAL_BOTS - seen_retrieval)
+    if missing_retrieval:
+        print("    NOT seen in this window, retrieval: %s"
+              % ", ".join(missing_retrieval))
 
     search = [r for r in rows if r["bot"] in
               ("Googlebot", "Bingbot", "YandexBot", "Applebot",

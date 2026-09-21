@@ -796,6 +796,34 @@ cannot currently see it.
 which retrieval crawlers have and have not fetched us in the last 30 days.
 **Blocked on.** Nothing.
 
+**Status, 2026-09-21, PM check-in: done for the code, honestly partial on
+the live read.** `ops/crawl_report.py` now classifies every bot into
+`TRAINING_BOTS` (GPTBot, ClaudeBot, CCBot, Google-Extended, this section's
+own four) or `RETRIEVAL_BOTS` (OAI-SearchBot, PerplexityBot, Bingbot,
+Googlebot, Applebot, this section's own five) via a new `purpose()`
+function, and prints a "BY PURPOSE" section with both totals and an
+explicit "NOT seen in this window, retrieval: ..." line naming exactly
+which retrieval crawlers had zero fetches, meeting this section's
+acceptance line word for word. Google-Extended was previously lumped
+into the same "Google-Other" bucket as `GoogleOther`/`Google-InspectionTool`
+(neither a training signal), so it was split into its own bucket first;
+otherwise a real training fetch would have vanished into an unclassified
+one. `CCBot` (Common Crawl, the corpus several AI labs train from) had no
+pattern at all before this and was added. New
+`ops/tests/test_crawl_report_purpose.py` proves the classification and the
+"NOT seen" derivation against synthetic user agents and a synthetic
+log line fed straight to `main()`, no network or SSH key needed; run
+directly, not just added to the suite, and it fails correctly if
+Google-Extended's split regresses. **What this could not do: read the
+real proxy log**, same limit every other VPS-dependent gate in this
+environment carries (no key at `~/.ssh/6s_deploy`). So the 30-day
+retrieval-crawler answer this section actually wants (has OAI-SearchBot or
+PerplexityBot ever fetched this site) is still unmeasured; the tool that
+can answer it now exists and only needs `python ops/crawl_report.py --days
+30` run somewhere with the key. `preflight.py` clean end to end (every
+gate passed, 22 warnings, all previously diagnosed sandbox limits, none
+new). Full detail: `ops/NIGHTLY-LOG.md` 2026-09-21.
+
 ### D16. Make the FAQ answers visible. This is both an AEO win and a compliance fix.
 **Done, found already satisfied 2026-09-21, PM check-in.** Superseded by A3
 in `BACKLOG-2026-09-07.md` (done 2026-09-07, same day as this report, before
