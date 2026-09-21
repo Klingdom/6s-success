@@ -778,7 +778,10 @@ investigation:
   what_is_still_unproven: >
     That the cloud side finished. The files carry OneDrive's reparse-point
     marker and both sync processes are running, so upload is under way or
-    done, but nothing on this machine can see the owner's cloud account. A
+    done. Re-checked later the same day: 279 of 279 files now carry it, up
+    from 245, so OneDrive has finished processing every one locally. That
+    still is not proof the bytes reached the cloud, because nothing on this
+    machine can see the owner's cloud account. A
     copy inside the OneDrive folder on the SAME disk is not yet an off-machine
     backup, and this row does not claim it is.
 review: monthly
