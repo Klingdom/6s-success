@@ -20,6 +20,28 @@ Every backlog/review row again done or Phil-gated, so continued the standing low
 
 Pushed to main. ops/verify_deploy.py, ops/preflight.py, ops/tests/test_gate_verify_deploy_pages_current.py, BACKLOG-2026-09-07.md, command deck. No price or product touched, no new page. IndexNow not applicable.
 
+A concurrent PM check-in (06:4x, below) read the same file at the same time and closed it "clean": it verified the contact-page string match but did not check PAGES against site/'s real page list, so it missed this gap. Recorded here rather than silently overwritten, since both reads are real and the second one is what actually caught it.
+
+## PM check-in, 2026-09-21 06:4x (previous work finished and verified; nothing new genuinely unblocked; one small file cold-read closed clean)
+
+NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read fallback (`build_social_pins.py`, `accept_image.py`, `browser.py`, `build_card_template.py`, `build_catalog.py`, `build_cover.py`, `build_kitchen_deck_page.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`, `fix_dashes.py`, `revenue_model.py`, `ship.py`), because every row in `BACKLOG-2026-09-07.md` and every D-item in `REVIEW-DISCOVERY-2026-09-07.md` is again done or Phil-gated, all 8 GitHub issues are unchanged `decision`/`blocked-on-art`, and that is the only named lane left untried.
+
+Attached cleanly: shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (977-commit fast-forward from `51e53764` to `5f56e224`, no reset or force). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry (06:1x PM check-in), `BACKLOG-2026-09-07.md` section 1's newest rows (D17 closed, D9/D10/D12/D8 all recorded honest-partial or done), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API directly (unchanged: `decision` 33/32/31/21/18/15, `blocked-on-art`/`P0` 29/2), 0 open PRs.
+
+**STEP 2: yes, previous work finished.** Working tree was clean, `main` matched `origin/main` before this cycle touched anything. Full `python ops/preflight.py` run to genuine completion in the background (foreground hits this sandbox's own timeout, the standing shape): every gate passed, 0 FAIL, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress, deploy freshness unmeasured, the two workflows' measured cron-cadence drift already mitigated 2026-09-09, sample-PDF spelling, site verification, page/deck-art gaps tracked by open issues #2/#29). No new warning against the standing 22.
+
+**STEP 3: checked, nothing new to start.** `BACKLOG-2026-09-07.md`'s newest rows (D17, D9 follow-on, D12, D10, D9, D8) and the 06:1x PM check-in's own review confirm every D-item in `REVIEW-DISCOVERY-2026-09-07.md` is done, honest-partial with its remainder named, or Phil/Search-Console/SSH/Stripe-gated. All 8 GitHub issues are `decision` or `blocked-on-art`, none pickable per this task's own rule against starting anything waiting on Phil.
+
+**Did:** cold-read `ops/verify_deploy.py` (130 lines, one of the named low-mention fallback candidates) for a defect. Correctly designed: the parking-page check runs first so later checks cannot pass for the wrong reason, the contact-page checks assert both a false-delivery claim is absent and the honest mail-pipe disclosure is present. Checked its own cross-reference live rather than trusted the comment: the script's check for `"mail pipe is not connected"` in the served contact page matches `site/contact.html`'s real text verbatim (`grep` confirmed). No defect found; this closes one more file in the fallback lane, not a live issue.
+
+**Went well:** cross-checking the file's own hard-coded string against the live page it targets, the same drift class (source corrected, check never re-verified against it) several recent cycles have caught elsewhere, rather than trusting the read alone.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); this sandbox still cannot run `verify_deploy.py` itself (no egress), so its logic was checked by reading, not by execution.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (self-referential: generated timestamp, commit hash/message, commit counts). No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 06:1x (previous work finished and verified; nothing new genuinely unblocked; dashboard refresh only)
 
 Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 974-commit fast-forward, no reset or force) onto a concurrent session's own merge commit (`0c7064ce`, already pushed with `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`/dashboard conflicts resolved before I attached). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry (D17) plus the last several before it, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-DISCOVERY-2026-09-07.md` D1-D21 (every status block), 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
