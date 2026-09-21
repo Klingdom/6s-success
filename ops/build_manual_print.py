@@ -115,6 +115,26 @@ def strip_tags(s):
     return H.unescape(re.sub(r"<[^>]+>", " ", s))
 
 
+SIX_S_CANON = ["Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain"]
+SIX_S_ALT = "Sort|Straighten|Shine|Safety|Standardize|Sustain"
+
+
+def six_s_order_problems(txt):
+    """D-014: Safety is the fourth S. Any enumerated run of 4 or more of the
+    six pass names must list them in canonical order. The outer regex already
+    requires at least 4 matches to count as a run at all, so every run this
+    finds is exactly the shape the order check exists for; a run must never
+    be excluded from the order check just for being short."""
+    runs = re.findall(
+        r"(?:%s)(?:\s*(?:,|and|&|·|>|/)\s*(?:%s)){3,}" % (SIX_S_ALT, SIX_S_ALT), txt)
+    bad = []
+    for r in runs:
+        seq = re.findall(SIX_S_ALT, r)
+        if seq != SIX_S_CANON[:len(seq)]:
+            bad.append(r.strip()[:70])
+    return runs, bad
+
+
 def fence(name, payload):
     return "<!-- BEGIN 6S %s -->\n%s\n<!-- END 6S %s -->" % (name, payload, name)
 
@@ -1121,16 +1141,7 @@ def gates(paths, master, zone_products):
             if zones != 114:
                 fails.append("%s: %d zone cards, expected 114" % (label, zones))
             # six-S canon: Safety must be the fourth S in every enumerated run
-            runs = re.findall(
-                r"(?:Sort|Straighten|Shine|Safety|Standardize|Sustain)"
-                r"(?:\s*(?:,|and|&|\u00b7|>|/)\s*"
-                r"(?:Sort|Straighten|Shine|Safety|Standardize|Sustain)){3,}", txt)
-            S = ["Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain"]
-            bad = []
-            for r in runs:
-                seq = re.findall(r"Sort|Straighten|Shine|Safety|Standardize|Sustain", r)
-                if len(seq) >= 5 and seq[:6] != S[:len(seq)]:
-                    bad.append(r.strip()[:70])
+            runs, bad = six_s_order_problems(txt)
             print("    six-S runs       %d checked, %d bad" % (len(runs), len(bad)))
             if bad:
                 fails.append("%s: Safety not 4th in %s" % (label, bad[:2]))

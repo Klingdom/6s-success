@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (a real gate gap closed in build_manual_print.py's six-S order check; no live document defect)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` (clean fast-forward, 1062 commits). Read `BACKLOG-2026-09-07.md` sections 0-7, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly pickable; 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, same as every prior cycle. `BACKLOG-2026-09-07.md` sections 1-4 again all done or Phil-gated, section 5 correctly Hold.
+
+Picked up the standing handoff: cold-read `build_manual_print.py`'s `gates()` (line 1083) and `main()`, the two parts of that file the prior cycle had left unread.
+
+**Found and fixed a real gap in the six-S order check, D-014 (Safety is the fourth S).** `gates()`'s canon check found every enumerated run of 4 or more of the six pass names via regex, but then only order-checked runs where `len(seq) >= 5`, even though the same regex already requires a minimum of 4 matches to count as a run at all. A 4-item enumeration listed out of canonical order (for example "Straighten, Shine, Sort, Safety") would be counted in the printed "runs checked" tally but silently skipped by the order check itself, so it could ship with Safety anywhere in the sequence and the gate would still say "0 bad." Verified against both live documents before treating this as theoretical: `content/manual/6S Home Micro Zone SOP Field Manual v3.html` and `content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html` each currently carry exactly one 5-item and one 6-item run, both canonical, so this is a gate gap, not a shipped defect; recorded here rather than treated as an urgent fix, per step 5c.
+
+Fixed by extracting the check into a pure `six_s_order_problems(txt)` function (module level, no length floor beyond what the outer regex already enforces) and wiring `gates()` to call it instead of duplicating the logic inline. New `ops/tests/test_gate_manual_print_six_s_order.py` (7 cases) proves the fail-then-pass shape directly: a standalone copy of the old `>=5` logic is shown missing a real 4-item out-of-order run, the fixed function is shown catching the identical input, a canonical 4-item run still passes, 5- and 6-item runs still behave as before, and the two real committed manual files still come back clean under the fixed check.
+
+**Verified:** `python ops/build_manual_print.py` reruns clean, all four sections' gates pass, six-S runs unchanged (2 checked, 0 bad in each document); confirmed idempotent, `git status` showed no change to any `content/manual/*` file, only the script and the new test. Full `preflight.py` rerun after the fix (every gate passed, 22 warnings, all previously diagnosed sandbox limits, `tests-unverified` count moved 231 to 232 test files as expected). `check_urls.py` (187/187), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean after.
+
+**Went well:** treating "the check exists" and "the check has no blind spot" as two different questions, the same distinction step 5c/5d ask for; the fix needed no change to any shipped document, only to the gate.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's own hand in the Routines UI. No new customer-facing or traffic-facing item was available to pick up this cycle; every unblocked row in the backlog above sections 5/6 is exhausted, leaving the operational-honesty cold-read lane as the only genuinely unblocked work, the same state the last several cycles have logged.
+
+**Changing next cycle:** none beyond the new gate; the cold-read method keeps finding real, if narrow, defects at this tier and should continue.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Traffic has now fallen three consecutive weeks (18 to 14 to 10 visitors, per `OWNER-ACTIONS.md`'s 2026-09-21 measurement); nothing on the unblocked side of the backlog changes that, since the two instruments that would explain it (Search Console, items 1a) and reach new buyers (YouTube authorisation, item 1) both sit behind owner gates that have been open for weeks. Cold-read lane continues at the next-lowest `ops/*.py` tier by mention count.
+
+Pushed to main. `ops/build_manual_print.py`, `ops/tests/test_gate_manual_print_six_s_order.py`, command deck. No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 17:1x (previous work finished and confirmed; triage only, nothing new started)
 
 Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1061 commits).
