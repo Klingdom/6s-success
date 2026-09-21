@@ -5978,6 +5978,44 @@ def gate_site_verification_declared() -> None:
                  f"carries no {names[k]} tag. Run python ops/build_seo.py.")
 
 
+def gate_verify_deploy_pages_current() -> None:
+    """ops/verify_deploy.py's smoke-test page list must keep covering every
+    real buy path, not just the marketing pages.
+
+    Found 2026-09-21, this operator: PAGES checked 13 marketing pages
+    (method, shop, book, about, ...) but never quest.html (the Home Quest
+    app, GOALS.md O5), deck.html (the free lead magnet most outbound links
+    point at), corporate.html (the B2B enquiry funnel) or thanks.html (what
+    a paying customer sees right after checkout). A deploy that 404'd one of
+    those would still have scored 10 of 10, exactly the "green check, broken
+    customer path" gap ops/deploy_freshness.py's own docstring already warns
+    about for a different dimension (current vs. working). Fixed by adding
+    those pages plus how-we-make-money.html (the affiliate disclosure every
+    product page promises).
+
+    This gate is the reason it cannot regress unnoticed: it re-derives
+    verify_deploy.CRITICAL_PAGES and fails if a future edit removes one from
+    PAGES, or if the page it names stops existing in site/ at all.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import verify_deploy as VD
+    missing_from_pages = sorted(p for p in VD.CRITICAL_PAGES if p not in VD.PAGES)
+    if missing_from_pages:
+        fail("verify-deploy-pages-current",
+             "ops/verify_deploy.py's PAGES no longer checks these critical "
+             "page(s), so a deploy that broke them would still score all "
+             "green: %s. Restore them to PAGES." % ", ".join(repr(p) for p in missing_from_pages))
+        return
+    missing_files = sorted(p for p in VD.CRITICAL_PAGES
+                            if not os.path.exists(os.path.join(SITE, (p or "index") + ".html")))
+    if missing_files:
+        fail("verify-deploy-pages-current",
+             "ops/verify_deploy.py's CRITICAL_PAGES names page(s) that do "
+             "not exist in site/: %s. Either the page was renamed and "
+             "CRITICAL_PAGES was not updated, or it was really removed and "
+             "should come out of both lists." % ", ".join(repr(p) for p in missing_files))
+
+
 def gate_deck_gallery_identity() -> None:
     """A deck gallery page must not describe itself as a different deck.
 
@@ -18623,6 +18661,7 @@ def main() -> int:
     run_gate(gate_sitemap_lastmod_current)
     run_gate(gate_indexnow_current)
     run_gate(gate_site_verification_declared)
+    run_gate(gate_verify_deploy_pages_current)
     run_gate(gate_room_images_stable)
     run_gate(gate_zone_heroes_stable)
     run_gate(gate_hero_fallback_current)

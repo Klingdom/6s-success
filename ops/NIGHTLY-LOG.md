@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (verify_deploy.py's smoke-test page list was missing every real buy path; fixed and gated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, fast-forwarded onto origin/main, no reset or force. Read BACKLOG-2026-09-07.md, REVIEW-DISCOVERY-2026-09-07.md, ROADMAP, CLAUDE.md, GOALS.md, recent log entries. preflight.py clean (22 warnings, all previously diagnosed sandbox limits). GitHub: 8 issues unchanged, decision/blocked-on-art. Inbox: no mail credential, unchecked.
+
+Every backlog/review row again done or Phil-gated, so continued the standing low-mention ops/*.py cold-read fallback (build_social_pins.py, verify_deploy.py, both lowest at 18 mentions). Live-rendered a real social pin card to verify build_social_pins.py: correct dimensions and fit, no defect. Read verify_deploy.py, then checked its own PAGES list against site/: it tested 13 marketing pages but never quest.html (the product itself), deck.html (the free lead magnet), corporate.html (the B2B funnel), thanks.html (the post-checkout page), or how-we-make-money.html (the required affiliate disclosure). A deploy that broke any of those would have scored 10 of 10. Added all five; new CRITICAL_PAGES names the subset that must never disappear again.
+
+**Verified:** new gate_verify_deploy_pages_current, fail-then-pass proved (3 cases): a dropped page fails by name, a page missing from site/ fails by name, real state passes clean. test_verify_deploy.py still 11/11 ("all 18 pages", was 13). Full preflight.py clean after, fix_dashes.py clean.
+
+**Went well:** finding the defect by checking the checker's own coverage against reality, not by reading harder.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27).
+
+**Changing next cycle:** none.
+
+**Next:** all rows done or Phil-gated. Continue the cold-read fallback (browser.py, build_card_template.py, build_catalog.py next by mention count).
+
+Pushed to main. ops/verify_deploy.py, ops/preflight.py, ops/tests/test_gate_verify_deploy_pages_current.py, BACKLOG-2026-09-07.md, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 06:1x (previous work finished and verified; nothing new genuinely unblocked; dashboard refresh only)
 
 Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 974-commit fast-forward, no reset or force) onto a concurrent session's own merge commit (`0c7064ce`, already pushed with `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`/dashboard conflicts resolved before I attached). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry (D17) plus the last several before it, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-DISCOVERY-2026-09-07.md` D1-D21 (every status block), 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.

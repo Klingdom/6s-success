@@ -27,9 +27,29 @@ import urllib.error
 # The real page list, taken from site/. "rooms" was in here and does not exist:
 # the rooms and micro zones page is resources.html. A check that asks for a page
 # the site never had reports a deployment failure that is really a list bug.
+#
+# Found 2026-09-21, this operator: the list covered every marketing page but
+# none of the actual buy paths or the product itself. A deploy that broke
+# quest.html (the Home Quest app, O5), deck.html (the free lead magnet that
+# most outbound links point at), corporate.html (the B2B enquiry funnel,
+# GOALS.md's other real revenue channel) or thanks.html (what a paying
+# customer sees immediately after checkout) would have scored 10 of 10 here
+# while the thing a customer actually clicked on was broken. Added those four
+# plus how-we-make-money.html, the affiliate disclosure every product-page
+# link promises is "above them" per CLAUDE.md 5e: if that page 404s, every
+# disclosure on the site points at a dead link.
 PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
          "resources", "invest", "privacy", "terms", "accessibility",
-         "disclaimer"]
+         "disclaimer", "quest", "deck", "corporate", "thanks",
+         "how-we-make-money"]
+
+# The subset of PAGES that must never silently disappear from it again.
+# gate_verify_deploy_pages_current in preflight.py re-derives this set on
+# every run and fails if a future edit drops one, so the exact gap found
+# 2026-09-21 (a broken buy path scoring 10 of 10 because nothing checked it)
+# cannot recur unnoticed a second time.
+CRITICAL_PAGES = {"", "shop", "quest", "deck", "corporate", "thanks",
+                   "how-we-make-money"}
 NONSENSE = "this-path-does-not-exist-6s-check"
 
 results = []
