@@ -63,10 +63,22 @@ separate budget needed since the acceptance number is the same file's.
 Preflight fast clean after (every gate passed, 21 warnings, one fewer than
 before because Pillow happened to be installable in this session, so
 `gate_kdp_cover_current` could run instead of reporting UNCHECKED), 
-`check_urls.py` 187/187, `audit_pages.py` 191/0. **C15 and C18 are still
-open**, not closed by this pass: `DECISIONS.md` carries no entry for the
-paid-deck decision, and `PRICING.md` section 2's superseded ladder body
-(distinct from the already-corrected section 0.6) has not been struck.
+`check_urls.py` 187/187, `audit_pages.py` 191/0.
+
+**C15 and C18 done the same cycle, once C16 was clean.** `DECISIONS.md` D-022
+records both: paid card-deck tiers stay held until a stranger buys something
+(the decision `PRICING.md` 0.6 and `BACKLOG-2026-09-07.md` section 5 already
+made by events, now written where a future cold read will find it instead of
+re-deriving it), and `BK-EB` stays at $9.99, with the honest statement that
+who set that price, when, and why is unknown and unrecoverable from this
+repository's own record. C18's other half, striking `PRICING.md` section 2's
+superseded ladder body outright, was checked against `gate_pricing_deck_ladder_current`'s
+own docstring rather than done again: that gate already made a deliberate,
+recorded choice 2026-09-15 to keep a correction marker rather than delete the
+historical comparables research, on the reasoning that it stays useful
+whenever paid tiers are revisited. D-022 cites that choice rather than
+reversing it. `gate_decisions_index_current` confirmed D-022 is correctly
+indexed.
 
 ---
 

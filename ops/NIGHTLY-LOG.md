@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle addendum (C15/C18: the paid-deck decision and BK-EB's $9.99 recorded in DECISIONS.md, same cycle as C16)
+
+**Did:** Continued the same cycle as the C16 entry immediately below, on the same handoff (`REVIEW-COMMERCE-2026-09-07.md` C15/C18, named alongside C16). Preflight fast clean before starting (0 gates failed).
+
+**C15 and C18.** Neither had ever been closed: `DECISIONS.md` carried no entry for the paid-card-deck-tiers-on-hold call (`PRICING.md` 0.6 and `BACKLOG-2026-09-07.md` section 5 already made it by events, GitHub issue #20 closed 2026-09-15 as superseded, but nowhere recorded it the way D-020 recorded the D9 call six hours earlier the same day), and `BK-EB`'s $9.99 price had sat with `PRICING.md`'s own line "no record anywhere says who changed it, when, or why" since 2026-09-03. Added `DECISIONS.md` D-022 recording both, honestly: the deck-tier hold restates an existing decision rather than inventing a new one, and the $9.99 ratification states plainly that its original author/date/reason is unknown and unrecoverable from this repository's record, backed instead by real, current evidence (`PRICING.md` 0.4's fee-load table: 5.9%, second-lowest of any single SKU; the bundle math it feeds staying internally consistent). Checked `gate_pricing_deck_ladder_current`'s own docstring before claiming C18's PRICING.md-strike half was already satisfied, rather than asserting it: that gate already made a deliberate 2026-09-15 choice to keep a correction marker over deleting the historical ladder reasoning, "since it stays useful whenever paid tiers are revisited," so D-022 cites that existing choice instead of reversing it.
+
+**Verified:** `preflight.gate_decisions_index_current()` called directly against a cleared `FAIL` list: empty, so D-022 is correctly indexed in section 43's table. Full `preflight.py` fast rerun after both files changed: every gate passed, 20 warnings (one fewer than the prior check, `stale-claims` or a sibling clearing on the new content; not investigated further since the direction is toward fewer warnings, not more). `fix_dashes.py --check`: 0/0. `REVIEW-COMMERCE-2026-09-07.md`'s status block extended to record both closed.
+
+**Went well:** finishing the small remainder of the same handoff in the same cycle rather than leaving it for a future session to rediscover, since both were genuinely small once C16's own investigation had already surfaced the real evidence (`PRICING.md` 0.4's fee-load table) needed for the $9.99 rationale.
+
+**Did not go well:** none new; same standing limits as the C16 entry below.
+
+**Next:** `REVIEW-COMMERCE-2026-09-07.md` section 7's remaining rows (C1/C2/R1-R4 need Stripe credentials; C6-C10, C12-C13, C17, C20 are larger-scope or below the traffic constraint per the doc's own ordering). Standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `DECISIONS.md`, `REVIEW-COMMERCE-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (C16: the free deck PDF cut from 25 MB to 7.5 MB, a live-measured commerce defect, gated so it cannot silently regrow)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean). `preflight.py` fast clean on the first run (every gate passed, 22 warnings). Read `BACKLOG-2026-09-07.md` sections 0-7, `CLAUDE.md`, `ROADMAP-2026-2029.md`, `OWNER-ACTIONS.md`, and the newest `ops/NIGHTLY-LOG.md` entries. Every unblocked backlog and `REVIEW-DISCOVERY-2026-09-07.md` row was again done or Phil-gated; GitHub unchanged (8 open issues, all `decision`/`blocked-on-art`, 0 PRs; checked live via a sub-agent). Confirmed this session's own credentials independently rather than citing prior cycles: no SSH key, no `.env.secrets`, no mail credential, egress to `6s-success.com`/`api.stripe.com` both denied by the proxy (`connect_rejected`). Inbox and affiliate checks: no mail credential (UNCHECKED, not empty); `affiliate.py --check` clean, 163 documents.

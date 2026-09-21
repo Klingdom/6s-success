@@ -1406,6 +1406,7 @@ Maintain a compact index as the file grows.
 | D-019 | No new indexable page until the first Search Console read | ACTIVE | SEO |
 | D-020 | Zone in-degree floor of 8 is the real D9 bar; median above 15 is aspirational | ACTIVE | SEO |
 | D-021 | M6's 21-day read cannot be answered; the gate stays shut on a different reason | ACTIVE | PRODUCT |
+| D-022 | Paid card-deck tiers stay held until a stranger buys something; BK-EB stays at $9.99 | ACTIVE | Commerce |
 
 D-004 to D-013 were never assigned; no record exists under those IDs
 anywhere in this repository. Not a gap to fill, just a numbering fact worth
@@ -2102,3 +2103,75 @@ enquiry mentioning a decayed 5S "reset day" to In-Home Reset Day.
   problem rather than a demand problem.
 - Enquiries do not arrive at all after the page has been indexed, which would
   say the constraint for this line is discovery and not the offer.
+
+## D-022 | 2026-09-21 | Paid card-deck tiers stay held until a stranger buys something; BK-EB stays at $9.99
+
+**Decision.** Two things, recorded together because `REVIEW-COMMERCE-2026-09-07.md`
+C15 and C18 asked for both and no record existed for either.
+
+1. No paid card-deck tier (illustrated PDF, printed and boxed, bundle) ships
+   until at least one real order exists for something in the catalogue today,
+   from somebody who is not Phil. This is not a new call: `PRICING.md` 0.6 and
+   `BACKLOG-2026-09-07.md` section 5 ("Physical decks, paid decks: waiting on a
+   stranger buying anything at all") already made it. What was missing was a
+   `DECISIONS.md` entry a future cycle could find instead of re-deriving the
+   same answer, the exact gap D-020 closed for D9 six hours earlier the same
+   day.
+2. `BK-EB` (the eBook) stays priced at $9.99, not reopened, not reverted to the
+   stale $18 this file's own section 0.1 already flags. This is a ratification
+   of the live price, not a reconstruction of its history: **who set $9.99,
+   when, and why is unknown and, as far as this repository's own record goes,
+   unrecoverable.** `PRICING.md` line 37 has said so since 2026-09-03 and
+   nothing since has found an answer. Saying so plainly is the decision, not a
+   gap in it; `CLAUDE.md` section 15 asks for evidence before certainty, not
+   certainty invented to fill a silence.
+
+**Rationale.** Three gates from `CLAUDE.md` 0.5 apply and none is met: paid
+decks are a Stripe write with no price test possible at 2.6 visitors a day
+(`BACKLOG-2026-09-07.md` section 0), and every number PRICING.md 0.6 computed
+for the old $12/$29/$34 ladder leaned on a 46-card premise the live 88-card
+deck no longer matches, so reopening the ladder now would mean re-deriving it
+from nothing, not confirming old work. For BK-EB: $9.99 clears the fee-load
+comparison cleanly (`PRICING.md` 0.4, measured against the one real Stripe
+transaction's actual 2.9%+$0.30 rate: 5.9% fee load, the second-lowest of any
+single SKU after the $684-card Whole House Print Pack) and the bundle math
+built on top of it is internally consistent today ($9.99+$29+$19=$57.99,
+bundle $49, saves $8.99/15.5%, PRICING.md 0.1, no longer stale). Reverting to
+$18 would restore the exact defect that made this file's own opening rule
+necessary in the first place: a price nobody has to defend gets re-argued by
+whoever feels strongest that day.
+
+**Evidence.** `PRICING.md` 0.1 (the stale-statement table, live-verified
+2026-09-03), 0.3 (the room-pack/eBook proximity concern, still open, see
+Consequences), 0.4 (unit economics, computed from the one real transaction),
+0.6 (the deck-ladder staleness, live-verified 2026-09-15, gated by
+`gate_pricing_deck_ladder_current`). `BACKLOG-2026-09-07.md` section 5's Hold
+table. Direct inspection tier for all of it: PRICING.md's own numbers,
+re-checked against `site/assets/js/data.js` today, unchanged.
+
+**Alternatives.** Ship one paid deck tier now, on the theory that a product
+cannot sell zero copies if it is never offered: rejected, `CLAUDE.md` 0.5
+classifies a Stripe write as YELLOW needing stronger validation, and there is
+no evidence tier above "informed hypothesis" to validate it with at this
+traffic. Revert BK-EB to $18 on the theory that a higher price with no
+recorded reason is safer than a lower one with no recorded reason: rejected,
+both are equally unrecorded, and $18 fails the fee-load and bundle-math
+evidence the current price does not. Leave both questions open rather than
+decide: rejected, per `CLAUDE.md` section 21, and per D-020's own precedent
+the same day for the same reason.
+
+**Consequences.** `PRICING.md` 0.6's stale ladder body stays in place rather
+than being struck outright: it remains the load-bearing record of why $12/
+$29/$34 do not apply to the current 88-card deck, and deleting it would cost a
+future revisit the exact reasoning it would otherwise have to redo (the same
+choice already made and gated 2026-09-15). The still-open recommendation in
+0.3, separating the $9 room pack from the $9.99 eBook because they read as
+one ladder a dollar apart, is not resolved by this decision and stays a live,
+unexecuted item, not a closed one. `REVIEW-COMMERCE-2026-09-07.md` C15 and
+C18 (the DECISIONS.md half; C18's PRICING.md-strike half was already done
+2026-09-15) point here.
+
+**Revisit when.** A second sale, to anybody, of anything; that is this
+business's own next-most-wanted event per `ROADMAP-2026-2029.md` and the
+natural trigger to re-open both the deck ladder and the eBook price with real
+data instead of comparables. Or Phil directs otherwise.
