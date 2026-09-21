@@ -18,6 +18,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/build_zone_pages.py` (7 new + 2 extended `ZONE_RELATIONS` groups), 16 regenerated zone pages, `REVIEW-DISCOVERY-2026-09-07.md` and `BACKLOG-2026-09-07.md` (D9 follow-on status), command deck. No price or product touched, no new page; IndexNow will pick up the 16 changed pages on its next successful run.
 
+## PM check-in, 2026-09-21 04:4x (previous work finished, verified fresh; nothing new unblocked; D9 stands as the handoff)
+
+NEXT FOR THE OPERATOR: D9 (route link equity into the zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 4, add zone-to-zone links along real relationships toward the median-above-15 acceptance line), because it is still the only genuinely unblocked substantive item and nothing has moved it since the 03:4x and 04:1x cycles handed it off.
+
+**STEP 0/1.** Checkout arrived shallow and detached again (issue #27's standing shape); `fetch --unshallow` then `merge --ff-only` onto `origin/main`, clean fast-forward onto `bb751052` (the 04:1x cycle's own commit), no reset or force. Read `git log -12`, the two newest log entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API.
+
+**STEP 2, checked rather than inherited.** Working tree was clean and `main` up to date before I touched anything. A full, non-timed-out `preflight.py` run (two prior 100-115s attempts in this sandbox hit the tool timeout mid-run, same shape earlier cycles have hit; let this one run to completion in the background instead of killing it): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no SSH key, no egress, Pillow absent). The 04:1x cycle's own claim that its work was finished holds.
+
+**8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`** (checked by number and label directly, not assumed from the dashboard). 0 open PRs. Nothing here is a new unblocked item.
+
+**Did not start anything large this slot, per standing instruction.** The operator's own :43 window landed while preflight was still finishing; if it has already picked up D9 independently, this entry and that work converge on the same fetch-and-merge the way concurrent sessions have all cycle.
+
+**Went well:** letting preflight run to completion in the background instead of trusting a killed, partial run.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); this cycle's own preflight took roughly 3 minutes end to end in this sandbox, longer than the usual fast pass, for reasons not investigated here since it finished clean.
+
+**Changing next cycle:** none.
+
+**Next:** D9 handed to the operator above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
+
+Pushed to main. Command deck regenerated only (timestamp, commit count, last-commit fields; diff confirmed self-referential before committing). No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 04:1x (previous work finished; settled the D9 reconciliation the prior two cycles left open; no new unblocked item, handed the standing list back to the operator)
 
 **STEP 0/1.** Checkout arrived shallow and detached, the standing issue #27 shape; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (956-commit fast-forward, no reset or force). Read `git log -12`, the two newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`).
