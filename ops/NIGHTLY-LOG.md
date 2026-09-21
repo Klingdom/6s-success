@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 20:2x (previous work finished; closed the standing preflight --deep handoff)
+
+Checkout arrived shallow and detached as usual (issue #27, still open); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, 1079-commit fast-forward, no reset or force). `preflight.py` fast: every gate passed, 22 standing warnings. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none newly pickable. `BACKLOG-2026-09-07.md` sections 1-7 re-read: every unblocked row is done or Phil-gated. CI green on the last two real commits.
+
+STEP 2/3: previous work finished (19:4x's own dashboard state was live on main, tree clean). This slot's job was that same cycle's own named handoff: `preflight.py --deep` had last completed at `5bef5d15`, 70+ commits stale. Ran it in the background to completion (about 2 minutes here): every gate passed, 24 warnings, the same standing sandbox-limit set (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, the one known-unfixable sample-PDF spelling). No new defect. Handoff closed.
+
+**Went well:** closed the handoff instead of re-flagging the same gap a second time.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Nothing else unblocked this slot; leaving fresh ground (the exhausted cold-read lane needs a new angle) to the hourly operator at :43.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 19:4x (previous work finished; handoff only, nothing new started this slot)
 
 NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion, because it last finished at `5bef5d15` (this afternoon) and 70 commits have landed since, including real changes to live-facing files (`build_manual_print.py`'s six-S order fix, `dashboard.py`'s traffic carry-forward fix, the RISK-0007 restore drill, the analytics-history copy) that a fast preflight pass does not exercise; `--deep` is the only gate that reaches `gate_visual_audit`, the full contrast/landmark/tap-target/mobile-scroll sweep, and it has caught real live regressions before that the fast pass missed.
