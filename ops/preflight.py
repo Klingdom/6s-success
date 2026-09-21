@@ -13666,6 +13666,54 @@ def gate_linkedin_drafts_customer_count_current() -> None:
              "above it." % (drafted, word, measured))
 
 
+def gate_corporate_linkedin_claims_current() -> None:
+    """The new B2B post track in the daily LinkedIn draft email (C11,
+    REVIEW-COMMERCE-2026-09-07.md section 7, added 2026-09-21) must keep
+    quoting site/corporate.html, not a claim that page has since dropped.
+
+    ops/linkedin_drafts.py's own corporate_facts() asserts every anchor
+    phrase the corpus relies on is still present in that page; this gate
+    calls it the same way gate_linkedin_drafts_price_current calls facts(),
+    a pure check with no side effect, so a hundred preflight runs a day
+    cannot itself advance or corrupt anything. Also builds each corpus
+    entry's block directly (not through build(), which consumes the
+    consumer rotation) and checks the word cap and the no-em/en-dash rule
+    CLAUDE.md's zero-dash rule applies to, since a rule enforced only by
+    the interpreter that wrote the corpus is not enforced at all.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import linkedin_drafts
+    except Exception as e:
+        warn("corporate-linkedin-claims",
+             "ops/linkedin_drafts.py could not be imported (%s), so the "
+             "corporate post track was not checked." % e)
+        return
+
+    try:
+        linkedin_drafts.corporate_facts()
+    except Exception as e:
+        fail("corporate-linkedin-claims",
+             "ops/linkedin_drafts.py's corporate post track quotes "
+             "site/corporate.html, and that page has drifted: %s. The "
+             "daily draft would mail Phil a B2B post making a claim the "
+             "page no longer backs." % e)
+        return
+
+    for aud, angle, body in linkedin_drafts.CORPORATE_CORPUS:
+        n = len(body.split())
+        if n > 130:
+            fail("corporate-linkedin-claims",
+                 "corporate post %r runs to %d words, over the 130 cap "
+                 "corporate_block() enforces at build time; the cap and "
+                 "the corpus have drifted apart." % (angle, n))
+        if "—" in body or "–" in body:
+            fail("corporate-linkedin-claims",
+                 "corporate post %r contains an em or en dash, which "
+                 "CLAUDE.md forbids everywhere including drafted copy."
+                 % angle)
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -18796,6 +18844,7 @@ def main() -> int:
     run_gate(gate_backlog_h2_video_count_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_linkedin_drafts_customer_count_current)
+    run_gate(gate_corporate_linkedin_claims_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)

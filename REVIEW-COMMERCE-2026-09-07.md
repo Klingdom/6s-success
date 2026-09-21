@@ -80,6 +80,36 @@ whenever paid tiers are revisited. D-022 cites that choice rather than
 reversing it. `gate_decisions_index_current` confirmed D-022 is correctly
 indexed.
 
+**C11 done, 2026-09-21, operator.** The one "At" tier item left open in this
+section: a corporate LinkedIn post track, drafted from `corporate.html`
+only, since the existing daily draft (`ops/linkedin_drafts.py`) serves only
+the consumer corpus and LinkedIn is the one channel already producing
+measured referrals (`GOALS.md`: 17 of them, against 5 lifetime organic
+search visits). `corporate_facts()` and `CORPORATE_CORPUS` added to that
+same file: four posts, one persona from `corporate.html`'s own "Who it is
+for" section per post, every sentence quoting a phrase confirmed present in
+that page at generation time, none stating a client, a result, or a count
+of engagements, matching the page's own "no client logos, no testimonials,
+no case studies" line. `corporate_block()` appends one post a day to the
+existing daily email, clearly separated and labelled as a different
+audience, so Phil sees both tracks in one place rather than a second inbox
+item to manage. The pre-existing word-cap check at the bottom of the file
+(originally written when the connection note was the only thing after the
+corpus posts) split on a fixed trailing marker that the new block now sits
+before; fixed to stop at whichever marker comes first, found and fixed
+before shipping by running the real `--preview` output rather than trusting
+the unit tests alone. New `gate_corporate_linkedin_claims_current` in
+`ops/preflight.py`, calling the module's own drift check the same way
+`gate_linkedin_drafts_price_current` already does for the eBook price, plus
+enforcing the 130-word cap and the zero-em/en-dash rule on every corpus
+entry. `ops/tests/test_gate_corporate_linkedin_claims_current.py` (6 cases)
+fail-then-pass proved directly: a planted missing anchor phrase, an
+over-cap entry, an em dash and an en dash each fail by name citing the
+gate, the real committed corpus and page pass clean, and state does not
+leak between cases. No price or product touched, no new page; this adds
+one email block Phil can post or skip, the same as the existing daily
+draft.
+
 ---
 
 ## 0. What is actually true this morning

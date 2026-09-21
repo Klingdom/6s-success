@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (C11: a corporate LinkedIn post track, the last open "At" tier item in REVIEW-COMMERCE section 7)
+
+**Did:** Checkout arrived shallow and detached as usual (issue #27); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits: no Stripe/mail/SSH/Pillow credential, no egress). Read `BACKLOG-2026-09-07.md` sections 0-7 in full: every unblocked row again done or Phil-gated. Read `GOALS.md`: the constraint is still arrivals, three consecutive weekly falls (18, 14, 10). Per decision rule 1 ("distribution beats production") and the ordering in this run's own instructions (traffic before conversion before product), read `REVIEW-COMMERCE-2026-09-07.md` section 7, the active line several concurrent sessions today (C15/C16/C18) had already been working: C11, a corporate LinkedIn post track for the B2B Lean 6S offer, was the one remaining "At" tier (plausibly increases arrivals), unblocked, no-credential item.
+
+**Built.** `ops/linkedin_drafts.py` gained `corporate_facts()` (asserts seven anchor phrases from `site/corporate.html` are still present, verbatim, before any post is built) and `CORPORATE_CORPUS` (four posts, one per persona from that page's own "Who it is for" section, none stating a client, a result, or a count of engagements, matching the page's own "no client logos, no testimonials, no case studies" line). `corporate_block()` appends one rotating post a day to the existing daily draft email, after the consumer connection note, clearly labelled as a different audience rather than a second email. New `gate_corporate_linkedin_claims_current` in `preflight.py`: re-checks the anchor phrases, the 130-word cap and the zero-em/en-dash rule on every corpus entry, the same drift-protection shape `gate_linkedin_drafts_price_current` already uses for the eBook price.
+
+**Found and fixed while verifying, not after shipping.** Running the real `--preview` output (rather than trusting the unit tests alone) caught the file's own pre-existing word-cap check breaking: it split the connection note's text on a fixed trailing marker ("WHAT IS TRUE TODAY") that the new corporate block now sits before, so the note's word count silently absorbed the whole corporate post too and failed a real assertion. Fixed to stop at whichever marker comes first.
+
+**Verified:** `ops/tests/test_gate_corporate_linkedin_claims_current.py` (6 cases) fail-then-pass proved directly: a planted missing anchor phrase, an over-cap entry, an em dash and an en dash each fail by name citing the gate; the real committed corpus and page pass clean; state does not leak between cases. Full `preflight.py` clean before AND after (every gate passed, 22 warnings, same set), `fix_dashes.py --check` (0/0), `check_urls.py` (187/187). Also noticed, not fixed: the consumer corpus's own rotation served the identical post twice in one `--preview` run ("The handoffs are the real lesson," ch03, both slots), unrelated to this change and likely a duplicate-content shape in the underlying corpus rather than a `take()` bug; flagged here for a future cycle rather than chased now, per "finish one thing."
+
+**Sync note:** a concurrent PM check-in (`fe63256b`) pushed a docs-only commit while this cycle was in progress; fetched and fast-forwarded before committing, then reset the dashboard regen to match that new HEAD exactly rather than resolve a three-way conflict on generated files, and regenerated fresh on top.
+
+**Went well:** running the real preview output surfaced a real bug the unit tests alone would have missed, before it ever reached Phil's inbox.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open. `preflight.py`'s own `gate_tests` step (234 test files) is now slow enough in this sandbox that a full run took several minutes; not itself a defect, just noted for anyone timing a cycle against it.
+
+**Changing next cycle:** none; the gate this cycle added is proven to fail on the real defect shapes it exists to catch.
+
+**Next:** `REVIEW-COMMERCE-2026-09-07.md` section 7's remaining open rows: C6/C7 (catalogue retirement), C8-C10/C17 (below the constraint or independent hygiene), C12/C13 (the other two "At" tier items: a free B2B scoring-sheet artefact, and two B2B-intent articles), C1/C2/R1-R4 (need Stripe credentials). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/linkedin_drafts.py`, `ops/preflight.py`, `ops/tests/test_gate_corporate_linkedin_claims_current.py`, `REVIEW-COMMERCE-2026-09-07.md`, command deck. No price or product touched, no new page; this adds one email block to an existing daily draft. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 21:4x (handoff only, previous cycle's own CI fix still unconfirmed; no new work started this slot)
 
 NEXT FOR THE OPERATOR: watch `checks.yml` run #1266 and `publish-image.yml`

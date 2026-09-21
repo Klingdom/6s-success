@@ -144,6 +144,119 @@ CORPUS = [
 ]
 
 
+# C11 (REVIEW-COMMERCE-2026-09-07.md section 7): a second, B2B-only post
+# track for the Corporate Lean 6S offer, since the consumer corpus above
+# never mentions it and LinkedIn is the one channel already producing
+# measured referrals. Every sentence below traces to a phrase that exists
+# verbatim on site/corporate.html today; corporate_facts() asserts each one
+# is still there before a post is ever built, so an edit to that page
+# cannot leave this corpus quietly making a claim the page no longer backs.
+_CORPORATE_ANCHORS = [
+    "twenty years installing continuous improvement systems",
+    "cut inventory and space requirements by eighty percent",
+    "No client logos. No testimonials. No case studies.",
+    "capacity is one practitioner",
+    "About four weeks in the usual shape",
+    "the missing sixth S",
+    "hire cleaners",
+]
+
+
+def corporate_facts() -> dict:
+    """Confirm the Corporate Lean 6S page still says what this corpus quotes.
+
+    Raises if any anchor phrase has drifted, so a stale claim cannot ship
+    silently; caught and reported by gate_corporate_linkedin_claims_current.
+    """
+    path = os.path.join(ROOT, "site", "corporate.html")
+    html = io.open(path, encoding="utf-8").read()
+    missing = [a for a in _CORPORATE_ANCHORS if a not in html]
+    if missing:
+        raise RuntimeError(
+            "site/corporate.html no longer contains: %r" % missing)
+    return {"anchors_confirmed": len(_CORPORATE_ANCHORS)}
+
+
+# (audience, angle, body). Every claim is what corporate.html already says;
+# nothing here states a result, a client, or a count of engagements, per
+# that page's own "no client logos, no testimonials, no case studies" line.
+CORPORATE_CORPUS = [
+    ("An operations, EHS, quality or facilities leader",
+     "The missing sixth S",
+     "A pattern I keep seeing: a team runs 5S, gets a good week out of it, "
+     "and watches it decay a quarter later. The decay has a cause, and it is "
+     "almost always the sixth S, Sustain, the layered audit that never gets "
+     "built because the event felt like the finish line. I run Corporate "
+     "Lean 6S engagements built around that: about four weeks, one area, "
+     "ending with your own people trained to run the audit, not mine. "
+     "Scoped and quoted in writing, no published rate, because two "
+     "engagements with the same headcount can be very different weeks of "
+     "work."),
+
+    ("A quality or EHS leader with an audit or visit coming",
+     "Not the same thing as a tidy-up",
+     "If what you need before an audit or a customer visit is a tidy-up, "
+     "hire cleaners, it will cost less and I would be the wrong spend. What "
+     "I run is different: a scored baseline, a kaizen event with the people "
+     "who do the work, a posted standard with a named owner, and a layered "
+     "audit your team keeps after I leave. The area holding up next quarter "
+     "is the actual test, not how it looks the week I'm there."),
+
+    ("Someone standing up a new line, building or relocation",
+     "Cheapest before the habit exists",
+     "The cheapest time to set a 6S standard is before anybody has "
+     "developed a habit to unlearn: a new line, a new building, a "
+     "relocation. I run a four-part engagement for one area (assessment, "
+     "kaizen event, posted standards, layered audit) that ends with your "
+     "own auditors trained to keep the trend line without me. Scoped and "
+     "quoted in writing before anything starts."),
+
+    ("An operations leader evaluating a Lean 6S consultant",
+     "No client logos, on purpose",
+     "My Corporate Lean 6S page carries no client logos, no testimonials, "
+     "no case studies. No engagement has been sold through 6S Success yet, "
+     "so any of those would be invented, and a buyer evaluating a "
+     "consultant is exactly the reader who checks. What is real: twenty "
+     "years installing continuous improvement systems, including a "
+     "warehouse redesign that cut inventory and space requirements by "
+     "eighty percent through 6S standardization. Happy to point you at the "
+     "full record rather than a brochure."),
+]
+
+
+def pick_corporate(day: int) -> tuple:
+    """One corporate post a day, rotating so a run of mornings does not
+    repeat, same mechanism as pick() above for the consumer connection note."""
+    return CORPORATE_CORPUS[day % len(CORPORATE_CORPUS)]
+
+
+def corporate_block(today: datetime.date) -> list:
+    """Lines for the B2B track, appended to the daily draft after the
+    consumer content. Returns [] (rather than raising into the main send)
+    if the source page has drifted, since a missing corporate post must
+    never take down the consumer drafts that already work."""
+    try:
+        corporate_facts()
+    except Exception as e:                                     # noqa: BLE001
+        return ["=" * 64,
+                "A SECOND POST, FOR A DIFFERENT AUDIENCE (B2B, not the "
+                "consumer feed above)",
+                "Skipped this morning: %s" % e, ""]
+
+    aud, angle, body = pick_corporate(today.toordinal())
+    n = words(body)
+    assert n <= 130, "corporate post ran to %d words, cap is 130" % n
+    return ["=" * 64,
+            "A SECOND POST, FOR A DIFFERENT AUDIENCE (B2B, not the consumer "
+            "feed above)",
+            "For: %s   Angle: %s" % (aud, angle), "",
+            body, "",
+            "Every claim in that post is on site/corporate.html today; "
+            "nothing above states a client, a result, or a count of "
+            "engagements, since none has been sold through 6S Success yet.",
+            ""]
+
+
 def ebook_line(f: dict) -> str:
     """The one price claim in the daily draft's own honesty block.
 
@@ -230,6 +343,8 @@ def build(today: datetime.date | None = None, record: bool = False) -> tuple[str
           f"To: {note[0]}", f"Angle: {note[1]}", "",
           note[2].format(**f), ""]
 
+    L += corporate_block(today)
+
     L += ["", "WHAT IS TRUE TODAY, so nothing above overstates it:",
           f"  {f['rooms']} rooms, {f['zones']} micro zones, {f['cards']} cards.",
           "  Chapters 1 to 30 are genuinely free to read at 6s-success.com.",
@@ -254,12 +369,24 @@ if __name__ == "__main__":
     # Phil's own finished writing for being the length he wrote it.
     note = text.split("AND ONE CONNECTION NOTE", 1)
     if len(note) > 1:
-        body = note[1].split("WHAT IS TRUE TODAY")[0]
+        # The corporate block (added after the note, before "WHAT IS TRUE
+        # TODAY") has its own separate word cap below, so stop this split at
+        # whichever marker comes first rather than only the trailing one:
+        # found when adding that block made this cap count its words too.
+        rest = note[1]
+        cut = min((i for i in (rest.find("A SECOND POST"),
+                                rest.find("WHAT IS TRUE TODAY")) if i != -1),
+                  default=len(rest))
+        body = rest[:cut]
         # Drop the To and Angle header lines before counting.
         prose = "\n".join(ln for ln in body.splitlines()
                           if not ln.startswith(("To:", "Angle:", "=")))
         n = len(prose.split())
         assert n <= WORD_CAP, f"the connection note ran to {n} words, cap is {WORD_CAP}"
+
+    # The corporate post has its own cap, enforced inside corporate_block()
+    # itself (130 words, since it is a public post like the corpus above,
+    # not a one-to-one note); nothing further to check here.
 
     # And every served post has to be something a person could actually publish.
     assert "TODO" not in text and "[insert" not in text.lower(), \
