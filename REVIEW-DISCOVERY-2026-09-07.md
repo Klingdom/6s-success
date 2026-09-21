@@ -1005,7 +1005,7 @@ Three workstreams, matching the `CLAUDE.md` section 18 limit.
 | D15 Split the crawler log by purpose | nothing for the tool (built, gated 2026-09-21), the real 30-day read needs the VPS SSH key |
 | D17 Correct the HowTo/FAQ expectation in the operating docs | done 2026-09-21 |
 | D11 Normalise spelling in body copy | done 2026-09-14 |
-| Fix the `deck-gallery-mudroom.html` orphan: it is in the sitemap with zero internal links. Link it or drop it from the sitemap | nothing |
+| ~~Fix the `deck-gallery-mudroom.html` orphan: it is in the sitemap with zero internal links. Link it or drop it from the sitemap~~ | **Done, and stale here since 2026-09-14.** Dropped from the sitemap and set `noindex` (2026-09-14 cycle, `ops/build_deck_gallery.py`'s `robots` gated the same way its `ImageGallery` schema already was). Zero internal links stays deliberate, not a defect: `BACKLOG-2026-H2.md` 2.7 records Phil's own decision to hold the Mudroom deck back from promotion until the Entryway deck has produced evidence, and `gate_page_ownership_registry`/`gate_indexable_pages_have_schema` both encode the exclusion. Reconfirmed live 2026-09-21: `site/sitemap.xml` carries no `deck-gallery-mudroom.html` entry, no other page links to it. This exact row has cost at least a dozen separate cold-read cycles since 2026-08-28 re-deriving the same "already correct, deliberately unlinked" conclusion because this table still read as an open item; leaving it unmarked was the actual defect. |
 
 ### Days 8-45: a controlled pilot on 12 zone pages, not 114
 This is the part I want to argue for hardest. **114 near-identical pages are a

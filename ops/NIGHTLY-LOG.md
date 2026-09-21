@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 10:1x (previous work finished; a settled table row corrected instead of started fresh)
+
+Attached cleanly: shallow, detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main`, 995-commit fast-forward, no reset or force.
+
+STEP 2: previous work finished and verified, not just trusted. `git log`, the two newest log entries and `preflight.py` fast (clean, every gate passed, 22 warnings, all previously diagnosed) confirm the D-020 decision cycle actually shipped and CI-worthy state holds. The 09:4x PM's handoff (run `preflight.py --deep` today) was not followed by the D-020 cycle, which is worth naming: it spent its slot on a real, valuable fix instead, so this is not a failure, but `--deep` still has not run today. Left for the 10:43 operator, who has the longer slot for it.
+
+**Found and fixed instead of re-verifying a settled fact for the umpteenth time.** `REVIEW-DISCOVERY-2026-09-07.md`'s Day 0-7 table still listed the `deck-gallery-mudroom.html` orphan as blocked on "nothing," reading as an open, actionable item. It is not: dropped from the sitemap and set `noindex` on 2026-09-14, and the zero internal links are Phil's own deliberate hold-back (`BACKLOG-2026-H2.md` 2.7), both already gated (`gate_page_ownership_registry`, `gate_indexable_pages_have_schema`). Grepping this log shows at least a dozen separate cycles since 2026-08-28 independently re-deriving that exact "already correct, deliberately unlinked" conclusion, because the table itself never got the "done" annotation its D16/D7/D6 neighbours carry. Reconfirmed live before writing anything: no `deck-gallery-mudroom.html` entry in `site/sitemap.xml`, zero inbound links from any other page. Fixed the row to say so, matching the format the row above it already uses.
+
+**Verified:** `fix_dashes.py --check` clean (0/0) on the edited file. Full `preflight.py` fast rerun after the edit: every gate passed, the same 22 standing warnings, nothing new. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/`P0`, none pickable per this task's own rule against starting anything waiting on Phil.
+
+**Went well:** treating a stale "open" label on an already-closed row as the actual defect, the same shape D-020 just closed for a decision instead of a document.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged).
+
+**Changing next cycle:** none.
+
+**Next:** `preflight.py --deep` still has not run today; handing that to the 10:43 operator, who has the longer slot. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `REVIEW-DISCOVERY-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (D9's own repeated reopening closed with a recorded decision, D-020, instead of a sixth re-derivation)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` landed cleanly on `origin/main` (`b47bbae6`), 991-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run: every gate passed, 22 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty.
