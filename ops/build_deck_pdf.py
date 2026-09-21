@@ -12,9 +12,12 @@ wide enough to cut through without shaving a card.
 WHAT MAKES IT PRINTABLE RATHER THAN JUST A PDF
 ----------------------------------------------
 Each card is placed at exactly 2.5 by 3.5 inches, which is the size a standard
-card sleeve expects. The renderer produces 750x1050 px, so the images are
-placed at 300 dpi with no resampling and no scaling error that would leave the
-deck a millimetre out and unsleeveable.
+card sleeve expects, via drawImage's own width/height arguments below (CARD_W,
+CARD_H), not by however many pixels the embedded image happens to carry. So
+the physical size cannot drift: jpeg() is free to resample the 750x1050 PNG
+render down before compressing (it does, to keep the download under 8 MB; see
+that function's own note) without leaving the deck a millimetre out or
+unsleeveable.
 
 Crop marks sit outside the card, in the gutter, so no mark is printed on a
 card face. A half millimetre of slack between neighbours means a slightly
@@ -63,20 +66,39 @@ def place(i: int, face: str) -> tuple:
     return (COLS - 1 - col if face == "back" else col), row
 
 
-def jpeg(path: str, quality: int = 82):
+EMBED_W, EMBED_H = 525, 735    # 210 dpi at 2.5x3.5in; see jpeg()'s own note
+
+
+def jpeg(path: str, quality: int = 72, w: int = EMBED_W, h: int = EMBED_H):
     """The card as a print quality JPEG, in memory.
 
     Embedding the PNGs losslessly produced a 76 MB file, which is not a
-    download anybody wants for a free print at home deck. These are
-    photographs and flat type at 300 dpi; JPEG at 82 is indistinguishable on
-    paper and roughly a fifth the size. The pixels are untouched otherwise: no
-    resampling, so the card still lands at exactly 2.5 by 3.5 inches.
+    download anybody wants for a free print at home deck. JPEG at the first
+    quality tried (82, no chroma subsampling, full 750x1050 pixels) cut that
+    to 26 MB, still nowhere near a phone-friendly download: measured live by
+    `REVIEW-COMMERCE-2026-09-07.md` C16 against its own 8 MB budget, the
+    number this deck is now held to (`gate_deck_pdf_size_budget`).
+
+    Quality alone could not close that gap without visible banding on the
+    flat colour panels: 82 down to 45 only reached 8.9 MB. The rest comes
+    from resampling to 210 dpi (525x735) before compressing, standard chroma
+    subsampling and quality 72. A card sleeve or a home printer cannot tell
+    210 dpi from 300 on photography and flat type at 2.5x3.5in; drawImage
+    places the result at exactly that physical size regardless of the source
+    pixel count (`CARD_W`/`CARD_H` below, unchanged), so the deck is neither
+    a millimetre out nor unsleeveable, only lower resolution. Verified by
+    rendering both the 300 dpi and 210 dpi decks to raster at 150 dpi and
+    diffing every image pair: mean absolute per-channel difference 3-4 on a
+    0-255 scale, not visible on screen or, as far as a raster comparison can
+    stand in for one, on paper.
     """
     from PIL import Image
     from reportlab.lib.utils import ImageReader
     buf = io.BytesIO()
-    Image.open(path).convert("RGB").save(buf, "JPEG", quality=quality,
-                                         optimize=True, subsampling=0)
+    img = Image.open(path).convert("RGB")
+    if img.size != (w, h):
+        img = img.resize((w, h), Image.LANCZOS)
+    img.save(buf, "JPEG", quality=quality, optimize=True)
     buf.seek(0)
     return ImageReader(buf)
 

@@ -6054,6 +6054,52 @@ def gate_deck_gallery_identity() -> None:
                      f"description")
 
 
+DECK_PDF_BUDGET_BYTES = 8 * 1024 * 1024
+
+
+def check_deck_pdf_size_budget(size_bytes: int, budget: int = DECK_PDF_BUDGET_BYTES):
+    """Pure logic, no filesystem: returns a problem string or None.
+
+    Split out so a test can call it directly on planted sizes rather than
+    writing an 8 MB+ fixture file to disk.
+    """
+    if size_bytes > budget:
+        return (f"{size_bytes / 1024 / 1024:.1f} MB, over the "
+                f"{budget / 1024 / 1024:.0f} MB budget")
+    return None
+
+
+def gate_deck_pdf_size_budget() -> None:
+    """The free deck PDF is the first impression on a phone. Measured live by
+    `REVIEW-COMMERCE-2026-09-07.md` C16 at 26,192,171 bytes on the live site,
+    against a budget the review itself set at 8 MB: "the first impression, on
+    a phone." Re-exported 2026-09-21 (`ops/build_deck_pdf.py`'s `jpeg()`, 210
+    dpi instead of 300, quality 72 instead of 82) to 7.5 MB, verified by
+    rendering both decks to raster and diffing every image pair (mean
+    absolute per-channel difference 3-4 on 0-255, and by extracting every
+    page's text and confirming it is byte-identical, so only image pixels
+    changed, not layout, crop marks or captions).
+
+    This gate holds the budget going forward so a future higher-resolution
+    re-render (real card art regenerated, a new Kitchen-deck-sized PDF, a
+    careless revert of `jpeg()`'s own parameters) cannot silently ship an
+    oversized download again with nothing to catch it, the same
+    corrected-source-never-rechecked shape `gate_deck_count` was already
+    written for once on this same file.
+    """
+    fp = os.path.join(SITE, "downloads", "6S-Entryway-Deck-PrintAndPlay.pdf")
+    if not os.path.isfile(fp):
+        return
+    problem = check_deck_pdf_size_budget(os.path.getsize(fp))
+    if problem:
+        fail("deck-pdf-size-budget",
+             "site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf is "
+             + problem + ". This is the free lead magnet a phone visitor "
+             "downloads first; re-export at a lower embedded resolution "
+             "(ops/build_deck_pdf.py's jpeg()), do not just raise the "
+             "budget.")
+
+
 def gate_deck_pdf_download_current() -> None:
     """The free deck PDF a visitor actually downloads must match the one
     ops/build_deck_pdf.py produced, not a stale copy nobody re-synced.
@@ -18688,6 +18734,7 @@ def main() -> int:
     run_gate(gate_chapter_svgs_current)
     run_gate(gate_deck_gallery_identity)
     run_gate(gate_deck_pdf_download_current)
+    run_gate(gate_deck_pdf_size_budget)
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
     run_gate(gate_roadmap_report_issues_unknown)

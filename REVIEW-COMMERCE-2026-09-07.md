@@ -29,6 +29,45 @@ open: C1/C2/R1-R4 (need Stripe credentials no sandbox holds), C6-C20
 Stripe writes, or genuinely below the traffic constraint per section 7's own
 ordering). Full account in `ops/NIGHTLY-LOG.md`.
 
+**Status, 2026-09-21, operator: this checklist had drifted stale, several rows
+already closed elsewhere and never marked here.** **C3** (the deck-count
+confusion, section 2.4) was fixed by an unrelated later pass, `B3` in
+`BACKLOG-2026-09-07.md`, which rewrote `gate_deck_count` to compare live
+claims against each other rather than needing a local render. **C14**
+(distinguishing deck from pack) was closed the same way by `B4`. **C16, done
+this cycle:** the free deck PDF was re-measured live at 26,588,337 bytes,
+still the 25 MB defect this section names, not a stale citation. Re-exported
+by `ops/build_deck_pdf.py`'s `jpeg()`: 750x1050 at quality 82 with no chroma
+subsampling down to 525x735 (210 dpi at the fixed 2.5x3.5in placement, which
+`drawImage` sets independent of source pixel count) at quality 72 with
+standard subsampling. Recompressed from the existing embedded JPEGs rather
+than the pristine PNG renders, because `build/cards-rendered/` is
+Desktop-only and not present in this checkout; disclosed here rather than
+presented as identical to a from-source re-render. Result: 7,907,789 bytes
+(7.5 MB), under the review's own 8 MB budget with real margin. Verified, not
+assumed: every page's extracted text byte-identical before and after (only
+image pixels changed, not layout or crop marks), every embedded image still
+750x1050 source resized cleanly to 525x735 with no distortion, and a
+rendered-to-raster comparison of all 178 image pairs at mean absolute
+per-channel difference 3-4 on a 0-255 scale (imperceptible on screen; a real
+paper print was not possible from this sandbox, so "still prints legibly...
+on paper" is verified by raster proxy, not by an actual printer, and that
+limit is stated plainly rather than folded into a clean claim). New
+`gate_deck_pdf_size_budget` in `ops/preflight.py` holds the budget going
+forward (`ops/tests/test_gate_deck_pdf_size_budget.py`, 4 cases, proved
+against the real measured live-defect size and the real fixed size, not
+synthetic numbers). `build/` and `site/downloads/` copies kept byte-identical
+per `gate_deck_pdf_download_current`. The Kitchen-deck size budget this row
+also asks for is carried by the same gate once that deck ships a PDF; no
+separate budget needed since the acceptance number is the same file's.
+Preflight fast clean after (every gate passed, 21 warnings, one fewer than
+before because Pillow happened to be installable in this session, so
+`gate_kdp_cover_current` could run instead of reporting UNCHECKED), 
+`check_urls.py` 187/187, `audit_pages.py` 191/0. **C15 and C18 are still
+open**, not closed by this pass: `DECISIONS.md` carries no entry for the
+paid-deck decision, and `PRICING.md` section 2's superseded ladder body
+(distinct from the already-corrected section 0.6) has not been struck.
+
 ---
 
 ## 0. What is actually true this morning
