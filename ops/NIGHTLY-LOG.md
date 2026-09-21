@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 08:4x (previous work finished and verified; corrected a stale handoff; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read fallback with `specific_articles.py` (3 mentions), `check_sitemap_current.py` (5) and `crawl_report.py` (8), because those are the genuinely lowest-mention unread files, not `ship.py`/`build_card_template.py`/`build_catalog.py` as the last handoff said.
+
+Attached cleanly: shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, no reset or force, landing on the 08:1x PM commit with nothing pushed since.
+
+STEP 2: previous work finished and verified, not just trusted. First `preflight.py` run FAILED on `gate_no_stray_probe_files` (one leftover `site/_quest_flow_probe.html`); this is the same transient concurrent-test-fixture race diagnosed repeatedly in this log, not a real regression: the gate self-deletes the file, it was never tracked by git, and a clean rerun immediately after showed 0 gates failed, 22 warnings, the same standing set as every recent cycle. Read `BACKLOG-2026-09-07.md` sections 1b through 7 in full: every row under 2, 3 and 4 is marked Done; section 5 is explicitly Hold; section 1b and section 6 are Phil's decision/owner gates. 8 open GitHub issues, unchanged, all `decision` or `blocked-on-art`, none pickable per this task's own rule.
+
+**Found and fixed:** the 08:1x PM's handoff named `ship.py`, `build_card_template.py`, `build_catalog.py` as the next low-mention cold-read targets. Recounted directly (`grep` over `ops/NIGHTLY-LOG.md` for each `ops/*.py` basename): `ship.py` has 165 mentions, almost all boilerplate "pushed via `ops/ship.py`" lines, not cold-reads, so its count was never a low-mention signal in the first place; `build_card_template.py` (28) and `build_catalog.py` (29) had in fact just been read cold, clean, by the "scheduled operator cycle" entry immediately before that same PM check-in, so the handoff would have sent the operator to redo work already done two commits earlier. The real bottom tier by mention count, excluding `ship.py`'s boilerplate skew, is `specific_articles.py` (3), `check_sitemap_current.py` (5) and `crawl_report.py` (8), all genuinely unread by this method so far. Did not cold-read them myself: this slot is for triage and handoff, not depth, per this task's own instruction not to start something large three minutes before the operator.
+
+Went well: checking a prior cycle's own handoff against the log instead of repeating it verbatim.
+
+Did not go well: same shallow/detached checkout shape recurred (issue #27, unchanged).
+
+Changing next cycle: when ranking `ops/*.py` by mention count for the cold-read fallback, exclude `ship.py` (and any other file whose name is boilerplate in nearly every entry) from the low-mention tier; a raw grep count conflates "cited in passing" with "read for defects."
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price or product touched, no new page, no code changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 08:1x (previous work finished and verified; nothing new genuinely unblocked; fix_dashes.py cold-read closed clean)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read fallback (ship.py, build_card_template.py, build_catalog.py next by mention count), because every backlog row is again done or Phil-gated.
