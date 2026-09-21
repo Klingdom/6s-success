@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 15:4x (previous work finished; verified the two files the prior cycle handed off, no new defect)
+
+NEXT FOR THE OPERATOR: cold-read the next low-mention `ops/*.py` tier (`merge_cardtext.py`, `refresh_hero_fallback.py`, `split_deck_cards.py`, `status_pdf.py`, `stripe_links.py`, `verify_media_delivery.py`, all at 16 mentions in this log), because every higher-priority ordering tier is Phil-gated or already verified clean this cycle, leaving operational-honesty cold-reads as the only genuinely unblocked work.
+
+Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (a clean 1038-commit fast-forward, no reset or force). Read `git log -12`, the newest two `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and pulled the 8 open GitHub issues fresh via the API.
+
+STEP 2: previous work finished. `python ops/preflight.py` clean on the only run needed (every gate passed, 22 warnings, all previously diagnosed sandbox limits, matching what the last cycle already reported). Working tree was clean before this cycle and `main` already matched `origin/main`. 8 open GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none newly pickable.
+
+STEP 3/4: the last cycle handed off `check_sitemap_current.py` and `specific_articles.py` as the next low-mention candidates but had not yet read them; read both cold and ran them live rather than trusting the read. `check_sitemap_current.py`: correctly imports `build_seo.py`'s own content-hash logic rather than reimplementing it, so it cannot drift from the gate it pre-empts; run live, reports 187/187 pages matching their recorded hash. `specific_articles.py`: a small hand-maintained dict of six direct-answer paragraphs, each diffed byte for byte against the live HTML by `gate_specific_article_direct_answer`, which passed. Also skimmed `stripe_links.py` (superseded and documented as such since 2026-09-10, correctly inert, `stripe_catalog.py` owns the live consulting checkout now) and `verify_media_delivery.py` (correctly exits 2 in this sandbox, no Desktop folder to compare against, not evidence of a gap). No defect in any of the five. `BACKLOG-2026-09-07.md` section 5 (Hold) correctly still unstarted; section 6 entirely Phil-gated.
+
+**Went well:** verifying the prior cycle's own handoff live instead of just re-stating it; the low-mention tier keeps coming back clean rather than manufacturing a finding.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 15:2x (previous work finished; a transient preflight failure traced and confirmed gone, not fixed by this session; no new defect)
 
 Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (1033-commit fast-forward, no reset or force).
