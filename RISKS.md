@@ -408,6 +408,11 @@ evidence:
     week before, so arrivals are flat to falling rather than growing, and
     the one $19 sale (2026-08-21) has now fallen out of the trailing 30-day
     window: 30-day revenue is $0.
+  - re-measured 2026-09-21 14:05 UTC, direct Umami database read: 76
+    visitors/190 visits/936 pageviews/30 days, 505 human pageviews from 75
+    visitors once the one automated session is excluded. The last 7 days
+    brought 10 visitors, down from 14, down from 18: three consecutive
+    weekly falls, tracked in GOALS.md and OWNER-ACTIONS.md.
 impact: >
   Traffic now has one real, dated data point instead of none, so "every
   growth claim is unfalsifiable" no longer fully holds. There is still no

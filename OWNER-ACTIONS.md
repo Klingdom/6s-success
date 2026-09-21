@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-20 18:2x, item 1b resolved and production is CURRENT: live build `da3047e8a1168917` matches the repository exactly, verified by reading https://6s-success.com/build-id.txt after the deploy, not by trusting the deploy command's own exit code. The 233-commit gap this file flagged at 11:12 is closed.
+**Last measured:** 2026-09-21 14:05 UTC, traffic re-measured by a direct database read: 76 visitors/190 visits/30 days, and the last 7 days show three consecutive weekly falls (18 to 14 to 10 visitors). See the 2026-09-21 note below. Production freshness was last confirmed 2026-09-20 18:2x: live build `da3047e8a1168917` matched the repository exactly, verified by reading https://6s-success.com/build-id.txt after the deploy, not by trusting the deploy command's own exit code. The 233-commit gap this file flagged at 11:12 is closed.
 
 One correction to the earlier note, because the distinction is the whole point of this file: **Phil did not redeploy.** An autonomous session running on his machine did, three times today, using the `~/.ssh/6s_deploy` key installed back on 2026-09-01. Recording it as an owner action would quietly put a recurring chore back on this list that nobody needs to do. Deploying is not yours and has not been since that key went in; what remains yours is the three items in "start here" below.
 
