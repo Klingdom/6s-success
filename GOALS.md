@@ -43,7 +43,7 @@ steps, and the outcome without revenue is a hobby.
 
 **Baseline 2026-09-02, corrected 2026-09-10, and the predicted moment has now arrived (2026-09-20):** $19 lifetime, one customer, one sale (2026-08-21), confirmed again today by reading the Stripe charge list directly: one paid charge, ever. This line used to say the sale sits inside any trailing 30-day window, and noted that it would stop being true on 2026-09-20. Today is that day. **Trailing-30-day revenue is now $0**, and the honest statement is: one $19 sale ever, none in the last 30 days, no second customer in the 30 days since.
 
-That is the number the whole plan is measured against, and nothing shipped since has moved it, because nothing shipped since has moved arrivals: 14 visitors in the last 7 days against 18 the week before.
+That is the number the whole plan is measured against, and nothing shipped since has moved it, because nothing shipped since has moved arrivals: 10 visitors in the last 7 days against 14 the week before and 18 the week before that, a third consecutive weekly fall.
 
 ---
 
@@ -58,7 +58,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **76 visitors / 193 visits / 30 days** | measured 2026-09-20 15:40 UTC by a direct Umami database read (`ops/traffic_query.sh`). 946 pageviews, of which **431 are one automated session** (no browser string, iOS/mobile, 431 pageviews in 28 minutes on 7 Sept), leaving **515 human pageviews from 75 visitors**. Down from 78/200 on 2026-09-17: the last 7 days brought **14 visitors, 21 visits, 35 pageviews**, against 18/28/57 the week before. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. Units trap recorded as LRN-0015. |
+| Stranger to Visitor | **76 visitors / 190 visits / 30 days** | measured 2026-09-21 14:05 UTC by a direct Umami database read (`ops/traffic_query.sh`). 936 pageviews, of which **431 are one automated session** (no browser string, iOS/mobile, 431 pageviews in 28 minutes on 7 Sept, still inside the 30-day window), leaving **505 human pageviews from 75 visitors**. The last 7 days brought **10 visitors, 17 visits, 31 pageviews**, against 14/21/35 the week before and 18/28/57 before that: three consecutive weekly falls, and the clearest single fact about this business right now. Crawler attention rose over the same period (LRN-0013); human arrivals did not. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. Units trap recorded as LRN-0015. |
 | Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
@@ -102,7 +102,7 @@ not by how interesting they are.
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
 | Published videos | **12 of 114, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30. Corrected 2026-09-16: this row read "12 of 228" for six weeks, conflating the 228 total rendered video FILES (114 vertical plus 114 horizontal, two orientations of the same 114 zones) with the YouTube publishing target. `ops/youtube_upload.py`'s own docstring states only the wide 16:9 file is ever uploaded ("Shorts are a separate distribution decision and are not posted by this tool"), so the real denominator is 114, one per zone, matching `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md`'s own "102 of 114 remaining" framing, which was right the whole time. The numerator (12) was never wrong.** | all 114 |
 | Sessions from organic search | **5 visits from 4 visitors, whole life of the site, measured 2026-09-20** | Read directly from the Umami database, not carried forward: bing.com 1 visitor / 1 visit (21 August), google.com 3 visitors / 4 visits (4 to 18 September). **Corrected 2026-09-20:** this row said "4 visits from 3 visitors ... reconfirmed unchanged" earlier the same day. Nothing was re-measured to produce that line; a cloud session holds no VPS key and cannot read this table, so "reconfirmed" meant "carried forward". Google's most recent visit is 18 September, the day after the duplicate-URL redirects shipped. | 
-| Sessions, last 7 days | **14** | 14 visitors, 21 visits, 35 pageviews, measured 2026-09-20 |
+| Sessions, last 7 days | **10** | 10 visitors, 17 visits, 31 pageviews, measured 2026-09-21. Third consecutive weekly fall (18, 14, 10) |
 | Weekly visitors | 14/wk (2026-09-20, down from 18) | 500/wk |
 
 **Why it is first, now with numbers.** 76 visitors (read directly from the

@@ -569,7 +569,7 @@ on the zone page" rather than presenting four sixths of a standard as the
 whole of it. One of those hidden items was "The cabinet strapped to a wall
 stud", which is a safety line.
 
-**Measured 2026-09-20 15:40 UTC by a direct database read.** Traffic is 76 visitors, 193 visits and 946 pageviews, 2.5 a day (75 visitors and 515 pageviews once the one automated session is excluded). The last 7 days: 14 visitors, down from 18 the week before:
+**Measured 2026-09-21 14:05 UTC by a direct database read.** Traffic is 76 visitors, 190 visits and 936 pageviews, 2.5 a day (75 visitors and 505 pageviews once the one automated session is excluded). The last 7 days: **10 visitors, down from 14, which was down from 18**. That is three consecutive weekly falls, and it is the clearest fact about the business right now. Search engines are crawling the site more over exactly the same period, so this is not a crawling problem:
 
 | Source | Visitors, 30 days |
 |---|---|
