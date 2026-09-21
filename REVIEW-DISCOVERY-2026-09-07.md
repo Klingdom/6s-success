@@ -636,6 +636,7 @@ contextual inbound links from relevant zones.
 **Blocked on.** Nothing for the writing and linking. Images are blocked on D2.
 
 ### D13. Do not publish article 31, and do not publish zone 115
+**Recorded as `DECISIONS.md` D-019, 2026-09-21.** Not just noted here anymore.
 **What.** A hard stop on new indexable pages until Search Console shows demand.
 **Why.** The site has 187 URLs, 52 visitors a month and no evidence about which
 pages anybody wants. Adding pages in that state is activity, not growth, and it

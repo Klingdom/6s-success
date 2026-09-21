@@ -1403,6 +1403,7 @@ Maintain a compact index as the file grows.
 | D-016 | The $9 room pack is the entry offer, sold on the room page | ACTIVE | Commerce |
 | D-017 | The service is the product; the free quest is the funnel top | ACTIVE | Strategy |
 | D-018 | Corporate Lean 6S gets a page and an enquiry route, no price | ACTIVE | Commerce |
+| D-019 | No new indexable page until the first Search Console read | ACTIVE | SEO |
 
 D-004 to D-013 were never assigned; no record exists under those IDs
 anywhere in this repository. Not a gap to fill, just a numbering fact worth
@@ -1844,6 +1845,56 @@ named. It was proved to fail on a planted fault before being trusted.
   this decision accepts.
 
 ---
+
+## D-019 | 2026-09-21 | No new indexable page (no new article, no new zone) until the first Search Console read
+
+**Decision.** Hold the sitemap at its current 187 URLs. Do not publish
+`REVIEW-DISCOVERY-2026-09-07.md`'s proposed article 31 or a 115th zone, and do
+not add any other new indexable page, until Google Search Console has
+produced at least one real impressions/query read for this site.
+
+**Rationale.** `REVIEW-DISCOVERY-2026-09-07.md` section 5 (D13) already made
+this case and explicitly flagged itself as "a decision, not a task. It should
+go in `DECISIONS.md`," but no session had actually recorded it there; this
+closes that specific gap rather than leaving the review as the only place the
+call was made. The traffic figure the review cites still holds: 78 visitors
+and 200 visits in the last 30 days (`BACKLOG-2026-09-07.md` section 0, read
+directly from the analytics database 2026-09-17), one sale ever. Adding pages
+in that state is activity, not evidence-driven growth, and it dilutes the
+crawl budget Googlebot is currently spending generously on the existing 187
+(178 fetches in 72 hours per the same review, 171 of them 200s). Site
+verification itself is still open (`OWNER-ACTIONS.md` 1a, `preflight.py`'s own
+standing `site-verification` warning), so there is literally no query data yet
+to tell a new page apart from noise.
+
+**Evidence.** Direct read of `REVIEW-DISCOVERY-2026-09-07.md` D13/D14 and
+`BACKLOG-2026-09-07.md` section 0 (tier: direct inspection of this repo's own
+prior analysis, itself sourced from a live analytics read). Current sitemap
+count not re-measured in this session; `check_urls.py`'s last several logged
+runs in `ops/NIGHTLY-LOG.md` report 187/187, consistent with the review's own
+count at the time it was written.
+
+**Alternatives.** Publish article 31 or zone 115 now, on the reasoning that
+more indexable content can only help: rejected, this is exactly the
+"activity, not growth" framing `GOALS.md` and this decision's own rationale
+reject, and it is reversible only at the cost of crawl budget and editorial
+attention already spent. Leave D13 undecided and let each cycle re-litigate
+it from the review: rejected, this is the repeated-decision-reopening
+`CLAUDE.md` section 21 warns against, and D13 itself already asked for a
+recorded decision.
+
+**Consequences.** `BACKLOG-2026-09-07.md` and `REVIEW-DISCOVERY-2026-09-07.md`
+can now point here instead of re-deriving the same call. Any future session
+proposing a new page should check this decision's revisit condition first,
+not treat "the content is ready" as sufficient. D14 (the specific content-gap
+candidates: kitchen under-sink, spice storage, food-storage containers, the
+junk drawer as its own zone, basement/attic rooms, "master bathroom/bedroom"
+vocabulary) stays noted, not built, for the same reason; it is not a separate
+decision, it is D13's own list of what this cap currently defers.
+
+**Revisit when.** Google Search Console (`OWNER-ACTIONS.md` 1a) is verified
+and has produced at least 28 days of real impressions/query data, per D13's
+own acceptance line, or Phil directs otherwise.
 
 ## D-018 | 2026-09-03 | Corporate Lean 6S gets a real page and a qualified enquiry route, and still gets no price
 

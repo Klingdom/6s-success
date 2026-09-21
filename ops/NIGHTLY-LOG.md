@@ -20,6 +20,26 @@ Checked all four of D12's own acceptance criteria live rather than trusted from 
 
 Pushed to main. `ops/specific_articles.py` (new), `ops/preflight.py` (new gate), `ops/tests/test_gate_specific_article_direct_answer.py` (new), 6 `site/articles/*.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `BACKLOG-2026-09-07.md`, `REVIEW-DISCOVERY-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow attempted and correctly deferred (no egress from this sandbox), will pick up the six changed articles on its next successful hourly run.
 
+## PM check-in, 2026-09-21 02:4x (previous work finished and verified; D13 given the recorded decision it asked for; D12 handed to the operator)
+
+NEXT FOR THE OPERATOR: start D12 (rewrite and re-link the six specific articles named in `REVIEW-DISCOVERY-2026-09-07.md` section 5, ~4 operator-days for the writing and linking portion; images are separately blocked on D2/Phil), because D9 and D10 are both genuinely closed this cycle and D12 is the next unblocked substantive row nobody has started.
+
+Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, fast-forward, no reset). Read `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` (Traffic/Affiliate rows), 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**STEP 2's answer was yes.** The prior operator cycle's own claim (D9's sitemap drift fixed a third time, root-caused and gated; D10, room-hub strengthening, all 20 rooms, genuinely done) checked out: `python ops/preflight.py` fast run clean, every gate passed, the same 22 standing warnings (all previously diagnosed sandbox limits: no Stripe credential, no SSH key, no egress). Working tree clean, `main` up to date with `origin/main`. Not fully closed, reported honestly rather than assumed: `checks.yml` run 1231 and `publish-image.yml`'s run against HEAD (`bcbc8289`) were both still `in_progress` when checked via the GitHub API; the next cycle should confirm rather than inherit this hope.
+
+**One small closing job.** `REVIEW-DISCOVERY-2026-09-07.md`'s own D13 ("do not publish article 31, do not publish zone 115 until Search Console shows demand") said plainly it "should go in `DECISIONS.md`," but grepping `DECISIONS.md` for it found nothing recorded; the call had been living only in the review, unenforceable by anything except a session happening to reread that file. Recorded it as `DECISIONS.md` D-019, with the same acceptance line as its revisit condition (28 days of real Search Console impressions, or Phil's direction), and pointed D13's own entry in the review back at it so this does not get re-litigated cold next time.
+
+**Went well:** verifying the prior cycle's CI claim against the GitHub API directly rather than trusting a green local preflight; treating "should go in DECISIONS.md" as an open task rather than assuming a review saying so meant it already happened.
+
+**Did not go well:** same shallow/detached checkout shape recurred again (issue #27, unchanged, still needs Phil's hand in the Routines UI); HEAD's own CI had not finished by the time this check-in needed to hand off.
+
+**Changing next cycle:** none; no new defect class, one overdue bookkeeping gap closed.
+
+**Next:** D12 handed to the operator above. D2 (Phil's own photos), D6 (already fixed, confirmed live in earlier cycles), D14 (content-gap candidates, correctly deferred by D-019 alongside D13), D15 (needs the SSH key this environment lacks) remain open for the reasons already on record. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
+
+Pushed to main. `DECISIONS.md` (one new entry, D-019), `REVIEW-DISCOVERY-2026-09-07.md` (one cross-reference line), command deck. No price or product touched, no new page (this cycle's own decision is precisely to add none). IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (a live CI-blocking sitemap defect fixed a third time, then D10: strengthened all 20 room hubs, genuinely done)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (1-commit fast-forward), no reset or force. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `python ops/preflight.py` FAILED on the first run: `publish-image-current` reported HEAD's `site/` diverged from the last successful publish, because D9's merge commit changed 69 zone pages but its own sitemap regeneration never happened, the same drift class as D8's own gap two cycles earlier. Confirmed via the GitHub API (run 363 failed at `gate_generator_ownership`, naming `site/sitemap.xml`/`ops/sitemap-content-hashes.json`), reproduced the drift locally, fixed it with `ops/build_seo.py`, pushed immediately so the build could re-trigger before picking new work.
