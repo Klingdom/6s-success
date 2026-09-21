@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (the handed-off specific_articles.py/check_sitemap_current.py/crawl_report.py cold-read: two clean, one real test-coverage gap closed on the site's only crawl-evidence tool)
+
+**Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (two fast-forwards as concurrent PM check-ins landed while reading, ending on `399028d8`, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md` and the newest `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty.
+
+Picked up the 11:4x PM check-in's own named handoff: cold-read `ops/specific_articles.py`, `ops/check_sitemap_current.py` and `ops/crawl_report.py`, the three lowest-mention `ops/*.py` files in this log, the method that found the real `ops/ship.py` bug earlier today.
+
+**`specific_articles.py`:** a plain data dict (D12's six direct answers), already protected by `gate_specific_article_direct_answer`, which diffs it byte for byte against the shipped HTML; confirmed the gate is wired and passing. No defect.
+
+**`check_sitemap_current.py`:** logic is sound (imports `build_seo.py`'s own `_content_hash`/`_load_content_hashes` rather than reimplementing them, so it cannot drift from the gate it pre-empts); ran it directly, 187/187 pages match their recorded hash. It is wired only into `.githooks/pre-commit`, which needs `git config core.hooksPath .githooks` to run at all; this sandbox has that unset, but that is the already-standing, already-warned-on `hooks-enabled` limitation, not a new gap, and CI's own `gate_generator_ownership`/`gate_sitemap_lastmod_current` catch the same staleness independently regardless of the hook. No defect.
+
+**`crawl_report.py`: a real, live gap, closed.** The tool is the only evidence this business has of search-engine crawl activity while Search Console stays unverified, and its own comment records that `PROXY_LINE`, the regex that parses the Nginx Proxy Manager log line by line, once silently dropped 1,162 real lines before being widened to handle a second column shape (the plain-HTTP-to-HTTPS redirect, where the upstream-status column is missing and everything after it shifts left). Checked directly rather than trusted the comment: `ops/tests/test_crawl_report_purpose.py` exists and covers `classify()`/`purpose()` on already-extracted user-agent strings, but nothing anywhere tests the line parser itself, the part that had already failed silently once. Wrote `ops/tests/test_crawl_report_line_parsing.py`: constructs both real documented line shapes verbatim, asserts every extracted field (status, method, scheme, host, path, ip, bytes, ua) on each, asserts a non-log-line string correctly fails to match rather than matching garbage, and reconstructs a naive pattern representing the pre-widen regex to prove the test can fail: the naive pattern matches the normal-HTTPS shape but not the redirect shape, reproducing the original defect by name. Fail-then-pass proved directly against the real module: temporarily replaced the live `PROXY_LINE` with the naive pattern, watched the new test fail citing the exact redirect-shape line, restored `ops/crawl_report.py` byte for byte (`diff` confirmed identical), reran clean. `gate_tests()` already globs every `ops/tests/test_*.py` file, so no separate `preflight.py` wiring was needed.
+
+**One self-inflicted transient caught and not shipped on:** a first full `preflight.py` re-run, started in the background while an earlier, already-orphaned background `preflight.py` invocation from this same cycle was still alive, came back with two failures (`fingerprints`, a `UnicodeDecodeError` on a 0xff byte; `affiliate`, a stray `_test_bad_delivered_doc.html` under `site/downloads/`) neither of which exists on disk or reproduces standalone. Killed the orphaned process, confirmed nothing else was running, and reran clean: every gate passed, 22 warnings, identical set to the pre-change baseline. Recorded as a self-caused concurrent-run artifact, the same shape this log has documented for other tools' own concurrent runs, not a repository defect; no gate change needed since the cause was two of my own processes writing the same tree, not a real ambiguity in the checks.
+
+**Verified:** `check_urls.py` (187/187), `fix_dashes.py --check` (0 em dashes, 0 en dashes), `affiliate.py --check` (164 documents) all clean. Full `preflight.py` clean before and after (every gate passed, 22 warnings, identical set).
+
+**Went well:** treating the crawl_report.py comment's own account of a past defect as something to verify test coverage against, not just read; catching the concurrent-preflight contamination by rerunning standalone before reporting a false failure.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); wasted a few minutes running two `preflight.py` instances against the same tree at once, the exact mistake this log has warned against for other tools.
+
+**Changing next cycle:** none; the new gate is test-coverage on an existing tool, not a new check with its own false-positive risk to watch.
+
+**Next:** no other named handoff remains unclaimed. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. The next low-mention `ops/*.py` cold-read candidates, if no other unblocked item surfaces first, are whichever files this pass's additions leave lowest by count.
+
+Pushed to main. `ops/tests/test_crawl_report_line_parsing.py`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed; IndexNow not applicable (no page changed).
+
 ## PM check-in, 2026-09-21 11:4x (NEXT FOR THE OPERATOR: cold-read specific_articles.py, check_sitemap_current.py and crawl_report.py for a real defect, because they are the three least-reviewed ops/*.py files by log mention and that method found a live ops/ship.py bug earlier today)
 
 Attached cleanly onto `468f6dac` (the 11:1x PM's own commit), fast-forward, no reset.
