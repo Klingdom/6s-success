@@ -470,6 +470,74 @@ def _carry_last_reading(prefix: str, measured: bool, line: str,
             last_key: last, when_key: when or "", carried_key: when or "an earlier run"}
 
 
+def _owner_actions_traffic_citation(path=None):
+    """OWNER-ACTIONS.md's own "Last measured" header, when it names a direct
+    database read, as (when, visitors, visits) or None.
+
+    Found 2026-09-21: this dashboard's own traffic_reading() needs an ssh key
+    this environment almost never has, so the common run carries forward its
+    last successful read via _carry_last_reading. But a different session,
+    with that key, re-measures straight into OWNER-ACTIONS.md/GOALS.md by
+    hand (ops/traffic_query.sh, run on the VPS) without ever running this
+    generator after, so state.json's own carried figure can sit stale behind
+    a fresher, worse reading the owner-facing docs already show. Confirmed
+    live that day: the deck carried 80 visitors/208 visits from 2026-09-20
+    10:15 while OWNER-ACTIONS.md already carried a 2026-09-21 14:05 direct
+    read of 76/190, the third straight weekly fall, for hours, with three
+    separate cycles reporting the gap and none closing it.
+
+    gate_owner_actions_last_measured_current (ops/preflight.py) already
+    treats this exact header as a stable, load-bearing field; this reads the
+    same line it does. Returns None on any parse miss (missing file, header
+    reworded, or a "Last measured" that does not name a direct database
+    read) so a future rewording degrades to "no citation found", never a
+    wrong number.
+    """
+    p = path or os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(p):
+        return None
+    text = io.open(p, encoding="utf-8").read()
+    m = re.search(
+        r"\*\*Last measured:\*\*\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}) UTC,\s*"
+        r"traffic re-measured by a direct database read:\s*"
+        r"(\d+) visitors/(\d+) visits/30 days",
+        text)
+    if not m:
+        return None
+    return m.group(1), int(m.group(2)), int(m.group(3))
+
+
+def _prefer_owner_actions_traffic(carry_result: dict, attempted_line: str,
+                                   citation) -> dict:
+    """Prefer OWNER-ACTIONS.md's own citation over a stale carried reading,
+    when it is honestly fresher.
+
+    Pure (citation is already-extracted data, not a file read) so it can be
+    proven without OWNER-ACTIONS.md or state.json. Never called when this
+    run measured fresh itself: a live read always wins over any citation,
+    however fresh that citation is. carry_result is whatever
+    _carry_last_reading("traffic_line", ...) already produced; this only
+    overrides it when citation's own timestamp sorts later than whatever
+    carry_result carried (an unset carried-at loses to any real citation).
+    """
+    if citation is None:
+        return carry_result
+    cite_when, cite_visitors, cite_visits = citation
+    carried_when = carry_result.get("traffic_line_measured_at") or ""
+    if cite_when <= carried_when:
+        return carry_result
+    cite_line = "%d visitors across %d visits, 30 days" % (cite_visitors, cite_visits)
+    return {
+        "traffic_line": ("%s (OWNER-ACTIONS.md's own \"Last measured\" "
+                         "header, a direct database read carried forward "
+                         "from %s; this run could not measure it fresh: %s)"
+                         % (cite_line, cite_when, attempted_line)),
+        "traffic_line_last_measured": cite_line,
+        "traffic_line_measured_at": cite_when,
+        "traffic_line_carried_from": cite_when,
+    }
+
+
 def count_files(pattern, recursive=True):
     return len(glob.glob(pattern, recursive=recursive))
 
@@ -563,8 +631,12 @@ S["commits_total"] = (
 # ssh key on the common run, and without carrying, a real prior reading gets
 # silently overwritten by that run's own honest ignorance.
 _traffic_measured, _traffic_line_now = traffic_reading()
-S.update(_carry_last_reading("traffic_line", _traffic_measured, _traffic_line_now,
-                              _prev, S["generated"]))
+_traffic_carry = _carry_last_reading("traffic_line", _traffic_measured, _traffic_line_now,
+                                      _prev, S["generated"])
+if not _traffic_measured:
+    _traffic_carry = _prefer_owner_actions_traffic(
+        _traffic_carry, _traffic_line_now, _owner_actions_traffic_citation())
+S.update(_traffic_carry)
 
 # The affiliate trigger's current reading. On the deck rather than in preflight,
 # because it is a number worth glancing at and not a warning worth repeating:

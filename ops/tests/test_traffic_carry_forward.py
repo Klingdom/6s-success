@@ -33,6 +33,7 @@ ns["re"] = re
 m = re.search(r"^_UNMEASURED_MARK.*?(?=\n\ndef count_files)", src, re.S | re.M)
 exec(m.group(0), ns)
 carry = ns["_carry_last_reading"]
+prefer_owner_actions = ns["_prefer_owner_actions_traffic"]
 
 
 def main() -> int:
@@ -113,7 +114,48 @@ def main() -> int:
         fails.append("carrying affiliate_trigger must not also write a "
                      "traffic_line key")
 
-    total = 10
+    # OWNER-ACTIONS.md citation preference: found 2026-09-21, a direct
+    # database read landed straight in OWNER-ACTIONS.md/GOALS.md by hand
+    # (ops/traffic_query.sh, run on the VPS) without ever running this
+    # generator after, so state.json's own carried figure sat stale behind
+    # a fresher, worse reading the owner-facing docs already showed.
+
+    # No citation: carry_result passes through unchanged.
+    stale_carry = {"traffic_line": "80 visitors, carried from 2026-09-20 10:15",
+                    "traffic_line_measured_at": "2026-09-20 10:15"}
+    r = prefer_owner_actions(dict(stale_carry), "**not measured**", None)
+    if r != stale_carry:
+        fails.append("no citation must leave the carried reading untouched, "
+                     f"got {r!r}")
+
+    # A fresher citation overrides a stale carried reading.
+    r = prefer_owner_actions(dict(stale_carry), "**not measured**",
+                              ("2026-09-21 14:05", 76, 190))
+    if "76 visitors across 190 visits" not in r.get("traffic_line", ""):
+        fails.append("a fresher OWNER-ACTIONS.md citation must override the "
+                     f"stale carried reading, got {r.get('traffic_line')!r}")
+    if r.get("traffic_line_measured_at") != "2026-09-21 14:05":
+        fails.append("an applied citation must date-stamp itself so the "
+                     "next run can compare against it in turn")
+    if "**not measured**" not in r.get("traffic_line", ""):
+        fails.append("an applied citation must still show this run's own "
+                     f"honest attempt, got {r.get('traffic_line')!r}")
+
+    # A citation no fresher than what is already carried must not regress
+    # a richer existing reading back to the citation's coarser numbers.
+    r = prefer_owner_actions(dict(stale_carry), "**not measured**",
+                              ("2026-09-19 08:00", 50, 90))
+    if r != stale_carry:
+        fails.append("an older-or-equal citation must not override an "
+                     f"already-fresher carried reading, got {r!r}")
+
+    # Nothing ever carried (empty carry_result): any real citation still wins.
+    r = prefer_owner_actions({}, "**not measured**", ("2026-09-21 14:05", 76, 190))
+    if "76 visitors across 190 visits" not in r.get("traffic_line", ""):
+        fails.append("a citation must apply even when nothing was carried "
+                     f"before, got {r.get('traffic_line')!r}")
+
+    total = 14
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")
