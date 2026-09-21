@@ -139,6 +139,25 @@ depth is the more promising lever, since it changes how much link equity
 each room's own hub page distributes rather than searching for more
 pairwise matches).
 
+**Reconciliation, 2026-09-21, PM check-in.** The 03:4x PM cycle and the
+scheduled operator cycle immediately after it disagreed in `ops/NIGHTLY-LOG.md`
+about whether D9 was done: the operator's own aggregate line listed D9 among
+"D1, D3-D5, D7-D12 all confirmed live and done" with no D9-specific number
+checked, while this section (written the same day, by D9's own author) already
+recorded it honestly as partial. Re-ran `ops/link_graph_report.py` fresh
+against the current `main` (`61ff3dfe`, after D10 shipped): zone-page inbound
+links still run min 9, max 20, avg 12.2, identical to the numbers D9's own
+status block above already recorded. **D10 did not move D9's number.** The
+speculation two paragraphs up, that D10's room-hub depth "is the more
+promising lever" for D9's median, does not hold in practice: D10 changed room
+page H1s and the position of two answers on room pages, not any link between
+zone pages, so it had no mechanism to change zone-to-zone in-degree and did
+not. D9 remains genuinely open and unblocked, exactly as this section already
+said; the operator cycle's "done" aggregate was the stale claim, not this
+section. Closing the remaining median gap still needs either more genuine
+cross-room relationships (risking quality dilution, per this section's own
+argument above) or a different structural lever than D10 turned out to be.
+
 **Status, 2026-09-21, operator: D10 done, against this section's own
 acceptance line.** Verified live before building anything: every room
 page's H1 was still the bare room name ("Entryway"), and the manual's own

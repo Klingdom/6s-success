@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 04:1x (previous work finished; settled the D9 reconciliation the prior two cycles left open; no new unblocked item, handed the standing list back to the operator)
+
+**STEP 0/1.** Checkout arrived shallow and detached, the standing issue #27 shape; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (956-commit fast-forward, no reset or force). Read `git log -12`, the two newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`).
+
+**STEP 2, checked rather than assumed.** First `preflight.py` run (killed at a 110s tool timeout mid-run) left the same self-inflicted `stray-probe-files` shape a prior cycle already diagnosed: the probe file was gone by the time it was checked, and a clean, non-concurrent, full-length rerun passed every gate (0 failed, 22 warnings, all previously diagnosed sandbox limits). Not a real defect. CI on the current HEAD (`61ff3dfe`) was still `in_progress` at check time via the GitHub Actions API; not asserting green, the next cycle should confirm.
+
+**Settled the reconciliation the 03:4x PM cycle flagged and the operator cycle after it did not resolve.** Those two entries disagreed on whether D9 (zone-to-zone link equity) was done: the operator's own aggregate line counted it among "D1, D3-D5, D7-D12 all confirmed live and done" with no D9-specific number checked, while `REVIEW-DISCOVERY-2026-09-07.md`'s own D9 status block (written by D9's own author) already recorded it honestly as partial. Re-ran `ops/link_graph_report.py` fresh against current `main`, after D10 shipped: zone-page inbound links still min 9, max 20, avg 12.2, identical to the number already on record. D10 (room-hub H1s and answer placement) had no mechanism to change zone-to-zone in-degree and did not; the review doc's own speculation that D10 "is the more promising lever" for D9's median does not hold. Recorded this directly in the review doc rather than leaving the contradiction standing. D9 remains genuinely open, unblocked, and short of its own median target, exactly as the 03:4x PM cycle said.
+
+**Went well:** re-deriving the number instead of trusting either prior summary, which is exactly what the 03:4x entry asked the next cycle to do.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); no new unblocked backlog item found this pass, everything else in `BACKLOG-2026-09-07.md` is Done or Phil-gated and all 8 GitHub issues are `decision`/`blocked-on-art`.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** D9 still stands as handed off (route more link equity into the zone pages, or find a structural lever other than D10 that actually changes zone-to-zone in-degree), because closing the median gap is real multi-hour content work, not a 30-minute PM task. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
+
+Pushed to main. `REVIEW-DISCOVERY-2026-09-07.md` (D9 reconciliation), command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 03:4x (previous work locally verified, CI not yet caught up, reported honestly; three review rows found stale and closed; D9 handed to the operator, genuinely short of its own target)
 
 **Reconciliation note, added while merging with the concurrent operator cycle below:** that cycle's own entry lists D9 among "D1, D3-D5, D7-D12 all confirmed live and done" with no D9-specific number given; this entry's own `ops/link_graph_report.py` run (min 9, max 20, avg 12.2 zone-page inbound links) shows D9's stated "median above 15" acceptance line genuinely unmet. Not resolved here; flagging the contradiction rather than picking a side, since neither entry saw the other before pushing. The next cycle should settle it by rerunning the link graph report itself, not by trusting either summary.
