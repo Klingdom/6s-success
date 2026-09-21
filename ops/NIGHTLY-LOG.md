@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 19:1x (previous work finished; closed the dashboard carry-forward gap after three cycles only reported it)
+
+Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1072 commits).
+
+STEP 2: previous work finished. preflight.py clean (every gate passed, 22 known warnings, same set). Tree clean, main matched origin/main at 9badf22e. 8 open GitHub issues confirmed live via the API, unchanged (6 decision, 2 blocked-on-art), none newly pickable, 0 PRs.
+
+**Did not start something new; finished what the last three cycles (18:1x, 18:4x, and the 18:56 operator) each reported and none fixed.** The dashboard's Traffic row showed 80 visitors/208 visits carried from 2026-09-20 10:15 while OWNER-ACTIONS.md/GOALS.md carried a fresher, worse 2026-09-21 14:05 direct-database read (76/190, third straight weekly fall) for over four hours. The 18:56 operator escalated the pattern itself to Phil by push notification instead of fixing the specific bug the 18:1x/18:4x cycles had already scoped, so the bug was still live at this slot: a correctly reported problem nobody had acted on, CLAUDE.md 0.2's exact case.
+
+**Fixed:** dashboard.py's traffic_line carry-forward now checks OWNER-ACTIONS.md's own "**Last measured:**" header (the same field gate_owner_actions_last_measured_current already treats as stable) for a direct-database-read citation, and prefers it over state.json's cached figure whenever it is honestly fresher; a live measurement this run always wins over any citation. Two new pure functions (_owner_actions_traffic_citation, _prefer_owner_actions_traffic), wired in only on the not-measured path. Verified against the real files: the deck now reads 76 visitors/190 visits, 30 days, attributed and carried correctly; reran dashboard.py a second time and confirmed it settles into the normal carry-forward path (idempotent, no infinite re-attribution).
+
+**Verified:** 4 new/updated test cases in test_traffic_carry_forward.py (14/14 total), test_carry_forward.py (10/10), test_dashboard_prev_state_fallback.py (3/3), test_gate_dashboard_covers_top_owner_actions.py (6/6), test_generator_ownership.py (clean), all individually. preflight.py --deep not run this slot (time budget); fast preflight clean twice, including a full rerun after the fix with 0 gates failed.
+
+**Went well:** treated the third consecutive report of the same defect as this cycle's actual work rather than a fourth hand-off, per STEP 2 and CLAUDE.md 0.2.
+
+**Did not go well:** same shallow/detached checkout; issue #27 still open. A stray subprocess from test_generator_ownership.py (it shells out to `preflight.py --own`) ran long enough to look like a concurrent session at first glance; confirmed via `ps --forest` it was this session's own child, not a collision.
+
+**Handing the operator at :43:** continue the cold-read lane at the next-lowest-mention ops/*.py tier if nothing else is newly unblocked. Standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open GitHub issues, unchanged.
+
+Pushed to main (94a9fb43). ops/dashboard.py, ops/tests/test_traffic_carry_forward.py, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 18:4x (previous work finished and confirmed; a fresher live-honesty gap found and handed to the operator)
 
 NEXT FOR THE OPERATOR: fix `ops/dashboard.py`'s carry-forward to prefer the freshest committed measurement over `state.json`'s stale cache, because the dashboard still shows the 2026-09-20 10:15 traffic read (80 visitors/208 visits) while `GOALS.md` and `OWNER-ACTIONS.md` have carried a fresher, worse, already-verified 2026-09-21 14:05 database read (76 visitors/190 visits, third consecutive weekly fall) for over four hours, and the executive dashboard is the one document Phil is meant to be able to trust without cross-checking three others.
