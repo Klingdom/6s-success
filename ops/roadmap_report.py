@@ -60,15 +60,19 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 76, "visits": 193, "views": 515,
-           "days": 30, "as_of": "2026-09-20",
-           "how": "read directly from the Umami database 2026-09-17 over "
-                  "ssh (ops/traffic_query.sh): 76 visitors, 193 visits, 946 "
-                  "pageviews of which 441 came from 2 automated sessions, so "
-                  "views here is the 506 human pageviews. Up from 74 carried at "
-                  "11:46 the same day, 68 on 2026-09-11 and 60/161 on 2026-09-07. "
-                  "In Umami session_id is the VISITOR and persists across days, "
-                  "while visit_id is the visit."}
+TRAFFIC = {"visitors": 76, "visits": 190, "views": 505,
+           "days": 30, "as_of": "2026-09-21",
+           "how": "read directly from the Umami database 2026-09-21 14:05 UTC "
+                  "over ssh (ops/traffic_query.sh): 76 visitors, 190 visits, "
+                  "936 pageviews of which 431 came from one automated session "
+                  "(431 pageviews in 28 minutes on 7 Sept, still inside the "
+                  "window), so views here is the 505 human pageviews. The "
+                  "30-day visitor count has been flat at 76 for two days while "
+                  "the TRAILING WEEK FELL FOR THE THIRD TIME RUNNING: 10 "
+                  "visitors, from 14 on 2026-09-20 and 18 the week before. "
+                  "Earlier 30-day reads: 78 on 2026-09-17, 68 on 2026-09-11, "
+                  "60/161 on 2026-09-07. In Umami session_id is the VISITOR and "
+                  "persists across days, while visit_id is the visit."}
 
 
 def env(name: str, default: str = "") -> str:

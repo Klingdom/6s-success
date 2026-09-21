@@ -890,6 +890,21 @@ evidence:
     whole life: one from Bing (21 August) and three from Google (4 to 12
     September), read directly from the database. A live feed is still
     blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
+  - RE-MEASURED 2026-09-21 14:05 UTC, direct database read, and this is the
+    single most important number on this page: the trailing week has now
+    fallen THREE TIMES RUNNING. 18 visitors, then 14, then 10. 30 days reads
+    76 visitors / 190 visits / 936 pageviews, of which 431 are still the one
+    automated session, leaving 505 human pageviews from 75 visitors. The
+    30-day figure looks flat at 76 only because the window still contains a
+    busier fortnight that is rolling out of it.
+  - AND THE COUNTER-EVIDENCE THAT MUST NOT BE MISREAD AS PROGRESS. Over
+    exactly the same days, crawler attention ROSE sharply: Googlebot content
+    fetches went from about 1.3 a day across 10 to 19 Sept to 17 on 20 Sept
+    and 11 by 08:00 on 21 Sept, across 23 distinct pages (LEARNINGS.md
+    LRN-0013). So the site is being read more by machines and less by people.
+    Crawling is not indexing, indexing is not ranking, and ranking is not
+    arrivals. Any report that quotes the crawl rise without this row beside
+    it is telling a story the data does not support.
   - LEARNINGS.md LRN-0010 (2026-09-14, HIGH confidence): every buy-click and
     quote-click Stripe/Umami/the reverse-proxy access log can identify since
     2026-09-07 traced to the owner's own home IP and personal iPhone, not a
