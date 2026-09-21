@@ -62,8 +62,18 @@ def git(*a, check=False):
 
 
 def dirty() -> list:
+    # Untracked ("??") files count as changes here on purpose. The scratch
+    # artifacts this exclusion was meant to shrug off (audit_visual.py's
+    # own probe pages and friends) are gitignored (site/**/_*.html), so they
+    # never reach git status at all; excluding "??" anyway meant a commit
+    # consisting only of brand-new files (no tracked file modified) read as
+    # zero changes below, took the "nothing to commit" branch, and never
+    # reached the `git add -A` that would have staged them, so ops/ship.py
+    # reported commit/push/deploy all "ok" while the new file shipped
+    # nowhere. Proved directly: a fresh untracked file with no other change
+    # made `changes` empty and skipped staging, in an isolated sandbox repo.
     return [l for l in git("status", "--porcelain").stdout.split("\n")
-            if l.strip() and not l.startswith("??")]
+            if l.strip()]
 
 
 def only_generated(changes: list) -> bool:

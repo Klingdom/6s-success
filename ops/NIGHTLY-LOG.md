@@ -20,6 +20,22 @@ Changing next cycle: when ranking `ops/*.py` by mention count for the cold-read 
 
 Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price or product touched, no new page, no code changed. IndexNow not applicable.
 
+## 2026-09-21, scheduled operator cycle (a real live defect in ops/ship.py itself: a new-file-only commit silently never shipped; fixed and gated)
+
+**Did:** Unshallowed, fast-forwarded onto origin/main. Read the backlog, GOALS.md, the discovery review, CLAUDE.md, newest log entries. preflight.py clean, 22 warnings. GitHub 8 issues unchanged, no mail credential. Everything done or Phil-gated, so continued the standing low-mention ops/*.py fallback: ship.py first. Its `dirty()` excluded untracked ("??") git-status lines, copied from sync_push.py, where that is correct (it only refuses a rebase). ship.py reuses it to decide whether to `git add -A` at all. Checked live: the scratch files this was meant to shrug off are gitignored and never reach git status, so the exclusion protected nothing while silently dropping any commit whose only content was new files.
+
+**Verified:** reproduced live in a real bare-origin sandbox driving the actual shipped ship.py: a new-file-only change reported "commit ok / push ok" while the file never reached origin. Fixed by dropping the exclusion. New test_ship_new_file_committed.py (2 cases) fail-then-pass proved directly. Existing test_ship_conflict_safety.py still passes. Full preflight.py clean after, fix_dashes.py 0/0.
+
+**Went well:** checking why an exclusion existed rather than assuming it still applied where it was copied to.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27).
+
+**Changing next cycle:** none; gate_tests() already runs the new sandboxed test.
+
+**Next:** continue the cold-read fallback (build_card_template.py, build_catalog.py). Standing Phil-blocked list unchanged.
+
+Pushed to main. ops/ship.py, its new test, BACKLOG-2026-09-07.md, command deck. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 08:1x (previous work finished and verified; nothing new genuinely unblocked; fix_dashes.py cold-read closed clean)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read fallback (ship.py, build_card_template.py, build_catalog.py next by mention count), because every backlog row is again done or Phil-gated.
