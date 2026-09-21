@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 01:1x-01:3x (previous work finished, confirmed rather than carried forward unconfirmed; a real STATUS.md staleness gap closed)
+
+Attached cleanly, no reset. **Previous work (D8): not finished at the top of this slot.** `checks.yml` #1225 on `58a4dca2` was still `in_progress`; polled directly against the GitHub API rather than trust the prior check-in's hope, and it later completed `success` (`publish-image.yml` #362 had already gone green). D8 is now genuinely closed.
+
+A local `preflight.py` run briefly showed `stray-probe-files` FAIL on two files that no longer existed on disk when checked; a clean rerun confirmed the known concurrent-audit-artifact shape, not a real defect.
+
+**Found and fixed:** `gate_status_currency` was warning 8 material commits unmentioned in `STATUS.md`, last touched 2026-09-18. Added a dated entry summarizing D1/D3/D5/D8 (SEO/AEO pilot rows, each with its own verification already on record) and closed the gap to 0, verified against the gate's own logic before shipping. While shipping, the hourly operator pushed D9 concurrently; fast-forwarded onto it (discarding my own stale local dashboard regen, regenerated fresh after) rather than hand-merging generated files. Full `preflight.py` clean (22 warnings, all previously diagnosed) both before and after the merge.
+
+**Handing to the operator:** D10 (room hub depth, ~3 operator-days) is the next unblocked substantive row now that D9 shipped; standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged.
+
+Pushed to main (`f97c3f508`). `STATUS.md`, command deck. No price or product touched, no new page.
+
 ## 2026-09-21, scheduled operator cycle (a live CI-blocking sitemap defect fixed, then D9: routed link equity into 69 zone pages, honest partial result)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (936-commit fast-forward), no reset or force. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `python ops/preflight.py` FAILED on the first run: `publish-image-current` reported real content (D8's 22 changed zone pages) sitting unpublished behind a failed `publish-image.yml` attempt on `80168ae2`. Traced directly via the GitHub API: the job's own `gate_generator_ownership` (run as `preflight.py --own`, which this session's plain runs do not exercise) caught `site/sitemap.xml`/`ops/sitemap-content-hashes.json` never regenerated after D8's content change. Reproduced the drift locally (`python ops/build_seo.py` moved 19 lastmod dates and hashes), confirming it independently before fixing. A concurrent session pushed the identical fix (`58a4dca2`) mid-diagnosis; fetched and fast-forwarded onto it rather than duplicate the commit, discarding this session's own now-redundant working-tree copy first. Confirmed `publish-image.yml` re-triggered and preflight clean after.
