@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-21 02:38",
- "commit": "3087e4a6",
- "commit_msg": "Merge concurrent PM check-in (STATUS.md fix, D9/build-id confirmations)",
+ "generated": "2026-09-21 02:47",
+ "commit": "bcbc8289",
+ "commit_msg": "Fix gate_sitemap_lastmod_current: it never checked 89% of the site",
  "commits_7d": 1219,
- "commits_total": 3133,
+ "commits_total": 3134,
  "traffic_line": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-20 10:15",
