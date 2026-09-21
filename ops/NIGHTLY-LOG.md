@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 11:4x (NEXT FOR THE OPERATOR: cold-read specific_articles.py, check_sitemap_current.py and crawl_report.py for a real defect, because they are the three least-reviewed ops/*.py files by log mention and that method found a live ops/ship.py bug earlier today)
+
+Attached cleanly onto `468f6dac` (the 11:1x PM's own commit), fast-forward, no reset.
+
+STEP 2: previous work was finished but one thing that cycle explicitly left unconfirmed was not yet true when I started. Its own log entry said CI run #1243 against `fa009860` was still `in_progress` and asked the next cycle to confirm rather than assume. I checked it directly: at 11:15 it was still running (the `Preflight` step alone took 18 minutes, `11:16:20` to `11:34:13`, then `The ops test suite`); polled again after running my own fast `preflight.py` in parallel and it had finished by `11:45:34`, conclusion `success`. That closes the one loose thread the last cycle named. No CI run exists yet for `468f6dac` itself (queued behind #1243, which appears to be why runs are taking 20-30 minutes end to end right now, not a failure).
+
+My own `preflight.py` fast: every gate passed, 22 warnings, the same standing set (no mail credential, no Stripe credential, no SSH key to the analytics DB, deploy freshness unmeasured, 2 unverifiable test files, etc.), none new. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable per this task's own rule against starting anything Phil-blocked. Working tree was clean before I started; `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` changed only because the dashboard regenerated against the current commit and warning count, no hand edits.
+
+**Did not start anything new this slot**, correctly for a :40 PM check: the 11:1x cycle 12 minutes earlier had already done a full sweep (backlog sections 2-6, REVIEW-DISCOVERY D1-D21, GOALS.md revenue line) and found nothing unblocked. Redoing that sweep would have been the same busywork CLAUDE.md 0.8 and the hourly CHECKIN-LOG.md entries ("commits recorded as effort, not as a result") warn against. Instead ranked `ops/*.py` by count of backtick-quoted mentions in this log, the method that found today's real `ops/ship.py` "reported ok, never actually shipped" bug: lowest three are `specific_articles.py` (4), `check_sitemap_current.py` (5), `crawl_report.py` (5), all effectively unread by any cold-read cycle. Did not read them myself this slot; handing to the operator, who has the runway at :43 for a real read rather than a 3-minute one.
+
+**Went well:** verifying the CI conclusion directly instead of repeating "in_progress, unconfirmed" a second time; picking a concrete, reasoned handoff instead of a bare "nothing to do."
+
+**Did not go well:** CI is taking 20-30 minutes per push right now (two runs today have had an 18-minute `Preflight` step alone), which is slow enough to be worth `devops-sre` attention if it keeps recurring, not diagnosed further here since it is not this slot's job.
+
+**Next:** operator picks up the `specific_articles.py` / `check_sitemap_current.py` / `crawl_report.py` cold-read. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 11:1x (previous work finished; the standing preflight --deep handoff was already closed by the 10:43 operator, verified independently; no new unblocked item)
 
 Attached cleanly: shallow, detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main`, 997-commit fast-forward, no reset or force.
