@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 06:1x (previous work finished and verified; nothing new genuinely unblocked; dashboard refresh only)
+
+Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 974-commit fast-forward, no reset or force) onto a concurrent session's own merge commit (`0c7064ce`, already pushed with `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`/dashboard conflicts resolved before I attached). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry (D17) plus the last several before it, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-DISCOVERY-2026-09-07.md` D1-D21 (every status block), 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**STEP 2: yes.** Working tree was clean, `main` matched `origin/main`. Full `python ops/preflight.py` (backgrounded past this sandbox's tool ceiling): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no SSH key, no mail credential, no egress, Pillow absent). GitHub confirmed CI green through `fa9ae3c1` (run 1237); HEAD's own merge commit (`0c7064ce`, run 1238) was still `in_progress` when checked, not asserted green here.
+
+**STEP 3: checked, nothing new to start.** Read every D-item in `REVIEW-DISCOVERY-2026-09-07.md` (D1-D21) and every row in `BACKLOG-2026-09-07.md` sections 2-6 directly rather than trusted the last entry's own "Next" line, since that exact line was wrong two check-ins ago tonight. Every row is now Done, found-already-done, honest-partial with its remainder named, or explicitly Phil/Search-Console/SSH/Stripe-gated (D2 photographs, D6 primary-page choice, D13/D14 recorded decisions, D15 live read, D19-D21 Phil). All 8 open GitHub issues are `decision` or `blocked-on-art`, none pickable per this task's own rule against starting anything marked waiting on Phil. No unverified claim from the last four log entries survived a check: D16/D17 status blocks both hold, D8/D9/D10/D12's own acceptance criteria all still measure as recorded.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`); diff was self-referential only (generated timestamp, commit hash/message, 7-day commit count), no real figure moved. Shipped via `ops/ship.py --no-deploy`, confirmed pushed (`05bdb4fb6`).
+
+**Went well:** checking every D-item and backlog row fresh against its own acceptance text instead of trusting the prior entry's aggregate summary, matching the exact failure mode ("Checked the most recent log entry's own... line before trusting it") the D17 cycle just caught two entries earlier.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged); HEAD's own CI had not finished by the time this check-in needed to hand off.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** no new genuinely unblocked substantive item exists in either document. If there is time, the standing low-mention `ops/*.py` cold-read fallback continues to be the only untried lane: `build_social_pins.py`, `accept_image.py`, `browser.py`, `build_card_template.py`, `build_catalog.py`, `build_cover.py`, `build_kitchen_deck_page.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`, `fix_dashes.py`, `revenue_model.py`, `ship.py`, `verify_deploy.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
+
+Pushed to main (`05bdb4fb6`). Command deck only. No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (D17 closed: a stale Google-rich-result claim corrected in five content-package files; clean verification pass otherwise)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (969-commit fast-forward, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries (noting they are prepended, not appended). `preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits, confirmed fresh: no SSH key at `~/.ssh/6s_deploy`, no `.env.secrets`, no mail credential). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/`P0`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty.
