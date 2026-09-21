@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 21:3x (previous work was NOT finished: publish-image.yml had been failing since C16, fixed and repushed)
+
+Attached clean (shallow/detached as usual, issue #27), ff-only onto origin/main
+at the C15/C18 commit (87919dae). STEP 2 found the real gap: `preflight.py`
+FAILED on `gate_publish_image_current`, live on GitHub (run #369, `514abe6`,
+job "Preflight, including generator ownership"). Root cause: C16 shrank the
+free deck PDF 25 MB to 7.5 MB but never reran the generators that cite its
+size, so `site/deck-gallery.html` still told a shopper "25 MB PDF" and its
+sitemap/content-hash sat stale beside it. `gate_generator_ownership` named
+the exact 3 files once the tree was clean. Fixed by rerunning
+`ops/build_deck_gallery.py` and `ops/build_seo.py`, verified by diff (only the
+size string and lastmod/hash changed). Also pointed `PRICING.md`'s eBook-price
+line at `DECISIONS.md` D-022 so a future reader sees the ratification, not
+just the unrecovered history. `preflight.py` clean except the one gate this
+fix should now clear once CI re-runs; shipped `3fda4039` via `ops/ship.py
+--no-deploy`, confirmed pushed, confirmed `publish-image.yml` run
+35658060926 in progress against it. Handing CI verification to the hourly
+operator at :43, since a full run takes 15-20 minutes.
+
+Pushed to main. `PRICING.md`, `ops/sitemap-content-hashes.json`,
+`site/deck-gallery.html`, `site/sitemap.xml`, command deck. No price or
+product touched, no new page; the free deck's advertised size corrected to
+match its real, already-shipped file. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle addendum (C15/C18: the paid-deck decision and BK-EB's $9.99 recorded in DECISIONS.md, same cycle as C16)
 
 **Did:** Continued the same cycle as the C16 entry immediately below, on the same handoff (`REVIEW-COMMERCE-2026-09-07.md` C15/C18, named alongside C16). Preflight fast clean before starting (0 gates failed).
