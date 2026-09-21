@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 19:4x (previous work finished; handoff only, nothing new started this slot)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion, because it last finished at `5bef5d15` (this afternoon) and 70 commits have landed since, including real changes to live-facing files (`build_manual_print.py`'s six-S order fix, `dashboard.py`'s traffic carry-forward fix, the RISK-0007 restore drill, the analytics-history copy) that a fast preflight pass does not exercise; `--deep` is the only gate that reaches `gate_visual_audit`, the full contrast/landmark/tap-target/mobile-scroll sweep, and it has caught real live regressions before that the fast pass missed.
+
+Checkout arrived shallow and detached as usual (issue #27, still open, still needs Phil's own hand in the Routines UI); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, 1075-commit fast-forward, no reset or force).
+
+STEP 2: previous work finished. The 19:1x cycle's own dashboard-carry-forward fix (`94a9fb43`) is live on `main`, tree clean, `main` matches `origin/main`. `preflight.py` fast: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, the one known-unfixable British spelling on sample-PDF page 243 whose font glyph subset cannot be safely re-embedded here). 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none newly pickable.
+
+STEP 3: `BACKLOG-2026-09-07.md` sections 1-7 re-read; every unblocked row is done or Phil-gated, section 1b (23 uncatalogued kits/bundles) and section 5 (Hold) both correctly waiting on evidence or Phil's own decision. The `ops/*.py` cold-read-by-mention-count lane is confirmed exhausted by several prior cycles today; sending the operator back into it would repeat a lesson this log has already recorded more than once. `preflight.py --deep` not run this slot (this is a triage slot, not the 10-15 minute window it needs) but the gap since its last completion is now large enough in both time and commit count to be this run's own finding, not a restatement of an old one.
+
+**Went well:** checked the actual elapsed commits since the last `--deep` completion rather than assuming it was still recent.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube upload authorisation, Stripe business description) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 19:1x (previous work finished; closed the dashboard carry-forward gap after three cycles only reported it)
 
 Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1072 commits).
