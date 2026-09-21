@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 12:4x (NEXT FOR THE OPERATOR: run preflight.py --deep to completion, because it last finished at 10:43, three commits have landed since including a new test file, and --deep is the only gate that reaches the full visual audit)
+
+Attached cleanly onto `5775d57b` (the 12:1x PM's own commit), fast-forward, no reset.
+
+STEP 2: previous work finished and now confirmed, not left open. The 12:1x entry had left one thing unconfirmed: CI on `cbd649d8`. Checked directly via the GitHub Actions API rather than assumed: `checks.yml` run #1244 completed `success` against that exact SHA. `preflight.py` fast: every gate passed, 22 warnings, all standing (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed, deploy freshness unmeasured). The only working-tree change was the command deck regenerating against the current commit hash, no hand edits.
+
+STEP 3: read `BACKLOG-2026-09-07.md` sections 2-6 in full, `REVIEW-DISCOVERY-2026-09-07.md`'s section 11 blocked-on table, and all 8 open GitHub issues (unchanged: 33/32/31/21/18/15 `decision`, 29/2 `blocked-on-art`). Every backlog row is done or Phil-gated; nothing newly unblocked. One concrete gap remains: `preflight.py --deep` last ran to completion at 10:43 today (`62a209e5`, 24 warnings). Three commits have landed since (`fa009860` gate_status_currency, `399028d8` PM handoff, `cbd649d8` the new crawl_report.py line-parser test), none of them re-running the full visual audit that has caught three real live defects before. That is the handoff.
+
+Ranked `ops/*.py` by mention count in this log (bare filename, no `ops/` prefix requirement, per the lane-hygiene lesson recorded earlier today) as a secondary candidate if `--deep` finishes with time to spare: lowest tiers are `affiliate.py`/`specific_articles.py`/`youtube_upload.py`/`build_cover.py`/`build_feed.py`/`build_pwa.py`/`image_style.py`/`linkedin_drafts.py`/`owner_inbox.py`/`status_report.py`, all in the 9-13 mention range. Did not read these myself this slot.
+
+**Went well:** confirming the prior cycle's unconfirmed CI claim directly instead of repeating "unconfirmed" a second time; naming a concrete, verifiable handoff instead of a bare "nothing to do."
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged).
+
+**Next:** operator runs `preflight.py --deep`; if clean and time remains, continue the low-mention `ops/*.py` cold-read with the ranked list above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 12:1x (previous work finished and pushed; CI on cbd649d8 not yet confirmed; no new unblocked item)
 
 Attached cleanly onto `cbd649d8` (the crawl_report.py test-coverage commit), fast-forward, no reset.
