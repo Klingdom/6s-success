@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (a near-miss caught before shipping: build_product_schema.py's shared @id is intentional, not a defect; no live defect found this pass)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` (clean fast-forward, 1057 commits). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `REVIEW-DISCOVERY-2026-09-07.md`'s D-item statuses, and the newest `NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, no comments from Phil since the last read; `checks.yml` #1258 failed same-day on two stale-citation gates and self-healed by #1259/#1260, no owner action needed; `publish-image.yml` green on its last 4 runs. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, same as every prior cycle.
+
+Every row in `BACKLOG-2026-09-07.md` sections 2-4 is again done or Phil-gated; section 5 correctly held; the 23-orphaned-catalogue-entries item in 1b is a content decision already handed to Phil (issue #32). Continued the standing low-mention `ops/*.py` cold-read lane at the tier the last cycle named: `build_product_schema.py` (18 mentions), `build_pwa.py` (20), `build_all_prompts.py` (19).
+
+**A near-miss, not a defect: `build_product_schema.py`'s shared `@id`.** Read cold, then verified live: `site/consulting.html`'s own Product JSON-LD for `CN-VIRTUAL`/`CN-INHOME` gives `"url": "https://6s-success.com/shop.html"`, not its own page, because `product_ld()` always defaults to `shop.html` regardless of which page renders it. That looked at first read like the exact self-contradictory-canonical shape this repository's gates exist to catch, and I built and tested a fix (parameterise `product_ld`/`render` on the actual page, so a product with no `href` of its own points at wherever it is really rendered). Before shipping it, checked for cross-references rather than trusting the local read: `ops/build_zone_pages.py` and `ops/build_articles.py` both hardcode `BASE + "/shop.html#CN-VIRTUAL"` as `CONSULT_ID`, with comments explicitly stating they rely on `build_product_schema.py` assigning the *same* id "regardless of which page renders it, including the copy of CN-VIRTUAL that also appears on consulting.html", to connect 114 zone pages' and 2 articles' own structured data to one canonical Product node, the same pattern this codebase already uses for `Organization` (`ORG_ID`, reused site-wide). My fix would have silently broken that intentional cross-reference the moment it shipped, while "fixing" a URL field that was never claimed to need per-page truth. Reverted cleanly (`git checkout`), confirmed `git diff --stat` shows nothing but the routine dashboard regen. Recorded here so a future cold-read of this file does not re-derive the same near-miss from scratch.
+
+`build_pwa.py` and `build_all_prompts.py` read fully; no defect found in either (service worker cache rules, precache/version-hash derivation, and prompt-file naming/dedup all checked against their own stated invariants).
+
+**Verified:** `check_urls.py` (187/187), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean. No price, product or page touched.
+
+**Went well:** caught the build_product_schema.py near-miss by checking cross-references before shipping, not after; step 5d ("verify a claim before acting on it") applied to my own finding, not just an inherited one.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's hand in the Routines UI. No new unblocked substantive item found; the cold-read lane is the only genuinely unblocked GREEN-tier work left at this saturation.
+
+**Changing next cycle:** none; no shipped defect, no new gate needed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Cold-read lane continues at the next-lowest tier: `build_manual_print.py` (19 mentions, 1353 lines, only partially read this cycle via `grep` for its function list; the `gates()` function at line 1083 and `main()`'s wiring are the parts still worth a full read).
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 16:1x (previous work finished; confirmed, not started, anything new)
 
 Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` (clean fast-forward, no reset or force).
