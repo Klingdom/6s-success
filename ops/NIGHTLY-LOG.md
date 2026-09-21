@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 08:1x (previous work finished and verified; nothing new genuinely unblocked; fix_dashes.py cold-read closed clean)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read fallback (ship.py, build_card_template.py, build_catalog.py next by mention count), because every backlog row is again done or Phil-gated.
+
+Attached cleanly: shallow, detached; fetch --unshallow then merge --ff-only onto origin/main (981-commit fast-forward, no reset or force), landing on the operator's own 08:00 command-deck commit.
+
+STEP 2: yes, previous work finished. Working tree was clean, main matched origin/main before this cycle touched anything. Full preflight.py run to genuine completion in the foreground/background split (this sandbox's own timeout shape): every gate passed, 0 FAIL, 22 warnings, the same standing set as every prior cycle (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed). No new warning.
+
+STEP 3: checked, nothing new to start. BACKLOG-2026-09-07.md sections 1b through 6 read in full: every row again done, honest-partial with its remainder named, or explicitly Phil-gated (section 5's holds, section 6's owner gates). 8 open GitHub issues, unchanged, all decision/blocked-on-art/P0, confirmed live via the API, none pickable per this task's own rule against starting anything waiting on Phil.
+
+Continued the standing low-mention ops/*.py cold-read fallback: fix_dashes.py (the next named candidate). Read it cold, then checked it against CLAUDE.md's own rule it exists to enforce ("zero em dashes and en dashes anywhere, including code comments"): the file's own docstring is honest that it only covers root *.md and claude/**/*.md, and that the code-comment surface is covered separately by preflight.py's gate_no_stray_dashes (ops/*.py, mobile/**/*.js, the 50 book chapter files), which already passed clean this run. No gap between the two, no defect found.
+
+Went well: checking a tool's stated scope against the rule it is named for, rather than assuming coverage from the tool's existence alone.
+
+Did not go well: same shallow/detached checkout shape recurred (issue #27, unchanged, still needs Phil's own hand in the Routines UI).
+
+Changing next cycle: none.
+
+Pushed to main. ops/NIGHTLY-LOG.md and the command deck only. No price or product touched, no new page, no code changed. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (a real preflight FAIL diagnosed as the known transient probe-file race, confirmed rather than assumed; six-file cold-read fallback closed clean)
 
 **Did:** Unshallowed, fast-forwarded onto origin/main (981-commit ff, no reset/force). Read backlog, roadmap, CLAUDE.md, last four log entries. First `preflight.py` run FAILED: `gate_no_stray_probe_files` named 5 leftover `_measure_probe_*.html` fixtures. Checked rather than trusted: `git status` clean, files absent from disk, the same transient shape (a concurrent `test_measure_events.py` fixture caught mid-write) already diagnosed three times earlier. Reran fresh: every gate passed, 22 warnings, all previously diagnosed. GitHub: 8 issues unchanged. Inbox: no mail credential, standing state. Every backlog row again done or Phil-gated; continued the low-mention `ops/*.py` fallback: `browser.py`, `build_card_template.py`, `build_catalog.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`. All six correctly implemented, already wired in; no defect found.
