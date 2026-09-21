@@ -2859,6 +2859,61 @@ def room_faq(room, rm, rt):
     return qa
 
 
+# D10 (REVIEW-DISCOVERY-2026-09-07.md section 3): a room page's H1 used to
+# be the bare room name, "Entryway", which states the room but not the job
+# the review's acceptance line asks for. Each clause below is a short
+# paraphrase of that room's own authored `intro` (content.json), the same
+# sentence the lede paragraph already renders in full a few lines down, not
+# a new claim about the room. Every room name is checked against the real
+# content.json room list before a single page builds (_validate_room_job
+# below), so a renamed or added room fails loudly instead of shipping a
+# room with no job in its own heading.
+ROOM_JOB = {
+    "Entryway": "everything the outside world sends in, sorted before it "
+                "gets further",
+    "Kitchen": "the room you cross a dozen times a day, worked outward "
+               "from the sink",
+    "Pantry": "what you actually eat, kept apart from what you forgot "
+              "you bought",
+    "Dining Room": "one job, seating everyone, starting with a clear table",
+    "Living Room": "the room everybody uses and nobody resets, starting "
+                   "from the doorway",
+    "Family Room": "media, floor play and charging sharing one room, "
+                   "starting at the cables",
+    "Primary Bedroom": "the one room whose job is to help you stop",
+    "Guest Bedroom": "no daily user, which is exactly why it fills up",
+    "Kids Bedroom": "built to a child's own reach, so the floor holds "
+                    "itself",
+    "Nursery": "safety first, built for one hand working at 2 a.m.",
+    "Primary Bathroom": "the smallest room you use the most, starting at "
+                        "the counter",
+    "Guest Bathroom": "the one room a visitor sees alone, starting at "
+                      "the counter",
+    "Laundry Room": "the one job that arrives dirty and only finishes "
+                    "back in a drawer",
+    "Home Office": "physical clutter and paper decisions, sorted from "
+                   "the desk out",
+    "Garage": "what every other room evicts, starting at the workbench",
+    "Workshop": "where a bad standard costs a finger, not an afternoon",
+    "Mudroom": "where the weather stops, starting at the hooks",
+    "Hall Closet": "the darkest storage in the house, and the only one "
+                   "nobody owns",
+    "Stair Landing": "belongs to nobody, which is exactly why a small "
+                     "oversight here can hurt someone",
+    "Patio or Deck": "outdoors, on a clock the indoor rooms never feel",
+}
+
+
+def _validate_room_job(rooms):
+    """Every room in content.json must have a job clause. Typos fail loud."""
+    real = {r["room"] for r in rooms}
+    missing = real - set(ROOM_JOB)
+    extra = set(ROOM_JOB) - real
+    if missing or extra:
+        raise ValueError(f"ROOM_JOB is out of sync with content.json: "
+                          f"missing {sorted(missing)}, extra {sorted(extra)}")
+
+
 def room_page(room, header, footer, all_rooms=()):
     rs = slug(room["room"])
     url = f"{BASE}/rooms/{rs}"
@@ -2923,7 +2978,7 @@ def room_page(room, header, footer, all_rooms=()):
                'color:var(--soft);margin:26px 0 0">'
                '<a href="../resources.html">Rooms</a> / ' + esc(room["room"]) + '</nav>')
     out.append(f'<div class="head" style="margin-top:10px"><p class="eyebrow">Room</p>'
-               f'<h1>{esc(room["room"])}</h1>')
+               f'<h1>{esc(room["room"])}: {esc(ROOM_JOB[room["room"]])}</h1>')
     if room.get("intro"):
         out.append(f'<p class="lede">{esc(room["intro"])}</p>')
     out.append('</div>')
@@ -2953,6 +3008,16 @@ def room_page(room, header, footer, all_rooms=()):
                    'not one long day. Each session finishes on its own, so '
                    'stopping after the first still leaves the room better '
                    'than it was.</p>')
+    # D10: "which zone first" belongs beside the hours total, above the
+    # list both answer, not three sections down inside "For this room"
+    # where it sat until now. The manual's own "Where to start" tip is the
+    # real answer; not paraphrased or duplicated below, moved.
+    _room_tips = {t.get("label"): t.get("text")
+                  for t in (room.get("tips") or [])}
+    _start_text = _room_tips.get("Where to start")
+    if _start_text:
+        out.append('<p class="notice" style="max-width:60ch">'
+                   f'<b>Start here.</b> {esc(_clean(_start_text))}</p>')
     # Each zone row carries its approved illustration as a small thumbnail,
     # the same pictures and the same honest note the web Quest room preview
     # uses. Eleven room pages had no image at all while most of their zones
@@ -3003,7 +3068,10 @@ def room_page(room, header, footer, all_rooms=()):
     except Exception as e:                                    # noqa: BLE001
         print(f"  WARNING: no room kit rendered for {room['room']}: {e}")
 
-    tips = room.get("tips") or []
+    # "Where to start" now renders above the zone list (D10); keep it out
+    # of this list too, so the same tip is not said twice on one page.
+    tips = [t for t in (room.get("tips") or [])
+            if t.get("label") != "Where to start"]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'
@@ -3050,6 +3118,8 @@ def main():
     header, footer = load_chrome()
     os.makedirs(os.path.join(SITE, "rooms"), exist_ok=True)
     os.makedirs(os.path.join(SITE, "zones"), exist_ok=True)
+
+    _validate_room_job(data["rooms"])
 
     # M5: compute every non-diagnosed zone's differentiated related-reading
     # pick once, over the whole corpus, before any page is rendered.

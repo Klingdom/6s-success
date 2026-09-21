@@ -15558,6 +15558,123 @@ def gate_zone_direct_answer_current() -> None:
         fail("zone-direct-answer", "; ".join(problems[:6]))
 
 
+def check_room_hub_current(job_map, start_map, page_bodies) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    D10 (REVIEW-DISCOVERY-2026-09-07.md section 3, "Blocked on. Nothing."):
+    "Each room page H1 states the room and the job. Each carries an answer
+    to 'how long does this room take' and 'which zone first' above the
+    zone list." Before this, every room page's H1 was the bare room name
+    and the "which zone first" answer (the manual's own "Where to start"
+    tip) sat inside "For this room", three sections below the zone list it
+    should answer for.
+
+    `job_map` is {room: expected_h1_text} built from
+    ops.build_zone_pages.ROOM_JOB; `start_map` is {room: "Where to start"
+    tip text or None} read straight from content.json, the same source
+    `room_page()` itself reads; `page_bodies` is {filename: html} for
+    every real site/rooms/*.html file.
+    """
+    import html as _html
+    problems = []
+    want = set(job_map)
+    got = {os.path.splitext(os.path.basename(f))[0].replace("-", " "): f
+           for f in page_bodies}
+    for room in sorted(want):
+        rs = re.sub(r"[^a-z0-9]+", "-",
+                     room.lower()).strip("-")
+        fname = f"{rs}.html"
+        if fname not in page_bodies:
+            problems.append("%s: no built room page at %s" % (room, fname))
+            continue
+        body = page_bodies[fname]
+
+        m = re.search(r"<h1>(.*?)</h1>", body, re.S)
+        if not m:
+            problems.append("%s: no <h1> found at all" % fname)
+            continue
+        want_h1 = "%s: %s" % (_html.escape(room, quote=True),
+                              _html.escape(job_map[room], quote=True))
+        if m.group(1) != want_h1:
+            problems.append(
+                "%s: h1 does not state the room and its job: got %r, "
+                "want %r" % (fname, m.group(1)[:80], want_h1[:80]))
+
+        start_text = start_map.get(room)
+        if start_text:
+            want_start = ("<b>Start here.</b> %s"
+                          % _html.escape(re.sub(r"\s+", " ",
+                                                start_text).strip(),
+                                        quote=True))
+            sm = re.search(r"<b>Start here\.</b> ([^<]*)", body)
+            start_idx = body.find("<b>Start here.</b>")
+            rows_idx = body.find('class="zone-rows"')
+            if start_idx == -1:
+                problems.append(
+                    "%s: no 'which zone first' answer rendered above the "
+                    "zone list" % fname)
+            elif rows_idx == -1:
+                problems.append("%s: no zone list found at all" % fname)
+            elif start_idx > rows_idx:
+                problems.append(
+                    "%s: 'which zone first' answer renders after the zone "
+                    "list, not above it" % fname)
+            elif sm and ("<b>Start here.</b> " + sm.group(1)) != want_start:
+                problems.append(
+                    "%s: 'which zone first' text does not match content."
+                    "json's own 'Where to start' tip: got %r, want %r"
+                    % (fname, sm.group(1)[:80], want_start[:80]))
+            # The manual's own tip is the answer; it must not also repeat
+            # inside "For this room", which would say the same thing twice.
+            if "<b>Where to start.</b>" in body:
+                problems.append(
+                    "%s: 'Where to start' still duplicated inside 'For "
+                    "this room'" % fname)
+    return problems
+
+
+def gate_room_hub_current() -> None:
+    """The shipped-HTML half of D10 (see `check_room_hub_current`'s own
+    docstring for what this catches). Re-derives the expected H1 from
+    ops.build_zone_pages.ROOM_JOB and the expected "which zone first"
+    answer from content.json's own "Where to start" tips, then diffs both
+    against the real site/rooms/*.html files, so a hand edit to the
+    template or a stale build cannot ship silently.
+
+    Proved to fail on three planted regressions (an H1 reverted to the
+    bare room name, the "Start here" block moved back below the zone
+    list, and "Where to start" restored inside "For this room"):
+    ops/tests/test_gate_room_hub_current.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("room-hub-current", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+
+    job_map = dict(bzp.ROOM_JOB)
+    start_map = {}
+    for r in rooms:
+        tips = {t.get("label"): t.get("text") for t in (r.get("tips") or [])}
+        start_map[r["room"]] = tips.get("Where to start")
+    if not job_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "rooms", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("room-hub-current", "no room pages built yet, could not check.")
+        return
+
+    problems = check_room_hub_current(job_map, start_map, page_bodies)
+    if problems:
+        fail("room-hub-current", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=35) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -18334,6 +18451,7 @@ def main() -> int:
     run_gate(gate_kit_compact_rendered)
     run_gate(gate_zone_relations_rendered)
     run_gate(gate_zone_direct_answer_current)
+    run_gate(gate_room_hub_current)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
