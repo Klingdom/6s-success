@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 14:4x (previous work finished; handoff to the operator, no new defect worked this slot)
+
+NEXT FOR THE OPERATOR: cold-read `ops/backup_analytics.py`, because it is the only file under `ops/` with zero mentions anywhere in this log, meaning no cycle has ever checked it, and it exists specifically to close the analytics half of the backup gap Phil's own session just found live on RISK-0011 (no File History, no Windows Backup, no shadow copies).
+
+Attached onto `9e68a275` (the last commit, Phil's own OWNER-ACTIONS addition), fast-forward, no reset (checkout arrived shallow/detached as usual, issue #27 unchanged, unshallowed cleanly).
+
+STEP 2: previous work finished. `python ops/preflight.py` clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed, deploy freshness unmeasured). Working tree clean before and after; main already matched `origin/main`, nothing local to push from this repo state alone.
+
+STEP 3/4: Re-read `BACKLOG-2026-09-07.md` in full and all 8 open GitHub issues (33/32/31/21/18/15 `decision`, 29/2 `blocked-on-art`); every row is done or genuinely Phil-gated, unchanged since the last two cycles. `EXECUTIVE-DASHBOARD-LIVE.md`: Traffic and Affiliate both still carried forward from 2026-09-20, unmeasured here (no SSH key to the analytics host), consistent with every prior cycle today; revenue still $0. Ranked `ops/*.py` by log-mention count (the method that found the `ship.py`, `verify_deploy.py`, `wire_measure.py` and `render_all_zone_videos.py` defects on recent cycles): `ops/backup_analytics.py` is the one file with 0 mentions, everything else has 14 or more. Read it far enough to confirm it is a real, live, unblocked candidate and not dead code: it exports this site's own analytics rows (joined through `website_event` by website id, not a whole-database dump, correctly scoped away from the other two sites the same container serves per `CLAUDE.md` 36b) to gzipped CSV plus a row-count-verified manifest, over the same `~/.ssh/6s_deploy` key every other analytics check in this sandbox already lacks. Its actual logic (the SSH/psql pipeline, the manifest verification, the CSV shape) has never been read cold by any prior cycle; did not do that read this slot, since a PM check-in's job is triage and handoff, not the read itself.
+
+**Went well:** the mention-count method surfaced a genuinely relevant, never-touched file on the first check, directly tied to the backup theme already live on `RISKS.md` today, rather than re-treading the exhausted low-mention tier from two weeks of prior cycles.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open. This slot could not run `backup_analytics.py` itself (no SSH key here, same as every live analytics check), so the operator's read will be a cold-read for logic defects, not a live run; say that plainly rather than let a clean read pass as a tested one.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Highest-value unblocked item is the handoff above.
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 14:1x (previous work not finished; preflight was red, a concurrent session fixed it before this one shipped, so nothing of mine was needed)
 
 Attached onto `e9e19b48` (the prior cycle's own close-out), fast-forward, no reset; the checkout arrived shallow/detached as usual (issue #27 unchanged), unshallowed cleanly (1022 commits).
