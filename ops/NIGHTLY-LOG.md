@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (full verification pass across a fresh set of low-mention ops/*.py files and the open trademark risk; no new defect)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (a 1038-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md` sections 0-7, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, the newest `NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub confirmed live via the API: 8 open issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs; both `checks.yml` and `publish-image.yml` green on their last 3 runs.
+
+**Verified:** every backlog row across epics 1-4 is done or Phil-gated; the review's D-items are all closed, honest-partial, or genuinely gated (SSH key, Search Console, Phil's own photographs). Cold-read the next low-mention `ops/*.py` tier (`check_sitemap_current.py`, `specific_articles.py`, `stripe_links.py`, `verify_media_delivery.py`, `refresh_hero_fallback.py`, `check_video_links.py`, `media_capability.py`, `shrink_sample.py`, `merge_cardtext.py`): all ran clean or behaved correctly for a sandbox with no egress, SSH key, or Pillow. `merge_cardtext.py`'s "BRAND NAMES VISIBLE IN ARTWORK" flag on EE-001/EP-005/ES-002/EU-004 looked alarming on first read; traced it to a historical transcription note, confirmed both by `ops/card-hero-verdicts.json` (EE-001/EP-005 were fixed and re-approved 2026-09-08) and by `preflight.py`'s own `brand_visible is skipped on purpose` comment, matching RISK-0003's own record of today's full 88-card visual sweep. No live defect. Full `check_urls.py` (187/187), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, same as every prior cycle.
+
+**Went well:** chasing the brand-name flag to its source before reporting it, rather than either dismissing or escalating on the console output alone.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open, still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Cold-read lane continues at the next-lowest tier (16-17 mentions): `build_all_prompts.py`, `build_manual_print.py`, `build_product_schema.py`, `build_pwa.py`.
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 15:2x (previous work finished; a transient preflight failure traced and confirmed gone, not fixed by this session; no new defect)
 
 Checkout arrived shallow and detached as usual (issue #27's shape); `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (1033-commit fast-forward, no reset or force).
