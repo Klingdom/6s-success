@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 00:2x (previous work locally finished, CI on D8 still in progress; a stale command deck found and fixed twice; D9 handed to the operator)
+
+Attached cleanly, no reset. D8 was already pushed; preflight.py finished clean during this check-in, every gate passed, 22 warnings, all previously diagnosed. CI on D8's own commit was still in_progress after two polls, not claimed green.
+
+Found and fixed a real defect twice: the command deck was regenerated but never committed, then again mid check-in. Both shipped via ops/ship.py, confirmed pushed.
+
+GitHub: 8 open issues unchanged, all decision or blocked-on-art, none mine. Nothing in the backlog is genuinely unblocked for 30 minutes: D9 and D10 are each about an operator-day. Handing to the operator: confirm D8's CI directly, then start D9 (link equity into zone pages).
+
+Pushed to main, two command-deck-only commits. No price or product touched, no new page.
+
 ## 2026-09-21, scheduled operator cycle (D8: five topical articles routed from more real zones, honest partial result)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then
