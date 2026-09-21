@@ -4,6 +4,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-09-21 03:4x (previous work locally verified, CI not yet caught up, reported honestly; three review rows found stale and closed; D9 handed to the operator, genuinely short of its own target)
 
+**Reconciliation note, added while merging with the concurrent operator cycle below:** that cycle's own entry lists D9 among "D1, D3-D5, D7-D12 all confirmed live and done" with no D9-specific number given; this entry's own `ops/link_graph_report.py` run (min 9, max 20, avg 12.2 zone-page inbound links) shows D9's stated "median above 15" acceptance line genuinely unmet. Not resolved here; flagging the contradiction rather than picking a side, since neither entry saw the other before pushing. The next cycle should settle it by rerunning the link graph report itself, not by trusting either summary.
+
 NEXT FOR THE OPERATOR: D9 (route link equity into the zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 4, add zone-to-zone links along real relationships), because it is measurably short of its own acceptance line today and unblocked.
 
 Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 956-commit fast-forward). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
@@ -23,6 +25,26 @@ Attached cleanly (shallow, detached; `fetch --unshallow` then `merge --ff-only` 
 **Next:** D9 handed to the operator above. D8's anchor-diversity line is worth a follow-up read if D9 finishes early. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues unchanged.
 
 Pushed to main. `REVIEW-DISCOVERY-2026-09-07.md` (three rows closed with evidence), command deck. No price or product touched, no new page. IndexNow not applicable.
+
+## 2026-09-21, scheduled operator cycle (clean verification pass, no new defect; every unblocked backlog row already closed by concurrent sessions)
+
+**Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `merge --ff-only` onto `origin/main` (956-commit fast-forward), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries (noted for whoever next tails this file, they are prepended, not appended). `python ops/preflight.py` clean on the first run: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no SSH key at `~/.ssh/6s_deploy`, no egress to production; confirmed the egress limit fresh rather than inherited, `curl` to `6s-success.com` came back policy-denied at the proxy, `connect_rejected`).
+
+Checked `REVIEW-DISCOVERY-2026-09-07.md`'s D1-D21 against their own "Blocked on" lines rather than trust the last entry's summary: D1, D3-D5, D7-D12 all confirmed live and done (0 duplicate H1s via `audit_pages.py`, all four ungrammatical titles from D7 gone via direct grep, D6's three exact-duplicate H1 pairs cross-linked). D2 (photographs), D19-D21 stay Phil-blocked. D6's remaining piece (primary-page choice per shared-query group) and D13/D14 stay Search-Console-gated, already recorded as `DECISIONS.md` D-019. D15 needs the SSH key this sandbox lacks. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art` (checked by number and label via the API, not assumed); 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty, same as every prior cycle. Mobile `npm test` (`mobile/quest-app`): 4 suites, all passing.
+
+**With nothing genuinely unblocked left in the backlog, cold-read two low-mention `ops/*.py` files for defects (the step 5d method prior cycles have used): `check_sitemap_current.py` (3 mentions) and `crawl_report.py` (3 mentions).** `check_sitemap_current.py` builds its file list straight from `build_seo.py`'s own `PAGES`/`INDEXABLE` dict rather than reconstructing paths from sitemap URLs, so it does not share the file-resolution bug an earlier cycle found and fixed in `gate_sitemap_lastmod_current`; ran it live, clean (187/187 pages match their recorded hash). It is wired into `.githooks/pre-commit`, and confirmed that gap is already known and gated (`gate_hooks_enabled` in `preflight.py`, warns rather than fails because a fresh checkout never has `core.hooksPath` set by design), not a fresh finding. `crawl_report.py`'s proxy-log regex tested directly against both documented line shapes (the normal 200 line and the plain-HTTP-to-HTTPS 301 redirect, which shifts columns) in a standalone Python check: both parse correctly into the right fields. No defect found in either file.
+
+**Verified:** `audit_pages.py` (191 pages/0 findings), mobile `npm test` (4 suites), `python ops/preflight.py` clean. Regenerated the command deck (`ops/dashboard.py`); diff against the prior committed state was self-referential only (generated timestamp, commit hash/message, commit counts), confirmed by reading the full diff, not assumed from the file list.
+
+**Went well:** confirming "no egress" fresh against the proxy status rather than inheriting seventeen days of prior cycles saying so; checking every D-item's own "Blocked on" line individually instead of trusting the last entry's aggregate summary.
+
+**Did not go well:** nothing new; the same shallow/detached checkout shape recurred (issue #27, unchanged, still needs Phil's hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect means no new gate to write, per step 10b. Worth a future session's attention if it keeps happening: this repository is currently running several concurrent scheduled sessions (operator cycles and PM check-ins) inside single-hour windows, several of which converge on the identical fix independently before either pushes (documented repeatedly in the entries above this one). None of it has caused a lost fix so far, each session correctly fetches and fast-forwards onto the other's push, but it is worth noting as a real cost (duplicated diagnosis time) if it keeps recurring.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the six store screenshots). 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`. The honest state, unchanged from `STATUS.md`'s own "Immediate Focus": the site is technically finished, traffic is the constraint, and the next step on every distribution channel plus the pending redeploy is Phil's own action.
+
+Pushed to main. Command deck regenerated and committed. No price or product touched, no new page. IndexNow not applicable.
 
 ## PM check-in, 2026-09-21 03:1x-03:2x (previous work NOT finished: checks.yml red on the prior PM's own HEAD; fixed, converged with a concurrent session's identical fix)
 
