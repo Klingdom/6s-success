@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 18:4x (previous work finished and confirmed; a fresher live-honesty gap found and handed to the operator)
+
+NEXT FOR THE OPERATOR: fix `ops/dashboard.py`'s carry-forward to prefer the freshest committed measurement over `state.json`'s stale cache, because the dashboard still shows the 2026-09-20 10:15 traffic read (80 visitors/208 visits) while `GOALS.md` and `OWNER-ACTIONS.md` have carried a fresher, worse, already-verified 2026-09-21 14:05 database read (76 visitors/190 visits, third consecutive weekly fall) for over four hours, and the executive dashboard is the one document Phil is meant to be able to trust without cross-checking three others.
+
+Checkout arrived shallow/detached as usual (issue #27); `fetch --unshallow`, `checkout main`, ff-only merge onto `origin/main` (clean, 1067 commits).
+
+STEP 2: previous work finished, confirmed not assumed. `python ops/preflight.py` clean (every gate passed, 22 known warnings, all previously diagnosed sandbox limits, same count as the last cycle). Working tree was clean before this cycle. `BACKLOG-2026-09-07.md` sections 1-7 read directly: all rows done or Phil-gated, section 5 correctly Hold, section 6's owner gates unchanged. 8 open GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), none newly pickable, 0 open PRs.
+
+Checked rather than re-cited the prior cycle's own flagged staleness: `GOALS.md`/`OWNER-ACTIONS.md` now carry a 2026-09-21 14:05 UTC direct database read (76 visitors/190 visits/30 days, 10 visitors in the last 7 days against 14 and 18 the two weeks before, the third straight weekly fall) that is fresher and materially worse than the dashboard's own carried-forward 2026-09-20 10:15 figure (80/208, reads as flat-to-up by comparison). The gap the prior PM check-in named as real, scoped work is still live and has gotten more consequential, not less, since the trend it is hiding got a third confirming data point. Did not attempt the fix myself at this slot; ranking `ops/*.py` by `NIGHTLY-LOG.md` mention count (the method that has found real defects before) shows every file in `ops/` has at least 4 mentions now, so the cold-read lane has swept the directory once already and this dashboard gap is the higher-value item on the ordering rule (2, broken-or-dishonest, over 6, operational-honesty cold-reads).
+
+**Did not go well:** same shallow/detached checkout; issue #27 still open. This slot ran a few minutes past its :43 handoff target reading the two backlog files in full; noting it so the next cycle's timing budget stays realistic.
+
+Pushed to main. Command deck only (regenerated during this cycle's own preflight run). No price or product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 18:1x (previous work finished and confirmed; triage only, nothing new started)
 
 Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1066 commits).
