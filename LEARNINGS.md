@@ -728,6 +728,22 @@ direction.
 >   and an IndexNow submission of 117 changed pages. Three causes, one day, no control: this is an **early
 >   signal, not a result**, and the honest next step is to keep reading the same log for a week before claiming
 >   anything.
+> **Second reading, 2026-09-21 07:52 MDT, and the signal held.** Googlebot content fetches: 2026-09-20 closed at
+> **17**, and 2026-09-21 is at **11 before 08:00 local with the day not over**. Against the ten days before them
+> (10 to 19 Sep: 0,0,1,0,1,2,6,1,1,1, or 1.3 a day) that is roughly a tenfold rise sustained across two
+> consecutive days, which is no longer explainable as one day's noise.
+>
+> It is also broad rather than concentrated: 28 fetches across **23 distinct pages** (16 room, 10 zone, 2 article),
+> not one page refetched. That is the shape of a crawler working through a list it has been given, which is what
+> the sitemap and the IndexNow submission were for.
+>
+> **What this still is not.** There is no control, three changes landed in the same window (the www and `.html`
+> 301s on 17 Sep, the corrected `lastmod` dates on 19 to 20 Sep, and an IndexNow submission of 117 pages on
+> 19 Sep), and crawling is not indexing and is certainly not traffic. The honest status is **a real and sustained
+> change in crawler behaviour, cause unattributed, business effect unknown**. What would settle it: whether the
+> rate holds past a week, whether Bing's indexed set grows from the 10 URLs measured on 20 Sep, and ultimately
+> Search Console, which is still `OWNER-ACTIONS.md` 1a.
+>
 > * Googlebot is still fetching both URL forms of the same page (`/rooms/kitchen` and `/rooms/kitchen.html`), which
 >   is exactly what a crawler does while it works through 301s it has just discovered, and is expected to fade.
 
@@ -745,6 +761,26 @@ direction.
 > zone/room/article page on its `.html` twin; both now 301 to the canonical (`site/nginx/default.conf`,
 > `ops/tests/test_nginx_www_redirect.py`). **Method lesson:** a log-derived "never" must name the retention window it
 > covers; `zcat -f <log>.*.gz` before concluding absence.
+
+> **The "templated zone pages" hypothesis is now ruled out too, 2026-09-21, by measuring the pages instead of
+> eyeballing them.** The 2026-09-17 correction above reopened "the distinctiveness of the 114 templated zone
+> pages" as a legitimate candidate cause. It is not one. Across all 114 pages, taking the visible text inside
+> `<main>`:
+>
+> * **3,170 words a page** (min 2,787, max 4,376). These are not thin pages.
+> * **Only 27% of a page's words, at the median, sit in sentences that appear on half or more of the other zone
+>   pages** (min 15%, max 31%). So roughly three quarters of every page is text that page does not share widely.
+>   The genuinely universal text is 33 sentences: the method's own reasoning, the affiliate disclosure and the
+>   licensed-work disclaimer, all of which are supposed to be identical everywhere.
+> * **The shared text is never a preamble.** Words of widely-shared text before each page's first unique
+>   sentence: median 0, max 0, on all 114. Every page opens on its own material.
+> * **114 distinct titles and 114 distinct meta descriptions**, no collisions.
+>
+> **Implication, and it is a negative one worth as much as a positive.** Do not spend cycles rewriting 114 zone
+> pages for "distinctiveness". The measurement says the distinctiveness is already there, and the work would be
+> weeks spent against no evidence. Combined with the reachability findings below, on-page structure, depth,
+> uniqueness and metadata are now all ruled out. What remains is off-page: authority, external links and demand,
+> none of which is fixable by editing the site, and most of which runs through channels in `OWNER-ACTIONS.md`.
 
 **Status:** SUPPORTED
 **Confidence:** MEDIUM (one crawl window, one log source, and it rules a cause out rather than naming the real one)
