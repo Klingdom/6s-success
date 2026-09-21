@@ -1405,6 +1405,7 @@ Maintain a compact index as the file grows.
 | D-018 | Corporate Lean 6S gets a page and an enquiry route, no price | ACTIVE | Commerce |
 | D-019 | No new indexable page until the first Search Console read | ACTIVE | SEO |
 | D-020 | Zone in-degree floor of 8 is the real D9 bar; median above 15 is aspirational | ACTIVE | SEO |
+| D-021 | M6's 21-day read cannot be answered; the gate stays shut on a different reason | ACTIVE | PRODUCT |
 
 D-004 to D-013 were never assigned; no record exists under those IDs
 anywhere in this repository. Not a gap to fill, just a numbering fact worth
