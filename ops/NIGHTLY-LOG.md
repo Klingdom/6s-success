@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 20:4x (previous work finished; a genuinely fresh, unswept lane handed to the operator)
+
+NEXT FOR THE OPERATOR: re-check `REVIEW-COMMERCE-2026-09-07.md`'s own C-numbered backlog (section 7) against live current state and close what is already done or genuinely small, because that file's own checklist has drifted stale (C3, C4, C5, C14, C19 are already fixed elsewhere: C3 by `B3`'s `gate_deck_count` rewrite, C4/C5/C19 by the 2026-09-14 cycle, C14 by `B4`, none of it marked in the review itself) and three concrete, unblocked, no-credential-needed items remain genuinely open, verified fresh this cycle, not cited stale: **C16**, the free Entryway deck PDF (`site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf`) is 26 MB against the review's own 8 MB budget, on a phone, as the first thing a lead sees; **C15**, the paid-deck decision it asks to be recorded has no entry in `DECISIONS.md` at all (checked directly, zero matches); **C18**, `PRICING.md` still carries the superseded pricing-ladder body C18 asks to be struck (distinct from the already-closed issue #20/section 0.6 correction; check whether it is the same gap or a second one before assuming either way).
+
+Checkout arrived shallow and detached as usual (issue #27, still open); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, 1081-commit fast-forward, no reset or force).
+
+STEP 2: previous work finished, confirmed not assumed. `python ops/preflight.py` fast: every gate passed, 22 known warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, the one known-unfixable sample-PDF spelling). Working tree was clean before this cycle, `main` matched `origin/main` at `f266d6ce`. `preflight.py --deep` last completed at the prior PM cycle (20:2x), 0 commits since, still current, not re-run. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none newly pickable. `BACKLOG-2026-09-07.md` sections 1-7 re-read: every unblocked row is again done or Phil-gated; the `REVIEW-DISCOVERY-2026-09-07.md` D-series is exhausted (D9's own median target downgraded from acceptance bar to aspirational two cycles ago; D12 done; the rest genuinely Phil/art-gated).
+
+STEP 3: did not send the operator back into the `ops/*.py` mention-count cold-read lane, which this log's own history (several entries today and earlier) already documents as unreliable on its own prior handoffs and effectively dry. Instead checked the other 2026-09-07 reviews' own mention counts (`REVIEW-AUTONOMY`, `REVIEW-COMMERCE`, `REVIEW-QA`, `PLAN-VISUAL-STRATEGY`, `PLAN-AFFILIATE-MONETISATION`, `PLAN-MEDIA`) against the log: `REVIEW-COMMERCE-2026-09-07.md` sits at 5 mentions total, last touched 2026-09-14, with an explicit unfinished tail ("C1/C2 need Stripe credentials, C8 is larger scope") that nobody has revisited since. Read its section 7 backlog table cold and checked five of its rows directly rather than trust the report's age: three (C3, C14, plus the already-known C4/C5/C19) turned out already fixed by unrelated later work and never marked, and two (C15, C16) are still genuinely open and verified live in this cycle, not carried forward from the report's own stale claim.
+
+**Went well:** finding a new, evidence-backed angle instead of repeating the lane this log's own history already flags as exhausted.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 20:2x (previous work finished; closed the standing preflight --deep handoff)
 
 Checkout arrived shallow and detached as usual (issue #27, still open); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, 1079-commit fast-forward, no reset or force). `preflight.py` fast: every gate passed, 22 standing warnings. 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none newly pickable. `BACKLOG-2026-09-07.md` sections 1-7 re-read: every unblocked row is done or Phil-gated. CI green on the last two real commits.
