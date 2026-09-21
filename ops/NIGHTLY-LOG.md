@@ -16,6 +16,14 @@ STEP 2: previous work finished. `python ops/preflight.py` clean (every gate pass
 
 **Handing the operator at :43:** confirm `checks.yml` run #1259 (commit `5db19292`) completed green; if not, that is real work, not a re-check. Otherwise, continue the cold-read lane at the next-lowest `ops/*.py` tier named by the last operator cycle: `build_all_prompts.py`, `build_manual_print.py`, `build_product_schema.py`, `build_pwa.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
 
+## 2026-09-21, cycle addendum (run #1259's own job steps checked directly, not just its still-`in_progress` status)
+
+Checked the job, not just the run: `checks.yml` run #1259's `Preflight` step, the exact step that failed on run #1258 (`gate_owner_actions_last_measured_current`, `gate_risks_traffic_citations_current`), completed with `conclusion: success` at 16:20:15, taking 18 minutes on GitHub's own runner (this sandbox's local runs took a similar 15-20 minutes this cycle, both traced to the same egress-denial retries against Stripe/Umami/Search Console before each falls back to its documented warning, not a hang). The run itself was still `in_progress` at check time, sitting in the ops test-suite step (231+ files, a normal multi-minute step), not stalled. This confirms the fix worked on GitHub's own infrastructure, independent of the local preflight result already cited above; the remaining steps (test suite, product-copy-drift check) were not yet complete and are still the next cycle's to confirm.
+
+Also shipped two further routine dashboard-regen commits this slot (`b76465b2`, `20f7cde0`), each checked byte-for-byte as timestamp/commit-pointer only before pushing, the same pattern preflight's own internal dashboard rebuild produces on every run.
+
+Pushed to main. Command deck only. No price or product touched, no page changed. IndexNow not applicable.
+
 Pushed to main (`7fff2728`). Command deck only. No price or product touched, no page changed. IndexNow not applicable.
 
 ## 2026-09-21, cycle addendum (post-push: two concurrent sessions' pushes merged, two real preflight failures found and fixed)
