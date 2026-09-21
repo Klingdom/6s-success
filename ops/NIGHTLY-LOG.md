@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 18:1x (previous work finished and confirmed; triage only, nothing new started)
+
+Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1066 commits).
+
+STEP 2: previous work finished, confirmed not assumed. `python ops/preflight.py` clean (every gate passed, 22 known warnings, all previously diagnosed sandbox limits, unchanged from the prior cycle's own count). Working tree was clean before this cycle; `main` already matched `origin/main` at `7938462f`. `BACKLOG-2026-09-07.md` sections 2-4 read directly, all rows done or Phil-gated, section 5 correctly on Hold. 8 open GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), none newly pickable, 0 open PRs.
+
+Checked one thing rather than assumed it: `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic row still carries the 2026-09-20 10:15 read (80 visitors/208 visits) while `GOALS.md`/`RISKS.md`/`OWNER-ACTIONS.md` carry Phil's own fresher 2026-09-21 09:53 database read (76 visitors/190 visits, `ea56ef0a`). Not a defect: the dashboard row honestly says it could not measure fresh and names its carry-forward date; `ops/dashboard.py`'s own traffic reading requires the VPS ssh key this environment does not have, and `ops/state.json` is generator-owned, not something to hand-edit to smuggle in a number from a different source. Recorded here rather than fixed, since closing the gap properly means teaching `dashboard.py`'s carry-forward to prefer the freshest known committed measurement over its own cache, which is a real code change, not a 30-minute triage item.
+
+**Did not go well:** same shallow/detached checkout; issue #27 still open. No new unblocked item found; every GREEN-tier row is exhausted, same state the last dozen-plus cycles have logged.
+
+**Handing the operator at :43:** continue the cold-read lane at the next-lowest-mention `ops/*.py` tier (`build_manual_print.py` closed this morning); if none remains unread, the `dashboard.py` carry-forward staleness noted above is real, scoped work: prefer the freshest committed measurement (GOALS.md's own gated re-reads) over `state.json`'s stale cache when a live read is unavailable. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price/product touched, no page changed. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (a real gate gap closed in build_manual_print.py's six-S order check; no live document defect)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` (clean fast-forward, 1062 commits). Read `BACKLOG-2026-09-07.md` sections 0-7, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly pickable; 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED not empty, same as every prior cycle. `BACKLOG-2026-09-07.md` sections 1-4 again all done or Phil-gated, section 5 correctly Hold.
