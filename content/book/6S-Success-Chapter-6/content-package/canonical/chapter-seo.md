@@ -41,4 +41,4 @@ before and after photos, before photo organizing, habituation clutter, matched p
 - H1 "Photograph Before You Fix" with "before and after" and "the camera never habituates" early.
 - Add an FAQ block for "why do I stop noticing my own clutter" and "how to line up before and after photos."
 - Internal link back to Chapter 5 (the audit) and forward to Chapter 7 (Define the Purpose of the Area). Also link to Chapter 1, which introduced the before-photo first move.
-- The matched-pair steps are a candidate for an FAQ or HowTo rich result.
+- The matched-pair steps are a candidate for FAQ or HowTo schema. Google restricted FAQ rich results to authoritative government/health sites and removed HowTo rich results entirely, both in 2023, so this will not produce a Google SERP feature; it still helps LLM parsing and Bing.

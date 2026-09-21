@@ -43,4 +43,4 @@ A mix of practical and method-curious. Some readers want a 6S or 5S audit tool f
 - Add an FAQ block for "what is a 6S audit" and "how do I know where to start in a messy room."
 - Internal link back to Chapter 4 (choosing the target) and forward to Chapter 6 (Photograph Before You Fix).
 - Offer the Home 6S Audit Form as a downloadable, which is a strong lead magnet and an appendix item.
-- The six-question scorecard is a candidate for an FAQ or HowTo rich result.
+- The six-question scorecard is a candidate for FAQ or HowTo schema. Google restricted FAQ rich results to authoritative government/health sites and removed HowTo rich results entirely, both in 2023, so this will not produce a Google SERP feature; it still helps LLM parsing and Bing.

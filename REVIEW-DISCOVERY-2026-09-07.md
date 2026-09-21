@@ -874,6 +874,26 @@ should not treat them as a Google lever, because that shapes where effort goes.
 **Effort.** a documentation correction.
 **Blocked on.** Nothing.
 
+**Status, 2026-09-21, operator: done.** Checked live rather than assumed:
+`STATUS.md`, `GOALS.md`, `ROADMAP-2026-2029.md` and `STRATEGY.md` do not
+claim HowTo/FAQ schema produces a Google ranking or SERP asset (grepped for
+"rich result"/"rich snippet"/"SERP feature" plus every HowTo/FAQ mention by
+hand; the existing lines describe the markup as present and correct, nothing
+about ranking). The stale claim this row warns against was live in five book
+content-package files instead (`content/book/*/canonical/chapter-seo.md`,
+chapters 3 x2, 4, 5, 6), each telling a content author the HowTo/FAQ schema
+"if you want step-by-step rich results" or "is a candidate for an FAQ or
+HowTo rich result", exactly the shape D17 names. Not customer-facing and not
+wired into any generator (`ops/corpus_index.py` only indexes the file, does
+not read this line; confirmed by grep, safe to hand-edit per `CLAUDE.md`
+5b). Corrected all five to state Google removed HowTo rich results and
+restricted FAQ rich results to authoritative government/health sites, both
+in 2023, so the markup will not produce a Google SERP feature here, while
+keeping the recommendation to add the markup for LLM parsing and Bing, per
+this row's own "not recommending removing them." No other file in the
+repository carries the claim (`grep -rl "rich result" content/` after the
+fix returns only the five corrected files, all now accurate).
+
 ### D18. What actually makes an answer engine cite us
 Ranked by what is in our control:
 1. **Being retrievable at all**, which for ChatGPT and Copilot means being in
@@ -974,8 +994,8 @@ Three workstreams, matching the `CLAUDE.md` section 18 limit.
 | D16 Make the FAQ answers visible | done 2026-09-07 (A3), confirmed 2026-09-21 |
 | D7 Fix the four ungrammatical titles | done, confirmed 2026-09-21 |
 | D6 (partial) Eliminate the three duplicate H1s | done, confirmed 2026-09-21 |
-| D15 Split the crawler log by purpose | nothing |
-| D17 Correct the HowTo/FAQ expectation in the operating docs | nothing |
+| D15 Split the crawler log by purpose | nothing for the tool (built, gated 2026-09-21), the real 30-day read needs the VPS SSH key |
+| D17 Correct the HowTo/FAQ expectation in the operating docs | done 2026-09-21 |
 | D11 Normalise spelling in body copy | done 2026-09-14 |
 | Fix the `deck-gallery-mudroom.html` orphan: it is in the sitemap with zero internal links. Link it or drop it from the sitemap | nothing |
 

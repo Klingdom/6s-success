@@ -44,4 +44,4 @@ where to start decluttering, first organizing project, declutter without overwhe
 - Add an FAQ block for "where should I start decluttering" and "should I start with the garage."
 - Internal link back to Chapter 3 (the six steps) and forward to Chapter 5 (The 6S Home Audit).
 - Use the First Target Map and the "first target in one line" definition as featured-snippet-friendly blocks.
-- The Target Scorecard table is a candidate for a how-to or table rich result.
+- The Target Scorecard table is a candidate for how-to schema markup, useful for LLM parsing and Bing but not a Google rich result (Google removed HowTo rich results in 2023). A table-based featured snippet from the scorecard's own content is still possible and does not need this markup.

@@ -45,4 +45,4 @@ A mix of informational ("the six steps of 6S in order") and practical how-to ("h
 - Add an FAQ block for "what are the six steps of 6S in order" and "why does the order of 6S matter."
 - Internal link back to Chapter 2 (What Is 6S?) and forward to Chapter 4 (How to Choose Your First Target Area).
 - Use the "loop in one line" as a featured-snippet-friendly definition block.
-- The under-sink cabinet angle can support a how-to schema (HowTo) variant if you want step-by-step rich results.
+- The under-sink cabinet angle can support a how-to schema (HowTo) variant. Google removed HowTo rich results in 2023, so this will not produce a Google SERP feature; it still helps LLM parsing and Bing.
