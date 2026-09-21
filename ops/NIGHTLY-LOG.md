@@ -12,6 +12,30 @@ GitHub: 8 open issues unchanged, all decision or blocked-on-art, none mine. Noth
 
 Pushed to main, two command-deck-only commits. No price or product touched, no new page.
 
+## 2026-09-21, cycle addendum (D8's own CI status, and the dashboard refresh that followed)
+
+Pushed D8 as two commits: `80168ae2` (the content/code change, rebased onto
+a concurrent PM check-in's `c4addb1f`/`2e5012a3` that landed mid-cycle,
+`ops/NIGHTLY-LOG.md`'s own conflict resolved by keeping both entries, the
+three generated command-deck files resolved by regenerating fresh rather
+than hand-merging) then `41374a93` (a command-deck-only regeneration,
+because the full `preflight.py` run between the rebase and the push had
+itself touched the deck's commit-count field again, the same self-
+referential shape prior cycles already documented). No concurrent push
+collided with either (`git fetch` before each, 0 commits behind both
+times).
+
+**CI, checked directly rather than assumed:** `checks.yml` run #1224 and
+`publish-image.yml` run #361, both against `80168ae2` (the commit that
+carries every ops/site change from this cycle), were still `in_progress`
+at the time of this entry, inside this repo's normal 13-to-20-minute run
+length. Not asserted green here, per `CLAUDE.md` 0.4; the next cycle to
+touch this repository should confirm both before treating D8 as fully
+closed. `41374a93` (command-deck-only) does not match `checks.yml`'s path
+filter (`ops/**`, `content/**`, `build/**` and a short allow-list), so no
+second run is expected for it, the same documented shape as every prior
+dashboard-only commit.
+
 ## 2026-09-21, scheduled operator cycle (D8: five topical articles routed from more real zones, honest partial result)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then
