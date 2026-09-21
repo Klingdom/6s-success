@@ -2,6 +2,67 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 22:2x (previous work verified finished, this cycle's own CI still confirming, handed to the operator)
+
+Attached clean (shallow/detached as usual, issue #27): `fetch --unshallow`,
+`checkout main`, `merge --ff-only` onto `origin/main` (`4851cfed`, the C11
+corporate-LinkedIn commit). Read the last several `NIGHTLY-LOG.md` entries,
+`BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub: 8 open
+issues, unchanged, all `decision` and/or `blocked-on-art` labelled, none
+actionable without Phil.
+
+**STEP 2, first question: was the prior PM handoff actually finished?**
+Checked directly rather than trusted: the prior check-in's own open item
+was CI confirmation on `3fda4039` (the `publish-image.yml` generator-drift
+fix). Both `checks.yml` run #1266 and `publish-image.yml` run #370
+completed `success` against that exact commit. That handoff is closed.
+
+**Second question: did the C11 cycle that landed on top of it verify its
+own commit's CI before calling itself done?** No: its own log entry never
+checked GitHub. Made that this cycle's own verification rather than
+starting new work on top of an unconfirmed push. `checks.yml` run #1267
+against `4851cfed`: `Preflight` step passed (`gate_corporate_linkedin_claims_current`
+included), but took 18 minutes on GitHub's runner, and the ops test suite
+step (234 files) was still running past the 24-minute mark when this
+slot closed, longer than the 15-20 minute window prior cycles have measured.
+No failure signal at any completed step; nothing here looks like a hang,
+just a slow shared runner. `publish-image.yml` did not trigger for this
+commit (it touches no `site/**` path), so nothing to confirm there.
+
+Ran `preflight.py` locally in the meantime: every gate passed, 22 known
+warnings, matching the CI `Preflight` step's own result. Its
+`gate_etsy_pdfs_current` check briefly left `build/listings/etsy/**`
+looking modified mid-run (rendering PDFs to compare text); confirmed this
+is the gate's own documented restore-after-compare behaviour, not a stray
+change, by rereading `_restore_etsy_all()` and rechecking `git status`
+once the run finished (clean). Committed and pushed the dashboard
+regeneration that same preflight run produced (`71a2f93a`), the routine
+STEP 6 regen, not new content.
+
+**Handing to the operator at :43:** confirm `checks.yml` run #1267 reaches
+a conclusion on `4851cfed` and record it. If it comes back green, the next
+genuinely unblocked lane is `REVIEW-COMMERCE-2026-09-07.md` section 7's
+remaining C-rows (C12/C13, the free B2B scoring sheet and two more
+B2B-intent articles; C6-C10/C17/C20 are larger-scope or below the traffic
+constraint per that document's own ordering; C1/C2/R1-R4 need Stripe
+credentials). If it comes back red, diagnosing that failure is the
+operator's next unblocked item ahead of anything new.
+
+**Went well:** treating "committed" and "CI-confirmed" as different
+claims rather than closing the loop on the first one alone, the same gap
+that cost this repository real trust before (CLAUDE.md 0.3/0.4).
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue
+#27 still open. A 30-minute PM slot spent mostly watching one CI run
+confirm is not efficient triage, but starting new work on an unconfirmed
+push risks stacking one unverified change on another.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+Pushed to main (`71a2f93a`, dashboard regen only, already landed before
+this log entry). This entry itself ships next. No price or product
+touched, no new page. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (C11: a corporate LinkedIn post track, the last open "At" tier item in REVIEW-COMMERCE section 7)
 
 **Did:** Checkout arrived shallow and detached as usual (issue #27); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean. `python ops/preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits: no Stripe/mail/SSH/Pillow credential, no egress). Read `BACKLOG-2026-09-07.md` sections 0-7 in full: every unblocked row again done or Phil-gated. Read `GOALS.md`: the constraint is still arrivals, three consecutive weekly falls (18, 14, 10). Per decision rule 1 ("distribution beats production") and the ordering in this run's own instructions (traffic before conversion before product), read `REVIEW-COMMERCE-2026-09-07.md` section 7, the active line several concurrent sessions today (C15/C16/C18) had already been working: C11, a corporate LinkedIn post track for the B2B Lean 6S offer, was the one remaining "At" tier (plausibly increases arrivals), unblocked, no-credential item.
