@@ -22,6 +22,26 @@ With preflight genuinely clean, picked D9 (`REVIEW-DISCOVERY-2026-09-07.md` sect
 
 Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_zone_relations_rendered.py`, 69 `site/zones/*.html` pages, `BACKLOG-2026-09-07.md`, `REVIEW-DISCOVERY-2026-09-07.md`, command deck. No price or product touched, no new page; IndexNow will pick up the 69 changed pages on its next successful run (no egress from this sandbox to submit directly).
 
+## PM check-in, 2026-09-21 00:4x (previous work was NOT finished: D8's own publish-image.yml had failed and never shipped; fixed and reshipped; D9 handed to the operator)
+
+NEXT FOR THE OPERATOR: start D9 (route link equity into the zone pages, `REVIEW-DISCOVERY-2026-09-07.md` section 4, "Blocked on. Nothing," ~1 operator-day), because it is the same unblocked handoff two prior check-ins already named and D8 is now genuinely closed rather than merely locally verified.
+
+Attached cleanly, no reset. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several log entries, `gh issue list`: 8 open issues unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**STEP 2's answer was no.** The prior check-in's own addendum had correctly declined to call D8 finished (`checks.yml` still `in_progress`, per CLAUDE.md 0.4). Checked both runs directly rather than trust that entry's hope it would land green: `checks.yml` #1224 on `80168ae2` did eventually pass, after 36 minutes, well past this repo's usual 13-to-20-minute range. But `publish-image.yml` #361 on the same commit had already **completed with `conclusion: failure`**, at its `Preflight, including generator ownership` step: `gate_generator_ownership` found `ops/sitemap-content-hashes.json` and `site/sitemap.xml` differing from what their own generator produces. D8 touched 22 zone pages; its own commit never regenerated the sitemap, so 19 of those pages kept the pre-D8 content hash and a 2026-09-20 `lastmod` a day stale. `checks.yml` runs plain `preflight.py`, which does not include this gate; `publish-image.yml` runs `preflight.py --own`, which does, and that is the only reason the two workflows disagreed on the same commit.
+
+**This is real unfinished work, not a flake, so it became this cycle's job per STEP 2.** Regenerated both files with their own generator (`ops/build_seo.py`), confirmed no other file was owned-and-drifted (`preflight.py --own`'s regenerate-and-diff needs a clean tree to mean anything; ran it after committing, not before). Shipped as `58a4dca27` via `ops/ship.py --no-deploy`. This also explains why `publish-image.yml` had not actually published anything for six commits (HEAD's image was stuck on `8cc21c1`, the last commit that passed this gate); the fix closes that gap, not just the next failure.
+
+**Verified, not assumed:** `58a4dca27` triggered fresh `checks.yml` #1225 and `publish-image.yml` #362, both `in_progress` as this entry is written, too early to report either way. The next cycle to touch this repository should confirm both rather than inherit this claim.
+
+**Went well:** treating a CI failure discovered mid check-in as the cycle's actual work rather than picking a fresh backlog item while D8 sat broken; noticing the two workflows' differing `preflight.py` invocations explained the disagreement instead of assuming one run was wrong.
+
+**Did not go well:** D8's own cycle ran `preflight.py` fast and full but apparently not `--own` before shipping (or ran it before the sitemap drift existed), so the exact gate that would have caught this locally was not the one exercised; CI's own path-filtered second workflow was the only reason this was caught before it went further unnoticed.
+
+**Changing next cycle:** none new; run `preflight.py --own` before shipping any commit that touches generated site content, not only the fast pass, since `--own` is what actually proves generator-owned files match.
+
+Pushed to main (`58a4dca27`). `ops/sitemap-content-hashes.json`, `site/sitemap.xml`, command deck. No price or product touched, no new page; the 19 already-published zone pages get a corrected `lastmod`, nothing new to submit to IndexNow.
+
 ## PM check-in, 2026-09-21 00:2x (previous work locally finished, CI on D8 still in progress; a stale command deck found and fixed twice; D9 handed to the operator)
 
 Attached cleanly, no reset. D8 was already pushed; preflight.py finished clean during this check-in, every gate passed, 22 warnings, all previously diagnosed. CI on D8's own commit was still in_progress after two polls, not claimed green.

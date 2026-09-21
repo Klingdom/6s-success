@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-21 01:10",
- "commit": "58a4dca2",
- "commit_msg": "Fix the sitemap generator drift that blocked D8's publish",
- "commits_7d": 1214,
- "commits_total": 3121,
+ "generated": "2026-09-21 01:11",
+ "commit": "c9de5778",
+ "commit_msg": "Fix a live CI-blocking sitemap defect, then D9: route link equity into 69 zone pages",
+ "commits_7d": 1215,
+ "commits_total": 3122,
  "traffic_line": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-20 10:15",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
