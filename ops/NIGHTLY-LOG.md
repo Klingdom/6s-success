@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 13:1x (previous work finished and verified; three more low-mention ops/*.py files cold-read clean; nothing newly unblocked)
+
+Attached onto `6618808b` (the 12:4x handoff's own close-out), fast-forward, no reset (1004-commit unshallow, checkout arrived shallow/detached as usual, issue #27 unchanged).
+
+STEP 2: previous work finished. `preflight.py` fast: every gate passed, 22 warnings, all standing (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed, deploy freshness unmeasured). CI confirmed directly via the GitHub Actions API: `checks.yml` run #1244 is `success` on `cbd649d8`, the last commit that touched real code; the three commits since (12:4x check-in, the dashboard regen, and the --deep close-out) all touch only the excluded generated/log paths, so no run was expected and none is missing.
+
+STEP 3: read `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md` and all 8 open GitHub issues (unchanged: 33/32/31/21/18/15 `decision`, 29/2 `blocked-on-art`); every row is done or genuinely Phil-gated (Search Console, YouTube auth, Stripe business description all need Phil's own account access). Continued the standing low-mention `ops/*.py` cold-read: `build_product_schema.py`, `check_video_links.py`, `media_capability.py`, none read by name in this log before. All three correct. Ran the first two directly rather than trusting the read: `build_product_schema.py` produced 0 diff against the live `shop.html`/`consulting.html` (160 product graphs, every price matches the catalogue, no drift); `check_video_links.py` correctly reported all 12 video links UNCHECKED (egress denied, HTTP 403 from the proxy) rather than claiming them fine, exactly the CLAUDE.md 0.4 shape. `media_capability.py` read cold: its "never prints a secret" claim holds, present/absent and auth-result are the only things printed.
+
+**Went well:** verifying the generator produced zero diff instead of reading the code alone and calling it clean.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open.
+
+**Next:** handing the operator at :43 the next low-mention tier (`build_youtube_metadata.py`, `import_room_images.py`, `render_all_zone_videos.py`, `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py`, `wire_pwa.py`) since a full sweep needs more than a 30-minute slot. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only, no hand-authored file touched, no price, product or page changed. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (the standing preflight.py --deep handoff closed clean; seven low-mention ops/*.py files cold-read, no live defect found)
 
 **Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (a 1004-commit fast-forward, then a second small fast-forward mid-cycle onto `5bef5d15`, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `REVIEW-DISCOVERY-2026-09-07.md` and the newest `NIGHTLY-LOG.md` entries. `preflight.py` fast: clean, 22 warnings, all standing. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty. Every backlog/review row is done or Phil-gated; nothing newly unblocked.
