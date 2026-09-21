@@ -35,7 +35,15 @@ The eBook's move from $18 to $9.99 is the one that matters. This file's own
 opening rule is that a price with no recorded reason gets re-argued by whoever
 feels strongest that day, and that is exactly the position the eBook is now in:
 it is live at $9.99 and **no record anywhere says who changed it, when, or
-why.**
+why**, and that history is unrecoverable from this repository's own record.
+
+**Ratified, not re-derived: `DECISIONS.md` D-022 (2026-09-21) now settles this
+price going forward.** It does not claim to have found the original reason;
+it states plainly that the history is unknown and unrecoverable, and ratifies
+$9.99 on current evidence instead (0.4's fee-load table below: 5.9%,
+second-lowest of any single SKU). Do not re-open this on the theory that the
+missing history is still an open question, only on the second sale D-022
+names as its own revisit trigger, or on Phil's direction.
 
 The bundle's advertised saving on the shop tile is arithmetically correct
 against the live prices ($57.99 less $49 is $8.99, and the tile says $8.99), so
