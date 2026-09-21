@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-21 04:23",
- "commit": "61ff3dfe",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
+ "generated": "2026-09-21 04:48",
+ "commit": "bb751052",
+ "commit_msg": "PM check-in: settle the D9 done-vs-partial contradiction between the last two NIGHTLY-LOG entries with a fresh link_graph_report.py measurement (D10 did not move D9's number)",
  "commits_7d": 1225,
- "commits_total": 3147,
+ "commits_total": 3148,
  "traffic_line": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "971 pageviews from 80 visitors across 208 visits, 2026-08-20 to 2026-09-20. **441 of those pageviews came from 2 automated session(s)**, leaving 530 from 78 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-20 10:15",
