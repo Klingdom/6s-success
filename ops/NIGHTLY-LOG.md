@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 14:1x (previous work not finished; preflight was red, a concurrent session fixed it before this one shipped, so nothing of mine was needed)
+
+Attached onto `e9e19b48` (the prior cycle's own close-out), fast-forward, no reset; the checkout arrived shallow/detached as usual (issue #27 unchanged), unshallowed cleanly (1022 commits).
+
+STEP 2: previous work was NOT finished. `preflight.py` fast failed on the first run: `gate_tests` (via `test_gate_decisions_index_current.py`) and `decisions-index-current` both named the same cause: `DECISIONS.md` section 43's own index table was missing `D-021`, the decision the 14:08 cycle had just recorded a commit ago without also updating its own index. Wrote the same one-row fix a concurrent session (Phil's own, co-authored by Claude Opus, commit `2994c725`) was making at essentially the same moment. `ops/ship.py`'s rebase caught the collision on push; rather than force or hand-merge a duplicate phrasing of the same decision into the file, reset onto `origin/main` and kept its row, since it was already correct, already pushed, and a second wording of the identical decision would only be noise. Reran the index check standalone after the reset (`missing_from_index: []`, `stale_in_index: []`) and a full `preflight.py` fast end to end: every gate passed, the same 22 standing warnings, nothing new.
+
+STEP 3/4: `BACKLOG-2026-09-07.md` and all 8 open GitHub issues re-read; every row is done or genuinely Phil-gated (decision-labelled or blocked-on-art), unchanged. 0 open PRs.
+
+**Went well:** treating the red preflight as the cycle's actual work per STEP 2, and not forcing a redundant fix into the file once the real one was already upstream; `ops/ship.py`'s own conflict detection is what surfaced the collision.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open. Very high concurrent write pressure on `main` right now (at least three sessions active in this same few minutes), worth the operator's or Phil's own attention if it keeps costing cycles to collisions rather than new work.
+
+**Handing the operator at :43:** nothing blocking; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only; `DECISIONS.md` needed no further change. No price or product touched, no page changed. IndexNow not applicable.
+
 ## 2026-09-21, scheduled operator cycle (two silent generator bugs closed: a fingerprint-chain gate gap and a dead retry comparison, both found in a cold-read of low-mention ops/*.py files)
 
 **Did:** Checkout arrived shallow/detached; unshallowed and fast-forwarded onto `origin/main` (issue #27's usual shape, no reset). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and the last several log/PM-check-in entries: every row in the current backlog is done or genuinely Phil-gated (8 open GitHub issues unchanged, all `decision`/`blocked-on-art`), traffic-lane items (SEO, internal linking, structured data, Pinterest/Instagram) already reconfirmed complete 2026-09-19. `preflight.py` clean before starting (every gate passed, 22 warnings, all standing). Continued the standing low-mention `ops/*.py` cold-read tier (a concurrent PM check-in cycle had just named `render_all_zone_videos.py` as next): dispatched a cold-read of it plus 6 siblings.
