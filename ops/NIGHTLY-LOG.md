@@ -23,6 +23,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Continue the low-mention `ops/*.py` cold-read with `build_app_icons.py`/`video_zone_photo.py`.
 
 Pushed to main. Command deck only; no hand-authored file changed, no price, product or page touched. IndexNow not applicable.
+## Interactive session, 2026-09-21 07:50 to 11:0x MDT (measurement followed through, then two critical risks moved from belief to evidence)
+
+**The crawl signal held.** Googlebot content fetches closed at 17 on 20 Sep and were 11 by 08:00 on 21 Sep with the day unfinished, against 1.3 a day across the ten days before, and broad rather than concentrated (28 fetches, 23 distinct pages). Still no control and three changes in the window, so it stays recorded as a real sustained change in crawler behaviour with cause unattributed. Production was 99 commits behind; deployed and smoke-tested.
+
+**Two hypotheses closed by measuring instead of arguing.** Zone pages are not thin or templated: 3,170 words a page, only 27% of a page's words in sentences shared with half the others, zero shared text before each page's first unique sentence, 114 distinct titles and descriptions. That is a negative finding worth as much as a positive one, because it stops weeks of rewriting 114 pages against no evidence. And M6's "21-day read" gate cannot be answered at all: since M4 shipped, all 114 zone pages together have 247 pageviews from **5 visitors** across 115 paths, which is a sweep, not reading, while the impressions half needs a Search Console nobody has verified. Recorded as D-021 with a condition that can actually be met, so no future session re-litigates it.
+
+**RISK-0007, first restore drill ever run.** Clean container from the registry image on a spare port, never touching production: 1.38s to serving, verified by build id and all 159 products. Stated with its scope, because a recovery number quoted without one is how an outage becomes a surprise: that is container loss on a healthy host, not a lost host. The real find was that the reverse proxy config has never been in Git, only inside a container on the machine a disaster removes. Now documented field by field.
+
+**RISK-0011, the masters had no backup at all.** File History off, Windows Backup off, no shadow copies, and OneDrive running but syncing a *different* Desktop holding zero 6S folders. No backup plus confidence, which is worse than no backup. The irreplaceable part is the 89 Entryway deck PNGs: hashed every one against all 5,162 PNGs in the repository, none are here. A finished product existed in exactly one place on earth. Copied 396 MB of irreplaceable masters into OneDrive, every file checksum-verified, leaving out 1.99 GB of regenerable video.
+
+**RISK-0003, swept the thing that "could not be swept here".** The register said eight heroes were unclassified for trademark content "since no OCR exists in this environment". OCR is not the only way to read an image. All 88 card heroes reviewed, the 7 rejected ones hash-checked first so the image judged is the image on record. No legible third-party mark anywhere; the two historical Amazon defects confirmed gone. Three carry pseudo-branding, of which ET-003's boot plaques imitate a real maker's mark and it should stay rejected on IP grounds, not only aesthetic ones. Recording that exposed a second defect: `review_heroes.py` replaced the whole verdict record on every mark, so any reason written beside a verdict was destroyed silently. Fixed and proved by re-marking through the real CLI.
+
+**Went well:** running controls before believing anything. A search-engine query that returned nothing also returned nothing for pages known to be indexed, which stopped me reporting "no zone pages indexed" as a finding.
+
+**Did not go well:** nothing new; the repository's own hooks caught two of my mistakes (an unindexed decision, a heredoc that ate a backslash into a control byte) before either entered history.
 
 ## PM check-in, 2026-09-21 14:4x (previous work finished; handoff to the operator, no new defect worked this slot)
 
