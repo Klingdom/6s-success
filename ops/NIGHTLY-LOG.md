@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (a real preflight FAIL diagnosed as the known transient probe-file race, confirmed rather than assumed; six-file cold-read fallback closed clean)
+
+**Did:** Unshallowed, fast-forwarded onto origin/main (981-commit ff, no reset/force). Read backlog, roadmap, CLAUDE.md, last four log entries. First `preflight.py` run FAILED: `gate_no_stray_probe_files` named 5 leftover `_measure_probe_*.html` fixtures. Checked rather than trusted: `git status` clean, files absent from disk, the same transient shape (a concurrent `test_measure_events.py` fixture caught mid-write) already diagnosed three times earlier. Reran fresh: every gate passed, 22 warnings, all previously diagnosed. GitHub: 8 issues unchanged. Inbox: no mail credential, standing state. Every backlog row again done or Phil-gated; continued the low-mention `ops/*.py` fallback: `browser.py`, `build_card_template.py`, `build_catalog.py`, `check_cron_cadence.py`, `checkin.py`, `deploy.py`. All six correctly implemented, already wired in; no defect found.
+
+**Verified:** the stray-probe FAIL was transient, confirmed by disk/git state directly, not by a clean rerun alone. No SSH deploy key, no egress in this sandbox (curl to 6s-success.com and google.com denied by proxy policy), the standing diagnosed limits, not new.
+
+**Went well:** not writing off the FAIL without checking it, not treating a clean rerun as proof by itself.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27).
+
+**Changing next cycle:** none; no defect, no new gate.
+
+**Next:** continue the cold-read fallback (`fix_dashes.py`, `ship.py`, next lowest-mention files). Standing Phil-blocked list and the 8 decision/blocked-on-art issues unchanged.
+
+Pushed to main. Command deck only (self-referential: generated timestamp, commit hash/message, commit counts). No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 07:1x (previous work finished and verified; nothing new genuinely unblocked; revenue_model.py cold-read closed clean)
 
 Attached cleanly: shallow, detached; fetch --unshallow then merge --ff-only onto origin/main (980-commit fast-forward, no reset or force), landing cleanly on the operator's own ea004b8d (verify_deploy.py PAGES fix) and the 06:4x PM check-in.
