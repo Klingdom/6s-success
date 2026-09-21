@@ -1847,6 +1847,64 @@ named. It was proved to fail on a planted fault before being trusted.
 
 ---
 
+## D-021 | 2026-09-21 | M6's "21-day read" gate cannot be answered and must stop being re-litigated; it stays shut on a different, honest reason
+
+**Decision.** `PLAN-MICROZONES-DECKS-APP.md` M6 (author `diagnosis` for the
+remaining 102 zones, 4.0 days) stays closed, but NOT "until the 21-day read",
+because that read cannot be produced. Replace the gate's condition with: **M6
+opens when zone pages have genuine human readers to serve, evidenced by
+entrances from more than a handful of sessions, or when Search Console
+produces a real impressions read.** Neither exists today.
+
+**Why the original gate is unanswerable, measured 2026-09-21 rather than
+assumed.** M6 was gated on `analytics-intelligence` reporting "whether the 12
+pilot pages moved on impressions or entrances against the other 102". Both
+halves are unavailable:
+
+- **Impressions** need Google Search Console, which is verified to nothing
+  (`OWNER-ACTIONS.md` 1a, and `preflight.py`'s standing `site-verification`
+  warning). Owner-gated since August.
+- **Entrances do not exist to compare.** Read directly from the Umami
+  database: since M4 shipped on 2026-09-07, all 114 zone pages together have
+  **247 pageviews from 5 distinct visitors across 115 distinct paths**. Five
+  sessions touching 115 different zone pages is a sweep, not reading, and
+  `LEARNINGS.md` LRN-0010 already attributes traffic of that shape to the
+  household's own devices. All-time it is 307 pageviews from 19 visitors.
+- The crawl side is no better: verified search engines fetched the 12 pilot
+  pages **9 times** in the whole period since M4, against 98 for the other
+  102. Per page that is 0.8 versus 1.0. Nothing can be concluded from nine
+  events.
+
+**Why this matters more than it looks.** The gate as written is circular: it
+waits for traffic to justify work whose stated purpose is partly to attract
+traffic. Left as-is, every future session re-reads it, re-checks it, finds it
+"still open", and either burns the cycle or, worse, eventually declares the
+pilot a success on five sessions of household sweeping. That second outcome is
+the one this decision exists to prevent.
+
+**And the SEO half of the rationale is now positively ruled out.** Measured
+the same day and recorded in `LEARNINGS.md` LRN-0013: the 114 zone pages
+average 3,170 words, only 27% of a page's words appear in sentences shared
+with half the others, no page carries shared text before its first unique
+sentence, and all 114 titles and descriptions are distinct. On-page depth,
+uniqueness, structure and metadata are all ruled out as causes of weak search
+performance. So M6 should not be justified by an expected search gain. Its
+real case is product coherence: `CLAUDE.md` section 6 says diagnose before
+prescribing, and 102 of 114 zones still prescribe without diagnosing.
+
+**Consequences.** M6 stays unstarted, and the four days stay available for
+work downstream of the actual constraint, which is arrivals. The 12 pilot
+zones keep their diagnosis, capacity and variants blocks; nothing is removed.
+When M6 does open, it opens on product-coherence grounds with no traffic
+promise attached to it.
+
+**Revisit when.** Search Console produces its first impressions read, or zone
+entrances come from more than a handful of sessions in a 30-day window, or the
+product decides diagnosis coherence alone justifies the four days regardless
+of traffic.
+
+---
+
 ## D-019 | 2026-09-21 | No new indexable page (no new article, no new zone) until the first Search Console read
 
 **Decision.** Hold the sitemap at its current 187 URLs. Do not publish

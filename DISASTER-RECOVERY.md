@@ -180,6 +180,139 @@ Do not invent aggressive objectives unsupported by actual architecture.
 
 ---
 
+# 7b. MEASURED: the first restore drill, 2026-09-21
+
+This section replaces belief with one measured number and, more usefully, with
+a list of what the number does not cover. `RISKS.md` RISK-0007 has been open
+as CRITICAL since the register was written, on the grounds that "whether the
+site can actually be restored is UNKNOWN, because it has never been done". It
+has now been done once.
+
+## What was run
+
+A clean container was created on the VPS from the registry image, by digest,
+on a spare port, without touching the running production container:
+
+```
+docker pull ghcr.io/klingdom/6s-success@sha256:eb7a6c98...b8dfb7
+docker run -d --name 6s-restore-drill -p 18980:80 <digest>
+```
+
+## What was measured
+
+| Step | Time |
+|---|---|
+| `docker pull` (layers already on this host) | 0.46 s |
+| `docker run` | 0.38 s |
+| First HTTP 200 from the new container | 0.54 s |
+| **Total** | **1.38 s** |
+
+Correctness was checked, not assumed: the restored container served build id
+`b0b1e02558428cb1`, matching the repository, and all **159** catalogue
+products.
+
+## What that number is, and what it is not
+
+**It is** the honest recovery time for the most likely incident by far: the
+container is lost, corrupted, or a bad deploy needs rolling back, on a host
+that is otherwise fine. In that case the site is back in under two seconds and
+no data is at risk, because the site is static and every byte it serves comes
+from the image.
+
+**It is not** a recovery time for a lost host. That drill did not run and
+cannot honestly be claimed. A rebuild onto a new machine additionally needs:
+
+1. **Provisioning** a new VPS. Owner-gated: it costs money and needs the
+   Hostinger account.
+2. **Downloading the image cold.** 196 MB compressed. The drill's 0.46 s pull
+   was served from layers already on the host and must not be read as a
+   network figure.
+3. **Recreating the reverse proxy.** This is the real gap and it is documented
+   in section 7c below, because until now it existed nowhere but inside a
+   container on the machine we would have just lost.
+4. **A new TLS certificate.** Let's Encrypt reissues automatically once DNS
+   resolves to the new host, so this is minutes, not a blocker.
+5. **DNS.** Unchanged: the apex A record and the www CNAME both point at the
+   host's address (Hostinger nameservers), so a new address means one record
+   edit in hPanel. Owner-gated.
+
+## 7c. The reverse proxy is the one piece of production not in Git
+
+Read off the running host on 2026-09-21. `6s-success.com` is served by Nginx
+Proxy Manager's **proxy host 4**, whose configuration lives only in NPM's own
+data volume. If the VPS is lost, this must be recreated by hand, and nothing
+in this repository previously said what it contained. It does now:
+
+| Setting | Value |
+|---|---|
+| Domain names | `6s-success.com`, `www.6s-success.com` |
+| Scheme | `http` |
+| Forward host | `187.77.25.50` (the host's own public address) |
+| Forward port | `8973` |
+| Websockets | on (`Upgrade`/`Connection` headers set) |
+| Block common exploits | on |
+| Force SSL | on |
+| HTTP/2 | **off** |
+| Certificate | Let's Encrypt, stored as `npm-6` |
+| Access log | `/data/logs/proxy-host-4_access.log` |
+
+Two things worth fixing, neither done here because both change live routing
+and NPM owns this file (editing `4.conf` directly is overwritten by NPM's own
+regeneration; it has to be done through its UI):
+
+- **The forward host should be the container, not the public IP.** It
+  currently proxies to `187.77.25.50:8973`, so traffic leaves the box and
+  comes back. The site container already carries the network alias
+  `6s-success` on the shared `6s-proxy` network
+  (`docker-compose.hostinger.yml`), so `6s-success:80` would work and would
+  remove the dependency on port 8973 being reachable on the public interface.
+  This is the same defect that was fixed *inside* the site's own config on
+  2026-09-17, where the analytics and mailing-list upstreams pointed at the
+  public address for the same reason.
+- **HTTP/2 is off**, which `OWNER-ACTIONS.md` item 9 already tracks.
+
+---
+
+# 7d. The analytics history now has an off-host copy, and it was proved by using it
+
+**The exposure, named 2026-09-21.** Every traffic figure this business has
+ever quoted comes from one Postgres container on one VPS. Nothing in this
+repository held a copy, and the host-level backup has never been restored. The
+site itself is static and loses nothing, but the measurement history is the
+only evidence of what anyone has ever done here, and it was one machine away
+from gone.
+
+**What now exists.** `ops/backup_analytics.py` pulls this website's rows to a
+local, gitignored `backups/` directory as gzipped CSV, and re-reads each file
+after writing it, because writing a file is not the same as having the data.
+
+**It exports this site only, on purpose.** That container serves three
+websites. A whole-database `pg_dump` would copy another business's analytics
+onto the owner's machine, which is not ours to move (`CLAUDE.md` 36b, and the
+privacy rule in section 47). Only rows belonging to the 6S Success website id
+are taken; the child tables are reached through `website_event`, because only
+`website` and `website_event` carry the id directly.
+
+**CSV, not a database dump, also on purpose.** The goal is that the numbers
+survive, not that the container can be cloned. A CSV of a few thousand rows is
+readable in ten years by anything; a dump is hostage to a Postgres version.
+
+**First export, 2026-09-21:** 1,422 `website_event` rows, 1,230 `event_data`
+rows, 1 `website` row, covering 2026-08-20 to 2026-09-21. 123 KB compressed.
+
+**Proved by using it, not by trusting it.** The headline metrics were
+recomputed from the CSV alone, with no access to the VPS: 973 pageviews, 80
+visitors, 210 visits, and the same top pages. The live database read hours
+earlier gave 971 / 80 / 208, the two-event difference being traffic that
+arrived in between. So the copy reproduces the numbers this business actually
+reports.
+
+**What it does not cover.** It is a point-in-time copy on the owner's own
+machine, taken when someone runs it. There is no schedule, no off-site third
+copy, and no retention policy. It is one honest copy where there were none.
+
+---
+
 # 8. Initial Recovery Objective Framework
 
 Until measured and approved:
