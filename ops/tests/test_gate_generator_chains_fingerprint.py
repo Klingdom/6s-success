@@ -19,6 +19,18 @@ six before it, and the gate gained a second, direct trigger: any literal
 href to an unversioned .css or .js under assets/. The cases below prove both
 triggers independently and together.
 
+Widened 2026-09-21: the scan only ever looked at build_*.py, and the href
+trigger only ever matched href=, not src=. ops/wire_measure.py fell through both holes at once: its filename does not
+start with build_, so the scan never looked at it, and it writes its script
+tag with src="{pre}assets/js/measure.js", an f-string placeholder
+immediately after the quote, not a literal href=. Reproduced
+live: copying the repository to a scratch directory and running
+`python ops/wire_measure.py` standalone stripped the ?v= hash off every one
+of 190 pages' measurement tag, confirmed by diff. Fixed by widening the
+scan to wire_*.py and canonical_links.py, widening the trigger regex to
+match src= and an optional {name} placeholder before assets/, and chaining
+fingerprint_assets.main(False) at the end of wire_measure.py's own main().
+
 Run:  python ops/tests/test_gate_generator_chains_fingerprint.py
 """
 import io
@@ -117,11 +129,49 @@ def test_mixed_only_flags_the_offender():
     assert "build_good.py" not in names[0]
 
 
-def test_non_build_file_ignored():
-    """Only build_*.py is in scope; a same-shape helper module should not be
-    scanned, since it is not one of the page generators this gate protects."""
+def test_unrelated_file_ignored():
+    """build_*.py, wire_*.py and canonical_links.py are in scope; a helper
+    module outside those three shapes should not be scanned, since it is not
+    one of the page generators this gate protects."""
+    fails = _run({"corpus_index.py": MISSING})
+    assert not fails, "a file outside the protected shapes should never " \
+        "be scanned: %r" % (fails,)
+
+
+def test_wire_file_scanned():
+    """wire_*.py must be scanned too. This is the wire_measure.py shape
+    itself: MISSING is a same-shape stand-in for build_avif.wire()."""
     fails = _run({"wire_something.py": MISSING})
-    assert not fails, "a non build_*.py file should never be scanned: %r" % (fails,)
+    assert fails, "a wire_*.py file chaining build_avif.wire() with no " \
+        "fingerprint_assets.main() should fail, and did not"
+    assert "wire_something.py" in fails[0][1]
+
+
+SRC_PLACEHOLDER_MISSING = (
+    'pre = "../"\n'
+    'block = f\'<script defer src="{pre}assets/js/measure.js"></script>\'\n'
+)
+
+SRC_PLACEHOLDER_PRESENT = SRC_PLACEHOLDER_MISSING + (
+    "import fingerprint_assets\n"
+    "fingerprint_assets.main(False)\n"
+)
+
+
+def test_src_placeholder_trigger_missing_fingerprint_fails():
+    """The real ops/wire_measure.py shape: src=, not href=, with an f-string
+    placeholder immediately after the opening quote and before assets/."""
+    fails = _run({"wire_measure.py": SRC_PLACEHOLDER_MISSING})
+    assert fails, "a wire_*.py file with an unversioned src= placeholder " \
+        "asset reference and no fingerprint_assets.main() should fail, " \
+        "and did not"
+    assert "wire_measure.py" in fails[0][1]
+
+
+def test_src_placeholder_trigger_present_fingerprint_passes():
+    fails = _run({"wire_measure.py": SRC_PLACEHOLDER_PRESENT})
+    assert not fails, "a wire_*.py file with the src= placeholder but also " \
+        "the fingerprint chain should pass: %r" % (fails,)
 
 
 def test_href_trigger_missing_fingerprint_fails():
@@ -162,9 +212,13 @@ def test_real_repository_is_clean():
 
 TESTS = [test_missing_fingerprint_fails, test_present_fingerprint_passes,
          test_not_applicable_passes, test_mixed_only_flags_the_offender,
-         test_non_build_file_ignored, test_href_trigger_missing_fingerprint_fails,
+         test_unrelated_file_ignored, test_wire_file_scanned,
+         test_href_trigger_missing_fingerprint_fails,
          test_href_trigger_present_fingerprint_passes,
-         test_already_versioned_href_not_flagged, test_real_repository_is_clean]
+         test_already_versioned_href_not_flagged,
+         test_src_placeholder_trigger_missing_fingerprint_fails,
+         test_src_placeholder_trigger_present_fingerprint_passes,
+         test_real_repository_is_clean]
 
 
 def main():

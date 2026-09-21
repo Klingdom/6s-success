@@ -13937,10 +13937,30 @@ def gate_generator_chains_fingerprint() -> None:
     guessed: this pattern hit exactly the 9 real page generators that write
     such a literal, all 9 already correctly chaining the fingerprinter
     after this fix, zero false positives against the rest of the tier).
+
+    Widened 2026-09-21, this operator: the scan only ever looked at
+    build_*.py, and the trigger regex only ever matched href=. This
+    paragraph's own preceding text names wire_measure.main() as rewriting
+    the measurement tag as a bare `assets/js/measure.js` -- but it does so
+    with src=, not href=, and its filename does not start with build_, so
+    neither half of the gate could ever see it. Reproduced live: copied the
+    repository to a scratch directory and ran `python ops/wire_measure.py`
+    standalone; every one of 190 pages' `src="assets/js/measure.js?v=..."`
+    lost its `?v=` hash, confirmed by diff, not assumed from reading the
+    source. Widened the scan to also cover wire_*.py and canonical_links.py
+    (named in this same docstring as doing the same thing to bare asset
+    paths) and the trigger regex to also match src=. Fixed the one real
+    hit, ops/wire_measure.py, by chaining fingerprint_assets.main(False) at
+    the end of its own main(), the same remedy already used by every prior
+    generator this gate caught, so it can no longer be run standalone
+    without repairing its own damage.
     """
-    ref = re.compile(r'href=["\'](?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:css|js)["\']')
+    ref = re.compile(r'(?:href|src)=["\'](?:\{[a-zA-Z_][a-zA-Z0-9_]*\})?'
+                      r'(?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:css|js)["\']')
     for fname in sorted(os.listdir(os.path.join(ROOT, "ops"))):
-        if not (fname.startswith("build_") and fname.endswith(".py")):
+        in_scope = (fname.startswith("build_") or fname.startswith("wire_")
+                    or fname == "canonical_links.py") and fname.endswith(".py")
+        if not in_scope:
             continue
         path = os.path.join(ROOT, "ops", fname)
         try:

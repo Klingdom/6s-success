@@ -32,6 +32,26 @@ PY = sys.executable
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 import video_zone
 
+# 0xC0000142 (STATUS_DLL_INIT_FAILED) is Windows refusing to start another
+# process because resources are exhausted, not the render being wrong. It
+# appeared 38 times in one run because AVIF encoding was running alongside
+# this, and every one of those zones rendered correctly on a quiet machine.
+# So a transient gets a pause and a second attempt before it is called a
+# failure.
+#
+# CPython's subprocess reports a Windows exit code with the high bit set
+# (every STATUS_* NTSTATUS value does) as a SIGNED 32-bit int, not the
+# unsigned DWORD Windows itself prints. 0xC0000142 unsigned is 3221225794;
+# signed it is -1073741502. Comparing only against the unsigned form meant
+# this branch could never match a real crash, so the retry never fired and
+# every resource-exhausted zone was recorded FAILED on the first attempt.
+# Not run against a real crash in this environment (Linux, no video
+# toolchain); the fix is from CPython's own documented signed-DWORD
+# behaviour on Windows, the same shape as the well known -1073741819
+# (0xC0000005) access violation code. Both forms are accepted so a
+# differently-signed runtime cannot silently reopen this gap a second time.
+STATUS_DLL_INIT_FAILED = (3221225794, -1073741502)
+
 
 def zones() -> list:
     """Room, zone-name pairs read straight from video_zone.zones(), the same
@@ -74,18 +94,12 @@ def main() -> int:
             skipped += 1
             continue
         before = mp4s()
-        # 0xC0000142 (STATUS_DLL_INIT_FAILED) is Windows refusing to start
-        # another process because resources are exhausted, not the render
-        # being wrong. It appeared 38 times in one run because AVIF encoding
-        # was running alongside this, and every one of those zones rendered
-        # correctly on a quiet machine. So a transient gets a pause and a
-        # second attempt before it is called a failure.
         for attempt in (1, 2, 3):
             p = subprocess.run(
                 [PY, os.path.join(ROOT, "ops", "video_zone.py"),
                  "--zone", zone, "--room", room] + (["--wide"] if WIDE else []),
                 capture_output=True, text=True, timeout=900)
-            if p.returncode != 3221225794:
+            if p.returncode not in STATUS_DLL_INIT_FAILED:
                 break
             print("  retry   %-46s resources exhausted, attempt %d"
                   % (zone[:46], attempt))

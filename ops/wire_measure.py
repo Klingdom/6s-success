@@ -70,6 +70,15 @@ def main() -> int:
             assert os.path.exists(target), \
                 f"{os.path.relpath(f, ROOT)} loads {m.group(1)}, which is not there"
     print("  every measure.js path checked, all resolve")
+
+    # The block above always writes a bare src=, with no ?v= hash: this file
+    # has no way to know the current one. Left there, a standalone run (this
+    # is a documented, runnable-on-its-own script) silently strips the
+    # cache-busting fingerprint off the measurement tag on every page.
+    # Idempotent, like fingerprint_assets.py itself, so chaining it here
+    # costs nothing when this is only one step inside a larger build.
+    import fingerprint_assets
+    fingerprint_assets.main(False)
     return 0
 
 
