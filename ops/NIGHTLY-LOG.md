@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (two silent generator bugs closed: a fingerprint-chain gate gap and a dead retry comparison, both found in a cold-read of low-mention ops/*.py files)
+
+**Did:** Checkout arrived shallow/detached; unshallowed and fast-forwarded onto `origin/main` (issue #27's usual shape, no reset). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and the last several log/PM-check-in entries: every row in the current backlog is done or genuinely Phil-gated (8 open GitHub issues unchanged, all `decision`/`blocked-on-art`), traffic-lane items (SEO, internal linking, structured data, Pinterest/Instagram) already reconfirmed complete 2026-09-19. `preflight.py` clean before starting (every gate passed, 22 warnings, all standing). Continued the standing low-mention `ops/*.py` cold-read tier (a concurrent PM check-in cycle had just named `render_all_zone_videos.py` as next): dispatched a cold-read of it plus 6 siblings.
+
+**Verified two real defects, both fixed.** (1) `ops/wire_measure.py` writes its script tag as `src="{pre}assets/js/measure.js"`, an f-string placeholder, not a literal `href=`. `gate_generator_chains_fingerprint` only scanned `build_*.py` and only matched `href=`, so this file was invisible to it on both counts. Reproduced live in a scratch copy: running `python ops/wire_measure.py` standalone stripped the `?v=` cache-busting hash off all 190 pages' measurement tag, confirmed by diff. Widened the gate's scan to `wire_*.py`/`canonical_links.py` and its regex to match `src=` and the placeholder shape; confirmed the widened gate now fails against the unfixed file (`git stash` proof); fixed `wire_measure.py` by chaining `fingerprint_assets.main(False)` at the end of its own `main()`, the same remedy already used by every prior generator this gate caught. Re-ran the standalone reproduction after the fix: fingerprint preserved. (2) `ops/render_all_zone_videos.py`'s resource-exhaustion retry compared `p.returncode` to `3221225794`, the *unsigned* value of `0xC0000142`; CPython reports a Windows crash exit code as a *signed* 32-bit int (`-1073741502` here), so the comparison could never match and the retry never fired. Not reproducible in this Linux sandbox; fixed from CPython's documented signed-DWORD behaviour, accepting both forms.
+
+**Went well:** the fingerprint-gate gap was exactly the repository's own named dominant defect class ("source corrected, shipped artifact never re-derived") and this closes a real, currently-silent hole in the net built to catch it.
+
+**Did not go well:** three other autonomous sessions pushed to `main` concurrently during this cycle (dashboard regens and unrelated fixes), requiring two merges; resolved by taking upstream and regenerating the dashboard fresh each time rather than hand-merging generated files.
+
+**Changing next cycle (STEP 10b):** `test_gate_generator_chains_fingerprint.py` widened from 9 to 12 cases (new: wire-file scope, src= placeholder trigger); `test_render_all_zone_videos.py` widened from 4 to 5 cases (signed-DWORD arithmetic). Both fail-then-pass proved directly.
+
+**Next:** standing Phil-blocked list unchanged. Continue the low-mention `ops/*.py` tier; no other file in this batch (`build_youtube_metadata.py`, `import_room_images.py`, `wire_landmarks.py`, `wire_progressive.py`, `wire_pwa.py`) had a live defect.
+
+Pushed to main. `ops/preflight.py`, `ops/wire_measure.py`, `ops/render_all_zone_videos.py`, both test files, command deck. No price or product touched, no page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 13:4x (previous work finished and verified; import_room_images.py cold-read clean; handoff to the operator)
 
 NEXT FOR THE OPERATOR: cold-read and run `ops/render_all_zone_videos.py`, because it ties `import_room_images.py` as the lowest-mention (17) `ops/*.py` file in this log and this cycle already cleared the other half of that tie.
