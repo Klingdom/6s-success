@@ -2054,16 +2054,46 @@ ZONE_RELATIONS = [
      [("Pantry", "Backstock and Bulk Zone"),
       ("Nursery", "Diaper and Care Backstock"),
       ("Garage", "Bulk and Overhead Storage"),
-      ("Hall Closet", "Paper and Household Backstock")]),
-    ("floor-path", "The floor people actually walk, and what makes it safe "
-     "or not.",
+      ("Hall Closet", "Paper and Household Backstock"),
+      ("Home Office", "Supply Cabinet")]),
+    ("floor-path", "The floor or walking surface people actually cross, "
+     "and what makes it safe or not.",
      [("Living Room", "Floor and Circulation Path"),
       ("Entryway", "Door, Mat, and Immediate Floor"),
-      ("Stair Landing", "Stair and Floor Path")]),
+      ("Stair Landing", "Stair and Floor Path"),
+      ("Patio or Deck", "Surface, Rail, and Safety Zone")]),
     ("display", "Where the house shows things off rather than uses them.",
      [("Dining Room", "China or Display Cabinet"),
       ("Stair Landing", "Wall and Display Zone"),
       ("Living Room", "Bookshelves and Display")]),
+    ("toilet-area", "The toilet, and the small, always-damp patch of floor "
+     "around it.",
+     [("Primary Bathroom", "Toilet Area"),
+      ("Guest Bathroom", "Toilet Area")]),
+    ("shower-tub", "The shower or tub, kept to only the products actually "
+     "in use.",
+     [("Primary Bathroom", "Shower or Tub"),
+      ("Guest Bathroom", "Shower or Tub")]),
+    ("media-center", "The television, consoles and cables, kept working, "
+     "cool and findable.",
+     [("Living Room", "Media Center"),
+      ("Family Room", "Primary Media Zone")]),
+    ("toys-in-rotation", "Toys sorted so a child can put them away without "
+     "an adult.",
+     [("Family Room", "Toy and Play Zone"),
+      ("Kids Bedroom", "Toy Storage Zone")]),
+    ("launch-pad", "Where the things that leave the house get staged the "
+     "night, or the moment, before.",
+     [("Entryway", "Landing Zone"),
+      ("Kids Bedroom", "School and Activity Launch Zone")]),
+    ("child-sleep-surface", "The surface a child actually sleeps on, kept "
+     "to just what sleep needs.",
+     [("Kids Bedroom", "Bed and Sleep Zone"),
+      ("Nursery", "Crib and Sleep Zone")]),
+    ("power-tools", "Corded and cordless power tools, their batteries and "
+     "chargers, guarded and ready to run.",
+     [("Garage", "Power Tool and Battery Zone"),
+      ("Workshop", "Power Tool Storage")]),
 ]
 
 _RELATIONS = {}

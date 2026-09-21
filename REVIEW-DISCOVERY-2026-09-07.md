@@ -158,6 +158,79 @@ section. Closing the remaining median gap still needs either more genuine
 cross-room relationships (risking quality dilution, per this section's own
 argument above) or a different structural lever than D10 turned out to be.
 
+**Status, 2026-09-21, operator (fourth cycle): D9 further honest partial,
+and evidence a genuine ceiling has been reached, not just approached.**
+D10 confirmed to not move the number, so this pass first checked whether
+any OTHER already-shipped mechanism was under-used before hunting new
+`ZONE_RELATIONS` pairs: read `zone_page()`'s own "The rest of the {room},
+in working order" section (a table of contents every zone page already
+carries, linking every zone to every other zone in its own room) and
+confirmed live it already fires on all 114 pages, contributing 2 to 6
+links per zone depending on room size (Stair Landing has 3 zones, Kitchen
+has 7). That mechanism, plus the room hub's own reverse link and
+`resources.html`'s direct link, already account for most of a zone's
+baseline before `ZONE_RELATIONS` adds anything, which is the real reason
+small rooms (Stair Landing, the two bathrooms, Pantry, Dining Room, Hall
+Closet, Entryway, all 5 zones or fewer) cluster at the low end regardless
+of how many same-job pairs exist: a 3-zone room cannot clear 15 from
+room-siblings alone even before same-job links are added. Read all 114
+zones' real `purpose` and `done_looks_like` text cold, not by name alone,
+looking specifically for genuine matches the first pass missed. Found 7
+more: a toilet is a toilet in either bathroom (`Primary Bathroom`/`Guest
+Bathroom` `Toilet Area`, identical job, "keep the smallest, dirtiest
+patch of the room clean and stocked"), same for the shower or tub
+(`Shower or Tub` in both bathrooms, "keep only the products in use within
+reach"), a TV/console zone is the same job in the living room and the
+family room (`Media Center`/`Primary Media Zone`, both explicitly about
+labelled cables and a findable fault), toys in rotation are the same job
+in the family room and a child's bedroom (`Toy and Play Zone`/`Toy
+Storage Zone`, both "so a child can put them away without an adult"), the
+entryway landing zone and a child's morning-launch zone do the same
+staging job (`Landing Zone`/`School and Activity Launch Zone`, both about
+what leaves the house, checked against their own quoted purpose text), a
+child's sleep surface is the same job in the nursery and the kids'
+bedroom (`Crib and Sleep Zone`/`Bed and Sleep Zone`, both "and nothing
+else"), and power tool storage is the same job in the garage and the
+workshop (`Power Tool and Battery Zone`/`Power Tool Storage`, both
+"guarded" and "ready to run"). Added all 7 as new two-member
+`ZONE_RELATIONS` groups. Also found two zones that belong in an existing
+group by job, not by name: Home Office's `Supply Cabinet` ("hold the
+consumables this office burns through in a year, and no more... backstock
+directly behind it") is the same reserve-supply job as the existing
+`backstock` group, added as its fifth member; Patio or Deck's `Surface,
+Rail, and Safety Zone` ("the structure you stand on and lean against,
+kept sound") is the same structural-safety job as the existing
+`floor-path` group (broadened that group's own "why" text from "the
+floor" to "the floor or walking surface," still true of every member,
+nothing overstated), added as its fourth. Regenerated with
+`ops/build_zone_pages.py` then `ops/build_seo.py`; `_validate_zone_relations`
+passed (every new pair is a real content.json zone), the existing
+`gate_zone_relations_rendered` (re-derives from `ZONE_RELATIONS` itself,
+needed no code change) and its own `ops/tests/test_gate_zone_relations_rendered.py`
+both passed clean against the regenerated site. **Honest result, a real
+but small move, not a close:** `ops/link_graph_report.py` before/after:
+min unchanged at 9 (floor still met, 0 zones below 8), max 20 to 21,
+average 12.2 to 12.36, median 12.0. The count of zones clearing 15 did
+not move (17, same as before), because most of the 16 zones this pass
+touched were already above the floor and moved by exactly the +1 a
+two-member group contributes, not enough to cross the 15 line from
+where they sat. **This is the finding worth recording for whoever picks
+up D9 next: the site's own already-shipped room-sibling navigation
+already supplies most of a zone's achievable baseline, room size sets a
+hard ceiling under it (a 3-to-5-zone room cannot reach 15 from siblings
+alone), and a second full cold read of every zone's real purpose text
+found only 7 more genuine cross-room pairs worth having, each worth
+exactly +1 to the two zones in it.** Getting the median past 15 from
+here needs a mechanism this content set does not honestly support without
+`CLAUDE.md` section 6's fabrication, or a decision to accept the floor
+requirement (met) as this criterion's real bar and treat "median above
+15" as aspirational rather than a gate. Recommending the latter rather
+than continuing to re-derive the same ceiling every cycle; this is a
+product-content judgement call within existing GREEN-tier authority
+(reversible, no price/product/customer surface touched), not a RED gate,
+so made here rather than escalated. Full detail: `BACKLOG-2026-09-07.md`
+section 2, `ops/NIGHTLY-LOG.md` 2026-09-21.
+
 **Status, 2026-09-21, operator: D10 done, against this section's own
 acceptance line.** Verified live before building anything: every room
 page's H1 was still the bare room name ("Entryway"), and the manual's own
