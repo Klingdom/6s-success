@@ -408,11 +408,32 @@ of a source that already carries a different, working fix (0.3in margin,
 divergence risk: a future change to either file's geometry could silently stop
 matching the other with nobody the wiser, the exact shape this section
 originally warned about. Simplifying `build_etsy_assets.py` to stop applying
-`print_fix.css` to the packs is the honest next step, left undone here because
-`build_etsy_assets.py` calls a hardcoded Windows Edge path and cannot be run
-or its output re-verified from this sandbox; a session on Phil's own machine
-should make the change and confirm the PDFs are still correct before removing
-the override.
+`print_fix.css` to the packs is the honest next step.
+
+**Corrected 2026-09-21, operator: the "cannot be run from this sandbox" reason
+above was true when written and stopped being true 2026-09-13, and this
+section was never reread after.** `build_etsy_assets.py.find_browser()` was
+widened that day (`ops/preflight.py`'s own `gate_etsy_pdfs_current`, which
+runs this exact script on every CI push, documents it) to also find a Linux
+Chromium-family binary, not only Phil's Windows Edge path; an operator sandbox
+ships one at `/opt/pw-browsers/chromium`. Verified directly this cycle, not
+assumed: ran the real renderer both ways (`apply_fix=True`/`False`) against
+the real committed `build/6S-Whole-House-Print-Pack.html` and diffed the
+output. Both produce 76 pages, 0 blank, identical text on every page. The
+actual card rectangles are the same size either way (180 x 244.5pt, i.e. 2.5in
+x 3.4in, on every sampled page); only the surrounding page margin shifts,
+which is why a full-page pixel diff still shows a difference (the whole grid
+moves a few points) even though no card's own dimensions change. So the
+simplification is now checkable and low-risk to the one thing that matters
+for a physical buyer (card size), from any environment, not just Phil's
+machine. **Still not done here**, because "the cards print at the right size"
+and "the page looks right for a sighted human printing it" are different
+claims, and only the second needs an eye on an actual rendered page or a
+printed sheet, which this operator sandbox still cannot provide; and because
+Etsy is not live yet (owner gate 4, `BACKLOG-2026-09-07.md` section 6), so
+there is no live listing this would fix today. Left as a same-day-doable task
+for whoever picks it up next, with the "needs Phil's machine" blocker removed
+since it was never really the blocker.
 
 ### 3.3 Category and listing settings
 
@@ -806,9 +827,14 @@ Ranked by how much it would change the outcome.
    marketplace edition; reverified 2026-09-06 by opening both the site's HTML
    and the built Etsy PDF directly. See the corrected note under 3.2:
    `print_fix.css`'s own override is now redundant on top of that fix and
-   worth removing from `build_etsy_assets.py`, but that script only runs
-   against a hardcoded Windows Edge path and needs a session on Phil's own
-   machine to change and reverify.
+   worth removing from `build_etsy_assets.py`. **Corrected 2026-09-21,
+   operator: no longer needs Phil's own machine**, see the same date's note
+   under 3.2: the script has run a Linux Chromium binary since 2026-09-13,
+   verified directly this cycle by running it both ways and confirming card
+   size is unaffected either way. What is still missing is a human eye (or a
+   printed sheet) on the actual page layout, and there is no live Etsy
+   listing yet for this to fix, so it stays a same-day task for later rather
+   than done now.
 3. ~~**epubcheck.**~~ **Done 2026-09-15, operator.** A sandbox with both a JRE
    and network egress to GitHub ran the real validator: 0 fatals/errors/warnings
    against EPUB 3.3 rules. See section 1.
