@@ -474,11 +474,37 @@ mitigation: >
   replacing any assumed objective.
 closing_condition: >
   A restore has been executed end to end at least once and the measured
-  recovery time is recorded.
+  recovery time is recorded. PARTLY MET 2026-09-21, see below: the
+  container-loss case is now measured and recorded; the lost-host case is not,
+  and this risk stays OPEN until it is, or until the owner accepts it.
+first_drill:
+  date: 2026-09-21
+  what: >
+    A clean container created on the VPS from the registry image by digest, on
+    a spare port, without touching the running production container.
+  measured: >
+    pull 0.46s (layers already present), run 0.38s, first HTTP 200 0.54s,
+    total 1.38s. Restored container served build id b0b1e02558428cb1, matching
+    the repository, and all 159 catalogue products.
+  covers: >
+    Container lost, corrupted, or a bad deploy needing rollback, on a host that
+    is otherwise healthy. This is the likeliest incident and it is now a
+    measured 1.38 seconds with nothing at risk, because the site is static.
+  does_not_cover: >
+    A lost host. Not drilled and not claimed. It additionally needs a
+    provisioned VPS (owner-gated, costs money), a cold 196 MB image download
+    (the 0.46s figure is cache-warm and must not be read as a network time),
+    one DNS record edit (owner-gated), a reissued certificate (automatic), and
+    the reverse proxy recreated by hand.
 review: quarterly, and after any infrastructure change
 ```
 
 The one genuinely reassuring fact: the site is static. There is no database to lose, and the only persistent volume is the Let's Encrypt certificate store, which regenerates.
+
+**Corrected and sharpened 2026-09-21 by reading the running host rather than the compose files.** Two things that sentence was too comfortable about:
+
+1. **One piece of production is not in Git and never was.** `6s-success.com` reaches the site through Nginx Proxy Manager's proxy host 4, whose configuration lives only inside NPM's own data volume, on the machine a lost-host scenario removes. Nothing in this repository recorded what it contained. `DISASTER-RECOVERY.md` section 7c now does, field by field, so the reverse proxy can be rebuilt from Git rather than from memory. That was the genuine recovery gap, and it was invisible while attention stayed on the site container.
+2. **There is now production data worth losing**, even though the site itself is stateless: the Umami analytics database, and since 2026-09-20 the persistent crawl log. Neither is in Git, neither is backed up off-host, and the analytics database is the only record of every traffic measurement this business has made. That is a separate exposure from this row's "single host" framing and is not covered by it.
 
 **Tracked 2026-09-03.** RISK-0002 is closed, so this risk's own mitigation
 (one timed, end to end rebuild onto a clean target) is now the actual next

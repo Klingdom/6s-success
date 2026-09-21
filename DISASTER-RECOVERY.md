@@ -180,6 +180,99 @@ Do not invent aggressive objectives unsupported by actual architecture.
 
 ---
 
+# 7b. MEASURED: the first restore drill, 2026-09-21
+
+This section replaces belief with one measured number and, more usefully, with
+a list of what the number does not cover. `RISKS.md` RISK-0007 has been open
+as CRITICAL since the register was written, on the grounds that "whether the
+site can actually be restored is UNKNOWN, because it has never been done". It
+has now been done once.
+
+## What was run
+
+A clean container was created on the VPS from the registry image, by digest,
+on a spare port, without touching the running production container:
+
+```
+docker pull ghcr.io/klingdom/6s-success@sha256:eb7a6c98...b8dfb7
+docker run -d --name 6s-restore-drill -p 18980:80 <digest>
+```
+
+## What was measured
+
+| Step | Time |
+|---|---|
+| `docker pull` (layers already on this host) | 0.46 s |
+| `docker run` | 0.38 s |
+| First HTTP 200 from the new container | 0.54 s |
+| **Total** | **1.38 s** |
+
+Correctness was checked, not assumed: the restored container served build id
+`b0b1e02558428cb1`, matching the repository, and all **159** catalogue
+products.
+
+## What that number is, and what it is not
+
+**It is** the honest recovery time for the most likely incident by far: the
+container is lost, corrupted, or a bad deploy needs rolling back, on a host
+that is otherwise fine. In that case the site is back in under two seconds and
+no data is at risk, because the site is static and every byte it serves comes
+from the image.
+
+**It is not** a recovery time for a lost host. That drill did not run and
+cannot honestly be claimed. A rebuild onto a new machine additionally needs:
+
+1. **Provisioning** a new VPS. Owner-gated: it costs money and needs the
+   Hostinger account.
+2. **Downloading the image cold.** 196 MB compressed. The drill's 0.46 s pull
+   was served from layers already on the host and must not be read as a
+   network figure.
+3. **Recreating the reverse proxy.** This is the real gap and it is documented
+   in section 7c below, because until now it existed nowhere but inside a
+   container on the machine we would have just lost.
+4. **A new TLS certificate.** Let's Encrypt reissues automatically once DNS
+   resolves to the new host, so this is minutes, not a blocker.
+5. **DNS.** Unchanged: the apex A record and the www CNAME both point at the
+   host's address (Hostinger nameservers), so a new address means one record
+   edit in hPanel. Owner-gated.
+
+## 7c. The reverse proxy is the one piece of production not in Git
+
+Read off the running host on 2026-09-21. `6s-success.com` is served by Nginx
+Proxy Manager's **proxy host 4**, whose configuration lives only in NPM's own
+data volume. If the VPS is lost, this must be recreated by hand, and nothing
+in this repository previously said what it contained. It does now:
+
+| Setting | Value |
+|---|---|
+| Domain names | `6s-success.com`, `www.6s-success.com` |
+| Scheme | `http` |
+| Forward host | `187.77.25.50` (the host's own public address) |
+| Forward port | `8973` |
+| Websockets | on (`Upgrade`/`Connection` headers set) |
+| Block common exploits | on |
+| Force SSL | on |
+| HTTP/2 | **off** |
+| Certificate | Let's Encrypt, stored as `npm-6` |
+| Access log | `/data/logs/proxy-host-4_access.log` |
+
+Two things worth fixing, neither done here because both change live routing
+and NPM owns this file (editing `4.conf` directly is overwritten by NPM's own
+regeneration; it has to be done through its UI):
+
+- **The forward host should be the container, not the public IP.** It
+  currently proxies to `187.77.25.50:8973`, so traffic leaves the box and
+  comes back. The site container already carries the network alias
+  `6s-success` on the shared `6s-proxy` network
+  (`docker-compose.hostinger.yml`), so `6s-success:80` would work and would
+  remove the dependency on port 8973 being reachable on the public interface.
+  This is the same defect that was fixed *inside* the site's own config on
+  2026-09-17, where the analytics and mailing-list upstreams pointed at the
+  public address for the same reason.
+- **HTTP/2 is off**, which `OWNER-ACTIONS.md` item 9 already tracks.
+
+---
+
 # 8. Initial Recovery Objective Framework
 
 Until measured and approved:
