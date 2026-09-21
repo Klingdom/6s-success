@@ -14,6 +14,99 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Nothing pushed this entry alone; folded into the next dashboard/log commit.
 
+## PM check-in, 2026-09-21 23:4x (previous work finished and verified; a genuinely open REVIEW-COMMERCE item found mislabelled closed; handed to the operator)
+
+NEXT FOR THE OPERATOR: finish REVIEW-COMMERCE-2026-09-07.md's C4 (wire
+`corporate.html` into the site nav and every page footer), because it is an
+"At" tier traffic-constraint item this log has repeatedly waved through as
+done or Phil-gated while only a fraction of its own acceptance criterion
+("internal links 3 to 165+") was ever met.
+
+**Did:** Attached clean (`git fetch`, `checkout -B main origin/main`,
+`fetch --unshallow`, `merge --ff-only`, landing on `f091a7c3`, tree already
+clean). Read `git log -12`, the top of `ops/NIGHTLY-LOG.md` (C12 and the two
+PM entries before it), `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`,
+`GOALS.md`'s decision rules. GitHub: 8 open issues, unchanged, all
+`decision`/`blocked-on-art`, none pickable without Phil.
+
+**STEP 2, previous work:** `preflight.py` failed on its first run this
+cycle: `stray-probe-files`, one leftover file
+(`site/_quest_draw_shortcut_probe.html`) from a run that was mid-audit
+somewhere concurrent. Confirmed rather than assumed it was transient: the
+file did not exist on disk by the time I checked (`ls`/`find` both empty),
+and a clean rerun of full `preflight.py` came back "every gate passed, 22
+warnings" with no new fix needed. This is the exact self-resolving shape
+`gate_no_stray_probe_files`'s own docstring describes, not a live defect.
+C12's own commit (`000daf95`) and the three dashboard-regen rebases after it
+are all pushed; `checks.yml` run 1267 (C11, the commit before C12) is
+confirmed `success` via the Actions API. Run 1268, on the current HEAD
+(`f091a7c3`, dashboard-regen only), was still `in_progress` when checked;
+reporting that plainly rather than assuming green, since it is a
+dashboard/log-only commit outside the code-changing path CI mainly guards.
+So: previous work is finished (shipped, local preflight clean, CI green on
+the last code commit, no working-tree drift left unpushed).
+
+**STEP 3, finding the next item:** Per the prior cycle's own handoff, C13
+(two B2B articles) was next in line. Before starting it, re-verified
+`REVIEW-COMMERCE-2026-09-07.md` section 7's own table against live code,
+since several rows in this log have a history of being marked closed
+without the acceptance criterion actually being checked. **C4** ("Point the
+homepage's corporate sentence at `corporate.html`; add it to nav and to the
+163 page footers") turned out to be one of those: an earlier cycle
+(`ops/NIGHTLY-LOG.md` line ~10641, `78ad...`-era) fixed the one homepage
+sentence that used to point at `consulting.html` instead, and several later
+cycles then cited "C4 Phil-gated" or "C4 done" while actually discussing a
+same-named but unrelated row in `BACKLOG-2026-09-07.md` (its own C4 is about
+rejected card-hero placeholders, nothing to do with corporate distribution).
+Checked directly: `grep -c corporate.html site/*.html` returns matches only
+in `consulting.html`, `corporate.html` itself, `index.html`, and
+`shop.html`. Zero of the 114 zone pages, 20 room pages, or article pages
+link it. The canonical nav and footer live hand-authored in
+`site/resources.html` (confirmed via `gate_footer_consistent`'s own
+docstring: `build_articles.py`, `build_zone_pages.py`, and
+`build_zone_index.py` all lift their chrome from it via `load_chrome()`),
+and neither its `<nav>` nor its footer "Company" column mentions
+`corporate.html` at all.
+
+**Why this over C13:** smaller (0.3d vs 2.0d per the review's own effort
+column), genuinely unblocked, no credential needed, and it corrects a
+repeated mislabelling rather than adding new content on top of an
+under-distributed page. Per this prompt's ordering rule, a documented-done
+item that was not actually done is category 2 (broken or dishonest) as much
+as category 3 (traffic and distribution); C13 stays next after this closes.
+
+**Not started this slot on purpose:** editing `site/resources.html`'s nav
+and footer, then regenerating all pages that call `load_chrome()`
+(`build_zone_pages.py`, `build_articles.py`, `build_zone_index.py`, and
+checking `build_kitchen_deck_page.py`/`build_standards_page.py`/
+`wire_aria_current.py`, which also reference `site-header` and need
+checking for whether they reuse the same chrome or hold their own copy),
+verifying `gate_footer_consistent` and the visual/link audits after, and
+deciding where in the footer's four columns a "Company" or a dedicated
+B2B link belongs. That is real work, not a three-minute handoff task, and
+this slot's job is triage, not building it.
+
+**Verified:** `preflight.py` full, twice (once failing on the transient
+probe file, once clean after). `git status` clean before and after this
+entry's own edits, tree pushed to match `origin/main` at every check.
+
+**Went well:** re-deriving C4's status from live code instead of trusting
+several prior cycles' citations, which is what actually surfaced this.
+
+**Did not go well:** the same C4/C4 name collision between
+`REVIEW-COMMERCE-2026-09-07.md` and `BACKLOG-2026-09-07.md` likely
+explains multiple earlier cycles' "C4 Phil-gated" claims; worth the
+operator renaming one of the two rows once C4 itself is closed, so this
+does not happen a third time.
+
+**Next:** C4 (corporate nav/footer distribution) for the operator this
+slot; C13 (two B2B-intent articles) after. Standing Phil-blocked list in
+`OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`, this log entry). No site content,
+price or product touched.
+
 ## 2026-09-21, scheduled operator cycle (C15/C18: the paid-deck decision and BK-EB's $9.99 recorded in DECISIONS.md, same cycle as C16)
 
 ## 2026-09-21, scheduled operator cycle (C12: the free B2B zone scoring sheet and layered audit template)
