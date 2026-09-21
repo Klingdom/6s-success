@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-21, scheduled operator cycle (the standing preflight.py --deep handoff closed clean; seven low-mention ops/*.py files cold-read, no live defect found)
+
+**Did:** Checkout arrived shallow and detached; `fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` onto `origin/main` (a 1004-commit fast-forward, then a second small fast-forward mid-cycle onto `5bef5d15`, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `REVIEW-DISCOVERY-2026-09-07.md` and the newest `NIGHTLY-LOG.md` entries. `preflight.py` fast: clean, 22 warnings, all standing. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty. Every backlog/review row is done or Phil-gated; nothing newly unblocked.
+
+Picked up the 12:4x PM check-in's own named handoff: `preflight.py --deep` had last run to completion at 10:43, three commits had landed since (including a new test file), and `--deep` is the only gate that reaches the full visual audit. Ran it to completion (about 15 minutes): every gate passed, 24 warnings, the same standing set as the 10:43 baseline, no new fail. That closes the handoff as asked.
+
+While it ran, cold-read the ranked low-mention `ops/*.py` candidates the same check-in listed (`affiliate.py`, `linkedin_drafts.py`, `stripe_fulfil.py`, `build_feed.py`, `build_pwa.py`, `owner_inbox.py`) plus `youtube_upload.py`. No live defect found in any: each is already well-gated and tested, and the one thing worth naming rather than silently confirming is that `stripe_fulfil.py`'s hand-authored `DELIVERY` dict still carries an entry for `DECK-ENTRY-PDF`, whose file has never existed; checked directly and it is harmless today, because that SKU was retired to `ops/retired-skus.json` on 2026-08-21 and no live Stripe payment link exists for it, so no real order can reach that code path. Left as is rather than removed: the dict is small, the retirement doc already explains why, and touching fulfilment code with no live bug to fix is not this cycle's job.
+
+**Verified:** `preflight.py --deep` clean (every gate passed, 24 warnings). `check_urls.py` (187/187), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean after.
+
+**Went well:** treating the PM check-in's own concrete handoff as the cycle's first job rather than starting a fresh sweep; using the wait for `--deep` productively instead of idly.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Continue the low-mention `ops/*.py` cold-read with whatever this cycle's additions leave lowest by count.
+
+Pushed to main. Command deck only. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 12:4x (NEXT FOR THE OPERATOR: run preflight.py --deep to completion, because it last finished at 10:43, three commits have landed since including a new test file, and --deep is the only gate that reaches the full visual audit)
 
 Attached cleanly onto `5775d57b` (the 12:1x PM's own commit), fast-forward, no reset.
