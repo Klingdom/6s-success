@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-21 17:4x (previous work finished and confirmed; triage only, nothing new started)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane at `build_manual_print.py` (`gates()` at line 1083 and `main()` at line 1233, still unread), because sections 1 through 4 of `BACKLOG-2026-09-07.md` are all done or Phil-gated, section 5 is correctly on Hold, and all 8 open GitHub issues are `decision`/`blocked-on-art`, none newly pickable, leaving the operational-honesty cold-read lane as the only genuinely unblocked GREEN-tier work.
+
+Checkout arrived shallow/detached as usual (issue #27); `fetch --unshallow`, `checkout main`, ff-only merge onto `origin/main` (clean, 1062 commits).
+
+STEP 2: previous work finished, confirmed not assumed. `preflight.py` clean (every gate passed, 22 known warnings, all previously diagnosed sandbox limits, unchanged from the prior cycle's own count). Working tree was clean before this cycle; `main` already matched `origin/main`. Confirmed live via the API, not re-cited: `checks.yml` #1259/#1260 both `success`, no run yet against the current tip (`caf0760e`, a log-only commit outside the workflow's path trigger). 8 open issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. `EXECUTIVE-DASHBOARD-LIVE.md`'s own numbers match `BACKLOG-2026-09-07.md` section 0 and `RISKS.md`; no drift found.
+
+**Did not go well:** same shallow/detached checkout; issue #27 still open. No new unblocked item found.
+
+Pushed to main. Command deck only. No price/product touched, no page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-21 17:1x (previous work finished and confirmed; triage only, nothing new started)
 
 Checkout arrived shallow/detached as usual (issue #27); fetch --unshallow, checkout main, ff-only merge onto origin/main (clean, 1061 commits).
