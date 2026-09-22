@@ -2,6 +2,44 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 10:1x (previous work finished, verified with a full preflight run rather than cited; a real stale-issue gap found and closed on GitHub, not in a markdown file)
+
+Attached clean: `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (`8bde95d4`, 1172-commit fast-forward, issue #27's usual shallow/detached shape, no reset or force needed). Read `git log --oneline -12`, this log's newest entries (09:4x PM check-in and the preceding cycles), `EXECUTIVE-DASHBOARD-LIVE.md`, `BACKLOG-2026-09-07.md` sections 1b through 7 in full, and confirmed all 9 open GitHub issues directly via the API rather than trusting the last cited count.
+
+**Previous work was finished; verified by actually running `preflight.py` to completion rather than citing the 09:4x entry's own clean claim.** Backgrounded it from the start per that entry's own practice. Took about 2 minutes; every gate passed, the same 23 standing warnings (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, IndexNow). No FAIL. 9 open GitHub issues confirmed unchanged and correctly unpickable: `decision` (34, 33, 32, 31, 21, 18, 15) or `blocked-on-art` (29, 2). 0 open PRs.
+
+**The real find: GitHub issue #32 itself was the "corrected source, unrederived artifact" this repository's own section 7 names as its dominant defect class, just on GitHub instead of in a markdown file.** The issue still framed all 23 kits/bundles as an open Phil decision between "write 21 pages" and "shrink the catalogue." `BACKLOG-2026-09-07.md` section 1b and `DECISIONS.md` D-023 (2026-09-22) already record that 21 of the 23 (the 15 Situation Kits and 6 Area Bundles) were retired days ago, option 2 from the issue's own list, applied to those 21; only the $49 Complete Digital Bundle is genuinely still open, and the backlog's own read is that it is worth a page (unlike the 21, it has real internal logic and isn't a zero-sale weak-value tier). The issue had zero comments and had never been told any of this. Commented on #32 with the correction: cited D-023 by name, narrowed the remaining ask to the one item, and left the actual write-a-page-or-not call to Phil rather than deciding a catalogue-scope tradeoff myself, per this file's own "decision" label and the standing rule against picking anything marked waiting on Phil.
+
+**Went well:** running preflight to real completion instead of trusting the prior cycle's clean citation; finding a stale-decision-issue defect by cross-referencing GitHub against DECISIONS.md/BACKLOG rather than only re-reading GitHub's own text.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open. Nothing else sized for a 30-minute slot: every other unblocked item this week is already done, already escalated, or already correctly Phil-gated.
+
+**Changing next cycle:** none; the gap found was real but small, closed within this slot.
+
+**Next:** the 09:4x entry's own operator handoff stands unchanged (cold-read `build_feed.py`, `build_printpack.py`, `check_affiliate_trigger.py`, `import_generated_art.py`, `status_report.py`, the lowest untouched mention tier). Standing Phil-blocked list in `OWNER-ACTIONS.md` (redeploy the site, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 9 open GitHub issues, unchanged except #32's own comment above.
+
+Pushed to main. Command deck regenerated only, no price or product touched, no new page, IndexNow not applicable. A GitHub comment, not a code change, is this cycle's actual output.
+
+## PM check-in, 2026-09-22 09:4x (previous work finished and independently re-verified; nothing new to escalate; handed the operator the next cold-read tier by name)
+
+NEXT FOR THE OPERATOR: cold-read the next unread tier of low-mention `ops/*.py` files (`build_feed.py`, `build_printpack.py`, `check_affiliate_trigger.py`, `import_generated_art.py`, `status_report.py`, all at 18 mentions in this log, the lowest untouched tier now that `build_corporate_asset.py`/`wire_consult_cta.py`/`wire_footer.py` were cleared this morning), because `BACKLOG-2026-09-07.md` sections 2 through 6 and `REVIEW-COMMERCE-2026-09-07.md` section 7 are fully done or Phil-blocked and all 9 GitHub issues are `decision`/`blocked-on-art`, so the cold-read method is the only genuinely unblocked, non-trivial work left, and it has found a real, fixable defect on most of the cycles that have tried it this week.
+
+Attached clean: `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (`960834d8`, 1170-commit fast-forward, issue #27's usual shallow/detached shape, no reset or force needed). Read `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md` sections 1b through 7 in full, `REVIEW-COMMERCE-2026-09-07.md` section 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and all 9 open GitHub issues directly via the API.
+
+**Previous work was finished, verified independently rather than cited.** The prior PM check-in (09:1x) had already escalated C20 to issue #34 and found nothing else unblocked; this cycle re-derived that conclusion rather than trusting it. `BACKLOG-2026-09-07.md`: every row in sections 2 to 4 (A1-A9, B1-B7, C1-C7) is `~~done~~` or explicitly Phil-gated; section 5 is deliberate holds; section 1b's one open item (`BK-BUNDLE`'s missing page) is real but sits behind issue #32, Phil's own catalogue-scope call. `REVIEW-COMMERCE-2026-09-07.md` section 7: every row done except C1/C2/R1-R4 (need a Stripe credential no sandbox here has ever held), C10 (8 days, `Below` the traffic constraint), and C20 (waits on Phil via #34, correctly not re-read this cycle per that issue's own closing line). All 9 GitHub issues confirmed unchanged and correctly unpickable: `decision` (34, 33, 32, 31, 21, 18, 15) or `blocked-on-art` (29, 2).
+
+**`preflight.py` run backgrounded from the start**, per the 09:1x entry's own "changing next cycle" note, avoiding the two prior cycles' self-caused foreground-timeout probe-file failure. Clean: every gate passed, the same 23 standing warnings (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the already-diagnosed page-244 sample-PDF font limit, 2 sitemap URLs not yet announced to IndexNow for the same no-egress reason). Working tree showed only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`, confirmed by diff to be pure timestamp/commit-count regen from preflight's own dashboard step, nothing hand-written.
+
+**Went well:** re-deriving "previous work is finished" from the actual files rather than citing the prior cycle's own conclusion; naming five specific next files for the operator instead of a generic "keep cold-reading" pointer.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open. Nothing sized for this 30-minute slot itself, since every unblocked item found this week is either already done or already escalated.
+
+**Changing next cycle:** none; preflight backgrounded from the start worked as intended, no self-caused failure this time.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy, Apple/Play accounts) and the 9 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, no price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 09:1x (previous work finished; a repeatedly-punted C20 judgment call escalated to Phil instead of re-flagged a third time)
 
 Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`92c052cf`), no reset or force needed. `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 0 (traffic still the constraint, third week of decline), `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-COMMERCE-2026-09-07.md` section 7, `DECK-SYSTEM.md` section 9. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`.
