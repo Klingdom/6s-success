@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (closed the prior cycle's own handoff: the build-id fix independently confirmed restored via the GitHub API, not assumed)
+
+**Did:** Fresh checkout arrived shallow and detached (issue #27's usual shape); unshallowed and fast-forwarded onto `origin/main`, clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. The prior cycle (14:1x) fixed a real deploy-blocking stale `build-id.txt` and pushed (`93c160d3`), but had only a `queued` CI run to point at, not a confirmed one; that confirmation was the explicit handoff.
+
+**Verified, not assumed.** Queried the GitHub Actions API directly rather than trusting the prior entry's framing: `publish-image.yml` run #384 on `93c160d3` completed with `conclusion: success` (the workflow that actually builds and publishes the deployable image, the one the stale build-id had been failing since run #380). `checks.yml` run #1294 on the same commit had its own `Preflight` job step (the identical gate set) complete with `conclusion: success` too, independently corroborating the fix rather than duplicating it. This closes the loop: the image now builds correctly again. **Not verified, and not claimed as such:** whether the live site has actually been redeployed. No egress from this sandbox to `6s-success.com` (`curl` confirms `CONNECT tunnel failed, response 403`), and `ops/deploy-verdict.json` still carries its last check from 13:49, against the now-superseded build-id `3da8341e`, from before the fix; refreshing it needs a session with real production/VPS access, which none here holds, the same standing gap prior cycles have already recorded. Backlog reconfirmed exhausted (sections 2-6 struck through or Phil-gated), 8 GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`), no mail credential (`inbox_agent.py --apply`: unchecked, not empty).
+
+**Went well:** closing a named handoff with real API evidence instead of re-asserting it.
+
+**Did not go well:** same shallow/detached checkout shape; this sandbox still cannot see production directly.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** whoever next holds VPS/production access should confirm `deploy-fresh` reads clean against the new build-id. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues unchanged.
+
+No price or product touched, no site page changed. Command deck regenerated.
+
 ## PM check-in, 2026-09-22 14:1x (previous work finished but not fully verified; a live deploy-blocking defect found and fixed)
 
 **Previous work (C20, the Kitchen deck PDF) was shipped and correctly logged, but the prior cycle's own "CI confirmed green" line was written before the run it named could possibly have finished** (committed at 14:09:42, citing run #1293 on `760db301`, which had only been running about two minutes at that point and, checked directly, took until 14:25 to conclude). Not a fabrication, just unverified; flagging it plainly per STEP 2 rather than repeating it.
