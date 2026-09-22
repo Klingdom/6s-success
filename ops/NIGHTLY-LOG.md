@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (clean verification pass, fresh independent read of today's newest code, no new defect)
+
+**Did:** Shallow, detached checkout; unshallowed, fast forward merged onto origin/main clean. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG.md entries, GitHub issues via the API. Ran preflight backgrounded past this sandbox's foreground timeout, watched to real exit. Inbox agent: no mail credential, unchecked.
+
+**Verified:** Preflight clean, every gate passed, 22 warnings, all previously diagnosed sandbox limits. 8 GitHub issues unchanged (6 decision, 2 blocked on art), 0 open PRs, CI green. Backlog sections 1 through 6 re-read row by row: every item done or Phil gated. Instead of the low mention cold read a prior PM check-in flagged as exhausted, read today's newest customer facing code fresh: wire_consult_cta.py, measure.js's service-cta handler, bundle.html, consulting.html's intro-call section. All correct: button insertion, idempotency guard and price read sound; origin string bounded; bundle arithmetic (9.99 + 29 + 19 = 57.99, saving 8.99) checks out; intro-call copy states its cap honestly. No live defect found. The sample-pdf-spelling warning (page 243) is an already documented font limit, not fresh.
+
+**Went well:** changing method instead of repeating an already-saturated fallback.
+
+**Did not go well:** same shallow, detached checkout re-diagnosed at STEP 0 every cycle.
+
+**Changing next cycle:** none, keep reading freshly shipped code while the backlog stays exhausted.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open issues, unchanged.
+
+Pushed to main. Command deck only; nothing broken was found to fix. Not customer facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 18:2x (previous work finished and verified; a real same-document contradiction closed)
 
 **Previous work: finished.** Preflight clean (every gate passed, 22 standing sandbox warnings), tree clean, pushed at attach. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none mine to start.
