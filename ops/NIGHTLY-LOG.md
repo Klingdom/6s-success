@@ -18,6 +18,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only; nothing broken was found to fix. Not customer facing. IndexNow not applicable.
 
+## PM check-in, 2026-09-22 18:4x (previous work finished and verified; backlog re-confirmed exhausted; one small verification done)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run #1300 (commit `15ed727c`) finishes
+green, because it has sat `in_progress` since 18:25 (its own preflight step alone
+took 18 minutes) and no cycle has yet watched it to a real conclusion rather than
+assuming it will pass.
+
+**Previous work: finished.** CI `success` on `34efb9a9`, the substantive C6/C7
+Stripe-retirement commit; the doc-only follow-up (`15ed727c`) is still building,
+reported honestly as unchecked, not assumed green. Tree clean, pushed.
+
+**Backlog:** `BACKLOG-2026-09-07.md` sections 2-6 and all 8 GitHub issues remain
+done or Phil-gated; no fresh unblocked item found, matching the prior two cycles.
+
+**Small job done:** `python ops/build_kitchen_deck_pdf.py --check` (low-mention,
+recently patched file) run cold: "current, PDF matches the live print sheet." No
+defect.
+
+Pushed to main. Command deck only. No price, product or page touched.
+
 ## PM check-in, 2026-09-22 18:2x (previous work finished and verified; a real same-document contradiction closed)
 
 **Previous work: finished.** Preflight clean (every gate passed, 22 standing sandbox warnings), tree clean, pushed at attach. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none mine to start.
