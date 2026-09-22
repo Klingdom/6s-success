@@ -200,6 +200,28 @@
     if (href.indexOf("corporate.html") >= 0) {
       track("quote-click", { sku: a.getAttribute("data-sku") || "CN-CORP",
                              from: page() });
+      return;
+    }
+
+    /* The consult, REVIEW-COMMERCE-2026-09-07.md C8: contribution per order
+       is 13.4x the print pack's, and until now nothing told a click on it
+       apart from a click on the pack. ?from=<type>:<slug>, set by the button
+       itself (ops/build_zone_pages.py's offer()/room_offer(),
+       ops/build_articles.py's offer(), ops/wire_consult_cta.py), is the
+       origin; its absence (a nav or footer link, which carries no query
+       string) falls back to the page type the same way every other event
+       here already does. */
+    if (href.indexOf("consulting.html") >= 0) {
+      var d2 = { from: page(), sv: 2 };
+      var fm = /[?&]from=([^&]+)/.exec(href);
+      if (fm) {
+        var parts = decodeURIComponent(fm[1]).split(":");
+        d2.from = parts[0].slice(0, 20);
+        if (parts[1]) { d2.origin = parts[1].slice(0, 40); }
+      }
+      var csku = a.getAttribute("data-sku");
+      if (csku) { d2.sku = csku.slice(0, 32); }
+      track("service-cta", d2);
     }
   }, true);
 

@@ -195,7 +195,7 @@ CONSULT_PRICE = _consult_price()
 # Same shape and the same tone as the offer on every zone page: the method is
 # given away in full, the price is named once, and nothing is manufactured to
 # make anybody hurry.
-def offer(lead):
+def offer(lead, slug):
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;'
             'border-radius:22px">'
             '<p class="eyebrow on-deep">If a zone keeps coming undone</p>'
@@ -207,8 +207,8 @@ def offer(lead):
             + str(CONSULT_PRICE) + ' '
             'dollars: we find the function, the friction and the root cause '
             'together, and you keep a written standard for the space.</p>'
-            '<p style="margin:0"><a class="btn btn-primary" '
-            'href="../consulting.html">See what a consult covers</a>'
+            '<p style="margin:0"><a class="btn btn-primary" data-sku="CN-VIRTUAL" '
+            f'href="../consulting.html?from=article:{slug}">See what a consult covers</a>'
             '<a class="btn btn-on-deep" style="margin-left:10px" '
             'href="../resources.html">Or work a zone, free</a></p></section>')
 
@@ -630,7 +630,7 @@ def article_one(rooms):
              "chapters this page summarises</li>"
              "</ul>")
     b.append(offer("most people can work a single zone from it in one session "
-                   "without any help from us."))
+                   "without any help from us.", A1_FILE[:-5]))
 
     ld = graph(BASE + "/articles/what-is-6s", A1_TITLE, A1_DESC,
                [("Home", "/"), ("The Method", "/method.html"),
@@ -950,7 +950,7 @@ def article_two(rooms):
                 span(by_room["Garage"]["lo"], by_room["Garage"]["hi"]),
                 n_rooms, total_zones))
     b.append(offer("the session times above are what it takes to work a zone "
-                   "on your own."))
+                   "on your own.", A2_FILE[:-5]))
 
     ld = graph(BASE + "/articles/" + A2_FILE[:-5], A2_TITLE, a2_desc,
                [("Home", "/"), ("Rooms and micro zones", "/resources.html"),
