@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 03:1x (previous work finished and confirmed; two more low-mention files cold-read clean)
+
+Attached via unshallow plus ff-only merge, clean fast-forward. Read git log, BACKLOG-2026-09-07.md, the dashboard, and the 8 open GitHub issues: unchanged, all decision or blocked-on-art, none pickable without Phil.
+
+Previous work: finished. preflight.py clean, every gate passed, 23 warnings, tree clean. Confirmed, not assumed, the prior cycle's open item: checks.yml run 1273 on 16d62c06 succeeded, and its path filter genuinely excludes dashboard/log-only commits, so no CI gap exists.
+
+This cycle: every unblocked backlog row, sections 1b to 4, is done or Phil-gated, read in full. Cold-read specific_articles.py and prune_catalog_js.py: both clean, wired into the generator chain.
+
+Went well: closed the open CI confirmation. Did not go well: same shallow checkout shape recurred, issue 27.
+
+Next: operator continues the 17-mention tier (corpus_index.py, generated_products.py). Standing Phil-blocked list unchanged.
+
+Pushed to main, command deck only.
+
 ## 2026-09-22, scheduled operator cycle (clean verification pass, three payment/traffic-critical files cold-read, no new defect)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (1123 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 1b through 7; section 1's done-log skimmed by header only, already fully covered by today's earlier cycles), `ROADMAP-2026-2029.md`/`CLAUDE.md`/`GOALS.md` context carried from the same read, and the four most recent `ops/NIGHTLY-LOG.md` entries (all dated today, all "done or Phil-gated" plus a cold-read fallback). `preflight.py` clean (every gate passed, 23 warnings, all previously diagnosed sandbox limits: no Stripe/mail/SSH credential, no egress to the live site, confirmed directly by a failed `curl` through the proxy rather than assumed). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil; 0 open PRs (checked directly via the API). `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED, not empty.
