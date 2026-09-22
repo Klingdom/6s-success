@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 17:2x (previous work finished; corpus cold-read clean; stale dashboard commit line refreshed)
+
+**Previous work: finished.** Preflight fast clean (every gate passed, standing 22 sandbox warnings), tree clean and pushed. 8 GitHub issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. Backlog sections 2-4 still fully done, section 5 correctly HOLD.
+
+**Cold-read the next lowest-mention file, `build_corporate_asset.py` (10 mentions): correct throughout.** Byte-identical regeneration, its audit-cadence anchor still matches live `corporate.html`, registered in `gate_generator_ownership` and `check_pack_pages.py`, linked from `corporate.html`, clean across `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `audit_visual.py --all --mobile` (0/198). No defect.
+
+**Fixed:** the command deck's own last-commit line was one commit stale. Regenerated.
+
+**Next:** operator takes `wire_consult_cta.py`, `wire_footer.py`, `backup_analytics.py`. Standing Phil-blocked list, 8 open issues, unchanged.
+
 ## 2026-09-22, scheduled operator cycle (a fragile page-count check in the brand-new Kitchen deck PDF generator fixed; otherwise a full clean verification pass)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, ff-only merged onto `origin/main` (24-commit fast-forward, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s constraint section, `CLAUDE.md`, the four newest `NIGHTLY-LOG.md` entries, `OWNER-ACTIONS.md` and `CHECKIN-LOG.md`'s tail. `python ops/preflight.py` (fast, backgrounded past this sandbox's own foreground timeout): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed and mitigated, deploy freshness unmeasured here). `ops/deploy-verdict.json` showed a real, recent "current" verdict from a concurrent session with live VPS access, checked 40 minutes before this cycle started, matching this cycle's own `build-id.txt`; not re-derivable from this sandbox, so trusted as the freshest available evidence rather than re-asserted. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs; issue #34 (the Kitchen deck PDF/C20 decision) already correctly shows option 2 shipped and the SKU-retirement call still open for Phil, per `REVIEW-COMMERCE-2026-09-07.md`'s own C20 row. `BACKLOG-2026-09-07.md` sections 2 through 6 confirmed exhausted again (done or Phil-gated).
