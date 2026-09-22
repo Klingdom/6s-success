@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 23:5x (previous work finished, verified; collided with a concurrent operator push, merged clean; no new operator handoff)
+
+**NEXT FOR THE OPERATOR: keep working the low/no-mention `ops/*.py` tier cold-reading for undiscovered defects (`build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` were the next named candidates), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and all 8 GitHub issues are `decision`/`blocked-on-art`, so this is the only method that has found real defects the last several cycles running.**
+
+**Previous work: finished, verified.** Unshallowed, fast-forward merged onto `origin/main`. First `preflight.py` run FAILed on `page-ownership-registry` for `_audit_catalog_fixture_7437.html`, but that was self-inflicted: I had two overlapping `preflight.py` invocations running at once (a backgrounded run plus a foreground one I killed with `timeout`), and one caught the other's own transient PID-named test fixture mid-existence. Confirmed the file does not actually exist on disk before treating this as real. Reran a single clean `preflight.py`: every gate passed, 23 warnings, none new.
+
+**Collided with a concurrent cycle mid-check.** While re-verifying, the scheduled operator's own cycle pushed two commits (`0fcef650`, `ded94ff1`): a real, correctly-scoped fix (`ops/retire_stripe_skus.py`'s gate, corrected from an initial overclaim of "57 of 57 unconfirmed" down to the true "36 of 57" after re-reading `BACKLOG-2026-09-07.md`'s own record of the 21 already archived, then handed to Phil as `OWNER-ACTIONS.md` item 1h). Fetched and fast-forward merged rather than resetting or racing it; nothing of mine was lost since nothing of mine had shipped yet. Reran `preflight.py` once more against the true merged tip: every gate passed, 23 warnings, same set.
+
+**Checked CI rather than assume the cron-cadence warning excuses it.** `checks.yml`/`publish-image.yml` on `8bd7961` (the 23:1x D18 fix) showed `in_progress` with no `updated_at` movement for over 20 minutes, worth suspecting stuck. Checked job/step level instead of run level: both runs have an assigned runner and are genuinely executing (Preflight alone took ~18 minutes, consistent with the standing cron-cadence warning that these runners run 4 to 8x slower than configured; checks.yml is now on "The ops test suite," publish-image.yml on the Docker build step). Not stalled, not re-flagged as broken.
+
+**Verified:** 8 GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`, 2 of those also `P0`), 0 open PRs. `OWNER-ACTIONS.md` and `EXECUTIVE-DASHBOARD-LIVE.md` both current, nothing new for either. Working tree clean before and after.
+
+**Went well:** treating the first preflight FAIL as this cycle's own work per STEP 2, rather than assuming a real defect, until the fixture was confirmed gone and the collision traced to my own overlapping runs.
+
+**Did not go well:** running two `preflight.py` invocations at once cost a spurious FAIL and a rerun; the lesson is procedural (do not background one preflight run and then also run one in the foreground).
+
+**Changing next cycle:** none; no real defect found, no new gate needed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (item 1h is new: the 36-of-57 Stripe SKU-retirement gap) and the 8 GitHub issues, unchanged. No new operator-executable handoff beyond the standing low-mention `ops/*.py` cold-read method above.
+
+Pushed to main (log entry only, plus the command deck). No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-22 23:1x (previous work finished; fixed the D18 VideoObject drift the 22:4x check-in scoped and left for the operator)
 
 **Previous work: finished, verified.** Unshallowed, fast-forward merged onto `origin/main` clean. `preflight.py`'s first run failed on `etsy-pdfs-current` self-inflicted by a stray SIGTERM the 22:4x cycle left; already cleaned up by the time I checked, confirmed clean.
