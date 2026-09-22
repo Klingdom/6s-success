@@ -23,6 +23,57 @@ Material commits since `ef3cf037`, none of them previously named here: the zone 
 
 ---
 
+**Found and archived 2026-09-22, PM check-in: two "Did" entries from 2026-09-18 had been stuck above `STATUS.md`'s own rotation stack for four days, never picked up by the normal Prior/archive cycle because they predate that naming convention.** One of the two, below, closed with "Running unattended: all 228 zone videos re-rendering (~8 hours left)", still reading that way in the live "what is happening now" file as of this check-in. That render actually finished 2026-09-20 (584 minutes, 0 failures, every caption verified to carry the new beat, per `ops/NIGHTLY-LOG.md`'s 2026-09-20 entry) and was committed the same day; nothing was still running. `preflight.py` has no gate watching this specific claim (checked directly: no match for "Running unattended" or "228 zone videos" in `ops/preflight.py`), so it survived multiple clean preflight runs uncaught. Moved both entries here verbatim, per this file's own "nothing here was edited on the way over" rule, with this note attached rather than silently correcting the text in place.
+
+**Prior (2026-09-18 early, local session with VPS access):** two things only this kind of session can do.
+**(1) The YouTube authorisation was a trap and is now safe.** `video_zone.done_items()` was corrected 2026-09-15; every
+narrated video was rendered 7-8 September; 100 of 114 therefore show a checklist their own zone page no longer agrees
+with ("One wallet and one phone per adult" reads "One phone per adult"). `ops/youtube_upload.py` now refuses those by
+name, so authorising publishes the 14 that are correct; `ops/check_video_standard.py` measures it and
+`gate_zone_videos_match_standard` reports the count every cycle. Reading an actual extracted frame then found a second
+defect the captions could not show: the slide holds four items and 16 zones have more, so the china cabinet video was
+silently dropping "The cabinet strapped to a wall stud", a safety standard, under the heading "What done looks like".
+The slide now says "+ N more on the zone page", matching what the cards already did. 99 videos are being re-rendered
+unattended, with a second process that re-runs the batch until the checker reads zero. **(2) OWNER-ACTIONS item 8, two
+publicly-exposed ports, went from blocked to a five-minute job.** Both still answer the open internet and the host runs no
+firewall; they could not be closed because this site reached them through the host's public address. Rewired to the
+Docker bridge, deployed (`a53458d8` -> `8f2400c02ff063f2`) and proved live with a labelled probe event that is in the
+analytics database. The compose change is left for Phil because those stacks are shared with other sites. Also corrected
+a hazard I had introduced in my own instructions (they briefly told him the ports were safe to close before the enabling
+build was live) and cross-linked item 20 to item 1 so he does not paste into 12 descriptions he may replace. Verified
+clean and recorded so nobody re-audits: the 228 social cards, the social captions, the Etsy PDFs, the Standards Pack and
+the phone app all carry complete, current standards. Full account in `ops/NIGHTLY-LOG.md`; the lesson is LRN-0016.
+
+**Prior (2026-09-18, local session, Phil's direction: better graphics, triple down on the micro zone):** the micro zone is
+now visible everywhere the product is, and the pictures are about it rather than about generic rooms.
+
+**The diagnosis:** every picture on a zone page was a generated room photograph, pleasant and generic and silent about
+the one idea that makes the page worth reading, and the local model could not draw the specific object a zone is about
+anyway. So the answer was not better photographs; it was drawing the thing nobody else has.
+
+**Shipped and verified live:** a micro zone diagram on all 114 zone pages (the room's zones as numbered chips with this
+one lit, the purpose, the finish line as ticked items, the session length and reset trigger); a micro zone map on all 20
+room pages; a new free printable product, **the Micro Zone Map**, 20 sheets covering all 114 zones, linked from the rooms
+hub and from standards.html; a home hero that leads with the unit rather than the method; a new section on method.html
+explaining what the six moves are applied to; "Zone 3 of 7" on every deck card, in the Home Quest app, and in all 114
+zone-pack product descriptions; and numbered zones on the free Standards Pack so the working order is visible there too.
+Every number is counted from the manual at build time, never typed.
+
+**Three defects of mine, each caught by looking rather than assuming:** the first diagram had a fixed height and
+truncated checklist items mid-sentence; **the version I shipped first was unreadable on a phone** (an 1160px drawing in a
+390px column puts body text at six pixels), caught by shooting the live page at phone width and fixed by making the page
+version reflowing HTML while the SVG stays in the printable; and the visual audit caught a 4.48:1 contrast failure I had
+introduced an hour earlier. The gates also caught a British spelling in my new hero copy, 30 pages left on a stale
+stylesheet hash, a service worker left on old fingerprints, and a hand-written link in the .html form the site does not
+use.
+
+**Running unattended:** all 228 zone videos re-rendering (~8 hours left) to carry a new "where it is" opening beat.
+That code is deliberately uncommitted until the render lands, because adding a beat makes every caption stale at once
+and would fail gate_srt_captions_current for the whole window; code and captions get committed together so main stays
+deployable. **(Superseded, see the 2026-09-22 note above: this render finished 2026-09-20.)**
+
+---
+
 **Prior (2026-09-18, PM check-in):** **Closed a real `gate_status_currency` warning (preflight flagged STATUS.md as not mentioning 8+ material commits since its own last edit `ef3cf037`) by describing what actually shipped, per `CLAUDE.md` 0.2, rather than opening a fresh sweep.** Attached via unshallow plus ff-only merge onto `origin/main` (`f52c128b`), clean, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` (every unblocked row again done or Phil-gated), `EXECUTIVE-DASHBOARD-LIVE.md`, the newest `ops/NIGHTLY-LOG.md` entries, and 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`). Ran `preflight.py` fresh myself rather than cite a prior cycle: every gate passed, 23 warnings, all previously diagnosed sandbox limits (`status-currency` itself being the one this edit resolves).
 
 **Prior (2026-09-18, scheduled operator cycle):** **A latent "copy and control disagree" gap closed in `ops/build_articles.py`, no live defect today.** Closed the standing PM-check-in handoff (`ops/build_card_prompts.py`, `ops/build_articles.py`, `ops/card_spec.py`, all untouched since named). The first two read and ran clean (`card_spec.py` self-tests its own WCAG contrast at import time; `build_card_prompts.py`'s Kitchen-deck run wrote 72/72 prompts byte-stable). `build_articles.py` is the real find: both AEO articles (`what-is-6s.html` and the timing article) hand-typed "20 rooms"/"Twenty rooms" and "114 micro zones" as plain prose literals in six places, while every per-room zone count on the same pages was already computed fresh from `content/manual/source/content.json`; only the totals were never wired to the real data, including the timing article's own median calculation, which silently assumed exactly 20 rooms (an even count) rather than computing a real median. Checked directly: both numbers are correct today, so this is a latent gap, not a live defect, the same class as `gate_kit_page_zone_counts_current` and `gate_invest_page_catalog_current` before it. Fixed at the source (`article_one()`/`article_two()` now derive both counts from the real room list, median made generic for any room count); regenerating produced one cosmetic, correct diff ("Twenty rooms" to "20 rooms") and confirmed `what-is-6s.html` byte-identical to HEAD. New `gate_articles_room_zone_counts_current` in `preflight.py` (re-derives both counts straight from `content.json`, independent of the generator's own arithmetic; the zone-count check excludes legitimate per-room mentions like "a kitchen is 7 micro zones" by requiring the total not be preceded by "is"/"across", proved against a real false positive from the live page before shipping). `ops/tests/test_gate_articles_room_zone_counts.py` (6 cases, including a live check against the real committed pages) fail-then-pass proved, plus a direct plant-and-restore against the real committed `what-is-6s.html`. Full `preflight.py` (every gate passed, 23 warnings, all previously diagnosed sandbox limits, 197 test files), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (163 documents), `fix_dashes.py --check` (0/0) all clean. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art` (checked #32 directly: still accurate, correctly Phil-gated). No mail credential, inbox UNCHECKED not empty. No price or product touched, no live customer-facing content changed beyond one cosmetic word; `build_articles.py` is already in `gate_generator_ownership`'s regenerate-and-diff chain, so the fix is doubly protected. IndexNow not applicable (existing page edited, not added). Full account in `ops/NIGHTLY-LOG.md`.

@@ -16,53 +16,6 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Did (2026-09-18 early, local session with VPS access):** two things only this kind of session can do.
-**(1) The YouTube authorisation was a trap and is now safe.** `video_zone.done_items()` was corrected 2026-09-15; every
-narrated video was rendered 7-8 September; 100 of 114 therefore show a checklist their own zone page no longer agrees
-with ("One wallet and one phone per adult" reads "One phone per adult"). `ops/youtube_upload.py` now refuses those by
-name, so authorising publishes the 14 that are correct; `ops/check_video_standard.py` measures it and
-`gate_zone_videos_match_standard` reports the count every cycle. Reading an actual extracted frame then found a second
-defect the captions could not show: the slide holds four items and 16 zones have more, so the china cabinet video was
-silently dropping "The cabinet strapped to a wall stud", a safety standard, under the heading "What done looks like".
-The slide now says "+ N more on the zone page", matching what the cards already did. 99 videos are being re-rendered
-unattended, with a second process that re-runs the batch until the checker reads zero. **(2) OWNER-ACTIONS item 8, two
-publicly-exposed ports, went from blocked to a five-minute job.** Both still answer the open internet and the host runs no
-firewall; they could not be closed because this site reached them through the host's public address. Rewired to the
-Docker bridge, deployed (`a53458d8` -> `8f2400c02ff063f2`) and proved live with a labelled probe event that is in the
-analytics database. The compose change is left for Phil because those stacks are shared with other sites. Also corrected
-a hazard I had introduced in my own instructions (they briefly told him the ports were safe to close before the enabling
-build was live) and cross-linked item 20 to item 1 so he does not paste into 12 descriptions he may replace. Verified
-clean and recorded so nobody re-audits: the 228 social cards, the social captions, the Etsy PDFs, the Standards Pack and
-the phone app all carry complete, current standards. Full account in `ops/NIGHTLY-LOG.md`; the lesson is LRN-0016.
-
-**Did (2026-09-18, local session, Phil's direction: better graphics, triple down on the micro zone):** the micro zone is
-now visible everywhere the product is, and the pictures are about it rather than about generic rooms.
-
-**The diagnosis:** every picture on a zone page was a generated room photograph, pleasant and generic and silent about
-the one idea that makes the page worth reading, and the local model could not draw the specific object a zone is about
-anyway. So the answer was not better photographs; it was drawing the thing nobody else has.
-
-**Shipped and verified live:** a micro zone diagram on all 114 zone pages (the room's zones as numbered chips with this
-one lit, the purpose, the finish line as ticked items, the session length and reset trigger); a micro zone map on all 20
-room pages; a new free printable product, **the Micro Zone Map**, 20 sheets covering all 114 zones, linked from the rooms
-hub and from standards.html; a home hero that leads with the unit rather than the method; a new section on method.html
-explaining what the six moves are applied to; "Zone 3 of 7" on every deck card, in the Home Quest app, and in all 114
-zone-pack product descriptions; and numbered zones on the free Standards Pack so the working order is visible there too.
-Every number is counted from the manual at build time, never typed.
-
-**Three defects of mine, each caught by looking rather than assuming:** the first diagram had a fixed height and
-truncated checklist items mid-sentence; **the version I shipped first was unreadable on a phone** (an 1160px drawing in a
-390px column puts body text at six pixels), caught by shooting the live page at phone width and fixed by making the page
-version reflowing HTML while the SVG stays in the printable; and the visual audit caught a 4.48:1 contrast failure I had
-introduced an hour earlier. The gates also caught a British spelling in my new hero copy, 30 pages left on a stale
-stylesheet hash, a service worker left on old fingerprints, and a hand-written link in the .html form the site does not
-use.
-
-**Running unattended:** all 228 zone videos re-rendering (~8 hours left) to carry a new "where it is" opening beat.
-That code is deliberately uncommitted until the render lands, because adding a beat makes every caption stale at once
-and would fail gate_srt_captions_current for the whole window; code and captions get committed together so main stays
-deployable.
-
 **Last Updated:** 2026-09-22, PM check-in. **`gate_status_currency` fired (8 material commits unmentioned since this file's own last edit); closed by describing what actually shipped, per `CLAUDE.md` 0.2, rather than opening a fresh sweep. Also fixed a real, live `build-id` FAIL this same slot: `site/build-id.txt` had gone stale by four commits (the Kitchen deck PDF push never regenerated it), which would have made `deploy.py`'s own production-freshness check compare against the wrong hash; regenerated and reverified `--check` current.** The 8: `e529774e` (C20, issue #34: a real downloadable Kitchen deck PDF via headless-Chromium render of the page's own print sheet, plus a sitewide fix to `measure.js`'s `free-download` tracking regex, which had never matched a page-relative download href and so likely never counted the Entryway deck or book-sample downloads); `147179c6` (C6/C7: retired the 6 Area Bundles and 15 Situation Kits, 74-84% of the whole-house pack's price for 7-20% of its content, $0 realised revenue ever; catalogue 159 to 138, full detail preserved in `ops/retired-skus.json`, `DECISIONS.md` D-023); `c0cf1b8b` (a page for the $49 Complete Digital Bundle, issue #32's last open finding, wired into shop/book CTAs and the Product JSON-LD chain); `2bc4424f` (C9: preferred-time capture on `thanks.html` for the two service SKUs, plus a live 1.13:1 contrast failure found and fixed across 160 pages while verifying, now permanently gated); `e4d2403d` (C10: a free, capped 15-minute "which zone first" call, the last genuinely unblocked backlog row at the time); `4b792857` (fixed Product JSON-LD `url` drift on `shop.html` after the bundle page shipped, caught by `preflight.py --own`); `22fe4a8b` (the free sample PDF's rendered cover still said "The Complete Book" after the HTML had been corrected twice; the checked-in binary was never re-derived, now fixed and gated); `2ec2bfa7` (C17: a Stripe link-retirement refusal now surfaces as RED on the dashboard and by name in the hourly brief instead of only a print() in a closed terminal). Full detail in each commit and in `ops/NIGHTLY-LOG.md`.
 
 **Prior (2026-09-22, PM check-in): `REVIEW-COMMERCE-2026-09-07.md` section 7 cleared of every "At" tier item; C4 and C13, the last two, both shipped and verified.** C13 (`35ad2696`) authored the two B2B-intent articles the section called for, `what-a-5s-engagement-costs.html` and `why-5s-decays-after-six-months.html`, every claim traced to `corporate.html` or the existing `CORPORATE_CORPUS`, no dollar figure or testimonial; linked from two new `corporate.html` cards and a new "For teams and workplaces" subsection on the articles index, and caught four real staleness gaps while verifying (a hand-typed breadcrumb, `llms.txt`'s article count, and two stale page-count citations in `ROADMAP-2026-2029.md`/`RISKS.md`), all fixed the same cycle; `00b38d80` regenerated the sitemap/build-id for the date rollover the same push caused. C4 (`a6cc65ec`) found that corporate nav/footer distribution, despite several earlier cycles citing it done, had never actually happened: `corporate.html` was reachable from only 3 pages. Kept it out of the five-item primary nav on purpose (`wire_nav.py`'s own documented household-audience decision) and instead wrote a new generator, `ops/wire_footer.py`, that propagates the footer live from `about.html` to every hand-authored page; internal links to `corporate.html` went from 3 to 191 pages. Both cycles' full `preflight.py`, `check_urls.py`, `audit_pages.py` and `audit_visual.py` runs came back clean; CI confirmed green via the GitHub API, not assumed. Also: `000daf95` (C12, the free B2B zone scoring sheet and layered audit template) and `4851cfed` (C11, a corporate LinkedIn post track for the B2B offer) round out the same B2B push; `514abe61` (C16, the free Entryway deck PDF cut from 25 MB to 7.5 MB) and its follow-up `3fda4039` (the generator drift that PDF resize left behind, fixed, `PRICING.md` pointed at decision D-022); `5bc062f1` closed a gate gap in `build_manual_print.py`'s six-S ordering check (D-014).
