@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (traced one real customer journey end to end, per the 19:4x handoff; no live defect, one real credential-free coverage gap closed)
+
+**Did:** Unshallowed, fast-forward merged onto `origin/main` clean (18 commits). Read the current backlog, roadmap, `CLAUDE.md`, log head. `preflight.py` clean before touching anything. GitHub: 8 issues unchanged, all `decision`/`blocked-on-art`. No mail credential.
+
+**Traced the handed-off journey:** a zone page's print-pack and consult buttons through `data.js` to Stripe, then `measure.js`'s click handler and `quest.js`'s `?zone=` deep link. Every hop resolved correctly. A script cross-referencing every `buy.stripe.com` link in `site/` against `data.js`, both directions: 0 orphans, 0 unreferenced.
+
+**Found a real gap, not a live defect.** `quest.js` hardcodes the print pack's href/SKU as a literal, the same shape as the four hand-typed link ids `measure.js` used to carry before one went stale and silently miscounted seven of nine buy-clicks. Nothing credential-free checked a hardcoded JS link against the live catalogue. New `gate_no_stale_hardcoded_stripe_link` in `preflight.py`, scanning every page plus every JS file. Fail-then-pass proved directly: planted the real defect in `quest.js`, gate failed by name, restored byte for byte, reran clean. New test file, 5 cases pass.
+
+**Verified:** full `preflight.py` clean, `check_urls.py` (190/190), `audit_pages.py` clean, `affiliate.py --check` (165 docs), 246 other test files. Command deck regenerated.
+
+**Went well:** found a real gap despite a clean trace.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list and the 8 open issues, unchanged.
+
+Pushed to main. `ops/preflight.py`, new test file, command deck. No price/product/page touched.
+
 ## PM check-in, 2026-09-22 20:1x (previous work finished and verified; a real, live self-contradiction found and closed in DECISIONS.md D-023)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto

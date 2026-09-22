@@ -1673,6 +1673,78 @@ def gate_price_matches_its_own_link() -> None:
              f"(file, sku, price shown, real price) {uniq}")
 
 
+STRIPE_LINK_RE = re.compile(r'https://buy\.stripe\.com/[A-Za-z0-9]+')
+
+
+def stale_hardcoded_stripe_links(file_texts: dict, live_buys: set) -> list:
+    """Pure logic: every buy.stripe.com URL literal in FILE_TEXTS must be a
+    member of LIVE_BUYS, data.js's own current set of `buy` links.
+
+    Separated from the gate below so it can be proved fail-then-pass on
+    planted text without touching disk. See the gate's own docstring for
+    the defect class this closes.
+    """
+    bad = []
+    for name, text in file_texts.items():
+        for m in STRIPE_LINK_RE.finditer(text):
+            link = m.group(0)
+            if link not in live_buys:
+                bad.append((name, link))
+    return bad
+
+
+def gate_no_stale_hardcoded_stripe_link() -> None:
+    """A buy.stripe.com link written into a page or a .js file must still be
+    one of data.js's own current buy links, or a stranger who clicks it
+    reaches a dead or wrong checkout with nothing telling us.
+
+    Traced live 2026-09-22 while following one real customer journey end to
+    end (a zone page's consult and print-pack buttons through data.js to the
+    Stripe URL, then through measure.js's click handler): every link
+    resolved correctly today, no defect found. But quest.js hardcodes the
+    print pack's own href and SKU as a literal object (its own comment
+    explains why: the button text has to match whichever offer is pitched,
+    so it cannot just read data.js at render time the way a generated page
+    does), the same shape as the four hand-typed payment-link ids measure.js
+    used to carry, which went stale the moment a price rotation replaced one
+    of the four and silently miscounted seven of nine buy-clicks before
+    anybody noticed (see measure.js's own "WHY THE SKU MAP THAT USED TO LIVE
+    HERE IS GONE"). ops/sync_page_links.py already repairs a link Stripe
+    reports dead, but only when a Stripe credential is present; this
+    sandbox and most cloud runs have none (see the live-links warning
+    above), so a stale hardcoded link could sit unrepaired and unreported
+    for as long as no credentialed session happens to run it. This gate
+    needs no credential at all: it only asks whether the link in the
+    repository still matches the repository's own catalogue, which is
+    checkable on every run, everywhere.
+
+    Scans every page (`all_pages()`) plus every `site/assets/js/*.js` file,
+    so a hardcoded link hiding in JavaScript (quest.js's own shape) is not
+    invisible the way `gate_price_matches_its_own_link`'s HTML-anchor-only
+    regex would leave it.
+    """
+    js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    live_buys = {i["buy"] for i in cat if i.get("buy")}
+    if not live_buys:
+        return
+
+    files = {}
+    for f in all_pages():
+        files[f] = io.open(f, encoding="utf-8", errors="replace").read()
+    for f in glob.glob(os.path.join(SITE, "assets", "js", "*.js")):
+        files[f] = io.open(f, encoding="utf-8", errors="replace").read()
+
+    bad = stale_hardcoded_stripe_links(files, live_buys)
+    if bad:
+        uniq = sorted({(os.path.relpath(f, ROOT), link) for f, link in bad})[:5]
+        fail("no-stale-hardcoded-stripe-link",
+             f"{len(bad)} hardcoded buy.stripe.com link(s) do not match any "
+             f"current entry in data.js's own catalogue, so a click reaches "
+             f"a dead or wrong checkout: (file, link) {uniq}")
+
+
 def gate_bundle_maths() -> None:
     """The bundle's saving must equal its parts minus its price.
 
@@ -19192,6 +19264,7 @@ def main() -> int:
     run_gate(gate_unsourced_stats)
     run_gate(gate_copy_vs_control)
     run_gate(gate_price_matches_its_own_link)
+    run_gate(gate_no_stale_hardcoded_stripe_link)
     run_gate(gate_bundle_maths)
     run_gate(gate_affiliate)
     run_gate(gate_stale_claims)
