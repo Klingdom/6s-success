@@ -30,6 +30,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/preflight.py`, `ops/retire_stripe_skus.py`, `ops/retired-skus-stripe-status.json`, new test file, `OWNER-ACTIONS.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable, no site page changed.
 
+## PM check-in, 2026-09-22 22:4x (previous work finished; a real, unlogged D18 zone-naming defect found and scoped for the operator)
+
+**NEXT FOR THE OPERATOR: fix the zone-entity-name mismatch (REVIEW-DISCOVERY-2026-09-07.md D18 item 3, "stable named entities"), because at least 5 of the 12 published zone videos' VideoObject JSON-LD name/description use a different common noun than the same page's own title/meta/FAQ.** Confirmed live, not from the report alone: `entryway-the-landing-spot.html` has H1 "The Landing Spot", title/meta/FAQ "drop zone" (`zone-search-terms.json`'s deliberate override), and VideoObject "landing zone" (from `ops/youtube-published.json`, itself built off the older internal key in `zone-name-map.json`). Same drift confirmed on `kitchen-the-cooking-zone` ("stove area" vs "cooking zone"), `kitchen-the-primary-prep-counter` ("prep counter" vs "primary prep counter"), `entryway-the-shoes-and-boots` and `entryway-the-coats-and-outerwear` (singular/no-"zone" title vs plural/"zone" video). 3 of 8 checked already agree; this is real drift, not a blanket rewrite. No prior cycle logged this: grepped `NIGHTLY-LOG.md`/`BACKLOG-2026-09-07.md`/`DECISIONS.md` for "D18"/"stable named entities", 0 hits before this entry.
+
+**Previous work: finished, verified.** Unshallowed, fast-forward merged onto `origin/main`, clean; HEAD (`f56f49fe`) unchanged since the 22:1x check-in. `preflight.py`'s first run FAILed on `etsy-pdfs-current`, but that was self-inflicted: an earlier backgrounded run of mine got SIGTERM'd mid-render, leaving two Etsy PDF binaries dirty. Restored with `git checkout`, reran clean: every gate passed, 22 warnings, all previously diagnosed sandbox limits. `BACKLOG-2026-09-07.md` sections 2-6 and `STATUS.md`'s workstreams reread: every unblocked row already done, everything else explicitly Phil-gated (Gemini billing, YouTube OAuth, Search Console, deploy key). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
+
+**Went well:** tracing D18 against real generator/data files (`build_zone_pages.py`'s `searchable()`, `zone-name-map.json`, `zone-search-terms.json`, `youtube-published.json`) rather than just re-citing the report, so the handoff names the exact mechanism, not just the symptom.
+
+**Did not go well:** cost a rerun of preflight to clean up my own killed background process; no defect in the gate itself.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. The D18 fix above is the top unblocked, unclaimed item.
+
+Pushed to main. Command deck only; no price, product or site page touched this cycle.
+
 ## PM check-in, 2026-09-22 22:1x (previous work finished and verified; ran the stale preflight --deep handoff; traced the free-download tracking fix clean)
 
 **Previous work: finished.** Unshallowed and fast-forward merged onto `origin/main` clean. Ran `python ops/preflight.py` fresh myself: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Tree was clean and pushed before this cycle touched anything. Did not just cite the last cycle's own account: reran `ops/tests/test_stripe_catalog_deliverable.py` directly (6/6 pass), the new file that commit added.
