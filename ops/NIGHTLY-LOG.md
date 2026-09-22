@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 14:4x (build-id fix confirmed real via CI, not just cited; two more low-mention files verified clean)
+
+NEXT FOR THE OPERATOR: cold-read `ops/mailer.py` and `ops/owner_inbox.py`, because they are next in the low-mention `ops/*.py` tier and every unblocked backlog row is already done or Phil-gated.
+
+Attached, fast-forwarded onto `origin/main` clean. Confirmed the 14:1x cycle's build-id fix (`93c160d3`) for real rather than citing it: `publish-image.yml` run #384 on that commit is `conclusion=success`, the first successful publish since run #380, so the deploy pipeline is unblocked again. `checks.yml` run #1294 on the same commit was still `in_progress` when checked, not claimed passing. No VPS/ssh/egress here (confirmed directly), so live deploy-freshness stays unconfirmed, unchanged. Backlog confirmed exhausted; 8 GitHub issues unchanged, all decision/blocked-on-art. Ran `ops/wire_footer.py` and `ops/build_corporate_asset.py` live rather than only reading them: both idempotent, zero drift, no defect. `preflight.py` fast: every gate passed, 23 standing warnings.
+
+**Next:** standing Phil-blocked list unchanged; `mailer.py`/`owner_inbox.py` for the operator.
+
+Pushed to main, command deck only. No price/product/page touched.
+
 ## PM check-in, 2026-09-22 14:1x (previous work finished but not fully verified; a live deploy-blocking defect found and fixed)
 
 **Previous work (C20, the Kitchen deck PDF) was shipped and correctly logged, but the prior cycle's own "CI confirmed green" line was written before the run it named could possibly have finished** (committed at 14:09:42, citing run #1293 on `760db301`, which had only been running about two minutes at that point and, checked directly, took until 14:25 to conclude). Not a fabrication, just unverified; flagging it plainly per STEP 2 rather than repeating it.
