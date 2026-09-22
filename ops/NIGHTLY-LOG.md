@@ -2,6 +2,78 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 01:4x (previous work finished and verified; a stale review-doc table corrected)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_corporate_asset.py` (2 mentions in
+this log) and `ops/backup_analytics.py` (9 mentions) for a real defect, because
+every named backlog and review row is now done or genuinely Phil-gated, and
+those two are the lowest-mention `ops/*.py` files nobody has read cold since
+the last time this method was the fallback.
+
+Attached via unshallow plus ff-only merge onto `origin/main`, clean (no
+reset needed). Read `git log -12`, the top of this log, `BACKLOG-2026-09-07.md`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues directly via the
+API (`get_me`/`list_issues`, not cited): all 8 unchanged, all `decision`
+(33, 32, 31, 21, 18, 15) or `blocked-on-art` (29, 2), none pickable without
+Phil; 0 open PRs.
+
+**STEP 2, previous work: finished.** `python ops/preflight.py`: every gate
+passed, 23 standing warnings, all previously diagnosed sandbox limits (no
+Stripe/SSH/mail credential, no Pillow, no live network; confirmed directly,
+not cited, by watching this run's own egress attempts get denied by the proxy).
+Working tree was clean at `HEAD` (`ed1c2695`). This closes the prior cycle's
+own open item: it had left the full run mid-`gate_tests` and asked the next
+cycle to confirm rather than inherit its hope; confirmed here, clean.
+
+**STEP 3, this cycle's own work.** `BACKLOG-2026-09-07.md` section 2 rows are
+all struck through and done; `REVIEW-COMMERCE-2026-09-07.md` section 7 is
+clear of every "At" tier item (C4/C11/C12/C13 all shipped and CI-confirmed);
+the remaining commerce rows need a Stripe credential no sandbox holds.
+`REVIEW-DISCOVERY-2026-09-07.md`'s pilot-cohort rows (D1/D3/D4/D5/D8/D9) are
+all done or settled by decision (D-020: D9's floor is met, the median-above-15
+clause is aspirational, not to be re-derived). Checked the one place still
+worth a look before declaring nothing new: the "Days 46-90" table in that
+same review still read D10 (room hubs) as "low expected return this quarter"
+and D12 (six specific articles) as waiting on "the read," when both were
+already done or honestly partial as of 2026-09-21 per this log's own entries.
+Nobody had gone back to update that table once the work under it landed
+early, the same "source corrected, artifact never re-derived" shape D-020's
+own rationale names as this repository's most expensive recurring defect
+class. Fixed: both rows now state the real, dated status (D10 done; D12
+honest partial, images/author correctly still blocked on D2/D21, not on the
+read). No generator owns this file (a hand-authored review document); edited
+directly.
+
+**Verified:** `python ops/preflight.py` rerun after the edit, clean (every
+gate passed, same 23 warnings, same count as before the edit since this is
+prose in a non-gated markdown file). `check_urls.py` and `audit_pages.py`
+not rerun (no HTML touched); the two-line prose edit was read back in full
+before committing to confirm no other claim in the same table needed the
+same correction (D6 full and the two YouTube/Pinterest rows checked and
+still genuinely Phil-gated, left as is).
+
+**Went well:** finding a genuine documentation-staleness defect within a
+30-minute slot rather than re-citing "everything is done or Phil-gated" a
+second time with no action.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue
+#27, unchanged, still needs Phil's hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect class, one stale table
+corrected at the source.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. The dashboard's own "one constraint" line
+(production last confirmed current at 2026-09-21T13:53:56Z, build
+`b0b1e025`, repository since moved past that, not yet redeployed) is real
+and unresolved, but redeploying needs the VPS deploy key no sandboxed
+session holds; already the standing item in `OWNER-ACTIONS.md`, not new.
+Handing the operator the two named cold-read candidates above as the
+highest-value genuinely unblocked work.
+
+Pushed to main. `REVIEW-DISCOVERY-2026-09-07.md` (two table rows), command
+deck. No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-22 01:1x (previous work finished and verified, STATUS.md's own drift closed)
 
 Attached via unshallow plus ff-only merge onto origin/main, clean. Read git log -12,
