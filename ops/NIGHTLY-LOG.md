@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 06:4x (previous work finished and verified; triage only, handoff to operator)
+
+NEXT FOR THE OPERATOR: C17 (`REVIEW-COMMERCE-2026-09-07.md` section 7, dashboard RED row when `ensure_link` refuses to retire a link production serves), because it is genuinely unblocked (Independent tier, pays at any traffic level, needs no Stripe credential), small (0.3 days), and is the standing recommendation from the 05:4x cycle, reconfirmed unchanged this pass.
+
+Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`ec6cca98`), no reset or force needed. Read `git log --oneline -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md` section 2 (O1, the traffic constraint), `REVIEW-COMMERCE-2026-09-07.md` section 7. Confirmed the 8 open GitHub issues directly via the API: unchanged (`decision`: 33, 32, 31, 21, 18, 15; `blocked-on-art`/`P0`: 29, 2), none pickable per this prompt's own rule.
+
+**Previous work was finished.** `preflight.py` (full, not `--own`) ran clean: every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe credential, no VPS SSH key, no `gh`/`GH_TOKEN` for some checks, unreachable live site). One warning read new at a glance, `workflows-healthy` naming `checks.yml` failing 3 commits behind HEAD; traced rather than assumed: this is the exact same gap the 06:2x cycle's own fix left behind on purpose, since `NIGHTLY-LOG.md` sits outside `checks.yml`'s trigger paths, and the gate's own docstring documents this shape by name ("failing attempt is N commit(s) behind HEAD... HEAD's own state here is unconfirmed, not proven broken"). Not a new defect. Working tree was clean before this pass began, main was already pushed at `ec6cca98`.
+
+`BACKLOG-2026-09-07.md` sections 2 through 6 again all done or Phil-gated. `REVIEW-COMMERCE-2026-09-07.md` section 7 is fully clear of *At*-tier work; the only genuinely open, unblocked rows are C6/C7/C9/C10/C17/C20 (background hygiene or waiting behind O1) and C1/C2/R1-R4 (need Stripe credentials no sandbox here holds). C17 is the smallest of the unblocked set and does not wait on traffic.
+
+**Went well:** the checks.yml warning looked new but traced back to an already-understood, already-fixed shape rather than a live regression, so no time was spent re-diagnosing it.
+
+**Did not go well:** nothing new; the standing Phil-gated list is unchanged again.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this log entry. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## PM check-in, 2026-09-22 06:2x (previous work was NOT finished: a real, currently-red CI failure; fixed and verified)
 
 Attached onto `459fbca7`. Previous work NOT finished: local `preflight.py` failed `gate_nightly_log_ordering`. Confirmed live against GitHub, not assumed: CI run 1279 on `bacc360fc` (2 commits behind HEAD) has the same failure, real and current, invisible to later commits because `NIGHTLY-LOG.md` sits outside `checks.yml`'s trigger paths.
