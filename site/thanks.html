@@ -84,6 +84,22 @@
     <h2 id="heading">Your order</h2>
     <ol class="next" id="steps"></ol>
 
+    <div class="receipt" id="schedule-block" hidden>
+      <h2 id="schedule-heading">Pick a time</h2>
+      <p id="schedule-intro"></p>
+      <form id="schedule-form">
+        <div class="field"><label for="sch-time">Best date and time</label><input id="sch-time" name="time" placeholder="14 October at 2pm" required></div>
+        <div class="field"><label for="sch-time2">A second choice, in case the first does not work</label><input id="sch-time2" name="time2" placeholder="16 October at 10am"></div>
+        <div class="field"><label for="sch-notes">Anything we should know beforehand?</label><textarea id="sch-notes" name="notes" rows="3" placeholder="Rooms you most want covered, pets, parking, a gate code, anything else."></textarea></div>
+        <p class="hint">Written like that example, a calendar invite comes back with the reply. Leave it blank and we will suggest times by email instead.</p>
+        <button class="btn btn-primary btn-lg" type="submit">Send my preferred time</button>
+        <div class="notice" id="sch-ok" role="status" aria-live="polite" style="margin-top:18px" hidden>
+          <b>Your mail app should have opened with the message ready.</b> Press send there. <a id="sch-mailto" href="mailto:support@6s-success.com">Open it again</a> if nothing happened, or copy the message below and send it to <b>support@6s-success.com</b>.
+          <details style="margin-top:12px" open><summary style="cursor:pointer">Copy the message instead</summary><textarea id="sch-copy" readonly rows="8" aria-label="Your scheduling message, ready to copy" style="width:100%;font:inherit;font-size:15px;padding:10px;border:1px solid #E2D8C4;border-radius:8px;background:#fff"></textarea><button type="button" class="btn btn-ghost btn-sm" id="sch-copy-btn" style="margin-top:8px">Copy the message</button></details>
+        </div>
+      </form>
+    </div>
+
     <div class="receipt">
       <h2>If something does not arrive</h2>
       <p>Reply to your Stripe receipt, or write to <a href="mailto:support@6s-success.com">support@6s-success.com</a>, and a person will sort it out. Say what you bought and we will find the order.</p>
@@ -188,6 +204,104 @@
   document.getElementById("steps").innerHTML = plan.steps.map(function (s) {
     return "<li><strong>" + s[0] + "</strong>" + s[1] + "</li>";
   }).join("");
+
+  /* REVIEW-COMMERCE-2026-09-07.md C9: the two appointment services collect no
+     time anywhere on the money path. ops/service_orders.py can only attach a
+     calendar invite when a customer names a time, and until this block
+     existed nothing ever asked for one until Phil's own follow-up email, so
+     every purchase became a manual round trip starting from zero. Shown only
+     for the two services that are actually appointments; a digital product
+     has nothing to schedule. Same composed-message, mailto handoff pattern
+     as site/corporate.html's enquiry form (no ticket system, no new billing
+     surface, no card data, no new Stripe object), and the "14 October at
+     2pm" placeholder is not decoration: it is the exact shape
+     ops/service_orders.py's find_time() parses, so a message sent unedited
+     comes back with a real .ics attached rather than another "what time
+     works" reply. */
+  var SCHEDULED = { "CN-VIRTUAL": 1, "CN-INHOME": 1 };
+  var scheduleBlock = document.getElementById("schedule-block");
+  if (scheduleBlock && SCHEDULED[sku]) {
+    var serviceName = plan.heading.replace(/^Your /, "");
+    scheduleBlock.hidden = false;
+    document.getElementById("schedule-heading").textContent =
+      "Pick a time for your " + serviceName.toLowerCase();
+    document.getElementById("schedule-intro").textContent =
+      "Tell us when works and we will send a calendar invite for it, "
+      + "rather than waiting for the usual back-and-forth by email.";
+
+    var schedForm = document.getElementById("schedule-form");
+    var schedOk = document.getElementById("sch-ok");
+    var schedLink = document.getElementById("sch-mailto");
+    var schedCopy = document.getElementById("sch-copy");
+    var schedCopyBtn = document.getElementById("sch-copy-btn");
+
+    function sv(id) {
+      var el = document.getElementById(id);
+      return el ? String(el.value || "").trim() : "";
+    }
+
+    schedForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      /* Native validation, same reasoning as corporate.html's form: it
+         covers the one required field and announces itself to a screen
+         reader without a hand-rolled emptiness check. */
+      if (schedForm.checkValidity && !schedForm.checkValidity()) {
+        if (schedForm.reportValidity) { schedForm.reportValidity(); }
+        return false;
+      }
+
+      var body = [
+        "Service: " + serviceName,
+        "SKU: " + sku,
+        "",
+        "Preferred time: " + sv("sch-time"),
+        "Second choice: " + (sv("sch-time2") || "none given"),
+        "",
+        "Anything to know beforehand:",
+        sv("sch-notes") || "nothing noted"
+      ].join("\n");
+
+      var subject = "Scheduling: " + serviceName;
+      var href = "mailto:support@6s-success.com?subject="
+        + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+      /* Shown before the mail app is asked for, so a browser with no mail
+         client attached still leaves the visitor holding their message. */
+      if (schedCopy) { schedCopy.value = body; }
+      if (schedOk) { schedOk.hidden = false; }
+      if (schedLink) {
+        schedLink.href = href;
+        try { schedLink.click(); } catch (err) { /* the copy box is already shown */ }
+      }
+      if (schedOk && schedOk.scrollIntoView) {
+        schedOk.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      /* sku only, never the time or the notes: CLAUDE.md 47, and matching
+         corporate.html's own corporate-enquiry event, which tracks whether a
+         time was given rather than the time itself. */
+      if (window.Measure && window.Measure.track) {
+        window.Measure.track("service-schedule", { sku: sku, sv: 2 });
+      }
+      return false;
+    });
+
+    if (schedCopyBtn) {
+      schedCopyBtn.addEventListener("click", function () {
+        if (!schedCopy) { return; }
+        schedCopy.select();
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(schedCopy.value);
+          } else {
+            document.execCommand("copy");
+          }
+          schedCopyBtn.textContent = "Copied";
+        } catch (err) {
+          schedCopyBtn.textContent = "Select the text above and copy it";
+        }
+      });
+    }
+  }
 })();
 </script>
 <!-- ============ FOOTER ============ -->

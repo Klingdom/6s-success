@@ -559,7 +559,7 @@ def offer(name, zone_slug, room=None, zone=None):
             'fighting back, the real problem usually sits somewhere else in the room. A '
             f'one hour virtual consult is {CONSULT_PRICE} dollars: we find the function, the friction '
             'and the root cause together, and you keep a written standard for the space.</p>'
-            '<p style="margin:0"><a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+            '<p style="margin:0"><a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
             f'href="../consulting.html?from=zone:{zone_slug}">See what a consult covers, '
             f'{CONSULT_PRICE} dollars</a></p></section>')
 
@@ -621,7 +621,7 @@ def room_offer(room, room_slug, n):
                 f'it with you. A one hour virtual consult is {CONSULT_PRICE} dollars: we work out what the '
                 + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone '
                 'to start on, and you keep a written plan.</p>'
-                '<p style="margin:0"><a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+                '<p style="margin:0"><a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
                 f'href="../consulting.html?from=room:{room_slug}">See what a consult covers, '
                 f'{CONSULT_PRICE} dollars</a></p></section>')
 
@@ -653,7 +653,7 @@ def room_offer(room, room_slug, n):
             f'with you. A one hour virtual consult is {CONSULT_PRICE} dollars: we work out what the '
             + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone to '
             'start on, and you keep a written plan.</p>'
-            '<p style="margin:0"><a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+            '<p style="margin:0"><a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
             f'href="../consulting.html?from=room:{room_slug}">See what a consult covers, '
             f'{CONSULT_PRICE} dollars</a></p></section>')
 

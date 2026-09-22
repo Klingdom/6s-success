@@ -2,17 +2,20 @@
 """
 Prove ops/preflight.py's check_consult_cta_current() catches the defect
 class REVIEW-COMMERCE-2026-09-07.md C8 exists to hold: a zone, room or
-article page with no real consult button, or one whose button links to
-consulting.html with no origin query string. Fixed 2026-09-22 in
-ops/build_zone_pages.py's offer()/room_offer(), ops/build_articles.py's
-offer(), and ops/wire_consult_cta.py for the remaining hand-authored
-articles; site/assets/js/measure.js records the click as a "service-cta"
-event.
+article page with no real consult button, one whose button links to
+consulting.html with no origin query string, or one whose button carries
+class btn-ghost (near-invisible, 1.13:1, inside the dark .band section
+every one of these pages places it in; found live across all 160 pages
+that had it, 2026-09-22, ops/audit_visual.py's real Chromium contrast
+math). Fixed 2026-09-22 in ops/build_zone_pages.py's offer()/
+room_offer(), ops/build_articles.py's offer(), and ops/wire_consult_cta.py
+for the remaining hand-authored articles; site/assets/js/measure.js
+records the click as a "service-cta" event.
 
 Also runs against the real, committed site/zones/, site/rooms/ and
 site/articles/ files, so a future hand edit or a regeneration that drops
-the button, downgrades it back to a plain text link, or strips its
-origin query string fails this test directly.
+the button, downgrades it back to a plain text link, strips its origin
+query string, or reintroduces btn-ghost fails this test directly.
 
 Run:  python ops/tests/test_gate_consult_cta_current.py
 """
@@ -26,16 +29,16 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import preflight                                               # noqa: E402
 
-GOOD_ZONE = ('<p style="margin:0"><a class="btn btn-ghost btn-sm" '
+GOOD_ZONE = ('<p style="margin:0"><a class="btn btn-on-deep btn-sm" '
              'data-sku="CN-VIRTUAL" '
              'href="../consulting.html?from=zone:entryway-the-landing-spot">'
              'See what a consult covers, 250 dollars</a></p>')
 
-GOOD_ROOM = ('<p style="margin:0"><a class="btn btn-ghost btn-sm" '
+GOOD_ROOM = ('<p style="margin:0"><a class="btn btn-on-deep btn-sm" '
              'data-sku="CN-VIRTUAL" href="../consulting.html?from=room:entryway">'
              'See what a consult covers, 250 dollars</a></p>')
 
-GOOD_ARTICLE = ('<a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+GOOD_ARTICLE = ('<a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
                 'href="../consulting.html?from=article:why-you-always-lose-your-keys">'
                 'Talk it through, 250 dollars</a>')
 
@@ -93,7 +96,17 @@ def main() -> int:
     if not any("no origin query string" in p for p in problems):
         fails.append("stripped origin not caught: %s" % problems)
 
-    # 5. Real site: every committed zone/room/article page (minus the
+    # 5. The exact live regression this test file was extended for: a
+    #    button correctly wired (real, origin-tracked) but carrying the
+    #    old btn-ghost class, near-invisible on its own dark section.
+    ghosted = GOOD_ZONE.replace("btn btn-on-deep btn-sm", "btn btn-ghost btn-sm")
+    pages_ghosted = {"zone": {"entryway-the-landing-spot.html": ghosted},
+                     "room": {}, "article": {}}
+    problems = preflight.check_consult_cta_current(pages_ghosted)
+    if not any("btn-ghost" in p for p in problems):
+        fails.append("btn-ghost regression not caught: %s" % problems)
+
+    # 6. Real site: every committed zone/room/article page (minus the
     #    deliberately excluded indexes and the two B2B articles) must
     #    already pass clean.
     real_pages = {}
@@ -123,7 +136,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print(f"PASS ({5} cases)")
+    print(f"PASS ({6} cases)")
     return 0
 
 

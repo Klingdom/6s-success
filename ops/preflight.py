@@ -17381,9 +17381,21 @@ def check_consult_cta_current(pages: dict) -> list:
     (why-you-cant-see-your-own-clutter.html's own pattern) needs no
     "from=", because measure.js's existing buy-click handler already
     records its origin page via page().
+
+    Also requires the button never carry class="btn btn-ghost...". Found
+    2026-09-22: every zone, room and article page places this button
+    inside a dark <section class="band">, and .btn-ghost's colour
+    (var(--ink), a dark brown meant for a light background) measured
+    1.13:1 against that section's own background across all 160 pages
+    that had it, real Chromium contrast math via ops/audit_visual.py, not
+    a static guess. .btn-on-deep is the variant this site already uses
+    for every other button sharing the same section (see the print-pack
+    and free-quest buttons on the same line), so this is the one class
+    the consult button must never carry rather than a new rule invented
+    for it.
     """
-    btn_re = re.compile(
-        r'<a[^>]*data-sku="(CN-VIRTUAL|CN-INHOME)"[^>]*href="([^"]+)"')
+    btn_re = re.compile(r'<a\b[^>]*data-sku="(CN-VIRTUAL|CN-INHOME)"[^>]*>')
+    href_re = re.compile(r'href="([^"]+)"')
     problems = []
     for label, files in sorted(pages.items()):
         for f, body in sorted(files.items()):
@@ -17394,11 +17406,18 @@ def check_consult_cta_current(pages: dict) -> list:
                     "data-sku=\"CN-VIRTUAL\"/\"CN-INHOME\"), only a "
                     "text link or nothing at all" % (label, f))
                 continue
-            href = m.group(2)
+            tag = m.group(0)
+            hm = href_re.search(tag)
+            href = hm.group(1) if hm else ""
             if "consulting.html" in href and "from=" not in href:
                 problems.append(
                     "%s %s: consult button links to consulting.html "
                     "with no origin query string" % (label, f))
+            if re.search(r'class="[^"]*\bbtn-ghost\b', tag):
+                problems.append(
+                    "%s %s: consult button carries btn-ghost, near-"
+                    "invisible on its own dark .band section (1.13:1); "
+                    "use btn-on-deep" % (label, f))
     return problems
 
 

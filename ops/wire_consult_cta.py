@@ -74,7 +74,7 @@ def consult_price() -> int:
 
 
 def button(slug: str, price: int) -> str:
-    return ('<a class="btn btn-ghost btn-sm" style="margin-left:10px" '
+    return ('<a class="btn btn-on-deep btn-sm" style="margin-left:10px" '
             f'data-sku="CN-VIRTUAL" href="../consulting.html?from=article:{slug}">'
             f'Talk it through, {price} dollars</a>')
 
