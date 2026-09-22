@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 13:1x (previous work finished, verified two more low-mention files clean, nothing new to open)
+
+Attached shallow/detached (issue #27's usual shape): fetched, unshallowed, fast forwarded onto origin/main (02601815) with no conflict. Previous work was finished: preflight.py fast, every gate passed, 23 warnings, all previously diagnosed sandbox limits; working tree clean before this cycle; main was up to date with origin. GitHub: 8 open issues unchanged (6 decision, 2 blocked-on-art), matching the dashboard's own count; issue #34 (Kitchen deck PDF vs print-only) is a fresh, properly scoped escalation from the prior cycle, correctly left for Phil, no action needed on it here.
+
+Backlog confirmed exhausted again (BACKLOG-2026-09-07.md sections 2-4 fully struck through or Phil-gated). Picked up the next unread tier the prior cycle named: cold-read wire_breadcrumbs.py and status_pdf.py in full. wire_breadcrumbs.py verified live with --check: 0 changed, 29 already correct, matching its own claim exactly. status_pdf.py read end to end including its needs_phil/issues_available handling (the exact shape a 2026-09-15 cycle found broken in hourly_brief.py/send_brief.py); traced it through status_report.gather() to state.json and confirmed the key is actually present and correctly valued (6, matching GitHub's live decision-label count). No defect in either file.
+
+Regenerated the command deck fresh (ops/dashboard.py) and shipped through ops/ship.py rather than a plain commit. Leaving the rest of the low-mention ops/*.py tier (build_thumbnails.py, check_sitemap_current.py, check_video_links.py, media_capability.py, shrink_sample.py, split_deck_cards.py) for the hourly operator at :43, since a full sweep exceeds this slot's 30-minute budget. Standing Phil-blocked list in OWNER-ACTIONS.md unchanged.
+
 ## 2026-09-22, scheduled operator cycle (backlog exhausted, four ops files cold-read, no new defect)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` (1195-commit fast-forward, issue #27's usual shallow/detached shape). Read `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` (backgrounded, foreground exceeds this sandbox's timeout): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe credential, no SSH key, no egress to 6s-success.com, Pillow not installed). GitHub: 8 open issues, unchanged, 6 `decision` and 2 `blocked-on-art`, all already mitigated as far as possible without Phil's own call (confirmed via a subagent read of every issue body, not the label alone); 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, same as every prior cycle.
