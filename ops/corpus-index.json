@@ -51,10 +51,10 @@
   {
    "path": "content/book/6S-Success-Chapter-46/chapter_46_manuscript.md",
    "chapter": "ch46",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6442,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-46/CH46_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -123,10 +123,10 @@
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/web/meta-description-options.md",
    "chapter": "ch46",
-   "kind": "video-script",
+   "kind": "other",
    "words": 94,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/web/read-next-recommendations.md",
@@ -355,10 +355,10 @@
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch46",
-   "kind": "video-script",
+   "kind": "other",
    "words": 265,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -413,8 +413,8 @@
    "chapter": "ch46",
    "kind": "quote-card",
    "words": 1066,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/graphics/diagram-ideas.md",
@@ -491,10 +491,10 @@
   {
    "path": "content/book/6S-Success-Chapter-39/chapter_39_manuscript.md",
    "chapter": "ch39",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6142,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-39/CH39_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -555,10 +555,10 @@
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/web/meta-description-options.md",
    "chapter": "ch39",
-   "kind": "video-script",
+   "kind": "other",
    "words": 106,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/web/read-next-recommendations.md",
@@ -787,10 +787,10 @@
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch39",
-   "kind": "video-script",
+   "kind": "other",
    "words": 232,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -845,8 +845,8 @@
    "chapter": "ch39",
    "kind": "quote-card",
    "words": 982,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/graphics/diagram-ideas.md",
@@ -939,10 +939,10 @@
   {
    "path": "content/book/6S-Success-Chapter-18/chapter_18_manuscript.md",
    "chapter": "ch18",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3836,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/video-audio/teleprompter-script.md",
@@ -995,10 +995,10 @@
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/web/meta-description-options.md",
    "chapter": "ch18",
-   "kind": "video-script",
+   "kind": "other",
    "words": 200,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/web/read-next-recommendations.md",
@@ -1227,10 +1227,10 @@
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch18",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1663,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -1285,8 +1285,8 @@
    "chapter": "ch18",
    "kind": "quote-card",
    "words": 1350,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/graphics/diagram-ideas.md",
@@ -1371,10 +1371,10 @@
   {
    "path": "content/book/6S-Success-Chapter-23/chapter_23_manuscript.md",
    "chapter": "ch23",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3800,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-23/CH23_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -1435,10 +1435,10 @@
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/web/meta-description-options.md",
    "chapter": "ch23",
-   "kind": "video-script",
+   "kind": "other",
    "words": 201,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/web/read-next-recommendations.md",
@@ -1667,10 +1667,10 @@
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch23",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1634,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -1725,8 +1725,8 @@
    "chapter": "ch23",
    "kind": "quote-card",
    "words": 1606,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/graphics/diagram-ideas.md",
@@ -1811,10 +1811,10 @@
   {
    "path": "content/book/6S-Success-Chapter-44/chapter_44_manuscript.md",
    "chapter": "ch44",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7741,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/video-audio/teleprompter-script.md",
@@ -1867,10 +1867,10 @@
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/web/meta-description-options.md",
    "chapter": "ch44",
-   "kind": "video-script",
+   "kind": "other",
    "words": 108,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/web/read-next-recommendations.md",
@@ -2099,10 +2099,10 @@
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch44",
-   "kind": "video-script",
+   "kind": "other",
    "words": 236,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -2157,8 +2157,8 @@
    "chapter": "ch44",
    "kind": "quote-card",
    "words": 1434,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/graphics/diagram-ideas.md",
@@ -2251,10 +2251,10 @@
   {
    "path": "content/book/6S-Success-Chapter-24/chapter_24_manuscript.md",
    "chapter": "ch24",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3591,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/video-audio/teleprompter-script.md",
@@ -2307,10 +2307,10 @@
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/web/meta-description-options.md",
    "chapter": "ch24",
-   "kind": "video-script",
+   "kind": "other",
    "words": 197,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/web/read-next-recommendations.md",
@@ -2539,10 +2539,10 @@
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch24",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1655,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -2597,8 +2597,8 @@
    "chapter": "ch24",
    "kind": "quote-card",
    "words": 1640,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/graphics/diagram-ideas.md",
@@ -2667,10 +2667,10 @@
   {
    "path": "content/book/6S-Success-Chapter-10/chapter_10_manuscript.md",
    "chapter": "ch10",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4864,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-10/CH10_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -2747,10 +2747,10 @@
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/web/meta-description-options.md",
    "chapter": "ch10",
-   "kind": "video-script",
+   "kind": "other",
    "words": 207,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/web/read-next-recommendations.md",
@@ -2979,10 +2979,10 @@
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch10",
-   "kind": "video-script",
+   "kind": "other",
    "words": 448,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -3037,8 +3037,8 @@
    "chapter": "ch10",
    "kind": "quote-card",
    "words": 782,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/graphics/diagram-ideas.md",
@@ -3123,10 +3123,10 @@
   {
    "path": "content/book/6S-Success-Chapter-20/chapter_20_manuscript.md",
    "chapter": "ch20",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4480,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-20/CH20_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -3187,10 +3187,10 @@
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/web/meta-description-options.md",
    "chapter": "ch20",
-   "kind": "video-script",
+   "kind": "other",
    "words": 199,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/web/read-next-recommendations.md",
@@ -3419,10 +3419,10 @@
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch20",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1982,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -3477,8 +3477,8 @@
    "chapter": "ch20",
    "kind": "quote-card",
    "words": 1582,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/graphics/diagram-ideas.md",
@@ -3563,10 +3563,10 @@
   {
    "path": "content/book/6S-Success-Chapter-15/chapter_15_manuscript.md",
    "chapter": "ch15",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4222,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-15/chapter_15_signature.md",
@@ -3627,10 +3627,10 @@
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/web/meta-description-options.md",
    "chapter": "ch15",
-   "kind": "video-script",
+   "kind": "other",
    "words": 192,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/web/read-next-recommendations.md",
@@ -3859,10 +3859,10 @@
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch15",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1407,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -3917,8 +3917,8 @@
    "chapter": "ch15",
    "kind": "quote-card",
    "words": 1293,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/graphics/diagram-ideas.md",
@@ -4003,10 +4003,10 @@
   {
    "path": "content/book/6S-Success-Chapter-11/chapter_11_manuscript.md",
    "chapter": "ch11",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4304,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-11/CH11_IMAGE_FINALIZATION_NOTES.md",
@@ -4067,10 +4067,10 @@
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/web/meta-description-options.md",
    "chapter": "ch11",
-   "kind": "video-script",
+   "kind": "other",
    "words": 208,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/web/read-next-recommendations.md",
@@ -4299,10 +4299,10 @@
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch11",
-   "kind": "video-script",
+   "kind": "other",
    "words": 547,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -4357,8 +4357,8 @@
    "chapter": "ch11",
    "kind": "quote-card",
    "words": 828,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/graphics/diagram-ideas.md",
@@ -4475,10 +4475,10 @@
   {
    "path": "content/book/6S-Chapter-3-Content-Package/web/meta-description-options.md",
    "chapter": "ch03",
-   "kind": "video-script",
+   "kind": "other",
    "words": 236,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Chapter-3-Content-Package/web/read-next-recommendations.md",
@@ -4707,10 +4707,10 @@
   {
    "path": "content/book/6S-Chapter-3-Content-Package/pdf-ebook/ebook-description.md",
    "chapter": "ch03",
-   "kind": "video-script",
+   "kind": "other",
    "words": 262,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Chapter-3-Content-Package/pdf-ebook/ebook-sales-copy.md",
@@ -4765,8 +4765,8 @@
    "chapter": "ch03",
    "kind": "quote-card",
    "words": 787,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Chapter-3-Content-Package/graphics/diagram-ideas.md",
@@ -4788,7 +4788,7 @@
    "path": "content/book/6S-Chapter-3-Content-Package/canonical/chapter-seo.md",
    "chapter": "ch03",
    "kind": "seo-brief",
-   "words": 429,
+   "words": 446,
    "units": 0,
    "ready": false
   },
@@ -4859,10 +4859,10 @@
   {
    "path": "content/book/6S-Success-Chapter-37/chapter_37_manuscript.md",
    "chapter": "ch37",
-   "kind": "video-script",
+   "kind": "other",
    "words": 5853,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/video-audio/teleprompter-script.md",
@@ -4915,10 +4915,10 @@
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/web/meta-description-options.md",
    "chapter": "ch37",
-   "kind": "video-script",
+   "kind": "other",
    "words": 100,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/web/read-next-recommendations.md",
@@ -5147,10 +5147,10 @@
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch37",
-   "kind": "video-script",
+   "kind": "other",
    "words": 247,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -5205,8 +5205,8 @@
    "chapter": "ch37",
    "kind": "quote-card",
    "words": 887,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/graphics/diagram-ideas.md",
@@ -5283,10 +5283,10 @@
   {
    "path": "content/book/6S-Success-Chapter-14/chapter_14_manuscript.md",
    "chapter": "ch14",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4504,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-14/CH14_IMAGE_FINALIZATION_NOTES.md",
@@ -5355,10 +5355,10 @@
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/web/meta-description-options.md",
    "chapter": "ch14",
-   "kind": "video-script",
+   "kind": "other",
    "words": 203,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/web/read-next-recommendations.md",
@@ -5587,10 +5587,10 @@
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch14",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1175,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -5645,8 +5645,8 @@
    "chapter": "ch14",
    "kind": "quote-card",
    "words": 1133,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/graphics/diagram-ideas.md",
@@ -5731,10 +5731,10 @@
   {
    "path": "content/book/6S-Success-Chapter-26/chapter_26_manuscript.md",
    "chapter": "ch26",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3821,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-26/CH26_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -5795,10 +5795,10 @@
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/web/meta-description-options.md",
    "chapter": "ch26",
-   "kind": "video-script",
+   "kind": "other",
    "words": 196,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/web/read-next-recommendations.md",
@@ -6027,10 +6027,10 @@
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch26",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1738,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -6085,8 +6085,8 @@
    "chapter": "ch26",
    "kind": "quote-card",
    "words": 1586,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/graphics/diagram-ideas.md",
@@ -6155,10 +6155,10 @@
   {
    "path": "content/book/6S-Success-Chapter-27/chapter_27_manuscript.md",
    "chapter": "ch27",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3670,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-27/CH27_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -6235,10 +6235,10 @@
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/web/meta-description-options.md",
    "chapter": "ch27",
-   "kind": "video-script",
+   "kind": "other",
    "words": 202,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/web/read-next-recommendations.md",
@@ -6467,10 +6467,10 @@
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch27",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1625,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -6525,8 +6525,8 @@
    "chapter": "ch27",
    "kind": "quote-card",
    "words": 1604,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/graphics/diagram-ideas.md",
@@ -6595,10 +6595,10 @@
   {
    "path": "content/book/6S-Success-Chapter-49/chapter_49_manuscript.md",
    "chapter": "ch49",
-   "kind": "video-script",
+   "kind": "other",
    "words": 5006,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-49/chapter_49_signature.md",
@@ -6667,10 +6667,10 @@
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/web/meta-description-options.md",
    "chapter": "ch49",
-   "kind": "video-script",
+   "kind": "other",
    "words": 106,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/web/read-next-recommendations.md",
@@ -6899,10 +6899,10 @@
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch49",
-   "kind": "video-script",
+   "kind": "other",
    "words": 245,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -6957,8 +6957,8 @@
    "chapter": "ch49",
    "kind": "quote-card",
    "words": 1005,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/graphics/diagram-ideas.md",
@@ -7043,10 +7043,10 @@
   {
    "path": "content/book/6S-Success-Chapter-40/chapter_40_manuscript.md",
    "chapter": "ch40",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6250,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/video-audio/teleprompter-script.md",
@@ -7099,10 +7099,10 @@
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/web/meta-description-options.md",
    "chapter": "ch40",
-   "kind": "video-script",
+   "kind": "other",
    "words": 97,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/web/read-next-recommendations.md",
@@ -7331,10 +7331,10 @@
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch40",
-   "kind": "video-script",
+   "kind": "other",
    "words": 260,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -7389,8 +7389,8 @@
    "chapter": "ch40",
    "kind": "quote-card",
    "words": 997,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/graphics/diagram-ideas.md",
@@ -7467,10 +7467,10 @@
   {
    "path": "content/book/6S-Success-Chapter-50/chapter_50_manuscript.md",
    "chapter": "ch50",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7299,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-50/chapter_50_signature.md",
@@ -7531,10 +7531,10 @@
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/web/meta-description-options.md",
    "chapter": "ch50",
-   "kind": "video-script",
+   "kind": "other",
    "words": 105,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/web/read-next-recommendations.md",
@@ -7763,10 +7763,10 @@
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch50",
-   "kind": "video-script",
+   "kind": "other",
    "words": 255,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -7821,8 +7821,8 @@
    "chapter": "ch50",
    "kind": "quote-card",
    "words": 735,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/graphics/diagram-ideas.md",
@@ -7891,10 +7891,10 @@
   {
    "path": "content/book/6S-Success-Chapter-41/chapter_41_manuscript.md",
    "chapter": "ch41",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6735,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-41/CH41_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -7963,10 +7963,10 @@
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/web/meta-description-options.md",
    "chapter": "ch41",
-   "kind": "video-script",
+   "kind": "other",
    "words": 101,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/web/read-next-recommendations.md",
@@ -8195,10 +8195,10 @@
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch41",
-   "kind": "video-script",
+   "kind": "other",
    "words": 248,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -8253,8 +8253,8 @@
    "chapter": "ch41",
    "kind": "quote-card",
    "words": 1039,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/graphics/diagram-ideas.md",
@@ -8411,10 +8411,10 @@
   {
    "path": "content/book/6S-Success-Chapter-36/chapter_36_manuscript.md",
    "chapter": "ch36",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6521,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-36/CH36_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -8491,10 +8491,10 @@
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/web/meta-description-options.md",
    "chapter": "ch36",
-   "kind": "video-script",
+   "kind": "other",
    "words": 106,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/web/read-next-recommendations.md",
@@ -8723,10 +8723,10 @@
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch36",
-   "kind": "video-script",
+   "kind": "other",
    "words": 234,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -8781,8 +8781,8 @@
    "chapter": "ch36",
    "kind": "quote-card",
    "words": 698,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/graphics/diagram-ideas.md",
@@ -8875,10 +8875,10 @@
   {
    "path": "content/book/6S-Success-Chapter-22/chapter_22_manuscript.md",
    "chapter": "ch22",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3929,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/video-audio/teleprompter-script.md",
@@ -8931,10 +8931,10 @@
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/web/meta-description-options.md",
    "chapter": "ch22",
-   "kind": "video-script",
+   "kind": "other",
    "words": 189,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/web/read-next-recommendations.md",
@@ -9163,10 +9163,10 @@
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch22",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1695,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -9221,8 +9221,8 @@
    "chapter": "ch22",
    "kind": "quote-card",
    "words": 1627,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/graphics/diagram-ideas.md",
@@ -9299,10 +9299,10 @@
   {
    "path": "content/book/6S-Success-Chapter-28/chapter_28_manuscript.md",
    "chapter": "ch28",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3791,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-28/chapter_28_signature.md",
@@ -9363,10 +9363,10 @@
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/web/meta-description-options.md",
    "chapter": "ch28",
-   "kind": "video-script",
+   "kind": "other",
    "words": 190,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/web/read-next-recommendations.md",
@@ -9595,10 +9595,10 @@
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch28",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1620,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -9653,8 +9653,8 @@
    "chapter": "ch28",
    "kind": "quote-card",
    "words": 1614,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/graphics/diagram-ideas.md",
@@ -9731,10 +9731,10 @@
   {
    "path": "content/book/6s_success_chapter 1/chapter_01_manuscript.md",
    "chapter": "ch01",
-   "kind": "video-script",
+   "kind": "other",
    "words": 5371,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/video-audio/teleprompter-script.md",
@@ -9787,10 +9787,10 @@
   {
    "path": "content/book/6s_success_chapter 1/content-package/web/meta-description-options.md",
    "chapter": "ch01",
-   "kind": "video-script",
+   "kind": "other",
    "words": 208,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/web/read-next-recommendations.md",
@@ -10019,10 +10019,10 @@
   {
    "path": "content/book/6s_success_chapter 1/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch01",
-   "kind": "video-script",
+   "kind": "other",
    "words": 267,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -10077,8 +10077,8 @@
    "chapter": "ch01",
    "kind": "quote-card",
    "words": 680,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/graphics/diagram-ideas.md",
@@ -10155,10 +10155,10 @@
   {
    "path": "content/book/6S-Success-Chapter-43/chapter_43_manuscript.md",
    "chapter": "ch43",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7552,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-43/chapter_43_signature.md",
@@ -10219,10 +10219,10 @@
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/web/meta-description-options.md",
    "chapter": "ch43",
-   "kind": "video-script",
+   "kind": "other",
    "words": 102,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/web/read-next-recommendations.md",
@@ -10451,10 +10451,10 @@
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch43",
-   "kind": "video-script",
+   "kind": "other",
    "words": 250,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -10509,8 +10509,8 @@
    "chapter": "ch43",
    "kind": "quote-card",
    "words": 1520,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/graphics/diagram-ideas.md",
@@ -10595,10 +10595,10 @@
   {
    "path": "content/book/6S-Success-Chapter-31/chapter_31_manuscript.md",
    "chapter": "ch31",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7285,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-31/CH31_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -10659,10 +10659,10 @@
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/web/meta-description-options.md",
    "chapter": "ch31",
-   "kind": "video-script",
+   "kind": "other",
    "words": 207,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/web/read-next-recommendations.md",
@@ -10891,10 +10891,10 @@
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch31",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1945,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -10949,8 +10949,8 @@
    "chapter": "ch31",
    "kind": "quote-card",
    "words": 1904,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/graphics/diagram-ideas.md",
@@ -11035,10 +11035,10 @@
   {
    "path": "content/book/6S-Success-Chapter-33/chapter_33_manuscript.md",
    "chapter": "ch33",
-   "kind": "video-script",
+   "kind": "other",
    "words": 5809,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-33/CH33_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -11099,10 +11099,10 @@
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/web/meta-description-options.md",
    "chapter": "ch33",
-   "kind": "video-script",
+   "kind": "other",
    "words": 203,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/web/read-next-recommendations.md",
@@ -11331,10 +11331,10 @@
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch33",
-   "kind": "video-script",
+   "kind": "other",
    "words": 2191,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -11389,8 +11389,8 @@
    "chapter": "ch33",
    "kind": "quote-card",
    "words": 2197,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/graphics/diagram-ideas.md",
@@ -11475,10 +11475,10 @@
   {
    "path": "content/book/6S-Success-Chapter-13/chapter_13_manuscript.md",
    "chapter": "ch13",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4724,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-13/CH13_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -11539,10 +11539,10 @@
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/web/meta-description-options.md",
    "chapter": "ch13",
-   "kind": "video-script",
+   "kind": "other",
    "words": 202,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/web/read-next-recommendations.md",
@@ -11771,10 +11771,10 @@
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch13",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1165,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -11829,8 +11829,8 @@
    "chapter": "ch13",
    "kind": "quote-card",
    "words": 998,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/graphics/diagram-ideas.md",
@@ -11915,10 +11915,10 @@
   {
    "path": "content/book/6S-Success-Chapter-48/chapter_48_manuscript.md",
    "chapter": "ch48",
-   "kind": "video-script",
+   "kind": "other",
    "words": 5888,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/video-audio/teleprompter-script.md",
@@ -11971,10 +11971,10 @@
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/web/meta-description-options.md",
    "chapter": "ch48",
-   "kind": "video-script",
+   "kind": "other",
    "words": 107,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/web/read-next-recommendations.md",
@@ -12203,10 +12203,10 @@
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch48",
-   "kind": "video-script",
+   "kind": "other",
    "words": 253,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -12261,8 +12261,8 @@
    "chapter": "ch48",
    "kind": "quote-card",
    "words": 1010,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/graphics/diagram-ideas.md",
@@ -12331,10 +12331,10 @@
   {
    "path": "content/book/6S-Success-Chapter-7/chapter_07_manuscript.md",
    "chapter": "ch07",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3856,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-7/CH7_IMAGE_FINALIZATION_NOTES.md",
@@ -12403,10 +12403,10 @@
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/web/meta-description-options.md",
    "chapter": "ch07",
-   "kind": "video-script",
+   "kind": "other",
    "words": 193,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/web/read-next-recommendations.md",
@@ -12635,10 +12635,10 @@
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch07",
-   "kind": "video-script",
+   "kind": "other",
    "words": 258,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -12693,8 +12693,8 @@
    "chapter": "ch07",
    "kind": "quote-card",
    "words": 586,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/graphics/diagram-ideas.md",
@@ -12779,10 +12779,10 @@
   {
    "path": "content/book/6S-Success-Chapter-5/chapter_05_manuscript.md",
    "chapter": "ch05",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3623,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/video-audio/teleprompter-script.md",
@@ -12835,10 +12835,10 @@
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/web/meta-description-options.md",
    "chapter": "ch05",
-   "kind": "video-script",
+   "kind": "other",
    "words": 198,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/web/read-next-recommendations.md",
@@ -13067,10 +13067,10 @@
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch05",
-   "kind": "video-script",
+   "kind": "other",
    "words": 248,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -13125,8 +13125,8 @@
    "chapter": "ch05",
    "kind": "quote-card",
    "words": 763,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/graphics/diagram-ideas.md",
@@ -13148,7 +13148,7 @@
    "path": "content/book/6S-Success-Chapter-5/content-package/canonical/chapter-seo.md",
    "chapter": "ch05",
    "kind": "seo-brief",
-   "words": 410,
+   "words": 442,
    "units": 0,
    "ready": false
   },
@@ -13211,10 +13211,10 @@
   {
    "path": "content/book/6S-Success-Chapter-21/chapter_21_manuscript.md",
    "chapter": "ch21",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4768,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-21/CH21_IMAGE_FINALIZATION_NOTES.md",
@@ -13275,10 +13275,10 @@
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/web/meta-description-options.md",
    "chapter": "ch21",
-   "kind": "video-script",
+   "kind": "other",
    "words": 193,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/web/read-next-recommendations.md",
@@ -13507,10 +13507,10 @@
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch21",
-   "kind": "video-script",
+   "kind": "other",
    "words": 2179,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -13565,8 +13565,8 @@
    "chapter": "ch21",
    "kind": "quote-card",
    "words": 1769,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/graphics/diagram-ideas.md",
@@ -13635,10 +13635,10 @@
   {
    "path": "content/book/6S-Success-Chapter-35/chapter_35_manuscript.md",
    "chapter": "ch35",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6201,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-35/CH35_IMAGE_FINALIZATION_NOTES.md",
@@ -13715,10 +13715,10 @@
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/web/meta-description-options.md",
    "chapter": "ch35",
-   "kind": "video-script",
+   "kind": "other",
    "words": 130,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/web/read-next-recommendations.md",
@@ -13947,10 +13947,10 @@
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch35",
-   "kind": "video-script",
+   "kind": "other",
    "words": 229,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -14005,8 +14005,8 @@
    "chapter": "ch35",
    "kind": "quote-card",
    "words": 649,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/graphics/diagram-ideas.md",
@@ -14075,10 +14075,10 @@
   {
    "path": "content/book/6S-Success-Chapter-3/chapter_03_manuscript.md",
    "chapter": "ch03",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4670,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-3/CH3_IMAGE_FINALIZATION_NOTES.md",
@@ -14147,10 +14147,10 @@
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/web/meta-description-options.md",
    "chapter": "ch03",
-   "kind": "video-script",
+   "kind": "other",
    "words": 236,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/web/read-next-recommendations.md",
@@ -14379,10 +14379,10 @@
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch03",
-   "kind": "video-script",
+   "kind": "other",
    "words": 262,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -14437,8 +14437,8 @@
    "chapter": "ch03",
    "kind": "quote-card",
    "words": 787,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/graphics/diagram-ideas.md",
@@ -14460,7 +14460,7 @@
    "path": "content/book/6S-Success-Chapter-3/content-package/canonical/chapter-seo.md",
    "chapter": "ch03",
    "kind": "seo-brief",
-   "words": 429,
+   "words": 446,
    "units": 0,
    "ready": false
   },
@@ -14523,10 +14523,10 @@
   {
    "path": "content/book/6S-Success-Chapter-8/chapter_08_manuscript.md",
    "chapter": "ch08",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3961,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-8/chapter_08_signature.md",
@@ -14587,10 +14587,10 @@
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/web/meta-description-options.md",
    "chapter": "ch08",
-   "kind": "video-script",
+   "kind": "other",
    "words": 204,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/web/read-next-recommendations.md",
@@ -14819,10 +14819,10 @@
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch08",
-   "kind": "video-script",
+   "kind": "other",
    "words": 326,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -14877,8 +14877,8 @@
    "chapter": "ch08",
    "kind": "quote-card",
    "words": 772,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/graphics/diagram-ideas.md",
@@ -14971,10 +14971,10 @@
   {
    "path": "content/book/6S-Success-Chapter-38/chapter_38_manuscript.md",
    "chapter": "ch38",
-   "kind": "video-script",
+   "kind": "other",
    "words": 5980,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/video-audio/teleprompter-script.md",
@@ -15027,10 +15027,10 @@
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/web/meta-description-options.md",
    "chapter": "ch38",
-   "kind": "video-script",
+   "kind": "other",
    "words": 104,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/web/read-next-recommendations.md",
@@ -15259,10 +15259,10 @@
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch38",
-   "kind": "video-script",
+   "kind": "other",
    "words": 253,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -15317,8 +15317,8 @@
    "chapter": "ch38",
    "kind": "quote-card",
    "words": 1017,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/graphics/diagram-ideas.md",
@@ -15403,10 +15403,10 @@
   {
    "path": "content/book/6S-Success-Chapter-16/chapter_16_manuscript.md",
    "chapter": "ch16",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4335,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-16/chapter_16_signature.md",
@@ -15467,10 +15467,10 @@
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/web/meta-description-options.md",
    "chapter": "ch16",
-   "kind": "video-script",
+   "kind": "other",
    "words": 190,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/web/read-next-recommendations.md",
@@ -15699,10 +15699,10 @@
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch16",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1394,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -15757,8 +15757,8 @@
    "chapter": "ch16",
    "kind": "quote-card",
    "words": 1316,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/graphics/diagram-ideas.md",
@@ -15843,10 +15843,10 @@
   {
    "path": "content/book/6S-Success-Chapter-19/chapter_19_manuscript.md",
    "chapter": "ch19",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4530,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-19/CH19_IMAGE_FINALIZATION_NOTES.md",
@@ -15907,10 +15907,10 @@
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/web/meta-description-options.md",
    "chapter": "ch19",
-   "kind": "video-script",
+   "kind": "other",
    "words": 197,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/web/read-next-recommendations.md",
@@ -16139,10 +16139,10 @@
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch19",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1456,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -16197,8 +16197,8 @@
    "chapter": "ch19",
    "kind": "quote-card",
    "words": 1410,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/graphics/diagram-ideas.md",
@@ -16275,10 +16275,10 @@
   {
    "path": "content/book/6S-Success-Chapter-25/chapter_25_manuscript.md",
    "chapter": "ch25",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3513,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-25/CH25_IMAGE_FINALIZATION_NOTES.md",
@@ -16347,10 +16347,10 @@
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/web/meta-description-options.md",
    "chapter": "ch25",
-   "kind": "video-script",
+   "kind": "other",
    "words": 182,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/web/read-next-recommendations.md",
@@ -16579,10 +16579,10 @@
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch25",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1640,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -16637,8 +16637,8 @@
    "chapter": "ch25",
    "kind": "quote-card",
    "words": 1695,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/graphics/diagram-ideas.md",
@@ -16731,10 +16731,10 @@
   {
    "path": "content/book/6S-Success-Chapter-32/chapter_32_manuscript.md",
    "chapter": "ch32",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7154,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/video-audio/teleprompter-script.md",
@@ -16787,10 +16787,10 @@
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/web/meta-description-options.md",
    "chapter": "ch32",
-   "kind": "video-script",
+   "kind": "other",
    "words": 205,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/web/read-next-recommendations.md",
@@ -17019,10 +17019,10 @@
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch32",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1972,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -17077,8 +17077,8 @@
    "chapter": "ch32",
    "kind": "quote-card",
    "words": 2202,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/graphics/diagram-ideas.md",
@@ -17147,10 +17147,10 @@
   {
    "path": "content/book/6S-Success-Chapter-29/chapter_29_manuscript.md",
    "chapter": "ch29",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3897,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-29/CH29_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -17219,10 +17219,10 @@
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/web/meta-description-options.md",
    "chapter": "ch29",
-   "kind": "video-script",
+   "kind": "other",
    "words": 187,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/web/read-next-recommendations.md",
@@ -17451,10 +17451,10 @@
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch29",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1599,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -17509,8 +17509,8 @@
    "chapter": "ch29",
    "kind": "quote-card",
    "words": 1538,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/graphics/diagram-ideas.md",
@@ -17595,10 +17595,10 @@
   {
    "path": "content/book/6S-Success-Chapter-4/chapter_04_manuscript.md",
    "chapter": "ch04",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3970,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/video-audio/teleprompter-script.md",
@@ -17651,10 +17651,10 @@
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/web/meta-description-options.md",
    "chapter": "ch04",
-   "kind": "video-script",
+   "kind": "other",
    "words": 167,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/web/read-next-recommendations.md",
@@ -17883,10 +17883,10 @@
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch04",
-   "kind": "video-script",
+   "kind": "other",
    "words": 276,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -17941,8 +17941,8 @@
    "chapter": "ch04",
    "kind": "quote-card",
    "words": 874,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/graphics/diagram-ideas.md",
@@ -17964,7 +17964,7 @@
    "path": "content/book/6S-Success-Chapter-4/content-package/canonical/chapter-seo.md",
    "chapter": "ch04",
    "kind": "seo-brief",
-   "words": 425,
+   "words": 459,
    "units": 0,
    "ready": false
   },
@@ -18011,10 +18011,10 @@
   {
    "path": "content/book/6S-Success-Chapter-30/chapter_30_manuscript.md",
    "chapter": "ch30",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4941,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-30/chapter_30_signature.md",
@@ -18083,10 +18083,10 @@
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/web/meta-description-options.md",
    "chapter": "ch30",
-   "kind": "video-script",
+   "kind": "other",
    "words": 196,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/web/read-next-recommendations.md",
@@ -18315,10 +18315,10 @@
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch30",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1713,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -18373,8 +18373,8 @@
    "chapter": "ch30",
    "kind": "quote-card",
    "words": 1551,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/graphics/diagram-ideas.md",
@@ -18459,10 +18459,10 @@
   {
    "path": "content/book/6S-Success-Chapter-42/chapter_42_manuscript.md",
    "chapter": "ch42",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6132,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-42/CH42_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -18523,10 +18523,10 @@
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/web/meta-description-options.md",
    "chapter": "ch42",
-   "kind": "video-script",
+   "kind": "other",
    "words": 104,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/web/read-next-recommendations.md",
@@ -18755,10 +18755,10 @@
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch42",
-   "kind": "video-script",
+   "kind": "other",
    "words": 263,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -18813,8 +18813,8 @@
    "chapter": "ch42",
    "kind": "quote-card",
    "words": 1027,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/graphics/diagram-ideas.md",
@@ -18891,10 +18891,10 @@
   {
    "path": "content/book/6S-Success-Chapter-6/chapter_06_manuscript.md",
    "chapter": "ch06",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3687,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-6/chapter_06_signature.md",
@@ -18955,10 +18955,10 @@
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/web/meta-description-options.md",
    "chapter": "ch06",
-   "kind": "video-script",
+   "kind": "other",
    "words": 204,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/web/read-next-recommendations.md",
@@ -19187,10 +19187,10 @@
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch06",
-   "kind": "video-script",
+   "kind": "other",
    "words": 247,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -19245,8 +19245,8 @@
    "chapter": "ch06",
    "kind": "quote-card",
    "words": 774,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/graphics/diagram-ideas.md",
@@ -19268,7 +19268,7 @@
    "path": "content/book/6S-Success-Chapter-6/content-package/canonical/chapter-seo.md",
    "chapter": "ch06",
    "kind": "seo-brief",
-   "words": 397,
+   "words": 429,
    "units": 0,
    "ready": false
   },
@@ -19331,10 +19331,10 @@
   {
    "path": "content/book/6S-Success-Chapter-45/chapter_45_manuscript.md",
    "chapter": "ch45",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7163,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/video-audio/teleprompter-script.md",
@@ -19387,10 +19387,10 @@
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/web/meta-description-options.md",
    "chapter": "ch45",
-   "kind": "video-script",
+   "kind": "other",
    "words": 101,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/web/read-next-recommendations.md",
@@ -19619,10 +19619,10 @@
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch45",
-   "kind": "video-script",
+   "kind": "other",
    "words": 278,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -19677,8 +19677,8 @@
    "chapter": "ch45",
    "kind": "quote-card",
    "words": 1001,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/graphics/diagram-ideas.md",
@@ -19747,10 +19747,10 @@
   {
    "path": "content/book/6S-Success-Chapter-17/chapter_17_manuscript.md",
    "chapter": "ch17",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4202,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-17/CH17_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -19827,10 +19827,10 @@
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/web/meta-description-options.md",
    "chapter": "ch17",
-   "kind": "video-script",
+   "kind": "other",
    "words": 202,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/web/read-next-recommendations.md",
@@ -20059,10 +20059,10 @@
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch17",
-   "kind": "video-script",
+   "kind": "other",
    "words": 1637,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -20117,8 +20117,8 @@
    "chapter": "ch17",
    "kind": "quote-card",
    "words": 1394,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/graphics/diagram-ideas.md",
@@ -20203,10 +20203,10 @@
   {
    "path": "content/book/6S-Success-Chapter-2/chapter_02_manuscript.md",
    "chapter": "ch02",
-   "kind": "video-script",
+   "kind": "other",
    "words": 3060,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/video-audio/teleprompter-script.md",
@@ -20259,10 +20259,10 @@
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/web/meta-description-options.md",
    "chapter": "ch02",
-   "kind": "video-script",
+   "kind": "other",
    "words": 177,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/web/read-next-recommendations.md",
@@ -20491,10 +20491,10 @@
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch02",
-   "kind": "video-script",
+   "kind": "other",
    "words": 247,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -20549,8 +20549,8 @@
    "chapter": "ch02",
    "kind": "quote-card",
    "words": 836,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/graphics/diagram-ideas.md",
@@ -20627,10 +20627,10 @@
   {
    "path": "content/book/6S-Success-Chapter-9/chapter_09_manuscript.md",
    "chapter": "ch09",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4478,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-9/chapter_09_signature.md",
@@ -20691,10 +20691,10 @@
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/web/meta-description-options.md",
    "chapter": "ch09",
-   "kind": "video-script",
+   "kind": "other",
    "words": 194,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/web/read-next-recommendations.md",
@@ -20923,10 +20923,10 @@
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch09",
-   "kind": "video-script",
+   "kind": "other",
    "words": 417,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -20981,8 +20981,8 @@
    "chapter": "ch09",
    "kind": "quote-card",
    "words": 822,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/graphics/diagram-ideas.md",
@@ -21051,10 +21051,10 @@
   {
    "path": "content/book/6S-Success-Chapter-34/chapter_34_manuscript.md",
    "chapter": "ch34",
-   "kind": "video-script",
+   "kind": "other",
    "words": 6066,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-34/CH34_IMAGE_FINALIZATION_NOTES.md",
@@ -21131,10 +21131,10 @@
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/web/meta-description-options.md",
    "chapter": "ch34",
-   "kind": "video-script",
+   "kind": "other",
    "words": 207,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/web/read-next-recommendations.md",
@@ -21363,10 +21363,10 @@
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch34",
-   "kind": "video-script",
+   "kind": "other",
    "words": 2504,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -21421,8 +21421,8 @@
    "chapter": "ch34",
    "kind": "quote-card",
    "words": 2328,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/graphics/diagram-ideas.md",
@@ -21507,10 +21507,10 @@
   {
    "path": "content/book/6S-Success-Chapter-12/chapter_12_manuscript.md",
    "chapter": "ch12",
-   "kind": "video-script",
+   "kind": "other",
    "words": 4302,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-12/CH12_CANONICAL_STRINGS_AND_BRIEF.md",
@@ -21571,10 +21571,10 @@
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/web/meta-description-options.md",
    "chapter": "ch12",
-   "kind": "video-script",
+   "kind": "other",
    "words": 190,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/web/read-next-recommendations.md",
@@ -21803,10 +21803,10 @@
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch12",
-   "kind": "video-script",
+   "kind": "other",
    "words": 852,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -21861,8 +21861,8 @@
    "chapter": "ch12",
    "kind": "quote-card",
    "words": 906,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/graphics/diagram-ideas.md",
@@ -21955,10 +21955,10 @@
   {
    "path": "content/book/6S-Success-Chapter-47/chapter_47_manuscript.md",
    "chapter": "ch47",
-   "kind": "video-script",
+   "kind": "other",
    "words": 7014,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/video-audio/teleprompter-script.md",
@@ -22011,10 +22011,10 @@
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/web/meta-description-options.md",
    "chapter": "ch47",
-   "kind": "video-script",
+   "kind": "other",
    "words": 103,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/web/read-next-recommendations.md",
@@ -22243,10 +22243,10 @@
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/pdf-ebook/ebook-description.md",
    "chapter": "ch47",
-   "kind": "video-script",
+   "kind": "other",
    "words": 265,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/pdf-ebook/ebook-sales-copy.md",
@@ -22301,8 +22301,8 @@
    "chapter": "ch47",
    "kind": "quote-card",
    "words": 1034,
-   "units": 1,
-   "ready": true
+   "units": 0,
+   "ready": false
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/graphics/diagram-ideas.md",
@@ -22371,11 +22371,11 @@
  ],
  "summary": {
   "total": 2796,
-  "ready_files": 1019,
-  "postable_units": 4408,
+  "ready_files": 816,
+  "postable_units": 4205,
   "by_kind": {
-   "other": 1318,
-   "video-script": 356,
+   "other": 1470,
+   "video-script": 204,
    "x-post": 102,
    "facebook-post": 153,
    "comment-prompt": 51,

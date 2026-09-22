@@ -816,7 +816,7 @@ owner: cro-growth
 evidence:
   - ops/state.json email_list=0
   - every form on the site is inert (forms_dead=192)
-  - ops/state.json social_units=4408 authored and unused
+  - ops/state.json social_units=4205 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
@@ -845,7 +845,7 @@ evidence:
     when anything about arrivals changes.
 impact: >
   Nothing compounds. A visitor who arrives today cannot be reached tomorrow,
-  so every unit of attention is spent once and discarded. Roughly 4,408
+  so every unit of attention is spent once and discarded. Roughly 4,205
   authored social units have no destination to send anyone to.
 mitigation: >
   Connect one capture path and one destination before publishing the social
@@ -866,6 +866,27 @@ problem is fixed (it is not: `email_list` is still 0). Same drift shape
 previously checked here; new `gate_risks_evidence_current` in
 `preflight.py` now checks every `key=value` evidence line in this file
 against `ops/state.json` directly, not just these two.
+
+**Evidence corrected again 2026-09-22, and this time the number went down
+because it got more honest, not because anything shrank.** `social_units`
+moved from 4,408 to 4,205 after fixing three real defects in
+`ops/corpus_index.py`/`ops/corpus_posts.py` found in the same cycle: (1) a
+classifier bug where the bare substring `script` also matched
+`chapter_NN_manuscript.md` (the paid book's own chapter text) and every
+`*-description*.md` file, so 182 excerpts of paid content were counted as
+free-to-post "video-script" units; excluding them is the whole size of this
+correction. (2) `quote-card-copy.md` (a designer's brief with hex colors and
+layout notes, byte-verbatim duplicate of the real quotes already counted
+under kind `quote`) was marked ready to post as written; reclassified as
+non-publishable. Neither of these ever reached a live page or a real post,
+so this risk's own diagnosis (nothing captures an arrival, so the corpus has
+nowhere to send anyone) is unchanged; only the count of what is honestly
+sitting there is corrected. The same cycle also fixed the opposite problem
+for two other kinds (`facebook-post`, `linkedin-post`): 269 real, finished,
+previously unreachable posts were added back after a parsing bug (`split_
+posts` required a `---` divider between numbered sections that most of the
+corpus does not use) silently served zero from most of their files; net
+effect on the total shown here.
 
 ---
 

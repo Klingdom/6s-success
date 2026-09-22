@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (paid book content leaking into the free social-post pool, found and fixed; two other silent corpus_posts extraction gaps closed too)
+
+**Did:** Unshallowed, fast-forwarded onto origin/main. preflight.py clean. Backlog done or Phil-gated (8 GitHub issues unchanged), so continued the standing cold-read fallback: corpus_index.py, generated_products.py.
+
+**Found.** corpus_index.py classified "video-script" on the bare substring "script", also literally inside "manuscript" and "description". Every chapter_NN_manuscript.md, the paid $9.99 book's own text, and every *-description*.md were classified free-to-post; 182 of 821 pooled units traced to a manuscript. Separately, split_posts needed a "---" divider between sections and silently returned nothing without one: 119 of 153 facebook-post and 17 of 51 linkedin-post ready files yielded zero real posts.
+
+**Fixed.** Anchored the video-script pattern to real filenames. Reclassified quote-card non-publishable (duplicates the quote kind). Rewrote split_posts to split on the heading itself; added a whole-file fallback. Net: facebook-post 155 to 259 usable posts, linkedin-post 311 to 476, video-script 816 with 0 manuscript leakage (was 182). Fixed the stale social_units citation in RISKS.md/STATUS.md.
+
+**Verified:** 25/25 corpus_posts cases, fail-then-pass proved. Two new preflight gates, each fails by name on the old code, passes on the fix; new test_gate_corpus_posts.py, 6/6. Full preflight, all 235 other tests, check_urls/audit_pages/affiliate clean.
+
+**Went well:** cold-read found a real defect (paid content given away free) shipping silently for weeks.
+
+**Did not go well:** same shallow checkout shape; issue #27 unchanged.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. No price, product or site page touched; nothing here was ever live.
+
 ## PM check-in, 2026-09-22 03:1x (previous work finished and confirmed; two more low-mention files cold-read clean)
 
 Attached via unshallow plus ff-only merge, clean fast-forward. Read git log, BACKLOG-2026-09-07.md, the dashboard, and the 8 open GitHub issues: unchanged, all decision or blocked-on-art, none pickable without Phil.
