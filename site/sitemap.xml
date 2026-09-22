@@ -142,6 +142,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://6s-success.com/bundle.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/renewed.jpg</image:loc>
+      <image:caption>The book, the Micro Zone Manual and the 684 card Whole House Print Pack, in one order for $49. Bought separately they are $57.99.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://6s-success.com/corporate.html</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>

@@ -184,7 +184,13 @@
        * sell 128 packs with no way to read those steps first. `page` is
        * computed by ops/wire_generated_catalog.py from the same records the
        * pages are built from; it is absent for anything with no single page. */
-      (p.page ? '<p class="fulfil"><a href="' + p.page + '">Read the free steps first</a></p>' : '') +
+      (p.page ? '<p class="fulfil"><a href="' + p.page + '">Read the free steps first</a></p>' :
+      /* A PAID product with a page of its own is a different case from the
+       * one above: nothing on that page is free, so "read the free steps
+       * first" would be a false claim. p.buy is checked first so the primary
+       * action always stays a direct checkout; this is only the secondary
+       * link, worded for what the page actually is. */
+      (p.buy && p.href) ? '<p class="fulfil"><a href="' + p.href + '">See what is inside</a></p>' : '') +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +
       fulfil + supr +
       '<div class="foot">' + priceHtml + action + '</div></div></article>';

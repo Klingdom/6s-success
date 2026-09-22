@@ -18191,8 +18191,8 @@ GENERATED_TOP_LEVEL_PAGES = {
 # ops/NIGHTLY-LOG.md.
 HAND_MAINTAINED_PAGES = {
     "404.html", "about.html", "accessibility.html",
-    "affiliate-disclosure.html", "book.html", "consulting.html",
-    "contact.html", "deck.html", "disclaimer.html",
+    "affiliate-disclosure.html", "book.html", "bundle.html",
+    "consulting.html", "contact.html", "deck.html", "disclaimer.html",
     "how-we-make-money.html", "index.html", "invest.html", "method.html",
     "privacy.html", "quest.html", "terms.html", "thanks.html",
 }
