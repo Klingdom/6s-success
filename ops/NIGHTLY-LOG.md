@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 11:1x (previous work finished and independently reverified; a real footgun in `ops/ship.py` found by hitting it myself, fixed and gated)
+
+Attached clean: `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1182-commit fast-forward, issue #27's usual shallow/detached shape). Read `git log --oneline -12`, this log's newest two entries, `BACKLOG-2026-09-07.md` sections 1b through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`. GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`; 0 PRs.
+
+**Previous work was finished, verified independently rather than cited.** `preflight.py` (backgrounded from the start, per prior cycles' own learning about the 120s foreground timeout) came back clean twice this cycle: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits. `checks.yml` run #1286 for the prior cycle's own fix commit (`4b792857`) was still `in_progress` when checked (not failed); `publish-image.yml` run #379 for the same commit was `success`. Every backlog row in sections 2 through 6 is `~~done~~` or Phil-gated; all 8 GitHub issues correctly unpickable per step 9.
+
+**The real find, made by using the tool rather than reading it.** Ran `python ops/ship.py --help`, expecting usage text (its own docstring documents three real invocations, none of them `--help`). It silently committed the dirty tree (only the generated dashboard files, so no `-m` was required), pushed to `origin/main`, and attempted a live deploy, which only failed here because this sandbox holds no `/root/.ssh/6s_deploy` key. `ops/ship.py` parses `sys.argv` by hand (`"-m" in sys.argv`, `"--check" in sys.argv`, `"--no-deploy" in sys.argv`), never checking for an unrecognized flag, so anything not on that short list falls straight through to the default commit-push-deploy path. In an environment that does hold the deploy key, `--help` would have deployed to production with no confirmation.
+
+**Fixed:** `main()` now checks `"--help"`/`"-h"` first and returns after printing the module docstring, before touching git at all. New `ops/tests/test_ship_help_flag.py` (2 cases, reusing `test_ship_new_file_committed.py`'s isolated-sandbox-repo pattern), reproducing the exact shape found: only a `GENERATED` file dirty, `--help`/`-h` given. Fail-then-pass proved directly against the real file (stashed the fix, watched both cases fail by name citing the real before/after commit SHAs on the synthetic origin, confirmed a fresh `.gitignore` for `__pycache__/` was needed in the sandbox repo to reproduce the exact only-generated-files shape rather than a different refusal path; restored the fix, reran clean).
+
+**Verified:** `preflight.gate_tests()` called directly (globs and runs all `ops/tests/test_*.py`, including the new file) passed; the two existing `ops/ship.py` tests (`test_ship_conflict_safety.py`, `test_ship_new_file_committed.py`) still pass; a full `preflight.py` run after the fix, 240 test files now (was 239), every gate passed, same 23 warnings. Shipped through `ops/ship.py -m "..." --no-deploy` itself (`3c5a45c4`), confirmed on `origin/main`, no collision with any concurrent session.
+
+**Went well:** running a tool instead of only reading it is what surfaced this; `ops/ship.py` is the one script this repository's own process instructs every cycle to use for every push, so a silent-ship-on-any-unrecognized-flag shape sitting in it was real exposure, not a hypothetical.
+
+**Did not go well:** same shallow/detached checkout shape; issue #27 still open. `checks.yml` run #1286 (the prior commit) took unusually long to complete in this session's window; not chased further since `publish-image.yml` on the same commit was already green and nothing else pointed at a real failure.
+
+**Changing next cycle:** none; the fix is narrow and the new test proves it directly.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, unchanged. Nothing sized for the hourly operator beyond its own standing verification; this cycle's find and fix fit inside the 30-minute slot.
+
+Pushed to main (`3c5a45c4`). `ops/ship.py`, `ops/tests/test_ship_help_flag.py`, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (independently found the same generator-ownership drift a concurrent PM check-in was fixing at the same moment; verified the merged fix rather than duplicating it)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` (1178-commit fast-forward, issue #27's usual shallow/detached shape). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries, `GOALS.md`, `STATUS.md`. `python ops/preflight.py` (fast) **FAILED**: `publish-image-current`, publish-image.yml's latest attempt (run 378) failed and HEAD's `site/` differed from the last successful build, 190 files of real, unpublished content (the C8 consult-button push). Per step 2, this became the cycle's work.
