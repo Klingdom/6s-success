@@ -149,6 +149,48 @@ warnings, all previously diagnosed sandbox limits), `check_urls.py`
 added, excluded from the sitemap and noindexed like every other
 `site/downloads/` page, so no `IndexNow` submission applies.
 
+**C13 done, 2026-09-22, operator, the last remaining "At" tier item in this
+section.** Two B2B-intent articles under `site/articles/`, hand-authored
+following the same chrome every other article in that directory already
+uses (no generator owns the directory, per `ops/specific_articles.py`'s own
+docstring): `what-a-5s-engagement-costs.html` answers "what does this cost",
+naming the same nine scope drivers `corporate.html`'s own FAQ and scope
+section already state, none invented here; `why-5s-decays-after-six-months.html`
+answers "why did our 5S program stop holding", grounded in the same "missing
+sixth S" and layered-audit language `corporate.html` and
+`ops/linkedin_drafts.py`'s `CORPORATE_CORPUS` already carry, plus one
+general, verifiable fact about classic 5S's own fifth term (commonly
+translated discipline or sustaining the habit) rarely being operationalised
+as a scheduled, owned audit, not a claim about any 6S Success client since
+none exists. No dollar figure, client name, count of engagements, testimonial
+or fabricated statistic in either page; both link back to `corporate.html`
+and to the C12 scoring-sheet download rather than to the consumer catalogue.
+Linked from `corporate.html`'s own "next" card row (two new cards, no price
+appears there either, `main()`'s own no-dollar-figure assertion still
+passes) and from `site/articles/index.html`'s new "For teams and workplaces"
+subsection, kept visually and structurally separate from the 29 household
+pillar cards so the page does not misrepresent B2B content as more of the
+same audience. **Found and fixed while verifying, not after shipping:**
+`ops/wire_breadcrumbs.py` (run for the first time on these two pages)
+corrected a hand-typed BreadcrumbList mismatch `gate_breadcrumbs_current`
+caught immediately; `site/llms.txt`'s article count (29 to 31),
+`ROADMAP-2026-2029.md`'s live page count (191 to 193), and two stale
+`forms_dead`/page-count citations in `RISKS.md` (190/189 to 192/191, the
+real count once these two pages' own footer form is included) were all
+caught the same way, by the gates those exact drift classes already exist
+for, not found by a separate read. `preflight.py` fast clean before and
+after (every gate passed, 24 warnings, all previously diagnosed sandbox
+limits), `check_urls.py` (189/189), `audit_pages.py` (193/0), `affiliate.py
+--check` (164 documents), `fix_dashes.py --check` (0/0), `link_graph_report.py`
+(0 orphans, both new pages at 2+ inbound links each), `ops/audit_visual.py
+--all --mobile` on both new pages plus the edited `corporate.html` and
+`articles/index.html` (0 findings). No price or product touched; two free
+pages added, in the sitemap. `ops/indexnow.py --submit` run this cycle
+refused to submit (this sandbox cannot reach the site to confirm the key
+file is served), so both URLs remain UNANNOUNCED to IndexNow, per
+`gate_indexnow_current`'s own honest warning; a future cycle with real
+egress, or Phil's own deploy, needs to run it again.
+
 ---
 
 ## 0. What is actually true this morning

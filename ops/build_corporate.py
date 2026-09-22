@@ -1004,6 +1004,18 @@ def build() -> str:
         '<p>Fifty chapters and twenty room playbooks. A fair sample of how we '
         'write a standard, if you want to read before you talk.</p>'
         '<p><a href="book.html">See the book &rarr;</a></p></div>\n',
+        '      <div class="card"><span class="badge-soft">Read first</span>'
+        '<h3 style="margin-top:12px">What does this actually cost?</h3>'
+        '<p>The nine things that set the scope, what a first engagement '
+        'looks like, and the one quote that should worry you.</p>'
+        '<p><a href="articles/what-a-5s-engagement-costs">Read it &rarr;'
+        '</a></p></div>\n',
+        '      <div class="card"><span class="badge-soft">Read first</span>'
+        '<h3 style="margin-top:12px">Why does 5S decay in six months?</h3>'
+        '<p>The missing sixth S, what a layered audit actually is, and the '
+        'five signs a program has already started decaying.</p>'
+        '<p><a href="articles/why-5s-decays-after-six-months">Read it '
+        '&rarr;</a></p></div>\n',
         '    </div>\n',
         '  </div>\n</section>\n',
 

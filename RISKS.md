@@ -815,14 +815,14 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=190)
+  - every form on the site is inert (forms_dead=192)
   - ops/state.json social_units=4408 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
-    footer form is present on 189 pages and IS wired, by ops/site.js, to a
+    footer form is present on 191 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=190 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=192 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
@@ -840,7 +840,7 @@ evidence:
   - KNOWN AND NOT FIXED: with JavaScript off the form is inert with no
     feedback at all and carries no <noscript> fallback, so a visitor types an
     address, presses the button and nothing happens. Not fixed on 2026-09-21
-    because the footer markup is baked into 189 page files across several
+    because the footer markup is baked into 191 page files across several
     generators, and the measured demand for the working path is zero. Revisit
     when anything about arrivals changes.
 impact: >
