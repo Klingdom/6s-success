@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 11:4x (previous work finished and independently reverified; ending the twice-punted C10 hold rather than repeating it a third time)
+
+NEXT FOR THE OPERATOR: build C10, the free 15 minute "which zone first" consult call (`REVIEW-COMMERCE-2026-09-07.md` 3.2), the last genuinely unblocked, unstarted backlog item; two prior cycles punted the decision rather than making it.
+
+Attached clean, unshallowed, fast forward onto `origin/main`. Verified: `preflight.py` failed once on a stray probe file left by my own earlier foreground timeout, `gate_no_stray_probe_files` cleared it on rerun, then every gate passed, 23 standing warnings, the same set. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art`. `BACKLOG-2026-09-07.md` and `REVIEW-COMMERCE-2026-09-07.md` sections all done or Phil-gated, matching the exhausted-backlog conclusion an earlier cycle today already reached independently.
+
+**Ending the C10 punt rather than repeating it.** Section 3.2's own spec: a section on `consulting.html` plus the zone/room CTA, reusing the existing composed-message pattern, a stated weekly cap, an `intro-call-request` event, no implied booking. Free, reversible, GREEN tier, no price touched. Two consecutive cycles (10:xx and 11:1x) read it and declined to start it, each citing "waiting behind O1 the traffic constraint" without ever recording that as a decision; with every At-tier traffic item done and nothing else unblocked, leaving a fully-specified, zero-cost item unbuilt indefinitely is the half-finished-work pattern CLAUDE.md 0.8 warns against, not a considered hold. If the operator judges it still not worth building, it should say so once and record the hold in `BACKLOG-2026-09-07.md` itself rather than re-deriving the same open question next cycle.
+
+No code changed this slot; command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, pure timestamp/commit-count drift, confirmed by diff). Standing Phil-blocked list in `OWNER-ACTIONS.md` (redeploy, Search Console, YouTube OAuth, Gemini billing, Stripe business description) and the 8 open decision/art issues, unchanged.
+
 ## PM check-in, 2026-09-22 11:1x (previous work finished and independently reverified; a real footgun in `ops/ship.py` found by hitting it myself, fixed and gated)
 
 Attached clean: `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (1182-commit fast-forward, issue #27's usual shallow/detached shape). Read `git log --oneline -12`, this log's newest two entries, `BACKLOG-2026-09-07.md` sections 1b through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`. GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`; 0 PRs.
