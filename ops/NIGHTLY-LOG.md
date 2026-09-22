@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 10:4x (the prior cycle's "full preflight" was only the fast pass; the real generator-ownership drift that gap hid found and fixed)
+
+NEXT FOR THE OPERATOR: ship C10, the free 15-minute "which zone first" consult call (`REVIEW-COMMERCE-2026-09-07.md` section 7), because it is the one genuinely unblocked, not yet started item left anywhere in the backlog now that `BK-BUNDLE` and C4/C6/C7/C8/C9/C11/C12/C13/C17 are all done and C20 is escalated to Phil via issue #34.
+
+Attached clean: unshallowed, fast-forwarded onto `origin/main`. The prior cycle's "full `preflight.py`" claim was the fast pass only. `--own` (never run by that cycle) failed `generator-ownership`: `site/shop.html`'s Product JSON-LD `url` for the $49 Bundle still pointed at `shop.html` itself, not the real `bundle.html` page `c0cf1b8b` shipped, because that cycle's documented wiring chain never named `build_product_schema.py`. Ran the full `GENERATOR_OWNERSHIP_CHAIN` in order; exactly two files drifted, both the same one intended correction plus its matching sitemap content hash, nothing else. `--own` reran clean on the committed fix: 0 gates failed, 25 warnings, all previously diagnosed sandbox limits. `check_urls.py` 190/190, `audit_pages.py` 194/0, `affiliate.py --check` clean.
+
+Pushed to main. `site/shop.html`, `ops/sitemap-content-hashes.json`, command deck. No new page, no price touched, IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (issue #32's remaining finding closed: site/bundle.html shipped for the $49 Complete Digital Bundle)
 
 **Did:** Unshallowed and fast-forwarded onto origin/main. `preflight.py` clean, 23 warnings. Read BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, the last four log entries. Sections 2 through 6 of the backlog were already done or Phil-gated (confirmed against GitHub's 9 open issues, all decision/blocked-on-art), so per section 1b picked the one real unblocked item left: BK-BUNDLE, the $49 Complete Digital Bundle, live since launch with no page of its own, the one finding issue #32 left open after D-023 retired the other 21 kits/bundles.
