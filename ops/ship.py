@@ -88,6 +88,16 @@ def step(name: str, ok: bool, detail: str = "") -> bool:
 
 
 def main() -> int:
+    # No unrecognized flag may fall through to the default commit/push/deploy
+    # path. Found live 2026-09-22: running this with `--help`, expecting usage
+    # text, instead silently committed, pushed and attempted a production
+    # deploy, because every other flag here is read positively (its presence
+    # is checked, never its absence from a known set). Checked first, before
+    # touching git at all.
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print(__doc__)
+        return 0
+
     msg = None
     if "-m" in sys.argv:
         msg = sys.argv[sys.argv.index("-m") + 1]
