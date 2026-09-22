@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (independently found the same generator-ownership drift a concurrent PM check-in was fixing at the same moment; verified the merged fix rather than duplicating it)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (1178-commit fast-forward, issue #27's usual shallow/detached shape). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries, `GOALS.md`, `STATUS.md`. `python ops/preflight.py` (fast) **FAILED**: `publish-image-current`, publish-image.yml's latest attempt (run 378) failed and HEAD's `site/` differed from the last successful build, 190 files of real, unpublished content (the C8 consult-button push). Per step 2, this became the cycle's work.
+
+**Diagnosed:** run 378's own "Preflight, including generator ownership" step had failed on `gate_generator_ownership`, not on `gate_publish_image_current` itself (that gate correctly demotes to a warning inside its own workflow, per its docstring, to avoid a self-referential deadlock). Reran `preflight.py --own` locally: 2 files drift from their generator, `ops/sitemap-content-hashes.json` and `site/shop.html`. Ran the standalone generators first (`build_seo.py`, `prerender_shop.py`) and got no diff, which did not match the gate's own finding, so reproduced the gate's exact method instead of trusting a partial check: ran the full `GENERATOR_OWNERSHIP_CHAIN` in committed order. That reproduced it. Root cause: `site/shop.html`'s Product JSON-LD `url` for the $49 Bundle still read `shop.html` instead of `bundle.html`, because `build_product_schema.py` (which reads the `href` field `bundle.html`'s own shipping commit added to `data.js`) was never rerun after that commit; the fix is owned by that generator, not the two I tried standalone.
+
+**Verified before shipping:** both changed files parse as valid JSON/JSON-LD; `check_urls.py` 190/190; `audit_pages.py` 194/0. Staged and shipped via `ops/ship.py`; a concurrent PM check-in had reached and fixed the identical root cause within the same few minutes and already pushed (`4b792857`, its own nightly log entry above this one), so my push carried the same two-file diff and landed as a no-op merge onto their commit rather than a duplicate. Confirmed `HEAD == origin/main` after. Reran `preflight.py --own` on the merged result: every gate passed, 23 warnings, all previously diagnosed sandbox limits. `publish-image.yml` run 379 auto-triggered on the fix commit; watched it directly via the GitHub API rather than assuming, per CLAUDE.md 0.3.
+
+**Went well:** not trusting the first two standalone generator runs when they contradicted the gate's own finding; reproducing the gate's exact method instead of declaring it a false positive.
+
+**Did not go well:** same shallow/detached checkout shape as every prior cycle; issue #27 still open. Some duplicated effort against a concurrent session, resolved cleanly by `ops/ship.py`'s own merge handling rather than a conflict.
+
+**Changing next cycle:** none; `gate_publish_image_current` (fast) and `gate_generator_ownership` (`--own`) worked exactly as designed in tandem, one flagging that something was unpublished, the other naming the cause. No new gate needed.
+
+**Next:** the prior PM check-in's own handoff (C10, the free 15-minute "which zone first" consult call) is `REVIEW-COMMERCE-2026-09-07.md`'s own row 994, explicitly marked waiting behind O1 (the traffic constraint), not a carved-out exception the way C8 was; left for a future cycle to weigh rather than started here without that judgement call being re-made. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main (merged onto `4b792857`, plus a command-deck-only refresh, `1981341e`). No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 10:4x (the prior cycle's "full preflight" was only the fast pass; the real generator-ownership drift that gap hid found and fixed)
 
 NEXT FOR THE OPERATOR: ship C10, the free 15-minute "which zone first" consult call (`REVIEW-COMMERCE-2026-09-07.md` section 7), because it is the one genuinely unblocked, not yet started item left anywhere in the backlog now that `BK-BUNDLE` and C4/C6/C7/C8/C9/C11/C12/C13/C17 are all done and C20 is escalated to Phil via issue #34.
