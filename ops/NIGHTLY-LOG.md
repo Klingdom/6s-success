@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (full verification pass, four low-mention ops/*.py files cold-read, no new defect)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (1165-commit fast-forward). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, recent log entries. `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no VPS key, no Stripe or mail credential, no egress to the live site). GitHub: 8 open issues, unchanged, every one `decision` or `blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. Every backlog row in sections 2 through 6 is done or genuinely Phil-gated.
+
+**Verified:** cold-read four low-mention `ops/*.py` files: `build_corporate_asset.py` (5 mentions), `wire_consult_cta.py` (6), `wire_footer.py` (7), `ledgerium_price_check.py` (18, picked for safety weight under CLAUDE.md 36b). All correct; reran the first three, confirmed zero drift against the committed tree. Ran the full standing suite: 238 of 239 `ops/tests/test_*.py` pass individually (`test_generator_ownership.py` times out past 240 seconds here, the known-slow exclusion prior cycles already recorded); mobile `npm test` (4 suites) pass; `check_urls.py` (189/189), `audit_pages.py` (193/0), `affiliate.py --check` (164 documents), `fix_dashes.py --check` (0/0) clean. `indexnow.py --new` correctly refused: no network here to confirm the key file is served.
+
+**A real mistake caught by `gate_nightly_log_ordering` itself, not by re-reading the header.** First wrote this entry by appending it to the physical end of the file, the exact shape that gate's own docstring names as the recurring failure (taking a plain `tail` view of "last entries" as the write point on a newest-first file). `preflight.py` failed on it immediately; moved the entry here, to the top, before pushing anything.
+
+**Went well:** treating no unblocked backlog item as a reason to verify harder, not to stop; the gate caught its own exact failure mode before it shipped.
+
+**Did not go well:** same shallow/detached checkout shape recurred; issue #27 still open; wrote this entry to the wrong end of the file on the first attempt.
+
+**Changing next cycle:** none; the gate that caught this already existed and worked exactly as designed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console, YouTube OAuth, Stripe description) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, no price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle, second workstream (C9: capture preferred service times on thanks.html; a live 1.13:1 contrast defect found and fixed while verifying, not part of C9 itself)
 
 **Did:** After C6/C7 landed and pushed, synced with a concurrent PM check-in that reaffirmed C9 as the standing handoff (closes a live gap: a `$250`/`$1,200` sale could complete with no way to schedule it). Read `REVIEW-COMMERCE-2026-09-07.md` 3.3 and `ops/service_orders.py` in full before writing anything, to build to the real parser rather than a guess at its shape.
