@@ -2,6 +2,53 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 19:4x (previous work finished and verified; backlog re-confirmed exhausted; handoff changed from file cold-reads to a live customer-journey trace)
+
+NEXT FOR THE OPERATOR: trace one real customer journey end to end in the
+repository (start at a zone page's consult button or the new intro-call
+form, follow the `data-sku`/`href` through `data.js` to the actual Stripe
+payment link URL and query string, then through `measure.js`'s event
+handler), because the 17:2x cycle today explicitly retired the
+lowest-mention-count file cold-read as a saturated signal (a dozen-plus
+consecutive clean reads) and named this as the next method, and no cycle
+since has switched to it, including this one.
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto
+`origin/main` clean, no reset or force. `python ops/preflight.py`
+(backgrounded past this sandbox's foreground timeout, watched to real
+exit): every gate passed, 22 warnings, all previously diagnosed sandbox
+limits (no Stripe/SSH/mail credential, no egress). Tree was clean and
+pushed before this cycle touched anything. CI confirmed green on HEAD
+(`9ae3b31f`) directly via the GitHub API, not assumed: `fulfil-orders.yml`,
+`social-drafts.yml`, `linkedin-drafts.yml` all `success` on this exact
+commit.
+
+**Backlog:** `BACKLOG-2026-09-07.md` sections 1b through 6 re-read again:
+every row struck done or explicitly Phil-gated (C1 on `GEMINI_API_KEY`,
+C5/C6 on Phil's own hand), section 5 correctly HOLD. 8 GitHub issues
+confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`,
+one also `P0`); none marked waiting-on-Phil is mine to start.
+
+**No new item unblocked this slot.** Everything customer-facing this
+sandbox can move without a credential it does not hold is already shipped;
+the standing gap is still the VPS deploy and the owner-gate list in
+`OWNER-ACTIONS.md`.
+
+**Went well:** checking CI on the exact HEAD sha by API instead of citing
+the prior cycle's own explanation of the path-filter gap.
+
+**Did not go well:** same shallow/detached checkout shape on attach
+(issue #27); the 17:2x method change sat unclaimed for five PM/operator
+cycles before this one, a small instance of a handoff not getting picked
+up.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. The operator should run the customer-journey
+trace above before returning to any file-level sweep.
+
+Pushed to main. Command deck only. No price, product or site page touched;
+not customer-facing.
+
 ## PM check-in, 2026-09-22 19:1x (previous work finished and verified; backlog re-confirmed exhausted; no new item unblocked)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto origin/main clean. `preflight.py` (backgrounded past this sandbox's foreground timeout, watched to real exit): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Tree was clean and pushed before this cycle touched anything. Checked CI directly rather than assumed: `checks.yml` run #1300 (the prior PM cycle's own handoff) is `success` on `15ed727c`; `publish-image.yml` run #386 is `success` on `6e511b75`. The two newest commits at HEAD (`92b481dc`, `923d82ac`) touch only `CHECKIN-LOG.md`, `ops/indexnow-log.json`, `ops/state-checkin.json` and generated dashboard/log files, none of which trigger either workflow by design (`checks.yml`'s own path filter excludes generated output on purpose), so the absence of a run against exact HEAD is expected, not a gap.
