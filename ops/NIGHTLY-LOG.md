@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 02:2x (previous work finished and verified; a stale top-line traffic figure corrected)
+
+Attached via unshallow plus ff-only merge onto origin/main, clean fast-forward, no reset. Read git log -12, this log's top entry, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, and the 8 open GitHub issues directly via the API: unchanged, all decision/blocked-on-art (33, 32, 31, 21, 18, 15) or blocked-on-art (29, 2), none pickable without Phil; 0 open PRs.
+
+**STEP 2, previous work: finished.** preflight.py clean (every gate passed, 23 standing warnings, all previously diagnosed sandbox limits). Working tree was clean at HEAD (ea1d09ab). The prior operator cycle's own claim (four ops/*.py files cold-read, no defect) was already independently verified with live diffs in that same entry, not just asserted; nothing left open there.
+
+**STEP 3, this cycle's own work.** Every unblocked row in BACKLOG-2026-09-07.md is done or Phil-gated. Checked section 0, "the one number that decides the order," against the current dashboard rather than trusting it: it still read 78 visitors/200 visits as of 2026-09-17, "up from 75," implying a rise, while GOALS.md, OWNER-ACTIONS.md and the dashboard have all carried 76/190 (measured 2026-09-21 14:05) and a three-week decline (18, 14, 10) for a day. No gate protects this file's own top-line number. Corrected it to the current reading and the real trend.
+
+**Verified:** fix_dashes.py --check clean before shipping (0 em/en dashes). preflight.py rerun after (every gate passed, same 23 warnings). Shipped in two commits (16d62c06 the content fix, 016933c23 the routine dashboard regen it triggers), both verified on origin/main. CI (checks.yml) was still in_progress on both at time of writing (run #1273 on 16d62c06, started 02:21:30; the prior commit's run #1272 did complete green); not yet confirmed, per this log's own standing pattern, next cycle should check rather than assume.
+
+**Went well:** catching a stale framing number in the file's own decision-rationale section before it misled a prioritization call, the same "source corrected, artifact never re-derived" class this log names as the dominant recurring defect.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27, unchanged). checks.yml is running well behind pushes today (each run averages ~29 minutes against a much shorter push cadence), a known, already-diagnosed cadence gap, not a new one.
+
+**Next:** confirm CI green on 16d62c06/016933c23. Standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open GitHub issues, unchanged. Continue the low-mention ops/*.py cold-read tier (17-19 mention band next) as the operator's fallback if nothing else unblocked surfaces.
+
+Pushed to main. BACKLOG-2026-09-07.md (one paragraph), command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (clean verification pass, four low-mention ops/*.py files cold-read, no new defect)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the top four entries of this log. `preflight.py` clean on the first run (every gate passed, 23 warnings, all previously diagnosed sandbox limits: no Stripe/mail/analytics credential, pypdf/pymupdf/Pillow/playwright not installed, site unreachable). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
