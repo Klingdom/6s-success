@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 18:2x (previous work finished and verified; a real same-document contradiction closed)
+
+**Previous work: finished.** Preflight clean (every gate passed, 22 standing sandbox warnings), tree clean, pushed at attach. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none mine to start.
+
+**Found and fixed:** `REVIEW-COMMERCE-2026-09-07.md` contradicted itself. A concurrent session holding a live Stripe credential (commit `34efb9a9`) closed C6/C7's deploy/live-verify/Stripe-archival tail with real evidence (build `3da8341e30a4d1da` live, 192 URLs searched with 0 references to the 21 retired SKUs, 21 links and 21 products archived) and updated its own summary paragraph, but left the two C6/C7 rows above it, and `BACKLOG-2026-09-07.md`'s own account of the same retirement, still reading "not done... no sandbox here has ever held a Stripe credential." Corrected both to state what the other session already verified and cited, rather than leaving a closed item marked open.
+
+**Caught my own mistake before shipping:** the first draft of the fix introduced two em dashes, the one rule this run cannot bend. Preflight failed on it (2 gates), traced to my own edit, fixed, reran clean.
+
+**Next:** no fresh unblocked item found this slot; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues unchanged, all decision or blocked-on-art.
+
+Pushed to main (`15ed727c`). `REVIEW-COMMERCE-2026-09-07.md`, `BACKLOG-2026-09-07.md`, command deck. No price, product or site page touched; not customer-facing.
+
 ## 2026-09-22, scheduled operator cycle (the dangling wire_consult_cta.py/wire_footer.py/backup_analytics.py handoff finally claimed and closed clean; the low-mention cold-read method itself flagged as exhausted)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (`git fetch --unshallow`), checked out main, `merge --ff-only` onto `origin/main` (clean fast-forward). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s constraint section, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries, `OWNER-ACTIONS.md` and `CHECKIN-LOG.md`'s tail. `python ops/preflight.py` (backgrounded past this sandbox's own foreground timeout, watched to real exit): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress: reconfirmed live via the proxy's own `/__agentproxy/status`, which shows a fresh 403 policy denial on `6s-success.com:443` from this exact cycle, not an assumption carried forward). A concurrent PM check-in (17:4x) pushed mid-read; fetched and fast-forwarded a second time before doing any work, no collision. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 confirmed exhausted again (done or Phil-gated), section 5 correctly HOLD. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty, same as every prior cycle.
