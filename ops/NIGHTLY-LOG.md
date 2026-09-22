@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 15:4x (previous work confirmed finished; nothing new unblocked; handoff renewed)
+
+NEXT FOR THE OPERATOR: cold-read `ops/mailer.py` and `ops/owner_inbox.py`, because they are the next unread tier in the low-mention `ops/*.py` method (the same method that has found and fixed real live defects on prior cycles: storage-before-Sort, the dashboard thumbnail gap, the heading-hierarchy jump, the stale build-id) and every unblocked backlog row is again done or Phil-gated. This is the same handoff the 14:4x cycle named; the 15:1x cycle worked a different, real find instead (the stale STATUS.md claim) and did not reach it, so it carries forward unclaimed rather than being reissued as new.
+
+**Did:** Attached via fetch, unshallow, and ff-only merge onto `origin/main` (17-commit fast-forward from a shallow/detached start), clean. Read `GOALS.md`, `git log -12`, the two newest `ops/NIGHTLY-LOG.md` entries (both already prepended this same hour by the prior PM and operator cycles), `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and `CHECKIN-LOG.md`'s tail. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Verified previous work is actually finished, not just committed, per STEP 2.** `preflight.py` fast: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no VPS/SSH key, no network egress to the live site, no Pillow, the two headless-Chromium-dependent test files that self-report unverified). Working tree clean, `origin/main` and local `main` at the same commit (`5b5da8fe`), 0 ahead/0 behind. The 15:1x cycle's own STATUS.md fix and the preceding build-id fix (`93c160d3`) both checked out: `site/build-id.txt` (`463635a3...`) matches the real tree hash, `gate_build_id_current`-equivalent logic inside `preflight.py` raised no FAIL.
+
+**Confirmed, not assumed, that this cycle cannot itself close the one open thread `CHECKIN-LOG.md`'s newest entry names ("Production is behind the repository. Deploy.").** `ops/deploy.py --check`: no deploy key at `/root/.ssh/6s_deploy` in this sandbox. `ops/deploy-verdict.json` is stale on its face (checked 13:49 against build-id `3da8341e`, superseded by the 14:1x fix), but this sandbox has no way to read the live site's own `build-id.txt` to write a current verdict, the same standing gap `OWNER-ACTIONS.md` already documents as not Phil's either: only a local session holding the private deploy key redeploys, and it has already done so multiple times same-day on prior days without being asked. No new owner-actions row added; adding one here would misdescribe a self-resolving gap as a decision.
+
+**Re-checked the full `BACKLOG-2026-09-07.md` for anything genuinely unblocked before falling back to the ops-file tier:** sections 2 (micro zones/web app), 3 (decks) and 4 (images/video) are each entirely struck through as done or explicitly marked `YES, Phil` (C5 Gemini billing, C6 YouTube OAuth, C4 card artwork behind the same billing gate); section 5 is correctly HOLD, each row stating its own precondition. Nothing here for the operator to pick up ahead of the ops-file cold-read.
+
+**Went well:** confirming "finished" against real evidence (clean preflight, 0/0 ahead-behind, the fix's own gate logic) rather than citing the prior entry's own claim of it.
+
+**Did not go well:** same shallow/detached checkout shape on attach, issue #27's usual pattern; no new defect found this slot to close myself, so the handoff carries forward rather than narrowing.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `ops/mailer.py`/`ops/owner_inbox.py` for the operator, as above.
+
+Pushed to main. Command deck regenerated. No price, product or page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 15:1x (previous work finished; closed a real 4-day-stale claim stuck above STATUS.md's own rotation)
 
 **Previous work: finished.** Attached via fetch plus ff-only merge onto `origin/main` (16-commit fast-forward), clean. Confirmed rather than assumed: working tree clean, main pushed, `858c51bf` (the last PM cycle) both fixed a real build-id FAIL and confirmed it via CI directly (`publish-image.yml` #384 success), not just cited. `BACKLOG-2026-09-07.md` sections 1-4 again every row done or Phil-gated; section 6 owner gates unchanged. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; checked #34 specifically (the Kitchen deck PDF condition) since it was newly commented same day: the technical question is resolved (a real PDF now ships, comment posted), the remaining economic call (retire the 8 SKUs or not) is correctly left to Phil, not a re-derivation this pass needed to make.
