@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 05:1x (previous work finished and verified; closed a real corrected-source/unrederived-artifact gap in REVIEW-COMMERCE-2026-09-07.md section 7)
+
+Attached clean (unshallow, ff-only onto origin/main). Previous work finished: `preflight.py` clean, tree clean, main pushed at `b87cc72f`. Backlog and the 8 GitHub issues unchanged, none pickable.
+
+**Found:** `REVIEW-COMMERCE-2026-09-07.md` section 7's own ranked table still listed C4/C11/C12/C13 as open, while this same document's prose and this log already recorded all four done, the "corrected source, unrederived artifact" class section 7 itself names as the dominant defect, and what already cost cycles re-investigating C4.
+
+**Fixed:** struck through and annotated all four rows, corrected the stale "Suggested order" note.
+
+**Verified:** `fix_dashes.py`, `check_urls.py` (189/189), full `preflight.py` clean before and after.
+
+**Next for operator:** C1/C2 (Stripe-gated), background rows C6/C7/C9/C10/C16/C17/C20.
+
 ## PM check-in, 2026-09-22 04:4x (previous work was not actually finished; verifying today's own corpus_posts fix live found two more real regressions in it, both fixed)
 
 NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read
