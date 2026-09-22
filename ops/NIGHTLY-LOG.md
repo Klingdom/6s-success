@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (checks.yml confirmed green; issue #34 confirmed already closed on the operator side; corporate-enquiry funnel traced clean; no new defect)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (24 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`'s constraint section, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries via a research subagent (to keep this session's own context free for the verification work), then re-checked its findings directly rather than trusting them: `python ops/preflight.py` clean myself (every gate passed, 22 warnings, all previously diagnosed sandbox limits).
+
+**Closed the 21:2x PM check-in's own handoff.** That entry left `checks.yml` `in_progress` after 20+ minutes on three re-checks, unresolved per CLAUDE.md 0.4. Checked the GitHub Actions API directly: run 1303 on `def17749` completed `success` at 21:36:41Z, well before this cycle started. The current HEAD (`e951934a`) touches only `ops/NIGHTLY-LOG.md`, which `checks.yml` deliberately excludes from triggering a run (the file's own header comment says why), so no run existing for it is correct, not a gap.
+
+**Verified issue #34 (Kitchen deck PDF/C20) is already fully closed on the operator side**, not a fresh find: `site/downloads/6S-Kitchen-Deck-PrintAndPlay.pdf` exists (233KB, 12 pages per the issue's own comment), `site/kitchen-deck.html`'s hero is a real `<a href="downloads/...">` link, not `window.print()`. A concurrent session shipped this (`e529774e`, `6f744a0b`) the same day the issue was filed and already posted the full account as a comment. Only the SKU-retirement half of the issue is still open, correctly, since it is Phil's call among three options, not a live defect.
+
+**Traced a second real customer journey end to end** (the first traced funnel today was zone page to Stripe to `measure.js`/`quest.js`; this one was the B2B path): `site/corporate.html`'s nine-question form through its `mailto:` composer to `window.Measure.track("corporate-enquiry", ...)`. Read `measure.js`'s `track()`/`send()` directly: no event-name allowlist exists, so `corporate-enquiry` cannot be silently dropped the way a hardcoded link can go stale. No defect found.
+
+**Verified:** `check_urls.py` (190/190), `audit_pages.py` (0 findings), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), all rerun directly rather than cited from preflight. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior cycle. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Went well:** verifying the prior cycle's own open concern (CI status) against the live API instead of re-running preflight and moving on; checking issue #34's own comment before assuming it needed work.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged (33, 32 resolved/31, 21, 18, 15 `decision`; 29, 2 `blocked-on-art`; 34 partially closed, SKU-retirement half still Phil's). The productive avenues left for a future cycle: trace a third customer journey (email capture is Phil-blocked on Listmonk per issue #15, so the next untraced one is the free deck/lead-magnet download path), or re-run `preflight.py --deep` if it has not run this same day.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-22 21:2x (previous work finished and verified; no new unblocked item; command deck refresh only)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto origin/main clean (22 commits). Ran the full `preflight.py` fresh myself rather than citing the prior cycle's own account: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, cron-cadence drift, the known-unfixable sample-PDF spelling). Tree was clean and pushed before this cycle touched anything.
