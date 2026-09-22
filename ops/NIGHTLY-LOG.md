@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 22:1x (previous work finished and verified; ran the stale preflight --deep handoff; traced the free-download tracking fix clean)
+
+**Previous work: finished.** Unshallowed and fast-forward merged onto `origin/main` clean. Ran `python ops/preflight.py` fresh myself: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Tree was clean and pushed before this cycle touched anything. Did not just cite the last cycle's own account: reran `ops/tests/test_stripe_catalog_deliverable.py` directly (6/6 pass), the new file that commit added.
+
+**Checked issue #34, not reopened.** Confirmed via the GitHub API it is correctly still open: the PDF/download half is done and posted as a comment by an earlier session, and the remaining SKU-retirement half is explicitly framed as Phil's pick among three options, not a live defect. Left it alone, per the rule against picking up anything marked as waiting on Phil.
+
+**Closed the standing handoff from the last two cycles' own "Next" lines: `preflight.py --deep` had not run today.** Ran it in the background to completion (about 18 minutes here, slower than the 2-minute figure recorded 2026-09-21, consistent with the cron-cadence warning's own evidence that this account's runners are currently 4x to 8x slower than configured): every gate passed, including `gate_visual_audit`, 24 warnings, all previously diagnosed sandbox limits. No new defect.
+
+**Traced the free-download lead-magnet path, the other avenue the last cycle named.** Read `measure.js`'s click handler directly rather than trust the 2026-09-22 fix's own account: the `/(^|\/)downloads\/|print-and-play/` regex correctly matches all three real lead-magnet hrefs as shipped (`deck.html`'s `downloads/6S-Entryway-Deck-PrintAndPlay.pdf`, `book.html`'s two sample downloads, `kitchen-deck.html`'s `downloads/6S-Kitchen-Deck-PrintAndPlay.pdf`), all page-relative with no leading slash, the exact shape the fix was written for. Confirmed the files themselves exist on disk (7.9 MB, 233 KB). `ops/tests/test_measure_events.py`'s probe F already covers this shape. No defect found.
+
+**Watched `checks.yml` (run 1304, `f5cddf65`) rather than assume it stalled.** It sat `in_progress` past 20 minutes, the same shape a recent cycle mistakenly flagged as stuck; this time checked the job's own step list instead of only the run status: "Preflight" had genuinely completed (18 minutes, matching the deep-run slowdown above) and "The ops test suite" was actively running, not hung. Recorded as progressing, not stalled; not re-flagged as a false alarm for the operator to re-check a third time.
+
+**Verified:** `check_urls.py` (190/190), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0). No mail credential; inbox unchecked, not empty. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Went well:** picking up the exact handoff the prior two cycles named instead of starting a fresh search; checking `checks.yml`'s job steps directly instead of repeating the same "in_progress past 20 minutes" alarm a third time.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged (33, 32 resolved/31, 21, 18, 15 `decision`; 29, 2 `blocked-on-art`; 34 partially closed, SKU-retirement half still Phil's). No new operator-executable handoff found this slot. Production remains one deploy behind the repository (`EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line), waiting on the VPS SSH key this sandbox does not hold; not re-litigated here since it is already tracked in `OWNER-ACTIONS.md` and not a new finding.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing.
+
 ## 2026-09-22, scheduled operator cycle (fixed the BK-BUNDLE deliverable() gap the 21:4x PM check-in handed off)
 
 **Did:** Pushed the verification-pass entry below, then hit a real push race: a concurrent 21:4x PM check-in had pushed its own log entry in between. Fetched, merged (not reset), resolved the `NIGHTLY-LOG.md` conflict by keeping both entries in chronological order and regenerating the three command-deck files fresh rather than hand-merging generated output. That PM check-in's entry named a concrete, unblocked handoff: `ops/stripe_catalog.py`'s `deliverable()` for `BK-BUNDLE` only checked that `build/6S-Whole-House-Print-Pack.html` exists, while `ops/stripe_fulfil.py`'s own `DELIVERY["BK-BUNDLE"]` actually sends three files (the EPUB, the manual and the print pack) and refuses to ship unless all three are present. Picked it up rather than starting a fresh search.
