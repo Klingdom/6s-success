@@ -176,10 +176,15 @@ evidence:
   - 2026-08-21: a real transaction completed end to end (Whole House Print
     Pack, $19, net $18.15) and was verified in the Stripe dashboard and the
     fulfilment path, meeting the closing condition below directly
-  - ops/state.json, reconfirmed 2026-09-03: can_take_payment=true,
-    catalog_total=159, 158 of 159 catalog items have a live Stripe Payment
-    Link or a real free download (only Corporate Lean 6S is quote-only, by
-    design, per BACKLOG-2026-H2.md 5.5)
+  - ops/state.json, reconfirmed 2026-09-03 (can_take_payment=true, 158 of
+    159 catalog items sellable then), corrected 2026-09-22: catalog_total=138
+    after D-023 retired the 6 Area Bundles and 15 Situation Kits
+    (REVIEW-COMMERCE-2026-09-07.md 1.3/1.4, $0 realised revenue on either
+    tier); 137 of 138 catalog items have a live Stripe Payment Link or a
+    real free download (only Corporate Lean 6S is quote-only, by design,
+    per BACKLOG-2026-H2.md 5.5). Nothing about the underlying route from
+    intent to payment changed; the catalogue got smaller, not the mechanism
+    this risk closed on.
   - site/cart.html no longer states "Secure checkout arrives in v2"; that
     line is absent from the file as of this review
   - 2026-08-30: this route broke for real for at least three days (all six
@@ -569,7 +574,9 @@ evidence:
     money for 158 of 159 catalog items, each a live Stripe Payment Link or
     a real free download. Still not buyable: Corporate Lean 6S," which is
     quote-per-engagement by design (BACKLOG-2026-H2.md 5.5), not a defect
-  - ops/state.json (2026-09-03): catalog_total=159, can_take_payment=true
+  - ops/state.json (2026-09-03, catalog_total 159 then; corrected 2026-09-22
+    to catalog_total=138 after D-023 retired the 6 Area Bundles and 15
+    Situation Kits, $0 realised revenue on either tier): can_take_payment=true
   - a real transaction completed and delivered 2026-08-21; a real
     three-day outage where every live link went dead was found and fixed
     2026-08-30, and is now gated (ops/check_live_links.py)

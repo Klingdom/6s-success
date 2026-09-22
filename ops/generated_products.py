@@ -28,9 +28,25 @@ Not everything the generator can produce should be sold.
    here. ops/build_catalog.py asserts this ceiling; this module trusts it and
    re-checks rather than assuming.
 
-The exclusion is computed from the free products actually in the catalogue,
-not from a hand written list of SKUs, so adding another free deck later
-removes the packs it duplicates without anybody remembering to.
+3. Explicitly retired SKUs (RETIRED below). Unlike 1 and 2, these are not
+   computed: `REVIEW-COMMERCE-2026-09-07.md` sections 1.3 and 1.4 found the 6
+   Area Bundles charging 84% of the $19 superset's price for 12-20% of its
+   content, and the 15 Situation Kits charging 74% for 7-20%, both tiers with
+   zero realised sales, no page, and no internal link. Retiring a hand-picked
+   set has to be a hand-picked list; there is no property of the generated
+   data that would derive it. Full definitions, prices and reasons preserved
+   in `ops/retired-skus.json`, entries dated 2026-09-22; `DECISIONS.md` D-023
+   records the Situation Kits' re-entry condition. This is the repository-side
+   half only: the live shop still needs to be verified clear of these before
+   the matching Stripe payment links are archived (`ops/stripe_catalog.py`'s
+   `ensure_link` already refuses to retire a link production is still
+   serving), and no sandbox this module has run in holds a Stripe credential.
+
+The exclusion in 1 and 2 is computed from the free products actually in the
+catalogue, not from a hand written list of SKUs, so adding another free deck
+later removes the packs it duplicates without anybody remembering to. The
+retired list in 3 is deliberately the exception: these are not superseded by
+anything else in the catalogue, they are the products themselves in question.
 """
 from __future__ import annotations
 
@@ -46,6 +62,56 @@ import build_catalog as bc                                     # noqa: E402
 
 PRODUCT_DIR = os.path.join(ROOT, "build", "products")
 DATA_JS = os.path.join(ROOT, "site", "assets", "js", "data.js")
+
+# Hand-picked, not derived. See "WHAT IS EXCLUDED, AND WHY" point 3 above.
+# Kept here, not in ops/retired-skus.json, because this is the list that
+# actually controls what wire_generated_catalog.py writes; retired-skus.json
+# is the historical record a human or an audit reads, not a second source of
+# truth this module would have to stay in sync with.
+RETIRED = {
+    "AB-WET-ROOMS": "Area Bundle, $16 for 108 cards (16% of the $19 superset's "
+                     "684), no page, no internal link. REVIEW-COMMERCE-2026-09-07.md 1.3.",
+    "AB-SLEEPING": "Area Bundle, $16 for 138 cards (20%), no page, no internal "
+                    "link. REVIEW-COMMERCE-2026-09-07.md 1.3.",
+    "AB-STORAGE": "Area Bundle, $16 for 138 cards (20%), no page, no internal "
+                   "link. REVIEW-COMMERCE-2026-09-07.md 1.3.",
+    "AB-LIVING": "Area Bundle, $16 for 102 cards (15%), no page, no internal "
+                  "link. REVIEW-COMMERCE-2026-09-07.md 1.3.",
+    "AB-THRESHOLDS": "Area Bundle, $16 for 84 cards (12%), no page, no internal "
+                      "link. REVIEW-COMMERCE-2026-09-07.md 1.3.",
+    "AB-FOOD": "Area Bundle, $16 for 102 cards (15%), no page, no internal "
+                "link. REVIEW-COMMERCE-2026-09-07.md 1.3.",
+    "KIT-MOVING-IN": "Situation Kit, $14 for 78 cards (11%), no page, no "
+                      "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-MOVING-OUT": "Situation Kit, $14 for 90 cards (13%), no page, no "
+                       "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-NEW-BABY": "Situation Kit, $14 for 54 cards (8%), no page, no "
+                     "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-BACK-TO-SCHO": "Situation Kit, $14 for 48 cards (7%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-HOLIDAY-HOST": "Situation Kit, $14 for 96 cards (14%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-DOWNSIZING": "Situation Kit, $14 for 96 cards (14%), no page, no "
+                       "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-SPRING-RESET": "Situation Kit, $14 for 138 cards (20%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-SMALL-APARTM": "Situation Kit, $14 for 120 cards (18%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-WORKING-FROM": "Situation Kit, $14 for 48 cards (7%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-PET-HOUSEHOL": "Situation Kit, $14 for 60 cards (9%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-AGEING-IN-PL": "Situation Kit, $14 for 78 cards (11%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-POST-RENOVAT": "Situation Kit, $14 for 60 cards (9%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-FIRST-HOME": "Situation Kit, $14 for 48 cards (7%), no page, no "
+                       "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-SHARED-HOUSE": "Situation Kit, $14 for 96 cards (14%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    "KIT-RENTAL-HANDO": "Situation Kit, $14 for 120 cards (18%), no page, no "
+                         "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+}
 
 
 def site_catalogue() -> list:
@@ -89,6 +155,9 @@ def products() -> list:
             continue
         if it["price"] >= bc.WHOLE_HOUSE:
             dropped.append((it["sku"], f"at or above the ${bc.WHOLE_HOUSE} superset"))
+            continue
+        if it["sku"] in RETIRED:
+            dropped.append((it["sku"], "retired: " + RETIRED[it["sku"]]))
             continue
         it = dict(it)
         it["deliverable"] = f"build/products/{it['sku']}.html"

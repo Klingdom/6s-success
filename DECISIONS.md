@@ -1407,6 +1407,7 @@ Maintain a compact index as the file grows.
 | D-020 | Zone in-degree floor of 8 is the real D9 bar; median above 15 is aspirational | ACTIVE | SEO |
 | D-021 | M6's 21-day read cannot be answered; the gate stays shut on a different reason | ACTIVE | PRODUCT |
 | D-022 | Paid card-deck tiers stay held until a stranger buys something; BK-EB stays at $9.99 | ACTIVE | Commerce |
+| D-023 | The 6 Area Bundles and 15 Situation Kits are retired; a kit returns behind a proven page | ACTIVE | Commerce |
 
 D-004 to D-013 were never assigned; no record exists under those IDs
 anywhere in this repository. Not a gap to fill, just a numbering fact worth
@@ -2175,3 +2176,79 @@ C18 (the DECISIONS.md half; C18's PRICING.md-strike half was already done
 business's own next-most-wanted event per `ROADMAP-2026-2029.md` and the
 natural trigger to re-open both the deck ladder and the eBook price with real
 data instead of comparables. Or Phil directs otherwise.
+
+## D-023 | 2026-09-22 | The 6 Area Bundles and 15 Situation Kits are retired from the catalogue; a kit returns only behind a page that has proven organic demand
+
+**Decision.** Both tiers are removed from `site/assets/js/data.js` (via a new
+`RETIRED` exclusion in `ops/generated_products.py`, so a rebuild cannot
+silently reintroduce them) and from `site/assets/js/shop.js`'s `CAT_ORDER`.
+Full definitions, prices and Stripe buy links are preserved in
+`ops/retired-skus.json`, each dated and reasoned, so nothing is destroyed and
+any one of them can be restored. This is the repository-side half of
+`REVIEW-COMMERCE-2026-09-07.md` 1.3/1.4 (backlog C6/C7): the acceptance
+criteria there also require the live shop to be verified clear of these SKUs
+before the matching Stripe payment links are archived, and no sandbox this
+operator has ever run in holds a Stripe credential, so that half stays open,
+recorded honestly rather than claimed done.
+
+**Rationale.** Both tiers charge most of the $19 whole-house pack's price for
+a fraction of its content (Area Bundles 74-84% of the price for 12-20% of the
+684 cards; Situation Kits for 7-20%), neither has a page or an internal link
+anywhere on the site, and both have sold zero copies since launch. `CLAUDE.md`
+49's product-catalog-integrity rule and 12's "diagnose, recommend, explain,
+offer" sequence both argue against a tier nobody can discover and nobody has
+bought. Removing them also removes 63 live Stripe objects (repository-side
+today; archived once Stripe is confirmed to no longer serve them) that
+`ops/check_sellable.py`, `ops/stripe_dedupe.py` and every other
+price-integrity gate otherwise has to keep re-verifying for no return.
+
+**Evidence.** `REVIEW-COMMERCE-2026-09-07.md` sections 1.3 and 1.4, evidence
+tier 2 for the structure and prices (read directly from `data.js` and the
+built files), tier 8 for the judgement that the curation is not worth the
+price. Re-verified today before acting: all 21 SKUs' card counts, prices and
+category confirmed against the live `data.js` entries removed in this same
+commit; the 108-684-card percentages recomputed directly rather than trusted
+from the review's own rounded figures (one, `AB-WET-ROOMS`, was corrected
+from an earlier miscalculation of 12% to the real 16% while writing
+`ops/generated_products.py`'s `RETIRED` reasons). No demand measurement
+exists in either direction for these SKUs; the call rests on reachability and
+price ratio, not "nobody wanted it" (nine buy-clicks ever, site-wide, seven
+unattributable to any SKU).
+
+**Alternatives.** Reprice instead of retire: rejected, `REVIEW-COMMERCE-
+2026-09-07.md` 1.3 already found the price ceiling assertion in
+`ops/build_catalog.py` only guards against a subset costing *more* than the
+$19 superset, not against a subset being a bad deal, so no price short of the
+superset's own would fix the value ratio. Leave them listed but demoted:
+rejected, that is the status quo `shop.js`'s own comment already describes
+("demoted rather than hidden... until somebody decides") and it has produced
+$0 across their entire time in the catalogue; a floor of absurdity is not a
+value test. Retire the 109 micro zone packs too, on the same value-ratio
+logic: rejected, `REVIEW-COMMERCE-2026-09-07.md` 1.5, they are the only paid
+offer on the 114 zone pages, which are the only surface currently being
+crawled at any volume; deleting the one asset that is working would trade it
+for a tidier catalogue table.
+
+**Consequences.** Catalogue drops from 159 SKUs to 138 (documents citing the
+old count need their own correction pass, tracked as a follow-on rather than
+done silently here); roughly 63 Stripe objects become candidates for
+archival once a session with both a live-site read and a Stripe credential
+can complete the staged procedure in `REVIEW-COMMERCE-2026-09-07.md` 1.3.
+`ops/etsy_economics.py`'s hardcoded `DIRECT_PRICE` table still prices two
+retired SKUs (`KIT-MOVING-IN`, `KIT-HOLIDAY-HOST`) against a site checkout
+that no longer sells them; not fixed in this pass since Etsy is not yet a
+live channel (`BACKLOG-2026-09-07.md` section 6 item 4), flagged here so it
+is not forgotten if Etsy goes live before the underlying kit content is
+either restored or re-priced independently of the site.
+
+**Re-entry condition.** A kit returns when a page for it exists and has
+produced a measured organic entry (`REVIEW-COMMERCE-2026-09-07.md` 1.4). The
+three life-event kits with the clearest query shape (`KIT-MOVING-IN`,
+`KIT-NEW-BABY`, `KIT-BACK-TO-SCHO`) are the best near-term candidates to
+become article briefs rather than shop tiles; that is `seo-aeo`/content work,
+not a catalogue change, and moves arrivals rather than waiting on them.
+Bringing a kit back after its page ranks costs one catalogue row, not a
+re-derivation of this decision.
+
+**Revisit when.** A page for one of these life events ships and ranks, per
+the re-entry condition above; or Phil directs otherwise.

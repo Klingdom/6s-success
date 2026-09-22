@@ -37,13 +37,17 @@
    * customer's complaint, and they are best found from the zone page that has
    * just explained that zone, not from a wall of 109 near-identical tiles.
    *
-   * Area Bundles sit last of the paid groups because they are the one tier
-   * that maps to no job anybody names out loud: they group rooms by function
-   * ("every wet room"), which is how we think, not how a person with a messy
-   * bathroom thinks. PRICING.md 0.3 recommends retiring or repricing them;
-   * until somebody decides, they are demoted rather than hidden. */
-  var CAT_ORDER = ["Books & Guides", "Room Packs", "App", "Situation Kits",
-                   "Micro Zone Packs", "Area Bundles", "Consulting"];
+   * Situation Kits and Area Bundles retired 2026-09-22
+   * (REVIEW-COMMERCE-2026-09-07.md 1.3/1.4, ops/retired-skus.json): both
+   * charged 74-84% of the $19 whole-house pack's price for 7-20% of its
+   * content, neither had a page or an internal link, and both had $0
+   * realised revenue. Dropped from CAT_ORDER along with them; the filter
+   * row is built from whatever categories are actually present (see
+   * buildFilters below), so leaving a retired name in this list would cost
+   * nothing today but would silently reappear as an empty button the day a
+   * hand-written SKU happened to reuse the category string. */
+  var CAT_ORDER = ["Books & Guides", "Room Packs", "App",
+                   "Micro Zone Packs", "Consulting"];
 
   function buildFilters() {
     var row = document.querySelector(".filters");
