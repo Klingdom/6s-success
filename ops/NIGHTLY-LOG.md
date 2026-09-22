@@ -98,6 +98,13 @@ highest-leverage owner action. No new operator handoff from this cycle;
 the corpus_index.py/generated_products.py pair that was outstanding is now
 closed.
 
+Merged and pushed as `05995a43`. `RISKS.md` and `STATUS.md` also corrected
+where the operator's own 4,205 citation needed the same true-merged 5,040
+update. CI triggered on the merge commit (`checks.yml` run 1275); still
+`in_progress` when this entry was written, not confirmed green, said
+honestly rather than assumed. No price or product touched, no site page
+changed; IndexNow not applicable.
+
 Pushed to main. `ops/corpus_index.py`, `ops/corpus_posts.py`,
 `ops/tests/test_corpus_posts.py`, `RISKS.md`, `BACKLOG-2026-09-07.md`, this
 log entry, and the routine command-deck regen. No price or product touched,
