@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 05:4x (previous work finished and verified; seven more rows of the same corrected-source/unrederived-artifact defect closed in REVIEW-COMMERCE-2026-09-07.md section 7)
+
+NEXT FOR THE OPERATOR: C17 (dashboard RED row when `ensure_link` refuses a live retirement) or the standing low-mention `ops/*.py` cold-read lane, because C1/C2/R1-R4 still need Stripe credentials no sandbox holds and C6/C7/C9/C10/C20 are larger-scope catalogue/funnel work that does not fit a single triage slot.
+
+Attached clean (unshallow, ff-only onto origin/main). Previous work finished: `preflight.py` clean, tree clean, main pushed at `b87cc72f`. Backlog and the 8 GitHub issues unchanged, none pickable.
+
+**Found:** the 05:1x cycle fixed C4/C11/C12/C13's stale rows in section 7's own table but stopped one search short. C3, C5, C14, C15, C16, C18 and C19 are also all done, each with its own prose elsewhere in this same document (C3/C14 by unrelated backlog passes B3/B4; C5 as R5, 2026-09-14; C15/C16/C18 the same cycle, 2026-09-21; C19 2026-09-14), but the table and its "Suggested order" note still listed all seven as open.
+
+**Fixed:** struck through and annotated all seven rows with evidence; corrected the order note to name only what genuinely remains (C1/C2/R1-R4 need Stripe; C6/C7/C9/C10/C17/C20 are background or behind traffic).
+
+**Verified, not trusted from the prose alone:** independently re-derived each claim before editing (grep for the hardcoded prices, `DECISIONS.md` D-022, `PRICING.md` section 0.6, the live PDF's own byte size, a site-wide search for the retired revenue sentence). `fix_dashes.py`, `check_urls.py` (189/189), full `preflight.py` clean before and after.
+
+**Next:** standing Phil-blocked list and 8 open issues, unchanged. Worth a look next cycle: whether any other review/backlog document carries the same "corrected here, table never updated" gap.
+
+Pushed to main (`bacc360fc`, `5309c5d2a`). `REVIEW-COMMERCE-2026-09-07.md`, command deck. No price or product touched, no site page changed.
+
 ## PM check-in, 2026-09-22 05:1x (previous work finished and verified; closed a real corrected-source/unrederived-artifact gap in REVIEW-COMMERCE-2026-09-07.md section 7)
 
 Attached clean (unshallow, ff-only onto origin/main). Previous work finished: `preflight.py` clean, tree clean, main pushed at `b87cc72f`. Backlog and the 8 GitHub issues unchanged, none pickable.
