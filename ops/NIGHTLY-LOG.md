@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 09:1x (previous work finished; a repeatedly-punted C20 judgment call escalated to Phil instead of re-flagged a third time)
+
+Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`92c052cf`), no reset or force needed. `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 0 (traffic still the constraint, third week of decline), `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-COMMERCE-2026-09-07.md` section 7, `DECK-SYSTEM.md` section 9. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work was finished, verified two ways.** `preflight.py` clean (every gate passed, 23 warnings, the same standing set). While it ran, a concurrent hourly-operator push landed (`f5039937`, a clean verification pass, four more `ops/*.py` files cold-read, no new defect); fetched and fast-forward merged, discarding this session's own stale dashboard-regen diff first (pure generated timestamp/commit-count drift, confirmed by diff, nothing hand-written lost).
+
+**No small item was left to close.** Sections 2 through 6 of `BACKLOG-2026-09-07.md` and section 7 of `REVIEW-COMMERCE-2026-09-07.md` are done or genuinely Phil/Stripe-blocked; C10 is 8 days, correctly too large. C20 (retire the 8 Kitchen SKUs) had been flagged as an open judgment call by two prior cycles (2026-09-21 and today 08:4x) without ever being resolved, each correctly declining to force it into a short slot but neither closing the loop either. Read `DECK-SYSTEM.md` 9 and `site/kitchen-deck.html` directly rather than re-describing the same open question a third time: the deck's only "get it" action is `onclick="window.print()"`, no PDF, no file a customer receives, and every other place this repo uses "downloadable" about a deck (`BACKLOG-2026-H2.md` 5.8, the Entryway deck's real PDF) means a literal file. That reading says C20 does not fire as written, but retiring or not retiring 8 live SKUs on that call is a catalogue decision, not a triage one.
+
+**Escalated per step 9, did not decide it myself.** Opened GitHub issue #34 (`decision` label) laying out the fact, the ambiguity, three options and a recommendation (ship a real Kitchen PDF via the existing `ops/build_deck_pdf.py`, then fire C20; reuses tooling, smallest change that makes the SKU rule mean what it says). Updated `REVIEW-COMMERCE-2026-09-07.md`'s C20 row and section 7 closing paragraph to point at #34 instead of "worth a fresh look next cycle," so future cycles stop re-reading the same file for the same unresolved question.
+
+**A second self-caused preflight failure, same shape as 08:4x's, cleared the same way.** This cycle's own first `preflight.py` invocation hit the 120-second foreground timeout mid-audit and left `site/_shop_interactive_probe.html` behind (gitignored, untracked). `gate_no_stray_probe_files` caught and deleted it on the next run; reran to completion in the background rather than assuming the deletion was enough, clean, 0 gates failed.
+
+**Went well:** treating a twice-punted judgment call as PM work to close by escalating it, not a third re-read to leave for someone else again.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. A second cycle in a row where this session's own foreground preflight timeout was the failure it then had to clear; worth using backgrounded `preflight.py` runs by default in this sandbox rather than a foreground call that reliably exceeds 120s.
+
+**Changing next cycle:** run `preflight.py` backgrounded from the start rather than foreground-then-recover, to stop self-causing this exact gate failure.
+
+**Handing to the operator:** nothing sized for it this cycle; C20 now waits on Phil via #34, not on the next unattended pass. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the now-8 open decision/art issues, unchanged.
+
+Pushed to main. `REVIEW-COMMERCE-2026-09-07.md` (two paragraphs pointing at #34), command deck. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (full verification pass, four low-mention ops/*.py files cold-read, no new defect)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (1165-commit fast-forward). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, recent log entries. `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no VPS key, no Stripe or mail credential, no egress to the live site). GitHub: 8 open issues, unchanged, every one `decision` or `blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. Every backlog row in sections 2 through 6 is done or genuinely Phil-gated.
