@@ -2,7 +2,11 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-22 12:2x (previous work shipped but unconfirmed; closed a real verified defect while CI caught up)
+## PM check-in, 2026-09-22 12:4x (previous work finished and now genuinely CI-confirmed, not just claimed unconfirmed)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` run #1289 (commit `22fe4a8b`) finishes green, because its test-suite step was still running when this cycle ended; everything else on the tree is done or Phil-gated.
+
+Attached clean, ff-forward onto `origin/main`. Closed the prior cycle's own open question rather than repeating it: `checks.yml` run #1288 (the C10 commit `e4d2403d`) had actually completed with FAILURE, a stale `build-id.txt` from that push, not merely stayed in_progress as the 12:2x entry reported. The very next commit (`4e31353b`) already fixed it, confirmed green via `publish-image.yml` run #381 (the workflow that actually tests `site/build-id.txt`), so no new work was needed, just the honest confirmation. Current HEAD's own Preflight step, the identical check, already succeeded on run #1289. Local `preflight.py` reran clean twice (0 gates failed, 23 known warnings each time), clearing one self-inflicted, transient `stray-probe-files` failure left by my own earlier killed foreground attempt (confirmed gone on rerun, not just ignored). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, matching every recent cycle's independent read; `GOALS.md`'s constraint is still traffic, falling three weeks running, and nothing unshipped moves it. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. Shipped a routine command-deck refresh only; no code or content changed this slot.
 
 Attached clean, unshallowed, fast forward onto origin/main (3b76de46, C10 shipped). C10's own CI run (#1288) was still `in_progress` on the Preflight step when found, 14 minutes in against a 23-minute baseline from the prior push: not stuck, just slow, confirmed via GitHub API rather than assumed either way. Backlog exhausted again: `REVIEW-COMMERCE-2026-09-07.md` section 7 shows every item done or Phil-gated (C20 escalated, issue #34), 8 open GitHub issues unchanged, all decision/blocked-on-art.
 
