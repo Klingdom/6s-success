@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 06:2x (previous work was NOT finished: a real, currently-red CI failure; fixed and verified)
+
+Attached onto `459fbca7`. Previous work NOT finished: local `preflight.py` failed `gate_nightly_log_ordering`. Confirmed live against GitHub, not assumed: CI run 1279 on `bacc360fc` (2 commits behind HEAD) has the same failure, real and current, invisible to later commits because `NIGHTLY-LOG.md` sits outside `checks.yml`'s trigger paths.
+
+**Found:** entry #1296 ("backlog exhausted") was appended to the file's physical end, past where the sequence had moved to 2026-09-04, the append-not-prepend shape the gate's own docstring names.
+
+**Fixed:** moved it to its correct newest-first position, verbatim.
+
+**Verified:** full `preflight.py` clean (24 warnings, all diagnosed), `fix_dashes.py`, `check_urls.py` (189/189).
+
+**Handing to operator:** C17 or the cold-read lane, unchanged.
+
+Pushed to main. Log and command deck only.
+
 ## PM check-in, 2026-09-22 05:4x (previous work finished and verified; seven more rows of the same corrected-source/unrederived-artifact defect closed in REVIEW-COMMERCE-2026-09-07.md section 7)
 
 NEXT FOR THE OPERATOR: C17 (dashboard RED row when `ensure_link` refuses a live retirement) or the standing low-mention `ops/*.py` cold-read lane, because C1/C2/R1-R4 still need Stripe credentials no sandbox holds and C6/C7/C9/C10/C20 are larger-scope catalogue/funnel work that does not fit a single triage slot.
@@ -653,6 +667,20 @@ STEP 3: nothing new to start. All 8 open GitHub issues unchanged, all decision o
 Handing to the operator: C4 first, unchanged from the last handoff.
 
 Pushed to main. Command deck only. No site content, price or product touched.
+
+## 2026-09-22, cycle (scheduled operator, backlog and owner-gate list found exhausted of unblocked work)
+
+**Did:** Unshallowed and fast-forwarded onto origin/main (1146-commit gap, no reset or force). Read GOALS.md, BACKLOG-2026-09-07.md in full, ROADMAP-2026-2029.md, CLAUDE.md, the tail of ops/NIGHTLY-LOG.md and CHECKIN-LOG.md. Ran python ops/preflight.py: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no SSH key). Tried python ops/indexnow.py --new for the 2 never-announced sitemap URLs the gate flagged; refused, correctly, because this sandbox cannot reach the site to confirm the key file is served, the same standing network limit. Checked GitHub: 8 open issues, all decision or blocked-on-art, unchanged since the last cycle; 0 open PRs. inbox_agent.py --apply: no mail credential, reported unchecked. Regenerated the command deck.
+
+**Verified:** Sections 2 through 4 of BACKLOG-2026-09-07.md (micro zones/app, decks, images/video) are every row done or Phil-gated; section 5 is explicitly HOLD pending traffic or a sale; section 6 is the owner-gate list. The dashboard's own "what needs you" list matches: redeploy the site, verify Search Console, authorise YouTube, paste the Stripe description, and the same 6 decision issues. No new defect found.
+
+**Went well:** did not manufacture a marginal gate or a cold-read fix to look busy; GOALS.md itself names that pattern as the dominant failure mode here.
+
+**Did not go well:** nothing genuinely unblocked exists this cycle; every remaining lever needs Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** the 3-item "start here" list in OWNER-ACTIONS.md, plus the redeploy click; nothing else moves the constraint until then.
 
 ## 2026-09-21, scheduled operator cycle, self-correction (my own C16 push broke publish-image.yml; a concurrent session found and fixed it before I checked CI)
 
@@ -33808,17 +33836,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-22, cycle (scheduled operator, backlog and owner-gate list found exhausted of unblocked work)
-
-**Did:** Unshallowed and fast-forwarded onto origin/main (1146-commit gap, no reset or force). Read GOALS.md, BACKLOG-2026-09-07.md in full, ROADMAP-2026-2029.md, CLAUDE.md, the tail of ops/NIGHTLY-LOG.md and CHECKIN-LOG.md. Ran python ops/preflight.py: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no egress, no Stripe/mail credential, no SSH key). Tried python ops/indexnow.py --new for the 2 never-announced sitemap URLs the gate flagged; refused, correctly, because this sandbox cannot reach the site to confirm the key file is served, the same standing network limit. Checked GitHub: 8 open issues, all decision or blocked-on-art, unchanged since the last cycle; 0 open PRs. inbox_agent.py --apply: no mail credential, reported unchecked. Regenerated the command deck.
-
-**Verified:** Sections 2 through 4 of BACKLOG-2026-09-07.md (micro zones/app, decks, images/video) are every row done or Phil-gated; section 5 is explicitly HOLD pending traffic or a sale; section 6 is the owner-gate list. The dashboard's own "what needs you" list matches: redeploy the site, verify Search Console, authorise YouTube, paste the Stripe description, and the same 6 decision issues. No new defect found.
-
-**Went well:** did not manufacture a marginal gate or a cold-read fix to look busy; GOALS.md itself names that pattern as the dominant failure mode here.
-
-**Did not go well:** nothing genuinely unblocked exists this cycle; every remaining lever needs Phil's own hand.
-
-**Changing next cycle:** none.
-
-**Next:** the 3-item "start here" list in OWNER-ACTIONS.md, plus the redeploy click; nothing else moves the constraint until then.
