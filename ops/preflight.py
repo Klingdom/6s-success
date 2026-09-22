@@ -18651,6 +18651,58 @@ def gate_sample_pdf_spelling() -> None:
              f"not a binary patch.")
 
 
+def gate_sample_pdf_cover_current() -> None:
+    """The free sample PDF's own cover must not call itself "The Complete
+    Book" when it holds chapters 1 to 30 of 50.
+
+    REVIEW-QA-2026-09-07.md's own finding: STATUS.md recorded this fixed
+    twice, 2026-08-17 and 2026-08-19, both times by correcting
+    content/book/.../Sample (Chapters 1-30).html and the filename. Neither
+    touched the shipped PDF's own rendered cover, because nothing compiles
+    this checked-in binary from that HTML (gate_sample_pdf_spelling's own
+    docstring names the same gap for wording). The PDF's cover page 1 kept
+    reading "Home Edition · The Complete Book" until fixed directly,
+    2026-09-22, this operator: page 1's cover subtitle span (font Georgia,
+    the embedded subset already used elsewhere in the document, so every
+    glyph needed by the correction already exists in it) redacted and
+    replaced with "Home Edition · Chapters 1 to 30", matching the corrected
+    HTML's own text. Verified before shipping: a full pixel diff against
+    the pre-fix file shows page 1 as the only page that changed at all (491
+    of 492 pages byte-for-pixel identical), page count unchanged (492), all
+    172 embedded images still valid, and a fresh render confirms the new
+    line centers correctly in the same position, size and colour as the
+    line it replaced.
+
+    A customer downloading the free sample to decide whether to pay for the
+    book should not be told on page 1 that they already have the whole
+    thing.
+    """
+    path = os.path.join(ROOT, SAMPLE_PDF_REL)
+    if not os.path.exists(path):
+        return
+    try:
+        import pymupdf
+    except ImportError:
+        warn("sample-pdf-cover",
+             "could not check: pymupdf is not installed here, so the "
+             "sample PDF's cover could not be read. Unchecked, not clean.")
+        return
+    try:
+        doc = pymupdf.open(path)
+        cover_text = doc[0].get_text() if doc.page_count else ""
+        doc.close()
+    except Exception as e:                                       # noqa: BLE001
+        warn("sample-pdf-cover",
+             f"could not check: {e}. Unchecked, not clean.")
+        return
+    if re.search(r"complete book", cover_text, re.IGNORECASE):
+        fail("sample-pdf-cover",
+             f"page 1 of the live sample PDF ({SAMPLE_PDF_REL}) still "
+             f"calls itself \"The Complete Book\" while holding chapters "
+             f"1 to 30 of 50. Redact and reinsert the corrected line on "
+             f"the shipped cover; do not hand-edit generated HTML alone.")
+
+
 def check_book_page_figure_disclosure(book_html: str, sample_html: str,
                                        sample_pdf_bytes: bytes):
     """None if book.html's figure-format disclosure matches the real sample
@@ -19099,6 +19151,7 @@ def main() -> int:
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
     run_gate(gate_sample_pdf_spelling)
+    run_gate(gate_sample_pdf_cover_current)
     run_gate(gate_book_page_figure_disclosure)
     run_gate(gate_binary_files_protected)
     run_gate(gate_test_rotation_isolated)
