@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-22 10:27 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-22 10:30 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 76 visitors across 190 visits, 30 days (carried forward from 2026-09-21 14:05; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
-| Closed to date | 25 |
-| Commits (7 days) | 1200 of 3360 total |
+| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
+| Closed to date | 26 |
+| Commits (7 days) | 1201 of 3361 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a57a66f9` Merge origin/main: concurrent PM check-in cycles |
+| Last commit | `5723896f` Command deck refresh after merge |
 
 ## Product readiness
 
@@ -62,7 +62,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **#34** Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition?
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
-- **#32** Decide: 23 kits/bundles are named on no page but their own shop tile
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
@@ -74,7 +73,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|---|
 | 34 | Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition? | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
-| 32 | Decide: 23 kits/bundles are named on no page but their own shop tile | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
 | 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |

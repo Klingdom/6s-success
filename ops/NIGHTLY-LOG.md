@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (issue #32's remaining finding closed: site/bundle.html shipped for the $49 Complete Digital Bundle)
+
+**Did:** Unshallowed and fast-forwarded onto origin/main. `preflight.py` clean, 23 warnings. Read BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, the last four log entries. Sections 2 through 6 of the backlog were already done or Phil-gated (confirmed against GitHub's 9 open issues, all decision/blocked-on-art), so per section 1b picked the one real unblocked item left: BK-BUNDLE, the $49 Complete Digital Bundle, live since launch with no page of its own, the one finding issue #32 left open after D-023 retired the other 21 kits/bundles.
+
+Wrote `site/bundle.html`: what's inside (book, manual, print pack, from real published copy), who it's for, the arithmetic ($57.99 apart, $49 bundled, save $8.99, matching `gate_bundle_maths`). Added an `href` field to `BK-BUNDLE` in data.js (the field free items already use for "this page is the product"), which also fixed the shop's Product JSON-LD `url`. The shop tile's "Read the free steps first" wording was wrong for a paid item, so `site.js` gained a second, honestly worded "See what is inside" link, shown only when a product carries both `buy` and `href`. Registered the page in preflight's ownership registry, ran the full single-page wiring chain, updated ROADMAP's page count and RISKS.md's `forms_dead` citations to match.
+
+**Verified:** a real contrast defect (2.21:1, a `.band` section paragraph missing its `.lede` class) caught by `audit_visual.py` before shipping, fixed, reran clean on both viewports (0 findings, 198 pages). Full `preflight.py`, all 239 test files, `check_urls.py` (190/190), `audit_pages.py` (194/0), `affiliate.py --check` clean. A concurrent PM check-in pushed mid-cycle (a comment syncing #32 with D-023); merged cleanly, only the generated dashboard files conflicted, resolved by regenerating fresh.
+
+**Went well:** the audit caught the contrast defect before commit, not after.
+
+**Did not go well:** the usual shallow/detached checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and the 8 remaining decision/art issues, unchanged.
+
+Pushed to main (`c0cf1b8b`, `5723896f`). Issue #32 closed. One new free page; IndexNow refused to submit (no egress to confirm the key file is served, correctly unchecked rather than assumed).
+
 ## PM check-in, 2026-09-22 10:1x (previous work finished, verified with a full preflight run rather than cited; a real stale-issue gap found and closed on GitHub, not in a markdown file)
 
 Attached clean: `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (`8bde95d4`, 1172-commit fast-forward, issue #27's usual shallow/detached shape, no reset or force needed). Read `git log --oneline -12`, this log's newest entries (09:4x PM check-in and the preceding cycles), `EXECUTIVE-DASHBOARD-LIVE.md`, `BACKLOG-2026-09-07.md` sections 1b through 7 in full, and confirmed all 9 open GitHub issues directly via the API rather than trusting the last cited count.
