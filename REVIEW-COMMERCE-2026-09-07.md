@@ -191,6 +191,68 @@ file is served), so both URLs remain UNANNOUNCED to IndexNow, per
 `gate_indexnow_current`'s own honest warning; a future cycle with real
 egress, or Phil's own deploy, needs to run it again.
 
+**C4 done, 2026-09-22, operator, section 7 now fully clear of "At" tier
+items.** Re-verified before starting rather than trusted from the prior
+cycle's own citation: `grep -rl corporate.html site/*.html` returned only
+`consulting.html`, `corporate.html` itself, and `index.html`, confirming the
+mislabelling the 2026-09-21 23:4x PM check-in had already found. The gap was
+real: only the one homepage sentence (fixed 2026-09-14) pointed here, and
+neither the nav nor the footer's "Company" column mentioned it at all.
+Deliberately did not add it to the primary nav: `ops/wire_nav.py`'s own
+docstring records a considered UX decision to cut that nav from seven items
+to five, and a corporate B2B link competing for space in a nav built for a
+household audience would reopen exactly the crowding that change fixed.
+Added `<a href="corporate.html">Lean 6S for teams</a>` to the footer's
+existing "Company" column instead, next to "Consulting" (the residential
+equivalent), reusing the exact phrase `index.html`'s own sentence already
+uses ("Lean 6S for a team") rather than inventing new wording.
+
+**The mechanical problem underneath this row:** roughly 150 hand-authored
+top-level pages each carry their own literal copy of the footer, kept in
+sync only by whoever last changed it remembering to propagate it by hand;
+`gate_footer_consistent` catches drift after the fact but nothing applied a
+change everywhere in the first place, the one job `ops/wire_nav.py` already
+does for the primary nav. Wrote `ops/wire_footer.py`, the same pattern:
+reads the canonical footer live from `site/about.html` (the same source
+`ops/build_resources.py`'s own `_chrome()` already lifts from) and rewrites
+every other page's footer to match, prefix-adjusted by depth, skipping
+`downloads/` and the two pages `gate_footer_consistent` already treats as
+deliberately footer-less (`invest.html`,
+`deck/entryway-print-and-play.html`). Also asserts every footer link on
+every page resolves. Ran it: 190 pages rewritten, one line changed on each,
+nothing else touched. Then ran every generator that independently lifts or
+hardcodes footer chrome, in the order that keeps `gate_generator_ownership`'s
+regenerate-and-diff check honest: `build_resources.py` (about.html to
+resources.html), `build_articles.py`, `build_zone_pages.py`,
+`build_zone_index.py`, `build_standards_page.py` (deck.html to
+standards.html), `build_corporate.py`, `build_deck_gallery.py`,
+`build_kit_page.py`, and `prerender_shop.py` (shop.html's pre-rendered grid
+sits outside its own chrome, confirmed it does not touch the footer). One
+generator, `build_kitchen_deck_page.py`, hardcodes the footer as a literal
+string in the Python source rather than lifting it at runtime; hand-edited
+that literal to match, then regenerated and confirmed a zero-diff result,
+so a future run cannot revert this. Every regeneration reproduced exactly
+what `wire_footer.py` had already written, confirmed with `git diff` after
+each one, not assumed.
+
+**Verified:** internal links to `corporate.html` went from 3 to 191 pages
+(218 total `corporate.html` references, counted live with `grep`), past the
+165+ acceptance figure; every zone, room and article page now reaches it in
+one click via the footer, so "two clicks from any zone page" is beaten, not
+merely met. `preflight.py` fast: 1 gate failed
+(`gate_prerender_shop_current`, "site/shop.html already differs from HEAD,
+so a diff afterward would not mean anything, commit or stash first"), which
+is that gate correctly refusing to run against an intentionally dirty
+mid-cycle tree rather than a live defect; the same run's 24 warnings are
+the standing sandbox-credential set. `check_urls.py` (189/189),
+`audit_pages.py` (Clean, 0 duplicate titles/descriptions), `affiliate.py
+--check` (164 documents), `fix_dashes.py --check` (0/0), `link_graph_report.py`
+(0 orphans across zones/rooms/articles), `ops/audit_visual.py` on
+`about.html`, `corporate.html` and a sample zone page (0 contrast, heading,
+landmark or focus findings). No price or product touched, no new page; the
+change is a same-page-set footer link, so no sitemap or IndexNow action
+applies.
+
 ---
 
 ## 0. What is actually true this morning
