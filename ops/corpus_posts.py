@@ -133,6 +133,70 @@ def split_whole(path: str) -> list:
     return [{"title": title, "body": body, "source": path}]
 
 
+def split_sales_copy(path: str) -> list:
+    """Back-cover and ebook sales copy: one document, its real text under
+    the title (sometimes behind its own subheading, e.g. '## Back-cover
+    text'). Found 2026-09-22: 42 of 51 back-cover-copy.md files also carry a
+    trailing pull-quote section under one of several headings (Testimonials,
+    Pull Testimonials, Pull Testimonials (PLACEHOLDERS), Pull-testimonial
+    placeholders, some ## and some ###) holding unfilled scaffolding like
+    '[PLACEHOLDER TESTIMONIAL 1: ...]' or 'PLACEHOLDER: reader testimonial
+    about...', explicitly marked 'do not publish as real quotes'. Cut at the
+    first heading whose text contains 'testimonial', whatever its level or
+    exact wording, then refuse the file outright if the word 'placeholder'
+    still appears anywhere in what is left, rather than trust the cut caught
+    every shape this corpus uses. Fits sales-copy."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read().strip()
+    lines = s.splitlines()
+    if not lines or not lines[0].startswith("# "):
+        return []
+    title = lines[0].lstrip("#").strip()
+    body = "\n".join(lines[1:])
+    body = re.split(r"(?mi)^#+\s*.*testimonial.*$", body)[0]
+    body = re.sub(r"(?m)^##\s+Back-cover text\s*$\n?", "", body)
+    body = re.sub(r"\n{3,}", "\n\n", body).strip()
+    if not body or "placeholder" in body.lower():
+        return []
+    return [{"title": title, "body": body, "source": path}]
+
+
+def split_short(path: str) -> list:
+    """One file is one short, finished piece in its own right, title from
+    the '# ' line, nothing to split. Fits landing-page-intro,
+    newsletter-teaser."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read().strip()
+    lines = s.splitlines()
+    if not lines or not lines[0].startswith("# "):
+        return []
+    title = lines[0].lstrip("#").strip()
+    body = "\n".join(lines[1:]).strip()
+    if not body:
+        return []
+    return [{"title": title, "body": body, "source": path}]
+
+
+def split_questions(path: str) -> list:
+    """Reader discussion questions: a numbered list, one question per line,
+    no bold lead (that shape is takeaways, not this). Each question is its
+    own postable prompt. Fits discussion-questions."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read()
+    out = []
+    for m in re.finditer(r"^(\d+)\.\s+(.+)$", s, re.M):
+        q = m.group(2).strip()
+        if q:
+            out.append({"title": f"Question {m.group(1)}", "body": q, "source": path})
+    return out
+
+
 def _h2_sections(s: str) -> list:
     """Split a document on '## ' headings into (heading, body) pairs. Text
     before the first heading (the title and any intro line) is discarded."""
@@ -235,6 +299,10 @@ EXTRACTORS = {
     "quote": split_quotes,
     "summary": split_summary,
     "takeaways": split_takeaways,
+    "sales-copy": split_sales_copy,
+    "landing-page-intro": split_short,
+    "newsletter-teaser": split_short,
+    "discussion-questions": split_questions,
 }
 
 # A standalone post's word count has to make sense for where it will run. A
@@ -252,6 +320,13 @@ WORD_BOUNDS = {
     "quote": (3, 300),
     "summary": (25, 500),
     "takeaways": (10, 200),
+    # Read off the real corpus, not guessed: back-cover-copy runs short,
+    # ebook-sales-copy runs to a full multi-section chapter pitch, so
+    # sales-copy spans both (88 to 2887 words seen 2026-09-22).
+    "sales-copy": (60, 3000),
+    "landing-page-intro": (60, 2000),
+    "newsletter-teaser": (40, 300),
+    "discussion-questions": (5, 200),
 }
 
 

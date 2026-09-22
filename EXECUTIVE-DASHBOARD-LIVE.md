@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-22 03:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-22 04:34 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 25 |
-| Commits (7 days) | 1208 of 3313 total |
+| Commits (7 days) | 1202 of 3314 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9e50443c` Command deck regenerated (timestamp only, no content change) |
+| Last commit | `4c2a8aca` PM check-in: two transient stray-probe gate failures self-he |
 
 ## Product readiness
 
@@ -44,7 +44,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
 | Zone imagery | 111/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
-| Social corpus | ~4,408 ready-to-publish units, unused |
+| Social corpus | ~5,243 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-20 10:15: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Zone reset videos, photo-led | 2/111 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-20 10:15: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |

@@ -2,6 +2,72 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 04:1x (previous work finished; the third repeated
+handoff picked up directly, and a fabricated-testimonial near-miss caught
+before shipping)
+
+Attached via unshallow plus ff-only merge onto origin/main, clean. Read
+`git log -12`, this log's top entries, `BACKLOG-2026-09-07.md` sections 1b
+through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues
+directly via the API: unchanged, all `decision` or `blocked-on-art`, none
+pickable without Phil.
+
+**STEP 2, previous work: finished.** `preflight.py` full run, every gate
+passed, 23 warnings, tree clean, main pushed.
+
+**STEP 3.** Every unblocked backlog row done or Phil-gated, 8 issues
+unchanged. But the 02:4x/03:1x/03:4x handoff (cold-read
+`ops/corpus_index.py` and `ops/generated_products.py`) had been repeated
+three times with nobody picking it up, so this cycle did it directly rather
+than hand off a fourth time, per CLAUDE.md 0.2 ("do not report a problem
+twice that you could have fixed once").
+
+`generated_products.py` read clean: 149 products, 6 correctly excluded,
+every deliverable present. `corpus_index.py` was not: five real per-chapter
+content types (306 files) were finished prose by the module's own test but
+fell through its classifier into "other", uncounted, the same defect class
+its own dashboard gate's history already names three times (2026-09-01
+twice, 2026-09-12). Classified them.
+
+**Caught before shipping, not after.** `corpus_posts.py` had no extractor
+for any of the four new kinds, so they would have served via the wrong
+fallback shape. Checked what that fallback would actually produce before
+trusting the classification: 42 of 51 `back-cover-copy.md` files carry an
+unfilled `[PLACEHOLDER TESTIMONIAL ...]` section, explicitly marked "do not
+publish as real quotes," under at least six different heading spellings and
+two heading levels. Marking the kind ready with no extractor that understood
+this shape would have been a live fabricated-testimonial risk the moment
+anything served it, which CLAUDE.md section 8 forbids outright, not merely
+an empty pool like the three prior occurrences of this defect class. Wrote
+extractors for all four kinds; the sales-copy one cuts at any heading naming
+"testimonial" and then refuses the whole file if the word "placeholder"
+survives anywhere left, rather than trust the cut caught every shape (3 of
+51 files still fail that net and are correctly dropped). Verified directly:
+0 placeholder leaks across all 4,823 usable posts, 5,243 ready units (was
+4,408). `gate_risks_evidence_current` correctly failed on the first
+`preflight.py` run after, naming `RISK-0012`'s stale `social_units=4408`
+citation; fixed to 5243, the gate doing its job, not a defect. New test
+cases fail-then-pass proved directly (`AttributeError` against the pre-fix
+module).
+
+**Went well:** treating a third repeated, unpicked handoff as this cycle's
+own work instead of writing a fourth one; checking what the classifier
+change would actually cause to be served before shipping it, not after.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue
+#27, unchanged).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. Production redeploy remains the single
+highest-leverage owner action. No new operator handoff from this cycle;
+the corpus_index.py/generated_products.py pair that was outstanding is now
+closed.
+
+Pushed to main. `ops/corpus_index.py`, `ops/corpus_posts.py`,
+`ops/tests/test_corpus_posts.py`, `RISKS.md`, `BACKLOG-2026-09-07.md`, this
+log entry, and the routine command-deck regen. No price or product touched,
+no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 03:4x (previous work finished; two transient stray-probe gate failures self-healed, not a defect)
 
 NEXT FOR THE OPERATOR: cold-read `ops/corpus_index.py` and `ops/generated_products.py`
