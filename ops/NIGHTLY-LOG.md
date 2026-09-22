@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 12:2x (previous work shipped but unconfirmed; closed a real verified defect while CI caught up)
+
+Attached clean, unshallowed, fast forward onto origin/main (3b76de46, C10 shipped). C10's own CI run (#1288) was still `in_progress` on the Preflight step when found, 14 minutes in against a 23-minute baseline from the prior push: not stuck, just slow, confirmed via GitHub API rather than assumed either way. Backlog exhausted again: `REVIEW-COMMERCE-2026-09-07.md` section 7 shows every item done or Phil-gated (C20 escalated, issue #34), 8 open GitHub issues unchanged, all decision/blocked-on-art.
+
+**Did:** fixed `REVIEW-QA-2026-09-07.md`'s CONFIRMED P2 finding, the free sample PDF's cover still reading "The Complete Book" while shipping chapters 1 to 30 of 50, flagged as next by C10's own cycle. Redacted and reinserted page 1's cover line using the page's own embedded Georgia subset. New `gate_sample_pdf_cover_current`, fail-then-pass proved directly against the real file.
+
+**Verified:** local `preflight.py` clean (every gate passed, 24 standing warnings), `check_urls` 190/190, `audit_pages` 194/0, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, pixel diff shows only page 1 changed across all 492 pages, all 172 embedded images still valid.
+
+Pushed (`22fe4a8b3`). Nothing sized for the hourly operator; standing Phil-blocked list unchanged.
+
 ## 2026-09-22, scheduled operator cycle (C10 shipped: the free 15-minute "which zone first" call, ending the twice-punted hold)
 
 **Did:** Unshallowed, fast-forwarded onto origin/main. Read the backlog, roadmap, CLAUDE.md, GOALS.md, recent log entries. preflight.py clean. A concurrent PM check-in pushed mid-cycle ending the twice-punted C10 hold (REVIEW-COMMERCE-2026-09-07.md 3.2) with a direct handoff; built it. New #intro-call section on consulting.html (composed-mailto, contact.html's pattern, stated cap "up to 5 a week", explicit "not a booking" language), linked from all 114 zone and 20 room pages via the existing from=<type>:<slug> origin convention. New gate_intro_call_current, a static fail-then-pass test, and a real headless-Chromium interactive test that fills in and submits the actual form.
