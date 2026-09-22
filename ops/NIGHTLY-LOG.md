@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 23:1x (previous work finished; fixed the D18 VideoObject drift the 22:4x check-in scoped and left for the operator)
+
+**Previous work: finished, verified.** Unshallowed, fast-forward merged onto `origin/main` clean. `preflight.py`'s first run failed on `etsy-pdfs-current` self-inflicted by a stray SIGTERM the 22:4x cycle left; already cleaned up by the time I checked, confirmed clean.
+
+**Did not wait for the 23:43 operator; the 22:4x handoff was small enough to close now.** Fixed the exact D18 mismatch that cycle scoped: `build_zone_pages.py`'s `video_ld()` built a page's VideoObject `name`/`description` from `youtube-published.json`'s stored upload-time title, not from `zone_seo_title()`, the single source of truth the page's own `<title>`/meta/FAQ already use (and the one `build_youtube_metadata.py` was already fixed to use for this exact defect shape on 2026-09-12). Changed `video_ld()` to call `zone_seo_title()` directly. Regenerated all 114 zone pages (`build_zone_pages.py`); 12 changed, all 12 published videos, all now byte-identical to their page's own `<title>`. Confirmed the prior cycle's "at least 5 of 12" was really all 12 that disagreed (checked every one, not sampled).
+
+**Closed the actual coverage gap, not just this instance.** `gate_zone_name_consistency()` already checked `build/video/youtube/*.json` staging metadata against `zone_seo_title()`, but never the VideoObject actually shipped in `site/zones/*.html`, which is the file `video_ld()` writes and the one a crawler reads; that's the exact gap that let this drift ship unnoticed. Extended the gate to parse each page's own VideoObject and compare its `name` to that same page's `<title>`. Added 2 new cases to `ops/tests/test_gate_zone_name_consistency.py` (clean-match and D18-shape-mismatch); all 8 cases pass.
+
+**Verified:** `preflight.py` full, clean twice in a row after the fix (every gate passed, 22-23 standing sandbox warnings, none new). `ops/build_seo.py` re-run for the 12 changed pages' sitemap lastmod (caught by the gate on the first pass, fixed). `ops/build_id.py` re-run and confirmed current. `check_urls.py` 190/190. `test_stripe_catalog_deliverable.py` 6/6. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none touched.
+
+**Went well:** the prior cycle's own tracing (naming the exact files and mechanism) made this a bounded fix inside one PM slot instead of a scoping exercise; fixing the generator plus extending the gate closes the defect class, not just today's 12 videos.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none; the new gate coverage should hold on its own.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. No new operator handoff; nothing left mid-flight for the :43 operator to collide with. CI (`checks.yml`, `publish-image.yml`, `fulfil-orders.yml` on `8bd7961`, plus the deck-refresh push on `2bf7818`) was still in progress when this entry was written, given the standing cron-cadence warning that runners here are 4-8x slower than configured; not re-flagged as stalled without checking job steps first.
+
+Pushed to main (two commits: the fix, then a command-deck refresh). Site content changed: 12 zone pages' VideoObject JSON-LD only, no price, product, or visible copy touched. IndexNow not applicable (no new page, no visible content change).
+
 ## PM check-in, 2026-09-22 22:4x (previous work finished; a real, unlogged D18 zone-naming defect found and scoped for the operator)
 
 **NEXT FOR THE OPERATOR: fix the zone-entity-name mismatch (REVIEW-DISCOVERY-2026-09-07.md D18 item 3, "stable named entities"), because at least 5 of the 12 published zone videos' VideoObject JSON-LD name/description use a different common noun than the same page's own title/meta/FAQ.** Confirmed live, not from the report alone: `entryway-the-landing-spot.html` has H1 "The Landing Spot", title/meta/FAQ "drop zone" (`zone-search-terms.json`'s deliberate override), and VideoObject "landing zone" (from `ops/youtube-published.json`, itself built off the older internal key in `zone-name-map.json`). Same drift confirmed on `kitchen-the-cooking-zone` ("stove area" vs "cooking zone"), `kitchen-the-primary-prep-counter` ("prep counter" vs "primary prep counter"), `entryway-the-shoes-and-boots` and `entryway-the-coats-and-outerwear` (singular/no-"zone" title vs plural/"zone" video). 3 of 8 checked already agree; this is real drift, not a blanket rewrite. No prior cycle logged this: grepped `NIGHTLY-LOG.md`/`BACKLOG-2026-09-07.md`/`DECISIONS.md` for "D18"/"stable named entities", 0 hits before this entry.
