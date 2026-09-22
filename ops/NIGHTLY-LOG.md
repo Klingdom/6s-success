@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 05:1x (previous work finished and verified; closed a real corrected-source/unrederived-artifact gap in REVIEW-COMMERCE-2026-09-07.md section 7)
+
+Attached clean (unshallow, ff-only onto origin/main). Previous work finished: `preflight.py` clean, tree clean, main pushed at `b87cc72f`. Backlog and the 8 GitHub issues unchanged, none pickable.
+
+**Found:** `REVIEW-COMMERCE-2026-09-07.md` section 7's own ranked table still listed C4/C11/C12/C13 as open, while this same document's prose and this log already recorded all four done, the "corrected source, unrederived artifact" class section 7 itself names as the dominant defect, and what already cost cycles re-investigating C4.
+
+**Fixed:** struck through and annotated all four rows, corrected the stale "Suggested order" note.
+
+**Verified:** `fix_dashes.py`, `check_urls.py` (189/189), full `preflight.py` clean before and after.
+
+**Next for operator:** C1/C2 (Stripe-gated), background rows C6/C7/C9/C10/C16/C17/C20.
+
 ## 2026-09-22, scheduled operator cycle (C8: the virtual consult's text link turned into a real, origin-tracked button on all 163 organic-entry pages)
 
 **Did:** Unshallowed, fast-forwarded onto `origin/main` (1133-commit fast-forward, issue #27's usual shape). Read `BACKLOG-2026-09-07.md` in full (sections 1b-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real top four log entries (found by date, not file position; this file's tail is not chronological, cycles from 2026-09-04 sit after 2026-09-11 ones from an old merge). `preflight.py` clean on arrival (every gate passed, 23 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/P0-but-Phil-gated (confirmed live via a sub-agent), 0 PRs, none pickable. Every row in `BACKLOG-2026-09-07.md` sections 2-4 (A1-A9, B1-B7, C1-C7) again done or Phil-gated; section 5 correctly HOLD.
