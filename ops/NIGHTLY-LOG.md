@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 08:2x (previous work finished and verified; collided with a concurrent C6/C7 push mid-cycle, synced clean, no new pickable item)
+
+Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`06703369`), no reset or force needed. Read `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-COMMERCE-2026-09-07.md` section 7. Confirmed the 8 open GitHub issues directly via the API: unchanged (`decision` 33/32/31/21/18/15, `blocked-on-art`/`P0` 29/2), none pickable.
+
+**Collision, handled per step 8.** While this cycle's own `preflight.py` was still running on the attached HEAD, a check of the GitHub Actions API surfaced a newer push already in progress (`b5784f28`, "Regenerate build-id and command deck after C6/C7 merge") that had not reached this session's earlier fetch. Re-fetched rather than trusting the stale local view: `origin/main` had moved to `0b90d25a`, a clean fast-forward through `147179c6` (C6/C7: retire the 6 Area Bundles and 15 Situation Kits, repository side) and its own merge with the prior cycle's C9 handoff. Discarded this session's now-stale local dashboard-regen diff (`git checkout --`, pure generated output, nothing hand-written) and fast-forwarded onto it. No local work was lost, nothing force-pushed.
+
+**Verified rather than trusted the operator's own account.** Ran full `python ops/preflight.py` to completion on the merged HEAD (backgrounded past this sandbox's foreground timeout, genuinely finished, not assumed): every gate passed, 23 warnings, the same standing set as every recent cycle (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift already diagnosed, the one-word sample-PDF spelling gap). No new failure from the catalogue shrink. Working tree clean apart from the dashboard's own timestamp/commit-count regen (confirmed by diff: no content drift). Re-ran `ops/wire_footer.py` as a second, independent spot-check: 0 pages rewritten, every footer link resolves, confirming its own idempotency claim still holds after the catalogue change.
+
+**No new pickable item.** `REVIEW-COMMERCE-2026-09-07.md` section 7 now shows C6/C7 delisted (repository side); their deploy/live-verify/Stripe-archival tail waits on a session holding both live-site access and a Stripe credential, which this sandbox has never had. Remaining unblocked rows (C9, C10, C20) are each 0.5 to 8 days, correctly too large for a 30-minute slot. Checked issue #32's own remaining finding (the $49 Complete Digital Bundle, the one item C6/C7 did not retire): still labelled `decision`, its own text says "Not decided here — Phil's call," so not mine to act on. C1/C2/R1-R4 still need a Stripe credential no sandbox here holds.
+
+**Went well:** catching the concurrent push mid-verification via the Actions API rather than shipping a dashboard regen against a HEAD that was already stale by the time it would have been committed; re-running preflight fully rather than trusting the pre-collision result.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI. This cycle's own verification pass ran long (preflight's full test suite takes several minutes end to end), leaving less slot time than usual for a second check.
+
+**Changing next cycle:** none.
+
+**Handing to the operator at :43:** C9 (`REVIEW-COMMERCE-2026-09-07.md` section 7, capture preferred times on `thanks.html` after a service purchase) remains the standing highest-value unblocked pick, unchanged from the prior two cycles' own reasoning: it closes a live gap in the money path C8 already wired, and C6/C7 being done now removes it as competing background hygiene. C10/C20 remain behind it. C1/C2/R1-R4 still need a Stripe credential no sandbox here holds.
+
+Pushed to main. Log and command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), regenerated fresh, no other file changed. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (C6/C7: the 6 Area Bundles and 15 Situation Kits retired from the catalogue, repository side)
 
 **Did:** Unshallowed, fast-forwarded onto `origin/main` (1155-commit fast-forward, issue #27's usual shape). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, and this log's newest entries; ran `python ops/preflight.py` first (clean, every gate passed, 23 warnings, all previously diagnosed sandbox limits). Two independent research agents and my own read of `BACKLOG-2026-09-07.md` sections 2-6 (all done or Phil-gated) and `REVIEW-COMMERCE-2026-09-07.md` section 7 converged on the same pick: C6/C7, the only Independent-tier, non-credential-gated items left once every *At*-tier row and C17 were done. Picked C6+C7 together as one workstream (same staged procedure, same commit, the review's own section 1.3/1.4 already treats them as a pair).
