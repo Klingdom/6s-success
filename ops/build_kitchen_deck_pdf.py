@@ -45,7 +45,6 @@ import hashlib
 import io
 import json
 import os
-import re
 import subprocess
 import sys
 
@@ -134,16 +133,25 @@ def main() -> int:
         return 1
 
     data = io.open(OUT, "rb").read()
-    pages = len(re.findall(rb"/Type\s*/Page[^s]", data))
     size_kb = len(data) / 1024
-    print("  wrote %s  %d pages  %.0f KB"
-          % (os.path.relpath(OUT, ROOT), pages, size_kb))
 
     # Verify real content landed, not a blank or error page. pymupdf is
     # already a hard dependency of this repository's own preflight gates
     # (ops/requirements.txt), so it is never an optional import here.
+    #
+    # Page count comes from pymupdf's own parsed page tree, not a raw byte
+    # regex over the file: a first version counted "/Type /Page" occurrences
+    # directly in the PDF bytes, which matches today because Chromium wrote
+    # this file with its object dictionaries uncompressed, but a PDF using
+    # compressed object streams (a real, common PDF shape) would make that
+    # regex undercount or find zero, failing the page-count gate below on a
+    # perfectly good file, or passing a bad one, for a reason with nothing to
+    # do with the actual content.
     import pymupdf
     doc = pymupdf.open(OUT)
+    pages = doc.page_count
+    print("  wrote %s  %d pages  %.0f KB"
+          % (os.path.relpath(OUT, ROOT), pages, size_kb))
     # Chromium's print layout wraps a long title across lines, and
     # get_text() follows that wrap with a real newline ("PRIMARY PREP\n
     # COUNTER"), so a marker check against raw text would fail on content
