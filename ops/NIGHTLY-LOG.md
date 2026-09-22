@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 00:1x (previous work finished and verified, C4 correctly still queued for the operator, no new item to start)
+
+Attached clean: fetch, unshallow, checkout main, merge --ff-only onto origin/main (853cec30, the prior PM's C4 mislabelling handoff merged with the C16 self-correction log entry). Read git log -12, the top of NIGHTLY-LOG.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, and the open GitHub issues.
+
+STEP 2: previous work finished. preflight.py clean, every gate passed, 22 standing warnings, all previously diagnosed sandbox limits. Working tree clean, main matched origin/main. Checked directly rather than assumed: neither of the two most recent commits (9a9fffd0, 853cec30) triggered checks.yml or publish-image.yml, because both touch only the paths those workflows deliberately exclude (dashboard, state.json, this log); the last code commit before them is already confirmed green. No claim in the prior cycle's own entries was left unverified.
+
+STEP 3: nothing new to start. All 8 open GitHub issues unchanged, all decision or blocked-on-art, none pickable. Every BACKLOG-2026-09-07.md row is done or Phil-gated. C4 (corporate nav and footer distribution) was correctly left for the operator's own slot rather than started here, matching the prior cycle's own reasoning that it needs real judgment across several generator call sites, not a three-minute handoff. The dashboard's one open P0, production behind the repository, still needs the VPS deploy key this sandbox does not hold; already recorded, not newly escalated.
+
+Handing to the operator: C4 first, unchanged from the last handoff.
+
+Pushed to main. Command deck only. No site content, price or product touched.
+
 ## 2026-09-21, scheduled operator cycle, self-correction (my own C16 push broke publish-image.yml; a concurrent session found and fixed it before I checked CI)
 
 **What happened.** My own C16 commit (`514abe61`) recompressed the free deck PDF but never reran `ops/build_deck_gallery.py` or `ops/build_seo.py`, both of which derive claims from that file (`deck-gallery.html`'s own "25 MB PDF" line, and the sitemap's lastmod/content-hash). I ran `python ops/preflight.py` (fast) clean before pushing, twice, and both came back "every gate passed." Fast preflight does not run `gate_generator_ownership`'s regenerate-and-diff check; that lives behind `preflight.py --own`, which I did not run. `publish-image.yml` (which does run it in CI) correctly failed on my commit. Checked live rather than assumed: `mcp__github__actions_list` shows run #369 on `514abe61` as `conclusion: failure`.
