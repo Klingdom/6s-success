@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 14:1x (previous work finished but not fully verified; a live deploy-blocking defect found and fixed)
+
+**Previous work (C20, the Kitchen deck PDF) was shipped and correctly logged, but the prior cycle's own "CI confirmed green" line was written before the run it named could possibly have finished** (committed at 14:09:42, citing run #1293 on `760db301`, which had only been running about two minutes at that point and, checked directly, took until 14:25 to conclude). Not a fabrication, just unverified; flagging it plainly per STEP 2 rather than repeating it.
+
+**Ran preflight myself rather than trust the prior cycle's clean citation, and it failed for real: `FAIL build-id`.** `site/build-id.txt` said `3da8341e`, the tree hashes to `463635a3`. Traced rather than assumed stale-and-harmless: `publish-image.yml`'s own Preflight step runs this same gate, and checked directly against the Actions API, it has been failing on exactly this since run #380 (`e4d2403d`, before C20 even shipped) through run #383 (`760db301`, the current HEAD's parent) with `build-id` as the sole failure each time. **Nothing under `site/` has actually reached production since `22fe4a8b`** (the sample-PDF-cover fix, four commits back): the Kitchen deck PDF, the sitewide download-tracking fix, the dashboard.py bug fix, none of it deployed despite being on `main` and despite prior log entries describing it as shipped. `deploy-fresh`'s own warning agreed: 1 of 9 checked assets on the live site already differ from HEAD. This is exactly CLAUDE.md 0.3/0.4: the repository is not the product, and a green-looking commit history is not evidence of a served one.
+
+**Fixed:** `python ops/build_id.py`, verified `--check` reports current against the real tree hash.
+
+**Also closed a real `gate_status_currency` warning** (8 material commits unmentioned since `STATUS.md`'s own last edit, exactly at the threshold): described each of the 8 (C20, C6/C7 SKU retirement, the $49 bundle page, C9, C10, the Product JSON-LD fix, the sample-PDF-cover fix, C17) in the pattern this file already uses, demoted the prior top entry to `Prior`, and archived the oldest `Prior` entry into `STATUS-ARCHIVE.md` to keep the stack at four, per the file's own stated convention. Reverified with the gate's own pure function, `status_currency_gap()`: zero against the edited file.
+
+**Verified before shipping:** full `preflight.py` rerun locally after both fixes: the `build-id` FAIL is gone; the only FAIL remaining is `publish-image-current`, which is the same defect from the other direction (its own docstring: it clears itself once a real publish succeeds) and not a new problem to chase. No em or en dash in either edited file. `git status` showed only the three intended files touched.
+
+**Shipped** via `ops/ship.py --no-deploy` (`93c160d3`), command deck regenerated. `publish-image.yml` run #384 on this commit was `queued` at the time of this entry; **not yet confirmed green, reported as such rather than assumed.** This is the one thing worth a direct look at the next check-in: if #384 passes, this fix restores real deployment and every commit since `22fe4a8b` reaches production at once; if it fails again, whatever it names is now the highest-priority item, ahead of anything else in the backlog, because it is still blocking every future push from reaching customers.
+
+**Handing to the operator/next check-in:** confirm `publish-image.yml` run #384 (or whatever superseded it) actually succeeded, and if the VPS side can be reached, confirm `deploy-fresh` reads clean rather than the "1 of 9 assets differ" it showed this cycle. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues unchanged; issue #34's retirement decision still sits with Phil, confirmed via a fresh read of the issue thread, no new comment since C20 shipped.
+
+No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (C20/issue #34: the Kitchen deck's real downloadable PDF shipped; verifying it found and fixed a sitewide free-download tracking gap)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. Preflight clean. Cold-read the standing low-mention `ops/*.py` tier first (`check_sitemap_current.py`, `check_video_links.py`, `media_capability.py`, `build_thumbnails.py`, `shrink_sample.py`, `split_deck_cards.py`, `wire_aria_current.py`, `wire_consult_cta.py`, `backup_analytics.py`, `launch_plan_pdf.py`): all read and ran correct, no defect, a concurrent PM check-in cycle independently confirmed six of the same files clean at the same time, merged with no collision.
