@@ -2218,10 +2218,17 @@ a fraction of its content (Area Bundles 74-84% of the price for 12-20% of the
 anywhere on the site, and both have sold zero copies since launch. `CLAUDE.md`
 49's product-catalog-integrity rule and 12's "diagnose, recommend, explain,
 offer" sequence both argue against a tier nobody can discover and nobody has
-bought. Removing them also removes 63 live Stripe objects (repository-side
-today; archived once Stripe is confirmed to no longer serve them) that
-`ops/check_sellable.py`, `ops/stripe_dedupe.py` and every other
-price-integrity gate otherwise has to keep re-verifying for no return.
+bought. Removing them also removes 63 live Stripe objects (21 products, 21
+prices, 21 payment links) that `ops/check_sellable.py`, `ops/stripe_dedupe.py`
+and every other price-integrity gate otherwise has to keep re-verifying for no
+return. **Archived, same day, per the CLOSED addendum above:**
+`ops/retire_stripe_skus.py` deactivated the 21 payment links and archived the
+21 products (42 of the 63 objects, the ones the acceptance criteria and
+`REVIEW-COMMERCE-2026-09-07.md` 1.3 named). The 21 price objects were not
+separately touched; nothing in this repository or the reachable live site
+ever exposed a bare price id (only the now-deactivated payment links did), so
+this is not a live-sale risk, only an uncounted line in a future Stripe
+cleanup.
 
 **Evidence.** `REVIEW-COMMERCE-2026-09-07.md` sections 1.3 and 1.4, evidence
 tier 2 for the structure and prices (read directly from `data.js` and the
@@ -2250,12 +2257,16 @@ offer on the 114 zone pages, which are the only surface currently being
 crawled at any volume; deleting the one asset that is working would trade it
 for a tidier catalogue table.
 
-**Consequences.** Catalogue drops from 159 SKUs to 138 (documents citing the
-old count need their own correction pass, tracked as a follow-on rather than
-done silently here); roughly 63 Stripe objects become candidates for
-archival once a session with both a live-site read and a Stripe credential
-can complete the staged procedure in `REVIEW-COMMERCE-2026-09-07.md` 1.3.
-`ops/etsy_economics.py`'s hardcoded `DIRECT_PRICE` table still prices two
+**Consequences.** Catalogue drops from 159 SKUs to 138 (`REVIEW-COMMERCE-
+2026-09-07.md` and `BACKLOG-2026-09-07.md` corrected the same day, per the
+18:2x PM check-in; `GOALS.md`, `STRIPE.md`, `RISKS.md` and
+`EXPERIMENT-PLAN.md` had not been, found and corrected separately,
+2026-09-22 (commit `06c67a29`), which also added a new preflight gate so
+this class cannot drift silently again). The
+Stripe archival named here as a future step is done, per the CLOSED addendum
+above: 42 of the 63 live Stripe objects (21 payment links, 21 products)
+archived same day by a session holding a Stripe credential, live-verified
+clean first. `ops/etsy_economics.py`'s hardcoded `DIRECT_PRICE` table still prices two
 retired SKUs (`KIT-MOVING-IN`, `KIT-HOLIDAY-HOST`) against a site checkout
 that no longer sells them; not fixed in this pass since Etsy is not yet a
 live channel (`BACKLOG-2026-09-07.md` section 6 item 4), flagged here so it
