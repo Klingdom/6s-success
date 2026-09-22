@@ -20,7 +20,139 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** `REVIEW-COMMERCE-2026-09-07.md` section 7 is now clear of "At" tier items; the remaining rows are C1/C2/R1-R4 (need Stripe credentials no sandbox holds), C6-C10/C17/C20 (larger scope or below the traffic constraint per that document's own ordering). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
 
+**Merge note:** a concurrent PM check-in track was running the same window
+and, at 23:4x the prior evening, correctly found that C4 (corporate
+nav/footer distribution, `REVIEW-COMMERCE-2026-09-07.md` section 7) had
+been mislabelled done across several earlier cycles and handed it to the
+operator ahead of C13. This cycle had already unshallowed onto an earlier
+head and started C13 before that handoff landed, so the two proceeded
+concurrently rather than in the sequence the PM check-in asked for; no file
+collision resulted (C4's own fix touches `site/resources.html` and the
+chrome-generating scripts, none of which this cycle's C13 work touched).
+C13 is real, verified, shipped work and stands; **C4 remains open and is
+now the correctly next unblocked item**, ahead of anything else in section
+7, for the next cycle to pick up.
+
 Pushed to main. `site/articles/what-a-5s-engagement-costs.html`, `site/articles/why-5s-decays-after-six-months.html`, `site/articles/index.html`, `site/corporate.html`, `ops/build_corporate.py`, `site/llms.txt`, `ROADMAP-2026-2029.md`, `RISKS.md`, `REVIEW-COMMERCE-2026-09-07.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, command deck. No price or product touched; two free pages added, in the sitemap, IndexNow submission attempted and honestly recorded as unconfirmed.
+
+## PM check-in, 2026-09-22 00:1x (previous work finished and verified, C4 correctly still queued for the operator, no new item to start)
+
+Attached clean: fetch, unshallow, checkout main, merge --ff-only onto origin/main (853cec30, the prior PM's C4 mislabelling handoff merged with the C16 self-correction log entry). Read git log -12, the top of NIGHTLY-LOG.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, and the open GitHub issues.
+
+STEP 2: previous work finished. preflight.py clean, every gate passed, 22 standing warnings, all previously diagnosed sandbox limits. Working tree clean, main matched origin/main. Checked directly rather than assumed: neither of the two most recent commits (9a9fffd0, 853cec30) triggered checks.yml or publish-image.yml, because both touch only the paths those workflows deliberately exclude (dashboard, state.json, this log); the last code commit before them is already confirmed green. No claim in the prior cycle's own entries was left unverified.
+
+STEP 3: nothing new to start. All 8 open GitHub issues unchanged, all decision or blocked-on-art, none pickable. Every BACKLOG-2026-09-07.md row is done or Phil-gated. C4 (corporate nav and footer distribution) was correctly left for the operator's own slot rather than started here, matching the prior cycle's own reasoning that it needs real judgment across several generator call sites, not a three-minute handoff. The dashboard's one open P0, production behind the repository, still needs the VPS deploy key this sandbox does not hold; already recorded, not newly escalated.
+
+Handing to the operator: C4 first, unchanged from the last handoff.
+
+Pushed to main. Command deck only. No site content, price or product touched.
+
+## 2026-09-21, scheduled operator cycle, self-correction (my own C16 push broke publish-image.yml; a concurrent session found and fixed it before I checked CI)
+
+**What happened.** My own C16 commit (`514abe61`) recompressed the free deck PDF but never reran `ops/build_deck_gallery.py` or `ops/build_seo.py`, both of which derive claims from that file (`deck-gallery.html`'s own "25 MB PDF" line, and the sitemap's lastmod/content-hash). I ran `python ops/preflight.py` (fast) clean before pushing, twice, and both came back "every gate passed." Fast preflight does not run `gate_generator_ownership`'s regenerate-and-diff check; that lives behind `preflight.py --own`, which I did not run. `publish-image.yml` (which does run it in CI) correctly failed on my commit. Checked live rather than assumed: `mcp__github__actions_list` shows run #369 on `514abe61` as `conclusion: failure`.
+
+**Not my fix.** A concurrent session found it independently (its own commit message: "Found by gate_publish_image_current after a concurrent GitHub check") and pushed `3fda4039`, "Fix generator drift from C16's PDF resize; point PRICING.md at D-022," rerunning both generators. `publish-image.yml` run #370 on that commit is `success`. Several more concurrent commits landed on top since (C11 corporate LinkedIn posts, C12 the zone scoring sheet, three "regenerate after concurrent rebase" merges), all green. Pulled clean via `merge --ff-only`, no conflict.
+
+**The lesson, stated plainly rather than left implicit:** this is exactly the class of defect `gate_generator_ownership` exists to catch, and it caught it correctly, in the place built for it (CI). My own gap was procedural: fast `preflight.py` is not a substitute for `--own` when a change touches any file a generator also derives text from (a byte count, a price, a card count), even when the change itself is to a committed binary artifact rather than to the generator's source. Recording this here rather than adding a new gate, because the gate that would have caught it earlier already exists and already worked; the miss was mine, not a hole in the repository's own checks.
+
+**Verified clean after pulling:** `preflight.py` fast rerun on the current HEAD (see below); no new defect found.
+
+Nothing pushed this entry alone; folded into the next dashboard/log commit.
+
+## PM check-in, 2026-09-21 23:4x (previous work finished and verified; a genuinely open REVIEW-COMMERCE item found mislabelled closed; handed to the operator)
+
+NEXT FOR THE OPERATOR: finish REVIEW-COMMERCE-2026-09-07.md's C4 (wire
+`corporate.html` into the site nav and every page footer), because it is an
+"At" tier traffic-constraint item this log has repeatedly waved through as
+done or Phil-gated while only a fraction of its own acceptance criterion
+("internal links 3 to 165+") was ever met.
+
+**Did:** Attached clean (`git fetch`, `checkout -B main origin/main`,
+`fetch --unshallow`, `merge --ff-only`, landing on `f091a7c3`, tree already
+clean). Read `git log -12`, the top of `ops/NIGHTLY-LOG.md` (C12 and the two
+PM entries before it), `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`,
+`GOALS.md`'s decision rules. GitHub: 8 open issues, unchanged, all
+`decision`/`blocked-on-art`, none pickable without Phil.
+
+**STEP 2, previous work:** `preflight.py` failed on its first run this
+cycle: `stray-probe-files`, one leftover file
+(`site/_quest_draw_shortcut_probe.html`) from a run that was mid-audit
+somewhere concurrent. Confirmed rather than assumed it was transient: the
+file did not exist on disk by the time I checked (`ls`/`find` both empty),
+and a clean rerun of full `preflight.py` came back "every gate passed, 22
+warnings" with no new fix needed. This is the exact self-resolving shape
+`gate_no_stray_probe_files`'s own docstring describes, not a live defect.
+C12's own commit (`000daf95`) and the three dashboard-regen rebases after it
+are all pushed; `checks.yml` run 1267 (C11, the commit before C12) is
+confirmed `success` via the Actions API. Run 1268, on the current HEAD
+(`f091a7c3`, dashboard-regen only), was still `in_progress` when checked;
+reporting that plainly rather than assuming green, since it is a
+dashboard/log-only commit outside the code-changing path CI mainly guards.
+So: previous work is finished (shipped, local preflight clean, CI green on
+the last code commit, no working-tree drift left unpushed).
+
+**STEP 3, finding the next item:** Per the prior cycle's own handoff, C13
+(two B2B articles) was next in line. Before starting it, re-verified
+`REVIEW-COMMERCE-2026-09-07.md` section 7's own table against live code,
+since several rows in this log have a history of being marked closed
+without the acceptance criterion actually being checked. **C4** ("Point the
+homepage's corporate sentence at `corporate.html`; add it to nav and to the
+163 page footers") turned out to be one of those: an earlier cycle
+(`ops/NIGHTLY-LOG.md` line ~10641, `78ad...`-era) fixed the one homepage
+sentence that used to point at `consulting.html` instead, and several later
+cycles then cited "C4 Phil-gated" or "C4 done" while actually discussing a
+same-named but unrelated row in `BACKLOG-2026-09-07.md` (its own C4 is about
+rejected card-hero placeholders, nothing to do with corporate distribution).
+Checked directly: `grep -c corporate.html site/*.html` returns matches only
+in `consulting.html`, `corporate.html` itself, `index.html`, and
+`shop.html`. Zero of the 114 zone pages, 20 room pages, or article pages
+link it. The canonical nav and footer live hand-authored in
+`site/resources.html` (confirmed via `gate_footer_consistent`'s own
+docstring: `build_articles.py`, `build_zone_pages.py`, and
+`build_zone_index.py` all lift their chrome from it via `load_chrome()`),
+and neither its `<nav>` nor its footer "Company" column mentions
+`corporate.html` at all.
+
+**Why this over C13:** smaller (0.3d vs 2.0d per the review's own effort
+column), genuinely unblocked, no credential needed, and it corrects a
+repeated mislabelling rather than adding new content on top of an
+under-distributed page. Per this prompt's ordering rule, a documented-done
+item that was not actually done is category 2 (broken or dishonest) as much
+as category 3 (traffic and distribution); C13 stays next after this closes.
+
+**Not started this slot on purpose:** editing `site/resources.html`'s nav
+and footer, then regenerating all pages that call `load_chrome()`
+(`build_zone_pages.py`, `build_articles.py`, `build_zone_index.py`, and
+checking `build_kitchen_deck_page.py`/`build_standards_page.py`/
+`wire_aria_current.py`, which also reference `site-header` and need
+checking for whether they reuse the same chrome or hold their own copy),
+verifying `gate_footer_consistent` and the visual/link audits after, and
+deciding where in the footer's four columns a "Company" or a dedicated
+B2B link belongs. That is real work, not a three-minute handoff task, and
+this slot's job is triage, not building it.
+
+**Verified:** `preflight.py` full, twice (once failing on the transient
+probe file, once clean after). `git status` clean before and after this
+entry's own edits, tree pushed to match `origin/main` at every check.
+
+**Went well:** re-deriving C4's status from live code instead of trusting
+several prior cycles' citations, which is what actually surfaced this.
+
+**Did not go well:** the same C4/C4 name collision between
+`REVIEW-COMMERCE-2026-09-07.md` and `BACKLOG-2026-09-07.md` likely
+explains multiple earlier cycles' "C4 Phil-gated" claims; worth the
+operator renaming one of the two rows once C4 itself is closed, so this
+does not happen a third time.
+
+**Next:** C4 (corporate nav/footer distribution) for the operator this
+slot; C13 (two B2B-intent articles) after. Standing Phil-blocked list in
+`OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`, this log entry). No site content,
+price or product touched.
+
+## 2026-09-21, scheduled operator cycle (C15/C18: the paid-deck decision and BK-EB's $9.99 recorded in DECISIONS.md, same cycle as C16)
 
 ## 2026-09-21, scheduled operator cycle (C12: the free B2B zone scoring sheet and layered audit template)
 
