@@ -2,6 +2,58 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 20:1x (previous work finished and verified; a real, live self-contradiction found and closed in DECISIONS.md D-023)
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto
+`origin/main` clean. `preflight.py` (backgrounded past this sandbox's
+foreground timeout, watched to real exit, twice): every gate passed, 22
+warnings, all previously diagnosed sandbox limits. Tree was clean and pushed
+before this cycle touched anything. CI confirmed green on HEAD via the
+GitHub API: `fulfil-orders.yml`, `social-drafts.yml`, `linkedin-drafts.yml`
+all `success`. `BACKLOG-2026-09-07.md` sections 2-6 re-read again: every row
+done or Phil-gated. 8 GitHub issues confirmed live via the API, unchanged (6
+`decision`, 2 `blocked-on-art`); none mine to start. No egress to
+`6s-success.com` (proxy 403, policy denial, reconfirmed live), so production
+freshness stays unmeasured from here, the same standing gap.
+
+**Found and fixed while reading D-023 cold, not by the low-mention-file
+method (still exhausted).** `DECISIONS.md`'s own D-023 entry contradicted
+itself: a `CLOSED` addendum at the top, added the same day, already
+confirmed the Stripe archival was done (21 payment links deactivated, 21
+products archived, live-verified first), but the `Rationale` and
+`Consequences` paragraphs below it still described that same archival as a
+future step ("become candidates for archival once a session... can
+complete", "archived once Stripe is confirmed to no longer serve them"),
+the exact "source corrected, sibling never told" shape this repository's
+own gates exist to catch, just not one built for this specific file.
+Reconciled the "63 live Stripe objects" estimate against the 42 the tool
+actually touched (21 products, 21 payment links; the 21 price objects were
+never separately archived, verified no bare price id is ever exposed
+anywhere in this repository or the reachable live site, so this is not a
+live-sale risk).
+
+**Went well:** verifying the "63 vs 42" numbers actually reconciled
+(21×3=63) before writing anything, rather than assuming one figure was
+simply wrong.
+
+**Did not go well:** a concurrent operator cycle (`06c67a29`) independently
+found and fixed the sibling defect in this same class (`GOALS.md`,
+`STRIPE.md`, `RISKS.md`, `EXPERIMENT-PLAN.md` all still said "158 of 159"),
+with a proper standing gate, while this cycle was mid-read of `DECISIONS.md`.
+Caught before shipping: fetched and fast-forward merged before pushing,
+discarded this cycle's own now-redundant edits to `GOALS.md`/`RISKS.md` in
+favour of the gated fix, kept only the `DECISIONS.md` finding neither of us
+had touched, and corrected this entry's own citation to point at the real
+fix commit rather than claim credit for it.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. The operator's own live-customer-journey-trace
+handoff from the 19:4x PM check-in is still the right next large item;
+nothing in this slot changes that.
+
+Pushed to main (`60ae82c6d`). `DECISIONS.md` only, plus command deck. No
+price, product or site page touched; not customer-facing.
+
 ## 2026-09-22, scheduled operator cycle (the "158 of 159" catalogue count found stale across four documents after today's own SKU retirement, gated this time)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` then `checkout main`/`merge --ff-only origin/main`, clean fast-forward, 12 commits. Read `BACKLOG-2026-09-07.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries (read the file head, not the tail; entries are newest-first, and the tail is 2026-09-04's cycle 22, a red herring). `preflight.py` clean (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`, 0 PRs. No mail credential. `affiliate.py --check` clean, 165 documents. `BACKLOG-2026-09-07.md` sections 2-6 confirmed again all done or Phil-gated; section 5 correctly HOLD (traffic is the constraint, not product depth).
