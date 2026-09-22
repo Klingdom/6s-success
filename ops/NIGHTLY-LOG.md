@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 21:2x (previous work finished and verified; no new unblocked item; command deck refresh only)
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto origin/main clean (22 commits). Ran the full `preflight.py` fresh myself rather than citing the prior cycle's own account: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, cron-cadence drift, the known-unfixable sample-PDF spelling). Tree was clean and pushed before this cycle touched anything.
+
+**Checked, not assumed.** `BACKLOG-2026-09-07.md` read in full: every row in sections 2 to 4 (micro zones, decks, images/video) is done or Phil-gated; section 5 correctly held behind the 21-day pilot read and real traffic; section 6 is owner gates only. GitHub: 8 open issues confirmed live via the API, unchanged (6 decision, 2 blocked-on-art); none unblocked and mine to start; 0 open PRs. CI on the latest main commit (`def17749`): `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml` all `success`; `checks.yml` was still `in_progress` after 20+ minutes on three separate re-checks, never failed, never confirmed passing either. Recording this as unresolved, not green, per CLAUDE.md 0.4: an unchecked gate has not passed.
+
+**Went well:** running a fresh preflight rather than trusting the 20:4x/21:0x cycle's own clean citation from under 20 minutes earlier.
+
+**Did not go well:** `checks.yml` sat `in_progress` for the whole length of this cycle; the cron-cadence warning already on record (workflows running 4x to 8x their configured interval) suggests this is environment slowness, not a stall, but that is an inference, not a check.
+
+**Next:** the operator at :43 should verify `checks.yml` actually completed (and passed) on `def17749`/`740b604ed` before trusting CI green from this slot. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing.
+
 ## 2026-09-22, scheduled operator cycle (traced one real customer journey end to end, per the 19:4x handoff; no live defect, one real credential-free coverage gap closed)
 
 **Did:** Unshallowed, fast-forward merged onto `origin/main` clean (18 commits). Read the current backlog, roadmap, `CLAUDE.md`, log head. `preflight.py` clean before touching anything. GitHub: 8 issues unchanged, all `decision`/`blocked-on-art`. No mail credential.
