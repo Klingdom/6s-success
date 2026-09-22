@@ -2226,17 +2226,31 @@ def video_ld(room, zone, url):
 
     Only emitted for a video that is genuinely public. A VideoObject pointing
     at something nobody can watch is a structured-data lie.
+
+    name/description come from zone_seo_title(), the same single source of
+    truth the page's own <title>, meta description and FAQ already use, not
+    from the ledger's stored rec["title"]. That field is whatever the zone's
+    common noun happened to be at upload time; when zone-search-terms.json
+    later overrides the noun (e.g. Entryway|Landing Zone to "drop zone"), the
+    ledger does not follow, so a page whose own title/meta/FAQ correctly say
+    "drop zone" was still embedding a VideoObject that said "landing zone",
+    the exact same-page name collision REVIEW-DISCOVERY-2026-09-07.md D18
+    warns against (found 2026-09-22, at least 5 of 12 published videos).
+    Deriving from zone_seo_title() here means it can never drift again, for
+    these 12 or any future publish, without touching youtube-published.json
+    or the actual YouTube video title, neither of which this fix needs.
     """
     rec = PUBLISHED.get(_video_slug(room, zone))
     if not rec or not rec.get("video_id"):
         return None
     vid = rec["video_id"]
+    title = zone_seo_title(room, zone)
     return {
         "@context": "https://schema.org",
         "@type": "VideoObject",
         "@id": url + "#video",
-        "name": rec.get("title", ""),
-        "description": rec.get("title", ""),
+        "name": title,
+        "description": title,
         "thumbnailUrl": "%s/assets/img/video/%s.png"
                         % (BASE, _video_slug(room, zone)),
         "embedUrl": "https://www.youtube-nocookie.com/embed/%s" % vid,

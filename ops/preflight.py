@@ -16692,14 +16692,42 @@ def gate_zone_name_consistency() -> None:
     pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
     pages = [p for p in pages if os.path.basename(p) != "index.html"]
     double_article = []
+    video_ld_mismatch = []
     for p in pages:
         html_ = io.open(p, encoding="utf-8", errors="replace").read()
         if re.search(r"reset the The\b", html_):
             double_article.append(os.path.basename(p))
+        # D18 (REVIEW-DISCOVERY-2026-09-07.md, "stable named entities"), found
+        # 2026-09-22: a page's own VideoObject is generated from a separate
+        # source (the youtube-published.json ledger via video_ld()) than its
+        # <title>/meta/FAQ (all zone_seo_title()), so the two can silently say
+        # a different common noun for the same zone on the same page. The
+        # build/video/youtube/*.json check above only covers pre-upload
+        # staging metadata, never the VideoObject actually shipped in the
+        # page, which is the gap that let 5 of 12 published videos drift
+        # unnoticed. Checked directly against the page's own <title>, not
+        # recomputed from a room/zone lookup, so this cannot itself drift
+        # from whatever the page really shows a reader.
+        title_m = re.search(r"<title>(.*?)</title>", html_, re.S)
+        video_m = re.search(
+            r'"@type":\s*"VideoObject".{0,400}?"name":\s*"((?:[^"\\]|\\.)*)"',
+            html_, re.S)
+        if title_m and video_m:
+            page_title = title_m.group(1).strip()
+            video_name = video_m.group(1).replace('\\"', '"').strip()
+            if video_name != page_title:
+                video_ld_mismatch.append(
+                    "%s (video says %r, page title says %r)"
+                    % (os.path.basename(p), video_name, page_title))
     if double_article:
         fail("zone-name-consistency",
              "%d zone page(s) still say 'reset the The...' in their own "
              "HowTo schema, e.g. %s" % (len(double_article), double_article[0]))
+    if video_ld_mismatch:
+        fail("zone-name-consistency",
+             "%d zone page(s) embed a VideoObject whose name does not match "
+             "that same page's own <title>, e.g. %s"
+             % (len(video_ld_mismatch), video_ld_mismatch[0]))
 
     yt_dir = os.path.join(ROOT, "build", "video", "youtube")
     if not os.path.isdir(yt_dir):

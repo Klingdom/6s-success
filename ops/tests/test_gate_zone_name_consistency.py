@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Prove ops/preflight.py's gate_zone_name_consistency() catches both real
-defect shapes found 2026-09-12: a zone page's own HowTo schema saying
-"reset the The X" (113 of 114 real pages did, before the fix), and a
-build/video/youtube/*.json whose title or description names a zone by its
-raw internal key instead of the real site name a viewer would see on the
-linked page.
+Prove ops/preflight.py's gate_zone_name_consistency() catches all real
+defect shapes found so far: a zone page's own HowTo schema saying
+"reset the The X" (113 of 114 real pages did, before the fix, found
+2026-09-12), a build/video/youtube/*.json whose title or description names
+a zone by its raw internal key instead of the real site name a viewer would
+see on the linked page (also 2026-09-12), and a shipped page whose own
+VideoObject names the zone by a different common noun than that same page's
+<title> (found 2026-09-22, D18).
 
 Run:  python ops/tests/test_gate_zone_name_consistency.py
 """
@@ -32,6 +34,26 @@ CLEAN_PAGE = (
 REGRESSED_PAGE = (
     '<script type="application/ld+json">{"@type": "HowTo", '
     '"name": "How to reset the The Landing Spot in the Entryway"}</script>'
+)
+
+# D18 (found 2026-09-22): a page's shipped VideoObject naming the zone by a
+# different common noun than that same page's own <title>.
+VIDEO_CLEAN_PAGE = (
+    '<title>How to organize the entryway drop zone</title>'
+    '<script type="application/ld+json">{\n'
+    '  "@type": "VideoObject",\n'
+    '  "name": "How to organize the entryway drop zone",\n'
+    '  "description": "How to organize the entryway drop zone"\n'
+    '}</script>'
+)
+
+VIDEO_MISMATCH_PAGE = (
+    '<title>How to organize the entryway drop zone</title>'
+    '<script type="application/ld+json">{\n'
+    '  "@type": "VideoObject",\n'
+    '  "name": "How to organize the landing zone | Entryway",\n'
+    '  "description": "How to organize the landing zone | Entryway"\n'
+    '}</script>'
 )
 
 ROOM, ZONE = "Entryway", "Landing Zone"
@@ -83,6 +105,18 @@ def main() -> int:
     if not f or "regressed.html" not in f[0][1]:
         fails.append("double-article regression not caught: %r" % (f,))
 
+    # 2b. A page whose VideoObject name agrees with its own <title>: clean.
+    f, _ = _run(pages={"video-clean.html": VIDEO_CLEAN_PAGE}, yt_files={})
+    if f:
+        fails.append("matching VideoObject name wrongly flagged: %r" % (f,))
+
+    # 2c. A page whose VideoObject name disagrees with its own <title> (the
+    #     exact D18 shape, a ledger-stale title never updated after
+    #     zone-search-terms.json overrode the noun): caught.
+    f, _ = _run(pages={"video-mismatch.html": VIDEO_MISMATCH_PAGE}, yt_files={})
+    if not f or not any("video-mismatch.html" in msg for _, msg in f):
+        fails.append("stale VideoObject name not caught: %r" % (f,))
+
     # 3. A clean page plus correct YouTube metadata: no failure.
     good_meta = {"title": REAL_TITLE,
                  "description": "This is %s in the Entryway." % REAL_NAME}
@@ -130,7 +164,7 @@ def main() -> int:
         for f_ in fails:
             print("  - " + f_)
         return 1
-    print("PASS (%d cases)" % 6)
+    print("PASS (%d cases)" % 8)
     return 0
 
 
