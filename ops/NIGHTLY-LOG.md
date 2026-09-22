@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 16:4x (previous work finished and deploy-confirmed; a stale "redeploy the site" ask found live on the command deck and closed by regenerating it)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_quest.py` and `ops/build_zone_map_pack.py`, because they are the last two of the five-file low-mention `ops/*.py` tier the 16:1x PM cycle named and the operator has not yet run this hour to claim.
+
+**Previous work: finished.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, ff-only merged onto `origin/main` (clean, 24-commit fast-forward). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs. Ran `python ops/preflight.py` (fast) myself to completion rather than cite the interactive session's own claim of it: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, no Pillow/JRE, 2 of 245 test files self-report unverified here). The interactive session's own work (ECC integration, plus two real fixes to the Quest app's silent-failure paths) carries its own fail-then-pass proof and a real-browser test in that entry; nothing here to re-derive.
+
+**The find: the command deck itself was stale, telling the owner to do something already done.** `EXECUTIVE-DASHBOARD-LIVE.md` was last generated 16:17, before the interactive session's own closing commit (`ca4c6ba8`, 16:34 UTC) confirmed production redeployed and current at build `a993020017bafe37` (matching `ops/deploy-verdict.json`'s own "current" verdict). The un-regenerated deck still carried the old constraint text, "PRODUCTION IS SERVING AN OLD BUILD," and a "What needs you" row telling Phil to press the Hostinger redeploy button, both true at 16:17 and both false by the time this cycle read them: the deploy had already happened and been verified against the live `build-id.txt`. This is the exact "corrected source, unrederived artifact" defect class `BACKLOG-2026-09-07.md` section 7 names as the dominant one, just on the command deck rather than a content page, and it is a worse instance than most: a false "redeploy" instruction is not a passive gap, it is a wrong action item sitting at the top of the one document meant to save the owner from reading the repository directly.
+
+**Fixed:** ran `python ops/dashboard.py` (no hand edit; it owns this file). Reran: constraint line now correctly reads discovery/traffic as the live constraint, zone imagery reads "(live)" not "(BUILT, NOT DEPLOYED)", the stale redeploy row is gone from "What needs you," last commit now shows `ca4c6ba8`. Diff scoped to exactly `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, nothing else touched.
+
+**Verified:** reran `python ops/preflight.py` (fast) after the regeneration, every gate passed, same 22 warnings, no new ones from this change. `git status` clean after commit.
+
+**Went well:** reading the command deck's own generation timestamp against the interactive session's closing commit timestamp rather than trusting the deck's top line at face value.
+
+**Did not go well:** same shallow/detached checkout shape on attach; this is the second time this week the command deck has gone one cycle stale behind a same-day interactive session's own closing commit (the STATUS.md rotation gap the 15:1x cycle fixed was the same shape, a different file).
+
+**Next:** `ops/build_quest.py`/`ops/build_zone_map_pack.py` for the operator, as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## Interactive session, 2026-09-22 (ECC integrated, then two silent failures fixed in the app's core loop)
 
 **Phil asked for the forked everything-claude-code repository to be pulled in.** Taken selectively: 27 agents, 51 commands, 102 skills, plus 16 reference docs, 110 rules and 10 schemas at `~/.claude/ecc/`. Left out 45 agents, 24 commands and 126 skills for stacks this business does not use or domains it is not in, because the cost of an irrelevant specialist is a confident answer about the wrong thing. **The hooks were deliberately not installed**: 28 of them, several matching `*` so they run on every tool call, with `PreToolUse` able to block a tool outright, on an instance that deploys a live site and holds a live Stripe credential. Kept unused so the call is reversible. Every installed file parsed, 0 malformed; existing config backed up first (249 files). Wired into `claude/agents/6s-ceo.md` afterwards, because a specialist absent from the delegation list is never chosen.
