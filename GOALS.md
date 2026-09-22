@@ -64,11 +64,18 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 | Subscriber to Customer | n/a | no subscribers to convert |
 | Customer to Repeat | n/a | one customer, ever |
 
-**The constraint is the first link.** The site sells 158 of 159 catalogue
+**The constraint is the first link.** The site sells 137 of 138 catalogue
 products with a checkout that takes a card directly; every one of those
 payment links is live, checkout works, and the catalogue, videos and images
 are built. Almost nobody arrives. Until that changes, improving anything
 downstream is polishing a shop with no street outside.
+
+**Corrected 2026-09-22: the catalogue got smaller, not the constraint.**
+`147179c6`, earlier the same day, retired the 6 Area Bundles and 15
+Situation Kits (D-023, $0 realised revenue on either tier), moving the
+count from 159 to 138 items, 137 buyable. This section still said 158 of
+159 several hours later; the arithmetic below and the traffic figures are
+unaffected, since neither ever depended on the exact denominator.
 
 **Corrected 2026-09-06: the earlier wording here, calling Corporate Lean 6S
 the one gap with nothing yet to buy, was already false the day it was
@@ -82,8 +89,10 @@ tracked as a `corporate-enquiry` event) that ends in a written scope and a
 fixed fee, deliberately with no published price because two engagements with
 the same headcount can be very different weeks of work. That is a real buy
 path for a B2B quote-based service, just not a self-serve Stripe checkout.
-The 158-of-159 count itself is unaffected: it already counted only
-direct-checkout products, and Corporate Lean 6S was never meant to be one.
+The buyable-count denominator itself is unaffected by this correction: it
+already counted only direct-checkout products, and Corporate Lean 6S was
+never meant to be one (see the 2026-09-22 correction above for why the
+number itself has since changed).
 
 **The rule this implies:** if a cycle produces no plausible increase in
 arrivals, it should be able to say why that was still the right call.

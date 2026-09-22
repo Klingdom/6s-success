@@ -204,7 +204,8 @@ mitigation: >
   are the two automated checks that would catch it first.
 closing_condition: >
   Met, 2026-08-21 (first real transaction), reconfirmed 2026-09-03 (158 of
-  159 catalog items purchasable per ops/state.json).
+  159 catalog items purchasable per ops/state.json then), reconfirmed again
+  2026-09-22 at 137 of 138 after D-023's retirement (see evidence above).
 review: after any change to pricing, the catalog, or the Stripe integration
 ```
 
@@ -588,11 +589,12 @@ impact: >
   which is RISK-0013.
 mitigation: >
   Closed. Do not open a tenth product line ahead of evidence that the
-  existing 159 convert a stranger, per ROADMAP-2026-2029.md's own refusal
+  existing 138 convert a stranger, per ROADMAP-2026-2029.md's own refusal
   list ("no new digital tier until there is new content").
 closing_condition: >
-  Met. 158 of 159 catalog items purchasable, reconfirmed by
-  ops/audit_catalog.py and ops/check_sellable.py on every preflight run.
+  Met. 137 of 138 catalog items purchasable (159 to 138 after 2026-09-22's
+  D-023 retirement), reconfirmed by ops/audit_catalog.py and
+  ops/check_sellable.py on every preflight run.
 review: monthly, alongside RISK-0013
 ```
 

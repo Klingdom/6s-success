@@ -12191,6 +12191,114 @@ def gate_no_stale_listmonk_blocker() -> None:
              " and ".join(bad))
 
 
+def catalogue_buyable_count_drift(texts: dict, catalog_total: int,
+                                   catalog_buyable: int) -> list:
+    """Pure logic behind gate_no_stale_catalogue_buyable_count, testable
+    without touching the real files.
+
+    `texts` maps a document name to its full text. Finds every "N of M
+    catalog(ue)" claim (case-insensitive, comma-tolerant) and flags one
+    whose numbers do not match the live count, whichever direction it
+    drifted.
+
+    Found 2026-09-22, this operator, cross-checking GOALS.md's own
+    constraint section against the live catalogue after the C6/C7
+    retirement (147179c6, 159 catalogue items to 138, 6 Area Bundles and
+    15 Situation Kits archived) rather than trusting a same-day "catalogue
+    159 to 138" line elsewhere to have propagated. It had not: GOALS.md
+    (the file every cycle reads first to decide what to work on),
+    STRIPE.md, RISKS.md (RISK-0010's own closing_condition and mitigation)
+    and EXPERIMENT-PLAN.md all still stated "158 of 159" as present-tense
+    fact, one of them citing EXECUTIVE-DASHBOARD-LIVE.md as "the current
+    source of truth" while quoting text that document no longer contains
+    (it already reads 137 of 138, regenerated the same day). This exact
+    figure has drifted and been re-corrected at least four times before
+    today, always by a one-off text fix with no standing check, because
+    the retirement event is not something dashboard.py's own generation
+    can catch: it is a fresh Stripe action taken by a different tool,
+    ops/retire_stripe_skus.py, on the same day. Returns a list of problem
+    strings, empty when clean.
+    """
+    problems = []
+    pattern = re.compile(
+        r"\b(\d[\d,]*)\s+of\s+(\d[\d,]*)\s+catalog(?:ue)?\b"
+        r"|\bcatalog(?:ue)?\s+can\s+take\s+money\s+for\s+"
+        r"(\d[\d,]*)\s+of\s+(\d[\d,]*)\s+items\b", re.IGNORECASE)
+    for name, text in texts.items():
+        stripped = re.sub(r'"[^"]*"', "", text)
+        for m in pattern.finditer(stripped):
+            g1, g2 = m.group(1), m.group(2)
+            if g1 is None:
+                g1, g2 = m.group(3), m.group(4)
+            # "158 of 159 catalog items sellable THEN" is this file's own
+            # established way to keep a superseded figure visible next to
+            # its correction (RISK-0001's evidence field does this on
+            # purpose). A trailing "then" is the historical marker; do not
+            # flag it, the same way a quoted citation is not flagged.
+            tail = stripped[m.end():m.end() + 60]
+            # Split on a sentence-ending period (one followed by
+            # whitespace) or semicolon, not a period inside a filename
+            # like "ops/state.json".
+            tail_clause = re.split(r"\.(?=\s)|;", tail, maxsplit=1)[0]
+            if re.search(r"\bthen\b", tail_clause, re.IGNORECASE):
+                continue
+            claimed_buyable = int(g1.replace(",", ""))
+            claimed_total = int(g2.replace(",", ""))
+            if (claimed_buyable, claimed_total) != (catalog_buyable,
+                                                      catalog_total):
+                problems.append(
+                    "%s says '%s', the live catalogue "
+                    "(site/assets/js/data.js) has %d of %d buyable" %
+                    (name, m.group(0), catalog_buyable, catalog_total))
+    return problems
+
+
+def gate_no_stale_catalogue_buyable_count() -> None:
+    """GOALS.md, STRIPE.md, RISKS.md and EXPERIMENT-PLAN.md must state the
+    live "N of M catalog(ue)" buyable count, not a figure a later Stripe
+    retirement left behind.
+
+    Re-derives the real count fresh from site/assets/js/data.js's own
+    window.CATALOG on every run, the same field ops/dashboard.py computes
+    catalog_total/catalog_buyable from, rather than hardcoding an expected
+    number: the count itself is expected to keep changing as products are
+    added or retired, and a hardcoded value would just move the same
+    staleness one file over. STATUS.md and STATUS-ARCHIVE.md are
+    deliberately excluded: both legitimately narrate the historical moment
+    the count changed (e.g. "widening the buyable catalog from 10 to 158
+    of 159 SKUs" on 2026-08-27), and a blind scan cannot tell that prose
+    apart from a present-tense claim the way it can in the four files this
+    gate actually checks. See catalogue_buyable_count_drift's docstring
+    for the regression this closes.
+    """
+    js_path = os.path.join(SITE, "assets", "js", "data.js")
+    if not os.path.exists(js_path):
+        return
+    js = io.open(js_path, encoding="utf-8").read()
+    try:
+        cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    except Exception as exc:                                  # noqa: BLE001
+        warn("no-stale-catalogue-buyable-count",
+             "could not parse site/assets/js/data.js to check the live "
+             "catalogue count: %s" % exc)
+        return
+    catalog_total = len(cat)
+    catalog_buyable = sum(1 for i in cat
+                           if i.get("buy") or i.get("price") == 0)
+
+    texts = {}
+    for name in ("GOALS.md", "STRIPE.md", "RISKS.md", "EXPERIMENT-PLAN.md"):
+        p = os.path.join(ROOT, name)
+        if os.path.exists(p):
+            texts[name] = io.open(p, encoding="utf-8").read()
+
+    problems = catalogue_buyable_count_drift(texts, catalog_total,
+                                              catalog_buyable)
+    if problems:
+        fail("no-stale-catalogue-buyable-count",
+             "; ".join(problems))
+
+
 def gate_signup_form_withdrawal_protected() -> None:
     """ops/wire_signup.py must refuse to silently restore the withdrawn
     signup form, and the live pages must still carry the withdrawal while
@@ -19296,6 +19404,7 @@ def main() -> int:
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
+    run_gate(gate_no_stale_catalogue_buyable_count)
     run_gate(gate_signup_form_withdrawal_protected)
     run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_no_stale_narration_blocker)
