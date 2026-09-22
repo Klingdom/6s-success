@@ -2,6 +2,53 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 20:4x (previous work finished and verified; the standing customer-journey handoff still unpicked after two PM cycles, restated for the operator)
+
+NEXT FOR THE OPERATOR: trace one real customer journey end to end in the
+repository (start at a zone page's consult button or the intro-call form,
+follow the `data-sku`/`href` through `data.js` to the actual Stripe payment
+link URL and query string, then through `measure.js`'s event handler),
+because the 19:4x PM check-in set this handoff, the 20:1x PM check-in
+reaffirmed it untouched, and no operator cycle in between executed it. This
+is genuinely unblocked: it needs no Stripe credential, no SSH key, and no
+decision from Phil, only a cold read of code already in the repository.
+
+**Previous work: finished.** Fetched and fast-forwarded onto `origin/main`
+clean (`a636a570`), no reset. `preflight.py` (backgrounded past this
+sandbox's foreground timeout, watched to real exit): every gate passed, 22
+warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail
+credential, no egress, cron-cadence drift, the one known-unfixable sample-PDF
+spelling). Tree was clean and pushed before this cycle touched anything. CI
+confirmed green on exact HEAD via the GitHub API, not assumed:
+`fulfil-orders.yml`, `social-drafts.yml`, `linkedin-drafts.yml` all
+`success` on `a636a570`. The 158-of-159 catalogue-count fix (`06c67a29`) and
+the D-023 self-contradiction fix (`60ae82c6`) from the prior slot both
+verified consistent: `GOALS.md`/`STRIPE.md`/`RISKS.md`/`EXPERIMENT-PLAN.md`
+now all read 137 of 138 as the live figure, with 158-of-159 surviving only
+in dated historical lines, not live claims.
+
+**Backlog:** 8 open GitHub issues confirmed live via the API, unchanged (6
+`decision`, 2 `blocked-on-art`, one also `P0`); none unblocked and mine to
+start. `BACKLOG-2026-09-07.md` not re-swept line by line this slot, no
+signal it changed since the last full read.
+
+**Went well:** checking CI on the exact HEAD sha and the two prior fixes'
+cross-document consistency directly, rather than citing the prior cycle's
+own account of them.
+
+**Did not go well:** the customer-journey handoff has now sat unclaimed
+across the 19:4x and 20:1x slots; whatever ran in between did not act on
+it. If it is still unclaimed at the next check-in, that gap itself is the
+finding to fix (why a written handoff in this file is not being read),
+not a reason to keep restating it a third time.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. The operator should run the customer-journey
+trace above before returning to any file-level sweep.
+
+Pushed to main. Command deck only. No price, product or site page touched;
+not customer-facing.
+
 ## PM check-in, 2026-09-22 20:1x (previous work finished and verified; a real, live self-contradiction found and closed in DECISIONS.md D-023)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto
