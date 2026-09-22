@@ -17467,6 +17467,104 @@ def gate_consult_cta_current() -> None:
               f"a real, origin-tracked consult button")
 
 
+def check_intro_call_current(consulting_html: str, zone_room_pages: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    `consulting_html` is the real body of site/consulting.html.
+    `zone_room_pages` is {label: {filename: html}}, label one of "zone",
+    "room". REVIEW-COMMERCE-2026-09-07.md C10: the service line had no
+    pre-payment conversion event, only a $250/$1,200 payment or a blank
+    contact form. Fixed 2026-09-22 by adding a free, capped, 15-minute
+    "which zone first" call: a new section on consulting.html (id
+    "intro-call") reusing contact.html's own composed-mailto pattern, and
+    a plain-text link to it from every zone and room page's existing
+    consult CTA.
+
+    Requires, on consulting.html: the section itself, a stated weekly
+    cap (any number, so this does not pin the actual figure, only that
+    one is said out loud rather than left implicit), the three required
+    form fields, the "intro-call-request" tracking call, and explicit
+    "not a booking" language, since C10's own acceptance line is
+    "nothing about it implies a booked appointment that has not been
+    agreed."
+
+    Requires, on every zone/room page: a link to consulting.html's
+    #intro-call anchor carrying the same from=<type>:<slug> origin
+    convention the paid consult button already uses.
+    """
+    problems = []
+    if 'id="intro-call"' not in consulting_html:
+        problems.append("consulting.html: no id=\"intro-call\" section")
+        return problems  # nothing else to check without the section
+    if not re.search(r'up to \d+ of these a week', consulting_html):
+        problems.append("consulting.html: no stated weekly cap on the free call")
+    if "not a booking" not in consulting_html:
+        problems.append('consulting.html: missing "not a booking" language; '
+                         "C10 requires nothing implies a booked appointment")
+    for fid in ("intro-call-form", "ic-name", "ic-email", "ic-room"):
+        if f'id="{fid}"' not in consulting_html:
+            problems.append(f'consulting.html: missing required field id="{fid}"')
+    if "intro-call-request" not in consulting_html:
+        problems.append("consulting.html: no intro-call-request tracking call")
+
+    link_re = re.compile(
+        r'href="\.\./consulting\.html\?from=(zone|room):[^"]*#intro-call"')
+    for label, files in sorted(zone_room_pages.items()):
+        for f, body in sorted(files.items()):
+            m = link_re.search(body)
+            if not m:
+                problems.append(
+                    "%s %s: no free \"which zone first\" link to "
+                    "consulting.html#intro-call with a from= origin" %
+                    (label, f))
+            elif m.group(1) != label:
+                problems.append(
+                    "%s %s: intro-call link's from= type is \"%s\", expected "
+                    "\"%s\"" % (label, f, m.group(1), label))
+    return problems
+
+
+def gate_intro_call_current() -> None:
+    """The shipped-HTML half of C10 (see `check_intro_call_current`'s own
+    docstring). Reads the real site/consulting.html, site/zones/ and
+    site/rooms/ files and fails if the free intro-call offer or its
+    zone/room CTA link goes missing or silently loses its cap statement,
+    its "not a booking" language, or its origin tracking.
+
+    Proved to fail on planted regressions (section removed, cap
+    statement removed, "not a booking" language removed, a zone page's
+    link stripped): ops/tests/test_gate_intro_call_current.py.
+    """
+    cpath = os.path.join(SITE, "consulting.html")
+    if not os.path.exists(cpath):
+        warn("intro-call", "site/consulting.html not found, could not check.")
+        return
+    consulting_html = io.open(cpath, encoding="utf-8", errors="replace").read()
+
+    pages = {}
+    for label, subdir, skip in (
+        ("zone", "zones", {"index.html"}),
+        ("room", "rooms", set()),
+    ):
+        files = {}
+        for f in sorted(glob.glob(os.path.join(SITE, subdir, "*.html"))):
+            name = os.path.basename(f)
+            if name in skip or name.startswith("_"):
+                continue
+            files[name] = io.open(f, encoding="utf-8", errors="replace").read()
+        pages[label] = files
+
+    problems = check_intro_call_current(consulting_html, pages)
+    if problems:
+        fail("intro-call",
+             "%d problem(s) with the C10 free intro-call offer. First few: "
+             "%s" % (len(problems), "; ".join(problems[:6])))
+    else:
+        n = sum(len(v) for v in pages.values())
+        print(f"  free intro-call offer current on consulting.html; "
+              f"{n} zone/room page(s) link to it with a valid origin")
+
+
 def gate_zone_kit_disclosure_grammar() -> None:
     """The optional-kit disclosure on a zone page must not disagree with
     its own subject.
@@ -19010,6 +19108,7 @@ def main() -> int:
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_no_storage_before_sort)
     run_gate(gate_consult_cta_current)
+    run_gate(gate_intro_call_current)
     run_gate(gate_zone_kit_disclosure_grammar)
     run_gate(gate_zone_shine_step_capitalised)
     run_gate(gate_data_sources_current)

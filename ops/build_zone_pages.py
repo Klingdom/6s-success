@@ -561,7 +561,10 @@ def offer(name, zone_slug, room=None, zone=None):
             'and the root cause together, and you keep a written standard for the space.</p>'
             '<p style="margin:0"><a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
             f'href="../consulting.html?from=zone:{zone_slug}">See what a consult covers, '
-            f'{CONSULT_PRICE} dollars</a></p></section>')
+            f'{CONSULT_PRICE} dollars</a></p>'
+            '<p style="margin:8px 0 0;font-size:13.5px;opacity:.8">Not ready to pay for '
+            f'that either? <a href="../consulting.html?from=zone:{zone_slug}#intro-call">'
+            'Ask which zone first, free</a></p></section>')
 
 
 def room_offer(room, room_slug, n):
@@ -623,7 +626,10 @@ def room_offer(room, room_slug, n):
                 'to start on, and you keep a written plan.</p>'
                 '<p style="margin:0"><a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
                 f'href="../consulting.html?from=room:{room_slug}">See what a consult covers, '
-                f'{CONSULT_PRICE} dollars</a></p></section>')
+                f'{CONSULT_PRICE} dollars</a></p>'
+                '<p style="margin:8px 0 0;font-size:13.5px;opacity:.8">Not ready to pay for '
+                f'that either? <a href="../consulting.html?from=room:{room_slug}#intro-call">'
+                'Ask which zone first, free</a></p></section>')
 
     price = int(pack["price"])
     cards = re.search(r"(\d+) cards", pack.get("variant") or "")
@@ -655,7 +661,10 @@ def room_offer(room, room_slug, n):
             'start on, and you keep a written plan.</p>'
             '<p style="margin:0"><a class="btn btn-on-deep btn-sm" data-sku="CN-VIRTUAL" '
             f'href="../consulting.html?from=room:{room_slug}">See what a consult covers, '
-            f'{CONSULT_PRICE} dollars</a></p></section>')
+            f'{CONSULT_PRICE} dollars</a></p>'
+            '<p style="margin:8px 0 0;font-size:13.5px;opacity:.8">Not ready to pay for '
+            f'that either? <a href="../consulting.html?from=room:{room_slug}#intro-call">'
+            'Ask which zone first, free</a></p></section>')
 
 
 # Every zone and room page taught the site's own articles nothing: 114 zone

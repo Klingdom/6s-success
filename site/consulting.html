@@ -307,6 +307,75 @@
 
     </div>
 
+    <!-- ============ FREE INTRO CALL, REVIEW-COMMERCE-2026-09-07.md C10 ============
+         There is no pre-payment conversion event on the service line: the only
+         path that costs nothing is "Ask a question first", a blank contact
+         form. This is the one free, named, bounded step the review recommends:
+         fifteen minutes to name the zone worth starting on, not a mini
+         consult and not a sales call. Reuses contact.html's own composed-
+         mailto pattern (no mail pipe exists yet), and the origin convention
+         offer()/room_offer() already established for the paid consult button
+         via ?from=<type>:<slug>. The cap is stated honestly rather than
+         invented: at today's traffic it will not bind, and saying so now is
+         what keeps it true the day it does. -->
+    <div class="wrap narrow" id="intro-call" style="margin-top:56px;scroll-margin-top:90px">
+      <div class="head center">
+        <p class="eyebrow">Not ready to book</p>
+        <h2>Ask which zone first, free</h2>
+        <p class="lede">Fifteen minutes on a call, no charge: tell us the room and we help
+          you name the one zone worth starting on. It is not the paid hour above,
+          shrunk: we do not walk the whole house and you do not leave with a written
+          plan. We take up to 5 of these a week. If that is full when you ask, we say
+          so and offer the next opening rather than pretend there is always room.</p>
+      </div>
+      <form id="intro-call-form" onsubmit="return false" aria-label="Ask which zone first, free" style="margin-top:22px">
+        <div class="field">
+          <label for="ic-name">Name</label>
+          <input id="ic-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="ic-email">Email</label>
+          <input id="ic-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="ic-room">Room</label>
+          <input id="ic-room" name="room" type="text" placeholder="Which room keeps winning?" required>
+        </div>
+        <div class="field">
+          <label for="ic-message">What is going on (optional)</label>
+          <textarea id="ic-message" name="message" rows="4" placeholder="Anything that helps us get ready. Not required."></textarea>
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Ask for the free call</button>
+
+        <div class="notice" id="intro-call-success" role="status" aria-live="polite" style="margin-top:18px" hidden>
+          <b>Your mail app should have opened with the message ready.</b> Press send
+          there and we will reply with a real time, usually within a working day.
+          Nothing is booked until you have that reply. If nothing opened,
+          <a id="intro-call-mailto" href="mailto:support@6s-success.com">try the link</a>
+          or copy the message below and send it to <b>support@6s-success.com</b>.
+          <details style="margin-top:12px" open>
+            <summary style="cursor:pointer">Copy the message instead</summary>
+            <p style="margin:8px 0">Some browsers have no mail app attached, and then
+              that link does nothing at all and your message is lost. Here it is to
+              copy, and the address is <b>support@6s-success.com</b>.</p>
+            <textarea id="intro-call-copy" readonly rows="7"
+              style="width:100%;font:inherit;font-size:15px;padding:10px;
+              border:1px solid #E2D8C4;border-radius:8px;background:#fff"></textarea>
+            <button type="button" class="btn btn-ghost btn-sm" id="intro-call-copy-btn"
+              style="margin-top:8px">Copy the message</button>
+          </details>
+        </div>
+
+        <p class="notice" style="margin-top:18px">
+          This is a request, not a booking: we reply by email with a real time before
+          anything is on a calendar, the same rule the paid consult's own confirmation
+          follows. Our mail pipe is not connected yet, so this button prepares your
+          message rather than sending it. Prefer to write to us directly? Email
+          <a href="mailto:support@6s-success.com">support@6s-success.com</a>.
+        </p>
+      </form>
+    </div>
+
     <!-- The corporate offer is deliberately one line here rather than a third
          card of equal weight. It has no fixed price, so it cannot be bought on
          this page, and a quote-only item sitting beside two bookable ones makes
@@ -438,5 +507,89 @@
 <!-- MEASURE:BEGIN -->
 <script defer src="assets/js/measure.js?v=4329a42489"></script>
 <!-- MEASURE:END -->
+<script>
+  (function () {
+    /* Same composed-mailto pattern as contact.html's own form: no mail pipe
+       exists yet, so a submission is packed into a mailto link one click
+       delivers, with a copy-box fallback for a browser with no mail client
+       attached. REVIEW-COMMERCE-2026-09-07.md C10. */
+    var form = document.getElementById("intro-call-form");
+    var ok = document.getElementById("intro-call-success");
+    if (!form) { return; }
+
+    /* Same ?from=<type>:<slug> origin convention offer()/room_offer() already
+       set on the paid consult button, so the free path can be told apart
+       from a cold arrival without adding a second convention. */
+    var origin = null;
+    try {
+      var q = new URLSearchParams(location.search).get("from");
+      if (q) {
+        var parts = q.split(":");
+        origin = { type: parts[0].slice(0, 20), slug: parts[1] ? decodeURIComponent(parts[1]).slice(0, 40) : null };
+      }
+    } catch (e) { origin = null; }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return false; }
+
+      var val = function (id) {
+        var el = document.getElementById(id);
+        return el ? String(el.value || "").trim() : "";
+      };
+      var body = [
+        origin ? "Came from: " + origin.type + (origin.slug ? " (" + origin.slug + ")" : "") : null,
+        "Name: " + val("ic-name"),
+        "Email: " + val("ic-email"),
+        "Room: " + val("ic-room"),
+        "",
+        val("ic-message") || "(no extra detail given)"
+      ].filter(function (x) { return x !== null; }).join("\n");
+
+      var link = document.getElementById("intro-call-mailto");
+      if (link) {
+        link.href = "mailto:support@6s-success.com" +
+          "?subject=" + encodeURIComponent("6S Success: free 15-minute call, which zone first") +
+          "&body=" + encodeURIComponent(body);
+        try { link.click(); } catch (e) { /* fallback is already on screen */ }
+      }
+      var copyBox = document.getElementById("intro-call-copy");
+      if (copyBox) { copyBox.value = body; }
+
+      /* Fixed-shape event only, never name/email/room/message: CLAUDE.md 47.
+         "from" is the same bounded, already-sliced origin type the service-cta
+         handler in measure.js records for the paid consult button, not free
+         text typed by the visitor. */
+      if (window.Measure) {
+        window.Measure.track("intro-call-request", origin && origin.type ? { from: origin.type } : {});
+      }
+
+      if (ok) {
+        ok.hidden = false;
+        if (ok.scrollIntoView) { ok.scrollIntoView({ behavior: "smooth", block: "center" }); }
+        if (link && link.focus) { link.focus(); }
+      }
+      return false;
+    });
+
+    var copyBtn = document.getElementById("intro-call-copy-btn");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", function () {
+        var box = document.getElementById("intro-call-copy");
+        if (!box) { return; }
+        box.select();
+        var done = function () {
+          copyBtn.textContent = "Copied";
+          setTimeout(function () { copyBtn.textContent = "Copy the message"; }, 2500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(box.value).then(done, function () {});
+        } else if (document.execCommand) {
+          try { document.execCommand("copy"); done(); } catch (e) {}
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>

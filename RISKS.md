@@ -822,16 +822,23 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=193)
+  - every form on the site is inert (forms_dead=194)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
     footer form is present on 193 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=193 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=194 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
+  - UPDATED 2026-09-22: forms_dead moved 193 to 194. The one addition is
+    consulting.html's new free "which zone first" intro-call form
+    (REVIEW-COMMERCE-2026-09-07.md C10), the same composed-mailto pattern as
+    the footer and contact.html, deliberately, for the same reason: no mail
+    pipe exists yet. It fires `intro-call-request` on a real submit, so it is
+    not silent the way the footer form's unmeasured `list-signup` is; see
+    STATUS.md for the count once any arrive.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,
