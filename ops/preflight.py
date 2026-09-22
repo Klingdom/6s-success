@@ -9187,6 +9187,80 @@ def gate_dashboard_social_units_live() -> None:
              "the old hand typed 2,600 fallback is back")
 
 
+def gate_corpus_posts_no_manuscript_leak() -> None:
+    """The postable social corpus must never contain the paid book's own text.
+
+    Found 2026-09-22 cold-reading ops/corpus_index.py: its classifier matched
+    kind "video-script" on the bare substring "script", which is also a
+    literal substring of "manuscript" and of "description". Every
+    chapter_NN_manuscript.md (the $9.99 book's own chapter text) and every
+    *-description*.md file were silently classified as a free-to-post video
+    script; 182 of 821 pooled "video-script" posts traced back to a
+    manuscript file, none of them an actual script. Fixed by anchoring the
+    pattern to the real filenames instead of a bare substring.
+
+    This checks the invariant against a fresh classifier scan, not against
+    ops/corpus-index.json (a cache corpus_posts.py trusts as given): no file
+    whose own path contains "manuscript" may classify as ready to post under
+    any kind, whatever a future classifier change does to the patterns.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import corpus_index as ci
+
+    rows, _, _ = ci.build_index()
+    leaks = [(r["kind"], r["path"]) for r in rows
+             if r["ready"] and "manuscript" in r["path"]]
+    if leaks:
+        fail("corpus-posts-manuscript-leak",
+             f"{len(leaks)} file(s) from the paid book's own manuscript are "
+             f"classified ready to post, e.g. {leaks[:3]}")
+
+
+def gate_corpus_posts_extraction_yield() -> None:
+    """A kind marked "ready" must not silently serve nothing from most of
+    its own files.
+
+    Found 2026-09-22: split_posts required a "\\n---+\\n" divider between
+    every numbered "## " section and returned an empty list, silently, for
+    any file with none, which was most of the corpus (119 of 153 ready
+    facebook-post files, 17 of 51 ready linkedin-post files). corpus_
+    index.py's own "ready" count never dropped, because readiness is judged
+    by word count and file kind, not by whether the extractor for that kind
+    can actually find anything in the file; a mismatch between the two was
+    invisible until someone read corpus_posts.pool()'s own output file by
+    file. This re-derives that per-file check on every run instead of
+    waiting for the next cold read.
+
+    A generous floor (a majority of ready files must yield at least one
+    post), not a strict one: a kind that legitimately mixes shapes, like
+    facebook-post's numbered sets against its single-post files, can still
+    have some real files an extractor cannot use for other reasons (too
+    short, a false price claim on a paid chapter). What must never happen
+    again is the extractor failing on ALMOST ALL of them without a sound.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import corpus_index as ci
+    import corpus_posts as cp
+
+    idx = ci.build_index()
+    rows = idx[0]
+    kinds = sorted({r["kind"] for r in rows if r["ready"]})
+    bad = []
+    for kind in kinds:
+        files = [r for r in rows if r["kind"] == kind and r["ready"]]
+        if len(files) < 4:
+            continue
+        extractor = cp.EXTRACTORS.get(kind, cp.split_posts_or_whole)
+        zero = sum(1 for f in files if not extractor(f["path"]))
+        if zero > len(files) / 2:
+            bad.append(f"{kind}: {zero} of {len(files)} ready files "
+                       f"extract 0 posts")
+    if bad:
+        fail("corpus-posts-extraction-yield",
+             "a kind's extractor is silently failing on most of its own "
+             "ready files: " + "; ".join(bad))
+
+
 def gate_affiliate_trigger() -> None:
     """Warn only when the one authorised affiliate application becomes allowed.
 
@@ -18847,6 +18921,8 @@ def main() -> int:
     run_gate(gate_linkedin_drafts_customer_count_current)
     run_gate(gate_corporate_linkedin_claims_current)
     run_gate(gate_dashboard_social_units_live)
+    run_gate(gate_corpus_posts_no_manuscript_leak)
+    run_gate(gate_corpus_posts_extraction_yield)
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_pages_missing_art)

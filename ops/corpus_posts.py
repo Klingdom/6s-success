@@ -45,24 +45,48 @@ def load_index() -> dict:
 
 
 def split_posts(path: str) -> list:
-    """One file holds a numbered series, each under a '## ' heading. Return
-    them as separate posts. Fits linkedin-post, facebook-post, video-script."""
+    """One file holds a numbered series, each under its own '## ' heading.
+    Return them as separate posts. Fits linkedin-post, facebook-post,
+    video-script.
+
+    Splits on the heading itself via _h2_sections, not on a '---' divider
+    between headings. The original version required '\\n---+\\n' between
+    every section and returned an empty list, silently, for any file with
+    none of them: found 2026-09-22 cold-reading corpus_index.py, this was
+    most of the corpus, not an edge case (119 of 153 ready facebook-post
+    files, 17 of 51 ready linkedin-post files, all read as zero posts).
+    _h2_sections is the same splitter split_quotes and split_summary
+    already trust for the identical '## heading, then body' shape.
+    """
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
         return []
     s = io.open(full, encoding="utf-8", errors="replace").read()
     out = []
-    for chunk in re.split(r"\n---+\n", s):
-        chunk = chunk.strip()
-        if not chunk.startswith("## "):
-            continue
-        lines = chunk.splitlines()
-        title = re.sub(r"^#+\s*\d*\.?\s*", "", lines[0]).strip()
-        body = "\n".join(lines[1:]).strip()
+    for heading, body in _h2_sections(s):
         if not body:
             continue
+        title = re.sub(r"^\d+[.)]\s*", "", heading).strip()
         out.append({"title": title, "body": body, "source": path})
     return out
+
+
+def split_posts_or_whole(path: str) -> list:
+    """The default extractor for a kind with no entry in EXTRACTORS.
+
+    Most files in these kinds hold a numbered series (split_posts). A real
+    minority are one continuous post with no '## ' heading at all:
+    facebook-longform-post.md and facebook-group-discussion-post.md are
+    each a single Facebook post, one per chapter, and split_posts alone
+    found nothing in either shape, silently, in all 102 of them across the
+    51 chapters (found 2026-09-22, same cold read as split_posts above).
+    Falling back to split_whole catches the single-post shape without
+    needing to know in advance which file on disk is which.
+    """
+    posts = split_posts(path)
+    if posts:
+        return posts
+    return split_whole(path)
 
 
 def split_numbered(path: str) -> list:
@@ -390,7 +414,7 @@ def clean(post: dict, min_words: int = 40, max_words: int = 400,
 
 def pool(kind: str, raw: bool = False) -> list:
     idx = load_index()
-    extractor = EXTRACTORS.get(kind, split_posts)
+    extractor = EXTRACTORS.get(kind, split_posts_or_whole)
     min_words, max_words = WORD_BOUNDS.get(kind, DEFAULT_BOUNDS)
     out = []
     for f in idx["files"]:

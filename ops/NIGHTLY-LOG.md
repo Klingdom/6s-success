@@ -2,9 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (paid book content leaking into the free social-post pool, found and fixed; two other silent corpus_posts extraction gaps closed too)
+
+**Did:** Unshallowed, fast-forwarded onto origin/main. preflight.py clean. Backlog done or Phil-gated (8 GitHub issues unchanged), so continued the standing cold-read fallback: corpus_index.py, generated_products.py.
+
+**Found.** corpus_index.py classified "video-script" on the bare substring "script", also literally inside "manuscript" and "description". Every chapter_NN_manuscript.md, the paid $9.99 book's own text, and every *-description*.md were classified free-to-post; 182 of 821 pooled units traced to a manuscript. Separately, split_posts needed a "---" divider between sections and silently returned nothing without one: 119 of 153 facebook-post and 17 of 51 linkedin-post ready files yielded zero real posts.
+
+**Fixed.** Anchored the video-script pattern to real filenames. Reclassified quote-card non-publishable (duplicates the quote kind). Rewrote split_posts to split on the heading itself; added a whole-file fallback. Net: facebook-post 155 to 259 usable posts, linkedin-post 311 to 476, video-script 816 with 0 manuscript leakage (was 182). Fixed the stale social_units citation in RISKS.md/STATUS.md.
+
+**Verified:** 25/25 corpus_posts cases, fail-then-pass proved. Two new preflight gates, each fails by name on the old code, passes on the fix; new test_gate_corpus_posts.py, 6/6. Full preflight, all 235 other tests, check_urls/audit_pages/affiliate clean.
+
+**Went well:** cold-read found a real defect (paid content given away free) shipping silently for weeks.
+
+**Did not go well:** same shallow checkout shape; issue #27 unchanged.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. No price, product or site page touched; nothing here was ever live.
+
 ## PM check-in, 2026-09-22 04:1x (previous work finished; the third repeated
-handoff picked up directly, and a fabricated-testimonial near-miss caught
-before shipping)
+handoff picked up directly, a fabricated-testimonial near-miss caught before
+shipping, and a genuine same-pair collision with a concurrent operator cycle
+merged rather than forced)
 
 Attached via unshallow plus ff-only merge onto origin/main, clean. Read
 `git log -12`, this log's top entries, `BACKLOG-2026-09-07.md` sections 1b
@@ -43,19 +62,35 @@ extractors for all four kinds; the sales-copy one cuts at any heading naming
 "testimonial" and then refuses the whole file if the word "placeholder"
 survives anywhere left, rather than trust the cut caught every shape (3 of
 51 files still fail that net and are correctly dropped). Verified directly:
-0 placeholder leaks across all 4,823 usable posts, 5,243 ready units (was
-4,408). `gate_risks_evidence_current` correctly failed on the first
-`preflight.py` run after, naming `RISK-0012`'s stale `social_units=4408`
-citation; fixed to 5243, the gate doing its job, not a defect. New test
-cases fail-then-pass proved directly (`AttributeError` against the pre-fix
-module).
+0 placeholder leaks anywhere in the pool.
+
+**Collided with the operator, on the exact same handed-off pair, at the
+same time.** `ops/ship.py` refused the push: a concurrent operator cycle
+(above) had already merged and pushed its own fix to `corpus_index.py`/
+`corpus_posts.py` (the video-script/manuscript substring bug and the
+split_posts dash-divider bug) while this cycle was still working. Merged
+rather than forced, per step 8; the two source fixes touched different
+lines of the same files and merged cleanly with no hand edits. The
+generated files did not: regenerated `ops/corpus-index.json` fresh from
+the merged classifier rather than trust either side's stale copy or hand
+splice the JSON. True combined count: 5,040 ready units (was 4,408 before
+either fix; my own change alone would have read 5,243, the operator's
+alone 4,205; neither number was ever real on its own). `gate_risks_evidence_
+current` failed on both sides' own stale citation in turn; `RISKS.md`'s
+`social_units` line now reads the one true merged value, 5040.
 
 **Went well:** treating a third repeated, unpicked handoff as this cycle's
 own work instead of writing a fourth one; checking what the classifier
-change would actually cause to be served before shipping it, not after.
+change would actually cause to be served before shipping it, not after;
+merging instead of forcing when the same collision showed up a second time
+this cycle, and regenerating the JSON rather than picking a side.
 
 **Did not go well:** same shallow/detached checkout shape recurred (issue
-#27, unchanged).
+#27, unchanged); two cycles working the identical named handoff at the same
+time, wasted effort neither could see coming, worth the hourly operator and
+the PM check-in not both defaulting to the same "nobody's picked this up"
+pair when a queue exists (BACKLOG-2026-09-07.md's own next-candidate list
+would have separated them).
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
 GitHub issues, unchanged. Production redeploy remains the single

@@ -41,6 +41,28 @@ are correctly dropped rather than served with the disclaimer attached.
 split_short and split_questions handle the other three kinds. This file
 proves the four new kinds classify, extract clean, and stay clean.
 
+Two more instances of the same defect class, plus one unrelated but adjacent
+defect, found the same day by a concurrent operator cycle cold-reading the
+identical pair of files (a genuine collision, merged rather than resolved by
+picking a side; see ops/NIGHTLY-LOG.md): (1) split_posts required a
+"\\n---+\\n" divider between every numbered "## " section and returned an
+empty list, silently, for any file with none, which was most of the corpus
+(119 of 153 ready facebook-post files, 17 of 51 ready linkedin-post files).
+Rewritten to split on the heading itself via _h2_sections, the same splitter
+split_quotes and split_summary already use for the identical shape. (2)
+facebook-post mixes numbered-series files with single-post files
+(facebook-longform-post.md, facebook-group-discussion-post.md) that have no
+"## " heading at all; split_posts alone can never find these, so pool()'s
+default extractor is now split_posts_or_whole, which falls back to treating
+the whole file as one post. (3) Unrelated to extraction: corpus_index.py's
+classifier matched video-script on the bare substring "script", which is
+also a substring of "manuscript" and of "description". Every
+chapter_NN_manuscript.md, the paid book's own text, and every
+*-description*.md file were silently classified as a free-to-post video
+script (182 of 821 pooled "video-script" posts traced back to a manuscript
+file, none of them an actual script). Anchored the pattern to the real
+filenames instead.
+
 Run:  python ops/tests/test_corpus_posts.py
 """
 import os
@@ -353,11 +375,92 @@ def main() -> int:
     finally:
         os.remove(tmp12)
 
+    # split_posts: a numbered "## " series with NO "---" divider between
+    # sections at all, the real majority shape found 2026-09-22, must still
+    # split into separate posts, not fall through as one unsplit blob.
+    posts_no_divider_src = (
+        "# Chapter 9 LinkedIn Posts: Test Room\n\n"
+        "Ten standalone posts.\n\n"
+        "## 1. First title\n"
+        "First post body, long enough to read as real content on its own.\n\n"
+        "## 2. Second title\n"
+        "Second post body, also long enough to read as real content here.\n"
+    )
+    tmp8 = os.path.join(ROOT, "ops", "tests", "_scratch_posts_no_divider.md")
+    open(tmp8, "w", encoding="utf-8").write(posts_no_divider_src)
+    try:
+        nd = cp.split_posts(os.path.relpath(tmp8, ROOT))
+        if len(nd) != 2:
+            fails.append(f"split_posts (no '---' divider) should find 2 posts, found {len(nd)}")
+        elif nd[0]["title"] != "First title" or nd[1]["title"] != "Second title":
+            fails.append(f"split_posts misread titles with no divider: {[p['title'] for p in nd]!r}")
+    finally:
+        os.remove(tmp8)
+
+    # split_posts_or_whole: a file with no "## " heading anywhere (a single
+    # standalone post, like facebook-longform-post.md) must fall back to
+    # split_whole rather than silently returning nothing.
+    single_post_src = (
+        "# Chapter 9 Facebook Longform Post: Test Room\n\n"
+        "---\n\n"
+        "This is one continuous post with no numbered heading anywhere in "
+        "it, long enough to read as real content, the exact shape "
+        "split_posts alone can never match.\n"
+    )
+    tmp9 = os.path.join(ROOT, "ops", "tests", "_scratch_single_post.md")
+    open(tmp9, "w", encoding="utf-8").write(single_post_src)
+    try:
+        if cp.split_posts(os.path.relpath(tmp9, ROOT)):
+            fails.append("split_posts unexpectedly found a heading in a headingless file")
+        if not hasattr(cp, "split_posts_or_whole"):
+            fails.append("corpus_posts.py has no split_posts_or_whole fallback; "
+                         "a headingless single-post file (facebook-longform-post.md's "
+                         "own shape) has no extractor that can ever find it")
+            raise StopIteration
+        sw = cp.split_posts_or_whole(os.path.relpath(tmp9, ROOT))
+        if len(sw) != 1:
+            fails.append(f"split_posts_or_whole should fall back to 1 whole post, found {len(sw)}")
+        elif "no numbered heading" not in sw[0]["body"]:
+            fails.append("split_posts_or_whole's fallback lost the real content")
+    except StopIteration:
+        pass
+    finally:
+        os.remove(tmp9)
+
+    # corpus_index's classifier must never let "manuscript" or "description"
+    # match the video-script pattern: both contain "script" as a literal
+    # substring, and manuscript is the paid book's own text.
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import corpus_index as ci
+    for bad_name, why in (
+        ("chapter_09_manuscript.md", "the paid book's own chapter text"),
+        ("chapter-9-description.md", "a marketing blurb, not a script"),
+    ):
+        kind, publishable = ci.classify(bad_name)
+        if kind == "video-script":
+            fails.append(f"{bad_name} ({why}) misclassified as video-script")
+    for good_name in ("teleprompter-script.md", "podcast-script-8-to-12-min.md",
+                      "youtube-script-6-to-8-min.md", "short-video-scripts-5.md"):
+        kind, publishable = ci.classify(good_name)
+        if kind != "video-script" or not publishable:
+            fails.append(f"{good_name} should classify as a ready video-script, "
+                         f"got kind={kind!r} publishable={publishable!r}")
+
+    # quote-card is a byte-verbatim duplicate of chapter-quotes.md (kind
+    # "quote") decorated with hex colors and layout notes for a human
+    # designer; it must never be marked ready to post as written.
+    kind, publishable = ci.classify("quote-card-copy.md")
+    if publishable:
+        fails.append("quote-card-copy.md is marked publishable; its own text "
+                     "is a design brief, not a post")
+
     # The regression this file exists to prevent: every fixed kind must
-    # still yield at least one real post from the live corpus.
-    for kind in ("x-post", "newsletter", "linkedin-article",
-                 "quote", "summary", "takeaways",
-                 "sales-copy", "landing-page-intro",
+    # still yield at least one real post from the live corpus, and
+    # video-script's pool must never include a manuscript or description
+    # file now that the classifier is anchored correctly.
+    for kind in ("x-post", "newsletter", "linkedin-article", "quote",
+                 "summary", "takeaways", "facebook-post", "linkedin-post",
+                 "video-script", "sales-copy", "landing-page-intro",
                  "discussion-questions", "newsletter-teaser"):
         n = len(cp.pool(kind))
         if n == 0:
@@ -371,7 +474,12 @@ def main() -> int:
         if "placeholder" in p["body"].lower():
             fails.append(f"sales-copy served a placeholder-tainted post from {p['source']}")
 
-    total = 27
+    leaked = [p["source"] for p in cp.pool("video-script")
+              if "manuscript" in p["source"] or "description" in p["source"]]
+    if leaked:
+        fails.append(f"video-script pool still leaks paid/non-script content: {leaked[:3]}")
+
+    total = 34
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

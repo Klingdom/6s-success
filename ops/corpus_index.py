@@ -60,7 +60,10 @@ KINDS = [
     (r"x-short-posts",        "x-post",            True),
     (r"twitter",              "x-post",            True),
     (r"^newsletter-version",  "newsletter",        True),
-    (r"quote-card",           "quote-card",        True),
+    # publishable=False: verbatim duplicate of chapter-quotes.md (the quote
+    # kind below), decorated with hex colors and layout notes for a designer.
+    # Posting this file's own text would post a design brief, not a quote.
+    (r"quote-card",           "quote-card",        False),
     (r"chapter-quotes",       "quote",             True),
     (r"chapter-summary",      "summary",           True),
     (r"chapter-key-takeaway", "takeaways",         True),
@@ -70,7 +73,16 @@ KINDS = [
     (r"infographic",          "design-spec",       False),
     (r"diagram",              "design-spec",       False),
     (r"image-generation",     "image-prompt",      False),
-    (r"teleprompter|script",  "video-script",      True),
+    # Anchored to the real filenames (teleprompter-script.md, podcast-script-
+    # *.md, youtube-script-*.md, short-video-scripts-*.md). The bare pattern
+    # r"script" used to match here too, and "script" is a literal substring
+    # of both "manuscript" and "description": every chapter_NN_manuscript.md
+    # (the paid book's own text) and every *-description*.md file was
+    # silently classified as a free-to-post video script. Found 2026-09-22
+    # reading corpus_posts.py's own pool() output cold: 182 of 821 "usable
+    # video-script posts" traced back to a manuscript file, not a script.
+    (r"teleprompter-script|podcast-script|youtube-script|video-scripts",
+                              "video-script",      True),
     (r"slides",               "design-spec",       False),
     (r"landing-page-intro",         "landing-page-intro",   True),
     (r"back-cover-copy",            "sales-copy",           True),
