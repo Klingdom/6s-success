@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 07:1x (previous work finished; collided with the operator on the same item, synced clean, picked a different small check, no new defect)
+
+Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`b5e2b957`), no reset or force needed. Read `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md` section 0-1, `REVIEW-COMMERCE-2026-09-07.md` section 7, the 8 open GitHub issues directly via the API (unchanged: `decision` 33/32/31/21/18/15, `blocked-on-art`/`P0` 29/2, none pickable).
+
+**Previous work was finished.** `preflight.py` (full) ran clean on arrival: every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe credential, no VPS SSH key, no `gh`/`GH_TOKEN` for some checks, unreachable live site). Working tree was clean, main was pushed at `b5e2b957`.
+
+**Collision, handled per step 8.** Section 7's own table named C17 (dashboard RED row when `ensure_link` refuses a live retirement) as the one remaining small, unblocked, credential-free item, so this cycle began looking at it as a candidate. While reading it, the hourly operator pushed `2ec2bfa7` implementing exactly that: `ensure_link()`'s refusal branches now persist to `ops/link-retirement-refused.json`, surfaced RED on the dashboard and named in the hourly brief, new `gate_link_retirement_refusal_surfaced`, section 7's own C17 row and "Suggested order" note both updated correctly in the same commit. Fetched and fast-forwarded onto it; discarded this session's own uncommitted dashboard-regen diff first (pure `preflight.py` generated output, not real work, so `git checkout --` on those three files rather than a stash or a merge). No local work was lost.
+
+**Verified rather than trusted the operator's own account.** Ran `ops/tests/test_gate_link_retirement_refusal_surfaced.py` (7 cases) and `ops/tests/test_gate_consult_cta_current.py` (5 cases, 163 live pages) directly: both pass. Confirmed section 7's C17 row and "Suggested order" note are both already current, no stale reference left behind.
+
+**Picked a different item, per step 8's "find the operator mid-flight, pick something else."** Cold-read `ops/wire_consult_cta.py` (3 mentions in this log, the lowest of any `ops/*.py` file, written today by C8 and never independently re-read since). Checked live, not assumed: all 29 non-skipped `site/articles/*.html` pages carry the `CN-VIRTUAL`/`CN-INHOME` button correctly; `site/consulting.html` exists and the relative href resolves; rerunning the script changes 0 files, confirming its own "idempotent" claim; the gate it depends on (`gate_consult_cta_current`) is wired into `preflight.py`. No defect found.
+
+**Went well:** not re-doing C17 once the collision was visible, and not force-pushing or resetting to make the conflict go away, per this prompt's own step 8 and `CLAUDE.md` 34.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+**Handing to the operator at :43:** C6/C7/C9/C10/C20 (`REVIEW-COMMERCE-2026-09-07.md` section 7), each 0.5 to 8 days, background hygiene or waiting behind O1 (traffic), too large for a 30-minute slot; or the standing low-mention `ops/*.py` cold-read lane if none of those fit. C1/C2/R1-R4 still need a Stripe credential no sandbox here holds.
+
+Pushed to main. Log and command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), regenerated fresh, no other file changed. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (C17: a payment link's refused retirement now surfaces as RED on the dashboard and by name in the hourly brief, instead of a print() nobody re-reads)
 
 **Did:** Unshallowed, fast-forwarded onto `origin/main` (1151-commit fast-forward, issue #27's usual shape). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, and this log's real top four entries. `preflight.py` clean on arrival (every gate passed, 24 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil; 0 PRs. No mail credential. Backlog sections 2-4 (A/B/C rows) all done or Phil-gated. The top PM check-in handed the operator a direct choice: C17 (`REVIEW-COMMERCE-2026-09-07.md` section 7) or the standing cold-read lane. Picked C17: genuinely unblocked (no Stripe credential needed to build it, only to exercise the real branch live), Independent tier (protects revenue at any traffic level, unlike most open work which sits behind O1), and small (0.3d estimated).
