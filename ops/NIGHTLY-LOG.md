@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 08:4x (previous work finished and verified; a self-caused preflight failure traced and cleared; C20 handed to the operator with a concrete finding, not just a pointer)
+
+NEXT FOR THE OPERATOR: C20 (`REVIEW-COMMERCE-2026-09-07.md` 1.6/7, retire the 7 `ZP-KITCHE-*` packs and `RP-KITCHEN`), because its own acceptance test ("the deck is downloadable on the live site") has a real answer now: `site/kitchen-deck.html` is live but is a browser-print page only (`btn-primary` reads "Print the 72 fronts", `onclick="window.print()"`), no PDF, no file a customer receives. That is arguably not "downloadable" as the condition was written 2026-09-07, so the honest read may be that C20 does not fire yet, not that it is ready to execute; either way the call needs a full read against `DECK-SYSTEM.md` 9's own wording, correctly sized above a 30-minute slot.
+
+Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`54e99870`, 1165-commit fast-forward, issue #27's usual shape), no reset or force needed. Read `git log --oneline -12`, this log's two newest entries in full, `BACKLOG-2026-09-07.md` section 0 (traffic still the constraint: 76/190/30d, third week of decline), `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-COMMERCE-2026-09-07.md` section 7. Confirmed the 8 open GitHub issues directly via the API: unchanged (`decision` 33/32/31/21/18/15, `blocked-on-art`/`P0` 29/2), none pickable per this prompt's own rule.
+
+**Previous work was not finished on first check, so finishing it was this cycle's work per step 2.** `python ops/preflight.py` failed once: `gate_no_stray_probe_files` found `site/_quest_keep_leak_probe.html`, a fixture this session's own earlier `preflight.py` invocation left behind when a 120-second foreground timeout killed it mid-audit (self-caused, not inherited). The gate's own job is exactly this: it deleted the file and reported the failure loudly rather than silently. Confirmed the file was gitignored and never tracked (`git check-ignore`, `git status` before and after both clean), so nothing to commit; reran `preflight.py` to completion in the background rather than assuming the deletion was enough: every gate passed, 23 warnings, the same standing set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, the sample-PDF spelling gap). Working tree was otherwise clean and main was already pushed at `54e99870`.
+
+**Chose C20 over C10.** Both are the last two rows in section 7 not needing a Stripe credential. The review's own table marks C10 "Below" the traffic constraint (a call-booking funnel has nothing to convert at 76 visitors/30 days) and C20 "Independent" (pays regardless of traffic, since it is catalogue-integrity cleanup). The prior cycle's own entry had already flagged C20's condition as unresolved since the Kitchen deck shipped in a different shape than assumed 2026-09-07; read `site/kitchen-deck.html` directly this cycle to turn that into a concrete finding rather than repeating the same open pointer a third time.
+
+**Went well:** treating my own preflight failure as real work per step 2 instead of re-running until it happened to pass; reading the actual live file before handing C20 off, so the operator gets a finding instead of a question.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open. My own first preflight run this cycle caused the failure it then had to clear, costing part of this slot.
+
+**Changing next cycle:** none; the gate that caught this already existed and did its job.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged. C1/C2/R1-R4 still need a Stripe credential no sandbox here holds.
+
+Pushed to main. Log and command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), regenerated fresh, no other file changed. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle, second workstream (C9: capture preferred service times on thanks.html; a live 1.13:1 contrast defect found and fixed while verifying, not part of C9 itself)
 
 **Did:** After C6/C7 landed and pushed, synced with a concurrent PM check-in that reaffirmed C9 as the standing handoff (closes a live gap: a `$250`/`$1,200` sale could complete with no way to schedule it). Read `REVIEW-COMMERCE-2026-09-07.md` 3.3 and `ops/service_orders.py` in full before writing anything, to build to the real parser rather than a guess at its shape.
