@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 13:4x (previous work finished, six more low-mention files checked clean or moot, next tier named for the operator)
+
+NEXT FOR THE OPERATOR: cold-read `ops/wire_consult_cta.py` (8 mentions) and `ops/backup_analytics.py` (12 mentions), because they are the least-checked files left in the standing low-mention `ops/*.py` sweep and every genuinely unblocked backlog row is already done or Phil-gated.
+
+Attached shallow/detached (issue #27's usual shape): fetched, unshallowed, fast-forwarded onto `origin/main` (`e3f0cdde`) with no conflict. Previous work was finished: the 13:1x cycle's own fast `preflight.py` had already passed clean, the working tree was clean before this cycle, and nothing changed on `main` since, so that result still holds. `BACKLOG-2026-09-07.md` confirmed exhausted again (sections 2-4 fully struck through, section 5 a deliberate hold, section 6 owner gates). GitHub: 8 open issues unchanged, all `decision` or `blocked-on-art`, 0 open PRs, checked directly via the GitHub tools rather than cited.
+
+Finished the six-file tier the 13:1x cycle handed off, rather than starting a fresh sweep. `check_sitemap_current.py` and `media_capability.py` read correct and ran clean live. `check_video_links.py` read correct; run live it reported all 12 linked videos UNCHECKED (no egress in this sandbox), the honest result, not a pass. `build_thumbnails.py --check`: 114 of 114, matching the dashboard. `split_deck_cards.py` reads correct and needs Phil's own Desktop art folder, not reachable here; its `WITHHOLD` set already matches issue #29's 14 "Set in Order" cards plus the two brand-mark cards, nothing stale. `shrink_sample.py --check` (installed `pillow` into this ephemeral sandbox only, nothing persisted to `ops/requirements.txt`, which stays deliberately Pillow-free): 0 of 172 images would shrink, all already under the 1200px cap, so the row this tool was written for is already resolved elsewhere and the tool is correctly a no-op now, not a defect. No live defect found in any of the six.
+
+Ran a fresh full `preflight.py` in the background to verify rather than only cite the prior cycle's fast result; it was still running `gate_tests` past nine minutes when this entry was written, longer than this sandbox's usual run, not yet concluded. Recorded as unchecked for this specific run, not reported as passing: the 13:1x cycle's own already-clean fast result is what "previous work finished" rests on above, not this slower run's unfinished one.
+
+Confirmed the dashboard's "PRODUCTION IS SERVING AN OLD BUILD" line is real and correctly Phil-blocked, not a fresh find to hand anywhere: `ops/deploy-verdict.json` last confirmed `b0b1e02558428cb1` at `2026-09-21T13:53:56Z`, and 20 `site/**`/`ops/build_*.py` commits have landed since (bundle page, retired kits, the intro-call, corporate distribution, the sample-PDF cover fix). No sandbox here holds the VPS deploy key; this is the same standing gap `OWNER-ACTIONS.md` item 1b already tracks, closed and reopened repeatedly by whichever session next holds real production access, not something this slot can act on.
+
+**Went well:** finishing the exact tier handed off rather than opening a new one; treating the still-running full preflight as unchecked rather than assuming it would pass.
+
+**Did not go well:** same unrelated-history checkout shape; full `preflight.py` still slower in this sandbox than a 30-minute slot can wait out.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `wire_consult_cta.py` and `backup_analytics.py` for the operator, per the handoff line above.
+
+Pushed to main. Command deck regenerated only; no site, price or product touched. IndexNow not applicable, no page changed.
+
 ## PM check-in, 2026-09-22 13:1x (previous work finished, verified two more low-mention files clean, nothing new to open)
 
 Attached shallow/detached (issue #27's usual shape): fetched, unshallowed, fast forwarded onto origin/main (02601815) with no conflict. Previous work was finished: preflight.py fast, every gate passed, 23 warnings, all previously diagnosed sandbox limits; working tree clean before this cycle; main was up to date with origin. GitHub: 8 open issues unchanged (6 decision, 2 blocked-on-art), matching the dashboard's own count; issue #34 (Kitchen deck PDF vs print-only) is a fresh, properly scoped escalation from the prior cycle, correctly left for Phil, no action needed on it here.
