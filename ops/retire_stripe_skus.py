@@ -54,6 +54,31 @@ def retired_skus() -> set:
     return {s["sku"] for s in d["skus"] if isinstance(s, dict) and s.get("sku")}
 
 
+STATUS_PATH = os.path.join(ROOT, "ops", "retired-skus-stripe-status.json")
+
+
+def record_archived(skus) -> None:
+    """Ledger of which retired SKUs this tool has actually confirmed archived
+    in Stripe. `ops/preflight.py`'s gate_retired_skus_stripe_archived reads
+    this file, because no sandbox that runs preflight holds a Stripe
+    credential to check the live account directly.
+    """
+    import datetime as _dt
+    data = {"archived": {}}
+    if os.path.exists(STATUS_PATH):
+        try:
+            data = json.load(io.open(STATUS_PATH, encoding="utf-8"))
+        except Exception:                                         # noqa: BLE001
+            data = {"archived": {}}
+    data.setdefault("archived", {})
+    now = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    for sku in skus:
+        data["archived"][sku] = now
+    with io.open(STATUS_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, sort_keys=True)
+        f.write("\n")
+
+
 def fetch(path: str):
     try:
         req = urllib.request.Request(BASE + path,
@@ -123,6 +148,10 @@ def main() -> int:
     print("  active products        : %d" % len(prods))
     if not links and not prods:
         print("  nothing to do: Stripe already matches the retirement.")
+        if apply_it:
+            record_archived(skus)
+            print("  recorded %d SKU(s) confirmed clean in %s"
+                  % (len(skus), os.path.relpath(STATUS_PATH, ROOT)))
         return 0
 
     link_ids = {}
@@ -145,15 +174,22 @@ def main() -> int:
         return 0
 
     done = 0
+    touched = set()
     for L in links:
         SC.call("POST", "payment_links/" + L["id"], {"active": False})
         print("    link  deactivated  %s" % L["metadata"]["sku"])
+        touched.add(L["metadata"]["sku"])
         done += 1
     for p in prods:
         SC.call("POST", "products/" + p["id"], {"active": False})
         print("    product archived   %s" % p["metadata"]["sku"])
+        touched.add(p["metadata"]["sku"])
         done += 1
     print("\n  %d object(s) retired in Stripe." % done)
+    if touched:
+        record_archived(touched)
+        print("  recorded %d SKU(s) archived in %s"
+              % (len(touched), os.path.relpath(STATUS_PATH, ROOT)))
     return 0
 
 

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-22 22:27 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-22 23:28 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 26 |
-| Commits (7 days) | 1182 of 3438 total |
+| Commits (7 days) | 1177 of 3440 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `f5cddf65` Merge concurrent PM check-in; fix BK-BUNDLE deliverable() to |
+| Last commit | `f56f49fe` PM check-in 22:1x: previous work finished and verified; ran  |
 
 ## Product readiness
 
@@ -60,6 +60,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
+- **Run `STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply` from a machine that holds the Stripe secret key, for the 36 SKUs from the original 2026-08-21 retirement** (2 min). This is not the 6 Area Bundles/15 Situation Kits: those 21 were already deactivated and archived in Stripe, live-verified, the same day they were retired (commit `34efb9a9`, your own session).
 - **#34** Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition?
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#31** Decide: the deck gallery and the deck download are two different card designs

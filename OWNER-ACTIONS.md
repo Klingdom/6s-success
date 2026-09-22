@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-21 14:05 UTC, traffic re-measured by a direct database read: 76 visitors/190 visits/30 days, and the last 7 days show three consecutive weekly falls (18 to 14 to 10 visitors). See the 2026-09-21 note below. Production freshness was last confirmed 2026-09-20 18:2x: live build `da3047e8a1168917` matched the repository exactly, verified by reading https://6s-success.com/build-id.txt after the deploy, not by trusting the deploy command's own exit code. The 233-commit gap this file flagged at 11:12 is closed.
+**Last measured:** 2026-09-22, this operator adding item 1h (Stripe archival of the older, 2026-08-21 batch of retired SKUs; the newer Area Bundles/Situation Kits retirement was already closed the same day by your own session, see below). Traffic figure carried forward from the last real database read, 2026-09-21 14:05 UTC: 76 visitors/190 visits/30 days, and the last 7 days show three consecutive weekly falls (18 to 14 to 10 visitors). See the 2026-09-21 note below. Production freshness was last confirmed 2026-09-20 18:2x: live build `da3047e8a1168917` matched the repository exactly, verified by reading https://6s-success.com/build-id.txt after the deploy, not by trusting the deploy command's own exit code. The 233-commit gap this file flagged at 11:12 is closed.
 
 One correction to the earlier note, because the distinction is the whole point of this file: **Phil did not redeploy.** An autonomous session running on his machine did, three times today, using the `~/.ssh/6s_deploy` key installed back on 2026-09-01. Recording it as an owner action would quietly put a recurring chore back on this list that nobody needs to do. Deploying is not yours and has not been since that key went in; what remains yours is the three items in "start here" below.
 
@@ -74,16 +74,17 @@ the text-only causes are fixed free, the pixels need this same billing gate. Ear
 
 Added 2026-09-17 because this list had grown to 20 items and its own ordering
 put a disk-space item it calls "not urgent" above the two that decide whether
-anybody ever arrives. Everything else on this page can wait behind these three.
+anybody ever arrives. Everything else on this page can wait behind these four.
 
 | # | Do | Time | Why it is first |
 |---|---|---|---|
 | **1a** | Verify the site in Google Search Console | 3 min | Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since. Whether that is "read and judged not worth indexing" or something we can fix is the single most valuable unknown in the business, and Search Console is the only instrument that answers it. Nothing I can build substitutes for you being logged into your own Google account. |
 | **1** | Authorise YouTube uploads | 5 min | 102 finished, narrated, captioned videos are on a disk. The 12 that are public went up by your own hand. This category is searched on YouTube as much as on Google. |
 | **1d** | Paste the business description into Stripe | 2 min | The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today. |
+| **1h** | Run `STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply` from a machine that holds the Stripe secret key, for the 36 SKUs from the original 2026-08-21 retirement | 2 min | This is not the 6 Area Bundles/15 Situation Kits: those 21 were already deactivated and archived in Stripe, live-verified, the same day they were retired (commit `34efb9a9`, your own session). The remaining 36 SKUs on `ops/retired-skus.json` (the original 2026-08-21 batch: the hardcover book, the illustrated Entryway deck, the courses, and others) have no equivalent confirmation anywhere in this repository, because the tool that checks and closes this did not exist until today. Same tool, same one command, same safety refusals. |
 
 The rest of this file stays as it is, in its original order. If you only ever do
-three things from it, do these.
+four things from it, do these.
 
 **Every item here was checked end to end on 2026-09-18, not just listed.** The
 question asked of each was "if Phil did this today, what would actually

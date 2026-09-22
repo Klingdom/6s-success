@@ -9579,6 +9579,81 @@ def gate_every_payment_fulfilled() -> None:
              "grace period" % (waiting, GRACE // 3600))
 
 
+def gate_retired_skus_stripe_archived(fp_skus: str = "", fp_status: str = "") -> None:
+    """A SKU retired in the repository is not retired until Stripe agrees.
+
+    Found 2026-09-22, reading `ops/retire_stripe_skus.py` cold: no operator
+    sandbox that runs this repository has ever held a Stripe credential, so
+    from here it can never be verified live, and nothing named that as a
+    standing, checkable gap anywhere a human would see it before this: not
+    `OWNER-ACTIONS.md`, not the dashboard, not a preflight warning, only the
+    script's own docstring. That is the "unknown is not unused" shape
+    CLAUDE.md 0.4 warns about, applied to money: a payment link nobody
+    re-checks stays live whatever the site says, and this business has
+    already paid for that once (the eight-day outage CLAUDE.md 0.2 records;
+    the same mechanism in reverse here would let somebody pay for a product
+    it has decided not to sell).
+
+    Checked before shipping this gate, not assumed: 21 of the 57 SKUs on
+    `ops/retired-skus.json` (the 6 Area Bundles and 15 Situation Kits from
+    commit 147179c6) were already deactivated and archived in Stripe the
+    same day, by Phil's own session holding a real credential (commit
+    34efb9a9: 21 links deactivated, 21 products archived, 192 live URLs
+    scanned with 0 references). That evidence was backfilled into the
+    ledger below from the commit's own recorded detail, not re-verified
+    here. The remaining 36, from the original 2026-08-21 retirement, predate
+    this tool and have no equivalent confirmation on record anywhere.
+
+    This cannot become a real live check from here: it needs the same Stripe
+    credential `gate_every_payment_fulfilled` above needs and no sandbox that
+    runs this file has ever held one. So the ledger is local instead. Running
+    `STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply` writes a
+    timestamp per SKU it actually archived (or finds already clean) to
+    `ops/retired-skus-stripe-status.json`; this gate compares that ledger
+    against the live `ops/retired-skus.json` list and warns, by SKU name, for
+    every one the ledger has not confirmed. It cannot fail, only warn: a
+    result that could go either way without a credential would be inventing
+    certainty preflight does not have, the same mistake `gate_every_payment_
+    fulfilled` refuses to make above.
+
+    Proof this can go non-empty: with `ops/retired-skus-stripe-status.json`
+    absent or missing an entry, every retired SKU is pending by construction.
+    """
+    fp_skus = fp_skus or os.path.join(ROOT, "ops", "retired-skus.json")
+    if not os.path.exists(fp_skus):
+        return
+    try:
+        d = json.load(io.open(fp_skus, encoding="utf-8"))
+        skus = [s["sku"] for s in d.get("skus", [])
+                if isinstance(s, dict) and s.get("sku")]
+    except Exception as e:                                        # noqa: BLE001
+        warn("retired-skus-stripe", "could not read ops/retired-skus.json: %s"
+                                     % str(e)[:80])
+        return
+    if not skus:
+        return
+
+    fp_status = fp_status or os.path.join(ROOT, "ops", "retired-skus-stripe-status.json")
+    archived = {}
+    if os.path.exists(fp_status):
+        try:
+            archived = json.load(io.open(fp_status, encoding="utf-8")).get(
+                "archived", {})
+        except Exception:                                         # noqa: BLE001
+            archived = {}
+
+    pending = [s for s in skus if s not in archived]
+    if pending:
+        warn("retired-skus-stripe",
+             "%d of %d repository-retired SKU(s) have never been confirmed "
+             "archived in Stripe, so their payment link may still take money "
+             "for something the business decided not to sell: %s%s. Run "
+             "STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply "
+             "from a machine that holds the Stripe credential."
+             % (len(pending), len(skus), ", ".join(pending[:8]),
+                " and %d more" % (len(pending) - 8) if len(pending) > 8 else ""))
+
+
 def gate_pages_missing_art() -> None:
     """Count every customer-facing page that ships with no picture at all.
 
@@ -19507,6 +19582,7 @@ def main() -> int:
     run_gate(gate_corpus_posts_extraction_yield)
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)
+    run_gate(gate_retired_skus_stripe_archived)
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)

@@ -1,0 +1,26 @@
+{
+  "_note": "The 21 SKUs above were archived and live-verified in commit 34efb9a9 (2026-09-22, by a session holding a real Stripe credential: 21 payment links deactivated, 21 products archived, 192 live URLs scanned with 0 references). ops/retire_stripe_skus.py itself only gained the ability to write this ledger later the same day, so these 21 are backfilled from that commit's own recorded evidence, not from a fresh run. The remaining SKUs in ops/retired-skus.json (the original 2026-08-21 batch) have no equivalent confirmation on record anywhere in this repository and are correctly still reported pending.",
+  "archived": {
+    "AB-FOOD": "2026-09-22T17:56:58Z",
+    "AB-LIVING": "2026-09-22T17:56:58Z",
+    "AB-SLEEPING": "2026-09-22T17:56:58Z",
+    "AB-STORAGE": "2026-09-22T17:56:58Z",
+    "AB-THRESHOLDS": "2026-09-22T17:56:58Z",
+    "AB-WET-ROOMS": "2026-09-22T17:56:58Z",
+    "KIT-AGEING-IN-PL": "2026-09-22T17:56:58Z",
+    "KIT-BACK-TO-SCHO": "2026-09-22T17:56:58Z",
+    "KIT-DOWNSIZING": "2026-09-22T17:56:58Z",
+    "KIT-FIRST-HOME": "2026-09-22T17:56:58Z",
+    "KIT-HOLIDAY-HOST": "2026-09-22T17:56:58Z",
+    "KIT-MOVING-IN": "2026-09-22T17:56:58Z",
+    "KIT-MOVING-OUT": "2026-09-22T17:56:58Z",
+    "KIT-NEW-BABY": "2026-09-22T17:56:58Z",
+    "KIT-PET-HOUSEHOL": "2026-09-22T17:56:58Z",
+    "KIT-POST-RENOVAT": "2026-09-22T17:56:58Z",
+    "KIT-RENTAL-HANDO": "2026-09-22T17:56:58Z",
+    "KIT-SHARED-HOUSE": "2026-09-22T17:56:58Z",
+    "KIT-SMALL-APARTM": "2026-09-22T17:56:58Z",
+    "KIT-SPRING-RESET": "2026-09-22T17:56:58Z",
+    "KIT-WORKING-FROM": "2026-09-22T17:56:58Z"
+  }
+}

@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (a real, smaller-than-first-thought Stripe-archival gap gated; caught and corrected my own overclaim before pushing it)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (29 commits). Read `BACKLOG-2026-09-07.md`, `GOALS.md` in full, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries. `python ops/preflight.py` clean before touching anything (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub confirmed live: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, `checks.yml` run 1304 `success` on HEAD.
+
+**Found by ranking `ops/*.py` by mentions in this log and reading the lowest tier cold**, the method several recent cycles have used after the obvious backlog rows ran out: `ops/retire_stripe_skus.py` (2 mentions, added this same day) closes the Stripe half of commit `147179c6`'s retirement of the 6 Area Bundles and 15 Situation Kits. First pass wrote a gate and an `OWNER-ACTIONS.md` item claiming all 57 SKUs on `ops/retired-skus.json` were unconfirmed in Stripe and the tool "has never run," reasoning only from `.env.secrets not found` in this sandbox.
+
+**That was wrong, and `BACKLOG-2026-09-07.md`'s own text (read at STEP 1, re-read before pushing) said so.** It records that a session holding a real Stripe credential closed this the same day (commit `34efb9a9`): 21 links deactivated, 21 products archived, live-verified against 192 URLs with zero references, before this cycle ever started. Caught it by re-reading my own claim against the file I had already read once, per CLAUDE.md STEP 5d ("verify a claim before acting on it"), rather than shipping the overclaim. Confirmed `34efb9a9` really is an ancestor of this cycle's HEAD (`git merge-base --is-ancestor`), not a parallel branch.
+
+**Corrected before pushing anything.** Backfilled `ops/retired-skus-stripe-status.json` with the 21 confirmed SKUs, timestamped to `34efb9a9`'s own commit time and noting plainly that this is historical evidence, not a fresh check. Rewrote the gate's docstring, the test's real-repository case (now asserts "36 of 57," not "57 of 57," and that the 21 confirmed SKUs are never named), and `OWNER-ACTIONS.md`'s new item (renumbered 1e to 1h after finding 1e already names an unrelated Rakuten decision further down the same file) to say what is actually still open: the 36 SKUs from the *original* 2026-08-21 retirement (the hardcover book, the illustrated Entryway deck, courses, and others), which predate this tool and have no equivalent confirmation on record anywhere.
+
+**The real, smaller finding that survives: `ops/retire_stripe_skus.py` and its ledger did not exist until today, so the 36-SKU gap is genuine, live-money-adjacent** (per CLAUDE.md 0.2/8, a stray bookmark could still pay for something no longer sold), and nothing named it before this cycle: not `OWNER-ACTIONS.md`, not the dashboard, not a preflight warning, only the script's own docstring. Checked severity: `ops/stripe_fulfil.py`'s `deliver()` correctly holds any SKU with no `DELIVERY` entry as "NEEDS A HUMAN," so this is not a silent-total-loss risk, but an unmonitored manual queue is not the same as closed.
+
+**Gated it**, per CLAUDE.md 0.2: `gate_retired_skus_stripe_archived` in `preflight.py`, warning only (this can never become a real live check from an operator sandbox; a gate that could go either way without a credential would be inventing certainty it does not have, the same posture `gate_every_payment_fulfilled` already takes). Fail-then-pass proved with `ops/tests/test_gate_retired_skus_stripe_archived.py`, 6 cases via temp files so the real ledger is never touched by the test itself: no-ledger (every SKU pending), one missing entry (names only that one), a full ledger (silent), a missing `retired-skus.json` (silent), the round trip through `retire_stripe_skus.record_archived()`, and the live repository's real current state (36 of 57, the 21 confirmed ones never named). All 6 pass.
+
+**Handed to Phil as item 1h in `OWNER-ACTIONS.md`'s "start here" list**: `STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply`, same tool, same safety refusals, will correctly do nothing to the 21 already-clean SKUs and act only on what remains. Fixed the header date `gate_owner_actions_last_measured_current` flagged once the new item's own date landed in the body.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings, all previously diagnosed sandbox limits, `retired-skus-stripe` correctly reading 36 of 57), `preflight.py --own` on the committed tree (clean), `fix_dashes.py --check` (0/0). `check_urls.py`/`audit_pages.py` unaffected, no site content or price touched. `ops/dashboard.py` regenerated; the new owner action appears automatically in "What needs you," derived from `OWNER-ACTIONS.md`, not hand-copied.
+
+**Went well:** catching my own overclaim against a file I had already read, before it shipped, rather than after a PM check-in caught it.
+
+**Did not go well:** the first pass drew a conclusion ("never run," "57 of 57") from this sandbox's own credential gap without cross-checking the backlog's own account of the same commit first, even though STEP 1 had already put that account in front of me. The lesson is procedural, same shape as the 2026-09-21 self-correction entry above: read what STEP 1 hands you before generalizing from what this sandbox alone can see.
+
+**Changing next cycle:** none beyond what shipped; the gate and its test already say the true, smaller thing.
+
+**Next:** item 1h above, plus the standing "start here" trio (Search Console, YouTube, Stripe description) and the 6 open decision issues, all still Phil's. Keep working the low/no-mention `ops/*.py` tier next cycle, and re-check any finding against files already read this same cycle before writing it down.
+
+Pushed to main. `ops/preflight.py`, `ops/retire_stripe_skus.py`, `ops/retired-skus-stripe-status.json`, new test file, `OWNER-ACTIONS.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable, no site page changed.
+
 ## PM check-in, 2026-09-22 22:1x (previous work finished and verified; ran the stale preflight --deep handoff; traced the free-download tracking fix clean)
 
 **Previous work: finished.** Unshallowed and fast-forward merged onto `origin/main` clean. Ran `python ops/preflight.py` fresh myself: every gate passed, 22 warnings, all previously diagnosed sandbox limits. Tree was clean and pushed before this cycle touched anything. Did not just cite the last cycle's own account: reran `ops/tests/test_stripe_catalog_deliverable.py` directly (6/6 pass), the new file that commit added.
