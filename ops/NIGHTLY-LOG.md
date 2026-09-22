@@ -20,6 +20,63 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. No price, product or site page touched; nothing here was ever live.
 
+## PM check-in, 2026-09-22 03:4x (previous work finished; two transient stray-probe gate failures self-healed, not a defect)
+
+NEXT FOR THE OPERATOR: cold-read `ops/corpus_index.py` and `ops/generated_products.py`
+(the 17-mention tier), because every unblocked backlog row is again done or
+Phil-gated and this is the third handoff naming the same pair, since nobody has
+picked it up yet.
+
+Attached via unshallow plus ff-only merge onto origin/main, clean fast-forward
+(1129 commits, issue #27's usual shallow/detached shape, no reset). Read
+`git log -12`, this log's top two entries, `BACKLOG-2026-09-07.md` sections
+1b through 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub
+issues directly via the API: unchanged, all `decision` (33, 32, 31, 21, 18,
+15) or `blocked-on-art` (29, 2), none pickable without Phil; 0 open PRs.
+CI confirmed green directly (not assumed): `checks.yml` run #1273 on
+`16d62c06` succeeded.
+
+**STEP 2, previous work: finished, with one wrinkle worth recording rather
+than hiding.** Ran `python ops/preflight.py` twice, full runs, not the fast
+path. Both times `gate_no_stray_probe_files` failed, each on a different file
+(`site/_gate_fixture_conflict.html`, then `site/_shop_interactive_probe.html`)
+that no longer existed by the time I looked, because the gate deletes what it
+finds in the same pass. Read the gate's own source and docstring: it exists
+precisely to sweep a scratch file a killed test run leaves behind, and two
+different filenames on two different runs a few minutes apart, both already
+gone, means a concurrent session (the paired :10 twin or another local run)
+was mid-test at the exact moment mine sampled the directory, not a real
+leftover. Every substantive gate passed both times; the only diff a rerun
+produced was the routine dashboard timestamp. Not the same shape as a genuine
+regression, so no new gate needed and nothing else was fixed here.
+
+**STEP 3.** Every unblocked row in `BACKLOG-2026-09-07.md`, sections 1b to 4,
+is done or Phil-gated; section 5 correctly holds ahead of the traffic
+constraint; section 6 lists only owner gates. The 8 open GitHub issues are
+unchanged decision/art items. No genuinely new unblocked item exists this
+slot.
+
+**Went well:** reading the failing gate's own source before treating a FAIL
+as a live defect, per CLAUDE.md 0.4 ("unchecked is not passing") cutting both
+ways: a FAIL that self-resolves and reproduces on a known concurrent-write
+shape is not silently downgraded to a PASS either, it is explained and
+recorded.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue
+#27, unchanged). Two prior PM check-ins (02:4x, 03:1x) already handed the
+operator the same corpus_index.py/generated_products.py cold-read; it has not
+yet been picked up, so repeating it here rather than choosing a fresh pair.
+
+**Next:** operator picks up the cold-read handoff above. Standing Phil-blocked
+list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Production
+redeploy remains the single highest-leverage owner action (dashboard "one
+constraint" section), already fully recorded there and in `OWNER-ACTIONS.md`;
+no new escalation needed.
+
+Pushed to main. This log entry and the routine command-deck regen only; no
+other file changed. No price or product touched, no site page changed;
+IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 03:1x (previous work finished and confirmed; two more low-mention files cold-read clean)
 
 Attached via unshallow plus ff-only merge, clean fast-forward. Read git log, BACKLOG-2026-09-07.md, the dashboard, and the 8 open GitHub issues: unchanged, all decision or blocked-on-art, none pickable without Phil.
