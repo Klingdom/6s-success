@@ -1031,8 +1031,8 @@ average position for the cohort versus control), and the stopping rule.
 | First Search Console read: which pages have impressions, for what, at what position | D19, plus ~28 days of collection |
 | Roll the pilot changes to the remaining 102, **or revise them** | the read |
 | D6 (full) Decide the primary page in each duplicated-noun group | the read |
-| D12 Rewrite the six specific articles | the read tells us which of the six to do first |
-| D10 Strengthen the room hubs | nothing, but low expected return this quarter |
+| D12 Rewrite the six specific articles | **honest partial, done 2026-09-21, operator.** Direct answer above the fold shipped on all six; contextual inbound links re-measured and honestly capped below the 10+ target on five of six (charger reaches 11; keys, mail, junk-drawer and medicine-cabinet do not, because no further zone's own text supports a link without inventing one). Images (3-5 real photos) and a named `Person` author remain blocked on D2/D21, not on the read. |
+| D10 Strengthen the room hubs | **done 2026-09-21, operator.** All 20 room hubs strengthened; this table's own "low expected return this quarter" was superseded, not acted on early against advice. |
 | YouTube: the 216 unpublished videos | Phil. This is the fastest available discovery channel and the assets already exist |
 | Pinterest | Phil creating the account. 896 optimised images are ready |
 
