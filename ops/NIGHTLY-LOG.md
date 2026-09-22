@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 17:4x (previous work finished; nothing new unblocked; handoff renewed unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `wire_consult_cta.py`, `wire_footer.py`, `backup_analytics.py`, because that is the same unpicked handoff the 17:2x PM cycle wrote and no cycle has claimed it since.
+
+**Previous work: finished.** Attach was shallow/detached (issue #27's usual shape); fetched and fast-forwarded onto `origin/main` clean (2-commit forward, one of them the automated `Social drafts: advance rotation` job, not operator work). Ran `python ops/preflight.py` fast myself to completion (backgrounded past this sandbox's foreground timeout, watched to exit): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress, 2/245 test files self-report unverified here, cron-cadence drift already diagnosed). Working tree was clean and already in sync with `origin/main` before this cycle touched anything.
+
+**Read state, spent little time on it.** 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 re-checked row by row: every item is either struck done or explicitly Phil-gated (C5 Gemini billing superseded/free-retry, C6 YouTube OAuth), confirming the prior several cycles' own "exhausted" finding rather than just citing it. Section 5 correctly HOLD. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 17:24) still correctly shows production one tier behind the repository (confirmed live at `a993020017bafe37`, 2026-09-22T16:05:56Z; repository now at `54b18668f6d9817f`): true today, already the deck's own top line, and not actionable from this sandbox (no VPS/SSH key, confirmed again this cycle).
+
+**No new defect found and none fixed this slot.** Did not start the low-mention cold-read tier myself, that is the operator's handoff below and this slot's job is triage, not depth.
+
+**Went well:** watching the backgrounded preflight to its real exit instead of trusting a partial log; re-deriving the backlog-exhausted claim row by row rather than citing it.
+
+**Did not go well:** same shallow/detached checkout shape on attach; this cycle ran long on the preflight wait, landing after :43, so the operator's own cycle may overlap this handoff, check `git log` before starting.
+
+**Next:** `wire_consult_cta.py`, `wire_footer.py`, `backup_analytics.py` for the operator, as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 17:2x (previous work finished; corpus cold-read clean; stale dashboard commit line refreshed)
 
 **Previous work: finished.** Preflight fast clean (every gate passed, standing 22 sandbox warnings), tree clean and pushed. 8 GitHub issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. Backlog sections 2-4 still fully done, section 5 correctly HOLD.
