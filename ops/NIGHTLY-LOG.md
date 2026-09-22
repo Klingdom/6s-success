@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (clean verification pass, four low-mention ops/*.py files cold-read, no new defect)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the top four entries of this log. `preflight.py` clean on the first run (every gate passed, 23 warnings, all previously diagnosed sandbox limits: no Stripe/mail/analytics credential, pypdf/pymupdf/Pillow/playwright not installed, site unreachable). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable without Phil; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
+
+**Verified.** Every unblocked row in `BACKLOG-2026-09-07.md` is already done or Phil-gated (sections 2-4 all done or blocked on Gemini billing/YouTube OAuth; section 5 correctly held behind the traffic constraint; section 1b is a recorded, correctly-escalated decision, issue #32). So this cycle continued the standing low-mention `ops/*.py` cold-read fallback, this time the two lowest-count files by log mention plus two P0-adjacent ones chosen for risk rather than rarity: `build_corporate_asset.py` (2 mentions, the free B2B scoring/audit artefact generator), `wire_footer.py` (4 mentions, wired in by the immediately preceding cycle), `ledgerium_price_check.py` (17 mentions, the file that runs Ledgerium's own price/webhook check against its real key on the VPS, section 36b), and `mailer.py` (17 mentions, the only path that sends mail as support@6s-success.com). Read each cold, then checked live rather than trusted from the read: reran `build_corporate_asset.py` and `wire_footer.py` directly and diffed against the committed tree (both byte-identical, confirming idempotency and that their own internal assertions, e.g. `build_corporate_asset.py`'s live check that `corporate.html` still states the audit cadence it assumes, still hold against the real shipped pages); ran `check_pack_pages.py` for the scoring/audit artefact's pagination (correctly reports UNCHECKED, pypdf not installed here, a known sandbox limit, not a new one). `ledgerium_price_check.py` and `mailer.py` cannot be exercised here by design (the former only runs meaningfully against Ledgerium's own key on the VPS; the latter refuses without an SMTP credential this sandbox does not hold), so both were read for logic defects only: no unsafe fallback, no default recipient, no missing guard found in either. **No live defect found in any of the four.**
+
+**Went well:** the cold-read method still finds a genuine, checkable file every cycle even this deep into the backlog; this pass came back clean rather than manufacturing a finding.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27 still open, still needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect means no new gate to write, per this file's own standing rule.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged (all decision/blocked-on-art). Continue the low-mention `ops/*.py` tier next: the 9-14 mention band (`backup_analytics.py` already cold-read clean 2026-09-21; next candidates by count are in the 17-19 tier, most already covered across recent cycles per this log's own history).
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 01:1x (previous work finished and verified, STATUS.md's own drift closed)
 
 Attached via unshallow plus ff-only merge onto origin/main, clean. Read git log -12,
