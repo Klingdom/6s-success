@@ -12,7 +12,26 @@
   "use strict";
 
   var Q = window.QUEST;
-  if (!Q) { return; }
+  if (!Q) {
+    /* The card data did not load. Every button on this page is now inert, and
+       until 2026-09-22 this line returned in silence: the reader pressed
+       "Start here", nothing happened, and nothing said why. That is the more
+       likely half of it than it looks, because this app is installable and
+       precaches its files, so a service-worker cache miss while offline lands
+       exactly here.
+
+       Say so, in the element the page already has for saying things. No
+       reload button: a reload is what the browser's own control does, and a
+       button that may fail the same way is worse than a sentence. */
+    var n = document.getElementById("notice");
+    if (n) {
+      n.hidden = false;
+      n.textContent = "The card deck did not load, so the quest cannot start. "
+        + "Check your connection and reload the page.";
+    }
+    if (window.Measure) { window.Measure.track("quest-data-missing", {}); }
+    return;
+  }
 
   var KEY = "6s.quest.v1";
   var $ = function (s) { return document.querySelector(s); };
@@ -75,8 +94,46 @@
     }
   }
 
+  /* Storage that refuses to store is the one failure this app must not keep
+     to itself. Everything a household does here, every finished card and
+     every standard, lives in localStorage and nowhere else, and the page
+     promises in so many words that it "stays in this browser". When
+     setItem throws, which Safari private browsing and blocked site data both
+     do, the old code caught the error and discarded it: the app went on
+     looking like it was working, and the whole session vanished when the tab
+     closed. Nobody would ever have known why.
+
+     Warned once, not on every save, because a message that fires on every
+     card is noise a reader learns to dismiss. Measured too, so we find out
+     whether this ever actually happens to anybody rather than guessing. */
+  var storageBroken = false;
+  var storageWarned = false;
+
+  function warnStorageBroken() {
+    if (storageWarned) { return; }
+    /* The first save() runs while this file is still being parsed, so the
+       notice element may not exist yet. Staying silent then and warning on a
+       later save is better than warning into nothing and setting the flag. */
+    var b = document.getElementById("notice");
+    if (!b) { return; }
+    storageWarned = true;
+    b.hidden = false;
+    b.textContent = "This browser will not let the Home Quest save anything, "
+      + "so nothing you finish here will be remembered after you close the "
+      + "tab. Private browsing, or blocked site data, is the usual cause.";
+  }
+
   function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+      storageBroken = false;
+    } catch (e) {
+      if (!storageBroken) {
+        storageBroken = true;
+        m("quest-save-blocked", { name: String((e && e.name) || "unknown") });
+      }
+      warnStorageBroken();
+    }
   }
 
   var state = load();
