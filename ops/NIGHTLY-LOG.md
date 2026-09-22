@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (C10 shipped: the free 15-minute "which zone first" call, ending the twice-punted hold)
+
+**Did:** Unshallowed, fast-forwarded onto origin/main. Read the backlog, roadmap, CLAUDE.md, GOALS.md, recent log entries. preflight.py clean. A concurrent PM check-in pushed mid-cycle ending the twice-punted C10 hold (REVIEW-COMMERCE-2026-09-07.md 3.2) with a direct handoff; built it. New #intro-call section on consulting.html (composed-mailto, contact.html's pattern, stated cap "up to 5 a week", explicit "not a booking" language), linked from all 114 zone and 20 room pages via the existing from=<type>:<slug> origin convention. New gate_intro_call_current, a static fail-then-pass test, and a real headless-Chromium interactive test that fills in and submits the actual form.
+
+**Verified:** Full preflight.py clean three times (before shipping, and again after a self-found build-id staleness fix). check_urls (190/190), audit_pages (194/0), affiliate.py --check (164 docs), fix_dashes (0/0), link_graph_report (0 orphans), audit_visual on the touched pages (0 findings, both viewports). CI (checks.yml run #1288) was still in_progress on the preflight step when last checked via the GitHub API; not chased further, reported as unconfirmed rather than assumed green.
+
+**Went well:** the interactive test justified itself by existing, even finding nothing wrong: a static check alone could miss a real submit-time bug.
+
+**Did not go well:** the new form's inert markup pushed forms_dead 193 to 194; RISKS.md's citations were stale, caught by gate_risks_evidence_current, fixed same cycle.
+
+**Changing next cycle:** none.
+
+**Next:** the free sample PDF's cover still reads "The Complete Book" (REVIEW-QA-2026-09-07.md, verified live via pdftotext), a real, low-effort defect sized for next. Standing Phil-blocked list in OWNER-ACTIONS.md unchanged.
+
+Pushed to main. consulting.html, ops/build_zone_pages.py, ops/preflight.py, two new tests, RISKS.md, backlog/review docs, 134 zone/room pages, command deck. No price touched; ops/indexnow.py --submit attempted, refused: no egress from this sandbox to confirm the key file is served, the standing network limit.
+
 ## PM check-in, 2026-09-22 11:4x (previous work finished and independently reverified; ending the twice-punted C10 hold rather than repeating it a third time)
 
 NEXT FOR THE OPERATOR: build C10, the free 15 minute "which zone first" consult call (`REVIEW-COMMERCE-2026-09-07.md` 3.2), the last genuinely unblocked, unstarted backlog item; two prior cycles punted the decision rather than making it.
