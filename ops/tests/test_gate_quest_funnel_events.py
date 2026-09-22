@@ -24,6 +24,12 @@ GOOD = (
     'm("quest-return", { days: days });\n'
     'document.addEventListener("visibilitychange", function () {});\n'
     'addEventListener("pagehide", reportAbandonIfMidCard);\n'
+    # Added 2026-09-22 with the two silent failures they report: a browser
+    # refusing to save, and the card deck failing to load. Both are
+    # invisible to the household they happen to, so these events are the
+    # only way anyone learns they happened at all.
+    'm("quest-save-blocked", { name: e.name });\n'
+    'window.Measure.track("quest-data-missing", {});\n'
 )
 
 
@@ -55,7 +61,8 @@ def main() -> int:
 
     # 2-6. Each marker dropped in turn is caught by name.
     for marker in ('"quest-cause-shown"', '"quest-card-abandoned"',
-                   '"quest-return"', "visibilitychange", "pagehide"):
+                   '"quest-return"', "visibilitychange", "pagehide",
+                   '"quest-save-blocked"', '"quest-data-missing"'):
         broken = GOOD.replace(marker, "")
         r = _run(broken)
         if not r or "quest.js" not in r[0][1]:

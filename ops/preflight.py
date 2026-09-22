@@ -5189,6 +5189,22 @@ def gate_quest_funnel_events() -> None:
          "no longer listens for pagehide, so quest-card-abandoned would "
          "miss a card left mid-work by closing the tab or navigating away "
          "rather than switching tabs"),
+        # Added 2026-09-22 with the two silent failures they report. These are
+        # diagnostic rather than funnel events, and they are guarded here for
+        # the same reason: they are the ONLY way anyone would learn that a
+        # household's browser refused to save their work, or that the card
+        # deck never loaded. Both failures are invisible to the person they
+        # happen to and invisible to us without these. A refactor that drops
+        # them would restore exactly the silence the fix removed.
+        ('"quest-save-blocked"',
+         "no longer fires quest-save-blocked, so a browser refusing to save "
+         "progress (Safari private browsing, blocked site data) goes back to "
+         "being invisible: the household loses the session and we never learn "
+         "it happened"),
+        ('"quest-data-missing"',
+         "no longer fires quest-data-missing, so the card deck failing to "
+         "load, which for an installable app is a service-worker cache miss "
+         "offline, goes back to being an inert page nobody can explain"),
     ]
     for marker, msg in checks:
         if marker not in src:

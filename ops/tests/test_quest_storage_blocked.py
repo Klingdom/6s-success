@@ -61,7 +61,7 @@ window.addEventListener("load", function () {
       hidden: n ? !!n.hidden : null,
       text: n ? (n.textContent || "").slice(0, 140) : ""
     });
-  }, 500);
+  }, 350);
 });
 </script>
 """
@@ -93,9 +93,12 @@ def run_case(browser, args, throw, drop_data=False):
     try:
         io.open(page, "w", encoding="utf-8", newline="\n").write(doctored)
         cmd = [browser, "--headless=new", "--disable-gpu", "--no-sandbox",
-               "--virtual-time-budget=6000", "--dump-dom",
+               "--virtual-time-budget=3500", "--dump-dom",
                "file:///" + page.replace("\\", "/")] + args
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+        # 180s was generous for a page that settles in under a second, and on
+        # a machine already short of memory a generous bound just means a
+        # slow failure. 90s is still 25x the expected time.
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
         dom = r.stdout or ""
     finally:
         try:
