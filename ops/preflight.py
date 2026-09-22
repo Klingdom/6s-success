@@ -2602,6 +2602,75 @@ def gate_dashboard_live_links_carry_forward() -> None:
              f"if it were fresh; got {stale_ok!r}")
 
 
+def gate_link_retirement_refusal_surfaced() -> None:
+    """A payment link ops/stripe_catalog.py refused to retire (still
+    charging a retired price, because the live site could not be read or
+    was still serving it) must surface as RED on the dashboard and as a
+    named line in the hourly brief, not sit as a print() nobody re-reads
+    after the run ends (REVIEW-COMMERCE-2026-09-07.md C17).
+
+    No sandbox here has ever held a Stripe credential, so the real refusal
+    branch in ensure_link() has never fired in this environment and never
+    will. That is exactly why this has to be proved with a synthetic
+    refusal rather than cited as "will surface, presumably": the acceptance
+    line C17 itself sets is "a simulated refusal surfaces on the dashboard
+    and in the brief," and a claim like that is unrederived from a real
+    Stripe read until something actually constructs one and watches it
+    propagate through both surfaces.
+
+    Same synthetic-input pattern as gate_dashboard_severity and
+    gate_dashboard_live_links_carry_forward just above: call the real pure
+    functions with a hand-built refusal, not a re-description of them.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    import hourly_brief
+
+    refusal = [{"sku": "TEST-SKU", "reason": "the live site is still "
+                "serving it. Deploy first, then rerun."}]
+
+    status, why = dashboard.status_of(
+        True, True, "unknown", True, 0, None, refusal)
+    if status != "RED" or "TEST-SKU" not in why:
+        fail("link-retirement-refusal-surfaced",
+             f"dashboard.status_of() with a synthetic refused link "
+             f"retirement returned {status!r}/{why!r}; must be RED and name "
+             f"the sku, or a real refused retirement (a link actively "
+             f"charging a price the catalogue retired) would sit invisible "
+             f"on the dashboard the way it did before C17.")
+    # A live payment outage still outranks a mispriced-but-working link:
+    # confirm the refusal does not accidentally soften an existing "dead"
+    # verdict rather than only adding a new RED case.
+    status, why = dashboard.status_of(
+        True, True, "dead", True, 0, None, refusal)
+    if status != "RED" or "deactivated" not in why.lower():
+        fail("link-retirement-refusal-surfaced",
+             f"a synthetic refused retirement changed the RED reason given "
+             f"for a confirmed dead live-links verdict to {why!r}; the "
+             f"worse outage (no link works at all) must still be the "
+             f"reason reported, not the milder one.")
+
+    problem, lines = hourly_brief.link_retirement_summary(
+        {"link_retirement_refused": refusal,
+         "link_retirement_refused_at": "2026-09-22T00:00:00+00:00"})
+    joined = " ".join(lines)
+    if not problem or "TEST-SKU" not in joined:
+        fail("link-retirement-refusal-surfaced",
+             f"hourly_brief.link_retirement_summary() with a synthetic "
+             f"refusal did not report a problem naming the sku; got "
+             f"problem={problem!r} lines={lines!r}")
+    # And the ordinary, by-far-most-common case (no --apply run has ever
+    # refused a retirement) must read as OK, not UNCHECKED: unlike the
+    # sibling Stripe-read summaries in the same file, this one is derived
+    # from a file already written to disk, so there is nothing to fail to
+    # reach.
+    problem, lines = hourly_brief.link_retirement_summary({})
+    if problem:
+        fail("link-retirement-refusal-surfaced",
+             f"hourly_brief.link_retirement_summary() reported a problem "
+             f"for state carrying no refusal at all; got lines={lines!r}")
+
+
 def gate_dashboard_deploy_carry_forward() -> None:
     """A carried-forward deploy verdict must carry its own numbers with it.
 
@@ -18931,6 +19000,7 @@ def main() -> int:
     run_gate(gate_mobile_touch_targets, deep)
     run_gate(gate_dashboard_severity)
     run_gate(gate_dashboard_live_links_carry_forward)
+    run_gate(gate_link_retirement_refusal_surfaced)
     run_gate(gate_dashboard_deploy_carry_forward)
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)

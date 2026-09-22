@@ -34,6 +34,7 @@ Run:  python ops/stripe_catalog.py --check
 """
 from __future__ import annotations
 
+import datetime
 import io
 import json
 import os
@@ -46,6 +47,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRETS = os.path.join(ROOT, ".env.secrets")
 SITE = "https://6s-success.com"
 API = "https://api.stripe.com/v1/"
+REFUSALS_PATH = os.path.join(ROOT, "ops", "link-retirement-refused.json")
 
 # The SKUs Stripe should know about. Deliberately not all 44.
 #
@@ -420,6 +422,9 @@ def _live_slugs():
     return _LIVE_SLUGS
 
 
+REFUSED_RETIREMENTS: list[dict] = []
+
+
 def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | None:
     found = find_by_sku("payment_links", sku)
 
@@ -437,14 +442,23 @@ def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | No
         slug = (found.get("url") or "").rsplit("/", 1)[-1]
         serving = _live_slugs()
         if serving is None:
-            print(f"  {sku:16} REFUSING to retire the link: the live site "
-                  f"could not be read, so whether a customer is using it is "
-                  f"unknown. Unknown is not unused.")
+            reason = ("the live site could not be read, so whether a "
+                      "customer is using it is unknown. Unknown is not unused.")
+            print(f"  {sku:16} REFUSING to retire the link: {reason}")
+            # A designed-in refusal, not a crash: the tool did exactly what
+            # it should, but the only trace used to be this print, gone the
+            # moment the terminal closed. Persisted so a later, separate
+            # process (the dashboard, the hourly brief) can see the window
+            # this run left open: the old link is still live, still charging
+            # a retired price, and nobody has been told since.
+            REFUSED_RETIREMENTS.append({"sku": sku, "reason": reason})
             return None
         if slug in serving:
-            print(f"  {sku:16} REFUSING to retire the link: the live site is "
-                  f"still serving it. Deploy first, then rerun. Retiring it "
-                  f"now would take a live buy button down.")
+            reason = ("the live site is still serving it. Deploy first, "
+                      "then rerun. Retiring it now would take a live buy "
+                      "button down.")
+            print(f"  {sku:16} REFUSING to retire the link: {reason}")
+            REFUSED_RETIREMENTS.append({"sku": sku, "reason": reason})
             return None
         print(f"  {sku:16} REPLACING link: it still charges a retired price")
         call("POST", f"payment_links/{found['id']}", {"active": "false"})
@@ -488,6 +502,32 @@ def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | No
     link = call("POST", "payment_links", payload)
     invalidate("payment_links")
     return link["url"]
+
+
+def persist_refusals(refused: list[dict] | None = None,
+                      path: str | None = None) -> None:
+    """Write this run's link-retirement refusals where a later, separate
+    process can see them.
+
+    Pure enough to test directly: takes the list rather than reading the
+    module global, so ops/preflight.py and ops/tests can prove the dashboard
+    and the brief actually surface a REFUSED entry without a Stripe
+    credential, by constructing one by hand (REVIEW-COMMERCE-2026-09-07.md
+    C17's own acceptance: "a simulated refusal surfaces on the dashboard and
+    in the brief").
+
+    Always a full overwrite, never appended: a clean --apply run with
+    nothing refused has to clear a stale entry from the last run that did
+    refuse, or the dashboard would show a RED row forever after the one
+    real cause was already fixed.
+    """
+    payload = {
+        "generated": datetime.datetime.now(datetime.timezone.utc)
+                     .isoformat(timespec="seconds"),
+        "refused": refused if refused is not None else REFUSED_RETIREMENTS,
+    }
+    io.open(path or REFUSALS_PATH, "w", encoding="utf-8", newline="").write(
+        json.dumps(payload, indent=1, ensure_ascii=False) + "\n")
 
 
 def sync_site_links(apply_it):
@@ -597,6 +637,15 @@ def main(apply_it: bool) -> int:
         subprocess.run([sys.executable,
                         os.path.join(ROOT, "ops", "build_product_schema.py")],
                        check=True)
+        # Only a real --apply run can populate REFUSED_RETIREMENTS (the
+        # refusal branches in ensure_link() are unreachable on a dry run),
+        # so only a real --apply run gets to clear a stale one either.
+        persist_refusals()
+        if REFUSED_RETIREMENTS:
+            print(f"\n  {len(REFUSED_RETIREMENTS)} link retirement(s) "
+                  f"REFUSED this run, recorded in "
+                  f"{os.path.relpath(REFUSALS_PATH, ROOT)} for the "
+                  f"dashboard and the hourly brief.")
     if not apply_it:
         print("\n  Dry run. Re-run with --apply and STRIPE_ALLOW_LIVE=1 to write.")
     return 0

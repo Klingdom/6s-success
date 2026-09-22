@@ -327,6 +327,38 @@ def brand_summary() -> tuple[bool, list[str]]:
     return True, lines
 
 
+def link_retirement_summary(st: dict) -> tuple[bool, list[str]]:
+    """Surface ops/stripe_catalog.py's own record of a refused link
+    retirement (REVIEW-COMMERCE-2026-09-07.md C17).
+
+    st is state.json, already written by the measured() call above (which
+    runs ops/dashboard.py, and dashboard.py's own S dict, dumped whole,
+    already carries link_retirement_refused from
+    ops/link-retirement-refused.json). Reading it here rather than the file
+    directly keeps one source of truth: dashboard.py already decided what
+    counts as current, this just renders it.
+
+    Unlike price_claims_summary()/duplicate_sku_summary()/brand_summary(),
+    this makes no live Stripe call and so is never UNCHECKED: an absent or
+    empty list means no --apply run has ever refused a retirement, or the
+    last one that did has since gone clean, either way genuinely OK.
+    """
+    refused = st.get("link_retirement_refused") or []
+    if not refused:
+        return False, ["  OK  no payment link retirement has been refused "
+                       "(or none has cleared since the last check)"]
+    when = st.get("link_retirement_refused_at") or "an unknown time"
+    lines = [f"  STILL CHARGING A RETIRED PRICE  {len(refused)} payment "
+             f"link(s) could not be retired as of {when}, and are still "
+             f"live at the old price:"]
+    for r in refused[:6]:
+        lines.append(f"    {r.get('sku', '?')}  {r.get('reason', '')}")
+    lines.append("    Fix: deploy the live site (if it is just behind), or "
+                 "restore Stripe access, then rerun "
+                 "STRIPE_ALLOW_LIVE=1 python ops/stripe_catalog.py --apply.")
+    return True, lines
+
+
 def measured() -> dict:
     try:
         subprocess.run([sys.executable, os.path.join(ROOT, "ops", "dashboard.py")],
@@ -385,6 +417,7 @@ def build() -> tuple[str, str]:
     dupe_problem, dupe_lines = duplicate_sku_summary()
     brand_problem, brand_lines = brand_summary()
     deploy_problem, deploy_lines = deploy_staleness_summary(st)
+    retire_problem, retire_lines = link_retirement_summary(st)
     prev = load_last()
 
     rev = cm.get("revenue_30d", 0)
@@ -394,6 +427,7 @@ def build() -> tuple[str, str]:
                f"{'FABRICATED PRICE ON CHECKOUT - ' if price_problem else ''}"
                f"{'DUPLICATE STRIPE PRODUCT - ' if dupe_problem else ''}"
                f"{'PRODUCTION BEHIND REPOSITORY - ' if deploy_problem else ''}"
+               f"{'LINK STILL CHARGES RETIRED PRICE - ' if retire_problem else ''}"
                f"6S hourly: ${rev:,.0f} / 30d"
                f"{f' (${life:,.0f} lifetime)' if life is not None else ''}, "
                f"{sales} sale(s), "
@@ -441,6 +475,7 @@ def build() -> tuple[str, str]:
     L += price_lines
     L += dupe_lines
     L += brand_lines
+    L += retire_lines
 
     if st:
         L += ["", "BUILD", build_line(st)]

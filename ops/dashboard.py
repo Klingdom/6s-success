@@ -964,6 +964,31 @@ def resolve_live_links_verdict(verdict: str, prev: dict, generated: str) -> dict
 S.update(resolve_live_links_verdict(S["live_links_verdict"], _prev, S["generated"]))
 
 
+def _load_link_retirement_refusals():
+    """ops/stripe_catalog.py's own record of a designed-in refusal: a real
+    --apply run found a payment link still charging a retired price and
+    correctly would not deactivate it, because the live site could not be
+    read or was still serving it (REVIEW-COMMERCE-2026-09-07.md C17).
+
+    Before this, the only trace of that window was a print() in a terminal
+    nobody was watching after the run ended. Read the same way
+    _load_deploy_marker() reads its own companion file: absent or unreadable
+    means nothing to report, not a problem, since most cycles never run
+    stripe_catalog.py --apply at all.
+    """
+    p = os.path.join(ROOT, "ops", "link-retirement-refused.json")
+    try:
+        with open(p, encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("refused") or [], data.get("generated")
+    except Exception:
+        return [], None
+
+
+S["link_retirement_refused"], S["link_retirement_refused_at"] = \
+    _load_link_retirement_refusals()
+
+
 def resolve_video_count(prefix: str, built: int, prev: dict, generated: str) -> dict:
     """Carry forward a last-known rendered count when this run cannot see it.
 
@@ -1551,7 +1576,8 @@ if S["zones"]:
 
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
-              issues_available, open_p0, live_links_carried_from=None):
+              issues_available, open_p0, live_links_carried_from=None,
+              link_retirement_refused=None):
     """Pure so ops/preflight.py can call it with synthetic inputs and prove
     it escalates, without re-running this module's own side effects."""
     if not revenue_month and not can_take_payment:
@@ -1564,6 +1590,14 @@ def status_of(revenue_month, can_take_payment, live_links_verdict,
                             f"treat the outage as still open until a session with "
                             f"real access says otherwise.")
         return "RED", "Live payment links are confirmed deactivated in Stripe: the repository can take money, the live site cannot."
+    if link_retirement_refused:
+        skus = ", ".join(r["sku"] for r in link_retirement_refused)
+        return "RED", (f"{len(link_retirement_refused)} live payment link(s) "
+                        f"still charge a RETIRED price and could not be "
+                        f"deactivated ({skus}): a customer clicking one pays "
+                        f"the wrong amount right now. Deploy the live site "
+                        f"or restore Stripe access, then rerun "
+                        f"stripe_catalog.py --apply.")
     if not issues_available:
         return "YELLOW", "Could not reach GitHub, so issue counts are UNKNOWN, not zero."
     if open_p0:
@@ -1572,7 +1606,8 @@ def status_of(revenue_month, can_take_payment, live_links_verdict,
 
 S["overall"], S["overall_why"] = status_of(
     S["revenue_month"], S["can_take_payment"], S.get("live_links_verdict"),
-    S["issues_available"], S["open_p0"], S.get("live_links_carried_from"))
+    S["issues_available"], S["open_p0"], S.get("live_links_carried_from"),
+    S.get("link_retirement_refused"))
 # Precision matters here. The forms are no longer silent: they hand the reader a
 # prefilled message so their intent survives. What is still missing is a provider,
 # so nothing is stored, nothing is automatic, and no list is being built.
