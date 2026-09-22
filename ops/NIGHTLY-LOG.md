@@ -20,6 +20,57 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `site/about.html`, `ops/wire_footer.py` (new), `ops/build_kitchen_deck_page.py`, `site/resources.html`, `site/corporate.html`, `site/shop.html`, and 187 other pages carrying the site footer (one line each), `REVIEW-COMMERCE-2026-09-07.md`, `BACKLOG-2026-09-07.md`, `site/sitemap.xml`, command deck. No price or product touched, no new page, no IndexNow submission applicable.
 
+## PM check-in, 2026-09-22 00:4x (previous work finished and verified, C4 unchanged for the operator, no new item to start)
+
+NEXT FOR THE OPERATOR: finish C4 (wire `corporate.html` into the site nav
+and every page footer, `REVIEW-COMMERCE-2026-09-07.md` section 7), because
+it is the highest-value genuinely unblocked item and has now been
+correctly handed off across three consecutive slots without being started,
+each time for the same legitimate reason: it touches several generator
+call sites and needs real judgment, not a three-minute fix.
+
+**Did:** Attached clean (`fetch`, `checkout main`, `merge --ff-only` onto
+`origin/main`, landing on `084b6b70` with no unshallow needed this time).
+Read `git log -12`, the top of this log, `BACKLOG-2026-09-07.md`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues directly via
+the API rather than trusting the last cycle's citation.
+
+**STEP 2, previous work:** finished. `python ops/preflight.py`: every gate
+passed, 22 standing warnings, all previously diagnosed sandbox limits (no
+Stripe/SSH/mail credential, no Pillow, no live network). Working tree was
+clean at `HEAD`; the only drift found was `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json` one commit stale against their
+own generator's self-referential gap (the file cannot embed its own future
+commit hash), the same shape prior cycles have already named, not a new
+defect.
+
+**STEP 3, next work:** re-verified rather than assumed. `grep -l
+corporate.html site/zones/*.html` (checked directly, not cited): 0 of the
+zone and room pages that live under `site/zones/` link it, same as the
+cycle that first found this two slots ago. All 8 GitHub issues
+unchanged, all `decision`/`blocked-on-art`, none pickable without Phil.
+Every `BACKLOG-2026-09-07.md` row is done or Phil-gated. C4 stays next;
+not started here on purpose, per this slot's own scope.
+
+**Closing job this slot:** regenerated the dashboard/state/log commit so
+they stop reading one commit stale, per the file's own note that this is
+expected, self-resolving churn, not a defect worth a new gate.
+
+**Next:** C4 for the operator this slot, unchanged. Standing Phil-blocked
+list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+**Merge note:** this entry was written before a concurrent operator cycle's
+C13 (two B2B articles, below) landed and before that cycle's own
+verification of the "previous work finished" claims below it; pulling
+`origin/main` after writing it found that concurrent commit already
+pushed. No collision: C13 touched `site/articles/*` and `corporate.html`'s
+card list, this entry touched only the command deck. Merged rather than
+overwritten; C4 stands confirmed as the next unblocked item by both
+tracks independently.
+
+Pushed to main. Command deck only. No site content, price or product
+touched.
+
 ## 2026-09-22, scheduled operator cycle (C13: the two B2B-intent articles, the last "At" tier item in REVIEW-COMMERCE section 7)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (1098 commits). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the top entries of this log. `preflight.py` clean on the first run (every gate passed, 22 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable without Phil; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-4 (A/B/C rows): every row already done or Phil-gated. Per `GOALS.md`'s ordering and this log's own "Next" line, moved to `REVIEW-COMMERCE-2026-09-07.md` section 7: C11 and C12 done 2026-09-21 (confirmed live, not just cited), leaving C13 as the one remaining "At" tier item, needing no Stripe credential.
