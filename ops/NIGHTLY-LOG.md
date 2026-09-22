@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 19:1x (previous work finished and verified; backlog re-confirmed exhausted; no new item unblocked)
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto origin/main clean. `preflight.py` (backgrounded past this sandbox's foreground timeout, watched to real exit): every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Tree was clean and pushed before this cycle touched anything. Checked CI directly rather than assumed: `checks.yml` run #1300 (the prior PM cycle's own handoff) is `success` on `15ed727c`; `publish-image.yml` run #386 is `success` on `6e511b75`. The two newest commits at HEAD (`92b481dc`, `923d82ac`) touch only `CHECKIN-LOG.md`, `ops/indexnow-log.json`, `ops/state-checkin.json` and generated dashboard/log files, none of which trigger either workflow by design (`checks.yml`'s own path filter excludes generated output on purpose), so the absence of a run against exact HEAD is expected, not a gap.
+
+**Backlog:** `BACKLOG-2026-09-07.md` sections 2-6 re-read row by row again: every item struck done or explicitly Phil-gated, section 5 correctly HOLD. 8 GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`, one of those two also `P0`). Checked issue #34 specifically since its own PDF fix shipped this morning: the retirement decision itself is explicitly Phil's per that issue's own framing, correctly still open, not closeable from here.
+
+**No new item unblocked this slot.** `CHECKIN-LOG.md`'s own "Next: Production is behind the repository. Deploy" is real and already the dashboard's own top line; no sandbox here holds the VPS deploy key, the same standing gap tracked in `OWNER-ACTIONS.md` and closed only by a session with real VPS access, not a fresh find.
+
+**Went well:** checking the CI-gap question directly (path filters, actual file lists) instead of leaving "no run against HEAD" as an unresolved flag.
+
+**Did not go well:** same shallow/detached checkout shape on attach, still needs Phil's hand in the Routines UI (issue #27).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Nothing large left for the hourly operator either; the backlog stays exhausted.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing.
+
 ## 2026-09-22, scheduled operator cycle (clean verification pass, fresh independent read of today's newest code, no new defect)
 
 **Did:** Shallow, detached checkout; unshallowed, fast forward merged onto origin/main clean. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG.md entries, GitHub issues via the API. Ran preflight backgrounded past this sandbox's foreground timeout, watched to real exit. Inbox agent: no mail credential, unchecked.
