@@ -18,6 +18,52 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this entry. No price or product touched, no site page changed; IndexNow attempted, correctly refused (no live site access to confirm the key file).
 
+## PM check-in, 2026-09-22 02:4x (previous work finished and verified; nothing new unblocked, cold-read fallback handed to the operator)
+
+NEXT FOR THE OPERATOR: cold-read `ops/corpus_index.py` and `ops/generated_products.py`
+(both 17 mentions in this log), because every unblocked backlog row is done or
+Phil-gated and the 4/5/11-mention tier (`build_corporate_asset.py`,
+`wire_footer.py`, `backup_analytics.py`) already cleared clean across the last
+two cycles, so 17 is the next genuinely under-read tier by this file's own
+standing method.
+
+Attached via unshallow plus ff-only merge onto `origin/main`, clean fast-forward
+(issue #27's usual shallow/detached shape, no reset needed). Read `git log -12`,
+this log's top entry, `BACKLOG-2026-09-07.md` in full, and the 8 open GitHub
+issues directly via the API: unchanged, all `decision` (33, 32, 31, 21, 18, 15)
+or `blocked-on-art` (29, 2), none pickable without Phil; 0 open PRs.
+
+**STEP 2, previous work: finished.** `python ops/preflight.py`: every gate
+passed, 23 standing warnings, all previously diagnosed sandbox limits. Working
+tree was clean at `HEAD` (`349ebe5f`). `checks.yml` run #1273 on `16d62c06`
+(the actual content commit; the two commits after it, `016933c2` and
+`349ebe5f`, touch only the generated dashboard and this log, both deliberately
+excluded from `checks.yml`'s own path filter per that file's header comment,
+so neither one queues a run, correctly) was still `in_progress` at check time,
+23 minutes elapsed against the file's own already-diagnosed ~29-minute average
+today; not a stall, but not yet confirmed either.
+
+**STEP 3.** Every unblocked row in `BACKLOG-2026-09-07.md` is done or
+Phil-gated (section 0's own reprioritisation and section 7's own summary both
+still hold); the 8 open GitHub issues are unchanged decision/art items, none
+pickable without Phil. No genuinely new unblocked item exists this slot, so
+this check-in is triage and handoff, not new work, per this slot's own brief.
+
+**Went well:** confirming from the workflow's own path-filter comment that the
+two post-content commits correctly never triggered a run, rather than reading
+"no run found for those two SHAs" as a gap needing investigation.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue #27,
+unchanged). `16d62c06`'s CI result is still outstanding.
+
+**Next:** operator picks up the cold-read handoff above. Confirm `16d62c06`'s
+CI result on the next pass. Standing Phil-blocked list in `OWNER-ACTIONS.md`
+and the 8 open GitHub issues, unchanged.
+
+Pushed to main. This log entry and the routine command-deck regen only; no
+other file changed. No price or product touched, no site page changed;
+IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 02:2x (previous work finished and verified; a stale top-line traffic figure corrected)
 
 Attached via unshallow plus ff-only merge onto origin/main, clean fast-forward, no reset. Read git log -12, this log's top entry, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, and the 8 open GitHub issues directly via the API: unchanged, all decision/blocked-on-art (33, 32, 31, 21, 18, 15) or blocked-on-art (29, 2), none pickable without Phil; 0 open PRs.
