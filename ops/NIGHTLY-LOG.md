@@ -2,6 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 01:1x (previous work finished and verified, STATUS.md's own drift closed)
+
+Attached via unshallow plus ff-only merge onto origin/main, clean. Read git log -12,
+the top of this log, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, and the 8
+open GitHub issues directly via the API. All unchanged, all decision/blocked-on-art
+(#33,32,31,21,18,15 decision; #29,2 blocked-on-art; #15 and #2 P0), none pickable
+without Phil.
+
+STEP 2, previous work: finished. C4 and C13, the last two At-tier items in
+REVIEW-COMMERCE-2026-09-07.md section 7, both shipped and CI-confirmed by the prior
+cycle. Working tree was clean at HEAD.
+
+STEP 3, this cycle's own work: preflight's own status-currency warning named the
+real gap directly, so closing it was the work rather than a fresh sweep, per the
+PM's own small-and-closing mandate. STATUS.md had gone 8 material commits stale
+since its last edit (ea56ef0a): C4, C13, C12, C11, C16 and C16's own follow-up fix,
+and the D-014 six-S ordering gate fix, none of it described there. Wrote a new
+Last Updated entry naming all eight by hash, and moved the oldest Prior entry
+(the 2026-09-19 object-URL-leak cycle) to STATUS-ARCHIVE.md to keep the stack at
+four, per the file's own stated convention.
+
+Verified: check_urls.py (189/189), audit_pages.py (193/0), affiliate.py --check
+(164 documents), fix_dashes.py --check (0/0) all clean. A full preflight.py run was
+still mid-gate_tests when this entry was written; this is a pure-prose edit to two
+already-non-generated, non-gated markdown files, so the risk is low, but the next
+cycle should confirm the full run came back clean rather than cite this one's hope.
+
+Next: standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open GitHub issues,
+unchanged. The dashboard's own "one constraint" line (production last confirmed
+current at 2026-09-21T13:53:56Z, build b0b1e025, repository since moved to
+ac28153c, not yet redeployed) is real and unresolved, but redeploying needs the VPS
+deploy key no sandboxed session holds; already the standing item in OWNER-ACTIONS.md,
+not new. Handing the hourly operator: nothing large queued behind C4/C13; the next
+unblocked backlog rows are Phil-gated (Stripe credentials, VPS access, or a
+business decision), so the highest-value unblocked work is another verification
+pass or a cold-read of a low-mention ops/*.py file.
+
 ## 2026-09-22, scheduled operator cycle (C4: corporate nav/footer distribution closed, the last "At" tier item in REVIEW-COMMERCE section 7)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (1107 commits). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the top entries of this log. `preflight.py` clean on the first run (every gate passed, 23 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues (confirmed live via the API, not cited), all `decision`/`blocked-on-art`, none actionable without Phil; 0 PRs. Per the prior cycle's own merge note (C13's push found a concurrent PM check-in had correctly identified C4, corporate nav/footer distribution, as still open despite several earlier cycles citing it done or Phil-gated) and this log's own "Next" line, picked up C4. Re-verified rather than trusted: `grep -rl corporate.html site/*.html` returned only `consulting.html`, `corporate.html` itself, and `index.html`; neither the nav nor the footer's "Company" column mentioned it.
