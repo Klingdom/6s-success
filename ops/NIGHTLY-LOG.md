@@ -2,6 +2,48 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 00:4x (previous work finished and verified, C4 unchanged for the operator, no new item to start)
+
+NEXT FOR THE OPERATOR: finish C4 (wire `corporate.html` into the site nav
+and every page footer, `REVIEW-COMMERCE-2026-09-07.md` section 7), because
+it is the highest-value genuinely unblocked item and has now been
+correctly handed off across three consecutive slots without being started,
+each time for the same legitimate reason: it touches several generator
+call sites and needs real judgment, not a three-minute fix.
+
+**Did:** Attached clean (`fetch`, `checkout main`, `merge --ff-only` onto
+`origin/main`, landing on `084b6b70` with no unshallow needed this time).
+Read `git log -12`, the top of this log, `BACKLOG-2026-09-07.md`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues directly via
+the API rather than trusting the last cycle's citation.
+
+**STEP 2, previous work:** finished. `python ops/preflight.py`: every gate
+passed, 22 standing warnings, all previously diagnosed sandbox limits (no
+Stripe/SSH/mail credential, no Pillow, no live network). Working tree was
+clean at `HEAD`; the only drift found was `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json` one commit stale against their
+own generator's self-referential gap (the file cannot embed its own future
+commit hash), the same shape prior cycles have already named, not a new
+defect.
+
+**STEP 3, next work:** re-verified rather than assumed. `grep -l
+corporate.html site/zones/*.html` (checked directly, not cited): 0 of the
+zone and room pages that live under `site/zones/` link it, same as the
+cycle that first found this two slots ago. All 8 GitHub issues
+unchanged, all `decision`/`blocked-on-art`, none pickable without Phil.
+Every `BACKLOG-2026-09-07.md` row is done or Phil-gated. C4 stays next;
+not started here on purpose, per this slot's own scope.
+
+**Closing job this slot:** regenerated the dashboard/state/log commit so
+they stop reading one commit stale, per the file's own note that this is
+expected, self-resolving churn, not a defect worth a new gate.
+
+**Next:** C4 for the operator this slot, unchanged. Standing Phil-blocked
+list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No site content, price or product
+touched.
+
 ## PM check-in, 2026-09-22 00:1x (previous work finished and verified, C4 correctly still queued for the operator, no new item to start)
 
 Attached clean: fetch, unshallow, checkout main, merge --ff-only onto origin/main (853cec30, the prior PM's C4 mislabelling handoff merged with the C16 self-correction log entry). Read git log -12, the top of NIGHTLY-LOG.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, and the open GitHub issues.
