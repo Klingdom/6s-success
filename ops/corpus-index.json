@@ -115,10 +115,10 @@
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/web/landing-page-intro.md",
    "chapter": "ch46",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 208,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/web/meta-description-options.md",
@@ -331,18 +331,18 @@
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch46",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 146,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch46",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 96,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -363,10 +363,10 @@
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch46",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 234,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/newsletter/newsletter-subject-lines.md",
@@ -379,10 +379,10 @@
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch46",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 99,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-46/content-package/newsletter/newsletter-version.md",
@@ -547,10 +547,10 @@
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/web/landing-page-intro.md",
    "chapter": "ch39",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 201,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/web/meta-description-options.md",
@@ -763,18 +763,18 @@
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch39",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 189,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch39",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 165,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -795,10 +795,10 @@
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch39",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 346,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/newsletter/newsletter-subject-lines.md",
@@ -811,10 +811,10 @@
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch39",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 136,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-39/content-package/newsletter/newsletter-version.md",
@@ -987,10 +987,10 @@
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/web/landing-page-intro.md",
    "chapter": "ch18",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1434,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/web/meta-description-options.md",
@@ -1203,18 +1203,18 @@
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch18",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 952,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch18",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 784,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -1235,10 +1235,10 @@
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch18",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1620,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/newsletter/newsletter-subject-lines.md",
@@ -1251,10 +1251,10 @@
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch18",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 165,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-18/content-package/newsletter/newsletter-version.md",
@@ -1427,10 +1427,10 @@
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/web/landing-page-intro.md",
    "chapter": "ch23",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1136,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/web/meta-description-options.md",
@@ -1643,18 +1643,18 @@
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch23",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1008,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch23",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 942,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -1675,10 +1675,10 @@
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch23",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2201,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/newsletter/newsletter-subject-lines.md",
@@ -1691,10 +1691,10 @@
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch23",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 171,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-23/content-package/newsletter/newsletter-version.md",
@@ -1859,10 +1859,10 @@
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/web/landing-page-intro.md",
    "chapter": "ch44",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 257,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/web/meta-description-options.md",
@@ -2075,18 +2075,18 @@
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch44",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 157,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch44",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 112,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -2107,10 +2107,10 @@
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch44",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 265,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/newsletter/newsletter-subject-lines.md",
@@ -2123,10 +2123,10 @@
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch44",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 125,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-44/content-package/newsletter/newsletter-version.md",
@@ -2299,10 +2299,10 @@
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/web/landing-page-intro.md",
    "chapter": "ch24",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1062,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/web/meta-description-options.md",
@@ -2515,18 +2515,18 @@
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch24",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 890,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch24",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 918,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -2547,10 +2547,10 @@
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch24",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2250,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/newsletter/newsletter-subject-lines.md",
@@ -2563,10 +2563,10 @@
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch24",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 170,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-24/content-package/newsletter/newsletter-version.md",
@@ -2739,10 +2739,10 @@
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/web/landing-page-intro.md",
    "chapter": "ch10",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 575,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/web/meta-description-options.md",
@@ -2955,18 +2955,18 @@
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch10",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 625,
-   "units": 0,
-   "ready": false
+   "units": 12,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch10",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 457,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -2987,10 +2987,10 @@
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch10",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 591,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/newsletter/newsletter-subject-lines.md",
@@ -3003,10 +3003,10 @@
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch10",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 166,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-10/content-package/newsletter/newsletter-version.md",
@@ -3179,10 +3179,10 @@
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/web/landing-page-intro.md",
    "chapter": "ch20",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1231,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/web/meta-description-options.md",
@@ -3395,18 +3395,18 @@
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch20",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 924,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch20",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 897,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -3427,10 +3427,10 @@
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch20",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1820,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/newsletter/newsletter-subject-lines.md",
@@ -3443,10 +3443,10 @@
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch20",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 162,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-20/content-package/newsletter/newsletter-version.md",
@@ -3619,10 +3619,10 @@
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/web/landing-page-intro.md",
    "chapter": "ch15",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1376,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/web/meta-description-options.md",
@@ -3835,18 +3835,18 @@
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch15",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 878,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch15",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 708,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -3867,10 +3867,10 @@
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch15",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1604,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/newsletter/newsletter-subject-lines.md",
@@ -3883,10 +3883,10 @@
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch15",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 158,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-15/content-package/newsletter/newsletter-version.md",
@@ -4059,10 +4059,10 @@
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/web/landing-page-intro.md",
    "chapter": "ch11",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 639,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/web/meta-description-options.md",
@@ -4275,18 +4275,18 @@
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch11",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 690,
-   "units": 0,
-   "ready": false
+   "units": 12,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch11",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 493,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -4307,10 +4307,10 @@
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch11",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 686,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/newsletter/newsletter-subject-lines.md",
@@ -4323,10 +4323,10 @@
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch11",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 158,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-11/content-package/newsletter/newsletter-version.md",
@@ -4499,10 +4499,10 @@
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/web/landing-page-intro.md",
    "chapter": "ch37",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 194,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/web/meta-description-options.md",
@@ -4715,18 +4715,18 @@
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch37",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 200,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch37",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 179,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -4747,10 +4747,10 @@
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch37",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 339,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/newsletter/newsletter-subject-lines.md",
@@ -4763,10 +4763,10 @@
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch37",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 140,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-37/content-package/newsletter/newsletter-version.md",
@@ -4939,10 +4939,10 @@
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/web/landing-page-intro.md",
    "chapter": "ch14",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1099,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/web/meta-description-options.md",
@@ -5155,18 +5155,18 @@
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch14",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 865,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch14",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 645,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -5187,10 +5187,10 @@
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch14",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1172,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/newsletter/newsletter-subject-lines.md",
@@ -5203,10 +5203,10 @@
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch14",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 152,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-14/content-package/newsletter/newsletter-version.md",
@@ -5379,10 +5379,10 @@
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/web/landing-page-intro.md",
    "chapter": "ch26",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1124,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/web/meta-description-options.md",
@@ -5595,18 +5595,18 @@
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch26",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 946,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch26",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 877,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -5627,10 +5627,10 @@
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch26",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2365,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/newsletter/newsletter-subject-lines.md",
@@ -5643,10 +5643,10 @@
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch26",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 156,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-26/content-package/newsletter/newsletter-version.md",
@@ -5819,10 +5819,10 @@
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/web/landing-page-intro.md",
    "chapter": "ch27",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 983,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/web/meta-description-options.md",
@@ -6035,18 +6035,18 @@
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch27",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1000,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch27",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 969,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -6067,10 +6067,10 @@
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch27",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2178,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/newsletter/newsletter-subject-lines.md",
@@ -6083,10 +6083,10 @@
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch27",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 178,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-27/content-package/newsletter/newsletter-version.md",
@@ -6251,10 +6251,10 @@
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/web/landing-page-intro.md",
    "chapter": "ch49",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 203,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/web/meta-description-options.md",
@@ -6467,18 +6467,18 @@
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch49",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 142,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch49",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 123,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -6499,10 +6499,10 @@
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch49",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 214,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/newsletter/newsletter-subject-lines.md",
@@ -6515,10 +6515,10 @@
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch49",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 118,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-49/content-package/newsletter/newsletter-version.md",
@@ -6683,10 +6683,10 @@
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/web/landing-page-intro.md",
    "chapter": "ch40",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 199,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/web/meta-description-options.md",
@@ -6899,18 +6899,18 @@
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch40",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 184,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch40",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 179,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -6931,10 +6931,10 @@
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch40",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 352,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/newsletter/newsletter-subject-lines.md",
@@ -6947,10 +6947,10 @@
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch40",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 143,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-40/content-package/newsletter/newsletter-version.md",
@@ -7115,10 +7115,10 @@
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/web/landing-page-intro.md",
    "chapter": "ch50",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 172,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/web/meta-description-options.md",
@@ -7331,18 +7331,18 @@
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch50",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 192,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch50",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 123,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -7363,10 +7363,10 @@
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch50",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 241,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/newsletter/newsletter-subject-lines.md",
@@ -7379,10 +7379,10 @@
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch50",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 129,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-50/content-package/newsletter/newsletter-version.md",
@@ -7547,10 +7547,10 @@
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/web/landing-page-intro.md",
    "chapter": "ch41",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 206,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/web/meta-description-options.md",
@@ -7763,18 +7763,18 @@
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch41",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 172,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch41",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 177,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -7795,10 +7795,10 @@
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch41",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 336,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/newsletter/newsletter-subject-lines.md",
@@ -7811,10 +7811,10 @@
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch41",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 142,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-41/content-package/newsletter/newsletter-version.md",
@@ -8075,10 +8075,10 @@
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/web/landing-page-intro.md",
    "chapter": "ch36",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 199,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/web/meta-description-options.md",
@@ -8291,18 +8291,18 @@
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch36",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 198,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch36",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 174,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -8323,10 +8323,10 @@
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch36",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 325,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/newsletter/newsletter-subject-lines.md",
@@ -8339,10 +8339,10 @@
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch36",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 141,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-36/content-package/newsletter/newsletter-version.md",
@@ -8515,10 +8515,10 @@
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/web/landing-page-intro.md",
    "chapter": "ch22",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1290,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/web/meta-description-options.md",
@@ -8731,18 +8731,18 @@
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch22",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1006,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch22",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 891,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -8763,10 +8763,10 @@
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch22",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2044,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/newsletter/newsletter-subject-lines.md",
@@ -8779,10 +8779,10 @@
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch22",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 172,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-22/content-package/newsletter/newsletter-version.md",
@@ -8947,10 +8947,10 @@
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/web/landing-page-intro.md",
    "chapter": "ch28",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1176,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/web/meta-description-options.md",
@@ -9163,18 +9163,18 @@
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch28",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1053,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch28",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1036,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -9195,10 +9195,10 @@
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch28",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2146,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/newsletter/newsletter-subject-lines.md",
@@ -9211,10 +9211,10 @@
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch28",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 171,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-28/content-package/newsletter/newsletter-version.md",
@@ -9371,10 +9371,10 @@
   {
    "path": "content/book/6s_success_chapter 1/content-package/web/landing-page-intro.md",
    "chapter": "ch01",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 228,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/web/meta-description-options.md",
@@ -9587,18 +9587,18 @@
   {
    "path": "content/book/6s_success_chapter 1/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch01",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 447,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch01",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 286,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -9619,10 +9619,10 @@
   {
    "path": "content/book/6s_success_chapter 1/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch01",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 388,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/newsletter/newsletter-subject-lines.md",
@@ -9635,10 +9635,10 @@
   {
    "path": "content/book/6s_success_chapter 1/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch01",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 144,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6s_success_chapter 1/content-package/newsletter/newsletter-version.md",
@@ -9803,10 +9803,10 @@
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/web/landing-page-intro.md",
    "chapter": "ch43",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 238,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/web/meta-description-options.md",
@@ -10019,18 +10019,18 @@
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch43",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 171,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch43",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 111,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -10051,10 +10051,10 @@
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch43",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 247,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/newsletter/newsletter-subject-lines.md",
@@ -10067,10 +10067,10 @@
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch43",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 107,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-43/content-package/newsletter/newsletter-version.md",
@@ -10243,10 +10243,10 @@
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/web/landing-page-intro.md",
    "chapter": "ch31",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1243,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/web/meta-description-options.md",
@@ -10459,18 +10459,18 @@
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch31",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1465,
-   "units": 0,
-   "ready": false
+   "units": 17,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch31",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1227,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -10491,10 +10491,10 @@
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch31",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2276,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/newsletter/newsletter-subject-lines.md",
@@ -10507,10 +10507,10 @@
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch31",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 178,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-31/content-package/newsletter/newsletter-version.md",
@@ -10683,10 +10683,10 @@
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/web/landing-page-intro.md",
    "chapter": "ch33",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1370,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/web/meta-description-options.md",
@@ -10899,18 +10899,18 @@
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch33",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1609,
-   "units": 0,
-   "ready": false
+   "units": 20,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch33",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1282,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -10931,10 +10931,10 @@
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch33",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2530,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/newsletter/newsletter-subject-lines.md",
@@ -10947,10 +10947,10 @@
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch33",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 171,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-33/content-package/newsletter/newsletter-version.md",
@@ -11123,10 +11123,10 @@
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/web/landing-page-intro.md",
    "chapter": "ch13",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 895,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/web/meta-description-options.md",
@@ -11339,18 +11339,18 @@
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch13",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 918,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch13",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 620,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -11371,10 +11371,10 @@
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch13",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1168,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/newsletter/newsletter-subject-lines.md",
@@ -11387,10 +11387,10 @@
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch13",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 151,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-13/content-package/newsletter/newsletter-version.md",
@@ -11555,10 +11555,10 @@
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/web/landing-page-intro.md",
    "chapter": "ch48",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 215,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/web/meta-description-options.md",
@@ -11771,18 +11771,18 @@
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch48",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 133,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch48",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 105,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -11803,10 +11803,10 @@
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch48",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 245,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/newsletter/newsletter-subject-lines.md",
@@ -11819,10 +11819,10 @@
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch48",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 109,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-48/content-package/newsletter/newsletter-version.md",
@@ -11987,10 +11987,10 @@
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/web/landing-page-intro.md",
    "chapter": "ch07",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 221,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/web/meta-description-options.md",
@@ -12203,18 +12203,18 @@
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch07",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 431,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch07",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 307,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -12235,10 +12235,10 @@
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch07",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 345,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/newsletter/newsletter-subject-lines.md",
@@ -12251,10 +12251,10 @@
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch07",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 154,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-7/content-package/newsletter/newsletter-version.md",
@@ -12419,10 +12419,10 @@
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/web/landing-page-intro.md",
    "chapter": "ch05",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 227,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/web/meta-description-options.md",
@@ -12635,18 +12635,18 @@
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch05",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 392,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch05",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 284,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -12667,10 +12667,10 @@
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch05",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 333,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/newsletter/newsletter-subject-lines.md",
@@ -12683,10 +12683,10 @@
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch05",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 140,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-5/content-package/newsletter/newsletter-version.md",
@@ -12859,10 +12859,10 @@
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/web/landing-page-intro.md",
    "chapter": "ch21",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1427,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/web/meta-description-options.md",
@@ -13075,18 +13075,18 @@
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch21",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1068,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch21",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 948,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -13107,10 +13107,10 @@
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch21",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2249,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/newsletter/newsletter-subject-lines.md",
@@ -13123,10 +13123,10 @@
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch21",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 169,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-21/content-package/newsletter/newsletter-version.md",
@@ -13299,10 +13299,10 @@
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/web/landing-page-intro.md",
    "chapter": "ch35",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 200,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/web/meta-description-options.md",
@@ -13515,18 +13515,18 @@
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch35",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 229,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch35",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 184,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -13547,10 +13547,10 @@
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch35",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 317,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/newsletter/newsletter-subject-lines.md",
@@ -13563,10 +13563,10 @@
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch35",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 135,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-35/content-package/newsletter/newsletter-version.md",
@@ -13731,10 +13731,10 @@
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/web/landing-page-intro.md",
    "chapter": "ch03",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 203,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/web/meta-description-options.md",
@@ -13947,18 +13947,18 @@
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch03",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 487,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch03",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 282,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -13979,10 +13979,10 @@
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch03",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 375,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/newsletter/newsletter-subject-lines.md",
@@ -13995,10 +13995,10 @@
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch03",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 146,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-3/content-package/newsletter/newsletter-version.md",
@@ -14171,10 +14171,10 @@
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/web/landing-page-intro.md",
    "chapter": "ch08",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 371,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/web/meta-description-options.md",
@@ -14387,18 +14387,18 @@
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch08",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 497,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch08",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 361,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -14419,10 +14419,10 @@
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch08",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 483,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/newsletter/newsletter-subject-lines.md",
@@ -14435,10 +14435,10 @@
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch08",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 157,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-8/content-package/newsletter/newsletter-version.md",
@@ -14611,10 +14611,10 @@
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/web/landing-page-intro.md",
    "chapter": "ch38",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 195,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/web/meta-description-options.md",
@@ -14827,18 +14827,18 @@
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch38",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 204,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch38",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 179,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -14859,10 +14859,10 @@
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch38",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 356,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/newsletter/newsletter-subject-lines.md",
@@ -14875,10 +14875,10 @@
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch38",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 141,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-38/content-package/newsletter/newsletter-version.md",
@@ -15051,10 +15051,10 @@
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/web/landing-page-intro.md",
    "chapter": "ch16",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1467,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/web/meta-description-options.md",
@@ -15267,18 +15267,18 @@
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch16",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 916,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch16",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 780,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -15299,10 +15299,10 @@
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch16",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1693,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/newsletter/newsletter-subject-lines.md",
@@ -15315,10 +15315,10 @@
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch16",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 163,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-16/content-package/newsletter/newsletter-version.md",
@@ -15491,10 +15491,10 @@
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/web/landing-page-intro.md",
    "chapter": "ch19",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1169,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/web/meta-description-options.md",
@@ -15707,18 +15707,18 @@
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch19",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 920,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch19",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 821,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -15739,10 +15739,10 @@
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch19",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1575,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/newsletter/newsletter-subject-lines.md",
@@ -15755,10 +15755,10 @@
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch19",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 156,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-19/content-package/newsletter/newsletter-version.md",
@@ -15931,10 +15931,10 @@
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/web/landing-page-intro.md",
    "chapter": "ch25",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1082,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/web/meta-description-options.md",
@@ -16147,18 +16147,18 @@
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch25",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 938,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch25",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 929,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -16179,10 +16179,10 @@
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch25",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2227,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/newsletter/newsletter-subject-lines.md",
@@ -16195,10 +16195,10 @@
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch25",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 167,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-25/content-package/newsletter/newsletter-version.md",
@@ -16371,10 +16371,10 @@
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/web/landing-page-intro.md",
    "chapter": "ch32",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1301,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/web/meta-description-options.md",
@@ -16587,18 +16587,18 @@
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch32",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1576,
-   "units": 0,
-   "ready": false
+   "units": 20,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch32",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1117,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -16619,10 +16619,10 @@
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch32",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2373,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/newsletter/newsletter-subject-lines.md",
@@ -16635,10 +16635,10 @@
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch32",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 156,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-32/content-package/newsletter/newsletter-version.md",
@@ -16803,10 +16803,10 @@
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/web/landing-page-intro.md",
    "chapter": "ch29",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1169,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/web/meta-description-options.md",
@@ -17019,18 +17019,18 @@
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch29",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1098,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch29",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1180,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -17051,10 +17051,10 @@
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch29",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1983,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/newsletter/newsletter-subject-lines.md",
@@ -17067,10 +17067,10 @@
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch29",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 183,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-29/content-package/newsletter/newsletter-version.md",
@@ -17235,10 +17235,10 @@
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/web/landing-page-intro.md",
    "chapter": "ch04",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 196,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/web/meta-description-options.md",
@@ -17451,18 +17451,18 @@
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch04",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 404,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch04",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 251,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -17483,10 +17483,10 @@
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch04",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 395,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/newsletter/newsletter-subject-lines.md",
@@ -17499,10 +17499,10 @@
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch04",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 148,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-4/content-package/newsletter/newsletter-version.md",
@@ -17667,10 +17667,10 @@
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/web/landing-page-intro.md",
    "chapter": "ch30",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1143,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/web/meta-description-options.md",
@@ -17883,18 +17883,18 @@
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch30",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1298,
-   "units": 0,
-   "ready": false
+   "units": 16,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch30",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1324,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -17915,10 +17915,10 @@
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch30",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2075,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/newsletter/newsletter-subject-lines.md",
@@ -17931,10 +17931,10 @@
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch30",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 174,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-30/content-package/newsletter/newsletter-version.md",
@@ -18107,10 +18107,10 @@
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/web/landing-page-intro.md",
    "chapter": "ch42",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 221,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/web/meta-description-options.md",
@@ -18323,18 +18323,18 @@
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch42",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 170,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch42",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 173,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -18355,10 +18355,10 @@
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch42",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 348,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/newsletter/newsletter-subject-lines.md",
@@ -18371,10 +18371,10 @@
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch42",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 142,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-42/content-package/newsletter/newsletter-version.md",
@@ -18539,10 +18539,10 @@
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/web/landing-page-intro.md",
    "chapter": "ch06",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 229,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/web/meta-description-options.md",
@@ -18755,18 +18755,18 @@
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch06",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 402,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch06",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 268,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -18787,10 +18787,10 @@
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch06",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 344,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/newsletter/newsletter-subject-lines.md",
@@ -18803,10 +18803,10 @@
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch06",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 144,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-6/content-package/newsletter/newsletter-version.md",
@@ -18971,10 +18971,10 @@
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/web/landing-page-intro.md",
    "chapter": "ch45",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 207,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/web/meta-description-options.md",
@@ -19187,18 +19187,18 @@
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch45",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 151,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch45",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 124,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -19219,10 +19219,10 @@
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch45",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 244,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/newsletter/newsletter-subject-lines.md",
@@ -19235,10 +19235,10 @@
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch45",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 121,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-45/content-package/newsletter/newsletter-version.md",
@@ -19411,10 +19411,10 @@
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/web/landing-page-intro.md",
    "chapter": "ch17",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1180,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/web/meta-description-options.md",
@@ -19627,18 +19627,18 @@
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch17",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 900,
-   "units": 0,
-   "ready": false
+   "units": 14,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch17",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 909,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -19659,10 +19659,10 @@
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch17",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1728,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/newsletter/newsletter-subject-lines.md",
@@ -19675,10 +19675,10 @@
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch17",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 164,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-17/content-package/newsletter/newsletter-version.md",
@@ -19843,10 +19843,10 @@
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/web/landing-page-intro.md",
    "chapter": "ch02",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 199,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/web/meta-description-options.md",
@@ -20059,18 +20059,18 @@
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch02",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 438,
-   "units": 0,
-   "ready": false
+   "units": 10,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch02",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 274,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -20091,10 +20091,10 @@
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch02",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 390,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/newsletter/newsletter-subject-lines.md",
@@ -20107,10 +20107,10 @@
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch02",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 117,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-2/content-package/newsletter/newsletter-version.md",
@@ -20275,10 +20275,10 @@
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/web/landing-page-intro.md",
    "chapter": "ch09",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 443,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/web/meta-description-options.md",
@@ -20491,18 +20491,18 @@
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch09",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 613,
-   "units": 0,
-   "ready": false
+   "units": 12,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch09",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 418,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -20523,10 +20523,10 @@
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch09",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 513,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/newsletter/newsletter-subject-lines.md",
@@ -20539,10 +20539,10 @@
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch09",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 163,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-9/content-package/newsletter/newsletter-version.md",
@@ -20715,10 +20715,10 @@
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/web/landing-page-intro.md",
    "chapter": "ch34",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 1558,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/web/meta-description-options.md",
@@ -20931,18 +20931,18 @@
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch34",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 1772,
-   "units": 0,
-   "ready": false
+   "units": 20,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch34",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 1361,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -20963,10 +20963,10 @@
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch34",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 2895,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/newsletter/newsletter-subject-lines.md",
@@ -20979,10 +20979,10 @@
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch34",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 146,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-34/content-package/newsletter/newsletter-version.md",
@@ -21155,10 +21155,10 @@
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/web/landing-page-intro.md",
    "chapter": "ch12",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 835,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/web/meta-description-options.md",
@@ -21371,18 +21371,18 @@
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch12",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 668,
-   "units": 0,
-   "ready": false
+   "units": 12,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch12",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 518,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -21403,10 +21403,10 @@
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch12",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 809,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/newsletter/newsletter-subject-lines.md",
@@ -21419,10 +21419,10 @@
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch12",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 168,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-12/content-package/newsletter/newsletter-version.md",
@@ -21595,10 +21595,10 @@
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/web/landing-page-intro.md",
    "chapter": "ch47",
-   "kind": "other",
+   "kind": "landing-page-intro",
    "words": 211,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/web/meta-description-options.md",
@@ -21811,18 +21811,18 @@
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/pdf-ebook/reader-discussion-questions.md",
    "chapter": "ch47",
-   "kind": "other",
+   "kind": "discussion-questions",
    "words": 148,
-   "units": 0,
-   "ready": false
+   "units": 8,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/pdf-ebook/back-cover-copy.md",
    "chapter": "ch47",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 118,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
@@ -21843,10 +21843,10 @@
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/pdf-ebook/ebook-sales-copy.md",
    "chapter": "ch47",
-   "kind": "other",
+   "kind": "sales-copy",
    "words": 241,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/newsletter/newsletter-subject-lines.md",
@@ -21859,10 +21859,10 @@
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/newsletter/newsletter-short-teaser.md",
    "chapter": "ch47",
-   "kind": "other",
+   "kind": "newsletter-teaser",
    "words": 119,
-   "units": 0,
-   "ready": false
+   "units": 1,
+   "ready": true
   },
   {
    "path": "content/book/6S-Success-Chapter-47/content-package/newsletter/newsletter-version.md",
@@ -21963,11 +21963,12 @@
  ],
  "summary": {
   "total": 2745,
-  "ready_files": 800,
-  "postable_units": 4118,
+  "ready_files": 1050,
+  "postable_units": 4939,
   "by_kind": {
-   "other": 1445,
+   "other": 1195,
    "video-script": 200,
+   "landing-page-intro": 50,
    "x-post": 100,
    "facebook-post": 150,
    "comment-prompt": 50,
@@ -21975,6 +21976,9 @@
    "carousel-outline": 100,
    "linkedin-post": 50,
    "newsletter": 100,
+   "discussion-questions": 50,
+   "sales-copy": 100,
+   "newsletter-teaser": 50,
    "design-spec": 100,
    "quote-card": 50,
    "image-prompt": 50,

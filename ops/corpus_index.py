@@ -84,6 +84,11 @@ KINDS = [
     (r"teleprompter-script|podcast-script|youtube-script|video-scripts",
                               "video-script",      True),
     (r"slides",               "design-spec",       False),
+    (r"landing-page-intro",         "landing-page-intro",   True),
+    (r"back-cover-copy",            "sales-copy",           True),
+    (r"ebook-sales-copy",           "sales-copy",           True),
+    (r"reader-discussion-questions", "discussion-questions", True),
+    (r"newsletter-short-teaser",    "newsletter-teaser",    True),
 ]
 
 
@@ -115,7 +120,9 @@ def units_in(text: str, kind: str = "") -> int:
     list plus one quote per other heading; a summary file is one item per
     heading, source-files section excluded, or the whole headingless file;
     takeaways is a numbered list with a bold lead in most chapters, a plain
-    bullet list in the rest.
+    bullet list in the rest. discussion-questions is a plain numbered list,
+    no bold lead, one question per line: reused the takeaways shape without
+    reusing its rule, since a question is never bold.
     """
     if kind == "quote":
         n = len(re.findall(r'^\d+\.\s+"', text, re.M))
@@ -132,6 +139,10 @@ def units_in(text: str, kind: str = "") -> int:
         n = len(re.findall(r"^\d+\.\s+\*\*", text, re.M))
         if not n:
             n = len(re.findall(r"^-\s+\S", text, re.M))
+        if n:
+            return n
+    elif kind == "discussion-questions":
+        n = len(re.findall(r"^\d+\.\s+\S", text, re.M))
         if n:
             return n
     n = len(re.findall(r"^##\s+\d+\.", text, re.M))

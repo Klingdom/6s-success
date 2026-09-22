@@ -108,6 +108,26 @@ Pushed to main. `ops/corpus_posts.py`, `ops/fill_front_matter.py`,
 files), command deck. No price or product touched, no site page changed;
 this content has never been posted anywhere. IndexNow not applicable.
 
+## 2026-09-22, scheduled operator cycle (C8: the virtual consult's text link turned into a real, origin-tracked button on all 163 organic-entry pages)
+
+**Did:** Unshallowed, fast-forwarded onto `origin/main` (1133-commit fast-forward, issue #27's usual shape). Read `BACKLOG-2026-09-07.md` in full (sections 1b-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real top four log entries (found by date, not file position; this file's tail is not chronological, cycles from 2026-09-04 sit after 2026-09-11 ones from an old merge). `preflight.py` clean on arrival (every gate passed, 23 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/P0-but-Phil-gated (confirmed live via a sub-agent), 0 PRs, none pickable. Every row in `BACKLOG-2026-09-07.md` sections 2-4 (A1-A9, B1-B7, C1-C7) again done or Phil-gated; section 5 correctly HOLD.
+
+**Found the one real exception.** `REVIEW-COMMERCE-2026-09-07.md` section 7's own suggested order excludes C8 from the traffic-constraint hold: "correct on its merits" despite being tier Below. Verified live before building: `site/zones/entryway-the-landing-spot.html` still carried the $250 virtual consult as a plain `<a href="../consulting.html">` inside a `font-size:14.5px;opacity:.85` sentence, unchanged from the review's 2026-09-07 finding, seven weeks later. Contribution per order is $242.45 on the consult against $18.15 on the pack, 13.4:1, sitting behind a link styled to be ignored.
+
+**Built.** `ops/build_zone_pages.py`'s `offer()`/`room_offer()` (114 zones, 20 rooms) and `ops/build_articles.py`'s `offer()` (2 generic pillar articles) now render a real `<a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL">` button, carrying `?from=<type>:<slug>`. New `ops/wire_consult_cta.py` (idempotent) covers the remaining 27 hand-authored articles under `site/articles/`, none of which any generator owns; correctly skips the index, the 2 B2B articles (a different offer) and the one article that already links straight to the Stripe payment link with `data-sku` set (stronger than this fix, not a gap). `site/assets/js/measure.js` gained a `service-cta` click handler, parallel to the existing `buy-click`/`quote-click` ones: parses `from=` into a page type and origin slug, reads `data-sku`, fires one event.
+
+**Coverage exactly matches the review's own "163 pages" figure**: 114 + 20 + 29 (31 articles minus the 2 correctly-excluded B2B ones), zones/articles indexes correctly excluded. New `gate_consult_cta_current` in `preflight.py` re-reads the real shipped pages and fails on a missing button, a downgrade back to a text link, or a stripped origin string; found and fixed a false-positive risk while building it, a concurrent session's own transient `_measure_probe_*.html` scratch files in `site/zones/` (the known, gitignored, `gate_no_stray_probe_files`-swept convention) tripped the gate on first run, so the glob now skips any `_`-prefixed filename. `ops/tests/test_gate_consult_cta_current.py` (5 cases, including the real committed site) fail-then-pass proved directly.
+
+**Went well:** the review's own "position" column already carved out the one item worth doing ahead of the traffic constraint; finding it meant reading the ranked table instead of just citing "everything below is Below, skip it."
+
+**Did not go well:** ran `git stash -u` mid-cycle to test generator idempotency and it stashed all 203 uncommitted changes, including hand-written code; caught immediately from the harness's own "file changed on disk" notice and recovered with `git stash pop`, no data lost, but the idempotency check should have been a second run-and-diff instead, never a stash, when other uncommitted work is in the tree. Same shallow/detached checkout shape recurred; issue #27 still open.
+
+**Verified:** `preflight.py` full run clean except the expected `gate_prerender_shop_current` "differs from HEAD" refusal on the still-uncommitted tree (resolves on commit, same shape prior cycles already documented); 24 warnings, all previously diagnosed. `check_urls.py` (189/189), `audit_pages.py` (193/0), `affiliate.py --check` (164 documents), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans across zones/rooms/articles). Idempotency proved directly (no stash): a second `build_zone_pages.py`/`build_articles.py`/`wire_consult_cta.py` run produced a byte-identical tree.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. `REVIEW-COMMERCE-2026-09-07.md` section 7's remaining open rows: C1/C2/R1-R4 (need Stripe credentials), C6/C7 (catalogue retirement, judgement call), C9/C10 (below the constraint, never picked up yet).
+
+Pushed to main. `ops/build_zone_pages.py`, `ops/build_articles.py`, `ops/wire_consult_cta.py` (new), `site/assets/js/measure.js`, `ops/preflight.py`, `ops/tests/test_gate_consult_cta_current.py` (new), 114 zone pages, 20 room pages, 29 articles, `REVIEW-COMMERCE-2026-09-07.md`, `BACKLOG-2026-09-07.md`, `ops/sitemap-content-hashes.json`, `site/sitemap.xml`, `site/build-id.txt`, command deck. No price or product touched, no new page; IndexNow not applicable (no new URL).
+
 ## 2026-09-22, scheduled operator cycle (paid book content leaking into the free social-post pool, found and fixed; two other silent corpus_posts extraction gaps closed too)
 
 **Did:** Unshallowed, fast-forwarded onto origin/main. preflight.py clean. Backlog done or Phil-gated (8 GitHub issues unchanged), so continued the standing cold-read fallback: corpus_index.py, generated_products.py.
@@ -125,6 +145,96 @@ this content has never been posted anywhere. IndexNow not applicable.
 **Next:** standing Phil-blocked list unchanged.
 
 Pushed to main. No price, product or site page touched; nothing here was ever live.
+
+## PM check-in, 2026-09-22 04:1x (previous work finished; the third repeated
+handoff picked up directly, a fabricated-testimonial near-miss caught before
+shipping, and a genuine same-pair collision with a concurrent operator cycle
+merged rather than forced)
+
+Attached via unshallow plus ff-only merge onto origin/main, clean. Read
+`git log -12`, this log's top entries, `BACKLOG-2026-09-07.md` sections 1b
+through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues
+directly via the API: unchanged, all `decision` or `blocked-on-art`, none
+pickable without Phil.
+
+**STEP 2, previous work: finished.** `preflight.py` full run, every gate
+passed, 23 warnings, tree clean, main pushed.
+
+**STEP 3.** Every unblocked backlog row done or Phil-gated, 8 issues
+unchanged. But the 02:4x/03:1x/03:4x handoff (cold-read
+`ops/corpus_index.py` and `ops/generated_products.py`) had been repeated
+three times with nobody picking it up, so this cycle did it directly rather
+than hand off a fourth time, per CLAUDE.md 0.2 ("do not report a problem
+twice that you could have fixed once").
+
+`generated_products.py` read clean: 149 products, 6 correctly excluded,
+every deliverable present. `corpus_index.py` was not: five real per-chapter
+content types (306 files) were finished prose by the module's own test but
+fell through its classifier into "other", uncounted, the same defect class
+its own dashboard gate's history already names three times (2026-09-01
+twice, 2026-09-12). Classified them.
+
+**Caught before shipping, not after.** `corpus_posts.py` had no extractor
+for any of the four new kinds, so they would have served via the wrong
+fallback shape. Checked what that fallback would actually produce before
+trusting the classification: 42 of 51 `back-cover-copy.md` files carry an
+unfilled `[PLACEHOLDER TESTIMONIAL ...]` section, explicitly marked "do not
+publish as real quotes," under at least six different heading spellings and
+two heading levels. Marking the kind ready with no extractor that understood
+this shape would have been a live fabricated-testimonial risk the moment
+anything served it, which CLAUDE.md section 8 forbids outright, not merely
+an empty pool like the three prior occurrences of this defect class. Wrote
+extractors for all four kinds; the sales-copy one cuts at any heading naming
+"testimonial" and then refuses the whole file if the word "placeholder"
+survives anywhere left, rather than trust the cut caught every shape (3 of
+51 files still fail that net and are correctly dropped). Verified directly:
+0 placeholder leaks anywhere in the pool.
+
+**Collided with the operator, on the exact same handed-off pair, at the
+same time.** `ops/ship.py` refused the push: a concurrent operator cycle
+(above) had already merged and pushed its own fix to `corpus_index.py`/
+`corpus_posts.py` (the video-script/manuscript substring bug and the
+split_posts dash-divider bug) while this cycle was still working. Merged
+rather than forced, per step 8; the two source fixes touched different
+lines of the same files and merged cleanly with no hand edits. The
+generated files did not: regenerated `ops/corpus-index.json` fresh from
+the merged classifier rather than trust either side's stale copy or hand
+splice the JSON. True combined count: 5,040 ready units (was 4,408 before
+either fix; my own change alone would have read 5,243, the operator's
+alone 4,205; neither number was ever real on its own). `gate_risks_evidence_
+current` failed on both sides' own stale citation in turn; `RISKS.md`'s
+`social_units` line now reads the one true merged value, 5040.
+
+**Went well:** treating a third repeated, unpicked handoff as this cycle's
+own work instead of writing a fourth one; checking what the classifier
+change would actually cause to be served before shipping it, not after;
+merging instead of forcing when the same collision showed up a second time
+this cycle, and regenerating the JSON rather than picking a side.
+
+**Did not go well:** same shallow/detached checkout shape recurred (issue
+#27, unchanged); two cycles working the identical named handoff at the same
+time, wasted effort neither could see coming, worth the hourly operator and
+the PM check-in not both defaulting to the same "nobody's picked this up"
+pair when a queue exists (BACKLOG-2026-09-07.md's own next-candidate list
+would have separated them).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. Production redeploy remains the single
+highest-leverage owner action. No new operator handoff from this cycle;
+the corpus_index.py/generated_products.py pair that was outstanding is now
+closed.
+
+Merged and pushed as `05995a43`. `RISKS.md` and `STATUS.md` also corrected
+where the operator's own 4,205 citation needed the same true-merged 5,040
+update. CI triggered on the merge commit (`checks.yml` run 1275); still
+`in_progress` when this entry was written, not confirmed green, said
+honestly rather than assumed. No price or product touched, no site page
+changed; IndexNow not applicable.
+
+Pushed to main. `ops/corpus_index.py`, `ops/corpus_posts.py`,
+`ops/tests/test_corpus_posts.py`, `RISKS.md`, `BACKLOG-2026-09-07.md`, this
+log entry, and the routine command-deck regen. No price or product touched,
+no site page changed; IndexNow not applicable.
 
 ## PM check-in, 2026-09-22 03:4x (previous work finished; two transient stray-probe gate failures self-healed, not a defect)
 

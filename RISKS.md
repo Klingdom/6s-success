@@ -816,7 +816,7 @@ owner: cro-growth
 evidence:
   - ops/state.json email_list=0
   - every form on the site is inert (forms_dead=192)
-  - ops/state.json social_units=4118 authored and unused
+  - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
@@ -845,8 +845,9 @@ evidence:
     when anything about arrivals changes.
 impact: >
   Nothing compounds. A visitor who arrives today cannot be reached tomorrow,
-  so every unit of attention is spent once and discarded. Roughly 4,118
-  authored social units have no destination to send anyone to.
+  so every unit of attention is spent once and discarded. Roughly
+  4,939 authored social units have no destination to send
+  anyone to.
 mitigation: >
   Connect one capture path and one destination before publishing the social
   corpus. Capture without a payment path is still worth more than neither,
@@ -888,28 +889,54 @@ posts` required a `---` divider between numbered sections that most of the
 corpus does not use) silently served zero from most of their files; net
 effect on the total shown here.
 
-**Evidence corrected a third time, same day, 2026-09-22 PM check-in.**
-`social_units` moved from 4,205 to 4,118 after verifying the `split_posts`
-fix above by actually running `ops/linkedin_drafts.py`, live, rather than
-trusting its own tests: the preview's three picks contained two copies of
-the same post, word for word ("The handoffs are the real lesson", ch03,
-116 words, twice). Traced to a stray, byte-identical duplicate of chapter
-3's entire content package, `content/book/6S-Chapter-3-Content-Package/`
-(56 files), sitting alongside the real `content/book/6S-Success-Chapter-3/`
-since the original `70eb830c` content mirror on 2026-08-16, double-counting
-every kind for that one chapter in every corpus statistic since, invisible
-until `split_posts` started actually returning content today. The same
+**Evidence corrected a third time, same day, after a genuine merge rather
+than a new defect.** A separate PM check-in cold-read the identical handoff
+at the same time and classified five more finished per-chapter content
+types (`landing-page-intro`, `sales-copy`, `discussion-questions`,
+`newsletter-teaser`) that had been falling into `other`, uncounted, plus
+wrote the extractors `corpus_posts.py` needed to serve them safely (one of
+them, `sales-copy`, carries unfilled testimonial placeholders in 42 of 51
+files and needed a dedicated strip-and-refuse extractor before it was safe
+to mark ready at all). Both fixes touched the same two files at the same
+time; merged rather than either side overwriting the other. `social_units`
+was read as 5,040 at that point, believed the true combined figure: the
+4,205 correction above and this one both partial views of the same
+undercount, neither ever real on its own. It was not yet the true figure;
+see below.
+
+**Evidence corrected a fourth time, same day, 2026-09-22 PM check-in,
+concurrently with the correction directly above.** `social_units` moved
+from 4,205 to 4,118 (this correction alone) after verifying the
+`split_posts` fix by actually running `ops/linkedin_drafts.py`, live,
+rather than trusting its own tests: the preview's three picks contained two
+copies of the same post, word for word ("The handoffs are the real
+lesson", ch03, 116 words, twice). Traced to a stray, byte-identical
+duplicate of chapter 3's entire content package,
+`content/book/6S-Chapter-3-Content-Package/` (56 files), sitting alongside
+the real `content/book/6S-Success-Chapter-3/` since the original
+`70eb830c` content mirror on 2026-08-16, double-counting every kind for
+that one chapter in every corpus statistic since, invisible until
+`split_posts` started actually returning content today. The same
 verification also found the divider itself leaking into post bodies as a
 literal trailing `---` (`_h2_sections` split on the heading but never
 stripped the visual divider the heading-based split now walks straight
-through), a second real defect in the fix RISKS.md's own prior paragraph
-already praised for "getting more honest." Both fixed at the source
+through), a second real defect in the fix this file's own second paragraph
+above already praised for "getting more honest." Both fixed at the source
 (`content/book/6S-Chapter-3-Content-Package/` deleted, `ops/corpus_posts.py`
 `_h2_sections` now strips a trailing `---` rule, `ops/fill_front_matter.py`'s
-dangling reference to the old path removed), `ops/corpus-index.json`
-regenerated, `ops/tests/test_corpus_posts.py` extended 25 to 26 cases,
-fail-then-pass proved directly. Net movement is entirely the duplicate's
-removal (87 units); the divider fix changes no count, only content quality.
+dangling reference to the old path removed). This correction and the
+five-new-kinds correction directly above were made concurrently, on
+diverging branches of the same file, by two different cycles that did not
+see each other's number; `ops/ship.py` refused the second push as a
+conflict rather than silently taking one side, so neither ever reached
+`ops/state.json`. Merged by hand rather than either side overwriting the
+other: `ops/corpus-index.json` regenerated fresh against the combined code
+(both the dedup and the five new extractors together), giving the one real
+figure, `social_units=4939`, which is what `ops/state.json`
+now carries. `ops/tests/test_corpus_posts.py`'s own case count merged the
+same way, 26 (this cycle) plus 9 (the other) on top of the shared base of
+25, to 35; fail-then-pass proved directly for the divider case
+specifically. Full `preflight.py` clean after on the merged tree.
 
 ---
 

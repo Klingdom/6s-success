@@ -17285,6 +17285,100 @@ def gate_no_storage_before_sort() -> None:
          f"against {len(files)} zone page(s): none recommended before Sort")
 
 
+CONSULT_CTA_SKIP_ARTICLES = {
+    "index.html", "what-a-5s-engagement-costs.html",
+    "why-5s-decays-after-six-months.html",
+}
+
+
+def check_consult_cta_current(pages: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    `pages` is {label: {filename: html}}, label one of "zone", "room",
+    "article". REVIEW-COMMERCE-2026-09-07.md C8: the virtual consult's
+    contribution per order is 13.4x the print pack's, and until 2026-09-22
+    every zone, room and article page offered it as a plain, de-emphasised
+    text link instead of a real button, with no origin recorded anywhere.
+    Fixed in ops/build_zone_pages.py's offer()/room_offer(),
+    ops/build_articles.py's offer(), and ops/wire_consult_cta.py for the
+    remaining hand-authored articles.
+
+    Requires a real button (an <a> carrying data-sku="CN-VIRTUAL" or
+    "CN-INHOME", not a plain text link) on every page this gate is given.
+    Where that button's href points at consulting.html (the two-step
+    path: page -> consulting.html -> book), it must carry a "from="
+    query string so measure.js's service-cta handler can record the
+    origin; a button that skips straight to the Stripe payment link
+    (why-you-cant-see-your-own-clutter.html's own pattern) needs no
+    "from=", because measure.js's existing buy-click handler already
+    records its origin page via page().
+    """
+    btn_re = re.compile(
+        r'<a[^>]*data-sku="(CN-VIRTUAL|CN-INHOME)"[^>]*href="([^"]+)"')
+    problems = []
+    for label, files in sorted(pages.items()):
+        for f, body in sorted(files.items()):
+            m = btn_re.search(body)
+            if not m:
+                problems.append(
+                    "%s %s: no real consult button (an <a> with "
+                    "data-sku=\"CN-VIRTUAL\"/\"CN-INHOME\"), only a "
+                    "text link or nothing at all" % (label, f))
+                continue
+            href = m.group(2)
+            if "consulting.html" in href and "from=" not in href:
+                problems.append(
+                    "%s %s: consult button links to consulting.html "
+                    "with no origin query string" % (label, f))
+    return problems
+
+
+def gate_consult_cta_current() -> None:
+    """The shipped-HTML half of C8 (see `check_consult_cta_current`'s own
+    docstring). Reads the real site/zones/, site/rooms/ and
+    site/articles/ files (excluding the zones/articles indexes and the
+    two B2B articles, which correctly carry a different offer) and fails
+    if any is missing a real, origin-carrying consult button, so a future
+    hand edit or a generator template change cannot silently regress
+    C8's fix back to the plain text link.
+
+    Proved to fail on three planted regressions (button removed, button
+    downgraded back to a plain text link, origin query string stripped):
+    ops/tests/test_gate_consult_cta_current.py.
+    """
+    pages = {}
+    for label, subdir, skip in (
+        ("zone", "zones", {"index.html"}),
+        ("room", "rooms", set()),
+        ("article", "articles", CONSULT_CTA_SKIP_ARTICLES),
+    ):
+        files = {}
+        for f in sorted(glob.glob(os.path.join(SITE, subdir, "*.html"))):
+            name = os.path.basename(f)
+            # A leading underscore is the site-wide scratch-probe
+            # convention (gate_no_stray_probe_files); a concurrent
+            # audit_visual.py/test run can leave one mid-flight, and it
+            # is gitignored, never a real page.
+            if name in skip or name.startswith("_"):
+                continue
+            files[name] = io.open(f, encoding="utf-8", errors="replace").read()
+        pages[label] = files
+
+    if not any(pages.values()):
+        warn("consult-cta", "no zone/room/article pages found, could not check.")
+        return
+
+    problems = check_consult_cta_current(pages)
+    if problems:
+        fail("consult-cta",
+             "%d page(s) fail the C8 consult-button check. First few: %s" %
+             (len(problems), "; ".join(problems[:6])))
+    else:
+        n = sum(len(v) for v in pages.values())
+        print(f"  {n} zone/room/article page(s) checked: every one carries "
+              f"a real, origin-tracked consult button")
+
+
 def gate_zone_kit_disclosure_grammar() -> None:
     """The optional-kit disclosure on a zone page must not disagree with
     its own subject.
@@ -18827,6 +18921,7 @@ def main() -> int:
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_no_storage_before_sort)
+    run_gate(gate_consult_cta_current)
     run_gate(gate_zone_kit_disclosure_grammar)
     run_gate(gate_zone_shine_step_capitalised)
     run_gate(gate_data_sources_current)

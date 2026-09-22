@@ -555,12 +555,13 @@ def offer(name, zone_slug, room=None, zone=None):
             + zone_slug + '">'
             'Or draw a card free</a></p>'
             + compare +
-            f'<p style="margin:0;font-size:14.5px;opacity:.85">If {esc(name)} keeps '
+            f'<p style="margin:0 0 12px;font-size:14.5px;opacity:.85">If {esc(name)} keeps '
             'fighting back, the real problem usually sits somewhere else in the room. A '
             f'one hour virtual consult is {CONSULT_PRICE} dollars: we find the function, the friction '
-            'and the root cause together, and you keep a written standard for the space. '
-            '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
-            'covers</a>.</p></section>')
+            'and the root cause together, and you keep a written standard for the space.</p>'
+            '<p style="margin:0"><a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+            f'href="../consulting.html?from=zone:{zone_slug}">See what a consult covers, '
+            f'{CONSULT_PRICE} dollars</a></p></section>')
 
 
 def room_offer(room, room_slug, n):
@@ -616,12 +617,13 @@ def room_offer(room, room_slug, n):
                 '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
                 + room_slug + '">'
                 'Or draw a card free</a></p>'
-                '<p style="margin:14px 0 0;font-size:14.5px;opacity:.85">Or have somebody run '
+                '<p style="margin:14px 0 12px;font-size:14.5px;opacity:.85">Or have somebody run '
                 f'it with you. A one hour virtual consult is {CONSULT_PRICE} dollars: we work out what the '
                 + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone '
-                'to start on, and you keep a written plan. '
-                '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
-                'covers</a>.</p></section>')
+                'to start on, and you keep a written plan.</p>'
+                '<p style="margin:0"><a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+                f'href="../consulting.html?from=room:{room_slug}">See what a consult covers, '
+                f'{CONSULT_PRICE} dollars</a></p></section>')
 
     price = int(pack["price"])
     cards = re.search(r"(\d+) cards", pack.get("variant") or "")
@@ -647,12 +649,13 @@ def room_offer(room, room_slug, n):
             + f' cards. All 114 micro zones is {PACK_PRICE} dollars for 684, which is more cards for '
             'the money by a wide margin. The room pack is here because you came for the '
             + esc(room.lower()) + ', not for the house.</p>'
-            '<p style="margin:14px 0 0;font-size:14.5px;opacity:.85">Or have somebody run it '
+            '<p style="margin:14px 0 12px;font-size:14.5px;opacity:.85">Or have somebody run it '
             f'with you. A one hour virtual consult is {CONSULT_PRICE} dollars: we work out what the '
             + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone to '
-            'start on, and you keep a written plan. '
-            '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
-            'covers</a>.</p></section>')
+            'start on, and you keep a written plan.</p>'
+            '<p style="margin:0"><a class="btn btn-ghost btn-sm" data-sku="CN-VIRTUAL" '
+            f'href="../consulting.html?from=room:{room_slug}">See what a consult covers, '
+            f'{CONSULT_PRICE} dollars</a></p></section>')
 
 
 # Every zone and room page taught the site's own articles nothing: 114 zone

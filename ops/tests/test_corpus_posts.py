@@ -23,25 +23,45 @@ a numbered list with a bold lead in most chapters and a plain bullet list in
 the rest. Three more extractors (split_quotes, split_summary, split_takeaways)
 fixed the yield; this file proves both shapes of each stays covered.
 
+Same defect a third time, found 2026-09-22 for four new kinds
+corpus_index.py had just started marking ready (landing-page-intro,
+sales-copy, discussion-questions, newsletter-teaser: five per-chapter
+content types that were previously falling into "other" and not counted at
+all). Worse than a zero yield this time: 42 of 51 back-cover-copy.md files
+(half of sales-copy) carry a trailing pull-quote section holding unfilled
+scaffolding like "[PLACEHOLDER TESTIMONIAL 1: ...]", explicitly marked "do
+not publish as real quotes", under one of at least six different headings
+and two different heading levels. Serving one as written would have been a
+fabricated-testimonial risk, not just a wasted file. split_sales_copy cuts
+at the first heading whose text contains "testimonial" however it is
+worded, then refuses the file outright if the word "placeholder" still
+appears anywhere left, rather than trust the cut caught every shape; three
+of 51 files still fail that net (an earlier, un-headed disclaimer line) and
+are correctly dropped rather than served with the disclaimer attached.
+split_short and split_questions handle the other three kinds. This file
+proves the four new kinds classify, extract clean, and stay clean.
+
 Two more instances of the same defect class, plus one unrelated but adjacent
-defect, found 2026-09-22 cold-reading corpus_index.py and corpus_posts.py
-together: (1) split_posts required a "\\n---+\\n" divider between every
-numbered "## " section and returned an empty list, silently, for any file
-with none, which was most of the corpus (119 of 153 ready facebook-post
-files, 17 of 51 ready linkedin-post files). Rewritten to split on the
-heading itself via _h2_sections, the same splitter split_quotes and
-split_summary already use for the identical shape. (2) facebook-post mixes
-numbered-series files with single-post files (facebook-longform-post.md,
-facebook-group-discussion-post.md) that have no "## " heading at all;
-split_posts alone can never find these, so pool()'s default extractor is now
-split_posts_or_whole, which falls back to treating the whole file as one
-post. (3) Unrelated to extraction: corpus_index.py's classifier matched
-video-script on the bare substring "script", which is also a substring of
-"manuscript" and of "description". Every chapter_NN_manuscript.md, the paid
-book's own text, and every *-description*.md file were silently classified
-as a free-to-post video script (182 of 821 pooled "video-script" posts
-traced back to a manuscript file, none of them an actual script). Anchored
-the pattern to the real filenames instead.
+defect, found the same day by a concurrent operator cycle cold-reading the
+identical pair of files (a genuine collision, merged rather than resolved by
+picking a side; see ops/NIGHTLY-LOG.md): (1) split_posts required a
+"\\n---+\\n" divider between every numbered "## " section and returned an
+empty list, silently, for any file with none, which was most of the corpus
+(119 of 153 ready facebook-post files, 17 of 51 ready linkedin-post files).
+Rewritten to split on the heading itself via _h2_sections, the same splitter
+split_quotes and split_summary already use for the identical shape. (2)
+facebook-post mixes numbered-series files with single-post files
+(facebook-longform-post.md, facebook-group-discussion-post.md) that have no
+"## " heading at all; split_posts alone can never find these, so pool()'s
+default extractor is now split_posts_or_whole, which falls back to treating
+the whole file as one post. (3) Unrelated to extraction: corpus_index.py's
+classifier matched video-script on the bare substring "script", which is
+also a substring of "manuscript" and of "description". Every
+chapter_NN_manuscript.md, the paid book's own text, and every
+*-description*.md file were silently classified as a free-to-post video
+script (182 of 821 pooled "video-script" posts traced back to a manuscript
+file, none of them an actual script). Anchored the pattern to the real
+filenames instead.
 
 Run:  python ops/tests/test_corpus_posts.py
 """
@@ -260,6 +280,101 @@ def main() -> int:
     finally:
         os.remove(tmp7)
 
+    # split_sales_copy: the "## Testimonials" shape (chapter 35's real shape)
+    # must be stripped clean, whatever the exact heading wording or level.
+    sales_testimonial_src = (
+        "# Chapter 9 Back Cover Copy: Test Room\n\n"
+        "## Back-cover text\n"
+        "Real, finished back-cover prose, long enough to read as genuine "
+        "content rather than a fragment of something else entirely.\n\n"
+        "## Pull-testimonial placeholders\n\n"
+        "> [PLACEHOLDER TESTIMONIAL 1: something. Replace before publishing.]\n"
+        "> Attribution: [Reader Name, Location]\n"
+    )
+    tmp8 = os.path.join(ROOT, "ops", "tests", "_scratch_sales_testimonial.md")
+    open(tmp8, "w", encoding="utf-8").write(sales_testimonial_src)
+    try:
+        sc = cp.split_sales_copy(os.path.relpath(tmp8, ROOT))
+        if len(sc) != 1:
+            fails.append(f"split_sales_copy (testimonial heading) should find 1 post, found {len(sc)}")
+        elif "placeholder" in sc[0]["body"].lower() or "Attribution" in sc[0]["body"]:
+            fails.append("split_sales_copy leaked placeholder testimonial text into the body")
+    finally:
+        os.remove(tmp8)
+
+    # split_sales_copy: a disclaimer line ahead of the testimonial heading
+    # (chapter 4's real shape) is not caught by the heading cut alone; the
+    # safety net must refuse the whole file rather than serve it with the
+    # disclaimer attached.
+    sales_predisclaimer_src = (
+        "# Chapter 9 Back Cover Copy: Test Room\n\n"
+        "*Pull-testimonials below are placeholders, not real quotes.*\n\n"
+        "## Back cover\n"
+        "Real, finished back-cover prose, long enough to read as genuine "
+        "content rather than a fragment of something else entirely.\n\n"
+        "## Pull-testimonial placeholders\n\n"
+        "> [PLACEHOLDER TESTIMONIAL 1: something.]\n"
+    )
+    tmp9 = os.path.join(ROOT, "ops", "tests", "_scratch_sales_predisclaimer.md")
+    open(tmp9, "w", encoding="utf-8").write(sales_predisclaimer_src)
+    try:
+        pd = cp.split_sales_copy(os.path.relpath(tmp9, ROOT))
+        if pd:
+            fails.append("split_sales_copy served a file whose pre-heading "
+                         "disclaimer line still names 'placeholder'")
+    finally:
+        os.remove(tmp9)
+
+    # split_sales_copy: ebook-sales-copy has no testimonial section at all;
+    # the cut must be a no-op and the real content must survive whole.
+    sales_plain_src = (
+        "# Chapter 9 Ebook Sales Copy: Test Room\n\n"
+        "**A real hook sentence for the sales page.**\n\n"
+        "Inside:\n\n"
+        "- A real bullet describing what the chapter covers, in full.\n"
+        "- A second real bullet, also long enough to read as genuine.\n"
+    )
+    tmp10 = os.path.join(ROOT, "ops", "tests", "_scratch_sales_plain.md")
+    open(tmp10, "w", encoding="utf-8").write(sales_plain_src)
+    try:
+        spn = cp.split_sales_copy(os.path.relpath(tmp10, ROOT))
+        if len(spn) != 1:
+            fails.append(f"split_sales_copy (no testimonial section) should find 1 post, found {len(spn)}")
+        elif "real bullet" not in spn[0]["body"]:
+            fails.append("split_sales_copy dropped real content with no testimonial section present")
+    finally:
+        os.remove(tmp10)
+
+    # split_short: a single finished document, nothing to split.
+    short_src = "# Chapter 9 Landing Page Intro: Test Room\n\nOne real paragraph, long enough to read as genuine finished copy.\n"
+    tmp11 = os.path.join(ROOT, "ops", "tests", "_scratch_short.md")
+    open(tmp11, "w", encoding="utf-8").write(short_src)
+    try:
+        sh = cp.split_short(os.path.relpath(tmp11, ROOT))
+        if len(sh) != 1 or sh[0]["title"] != "Chapter 9 Landing Page Intro: Test Room":
+            fails.append(f"split_short misread a plain single document: {sh!r}")
+    finally:
+        os.remove(tmp11)
+
+    # split_questions: a plain numbered list, no bold lead required (that
+    # shape is takeaways, not this).
+    questions_src = (
+        "# Chapter 9 Reader Discussion Questions: Test Room\n\n"
+        "*Intro line, not a question.*\n\n"
+        "1. A real first question, long enough to read as genuine content?\n\n"
+        "2. A real second question, also long enough to be genuine content?\n"
+    )
+    tmp12 = os.path.join(ROOT, "ops", "tests", "_scratch_questions.md")
+    open(tmp12, "w", encoding="utf-8").write(questions_src)
+    try:
+        qn = cp.split_questions(os.path.relpath(tmp12, ROOT))
+        if len(qn) != 2:
+            fails.append(f"split_questions should find 2 questions, found {len(qn)}")
+        elif qn[0]["title"] != "Question 1":
+            fails.append(f"split_questions mislabelled the first question: {qn[0]['title']!r}")
+    finally:
+        os.remove(tmp12)
+
     # split_posts: a numbered "## " series with NO "---" divider between
     # sections at all, the real majority shape found 2026-09-22, must still
     # split into separate posts, not fall through as one unsplit blob.
@@ -368,24 +483,32 @@ def main() -> int:
         fails.append("quote-card-copy.md is marked publishable; its own text "
                      "is a design brief, not a post")
 
-    # The regression this file exists to prevent: each of the nine fixed
-    # kinds must still yield at least one real post from the live corpus,
-    # and video-script's pool must never include a manuscript or
-    # description file now that the classifier is anchored correctly.
+    # The regression this file exists to prevent: every fixed kind must
+    # still yield at least one real post from the live corpus, and
+    # video-script's pool must never include a manuscript or description
+    # file now that the classifier is anchored correctly.
     for kind in ("x-post", "newsletter", "linkedin-article", "quote",
                  "summary", "takeaways", "facebook-post", "linkedin-post",
-                 "video-script"):
+                 "video-script", "sales-copy", "landing-page-intro",
+                 "discussion-questions", "newsletter-teaser"):
         n = len(cp.pool(kind))
         if n == 0:
             fails.append(f"kind '{kind}' is marked ready but corpus_posts.pool() "
                          "serves 0 posts from it")
+
+    # The specific defect this cycle found: no post served from sales-copy
+    # may ever carry the word "placeholder" or an "Attribution:" scaffold
+    # line, whatever file it came from.
+    for p in cp.pool("sales-copy"):
+        if "placeholder" in p["body"].lower():
+            fails.append(f"sales-copy served a placeholder-tainted post from {p['source']}")
 
     leaked = [p["source"] for p in cp.pool("video-script")
               if "manuscript" in p["source"] or "description" in p["source"]]
     if leaked:
         fails.append(f"video-script pool still leaks paid/non-script content: {leaked[:3]}")
 
-    total = 26
+    total = 35
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")
