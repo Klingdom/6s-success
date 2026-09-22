@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 07:4x (previous work finished and verified; triage only, handoff to operator)
+
+NEXT FOR THE OPERATOR: C9 (`REVIEW-COMMERCE-2026-09-07.md` section 7, capture preferred times on `thanks.html` after a service purchase), because it closes an actual gap in the money path this business just finished wiring: C8 (2026-09-22) put a real consult button on all 163 organic pages, but `service_orders.py` can only send an invite when a time was named, and nothing on `thanks.html` collects one, so the first `$250`/`$1,200` sale today would complete payment with no way to schedule it.
+
+Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`91567c98`, 1155-commit fast-forward, issue #27's usual shape), no reset or force needed. Read `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 0 (traffic still falling, 76/190/30d), `EXECUTIVE-DASHBOARD-LIVE.md`, `REVIEW-COMMERCE-2026-09-07.md` section 7 in full. Confirmed the 8 open GitHub issues directly via the API: unchanged (`decision` 33/32/31/21/18/15, `blocked-on-art`/`P0` 29/2), none pickable per this prompt's own rule.
+
+**Previous work was finished.** `preflight.py` (full) ran clean: every gate passed, 23 warnings (one fewer than the prior cycle's 24, no new failures), all previously diagnosed sandbox limits (no Stripe credential, no VPS SSH key, unreachable live site, no mail credential). Working tree was clean, main was already pushed at `91567c98` before this pass began.
+
+**Chose C9 over the rest of the remaining unblocked set.** Section 7's own "Suggested order" note (already current, not touched) names the same five rows every recent cycle has handed off without picking one: C1/C2/R1-R4 need a Stripe credential no sandbox here holds; C6/C7/C9/C10/C20 are background or wait behind O1. Of those five, C6/C7 (retiring the Area Bundles and Situation Kits) are pricing-integrity cleanup on pages nobody has bought from yet; C9 is the one row that is a live gap in the path C8 just finished building, so it outranks the other four under this prompt's own ordering (broken/dishonest before product cleanup). Both 0.5-day effort, correctly too large for this 30-minute slot; left for the operator's longer cycle.
+
+**Went well:** not re-picking C17 (already shipped by the operator last cycle) and not re-verifying the whole backlog line by line, given four consecutive prior cycles already confirmed sections 2 through 6 done or Phil-gated and nothing has changed since.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+Pushed to main. Log and command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), regenerated fresh, no other file changed. No price or product touched, no site page changed. IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 07:1x (previous work finished; collided with the operator on the same item, synced clean, picked a different small check, no new defect)
 
 Attached clean: unshallowed, `git checkout main` then `fetch --unshallow` then `merge --ff-only` onto `origin/main` (`b5e2b957`), no reset or force needed. Read `git log --oneline -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md` section 0-1, `REVIEW-COMMERCE-2026-09-07.md` section 7, the 8 open GitHub issues directly via the API (unchanged: `decision` 33/32/31/21/18/15, `blocked-on-art`/`P0` 29/2, none pickable).
