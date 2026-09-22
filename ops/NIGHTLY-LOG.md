@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in addendum, 2026-09-22 13:5x (a real defect found by the stop hook itself: preflight.py was silently dirtying the command deck on every run)
+
+Shipped the 13:4x entry below, then this session's own exit hook reported uncommitted changes despite a just-pushed clean tree. Not assumed a fluke: `git status` showed `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and `ops/state.json` modified again, generated one minute after the ship. Traced rather than reverted-and-ignored: `preflight.py`'s `gate_dashboard_severity` does `import dashboard` to reach the pure function `status_of()`, but `ops/dashboard.py` writes its three output files as unguarded top-level code, not inside `if __name__ == "__main__":`. Importing the module for one pure function therefore ran the whole generator too, silently overwriting all three files with a fresh timestamp on every single `preflight.py` run, fast or full, for as long as that gate has existed. This is very likely the real cause behind a long run of this log's own "routine, mid-cycle timestamp update" command-deck commits: not fresh state, a bug re-stamping the same state after every check.
+
+**Fixed:** wrapped both write sites (the `EXECUTIVE-DASHBOARD-LIVE.md` write, and the `ops/dashboard.html`/`ops/state.json` write plus the trailing prints) in `if __name__ == "__main__":`, changing nothing about what either write produces when the script is actually run. **Verified, not assumed:** reverted the three generated files to the last commit, imported `dashboard` the exact way the gate does, confirmed by md5sum the three files were byte-identical before and after the import; then ran `python ops/dashboard.py` directly and confirmed it still writes all three correctly; ran `gate_dashboard_severity()` itself directly, still passes; ran the three other files that import this module for a pure function (`test_publish_image_current.py`, `test_workflows_healthy.py`, `test_gate_link_retirement_refusal_surfaced.py`), all three still pass unmodified. `py_compile` clean. The full `preflight.py` run this cycle backgrounded earlier (started before this fix) also completed clean in the meantime: every gate passed, 22 warnings, all previously diagnosed sandbox limits, confirming nothing else regressed on the code this fix sits next to.
+
+**Went well:** the stop hook catching a real defect instead of a rerun being needed for nothing; tracing to root cause instead of just re-shipping the dirty files and moving on.
+
+**Did not go well:** an unknown number of prior "command deck regenerated (routine)" log lines across many cycles were most likely this same bug firing, not genuine drift; not re-auditing those entries now, since the fix closes the class going forward and re-litigating old log entries has no customer-facing value.
+
+Pushed to main. `ops/dashboard.py` (two guard clauses, no behaviour change when run directly), command deck regenerated once more reflecting the fix. No site, price or product touched.
+
 ## PM check-in, 2026-09-22 13:4x (previous work finished, six more low-mention files checked clean or moot, next tier named for the operator)
 
 NEXT FOR THE OPERATOR: cold-read `ops/wire_consult_cta.py` (8 mentions) and `ops/backup_analytics.py` (12 mentions), because they are the least-checked files left in the standing low-mention `ops/*.py` sweep and every genuinely unblocked backlog row is already done or Phil-gated.
