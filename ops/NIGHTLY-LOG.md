@@ -2,6 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Interactive session, 2026-09-22 (ECC integrated, then two silent failures fixed in the app's core loop)
+
+**Phil asked for the forked everything-claude-code repository to be pulled in.** Taken selectively: 27 agents, 51 commands, 102 skills, plus 16 reference docs, 110 rules and 10 schemas at `~/.claude/ecc/`. Left out 45 agents, 24 commands and 126 skills for stacks this business does not use or domains it is not in, because the cost of an irrelevant specialist is a confident answer about the wrong thing. **The hooks were deliberately not installed**: 28 of them, several matching `*` so they run on every tool call, with `PreToolUse` able to block a tool outright, on an instance that deploys a live site and holds a live Stripe credential. Kept unused so the call is reversible. Every installed file parsed, 0 malformed; existing config backed up first (249 files). Wired into `claude/agents/6s-ceo.md` afterwards, because a specialist absent from the delegation list is never chosen.
+
+**Then used it for what it is for.** Applying `silent-failure-hunter`'s own criteria to the app's JavaScript found two real defects, both in the Home Quest's core loop, both the failure-that-cannot-be-seen class this repository keeps paying for:
+
+- **`save()` swallowed every storage error.** All progress lives in localStorage and the page promises it "stays in this browser". Safari private browsing and blocked site data both make `setItem` throw; the error was discarded, so the app kept looking like it worked and the whole session vanished on tab close, with nothing shown to the person who had just done the work.
+- **`if (!Q) { return; }`** meant that when the card deck failed to load, every button went inert and nothing said why. More likely than it looks: this app is installable and precaches, so a service-worker cache miss offline lands exactly there.
+
+Both now say so once, and fire `quest-save-blocked` / `quest-data-missing` so we learn whether it happens to real people rather than guessing.
+
+**Proved in a real browser, not asserted.** The new test loads the REAL `site/quest.html` in headless Edge with `localStorage.setItem` replaced by a throwing function, and separately with the data script removed, and reads the actual notice element. Fail-then-pass proved both ways for both defects, plus a third case asserting a healthy page stays quiet. It prints UNCHECKED rather than passing when no browser exists.
+
+**Guarded after fixing**, by adding both events to `gate_quest_funnel_events`, so a refactor cannot quietly restore the silence. All 17 existing quest tests still pass; mobile visual and accessibility audit 0 findings; deployed and verified in the JavaScript production actually serves.
+
+**Did not go well:** a full preflight failed on an unrelated browser test with a timeout. It passes alone in 9.6s, and the machine was at 1.8 GB free with 22 Edge processes already running. Checked whether my new test leaked browsers before blaming the environment: 22 before, 22 after. Trimmed its budget anyway.
+
 ## PM check-in, 2026-09-22 16:1x (previous work finished; cold-read the next low-mention tier, no defect, corrected a stale handoff)
 
 **Previous work: finished.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, ff-only merged onto `origin/main` (clean, no divergence, tree already matched the latest operator commit `6ab87b7e`). Ran `python ops/preflight.py` (fast) myself rather than trust the prior cycle's own citation of it: every gate passed, 22 warnings, the same standing sandbox limits (no Stripe/SSH/mail credential, no egress, no Pillow-independent checks affected). `BACKLOG-2026-09-07.md` sections 2-6 confirmed exhausted again (done or Phil-gated). 8 GitHub issues checked live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, 0 uncommitted changes.
