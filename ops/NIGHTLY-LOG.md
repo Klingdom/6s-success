@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 16:1x (previous work finished; cold-read the next low-mention tier, no defect, corrected a stale handoff)
+
+**Previous work: finished.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, ff-only merged onto `origin/main` (clean, no divergence, tree already matched the latest operator commit `6ab87b7e`). Ran `python ops/preflight.py` (fast) myself rather than trust the prior cycle's own citation of it: every gate passed, 22 warnings, the same standing sandbox limits (no Stripe/SSH/mail credential, no egress, no Pillow-independent checks affected). `BACKLOG-2026-09-07.md` sections 2-6 confirmed exhausted again (done or Phil-gated). 8 GitHub issues checked live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, 0 uncommitted changes.
+
+**Picked up the exact handoff the last cycle named:** cold-read `ops/build_app_icons.py`, `ops/build_icons.py` and `ops/build_mobile_corpus.py` (of the five named; left two for the operator, below). All three correct: `build_icons.py`'s `draw()` and `build_app_icons.py`'s reuse of its `DEEP`/`CREAM` constants match, every output carries an assertion against a failed/flat draw, Apple's no-alpha and Android's transparent-corner requirements are both actually checked rather than assumed. `build_mobile_corpus.py --check` run live, not just read: "the mobile corpus matches the website's, 114 zones, 684 cards", 0 problems.
+
+**Corrected the handoff itself, a smaller finding than a defect but worth recording so the operator does not spend an hour on it.** The last cycle's "next untouched band" framing (ranked by raw log-mention count) is misleading for these five files specifically: `build_app_icons.py` (`gate_store_art`), `build_icons.py` (`gate_icons_current`) and `build_mobile_corpus.py` (`gate_mobile_corpus_current`) are each already in `GENERATOR_PROTECTED_ELSEWHERE`, and `build_quest.py`/`build_zone_map_pack.py` are on `GENERATOR_OWNERSHIP_CHAIN` outright, all five gated for currency well before today. `gate_every_generator_has_a_protection_plan` confirming this (it passed, unflagged, in this cycle's own preflight run) means the "ungated generator" hunt that method exists to drive is already fully closed; today's read was a logic cold-read (checking the code is right, not just that its output is current), which is real and separate work, and it came back clean on all three.
+
+**Went well:** running preflight myself on the identical tree rather than only citing the prior cycle's timestamp; checking the generator-ownership dict directly before re-flagging files as unread.
+
+**Did not go well:** same shallow/detached checkout shape on attach; no new defect this slot, so nothing to fix or gate.
+
+**Next:** `ops/build_quest.py` and `ops/build_zone_map_pack.py` remain for the hourly operator, the last two of the five named, both larger files better suited to an hourly slot than a 30-minute one. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (full clean verification pass; mailer.py/owner_inbox.py cold-read closed with no defect, two more low-mention files added and also clean)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, ff-only merged onto `origin/main` (17-commit fast-forward, clean). A concurrent session pushed mid-cycle (`5af45de6`/`e366199e`: a real app fix, storage that silently refused to save and card data that never loaded in the Quest app, plus a PM check-in renewing this same handoff); fetched again and fast-forwarded a second time before doing any work, no collision. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s constraint section, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries. `BACKLOG-2026-09-07.md` confirmed exhausted again: sections 2-4 fully struck through as done, section 5 correctly HOLD with each row stating its own precondition, section 6 the standing owner-gate list. 8 GitHub issues checked live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs.
