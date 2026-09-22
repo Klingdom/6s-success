@@ -1967,7 +1967,13 @@ md += f"""
 for i in S["issues"]:
     md += f"| {i['number']} | {i['title']} | {', '.join(l['name'] for l in i.get('labels', []))} |\n"
 
-open(os.path.join(ROOT, "EXECUTIVE-DASHBOARD-LIVE.md"), "w", encoding="utf-8").write(md)
+# Guarded: gate_dashboard_severity in preflight.py imports this module just
+# for status_of(), a pure function defined above. Before this guard, that
+# import alone ran every line below it too, silently overwriting the three
+# generated files with a fresh timestamp on every preflight run and dirtying
+# a tree preflight itself had just confirmed clean.
+if __name__ == "__main__":
+    open(os.path.join(ROOT, "EXECUTIVE-DASHBOARD-LIVE.md"), "w", encoding="utf-8").write(md)
 
 # --- html -------------------------------------------------------------------
 # The HTML deliberately carries no <!doctype>, <html> or <body> wrapper. Browsers
@@ -2291,22 +2297,23 @@ doc = (
     f'</div>'
 )
 
-open(os.path.join(ROOT, "ops", "dashboard.html"), "w", encoding="utf-8").write(doc)
-json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"),
-          indent=1, default=str)
-# The window, in the sentence. See _stripe_all_time(): the unlabelled version
-# of this line had me telling Phil revenue was zero when the true statement is
-# one $19 sale, in August, and none this month.
-if S.get("revenue_all_time") is not None:
-    S["revenue_text"] = (S["revenue_text"] + " this month; $%s all time from "
-                         "%d sale(s)"
-                         % (f"{S['revenue_all_time']:,.0f}",
-                            S.get("sales_all_time") or 0))
-elif S.get("revenue_month") is not None:
-    S["revenue_text"] = S["revenue_text"] + " this month; all time not measured"
+if __name__ == "__main__":
+    open(os.path.join(ROOT, "ops", "dashboard.html"), "w", encoding="utf-8").write(doc)
+    json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"),
+              indent=1, default=str)
+    # The window, in the sentence. See _stripe_all_time(): the unlabelled version
+    # of this line had me telling Phil revenue was zero when the true statement is
+    # one $19 sale, in August, and none this month.
+    if S.get("revenue_all_time") is not None:
+        S["revenue_text"] = (S["revenue_text"] + " this month; $%s all time from "
+                             "%d sale(s)"
+                             % (f"{S['revenue_all_time']:,.0f}",
+                                S.get("sales_all_time") or 0))
+    elif S.get("revenue_month") is not None:
+        S["revenue_text"] = S["revenue_text"] + " this month; all time not measured"
 
-print(f"{S['overall']} | revenue {S['revenue_text']} | "
-      f"P0 {S['open_p0'] if S['issues_available'] else 'UNKNOWN'} | "
-      f"need-you {S['needs_phil'] if S['issues_available'] else 'UNKNOWN'} | "
-      f"commits7d {commits_7d_text(S['commits_7d'])}")
-print("wrote EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json")
+    print(f"{S['overall']} | revenue {S['revenue_text']} | "
+          f"P0 {S['open_p0'] if S['issues_available'] else 'UNKNOWN'} | "
+          f"need-you {S['needs_phil'] if S['issues_available'] else 'UNKNOWN'} | "
+          f"commits7d {commits_7d_text(S['commits_7d'])}")
+    print("wrote EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json")
