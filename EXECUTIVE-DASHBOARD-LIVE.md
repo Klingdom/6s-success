@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-22 09:08 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-22 09:24 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 76 visitors across 190 visits, 30 days (carried forward from 2026-09-21 14:05; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
+| Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
 | Closed to date | 25 |
-| Commits (7 days) | 1198 of 3350 total |
+| Commits (7 days) | 1197 of 3352 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `f5039937` Scheduled operator cycle: full verification pass, four low-m |
+| Last commit | `5de1c064` Merge remote-tracking branch 'origin/main' |
 
 ## Product readiness
 
@@ -60,6 +60,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
+- **#34** Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition?
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#32** Decide: 23 kits/bundles are named on no page but their own shop tile
 - **#31** Decide: the deck gallery and the deck download are two different card designs
@@ -71,6 +72,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | # | Title | Labels |
 |---|---|---|
+| 34 | Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition? | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
 | 32 | Decide: 23 kits/bundles are named on no page but their own shop tile | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
