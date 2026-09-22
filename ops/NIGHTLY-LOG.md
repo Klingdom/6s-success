@@ -2,15 +2,31 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-22 14:4x (build-id fix confirmed real via CI, not just cited; two more low-mention files verified clean)
+## PM check-in, 2026-09-22 14:4x (converged on a concurrent session's fuller CI confirmation; two more low-mention files verified clean, next tier handed off)
 
 NEXT FOR THE OPERATOR: cold-read `ops/mailer.py` and `ops/owner_inbox.py`, because they are next in the low-mention `ops/*.py` tier and every unblocked backlog row is already done or Phil-gated.
 
-Attached, fast-forwarded onto `origin/main` clean. Confirmed the 14:1x cycle's build-id fix (`93c160d3`) for real rather than citing it: `publish-image.yml` run #384 on that commit is `conclusion=success`, the first successful publish since run #380, so the deploy pipeline is unblocked again. `checks.yml` run #1294 on the same commit was still `in_progress` when checked, not claimed passing. No VPS/ssh/egress here (confirmed directly), so live deploy-freshness stays unconfirmed, unchanged. Backlog confirmed exhausted; 8 GitHub issues unchanged, all decision/blocked-on-art. Ran `ops/wire_footer.py` and `ops/build_corporate_asset.py` live rather than only reading them: both idempotent, zero drift, no defect. `preflight.py` fast: every gate passed, 23 standing warnings.
+Reached the same `publish-image.yml` #384 `success` finding as the concurrent cycle below at the same time (mine still showed `checks.yml` #1294 `in_progress`; theirs confirmed it `success` too, superseding that gap). Backlog confirmed exhausted, 8 GitHub issues unchanged. Beyond that: ran `ops/wire_footer.py` and `ops/build_corporate_asset.py` live rather than only reading them, both idempotent, zero drift, no defect. `preflight.py` fast: every gate passed, 23 standing warnings.
 
 **Next:** standing Phil-blocked list unchanged; `mailer.py`/`owner_inbox.py` for the operator.
 
 Pushed to main, command deck only. No price/product/page touched.
+
+## 2026-09-22, scheduled operator cycle (closed the prior cycle's own handoff: the build-id fix independently confirmed restored via the GitHub API, not assumed)
+
+**Did:** Fresh checkout arrived shallow and detached (issue #27's usual shape); unshallowed and fast-forwarded onto `origin/main`, clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries. The prior cycle (14:1x) fixed a real deploy-blocking stale `build-id.txt` and pushed (`93c160d3`), but had only a `queued` CI run to point at, not a confirmed one; that confirmation was the explicit handoff.
+
+**Verified, not assumed.** Queried the GitHub Actions API directly rather than trusting the prior entry's framing: `publish-image.yml` run #384 on `93c160d3` completed with `conclusion: success` (the workflow that actually builds and publishes the deployable image, the one the stale build-id had been failing since run #380). `checks.yml` run #1294 on the same commit had its own `Preflight` job step (the identical gate set) complete with `conclusion: success` too, independently corroborating the fix rather than duplicating it. This closes the loop: the image now builds correctly again. **Not verified, and not claimed as such:** whether the live site has actually been redeployed. No egress from this sandbox to `6s-success.com` (`curl` confirms `CONNECT tunnel failed, response 403`), and `ops/deploy-verdict.json` still carries its last check from 13:49, against the now-superseded build-id `3da8341e`, from before the fix; refreshing it needs a session with real production/VPS access, which none here holds, the same standing gap prior cycles have already recorded. Backlog reconfirmed exhausted (sections 2-6 struck through or Phil-gated), 8 GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`), no mail credential (`inbox_agent.py --apply`: unchecked, not empty).
+
+**Went well:** closing a named handoff with real API evidence instead of re-asserting it.
+
+**Did not go well:** same shallow/detached checkout shape; this sandbox still cannot see production directly.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** whoever next holds VPS/production access should confirm `deploy-fresh` reads clean against the new build-id. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues unchanged.
+
+No price or product touched, no site page changed. Command deck regenerated.
 
 ## PM check-in, 2026-09-22 14:1x (previous work finished but not fully verified; a live deploy-blocking defect found and fixed)
 
