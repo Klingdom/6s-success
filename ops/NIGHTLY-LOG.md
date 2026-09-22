@@ -2,6 +2,112 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-22 04:4x (previous work was not actually finished; verifying today's own corpus_posts fix live found two more real regressions in it, both fixed)
+
+NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read
+lane if nothing else is unblocked, but check this file's own history first,
+per the finding below: at least seven files the last cycle listed as
+"17-mention tier, unread" (`build_youtube_metadata.py`, `generate_card_art.py`,
+`image_style.py`, `optimize_sample_pdf.py`, `prune_catalog_js.py`,
+`specific_articles.py`, `wire_landmarks.py`, `wire_progressive.py`,
+`wire_pwa.py`) were already cold-read clean weeks ago; mention count alone is
+not proof of unread, a conclusion this log has reached independently at least
+four times before today. Also worth a look: whether any OTHER chapter carries
+a stray legacy content-package duplicate the way chapter 3 did (checked, none
+found today, but this was a day-one defect invisible for over a month; a
+second look after more of the corpus gets genuinely exercised is cheap
+insurance).
+
+Attached via unshallow plus ff-only merge onto `origin/main`, clean
+fast-forward (1133 commits, issue #27's usual shallow/detached shape, no
+reset). Read `git log -12`, this log's top entries, `BACKLOG-2026-09-07.md`
+sections 1b through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub
+issues directly via the API: unchanged, all `decision`/`blocked-on-art`, none
+pickable without Phil.
+
+**STEP 2, previous work: NOT finished, and this is the actual defect this
+slot exists to catch.** `python ops/preflight.py` was clean (every gate
+passed, 23 warnings, all previously diagnosed). The prior operator cycle's
+own corpus_posts.py fix (25/25 tests, full preflight clean) was real and
+correctly landed the biggest part of the problem: a classifier bug that gave
+away paid book content free, and a splitter bug that returned zero posts from
+most of the corpus. But "tests pass" is not "the thing works," so this cycle
+actually ran the customer-facing command the fix was meant to serve,
+`ops/linkedin_drafts.py`, rather than trusting the citation. It surfaced two
+live defects the fix's own tests never covered:
+
+**(1) A literal `---` divider artifact landing in every split post's body.**
+`_h2_sections` (the splitter `split_posts` was rewritten to use today) splits
+on the `## ` heading but never stripped the old visual `---` rule between
+sections, so it became the literal last line of every post: "...if you want a
+look. ---". Real content, about to reach Phil's own inbox as "post as
+written," carrying a visible markdown artifact. Fixed in `_h2_sections`
+itself (strips a trailing `\n-{3,}\s*$`), so every extractor built on it
+inherits the fix.
+
+**(2) The same post duplicated in one day's draft.** Chapter 3's whole
+content package exists twice on disk, byte-identical:
+`content/book/6S-Success-Chapter-3/content-package/` (the real one, 49 other
+chapters follow this naming) and a stray legacy copy,
+`content/book/6S-Chapter-3-Content-Package/` (56 files, no
+`content-package/` subfolder, different capitalization). Both were added in
+the same original commit, `70eb830c`, "Mirror the text of the whole estate
+into content/", 2026-08-16, over five weeks ago; invisible until today,
+because the pre-fix `split_posts` returned nothing for either copy. Once
+extraction actually works, both copies feed the corpus, double-counting
+every kind for chapter 3 everywhere: `corpus_index.py`'s stats, and,
+concretely, two identical picks in a single 3-post digest. `git rm -r` on the
+stray directory; removed its one dangling reference in
+`ops/fill_front_matter.py` (which had been keeping both paths in sync rather
+than recognising one as a duplicate); regenerated `ops/corpus-index.json`.
+
+**Verified, not assumed.** Confirmed live before and after: `pool()` for
+`linkedin-post`/`facebook-post`/`video-script` dropped by exactly one
+chapter-3 duplicate's worth each (476 to 466, 259 to 253, 816 to 796), zero
+duplicate ids remaining in any of the three, and the one `linkedin-post` with
+title "The handoffs are the real lesson" now resolves to a single source
+file. `ops/tests/test_corpus_posts.py` extended 25 to 26 cases for the
+divider fix, fail-then-pass proved directly (stashed `corpus_posts.py`,
+watched the new case fail by name quoting the leaked `---`, restored,
+reran clean). `ops/tests/test_gate_corpus_posts.py` (6/6) unaffected. Full
+`preflight.py` caught the expected consequence of the count actually
+changing: `gate_risks_evidence_current` correctly failed, citing
+`RISKS.md`'s own stale `social_units=4205` against the real, now-lower 4118.
+Corrected both the summary line and the two body citations in `RISKS.md`,
+plus the matching figure in `STATUS.md`'s Immediate Focus line (both files
+already had a paragraph from the earlier same-day correction; added a third,
+matching that section's own established format rather than rewriting
+history). `preflight.py` reran clean after (every gate passed, same 23
+warnings). `check_urls.py` (189/189), `audit_pages.py` (0 duplicate
+titles/descriptions), `affiliate.py --check` (164 documents), `fix_dashes.py
+--check` (0/0) all clean.
+
+**Went well:** treating "the prior cycle's own tests passed" as a citation to
+verify, not a fact to trust, per this file's own repeated lesson about
+artifacts never re-derived from a corrected source; running the actual
+owner-facing command instead of stopping at the unit tests is what surfaced
+both defects, neither of which any existing test exercised.
+
+**Did not go well:** a day-one data duplication (`70eb830c`, 2026-08-16) sat
+undetected for five weeks because nothing ever successfully extracted content
+from either copy until today; the bug that hid it and the bug that exposed it
+were fixed in the same 24 hours by different cycles, worth noting as luck as
+much as diligence. Also, per this slot's own brief, three minutes should have
+gone to a clean handoff, not a fix; STEP 2's own instruction ("if previous
+work is not finished, finishing it is your work this run, instead of
+starting anything new") is what justified spending the slot on this instead.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open
+GitHub issues, unchanged. The mention-count cold-read lane needs a fresh
+tier or a different method next time it is picked up; see the handoff line
+above.
+
+Pushed to main. `ops/corpus_posts.py`, `ops/fill_front_matter.py`,
+`ops/corpus-index.json`, `ops/tests/test_corpus_posts.py`, `RISKS.md`,
+`STATUS.md`, deletion of `content/book/6S-Chapter-3-Content-Package/` (56
+files), command deck. No price or product touched, no site page changed;
+this content has never been posted anywhere. IndexNow not applicable.
+
 ## 2026-09-22, scheduled operator cycle (paid book content leaking into the free social-post pool, found and fixed; two other silent corpus_posts extraction gaps closed too)
 
 **Did:** Unshallowed, fast-forwarded onto origin/main. preflight.py clean. Backlog done or Phil-gated (8 GitHub issues unchanged), so continued the standing cold-read fallback: corpus_index.py, generated_products.py.

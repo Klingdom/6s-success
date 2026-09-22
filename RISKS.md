@@ -816,7 +816,7 @@ owner: cro-growth
 evidence:
   - ops/state.json email_list=0
   - every form on the site is inert (forms_dead=192)
-  - ops/state.json social_units=4205 authored and unused
+  - ops/state.json social_units=4118 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
@@ -845,7 +845,7 @@ evidence:
     when anything about arrivals changes.
 impact: >
   Nothing compounds. A visitor who arrives today cannot be reached tomorrow,
-  so every unit of attention is spent once and discarded. Roughly 4,205
+  so every unit of attention is spent once and discarded. Roughly 4,118
   authored social units have no destination to send anyone to.
 mitigation: >
   Connect one capture path and one destination before publishing the social
@@ -887,6 +887,29 @@ previously unreachable posts were added back after a parsing bug (`split_
 posts` required a `---` divider between numbered sections that most of the
 corpus does not use) silently served zero from most of their files; net
 effect on the total shown here.
+
+**Evidence corrected a third time, same day, 2026-09-22 PM check-in.**
+`social_units` moved from 4,205 to 4,118 after verifying the `split_posts`
+fix above by actually running `ops/linkedin_drafts.py`, live, rather than
+trusting its own tests: the preview's three picks contained two copies of
+the same post, word for word ("The handoffs are the real lesson", ch03,
+116 words, twice). Traced to a stray, byte-identical duplicate of chapter
+3's entire content package, `content/book/6S-Chapter-3-Content-Package/`
+(56 files), sitting alongside the real `content/book/6S-Success-Chapter-3/`
+since the original `70eb830c` content mirror on 2026-08-16, double-counting
+every kind for that one chapter in every corpus statistic since, invisible
+until `split_posts` started actually returning content today. The same
+verification also found the divider itself leaking into post bodies as a
+literal trailing `---` (`_h2_sections` split on the heading but never
+stripped the visual divider the heading-based split now walks straight
+through), a second real defect in the fix RISKS.md's own prior paragraph
+already praised for "getting more honest." Both fixed at the source
+(`content/book/6S-Chapter-3-Content-Package/` deleted, `ops/corpus_posts.py`
+`_h2_sections` now strips a trailing `---` rule, `ops/fill_front_matter.py`'s
+dangling reference to the old path removed), `ops/corpus-index.json`
+regenerated, `ops/tests/test_corpus_posts.py` extended 25 to 26 cases,
+fail-then-pass proved directly. Net movement is entirely the duplicate's
+removal (87 units); the divider fix changes no count, only content quality.
 
 ---
 

@@ -159,11 +159,24 @@ def split_whole(path: str) -> list:
 
 def _h2_sections(s: str) -> list:
     """Split a document on '## ' headings into (heading, body) pairs. Text
-    before the first heading (the title and any intro line) is discarded."""
+    before the first heading (the title and any intro line) is discarded.
+
+    A bare '---' rule between numbered sections (the visual divider every
+    corpus file of this shape uses, e.g. linkedin-posts-10.md) sits at the end
+    of each body, right before the next heading. split_whole already strips
+    the same rule for its own single-post shape; this splitter never did,
+    because the old split_posts split ON that rule and never saw it land in a
+    body. Found 2026-09-22 verifying corpus_posts.py's own split_posts fix
+    live: the rule shipped as the literal last line of every post's text
+    (e.g. "...if you want a look. ---"), real content going to Phil's inbox
+    with a stray divider baked into his own writing.
+    """
     out = []
     for part in re.split(r"(?m)^## ", s)[1:]:
         lines = part.splitlines()
-        out.append((lines[0].strip(), "\n".join(lines[1:]).strip()))
+        body = "\n".join(lines[1:]).strip()
+        body = re.sub(r"\n-{3,}\s*$", "", body).strip()
+        out.append((lines[0].strip(), body))
     return out
 
 

@@ -282,6 +282,35 @@ def main() -> int:
     finally:
         os.remove(tmp8)
 
+    # split_posts: the real majority shape, a "---" divider between numbered
+    # "## " sections (linkedin-posts-10.md's own format). Found 2026-09-22
+    # verifying the divider fix live: _h2_sections split on the heading but
+    # never stripped the divider, so it landed as the literal last line of
+    # every post's body ("...look. ---"), real content shipped with a visible
+    # markdown artifact baked into it.
+    posts_with_divider_src = (
+        "# Chapter 9 LinkedIn Posts: Test Room\n\n"
+        "Ten standalone posts.\n\n"
+        "---\n\n"
+        "## 1. First title\n"
+        "First post body, long enough to read as real content on its own.\n\n"
+        "---\n\n"
+        "## 2. Second title\n"
+        "Second post body, also long enough to read as real content here.\n"
+    )
+    tmp8b = os.path.join(ROOT, "ops", "tests", "_scratch_posts_with_divider.md")
+    open(tmp8b, "w", encoding="utf-8").write(posts_with_divider_src)
+    try:
+        wd = cp.split_posts(os.path.relpath(tmp8b, ROOT))
+        if len(wd) != 2:
+            fails.append(f"split_posts (with '---' divider) should find 2 posts, found {len(wd)}")
+        else:
+            for p in wd:
+                if p["body"].rstrip().endswith("-"):
+                    fails.append(f"split_posts left a divider artifact in {p['title']!r}: {p['body'][-20:]!r}")
+    finally:
+        os.remove(tmp8b)
+
     # split_posts_or_whole: a file with no "## " heading anywhere (a single
     # standalone post, like facebook-longform-post.md) must fall back to
     # split_whole rather than silently returning nothing.
@@ -356,7 +385,7 @@ def main() -> int:
     if leaked:
         fails.append(f"video-script pool still leaks paid/non-script content: {leaked[:3]}")
 
-    total = 25
+    total = 26
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

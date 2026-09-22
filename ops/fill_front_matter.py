@@ -35,7 +35,6 @@ ANSWERS = os.path.join(ROOT, "ops", "front-matter.json")
 
 TARGETS = [
     "content/book/6S-Success-Front-Matter/FRONT_MATTER.md",
-    "content/book/6S-Chapter-3-Content-Package/pdf-ebook/chapter-pdf-frontmatter.md",
     "content/book/6S-Success-Chapter-3/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
     "content/book/6S-Success-Chapter-4/content-package/pdf-ebook/chapter-pdf-frontmatter.md",
     "content/manual/6S Home Micro Zone SOP Field Manual v3.html",
