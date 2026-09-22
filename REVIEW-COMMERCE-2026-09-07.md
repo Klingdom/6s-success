@@ -987,9 +987,13 @@ evidence rather than a citation here. **C17 done 2026-09-22, operator**
 (revenue-protection, buildable with no Stripe credential; see its own row
 above). **C6/C7 delisted (repository side) 2026-09-22, operator**, the
 first genuinely-Independent catalogue-integrity items to move; the deploy/
-live-verify/archive tail of their own acceptance criteria stays open for a
-session that can both read the live site and hold a Stripe credential, per
-each row's own account above. **C9 done 2026-09-22, operator** (see its own
+live-verify/archive tail of their own acceptance criteria **was closed later
+the same day** by a session holding both: deployed (live build
+`3da8341e30a4d1da`, 138 products), live-verified (192 live URLs fetched, 0
+references to any of the 21 SKUs or their payment links, 0 pages unreadable),
+and archived (21 links deactivated and 21 products archived by the new
+`ops/retire_stripe_skus.py`, with `check_live_links.py` confirming afterwards
+that every link the live site serves is still active). **C9 done 2026-09-22, operator** (see its own
 row above). **C10 done 2026-09-22, operator** (see its own row above): the
 prior "wait behind O1" hold was itself never recorded as a decision, so a
 later cycle ended it rather than re-deriving the same open question again,

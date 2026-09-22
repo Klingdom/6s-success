@@ -2191,6 +2191,27 @@ before the matching Stripe payment links are archived, and no sandbox this
 operator has ever run in holds a Stripe credential, so that half stays open,
 recorded honestly rather than claimed done.
 
+**CLOSED 2026-09-22, later the same day, by a session that held both.** All
+three tail items are now done and each was verified rather than assumed:
+
+- **Deployed.** Production moved to build `3da8341e30a4d1da` and the live
+  catalogue reads 138 products, matching the repository exactly.
+- **Live-verified.** Every URL in the live sitemap plus `data.js` and
+  `shop.js`, 192 in total, were fetched and searched for all 21 SKUs and all
+  21 payment-link ids: **0 references, 0 pages unreadable**. An unreadable
+  page would have counted as unchecked, not clean.
+- **Archived.** `ops/retire_stripe_skus.py` deactivated the 21 payment links
+  and archived the 21 products, 42 objects, after confirming none carried
+  `metadata.ledgerium_plan`. `ops/check_live_links.py` afterwards: "every
+  payment link the live site serves is active in Stripe."
+
+The order in the original acceptance criteria was the right one and was
+followed exactly. It exists because retiring a link the live site still served
+is the one mistake this business has actually paid for: eight days at $0 in
+August. The new tool refuses to write anything unless that live scan comes
+back clean, and the refusal was proved to work before it was trusted, by
+feeding it a SKU and a link that ARE live and watching it refuse.
+
 **Rationale.** Both tiers charge most of the $19 whole-house pack's price for
 a fraction of its content (Area Bundles 74-84% of the price for 12-20% of the
 684 cards; Situation Kits for 7-20%), neither has a page or an internal link
