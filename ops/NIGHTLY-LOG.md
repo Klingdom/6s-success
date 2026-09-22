@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-22, scheduled operator cycle (fixed the BK-BUNDLE deliverable() gap the 21:4x PM check-in handed off)
+
+**Did:** Pushed the verification-pass entry below, then hit a real push race: a concurrent 21:4x PM check-in had pushed its own log entry in between. Fetched, merged (not reset), resolved the `NIGHTLY-LOG.md` conflict by keeping both entries in chronological order and regenerating the three command-deck files fresh rather than hand-merging generated output. That PM check-in's entry named a concrete, unblocked handoff: `ops/stripe_catalog.py`'s `deliverable()` for `BK-BUNDLE` only checked that `build/6S-Whole-House-Print-Pack.html` exists, while `ops/stripe_fulfil.py`'s own `DELIVERY["BK-BUNDLE"]` actually sends three files (the EPUB, the manual and the print pack) and refuses to ship unless all three are present. Picked it up rather than starting a fresh search.
+
+**Fixed.** `SELLABLE["BK-BUNDLE"]["deliverable"]` in `ops/stripe_catalog.py` now names the same three files, in the same order, as `stripe_fulfil.DELIVERY["BK-BUNDLE"]["files"]`. `deliverable()` now accepts either a single path (every other SKU) or a list (bundles), and refuses the SKU by name if any one file in the list is missing, matching `stripe_fulfil.py`'s own all-or-nothing semantics rather than only checking the first file or ignoring the rest.
+
+**Verified, fail-then-pass.** New `ops/tests/test_stripe_catalog_deliverable.py` (6 cases): a single existing/missing path, a list with all files present, a list with one file missing (the regression case, asserts the missing filename is named in the refusal), a regression guard that `SELLABLE["BK-BUNDLE"]["deliverable"]` stays byte-equal to `stripe_fulfil.DELIVERY["BK-BUNDLE"]["files"]` so the two cannot drift apart again silently, and a live check that BK-BUNDLE is deliverable today. Proved it can fail: stashed the `stripe_catalog.py` fix alone, reran, watched the regression-guard case fail by name ("BK-BUNDLE must name a list of files, not a single path"), restored, reran clean. `gate_tests()` already globs `ops/tests/test_*.py`, so no separate `preflight.py` gate was needed, the same judgement call the `ops/ship.py` fix earlier today recorded for an equivalent pure-logic fix. `check_sellable.py` rerun directly: unchanged, 132 of 134 buyable products still confirmed in Stripe with a delivery entry and file on disk, no regression.
+
+**Also closed, from the verification-pass entry pushed just before the race** (kept here rather than duplicated): confirmed the 21:2x PM check-in's `checks.yml` worry was a false alarm (the API showed `def17749`'s run completed `success` at 21:36:41Z, and the two commits after it correctly never triggered a run since they only touch files `checks.yml` excludes); confirmed issue #34 (Kitchen deck PDF) is already fully closed on the operator side by an earlier concurrent session; traced the `corporate.html` B2B enquiry funnel end to end through `measure.js`'s `track()`, no event-name allowlist that could silently drop it, no defect.
+
+**Verified:** full `preflight.py` (every gate passed, 22 warnings, all previously diagnosed sandbox limits, `gate_tests` including the new file), `check_urls.py` (190/190), `audit_pages.py` (0 findings), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), `check_sellable.py` clean. No mail credential; inbox unchecked, not empty. 8 GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Went well:** picking up a concrete handoff from a concurrent session instead of duplicating its own search; merging (not resetting) through the push race and regenerating the generated files rather than hand-resolving their conflicts.
+
+**Did not go well:** the push race itself cost a re-run of verification; no defect in that, just the cost of two cycles landing in the same few minutes.
+
+**Changing next cycle:** none; the fix and its regression guard are both live.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged (33, 32 resolved/31, 21, 18, 15 `decision`; 29, 2 `blocked-on-art`; 34 partially closed, SKU-retirement half still Phil's). No new operator-executable handoff found this slot; the next productive avenue is a third customer-journey trace (the free deck/lead-magnet download path, since email capture stays Phil-blocked on Listmonk per issue #15) or `preflight.py --deep` if it has not run today.
+
+Pushed to main. `ops/stripe_catalog.py`, new test file, command deck. No price or product touched (the fix only tightens an internal readiness check; BK-BUNDLE is deliverable today either way); not customer-facing.
+
 ## 2026-09-22, scheduled operator cycle (checks.yml confirmed green; issue #34 confirmed already closed on the operator side; corporate-enquiry funnel traced clean; no new defect)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward (24 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`'s constraint section, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries via a research subagent (to keep this session's own context free for the verification work), then re-checked its findings directly rather than trusting them: `python ops/preflight.py` clean myself (every gate passed, 22 warnings, all previously diagnosed sandbox limits).
@@ -20,7 +42,27 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none; no new defect, no new gate needed.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged (33, 32 resolved/31, 21, 18, 15 `decision`; 29, 2 `blocked-on-art`; 34 partially closed, SKU-retirement half still Phil's). The productive avenues left for a future cycle: trace a third customer journey (email capture is Phil-blocked on Listmonk per issue #15, so the next untraced one is the free deck/lead-magnet download path), or re-run `preflight.py --deep` if it has not run this same day.
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged (33, 32 resolved/31, 21, 18, 15 `decision`; 29, 2 `blocked-on-art`; 34 partially closed, SKU-retirement half still Phil's). Picked up the `BK-BUNDLE` `deliverable()` handoff the concurrent 21:4x PM check-in below left for the operator; see that entry for the finding and the entry above this merge for the fix.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing.
+
+## PM check-in, 2026-09-22 21:4x (previous work finished, the checks.yml worry from the last check-in resolved as a false alarm; a real latent gap found in the bundle's Stripe readiness check, handed to the operator)
+
+NEXT FOR THE OPERATOR: fix `ops/stripe_catalog.py`'s `deliverable()` check for `BK-BUNDLE`, because it only verifies `build/6S-Whole-House-Print-Pack.html` exists (`SELLABLE["BK-BUNDLE"]["deliverable"]` names one file) while `ops/stripe_fulfil.py`'s `DELIVERY["BK-BUNDLE"]` actually requires three (the print pack, the EPUB and the manual), so a future missing EPUB or manual would still be reported deliverable and the payment link would stay live for an order that would silently stall on `deliver()`'s own "file missing" refusal instead of being pulled from sale first.
+
+**Previous work: finished.** Fetched and fast forward merged onto `origin/main` clean, no unshallow needed this time. Ran `python ops/preflight.py` fresh myself (backgrounded past this sandbox's foreground timeout, watched to real exit): every gate passed, 22 warnings, all previously diagnosed sandbox limits. Tree was clean and pushed before this cycle touched anything.
+
+**Closed the last check-in's own open question rather than repeating it.** The 21:2x entry recorded `checks.yml` as stuck `in_progress` for 20+ minutes on `740b604e`/`e951934a` and asked the operator to verify it. Checked directly via the GitHub API instead of waiting: `checks.yml` never ran on either commit at all, not stuck, because both only touched `ops/dashboard.html`, `ops/state.json` and `ops/NIGHTLY-LOG.md`, which the workflow's own file explicitly excludes even though they live under `ops/**` (deliberate, documented in `checks.yml`'s own header comment, to stop the deck's per-cycle timestamp regen from triggering a run on every single push). The real last code-touching commit, `def17749`, has a completed `checks.yml` run (`#1303`), conclusion `success`. `fulfil-orders.yml`, `linkedin-drafts.yml` and `social-drafts.yml` all `success` on all three commits. Not a stall; the prior cycle just had not read the workflow's own exclusion comment.
+
+**Checked, not assumed.** `BACKLOG-2026-09-07.md` re-read row by row: sections 2 to 4 still every row done or Phil-gated, section 5 correctly HOLD, section 6 owner gates only. GitHub: 8 open issues confirmed live, unchanged, all `decision`/`blocked-on-art`, 0 open PRs, none mine to start.
+
+**Found the bundle gap while checking whether `BK-BUNDLE`'s fulfilment was itself already independently verified**, since it is the newest paid SKU and the backlog read alone found nothing new. `ops/stripe_fulfil.py`'s `DELIVERY["BK-BUNDLE"]` sends three files and its own `deliver()` correctly refuses all three unless every one exists (no partial bundle can ever ship, verified by reading the function). But `ops/stripe_catalog.py`'s `SELLABLE["BK-BUNDLE"]` carries a single `deliverable` path, the print pack only, and `deliverable()` (the function that decides whether a payment link may be created or must stay live) checks only that one file. All three files exist right now (checked directly: EPUB, manual and print pack all present on disk), so there is no live defect today and no customer is at risk this minute; `stripe_fulfil.py`'s own all-or-nothing check means even a future gap would stall an order for a human to catch rather than ship it broken. The gap is that `stripe_catalog.py` would not notice or pull the link itself if the EPUB or manual ever went missing, the exact "source was corrected and the shipped artifact was never re-derived from it" class this backlog's own section 7 names as the dominant defect here, just not yet landed. Not fixed this slot: this touches Stripe-integration code, `CLAUDE.md` section 52's YELLOW tier, and a careful fail-then-pass fix (the convention every sibling gate in this repository already follows) is real work, not a two-minute PM-slot edit.
+
+**Went well:** resolving the handed-off CI worry with one API check instead of leaving it open a second cycle; finding a real, currently-latent gap by tracing the one genuinely new paid surface instead of re-reading already-cleared files.
+
+**Did not go well:** none.
+
+**Next:** the `BK-BUNDLE` `deliverable()` fix above, for the operator. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
 
 Pushed to main. Command deck only. No price, product or site page touched; not customer-facing.
 

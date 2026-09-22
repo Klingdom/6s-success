@@ -63,8 +63,15 @@ REFUSALS_PATH = os.path.join(ROOT, "ops", "link-retirement-refused.json")
 SELLABLE = {
     "BK-EB": dict(kind="digital",
                   deliverable="build/6S-Success-Home-Edition.epub"),
+    # A list here, not a string: ops/stripe_fulfil.py's own DELIVERY["BK-BUNDLE"]
+    # sends all three files (the same list, same order) and refuses to ship if
+    # any one is missing. deliverable() below must refuse to sell the link on
+    # the same condition, or a missing EPUB/manual would still read
+    # "deliverable" here while an order silently stalled at fulfilment time.
     "BK-BUNDLE": dict(kind="digital",
-                      deliverable="build/6S-Whole-House-Print-Pack.html"),
+                      deliverable=["build/6S-Success-Home-Edition.epub",
+                                   "content/manual/micro-zone-manual-publishable.html",
+                                   "build/6S-Whole-House-Print-Pack.html"]),
     "PACK-HOUSE": dict(kind="digital",
                        deliverable="build/6S-Whole-House-Print-Pack.html"),
     "MZ-MANUAL": dict(kind="digital",
@@ -211,8 +218,13 @@ def deliverable(sku: str, item: dict, spec: dict) -> tuple[bool, str]:
         path = spec.get("deliverable")
         if not path:
             return False, "digital with no file named"
-        if not os.path.exists(os.path.join(ROOT, path)):
-            return False, f"file not built: {path}"
+        # A bundle SKU names a list of files (must all exist to ship, matching
+        # stripe_fulfil.py's own all-or-nothing DELIVERY check); every other
+        # SKU names one file as a plain string.
+        paths = [path] if isinstance(path, str) else path
+        missing = [p for p in paths if not os.path.exists(os.path.join(ROOT, p))]
+        if missing:
+            return False, f"file not built: {missing[0]}"
         blockers = front_matter_blockers()
         if blockers and sku in ("BK-EB", "BK-BUNDLE", "MZ-MANUAL"):
             return False, f"front matter unanswered ({blockers} fields), issue 3"
