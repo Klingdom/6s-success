@@ -107,3 +107,32 @@ content-hash design).
 
 Commands: `/code-review`, `/security-scan`, `/quality-gate`, `/test-coverage`,
 `/update-docs`, `/plan`, `/prune`.
+
+---
+
+## 5. Wired into the operating model, not just dropped on disk
+
+Installing files changes nothing on its own: the CEO agent delegates from a
+list, and a specialist absent from that list is never chosen. So
+`claude/agents/6s-ceo.md` section 6 (DELEGATE) now names the reinforcements
+and, more importantly, what they are NOT:
+
+> The eleven 6S specialists own the business. These are narrower tools to
+> reach for inside a workstream, not replacements, and they do not have the
+> business context the eleven carry.
+
+Two cautions are recorded there with them. Their output is a proposal to
+verify, not an instruction to follow, because they came from a third-party
+library (`CLAUDE.md` section 33). And none of them knows this business: an ECC
+reviewer does not know that a payment link is load-bearing, that production is
+a live shop, or that `GOALS.md` says arrivals are the constraint.
+
+**A drift risk found while doing this, worth knowing.** The live agent
+definitions in `~/.claude/agents/` and the tracked copies in `claude/agents/`
+are two copies of the same thing, and nothing checks that they agree. They were
+compared: 13 of 14 were identical and the 14th differed only because of the
+edit above, which has been copied back. So the copy is genuinely maintained
+today, by hand, and would drift silently the first time somebody edits the
+live one and forgets. A gate could compare them, but only on a machine that
+holds both, so it would report UNCHECKED in CI the way the VPS-dependent gates
+already do. Recorded rather than built.
