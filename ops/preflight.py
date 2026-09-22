@@ -1093,6 +1093,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_catalog.py": ("gate_marketplace_fix_current", "gate_zone_heroes_stable"),
     "build_cover.py": ("gate_cover_author_current",),
     "build_deck_pdf.py": ("gate_deck_pdf_download_current",),
+    "build_kitchen_deck_pdf.py": ("gate_kitchen_deck_pdf_current",),
     "build_etsy_assets.py": ("gate_etsy_pdfs_current",),
     "build_icons.py": ("gate_icons_current",),
     "build_id.py": ("gate_build_id_current",),
@@ -4057,41 +4058,48 @@ def check_kitchen_deck_print_tracked(page: str) -> list:
     """
     problems = []
     m = re.search(
-        r'<button[^>]*onclick="([^"]*window\.print\(\)[^"]*)"[^>]*>'
-        r'\s*Print the 72 fronts', page)
+        r'<a[^>]*href="(downloads/6S-Kitchen-Deck-PrintAndPlay\.pdf)"'
+        r'[^>]*>\s*[^<]*</a>', page)
     if not m:
-        problems.append("no 'Print the 72 fronts' button found on the page")
+        problems.append(
+            "no link to downloads/6S-Kitchen-Deck-PrintAndPlay.pdf found on "
+            "the page, so there is no way to take the free Kitchen deck as "
+            "a real file")
         return problems
-    onclick = m.group(1)
-    if "Measure" not in onclick or "track(" not in onclick:
+    tag = page[m.start():m.end()]
+    if "Measure" in tag and "track(" in tag:
         problems.append(
-            "the print button calls window.print() but never calls "
-            "window.Measure.track(), so taking the free Kitchen deck is "
-            "invisible to analytics")
-    elif "free-download" not in onclick:
-        problems.append(
-            "the print button's Measure.track call does not use the "
-            "site's own 'free-download' event name, so it will not be "
-            "counted alongside every other free artefact taken")
+            "the download link carries its own onclick "
+            "window.Measure.track() call, which double-counts: "
+            "measure.js's global click handler already fires 'free-download' "
+            "for any href containing 'downloads/' (issue found and fixed "
+            "2026-09-22, ops/tests/test_measure_events.py probe F). Remove "
+            "the onclick, do not add a second one.")
     return problems
 
 
 def gate_kitchen_deck_print_tracked() -> None:
     """PLAN-MICROZONES-DECKS-APP.md K6: 'deck_full_download' must be
-    emitted and readable in the analytics database. The Kitchen deck has
-    no downloadable PDF (B1: HTML + print CSS, not a file under
-    /downloads/), so measure.js's own href-based '/downloads/' pattern,
-    which already counts the Entryway deck's PDF link, never fires for it.
-    Before this gate, the 'Print the 72 fronts' button called only
-    window.print() with no tracking at all: every Kitchen deck reader who
-    took the free artefact was invisible, the exact gap K6 names.
+    emitted and readable in the analytics database.
 
-    Fixed by wiring the button to the site's existing 'free-download'
-    event (the same name the Entryway deck's PDF link already fires),
-    rather than inventing a new event name nobody else reads.
-    'deck_page_view' needs no separate event: Umami's own script already
-    records a pageview for every load of /kitchen-deck.html, the same way
-    every other page on the site is counted, with no per-page custom event.
+    Originally the Kitchen deck had no downloadable PDF at all (B1: HTML +
+    print CSS only, window.print()), so this gate checked for a hand-wired
+    onclick Measure.track() call on that button. 2026-09-22: a real,
+    downloadable PDF was added (ops/build_kitchen_deck_pdf.py, GitHub issue
+    #34), the same shape the Entryway deck's own PDF link already uses. That
+    change also found and fixed the reason the Entryway deck's own download
+    was never counted either: measure.js's free-download regex only matched
+    an href starting with "/downloads/" or containing "print-and-play", and
+    every real download link on a root-level page (deck.html, book.html,
+    kitchen-deck.html) writes a page-relative href with neither shape. Fixed
+    in measure.js and proven in ops/tests/test_measure_events.py's new
+    probe F.
+
+    So the Kitchen deck's download is now tracked the same way, by the same
+    global handler, with no per-page onclick needed or wanted: a second,
+    page-level Measure.track() call on top of it would double-count every
+    real download. This gate now checks the link exists with the right
+    href, and fails if a redundant onclick tracker reappears.
 
     Checks the shipped page (pure logic in
     check_kitchen_deck_print_tracked, proved to fail on a planted
@@ -6203,6 +6211,45 @@ def gate_deck_pdf_download_current() -> None:
              f"PrintAndPlay.pdf ({len(b)} bytes) differ. Every zone/room "
              f"page and deck.html link the site/downloads copy; re-copy "
              f"it from build/ after any ops/build_deck_pdf.py run.")
+
+
+def gate_kitchen_deck_pdf_current() -> None:
+    """The Kitchen deck's real downloadable PDF must match the live page's
+    own print sheet, and must exist at all once the page links to it.
+
+    Unlike the Entryway deck's PDF, this one has no Desktop-only art
+    dependency: ops/build_kitchen_deck_pdf.py renders it straight from
+    site/kitchen-deck.html, which is itself fully generated from the
+    committed corpus. So there is no excuse for "cannot check from here" the
+    way the Entryway pipeline sometimes has; the only real failure mode is
+    the page's print sheet moving on (a corpus edit, a template change)
+    after the PDF was last built, the same corrected-source-never-rederived
+    shape gate_downloads_current exists for on the Entryway deck.
+
+    A PDF byte-diff would be the wrong check here: two Chromium builds of
+    the identical page can legally differ in bytes (embedded font
+    subsetting, PDF producer metadata), the same reproducibility gap
+    _zip_content_identical's own docstring already documents for a
+    different file format. This compares a content hash of the source sheet
+    instead, exactly as ops/build_kitchen_deck_pdf.py itself records one at
+    build time.
+    """
+    html_fp = os.path.join(SITE, "kitchen-deck.html")
+    if not os.path.isfile(html_fp):
+        return
+    html = io.open(html_fp, encoding="utf-8", errors="replace").read()
+    pdf_path = "downloads/6S-Kitchen-Deck-PrintAndPlay.pdf"
+    if pdf_path not in html:
+        # Not wired in yet on this checkout; nothing to hold current.
+        return
+    import build_kitchen_deck_pdf as KP
+    r = KP.check()
+    if not r["ok"]:
+        fail("kitchen-deck-pdf-current",
+             "site/kitchen-deck.html links %s but %s Run "
+             "ops/build_kitchen_deck_pdf.py (needs a real Chromium; "
+             "ops/browser.py finds one) and commit the result."
+             % (pdf_path, r["reason"]))
 
 
 def gate_room_images_stable() -> None:
@@ -19194,6 +19241,7 @@ def main() -> int:
     run_gate(gate_deck_gallery_identity)
     run_gate(gate_deck_pdf_download_current)
     run_gate(gate_deck_pdf_size_budget)
+    run_gate(gate_kitchen_deck_pdf_current)
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
     run_gate(gate_roadmap_report_issues_unknown)

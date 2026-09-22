@@ -179,8 +179,19 @@
     }
 
     /* A free artifact being taken is the closest thing to a conversion this
-       site has while nothing is selling. */
-    if (/\/downloads\/|print-and-play/.test(href)) {
+       site has while nothing is selling.
+
+       Found 2026-09-22: this only matched "/downloads/" with a leading
+       slash, or the literal string "print-and-play". Every real download
+       link on a root-level page (deck.html, book.html, kitchen-deck.html)
+       writes a page-relative href with no leading slash at all,
+       "downloads/6S-....pdf", which matched neither branch. Only a page one
+       directory deep ("../downloads/...") or an absolute URL happened to
+       contain "/downloads/" as a substring, so free-download has never once
+       fired for the two main lead magnets on the pages people actually take
+       them from. Matching "downloads/" at the very start of the href, not
+       only after a slash, closes that. */
+    if (/(^|\/)downloads\/|print-and-play/.test(href)) {
       track("free-download", { what: href.split("/").pop().slice(0, 60),
                                from: page() });
       return;

@@ -504,7 +504,7 @@ __CSS__
       <h1>The <em>Kitchen</em> Deck</h1>
       <p class="sub">__N__ cards: __NZONES_LOWER__ zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset and free. No illustrations yet, so every card reads as text, not a photograph.</p>
       <div class="cta-row">
-        <button class="btn btn-primary btn-lg" type="button" onclick="if(window.Measure){window.Measure.track('free-download',{what:'kitchen-deck-print',from:'kitchen-deck'});}window.print()">Print the __N__ fronts</button>
+        <a class="btn btn-primary btn-lg" href="downloads/6S-Kitchen-Deck-PrintAndPlay.pdf">Download the deck, free (PDF)</a>
         <a class="btn btn-on-deep btn-lg" href="#kitchen-cards">Read the deck</a>
       </div>
       <p class="fulfil-note">The Entryway deck, illustrated: <a href="deck.html" style="color:inherit">deck.html</a>.</p>

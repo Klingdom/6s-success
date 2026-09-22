@@ -976,7 +976,7 @@ at any traffic including 1.7 visitors a day.
 | C17 | ~~Dashboard RED row when `ensure_link` refuses to retire a link production serves~~ | A designed-in price-disagreement window whose only signal is a `print()` | 2 | 0.3 | **Done 2026-09-22, operator.** `ops/stripe_catalog.py`'s `ensure_link()` refusal branches (live site unreadable, or still serving the retired link) now append to `REFUSED_RETIREMENTS` and a real `--apply` run persists it to `ops/link-retirement-refused.json` via the new `persist_refusals()`, always a full overwrite so a clean run clears a stale entry. `ops/dashboard.py` reads it (`_load_link_retirement_refusals()`), and `status_of()` gained a `link_retirement_refused` parameter that returns RED naming the sku(s), ranked below a confirmed dead live-links verdict (the worse outage) but above the ordinary P0/GitHub checks. `ops/hourly_brief.py` gained `link_retirement_summary()`, wired into the STRIPE ACCOUNT section and the subject line, following the same `(problem, lines)` pattern as its `price_claims_summary()`/`duplicate_sku_summary()` siblings, except it reads the already-persisted file rather than making a live Stripe call, so it is never UNCHECKED. No sandbox here has ever held a Stripe credential, so the real refusal branch has never fired and could not be exercised live; proved instead with a hand-built refusal, exactly the acceptance line's own wording. New `gate_link_retirement_refusal_surfaced` in `ops/preflight.py`, plus `ops/tests/test_gate_link_retirement_refusal_surfaced.py` (7 cases, including a round trip through `persist_refusals()`), fail-then-pass proved directly: monkeypatched `dashboard.status_of` back to the pre-fix shape (no `link_retirement_refused` parameter) and watched the gate fail by name on both the escalation and the dead-links-still-wins checks, restored, reran clean. Full `preflight.py` (every gate passed, 24 warnings, all previously diagnosed sandbox limits), `check_urls.py` (189/189), `audit_pages.py` (193/0), `affiliate.py --check` (164 documents), `fix_dashes.py --check` (0/0) all clean after. No price or product touched, no site page changed (an internal ops tool, the dashboard generator and the hourly brief gained a new signal path); IndexNow not applicable. | Independent |
 | C18 | ~~Strike the superseded body of `PRICING.md`; record a reason for `BK-EB` $9.99~~ | The one live price with no recorded reason is the one that carried the duplicate | 1 | 0.3 | **Done 2026-09-21, operator.** `PRICING.md` section 2 marked "Stale, see section 0.6"; `DECISIONS.md` D-022 ratifies `BK-EB` at $9.99 on current evidence, stating plainly that the original reason is unknown and unrecoverable. See "C15 and C18 done the same cycle" above. | Independent |
 | C19 | ~~Fix "Almost all of our revenue comes from products we made"~~ | Implies a revenue stream; `CLAUDE.md` 8 | 1 | 0.1 | **Done 2026-09-14, operator.** Reworded to not imply a revenue stream that does not exist; verified live, the phrase no longer appears anywhere on the site. See this document's own section 0 status note. | Independent |
-| C20 | Escalated, GitHub issue #34: retire the 7 `ZP-KITCHE-*` and `RP-KITCHEN` | `DECK-SYSTEM.md` 9: a deck must retire at least as many SKUs as it adds | 2 | 0.5 | Phil to pick: fire now, ship a real PDF first, or leave as-is (issue #34) | Independent |
+| C20 | Escalated, GitHub issue #34: retire the 7 `ZP-KITCHE-*` and `RP-KITCHEN` | `DECK-SYSTEM.md` 9: a deck must retire at least as many SKUs as it adds | 2 | 0.5 | **Half done 2026-09-22, operator: option 2 (the real PDF) shipped.** `site/downloads/6S-Kitchen-Deck-PrintAndPlay.pdf` now exists, downloadable, gated for staleness; "downloadable" no longer reads as a technicality. Whether to actually retire the 8 SKUs is still Phil's, per the same row: fire now, or leave as-is (issue #34, updated). | Independent |
 
 **Suggested order, respecting the three-workstream limit in `CLAUDE.md` 18:**
 All four *At* items (C4, C8, C11, C12, C13) are done, 2026-09-21/22; section 7
@@ -995,18 +995,32 @@ prior "wait behind O1" hold was itself never recorded as a decision, so a
 later cycle ended it rather than re-deriving the same open question again,
 per `CLAUDE.md` 0.8. Genuinely remaining: **C1/C2/R1-R4** need Stripe
 credentials no sandbox here holds; **C20** is escalated to Phil.
-**C20, escalated to Phil, GitHub issue #34, 2026-09-22 PM check-in.** Its own
-condition ("the Kitchen deck is downloadable on the live site") was written
-2026-09-07 assuming the deck was blocked on image billing; `BACKLOG-2026-
-09-07.md` B1 shipped a free, unillustrated, live `site/kitchen-deck.html`
-2026-09-08, print-only (no PDF download, a browser "Print the 72 fronts"
-button), which does not satisfy that condition read the way this repository
-uses "downloadable" everywhere else (a file the customer receives, not a
-print dialog). Two prior cycles flagged this as open without resolving it;
-rather than re-flag it a third time, issue #34 puts three options to Phil
-(fire it as-is, ship a real Kitchen PDF first via the existing
-`ops/build_deck_pdf.py` then fire it, or leave the 8 SKUs listed) with a
-recommendation. Do not re-read this row until #34 closes.
+**C20, GitHub issue #34, updated 2026-09-22, operator: option 2 shipped, retirement itself still Phil's call.** Issue #34 put three options to
+Phil (fire it as-is, ship a real Kitchen PDF first then fire it, or leave the
+8 SKUs listed). `ops/build_deck_pdf.py` could not be reused directly (it
+draws card art from photographed PNGs; the Kitchen deck has none yet, B1),
+so a sibling, `ops/build_kitchen_deck_pdf.py`, renders the page's own
+existing `@media print` sheet straight to a PDF through headless Chromium,
+the same page `window.print()` already produced correctly. Verified live:
+12 pages, both the deck's own opening and closing card titles present in
+the extracted text, gated for staleness (`gate_kitchen_deck_pdf_current`,
+a content hash of the print sheet recorded at build time, the same shape
+`check_sitemap_current.py` already uses). The hero's old print-dialog
+button is now a real `<a href="downloads/6S-Kitchen-Deck-PrintAndPlay.pdf">`
+link. Verifying this also found and fixed a real, live, sitewide gap:
+`measure.js`'s `free-download` tracking only matched an href starting
+`/downloads/` or containing `print-and-play`; every real download link on a
+ROOT-level page (deck.html, book.html, and now kitchen-deck.html) writes a
+page-relative href with neither shape, so the Entryway deck's own PDF and
+the book sample have likely never once been counted since that handler was
+written. Fixed and proven fail-then-pass in
+`ops/tests/test_measure_events.py`'s new probe F. "Downloadable" no longer
+reads as a technicality either way it is judged. **Not done, and not this
+operator's to do:** whether to actually retire the 8 `ZP-KITCHE-*`/
+`RP-KITCHEN` SKUs. Issue #34 explicitly framed that as Phil's pick among
+three options, not an economic judgement this repository has independent
+evidence for the way D-023's retirement of the Situation Kits and Area
+Bundles did; commented on the issue rather than deciding it.
 
 ---
 

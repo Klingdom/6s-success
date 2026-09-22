@@ -141,12 +141,27 @@ setTimeout(function () {
 }, 150);
 """)
 
+# F: a free-download link exactly as it appears on a ROOT-level page (deck.html,
+# book.html, kitchen-deck.html): href="downloads/whatever.pdf", no leading
+# slash and no "../" prefix, because the page serving the link IS already at
+# site root. Written to the site root (not zones/) so the served href is
+# genuinely that relative form, not a subdirectory one.
+PROBE_F = probe("f", "",
+                '<a id="dl" href="downloads/6S-Some-Deck.pdf">get it</a>', """
+document.getElementById("dl").click();
+setTimeout(function () {
+  window.dispatchEvent(new Event("pagehide"));
+  setTimeout(finish, 120);
+}, 150);
+""")
+
 PROBES = {
     "zones/_measure_probe_a.html": PROBE_A,
     "zones/_measure_probe_b.html": PROBE_B,
     "zones/_measure_probe_c.html": PROBE_C,
     "zones/_measure_probe_d.html": PROBE_D,
     "zones/_measure_probe_e.html": PROBE_E,
+    "_measure_probe_f.html": PROBE_F,
 }
 
 
@@ -297,6 +312,21 @@ def main() -> int:
     elif d[0]["d"].get("depth") != "90-100":
         bad.append("a page with nothing to scroll reported depth=%r; the "
                    "reader saw all of it" % d[0]["d"].get("depth"))
+
+    # ---- F: a root-page download link ("downloads/x.pdf", no leading slash,
+    # no "../" prefix) is the exact form deck.html, book.html and
+    # kitchen-deck.html actually ship, and the only form the free-download
+    # regex did not match before this fix.
+    f = only("_measure_probe_f.html", "free-download")
+    if len(f) != 1:
+        bad.append("clicking a root-page \"downloads/x.pdf\" link produced %d "
+                   "free-download event(s), expected 1. This is the exact "
+                   "href form deck.html, book.html and kitchen-deck.html "
+                   "ship, so a miss here means those lead magnets were never "
+                   "counted." % len(f))
+    elif f[0]["d"].get("what") != "6S-Some-Deck.pdf":
+        bad.append("free-download sent what=%r for a root-page download "
+                   "link, expected the filename" % f[0]["d"].get("what"))
 
     # ---- E: the internal marker, which is what makes EXP-001 answerable.
     def who(key):
