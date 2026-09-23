@@ -728,7 +728,30 @@ direction.
 >   and an IndexNow submission of 117 changed pages. Three causes, one day, no control: this is an **early
 >   signal, not a result**, and the honest next step is to keep reading the same log for a week before claiming
 >   anything.
-> **Second reading, 2026-09-21 07:52 MDT, and the signal held.** Googlebot content fetches: 2026-09-20 closed at
+> **THIRD READING, 2026-09-23, AND THE SECOND READING WAS WRONG. It was a burst, not a change.** Googlebot
+> content fetches by day: 2026-09-19 **1**, 09-20 **17**, 09-21 **15**, 09-22 **2**, 09-23 **2** (to 12:50 UTC).
+> Two elevated days, then straight back to the 1-to-2 baseline it came from. The block below called that "a real
+> and sustained change in crawler behaviour" after seeing two consecutive days; four days say it was a recrawl
+> burst, which is exactly what an IndexNow submission of 117 pages plus corrected `lastmod` dates is supposed to
+> cause, once.
+>
+> **The error is mine and it is worth naming precisely, because it is subtle.** The first reading (2026-09-20)
+> was correct and appropriately hedged: "an early signal, not a result". The second reading upgraded it to
+> "sustained" on the strength of one more day. Two points in the same direction is not a trend, it is two points,
+> and "sustained" was a claim about the future that one extra day could not support. The guard that would have
+> caught it was already written in the first reading's own words, "keep reading the same log for a week before
+> claiming anything", and I did not follow it.
+>
+> **What stands.** The `Disallow: /stats/` result above is unaffected and remains the real finding: beacon
+> fetches went to 0 on 17 Sep and are still 0, six days on. That was a change in what Googlebot does, measured
+> against a clear before and after, and it has held.
+>
+> **What this costs us.** Nothing was built on the wrong claim, because it was recorded rather than acted on.
+> The standing conclusion is unchanged and now better evidenced: on-page work does not move this site's
+> discovery (the templated-pages hypothesis is ruled out below), and a crawl burst from a submission is not
+> traffic. Human arrivals over the same four days: 10, then 12 in the trailing week, against 18 three weeks ago.
+>
+> **Second reading, 2026-09-21 07:52 MDT. SUPERSEDED by the third reading above: this one called a two-day burst "sustained" and was wrong.** Googlebot content fetches: 2026-09-20 closed at
 > **17**, and 2026-09-21 is at **11 before 08:00 local with the day not over**. Against the ten days before them
 > (10 to 19 Sep: 0,0,1,0,1,2,6,1,1,1, or 1.3 a day) that is roughly a tenfold rise sustained across two
 > consecutive days, which is no longer explainable as one day's noise.

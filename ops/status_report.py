@@ -126,6 +126,63 @@ def vhost_state(vhost_configured):
     return "yes" if vhost_configured else "no"
 
 
+def mail_state(mx_working):
+    """Same tri-state rule as domain_state()/vhost_state(), for mail.
+
+    None must never resolve to "yes" or "no": that collapse is the exact
+    bug this function replaces. Found 2026-09-23: mx_working was a bare
+    Python `True`, typed once, with a comment claiming it was "re-checked
+    below" when nothing anywhere in this file ever checked it again. Every
+    report this produced printed "mail WORKING... verified" regardless of
+    whether mail actually worked that day, which is the same "unmeasured
+    state collapsing into a specific, plausible-looking answer" defect
+    class gate_status_report_network_unknown already exists to catch for
+    the domain and vhost probes. A hand-typed constant a report's own
+    docstring promises is "measured at run time" is not measured; it is a
+    stale claim wearing the shape of one.
+    """
+    if mx_working is None:
+        return "unknown"
+    return "yes" if mx_working else "no"
+
+
+def mx_probe(domain, timeout=8):
+    """True/False/None: does the domain's own mail exchanger accept a
+    recipient at support@? None means this could not be checked from
+    here, on this run, for any reason at all, and must never be read as
+    either a pass or a failure.
+
+    No DATA is ever sent, so no message reaches an inbox; RCPT TO is
+    answered by the server before any content changes hands, the same
+    non-intrusive technique mail-verification services use. This needs no
+    SMTP_USER/SMTP_PASS: it is an anonymous probe of the domain's public
+    inbound mail exchanger, unrelated to ops/mailer.py's authenticated
+    outbound relay credentials, so it touches no secret and needs none.
+
+    A sandbox that denies egress to port 25, or any other failure along
+    the way (no MX record, a timeout, a connection refusal), returns None
+    rather than False: "could not reach it" and "reached it and it said
+    no" are different claims, the same distinction http() already draws
+    for the web and vhost probes above.
+    """
+    import smtplib
+    try:
+        mx_out = sh(f"nslookup -type=MX {domain} 8.8.8.8")
+        hosts = re.findall(r"mail exchanger = (\S+?)\.?\s*$", mx_out, re.M)
+        if not hosts:
+            return None
+        host = sorted(hosts)[0]
+        with smtplib.SMTP(host, 25, timeout=timeout) as s:
+            s.ehlo("6s-success.com")
+            code, _ = s.mail("checker@6s-success.com")
+            if code >= 400:
+                return None
+            code, _ = s.rcpt(f"support@{domain}")
+            return 200 <= code < 300
+    except Exception:
+        return None
+
+
 def port_open(host, port, timeout=6):
     try:
         with socket.create_connection((host, port), timeout=timeout):
@@ -147,7 +204,7 @@ def gather():
         "status": code, "title": title, "parked": parked,
         "a_record": ips[-1] if ips else "unknown",
         "nameservers": re.findall(r"nameserver = (\S+)", nsout),
-        "mx_working": True,   # verified by SMTP RCPT earlier and re-checked below
+        "mx_working": mx_probe(DOMAIN),   # True/False/None, see mail_state()
     }
 
     # ---- vps
@@ -311,6 +368,13 @@ def render(d):
         "live": "live",
         "unknown": "UNKNOWN, this run's network could not reach it",
     }[dstate]
+    mstate = mail_state(dom.get("mx_working"))
+    mail_line = {
+        "yes": "WORKING. support@ accepted a RCPT probe this run",
+        "no": "NOT ACCEPTING. support@ refused a RCPT probe this run",
+        "unknown": "UNKNOWN, this run's network could not reach the mail "
+                   "exchanger to check",
+    }[mstate]
 
     def yn(b, y="yes", n="no"):
         return y if b else n
@@ -335,7 +399,7 @@ def render(d):
     A(f"  A record                {dom['a_record']}")
     A(f"  nameservers             {', '.join(dom['nameservers']) or 'unknown'}")
     A("  TLS                     valid, Google Trust Services, expires 2026-10-26")
-    A("  mail                    WORKING. support@ sends and receives, verified")
+    A(f"  mail                    {mail_line}")
     A("")
     if dstate == "parked":
         A("  These are parking nameservers. Until the A record points at the VPS,")

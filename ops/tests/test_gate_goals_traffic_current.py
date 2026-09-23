@@ -11,6 +11,13 @@ Also proves the fix for a false positive found while building this: a bare
 lazy ".*?" between "Measured DATE" and "Traffic is N visitors" can bridge two
 unrelated paragraphs and pair the wrong date with the wrong count.
 
+Widened 2026-09-23 (two independent sessions, same day): DATA-SOURCES.md's
+own "N visitors/M visits, GOALS.md O1" citation is now checked the same way,
+and GOALS.md's own "Weekly visitors" row and "Why it is first" paragraph are
+now checked against its own "Stranger to Visitor"/"Sessions, last 7 days"
+rows, since every prior check compared GOALS.md against a sibling file but
+never against itself.
+
 Run:  python ops/tests/test_gate_goals_traffic_current.py
 """
 import io
@@ -58,6 +65,18 @@ OA_UNRELATED_PARAGRAPHS = (
 
 OA_NO_LINE = "Nothing resembling that phrase appears anywhere in this file.\n"
 
+DS_AGREES = (
+    "| Web analytics | Umami | VERIFIED: real traffic figures (68 "
+    "visitors/161 visits, `GOALS.md` O1) were read directly | x | x | x |\n"
+)
+
+DS_DISAGREES = (
+    "| Web analytics | Umami | VERIFIED: real traffic figures (60 "
+    "visitors/140 visits, `GOALS.md` O1) were read directly | x | x | x |\n"
+)
+
+DS_NO_LINE = "Nothing resembling that phrase appears anywhere in this file.\n"
+
 # Same-document shape, found 2026-09-23: GOALS.md's own "Weekly visitors" row
 # and "Why it is first" narrative paragraph, both a few lines below the
 # canonical table, drifted from it without any sibling file ever disagreeing.
@@ -72,10 +91,12 @@ GOALS_WHY_DISAGREES = GOALS + (
     "from the database) across 193 visits in thirty days, and so on.\n")
 
 
-def _run(goals: str, owner_actions: str):
+def _run(goals: str, owner_actions: str, data_sources: str = None):
     tmp = tempfile.mkdtemp()
     io.open(os.path.join(tmp, "GOALS.md"), "w", encoding="utf-8").write(goals)
     io.open(os.path.join(tmp, "OWNER-ACTIONS.md"), "w", encoding="utf-8").write(owner_actions)
+    if data_sources is not None:
+        io.open(os.path.join(tmp, "DATA-SOURCES.md"), "w", encoding="utf-8").write(data_sources)
     old_root = preflight.ROOT
     preflight.ROOT = tmp
     preflight.FAIL, preflight.WARN = [], []
@@ -115,31 +136,56 @@ def main() -> int:
     if r:
         fails.append("missing line wrongly flagged: %r" % (r,))
 
-    # 6. GOALS.md's own "Weekly visitors" row agrees with "Sessions, last 7
+    # 5. DATA-SOURCES.md's own "N visitors/M visits, GOALS.md O1" citation
+    #    agrees (68/161 both places): no failure.
+    r = _run(GOALS, OA_AGREES, DS_AGREES)
+    if r:
+        fails.append("DATA-SOURCES.md agreement wrongly flagged: %r" % (r,))
+
+    # 6. DATA-SOURCES.md carries a stale figure: caught, naming both
+    #    numbers. This is the real 2026-09-23 regression shape: 75/196 sat
+    #    in DATA-SOURCES.md after GOALS.md O1 had already moved to 76/190.
+    r = _run(GOALS, OA_AGREES, DS_DISAGREES)
+    if not r or "60" not in r[0][1] or "68" not in r[0][1]:
+        fails.append("DATA-SOURCES.md disagreement not caught: %r" % (r,))
+
+    # 7. DATA-SOURCES.md carries no such line at all: must not crash, must
+    #    not invent a finding.
+    r = _run(GOALS, OA_AGREES, DS_NO_LINE)
+    if r:
+        fails.append("DATA-SOURCES.md missing line wrongly flagged: %r" % (r,))
+
+    # 8. DATA-SOURCES.md absent entirely (older checkouts, other repos):
+    #    must not crash, must not invent a finding.
+    r = _run(GOALS, OA_AGREES)
+    if r:
+        fails.append("absent DATA-SOURCES.md wrongly flagged: %r" % (r,))
+
+    # 9. GOALS.md's own "Weekly visitors" row agrees with "Sessions, last 7
     #    days" above it (21 both places): no failure.
     r = _run(GOALS_WEEKLY_AGREES, OA_AGREES)
     if r:
         fails.append("Weekly visitors agreement wrongly flagged: %r" % (r,))
 
-    # 7. It disagrees (14 vs. 21): caught, naming both numbers.
+    # 10. It disagrees (14 vs. 21): caught, naming both numbers.
     r = _run(GOALS_WEEKLY_DISAGREES, OA_AGREES)
     if not r or "14" not in r[0][1] or "21" not in r[0][1]:
         fails.append("Weekly visitors disagreement not caught: %r" % (r,))
 
-    # 8. GOALS.md's own "Why it is first" paragraph agrees with the
-    #    "Stranger to Visitor" row above it (68/161 both places): no failure.
+    # 11. GOALS.md's own "Why it is first" paragraph agrees with the
+    #     "Stranger to Visitor" row above it (68/161 both places): no failure.
     r = _run(GOALS_WHY_AGREES, OA_AGREES)
     if r:
         fails.append("Why-it-is-first agreement wrongly flagged: %r" % (r,))
 
-    # 9. It disagrees (193 visits vs. the table's own 161): caught, naming
-    #    both numbers, the exact 2026-09-23 shape (a stale narrative citing
-    #    the day-before pull after the table above it had already moved on).
+    # 12. It disagrees (193 visits vs. the table's own 161): caught, naming
+    #     both numbers, the exact 2026-09-23 shape (a stale narrative citing
+    #     the day-before pull after the table above it had already moved on).
     r = _run(GOALS_WHY_DISAGREES, OA_AGREES)
     if not r or "193" not in r[0][1] or "161" not in r[0][1]:
         fails.append("Why-it-is-first disagreement not caught: %r" % (r,))
 
-    # 5. The real, committed files: clean today.
+    # 13. The real, committed files: clean today.
     real_goals = os.path.join(ROOT, "GOALS.md")
     real_oa = os.path.join(ROOT, "OWNER-ACTIONS.md")
     if os.path.exists(real_goals) and os.path.exists(real_oa):
@@ -155,7 +201,8 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md and same-document checks), 9/9 checks pass")
+    print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md + DATA-SOURCES.md "
+          "+ same-document checks), 13/13 checks pass")
     return 0
 
 

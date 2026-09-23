@@ -8750,6 +8750,47 @@ def gate_status_report_products_consistent() -> None:
              "end from the computed count: %s" % "; ".join(bad))
 
 
+def gate_status_report_mail_unknown() -> None:
+    """The owner-facing status report must never render an unmeasured mail
+    state as a specific "WORKING" or "NOT ACCEPTING" claim.
+
+    Found 2026-09-23 cold-reading ops/status_report.py: mx_working was a
+    bare Python `True`, typed once, carrying the comment "verified by SMTP
+    RCPT earlier and re-checked below". Nothing below it, or anywhere else
+    in the file, ever checked it again. Every report this produced printed
+    "mail WORKING. support@ sends and receives, verified" on every single
+    run, whether mail was actually reachable that day or not, which is a
+    gate that can never fail: no real state of the world could make that
+    line say anything else. Exactly the defect class
+    gate_status_report_network_unknown already exists to catch for the
+    domain and vhost probes just above this one, on a field that same
+    sweep did not reach.
+
+    Fixed with mx_probe(), a real anonymous SMTP RCPT check against the
+    domain's own MX (no credential, no DATA sent), and mail_state(), a
+    pure tri-state function mirroring domain_state()/vhost_state()
+    exactly, so this gate can prove the rendering decision without
+    shelling out to the network itself.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import status_report as sr
+
+    bad = []
+    if sr.mail_state(None) != "unknown":
+        bad.append("mail_state(None) returned %r, not 'unknown'"
+                   % sr.mail_state(None))
+    if sr.mail_state(True) != "yes":
+        bad.append("mail_state(True) returned %r, not 'yes'"
+                   % sr.mail_state(True))
+    if sr.mail_state(False) != "no":
+        bad.append("mail_state(False) returned %r, not 'no'"
+                   % sr.mail_state(False))
+    if bad:
+        fail("status-report-mail-unknown",
+             "an unmeasured mail state would render as a specific claim "
+             "rather than 'could not be checked': %s" % "; ".join(bad))
+
+
 def gate_roadmap_report_issues_unknown() -> None:
     """The four-times-daily roadmap report must never report zero open
     GitHub issues just because gh could not be reached.
@@ -11535,14 +11576,23 @@ def gate_goals_traffic_current() -> None:
     visits: a pageview count is not a visit_id count, and OWNER-ACTIONS.md's
     own item 1 does not claim to have one, so there is nothing to compare.
 
-    Widened 2026-09-23: every check above compares GOALS.md against a
-    sibling file, none against GOALS.md's own other rows and paragraphs.
-    Found live: the "Weekly visitors" row still read 14/wk a day after the
-    "Sessions, last 7 days" row directly above it had already moved to 10,
-    and the "Why it is first" narrative paragraph still cited a prior day's
-    76 visitors/193 visits pull after the table's own authoritative row had
-    moved to 76/190. Now also parses both and fails if either disagrees
-    with the canonical 30-day/7-day rows.
+    Widened 2026-09-23 (two independent sessions, same day): every check
+    above compares GOALS.md against a sibling file, none against GOALS.md's
+    own other rows and paragraphs, and none against DATA-SOURCES.md. Found
+    live, both real: the "Weekly visitors" row still read 14/wk a day after
+    the "Sessions, last 7 days" row directly above it had already moved to
+    10, and the "Why it is first" narrative paragraph still cited a prior
+    day's 76 visitors/193 visits pull after the table's own authoritative
+    row had moved to 76/190; separately, DATA-SOURCES.md's own Web
+    analytics row still read "75 visitors/196 visits" (the 2026-09-14 pull)
+    while GOALS.md O1 had already moved twice since (78 on 09-17, 76 on
+    09-21). Now also parses the "Weekly visitors" row, the "Why it is
+    first" paragraph and DATA-SOURCES.md's own citation, and fails if any
+    disagrees with the canonical 30-day/7-day rows. The DATA-SOURCES.md
+    check is silent, like the OWNER-ACTIONS.md check above, if the row is
+    absent or no longer in the expected shape: a hard fail there would make
+    an unrelated rewrite of that document's prose block this gate for a
+    reason it cannot fix here.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -11664,6 +11714,23 @@ def gate_goals_traffic_current() -> None:
             bad.append(f"OWNER-ACTIONS.md item 1 (measured {oam.group(1)}) "
                        f"says {oam.group(2)} visitors, GOALS.md says "
                        f"{sessions_30}")
+
+    # Widened 2026-09-23: DATA-SOURCES.md's Web analytics row cites its own
+    # copy of this same figure ("N visitors/M visits, GOALS.md O1") to prove
+    # the source is VERIFIED. Found stale that day: it still read "75
+    # visitors/196 visits" (the 2026-09-14 pull) while GOALS.md O1 had
+    # already moved to 76/190 (2026-09-21), one confirmation behind the
+    # table it explicitly points to, the same "source corrected, sibling
+    # never told" shape this gate exists to catch, this time in the one
+    # document whose whole purpose is to say which figures can be trusted.
+    ds_path = os.path.join(ROOT, "DATA-SOURCES.md")
+    if os.path.exists(ds_path):
+        ds = io.open(ds_path, encoding="utf-8").read()
+        dsm = re.search(r"(\d+) visitors/(\d+) visits,\s*`GOALS\.md`\s*O1", ds)
+        if dsm and (int(dsm.group(1)), int(dsm.group(2))) != (sessions_30, visits_30):
+            bad.append(f"DATA-SOURCES.md's Web analytics row cites "
+                       f"{dsm.group(1)} visitors/{dsm.group(2)} visits, "
+                       f"GOALS.md O1 now says {sessions_30}/{visits_30}")
 
     if bad:
         fail("goals-traffic-current",
@@ -12230,6 +12297,74 @@ def gate_status_currency() -> None:
              "describe an older state than the repository is actually in; "
              "read `git log %s..HEAD` and bring it current."
              % (len(gap), gap[:3], last[:8]))
+
+
+def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
+    """Pure logic for gate_status_deploy_verdict_current.
+
+    status_text: the full text of STATUS.md.
+    verdict: the parsed contents of ops/deploy-verdict.json, the one file a
+    session with real production access writes the moment it confirms a
+    build live.
+
+    Returns a problem string if STATUS.md's BLOCKER-001 section exists but
+    does not mention the real, current build_id; '' if there is nothing to
+    check or the citation is current.
+    """
+    m = re.search(r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)", status_text,
+                  re.DOTALL)
+    if not m:
+        return ""
+    section = m.group(0)
+    build_id = verdict.get("build_id")
+    if not build_id:
+        return ""
+    if build_id not in section:
+        return (
+            "BLOCKER-001 does not mention the real current build_id (%s, "
+            "confirmed %s in ops/deploy-verdict.json). Its own account is "
+            "citing an older confirmation." % (
+                build_id, verdict.get("checked_at", "unknown time")))
+    return ""
+
+
+def gate_status_deploy_verdict_current() -> None:
+    """STATUS.md's BLOCKER-001 must cite the real, current deploy verdict,
+    not a superseded one.
+
+    Found 2026-09-23, this operator: BLOCKER-001 was last edited that same
+    day (01:49 UTC) and still quoted a 2026-09-20 confirmation (build
+    `d9fc700d0700972f`), while `ops/deploy-verdict.json` had already
+    recorded a newer one from 2026-09-22 (build `a993020017bafe37`,
+    `checked_at: 2026-09-22T16:05:56Z`) a full day before that edit.
+    `gate_status_currency` did not catch it, because no material commit had
+    landed in the gap; the defect was that the editor never checked the
+    prose against the one file whose entire job is to record this fact, the
+    same "source corrected, sibling never told" shape `gate_goals_traffic_
+    current` already guards for GOALS.md's traffic figure. `OWNER-ACTIONS.md`
+    had the correct, current figure the whole time and was never consulted
+    either. A warning, not a failure, for the same reason `gate_deploy_fresh`
+    and `gate_status_currency` are warnings: nothing in the current commit
+    caused this, and a hard fail would block unrelated work for a citation
+    only prose can fix.
+
+    Proof this can fail: ops/tests/test_gate_status_deploy_verdict_current.py
+    builds a synthetic BLOCKER-001 section citing a stale build_id against a
+    verdict naming a different one and asserts the warning fires by name,
+    then confirms it clears once the section mentions the real one.
+    """
+    status_path = os.path.join(ROOT, "STATUS.md")
+    verdict_path = os.path.join(ROOT, "ops", "deploy-verdict.json")
+    if not os.path.exists(status_path) or not os.path.exists(verdict_path):
+        return
+    status_text = io.open(status_path, encoding="utf-8").read()
+    try:
+        verdict = json.loads(io.open(verdict_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = status_deploy_verdict_problem(status_text, verdict)
+    if problem:
+        warn("status-deploy-verdict-current", problem)
 
 
 def gate_changelog_current() -> None:
@@ -19579,6 +19714,7 @@ def main() -> int:
     run_gate(gate_kitchen_deck_pdf_current)
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
+    run_gate(gate_status_report_mail_unknown)
     run_gate(gate_roadmap_report_issues_unknown)
     run_gate(gate_roadmap_report_commits_unknown)
     run_gate(gate_roadmap_report_backlog_done)
@@ -19612,6 +19748,7 @@ def main() -> int:
     run_gate(gate_no_stale_session_label)
     run_gate(gate_risks_traffic_citations_current)
     run_gate(gate_status_currency)
+    run_gate(gate_status_deploy_verdict_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)

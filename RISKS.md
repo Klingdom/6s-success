@@ -124,7 +124,15 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-09-16.
+Last reviewed: 2026-09-23. Full top-to-bottom read this cycle (all thirteen
+entries, not just the three open CRITICALs): every severity, status, and
+cited figure (traffic, catalogue size, form counts) checked against
+`GOALS.md`, `STATUS.md`, and `ops/state.json` as they read today. No
+drift found; the header date was six days behind entries that had in fact
+been kept current throughout that window (RISK-0012 alone was corrected
+four times on 2026-09-22), the exact "content fixed, summary line never
+told" shape this section already warns about, just caught here before it
+compounded rather than after.
 
 **On the previous "Last reviewed: 2026-08-19" and what it cost.** This
 register's own section 22 promises the four `CRITICAL` entries get re-read
@@ -408,6 +416,13 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
+  - current baseline, direct Umami database read 2026-09-23 12:50 UTC: 68
+    visitors/160 visits/813 pageviews/30 days. It fell from 76 mostly
+    because the 7 Sept automated session described above (431 pageviews)
+    has now rolled OUT of the 30-day window, so this count is very nearly
+    all human and no longer needs the exclusion this row exists to explain.
+    The trailing week is 12 visitors, against 10, 14 and 18 in the three
+    weeks before: the fall has stopped without reversing.
   - superseded baseline, kept for the trend it shows, direct Umami database
     read 2026-09-20 15:40 UTC: 76 visitors/193 visits/946 pageviews/30 days,
     515 human pageviews from 75 visitors. The week to 2026-09-20 brought 14
@@ -990,14 +1005,26 @@ evidence:
     automated session, leaving 505 human pageviews from 75 visitors. The
     30-day figure looks flat at 76 only because the window still contains a
     busier fortnight that is rolling out of it.
-  - AND THE COUNTER-EVIDENCE THAT MUST NOT BE MISREAD AS PROGRESS. Over
-    exactly the same days, crawler attention ROSE sharply: Googlebot content
-    fetches went from about 1.3 a day across 10 to 19 Sept to 17 on 20 Sept
-    and 11 by 08:00 on 21 Sept, across 23 distinct pages (LEARNINGS.md
-    LRN-0013). So the site is being read more by machines and less by people.
-    Crawling is not indexing, indexing is not ranking, and ranking is not
-    arrivals. Any report that quotes the crawl rise without this row beside
-    it is telling a story the data does not support.
+  - RE-MEASURED 2026-09-23: 68 visitors / 160 visits / 813 pageviews over 30
+    days, down from 76 as the busier fortnight rolls out of the window. The
+    trailing week is 12 visitors, against 10, 14 and 18 in the three weeks
+    before, so the fall has stopped without reversing; at this scale the
+    difference between 10 and 12 is noise, not recovery.
+  - THE CRAWL RISE THIS ROW USED TO CITE WAS A BURST, AND THE CORRECTION
+    MATTERS MORE THAN THE FIGURE. It previously read that Googlebot content
+    fetches "ROSE sharply" from about 1.3 a day to 17 on 20 Sept and 11 by
+    08:00 on 21 Sept. Four days of the same log now read 1, 17, 15, 2, 2:
+    two elevated days and straight back to baseline, which is what an
+    IndexNow submission of 117 pages and corrected lastmod dates cause,
+    once. It was a recrawl, not a change in how often Google reads this
+    site. LEARNINGS.md LRN-0013's third reading carries the detail and the
+    reason the mistake was made: two points in the same direction were
+    called "sustained" when the first reading's own advice had been to wait
+    a week.
+  - What that leaves standing is the honest and less comfortable version:
+    machines read this site in short bursts when we tell them to, people do
+    not arrive either way, and crawling is not indexing, indexing is not
+    ranking, and ranking is not arrivals.
   - LEARNINGS.md LRN-0010 (2026-09-14, HIGH confidence): every buy-click and
     quote-click Stripe/Umami/the reverse-proxy access log can identify since
     2026-09-07 traced to the owner's own home IP and personal iPhone, not a

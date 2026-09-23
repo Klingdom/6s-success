@@ -39,8 +39,13 @@ from "can a customer pay" to "can anything be measured, and has a stranger
 ever converted". `ROADMAP-2026-2029.md` (written 2026-08-24) is the current
 authoritative strategy; it supersedes `ROADMAP.md`, `STRATEGY.md` and
 `GROWTH-PLAN.md` in spirit even though those files still exist on disk.
-`BACKLOG-2026-H2.md` is the current authoritative work queue and supersedes
-`BACKLOG.md` as a list of what to do next.
+`BACKLOG-2026-09-07.md` is the current authoritative work queue. **Corrected
+2026-09-23: this line still named `BACKLOG-2026-H2.md` here, fifteen days
+after section 21 below recorded that `BACKLOG-2026-09-07.md`, Phil's own
+reprioritisation toward micro zones, decks and image/video work, supersedes
+`BACKLOG-2026-H2.md`'s ordering.** `BACKLOG-2026-H2.md` still holds the
+process rules (epics, gating discipline) and `BACKLOG.md` is superseded by
+both.
 
 Standing objective from the owner (2026-08-16): develop all content and products
 continuously and iteratively toward $20,000 per month, without stopping for
@@ -65,9 +70,10 @@ Long-term commercial target:
 
 ## Current Highest-Level Priority
 
-**The ordering rule in `BACKLOG-2026-H2.md`: measurement before traffic, traffic
-before conversion, conversion before product.** Current state against each
-epic:
+**The ordering rule, from `BACKLOG-2026-09-07.md` section 0: the traffic
+constraint decides the order.** Below it, the older rule still holds:
+measurement before traffic, traffic before conversion, conversion before
+product. Current state against each epic:
 
 1. **Epic 1, measurement (blocks everything).** EXP-001 (has a stranger ever
    clicked a buy button) is answered, permanently: AMBIGUOUS (backlog 1.3,
@@ -398,8 +404,8 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 76 | Last 30 days | MEASURED 2026-09-21 14:05 UTC (visitors; 190 visits, 936 pageviews of which 431 are a single automated session, leaving 505 human pageviews from 75 visitors), direct Umami database read over ssh; previous 76 (2026-09-20), 78 (2026-09-17), 75 (2026-09-14), 68 (2026-09-11). The trailing week fell again: 10 visitors, from 14 and 18 |
-| Sessions | 10 | Last 7 days | Same source, 2026-09-21: 10 visitors, 17 visits, 31 pageviews, down from 14/21/35 and 18/28/57 before that. Three consecutive weekly falls |
+| Sessions | 68 | Last 30 days | MEASURED 2026-09-23 12:50 UTC (visitors; 160 visits, 813 pageviews), direct Umami database read over ssh. Down from 76 mainly because the 7 Sept automated session (431 pageviews) rolled out of the window, so this figure is very nearly all human; previous 76 (09-21), 78 (09-17), 75 (09-14), 68 (09-11) |
+| Sessions | 12 | Last 7 days | Same source, 2026-09-23: 12 visitors, 18 visits, 33 pageviews. The three-week fall (18, 14, 10) has stopped without reversing; 12 is noise against 10, not recovery |
 | Organic sessions | 5 visits from 4 visitors, whole life of the site, measured 2026-09-20 (1 Bing, 21 August; 4 Google visits from 3 visitors, 4 to 20 September) | Direct Umami database read; one more Google visitor than the 2026-09-17 reading |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |
@@ -830,13 +836,23 @@ unstarted task. What IS known: the repository's own deploy-freshness
 check (`ops/deploy_freshness.py`, `ops/deploy-verdict.json`) previously
 went stale at 233 commits behind (last confirmed 2026-09-18T17:20:47Z,
 build `7c765b634045a89c`), flagged by the 2026-09-20 11:12 PM check-in.
-Phil redeployed twice since, from a session with real production access
-(`470834de`, then `7ae0e9b6`): the tracked verdict now reads current at
-2026-09-20T17:46:50Z, build `d9fc700d0700972f`. `site/build-id.txt` at
-HEAD is one commit ahead (`da3047e8a1168917`, this cycle's own dashboard
-regen, no `site/**` or `ops/build_*.py` content in it), so production is
-effectively current, not known-stale, tracked live in
-`EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` item 1b.
+Phil redeployed twice that day, from a session with real production
+access (`470834de`, then `7ae0e9b6`): the tracked verdict read current at
+2026-09-20T17:46:50Z, build `d9fc700d0700972f`.
+
+**Corrected 2026-09-23, this operator: that reading itself went stale and
+this paragraph never caught up, the same drift shape this section exists
+to describe.** `ops/deploy-verdict.json`, read directly rather than cited,
+now records a newer confirmation: `verdict: "current"`, build
+`a993020017bafe37`, `checked_at: 2026-09-22T16:05:56Z`, from a later
+session with real production access. `site/build-id.txt` at HEAD reads
+`696c3847367c3869` (committed 2026-09-22 23:34 UTC), so the repository has
+moved past that confirmed build and production has not been re-verified
+since; `OWNER-ACTIONS.md`'s own top note already carries this correctly
+and is the fresher of the two documents. No operator sandbox holds the
+deploy key or egress to check or close this gap; it is Phil's `OWNER-ACTIONS.md`
+item 1b, or a session with real VPS access, same as every prior occurrence
+of this gap.
 
 Impact:
 

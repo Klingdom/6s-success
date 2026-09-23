@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-22, this operator adding item 1h (Stripe archival of the older, 2026-08-21 batch of retired SKUs; the newer Area Bundles/Situation Kits retirement was already closed the same day by your own session, see below). Traffic figure carried forward from the last real database read, 2026-09-21 14:05 UTC: 76 visitors/190 visits/30 days, and the last 7 days show three consecutive weekly falls (18 to 14 to 10 visitors). See the 2026-09-21 note below. Production freshness was last confirmed 2026-09-20 18:2x: live build `da3047e8a1168917` matched the repository exactly, verified by reading https://6s-success.com/build-id.txt after the deploy, not by trusting the deploy command's own exit code. The 233-commit gap this file flagged at 11:12 is closed.
+**Last measured:** 2026-09-23 12:50 UTC, traffic re-read (68 visitors/160 visits/30 days, 2.3 a day; trailing week 12 after 10, 14, 18). Production deployed and current at build `696c3847367c3869`.
 
 One correction to the earlier note, because the distinction is the whole point of this file: **Phil did not redeploy.** An autonomous session running on his machine did, three times today, using the `~/.ssh/6s_deploy` key installed back on 2026-09-01. Recording it as an owner action would quietly put a recurring chore back on this list that nobody needs to do. Deploying is not yours and has not been since that key went in; what remains yours is the three items in "start here" below.
 
@@ -570,7 +570,7 @@ on the zone page" rather than presenting four sixths of a standard as the
 whole of it. One of those hidden items was "The cabinet strapped to a wall
 stud", which is a safety line.
 
-**Measured 2026-09-21 14:05 UTC by a direct database read.** Traffic is 76 visitors, 190 visits and 936 pageviews, 2.5 a day (75 visitors and 505 pageviews once the one automated session is excluded). The last 7 days: **10 visitors, down from 14, which was down from 18**. That is three consecutive weekly falls, and it is the clearest fact about the business right now. Search engines are crawling the site more over exactly the same period, so this is not a crawling problem:
+**Measured 2026-09-23 12:50 UTC by a direct database read.** Traffic is 68 visitors, 160 visits and 813 pageviews, 2.3 a day. It fell from 76 mostly because the 7 Sept automated session (431 pageviews) rolled out of the 30-day window, so this count is now very nearly all human. The last 7 days: **12 visitors**, against 10, 14 and 18 in the three weeks before, so the fall has stopped without reversing. The crawl rise I reported on 21 Sept turned out to be a two-day burst from the IndexNow submission, not a change (1, 17, 15, 2, 2 by day), so this is not a crawling problem and it is not a crawling success either:
 
 | Source | Visitors, 30 days |
 |---|---|

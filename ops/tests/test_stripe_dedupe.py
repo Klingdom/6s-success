@@ -39,13 +39,15 @@ def main() -> int:
         return [{"id": "price_" + pid, "active": True,
                   "unit_amount": p["_price"]}]
 
-    def fake_list_all_factory(products):
+    def fake_list_all_factory(products, links=()):
         def fake_list_all(kind, params=None):
             if kind == "products":
                 return products
             if kind == "prices":
                 pid = (params or {}).get("product")
                 return prices_for(pid, products)
+            if kind == "payment_links":
+                return list(links)
             raise AssertionError(f"unexpected kind: {kind}")
         return fake_list_all
 
