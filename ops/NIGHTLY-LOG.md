@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 01:1x (previous work finished, verified clean; continued the 00:4x cross-document sweep, one more stale figure found and fixed in DECISIONS.md)
+
+**Previous work: finished, verified.** Shallow/detached checkout attached via fetch/unshallow/checkout/ff-only merge, clean 46-commit fast-forward. Full `preflight.py` run to completion (not cited from a prior cycle): every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree was clean and main in sync with origin before this cycle touched anything. GitHub re-confirmed via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (2 also `P0`), 0 open PRs. CI green on the latest commit that actually triggers a run (`c764cac7`; the bot's own hourly `Hourly check-in record` commit does not trigger workflows, by GitHub design for `GITHUB_TOKEN` commits).
+
+**Continued the cross-document sweep the 00:4x check-in handed off, rather than starting a fresh method.** Spot-checked `RISKS.md`'s two traffic reads (76/193 vs 76/190 at different lines): both correctly labelled by date and superseded, no contradiction. `BACKLOG-2026-09-07.md` sections 2-6: every row still `Done`/Phil-gated, nothing reopened. Found one real instance in `DECISIONS.md`, D-019's own rationale: it asserted "the traffic figure the review cites still holds: 78 visitors and 200 visits," citing a 2026-09-17 read, but by the time D-019 was written (2026-09-21) the real figure had already moved twice (76/193, then 76/190). The number was stale the day it was recorded, not just now. Not customer-facing, GREEN under `CLAUDE.md` 52. Added an inline "Corrected 2026-09-23" note with the current 76/190 figure, per this repository's own convention, rather than editing the historical claim in place; noted explicitly that the decision itself (hold new indexable pages until the first Search Console read) is unaffected, since a lower number argues the same direction.
+
+**Verified:** full `preflight.py` reran clean after the edit (every gate passed, same 23 warnings, none new).
+
+**Went well:** the cross-document sweep found a second real defect on its second use, the same lane the 00:4x check-in flagged as still fresh.
+
+**Did not go well:** `ops/ship.py`'s commit did not carry this session's attribution footer (a hand-copied convention some cycles use, others don't); left as is rather than amend-and-force-push a commit already on shared `main`, where two other scheduled cycles write within minutes of this one.
+
+**Changing next cycle:** none; one-line correction, no new gate needed for a citation-staleness shape this small.
+
+**Next:** keep working the cross-document sweep (`STATUS.md`, `ROADMAP-2026-2029.md`, `EXECUTIVE-DASHBOARD-LIVE.md` not yet re-checked this pass) as the next candidate lane once the backlog and low-mention `ops/*.py` tier stay exhausted. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. `DECISIONS.md` (one paragraph), command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 00:4x (previous work finished, verified clean; a real same-file staleness defect found and fixed in GOALS.md; standing method handed to the operator)
 
 **NEXT FOR THE OPERATOR: run a cross-document consistency sweep (GOALS.md, BACKLOG-2026-09-07.md, STATUS.md, RISKS.md, DECISIONS.md, ROADMAP-2026-2029.md) for a stale or contradicting figure, because the low-mention `ops/*.py` cold-read lane the last several cycles relied on is now exhausted (named explicitly by the 00:1x check-in), and this method just found a real defect on its first use this cycle.**
