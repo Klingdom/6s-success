@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 11:1x (previous work finished, verified with a full local preflight rerun to genuine completion; no new unblocked item)
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, attached to `main` via `checkout -B main origin/main` then `merge --ff-only`, clean 92-commit fast-forward onto `origin/main`, no reset or force. Ran `python ops/preflight.py` to completion myself (not cited): every gate passed, 23 standing warnings, the identical set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow/Gemini credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU gap, deck/page-art gaps on #2/#29). Working tree clean before and after.
+
+**Independently re-derived, not cited.** `BACKLOG-2026-09-07.md` read in full: sections 2 to 4 every "Now" row struck through Done or already-shipped by name; section 5 correctly HOLD (the M4 pilot read is due 2026-09-28, A/B tests wait on 1,427 days to significance, the deck ladder waits on a second sale); section 6 is owner-only. GitHub checked live via the API, not trusted from the log: 8 open issues unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 PRs, `checks.yml` green on the last 5 runs including the one that closed at 10:33 UTC. Read issue #29 in full rather than trusted from its label: the "Set in Order" text defect on 15 cards is already mitigated (withheld from the live gallery via `CANON_EXCLUDE`, `gate_deck_art_withheld` covers it), and what remains genuinely needs either the corrected pipeline wired into the live gallery or the source sheets on Phil's own Desktop, unreachable from here; correctly still `blocked-on-art`, nothing further to do on it from this sandbox. `STATUS.md` BLOCKER-001 and `OWNER-ACTIONS.md` both already carry the current deploy-verdict figures (build `a993020017bafe37` confirmed 2026-09-22T16:05:56Z, repository at `696c3847367c3869` since), no drift found.
+
+**No new unblocked item.** Every remaining backlog row needs a 21-day pilot read, a credential this sandbox does not hold, or Phil's own decision. `OWNER-ACTIONS.md`'s "Start here" four (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) are unchanged.
+
+**Went well:** checking issue #29 cold instead of trusting its label at face value; it held up as correctly blocked, but confirming that took less time than another sweep of the exhausted backlog would have.
+
+**Did not go well:** the production deploy gap remains open and unreachable from this sandbox, now well past 19 hours.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing new to hand the hourly operator beyond what it already knows; the deploy gap is worth a look only for a session holding real VPS access.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (independent re-verification, exhausted state confirmed, no new defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed and attached with `git checkout -B main origin/main` then `merge --ff-only`, a clean 91-commit fast-forward, no conflict. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the true (date-sorted, not line-order, since merges have scrambled part of this file's historical order) last entries of this log. Ran `python ops/preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no egress to the live site, no Stripe/mail credential, no SSH key at `~/.ssh/6s_deploy`, confirmed absent by direct check rather than assumed). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Checked GitHub directly via the API rather than trusting a cached count: 8 open issues, all `decision` or `blocked-on-art`, `checks.yml` green on every recent push. Read issue #34 in full including its own resolution comment: the Kitchen deck PDF (option 2) already shipped 2026-09-22; only the SKU-retirement choice itself is still Phil's.
