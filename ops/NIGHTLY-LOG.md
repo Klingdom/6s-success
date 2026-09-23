@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 10:1x (previous work finished, verified with a full local preflight rerun to genuine completion; no new unblocked item)
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, attached to `main`, clean 89-commit fast-forward onto `origin/main`, no reset or force. Ran `python ops/preflight.py` to completion (not cited): every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. Working tree clean before and after.
+
+**Independently re-derived, not cited.** `BACKLOG-2026-09-07.md` sections 2 to 6 read in full: every "Now" row Done or Phil-gated, section 5 correctly HOLD. GitHub via the API: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 PRs. Read issue #34's own comments: the Kitchen deck PDF is shipped and verified; the SKU-retirement question is correctly still Phil's economics call, not mine. `STATUS.md` BLOCKER-001 and `OWNER-ACTIONS.md` both already carry the current deploy-verdict figures; no drift found. Deploy gap unchanged, unreachable from here (no SSH key, no egress).
+
+**No new unblocked item.** Regenerated the command deck.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing to hand the hourly operator beyond what it already knows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (a real cross-document staleness defect found in STATUS.md's own BLOCKER-001, fixed and gated; backlog otherwise exhausted)
 
 **Did:** Fetched, was shallow, unshallowed, attached to `main`, `merge --ff-only` onto `origin/main` clean (85-commit fast-forward, no reset or force). Read `BACKLOG-2026-09-07.md` in full (not summarised): sections 2-4 every row struck through Done, section 5 correctly HOLD, section 6 owner-only. Read `ROADMAP-2026-2029.md` and `CLAUDE.md`. Read the newest `ops/NIGHTLY-LOG.md` entries (this file prepends, newest first). Confirmed live via the GitHub API rather than cited: 8 open issues unchanged (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 PRs, last CI runs (`checks.yml`, `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml`, `roadmap-report.yml`) all green. Read issue #34, #21 and #15 in full rather than trusted from the backlog's own summary: all three genuinely still waiting on Phil, no new comment. `ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. No SSH key or Stripe/Umami/Gemini credential in this sandbox; the standing production-deploy gap is unreachable from here, same as every prior cycle.
