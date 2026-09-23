@@ -878,6 +878,15 @@ the next confirmation still needs a session with real access, same
 structural limit as every prior occurrence; there is simply nothing open to
 close right now.
 
+**Re-confirmed 2026-09-23, later: a second redeploy landed the same day.**
+A session with real production access finished the Stripe SKU retirement
+(65 of 65 confirmed archived) and redeployed; `ops/deploy-verdict.json` now
+reads `verdict: "current"`, build `5eba61fde231c1a7`, `checked_at:
+2026-09-23T19:00:39Z`, superseding the build cited two paragraphs above.
+Same structural limit as ever: this operator sandbox still holds no deploy
+key, so the number above is re-derived from the tracked verdict, not
+independently checked from here.
+
 Impact:
 
 Autonomous agents cannot safely assume production architecture, health, release identity, backup state, or rollback capability.
