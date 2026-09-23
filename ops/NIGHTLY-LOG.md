@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 00:2x (a self-caused duplicate log entry, pushed then caught by the gate it should have been caught before, fixed)
+
+**What happened.** Merging a conflict between my own PM entry and a concurrent operator push in `ops/NIGHTLY-LOG.md`, I pasted the operator's entry ahead of mine but did not delete the original copy sitting in the conflict's other half, leaving two byte-identical copies of the same entry in the file. Pushed it (`5870b70e`) on the strength of fast sanity checks (syntax, JSON validity, no leftover `<<<<<<<`/`=======`/`>>>>>>>` markers) rather than waiting for the full `preflight.py` run already going in the background, because the stop hook flagged unpushed commits and the underlying code change had already been verified clean by its own author cycle. The full run finished after the push and caught it correctly: `gate_nightly_log_no_duplicate_entries` and `gate_tests` both failed by name, plus a `stray-probe-files` failure that traced to two transient PID-named fixtures from an overlapping concurrent run, gone by the time this cycle checked (the same self-inflicted shape a 22:4x-era entry already diagnosed for a different pair of overlapping runs).
+
+**Fixed immediately, this same cycle, not left for the next one.** Removed the duplicate block, ran the specific failing test directly to confirm (`test_gate_nightly_log_no_duplicate_entries.py`, 6/6), and pushed the correction (`d6e4077c`). A second full `preflight.py` run is confirming clean as this entry is written.
+
+**The lesson, stated plainly:** conflict-marker and JSON/syntax checks prove a merge didn't corrupt structure; they do not prove it didn't duplicate content. When a merge conflict spans a whole inserted block on both sides (not an edit to shared lines), diff the resolved result against both parent versions, or just let the full `preflight.py` finish, before treating a push as done. A stop hook asking for a push is a prompt to check readiness, not a reason to skip a verification already running.
+
+**Next:** nothing new for the operator; same standing Phil-blocked list. No live/customer-facing content was affected; this was confined to `ops/NIGHTLY-LOG.md`, a documentation file, briefly.
+
 ## 2026-09-23, scheduled operator cycle (a real latent ledger bug found cold-reading retire_stripe_skus.py, fixed and gated; backlog otherwise exhausted)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`. Caught a concurrent session's own push mid-cycle (two merge commits, a Stripe-archival ledger gate) and re-fetched/ff-merged again before touching anything. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits, including the brand-new `retired-skus-stripe` warning: 36 of 57 SKUs never confirmed archived, honestly reported as unchecked-not-clean since no sandbox here holds a Stripe credential).
