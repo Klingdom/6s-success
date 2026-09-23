@@ -7472,12 +7472,25 @@ def gate_indexable_pages_have_schema() -> None:
     back from promotion until the free Entryway deck has produced evidence,
     Phil's own explicit call. Adding schema to actively promote a 2%
     complete asset would work against that decision, not honour it.
+
+    A leading underscore is also excluded. Every headless-Chromium
+    interactive test in ops/tests/ writes its own throwaway probe/wrapper
+    copy directly into site/ (test_site_js_no_runtime_error.py's
+    _site_js_probe_N.html, test_thanks_sku_branching.py's
+    _thanks_wrapper_N.html, and a dozen siblings), removes it in a finally
+    block, and no committed page has ever used that prefix. This gate is
+    the one that actually observed the race twice, 2026-09-23: a full
+    preflight.py running in the same container as one of those tests can
+    glob site/ mid-write and fail on a file that is gone again before or
+    after the scan, never committed. Excluding the prefix removes the false
+    failure at its source instead of relying on operators remembering not
+    to run the two concurrently.
     """
     exempt = {"deck-gallery-mudroom.html"}
     hit = []
     for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
         name = os.path.basename(f)
-        if name in exempt:
+        if name in exempt or name.startswith("_"):
             continue
         body = io.open(f, encoding="utf-8", errors="replace").read()
         if re.search(r'name="robots"[^>]*noindex', body):
