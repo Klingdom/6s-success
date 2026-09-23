@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 03:4x (previous work finished, verified myself; handoff only, per this slot's own instruction not to start something large three minutes before the operator)
+
+**NEXT FOR THE OPERATOR: continue the cross-document consistency sweep on `RISKS.md` (a full read, not just the two-figure spot-check the 01:1x check-in already did) and `OWNER-ACTIONS.md` (not yet re-checked this session), because this sweep has found a real stale-citation defect on 3 of the last 4 uses tonight (`GOALS.md`, `DECISIONS.md`, `STATUS.md`) and these two files are the ones it has not yet fully covered.**
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 58-commit fast-forward (`0ded8a35`). Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. Ran `preflight.py` to completion myself rather than cite the prior cycle (it took about 2 minutes; let it finish in the background rather than cutting it off): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress to `6s-success.com`, no Pillow), none new. Working tree was clean and main in sync with origin before this cycle touched anything.
+
+**Confirmed the backlog and GitHub are genuinely still exhausted, not just cited as such.** `BACKLOG-2026-09-07.md` sections 2 through 6 read in full: every row is `Done`/`Found already done` or explicitly held pending evidence (section 5). GitHub confirmed live via the API, not cited: 8 open issues, unchanged, all `decision`/`blocked-on-art` (2 also `P0`), 0 open PRs. `OWNER-ACTIONS.md`'s "start here" four items (YouTube OAuth, Search Console verification, Stripe business description, the 36-SKU Stripe archival) are all still genuinely Phil-only.
+
+**Checked whether the site's own interactive-test coverage sweep, closed twice tonight (`contact.html`, `corporate.html`), is actually exhausted rather than assumed so.** Grepped every page for an `id="*form*"` element: exactly 4 match site-wide (`thanks.html`, `consulting.html`, `contact.html`, `corporate.html`), and all 4 now have a matching `ops/tests/test_*_interactive.py`. That lane is genuinely closed, not merely quiet. Did not start a fresh investigation myself beyond confirming this, per this slot's own instruction to hand off rather than start something large three minutes before the operator.
+
+**Did not go well:** none this cycle.
+
+**Next:** the handoff above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 03:1x (previous work finished, verified myself; one real gate failure found, self-healed, and reconfirmed clean; no new operator handoff)
 
 **Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 57-commit fast-forward (`65e420a2`). Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. GitHub confirmed live: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all `Done` or Phil-gated.
