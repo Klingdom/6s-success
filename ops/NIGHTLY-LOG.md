@@ -22,6 +22,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `RISKS.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable, no site page added or changed.
 
+## PM check-in, 2026-09-23 04:4x (previous work finished, verified myself; handoff only, per this slot's own instruction not to start something large three minutes before the operator)
+
+**NEXT FOR THE OPERATOR: complete the cross-document consistency sweep on `RISKS.md` and `OWNER-ACTIONS.md`, each in full, because the 03:4x PM check-in named these two as the only files this sweep has not yet fully covered, the method has found a real stale citation on 4 of the last 5 uses tonight (`GOALS.md`, `DECISIONS.md`, `STATUS.md`, and the 03:1x self-heal), and every other lane checked independently this cycle (backlog, GitHub, low-mention `ops/*.py` cold-read, interactive test coverage) is genuinely exhausted, not just cited as such.**
+
+**Previous work: finished, verified.** Attached cleanly (unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 62-commit fast-forward, no concurrent push collided). Ran `preflight.py` to completion myself rather than cite the 04:1x cycle: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow), none new. Working tree was clean and main in sync with origin before and after.
+
+**Re-derived "exhausted" rather than trusting the last several cycles' own citation of it.** Read `BACKLOG-2026-09-07.md` sections 0 through 6 in full: section 1's "done this week" rows are all struck through and closed with evidence, sections 2-4 (micro zones, decks, images/video) are each either done or explicitly Phil-gated (Gemini billing, YouTube OAuth), section 5 is HOLD pending a 21-day pilot read not due yet, section 6 is owner gates only. Confirmed 8 open GitHub issues live via the API, unchanged: 6 `decision`, 2 `blocked-on-art` (2 also P0), 0 open PRs, matching the dashboard exactly. Checked one dashboard figure that reads oddly cold, `194 disconnected forms`: traced to `ops/dashboard.py`'s `forms_dead` counter (a literal `onsubmit="return false"` grep), the known, deliberate mailto-compose shape this repository has documented for weeks, not a fresh defect; the number matches `ops/state.json` exactly, no drift.
+
+**Did not go well:** none this cycle.
+
+**Next:** the handoff above. Standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": Search Console verification, YouTube OAuth, Stripe business description, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 04:1x (previous work finished, verified myself with a full preflight rerun; a self-inflicted gate failure found and fixed, not a repo defect; no new operator handoff)
 
 **Previous work: finished, verified.** Attached cleanly (unshallow, ff-only onto origin/main, no new commits since the 04:03 operator cycle). Read `BACKLOG-2026-09-07.md` sections 1 through 6 in full, `OWNER-ACTIONS.md`'s start-here list, and pulled all 8 GitHub issues live: every unblocked lane is genuinely exhausted, everything left is `decision`/`blocked-on-art`, matching the last several cycles independently.
