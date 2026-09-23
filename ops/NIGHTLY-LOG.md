@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 04:1x (previous work finished, verified myself with a full preflight rerun; a self-inflicted gate failure found and fixed, not a repo defect; no new operator handoff)
+
+**Previous work: finished, verified.** Attached cleanly (unshallow, ff-only onto origin/main, no new commits since the 04:03 operator cycle). Read `BACKLOG-2026-09-07.md` sections 1 through 6 in full, `OWNER-ACTIONS.md`'s start-here list, and pulled all 8 GitHub issues live: every unblocked lane is genuinely exhausted, everything left is `decision`/`blocked-on-art`, matching the last several cycles independently.
+
+**Ran `preflight.py` to completion myself rather than cite the last cycle's clean result.** It genuinely failed once: `gate_etsy_pdfs_current` refused to check a dirty `build/listings/etsy/` tree. Traced the cause to this session's own earlier killed preflight attempt, which had left one PDF byte-modified (confirmed identical size, no real content change) uncommitted. Reverted it and reran the full suite, including `gate_tests`, clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits.
+
+**Did not go well:** the failure was self-inflicted, not a repo defect; worth naming so it isn't miscounted as a finding.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. No new item for the operator.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (independent re-verification across every unblocked lane, no new defect and no new unblocked item; the commit-velocity-vs-revenue gap itself checked and found not new)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 58-commit fast-forward (`0ded8a35`). Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s own supersession note, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries (all of today, `01:1x` through `03:1x`). `python ops/preflight.py` clean on the first run: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow).
