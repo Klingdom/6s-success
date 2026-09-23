@@ -55,7 +55,12 @@ import browser as B                                           # noqa: E402
 # a stranger meets) and one that does not (a zone page, chosen for its own
 # real mobile kit/CTA links), so a regression anywhere in the shared
 # listener is caught regardless of which symptom a given page would show.
-PAGES = ("index.html", "zones/entryway-the-landing-spot.html")
+# 404.html added 2026-09-23: every mistyped or dead link on the whole site
+# lands here, and it was one of five pages found the same day shipping a
+# .nav-toggle button with no assets/js/site.js reference at all (see
+# gate_nav_toggle_wired in ops/preflight.py). That gate proves the script
+# tag is present; this test proves the click it enables actually works.
+PAGES = ("index.html", "zones/entryway-the-landing-spot.html", "404.html")
 
 ERROR_HOOK = (
     '<script>window.__errs=[];window.onerror=function(m,s,l,c,e){'

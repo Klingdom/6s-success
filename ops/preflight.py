@@ -5001,6 +5001,56 @@ def gate_no_dangling_js_references() -> None:
              "on 2026-09-23 (a stray call to a deleted function).")
 
 
+def gate_nav_toggle_wired() -> None:
+    """Every page that ships a `.nav-toggle` button must also load
+    `assets/js/site.js`, the one file that wires that button's click handler.
+
+    Found live 2026-09-23, twice in the same day, on five different pages by
+    two different routes. First, `ops/tests/test_deck_pages_interactive.py`
+    (B8) found `deck-gallery.html`'s hamburger button did nothing on every
+    load: `ops/build_deck_gallery.py` splices `deck.html`'s own header/footer
+    verbatim into its template but never carries the `<script
+    src="assets/js/site.js">` tag that sits after `deck.html`'s own
+    `</footer>`. Fixed there, but nothing generalised the check, so the same
+    shape was still live elsewhere. A sitewide grep for a `.nav-toggle` button
+    with no `assets/js/site.js` reference anywhere on the page, the same day,
+    found four more real, live, unfixed instances this file's own
+    `no-dangling-js-references` gate could not have caught (that gate proves
+    a referenced identifier resolves; it says nothing about a script never
+    being referenced at all): `site/404.html` (every mistyped or dead link
+    on the whole site lands here), `site/corporate.html` and `site/kit.html`
+    (both generator-owned, `build_corporate.py`/`build_kit_page.py`, neither
+    generator ever emitted the tag), and the two hand-authored B2B articles,
+    `what-a-5s-engagement-costs.html` and `why-5s-decays-after-six-months.html`.
+    All five shipped a visible hamburger button that was pure decoration on a
+    phone: tapping it changed nothing, because the code that opens `.nav` on
+    click never loaded. Fixed at the source in each case (the two generators,
+    the three hand-maintained files); this gate is what stops a sixth page
+    shipping the same way, since the underlying mistake (copy a header,
+    forget the script after the footer) is clearly one a person or a
+    generator keeps making, not a one-off.
+
+    Proved fail-then-pass directly: reverted `site/404.html` to the pre-fix
+    byte-for-byte content (no `site.js` reference) in a scratch copy, watched
+    this gate's own scan function fail naming the file, restored, reran
+    clean against the real committed tree.
+    """
+    missing = []
+    for path in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
+        html = io.open(path, encoding="utf-8").read()
+        if "nav-toggle" in html and "assets/js/site.js" not in html:
+            missing.append(os.path.relpath(path, SITE))
+    if missing:
+        shown = missing[:8]
+        more = "" if len(missing) <= 8 else f" (+{len(missing) - 8} more)"
+        fail("nav-toggle-wired",
+             f"{len(missing)} page(s) ship a .nav-toggle button with no "
+             f"assets/js/site.js reference anywhere on the page, so the "
+             f"button is dead on load: {shown}{more}. This is the exact "
+             "defect shape found live on 5 pages on 2026-09-23 (deck-gallery, "
+             "404, corporate, kit, and two B2B articles).")
+
+
 def _lint_js_no_undef(eslint_exe: str):
     """Scan every shipped JS asset file plus every substantive inline
     <script> block on every page for an undefined reference. Returns a list
@@ -19895,6 +19945,7 @@ def main() -> int:
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_no_dangling_js_references)
+    run_gate(gate_nav_toggle_wired)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
     run_gate(gate_quest_keep_releases_urls_first)

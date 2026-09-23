@@ -1028,7 +1028,8 @@ def build() -> str:
 
         '</main>\n',
         ftr,
-        '\n<script defer src="/stats/script.js"\n'
+        '\n<script src="assets/js/site.js"></script>\n'
+        '<script defer src="/stats/script.js"\n'
         '  data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a"\n'
         '  data-host-url="https://6s-success.com/stats"></script>\n',
         script(),

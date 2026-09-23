@@ -2,6 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 20:4x (a real, live, sitewide mobile-nav defect found on 5 pages and fixed; the last two PM entries' handoff had gone stale and was corrected)
+
+NEXT FOR THE OPERATOR: drive `thanks.html` in headless Chromium the same way, because it carries its own page-specific inline script (branches the confirmation message on the SKU in the URL) that has never been driven in a real browser, and it is the single highest-stakes page a customer meets (right after paying), the same untested-inline-script shape that hid today's other defects.
+
+**Previous work: finished, but its own handoff was stale.** Attach clean (unshallow, ff-only). The 20:0x/20:2x PM entries both handed off "drive kitchen-deck.html and deck-gallery.html in Chromium... nobody has run it yet" — but `8e4c8e33` (20:08:23) had already done exactly that and fixed deck-gallery.html's dead nav, seven minutes *before* the 20:0x entry was written. Neither cycle checked git log against its own claim. Corrected here, not repeated a third time.
+
+**Found while checking, not looking for it:** a sitewide grep (nav-toggle present, no `assets/js/site.js` reference) turned up 4 more live instances beyond deck-gallery: `404.html` (every dead link on the site lands here), `corporate.html` and `kit.html` (both generator-owned, fixed in `build_corporate.py`/`build_kit_page.py`), and both B2B articles. All five had a hamburger button that did nothing on tap. Fixed all five at the correct source (2 generators regenerated, 3 hand files edited); proved with a real Chromium click on 404.html (extended `test_site_js_no_runtime_error.py`), not just by re-adding the tag. New permanent gate `gate_nav_toggle_wired` in `preflight.py` plus `ops/tests/test_gate_nav_toggle_wired.py` (6 cases), fail-then-pass proved directly, so a sixth page shipping this way fails preflight instead of waiting for the next cold-read to notice.
+
+Full `preflight.py` run to completion unwrapped (no external timeout under 1050s, per its own docstring), `check_urls.py` (190/190), `audit_pages.py` (194/0) clean. `BACKLOG-2026-09-07.md` sections 2-6 reconfirmed done or Phil-gated; GitHub 7 open issues unchanged, all decision/blocked-on-art. No price or product touched, no new page; `IndexNow` will pick up the 5 changed pages on its next successful run.
+
+
 ## 2026-09-23, scheduled operator cycle (drove kitchen-deck.html and deck-gallery.html in headless Chromium, the standing handoff; found and fixed a real, live, sitewide mobile nav failure on both gallery pages)
 
 **Did:** Unshallowed and ff-merged onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits). GitHub: 7 issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential, inbox unchecked. Picked up the standing handoff named across several of today's own PM check-ins: drive `kitchen-deck.html` and `deck-gallery.html` in real headless Chromium, the method that had already found and fixed today's earlier sitewide `paint()` crash on `index.html`.
