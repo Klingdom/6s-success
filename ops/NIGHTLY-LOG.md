@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 15:0x (previous work finished and verified, after clearing a self-inflicted test-lock/fixture artifact this cycle's own earlier attempt left behind; no new unblocked item)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 are all done or Phil-gated, all 7 open GitHub issues are `decision`/`blocked-on-art` unchanged, and the low-mention `ops/*.py` cold-read and cross-document sweep lanes are both independently reconfirmed exhausted by several of today's cycles already. If a session ever holds real VPS access, the production deploy gap (`CHECKIN-LOG.md`'s "Production is behind the repository. Deploy." repeated hourly since 2026-09-22 15:04) is the one live thing worth a look; this sandbox still has no `~/.ssh/6s_deploy` key.
+
+**Previous work: finished, verified, but my own first verification attempt broke itself, and fixing that became part of this slot.** Attached via unshallow plus ff-only merge. My first `preflight.py` run was capped with a 100-second shell timeout and got killed mid-run; that killed a `test_audit_catalog.py` subprocess while it held `site/_audit_catalog_fixture.lockdir`, orphaning it. The next full run I started then sat for over 6 minutes with its own copy of that test stuck retrying the same lock (`_lock()`'s documented 900-second self-heal, working as designed but too slow for this slot). Traced with `/proc/<pid>/wchan` and `ps` before touching anything: confirmed by process tree that no live process still held the lock, so removed the orphaned lockdir by hand, exactly the sanctioned recovery the test file's own comments describe ("a human clearing the directory by hand, as happened on 2026-09-11 and again on 2026-09-16"). The run then completed and failed once for real: `gate_no_stray_probe_files` caught one leftover fixture HTML file from that same killed run, self-deleted it as designed, and correctly still reported FAIL for the run that found it. Reran clean: every gate passed, 23 standing warnings, same set every recent cycle diagnoses. None of this was a site defect; it was noise from my own first command's timeout, not a new gate gap or a new backlog item.
+
+**Backlog and GitHub reconfirmed, not cited.** `BACKLOG-2026-09-07.md` sections 2-4 all done or found-already-done, section 5 correctly HOLD, section 6 owner-only. 7 open GitHub issues via the API, all `decision`/`blocked-on-art`, unchanged. `EXECUTIVE-DASHBOARD-LIVE.md`'s one constraint is still the production deploy gap; `CHECKIN-LOG.md` has logged "nothing measurable moved" on the hour, every hour, since 2026-09-22 15:04, correctly, since redeploying needs a session with the VPS key's private half, which no cloud sandbox including this one holds. No mail credential.
+
+**A concurrent session pushed `e41a8f2d` (a self-contradictory `DATA-SOURCES.md` traffic row, fixed and gated) while this cycle was mid-verification; fetched and fast-forward merged, no collision.**
+
+**Went well:** diagnosing the stuck lock from process state (`/proc/<pid>/wchan`, full process tree) before touching anything, rather than guessing or force-killing; the lockdir's own 900-second self-heal design meant removing it early was a documented, safe action, not a shortcut.
+
+**Did not go well:** ran well past the 30-minute slot and past the operator's own :43 start, entirely because my own first command used an artificially tight shell timeout against a tool that expects to run to completion; a plain, un-timed `preflight.py` run (or a generously-timed one from the start) would not have created the orphan this cycle then had to clean up.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (a self-contradictory DATA-SOURCES.md row found and fixed; the gate meant to catch it had gone silent on the exact shape that broke it)
 
 **Did:** Attached via unshallow plus ff-only merge onto `origin/main` (116-commit fast-forward, clean, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the newest `NIGHTLY-LOG.md`/PM check-in entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Backlog sections 2-4 all done, 5 correctly HOLD, 6 owner-only; 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No mail credential, inbox unchecked, not empty.
