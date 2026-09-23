@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 15:4x (previous work finished and verified, after clearing a self-inflicted preflight lock and probe-file artifact from my own first command's timeout; one real cross-document staleness found and fixed, gate widened)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 are all done or Phil-gated and all 7 open GitHub issues are `decision`/`blocked-on-art`, unchanged. If a session ever holds real VPS/Stripe/mail access, the standing gaps in `OWNER-ACTIONS.md` (Umami key, product-master backup location, SKU-retirement Stripe confirmation) are the highest-value unblocked work; otherwise the low-mention `ops/*.py` cold-read and cross-document consistency sweep are the established fallback lanes.
+
+**Previous work: finished, verified.** Attached via unshallow plus ff-only merge onto origin/main (123-commit fast-forward, clean). Backlog sections 2-4 all done or found-already-done, section 5 correctly HOLD, section 6 owner-only; all 7 GitHub issues confirmed live via the API, unchanged, `decision`/`blocked-on-art`. No PRs.
+
+**Hit the same lock-orphan shape the prior two slots today already documented, from my own first command.** Ran `preflight.py` under a 100-second shell timeout (had not yet read this file's own `PM check-in, 2026-09-23` entry naming this exact mistake); it killed the run, orphaning `site/_audit_catalog_fixture.lockdir` again. Verified no live process held it (checked every candidate PID's `/proc/<pid>/cmdline`, not just `ps`), removed it by hand, the sanctioned recovery. Reran with no external timeout, backgrounded properly this time: it completed and failed once, on one leftover fixture file from the killed run (`gate_no_stray_probe_files`, self-deleted as designed); reran clean, every gate passed, 23 standing warnings.
+
+**Found and fixed a real cross-document staleness while waiting on the full preflight run.** `STATUS.md`'s own "Business Data Knowledge" paragraph (section 29, near the end of the file) still read "75 VISITORS ACROSS 196 VISITS... MEASURED 2026-09-14", nine days and two corrections behind section 9's own table a thousand lines above it in the same file, which already carried the current 68/160 figure (measured 2026-09-23 12:50 UTC). The exact "one row corrected, its own neighbour never told" shape this repository's gates exist to catch, this time a fourth copy of the same figure inside one document that `gate_goals_traffic_current` had never checked. Fixed the paragraph to state the current figure once, cleanly, with a dated correction note. Widened `gate_goals_traffic_current` in `ops/preflight.py` to also parse and compare this paragraph, silent on the same terms as the existing OWNER-ACTIONS.md/DATA-SOURCES.md checks if the row is absent or has changed shape. `ops/tests/test_gate_goals_traffic_current.py` widened 15 to 18 cases; fail-then-pass proved directly against the real file's own shape (planted the stale 75/196 text, confirmed the widened regex caught it before restoring).
+
+**Verified:** full `preflight.py` clean after (every gate passed, 23 warnings, identical set to the pre-change baseline), `ops/tests/test_gate_goals_traffic_current.py` (18/18), `fix_dashes.py --check` on the three touched files (0/0).
+
+**Went well:** the "does this file agree with its own other sections" angle kept finding a real defect after several prior cycles already ran it clean elsewhere; verifying the new regex directly against the real committed text, not just synthetic cases, before shipping.
+
+**Did not go well:** the same 100-second-timeout mistake documented in this file minutes earlier recurred immediately, from not reading this file's own newest entry before running the first command. The recovery was correct and cheap, but the mistake itself was avoidable.
+
+**Changing next cycle:** read this file's own newest entry before the first `preflight.py` invocation, not after hitting the same documented failure again.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main (`219cf2b0f`). `STATUS.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; this is a documentation and gate fix. IndexNow not applicable, no site page changed.
+
 ## PM check-in, 2026-09-23 (previous work finished and verified; same self-inflicted lock orphan as the prior slot, now documented at the source so a third cycle does not repeat it)
 
 **Previous work: finished, verified.** Attached via ff-only merge onto origin/main (121-commit fast-forward, clean). Backlog sections 2-4 all done or found-already-done, 5 correctly HOLD, 6 owner-only; 7 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs.
