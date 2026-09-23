@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 (closed the item-1h cycle's own unconfirmed background preflight rerun)
+
+Previous work: finished, verified. Attach clean (ff-only, 131-commit fast-forward). The last operator cycle (item 1h's SKU-count fix) ended with a preflight rerun still going in the background, unconfirmed in its own entry. Ran it to completion myself: every gate passed, 24 warnings, all standing sandbox limits, no FAIL. Backlog sections 2-6 reconfirmed done or Phil-gated; 7 GitHub issues unchanged, all decision/blocked-on-art, 0 PRs. No new defect, no new unblocked item.
+
+Handing to the operator: the headless-Chromium user-flow drive against quest.html or a zone kit/CTA path, flagged by 16:4x, still not tried today.
+
+Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## 2026-09-23, scheduled operator cycle (OWNER-ACTIONS.md item 1h found 8 SKUs stale, fixed and gated; backlog and GitHub otherwise fully exhausted)
 
 **Did:** Unshallowed and ff-merged cleanly onto `origin/main` (128-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or found-already-done, section 5 correctly HOLD, section 6 owner-only), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the newest `NIGHTLY-LOG.md`/PM check-in entries. Confirmed all 7 open GitHub issues live via the API, unchanged, `decision`/`blocked-on-art`. `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits: no Stripe/VPS/mail credential, `6s-success.com` unreachable, confirmed directly by attempting a fetch and getting `EGRESS_BLOCKED`, not assumed). `inbox_agent.py --apply`: no mail credential in this environment, inbox UNCHECKED, not empty.
