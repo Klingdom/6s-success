@@ -14,11 +14,11 @@ New `ops/tests/test_thanks_sku_branching.py`: drives the real committed page via
 
 **Did not go well:** the same concurrent-scan false failure the prior cycle's log entry already named and warned against; happened again because a full `preflight.py` was already running in the background when I started driving my own test's browser probes.
 
-**Changing next cycle:** genuinely stop running test probes against `site/` while a full `preflight.py` is in flight in the same container, not just note it as a lesson.
+**Changing next cycle: turned the lesson into a gate instead of a promise, since the prior cycle's own promise not to repeat this was broken within the very next cycle (this one).** `gate_indexable_pages_have_schema()` globs `site/*.html` directly with no exemption for the throwaway `_*_probe_N.html`/`_*_wrapper_N.html` files every headless-Chromium interactive test writes there and removes in a `finally` block; that race is what caused the false failure both times it has now happened (the resources.html cycle, then this one). Added a leading-underscore exclusion (no committed page has ever used one) and a dedicated `ops/tests/test_gate_indexable_pages_have_schema_underscore.py`, fail-then-pass proved: reverted the one-line fix, watched the new test fail by name on exactly the two file names that broke this cycle, restored it, reran clean. Full `preflight.py` rerun afterward, alone, every gate passed, same 23 warnings.
 
 **Next:** the standing headless-Chromium method has now covered every page-level script found so far (nav toggles, deck galleries, quest finish-offer, intro-call and corporate forms, and now thanks.html); no further untested candidate identified this cycle. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
 
-Pushed to main. `ops/tests/test_thanks_sku_branching.py`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+Pushed to main in two commits: `ops/tests/test_thanks_sku_branching.py` first, then the `gate_indexable_pages_have_schema` underscore fix plus its own regression test, `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
 
 ## PM check-in, 2026-09-23 22:4x (previous work finished, independently reconfirmed with a full unwrapped preflight run; nothing new unblocked, standing operator handoff restated)
 
