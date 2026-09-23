@@ -39,8 +39,13 @@ from "can a customer pay" to "can anything be measured, and has a stranger
 ever converted". `ROADMAP-2026-2029.md` (written 2026-08-24) is the current
 authoritative strategy; it supersedes `ROADMAP.md`, `STRATEGY.md` and
 `GROWTH-PLAN.md` in spirit even though those files still exist on disk.
-`BACKLOG-2026-H2.md` is the current authoritative work queue and supersedes
-`BACKLOG.md` as a list of what to do next.
+`BACKLOG-2026-09-07.md` is the current authoritative work queue. **Corrected
+2026-09-23: this line still named `BACKLOG-2026-H2.md` here, fifteen days
+after section 21 below recorded that `BACKLOG-2026-09-07.md`, Phil's own
+reprioritisation toward micro zones, decks and image/video work, supersedes
+`BACKLOG-2026-H2.md`'s ordering.** `BACKLOG-2026-H2.md` still holds the
+process rules (epics, gating discipline) and `BACKLOG.md` is superseded by
+both.
 
 Standing objective from the owner (2026-08-16): develop all content and products
 continuously and iteratively toward $20,000 per month, without stopping for
@@ -65,9 +70,10 @@ Long-term commercial target:
 
 ## Current Highest-Level Priority
 
-**The ordering rule in `BACKLOG-2026-H2.md`: measurement before traffic, traffic
-before conversion, conversion before product.** Current state against each
-epic:
+**The ordering rule, from `BACKLOG-2026-09-07.md` section 0: the traffic
+constraint decides the order.** Below it, the older rule still holds:
+measurement before traffic, traffic before conversion, conversion before
+product. Current state against each epic:
 
 1. **Epic 1, measurement (blocks everything).** EXP-001 (has a stranger ever
    clicked a buy button) is answered, permanently: AMBIGUOUS (backlog 1.3,

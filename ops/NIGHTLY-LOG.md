@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 01:4x (previous work finished, verified clean; a real same-file contradiction found and fixed in STATUS.md; cross-document sweep continues)
+
+**NEXT FOR THE OPERATOR: continue the cross-document consistency sweep on `RISKS.md` and `DECISIONS.md` in full, and `OWNER-ACTIONS.md`, because `STATUS.md` and `ROADMAP-2026-2029.md` are now checked clean this pass and the sweep has found a real defect on 3 of the last 4 cycles it has been used.**
+
+**Previous work: finished, verified.** Shallow/detached checkout attached via fetch/unshallow/checkout/ff-only merge, clean 48-commit fast-forward onto `origin/main` (`115cd0a0`). Full `preflight.py` run to completion, not cited: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress), none new. Working tree was clean and main in sync with origin before this cycle touched anything. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 7's own read (declining traffic, one sale ever, all six owner gates Phil-blocked) still holds, so nothing there is genuinely unblocked.
+
+**Continued the cross-document sweep the 01:1x check-in handed off.** Read `STATUS.md` in full rather than the metadata line alone. Found a real same-file contradiction: section 2's own top summary (the file's own "fastest authoritative summary", by its own Document Role text) said `BACKLOG-2026-H2.md` is "the current authoritative work queue," and separately named it as the source of "the ordering rule" — but section 21 of the same file already recorded, dated 2026-09-08, that `BACKLOG-2026-09-07.md` supersedes `BACKLOG-2026-H2.md`'s ordering, fifteen days before this check. A reader trusting the top summary (the part anyone skimming this file actually reads) would have picked the superseded queue. `BACKLOG-2026-H2.md` itself already points forward correctly (its own top note: "the current ordering lives in `BACKLOG-2026-09-07.md`"), so only `STATUS.md`'s top summary was stale. Fixed both spots in section 2 with inline "Corrected 2026-09-23" notes, per this file's own convention, naming `BACKLOG-2026-09-07.md` as authoritative and `BACKLOG-2026-H2.md` as still holding the process rules. Not customer-facing (an internal operating file), GREEN under `CLAUDE.md` 52.
+
+Spot-checked `ROADMAP-2026-2029.md` for the same shape (stale traffic/revenue figures): its dollar and visit figures are stated in relative/structural terms (kill criteria, unit economics), not as point-in-time numbers that go stale between cycles; no defect found. Re-confirmed `BACKLOG-2026-H2.md`'s own supersession note is still accurate and was not the thing that needed fixing.
+
+**Verified:** full `preflight.py` reran clean after the edit (every gate passed, same 23 warnings, none new).
+
+**Went well:** reading a file's own internal sections against each other, not just against other files, found the defect; the "fastest authoritative summary" being the stale half rather than the detailed section is exactly the shape that costs a reader the most.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; a one-section correction, no new gate needed for a self-contradiction this specific.
+
+**Next:** keep the cross-document sweep going (`RISKS.md`, `DECISIONS.md` in full, `OWNER-ACTIONS.md` not yet re-checked this pass). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md` (one section), command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 01:1x (previous work finished, verified clean; continued the 00:4x cross-document sweep, one more stale figure found and fixed in DECISIONS.md)
 
 **Previous work: finished, verified.** Shallow/detached checkout attached via fetch/unshallow/checkout/ff-only merge, clean 46-commit fast-forward. Full `preflight.py` run to completion (not cited from a prior cycle): every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree was clean and main in sync with origin before this cycle touched anything. GitHub re-confirmed via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (2 also `P0`), 0 open PRs. CI green on the latest commit that actually triggers a run (`c764cac7`; the bot's own hourly `Hourly check-in record` commit does not trigger workflows, by GitHub design for `GITHUB_TOKEN` commits).
