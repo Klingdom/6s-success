@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 03:1x (previous work finished, verified myself; one real gate failure found, self-healed, and reconfirmed clean; no new operator handoff)
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 57-commit fast-forward (`65e420a2`). Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. GitHub confirmed live: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all `Done` or Phil-gated.
+
+**Ran `preflight.py` fresh myself rather than cite the prior cycle.** First run genuinely failed: `stray-probe-files`, one leftover `site/_thanks_schedule_probe.html` from a concurrent run killed mid-audit, the exact known shape `gate_no_stray_probe_files` exists for. The gate reports and then deletes the file itself (untracked, never staged, confirmed via `git status`), so nothing to commit; reran clean, 0 gates failed, 23 warnings, all previously diagnosed sandbox limits.
+
+**Checked one apparent contradiction rather than assume it was fine:** the dashboard's "0 live uses of the rejected term 'Set in Order'" against open issue #29's "14 cards still say it." Read `gate_deck_art_withheld`: those 14 (plus EP-004's wrong scene) are excluded from `site/assets/cards/*/index.json` and confirmed absent by direct URL, so they are withheld, not fixed, and both statements are true without conflict. Issue #29 correctly stays open (needs new art); no defect here.
+
+**Did not go well:** none this cycle.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Handing the operator no new item; backlog, cross-document sweep and low-mention `ops/*.py` lanes remain exhausted per the last several cycles.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (contact.html's form given interactive test coverage, closing a concurrent PM check-in's handoff; backlog and low-mention/cross-document lanes both re-confirmed exhausted)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, then re-fetched and ff-merged once more mid-cycle after two concurrent PM check-in pushes (02:1x, 02:4x). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). `BACKLOG-2026-09-07.md` sections 2-6 again all `Done` or Phil-gated; confirmed live via the GitHub API rather than cited: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs, CI green.
