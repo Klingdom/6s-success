@@ -7743,7 +7743,7 @@ def gate_workflows_healthy() -> None:
              "workflow's health was checked. Unchecked, not healthy.")
         return
 
-    failing, stale, unknown = [], [], []
+    failing, stale, unknown, undated = [], [], [], []
     now = dt.datetime.now(dt.timezone.utc)
     for n in names:
         if token:
@@ -7775,7 +7775,14 @@ def gate_workflows_healthy() -> None:
             if age >= 7:
                 stale.append("%s (%d days)" % (n, age))
         except ValueError:
-            pass
+            # A timestamp this cannot parse used to be dropped in silence,
+            # which meant the staleness half of this gate simply did not run
+            # for that workflow. A scheduled job that had stopped firing
+            # months ago would look exactly like one that ran this morning,
+            # and two of the workflows here (the hourly brief and order
+            # fulfilment) are how this business finds out anything at all.
+            # Not knowing when it last ran is not the same as it being fine.
+            undated.append(n)
 
     if unknown and len(unknown) == len(names):
         warn("workflows-healthy",
@@ -7789,6 +7796,10 @@ def gate_workflows_healthy() -> None:
         bits.append("not running: " + ", ".join(stale[:4]))
     if unknown:
         bits.append("%d could not be queried" % len(unknown))
+    if undated:
+        bits.append("%d had an unreadable last-run time, so their staleness "
+                    "is UNCHECKED rather than fine: %s"
+                    % (len(undated), ", ".join(sorted(undated)[:4])))
     if bits:
         warn("workflows-healthy", "; ".join(bits))
 
