@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 18:1x (STATUS.md's Production Release section had gone stale to the point of being wrong, not just old)
+
+**Previous work: finished, verified.** Attach clean (unshallow plus ff-only). Full `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits). Working tree clean, `main` already at `origin` tip: nothing to finish from the last cycle. Backlog sections 2-6 and the 7 open GitHub issues unchanged, all `decision`/`blocked-on-art`.
+
+**Found:** `STATUS.md` sections 2, 5 and 6 asserted deploy freshness was "genuinely unknown from here" and the Production Release table read all-`UNKNOWN`. Both were false, not merely stale: `ops/deploy-verdict.json` and `OWNER-ACTIONS.md` already record local sessions with real VPS access redeploying routinely (2026-09-15 through today), each with a timestamped build hash. The file was conflating "this sandboxed session cannot verify directly" with "nobody knows."
+
+**Fixed:** corrected all three sections to the actual known state: production last confirmed at build `696c3847367c3869` (`2026-09-23T12:51:31Z`), now one legitimate commit behind repository HEAD (`d9f77705075b77bb`, the Kitchen SKU retirement `acb343cb` from the prior PM cycle), which matches what the just-fixed `checkin.py` now reports correctly. Kept the true parts (no CI workflow runs `ops/deploy.py`; this sandboxed session genuinely has no key or VPS egress).
+
+**Verified:** the five gates that actually read `STATUS.md` content (`gate_status_currency`, `gate_no_stale_session_label`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`) run directly against the edited file, all pass. A full `preflight.py` re-run was started but was still in progress past this slot's 30 minutes; not killed, to avoid the documented orphaned-lock risk from stopping a run early. Whoever reads this next: check `/tmp` or rerun fresh rather than trust it finished clean, since this cycle did not wait to see.
+
+**Went well:** catching a "conflated unverifiable with unknown" defect distinct from the prior cycle's `checkin.py` fix, same underlying gap, different file.
+
+**Did not go well:** the full preflight re-run outlived this slot; a markdown-only prose edit should not need 5+ minutes to confirm, and this cycle has no evidence why it does.
+
+**Changing next cycle:** whoever runs next, check whether the backgrounded preflight from this cycle finished and was clean; if it FAILed, this entry's "verified" claim was wrong and needs correcting, not repeating.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production one commit behind, waiting on a local session to redeploy, same as every prior cycle.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 17:4x (found and fixed a real hourly-checkin bug that had been crying "Production is behind the repository. Deploy." every hour since 2026-09-22 15:04 for the wrong reason)
 
 NEXT FOR THE OPERATOR: nothing new unblocked in `BACKLOG-2026-09-07.md` (sections 2-6 still all done or Phil-gated) or the 7 open GitHub issues (still `decision`/`blocked-on-art`, unchanged). The one live thing worth a look, if a session ever holds the VPS deploy key: today's real D-024 SKU retirement (138 to 130) has not been confirmed redeployed since `OWNER-ACTIONS.md`'s last 12:50 UTC check, before that commit landed at 13:51 UTC; `ops/checkin.py`'s fixed message will now say so honestly instead of the stale generic line.

@@ -16,7 +16,9 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-22, PM check-in. **`gate_status_currency` fired (8 material commits unmentioned since this file's own last edit); closed by describing what actually shipped, per `CLAUDE.md` 0.2, rather than opening a fresh sweep. Also fixed a real, live `build-id` FAIL this same slot: `site/build-id.txt` had gone stale by four commits (the Kitchen deck PDF push never regenerated it), which would have made `deploy.py`'s own production-freshness check compare against the wrong hash; regenerated and reverified `--check` current.** The 8: `e529774e` (C20, issue #34: a real downloadable Kitchen deck PDF via headless-Chromium render of the page's own print sheet, plus a sitewide fix to `measure.js`'s `free-download` tracking regex, which had never matched a page-relative download href and so likely never counted the Entryway deck or book-sample downloads); `147179c6` (C6/C7: retired the 6 Area Bundles and 15 Situation Kits, 74-84% of the whole-house pack's price for 7-20% of its content, $0 realised revenue ever; catalogue 159 to 138, full detail preserved in `ops/retired-skus.json`, `DECISIONS.md` D-023); `c0cf1b8b` (a page for the $49 Complete Digital Bundle, issue #32's last open finding, wired into shop/book CTAs and the Product JSON-LD chain); `2bc4424f` (C9: preferred-time capture on `thanks.html` for the two service SKUs, plus a live 1.13:1 contrast failure found and fixed across 160 pages while verifying, now permanently gated); `e4d2403d` (C10: a free, capped 15-minute "which zone first" call, the last genuinely unblocked backlog row at the time); `4b792857` (fixed Product JSON-LD `url` drift on `shop.html` after the bundle page shipped, caught by `preflight.py --own`); `22fe4a8b` (the free sample PDF's rendered cover still said "The Complete Book" after the HTML had been corrected twice; the checked-in binary was never re-derived, now fixed and gated); `2ec2bfa7` (C17: a Stripe link-retirement refusal now surfaces as RED on the dashboard and by name in the hourly brief instead of only a print() in a closed terminal). Full detail in each commit and in `ops/NIGHTLY-LOG.md`.
+**Last Updated:** 2026-09-23, PM check-in. **Corrected sections 2, 5 and 6: this file had stood claiming production deploy freshness was "genuinely unknown" and the Production Release table read all-UNKNOWN, both false and both contradicted by evidence already committed in this repository (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s own dated deploy confirmations). Corrected to state what is actually known (production confirmed at build `696c3847367c3869` as of `2026-09-23T12:51:31Z`, one legitimate commit behind repository HEAD right now) and to stop conflating "this sandboxed session cannot verify directly" with "nobody knows." No new material commit narrated here; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+
+**Prior (2026-09-22, PM check-in): `gate_status_currency` fired (8 material commits unmentioned since this file's own last edit); closed by describing what actually shipped, per `CLAUDE.md` 0.2, rather than opening a fresh sweep. Also fixed a real, live `build-id` FAIL this same slot: `site/build-id.txt` had gone stale by four commits (the Kitchen deck PDF push never regenerated it), which would have made `deploy.py`'s own production-freshness check compare against the wrong hash; regenerated and reverified `--check` current.** The 8: `e529774e` (C20, issue #34: a real downloadable Kitchen deck PDF via headless-Chromium render of the page's own print sheet, plus a sitewide fix to `measure.js`'s `free-download` tracking regex, which had never matched a page-relative download href and so likely never counted the Entryway deck or book-sample downloads); `147179c6` (C6/C7: retired the 6 Area Bundles and 15 Situation Kits, 74-84% of the whole-house pack's price for 7-20% of its content, $0 realised revenue ever; catalogue 159 to 138, full detail preserved in `ops/retired-skus.json`, `DECISIONS.md` D-023); `c0cf1b8b` (a page for the $49 Complete Digital Bundle, issue #32's last open finding, wired into shop/book CTAs and the Product JSON-LD chain); `2bc4424f` (C9: preferred-time capture on `thanks.html` for the two service SKUs, plus a live 1.13:1 contrast failure found and fixed across 160 pages while verifying, now permanently gated); `e4d2403d` (C10: a free, capped 15-minute "which zone first" call, the last genuinely unblocked backlog row at the time); `4b792857` (fixed Product JSON-LD `url` drift on `shop.html` after the bundle page shipped, caught by `preflight.py --own`); `22fe4a8b` (the free sample PDF's rendered cover still said "The Complete Book" after the HTML had been corrected twice; the checked-in binary was never re-derived, now fixed and gated); `2ec2bfa7` (C17: a Stripe link-retirement refusal now surfaces as RED on the dashboard and by name in the hourly brief instead of only a print() in a closed terminal). Full detail in each commit and in `ops/NIGHTLY-LOG.md`.
 
 **Prior (2026-09-22, PM check-in): `REVIEW-COMMERCE-2026-09-07.md` section 7 cleared of every "At" tier item; C4 and C13, the last two, both shipped and verified.** C13 (`35ad2696`) authored the two B2B-intent articles the section called for, `what-a-5s-engagement-costs.html` and `why-5s-decays-after-six-months.html`, every claim traced to `corporate.html` or the existing `CORPORATE_CORPUS`, no dollar figure or testimonial; linked from two new `corporate.html` cards and a new "For teams and workplaces" subsection on the articles index, and caught four real staleness gaps while verifying (a hand-typed breadcrumb, `llms.txt`'s article count, and two stale page-count citations in `ROADMAP-2026-2029.md`/`RISKS.md`), all fixed the same cycle; `00b38d80` regenerated the sitemap/build-id for the date rollover the same push caused. C4 (`a6cc65ec`) found that corporate nav/footer distribution, despite several earlier cycles citing it done, had never actually happened: `corporate.html` was reachable from only 3 pages. Kept it out of the five-item primary nav on purpose (`wire_nav.py`'s own documented household-audience decision) and instead wrote a new generator, `ops/wire_footer.py`, that propagates the footer live from `about.html` to every hand-authored page; internal links to `corporate.html` went from 3 to 191 pages. Both cycles' full `preflight.py`, `check_urls.py`, `audit_pages.py` and `audit_visual.py` runs came back clean; CI confirmed green via the GitHub API, not assumed. Also: `000daf95` (C12, the free B2B zone scoring sheet and layered audit template) and `4851cfed` (C11, a corporate LinkedIn post track for the B2B offer) round out the same B2B push; `514abe61` (C16, the free Entryway deck PDF cut from 25 MB to 7.5 MB) and its follow-up `3fda4039` (the generator drift that PDF resize left behind, fixed, `PRICING.md` pointed at decision D-022); `5bc062f1` closed a gate gap in `build_manual_print.py`'s six-S ordering check (D-014).
 
@@ -121,15 +123,25 @@ own measurement changed shape, the same "source corrected, artifact never
 re-derived" defect class this file names throughout. The "Redeploy click"
 framing is also superseded: `OWNER-ACTIONS.md` item 1 records the VPS SSH
 deploy key installed 2026-09-01 ("No deploy needs you again"), so Hostinger's
-manual click is no longer the mechanism. What has NOT been verified since:
-whether any operator session has ever actually held the private half of that
-key. Every sandboxed cycle since, this one included, reports "no deploy key
-at /root/.ssh/6s_deploy," and no workflow in `.github/workflows/` runs
-`ops/deploy.py`, so no automated pipeline exercises it either. Whether the
-live site has been redeployed even once since 2026-09-01, by Phil's own hand
-or otherwise, is genuinely unknown from here, not merely "not measured this
-run." Treat deploy freshness as unconfirmed by design until either a session
-holding the key checks directly or Phil confirms he deploys manually.
+manual click is no longer the mechanism. Every sandboxed (cloud) session,
+this one included, reports "no deploy key at /root/.ssh/6s_deploy" and has no
+egress to the VPS, so a sandboxed session can never confirm deploy freshness
+directly. **Corrected 2026-09-23, PM check-in: the paragraph used to say
+whether the site had ever been redeployed since 2026-09-01 was "genuinely
+unknown from here." That was true once but is stale; it is not unknown.**
+Local sessions with real VPS access hold the key's private half and use it
+routinely, confirmed by real, timestamped entries in `OWNER-ACTIONS.md` and
+`ops/deploy-verdict.json` (2026-09-15, -18, -20, -22, -23, several same-day):
+each records the exact build hash moved to and the UTC timestamp checked
+directly against the verdict file, not cited from memory. As of the last such
+check (`ops/deploy-verdict.json`, `2026-09-23T12:51:31Z`), production served
+build `696c3847367c3869`. The repository has since moved one commit further
+(`acb343cb`, the Kitchen zone-pack retirement, build `d9f77705075b77bb`), so
+production is genuinely one legitimate catalogue change behind right now,
+which `ops/checkin.py`'s hourly check reports correctly. "No automated
+pipeline exercises `ops/deploy.py`" is also still true (no `.github/workflows/`
+job runs it) and remains a real gap: freshness depends on a local session
+happening to run one, not on any guaranteed cadence.
 
 ### Completed since 2026-08-16
 
@@ -257,12 +269,24 @@ Do not replace `UNKNOWN` with `GREEN` without evidence.
 
 # 5. Production Release
 
-**Currently Deployed Commit:** UNKNOWN  
-**Release / Tag:** UNKNOWN  
-**Deployment Timestamp:** UNKNOWN  
-**Deployment Method:** UNKNOWN  
-**Known-Good Rollback Release:** UNKNOWN  
-**Runtime/Image Identity:** UNKNOWN
+**Corrected 2026-09-23, PM check-in: this table had stood as an unfilled
+UNKNOWN template even though `ops/deploy-verdict.json` has answered most of
+it, continuously, since it was introduced.** No sandboxed session can
+re-verify these fields directly (no VPS egress, no deploy key here), so
+treat them as only as fresh as the verdict file's own `checked_at`, not as
+this session's own measurement.
+
+**Currently Deployed Build (last confirmed):** `696c3847367c3869`
+**Confirmed At:** `2026-09-23T12:51:31Z` (`ops/deploy-verdict.json`)
+**Repository HEAD Build:** `d9f77705075b77bb` (one commit ahead: `acb343cb`,
+Kitchen zone-pack retirement; not yet known to be deployed)
+**Release / Tag:** NONE, every deploy is tracked by commit SHA / image
+digest, 0 GitHub tags or releases exist
+**Deployment Method:** `ops/deploy.py`, run manually by a local session
+holding `~/.ssh/6s_deploy` (installed 2026-09-01); no CI workflow runs it
+**Known-Good Rollback Release:** UNKNOWN, no rollback procedure has been
+exercised or documented in this repository's tooling
+**Runtime/Image Identity:** `ghcr.io` image, tag/digest not tracked here
 
 Owners:
 
@@ -296,10 +320,10 @@ answer (no admin/security-alerts scope confirmed either way).
 | Open PRs | 0 | Confirmed live this cycle |
 | Active branches | 1 (`main` only) | Confirmed live this cycle; no stray/abandoned branches |
 | CI health | MOSTLY GREEN, one real failure since traced and fixed | `checks.yml` run #1194 genuinely FAILED (2026-09-20 11:18, `gate_owner_actions_last_measured_current`, a stale header the immediately preceding push left behind), caught live and fixed within the same minute by a concurrent cycle (`f70f657c`, run #1195); #1195 and #1196 (the current HEAD) were both still `in_progress` as of this check (12:16), not yet confirmed; the last run to actually complete, #1193, succeeded. `fulfil-orders.yml`, `linkedin-drafts.yml`, `social-drafts.yml` all green on their latest scheduled runs |
-| Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; production is a manual Hostinger "Redeploy" click per `DEPLOYMENT.md`. Whether that click has been made since the VPS deploy key was installed 2026-09-01 is unverified from every sandboxed session to date |
+| Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; a local session holding the VPS deploy key runs it manually, confirmed routinely since 2026-09-01 (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`). **Corrected 2026-09-23:** this row previously implied the click may never have happened; it has, repeatedly, just never from a sandboxed session |
 | Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
 | Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
-| Production traceability | UNKNOWN | No sandboxed session has ever held the private half of the VPS deploy key; whether the live site matches HEAD is unconfirmed by design (see section 2 above) |
+| Production traceability | Tracked, one commit behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T12:51:31Z`) is the live-tracked answer, not unknown by design. See section 5 above for the current gap |
 | Repository hygiene | 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md` |
 
 ### GitHub Priority
