@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (independent re-verification, exhausted state confirmed, no new defect)
+
+**Did:** Checkout arrived shallow and detached; unshallowed and attached with `git checkout -B main origin/main` then `merge --ff-only`, a clean 91-commit fast-forward, no conflict. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the true (date-sorted, not line-order, since merges have scrambled part of this file's historical order) last entries of this log. Ran `python ops/preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no egress to the live site, no Stripe/mail credential, no SSH key at `~/.ssh/6s_deploy`, confirmed absent by direct check rather than assumed). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Checked GitHub directly via the API rather than trusting a cached count: 8 open issues, all `decision` or `blocked-on-art`, `checks.yml` green on every recent push. Read issue #34 in full including its own resolution comment: the Kitchen deck PDF (option 2) already shipped 2026-09-22; only the SKU-retirement choice itself is still Phil's.
+
+**Verified:** independently re-derived, not copied from the prior cycle's own "exhausted" claim, that `BACKLOG-2026-09-07.md` sections 2 through 4 are every row struck through as done or explicitly `YES, Phil`; section 5 is deliberately HOLD pending traffic or a sale; section 6 is the owner-gate list. Cross-checked against `OWNER-ACTIONS.md`'s own "start here" four items and the open GitHub issues: same set, no third list holding something neither names. The one live-operational fact worth restating plainly: production is on build `696c3847367c3869` while the last confirmed-deployed build is `a993020017bafe37` (2026-09-22T16:05:56Z), a growing gap this sandbox cannot close, having no deploy key, exactly as `OWNER-ACTIONS.md` already states.
+
+**Went well:** treating a prior cycle's "exhausted" finding as a claim to verify, not a fact to inherit, per `CLAUDE.md` 0.3/section 5d; the independent pass reached the same conclusion by its own reading of the primary documents. Also caught my own mistake before pushing: my first draft of this entry was appended to the physical end of the file instead of prepended to the top, exactly the misreading `gate_nightly_log_ordering` exists to catch; its own re-run failed it by name, entry moved here.
+
+**Did not go well:** nothing new found; nothing genuinely unblocked exists this cycle.
+
+**Changing next cycle:** none; manufacturing a marginal gate or a cold-read fix to appear busy would violate `GOALS.md`'s own stated failure mode, so none was written.
+
+**Next:** the "start here" list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, Stripe business description paste, the 36-SKU Stripe archival) and the redeploy click/key, unchanged. Nothing else moves the constraint until then.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 10:4x (previous work finished; no new unblocked item; deploy gap now past 18.5 hours, worth a look if the operator holds real VPS access)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2 to 4 are every row Done or found-already-done, section 5 is genuinely HOLD (the M4 pilot read is due 2026-09-28), section 6 is owner-only, and all 8 open GitHub issues are `decision` or `blocked-on-art` with no new comment. The one thing worth a look if you have real VPS access: the production deploy gap (repository build `696c3847367c3869` vs. live `a993020017bafe37`, last confirmed 2026-09-22T16:05:56Z per `ops/deploy-verdict.json`) is now past 18.5 hours, and `CHECKIN-LOG.md`'s last entry (06:08) still reads "Production is behind the repository. Deploy." Not reachable from this sandbox (no SSH key, no egress).
