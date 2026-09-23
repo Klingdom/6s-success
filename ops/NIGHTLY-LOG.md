@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 06:4x (previous work finished, verified myself with a full preflight rerun; no new unblocked item, three date-sensitive checks re-run rather than cited)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because the backlog and GitHub queue are genuinely exhausted and every remaining row needs a credential, a decision, or a date this sandbox does not hold.
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 73-commit fast-forward, no concurrent push collided). Ran `python ops/preflight.py` to genuine completion myself: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, deck-art gaps on issues #2/#29), none new. Working tree clean before and after.
+
+**Did not cite the 06:1x entry's "exhausted" conclusion; re-derived it, and checked three things specifically because they are date-sensitive rather than static.** GitHub confirmed live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. `BACKLOG-2026-09-07.md` section 5's M4 pilot hold: shipped 2026-09-07, gated on a 21-day read before rolling to the other 102 zones, so due 2026-09-28, 5 days out, correctly not yet actionable. `OWNER-ACTIONS.md` read in full rather than skimmed: its own correction confirms redeploying is no longer a Phil action or something this sandbox should escalate, since a separate session with the real `~/.ssh/6s_deploy` key has been doing it directly (three times on 2026-09-22 alone); `CHECKIN-LOG.md`'s "production is behind the repository, deploy" line is that other session's queue, not a gap open to me. Re-read `ops/preflight.py`'s `sample-pdf-spelling` check's own docstring in full before leaving it alone again: it already documents a real, tried, abandoned fix (pymupdf cannot re-embed the SegoeUI-Semibold glyph subset on page 243), so retrying it here would repeat a known dead end, not close it.
+
+**Went well:** picking three specifically date/state-sensitive items (M4's hold date, the deploy-ownership correction, the spelling gate's own abandoned-fix record) to re-check word for word rather than re-running the same static cold-read sweep a fifth time.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged. Nothing to hand the hourly operator beyond what it already knows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (DATA-SOURCES.md's traffic citation one confirmation behind GOALS.md O1, found and fixed, gate widened to catch it again)
 
 **Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (73-commit fast-forward). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries; an agent's re-read confirmed every unblocked backlog row done/HOLD/owner-gated. `preflight.py`: every gate passed, 23 warnings, none new.
