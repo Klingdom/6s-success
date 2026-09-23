@@ -58,6 +58,19 @@ OA_UNRELATED_PARAGRAPHS = (
 
 OA_NO_LINE = "Nothing resembling that phrase appears anywhere in this file.\n"
 
+# Same-document shape, found 2026-09-23: GOALS.md's own "Weekly visitors" row
+# and "Why it is first" narrative paragraph, both a few lines below the
+# canonical table, drifted from it without any sibling file ever disagreeing.
+GOALS_WEEKLY_AGREES = GOALS + "| Weekly visitors | **21/wk** | 500/wk |\n"
+GOALS_WEEKLY_DISAGREES = GOALS + "| Weekly visitors | **14/wk (stale)** | 500/wk |\n"
+
+GOALS_WHY_AGREES = GOALS + (
+    "\n**Why it is first, now with numbers.** 68 visitors (read directly "
+    "from the database) across 161 visits in thirty days, and so on.\n")
+GOALS_WHY_DISAGREES = GOALS + (
+    "\n**Why it is first, now with numbers.** 68 visitors (read directly "
+    "from the database) across 193 visits in thirty days, and so on.\n")
+
 
 def _run(goals: str, owner_actions: str):
     tmp = tempfile.mkdtemp()
@@ -102,6 +115,30 @@ def main() -> int:
     if r:
         fails.append("missing line wrongly flagged: %r" % (r,))
 
+    # 6. GOALS.md's own "Weekly visitors" row agrees with "Sessions, last 7
+    #    days" above it (21 both places): no failure.
+    r = _run(GOALS_WEEKLY_AGREES, OA_AGREES)
+    if r:
+        fails.append("Weekly visitors agreement wrongly flagged: %r" % (r,))
+
+    # 7. It disagrees (14 vs. 21): caught, naming both numbers.
+    r = _run(GOALS_WEEKLY_DISAGREES, OA_AGREES)
+    if not r or "14" not in r[0][1] or "21" not in r[0][1]:
+        fails.append("Weekly visitors disagreement not caught: %r" % (r,))
+
+    # 8. GOALS.md's own "Why it is first" paragraph agrees with the
+    #    "Stranger to Visitor" row above it (68/161 both places): no failure.
+    r = _run(GOALS_WHY_AGREES, OA_AGREES)
+    if r:
+        fails.append("Why-it-is-first agreement wrongly flagged: %r" % (r,))
+
+    # 9. It disagrees (193 visits vs. the table's own 161): caught, naming
+    #    both numbers, the exact 2026-09-23 shape (a stale narrative citing
+    #    the day-before pull after the table above it had already moved on).
+    r = _run(GOALS_WHY_DISAGREES, OA_AGREES)
+    if not r or "193" not in r[0][1] or "161" not in r[0][1]:
+        fails.append("Why-it-is-first disagreement not caught: %r" % (r,))
+
     # 5. The real, committed files: clean today.
     real_goals = os.path.join(ROOT, "GOALS.md")
     real_oa = os.path.join(ROOT, "OWNER-ACTIONS.md")
@@ -118,7 +155,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md cross-check), 5/5 checks pass")
+    print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md and same-document checks), 9/9 checks pass")
     return 0
 
 

@@ -112,11 +112,13 @@ not by how interesting they are.
 | Published videos | **12 of 114, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30. Corrected 2026-09-16: this row read "12 of 228" for six weeks, conflating the 228 total rendered video FILES (114 vertical plus 114 horizontal, two orientations of the same 114 zones) with the YouTube publishing target. `ops/youtube_upload.py`'s own docstring states only the wide 16:9 file is ever uploaded ("Shorts are a separate distribution decision and are not posted by this tool"), so the real denominator is 114, one per zone, matching `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md`'s own "102 of 114 remaining" framing, which was right the whole time. The numerator (12) was never wrong.** | all 114 |
 | Sessions from organic search | **5 visits from 4 visitors, whole life of the site, measured 2026-09-20** | Read directly from the Umami database, not carried forward: bing.com 1 visitor / 1 visit (21 August), google.com 3 visitors / 4 visits (4 to 18 September). **Corrected 2026-09-20:** this row said "4 visits from 3 visitors ... reconfirmed unchanged" earlier the same day. Nothing was re-measured to produce that line; a cloud session holds no VPS key and cannot read this table, so "reconfirmed" meant "carried forward". Google's most recent visit is 18 September, the day after the duplicate-URL redirects shipped. | 
 | Sessions, last 7 days | **10** | 10 visitors, 17 visits, 31 pageviews, measured 2026-09-21. Third consecutive weekly fall (18, 14, 10) |
-| Weekly visitors | 14/wk (2026-09-20, down from 18) | 500/wk |
+| Weekly visitors | **10/wk (2026-09-21, down from 14), corrected: this row said 14/wk from 2026-09-20 for a day after the row above it had already moved to 10** | 500/wk |
 
 **Why it is first, now with numbers.** 76 visitors (read directly from the
-database 2026-09-20 15:40 UTC, down from 78 on 2026-09-17, 75 on 2026-09-14
-and 68 on 2026-09-11) across 193 visits in thirty days, and in the whole life
+database 2026-09-21 14:05 UTC, down from 76 on 2026-09-20, 78 on 2026-09-17,
+75 on 2026-09-14 and 68 on 2026-09-11) across 190 visits in thirty days
+(936 pageviews, of which 431 are the one automated session; 505 human
+pageviews from 75 visitors), and in the whole life
 of this site **exactly five visits from four visitors arrived from a search
 engine**, per the "Sessions from organic search" row above, corrected today
 after the earlier "reconfirmed unchanged" line turned out to be an

@@ -11534,6 +11534,15 @@ def gate_goals_traffic_current() -> None:
     visitor count disagrees with GOALS.md's. Deliberately not extended to
     visits: a pageview count is not a visit_id count, and OWNER-ACTIONS.md's
     own item 1 does not claim to have one, so there is nothing to compare.
+
+    Widened 2026-09-23: every check above compares GOALS.md against a
+    sibling file, none against GOALS.md's own other rows and paragraphs.
+    Found live: the "Weekly visitors" row still read 14/wk a day after the
+    "Sessions, last 7 days" row directly above it had already moved to 10,
+    and the "Why it is first" narrative paragraph still cited a prior day's
+    76 visitors/193 visits pull after the table's own authoritative row had
+    moved to 76/190. Now also parses both and fails if either disagrees
+    with the canonical 30-day/7-day rows.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -11566,6 +11575,32 @@ def gate_goals_traffic_current() -> None:
     sessions_7 = int(m7.group(1))
 
     bad = []
+
+    # Same-document drift, found 2026-09-23: this gate checked GOALS.md
+    # against every sibling file but never against its own other rows and
+    # paragraphs. The "Sessions, last 7 days" row (m7 above) had moved to
+    # 10 a day before the "Weekly visitors" row directly beneath it, and the
+    # "Why it is first" narrative paragraph a few lines further down, still
+    # cited the prior day's 76/193 pull instead of the newer 76/190 one the
+    # table above it already carried. Both are the exact "one row corrected,
+    # its own neighbour never told" shape this gate exists to catch, just
+    # inside one file instead of across two.
+    wv = re.search(r"Weekly visitors\s*\|\s*\*{0,2}(\d+)/wk", goals)
+    if wv and int(wv.group(1)) != sessions_7:
+        bad.append(f"GOALS.md's own 'Weekly visitors' row says {wv.group(1)}"
+                    f"/wk, but 'Sessions, last 7 days' on the row above it "
+                    f"says {sessions_7}")
+
+    why = re.search(r"Why it is first, now with numbers.{0,60}?(\d+) "
+                     r"visitors.{0,400}?across (\d+) visits in thirty days",
+                     goals, re.S)
+    if why:
+        why_visitors, why_visits = int(why.group(1)), int(why.group(2))
+        if why_visitors != sessions_30 or why_visits != visits_30:
+            bad.append(f"GOALS.md's own 'Why it is first' paragraph says "
+                        f"{why_visitors} visitors / {why_visits} visits, "
+                        f"but the 'Stranger to Visitor' row above it says "
+                        f"{sessions_30} visitors / {visits_30} visits")
 
     # visits must never silently equal visitors again: that equality is what
     # made the conflation invisible for as long as it lasted.
