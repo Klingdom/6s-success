@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-23 00:18",
- "commit": "480c9596",
- "commit_msg": "PM check-in: verified previous work finished (clean preflight, exhausted backlog confirmed), cold-read retire_stripe_skus.py clean, dashboard refresh",
- "commits_7d": 1179,
- "commits_total": 3450,
+ "generated": "2026-09-23 00:46",
+ "commit": "7f586512",
+ "commit_msg": "Log the duplicate-entry incident and its fix plainly, per CLAUDE.md 0.4/54",
+ "commits_7d": 1182,
+ "commits_total": 3455,
  "traffic_line": "76 visitors across 190 visits, 30 days (carried forward from 2026-09-21 14:05; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "76 visitors across 190 visits, 30 days",
  "traffic_line_measured_at": "2026-09-21 14:05",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
