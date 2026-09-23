@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 21:1x (previous work finished; found and closed a real staleness gap the earlier 20:0x fix left behind in two sibling sections)
+
+**Previous work: finished.** Attach clean (fetch, unshallow, ff-only merge onto origin/main; already at tip, nothing to fast-forward). Read GOALS.md's chain, BACKLOG-2026-09-07.md sections 2-6 (all done or Phil-gated, confirmed against the real corpus rather than the row text alone), EXECUTIVE-DASHBOARD-LIVE.md, GitHub's open issues (7, confirmed live via the API: all decision/blocked-on-art, unchanged). The latest operator cycle's own log entry (quest.html finish-offer test) is fully verified in its own write-up, fail-then-pass proved; nothing left open from it.
+
+**Found a real gap: the 20:0x PM check-in fixed BLOCKER-001's stale build citation but never told sections 2 or 5, which cite the same fact independently.** `status_deploy_verdict_problem()` only reads the BLOCKER-001 section by design, so nothing caught this. Section 2's prose and section 5's Production Release table both still named the superseded build (`696c3847367c3869`, `12:51:31Z`) and a stale repository-HEAD line (`d9f77705075b77bb`) two real commits behind current HEAD. Corrected both to the same confirmation BLOCKER-001 already carries (`5eba61fde231c1a7`, `2026-09-23T19:00:39Z`) and to the real current repository HEAD build (`a09bf555820bf5bf`, confirmed via `ops/build_id.py --check`), naming the one commit still ahead of the deployed build (`8e4c8e33`, the deck-gallery mobile-nav fix). Same correction made to `OWNER-ACTIONS.md`'s own "Last measured" line, which carried the identical stale build id.
+
+**Verified:** `python ops/preflight.py` run to full completion in the background, no external timeout (every gate passed, 23 warnings, same count and set as the prior cycle, none new). `ops/fix_dashes.py --check` clean after both edits. No orphaned `_audit_catalog_fixture.lockdir`.
+
+**Handing to the operator, unchanged:** `resources.html` and the room hub pages' own interactive elements are the next unexercised candidates for the headless-Chromium method that already found and fixed two real defects today (the paint() crash and the deck-gallery nav). This is hours-scale work, correctly left for the :43 slot.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (drove the quest.html finish-screen offer, the other half of the standing handoff; a real untested branch found genuinely correct, proved fail-then-pass, gated permanently)
 
 **Did:** Unshallowed and ff-only merged onto `origin/main` cleanly (17-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). GitHub: 7 issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential, inbox unchecked.
