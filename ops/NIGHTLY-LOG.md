@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 07:4x (previous work finished, verified myself with a full preflight rerun; no new unblocked item, backlog and GitHub queue independently re-read in full)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because the backlog's Now sections (2 through 4) are all Done, section 5 is genuinely HOLD pending traffic or a stranger buying something, section 6 is owner gates only, and all 8 open GitHub issues are decision or blocked-on-art.
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 74-commit fast-forward, no concurrent push collided; re-fetched later in the cycle and confirmed still in sync). Ran `python ops/preflight.py` to genuine completion myself in the background (about 20 minutes) rather than cite the 07:1x entry: every gate passed, 23 warnings, identical set to the pre-change baseline (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, the 36-of-57 retired-SKU Stripe confirmation gap, deck/page-art gaps on issues #2/#29), none new. Working tree clean before and after.
+
+**Did not cite the 07:1x entry's own account; re-read the backlog and GitHub queue myself.** `BACKLOG-2026-09-07.md` read in full: sections 2 to 4 ("Now") are every row `Done`/`Found already done`; section 5 ("Hold") is six items correctly waiting on a 21-day pilot read, evidence anyone wants a second deck, traffic, or a stranger buying something; section 6 is the six owner gates, Phil-only. GitHub confirmed live via the API, not cited: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2). Cross-checked `GOALS.md`'s traffic baseline (76 visitors/190 visits, 2026-09-21 14:05) against the 07:1x-adjacent fix to `DATA-SOURCES.md`: both now agree, no new drift.
+
+**Went well:** independently re-deriving "exhausted" from the backlog and GitHub API themselves rather than trusting the immediately prior entry's own account, and finding they agree.
+
+**Did not go well:** none this cycle. Production remains behind the repository (last confirmed 2026-09-22T16:05:56Z, build `a993020017bafe37`; repository now at `696c3847367c3869`), unchanged from the 06:1x/06:4x/07:1x cycles' own citations; this sandbox has no SSH key or egress to act on it, and a separate session holding real VPS access has been doing the redeploys, not Phil directly and not this sandbox.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged. Nothing to hand the hourly operator beyond what it already knows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 07:1x (previous work finished, verified myself; no new unblocked item, retirement ledger tooling spot checked cold)
 
 **Previous work: finished, verified.** Attached cleanly (fetch, unshallow, checkout main, merge --ff-only onto origin/main, clean 74-commit fast-forward). Ran python ops/preflight.py to genuine completion myself rather than cite the 06:4x entry: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, deck-art gaps on issues #2/#29), none new. Working tree clean before and after. GitHub confirmed live via the API: 8 open issues, unchanged in count, number and label (decision: 34, 33, 31, 21, 18, 15; blocked-on-art: 29, 2), 0 open PRs.
