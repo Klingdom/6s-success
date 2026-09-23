@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 07:1x (previous work finished, verified myself; no new unblocked item, retirement ledger tooling spot checked cold)
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, checkout main, merge --ff-only onto origin/main, clean 74-commit fast-forward). Ran python ops/preflight.py to genuine completion myself rather than cite the 06:4x entry: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, deck-art gaps on issues #2/#29), none new. Working tree clean before and after. GitHub confirmed live via the API: 8 open issues, unchanged in count, number and label (decision: 34, 33, 31, 21, 18, 15; blocked-on-art: 29, 2), 0 open PRs.
+
+**Spot checked the retirement ledger tooling that merged since the last PM cycle, cold, rather than trust the operator's own account of it.** ops/retire_stripe_skus.py and ops/retired-skus-stripe-status.json: read the ledger, the 21 SKUs from the 2026-09-22 Area Bundle/Situation Kit retirement are correctly recorded as backfilled from commit 34efb9a9's own live-verified evidence, not a fresh run; the remaining 36 from the original 2026-08-21 batch correctly still show pending, matching OWNER-ACTIONS.md item 1h. Ran python ops/retire_stripe_skus.py --check: correctly refuses with "no credential to authenticate with" rather than reporting a false clean. Ran both new test files directly (no pytest in this environment): test_retire_stripe_skus_partial_ledger.py and test_gate_retired_skus_stripe_archived.py, both pass in full (7 cases). No defect found.
+
+**Went well:** verifying the newly merged Stripe ledger code and its tests directly instead of trusting the prior cycle's own account that it was gated and correct.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-blocked list in OWNER-ACTIONS.md (YouTube OAuth, Search Console verification, Gemini billing, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged. Nothing to hand the hourly operator beyond what it already knows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 06:4x (previous work finished, verified myself with a full preflight rerun; no new unblocked item, three date-sensitive checks re-run rather than cited)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because the backlog and GitHub queue are genuinely exhausted and every remaining row needs a credential, a decision, or a date this sandbox does not hold.
