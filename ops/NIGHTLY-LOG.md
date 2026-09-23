@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (independent re-verification across every unblocked lane, no new defect and no new unblocked item; the commit-velocity-vs-revenue gap itself checked and found not new)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 58-commit fast-forward (`0ded8a35`). Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s own supersession note, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries (all of today, `01:1x` through `03:1x`). `python ops/preflight.py` clean on the first run: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow).
+
+**Did not stop at citing the prior cycles' "exhausted" conclusion; re-checked each claim directly, per step 5d.** GitHub confirmed live via the API, not assumed: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. Read #34 and #33 in full: #34's repository-side fix (a real Kitchen deck PDF, `760db301`) is already shipped, correctly left open only for Phil's own economic call on retiring the 8 Kitchen SKUs, which this repository's own precedent (D-023) treats as needing independent evidence this issue does not yet have. #33 is a game-design taste call a prior cycle explicitly declined to decide unilaterally; nothing since changes that. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply` confirmed no mail credential in this sandbox: inbox correctly reported unchecked, not empty. Tested real egress directly rather than cited: `curl` to `6s-success.com`, `api.stripe.com` and `api.indexnow.org` all refused by the agent proxy (`connect_rejected`), consistent with every prior cycle's finding, none of it assumed. `cd mobile/quest-app && npm test`: all 5 suites green, including a live re-count ("12 of 114 zones carry a usable video id") matching the site's own published-video figure exactly, no drift.
+
+**Spot-checked two lanes nobody had re-opened today rather than repeat the same sweep a fourteenth time.** `OWNER-ACTIONS.md`'s "Last measured" header is already current (this operator's own 01:1x-era correction). `REVIEW-COMMERCE-2026-09-07.md` section 3.3 (service-booking capture) and `gate_sample_pdf_spelling`'s own remaining page-243 finding: both already fully investigated and correctly left as-is (the first shipped as C9, the second blocked on font tooling this sandbox does not have, recorded in the gate's own docstring). No fresh defect in either.
+
+**One honest observation, not a defect with an owner:** the command deck this cycle regenerated reads **1,174 commits in the last 7 days** against $0 trailing-30-day revenue. `GOALS.md`'s own section 0 already names this exact shape ("hundreds of commits most weeks... against $0 of revenue") as what "busy and useless" looks like; the number has grown, not shrunk, because many scheduled cycles are running concurrently against the same exhausted backlog and each records its own clean verification pass as a commit. This is not a new finding and not escalated as one (the dashboard and `GOALS.md` already carry it), but it is worth naming plainly here rather than adding a 1,175th quiet confirmation with nothing said about the pattern itself.
+
+**Verified:** full `preflight.py` clean, mobile `npm test` clean (see above). No price, product or site page touched this cycle.
+
+**Went well:** independently re-proving "no new unblocked item" instead of citing it, across GitHub, the inbox, egress, and the mobile suite, all in the same pass.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** the four items at the top of `OWNER-ACTIONS.md`'s own "Start here" list (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) are the highest-leverage unclaimed work in this entire repository and none of them can be done without Phil's own hand. Every other unblocked lane (backlog, cross-document sweep, low-mention `ops/*.py` cold-read, interactive test coverage) is independently reconfirmed exhausted as of this cycle, not just cited from the last one.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 03:4x (previous work finished, verified myself; handoff only, per this slot's own instruction not to start something large three minutes before the operator)
 
 **NEXT FOR THE OPERATOR: continue the cross-document consistency sweep on `RISKS.md` (a full read, not just the two-figure spot-check the 01:1x check-in already did) and `OWNER-ACTIONS.md` (not yet re-checked this session), because this sweep has found a real stale-citation defect on 3 of the last 4 uses tonight (`GOALS.md`, `DECISIONS.md`, `STATUS.md`) and these two files are the ones it has not yet fully covered.**
