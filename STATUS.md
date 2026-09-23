@@ -836,13 +836,23 @@ unstarted task. What IS known: the repository's own deploy-freshness
 check (`ops/deploy_freshness.py`, `ops/deploy-verdict.json`) previously
 went stale at 233 commits behind (last confirmed 2026-09-18T17:20:47Z,
 build `7c765b634045a89c`), flagged by the 2026-09-20 11:12 PM check-in.
-Phil redeployed twice since, from a session with real production access
-(`470834de`, then `7ae0e9b6`): the tracked verdict now reads current at
-2026-09-20T17:46:50Z, build `d9fc700d0700972f`. `site/build-id.txt` at
-HEAD is one commit ahead (`da3047e8a1168917`, this cycle's own dashboard
-regen, no `site/**` or `ops/build_*.py` content in it), so production is
-effectively current, not known-stale, tracked live in
-`EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` item 1b.
+Phil redeployed twice that day, from a session with real production
+access (`470834de`, then `7ae0e9b6`): the tracked verdict read current at
+2026-09-20T17:46:50Z, build `d9fc700d0700972f`.
+
+**Corrected 2026-09-23, this operator: that reading itself went stale and
+this paragraph never caught up, the same drift shape this section exists
+to describe.** `ops/deploy-verdict.json`, read directly rather than cited,
+now records a newer confirmation: `verdict: "current"`, build
+`a993020017bafe37`, `checked_at: 2026-09-22T16:05:56Z`, from a later
+session with real production access. `site/build-id.txt` at HEAD reads
+`696c3847367c3869` (committed 2026-09-22 23:34 UTC), so the repository has
+moved past that confirmed build and production has not been re-verified
+since; `OWNER-ACTIONS.md`'s own top note already carries this correctly
+and is the fresher of the two documents. No operator sandbox holds the
+deploy key or egress to check or close this gap; it is Phil's `OWNER-ACTIONS.md`
+item 1b, or a session with real VPS access, same as every prior occurrence
+of this gap.
 
 Impact:
 

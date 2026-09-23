@@ -12227,6 +12227,74 @@ def gate_status_currency() -> None:
              % (len(gap), gap[:3], last[:8]))
 
 
+def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
+    """Pure logic for gate_status_deploy_verdict_current.
+
+    status_text: the full text of STATUS.md.
+    verdict: the parsed contents of ops/deploy-verdict.json, the one file a
+    session with real production access writes the moment it confirms a
+    build live.
+
+    Returns a problem string if STATUS.md's BLOCKER-001 section exists but
+    does not mention the real, current build_id; '' if there is nothing to
+    check or the citation is current.
+    """
+    m = re.search(r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)", status_text,
+                  re.DOTALL)
+    if not m:
+        return ""
+    section = m.group(0)
+    build_id = verdict.get("build_id")
+    if not build_id:
+        return ""
+    if build_id not in section:
+        return (
+            "BLOCKER-001 does not mention the real current build_id (%s, "
+            "confirmed %s in ops/deploy-verdict.json). Its own account is "
+            "citing an older confirmation." % (
+                build_id, verdict.get("checked_at", "unknown time")))
+    return ""
+
+
+def gate_status_deploy_verdict_current() -> None:
+    """STATUS.md's BLOCKER-001 must cite the real, current deploy verdict,
+    not a superseded one.
+
+    Found 2026-09-23, this operator: BLOCKER-001 was last edited that same
+    day (01:49 UTC) and still quoted a 2026-09-20 confirmation (build
+    `d9fc700d0700972f`), while `ops/deploy-verdict.json` had already
+    recorded a newer one from 2026-09-22 (build `a993020017bafe37`,
+    `checked_at: 2026-09-22T16:05:56Z`) a full day before that edit.
+    `gate_status_currency` did not catch it, because no material commit had
+    landed in the gap; the defect was that the editor never checked the
+    prose against the one file whose entire job is to record this fact, the
+    same "source corrected, sibling never told" shape `gate_goals_traffic_
+    current` already guards for GOALS.md's traffic figure. `OWNER-ACTIONS.md`
+    had the correct, current figure the whole time and was never consulted
+    either. A warning, not a failure, for the same reason `gate_deploy_fresh`
+    and `gate_status_currency` are warnings: nothing in the current commit
+    caused this, and a hard fail would block unrelated work for a citation
+    only prose can fix.
+
+    Proof this can fail: ops/tests/test_gate_status_deploy_verdict_current.py
+    builds a synthetic BLOCKER-001 section citing a stale build_id against a
+    verdict naming a different one and asserts the warning fires by name,
+    then confirms it clears once the section mentions the real one.
+    """
+    status_path = os.path.join(ROOT, "STATUS.md")
+    verdict_path = os.path.join(ROOT, "ops", "deploy-verdict.json")
+    if not os.path.exists(status_path) or not os.path.exists(verdict_path):
+        return
+    status_text = io.open(status_path, encoding="utf-8").read()
+    try:
+        verdict = json.loads(io.open(verdict_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = status_deploy_verdict_problem(status_text, verdict)
+    if problem:
+        warn("status-deploy-verdict-current", problem)
+
+
 def gate_changelog_current() -> None:
     """CHANGELOG.md must not go silent for weeks while material work ships,
     unnoticed, the same shape gate_status_currency and
@@ -19607,6 +19675,7 @@ def main() -> int:
     run_gate(gate_no_stale_session_label)
     run_gate(gate_risks_traffic_citations_current)
     run_gate(gate_status_currency)
+    run_gate(gate_status_deploy_verdict_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
