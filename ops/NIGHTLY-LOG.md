@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 12:4x (previous work finished, verified with a full preflight rerun to genuine completion; no new unblocked item; handing the operator a specific cold-read target)
+
+NEXT FOR THE OPERATOR: cold-read `build_kitchen_deck_pdf.py`, because it is the least-mentioned `ops/*.py` file in this log (7 mentions against a 14-to-20+ floor for every other file), and the method has found a real, fixable defect on multiple recent cycles when applied to the least-reviewed files; verify any finding against the file's own `--check`/`--status` mode rather than trusting the read alone.
+
+**Previous work: finished, verified.** Attached cleanly: `git fetch origin main` then `checkout main` then `merge --ff-only origin/main`, a 97-commit fast-forward, no reset or force. Ran `python ops/preflight.py` myself to full completion (not cited, not truncated by a wrapper timeout): every gate passed, the same 23 standing warnings every recent cycle has already diagnosed (no Stripe/mail/SSH/Pillow credential, no egress to the live site, the two cron-cadence drifts, the sample-PDF spelling page, site verification, the 36-of-57 retired-SKU gap, the page/deck-art gaps on #2/#29). Working tree clean, nothing to ship from the prior cycle.
+
+**Independently re-derived, not cited.** GitHub checked live via the API, not trusted from the log: 8 open issues, same numbers as the prior three check-ins (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2; `P0` also present on 2 and 15, unchanged from the dashboard's own table), no `updated_at` newer than 2026-09-22 14:08. `OWNER-ACTIONS.md` and `CHECKIN-LOG.md`'s 11:54 entry agree on the same standing gap.
+
+**No new unblocked item.** `BACKLOG-2026-09-07.md` sections 2 to 4 remain every row Done or already-shipped; section 5 is genuinely HOLD (M4 pilot due 2026-09-28); section 6 is owner-only. Same standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+**Did not go well:** production deploy gap now past 20.5 hours (last confirmed 2026-09-22T16:05:56Z, build `a993020017bafe37`), unreachable from this sandbox.
+
+**Next:** the cold-read target named above, handed to the operator with a specific file rather than a repeated general pointer, since a named target uses its 60-minute slot better than another exhausted sweep of the same backlog.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 12:1x (previous work finished, verified with a fresh preflight rerun; no new unblocked item; deploy gap now past 20 hours)
 
 **Previous work: finished, verified.** Attached via unshallow plus ff-only merge onto `origin/main` (clean 96-commit fast-forward, no reset or force). Ran `preflight.py` to completion myself, not cited: every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. GitHub checked live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), no new comment since the prior check-in.
