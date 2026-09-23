@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-23 20:04 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-23 20:09 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-23T12:51:31Z (build 696c3847367c3869). The repository has since moved to build 5eba61fde231c1a7, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-23T19:00:39Z (build 5eba61fde231c1a7). The repository has since moved to build a09bf555820bf5bf, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1148 of 3558 total |
+| Commits (7 days) | 1149 of 3559 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `84866597` Merge origin/main, regenerate command deck |
+| Last commit | `8e4c8e33` Fix dead mobile nav on deck-gallery.html and deck-gallery-mu |
 
 ## Product readiness
 
@@ -60,7 +60,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
-- **Run `STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply` from a machine that holds the Stripe secret key, for the 44 SKUs still unconfirmed in Stripe** (2 min). This is not the 6 Area Bundles/15 Situation Kits: those 21 were already deactivated and archived in Stripe, live-verified, the same day they were retired (commit `34efb9a9`, your own session).
+- **~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** (0 min). All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed.
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity

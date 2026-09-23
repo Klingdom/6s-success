@@ -1215,8 +1215,14 @@ if _cat_match:
             else:
                 S["catalog_unbuyable_names"].append(name)
         S["catalog_buyable"] = len(S["catalog_buyable_names"])
-    except Exception:
-        pass
+    except Exception as exc:                                   # noqa: BLE001
+        # Swallowing this used to leave catalog_buyable at None, and the
+        # constraint line below renders it straight into a sentence: the
+        # owner's dashboard would have read "can take money for None of None
+        # catalog items". Not silent, but worse than silent, because it looks
+        # like a measurement. Record why, and let the renderer say plainly
+        # that it could not be read.
+        S["catalog_error"] = "%s: %s" % (type(exc).__name__, exc)
 
 # --- product readiness
 # Every one of these globbed site/*.html before, which only sees the 17 files
@@ -1624,10 +1630,16 @@ if S["can_take_payment"] and S["catalog_total"] is not None:
         _still = (" Still not buyable: " + ", ".join(_unbuyable) + ".")
     else:
         _still = " Every catalog item is either buyable or free."
-    S["constraint"] = (
+    _money = (
         f"The site can take money for {S['catalog_buyable']} of "
         f"{S['catalog_total']} catalog items, each a live Stripe Payment Link "
-        f"or a real free download.{_still} All {S['forms_dead']} forms still "
+        f"or a real free download.{_still}"
+        if S.get("catalog_buyable") is not None else
+        "How many catalog items can take money is UNKNOWN: the catalogue "
+        f"could not be read ({S.get('catalog_error', 'reason not recorded')}). "
+        "That is not a count of zero.")
+    S["constraint"] = (
+        _money + f" All {S['forms_dead']} forms still "
         "hand off to email by hand instead of capturing a list." + _reach +
         " The widened catalog has not moved revenue because almost nobody is "
         "arriving at the site yet. Discovery, not what can be bought, is the "

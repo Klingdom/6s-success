@@ -19,6 +19,7 @@ using temp files so it never touches the real repository ledger.
 
 Run:  python ops/tests/test_gate_retired_skus_stripe_archived.py
 """
+import io
 import json
 import os
 import sys
@@ -101,27 +102,44 @@ def case_record_archived_round_trips_through_retire_stripe_skus():
 
 
 def case_live_repository_state_today():
-    """The real, honest state right now: 21 of the 65 repository-retired SKUs
-    (the Area Bundles and Situation Kits) are recorded archived, backfilled
-    from commit 34efb9a9's own evidence; the other 44 (the original 2026-08-21
-    retirement's 36, plus the 8 Kitchen SKUs D-024 retired 2026-09-23) predate
-    or postdate this tool and have no confirmation on record, so they are
-    correctly still reported pending. This is not a defect in this cycle's
-    work, it is the true state, and it is why the warning exists."""
+    """The gate must agree with the two real files, whatever they currently say.
+
+    This case used to assert "44 of 65 still pending", which was the true
+    state on the morning it was written and became false hours later when a
+    session with a Stripe credential archived the rest. A test that hardcodes
+    a transient snapshot fails as a REWARD for finishing the work it was
+    tracking, which trains people to edit the test rather than read it.
+
+    So it re-derives the expectation from ops/retired-skus.json and
+    ops/retired-skus-stripe-status.json instead: if anything is unconfirmed
+    the gate must say so and name the count, and if nothing is it must stay
+    silent. The fixed-number cases above still pin the arithmetic itself.
+    """
     skus_fp = os.path.join(ROOT, "ops", "retired-skus.json")
     status_fp = os.path.join(ROOT, "ops", "retired-skus-stripe-status.json")
+
+    retired = {x["sku"] for x in json.load(io.open(skus_fp, encoding="utf-8"))
+               ["skus"] if isinstance(x, dict) and x.get("sku")}
+    confirmed = set()
+    if os.path.exists(status_fp):
+        confirmed = set(json.load(io.open(status_fp, encoding="utf-8"))
+                        .get("archived") or {})
+    pending = retired - confirmed
+
     preflight.WARN.clear()
     preflight.gate_retired_skus_stripe_archived(skus_fp, status_fp)
-    if os.path.exists(status_fp):
-        assert len(preflight.WARN) == 1, preflight.WARN
-        msg = preflight.WARN[0][1]
-        assert "44 of 65" in msg, msg
-        assert "AB-WET-ROOMS" not in msg, msg
-        assert "retire_stripe_skus.py --apply" in msg
-    else:
-        assert len(preflight.WARN) == 1, preflight.WARN
-        assert "retire_stripe_skus.py --apply" in preflight.WARN[0][1]
 
+    if pending:
+        assert len(preflight.WARN) == 1, (pending, preflight.WARN)
+        msg = preflight.WARN[0][1]
+        assert "%d of %d" % (len(pending), len(retired)) in msg, msg
+        assert "retire_stripe_skus.py --apply" in msg, msg
+        for done in sorted(confirmed)[:3]:
+            assert done not in msg, (done, msg)
+    else:
+        assert not preflight.WARN, (
+            "every retired SKU is confirmed archived, so the gate should be "
+            "silent, but it warned: %r" % preflight.WARN)
 
 def main() -> int:
     cases = [v for k, v in sorted(globals().items()) if k.startswith("case_")]
