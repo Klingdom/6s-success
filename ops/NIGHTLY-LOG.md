@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (full independent re-verification; genuinely exhausted, no new defect, deploy gap unchanged and still unreachable from here)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main`; a concurrent PM check-in pushed mid-cycle (`ab1afee6`), fast-forward merged after, no collision. Ran `python ops/preflight.py` to completion in the background: every gate passed, 23 warnings, the same set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU Stripe gap, deck/page-art gaps on #2/#29). `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
+
+**Verified independently rather than cited:** `BACKLOG-2026-09-07.md` read in full (not summarised) — sections 2 to 4 are every row struck through Done; section 5 is six items correctly on HOLD (21-day pilot read due 2026-09-28, evidence of a second sale, traffic); section 6 is owner-only gates. GitHub confirmed live via the API: 8 open issues, unchanged in number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. Read issue #34's own comment thread rather than trust the backlog's account: option 2 (a real Kitchen deck PDF) is shipped and verified live; the remaining question, whether to retire the 8 Kitchen SKUs, is explicitly left as Phil's economic judgement, correctly not auto-fired. Last 5 CI runs (`checks.yml`, `fulfil-orders.yml`, `social-drafts.yml`, `linkedin-drafts.yml`) all green.
+
+**Went well:** treating the concurrent session's "17 hours and still open" deploy-gap framing as a claim to re-check (confirmed: still open, still no SSH key in this sandbox, still not Phil's action per `OWNER-ACTIONS.md`) rather than repeating it unchecked.
+
+**Did not go well:** the deploy gap remains open with nothing in this sandbox able to act on it.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 08:4x (previous work finished, verified with a full preflight rerun; no new unblocked item, the standing deploy gap now nearly 17 hours old with no VPS-access session having picked it up)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because the backlog's Now sections are all Done, section 5 is genuinely HOLD pending the 21-day pilot read (due 2026-09-28) or a stranger buying something, and all 8 open GitHub issues are decision or blocked-on-art. The one thing worth a look if you have real VPS access: the production redeploy has now sat open since 2026-09-22T16:05:56Z (repository build `696c3847367c3869` vs. live `a993020017bafe37`), about 17 hours, longer than any of the prior same-day gaps this log has closed within a few hours.
