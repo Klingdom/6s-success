@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (drove kitchen-deck.html and deck-gallery.html in headless Chromium, the standing handoff; found and fixed a real, live, sitewide mobile nav failure on both gallery pages)
+
+**Did:** Unshallowed and ff-merged onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits). GitHub: 7 issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential, inbox unchecked. Picked up the standing handoff named across several of today's own PM check-ins: drive `kitchen-deck.html` and `deck-gallery.html` in real headless Chromium, the method that had already found and fixed today's earlier sitewide `paint()` crash on `index.html`.
+
+**Found a real, live defect the static gates could not see.** New `ops/tests/test_deck_pages_interactive.py` drives both pages: clicks the nav toggle, a card's flip button or `<details>` summary, and a filter chip, watching for a thrown JS error the whole time. `kitchen-deck.html` came back clean (its card backs are native `<details>`, no JS dependency). `deck-gallery.html` did not: clicking `.nav-toggle` never changed `aria-expanded`, on every load. Traced live: `ops/build_deck_gallery.py` builds this page (and its sibling `deck-gallery-mudroom.html`, same template) by slicing `<header>...</header>` and `<footer>...</footer>` verbatim out of `site/deck.html`, but `deck.html`'s own `<script src="assets/js/site.js">` tag sits after its `</footer>`, outside the sliced range, and was never carried across. Confirmed by grep: `site.js` was not referenced anywhere in the generator or in either of its output pages. The header markup ships, complete with a working-looking nav-toggle button; the script that gives it behaviour never does. Every phone-width visitor to either gallery page has had a hamburger menu that does nothing, since whenever this generator first shipped, on a page whose whole job is showing off the product to a prospective buyer.
+
+**Fixed at the source.** One `<script src="assets/js/site.js"></script>` added to the generator's own template, right after `{ftr}`, matching `deck.html`'s own script order. `fingerprint_assets.main(False)`, already chained in this generator's `main()`, stamped the correct `?v=` hash on both regenerated pages automatically, so this cannot go stale the way a hand-typed hash would. Fail-then-pass proved directly against the real committed page: stripped the script tag, reran the new test, watched it fail by name citing the dead click handler, restored, reran clean.
+
+**Verified:** full `preflight.py` (every gate passed, 25 warnings, all previously diagnosed sandbox limits), `check_urls.py` (190/190), `audit_pages.py` (191/0), `affiliate.py --check` (165 documents). `ops/build_seo.py` rerun once for the sitemap `lastmod` gate, which correctly caught the two changed pages' stale timestamps on the first preflight pass after the fix. `git status` clean before and after, no stray probe files left behind by the new test's own cleanup.
+
+**Went well:** trying the exact method three of today's own PM check-ins had named and not yet run against these two pages; it found a real defect a purely static, text-reading check structurally cannot see, the same shape as this morning's `paint()` find.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the new test is wired into `ops/tests/`, which `preflight.py`'s own `gate_tests()` already runs every cycle, so this class of regression cannot ship silently again on either page.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Worth driving quest.html's own kit/CTA path and a zone page's mobile filters the same way next, since the method is now proven cheap and has found a real defect twice today.
+
+Pushed to main. `ops/build_deck_gallery.py`, `site/deck-gallery.html`, `site/deck-gallery-mudroom.html`, new `ops/tests/test_deck_pages_interactive.py`, `BACKLOG-2026-09-07.md`, `sitemap.xml`, command deck. No price or product touched, no new page (2 existing pages fixed, 0 added). IndexNow will pick up both changed pages on its next successful run.
+
 ## 2026-09-23, scheduled operator cycle (turned today's paint() fix into a standing static gate, no browser needed)
 
 **Did:** Unshallowed, ff-merged onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, newest log entries. Preflight clean before touching anything. GitHub: 7 issues unchanged. No mail credential. Backlog sections 1b to 6 reconfirmed done or Phil-gated.

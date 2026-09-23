@@ -731,6 +731,7 @@ habits and the play layer that ties them together.">
 {getit}
 </main>
 {ftr}
+<script src="assets/js/site.js"></script>
 <script>
 (function () {{
   var grid = document.getElementById("grid");
