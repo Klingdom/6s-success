@@ -24,7 +24,29 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No new operator-executable handoff found beyond the method noted above.
 
+**Collided with a concurrent PM check-in on push** (below, 00:4x): that cycle independently found and fixed the same "Why it is first" paragraph staleness (the identical 190-visits correction) and explicitly handed the "Weekly visitors" row plus a gate to the operator, which is exactly what this cycle's own read (done before seeing their push) had already found and closed. Merged rather than reworked: `GOALS.md`'s prose keeps their own "corrected 2026-09-23" marker text, folded together with this cycle's pageview breakdown; nothing of either session's fix was dropped.
+
 Pushed to main. `GOALS.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; this is a documentation and gate fix. IndexNow not applicable, no site page changed.
+
+## PM check-in, 2026-09-23 00:4x (previous work finished, verified clean; a real same-file staleness defect found and fixed in GOALS.md; standing method handed to the operator)
+
+**NEXT FOR THE OPERATOR: run a cross-document consistency sweep (GOALS.md, BACKLOG-2026-09-07.md, STATUS.md, RISKS.md, DECISIONS.md, ROADMAP-2026-2029.md) for a stale or contradicting figure, because the low-mention `ops/*.py` cold-read lane the last several cycles relied on is now exhausted (named explicitly by the 00:1x check-in), and this method just found a real defect on its first use this cycle.**
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, clean 44-commit fast-forward, no concurrent push collided. Read `BACKLOG-2026-09-07.md` sections 2-6 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md`, the newest `NIGHTLY-LOG.md` entries. GitHub confirmed live (not cited): 8 open issues, unchanged, all `decision`/`blocked-on-art` (2 also `P0`), 0 open PRs. Full `preflight.py` run to completion rather than trusted from a prior cycle's citation, per this same log's own 00:2x lesson: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress to 6s-success.com), none new against the last several cycles' own sets.
+
+**Found and fixed: `GOALS.md` disagreed with itself.** Section 2's own top table row (line 61) already carried the current traffic read, 76 visitors/190 visits, measured 2026-09-21 14:05 UTC. The prose two screens below it (the "Why it is first, now with numbers" paragraph) still cited the superseded 2026-09-20 15:40 UTC read, 193 visits, one read behind its own file's table. Same shape as this file's own repeated "source corrected, artifact never re-derived" defect class, just inside a single document instead of across two. Not customer-facing (an internal operating file, not shipped content), so GREEN under `CLAUDE.md` 52. Corrected the prose to the 2026-09-21 14:05 UTC figure (190 visits) with an inline "corrected 2026-09-23" marker, per this repository's own convention, rather than silently overwriting the old number.
+
+**Verified the production-freshness gap already on the dashboard is genuinely not this sandbox's to close, not a fresh finding.** `EXECUTIVE-DASHBOARD-LIVE.md`'s own top line ("PRODUCTION IS SERVING AN OLD BUILD") and `OWNER-ACTIONS.md`'s own text both already say deploying is not Phil's either since the VPS key went in 2026-09-01; it is done by a local session with real VPS access, a different execution channel than this one. Confirmed directly rather than assumed: `/root/.ssh/6s_deploy` does not exist in this sandbox. No action taken; already correctly surfaced, not a silent gap.
+
+**Went well:** picking the cross-document sweep the prior check-in recommended rather than repeating an already-exhausted lane, and it found a real defect on the first try.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the fix is a one-line prose correction, no new gate needed for an internal-only staleness shape this small.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (unchanged) and the 8 GitHub issues (unchanged). No new operator-executable handoff beyond the cross-document sweep above.
+
+Pushed to main. `GOALS.md` (one paragraph), command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
 
 ## PM check-in, 2026-09-23 00:2x (a self-caused duplicate log entry, pushed then caught by the gate it should have been caught before, fixed)
 

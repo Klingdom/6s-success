@@ -115,10 +115,12 @@ not by how interesting they are.
 | Weekly visitors | **10/wk (2026-09-21, down from 14), corrected: this row said 14/wk from 2026-09-20 for a day after the row above it had already moved to 10** | 500/wk |
 
 **Why it is first, now with numbers.** 76 visitors (read directly from the
-database 2026-09-21 14:05 UTC, down from 76 on 2026-09-20, 78 on 2026-09-17,
-75 on 2026-09-14 and 68 on 2026-09-11) across 190 visits in thirty days
-(936 pageviews, of which 431 are the one automated session; 505 human
-pageviews from 75 visitors), and in the whole life
+database 2026-09-21 14:05 UTC, down from 78 on 2026-09-17, 75 on 2026-09-14
+and 68 on 2026-09-11) across 190 visits in thirty days (936 pageviews, of
+which 431 are the one automated session; 505 human pageviews from 75
+visitors; **corrected 2026-09-23: this paragraph still cited the superseded
+2026-09-20 15:40 UTC read, 193 visits, one read behind the table at section
+2's own top row, which already carried the newer figure**), and in the whole life
 of this site **exactly five visits from four visitors arrived from a search
 engine**, per the "Sessions from organic search" row above, corrected today
 after the earlier "reconfirmed unchanged" line turned out to be an
