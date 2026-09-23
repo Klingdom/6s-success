@@ -50,6 +50,20 @@ Pushed to main. `GOALS.md`, `ops/preflight.py`, `ops/tests/test_stripe_dedupe.py
 
 Pushed to main. `GOALS.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; this is a documentation and gate fix. IndexNow not applicable, no site page changed.
 
+## Interactive session, 2026-09-23 (a correction of my own claim, then two commerce cleanups and an honest gate)
+
+**I was wrong on 21 Sept and four days of the same log say so.** I recorded a rise in Googlebot content fetches on 20 Sept and hedged it correctly ("an early signal, not a result", with my own advice to wait a week). On 21 Sept I saw one more elevated day and upgraded it to "a real and sustained change in crawler behaviour". By day: 1, **17**, **15**, 2, 2. Two elevated days, then straight back to baseline. It was a recrawl burst, which is exactly what an IndexNow submission of 117 pages plus corrected lastmod dates causes, once. Two points in the same direction are not a trend, and "sustained" was a claim about the future that one extra day could not carry. Corrected in LRN-0013, RISK-0013 and RISK-0005. **What stands:** the `Disallow: /stats/` result, beacon fetches 0 since 17 Sept and still 0. Nothing was built on the wrong claim because it was recorded rather than acted on.
+
+**Traffic re-measured:** 68 visitors/160 visits/813 pageviews over 30 days, down from 76 mostly because the 7 Sept automated session (431 pageviews) rolled OUT of the window, so the figure is now very nearly all human. Trailing week 12, against 10, 14, 18: the three-week fall has stopped without reversing, and 10 against 12 is noise at this scale. Carried into all nine places the cross-check gates name; two separate gate failures caught two files I had missed.
+
+**One payment link per SKU.** Chasing yesterday's `PACK-HOUSE` observation found five SKUs with two active links each. Nobody was being overcharged, checked before assuming: every pair charged the identical amount. The reason to clean it up is the next price change, when `ensure_link` rebuilds the served link and leaves the orphan selling at the old price to anyone holding the old URL. `stripe_dedupe.py` now does links as well as products, which is the job its own title claims; **the live site decides which link survives**, and an unreadable site refuses the whole pass.
+
+**gate_tests said FAIL when it meant "the browser never started".** Three consecutive preflight runs went red on browser-driven tests, a different file each time, every one passing alone afterwards. The machine had 1.8 GB free with the owner's 22 background Edge processes resident (started five days ago; checked they were not my leftovers before blaming anything). A test that never got a browser has not found a defect. Now reported as unverified and named, with a deliberately narrow rule (TimeoutExpired AND a browser binary in the timed-out command) pinned by 8 test cases including four that must still fail.
+
+**Went well:** checking exit codes before "fixing" two tests I had mis-attributed as failures; they were fine.
+
+**Did not go well:** my first assertions for the new link-dedupe cases counted `line_items` READS as writes and failed against correct behaviour.
+
 ## PM check-in, 2026-09-23 13:4x (previous work NOT finished: preflight was red on attach; fixed and reverified; a stale deploy-gap narrative corrected in two documents)
 
 NEXT FOR THE OPERATOR: add real test coverage for stripe_dedupe.py's dedupe_links() duplicate-link branch, because it shipped and ran live this morning (5 orphan payment links deactivated) with zero test coverage of its own duplicate path; only the empty and no-duplicate cases this cycle just repaired are tested.

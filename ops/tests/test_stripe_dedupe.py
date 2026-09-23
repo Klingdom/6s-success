@@ -47,12 +47,16 @@ def main() -> int:
                 pid = (params or {}).get("product")
                 return prices_for(pid, products)
             if kind == "payment_links":
-                # main() now falls through to dedupe_links() whenever
-                # products carry no duplicate, added 2026-09-23. This test
-                # is scoped to the product-side empty-account guard, so an
-                # empty, non-duplicated link population keeps that path a
-                # clean no-op rather than an unstubbed call. dedupe_links()'s
-                # own logic is covered directly by test_stripe_dedupe_links.py.
+                # Added 2026-09-23 when stripe_dedupe learned to collapse
+                # duplicate payment links as well as duplicate products.
+                # main() now falls through to dedupe_links() even when
+                # products are clean, so this kind must be stubbed or the
+                # product-side cases raise on an unstubbed call. An empty
+                # list keeps those cases a clean no-op; a link population
+                # that cannot be read must never become "no duplicates".
+                # dedupe_links()'s own "serves neither candidate" branch is
+                # covered separately by test_stripe_dedupe_links.py, which
+                # is not exercised by cases 4-6 below.
                 return list(links)
             raise AssertionError(f"unexpected kind: {kind}")
         return fake_list_all
@@ -106,6 +110,59 @@ def main() -> int:
         if calls:
             fails.append(f"--check made write call(s): {calls}")
 
+    # Cases 4-6: the payment-link half, added 2026-09-23 with the code it
+    # exercises. Products are clean throughout, because the state actually
+    # found on the live account was clean products and duplicated links, and
+    # the old early return would have skipped them entirely.
+    def link(lid, sku, slug):
+        return {"id": lid, "active": True, "metadata": {"sku": sku},
+                "url": "https://buy.stripe.com/" + slug}
+
+    two = [link("plink_keep", "BK-EB", "SERVED1"),
+           link("plink_orphan", "BK-EB", "ORPHAN1")]
+    orig_live_ids = sd.live_link_ids
+
+    # 4. The link the live site serves is kept; the other is deactivated.
+    sd.sc.list_all = fake_list_all_factory(single, two)
+    sd.live_link_ids = lambda: ({"SERVED1"}, "")
+    wrote = []
+    sd.sc.call = lambda method, path, data=None: wrote.append((path, data)) or {}
+    try:
+        sd.main(True)
+    except Exception as e:                                     # noqa: BLE001
+        fails.append("link dedupe raised: %r" % e)
+    def deactivations(ws):
+        # line_items is a READ on the same path prefix; counting it as a write
+        # made this assertion fail against correct behaviour the first time.
+        return [w for w in ws
+                if "plink_" in w[0] and "line_items" not in w[0]
+                and (w[1] or {}).get("active") in (False, "false")]
+
+    hits = deactivations(wrote)
+    if len(hits) != 1 or "plink_orphan" not in hits[0][0]:
+        fails.append("expected exactly the orphan link to be deactivated, "
+                      "got %r" % hits)
+    elif hits[0][1].get("active") not in (False, "false"):
+        fails.append("orphan was written but not deactivated: %r" % hits)
+
+    # 5. An unreadable live site must refuse and write nothing. Unreadable is
+    #    unknown, not safe.
+    sd.live_link_ids = lambda: (set(), "could not read the live sitemap")
+    wrote = []
+    sd.main(True)
+    if deactivations(wrote):
+        fails.append("deactivated a link while the live site was unreadable: "
+                      "%r" % wrote)
+
+    # 6. If the live site serves BOTH, there is no obvious survivor and it
+    #    must skip rather than guess.
+    sd.live_link_ids = lambda: ({"SERVED1", "ORPHAN1"}, "")
+    wrote = []
+    sd.main(True)
+    if deactivations(wrote):
+        fails.append("picked a survivor when the site served both: %r" % wrote)
+
+    sd.live_link_ids = orig_live_ids
     sd.sc.live, sd.sc.list_all, sd.sc.call, sd.sc.invalidate = (
         orig_live, orig_list_all, orig_call, orig_invalidate)
 
@@ -114,7 +171,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("stripe_dedupe.py empty-account guard: 3 case(s) passed")
+    print("stripe_dedupe.py: 6 case(s) passed (3 product, 3 payment link)")
     return 0
 
 
