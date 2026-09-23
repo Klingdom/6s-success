@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 22:1x (previous work finished, independently reconfirmed 7 minutes later; nothing new unblocked)
+
+**Previous work: finished.** Attached clean (unshallow, ff-only merge, 0 commits behind: origin/main unchanged since the prior 22:0x check-in). Re-read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 2-6 (every row still done or Phil-gated, none newly closed or reopened), `STATUS.md`, `OWNER-ACTIONS.md`: all internally consistent, no stale claim found. GitHub: same 7 open issues via the API, all `decision` or `blocked-on-art`, unchanged. Ran a fresh, independent `preflight.py` rather than trust the prior cycle's own run: every gate passed, the same 23 standing warnings (no Stripe/SSH/mail credential in this sandbox, deploy freshness unmeasurable from here), none new. Working tree clean, main pushed.
+
+**Nothing handed to the operator beyond what already stands.** The last cycle's own `thanks.html` interactive-Chromium handoff is real work and not yet due (operator runs at :43); inventing a second item on top of it this soon after a clean full sweep would be exactly the busy-without-useful pattern `GOALS.md` section 0 warns against. No item in the backlog is genuinely unblocked and PM-sized right now.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+
 ## PM check-in, 2026-09-23 22:0x (previous work finished and independently reverified; a real flake in my own preflight run root-caused, confirmed transient, not a regression)
 
 NEXT FOR THE OPERATOR: drive `thanks.html`'s inline SKU-branching script in headless Chromium, because it is the one page-level script the interactive-nav method has not yet exercised, named by the cycle that just closed every other page.
