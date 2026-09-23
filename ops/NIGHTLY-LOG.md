@@ -22,6 +22,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
 
+## 2026-09-23, scheduled operator cycle (took the standing headless-Chromium user-flow handoff; found and fixed a real, live, sitewide JS crash breaking mobile nav and hiding homepage content)
+
+**Did:** Unshallowed and ff-merged onto `origin/main` (135-commit fast-forward, clean). `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits, confirmed directly: no egress to `6s-success.com` or `api.stripe.com`, no ssh key, no `.env.secrets`). 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No mail credential, inbox unchecked. Picked up the standing 16:1x/16:4x/PM check-in handoff by name: a real headless-Chromium click-through, never actually run.
+
+**Drove `index.html` and a zone page in real headless Chromium** (iframe, `--allow-file-access-from-files`, click the DOM, read state back through `document.title`, the pattern `test_shop_interactive.py` already established). Clicking `.nav-toggle` did nothing: `aria-expanded` never changed. Traced it live: `site.js`'s shared `DOMContentLoaded` listener calls `paint();` as its second statement, a leftover from the cart, whose `paint()` function was deleted entirely on 2026-09-08 (`f2e7ba72`) while this stray call to it was not. Every real page load throws `Uncaught ReferenceError: paint is not defined`, which aborts the rest of that listener before it reaches the nav-toggle click wiring or the `.reveal` `IntersectionObserver`/fallback setup a few lines later. Confirmed with `window.onerror`. Consequence, not theoretical: on the 10 pages using `.reveal` (`index.html`, `shop.html`, `book.html`, `consulting.html` among them), `.js .reveal{opacity:0}` never gets the `.in` class that would reveal it, for any visitor with JS enabled and no reduced-motion preference, which is most people. No prior check caught it because `audit_visual.py` emulates `prefers-reduced-motion:reduce` for screenshot determinism, which independently forces `.reveal` to opacity:1 via its own CSS override and so never observes the crash underneath.
+
+**Fixed:** deleted the dead `paint();` call and its now-meaningless "not ensureDrawer()" comment. Reran `fingerprint_assets.py` (site.js hash changed, propagated to every page), `prerender_shop.py`, `build_id.py`. New `ops/tests/test_site_js_no_runtime_error.py`: drives two real pages, asserts zero JS errors, the nav toggle actually flips `aria-expanded`, and any `.reveal` content on the first screen actually shows. Fail-then-pass proved directly: replanted the exact dead call, watched it fail naming the thrown error and the dead toggle on both pages, restored byte-for-byte, reran clean.
+
+**Verified:** full `preflight.py` (every gate passed except the expected `prerender-shop-current` "differs from HEAD" refusal, resolves on commit), `check_urls.py` (190/190), `audit_pages.py` (194/0), `fix_dashes.py --check` (0/0), `audit_visual.py --mobile` on both touched pages (0 findings).
+
+**Went well:** trying the fresh method three check-ins had flagged and not run; it found a real defect static/text-based checks structurally cannot see.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none; the fix and its gate are both live.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Worth driving more pages the same way; this method is now proven and cheap.
+
+Pushed to main. `site/assets/js/site.js`, every page's `?v=` fingerprint, `site/build-id.txt`, new `ops/tests/test_site_js_no_runtime_error.py`, command deck. No price or product touched. IndexNow not applicable (no new page; content unchanged, only a JS bug fixed).
+
 ## PM check-in, 2026-09-23 17:4x (found and fixed a real hourly-checkin bug that had been crying "Production is behind the repository. Deploy." every hour since 2026-09-22 15:04 for the wrong reason)
 
 NEXT FOR THE OPERATOR: nothing new unblocked in `BACKLOG-2026-09-07.md` (sections 2-6 still all done or Phil-gated) or the 7 open GitHub issues (still `decision`/`blocked-on-art`, unchanged). The one live thing worth a look, if a session ever holds the VPS deploy key: today's real D-024 SKU retirement (138 to 130) has not been confirmed redeployed since `OWNER-ACTIONS.md`'s last 12:50 UTC check, before that commit landed at 13:51 UTC; `ops/checkin.py`'s fixed message will now say so honestly instead of the stale generic line.
