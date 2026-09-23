@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 00:1x (previous work finished, verified; clean triage pass, no new defect)
+
+**Previous work: finished, verified.** Unshallowed, fast-forward merged onto `origin/main` (38-commit fast-forward, clean). `preflight.py`: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress). Working tree was clean and main already in sync with origin before this cycle touched anything.
+
+**Checked whether the backlog is actually exhausted rather than trusting the last citation.** Read `BACKLOG-2026-09-07.md` sections 2 through 6 in full: every row is `Done`/`Found already done` or explicitly held pending evidence (section 5), matching the prior cycle's claim. All 8 GitHub issues re-confirmed live via the API (6 `decision`, 2 `blocked-on-art`), matching `STATUS.md` section 6's own count. Spot-checked issue #34 specifically since its own body still reads "print-only page": the linked commit (`760db301`) already shipped a real downloadable Kitchen deck PDF and the issue already carries a comment recording that, correctly leaving only the SKU-retirement economics call open for Phil. Nothing stale there.
+
+**Cold-read `ops/retire_stripe_skus.py` in full** (7 mentions in this log, the newest and least-reviewed money-safety tool, added earlier today to close the C6/C7 Stripe-archival gap). Correct throughout: it refuses on `metadata.ledgerium_plan`, refuses to apply unless the live site scan comes back clean, reuses `stripe_catalog.list_all`'s already-hardened pagination rather than re-deriving it, and only ever records a SKU as archived after the real Stripe call for it succeeded. One minor completeness note, not a live defect: a mid-batch API failure would `SystemExit` before the ledger write, so already-deactivated objects from earlier in that same run wouldn't get recorded until a rerun. That is the safe-direction failure (under-reports rather than falsely claims archived, and a rerun self-heals since the tool is idempotent), so not worth changing without a live credential to actually exercise the path against.
+
+**Went well:** verifying issue #34's own "still says print-only" framing against the actual shipped code instead of trusting the stale issue body.
+
+**Did not go well:** nothing new; same standing owner-blocked list.
+
+**Next:** nothing new for the operator beyond the standing handoff. The low-mention `ops/*.py` cold-read lane is now genuinely thin: `retire_stripe_skus.py` is clear, and every file named as a "next candidate" in recent check-ins (`build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py`, `build_corporate_asset.py`) has already been read clean multiple times over the past two weeks; recommend the next session pick a fresh method (e.g. re-driving a real user flow in headless Chromium, or a cross-document arithmetic sweep) rather than repeating this one. Standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": YouTube OAuth, Search Console verification, Stripe business description, the 36-SKU Stripe archival) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this log entry; no price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-22 23:5x (previous work finished, verified; collided with a concurrent operator push, merged clean; no new operator handoff)
 
 **NEXT FOR THE OPERATOR: keep working the low/no-mention `ops/*.py` tier cold-reading for undiscovered defects (`build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` were the next named candidates), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and all 8 GitHub issues are `decision`/`blocked-on-art`, so this is the only method that has found real defects the last several cycles running.**
