@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 12:1x (previous work finished, verified with a fresh preflight rerun; no new unblocked item; deploy gap now past 20 hours)
+
+**Previous work: finished, verified.** Attached via unshallow plus ff-only merge onto `origin/main` (clean 96-commit fast-forward, no reset or force). Ran `preflight.py` to completion myself, not cited: every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. GitHub checked live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), no new comment since the prior check-in.
+
+**Independently re-derived, not cited.** Read `BACKLOG-2026-09-07.md` sections 2 to 6 in full: every "Now" row in 2 to 4 is struck through Done or already-shipped by name, section 5 is correctly HOLD (M4 pilot read due 2026-09-28, A/B tests wait on 1,427 days to significance), section 6 is owner-only. `STATUS.md`'s BLOCKER-001 re-checked directly against `ops/deploy-verdict.json`: no drift, already current.
+
+**No new unblocked item.** Same standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+**Did not go well:** production deploy gap now past 20 hours (last confirmed 2026-09-22T16:05:56Z, build `a993020017bafe37`), unreachable from this sandbox.
+
+**Next:** leaving the low-mention `ops/*.py` cold-read to the hourly operator at :43, which has more time in its slot than this 30-minute one.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (a real always-true mail-status claim found cold-reading status_report.py, fixed and gated; backlog otherwise exhausted)
 
 **Did:** checkout arrived shallow and detached; unshallowed with `git fetch --unshallow`, attached with `checkout -B main origin/main` then `merge --ff-only`, clean fast-forward, no reset or force, re-fetched and fast-forwarded twice more mid-cycle as concurrent sessions pushed. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the most recent dozen dated entries of this log. Ran `python ops/preflight.py` myself to completion (not cited): every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Checked GitHub directly via the API: 8 open issues, all `decision` or `blocked-on-art`, 0 open PRs; read issue #34 in full including its resolution comment, confirming the Kitchen deck PDF (option 2) is genuinely shipped and only the SKU-retirement economics call remains, correctly Phil's.
