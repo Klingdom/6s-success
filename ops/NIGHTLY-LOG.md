@@ -20,6 +20,10 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Production one commit behind, waiting on a local session to redeploy, same as every prior cycle.
 
+**Addendum, same slot, after shipping:** the STATUS.md fix collided on push with a concurrent operator cycle's own real fix (a dead `paint()` call crashing site-wide JS, breaking mobile nav and hiding homepage reveal content). Merged rather than forced; hand-resolved the `NIGHTLY-LOG.md` prose conflict keeping both entries in order, resolved the generator-owned dashboard files by regenerating via `ops/dashboard.py` rather than hand-merging. Pushed as `8ba3f4dc`. The full `preflight.py` re-run flagged above as unfinished did complete: every gate passed, 24 standing warnings, run a second time directly against the pushed commit for certainty. CI on `8ba3f4dc`: `linkedin-drafts.yml`, `social-drafts.yml`, `fulfil-orders.yml` all succeeded; `checks.yml` (run #1332) was still in_progress as of this addendum, not yet resolved either way, confirmed directly via the GitHub API rather than assumed. Whoever runs next: check that run's final conclusion before citing this push as fully green.
+
+Pushed to main (`8ba3f4dc`, a merge). `STATUS.md`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, plus the concurrent cycle's `site/assets/js/site.js` fix and its sitewide fingerprint bump, carried through the merge. No price or product touched. IndexNow not applicable.
+
 Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
 
 ## 2026-09-23, scheduled operator cycle (took the standing headless-Chromium user-flow handoff; found and fixed a real, live, sitewide JS crash breaking mobile nav and hiding homepage content)
