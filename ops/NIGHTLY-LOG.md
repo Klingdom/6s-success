@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 13:4x (previous work NOT finished: preflight was red on attach; fixed and reverified; a stale deploy-gap narrative corrected in two documents)
+
+NEXT FOR THE OPERATOR: add real test coverage for stripe_dedupe.py's dedupe_links() duplicate-link branch, because it shipped and ran live this morning (5 orphan payment links deactivated) with zero test coverage of its own duplicate path; only the empty and no-duplicate cases this cycle just repaired are tested.
+
+**Previous work: not finished, so finishing it was this cycle's work.** Attached via unshallow plus ff-only merge onto origin/main (97 commits, clean). `preflight.py` failed on the first run: `test_stripe_dedupe.py` raised "unexpected kind: payment_links", a mock left behind by this morning's payment-link dedup commit, which added a `list_all("payment_links")` call the test's fake never learned. Fixed the fake to answer that kind (empty by default); production code untouched. `preflight.py` full rerun after: every gate passed, 23 standing warnings, all previously diagnosed.
+
+**Also found and fixed:** `EXECUTIVE-DASHBOARD-LIVE.md` and `STATUS.md`'s BLOCKER-001 both still narrated a deploy gap that had already closed. `ops/deploy-verdict.json` now matches `site/build-id.txt` (`696c3847367c3869`, checked 2026-09-23T12:51:31Z, a session with real production access), but the dashboard had been regenerated three minutes before that fix landed and never rederived. Regenerated the dashboard (its own "one constraint" line moved off deploy onto discovery/traffic); corrected `STATUS.md` by hand to match.
+
+**Did not go well:** ran past :40 into the operator's own window fixing the red gate instead of handing off; no new unblocked backlog item found or expected to be, given 8 GitHub issues unchanged, all decision or art-blocked.
+
+Pushed to main. `ops/tests/test_stripe_dedupe.py`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, command deck. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (full independent re-verification, genuinely exhausted, no new defect, deploy gap and flat check-ins both already recorded elsewhere)
 
 **Did:** checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached with `checkout -B main origin/main` then `merge --ff-only`, clean 97-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last dozen dated log entries. Ran `python ops/preflight.py` myself to completion: exit 0, every gate passed, 23 standing warnings, same set every recent cycle diagnoses. `inbox_agent.py --apply`: no mail credential. GitHub via the API: 8 open issues unchanged (`decision`: 34,33,31,21,18,15; `blocked-on-art`: 29,2), 0 PRs, last 5 `checks.yml` runs all `success`.

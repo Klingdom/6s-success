@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-23 13:33 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-23 13:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-22T16:05:56Z (build a993020017bafe37). The repository has since moved to build 696c3847367c3869, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-23T12:51:31Z (build 696c3847367c3869). The repository has since moved to build d9f77705075b77bb, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 76 visitors across 190 visits, 30 days (carried forward from 2026-09-21 14:05; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 26 |
-| Commits (7 days) | 1158 of 3511 total |
+| Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
+| Closed to date | 27 |
+| Commits (7 days) | 1157 of 3514 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `f71da382` Merge remote-tracking branch 'origin/main' |
+| Last commit | `acb343cb` D-024: retire the 7 Kitchen zone packs and Kitchen room pack |
 
 ## Product readiness
 
@@ -61,7 +61,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **Run `STRIPE_ALLOW_LIVE=1 python ops/retire_stripe_skus.py --apply` from a machine that holds the Stripe secret key, for the 36 SKUs from the original 2026-08-21 retirement** (2 min). This is not the 6 Area Bundles/15 Situation Kits: those 21 were already deactivated and archived in Stripe, live-verified, the same day they were retired (commit `34efb9a9`, your own session).
-- **#34** Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition?
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
@@ -72,7 +71,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | # | Title | Labels |
 |---|---|---|
-| 34 | Decide: does the Kitchen deck's print-only page satisfy C20's "downloadable" condition? | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
 | 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |
