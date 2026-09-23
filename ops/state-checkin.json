@@ -1,9 +1,9 @@
 {
- "at": "2026-09-23 17:18",
+ "at": "2026-09-23 18:10",
  "avif": 935,
  "captions": 114,
- "commits_24h": 131,
- "products_live": 138,
+ "commits_24h": 130,
+ "products_live": null,
  "products_live_last_measured": 138,
  "products_live_measured_at": "2026-09-23 17:18",
  "undelivered_media": null,
@@ -11,7 +11,7 @@
  "undelivered_media_measured_at": "2026-09-03 19:35",
  "videos_vertical": 0,
  "videos_wide": 0,
- "youtube_published": 12,
+ "youtube_published": null,
  "youtube_published_last_measured": 12,
  "youtube_published_measured_at": "2026-09-23 17:18"
 }

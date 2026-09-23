@@ -9337,7 +9337,7 @@ def gate_checkin_youtube_carry_forward() -> None:
         "videos_vertical": 114, "videos_wide": 114, "captions": 114,
         "products_live": 159,
     }
-    msg = checkin.next_action(unmeasured_but_known_nonzero)
+    msg = checkin.next_action(unmeasured_but_known_nonzero, 159)
     bad = []
     if "holds None" in msg or "holds 0" in msg or "held 0" in msg:
         bad.append(f"an unmeasured-but-known-nonzero channel rendered as empty: {msg!r}")
@@ -9350,7 +9350,7 @@ def gate_checkin_youtube_carry_forward() -> None:
         "youtube_published": None, "youtube_published_last_measured": None,
         "videos_vertical": 114, "videos_wide": 114, "captions": 114,
     }
-    msg2 = checkin.next_action(never_measured)
+    msg2 = checkin.next_action(never_measured, 159)
     if "Unknown" not in msg2:
         bad.append(f"a channel with no measurement on record did not say Unknown: {msg2!r}")
     if "0" in msg2.split("Unknown")[-1][:40]:
@@ -9361,7 +9361,7 @@ def gate_checkin_youtube_carry_forward() -> None:
         "youtube_published_measured_at": "now",
         "videos_vertical": 114, "videos_wide": 114, "captions": 114,
     }
-    msg3 = checkin.next_action(fresh_empty)
+    msg3 = checkin.next_action(fresh_empty, 159)
     if "Publish." not in msg3:
         bad.append(f"a fresh, confirmed-empty channel with 100+ videos ready did not recommend publishing: {msg3!r}")
 
