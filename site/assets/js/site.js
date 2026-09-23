@@ -199,9 +199,6 @@
   /* ---------- nav + reveal ---------- */
   document.addEventListener("DOMContentLoaded", function () {
     wireNewsletter();
-    // Deliberately not ensureDrawer(): the drawer is built the
-    // first time something actually opens it. See ensureDrawer.
-    paint();
     var tog = document.querySelector(".nav-toggle");
     if (tog) tog.addEventListener("click", function () {
       var nav = document.querySelector(".nav"); nav.classList.toggle("open");
