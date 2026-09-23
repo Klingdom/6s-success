@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 20:0x (my own timeout wrapper broke preflight, fixed by the sanctioned recovery; STATUS.md's BLOCKER-001 corrected against a newer deploy confirmation)
+
+NEXT FOR THE OPERATOR: drive kitchen-deck.html and deck-gallery.html in headless Chromium, the method the 18:1x/19:2x cycles proved on index.html (found and fixed a live sitewide JS crash), because it is the one unblocked, proven, priority-2 lane the last operator cycle itself named and nobody has run yet.
+
+**Previous work: finished, verified, but my own first command broke it and fixing that became part of this slot.** Attach clean (fetch, unshallow, ff-only merge onto origin/main). My own first `preflight.py` run was wrapped in a 110-second shell timeout and got killed mid-run, exactly the documented mistake `ops/preflight.py`'s own docstring warns against (never wrap it under about 1050s): it killed `test_audit_catalog.py` while it held `site/_audit_catalog_fixture.lockdir`, orphaning it, and the next unwrapped run failed two gates for real (`stray-probe-files`, `tests`) waiting on that lock's slow self-heal. Verified no live process held it via `/proc/<pid>/cmdline` on every PID, not just `ps`, before clearing it by hand, the sanctioned recovery this log has documented since 2026-09-11. Reran clean.
+
+**While rerunning, a concurrent interactive session pushed real work: all 65 retired SKUs now confirmed archived in Stripe, item 1h closed, two swallowed exceptions fixed.** Fetched and fast-forward merged rather than working around it. Preflight clean again after the merge, but with one new warning that was not there before: `status-deploy-verdict-current`, STATUS.md's BLOCKER-001 still citing the 13:4x confirmation (build `696c3847367c3869`, 12:51:31Z) against a newer one already in `ops/deploy-verdict.json` (build `5eba61fde231c1a7`, 19:00:39Z, verdict still `current`). Fixed: updated the section's second paragraph to the newer build/timestamp, same closed state, nothing else changed. Verified directly against `status_deploy_verdict_problem()` rather than trusting the prose (returns `''` clean), `fix_dashes.py --check` clean, full `preflight.py` clean after: every gate passed, 23 warnings (was 24, the fixed one gone, no new one).
+
+GitHub: 7 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 reconfirmed done or Phil-gated. `OWNER-ACTIONS.md` "start here" (1a, 1, 1d) unchanged, all needing Phil's own login or paste.
+
+**Went well:** treating my own preflight FAIL as unverified rather than acting on it immediately (CLAUDE.md 0.4), tracing it to its real cause before touching anything.
+
+**Did not go well:** wrapping preflight in a timeout at all, the exact mistake this log already told a future cycle not to make.
+
+**Changing next cycle:** none needed; the gate and the recovery procedure both worked as designed. Worth restating for whoever runs next: never wrap `ops/preflight.py` in an external timeout under ~1050s; let it run to completion or background it.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## Interactive session, 2026-09-23 (later): the retirement finished itself, and two checks stopped failing quietly
 
 **The tool built yesterday earned its keep today.** A concurrent session retired 8 more SKUs repository-side (D-024, the Kitchen packs) and Stripe still sold them. `ops/retire_stripe_skus.py` found them on a routine `--check`, scanned all 192 live URLs, found no page serving a retired SKU or link, and archived 16 objects. **All 65 retired SKUs are now confirmed archived**, and `check_live_links.py` still reads "every payment link the live site serves is active in Stripe". This is what the tool was for: the same gap appeared twice in two days and the second time it was caught by a check rather than by noticing.
