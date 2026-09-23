@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (turned today's paint() fix into a standing static gate, no browser needed)
+
+**Did:** Unshallowed, ff-merged onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, newest log entries. Preflight clean before touching anything. GitHub: 7 issues unchanged. No mail credential. Backlog sections 1b to 6 reconfirmed done or Phil-gated.
+
+**Found nothing new, then built the check that would have caught today's earlier bug without a browser.** Reran test_site_js_no_runtime_error.py (clean), then swept every shipped JS file and every inline `<script>` with eslint's no-undef rule for the shape behind today's paint() bug: a reference to something never defined. Clean everywhere, a genuine negative result.
+
+**Fixed by gating, not just checking once.** New `gate_no_dangling_js_references` in preflight.py, wired into main(): static, no browser needed, sitewide, where the Chromium test only watches two pages. Warns UNCHECKED if eslint is missing, never silently clean. New `ops/tests/test_gate_no_dangling_js_references.py` (3 cases), fail-then-pass proved directly: planted the exact paint() regression in a scratch site.js, gate failed citing 'paint', restored byte for byte; a planted inline-script regression caught too.
+
+**Verified:** full preflight.py clean, check_urls.py 190/190, audit_pages.py clean, fix_dashes.py --check clean, mobile npm test 5/5, git status clean after the fail-then-pass tests.
+
+**Went well:** a negative sweep became a permanent gate, not a claim to repeat by hand.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list and 7 open GitHub issues, unchanged. Worth driving kitchen-deck.html and deck-gallery.html in headless Chromium next.
+
+Pushed to main. `ops/preflight.py`, new `ops/tests/test_gate_no_dangling_js_references.py`, command deck. No price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 18:1x (STATUS.md's Production Release section had gone stale to the point of being wrong, not just old)
 
 **Previous work: finished, verified.** Attach clean (unshallow plus ff-only). Full `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits). Working tree clean, `main` already at `origin` tip: nothing to finish from the last cycle. Backlog sections 2-6 and the 7 open GitHub issues unchanged, all `decision`/`blocked-on-art`.

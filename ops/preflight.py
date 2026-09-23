@@ -4938,6 +4938,181 @@ def gate_mobile_npm_test_complete() -> None:
              f"run {missing}, so `npm test` would silently skip it")
 
 
+def gate_no_dangling_js_references() -> None:
+    """Every identifier referenced in shipped JavaScript, in every asset file
+    and every inline <script> block on every page, must resolve to something
+    real: a browser global, a known site-wide data/function global (CATALOG,
+    QUEST, renderProduct, observeReveals), or a name declared in that same
+    script.
+
+    Found live 2026-09-23: site.js's shared DOMContentLoaded listener called
+    paint(), a function deleted 2026-09-08 (f2e7ba72) while this one stray
+    call to it was not. Every real page load threw "Uncaught ReferenceError:
+    paint is not defined", silently aborting the rest of that listener before
+    it reached the mobile nav-toggle click wiring and the .reveal
+    IntersectionObserver setup a few lines later. That ran on every page, for
+    two weeks, and nothing here caught it: audit_visual.py's screenshots
+    emulate prefers-reduced-motion, which independently forces .reveal
+    visible through its own CSS override and never observes the crash
+    underneath; every other gate in this file reads HTML/text, not runtime
+    behaviour. Fixed the same day, proven by
+    ops/tests/test_site_js_no_runtime_error.py, which drives two real pages
+    in headless Chromium and watches for exactly that symptom. That test is
+    real but narrow: two pages, two symptoms. This gate is the broader, far
+    cheaper net a browser drive cannot be, a static scan of every reference
+    in every shipped script on every page, for the general defect class
+    (dead code left behind after a deletion) rather than this one instance
+    of it, and it needs no browser at all.
+
+    Uses eslint's own no-undef rule rather than a hand-rolled reference
+    walker: it already understands hoisting and scoping for every real form
+    this codebase's plain, non-module JavaScript uses, which a regex would
+    get wrong. If eslint is not on PATH here, this warns UNCHECKED rather
+    than silently passing clean, per CLAUDE.md 0.4.
+
+    Proved fail-then-pass 2026-09-23: replanted the exact old paint(); call
+    in a scratch copy of site.js, ran this gate's own scan function against
+    it directly, watched it fail by name citing 'paint' and the line, then
+    confirmed the real committed file passes clean.
+    """
+    import shutil as _shutil
+    eslint = _shutil.which("eslint")
+    if not eslint:
+        warn("no-dangling-js-references",
+             "eslint is not on PATH here, so shipped JavaScript could not "
+             "be scanned for a reference to something never defined "
+             "(the exact shape of the 2026-09-23 paint() defect). "
+             "Unchecked, not clean.")
+        return
+    problems = _lint_js_no_undef(eslint)
+    if problems is None:
+        warn("no-dangling-js-references",
+             "eslint ran but its output could not be parsed as JSON; "
+             "shipped JavaScript was not actually checked this run. "
+             "Unchecked, not clean.")
+        return
+    if problems:
+        shown = problems[:6]
+        more = "" if len(problems) <= 6 else f" (+{len(problems) - 6} more)"
+        fail("no-dangling-js-references",
+             f"{len(problems)} reference(s) to something never defined in "
+             f"shipped JavaScript: {shown}{more}. This is the exact defect "
+             "shape that broke the mobile nav and .reveal content sitewide "
+             "on 2026-09-23 (a stray call to a deleted function).")
+
+
+def _lint_js_no_undef(eslint_exe: str):
+    """Scan every shipped JS asset file plus every substantive inline
+    <script> block on every page for an undefined reference. Returns a list
+    of "file: 'name' at line N" strings (empty if clean), or None if eslint's
+    own output could not be parsed. Never raises; a subprocess failure or a
+    missing file just yields no problems found for that source, since the
+    absence itself is not this gate's concern.
+
+    Split out from gate_no_dangling_js_references() so the fail-then-pass
+    proof above can call this directly against a planted regression without
+    needing to run the whole gate machinery.
+    """
+    import re as _re
+    import tempfile as _tempfile
+
+    config_js = """module.exports = [{
+  files: ["**/*.js"],
+  languageOptions: {
+    ecmaVersion: 2019,
+    sourceType: "script",
+    globals: {
+      window: "writable", document: "readonly", navigator: "readonly",
+      location: "readonly", console: "readonly",
+      setTimeout: "readonly", setInterval: "readonly",
+      clearTimeout: "readonly", clearInterval: "readonly",
+      IntersectionObserver: "readonly", MutationObserver: "readonly",
+      ResizeObserver: "readonly",
+      requestAnimationFrame: "readonly", cancelAnimationFrame: "readonly",
+      fetch: "readonly", Promise: "readonly",
+      localStorage: "readonly", sessionStorage: "readonly",
+      history: "readonly", matchMedia: "readonly", performance: "readonly",
+      self: "readonly", caches: "readonly",
+      URL: "readonly", URLSearchParams: "readonly", Image: "readonly",
+      innerHeight: "readonly", innerWidth: "readonly",
+      scrollY: "readonly", scrollX: "readonly",
+      addEventListener: "readonly", removeEventListener: "readonly",
+      indexedDB: "readonly", Blob: "readonly", FileReader: "readonly",
+      CustomEvent: "readonly", Event: "readonly",
+      atob: "readonly", btoa: "readonly",
+      CATALOG: "readonly", QUEST: "readonly",
+      renderProduct: "readonly", observeReveals: "readonly"
+    }
+  },
+  rules: { "no-undef": "error" }
+}];
+"""
+    tmp = _tempfile.mkdtemp(prefix=".preflight_jslint_", dir=ROOT)
+    try:
+        cfg_path = os.path.join(tmp, "eslint.config.js")
+        io.open(cfg_path, "w", encoding="utf-8", newline="").write(config_js)
+
+        targets = []
+        for f in sorted(glob.glob(os.path.join(SITE, "assets", "js", "*.js"))):
+            targets.append((f, io.open(f, encoding="utf-8",
+                                        errors="replace").read()))
+        sw = os.path.join(SITE, "sw.js")
+        if os.path.isfile(sw):
+            targets.append((sw, io.open(sw, encoding="utf-8",
+                                         errors="replace").read()))
+
+        inline_pat = _re.compile(
+            r'<script(?![^>]*(?:src=|type=["\']application/ld\+json))'
+            r'[^>]*>(.*?)</script>', _re.S)
+        for page in sorted(glob.glob(os.path.join(SITE, "**", "*.html"),
+                                      recursive=True)):
+            html = io.open(page, encoding="utf-8", errors="replace").read()
+            for idx, m in enumerate(inline_pat.finditer(html)):
+                body = m.group(1).strip()
+                if len(body) > 60:
+                    targets.append(
+                        (f"{os.path.relpath(page, SITE)}#inline{idx}", body))
+
+        written = []
+        for i, (label, body) in enumerate(targets):
+            p = os.path.join(tmp, f"t{i}.js")
+            io.open(p, "w", encoding="utf-8", newline="").write(body)
+            written.append((p, label))
+
+        if not written:
+            return []
+
+        r = subprocess.run(
+            [eslint_exe, "--no-config-lookup", "-c", cfg_path,
+             "-f", "json", *[p for p, _ in written]],
+            capture_output=True, text=True, timeout=120)
+        try:
+            results = json.loads(r.stdout or "[]")
+        except ValueError:
+            return None
+
+        label_by_path = {os.path.abspath(p): lbl for p, lbl in written}
+        problems = []
+        for entry in results:
+            lbl = label_by_path.get(os.path.abspath(entry.get("filePath", "")))
+            if not lbl:
+                continue
+            for msg in entry.get("messages", []):
+                if msg.get("ruleId") == "no-undef":
+                    ident = _re.search(r"'([^']+)'", msg.get("message", ""))
+                    problems.append(
+                        f"{lbl}: '{ident.group(1) if ident else '?'}' "
+                        f"at line {msg.get('line')}")
+        return problems
+    finally:
+        _shutil_rmtree_ignore(tmp)
+
+
+def _shutil_rmtree_ignore(path: str) -> None:
+    import shutil as _shutil
+    _shutil.rmtree(path, ignore_errors=True)
+
+
 def gate_quest_restore_validates_timestamps() -> None:
     """Restoring a Quest backup must never erase progress already on this device.
 
@@ -19708,6 +19883,7 @@ def main() -> int:
     run_gate(gate_mobile_corpus_current)
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
+    run_gate(gate_no_dangling_js_references)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
     run_gate(gate_quest_keep_releases_urls_first)
