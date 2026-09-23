@@ -60,7 +60,24 @@ import browser as B                                           # noqa: E402
 # .nav-toggle button with no assets/js/site.js reference at all (see
 # gate_nav_toggle_wired in ops/preflight.py). That gate proves the script
 # tag is present; this test proves the click it enables actually works.
-PAGES = ("index.html", "zones/entryway-the-landing-spot.html", "404.html")
+# resources.html and all 20 room hub pages added 2026-09-23, the last
+# unexercised part of the standing headless-Chromium handoff: checked
+# clean (each carries its own site.js reference already, unlike the
+# deck-gallery pages that same day), and planting the exact dropped-script
+# defect on resources.html made this test fail by name before it was
+# restored, so the coverage is real, not assumed.
+PAGES = ("index.html", "zones/entryway-the-landing-spot.html", "404.html",
+         "resources.html",
+         "rooms/dining-room.html", "rooms/entryway.html",
+         "rooms/family-room.html", "rooms/garage.html",
+         "rooms/guest-bathroom.html", "rooms/guest-bedroom.html",
+         "rooms/hall-closet.html", "rooms/home-office.html",
+         "rooms/kids-bedroom.html", "rooms/kitchen.html",
+         "rooms/laundry-room.html", "rooms/living-room.html",
+         "rooms/mudroom.html", "rooms/nursery.html", "rooms/pantry.html",
+         "rooms/patio-or-deck.html", "rooms/primary-bathroom.html",
+         "rooms/primary-bedroom.html", "rooms/stair-landing.html",
+         "rooms/workshop.html")
 
 ERROR_HOOK = (
     '<script>window.__errs=[];window.onerror=function(m,s,l,c,e){'
