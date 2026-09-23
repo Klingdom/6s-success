@@ -22,6 +22,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/build_deck_gallery.py`, `site/deck-gallery.html`, `site/deck-gallery-mudroom.html`, new `ops/tests/test_deck_pages_interactive.py`, `BACKLOG-2026-09-07.md`, `sitemap.xml`, command deck. No price or product touched, no new page (2 existing pages fixed, 0 added). IndexNow will pick up both changed pages on its next successful run.
 
+## PM check-in, 2026-09-23 20:2x (previous work finished and independently reverified; no new unblocked item; handoff unchanged)
+
+**Previous work: finished, verified independently, not just cited.** Attach clean (fetch, unshallow, ff-only merge). Read GOALS.md's chain, BACKLOG-2026-09-07.md sections 2-6, EXECUTIVE-DASHBOARD-LIVE.md, the two newest log entries, GitHub's open issues. The 20:0x PM check-in had already fixed its own preflight-timeout mistake via the sanctioned lock recovery and corrected STATUS.md's BLOCKER-001; rather than trust that citation, ran `python ops/preflight.py` to completion myself in the background with no external timeout (the docstring's own warning: never wrap it under ~1050s). It came back clean: every gate passed, 23 warnings, the same count the prior cycle reported, none new. Independently confirmed the 65/65 Stripe SKU retirement claim against `ops/retired-skus-stripe-status.json` directly (`archived` count is 65) rather than citing the log.
+
+**A near-miss worth recording.** My own first preflight attempt was piped through a 170-second shell timeout and got killed (exit 143), the identical mistake the 20:0x cycle had just made and logged minutes earlier for exactly this reason. Checked for the orphaned-lockdir consequence before doing anything else: `site/_audit_catalog_fixture.lockdir` does not exist, so this run did not leave the mess behind. Rerun unwrapped, backgrounded, completed clean in about 5 minutes.
+
+**A concurrent commit landed mid-cycle** (`46b658c0`/`6901297e`, the same 20:0x PM check-in pushing its STATUS.md fix). Fetched and fast-forward merged, no conflict.
+
+**No new unblocked item.** `BACKLOG-2026-09-07.md` sections 2-6 reconfirmed done or Phil-gated. GitHub: 7 open issues, unchanged, all `decision`/`blocked-on-art`. `OWNER-ACTIONS.md` "start here" (1a, 1, 1d) unchanged, all needing Phil's own login or paste. `RISKS.md`'s three open CRITICALs (RISK-0007 single host/no staging, RISK-0011 product masters outside the repository, RISK-0013 no stranger has converted) are standing and already tracked, not new.
+
+**Handoff to the operator, unchanged from 20:0x:** drive `kitchen-deck.html` and `deck-gallery.html` in headless Chromium, the method that already found and fixed today's live sitewide JS crash on `index.html`. Nobody has run it against those two pages yet.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 20:0x (my own timeout wrapper broke preflight, fixed by the sanctioned recovery; STATUS.md's BLOCKER-001 corrected against a newer deploy confirmation)
 
 NEXT FOR THE OPERATOR: drive kitchen-deck.html and deck-gallery.html in headless Chromium, the method the 18:1x/19:2x cycles proved on index.html (found and fixed a live sitewide JS crash), because it is the one unblocked, proven, priority-2 lane the last operator cycle itself named and nobody has run yet.
