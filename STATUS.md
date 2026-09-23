@@ -864,28 +864,17 @@ Phil redeployed twice that day, from a session with real production
 access (`470834de`, then `7ae0e9b6`): the tracked verdict read current at
 2026-09-20T17:46:50Z, build `d9fc700d0700972f`.
 
-**Corrected 2026-09-23 13:4x, PM check-in: the gap this section was tracking is closed.**
+**Corrected 2026-09-23 20:0x, PM check-in: a newer confirmation superseded the 13:4x one, same closed state.**
 `ops/deploy-verdict.json`, read directly rather than cited, now records
-`verdict: "current"`, build `696c3847367c3869`, `checked_at:
-2026-09-23T12:51:31Z`, from a session with real production access.
-`site/build-id.txt` at HEAD reads the same build id, so the marker and the
-repository agree: production is confirmed current as of that check, not
-merely carried forward. `ops/dashboard.py`, rerun this cycle, independently
-confirms the same match (marker build id equals repo build id) and its "one
-constraint" line has moved off deploy entirely, onto discovery/traffic. No
-operator sandbox holds the deploy key or egress to verify this itself, so
-the next confirmation still needs a session with real access, same
-structural limit as every prior occurrence; there is simply nothing open to
-close right now.
-
-**Re-confirmed 2026-09-23, later: a second redeploy landed the same day.**
-A session with real production access finished the Stripe SKU retirement
-(65 of 65 confirmed archived) and redeployed; `ops/deploy-verdict.json` now
-reads `verdict: "current"`, build `5eba61fde231c1a7`, `checked_at:
-2026-09-23T19:00:39Z`, superseding the build cited two paragraphs above.
-Same structural limit as ever: this operator sandbox still holds no deploy
-key, so the number above is re-derived from the tracked verdict, not
-independently checked from here.
+`verdict: "current"`, build `5eba61fde231c1a7`, `checked_at:
+2026-09-23T19:00:39Z`, from a later session with real production access
+that finished the Stripe SKU retirement (65 of 65 confirmed archived) and
+redeployed. `site/build-id.txt` at HEAD reads the same build id, so the
+marker and the repository agree: production is confirmed current as of
+that check, not merely carried forward. No operator sandbox holds the
+deploy key or egress to verify this itself, so the next confirmation still
+needs a session with real access, same structural limit as every prior
+occurrence; there is simply nothing open to close right now.
 
 Impact:
 
