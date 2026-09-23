@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (drove the quest.html finish-screen offer, the other half of the standing handoff; a real untested branch found genuinely correct, proved fail-then-pass, gated permanently)
+
+**Did:** Unshallowed and ff-only merged onto `origin/main` cleanly (17-commit fast-forward from a shallow/detached start). Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). GitHub: 7 issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential, inbox unchecked.
+
+Picked up the exact open thread the prior cycle named: "drive quest.html's own kit/CTA path and a zone page's mobile filters the same way next." Checked the zone-page half first, cheaply: every one of the 114 zone pages already carries `site.js` (the deck-gallery bug was that one generator's own omission, not a sitewide gap), and a live headless-Chromium probe of a sample zone page's nav toggle and `<details>` disclosure found both working. No defect, nothing to fix, probe discarded.
+
+**The quest.html half was the real gap.** `renderFinish()` decides between two finish-screen pitches by counting held zones and the rooms they sit in (two zones in one room pitches the free Entryway deck; zones held across two different rooms pitch the $19 paper pack), then repoints one shared button's href, label and `data-sku` to match. The button ships in the markup already wearing the paper-pack identity, so every existing quest test, including `test_quest_flow.py`, finishes only one zone and never forces the OTHER branch: a test that never triggers the swap cannot tell whether the swap code runs at all, because the untouched default already looks correct by coincidence.
+
+Built `ops/tests/test_quest_offer_cta.py`: seeds `localStorage` the same shape a real visitor's own saves would take (two zones fully finished, one card short of a third), in one room and then across two rooms, and finishes the one card left in each. Found the branch is correctly wired: one room held twice correctly repoints the button to `deck.html`, "Get the printable deck, free", `data-sku="DECK-ENTRY"`, no Stripe link anywhere in it; two rooms held correctly leaves the shipped PACK-HOUSE identity in place. **Proved the test itself can fail, not just pass:** removed the `data-sku` reassignment line from `quest.js`, reran, watched it fail by name ("the branch that repoints it away from the default $19 pack either never ran or ran wrong"), restored the file, `git diff` confirmed byte-identical, reran clean.
+
+**Verified:** full `preflight.py` after (every gate passed, 23 warnings, same set), `gate_tests()` already globs `ops/tests/test_*.py` so no separate wiring was needed (260 test files now, was 259). No price, product or page touched, so `check_urls.py`/`audit_pages.py`/`affiliate.py --check` were not rerun beyond what `preflight.py` itself already runs.
+
+**Went well:** the fail-then-pass proof this time found the code genuinely correct rather than manufacturing a finding; a passing new test is still worth the coverage, since the alternative was this exact branch shipping unverified indefinitely.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the new test closes the specific gap the last two cycles' interactive-testing method had not yet reached.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. The interactive-Chromium method has now covered `shop.html`, `kit.html`, `contact.html`, `corporate.html`, the intro-call form, both deck gallery pages and the quest's finish offer; `resources.html`'s and the room hub pages' own interactive elements (if any) are the next unexercised candidates.
+
+Pushed to main. New `ops/tests/test_quest_offer_cta.py`, command deck. No price, product or page touched (0 added, 0 changed). IndexNow not applicable.
+
 ## 2026-09-23, scheduled operator cycle (drove kitchen-deck.html and deck-gallery.html in headless Chromium, the standing handoff; found and fixed a real, live, sitewide mobile nav failure on both gallery pages)
 
 **Did:** Unshallowed and ff-merged onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits). GitHub: 7 issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential, inbox unchecked. Picked up the standing handoff named across several of today's own PM check-ins: drive `kitchen-deck.html` and `deck-gallery.html` in real headless Chromium, the method that had already found and fixed today's earlier sitewide `paint()` crash on `index.html`.
