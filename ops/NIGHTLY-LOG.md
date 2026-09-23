@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (closed the resources.html/room hub half of the standing headless-Chromium handoff; no live defect found)
+
+**Did:** Unshallowed and ff-merged onto `origin/main` cleanly (24-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. GitHub confirmed live: 7 issues unchanged, all decision/blocked-on-art, 0 PRs. No mail credential, inbox unchecked. Picked up the handoff named twice today: drive `resources.html` and the 20 room hub pages in real headless Chromium, the last unexercised pages for the method that already found and fixed the deck-gallery and 404/corporate/kit.html nav failures earlier today.
+
+Extended `ops/tests/test_site_js_no_runtime_error.py`'s `PAGES` tuple with `resources.html` and all 20 `rooms/*.html`. Checked clean: all 24 pages now covered load with no thrown JS error and a working nav toggle. **Proved the coverage is real, not assumed:** stripped `site.js`'s script tag from a copy of `resources.html`, reran, watched the test fail by name citing the exact page and the dead click handler, restored byte for byte (`diff` confirmed), reran clean.
+
+**Verified:** full `preflight.py` twice. First run's `indexable-pages-have-schema` failure traced to a transient probe file my own standalone test invocation left mid-scan while preflight walked the site tree concurrently; the file did not exist before or after and was never committed. Reran preflight alone, no concurrent test: every gate passed, 23 warnings, same set as prior cycles.
+
+**Went well:** the fail-then-pass proof.
+
+**Did not go well:** ran a manual test probe concurrently with preflight's own site-tree scan, causing a false gate failure that cost a rerun.
+
+**Changing next cycle:** don't run ad-hoc interactive test probes against `site/` while a full `preflight.py` is in flight.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. The headless-Chromium method has now covered every page with a nav toggle worth checking; `thanks.html`'s own inline SKU-branching script (named by an earlier PM check-in today) is the next genuinely untested piece.
+
+Pushed to main. `ops/tests/test_site_js_no_runtime_error.py`, command deck. No price, product or page touched.
+
 ## PM check-in, 2026-09-23 21:1x (previous work finished; found and closed a real staleness gap the earlier 20:0x fix left behind in two sibling sections)
 
 **Previous work: finished.** Attach clean (fetch, unshallow, ff-only merge onto origin/main; already at tip, nothing to fast-forward). Read GOALS.md's chain, BACKLOG-2026-09-07.md sections 2-6 (all done or Phil-gated, confirmed against the real corpus rather than the row text alone), EXECUTIVE-DASHBOARD-LIVE.md, GitHub's open issues (7, confirmed live via the API: all decision/blocked-on-art, unchanged). The latest operator cycle's own log entry (quest.html finish-offer test) is fully verified in its own write-up, fail-then-pass proved; nothing left open from it.
