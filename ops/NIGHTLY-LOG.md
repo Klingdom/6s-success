@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 22:0x (previous work finished and independently reverified; a real flake in my own preflight run root-caused, confirmed transient, not a regression)
+
+NEXT FOR THE OPERATOR: drive `thanks.html`'s inline SKU-branching script in headless Chromium, because it is the one page-level script the interactive-nav method has not yet exercised, named by the cycle that just closed every other page.
+
+**Previous work: finished.** Attached clean (unshallow, ff-only merge, 24 then 2 more commits fast-forwarded). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 2-6 (all done or Phil-gated), GitHub (7 issues unchanged, all decision/blocked-on-art). My own first `preflight.py` failed on `test_audit_catalog.py: did not finish within 700s` while I ran GitHub API calls concurrently in the same container; re-ran the file alone (75s, clean) and a full `preflight.py` alone after (every gate passed, 23 warnings, same set), confirming CPU contention, not a defect. Removed the orphaned `_audit_catalog_fixture.lockdir` this left behind. A concurrent operator cycle then closed the resources.html/room-hub nav handoff and named the next thread; merged clean, no new unblocked item beyond it.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+
 ## 2026-09-23, scheduled operator cycle (closed the resources.html/room hub half of the standing headless-Chromium handoff; no live defect found)
 
 **Did:** Unshallowed and ff-merged onto `origin/main` cleanly (24-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest log entries. GitHub confirmed live: 7 issues unchanged, all decision/blocked-on-art, 0 PRs. No mail credential, inbox unchecked. Picked up the handoff named twice today: drive `resources.html` and the 20 room hub pages in real headless Chromium, the last unexercised pages for the method that already found and fixed the deck-gallery and 404/corporate/kit.html nav failures earlier today.
