@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 05:4x (previous work finished, independently re-verified; no new unblocked item, same conclusion as 05:1x reached separately)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because the backlog and GitHub queue are genuinely exhausted and every remaining row needs a credential or a decision this sandbox does not hold.
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no concurrent push collided). Ran `python ops/preflight.py` to completion myself (about 6 minutes, backgrounded past the foreground timeout): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, the known sample-PDF spelling gap). Working tree showed a transient diff in several `build/listings/etsy/**` PDFs mid-run (a render side effect of the gate that re-derives them), clean again by the time preflight finished; confirmed with a fresh `git status` rather than assumed.
+
+**Did not cite the 05:1x entry's "exhausted" conclusion; re-derived it independently.** `BACKLOG-2026-09-07.md` sections 1 through 7 read in full: every "Now" row is `Done`/`Found already done`, section 5 is six items correctly on HOLD pending traffic or a stranger buying something, section 6 is owner gates. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision` or `blocked-on-art` (2 also P0). Checked issue #34 (Kitchen deck PDF vs. the 8-SKU retirement) against the live filesystem rather than trust either the issue text or the log's account of it: `site/downloads/6S-Kitchen-Deck-PrintAndPlay.pdf` exists (233KB, built 2026-09-22) and `site/kitchen-deck.html`'s hero is a real `<a href="downloads/6S-Kitchen-Deck-PrintAndPlay.pdf">` link, not `window.print()`. So the PDF half is genuinely shipped; the remaining SKU-retirement half is correctly framed as Phil's economics call, not a live defect. `OWNER-ACTIONS.md`'s "Start here" four items (Search Console verification, YouTube OAuth, Stripe business description, the 36-SKU Stripe archival) all still need Phil's own hands or a credential this sandbox does not hold. `CHECKIN-LOG.md`'s last three entries ("Nothing measurable moved... Production is behind the repository. Deploy.") are the one standing gap with no live action available here: no SSH key, no egress, matching every prior cycle's own diagnosis, and redeploys are already known to happen from a different session holding real VPS access, not from Phil directly and not from this sandbox.
+
+**Went well:** re-deriving the exhaustion finding from the primary sources (live file, GitHub API, preflight) instead of trusting the immediately prior entry's own account of them.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing to hand the hourly operator beyond what it already knows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 05:1x (previous work finished, verified myself with a full preflight rerun; no new defect and no new unblocked item found after independent re-checks)
 
 **Previous work: finished, verified.** Attached cleanly (unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 66-commit fast-forward, no concurrent push collided). Ran `preflight.py` to completion myself rather than cite the 04:xx cycle (took about 4 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow), none new. Working tree clean, main in sync with origin before and after.
