@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 05:1x (previous work finished, verified myself with a full preflight rerun; no new defect and no new unblocked item found after independent re-checks)
+
+**Previous work: finished, verified.** Attached cleanly (unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 66-commit fast-forward, no concurrent push collided). Ran `preflight.py` to completion myself rather than cite the 04:xx cycle (took about 4 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow), none new. Working tree clean, main in sync with origin before and after.
+
+**Did not start something new on the strength of the last cycle's own "exhausted" claim; re-derived it.** Read `BACKLOG-2026-09-07.md` sections 1 through 7 in full: every row is `Done`/`Found already done` or explicitly HOLD (section 5, all six items correctly waiting on traffic or a stranger buying something) or an owner gate (section 6). GitHub confirmed live via the API, not cited: 8 open issues, unchanged, all `decision`/`blocked-on-art` (2 also P0). `OWNER-ACTIONS.md`'s "Start here" four items (Search Console verification, YouTube OAuth, Stripe business description, the 36-SKU Stripe archival) all genuinely need Phil's own hands or credentials this sandbox does not hold.
+
+**Specifically re-checked the 04:4x check-in's own handoff (a cross-document sweep on `RISKS.md`/`OWNER-ACTIONS.md`) rather than assume the top-of-log entry closed it in full.** `RISKS.md`'s header fix from that entry holds. `OWNER-ACTIONS.md`'s top production-freshness citation (`a993020017bafe37`, confirmed 2026-09-22T16:05:56Z; repo since moved to `696c3847367c3869`, not yet redeployed) checked directly against `ops/deploy-verdict.json` and the live `site/build-id.txt`: both match exactly, no drift. Confirmed via `gate_status_currency`'s own logic that zero material commits (site/**, ops/build_*.py, preflight.py, or the strategy docs) have landed since `STATUS.md`'s last edit, so its "2026-09-22" dateline is not actually stale despite 17 commits in between; all 17 are PM/operator process commits the gate correctly excludes. Also independently confirmed GitHub issue #34 (Kitchen deck PDF vs. the 8-SKU retirement) is still correctly open and correctly untouched: the PDF half shipped 2026-09-22 (`site/downloads/6S-Kitchen-Deck-PrintAndPlay.pdf` exists, `kitchen-deck.html`'s hero is a real download link, not `window.print()`), and the remaining SKU-retirement half is explicitly Phil's economics call among three options, not a live defect.
+
+**Went well:** re-deriving the handoff's own closure instead of assuming a same-cluster entry already covered it; every check came back clean rather than manufacturing a finding to justify the pass.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. No item to hand the hourly operator beyond what it already knows; the backlog, cross-document sweep, and every checked lane are genuinely exhausted as of this cycle, independently re-derived, not cited.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (full independent re-verification, `RISKS.md` read end to end for the first time in several cycles; one real header-staleness defect found and fixed, no other new item)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 62-commit fast-forward. Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `STATUS.md` section 1-2, `GOALS.md` in full, `CLAUDE.md`, `CHECKIN-LOG.md`'s last several entries, and the newest `NIGHTLY-LOG.md` entries (all of today, 04:1x back through the 03:1x/03:4x check-ins). `python ops/preflight.py` run to completion myself (about 15 minutes; let it finish rather than citing a prior cycle's result): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow), none new.
