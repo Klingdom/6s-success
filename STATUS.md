@@ -16,7 +16,9 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-23, PM check-in. **Corrected sections 2, 5 and 6: this file had stood claiming production deploy freshness was "genuinely unknown" and the Production Release table read all-UNKNOWN, both false and both contradicted by evidence already committed in this repository (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s own dated deploy confirmations). Corrected to state what is actually known (production confirmed at build `696c3847367c3869` as of `2026-09-23T12:51:31Z`, one legitimate commit behind repository HEAD right now) and to stop conflating "this sandboxed session cannot verify directly" with "nobody knows." No new material commit narrated here; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+**Last Updated:** 2026-09-23, later PM check-in. **Sections 2 and 5 had fallen one confirmation behind `BLOCKER-001`, which an earlier same-day cycle had already updated to a newer `ops/deploy-verdict.json` entry; this pass synced them.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z`; repository HEAD is now `a09bf555820bf5bf` (`ops/build_id.py --check`: current), one legitimate fix behind (the dead mobile-nav fix on the deck gallery pages, `8e4c8e33`). No new material commit narrated here; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+
+**Prior (2026-09-23, PM check-in): Corrected sections 2, 5 and 6: this file had stood claiming production deploy freshness was "genuinely unknown" and the Production Release table read all-UNKNOWN, both false and both contradicted by evidence already committed in this repository (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s own dated deploy confirmations). Corrected to state what is actually known and to stop conflating "this sandboxed session cannot verify directly" with "nobody knows."**
 
 **Prior (2026-09-22, PM check-in): `gate_status_currency` fired (8 material commits unmentioned since this file's own last edit); closed by describing what actually shipped, per `CLAUDE.md` 0.2, rather than opening a fresh sweep. Also fixed a real, live `build-id` FAIL this same slot: `site/build-id.txt` had gone stale by four commits (the Kitchen deck PDF push never regenerated it), which would have made `deploy.py`'s own production-freshness check compare against the wrong hash; regenerated and reverified `--check` current.** The 8: `e529774e` (C20, issue #34: a real downloadable Kitchen deck PDF via headless-Chromium render of the page's own print sheet, plus a sitewide fix to `measure.js`'s `free-download` tracking regex, which had never matched a page-relative download href and so likely never counted the Entryway deck or book-sample downloads); `147179c6` (C6/C7: retired the 6 Area Bundles and 15 Situation Kits, 74-84% of the whole-house pack's price for 7-20% of its content, $0 realised revenue ever; catalogue 159 to 138, full detail preserved in `ops/retired-skus.json`, `DECISIONS.md` D-023); `c0cf1b8b` (a page for the $49 Complete Digital Bundle, issue #32's last open finding, wired into shop/book CTAs and the Product JSON-LD chain); `2bc4424f` (C9: preferred-time capture on `thanks.html` for the two service SKUs, plus a live 1.13:1 contrast failure found and fixed across 160 pages while verifying, now permanently gated); `e4d2403d` (C10: a free, capped 15-minute "which zone first" call, the last genuinely unblocked backlog row at the time); `4b792857` (fixed Product JSON-LD `url` drift on `shop.html` after the bundle page shipped, caught by `preflight.py --own`); `22fe4a8b` (the free sample PDF's rendered cover still said "The Complete Book" after the HTML had been corrected twice; the checked-in binary was never re-derived, now fixed and gated); `2ec2bfa7` (C17: a Stripe link-retirement refusal now surfaces as RED on the dashboard and by name in the hourly brief instead of only a print() in a closed terminal). Full detail in each commit and in `ops/NIGHTLY-LOG.md`.
 
@@ -133,12 +135,17 @@ Local sessions with real VPS access hold the key's private half and use it
 routinely, confirmed by real, timestamped entries in `OWNER-ACTIONS.md` and
 `ops/deploy-verdict.json` (2026-09-15, -18, -20, -22, -23, several same-day):
 each records the exact build hash moved to and the UTC timestamp checked
-directly against the verdict file, not cited from memory. As of the last such
-check (`ops/deploy-verdict.json`, `2026-09-23T12:51:31Z`), production served
-build `696c3847367c3869`. The repository has since moved one commit further
-(`acb343cb`, the Kitchen zone-pack retirement, build `d9f77705075b77bb`), so
-production is genuinely one legitimate catalogue change behind right now,
-which `ops/checkin.py`'s hourly check reports correctly. "No automated
+directly against the verdict file, not cited from memory. **Corrected again
+2026-09-23, later PM check-in: this paragraph and the section 5 table below
+had fallen one confirmation behind `BLOCKER-001`, which a same-day cycle had
+already updated.** As of the last such check (`ops/deploy-verdict.json`,
+`2026-09-23T19:00:39Z`), production served build `5eba61fde231c1a7`, from a
+session that finished the Stripe SKU retirement (65 of 65 archived) and
+redeployed. The repository has since moved one further commit that changed
+shipped site content (`8e4c8e33`, the dead mobile-nav fix on
+`deck-gallery.html`/`deck-gallery-mudroom.html`; repository HEAD build
+`a09bf555820bf5bf`, confirmed current via `ops/build_id.py --check`), so
+production is genuinely one legitimate fix behind right now. "No automated
 pipeline exercises `ops/deploy.py`" is also still true (no `.github/workflows/`
 job runs it) and remains a real gap: freshness depends on a local session
 happening to run one, not on any guaranteed cadence.
@@ -276,10 +283,11 @@ re-verify these fields directly (no VPS egress, no deploy key here), so
 treat them as only as fresh as the verdict file's own `checked_at`, not as
 this session's own measurement.
 
-**Currently Deployed Build (last confirmed):** `696c3847367c3869`
-**Confirmed At:** `2026-09-23T12:51:31Z` (`ops/deploy-verdict.json`)
-**Repository HEAD Build:** `d9f77705075b77bb` (one commit ahead: `acb343cb`,
-Kitchen zone-pack retirement; not yet known to be deployed)
+**Currently Deployed Build (last confirmed):** `5eba61fde231c1a7`
+**Confirmed At:** `2026-09-23T19:00:39Z` (`ops/deploy-verdict.json`)
+**Repository HEAD Build:** `a09bf555820bf5bf` (one commit ahead: `8e4c8e33`,
+the dead mobile-nav fix on `deck-gallery.html`/`deck-gallery-mudroom.html`;
+not yet known to be deployed)
 **Release / Tag:** NONE, every deploy is tracked by commit SHA / image
 digest, 0 GitHub tags or releases exist
 **Deployment Method:** `ops/deploy.py`, run manually by a local session
