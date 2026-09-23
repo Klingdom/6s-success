@@ -101,13 +101,13 @@ def case_record_archived_round_trips_through_retire_stripe_skus():
 
 
 def case_live_repository_state_today():
-    """The real, honest state right now: 21 of the 57 repository-retired SKUs
+    """The real, honest state right now: 21 of the 65 repository-retired SKUs
     (the Area Bundles and Situation Kits) are recorded archived, backfilled
-    from commit 34efb9a9's own evidence; the other 36, from the original
-    2026-08-21 retirement, predate this tool and have no confirmation on
-    record, so they are correctly still reported pending. This is not a
-    defect in this cycle's work, it is the true state, and it is why the
-    warning exists."""
+    from commit 34efb9a9's own evidence; the other 44 (the original 2026-08-21
+    retirement's 36, plus the 8 Kitchen SKUs D-024 retired 2026-09-23) predate
+    or postdate this tool and have no confirmation on record, so they are
+    correctly still reported pending. This is not a defect in this cycle's
+    work, it is the true state, and it is why the warning exists."""
     skus_fp = os.path.join(ROOT, "ops", "retired-skus.json")
     status_fp = os.path.join(ROOT, "ops", "retired-skus-stripe-status.json")
     preflight.WARN.clear()
@@ -115,7 +115,7 @@ def case_live_repository_state_today():
     if os.path.exists(status_fp):
         assert len(preflight.WARN) == 1, preflight.WARN
         msg = preflight.WARN[0][1]
-        assert "36 of 57" in msg, msg
+        assert "44 of 65" in msg, msg
         assert "AB-WET-ROOMS" not in msg, msg
         assert "retire_stripe_skus.py --apply" in msg
     else:

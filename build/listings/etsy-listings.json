@@ -1,5 +1,5 @@
 {
-  "_what_this_is": "The four day-one Etsy listings as structured data, so the tag and title limits can be checked by build/listings/check_etsy.py instead of counted by hand. The prose that goes in the description field lives in MARKETPLACE-LISTINGS.md, which is what Phil pastes from. A fifth, L3-entryway, was written, priced and readied, then withdrawn 2026-09-09: it sold the same content ops/generated_products.py already excludes from the site's own paid catalogue because the free Entryway deck covers it. See MARKETPLACE-LISTINGS.md section 3.1 for the withdrawal note.",
+  "_what_this_is": "The three day-one Etsy listings as structured data, so the tag and title limits can be checked by build/listings/check_etsy.py instead of counted by hand. The prose that goes in the description field lives in MARKETPLACE-LISTINGS.md, which is what Phil pastes from. Two more were written, priced and readied, then withdrawn: L3-entryway (2026-09-09) and L2-kitchen (2026-09-23), both for the same reason, sold content ops/generated_products.py already excludes from the site's own paid catalogue because a free deck covers it. See MARKETPLACE-LISTINGS.md section 3.1 for the withdrawal notes.",
   "_limits_note": "Etsy returned HTTP 403 to every automated request on 2026-09-03, so no limit below was verified today. 140 characters for the title and 20 for a tag are the limits the form has long enforced; the copy here sits well inside both, so if the real limits are tighter the copy still fits.",
   "_shop": {
     "preferred_name": "SixSSuccess",
@@ -26,21 +26,6 @@
                "decluttering", "home reset", "organizing printable",
                "chore cards", "room by room clean", "household planner",
                "whole house cleaning"]
-    },
-    {
-      "slug": "L2-kitchen",
-      "source_sku": "RP-KITCHEN",
-      "title": "Kitchen Cleaning and Organizing Cards - 42 Printable Cards for 7 Kitchen Zones, Instant Download",
-      "price_usd": 10.00,
-      "direct_price_usd": 9.00,
-      "files": ["6S-Kitchen-Pack.pdf", "How-to-print-these-cards.pdf"],
-      "pages": 7,
-      "cards": 42,
-      "tags": ["kitchen organization", "kitchen cleaning", "pantry organizing",
-               "cleaning checklist", "kitchen printable", "declutter kitchen",
-               "cleaning cards", "kitchen reset", "home organization",
-               "cleaning schedule", "fridge organization", "kitchen planner",
-               "printable cards"]
     },
     {
       "slug": "L4-moving-in",

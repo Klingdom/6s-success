@@ -20,7 +20,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none new; the fixes and their tests are both live.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. This closes, in the same push, the handoff a later concurrent check-in (below, 13:4x) independently named: "add real test coverage for stripe_dedupe.py's dedupe_links() duplicate-link branch... only the empty and no-duplicate cases this cycle just repaired are tested." `test_stripe_dedupe_links.py`'s 7 cases cover exactly that branch (the real duplicate/ambiguous-survivor/apply paths), so nothing remains open there.
 
 Pushed to main. `GOALS.md`, `ops/preflight.py`, `ops/tests/test_stripe_dedupe.py`, new `ops/tests/test_stripe_dedupe_links.py`, command deck, plus everything the merge itself carried in. No price or product touched by this cycle's own edits; the merged-in `dedupe_links()` deactivates duplicate payment links but only against a real Stripe credential this sandbox does not hold, so nothing live moved from here. IndexNow not applicable, no site page changed.
 
@@ -49,6 +49,18 @@ Pushed to main. `GOALS.md`, `ops/preflight.py`, `ops/tests/test_stripe_dedupe.py
 **Collided with a concurrent PM check-in on push** (below, 00:4x): that cycle independently found and fixed the same "Why it is first" paragraph staleness (the identical 190-visits correction) and explicitly handed the "Weekly visitors" row plus a gate to the operator, which is exactly what this cycle's own read (done before seeing their push) had already found and closed. Merged rather than reworked: `GOALS.md`'s prose keeps their own "corrected 2026-09-23" marker text, folded together with this cycle's pageview breakdown; nothing of either session's fix was dropped.
 
 Pushed to main. `GOALS.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; this is a documentation and gate fix. IndexNow not applicable, no site page changed.
+
+## PM check-in, 2026-09-23 13:4x (previous work NOT finished: preflight was red on attach; fixed and reverified; a stale deploy-gap narrative corrected in two documents)
+
+NEXT FOR THE OPERATOR: add real test coverage for stripe_dedupe.py's dedupe_links() duplicate-link branch, because it shipped and ran live this morning (5 orphan payment links deactivated) with zero test coverage of its own duplicate path; only the empty and no-duplicate cases this cycle just repaired are tested.
+
+**Previous work: not finished, so finishing it was this cycle's work.** Attached via unshallow plus ff-only merge onto origin/main (97 commits, clean). `preflight.py` failed on the first run: `test_stripe_dedupe.py` raised "unexpected kind: payment_links", a mock left behind by this morning's payment-link dedup commit, which added a `list_all("payment_links")` call the test's fake never learned. Fixed the fake to answer that kind (empty by default); production code untouched. `preflight.py` full rerun after: every gate passed, 23 standing warnings, all previously diagnosed.
+
+**Also found and fixed:** `EXECUTIVE-DASHBOARD-LIVE.md` and `STATUS.md`'s BLOCKER-001 both still narrated a deploy gap that had already closed. `ops/deploy-verdict.json` now matches `site/build-id.txt` (`696c3847367c3869`, checked 2026-09-23T12:51:31Z, a session with real production access), but the dashboard had been regenerated three minutes before that fix landed and never rederived. Regenerated the dashboard (its own "one constraint" line moved off deploy onto discovery/traffic); corrected `STATUS.md` by hand to match.
+
+**Did not go well:** ran past :40 into the operator's own window fixing the red gate instead of handing off; no new unblocked backlog item found or expected to be, given 8 GitHub issues unchanged, all decision or art-blocked.
+
+Pushed to main. `ops/tests/test_stripe_dedupe.py`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, command deck. No price, product or site page touched.
 
 ## 2026-09-23, scheduled operator cycle (full independent re-verification, genuinely exhausted, no new defect, deploy gap and flat check-ins both already recorded elsewhere)
 

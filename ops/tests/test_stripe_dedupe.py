@@ -47,6 +47,12 @@ def main() -> int:
                 pid = (params or {}).get("product")
                 return prices_for(pid, products)
             if kind == "payment_links":
+                # main() now falls through to dedupe_links() whenever
+                # products carry no duplicate, added 2026-09-23. This test
+                # is scoped to the product-side empty-account guard, so an
+                # empty, non-duplicated link population keeps that path a
+                # clean no-op rather than an unstubbed call. dedupe_links()'s
+                # own logic is covered directly by test_stripe_dedupe_links.py.
                 return list(links)
             raise AssertionError(f"unexpected kind: {kind}")
         return fake_list_all

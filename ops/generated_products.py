@@ -111,6 +111,40 @@ RETIRED = {
                          "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
     "KIT-RENTAL-HANDO": "Situation Kit, $14 for 120 cards (18%), no page, no "
                          "internal link. REVIEW-COMMERCE-2026-09-07.md 1.4.",
+    # REVIEW-COMMERCE-2026-09-07.md 1.6/C20: DECK-SYSTEM.md 9's rule (a new
+    # deck may only ship if it retires at least as many SKUs as it adds) named
+    # these 8 as superseded by the 72-card Kitchen deck, conditional on that
+    # deck actually being downloadable on the live site. GitHub issue #34
+    # (2026-09-22) found the deck's only "get it" action was a browser print
+    # dialog, not a saved file, and correctly held the retirement open on that
+    # gap. ops/build_kitchen_deck_pdf.py has since shipped a real PDF, linked
+    # from site/kitchen-deck.html ("Download the deck, free (PDF)") and kept
+    # current by gate_kitchen_deck_pdf_current; the condition 1.6 set is now
+    # met, so this fires the acceptance it already specified.
+    "ZP-KITCHE-PRIMARY--696C": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "ZP-KITCHE-COOKING--5F8B": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "ZP-KITCHE-SINK-AND-D3F3": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "ZP-KITCHE-UPPER-CA-53FF": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "ZP-KITCHE-LOWER-CA-3334": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "ZP-KITCHE-UTENSIL--8CAF": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "ZP-KITCHE-REFRIGER-964E": "Micro Zone Pack, $4 for 6 cards, superseded by "
+                                "the free 72-card Kitchen deck. "
+                                "REVIEW-COMMERCE-2026-09-07.md 1.6.",
+    "RP-KITCHEN": "Room Pack, $9 for 42 cards, superseded by the free 72-card "
+                   "Kitchen deck (72 cards, more per zone). "
+                   "REVIEW-COMMERCE-2026-09-07.md 1.6.",
 }
 
 

@@ -413,16 +413,27 @@ What should change is priority, not existence. See 3.1.
 **Effort.** 0, this is a decision to leave something alone. **Constraint
 position.** Independent.
 
-### 1.6 Conditional: the 8 Kitchen SKUs, when the Kitchen deck ships
+### 1.6 FIRED 2026-09-23, D-024: the 8 Kitchen SKUs, now that the Kitchen deck ships
 
 `DECK-SYSTEM.md` 9 sets the rule *no new deck ships unless it retires at least
 as many SKUs as it adds*, and names the 7 `ZP-KITCHE-*` packs plus `RP-KITCHEN`
 as superseded by a 72-card Kitchen deck that covers all seven zones with more
-per zone. That rule is correct and this review endorses it. It is **conditional
-on the deck actually shipping**, which is blocked on image billing
-(`OWNER-ACTIONS.md` 1b), so it is not an action today.
+per zone. That rule is correct and this review endorses it. It was
+**conditional on the deck actually shipping**, which was blocked on image
+billing (`OWNER-ACTIONS.md` 1b) when this review was written.
 
-**Acceptance when it fires:** the deck is downloadable on the live site, then
+**Fired.** GitHub issue #34 (2026-09-22) correctly held this open while the
+deck's only "get it" action was a browser print dialog, not a saved file.
+`ops/build_kitchen_deck_pdf.py` has since shipped a real, gated, current PDF
+linked from `site/kitchen-deck.html`, so the acceptance condition below is
+now met on the facts, not on a judgment call. The 8 SKUs are retired by the
+staged procedure in 1.3 (`D-024`, `ops/generated_products.py`'s `RETIRED`,
+`ops/retired-skus.json`); the repository side is done, live-shop
+verification and Stripe archival are the still-open tail, same as 1.3/1.4
+before this operator's own follow-through closed them same day.
+
+**Acceptance when it fires (historical, now satisfied):** the deck is
+downloadable on the live site, then
 the 8 SKUs are retired by the staged procedure in 1.3.
 
 ### 1.7 Two merges, no price change

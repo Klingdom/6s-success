@@ -41,11 +41,11 @@ data (`site/assets/js/data.js`) rather than re-typing the old numbers: it is
 Area Bundles and 15 Situation Kits, D-023, $0 realised revenue on either
 tier), not 41, and the "Reset kits," "Courses" and "Tools and supplies" rows
 describe a physical-product plan the catalogue never grew into. The real
-current shape is 109 Micro Zone Packs, 19 Room Packs, 2 whole-house packs, 1
+current shape is 102 Micro Zone Packs, 18 Room Packs, 2 whole-house packs, 1
 free Entryway Deck, 3 Consulting offers, 2 Books & Guides, 1 Micro Zone
-Manual and 1 free app (the eight category counts sum to 138), all digital,
+Manual and 1 free app (the eight category counts sum to 130), all digital,
 invoiced or free to use, no physical SKU exists to be blocked on a supplier. `EXECUTIVE-DASHBOARD-LIVE.md`
-(regenerated every cycle) is the current source of truth: 137 of 138 catalog
+(regenerated every cycle) is the current source of truth: 129 of 130 catalog
 items carry a live Stripe Payment Link or a real free download; the one
 exception is Corporate Lean 6S, which is quote-based by design, not blocked.
 The original table is kept below for its history of what Stage 1/2/3 meant

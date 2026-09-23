@@ -1408,6 +1408,7 @@ Maintain a compact index as the file grows.
 | D-021 | M6's 21-day read cannot be answered; the gate stays shut on a different reason | ACTIVE | PRODUCT |
 | D-022 | Paid card-deck tiers stay held until a stranger buys something; BK-EB stays at $9.99 | ACTIVE | Commerce |
 | D-023 | The 6 Area Bundles and 15 Situation Kits are retired; a kit returns behind a proven page | ACTIVE | Commerce |
+| D-024 | The 7 Kitchen Micro Zone Packs and Kitchen Room Pack are retired, now the free Kitchen deck is downloadable | ACTIVE | Commerce |
 
 D-004 to D-013 were never assigned; no record exists under those IDs
 anywhere in this repository. Not a gap to fill, just a numbering fact worth
@@ -2290,3 +2291,79 @@ re-derivation of this decision.
 
 **Revisit when.** A page for one of these life events ships and ranks, per
 the re-entry condition above; or Phil directs otherwise.
+
+## D-024 | 2026-09-23 | The 7 Kitchen Micro Zone Packs and the Kitchen Room Pack are retired, now that the free Kitchen deck is genuinely downloadable
+
+**Decision.** `ZP-KITCHE-PRIMARY--696C`, `ZP-KITCHE-COOKING--5F8B`,
+`ZP-KITCHE-SINK-AND-D3F3`, `ZP-KITCHE-UPPER-CA-53FF`, `ZP-KITCHE-LOWER-CA-3334`,
+`ZP-KITCHE-UTENSIL--8CAF`, `ZP-KITCHE-REFRIGER-964E` ($4 each, 6 cards) and
+`RP-KITCHEN` ($9, 42 cards) are removed from `site/assets/js/data.js` (added
+to `ops/generated_products.py`'s existing `RETIRED` exclusion, the same
+mechanism D-023 used) and every generator that reads it: `data.js` itself,
+the 7 Kitchen zone pages' and the Kitchen room page's "Just this zone"/"Get
+the Kitchen Pack" buy buttons (`ops/build_zone_pages.py`, both buttons are
+sourced from a live catalogue lookup that now correctly returns nothing),
+`site/shop.html`'s prerendered cards and Product JSON-LD (`ops/prerender_shop.py`,
+`ops/build_product_schema.py`). Full definitions and Stripe buy links
+preserved in `ops/retired-skus.json`, dated and reasoned, same as every prior
+retirement. This is the repository-side half only, per the same staged
+procedure as D-023: the live shop still needs verifying clear of these 8
+SKUs before the matching Stripe payment links are archived, and no sandbox
+this operator has run in holds a Stripe credential.
+
+**Rationale.** `DECK-SYSTEM.md` 9's rule (a new deck may only ship if it
+retires at least as many SKUs as it adds) already named these 8 as
+superseded by the free 72-card Kitchen deck, endorsed by
+`REVIEW-COMMERCE-2026-09-07.md` 1.6, conditional on the deck actually being
+downloadable on the live site. GitHub issue #34 (2026-09-22, filed by a prior
+PM cycle) correctly held this open: at the time, `site/kitchen-deck.html`'s
+only "get it" action was `window.print()`, a browser dialog with nothing a
+customer could save, which does not meet "downloadable" the way every
+sibling use of that word on this site does. That gap is now closed:
+`ops/build_kitchen_deck_pdf.py` (built since the issue was filed, exact date
+not established here) renders the deck's own print sheet to a real PDF via
+headless Chromium, verified content (both end-marker cards present, page
+count sane) before it is trusted, kept current against the live page by a
+content hash (`gate_kitchen_deck_pdf_current` in `preflight.py`) rather than
+a one-time build that could go stale silently. `site/kitchen-deck.html`
+links it directly: `<a ... href="downloads/6S-Kitchen-Deck-PrintAndPlay.pdf">Download
+the deck, free (PDF)</a>`. Checked directly before acting, not assumed: the
+gate passed (PDF matches the live print sheet) and the link was read from
+the live file. With a literal, saved file now available, 1.6's own
+acceptance condition is met exactly as it was written, so this fires it
+rather than re-opening the question. `ZP-*` card counts (6) and `RP-KITCHEN`
+(42) reconfirmed against the live `data.js` entries removed in this same
+commit before writing the `RETIRED` reasons.
+
+**Alternatives.** Leave the 8 SKUs listed until Phil closes issue #34
+himself: rejected. The issue's own recommendation was option 2 (ship the PDF,
+then retire), phrased as one resolution, not two separate approvals; its
+ambiguity was specifically whether the *print-only* page satisfied
+"downloadable", a question the PDF's existence answers on the facts, not on
+a judgment call left open for Phil. Re-flag the gap a further time instead of
+closing it: rejected per `CLAUDE.md` 0.2, "do not report a problem twice that
+you could have fixed once" applies equally to a problem whose fix already
+shipped and only needed the last mechanical step taken.
+
+**Consequences.** Catalogue drops from 138 to 130 SKUs (102 zone packs, 18
+room packs, following D-023's same-shaped drop). `build/listings/etsy-listings.json`'s
+`L2-kitchen` listing still sources its content from `build/products/RP-KITCHEN.html`,
+which this decision does not remove; that Etsy listing is a separate channel
+outside `REVIEW-COMMERCE-2026-09-07.md` 1.6's scope (the review addresses the
+site's own direct-sale catalogue) and is left untouched on purpose. Issue #34
+commented and closed with this decision's reasoning, so a future cycle does
+not re-read the same resolved question.
+
+**Evidence.** `REVIEW-COMMERCE-2026-09-07.md` 1.6 (evidence tier 2 for the
+downloadable-or-not fact, checked directly against the live file both when
+the issue was filed and again here; tier 8 for D-023's original
+value-ratio judgement, which this decision inherits by reference rather than
+re-arguing, since 1.6 explicitly deferred to D-023's own rule and did not
+re-litigate it). GitHub issue #34.
+
+**Revisit when.** Never, absent new information: this is mechanical
+execution of an already-decided, conditional rule whose condition has now
+been met, not a fresh judgement call. If a future session finds the PDF
+gate lying (claiming current when the shipped file is stale or blank), that
+is a defect in `gate_kitchen_deck_pdf_current`, not a reason to reopen this
+decision.

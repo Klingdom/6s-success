@@ -64,7 +64,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 | Subscriber to Customer | n/a | no subscribers to convert |
 | Customer to Repeat | n/a | one customer, ever |
 
-**The constraint is the first link.** The site sells 137 of 138 catalogue
+**The constraint is the first link.** The site sells 129 of 130 catalogue
 products with a checkout that takes a card directly; every one of those
 payment links is live, checkout works, and the catalogue, videos and images
 are built. Almost nobody arrives. Until that changes, improving anything

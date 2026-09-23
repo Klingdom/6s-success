@@ -235,6 +235,33 @@ def main() -> int:
                        "at its own retired price, was not reported"
                        % shared["sku"])
 
+    # A retired SKU whose name is a genuine SUBSTRING of a live, unrelated
+    # product's name (not an exact-name collision, the case above already
+    # covers that). Found 2026-09-23: retiring the Kitchen zone packs made
+    # "Cooking Zone Pack" (ZP-KITCHE-COOKING) a retired name embedded inside
+    # the live "Grill and Outdoor Cooking Zone Pack", and the live sibling's
+    # own ordinary price and buy button falsely read as evidence the retired
+    # SKU was on sale. Runs the exact shape that broke: the live product's
+    # own name, price and variant next to buy-intent language, which must
+    # stay clean because it is a real, honest listing of a different SKU.
+    substr = next((r for r in retired
+                   if not r["sku"].startswith("MPL-")
+                   and r["name"].strip().lower() not in live_names
+                   and any(r["name"].strip().lower() in c["name"].lower()
+                           and r["name"].strip().lower() != c["name"].strip().lower()
+                           for c in A.load_catalog())), None)
+    if substr:
+        host = next(c for c in A.load_catalog()
+                    if substr["name"].strip().lower() in c["name"].lower()
+                    and substr["name"].strip().lower() != c["name"].strip().lower())
+        out = run('<p>Buy the %s, %s, for $%s. Add to cart.</p>'
+                  % (host["name"], host.get("variant", ""), host["price"]))
+        if substr["sku"] in out:
+            bad.append("a retired SKU (%s) whose name is only a substring of "
+                       "the live product %r was wrongly flagged by that "
+                       "live product's own honest listing"
+                       % (substr["sku"], host["name"]))
+
     # A buy link that is not in the catalogue at all.
     out = run('<a href="https://buy.stripe.com/notARealSlug0000">Buy</a>')
     if "not in data.js" not in out:
