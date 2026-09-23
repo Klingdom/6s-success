@@ -16,7 +16,9 @@ NEXT FOR THE OPERATOR: no new unblocked item beyond this fix. `BACKLOG-2026-09-0
 
 **Did not go well:** a full `preflight.py` rerun to completion (the fast test suite alone is 35,000+ lines across 255 files) was still in progress in the background when this entry was written and this cycle's own commit needed to ship; the gate's own logic was verified directly and standalone against the fixed file rather than only inferred from the rerun, so this is verified-by-direct-check, not verified-by-full-rerun-completion. Flagging this distinction rather than letting a partial rerun read as a full clean pass.
 
-**Changing next cycle:** if `preflight.py`'s full background rerun (PID logged this cycle, `/tmp/preflight_out2.log` in this sandbox only, not portable across sessions) is still running when the next cycle attaches, it should check that log's tail before assuming anything; if it shows red, that is new information this entry did not have.
+**Changing next cycle:** none needed; see addendum below, closed out in this same cycle.
+
+**Addendum, same cycle:** the full background rerun this entry flagged as still in progress when pushed finished shortly after: every gate passed, 24 warnings, all the same standing sandbox-credential limitations named above, nothing new. The verified-by-direct-check distinction two paragraphs up held; the full rerun found nothing it missed.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": YouTube OAuth, Search Console verification, Stripe business description, the 36-SKU Stripe archival) and the 7 open GitHub issues, unchanged.
 
