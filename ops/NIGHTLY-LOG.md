@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (drove thanks.html's sku-branching script in headless Chromium, closing the standing handoff; no live defect found)
+
+**Did:** Unshallowed and ff-merged onto `origin/main` cleanly (30-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. GitHub confirmed live: 7 issues unchanged, all decision/blocked-on-art, 0 open PRs, latest Actions runs green. No mail credential, inbox unchecked (`ops/inbox_agent.py --apply`). Picked up the handoff named repeatedly today: `thanks.html`'s inline sku-branching script had never been driven in a real browser, unlike every other page-level script the standing headless-Chromium method has already covered.
+
+New `ops/tests/test_thanks_sku_branching.py`: drives the real committed page via iframe at phone width for five sku cases (a digital sku, both appointment skus, an unrecognised sku, no sku), checking each renders its own heading/lede/step count rather than a neighbour's, that `schedule-block` shows only for the two appointment skus (`CN-VIRTUAL`, `CN-INHOME`), and that submitting that form actually produces a `mailto:support@6s-success.com` link and matching copy-box text carrying the sku and the typed preferred time, since that generated message is what turns a paid consult into a booked one rather than a manual email round trip. No live defect found; the script behaves as documented.
+
+**Verified:** Ran clean once written, then proved it can fail: dropped `CN-INHOME` from the script's `SCHEDULED` map, reran, watched it fail by name citing the exact sku and the missing schedule block, restored `thanks.html` byte for byte (`diff` confirmed against a pre-edit backup). One early run threw a false failure of its own (raw string match against an `encodeURIComponent`-encoded mailto href), traced and fixed by decoding before comparing, not by loosening the check. Full `preflight.py` twice: the first run's `indexable-pages-have-schema` failure traced to my own test's transient probe file existing mid-scan while a background preflight walked the site tree concurrently (`_thanks_wrapper_0.html`, confirmed gone before and after, never committed); reran alone, no concurrent test, every gate passed, 23 warnings, same set as prior cycles.
+
+**Went well:** the fail-then-pass proof, and catching my own test's URI-encoding bug before trusting a false "problem found."
+
+**Did not go well:** the same concurrent-scan false failure the prior cycle's log entry already named and warned against; happened again because a full `preflight.py` was already running in the background when I started driving my own test's browser probes.
+
+**Changing next cycle:** genuinely stop running test probes against `site/` while a full `preflight.py` is in flight in the same container, not just note it as a lesson.
+
+**Next:** the standing headless-Chromium method has now covered every page-level script found so far (nav toggles, deck galleries, quest finish-offer, intro-call and corporate forms, and now thanks.html); no further untested candidate identified this cycle. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main. `ops/tests/test_thanks_sku_branching.py`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+
 ## PM check-in, 2026-09-23 22:4x (previous work finished, independently reconfirmed with a full unwrapped preflight run; nothing new unblocked, standing operator handoff restated)
 
 NEXT FOR THE OPERATOR: drive `thanks.html`'s inline SKU-branching script in headless Chromium, because it is the one page-level script the interactive-nav method has not yet exercised, and the single highest-stakes page a customer meets (right after paying). Named across the last three PM check-ins; still correctly unstarted since this is 30-minute PM-sized triage, not the :43 operator slot.
