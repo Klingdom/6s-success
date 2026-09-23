@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (a real latent ledger bug found cold-reading retire_stripe_skus.py, fixed and gated; backlog otherwise exhausted)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`. Caught a concurrent session's own push mid-cycle (two merge commits, a Stripe-archival ledger gate) and re-fetched/ff-merged again before touching anything. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits, including the brand-new `retired-skus-stripe` warning: 36 of 57 SKUs never confirmed archived, honestly reported as unchecked-not-clean since no sandbox here holds a Stripe credential).
+
+**Sections 2-6 of the backlog again all done or Phil-gated; 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.** No mail credential; inbox unchecked, not empty. Ranked `ops/*.py` by mention count in this log to find the least-examined files (the established method once the backlog itself is exhausted): `build_corporate_asset.py` (13 mentions) and `retire_stripe_skus.py` (6, added today by a concurrent session) were the lowest non-trivial files. Cold-read both.
+
+**`build_corporate_asset.py`: clean.** Regenerated it directly; byte-identical to the committed `build/` and `site/downloads/` copies, no drift. Confirmed it is correctly registered in `preflight.py`'s ownership chain and `check_pack_pages.py`'s `PRINTABLES` list, exactly as its own docstring claims, and that `site/corporate.html` really does link it.
+
+**`retire_stripe_skus.py`: a real bug, found before it could bite.** `main()`'s `--apply` path built `touched` from only the SKUs it actually posted a Stripe deactivation for this run, then called `record_archived(touched)`. A retired SKU already carrying zero active Stripe objects (already clean, or never had one under this tag) is correctly absent from `links`/`prods` (both are filtered from the live-active set), so it was never added to `touched` either, and so a mixed run (some SKUs still live, others already clean) would permanently skip recording the already-clean ones. That matters because `gate_retired_skus_stripe_archived`, added by a concurrent session earlier today, reads exactly this ledger by SKU name, and a SKU with zero active objects can never re-enter `links`/`prods` on any future run to get a second chance at being recorded. No live Stripe mutation happened here (no credential in this sandbox); this is a code-correctness fix to a script that has real money-adjacent effects, `CLAUDE.md` 52's YELLOW tier, so it was read, understood and proved before touching, not just described. Fixed: after the deactivation loop completes (an exception before that point skips recording, the conservative default), every SKU in `skus` is now recorded, not only the touched subset, since reaching that line means every retired SKU has zero active Stripe presence either way.
+
+**Fail-then-pass proved directly.** New `ops/tests/test_retire_stripe_skus_partial_ledger.py`: three retired SKUs, one with an active Stripe link, two already clean; asserts `--apply` deactivates the live one and records all three. Ran against the pre-fix code first (stashed the fix alone) and watched it fail by name, listing exactly the two already-clean SKUs it silently dropped; restored the fix, reran clean.
+
+**Verified:** full `preflight.py` twice (every gate passed, 23 warnings, none new), `check_urls.py` (190/190), `audit_pages.py` (194/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0). No separate `preflight.py` gate needed: `gate_tests()` already globs `ops/tests/test_*.py`.
+
+**Went well:** the low-mention-file method surfaced a real defect in code added the same day, not stale ground already swept; proving it fail-then-pass against the actual pre-fix code rather than reasoning about it in the abstract.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the fix and its test are both live.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No new operator-executable handoff found.
+
+Pushed to main. `ops/retire_stripe_skus.py`, new test file, command deck. No price, product or live Stripe mutation (no credential here); this only fixes the ledger bookkeeping a future `--apply` run on a real credential would rely on.
+
 ## PM check-in, 2026-09-22 23:1x (previous work finished; fixed the D18 VideoObject drift the 22:4x check-in scoped and left for the operator)
 
 **Previous work: finished, verified.** Unshallowed, fast-forward merged onto `origin/main` clean. `preflight.py`'s first run failed on `etsy-pdfs-current` self-inflicted by a stray SIGTERM the 22:4x cycle left; already cleaned up by the time I checked, confirmed clean.

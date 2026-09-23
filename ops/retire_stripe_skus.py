@@ -174,22 +174,31 @@ def main() -> int:
         return 0
 
     done = 0
-    touched = set()
     for L in links:
         SC.call("POST", "payment_links/" + L["id"], {"active": False})
         print("    link  deactivated  %s" % L["metadata"]["sku"])
-        touched.add(L["metadata"]["sku"])
         done += 1
     for p in prods:
         SC.call("POST", "products/" + p["id"], {"active": False})
         print("    product archived   %s" % p["metadata"]["sku"])
-        touched.add(p["metadata"]["sku"])
         done += 1
     print("\n  %d object(s) retired in Stripe." % done)
-    if touched:
-        record_archived(touched)
-        print("  recorded %d SKU(s) archived in %s"
-              % (len(touched), os.path.relpath(STATUS_PATH, ROOT)))
+
+    # Record every retired SKU, not just the ones this run deactivated.
+    # `links`/`prods` were filtered from the FULL live-active set down to
+    # SKUs in `skus`, so any retired SKU absent from both already carried no
+    # active Stripe object before this run started; the loop above just
+    # deactivated the rest. Reaching this line means every step succeeded
+    # (an exception above skips this and leaves the ledger unchanged, the
+    # conservative default), so every SKU in `skus` is now confirmed clean,
+    # not only the ones that needed an API call. Recording only the touched
+    # subset left every already-clean SKU in a mixed run permanently
+    # "pending" in the ledger, even though nothing further would ever touch
+    # it: a future run's Stripe query only returns objects that are still
+    # active, so an already-clean SKU can never appear in `touched` again.
+    record_archived(skus)
+    print("  recorded %d SKU(s) confirmed clean in %s"
+          % (len(skus), os.path.relpath(STATUS_PATH, ROOT)))
     return 0
 
 
