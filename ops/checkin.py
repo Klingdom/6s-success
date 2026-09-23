@@ -69,6 +69,29 @@ def live_products():
         return None
 
 
+def repo_product_count():
+    """What the repository currently defines as the live catalogue, the same
+    read ops/deploy.py's own repo_product_count() uses to decide whether a
+    deploy is needed.
+
+    next_action() used to compare against a hardcoded 159, correct the day it
+    was written but never updated for either legitimate SKU retirement since
+    (159 to 138 on 2026-09-22, then 138 to 130 on 2026-09-23). That left it
+    reporting "Production is behind the repository. Deploy." every hour for
+    over a day straight even while production genuinely matched the
+    repository, and it would keep doing so forever after any future
+    retirement too, since the count only ever needs to fall for that to
+    trigger. Re-deriving it here instead means a legitimate catalogue change
+    can never make this check stale again.
+    """
+    try:
+        s = io.open(os.path.join(ROOT, "site", "assets", "js", "data.js"),
+                    encoding="utf-8").read()
+        return len(re.findall(r'"sku"\s*:', s))
+    except Exception:                                           # noqa: BLE001
+        return None
+
+
 def youtube_videos():
     """How many videos are actually published. The point of the whole media
     pipeline, and the number most likely to be quietly zero."""
@@ -219,12 +242,16 @@ def carry_forward(key: str, now: dict, prev: dict) -> dict:
     return last, when, False
 
 
-def next_action(persisted: dict) -> str:
+def next_action(persisted: dict, want_products) -> str:
     """The single next thing, chosen by the constraint in GOALS.md.
 
     Takes the persisted, carry-forward-merged state (see main()), not a raw
     measurement, so a run that could not reach YouTube reasons from the last
     real count instead of treating "could not check" as "confirmed empty."
+
+    want_products is the repository's own current catalogue count
+    (repo_product_count()), passed in rather than read here so this function
+    stays pure and testable without a real site/assets/js/data.js on disk.
     """
     yt = persisted.get("youtube_published_last_measured")
     yt_fresh = persisted.get("youtube_published") is not None
@@ -247,8 +274,20 @@ def next_action(persisted: dict) -> str:
     # single worst thing this field can report) the same as never having been
     # measured at all, and skip straight past it. is not None keeps that case
     # correctly urgent instead of silently unnoticed.
-    if persisted.get("products_live") is not None and persisted["products_live"] < 159:
-        return "Production is behind the repository. Deploy."
+    #
+    # Comparing with != rather than < matters: the catalogue has shrunk twice
+    # this month (159 to 138, then 138 to 130) as SKUs were legitimately
+    # retired, and a "<" check against any fixed number only ever tightens as
+    # the count falls, so it would call a perfectly deployed, matching site
+    # "behind" forever after the next retirement. Matching production against
+    # whatever the repository defines right now, in either direction, is the
+    # actual question (see ops/deploy.py's own repo_product_count() comment).
+    live_products_now = persisted.get("products_live")
+    if (live_products_now is not None and want_products is not None
+            and live_products_now != want_products):
+        return ("Production is behind the repository. Deploy. (live serves "
+                 "%d products, repository now defines %d.)"
+                 % (live_products_now, want_products))
     if not yt_fresh:
         return ("Last confirmed YouTube count was %s as of %s; this run could "
                 "not reach YouTube to recheck. Work the next unblocked item "
@@ -301,7 +340,7 @@ def main() -> int:
     lines.append("Commits in 24h: %s. Recorded as effort, not as a result."
                  % commits_24h_text(now["commits_24h"]))
     lines.append("")
-    lines.append("**Next:** " + next_action(persisted))
+    lines.append("**Next:** " + next_action(persisted, repo_product_count()))
     entry = "\n".join(lines)
 
     if not os.path.exists(LOG):

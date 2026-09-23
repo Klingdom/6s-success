@@ -8,6 +8,18 @@ worst outcome that field can report) was silently treated the same as "not
 measured" and skipped the "Production is behind the repository. Deploy."
 warning instead of triggering it.
 
+A second real bug found 2026-09-23: next_action() compared products_live
+against a hardcoded 159, correct the day it was written but never updated for
+either of two legitimate SKU retirements since (159 to 138, then 138 to 130).
+That made it report "Production is behind the repository. Deploy." every
+hour for over a day straight while production genuinely matched the
+repository, and it would do the same after any future retirement, since a
+"<" check against a fixed number only ever tightens as the real count falls.
+Fixed by taking the repository's own current count (repo_product_count(),
+mirroring ops/deploy.py's function of the same name) as an explicit
+want_products argument and comparing with !=, so either direction of drift
+is caught and a legitimate shrink can never trip it again.
+
     python ops/tests/test_checkin.py
 """
 import os
@@ -78,14 +90,17 @@ def main() -> int:
         fails.append("carry_forward did not fall back to the raw previous "
                      "value when no standing answer exists yet: %r" % (got,))
 
-    # next_action
+    # next_action. 159 is the fixture's own "matches the repository" baseline
+    # (see _base_persisted), passed explicitly as want_products so these
+    # cases stay hermetic and do not depend on the real, currently-130
+    # site/assets/js/data.js on disk.
     p = _base_persisted(youtube_published_last_measured=None)
-    action = checkin.next_action(p)
+    action = checkin.next_action(p, 159)
     if "no run has ever been able to reach YouTube" not in action:
         fails.append("next_action did not flag a channel never once reached")
 
     p = _base_persisted(youtube_published_last_measured=0, youtube_published=0)
-    action = checkin.next_action(p)
+    action = checkin.next_action(p, 159)
     if not action.startswith("Publish."):
         fails.append("next_action did not recommend publish on a confirmed "
                      "empty channel with videos ready: %r" % action)
@@ -95,38 +110,86 @@ def main() -> int:
     # still trigger the deploy-behind warning rather than fall through to
     # the generic backlog message.
     p = _base_persisted(products_live=0)
-    action = checkin.next_action(p)
-    if action != "Production is behind the repository. Deploy.":
+    action = checkin.next_action(p, 159)
+    if not action.startswith("Production is behind the repository. Deploy."):
         fails.append("next_action did not treat a live catalogue reading "
                      "zero as production being behind: %r" % action)
 
     p = _base_persisted(products_live=None)
-    action = checkin.next_action(p)
+    action = checkin.next_action(p, 159)
     if "Production is behind" in action:
         fails.append("next_action claimed production was behind when "
                      "products_live was never measured at all")
 
     p = _base_persisted(products_live=100)
-    action = checkin.next_action(p)
-    if action != "Production is behind the repository. Deploy.":
+    action = checkin.next_action(p, 159)
+    if not action.startswith("Production is behind the repository. Deploy."):
         fails.append("next_action did not flag production behind at 100 "
                      "of 159 live products")
 
+    # The second real bug: a hardcoded threshold survives a legitimate
+    # catalogue shrink by staying silent (100 < 159 still reads "behind"
+    # forever), but the actual regression is the reverse direction going
+    # uncaught by a "<" check: production sitting one full retirement's
+    # worth AHEAD of a smaller repository count. 138 was correct against a
+    # 138-item repository and must not be flagged; 138 against a
+    # newly-130-item repository (a real retirement not yet deployed) must be.
+    p = _base_persisted(products_live=138)
+    action = checkin.next_action(p, 138)
+    if action.startswith("Production is behind"):
+        fails.append("next_action flagged production behind when live and "
+                     "repository counts matched exactly: %r" % action)
+
+    p = _base_persisted(products_live=138)
+    action = checkin.next_action(p, 130)
+    if not action.startswith("Production is behind the repository. Deploy."):
+        fails.append("next_action did not catch a repository that shrank "
+                     "(130) while production still serves the old, larger "
+                     "count (138): %r" % action)
+    if "138" not in action or "130" not in action:
+        fails.append("next_action's deploy-behind message did not name both "
+                     "the live and repository counts: %r" % action)
+
+    # want_products unreadable (a None from repo_product_count(), e.g. no
+    # site/assets/js/data.js on disk) must not be read as "any mismatch",
+    # since that is unmeasured, not a known drift.
+    p = _base_persisted(products_live=159)
+    action = checkin.next_action(p, None)
+    if "Production is behind" in action:
+        fails.append("next_action claimed production was behind when the "
+                     "repository's own catalogue count could not be read")
+
     p = _base_persisted(youtube_published=None,
                         youtube_published_measured_at="2026-09-10 09:00")
-    action = checkin.next_action(p)
+    action = checkin.next_action(p, 159)
     if ("this run could not reach YouTube to recheck" not in action
             or "2026-09-10 09:00" not in action):
         fails.append("next_action did not label a stale YouTube reading with "
                      "its own age: %r" % action)
 
     p = _base_persisted()
-    action = checkin.next_action(p)
+    action = checkin.next_action(p, 159)
     want = ("Work the next unblocked item in BACKLOG.md, checked against "
            "GOALS.md section 0 before starting.")
     if action != want:
         fails.append("next_action's default fell through to something else "
                      "when nothing was actionable: %r" % action)
+
+    # repo_product_count() itself, against the real committed catalogue:
+    # confirms it counts the same "sku" occurrences live_products() counts
+    # remotely, just from the local file, and stays in sync with whatever
+    # the catalogue currently is rather than needing a hardcoded number here.
+    import re as _re
+    real_data_js = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "..", "site", "assets", "js", "data.js")
+    with open(real_data_js, encoding="utf-8") as f:
+        expected = len(_re.findall(r'"sku"\s*:', f.read()))
+    got = checkin.repo_product_count()
+    if got != expected:
+        fails.append("repo_product_count() returned %r, expected %r counted "
+                     "directly from the real site/assets/js/data.js" %
+                     (got, expected))
 
     for k in checkin.OUTCOME_KEYS:
         if k not in checkin.MEANING:
@@ -138,8 +201,9 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("PASS: 15 cases, commits_24h_text, parse_undelivered, carry_forward "
-         "and next_action (including the products_live==0 fix) all correct")
+    print("PASS: 23 assertions, commits_24h_text, parse_undelivered, "
+         "carry_forward, repo_product_count and next_action (including both "
+         "the products_live==0 fix and the hardcoded-159 fix) all correct")
     return 0
 
 
