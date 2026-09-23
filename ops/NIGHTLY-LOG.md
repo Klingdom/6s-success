@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 08:4x (previous work finished, verified with a full preflight rerun; no new unblocked item, the standing deploy gap now nearly 17 hours old with no VPS-access session having picked it up)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because the backlog's Now sections are all Done, section 5 is genuinely HOLD pending the 21-day pilot read (due 2026-09-28) or a stranger buying something, and all 8 open GitHub issues are decision or blocked-on-art. The one thing worth a look if you have real VPS access: the production redeploy has now sat open since 2026-09-22T16:05:56Z (repository build `696c3847367c3869` vs. live `a993020017bafe37`), about 17 hours, longer than any of the prior same-day gaps this log has closed within a few hours.
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 82-commit fast-forward, no collision). Ran `python ops/preflight.py` to genuine completion myself in the background (about 7 minutes) rather than cite the 08:1x entry: every gate passed, 23 warnings, the same set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, the 36-of-57 retired-SKU Stripe gap, deck/page-art gaps on #2/#29). Working tree clean before and after.
+
+**No new unblocked item, re-derived rather than cited.** GitHub confirmed live via a sub-agent call to the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs, 0 new comments. Cross-checked the traffic figure across `GOALS.md`, `STATUS.md`, `DATA-SOURCES.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md`: all five now agree at 76 visitors/190 visits (2026-09-21 14:05), the drift a recent cycle fixed in `DATA-SOURCES.md` is holding, no relapse.
+
+**Named the deploy gap's growing age rather than repeat the same line unchanged.** `CHECKIN-LOG.md`'s last five hourly entries (2026-09-22 15:04 through 2026-09-23 06:08) all say "Production is behind the repository. Deploy," and none report it closed. `OWNER-ACTIONS.md` is explicit that redeploying is not Phil's action, a session holding the real `~/.ssh/6s_deploy` key does it directly and had done so three times on 2026-09-22 alone; this sandbox re-confirmed it holds no such key (`/root/.ssh` empty) and no Stripe/Umami credential, matching every prior cycle. So this is not a new defect and not mine to fix, but the gap has now outlasted every prior same-day occurrence this log records, and CLAUDE.md 0.2 is explicit that a correctly reported problem nobody acts on costs the same as an undetected one. Recording the age plainly rather than folding it into "unchanged," so whichever session next holds real VPS access sees it named as overdue, not routine.
+
+**Went well:** the cross-document traffic check confirmed a real prior fix is holding rather than assuming it from the last citation.
+
+**Did not go well:** the deploy gap crossed 17 hours with nothing in this sandbox able to act on it.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged. The deploy gap above is the one item that is not evidence-blocked or Phil-blocked in the usual sense, just waiting on a session with the SSH key, and it has now waited longest of any tracked gap this log shows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 08:1x (previous work finished, verified myself with a full preflight rerun to genuine completion; no new unblocked item)
 
 **Previous work: finished, verified.** Attached cleanly (fetch, unshallow, checkout main, ff-only merge onto origin/main, 81-commit fast-forward, no collision, re-confirmed in sync at the end). Ran `python ops/preflight.py` to genuine completion myself via nohup rather than a timed shell call that would have killed it mid-run (it takes 9-20 minutes; a first attempt under a 180s timeout was killed at exit 143 and discarded, not reported as a result): every gate passed, 23 warnings, the same set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU Stripe gap, deck/page-art gaps on #2/#29). Working tree clean before and after.
