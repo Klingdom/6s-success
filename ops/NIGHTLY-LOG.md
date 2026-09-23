@@ -22,6 +22,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `OWNER-ACTIONS.md`, `ops/preflight.py`, new `ops/tests/test_gate_owner_actions_retired_sku_count_current.py`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; this is a documentation and gate fix. IndexNow not applicable, no site page changed.
 
+## PM check-in, 2026-09-23 16:4x (previous work finished and independently reverified; CI's one recorded failure traced to the already-fixed nightly-log-ordering gate on an older commit, confirmed fixed on HEAD; no new unblocked item, handoff to the operator)
+
+NEXT FOR THE OPERATOR: run a real user-flow drive in headless Chromium against the built site (start with the Home Quest symptom-to-victory flow on `quest.html`, or a zone page's kit/CTA path), because that fresh method the 16:1x entry itself suggested has still not been tried today, while the two other fallback lanes (low-mention `ops/*.py` cold-reads, cross-document arithmetic sweeps) have each been independently confirmed exhausted twice this cycle and the last. A live click-through can surface a real broken interaction that `audit_pages.py`/`audit_visual.py`'s static checks cannot, and ranks as priority-2 (broken or dishonest) rather than priority-5 (product) if it finds something.
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached (the usual issue #27 shape); `git fetch --unshallow` then `checkout main` then `merge --ff-only origin/main` fast-forwarded 128 commits cleanly, no reset, no force. Read `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest `ops/NIGHTLY-LOG.md` entries, and confirmed GitHub live via the API: 7 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
+
+**Ran a full `preflight.py` (not truncated, no external timeout) rather than trust the 16:1x entry's own claim.** Every gate passed, 24 warnings, all previously diagnosed sandbox limitations (no Stripe/VPS/mail credential, no Chromium/Pillow, deploy freshness unreachable from here). Working tree clean, `main` matches `origin/main` exactly.
+
+**Chased the one warning that looked live rather than reading past it: `workflows-healthy` named `checks.yml` failing.** Checked via the GitHub API directly instead of assuming the warning's own text was current: the failing run (35884869933) was against `219cf2b0`, 2 commits behind HEAD, and its actual failure was the exact `nightly-log-ordering` gate FAIL the 16:1x entry above already found and fixed (`gate_nightly_log_ordering`, entry #1332 out of sequence). `checks.yml` has not re-run since, because the two commits after it (`f31630e7`, the 16:1x fix itself) only touched `ops/NIGHTLY-LOG.md` and the command deck, outside the workflow's trigger paths. My own fresh `preflight.py` run on HEAD passing (including `nightly-log-ordering`) is the direct confirmation the fix holds; nothing here is a new defect, only a CI run that predates a fix already merged.
+
+**Went well:** verifying the CI warning against GitHub's own run log instead of either ignoring it or re-doing work the 16:1x cycle had already finished.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": YouTube OAuth, Search Console verification, Stripe business description, the 36-SKU Stripe archival) and the 7 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 16:1x (previous work NOT finished: a real `gate_nightly_log_ordering` FAIL found on attach; fixed by moving the misplaced entry, not by editing the gate)
 
 NEXT FOR THE OPERATOR: no new unblocked item beyond this fix. `BACKLOG-2026-09-07.md` sections 2-6 remain done or Phil-gated, all 7 GitHub issues remain `decision`/`blocked-on-art`. The low-mention `ops/*.py` cold-read lane is now confirmed exhausted a second time this cycle (`build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py` reread cold, no defect; matches the 00:1x entry's own note that this lane is thin). Recommend the next session try a fresh method per that entry's own suggestion (a real user-flow drive in headless Chromium, or a cross-document arithmetic sweep) rather than a sixth pass over the same five files.
