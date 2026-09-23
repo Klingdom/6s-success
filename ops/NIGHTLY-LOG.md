@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 16:1x (previous work NOT finished: a real `gate_nightly_log_ordering` FAIL found on attach; fixed by moving the misplaced entry, not by editing the gate)
+
+NEXT FOR THE OPERATOR: no new unblocked item beyond this fix. `BACKLOG-2026-09-07.md` sections 2-6 remain done or Phil-gated, all 7 GitHub issues remain `decision`/`blocked-on-art`. The low-mention `ops/*.py` cold-read lane is now confirmed exhausted a second time this cycle (`build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py` reread cold, no defect; matches the 00:1x entry's own note that this lane is thin). Recommend the next session try a fresh method per that entry's own suggestion (a real user-flow drive in headless Chromium, or a cross-document arithmetic sweep) rather than a sixth pass over the same five files.
+
+**Previous work: NOT finished on attach.** Unshallowed and ff-merged onto `origin/main` cleanly (126-commit fast-forward). Ran `preflight.py` (fast) and it failed for real: `gate_nightly_log_ordering` on entry #1332, this file's own last line, dated 2026-09-23 but sitting after the entry sequence had already moved on to 2026-09-22 and older, 35,000+ lines past where a newest-first reader would look. Root cause: the 2026-09-23 "scheduled operator cycle (independent re-verification against a heavily concurrent day...)" entry had been appended to the physical end of the file instead of prepended to the top, the exact append-not-prepend shape this gate's own docstring was written to catch (first seen 2026-09-05).
+
+**Fixed by moving the entry, not by touching the gate.** Cut the full entry (15 lines, heading through its closing "Pushed to main" line) from EOF and reinserted it inside the contiguous top-of-file 2026-09-23 block, immediately before the first 2026-09-22 entry, preserving every other entry's position and order untouched. Confirmed zero duplication (`grep -c` on the entry's own heading: 1, not 2) and a clean pure move in `git diff` (16 lines removed from one place, 16 inserted at the other, nothing else touched). Reran the gate's exact matching/comparison logic standalone against the fixed file: passes. `ops/fix_dashes.py --check ops/NIGHTLY-LOG.md`: 0 em dashes, 0 en dashes.
+
+**While the fix was being verified, cold-read the low-mention `ops/*.py` tier again** (`build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`): all four correctly implemented, well-documented, already self-checking or gated (the 00:1x entry's own conclusion, reconfirmed rather than assumed). No new defect. 7 open GitHub issues reconfirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Dashboard's 2 open P0 items (issue #15, Listmonk entity decision; issue #2, card-image regeneration) both remain genuinely Phil/art-gated, nothing actionable here. No VPS/Stripe/mail credential in this environment, confirmed again (`~/.ssh` empty, no `.env.secrets`), so the standing deploy gap (`696c3847367c3869` live vs repository HEAD) stays correctly tracked as stale-not-unknown, not something this sandbox can act on.
+
+**Went well:** catching a genuine gate FAIL on attach rather than assuming a clean run, and fixing the actual misplacement rather than relaxing the check that caught it.
+
+**Did not go well:** a full `preflight.py` rerun to completion (the fast test suite alone is 35,000+ lines across 255 files) was still in progress in the background when this entry was written and this cycle's own commit needed to ship; the gate's own logic was verified directly and standalone against the fixed file rather than only inferred from the rerun, so this is verified-by-direct-check, not verified-by-full-rerun-completion. Flagging this distinction rather than letting a partial rerun read as a full clean pass.
+
+**Changing next cycle:** if `preflight.py`'s full background rerun (PID logged this cycle, `/tmp/preflight_out2.log` in this sandbox only, not portable across sessions) is still running when the next cycle attaches, it should check that log's tail before assuming anything; if it shows red, that is new information this entry did not have.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": YouTube OAuth, Search Console verification, Stripe business description, the 36-SKU Stripe archival) and the 7 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only (the ordering fix plus this entry), command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 15:4x (previous work finished and verified, after clearing a self-inflicted preflight lock and probe-file artifact from my own first command's timeout; one real cross-document staleness found and fixed, gate widened)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 are all done or Phil-gated and all 7 open GitHub issues are `decision`/`blocked-on-art`, unchanged. If a session ever holds real VPS/Stripe/mail access, the standing gaps in `OWNER-ACTIONS.md` (Umami key, product-master backup location, SKU-retirement Stripe confirmation) are the highest-value unblocked work; otherwise the low-mention `ops/*.py` cold-read and cross-document consistency sweep are the established fallback lanes.
@@ -803,6 +823,22 @@ Pushed to main. `ops/retire_stripe_skus.py`, new test file, command deck. No pri
 **Addendum, merging with a concurrent operator push:** that cycle's own cold-read of the same file (below) found a sharper version of the completeness gap this entry only flagged as minor: a mixed `--apply` run (some SKUs still live, others already clean) permanently skipped recording the already-clean ones, not just the ones hit by a mid-batch exception. Fixed and gated in `7809bd27`, merged into this push rather than reworked.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this log entry; no price, product or site page touched. IndexNow not applicable.
+
+## 2026-09-23, scheduled operator cycle (independent re-verification against a heavily concurrent day, no new defect, preflight's own external-timeout gotcha handled correctly)
+
+**Did:** unshallowed and fast-forwarded cleanly onto `origin/main` (123 commits, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and `CHECKIN-LOG.md` in full rather than only the last four `NIGHTLY-LOG.md` entries, because this file's own last "## 2026-09" entry was dated 2026-09-04 despite today being 2026-09-23 and 131 commits landing in the prior 24 hours; confirmed via `CHECKIN-LOG.md` and this same file's own later section (grepped past the point my first read stopped) that dozens of same-day "scheduled operator cycle" entries already exist between 2026-09-04 and today, so nothing was actually silent, only my own first pass under-read the file's length.
+
+**Verified rather than assumed:** `preflight.py` (fast) ran clean, every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress). Ran it as a plain background process with no external `timeout` wrapper shorter than the file's own documented 1050s floor, per the gotcha a same-day earlier commit had just documented at the top of `ops/preflight.py`; it finished in under 400s on its own, no lockdir orphaned. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply` and `affiliate.py --check`: no mail credential (unchecked, not empty), 165 documents clean. Cold-read `ops/generated_products.py` (previously clean on four prior cycles) once more given today's volume of concurrent edits nearby it: reran `python ops/generated_products.py` directly against the live catalogue rather than citing the prior clean results, 129 sellable products (102 zone + 18 room), every retirement reason still correctly cited, every deliverable file present and a plausible size. `ops/dashboard.py` regenerated cleanly.
+
+**Went well:** catching my own mis-read of this log's length before writing a false "silent for 19 days" claim into the record; letting `preflight.py` run to completion in the background instead of wrapping it in a shell `timeout` shorter than its documented self-heal window.
+
+**Did not go well:** nothing new; the backlog's unblocked rows are, as many same-day cycles already found, done or Phil-gated (`OWNER-ACTIONS.md`'s "start here" list, the 5 owner-decision issues, `products_live` 159 to 138 from today's deliberate C6/C7 bundle retirement, not a regression).
+
+**Changing next cycle:** none; today's own density of concurrent operator cycles is already closing gaps faster than any single one of them can find new ones.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`. Deploy is one push behind the last confirmed production build (`696c3847367c3869` vs repository HEAD); not actionable from this sandbox (no VPS key here), tracked correctly as "stale, not unknown" on the dashboard.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
 
 ## PM check-in, 2026-09-22 23:5x (previous work finished, verified; collided with a concurrent operator push, merged clean; no new operator handoff)
 
@@ -35723,19 +35759,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-23, scheduled operator cycle (independent re-verification against a heavily concurrent day, no new defect, preflight's own external-timeout gotcha handled correctly)
-
-**Did:** unshallowed and fast-forwarded cleanly onto `origin/main` (123 commits, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and `CHECKIN-LOG.md` in full rather than only the last four `NIGHTLY-LOG.md` entries, because this file's own last "## 2026-09" entry was dated 2026-09-04 despite today being 2026-09-23 and 131 commits landing in the prior 24 hours; confirmed via `CHECKIN-LOG.md` and this same file's own later section (grepped past the point my first read stopped) that dozens of same-day "scheduled operator cycle" entries already exist between 2026-09-04 and today, so nothing was actually silent, only my own first pass under-read the file's length.
-
-**Verified rather than assumed:** `preflight.py` (fast) ran clean, every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress). Ran it as a plain background process with no external `timeout` wrapper shorter than the file's own documented 1050s floor, per the gotcha a same-day earlier commit had just documented at the top of `ops/preflight.py`; it finished in under 400s on its own, no lockdir orphaned. 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply` and `affiliate.py --check`: no mail credential (unchecked, not empty), 165 documents clean. Cold-read `ops/generated_products.py` (previously clean on four prior cycles) once more given today's volume of concurrent edits nearby it: reran `python ops/generated_products.py` directly against the live catalogue rather than citing the prior clean results, 129 sellable products (102 zone + 18 room), every retirement reason still correctly cited, every deliverable file present and a plausible size. `ops/dashboard.py` regenerated cleanly.
-
-**Went well:** catching my own mis-read of this log's length before writing a false "silent for 19 days" claim into the record; letting `preflight.py` run to completion in the background instead of wrapping it in a shell `timeout` shorter than its documented self-heal window.
-
-**Did not go well:** nothing new; the backlog's unblocked rows are, as many same-day cycles already found, done or Phil-gated (`OWNER-ACTIONS.md`'s "start here" list, the 5 owner-decision issues, `products_live` 159 to 138 from today's deliberate C6/C7 bundle retirement, not a regression).
-
-**Changing next cycle:** none; today's own density of concurrent operator cycles is already closing gaps faster than any single one of them can find new ones.
-
-**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`. Deploy is one push behind the last confirmed production build (`696c3847367c3869` vs repository HEAD); not actionable from this sandbox (no VPS key here), tracked correctly as "stale, not unknown" on the dashboard.
-
-Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
