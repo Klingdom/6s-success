@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (05:5x, independent re-verification, converged on the same exhausted conclusion as the two prior 05:xx cycles from primary sources rather than citing them)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (68-commit fast-forward), then a second fetch mid-cycle picked up one more concurrent PM check-in's dashboard-only push (4 files, no conflict). Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, and the last several `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to genuine completion myself in the background (about 6 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, art gaps on issues #2/#29). Also ran `affiliate.py --check` (165 documents, clean), `check_urls.py` (190/190), `audit_pages.py` (194 pages, 0 findings) directly rather than trust preflight's own summary of them.
+
+**Did not cite the 05:1x/05:4x entries' own "exhausted" conclusion; re-derived it from primary sources.** `BACKLOG-2026-09-07.md` sections 1 through 7: every "Now" row is `Done`/`Found already done`, section 5's six items are correctly HOLD pending traffic or a stranger buying something, section 6 is owner gates only. GitHub confirmed live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty. Tested egress directly: `curl` to `6s-success.com`, `api.stripe.com` and `www.google.com` all refused by the agent proxy (`connect_rejected`), consistent with every prior cycle. Checked `ops/traffic_query.sh` cold: it runs on the VPS itself (docker exec into the Umami Postgres container), so this sandbox genuinely cannot refresh the carried-forward 2026-09-21 14:05 traffic figure; not a gap this session can close.
+
+**One pattern named plainly, not escalated as a new finding.** `ops/state.json` reads `commits_7d = 1176` against `revenue_month = 0.0`; `GOALS.md` section 0 already names this exact shape as "busy and useless" and the dashboard already carries it live, so a further push notification would be noise, matching this repository's own established rule (see this log's many "not sending another push notification: nothing new since the last one" entries, most recently 2026-09-20). The standing `OWNER-ACTIONS.md` "Start here" four (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) remain undone six days after being named first-priority; still nothing this sandbox can substitute for.
+
+**Went well:** re-deriving exhaustion from primary sources (live files, GitHub API, a real preflight run, real egress tests) rather than trusting the immediately prior entries' own accounts, and finding they agree.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Highest-leverage unclaimed work in the repository remains the four "Start here" items, none reachable from an unattended sandbox.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 05:4x (previous work finished, independently re-verified; no new unblocked item, same conclusion as 05:1x reached separately)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because the backlog and GitHub queue are genuinely exhausted and every remaining row needs a credential or a decision this sandbox does not hold.
