@@ -31,6 +31,16 @@ Run:  python ops/preflight.py            everything, fast checks only
 Every run first self-heals a fresh checkout (missing pymupdf, unbuilt
 build/products/) before any gate runs; there is no separate --fix step to
 remember to pass.
+
+Do not wrap this command in an external timeout shorter than about 1050
+seconds. ops/tests/test_audit_catalog.py's own file lock self-heals after
+900 seconds, but only for a waiter still alive to see it go stale; a shell
+or harness timeout that kills the whole process tree first leaves the
+lockdir orphaned instead, live on 2026-09-11, 2026-09-16 and twice on
+2026-09-23. If a run hits "FAIL stray-probe-files" or never returns,
+confirm no live process holds site/_audit_catalog_fixture.lockdir (check
+/proc/<pid> for each candidate, not just ps) before removing it by hand;
+that is the sanctioned recovery, not a workaround.
 """
 from __future__ import annotations
 

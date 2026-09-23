@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 (previous work finished and verified; same self-inflicted lock orphan as the prior slot, now documented at the source so a third cycle does not repeat it)
+
+**Previous work: finished, verified.** Attached via ff-only merge onto origin/main (121-commit fast-forward, clean). Backlog sections 2-4 all done or found-already-done, 5 correctly HOLD, 6 owner-only; 7 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs.
+
+**Hit the exact same lock orphan the 15:0x check-in just logged, immediately, from my own first command.** Ran preflight.py under a 110-second shell timeout; it killed the run mid `test_audit_catalog.py`, orphaning `site/_audit_catalog_fixture.lockdir` again. Confirmed no live process held it (checked every candidate PID's `/proc/<pid>/cmdline`, not just `ps`, since a defunct child can still show in a naive listing), removed it by hand, the sanctioned recovery. Reran preflight with no external timeout: one more leftover fixture file from the killed run tripped `gate_no_stray_probe_files`, which deleted it and correctly failed that one run; clean on the next.
+
+**Fixed at the source rather than logging a third recurrence.** This has now orphaned the lock on 2026-09-11, 2026-09-16, and twice today, always from an operator wrapping `preflight.py` in a timeout shorter than the lock's own 900-second self-heal plus margin. The self-heal logic itself is already correct (proven by `test_audit_catalog.py`'s own `_check_lock_self_heals`); the gap was that nothing told an operator not to kill the process externally before it gets the chance to see the lock go stale. Added a note to `ops/preflight.py`'s own docstring: do not wrap the command in a timeout under about 1050 seconds, and if a run hits `FAIL stray-probe-files` or never returns, verify liveness via `/proc` before clearing the lockdir by hand. `fix_dashes.py --check` clean, full `preflight.py` clean after (every gate passed, 23 warnings, same standing set).
+
+**No new unblocked item.** Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 GitHub issues.
+
+Pushed to main. `ops/preflight.py` (docstring only), command deck. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 15:0x (previous work finished and verified, after clearing a self-inflicted test-lock/fixture artifact this cycle's own earlier attempt left behind; no new unblocked item)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 are all done or Phil-gated, all 7 open GitHub issues are `decision`/`blocked-on-art` unchanged, and the low-mention `ops/*.py` cold-read and cross-document sweep lanes are both independently reconfirmed exhausted by several of today's cycles already. If a session ever holds real VPS access, the production deploy gap (`CHECKIN-LOG.md`'s "Production is behind the repository. Deploy." repeated hourly since 2026-09-22 15:04) is the one live thing worth a look; this sandbox still has no `~/.ssh/6s_deploy` key.
