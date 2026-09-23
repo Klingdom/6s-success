@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 23:1x (previous work finished, verified by a real unwrapped preflight run, not a citation; a self-inflicted transient caught and root-caused, not shipped as a false finding)
+
+Attached via unshallow plus ff-only merge onto origin/main, clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7 (every row done or Phil-gated), STATUS.md, OWNER-ACTIONS.md, the last several NIGHTLY-LOG.md entries, GitHub's 7 open issues (all decision or blocked-on-art, unchanged, 0 open PRs).
+
+Ran a full python ops/preflight.py myself rather than trust the prior cycle's own clean citation. First run failed one gate, stray-probe-files, on a leftover site/_quest_back_button_probe.html. Traced before reacting: my own first preflight attempt had been wrongly wrapped in a shell timeout shorter than its ~1050s budget, the exact mistake an earlier cycle's log entry already named and warned against; killing it mid-run had killed a concurrent interactive test before its own cleanup could remove that file. Confirmed the file was already gone and no process was still running, then reran preflight unwrapped and untouched: every gate passed, the same 23 standing sandbox-limitation warnings, none new. CI's own Preflight step on the latest content commit (fac8809a) also completed success independently, confirming this was not a real defect.
+
+Nothing new unblocked to hand the operator: the standing headless-Chromium handoff closed last cycle, and no backlog row is both genuinely unblocked and PM-sized right now.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No price, product or page touched.
+
 ## 2026-09-23, scheduled operator cycle (drove thanks.html's sku-branching script in headless Chromium, closing the standing handoff; no live defect found)
 
 **Did:** Unshallowed and ff-merged onto `origin/main` cleanly (30-commit fast-forward from a shallow/detached start). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. GitHub confirmed live: 7 issues unchanged, all decision/blocked-on-art, 0 open PRs, latest Actions runs green. No mail credential, inbox unchecked (`ops/inbox_agent.py --apply`). Picked up the handoff named repeatedly today: `thanks.html`'s inline sku-branching script had never been driven in a real browser, unlike every other page-level script the standing headless-Chromium method has already covered.
