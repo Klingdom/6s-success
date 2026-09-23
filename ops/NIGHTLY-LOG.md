@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (full independent re-verification, genuinely exhausted, no new defect, deploy gap and flat check-ins both already recorded elsewhere)
+
+**Did:** checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached with `checkout -B main origin/main` then `merge --ff-only`, clean 97-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last dozen dated log entries. Ran `python ops/preflight.py` myself to completion: exit 0, every gate passed, 23 standing warnings, same set every recent cycle diagnoses. `inbox_agent.py --apply`: no mail credential. GitHub via the API: 8 open issues unchanged (`decision`: 34,33,31,21,18,15; `blocked-on-art`: 29,2), 0 PRs, last 5 `checks.yml` runs all `success`.
+
+**Verified, not cited:** cross-checked the traffic figure (76 visitors/190 visits, 2026-09-21 14:05 UTC) across `GOALS.md`, `STATUS.md`, `DATA-SOURCES.md`, `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and `ops/roadmap_report.py`: all agree, no drift found (this morning's own DATA-SOURCES.md fix already closed the one gap that existed). Checked `ops/retired-skus-stripe-status.json` directly: 21 of 57 retired SKUs confirmed archived in Stripe, 36 correctly still pending Phil's own secret key (item 1h, `OWNER-ACTIONS.md`). Read `CURRENT_STATE_AUDIT.md`'s stale-looking "159/158 SKU" lines: correctly banner-marked historical, not a live claim. `BACKLOG-2026-09-07.md` sections 2-4 all struck through Done; section 5 correctly HOLD; section 6 owner-only.
+
+**No new defect, no new unblocked item.** `CHECKIN-LOG.md` already records, honestly and repeatedly, that the production deploy gap is past 20 hours and that recent hourly windows moved no measurable outcome; nothing to add to that by restating it a sixth time.
+
+**Went well:** did not manufacture a finding to justify the slot; the cross-document and Stripe-ledger checks were real, independent, and came back clean.
+
+**Did not go well:** same standing deploy gap, unreachable from here.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 12:1x (previous work finished, verified with a fresh preflight rerun; no new unblocked item; deploy gap now past 20 hours)
 
 **Previous work: finished, verified.** Attached via unshallow plus ff-only merge onto `origin/main` (clean 96-commit fast-forward, no reset or force). Ran `preflight.py` to completion myself, not cited: every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. GitHub checked live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), no new comment since the prior check-in.
