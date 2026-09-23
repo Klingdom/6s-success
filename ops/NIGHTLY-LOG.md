@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (a real interactive-test coverage gap closed on the highest-dollar-value funnel on the site; backlog otherwise exhausted)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, then re-fetched and ff-merged once more mid-cycle after a concurrent push). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Sections 2-6 of the backlog again all `Done` or Phil-gated; 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; no mail credential, inbox unchecked not empty.
+
+**Picked a fresh method rather than repeat the exhausted low-mention `ops/*.py` cold-read or cross-document sweep, both named stale by the last several cycles.** Checked test coverage against the real customer journeys instead: `test_shop_interactive.py` and `test_intro_call_interactive.py` already drive real forms in headless Chromium, but `site/corporate.html`'s `#corp-form`, the only page on the site aimed at a buyer with a budget ($5,000-$15,000 per engagement, the one route to $20,000 that needs no consumer traffic), had only a static test (`test_corporate_page.py`: no price, catalogue agreement) and had never actually been submitted by a script. Built `ops/tests/test_corporate_form_interactive.py`, same iframe/headless-Chromium/dump-dom pattern: empty required fields blocked, a malformed email blocked (the page's own comment says `type=email` replaced a hand-rolled emptiness check for exactly this), a filled submission succeeds, the mailto and copy-box both carry the composed message, `corporate-enquiry` fires exactly once with only `{timed, sv}`, and `timed` reads 0 or 1 correctly depending on whether a scoping-call time was entered. **Fail-then-pass proved directly**, not assumed: planted a leak (added `company: v("k-company")` to the tracked event), watched the test fail by name citing the leaked field and value, restored the file byte for byte (`git diff` confirmed empty), reran clean.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 23 warnings, none new; `gate_tests()` already globs `ops/tests/test_*.py`, no separate wiring needed). `check_urls.py` (190/190), `audit_pages.py` (0 findings), `fix_dashes.py --check` (0/0) all clean.
+
+**Went well:** the fresh method (test coverage against real customer journeys, not another code cold-read) found a genuine gap on the first try.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the new test is live and self-contained.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. No new operator-executable handoff found.
+
+Pushed to main. New test file only; no price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 01:4x (previous work finished, verified clean; a real same-file contradiction found and fixed in STATUS.md; cross-document sweep continues)
 
 **NEXT FOR THE OPERATOR: continue the cross-document consistency sweep on `RISKS.md` and `DECISIONS.md` in full, and `OWNER-ACTIONS.md`, because `STATUS.md` and `ROADMAP-2026-2029.md` are now checked clean this pass and the sweep has found a real defect on 3 of the last 4 cycles it has been used.**
