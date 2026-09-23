@@ -556,6 +556,13 @@
    "offered": 185,
    "accepted": 185,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-23T23:49:23Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -573,11 +580,11 @@
   "https://6s-success.com/disclaimer.html": "8269073d97eea116",
   "https://6s-success.com/how-we-make-money.html": "b28a3aca2b68a42e",
   "https://6s-success.com/affiliate-disclosure.html": "cb46f7c57716b6c3",
-  "https://6s-success.com/corporate.html": "eff9d6f4f42ad2b4",
+  "https://6s-success.com/corporate.html": "f92d085425e1b428",
   "https://6s-success.com/deck-gallery-mudroom.html": "acc8b4b42b95de7f",
   "https://6s-success.com/deck-gallery.html": "e79433f95ba6b5cd",
   "https://6s-success.com/deck.html": "48bc7e69ff2a72e3",
-  "https://6s-success.com/kit.html": "237ef5ada37ba224",
+  "https://6s-success.com/kit.html": "178d5b952d6c6bce",
   "https://6s-success.com/quest.html": "2a20a828dd6b768f",
   "https://6s-success.com/standards.html": "77b91eb141d2b70c",
   "https://6s-success.com/articles/decluttering-vs-organizing": "db18f74a2a41397a",
@@ -748,7 +755,7 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "af91c111eaba1b3f",
   "https://6s-success.com/kitchen-deck.html": "d93c7ef7c0e3dc98",
   "https://6s-success.com/bundle.html": "71a9ef3c43ee4edb",
-  "https://6s-success.com/articles/what-a-5s-engagement-costs": "f8b572f636331c09",
-  "https://6s-success.com/articles/why-5s-decays-after-six-months": "310cb02ed5cf4f95"
+  "https://6s-success.com/articles/what-a-5s-engagement-costs": "aefd132c9de10c2c",
+  "https://6s-success.com/articles/why-5s-decays-after-six-months": "f4996d30ceb8ae07"
  }
 }
