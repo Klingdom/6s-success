@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 09:4x (previous work finished, verified with a full preflight rerun; no new unblocked item, deploy gap now past 17.5 hours)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because backlog sections 2 to 4 are all Done, section 5 is genuinely HOLD (the M4 pilot read is due 2026-09-28), section 6 is owner-only, and all 8 open GitHub issues are decision or blocked-on-art. Worth naming again: the production deploy gap (repository build `696c3847367c3869` vs. live `a993020017bafe37`, last confirmed 2026-09-22T16:05:56Z) is now past 17.5 hours, longer than any prior same-day gap this log has closed within a few hours. Not reachable from here (no SSH key, no egress) and not Phil's action; only a session holding the real VPS deploy key closes it.
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 85-commit fast-forward, no collision). Ran `python ops/preflight.py` to completion myself: every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. Working tree clean before and after. GitHub confirmed live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs, matching the 09:1x entry exactly, re-derived rather than cited.
+
+**No defect found this cycle.** Regenerated the command deck only.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 09:1x (previous work finished, verified with a full preflight rerun to genuine completion; no new unblocked item)
 
 Previous work was finished: preflight clean (every gate passed, 23 standing warnings, exit 0), working tree clean, main matched origin. Backlog sections 2 to 4 all Done, section 5 correctly HOLD, section 6 owner-only. GitHub: 8 open issues unchanged (all decision or blocked-on-art), 0 PRs, last CI runs green. Spent the slot on real independent checks rather than citing prior cycles: cold-read the newest generator, `ops/build_kitchen_deck_pdf.py` (5 mentions in this log), ran its `--check` clean, confirmed issue #34's PDF fix is live and its measure.js download-tracking regex actually matches the shipped href, reran `test_measure_events.py` directly. No defect found. No mail credential. Deploy gap unchanged, still unreachable from here, still Phil's. Regenerated command deck. Nothing new for the operator beyond the standing Phil-blocked list.
