@@ -1921,13 +1921,19 @@ go in `DECISIONS.md`," but no session had actually recorded it there; this
 closes that specific gap rather than leaving the review as the only place the
 call was made. The traffic figure the review cites still holds: 78 visitors
 and 200 visits in the last 30 days (`BACKLOG-2026-09-07.md` section 0, read
-directly from the analytics database 2026-09-17), one sale ever. Adding pages
-in that state is activity, not evidence-driven growth, and it dilutes the
-crawl budget Googlebot is currently spending generously on the existing 187
-(178 fetches in 72 hours per the same review, 171 of them 200s). Site
-verification itself is still open (`OWNER-ACTIONS.md` 1a, `preflight.py`'s own
-standing `site-verification` warning), so there is literally no query data yet
-to tell a new page apart from noise.
+directly from the analytics database 2026-09-17), one sale ever. (**Corrected
+2026-09-23: that 78/200 read was already one cycle stale the day this
+decision was written; by 2026-09-21 the real figure was 76 visitors/193
+visits, and the latest direct read, 2026-09-21 14:05 UTC, is 76 visitors/190
+visits, a third consecutive weekly fall. The number this decision cites was
+never current; the decision itself is unaffected, since a lower figure argues
+for the same hold, not against it.**) Adding pages in that state is activity,
+not evidence-driven growth, and it dilutes the crawl budget Googlebot is
+currently spending generously on the existing 187 (178 fetches in 72 hours
+per the same review, 171 of them 200s). Site verification itself is still
+open (`OWNER-ACTIONS.md` 1a, `preflight.py`'s own standing `site-verification`
+warning), so there is literally no query data yet to tell a new page apart
+from noise.
 
 **Evidence.** Direct read of `REVIEW-DISCOVERY-2026-09-07.md` D13/D14 and
 `BACKLOG-2026-09-07.md` section 0 (tier: direct inspection of this repo's own
