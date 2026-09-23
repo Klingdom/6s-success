@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (a self-contradictory DATA-SOURCES.md row found and fixed; the gate meant to catch it had gone silent on the exact shape that broke it)
+
+**Did:** Attached via unshallow plus ff-only merge onto `origin/main` (116-commit fast-forward, clean, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the newest `NIGHTLY-LOG.md`/PM check-in entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Backlog sections 2-4 all done, 5 correctly HOLD, 6 owner-only; 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No mail credential, inbox unchecked, not empty.
+
+**Found, not assumed: `DATA-SOURCES.md`'s own Web analytics row had gone self-contradictory.** It read "**corrected 2026-09-23**: 68 visitors/160 visits/30 days (measured 2026-09-23), `GOALS.md` O1, measured 2026-09-21 14:05 UTC; this row still cited the superseded 75/196 read, one confirmation behind the table it points to)": a fresh "corrected" figure glued onto a stale correction's own leftover prose describing a different, earlier gap. It claimed to be current while also narrating why it used to be stale, in the one document whose stated purpose is saying which figures can be trusted. Traced the cause: `gate_goals_traffic_current` already checks this exact row (widened for it earlier today), but its regex required the figure and the `` `GOALS.md` O1 `` citation to sit back to back with only a comma between them; the annotation inserted between them broke the match, and the gate's own documented behaviour on a shape it cannot read is to stay silent rather than fail loud, so the row drifted into self-contradiction with nothing to catch it.
+
+**Fixed both.** Rewrote the row to state the current figure once, cleanly (68 visitors/160 visits/30 days, measured 2026-09-23 12:50 UTC, now eight confirmed dates), with no leftover narrative from the prior correction. Widened the gate's regex to tolerate up to 120 characters of inserted detail between the figure and the citation (the same bounded-lazy shape already used for the `OWNER-ACTIONS.md` check a few lines above it), so an annotation can be added in future without silently exempting the row again. `ops/tests/test_gate_goals_traffic_current.py` extended 13 to 15 cases: an annotated row that agrees must still pass, and the same annotated shape carrying the real 75/196 stale figure must still be caught, naming both numbers. Fail-then-pass proved directly and in isolation from the test file: the old tight regex matches neither the synthetic annotated-disagrees case nor the real pre-fix `DATA-SOURCES.md` text (confirmed `None` both times); the widened regex matches both, reading `(75, 196)` and `(68, 160)` respectively.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 23 warnings, identical set to the pre-change baseline), `ops/tests/test_gate_goals_traffic_current.py` (15/15), `fix_dashes.py --check` on the three touched files (0/0). `gate_tests()` already globs every `ops/tests/test_*.py` file, so no separate `preflight.py` wiring was needed for the extended test.
+
+**Went well:** the "checked against its own gate's silent-skip behaviour" angle, one step past the cross-document/same-document checks recent cycles have already run; finding the regex could not match the real committed text was the direct evidence the row had escaped the check, not an inference.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the fix and its widened gate are both live.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Worth trying the same "does this gate's own regex still match the real file" angle on other recently-widened cross-document gates, since this is the second time in one day a widening's own match shape has been the actual gap.
+
+Pushed to main. `DATA-SOURCES.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; this is a documentation and gate fix. IndexNow not applicable, no site page changed.
+
 ## PM check-in, 2026-09-23 14:2x (previous work finished and verified; started duplicate test coverage, found a concurrent session already shipped it, discarded mine rather than ship a conflicting copy; no new unblocked item)
 
 **Previous work: finished, verified.** Attached via unshallow plus ff-only merge. Full `preflight.py` run to genuine completion (not truncated), clean: every gate passed, 23 standing warnings, all previously diagnosed. This covered the 13:4x check-in's red-gate fix, the concurrent `dedupe_links()` test coverage and `gate_tests` browser-launch-timeout fix (Phil + Opus, `88cc1b18`), and a same-document GOALS.md contradiction fix, all merged clean, no conflicts.
