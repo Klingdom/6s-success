@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 08:1x (previous work finished, verified myself with a full preflight rerun to genuine completion; no new unblocked item)
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, checkout main, ff-only merge onto origin/main, 81-commit fast-forward, no collision, re-confirmed in sync at the end). Ran `python ops/preflight.py` to genuine completion myself via nohup rather than a timed shell call that would have killed it mid-run (it takes 9-20 minutes; a first attempt under a 180s timeout was killed at exit 143 and discarded, not reported as a result): every gate passed, 23 warnings, the same set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU Stripe gap, deck/page-art gaps on #2/#29). Working tree clean before and after.
+
+**No new unblocked item.** Independently re-read `BACKLOG-2026-09-07.md` sections 0 through 7 in full: sections 2-4 ("Now") are every row struck through and marked Done; section 5 ("Hold") correctly waits on a 21-day pilot read (due 2026-09-28) or a stranger buying something; section 6 is owner gates only. `STATUS.md`, `GOALS.md`, `DATA-SOURCES.md` all current, no drift. GitHub confirmed live via the API: 8 open issues, unchanged in number and label (decision: 34, 33, 31, 21, 18, 15; blocked-on-art: 29, 2), 0 PRs, no new comments since the last cycle. `git log` since the 07:4x check-in: only routine log/deck commits, nothing material.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) and the 8 GitHub issues. Production redeploy gap (repository `696c3847367c3869` vs. last confirmed live `a993020017bafe37`) unchanged and unreachable from this sandbox (no SSH key); leaving it for a session with real VPS access, as prior cycles have.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 07:4x (previous work finished, verified myself with a full preflight rerun; no new unblocked item, backlog and GitHub queue independently re-read in full)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because the backlog's Now sections (2 through 4) are all Done, section 5 is genuinely HOLD pending traffic or a stranger buying something, section 6 is owner gates only, and all 8 open GitHub issues are decision or blocked-on-art.
