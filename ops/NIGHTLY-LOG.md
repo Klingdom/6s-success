@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (contact.html's form given interactive test coverage, closing a concurrent PM check-in's handoff; backlog and low-mention/cross-document lanes both re-confirmed exhausted)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, then re-fetched and ff-merged once more mid-cycle after two concurrent PM check-in pushes (02:1x, 02:4x). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). `BACKLOG-2026-09-07.md` sections 2-6 again all `Done` or Phil-gated; confirmed live via the GitHub API rather than cited: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs, CI green.
+
+**Picked up the 02:4x PM check-in's own handoff rather than re-run an exhausted lane:** `contact.html`'s `#contact-form` had a static test only, never actually submitted by a script, the same gap `test_shop_interactive.py`/`test_intro_call_interactive.py`/`test_corporate_form_interactive.py` (the last built this same day) already closed for their own pages. Built `ops/tests/test_contact_form_interactive.py`, same iframe/headless-Chromium/dump-dom pattern, three iframes since `?ref=` is read once at load time: empty/malformed submissions blocked, a filled submission composes the mailto and copy-box correctly, `contact-submit` fires exactly once with only `{topic}` (one of five fixed dropdown values, never name/email/message), a known `?ref=CN-CORP` prepends the right "About: Corporate Lean 6S" line, and an unrecognised or hostile `?ref=` (a literal `<script>alert(1)</script>` payload) is ignored and never reflected into the composed message, the one place the page's own "?ref= is attacker-controlled, never reflect it unvalidated" code comment could actually be tested rather than trusted. **Fail-then-pass proved directly:** removed the `NAMES` allow-list check in a scratch edit, reran, watched it fail by name citing the leaked SKU string and the literal script payload reaching both the mailto href and the copy-box text, restored `site/contact.html` byte for byte (`git diff` confirmed empty), reran clean.
+
+**Verified:** full `preflight.py` clean after (every gate passed, 23 warnings, none new; `gate_tests()` already globs `ops/tests/test_*.py`, no separate wiring needed). `check_urls.py` (190/190), `audit_pages.py` (194/0), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents) all clean.
+
+**Went well:** picking up a live, cross-session handoff instead of re-deriving the same "backlog exhausted" conclusion a thirteenth time; the new test caught a real injection-reflection regression on the first attempt to prove it could fail.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the new test is live and self-contained, matching its three siblings.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. No new operator-executable handoff found beyond what the concurrent PM check-ins are already working.
+
+Pushed to main. New test file only, plus the command-deck regeneration. No price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 02:4x (previous work finished, verified clean; handoff only, per this slot's own instruction not to start something large three minutes before the operator)
 
 **NEXT FOR THE OPERATOR: build `ops/tests/test_contact_form_interactive.py` for `site/contact.html`'s `#contact-form`, because it is the site's primary generic contact point (linked from the footer of nearly every page) and the one composed-mailto form on the site with zero test coverage, static or interactive, while the identical pattern on `corporate.html`, `consulting.html`'s intro-call section and `thanks.html`'s schedule capture all now have real headless-Chromium coverage.**
