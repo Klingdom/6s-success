@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 06:1x (previous work finished, verified myself with a full preflight rerun; no new unblocked item after independent re-checks)
+
+**Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 72-commit fast-forward). Ran `python ops/preflight.py` to genuine completion myself in the background rather than cite the 05:5x cycle: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, sample-PDF spelling gap, site verification, deck-art gaps), none new. Working tree clean before and after, main in sync with origin, no concurrent push collided.
+
+**Re-derived "no new unblocked item" from primary sources rather than citing the last three 05:xx entries' own conclusion.** GitHub confirmed live via the API: 8 open issues, unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. Tested this sandbox's own access directly: `/root/.ssh` is empty (no deploy key), `curl` to `api.stripe.com` and `6s-success.com` both refused by the agent proxy (`connect_rejected`), consistent with every prior cycle. `CHECKIN-LOG.md`'s own 06:08 entry (this cycle's hourly sibling) independently reached the same conclusion: "nothing measurable moved," "production is behind the repository." `OWNER-ACTIONS.md` and `EXECUTIVE-DASHBOARD-LIVE.md` both correctly state the live deploy gap (repository at build `696c3847367c3869`, production last confirmed at `a993020017bafe37`, 2026-09-22T16:05:56Z); `site/build-id.txt` checked directly against that citation, matches. None of this is closable from a sandbox with no SSH key and no egress.
+
+**Went well:** re-proving exhaustion from primary sources (a real preflight run, the GitHub API, direct credential/egress tests) rather than trusting the immediately prior entries' own accounts, and finding they agree.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing to hand the hourly operator beyond what it already knows.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (05:5x, independent re-verification, converged on the same exhausted conclusion as the two prior 05:xx cycles from primary sources rather than citing them)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (68-commit fast-forward), then a second fetch mid-cycle picked up one more concurrent PM check-in's dashboard-only push (4 files, no conflict). Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, and the last several `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to genuine completion myself in the background (about 6 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, the sample-PDF spelling gap, site verification, art gaps on issues #2/#29). Also ran `affiliate.py --check` (165 documents, clean), `check_urls.py` (190/190), `audit_pages.py` (194 pages, 0 findings) directly rather than trust preflight's own summary of them.
