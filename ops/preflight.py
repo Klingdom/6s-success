@@ -8750,6 +8750,47 @@ def gate_status_report_products_consistent() -> None:
              "end from the computed count: %s" % "; ".join(bad))
 
 
+def gate_status_report_mail_unknown() -> None:
+    """The owner-facing status report must never render an unmeasured mail
+    state as a specific "WORKING" or "NOT ACCEPTING" claim.
+
+    Found 2026-09-23 cold-reading ops/status_report.py: mx_working was a
+    bare Python `True`, typed once, carrying the comment "verified by SMTP
+    RCPT earlier and re-checked below". Nothing below it, or anywhere else
+    in the file, ever checked it again. Every report this produced printed
+    "mail WORKING. support@ sends and receives, verified" on every single
+    run, whether mail was actually reachable that day or not, which is a
+    gate that can never fail: no real state of the world could make that
+    line say anything else. Exactly the defect class
+    gate_status_report_network_unknown already exists to catch for the
+    domain and vhost probes just above this one, on a field that same
+    sweep did not reach.
+
+    Fixed with mx_probe(), a real anonymous SMTP RCPT check against the
+    domain's own MX (no credential, no DATA sent), and mail_state(), a
+    pure tri-state function mirroring domain_state()/vhost_state()
+    exactly, so this gate can prove the rendering decision without
+    shelling out to the network itself.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import status_report as sr
+
+    bad = []
+    if sr.mail_state(None) != "unknown":
+        bad.append("mail_state(None) returned %r, not 'unknown'"
+                   % sr.mail_state(None))
+    if sr.mail_state(True) != "yes":
+        bad.append("mail_state(True) returned %r, not 'yes'"
+                   % sr.mail_state(True))
+    if sr.mail_state(False) != "no":
+        bad.append("mail_state(False) returned %r, not 'no'"
+                   % sr.mail_state(False))
+    if bad:
+        fail("status-report-mail-unknown",
+             "an unmeasured mail state would render as a specific claim "
+             "rather than 'could not be checked': %s" % "; ".join(bad))
+
+
 def gate_roadmap_report_issues_unknown() -> None:
     """The four-times-daily roadmap report must never report zero open
     GitHub issues just because gh could not be reached.
@@ -19642,6 +19683,7 @@ def main() -> int:
     run_gate(gate_kitchen_deck_pdf_current)
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
+    run_gate(gate_status_report_mail_unknown)
     run_gate(gate_roadmap_report_issues_unknown)
     run_gate(gate_roadmap_report_commits_unknown)
     run_gate(gate_roadmap_report_backlog_done)

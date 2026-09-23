@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (a real always-true mail-status claim found cold-reading status_report.py, fixed and gated; backlog otherwise exhausted)
+
+**Did:** checkout arrived shallow and detached; unshallowed with `git fetch --unshallow`, attached with `checkout -B main origin/main` then `merge --ff-only`, clean fast-forward, no reset or force, re-fetched and fast-forwarded twice more mid-cycle as concurrent sessions pushed. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the most recent dozen dated entries of this log. Ran `python ops/preflight.py` myself to completion (not cited): every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Checked GitHub directly via the API: 8 open issues, all `decision` or `blocked-on-art`, 0 open PRs; read issue #34 in full including its resolution comment, confirming the Kitchen deck PDF (option 2) is genuinely shipped and only the SKU-retirement economics call remains, correctly Phil's.
+
+**Independently re-derived, not cited:** `BACKLOG-2026-09-07.md` sections 2 to 4 are every row struck through done or already-shipped; section 5 is genuinely HOLD (M4 pilot read due 2026-09-28); section 6 is owner-only. Cross-checked against `OWNER-ACTIONS.md`'s own "start here" four items: same set. Nothing genuinely unblocked in the backlog this cycle.
+
+**One real defect found and fixed, not just reported:** delegated a cold-read of ops/*.py files not touched in recent log entries. `ops/status_report.py`'s `gather()` set `"mx_working": True` as a bare constant, with a comment claiming it was "verified by SMTP RCPT earlier and re-checked below." Nothing anywhere in the file ever re-checked it; every status report this produced printed "mail WORKING. support@ sends and receives, verified" unconditionally, whether mail was reachable that run or not. A gate that can never fail. Fixed with a real anonymous SMTP RCPT probe against the domain's own MX record (no credential touched, distinct from mailer.py's authenticated relay) and a tri-state `mail_state()` mirroring the existing `domain_state()`/`vhost_state()` pattern; unreachable now renders "UNKNOWN," never a specific claim. Verified live: `status_report.py --preview` now prints the honest unknown line in this sandbox instead of the old false "WORKING" line. Added `gate_status_report_mail_unknown` to `preflight.py`, wired into `main()`, proved fail-then-pass by monkeypatching `mail_state` back to the bug's collapsing shape and watching it go red, then reverting. Independently re-verified the diff myself before committing: no em or en dashes, no file under `site/` touched, both edits in `ops/` tooling, no Stripe/credentialed code touched, script parses and runs correctly, full `preflight.py` rerun clean afterward with the new gate included.
+
+**Verified:** full preflight.py rerun after the fix, code 0, every gate passed including the new one, no regression.
+
+**Went well:** the cold-read still finds real defects at this stage of exhaustion; this one was a genuine "claim nobody could ever falsify" bug, not manufactured busywork, and it was verified end to end (diff read, gate proven to fail, script run live) rather than trusted from the delegate's own report.
+
+**Did not go well:** the production deploy gap remains open and unreachable from this sandbox, now past 20 hours since last confirmed (`a993020017bafe37`, 2026-09-22T16:05:56Z); nothing new here, already on `OWNER-ACTIONS.md`.
+
+**Changing next cycle:** none beyond the gate just added.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here" four: Search Console verification, YouTube OAuth, Stripe business description paste, the 36-SKU Stripe archival) and the 8 GitHub issues, unchanged. The redeploy click remains the one thing that would move production, unreachable from here.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 11:4x (previous work finished; no new unblocked item; deploy gap now past 19.5 hours)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2 to 4 are every row Done or found-already-done, section 5 is genuinely HOLD (the M4 pilot read is due 2026-09-28, A/B tests wait on 1,427 days to significance), section 6 is owner-only, and all 8 open GitHub issues are still `decision` or `blocked-on-art` with no new comment since the last check-in (confirmed live via the API, `updated_at` unchanged on every one). If you hold real VPS access, the production deploy gap is the one thing worth a look: repository build `696c3847367c3869` vs. live `a993020017bafe37`, last confirmed 2026-09-22T16:05:56Z, `CHECKIN-LOG.md`'s last entry (06:08) still reads "Production is behind the repository. Deploy." Otherwise, the standing move that has found real (if small) defects on past exhausted cycles is a cold read of a genuinely low-mention `ops/*.py` file, verified against its own `--check`/`--status` mode rather than trusted from the read.
