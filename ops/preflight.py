@@ -11763,10 +11763,24 @@ def gate_goals_traffic_current() -> None:
     # table it explicitly points to, the same "source corrected, sibling
     # never told" shape this gate exists to catch, this time in the one
     # document whose whole purpose is to say which figures can be trusted.
+    #
+    # Widened again 2026-09-23, same day: the tight "visits,\s*`GOALS.md`"
+    # regex broke the moment a later edit inserted its own "**corrected
+    # 2026-09-23**: ... /30 days (measured ...), " detail between the
+    # figure and the citation. The gate's own documented behaviour is to
+    # stay silent when the row no longer matches its expected shape, so a
+    # since-edited row went unchecked rather than failing loud, and the row
+    # itself went self-contradictory (a fresh "corrected" figure glued onto
+    # a stale correction's own leftover prose) with nothing to catch it.
+    # Now tolerant of up to 120 characters of inserted detail between the
+    # figure and the citation, the same bounded-lazy shape already used for
+    # the OWNER-ACTIONS.md check above, so an annotation can be added
+    # without silently exempting the row from this check again.
     ds_path = os.path.join(ROOT, "DATA-SOURCES.md")
     if os.path.exists(ds_path):
         ds = io.open(ds_path, encoding="utf-8").read()
-        dsm = re.search(r"(\d+) visitors/(\d+) visits,\s*`GOALS\.md`\s*O1", ds)
+        dsm = re.search(r"(\d+) visitors/(\d+) visits"
+                         r"(?:(?!\n\n).){0,120}?`GOALS\.md`\s*O1", ds, re.S)
         if dsm and (int(dsm.group(1)), int(dsm.group(2))) != (sessions_30, visits_30):
             bad.append(f"DATA-SOURCES.md's Web analytics row cites "
                        f"{dsm.group(1)} visitors/{dsm.group(2)} visits, "

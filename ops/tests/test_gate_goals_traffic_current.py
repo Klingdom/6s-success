@@ -77,6 +77,23 @@ DS_DISAGREES = (
 
 DS_NO_LINE = "Nothing resembling that phrase appears anywhere in this file.\n"
 
+# The real 2026-09-23 regression shape, found later the same day: a
+# "**corrected**" annotation inserted between the figure and the citation
+# broke the tight "visits,\s*`GOALS.md`" regex, so a row that had gone
+# self-contradictory (a fresh figure glued onto a stale correction's own
+# leftover prose) was silently exempted from this check instead of failing
+# loud. The gate must now tolerate the inserted detail and still compare.
+DS_ANNOTATED_AGREES = (
+    "| Web analytics | Umami | VERIFIED: real traffic figures "
+    "(**corrected 2026-09-23**: 68 visitors/161 visits/30 days, "
+    "`GOALS.md` O1, measured 2026-09-23) were read directly | x | x | x |\n"
+)
+DS_ANNOTATED_DISAGREES = (
+    "| Web analytics | Umami | VERIFIED: real traffic figures "
+    "(**corrected 2026-09-23**: 75 visitors/196 visits/30 days, "
+    "`GOALS.md` O1, measured 2026-09-14) were read directly | x | x | x |\n"
+)
+
 # Same-document shape, found 2026-09-23: GOALS.md's own "Weekly visitors" row
 # and "Why it is first" narrative paragraph, both a few lines below the
 # canonical table, drifted from it without any sibling file ever disagreeing.
@@ -196,13 +213,29 @@ def main() -> int:
     else:
         print("  (skipped: real GOALS.md/OWNER-ACTIONS.md not found)")
 
+    # 14. DATA-SOURCES.md carries an inserted "**corrected**" annotation
+    #     between the figure and the `GOALS.md` O1 citation, and the figure
+    #     still agrees (68/161): no failure. Proves the widened regex still
+    #     matches through the inserted detail rather than losing the row.
+    r = _run(GOALS, OA_AGREES, DS_ANNOTATED_AGREES)
+    if r:
+        fails.append("annotated DATA-SOURCES.md agreement wrongly flagged: %r" % (r,))
+
+    # 15. Same annotated shape, but the figure is stale (75/196): caught,
+    #     naming both numbers. Before the 2026-09-23 widening this row would
+    #     have silently escaped the check entirely (regex simply would not
+    #     match), the exact live defect found that day.
+    r = _run(GOALS, OA_AGREES, DS_ANNOTATED_DISAGREES)
+    if not r or "75" not in r[0][1] or "68" not in r[0][1]:
+        fails.append("annotated DATA-SOURCES.md disagreement not caught: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
     print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md + DATA-SOURCES.md "
-          "+ same-document checks), 13/13 checks pass")
+          "+ same-document checks), 15/15 checks pass")
     return 0
 
 
