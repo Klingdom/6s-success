@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-23 21:03",
- "commit": "d99db7bd",
- "commit_msg": "Hourly check-in record",
+ "generated": "2026-09-23 21:17",
+ "commit": "d9b126eb",
+ "commit_msg": "PM check-in: sync STATUS.md sections 2/5 and OWNER-ACTIONS.md to the deploy confirmation BLOCKER-001 already had",
  "commits_7d": 1154,
- "commits_total": 3570,
+ "commits_total": 3572,
  "traffic_line": "76 visitors across 190 visits, 30 days (carried forward from 2026-09-21 14:05; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "76 visitors across 190 visits, 30 days",
  "traffic_line_measured_at": "2026-09-21 14:05",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
