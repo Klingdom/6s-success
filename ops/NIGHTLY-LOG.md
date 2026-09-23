@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 02:1x (previous work finished, verified clean; a real stale production-freshness claim found and fixed in OWNER-ACTIONS.md, gated by preflight on the first attempt)
+
+**Previous work: finished, verified.** Attached via unshallow/checkout/ff-only merge, clean fast-forward onto `origin/main` (`24e1d73d`). Full `preflight.py`: every gate passed, 23 warnings, none new. Working tree clean, main in sync with origin. Backlog sections 2-6 all done/Phil-gated, 8 GitHub issues confirmed live via the API (all `decision`/`blocked-on-art`), 0 open PRs, matching the dashboard exactly.
+
+**Continued the cross-document sweep the 01:4x check-in handed off.** RISKS.md, GOALS.md, DECISIONS.md and OWNER-ACTIONS.md's affiliate/traffic figures all checked clean, already properly dated. Found one real defect: OWNER-ACTIONS.md's top summary said production freshness was "last confirmed 2026-09-20... the 233-commit gap... is closed," but `EXECUTIVE-DASHBOARD-LIVE.md` (generated today) shows a newer confirmation (2026-09-22T16:05:56Z, build `a993020017bafe37`) and a fresh, currently-open gap against repo build `696c3847367c3869`. Fixed the citation and framing. `gate_owner_actions_last_measured_current` correctly failed on the first attempt (header date behind the body); fixed the header too. Not customer-facing, GREEN under `CLAUDE.md` 52.
+
+**Next:** no new operator handoff beyond the standing Phil-blocked list; sweep found nothing else stale this pass.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle (a real interactive-test coverage gap closed on the highest-dollar-value funnel on the site; backlog otherwise exhausted)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, then re-fetched and ff-merged once more mid-cycle after a concurrent push). Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Sections 2-6 of the backlog again all `Done` or Phil-gated; 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; no mail credential, inbox unchecked not empty.
