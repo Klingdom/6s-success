@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 18:4x (previous work finished and CI-confirmed; handoff to operator, no new unblocked item found in the time available)
+
+NEXT FOR THE OPERATOR: drive quest.html and a zone page's kit/CTA path in headless Chromium, the method the 18:1x cycle just proved on index.html (found and fixed a live sitewide JS crash), because purchase-adjacent pages are the one unblocked priority-2 (broken-or-dishonest) lane nobody has run it against yet.
+
+**Previous work: finished, verified.** Attach clean (ff-only). Working tree clean, `main` matches `origin/main`. Confirmed the 18:1x STATUS.md fix's merge (`8ba3f4dc`) in GitHub Actions directly rather than citing the log: `checks.yml` run 1332's own Preflight step succeeded against that exact commit; the ops test suite was still running as this was written. Backlog sections 2-6 reconfirmed done or Phil-gated; 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No new defect found in the time available this slot.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 18:1x (STATUS.md's Production Release section had gone stale to the point of being wrong, not just old)
 
 **Previous work: finished, verified.** Attach clean (unshallow plus ff-only). Full `preflight.py` clean before touching anything (every gate passed, 24 warnings, all previously diagnosed sandbox limits). Working tree clean, `main` already at `origin` tip: nothing to finish from the last cycle. Backlog sections 2-6 and the 7 open GitHub issues unchanged, all `decision`/`blocked-on-art`.
