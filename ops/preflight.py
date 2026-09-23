@@ -11534,6 +11534,19 @@ def gate_goals_traffic_current() -> None:
     visitor count disagrees with GOALS.md's. Deliberately not extended to
     visits: a pageview count is not a visit_id count, and OWNER-ACTIONS.md's
     own item 1 does not claim to have one, so there is nothing to compare.
+
+    Widened 2026-09-23: DATA-SOURCES.md's own Web analytics row cites this
+    same figure ("N visitors/M visits, GOALS.md O1") to justify calling
+    that source VERIFIED. Found stale that day: it still read "75
+    visitors/196 visits" (the 2026-09-14 pull, confirmed on five dates
+    through 09-14) while GOALS.md O1 had already moved twice since (78 on
+    09-17, 76 on 09-21), the same "source corrected, sibling never told"
+    shape one document over, this time in the file whose whole purpose is
+    to say which figures can be trusted. Now also parses that row and fails
+    if its two numbers disagree with GOALS.md's. Silent, like the
+    OWNER-ACTIONS.md check above, if the row is absent or no longer in the
+    expected shape: a hard fail there would make an unrelated rewrite of
+    that document's prose block this gate for a reason it cannot fix here.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -11629,6 +11642,23 @@ def gate_goals_traffic_current() -> None:
             bad.append(f"OWNER-ACTIONS.md item 1 (measured {oam.group(1)}) "
                        f"says {oam.group(2)} visitors, GOALS.md says "
                        f"{sessions_30}")
+
+    # Widened 2026-09-23: DATA-SOURCES.md's Web analytics row cites its own
+    # copy of this same figure ("N visitors/M visits, GOALS.md O1") to prove
+    # the source is VERIFIED. Found stale that day: it still read "75
+    # visitors/196 visits" (the 2026-09-14 pull) while GOALS.md O1 had
+    # already moved to 76/190 (2026-09-21), one confirmation behind the
+    # table it explicitly points to, the same "source corrected, sibling
+    # never told" shape this gate exists to catch, this time in the one
+    # document whose whole purpose is to say which figures can be trusted.
+    ds_path = os.path.join(ROOT, "DATA-SOURCES.md")
+    if os.path.exists(ds_path):
+        ds = io.open(ds_path, encoding="utf-8").read()
+        dsm = re.search(r"(\d+) visitors/(\d+) visits,\s*`GOALS\.md`\s*O1", ds)
+        if dsm and (int(dsm.group(1)), int(dsm.group(2))) != (sessions_30, visits_30):
+            bad.append(f"DATA-SOURCES.md's Web analytics row cites "
+                       f"{dsm.group(1)} visitors/{dsm.group(2)} visits, "
+                       f"GOALS.md O1 now says {sessions_30}/{visits_30}")
 
     if bad:
         fail("goals-traffic-current",

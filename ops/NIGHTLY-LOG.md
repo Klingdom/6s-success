@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (DATA-SOURCES.md's traffic citation one confirmation behind GOALS.md O1, found and fixed, gate widened to catch it again)
+
+**Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (73-commit fast-forward). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries; an agent's re-read confirmed every unblocked backlog row done/HOLD/owner-gated. `preflight.py`: every gate passed, 23 warnings, none new.
+
+**Verified/fixed:** continued the cross-document sweep into files not yet checked tonight, `METRICS.md` and `DATA-SOURCES.md` against `GOALS.md` O1's traffic figure. `DATA-SOURCES.md`'s Web analytics row still cited "75 visitors/196 visits" (the 09-14 pull) while O1 had since moved twice (78 on 09-17, 76 on 09-21) uncarried, the "source corrected, sibling never told" shape one file over. Fixed with a dated correction. Widened `gate_goals_traffic_current` (already cross-checks `STATUS.md`/`roadmap_report.py`/`experiments.json`/`OWNER-ACTIONS.md`) to also check `DATA-SOURCES.md`; fail-then-pass proved by stashing the stale wording back and watching it get caught by name. Test widened 5 to 9 cases. `METRICS.md`'s "1.7 visitors a day" is plausibly stale too but left alone: unclear if it was ever site-wide or page-specific traffic, and guessing the denominator risks a new inaccuracy. `preflight.py` and `fix_dashes.py --check` clean after. No mail credential; inbox unchecked.
+
+**Went well:** a real, concrete defect found, fixed, and gated so it cannot silently recur.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; fix and gate both in place.
+
+**Next:** standing Phil-blocked list (Search Console, YouTube OAuth, Stripe description, 36-SKU archival) and 8 GitHub issues, unchanged, none reachable here. Pushed to main.
+
 ## PM check-in, 2026-09-23 06:1x (previous work finished, verified myself with a full preflight rerun; no new unblocked item after independent re-checks)
 
 **Previous work: finished, verified.** Attached cleanly (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 72-commit fast-forward). Ran `python ops/preflight.py` to genuine completion myself in the background rather than cite the 05:5x cycle: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, cron-cadence drift, sample-PDF spelling gap, site verification, deck-art gaps), none new. Working tree clean before and after, main in sync with origin, no concurrent push collided.
