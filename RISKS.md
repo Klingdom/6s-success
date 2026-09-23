@@ -124,7 +124,15 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-09-16.
+Last reviewed: 2026-09-23. Full top-to-bottom read this cycle (all thirteen
+entries, not just the three open CRITICALs): every severity, status, and
+cited figure (traffic, catalogue size, form counts) checked against
+`GOALS.md`, `STATUS.md`, and `ops/state.json` as they read today. No
+drift found; the header date was six days behind entries that had in fact
+been kept current throughout that window (RISK-0012 alone was corrected
+four times on 2026-09-22), the exact "content fixed, summary line never
+told" shape this section already warns about, just caught here before it
+compounded rather than after.
 
 **On the previous "Last reviewed: 2026-08-19" and what it cost.** This
 register's own section 22 promises the four `CRITICAL` entries get re-read

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (full independent re-verification, `RISKS.md` read end to end for the first time in several cycles; one real header-staleness defect found and fixed, no other new item)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean 62-commit fast-forward. Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `STATUS.md` section 1-2, `GOALS.md` in full, `CLAUDE.md`, `CHECKIN-LOG.md`'s last several entries, and the newest `NIGHTLY-LOG.md` entries (all of today, 04:1x back through the 03:1x/03:4x check-ins). `python ops/preflight.py` run to completion myself (about 15 minutes; let it finish rather than citing a prior cycle's result): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow), none new.
+
+**Independently re-confirmed the backlog and GitHub are genuinely exhausted rather than citing it.** `BACKLOG-2026-09-07.md` sections 2 through 6: every row `Done`/`Found already done` or explicitly held pending evidence (section 5, decks 3-20/paid decks/email capture/A-B tests all correctly gated on traffic or Phil). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (2 also `P0`), 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty. Checked directly rather than assumed: no `/root/.ssh/6s_deploy`, no `STRIPE`/`UMAMI` env vars, no `.env.secrets`; every write-requiring credential this cycle would need is genuinely absent, matching every prior cycle today.
+
+**Read `RISKS.md` end to end (all thirteen entries, not the usual two-figure spot-check), because the 03:4x PM check-in had named it as the one standing document this session cluster had not yet fully covered, and its own "Last reviewed: 2026-09-16" header claimed a full review seven days stale against entries corrected as recently as 2026-09-22.** Checked every cited figure (traffic, catalogue size 138, `forms_dead`, `social_units`) against `GOALS.md`/`STATUS.md`/`ops/state.json` as they read today: no content drift found, RISK-0007's restore drill, RISK-0011's OneDrive backup finding, and RISK-0012's four same-day 2026-09-22 corrections are all still accurate. The one real defect was the header line itself, exactly the "content fixed, summary line never told" shape this file's own section 8 already warns about (it names the cost of a two-week-stale "Last reviewed" from 2026-08-19). Fixed: bumped to 2026-09-23 with an honest note of what was actually checked, rather than a bare date change with no basis.
+
+**Verified:** full `preflight.py` clean (see above, includes `gate_risks_register_current`). `ops/fix_dashes.py --check`: 0 em dashes, 0 en dashes, including in the new `RISKS.md` text. No price, product, or site page touched.
+
+**Went well:** picking up the specific unread-document handoff instead of repeating the same backlog/GitHub/credential sweep a further time; the full read found a real, if minor, defect rather than coming back empty.
+
+**Did not go well:** none this cycle. The checkout-shape issue (#27) did not recur this time.
+
+**Changing next cycle:** none.
+
+**Next:** `OWNER-ACTIONS.md`'s own "Start here" four items (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) remain the highest-leverage unclaimed work in the repository and none can be done without Phil's own hand. Production is still behind the repository (confirmed 2026-09-22T16:05:56Z at build `a993020017bafe37`, repository since moved on); no sandboxed session holds the VPS deploy key to close that gap. Every other unblocked lane is independently reconfirmed exhausted as of this cycle.
+
+Pushed to main. `RISKS.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable, no site page added or changed.
+
 ## PM check-in, 2026-09-23 04:1x (previous work finished, verified myself with a full preflight rerun; a self-inflicted gate failure found and fixed, not a repo defect; no new operator handoff)
 
 **Previous work: finished, verified.** Attached cleanly (unshallow, ff-only onto origin/main, no new commits since the 04:03 operator cycle). Read `BACKLOG-2026-09-07.md` sections 1 through 6 in full, `OWNER-ACTIONS.md`'s start-here list, and pulled all 8 GitHub issues live: every unblocked lane is genuinely exhausted, everything left is `decision`/`blocked-on-art`, matching the last several cycles independently.
