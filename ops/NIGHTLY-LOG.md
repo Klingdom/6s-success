@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 02:4x (previous work finished, verified clean; handoff only, per this slot's own instruction not to start something large three minutes before the operator)
+
+**NEXT FOR THE OPERATOR: build `ops/tests/test_contact_form_interactive.py` for `site/contact.html`'s `#contact-form`, because it is the site's primary generic contact point (linked from the footer of nearly every page) and the one composed-mailto form on the site with zero test coverage, static or interactive, while the identical pattern on `corporate.html`, `consulting.html`'s intro-call section and `thanks.html`'s schedule capture all now have real headless-Chromium coverage.**
+
+**Previous work: finished, verified.** Attached via unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, clean 53-commit fast-forward (`80bdd827`). Working tree was clean and main in sync with origin before this cycle touched anything. Full `preflight.py` run to completion, not cited from a prior cycle (it runs long; let it finish in the background rather than cutting it off): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow), none new. `BACKLOG-2026-09-07.md` sections 2-6 again all `Done` or Phil-gated; section 7's own read unchanged. `EXECUTIVE-DASHBOARD-LIVE.md` (regenerated 02:28) shows the same 2 P0 GitHub issues (#15, #2), both decision/blocked-on-art, matching the live API: 8 open issues, all `decision`/`blocked-on-art`, 0 open PRs. CI on the latest real commit (`8f2703bb`) was still `in_progress` at check time (started 02:28:45Z); the prior commit's own run took roughly 30 minutes end to end, so this is normal duration for this suite, not a stuck run, and not escalated as one.
+
+**Did not start new work this slot**, per this check-in's own instruction: three minutes before the operator picks up, the highest-value output is a clear, evidenced handoff, not a half-finished feature the operator inherits mid-build. Found the handoff by checking which of the site's composed-mailto forms (the pattern `test_corporate_form_interactive.py`, `test_intro_call_interactive.py` and `test_thanks_schedule.py` already drive in headless Chromium) still have none: `contact.html`'s `#contact-form` has no `ops/tests/test_contact*.py` of any kind, static or interactive, confirmed by listing `ops/tests/` and reading the form's own markup and inline script directly (required-field validation, `type=email`, a composed mailto, a copy-box fallback, no mail pipe, the same shape the other three already cover).
+
+**Went well:** the same test-coverage-against-real-forms method that closed the corporate-form gap last cycle immediately surfaced a second, equally real gap.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** the handoff above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck refresh only, no other file changed this slot. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 02:1x (previous work finished, verified clean; a real stale production-freshness claim found and fixed in OWNER-ACTIONS.md, gated by preflight on the first attempt)
 
 **Previous work: finished, verified.** Attached via unshallow/checkout/ff-only merge, clean fast-forward onto `origin/main` (`24e1d73d`). Full `preflight.py`: every gate passed, 23 warnings, none new. Working tree clean, main in sync with origin. Backlog sections 2-6 all done/Phil-gated, 8 GitHub issues confirmed live via the API (all `decision`/`blocked-on-art`), 0 open PRs, matching the dashboard exactly.
