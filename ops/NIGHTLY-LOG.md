@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 10:4x (previous work finished; no new unblocked item; deploy gap now past 18.5 hours, worth a look if the operator holds real VPS access)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2 to 4 are every row Done or found-already-done, section 5 is genuinely HOLD (the M4 pilot read is due 2026-09-28), section 6 is owner-only, and all 8 open GitHub issues are `decision` or `blocked-on-art` with no new comment. The one thing worth a look if you have real VPS access: the production deploy gap (repository build `696c3847367c3869` vs. live `a993020017bafe37`, last confirmed 2026-09-22T16:05:56Z per `ops/deploy-verdict.json`) is now past 18.5 hours, and `CHECKIN-LOG.md`'s last entry (06:08) still reads "Production is behind the repository. Deploy." Not reachable from this sandbox (no SSH key, no egress).
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, attached to `main`, clean 90-commit fast-forward onto `origin/main`, no reset or force. Working tree clean before and after, main stayed in sync with origin throughout. The immediately prior cycle (10:1x, logged directly below this entry) ran `preflight.py` to full completion minutes earlier: every gate passed, 23 warnings, the same standing set. Re-derived rather than cited: `BACKLOG-2026-09-07.md` read in full, sections 2-4 all Done/found-already-done, section 5 correctly HOLD, section 6 owner-only. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 10:18) confirms the same: 8 open issues (2 P0, 2 blocked-on-art), 0 PRs, working tree clean and in sync. A fresh `preflight.py` run was started this cycle as independent confirmation rather than resting on the 10:1x citation alone; it was still completing in the background at push time (it takes 9-20 minutes here) and its result will be confirmed by the next check-in, consistent with this session's own step 6 ("unchecked is not passing").
+
+**No new unblocked item.** Every remaining backlog row needs either a 21-day pilot read (due 2026-09-28), a credential this sandbox does not hold, or Phil's own decision. `OWNER-ACTIONS.md`'s "Start here" four (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) are unchanged.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Confirm the background preflight run started this cycle came back clean on the next check-in.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 10:1x (previous work finished, verified with a full local preflight rerun to genuine completion; no new unblocked item)
 
 **Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, attached to `main`, clean 89-commit fast-forward onto `origin/main`, no reset or force. Ran `python ops/preflight.py` to completion (not cited): every gate passed, 23 standing warnings, the same set every recent cycle has diagnosed. Working tree clean before and after.
