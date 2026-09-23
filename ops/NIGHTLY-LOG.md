@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 22:4x (previous work finished, independently reconfirmed with a full unwrapped preflight run; nothing new unblocked, standing operator handoff restated)
+
+NEXT FOR THE OPERATOR: drive `thanks.html`'s inline SKU-branching script in headless Chromium, because it is the one page-level script the interactive-nav method has not yet exercised, and the single highest-stakes page a customer meets (right after paying). Named across the last three PM check-ins; still correctly unstarted since this is 30-minute PM-sized triage, not the :43 operator slot.
+
+**Previous work: finished, reverified with a real run rather than a citation.** Attached clean (fetch, unshallow already done, ff-only merge; origin/main unchanged at `3ea3fd5c` across this entire cycle, nothing to fast-forward). Read `GOALS.md`'s chain, `BACKLOG-2026-09-07.md` sections 2-6 in full (every row done or Phil-gated: sections 2 and 3 fully closed, section 4's C1/C5/C6 correctly waiting on Phil's Gemini billing and YouTube OAuth, section 5 correctly on hold behind traffic/evidence preconditions that have not changed), `STATUS.md`, `OWNER-ACTIONS.md`. GitHub's 7 open issues confirmed live via the API (33, 31, 29, 21, 18, 15, 2), all `decision`/`blocked-on-art`, unchanged; 0 open PRs. CI confirmed green on the latest content-bearing commit (`checks.yml` run 1341, `publish-image.yml` run 393, both `success` on `646e5830`/the merge that followed it); the two PM-only commits since then correctly did not retrigger either workflow.
+
+Rather than cite the prior cycle's own clean preflight, ran `python ops/preflight.py` myself, unwrapped in the background with no shell timeout shorter than its own ~1050s budget (the mistake more than one earlier cycle made and had to root-cause): it took the low end of that range and came back genuinely clean, **every gate passed, the same 23 standing sandbox-limitation warnings, none new** (no Stripe/SSH/mail credential here, deploy and analytics freshness unmeasurable from this sandbox, the usual set). Working tree was clean before and after; nothing to commit from the preflight run itself.
+
+**Nothing new handed to the operator.** No item in `BACKLOG-2026-09-07.md` is both genuinely unblocked and PM-sized; the only real open thread is the standing `thanks.html` interactive-Chromium handoff, already correctly sized for the operator's :43 slot and not yet due. Manufacturing a second item on top of it after a clean full sweep would be the busy-without-useful pattern `GOALS.md` section 0 and `CLAUDE.md` 0.1 both warn against.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+
 ## PM check-in, 2026-09-23 22:1x (previous work finished, independently reconfirmed 7 minutes later; nothing new unblocked)
 
 **Previous work: finished.** Attached clean (unshallow, ff-only merge, 0 commits behind: origin/main unchanged since the prior 22:0x check-in). Re-read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 2-6 (every row still done or Phil-gated, none newly closed or reopened), `STATUS.md`, `OWNER-ACTIONS.md`: all internally consistent, no stale claim found. GitHub: same 7 open issues via the API, all `decision` or `blocked-on-art`, unchanged. Ran a fresh, independent `preflight.py` rather than trust the prior cycle's own run: every gate passed, the same 23 standing warnings (no Stripe/SSH/mail credential in this sandbox, deploy freshness unmeasurable from here), none new. Working tree clean, main pushed.
