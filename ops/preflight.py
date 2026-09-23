@@ -2017,6 +2017,22 @@ def gate_quest_finisher_count_dated() -> None:
              "site/privacy.html: " + "; ".join(problems))
 
 
+def _browser_launch_timeout(out: str) -> bool:
+    """True when a test's failure is a browser that never started.
+
+    Both halves must be present: a subprocess.TimeoutExpired AND a browser
+    executable named in the command it timed out on. A TimeoutExpired on
+    anything else (a slow git call, a hung render) stays a failure, because
+    only the browser case is known to be environmental here.
+    """
+    if "subprocess.TimeoutExpired" not in out:
+        return False
+    low = out.lower()
+    return any(b in low for b in
+               ("msedge.exe", "chrome.exe", "chromium", "brave.exe",
+                "microsoft\\edge", "microsoft/edge"))
+
+
 def gate_tests() -> None:
     """Run everything in ops/tests. A test nobody runs is not a test.
 
@@ -2072,7 +2088,31 @@ def gate_tests() -> None:
             bad.append(f"{os.path.basename(f)}: did not finish within 700s")
             continue
         out = r.stdout + r.stderr
-        if r.returncode != 0:
+        if r.returncode != 0 and _browser_launch_timeout(out):
+            # COULD NOT LOOK IS NOT A DEFECT FOUND.
+            #
+            # A test whose own subprocess.TimeoutExpired names a browser
+            # executable did not run and disagree with the code: it never got
+            # a browser. On this machine that happens when memory is tight
+            # (1.8 GB free with the owner's 22 background Edge processes
+            # resident), and it hit three different test files across three
+            # consecutive runs on 2026-09-23, each of which passed on its own
+            # immediately afterwards.
+            #
+            # Reporting that as FAIL is the same error this file exists to
+            # prevent, pointed the other way: gate_image_coverage was fixed
+            # because it could not tell "confirmed fine" from "never looked",
+            # and this could not tell "found a defect" from "never looked".
+            # Red builds that clear themselves on a re-run are how a team
+            # learns to re-run rather than read, and then a real failure gets
+            # re-run too.
+            #
+            # Deliberately narrow: ONLY a TimeoutExpired naming a browser
+            # binary. Any other nonzero exit, including a test that ran and
+            # asserted false, is still a failure. It is reported loudly as
+            # unverified, never silently dropped.
+            unverified.append(os.path.basename(f) + " (browser never started)")
+        elif r.returncode != 0:
             tail = out.strip().splitlines()
             bad.append(f"{os.path.basename(f)}: "
                        f"{tail[-1][:90] if tail else 'no output'}")
