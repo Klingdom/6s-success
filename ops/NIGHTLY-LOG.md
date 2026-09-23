@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 14:2x (previous work finished and verified; started duplicate test coverage, found a concurrent session already shipped it, discarded mine rather than ship a conflicting copy; no new unblocked item)
+
+**Previous work: finished, verified.** Attached via unshallow plus ff-only merge. Full `preflight.py` run to genuine completion (not truncated), clean: every gate passed, 23 standing warnings, all previously diagnosed. This covered the 13:4x check-in's red-gate fix, the concurrent `dedupe_links()` test coverage and `gate_tests` browser-launch-timeout fix (Phil + Opus, `88cc1b18`), and a same-document GOALS.md contradiction fix, all merged clean, no conflicts.
+
+**Did not ship anything of my own.** Began writing test coverage for `stripe_dedupe.py`'s `dedupe_links()` duplicate-link branch (real gap, flagged by the prior check-in), proved it fail-then-pass locally, then a fetch showed a concurrent session had landed the identical coverage first (`88cc1b18`, then `ops/tests/test_stripe_dedupe_links.py`). Discarded my copy rather than add a second, differently-shaped test for the same function.
+
+**No new unblocked item.** Backlog sections 2-4 all done, 5 correctly HOLD, 6 owner-only. 7 GitHub issues unchanged, all `decision`/`blocked-on-art`. Given how much concurrent activity landed in this one slot, leaving anything further to the twin/operator rather than start something new mid-collision.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`; nothing new.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-09-23, scheduled operator cycle continued (a real test regression found and fixed merging in a large batch of concurrent work; a new money-adjacent function gained its first regression test)
 
 **Did:** After this cycle's own GOALS.md fix (below) was pushed, the push was rejected twice in a row by concurrent work landing on `origin/main`: first a PM check-in's own independent fix to the same paragraph (merged cleanly, both fixes folded together, see the addendum on the entry below), then, after a container restart interrupted the first merge's verification, a much larger batch: roughly 90 commits spanning many PM check-ins and one of Phil's own sessions, including a real traffic re-measurement (68 visitors/160 visits/30 days, 12/wk last 7 days, 2026-09-23 12:50 UTC, superseding the 76/190/10 figure this cycle's own fix had used) and a new `ops/stripe_dedupe.py` function, `dedupe_links()`, that deactivates duplicate Stripe payment links.
