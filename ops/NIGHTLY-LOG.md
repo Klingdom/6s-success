@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Interactive session, 2026-09-23 (later): the retirement finished itself, and two checks stopped failing quietly
+
+**The tool built yesterday earned its keep today.** A concurrent session retired 8 more SKUs repository-side (D-024, the Kitchen packs) and Stripe still sold them. `ops/retire_stripe_skus.py` found them on a routine `--check`, scanned all 192 live URLs, found no page serving a retired SKU or link, and archived 16 objects. **All 65 retired SKUs are now confirmed archived**, and `check_live_links.py` still reads "every payment link the live site serves is active in Stripe". This is what the tool was for: the same gap appeared twice in two days and the second time it was caught by a check rather than by noticing.
+
+**Owner item 1h closed, and it should never have needed him.** It asked Phil to run a tool from a machine holding the Stripe key, which this session has. Closed with evidence rather than left on his list.
+
+**Two swallowed exceptions fixed**, from the sweep promised after the app work. Of the 11 in `ops/` (not 23, the earlier count included `ops/tests`), most are honest fallback loops and were left alone. Two were not: `gate_workflows_healthy` dropped any workflow whose last-run timestamp it could not parse, so a scheduled job that stopped firing months ago looked exactly like one that ran this morning; and `dashboard.py` swallowed a catalogue parse failure, which would have rendered "can take money for **None of None** catalog items" into the executive dashboard, worse than silent because it looks like a measurement.
+
+**A test failed as a reward for finishing the work.** `test_gate_retired_skus_stripe_archived` hardcoded "44 of 65 still pending", true the morning it was written and false hours later once the rest were archived. It now re-derives the expectation from the two real files, so completing the work cannot break it.
+
+**Went well:** the routine `--check` habit. Nothing prompted it; the retirement gap would otherwise have sat unnoticed for however long.
+
+**Did not go well:** I broke an f-string continuation while editing the dashboard's constraint line and had to repair it; caught immediately by the syntax check, not by a later run.
+
 ## 2026-09-23, scheduled operator cycle (turned today's paint() fix into a standing static gate, no browser needed)
 
 **Did:** Unshallowed, ff-merged onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, newest log entries. Preflight clean before touching anything. GitHub: 7 issues unchanged. No mail credential. Backlog sections 1b to 6 reconfirmed done or Phil-gated.
