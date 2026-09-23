@@ -11643,6 +11643,14 @@ def gate_goals_traffic_current() -> None:
     absent or no longer in the expected shape: a hard fail there would make
     an unrelated rewrite of that document's prose block this gate for a
     reason it cannot fix here.
+
+    Widened 2026-09-23, PM check-in: STATUS.md's own "Business Data
+    Knowledge" paragraph (section 29, near the end of the file) carries a
+    fourth copy of this figure, distinct from the section 9 table already
+    checked above; found nine days and two corrections stale (75/196, the
+    2026-09-14 pull) while section 9 a thousand lines above it already read
+    68/160. Now also parsed and compared, silent on the same terms as the
+    DATA-SOURCES.md check.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -11795,6 +11803,23 @@ def gate_goals_traffic_current() -> None:
             bad.append(f"DATA-SOURCES.md's Web analytics row cites "
                        f"{dsm.group(1)} visitors/{dsm.group(2)} visits, "
                        f"GOALS.md O1 now says {sessions_30}/{visits_30}")
+
+    # Widened 2026-09-23, PM check-in: STATUS.md's own "Business Data
+    # Knowledge" paragraph (section 29) carries a third copy of this figure,
+    # separate from the section 9 table already checked above. Found stale
+    # that day: it still read "75 visitors across 196 visits" (the
+    # 2026-09-14 pull) nine days and two corrections after section 9 above
+    # it had already moved to 68/160, the same "one row corrected, its
+    # neighbour never told" shape, inside one document this time. Silent if
+    # the row is absent or no longer in this shape, same convention as the
+    # OWNER-ACTIONS.md and DATA-SOURCES.md checks above.
+    if os.path.exists(status_path):
+        bdk = re.search(r"Business Data Knowledge.{0,300}?(\d+) VISITORS "
+                         r"ACROSS (\d+) VISITS", status, re.S)
+        if bdk and (int(bdk.group(1)), int(bdk.group(2))) != (sessions_30, visits_30):
+            bad.append(f"STATUS.md's 'Business Data Knowledge' paragraph "
+                       f"cites {bdk.group(1)} visitors/{bdk.group(2)} visits, "
+                       f"GOALS.md now says {sessions_30}/{visits_30}")
 
     if bad:
         fail("goals-traffic-current",

@@ -18,6 +18,11 @@ now checked against its own "Stranger to Visitor"/"Sessions, last 7 days"
 rows, since every prior check compared GOALS.md against a sibling file but
 never against itself.
 
+Widened 2026-09-23, PM check-in: STATUS.md's own "Business Data Knowledge"
+paragraph (section 29) carries a separate copy of the figure from the
+section 9 table this gate already checked, and was found nine days and two
+corrections stale.
+
 Run:  python ops/tests/test_gate_goals_traffic_current.py
 """
 import io
@@ -107,13 +112,34 @@ GOALS_WHY_DISAGREES = GOALS + (
     "\n**Why it is first, now with numbers.** 68 visitors (read directly "
     "from the database) across 193 visits in thirty days, and so on.\n")
 
+# STATUS.md's own "Business Data Knowledge" paragraph (section 29), found
+# 2026-09-23, PM check-in: nine days and two corrections behind section 9's
+# own table above it (75/196, the 2026-09-14 pull, while GOALS.md had moved
+# to 68/160). A separate copy of the figure from the section-9 check above.
+STATUS_SECTION_9 = (
+    "| Sessions | 68 | Last 30 days | x |\n"
+    "| Sessions | 21 | Last 7 days | x |\n"
+)
+STATUS_AGREES = STATUS_SECTION_9 + (
+    "**Business Data Knowledge:** CURRENT TRAFFIC BASELINE: 68 VISITORS "
+    "ACROSS 161 VISITS AND 900 PAGEVIEWS IN 30 DAYS.\n"
+)
+STATUS_DISAGREES = STATUS_SECTION_9 + (
+    "**Business Data Knowledge:** CURRENT TRAFFIC BASELINE: 75 VISITORS "
+    "ACROSS 196 VISITS AND 947 PAGEVIEWS IN 30 DAYS.\n"
+)
+STATUS_NO_LINE = STATUS_SECTION_9 + (
+    "Nothing resembling that phrase appears anywhere in this file.\n")
 
-def _run(goals: str, owner_actions: str, data_sources: str = None):
+
+def _run(goals: str, owner_actions: str, data_sources: str = None, status: str = None):
     tmp = tempfile.mkdtemp()
     io.open(os.path.join(tmp, "GOALS.md"), "w", encoding="utf-8").write(goals)
     io.open(os.path.join(tmp, "OWNER-ACTIONS.md"), "w", encoding="utf-8").write(owner_actions)
     if data_sources is not None:
         io.open(os.path.join(tmp, "DATA-SOURCES.md"), "w", encoding="utf-8").write(data_sources)
+    if status is not None:
+        io.open(os.path.join(tmp, "STATUS.md"), "w", encoding="utf-8").write(status)
     old_root = preflight.ROOT
     preflight.ROOT = tmp
     preflight.FAIL, preflight.WARN = [], []
@@ -229,13 +255,39 @@ def main() -> int:
     if not r or "75" not in r[0][1] or "68" not in r[0][1]:
         fails.append("annotated DATA-SOURCES.md disagreement not caught: %r" % (r,))
 
+    # 16. STATUS.md's "Business Data Knowledge" paragraph agrees with
+    #     GOALS.md (68/161 both places): no failure. Section 9's own rows
+    #     are included so that separate, already-existing check stays quiet
+    #     too, isolating this test to the new paragraph check alone.
+    r = _run(GOALS, OA_AGREES, status=STATUS_AGREES)
+    if r:
+        fails.append("STATUS.md Business Data Knowledge agreement wrongly "
+                      "flagged: %r" % (r,))
+
+    # 17. It disagrees (75/196 vs. GOALS.md's 68/161): caught, naming both
+    #     numbers. This is the real 2026-09-23 regression shape: the
+    #     paragraph sat nine days and two corrections behind section 9's own
+    #     table a thousand lines above it in the same file.
+    r = _run(GOALS, OA_AGREES, status=STATUS_DISAGREES)
+    if not r or "75" not in r[0][1] or "68" not in r[0][1]:
+        fails.append("STATUS.md Business Data Knowledge disagreement not "
+                      "caught: %r" % (r,))
+
+    # 18. STATUS.md carries no such paragraph at all: must not crash, must
+    #     not invent a finding.
+    r = _run(GOALS, OA_AGREES, status=STATUS_NO_LINE)
+    if r:
+        fails.append("STATUS.md missing Business Data Knowledge paragraph "
+                      "wrongly flagged: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
     print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md + DATA-SOURCES.md "
-          "+ same-document checks), 15/15 checks pass")
+          "+ STATUS.md Business Data Knowledge + same-document checks), "
+          "18/18 checks pass")
     return 0
 
 
