@@ -39,7 +39,7 @@ def main() -> int:
         return [{"id": "price_" + pid, "active": True,
                   "unit_amount": p["_price"]}]
 
-    def fake_list_all_factory(products, links=None):
+    def fake_list_all_factory(products, links=()):
         def fake_list_all(kind, params=None):
             if kind == "products":
                 return products
@@ -47,7 +47,12 @@ def main() -> int:
                 pid = (params or {}).get("product")
                 return prices_for(pid, products)
             if kind == "payment_links":
-                return links or []
+                # main() now falls through to dedupe_links() whenever
+                # products carry no duplicate, added 2026-09-23. This test
+                # is scoped to the product-side empty-account guard, so an
+                # empty, non-duplicated link population keeps that path a
+                # clean no-op rather than an unstubbed call.
+                return list(links)
             raise AssertionError(f"unexpected kind: {kind}")
         return fake_list_all
 
