@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 11:4x (previous work finished; no new unblocked item; deploy gap now past 19.5 hours)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2 to 4 are every row Done or found-already-done, section 5 is genuinely HOLD (the M4 pilot read is due 2026-09-28, A/B tests wait on 1,427 days to significance), section 6 is owner-only, and all 8 open GitHub issues are still `decision` or `blocked-on-art` with no new comment since the last check-in (confirmed live via the API, `updated_at` unchanged on every one). If you hold real VPS access, the production deploy gap is the one thing worth a look: repository build `696c3847367c3869` vs. live `a993020017bafe37`, last confirmed 2026-09-22T16:05:56Z, `CHECKIN-LOG.md`'s last entry (06:08) still reads "Production is behind the repository. Deploy." Otherwise, the standing move that has found real (if small) defects on past exhausted cycles is a cold read of a genuinely low-mention `ops/*.py` file, verified against its own `--check`/`--status` mode rather than trusted from the read.
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, attached to `main` via `checkout -B main origin/main` then `merge --ff-only`, clean 93-commit fast-forward onto `origin/main`, no reset or force. The immediately prior cycle (11:1x, logged directly below) ran `preflight.py` to full completion minutes earlier: every gate passed, 23 warnings, the same standing set (no Stripe/mail/SSH/Pillow/Gemini credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU gap, deck/page-art gaps on #2/#29). A fresh `preflight.py` was started this cycle as independent confirmation rather than resting on that citation alone (a first attempt was killed early by this session's own 300s wrapper, restarted unwrapped so it can run to genuine completion in the background rather than report a truncated result as clean); its outcome will be confirmed by the next check-in, consistent with step 6, "unchecked is not passing." Working tree clean before and after.
+
+**Independently re-derived, not cited.** `BACKLOG-2026-09-07.md` read in full again: sections 2 to 4 every row struck through Done or already-shipped by name; section 5 correctly HOLD for the reasons it states; section 6 is owner-only. GitHub checked live via the API, not trusted from the log: 8 open issues unchanged in count, number and label (`decision`: 34, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), all with the same `updated_at` as the prior cycle's own read (no new comment), 0 open PRs. `CHECKIN-LOG.md`'s last entry (06:08 UTC) and `OWNER-ACTIONS.md`'s deploy-verdict citation agree: production has been behind the repository since 2026-09-22T16:05:56Z, now past 19.5 hours, unreachable from this sandbox (no SSH key, no egress, confirmed by direct check this cycle rather than assumed).
+
+**No new unblocked item.** Every remaining backlog row needs a 21-day pilot read, a credential this sandbox does not hold, or Phil's own decision. `OWNER-ACTIONS.md`'s "Start here" four (Search Console verification, YouTube OAuth, the Stripe business description paste, the 36-SKU Stripe archival) are unchanged.
+
+**Went well:** not trusting a truncated preflight run as a clean result; restarted it properly rather than reporting an incomplete kill as "passed."
+
+**Did not go well:** the production deploy gap remains open and unreachable from this sandbox, now past 19.5 hours, the longest it has stood this cycle-day.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. The background preflight run started this cycle will be confirmed clean (or acted on if not) by the next check-in.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 11:1x (previous work finished, verified with a full local preflight rerun to genuine completion; no new unblocked item)
 
 **Previous work: finished, verified.** Checkout arrived shallow and detached; unshallowed, attached to `main` via `checkout -B main origin/main` then `merge --ff-only`, clean 92-commit fast-forward onto `origin/main`, no reset or force. Ran `python ops/preflight.py` to completion myself (not cited): every gate passed, 23 standing warnings, the identical set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow/Gemini credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU gap, deck/page-art gaps on #2/#29). Working tree clean before and after.
