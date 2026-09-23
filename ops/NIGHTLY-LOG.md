@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 19:1x (closed the one loose end the 18:4x cycle explicitly left open; no new unblocked item found)
+
+**Previous work: finished, verified.** Attach clean (fetch, unshallow, ff-only merge onto origin/main, no reset or force). `python ops/preflight.py` run to full completion myself (backgrounded past the foreground timeout, about 3 minutes): every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow/Gemini credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the retired-SKU Stripe gap, deck/page-art gaps on #2/#29), none new. Working tree clean before and after.
+
+**Closed the exact open item the last cycle named: "checks.yml run #1332 was still in_progress... check that run's final conclusion before citing this push as fully green."** Checked directly against the GitHub API rather than re-citing the log: run #1332 on `8ba3f4dc` (the merged STATUS.md fix) is `completed`/`success`. While there, checked the two pushes since (`5947877`, the addendum; `bc3663bd`, the 18:4x handoff) for their own CI: neither started a `checks.yml` or `publish-image.yml` run at all. Read why before treating that as a gap: both commits touch only `ops/NIGHTLY-LOG.md`, `ops/dashboard.html`, `ops/state.json` and `EXECUTIVE-DASHBOARD-LIVE.md`, all four explicitly negated in `checks.yml`'s own path filter (documented in the workflow's own header comment, 2026-09-13: these four regenerate every cycle regardless of real change, and letting them trigger a run was previously found to cancel real in-flight checks via the concurrency group). Correct behaviour, not a defect. Also found, while pulling CI history: `publish-image.yml` run #388 on `acb343cb` (today's D-024 catalogue retirement, 138 to 130 SKUs) failed at the Preflight step, on `test_stripe_dedupe.py`'s single-product-account case. Traced forward rather than left as a stale worry: commit `88cc1b18` (run 1323, same day, 14:22) already found and fixed this exact test, "3 real cases added for the new code... 6 of 6 pass," and every `publish-image.yml` run since (389, 390) is green. Not a live issue; today's own preflight run confirms the fixed test still passes.
+
+GitHub: 7 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6 and `OWNER-ACTIONS.md`'s "start here" list reconfirmed: every unblocked-looking row still needs Phil's own machine, Google login or Stripe key. No new defect found in the time available this slot.
+
+**Next:** same standing Phil-blocked list, unchanged. Handoff to the operator unchanged from 18:4x: drive `quest.html` and a zone page's kit/CTA path in headless Chromium, the method that already found and fixed today's live sitewide JS crash on `index.html`.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-09-23 18:4x (previous work finished and CI-confirmed; handoff to operator, no new unblocked item found in the time available)
 
 NEXT FOR THE OPERATOR: drive quest.html and a zone page's kit/CTA path in headless Chromium, the method the 18:1x cycle just proved on index.html (found and fixed a live sitewide JS crash), because purchase-adjacent pages are the one unblocked priority-2 (broken-or-dishonest) lane nobody has run it against yet.
