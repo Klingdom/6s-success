@@ -9745,6 +9745,77 @@ def gate_retired_skus_stripe_archived(fp_skus: str = "", fp_status: str = "") ->
                 " and %d more" % (len(pending) - 8) if len(pending) > 8 else ""))
 
 
+def gate_owner_actions_retired_sku_count_current(fp_oa: str = "",
+                                                  fp_skus: str = "",
+                                                  fp_status: str = "") -> None:
+    """OWNER-ACTIONS.md item 1h must cite the live pending-SKU count, not
+    the count at the moment it was written.
+
+    Found 2026-09-23, cold-reading ops/retired-skus.json after preflight's
+    own gate_retired_skus_stripe_archived warned "44 of 65". Item 1h,
+    written 2026-09-22 the day that gate shipped, tells Phil to expect "36
+    SKUs from the original 2026-08-21 retirement". D-024 (commit acb343cb,
+    2026-09-23) retired 8 more SKUs, the 7 Kitchen zone packs and the
+    Kitchen room pack, into the SAME ops/retired-skus.json list once the
+    free Kitchen deck became a real downloadable PDF; none of the 8 is
+    Stripe-confirmed, so the real pending count moved from 36 to 44 that
+    day. D-024's own commit message says it corrected the catalogue count
+    (138 to 130) "everywhere it was cited as present fact", six named
+    files, but OWNER-ACTIONS.md item 1h was never one of them, because
+    nothing checked it against this specific number. The exact
+    corrected-source-never-rederived shape CLAUDE.md 0.2 and this
+    repository's own gates exist to catch, one document over from where the
+    last several already looked.
+
+    This gate re-derives the live pending count the same way
+    gate_retired_skus_stripe_archived above does (every SKU in
+    ops/retired-skus.json not present in ops/retired-skus-stripe-status.json's
+    archived set) and fails if OWNER-ACTIONS.md item 1h's own cited number
+    disagrees. Silent if the row's wording has moved to a shape this gate no
+    longer recognises, the same convention gate_goals_traffic_current uses
+    for its own cross-document checks, so an unrelated rewrite of the row
+    cannot block preflight for a reason it cannot fix here.
+    """
+    fp_oa = fp_oa or os.path.join(ROOT, "OWNER-ACTIONS.md")
+    fp_skus = fp_skus or os.path.join(ROOT, "ops", "retired-skus.json")
+    if not os.path.exists(fp_oa) or not os.path.exists(fp_skus):
+        return
+    oa = io.open(fp_oa, encoding="utf-8").read()
+    m = re.search(r"for the (\d+) SKUs? still unconfirmed in Stripe", oa)
+    if not m:
+        return
+    cited = int(m.group(1))
+
+    try:
+        d = json.load(io.open(fp_skus, encoding="utf-8"))
+        skus = [s["sku"] for s in d.get("skus", [])
+                if isinstance(s, dict) and s.get("sku")]
+    except Exception:                                             # noqa: BLE001
+        return
+    if not skus:
+        return
+
+    fp_status = fp_status or os.path.join(ROOT, "ops",
+                                           "retired-skus-stripe-status.json")
+    archived = {}
+    if os.path.exists(fp_status):
+        try:
+            archived = json.load(io.open(fp_status, encoding="utf-8")).get(
+                "archived", {})
+        except Exception:                                         # noqa: BLE001
+            archived = {}
+
+    pending = len([s for s in skus if s not in archived])
+    if pending != cited:
+        fail("owner-actions-sku-count-current",
+             "OWNER-ACTIONS.md item 1h says %d SKU(s) are still unconfirmed "
+             "in Stripe, but ops/retired-skus.json minus ops/retired-skus-"
+             "stripe-status.json's confirmed set currently shows %d. If a "
+             "later retirement (like D-024) added SKUs to the same list, "
+             "item 1h's own count went stale the moment that commit landed."
+             % (cited, pending))
+
+
 def gate_pages_missing_art() -> None:
     """Count every customer-facing page that ships with no picture at all.
 
@@ -19872,6 +19943,7 @@ def main() -> int:
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_retired_skus_stripe_archived)
+    run_gate(gate_owner_actions_retired_sku_count_current)
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_print_and_play_art_count_current)
