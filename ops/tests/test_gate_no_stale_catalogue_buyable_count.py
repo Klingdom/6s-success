@@ -13,6 +13,14 @@ stating the retired figure as present fact. This has recurred at least
 four times before by grep of ops/NIGHTLY-LOG.md, always fixed by hand with
 no standing check; this closes that gap.
 
+Recurred again 2026-09-23, exactly as this test's own history predicts:
+D-024's Kitchen SKU retirement moved the real count again, 138 to 130, and
+this gate correctly failed on the four files (still saying 137 of 138)
+until they were corrected. LIVE_TOTAL/LIVE_BUYABLE below track the live
+figure at the time this file was last touched, the same way the four real
+files must; when the catalogue count changes again, both this file and the
+four it checks need the new number.
+
 Run:  python ops/tests/test_gate_no_stale_catalogue_buyable_count.py
 """
 import io
@@ -24,13 +32,13 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import preflight                                               # noqa: E402
 
-LIVE_TOTAL = 138
-LIVE_BUYABLE = 137
+LIVE_TOTAL = 130
+LIVE_BUYABLE = 129
 
 STALE = "The site sells 158 of 159 catalogue products with a checkout.\n"
 STALE_ITEMS = ("the catalogue can take money for 158 of 159 items "
                "(`EXECUTIVE-DASHBOARD-LIVE.md`), so the shop window is fine.\n")
-GOOD = "The site sells 137 of 138 catalogue products with a checkout.\n"
+GOOD = "The site sells 129 of 130 catalogue products with a checkout.\n"
 QUOTED_HISTORICAL = ('EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: '
                       '"The site can take money for 158 of 159 catalog items."\n')
 THEN_HISTORICAL = ("ops/state.json, reconfirmed 2026-09-03 (158 of 159 "

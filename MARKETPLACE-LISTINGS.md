@@ -45,7 +45,7 @@ write anything.
 | The EPUB opens, every one of its 56 XHTML documents is well-formed, its manifest and spine resolve, no file is undeclared, it has both a nav document and an NCX, and every internal link and image reference resolves | `build/listings/verify_epub.py` |
 | The cover is 1600 x 2560, RGB, ratio exactly 1.6000, 167 KB | measured with Pillow |
 | Book length: 271,362 words excluding inline SVG, across 56 documents | measured from the EPUB |
-| The four Etsy deliverables are US Letter, contain the page and card counts their titles claim, and have no near-empty pages | `build/listings/check_etsy.py`. A fifth, L3-entryway, was withdrawn 2026-09-09; see section 3.1 |
+| The three Etsy deliverables are US Letter, contain the page and card counts their titles claim, and have no near-empty pages | `build/listings/check_etsy.py`. Two more, L3-entryway and L2-kitchen, were withdrawn (2026-09-09 and 2026-09-23); see section 3.1 |
 
 ### UNVERIFIED, and why
 
@@ -314,7 +314,8 @@ which is real but not decisive. The reasons that are decisive:
    in a month. 155 test nothing, because no one of them gets enough traffic to
    mean anything.
 
-So: **one flagship, two rooms, two life events.**
+So: **one flagship, two rooms, two life events.** (Now one flagship, one
+room, two life events; see the L2 withdrawal note below.)
 
 **Corrected 2026-09-09, this operator: it is four, not five.** L3, the
 Entryway Pack, is withdrawn. Its 30 cards are the six passes (Sort,
@@ -335,10 +336,24 @@ no longer lists it, its rendered files are removed, and
 matches a SKU the site's own catalogue has excluded as free, so this cannot
 recur silently for L3 or any future listing.
 
+**Withdrawn 2026-09-23, this operator: L2, the Kitchen Pack, for the
+identical reason.** `DECISIONS.md` D-024 retired L2's source SKU,
+`RP-KITCHEN` ($9, 42 cards), from the site's own paid catalogue the same
+day, once `ops/build_kitchen_deck_pdf.py` made the free 72-card Kitchen
+deck genuinely downloadable (all seven Kitchen zones, more cards per zone
+than the 42-card pack it supersedes). `build/listings/check_etsy.py`'s
+`free_duplicate_skus()` check, built for L3, caught this shape exactly as
+designed the moment `RETIRED`'s reason for `RP-KITCHEN` named the free
+deck: L2 was never published (`OWNER-ACTIONS.md` item 15, gate 4, Etsy is
+not a live channel yet), so no customer was ever exposed.
+`build/listings/etsy-listings.json` no longer lists it, its rendered files
+under `build/listings/etsy/L2-kitchen/` are removed, and
+`build/listings/build_etsy_assets.py`'s render table no longer names it.
+
 | | Listing | Tests | Price | Direct price |
 |---|---|---|---|---|
 | L1 | Whole House Print Pack | does completeness sell | $22.00 | $19.00 |
-| L2 | Kitchen Pack | does the highest-demand single room sell | $10.00 | $9.00 |
+| ~~L2~~ | ~~Kitchen Pack~~ **withdrawn 2026-09-23** | ~~does the highest-demand single room sell~~ duplicates the free Kitchen deck | ~~$10.00~~ | ~~$9.00~~ |
 | ~~L3~~ | ~~Entryway Pack~~ **withdrawn 2026-09-09** | ~~does the smallest, easiest room sell~~ duplicates the free Entryway deck | ~~$10.00~~ | ~~$9.00~~ |
 | L4 | Moving In Kit | does a life event sell | $16.00 | $14.00 |
 | L5 | Holiday Hosting Kit | does a season sell, launched in time for one | $16.00 | $14.00 |
@@ -451,7 +466,7 @@ Same for all four:
 | Personalisation | Off |
 | Production partners | None |
 
-### 3.4 The four listings, ready to paste
+### 3.4 The three listings, ready to paste
 
 Tags are 13 per listing, the maximum, none over 20 characters. Both limits are
 UNVERIFIED because Etsy blocks automated reads; the copy sits inside them
@@ -520,7 +535,13 @@ The method here is adapted from 5S, used on factory floors for decades, with Saf
 
 ---
 
-#### L2, Kitchen Pack, $10.00
+#### L2, Kitchen Pack, $10.00. WITHDRAWN 2026-09-23, do not publish.
+
+**Its 42 cards (7 Kitchen zones, plus the room's standards sheet) are the
+same content `ops/generated_products.py` now excludes from the site's own
+paid catalogue as free elsewhere, once the 72-card Kitchen deck became
+genuinely downloadable (`DECISIONS.md` D-024). See section 3.1 for the full
+finding. Kept below as a dated record, not as something to paste.**
 
 **Title**
 
@@ -782,7 +803,7 @@ python build/listings/etsy_economics.py \
 
 with **today's real numbers substituted**. It prints, per listing, the fees,
 the net, the effective take rate, the same product's net through the site's own
-Stripe checkout for comparison, and the standing cost of keeping four listings
+Stripe checkout for comparison, and the standing cost of keeping three listings
 up for a year with no sales at all. The rates in that example line are
 placeholders to show the shape of the output; they are not a measurement and
 must not be pasted into a plan.
@@ -855,7 +876,7 @@ Ranked by how much it would change the outcome.
 | `build/listings/build_kdp_cover.py` | Makes the KDP cover from the site cover |
 | `build/listings/amazon_suggest.py` | Amazon's own Kindle autocomplete, the evidence behind the keywords |
 | `build/listings/amazon_nodes.py` | Walks the live Kindle browse tree, the evidence behind the categories |
-| `build/listings/etsy-listings.json` | The four listings as data |
+| `build/listings/etsy-listings.json` | The three listings as data |
 | `build/listings/build_etsy_assets.py` | Renders and measures the Etsy deliverables and listing images |
 | `build/listings/print_fix.css` | The print geometry fix, with the reasoning |
 | `build/listings/print-instructions.html` | The one-page printing guide included in every listing |

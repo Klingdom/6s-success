@@ -185,14 +185,17 @@ evidence:
     Pack, $19, net $18.15) and was verified in the Stripe dashboard and the
     fulfilment path, meeting the closing condition below directly
   - ops/state.json, reconfirmed 2026-09-03 (can_take_payment=true, 158 of
-    159 catalog items sellable then), corrected 2026-09-22: catalog_total=138
+    159 catalog items sellable then), corrected 2026-09-22 to a total of 138
     after D-023 retired the 6 Area Bundles and 15 Situation Kits
     (REVIEW-COMMERCE-2026-09-07.md 1.3/1.4, $0 realised revenue on either
-    tier); 137 of 138 catalog items have a live Stripe Payment Link or a
-    real free download (only Corporate Lean 6S is quote-only, by design,
-    per BACKLOG-2026-H2.md 5.5). Nothing about the underlying route from
-    intent to payment changed; the catalogue got smaller, not the mechanism
-    this risk closed on.
+    tier), corrected again 2026-09-23: catalog_total=130 after D-024 retired
+    the 7 Kitchen zone packs and the Kitchen room pack (REVIEW-COMMERCE-
+    2026-09-07.md 1.6) once the free Kitchen deck became downloadable; 129 of
+    130 catalog items have a live Stripe Payment Link or a real free
+    download (only Corporate Lean 6S is quote-only, by design, per
+    BACKLOG-2026-H2.md 5.5). Nothing about the underlying route from intent
+    to payment changed; the catalogue got smaller, not the mechanism this
+    risk closed on.
   - site/cart.html no longer states "Secure checkout arrives in v2"; that
     line is absent from the file as of this review
   - 2026-08-30: this route broke for real for at least three days (all six
@@ -213,7 +216,8 @@ mitigation: >
 closing_condition: >
   Met, 2026-08-21 (first real transaction), reconfirmed 2026-09-03 (158 of
   159 catalog items purchasable per ops/state.json then), reconfirmed again
-  2026-09-22 at 137 of 138 after D-023's retirement (see evidence above).
+  2026-09-22 at 137 of 138 after D-023's retirement, and 2026-09-23 at 129
+  of 130 after D-024's (see evidence above).
 review: after any change to pricing, the catalog, or the Stripe integration
 ```
 
@@ -591,8 +595,10 @@ evidence:
     a real free download. Still not buyable: Corporate Lean 6S," which is
     quote-per-engagement by design (BACKLOG-2026-H2.md 5.5), not a defect
   - ops/state.json (2026-09-03, catalog_total 159 then; corrected 2026-09-22
-    to catalog_total=138 after D-023 retired the 6 Area Bundles and 15
-    Situation Kits, $0 realised revenue on either tier): can_take_payment=true
+    to a total of 138 after D-023 retired the 6 Area Bundles and 15
+    Situation Kits, $0 realised revenue on either tier; corrected again
+    2026-09-23 to catalog_total=130 after D-024 retired the 7 Kitchen zone
+    packs and the Kitchen room pack): can_take_payment=true
   - a real transaction completed and delivered 2026-08-21; a real
     three-day outage where every live link went dead was found and fixed
     2026-08-30, and is now gated (ops/check_live_links.py)
@@ -604,12 +610,12 @@ impact: >
   which is RISK-0013.
 mitigation: >
   Closed. Do not open a tenth product line ahead of evidence that the
-  existing 138 convert a stranger, per ROADMAP-2026-2029.md's own refusal
+  existing 130 convert a stranger, per ROADMAP-2026-2029.md's own refusal
   list ("no new digital tier until there is new content").
 closing_condition: >
-  Met. 137 of 138 catalog items purchasable (159 to 138 after 2026-09-22's
-  D-023 retirement), reconfirmed by ops/audit_catalog.py and
-  ops/check_sellable.py on every preflight run.
+  Met. 129 of 130 catalog items purchasable (159 to 138 after 2026-09-22's
+  D-023 retirement, to 130 after 2026-09-23's D-024), reconfirmed by
+  ops/audit_catalog.py and ops/check_sellable.py on every preflight run.
 review: monthly, alongside RISK-0013
 ```
 

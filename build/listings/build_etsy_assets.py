@@ -91,13 +91,18 @@ def find_browser() -> str | None:
 # different channel. See MARKETPLACE-LISTINGS.md section 3.1 and
 # build/listings/check_etsy.py's free_duplicate_skus(), which now fails any
 # listing that repeats this shape.
+#
+# L2-kitchen (build/products/RP-KITCHEN.html -> 6S-Kitchen-Pack.pdf) was
+# withdrawn 2026-09-23 for the identical reason: DECISIONS.md D-024 retired
+# RP-KITCHEN from the site's own paid catalogue because the free 72-card
+# Kitchen deck now covers it (and more per zone), the same day
+# ops/build_kitchen_deck_pdf.py made that deck genuinely downloadable. See
+# MARKETPLACE-LISTINGS.md section 3.1.
 LISTINGS = [
     ("L1-whole-house", "build/6S-Whole-House-Print-Pack.html",
      "6S-Whole-House-Print-Pack.pdf"),
     ("L1-whole-house", "build/6S-Standards-Pack.html",
      "6S-Standards-Pack.pdf"),
-    ("L2-kitchen", "build/products/RP-KITCHEN.html",
-     "6S-Kitchen-Pack.pdf"),
     ("L4-moving-in", "build/products/KIT-MOVING-IN.html",
      "6S-Moving-In-Kit.pdf"),
     ("L5-holiday-hosting", "build/products/KIT-HOLIDAY-HOST.html",

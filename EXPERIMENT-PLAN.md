@@ -110,7 +110,7 @@ Umami is next readable from an environment with the deploy key.
 1,200 dollars, while the homepage hero and closing CTA both sent visitors to
 `shop.html` where most SKUs could not be bought. Both CTAs were repointed at
 `consulting.html`. That premise is now stale in the other direction: the
-catalogue can take money for 137 of 138 items (`EXECUTIVE-DASHBOARD-LIVE.md`),
+catalogue can take money for 129 of 130 items (`EXECUTIVE-DASHBOARD-LIVE.md`),
 so the shop window is no longer mostly empty. Left as done rather than reopened;
 whether the hero should now lead with the shop instead is a fresh question, not
 a defect in this row.

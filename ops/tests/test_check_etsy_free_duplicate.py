@@ -20,9 +20,14 @@ carries an explicit source_sku field so this check depends only on that
 file, never on build_etsy_assets.py's own render table (which only runs on
 Phil's own machine and could be edited, or left stale, independently).
 
+L2-kitchen was withdrawn the same way 2026-09-23 (DECISIONS.md D-024):
+RP-KITCHEN, its source SKU, was retired from the site's own paid catalogue
+once the free 72-card Kitchen deck became genuinely downloadable and
+superseded it, the identical shape this check exists to catch.
+
 This test proves two things: the real, pre-fix shape (a free-duplicate
 listing present) fails by name, and the real, committed package (post-fix,
-four listings) is clean. It does not touch the real etsy-listings.json; it
+three listings) is clean. It does not touch the real etsy-listings.json; it
 builds a synthetic listings list instead, so it does not depend on which
 listings happen to exist on a given day.
 
@@ -60,16 +65,20 @@ def main() -> int:
     #    result, even if its underlying SKU is free-dropped: the function
     #    reports only on listings actually asked about.
     dup_absent = check_etsy.free_duplicate_skus(
-        [{"slug": "L2-kitchen", "source_sku": "RP-KITCHEN"}])
+        [{"slug": "L9-pantry", "source_sku": "RP-PANTRY"}])
     if "L3-entryway" in dup_absent:
         fails.append("a listing that was not asked about was reported anyway: "
                      "%r" % (dup_absent,))
 
     # 3. A listing whose SKU is honest to sell (not in the dropped-as-free
-    #    set) must never be flagged. RP-KITCHEN is sold directly on the site,
-    #    so L2-kitchen must come back clean.
+    #    set) must never be flagged. RP-PANTRY is sold directly on the site
+    #    and has no free deck superseding it, so L9-pantry must come back
+    #    clean. (RP-KITCHEN was this test's example until DECISIONS.md D-024,
+    #    2026-09-23, retired it for the identical reason RP-ENTRYWAY already
+    #    was: a free deck, Kitchen's own 72-card one, now supersedes it. Using
+    #    it here after that would assert the opposite of what is true.)
     if dup_absent:
-        fails.append("L2-kitchen, an honestly-sellable listing, was flagged: "
+        fails.append("L9-pantry, an honestly-sellable listing, was flagged: "
                      "%r" % (dup_absent,))
 
     # 3b. A listing with no source_sku at all (L1's bundle files do not map

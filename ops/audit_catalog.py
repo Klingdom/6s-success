@@ -120,9 +120,36 @@ def text_of(html: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t))
 
 
+def mask_live_names(text: str, live_names_cased: list[str]) -> str:
+    """Blank out every live product name's own occurrence in text, longest
+    first, same length so match offsets (and windows sliced from the
+    original text) stay valid.
+
+    Found 2026-09-23, this operator: retiring the 7 Kitchen zone packs made
+    "Cooking Zone Pack" (ZP-KITCHE-COOKING) a retired name, and it is a
+    literal substring of a live, unrelated product, "Grill and Outdoor
+    Cooking Zone Pack". check_retired_sold's own shared_name guard only
+    catches an EXACT full-name collision (the two it was built for, BK-HC/
+    BK-EB and the two DECK-ENTRY-PDF/BOX names); it never covered a retired
+    short name embedded inside a longer live one, so the live sibling's own
+    ordinary price and buy button falsely read as evidence the retired SKU
+    was on sale. Masking every live name out of the text before searching
+    for a retired one is the general fix: any future retired name that
+    happens to be a substring of a live one is protected the same way,
+    without weakening the deliberately strict rule for the two known exact
+    collisions.
+    """
+    for nm in sorted(live_names_cased, key=len, reverse=True):
+        text = re.sub(re.escape(nm), lambda m: " " * len(m.group(0)),
+                      text, flags=re.I)
+    return text
+
+
 def check_retired_sold(rel: str, html: str, text: str, retired: list[dict],
-                        live_names: set[str]) -> list[str]:
+                        live_names: set[str],
+                        live_names_cased: list[str]) -> list[str]:
     found = []
+    masked = mask_live_names(text, live_names_cased)
     for sku in retired:
         if sku["sku"].startswith("MPL-"):
             continue  # product-type reference lists, never an offer of ours
@@ -131,7 +158,14 @@ def check_retired_sold(rel: str, html: str, text: str, retired: list[dict],
         price = sku.get("price")
         shared_name = name.strip().lower() in live_names
 
-        for m in re.finditer(re.escape(name), text, re.I):
+        # An exact-name collision (shared_name) is handled below by its own
+        # stricter rule and must still see the live sibling's own text, so
+        # it searches the real text; anything else searches the masked
+        # text, where a retired name that is merely a substring of some
+        # live name's own text has already been blanked out.
+        haystack = text if shared_name else masked
+
+        for m in re.finditer(re.escape(name), haystack, re.I):
             window = text[max(0, m.start() - WINDOW): m.end() + WINDOW]
             price_hit = price is not None and re.search(rf"\${price}\b", window)
             variant_hit = bool(variant) and variant.lower() in window.lower()
@@ -247,6 +281,7 @@ def main() -> int:
     catalog = load_catalog()
     retired = load_retired()
     live_names = {s["name"].strip().lower() for s in catalog}
+    live_names_cased = [s["name"] for s in catalog if s.get("name")]
     live_links = {s["buy"] for s in catalog if "buy" in s}
 
     per_page: dict[str, list[str]] = {}
@@ -254,7 +289,8 @@ def main() -> int:
         html = open(p, encoding="utf-8", errors="replace").read()
         rel = os.path.relpath(p, SITE).replace("\\", "/")
         text = text_of(html)
-        f = (check_retired_sold(rel, html, text, retired, live_names)
+        f = (check_retired_sold(rel, html, text, retired, live_names,
+                                 live_names_cased)
              + check_price_drift(text, catalog)
              + check_dead_links(html, live_links)
              + check_shop_prerender(html, catalog))
