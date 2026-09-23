@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-23 06:16",
- "commit": "0518b97a",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 1176,
- "commits_total": 3483,
+ "generated": "2026-09-23 06:49",
+ "commit": "1166f037",
+ "commit_msg": "PM check-in 06:1x: previous work finished and independently re-verified via full preflight rerun; no new unblocked item",
+ "commits_7d": 1174,
+ "commits_total": 3484,
  "traffic_line": "76 visitors across 190 visits, 30 days (carried forward from 2026-09-21 14:05; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "76 visitors across 190 visits, 30 days",
  "traffic_line_measured_at": "2026-09-21 14:05",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": false,
