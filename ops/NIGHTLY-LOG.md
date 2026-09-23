@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 09:1x (previous work finished, verified with a full preflight rerun to genuine completion; no new unblocked item)
+
+Previous work was finished: preflight clean (every gate passed, 23 standing warnings, exit 0), working tree clean, main matched origin. Backlog sections 2 to 4 all Done, section 5 correctly HOLD, section 6 owner-only. GitHub: 8 open issues unchanged (all decision or blocked-on-art), 0 PRs, last CI runs green. Spent the slot on real independent checks rather than citing prior cycles: cold-read the newest generator, `ops/build_kitchen_deck_pdf.py` (5 mentions in this log), ran its `--check` clean, confirmed issue #34's PDF fix is live and its measure.js download-tracking regex actually matches the shipped href, reran `test_measure_events.py` directly. No defect found. No mail credential. Deploy gap unchanged, still unreachable from here, still Phil's. Regenerated command deck. Nothing new for the operator beyond the standing Phil-blocked list.
+
 ## 2026-09-23, scheduled operator cycle (full independent re-verification; genuinely exhausted, no new defect, deploy gap unchanged and still unreachable from here)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main`; a concurrent PM check-in pushed mid-cycle (`ab1afee6`), fast-forward merged after, no collision. Ran `python ops/preflight.py` to completion in the background: every gate passed, 23 warnings, the same set every recent cycle has diagnosed (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, the 36-of-57 retired-SKU Stripe gap, deck/page-art gaps on #2/#29). `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
