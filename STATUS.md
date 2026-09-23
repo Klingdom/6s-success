@@ -404,8 +404,8 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 76 | Last 30 days | MEASURED 2026-09-21 14:05 UTC (visitors; 190 visits, 936 pageviews of which 431 are a single automated session, leaving 505 human pageviews from 75 visitors), direct Umami database read over ssh; previous 76 (2026-09-20), 78 (2026-09-17), 75 (2026-09-14), 68 (2026-09-11). The trailing week fell again: 10 visitors, from 14 and 18 |
-| Sessions | 10 | Last 7 days | Same source, 2026-09-21: 10 visitors, 17 visits, 31 pageviews, down from 14/21/35 and 18/28/57 before that. Three consecutive weekly falls |
+| Sessions | 68 | Last 30 days | MEASURED 2026-09-23 12:50 UTC (visitors; 160 visits, 813 pageviews), direct Umami database read over ssh. Down from 76 mainly because the 7 Sept automated session (431 pageviews) rolled out of the window, so this figure is very nearly all human; previous 76 (09-21), 78 (09-17), 75 (09-14), 68 (09-11) |
+| Sessions | 12 | Last 7 days | Same source, 2026-09-23: 12 visitors, 18 visits, 33 pageviews. The three-week fall (18, 14, 10) has stopped without reversing; 12 is noise against 10, not recovery |
 | Organic sessions | 5 visits from 4 visitors, whole life of the site, measured 2026-09-20 (1 Bing, 21 August; 4 Google visits from 3 visitors, 4 to 20 September) | Direct Umami database read; one more Google visitor than the 2026-09-17 reading |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |
