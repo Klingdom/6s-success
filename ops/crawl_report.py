@@ -310,8 +310,18 @@ def main():
         rows.append(d)
 
     if not rows:
+        if raw and unparsed == len(raw):
+            # Every line failed to match the format, the exact shape that has
+            # already happened once (see the module docstring): a silent
+            # "0 traffic" report is indistinguishable from a real zero unless
+            # this is called out as a parse failure, not a measurement.
+            print("  UNCHECKED: %d line(s) read, 0 parsed (log format "
+                  "changed?). NOT a measurement of zero." % unparsed)
+            return 2
         print("  the log holds %d line(s) but none inside the last %d day(s)."
               % (len(raw), args.days))
+        if unparsed:
+            print("  unparsed lines : %d (log format changed?)" % unparsed)
         if raw:
             print("  oldest line: %s" % raw[0][:40])
         return 0
