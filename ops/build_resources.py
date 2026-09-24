@@ -253,6 +253,7 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <h2>Where to go next</h2>
   <p class="meta">If you have finished a room</p>
   <ul>
+    <li><a href="how-to-clean-anything.html">How to clean anything in your house</a>, an index of the cleaning method for all 749 surfaces across these zones: what to use, what order to work in, and why. Free, no account.</li>
     <li><a href="downloads/6S-Micro-Zone-Map.html">The Micro Zone Map</a>, free to print: twenty sheets, one per room, naming all 114 micro zones with the time a single session takes. Put the sheet for the room you are standing in where the work happens.</li>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>

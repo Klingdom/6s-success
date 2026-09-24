@@ -1070,6 +1070,11 @@ GENERATOR_OWNERSHIP_CHAIN = [
     # from ops/zone_graphics.py, so a sheet cannot claim a zone the site
     # does not have.
     "build_zone_map_pack.py", "build_deck_gallery.py",
+    # The cleaning index, added 2026-09-24. It is derived entirely from the
+    # rendered zone pages, so if a zone page's surface anchors change and this
+    # is not rebuilt, the index links at anchors that no longer exist. Owned
+    # here so that cannot happen quietly. It must run AFTER build_zone_pages.
+    "build_cleaning_index.py",
     "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
     "build_kit_page.py", "build_corporate.py",
     "build_corporate_asset.py",
@@ -19405,6 +19410,7 @@ def gate_thanks_page_refund_promises() -> None:
 # edit to that section would be silently discarded the same way.
 GENERATED_TOP_LEVEL_PAGES = {
     "corporate.html": "build_corporate.py",
+    "how-to-clean-anything.html": "build_cleaning_index.py",
     "deck-gallery.html": "build_deck_gallery.py",
     "deck-gallery-mudroom.html": "build_deck_gallery.py",
     "kitchen-deck.html": "build_kitchen_deck_page.py",
