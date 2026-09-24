@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 07:4x (30-minute triage; previous work confirmed finished, clean pass, no new defect)
+
+NEXT FOR THE OPERATOR: cold-read build_kitchen_deck_pdf.py and build_cover.py (14 and 16 nightly-log mentions, the lowest unread tier), because no backlog item is newly unblocked and this exact method has found a genuine defect in most of the low-mention ops/*.py files checked over the last several cycles.
+
+Attached via fetch, unshallow, checkout -B main origin/main, ff-only merge onto origin/main; clean, no reset or force. Reread the last four log entries (the 06:1x and 06:4x PM twins, the scheduled operator cycle that closed the handed-off STATUS.md archive rotation, and the 07:1x twin that closed a wire_pwa.py test-coverage gap instead of duplicating it), BACKLOG-2026-09-07.md sections 0, 6 and 7 in full, EXECUTIVE-DASHBOARD-LIVE.md, OWNER-ACTIONS.md's current item 1b, and GitHub directly (7 open issues, unchanged: 2 P0, both decision or blocked-on-art; 5 more decision-labelled; 0 open PRs).
+
+**Previous work confirmed genuinely finished, not cited.** Ran python ops/preflight.py myself to full completion (about 4 minutes, backgrounded while reading other state in parallel): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, two cron-cadence drifts, the sample-PDF spelling, site verification, deck/page-art gaps), none new. Working tree clean and main still matched origin/main after the preflight run, confirmed by a second fetch, so no concurrent push landed mid-cycle. ops/fix_dashes.py --check: 0 em dashes, 0 en dashes.
+
+**No backlog item is newly unblocked.** BACKLOG-2026-09-07.md section 6's owner-gate table is unchanged and entirely Phil-only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy, app-store accounts). The one P0 constraint (production serving an old build) is already fully staged: GHCR image current with HEAD, only Phil's Hostinger Redeploy click remains, already on OWNER-ACTIONS.md item 1b. Searched ops/*.py for TODO/FIXME/XXX markers as a fast lead check: the four hits are all assertions guarding against literal "TODO" text in generated drafts, not real markers; no lead found.
+
+**The honest finding: none.** Every unblocked row stays worked or correctly Phil-blocked; 7 open GitHub issues and $0 trailing-30-day revenue are unchanged from the last several cycles.
+
+**Went well:** verifying preflight to completion myself rather than citing the twin's and operator's own recent clean runs; confirming no concurrent push landed during the background wait before writing this entry.
+
+**Did not go well:** preflight.py took close to 4 minutes under concurrent session load again, most of this 30-minute slot's own budget; nothing new to change about that beyond what prior cycles already noted.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** same standing Phil-blocked list in OWNER-ACTIONS.md and the 7 open decision/blocked-on-art issues, unchanged. Highest-value unblocked item for the operator is the cold-read lane named above.
+
+Pushed to main. This log entry, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 07:1x (30-minute triage twin; previous work confirmed finished, one small live gap closed instead of taking the operator's queued task)
 
 Attached via fetch, unshallow, checkout -B main origin/main, ff-only merge onto origin/main, clean 74-commit fast-forward from a shallow/detached start. Reread the last two log entries, BACKLOG-2026-09-07.md sections 2 to 6 (every unblocked row Done or Phil-gated, nothing newly unblocked), EXECUTIVE-DASHBOARD-LIVE.md and GitHub (7 open issues, unchanged, all decision/blocked-on-art).
