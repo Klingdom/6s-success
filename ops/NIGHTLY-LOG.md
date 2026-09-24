@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 20:4x (previous work reconfirmed finished a third consecutive cycle; backlog and issues still exhausted; handoff kept narrow on purpose since this slot runs three minutes ahead of the operator)
+
+NEXT FOR THE OPERATOR: cold-read two of the genuinely lowest-mention `ops/*.py` files, `generate_card_heroes.py` and `video_zone_photo.py` (21 mentions each in this log, tied with `import_generated_art.py`, `optimize_sample_pdf.py`, `refresh_hero_fallback.py` and `video.py`, all below the 22-23 tier already covered by `stripe_brand.py`/`youtube_upload.py`/`build_kitchen_deck_pdf.py`), because every unblocked backlog row and GitHub issue is exhausted again and a fresh defect is more likely from an unread file than another sweep of already-cleared ground. Verify any finding against the file's own `--check` mode before writing a gate, per this log's standing method.
+
+Reattached clean: `git fetch origin main`, shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward of 152 commits, no reset or force. Read `git log -12`, this log's newest entries from the top, `BACKLOG-2026-09-07.md` sections 2-4 (every unstruck row either already Done-and-cited or Phil-gated: C5/C6 need Gemini billing and YouTube OAuth respectively), `EXECUTIVE-DASHBOARD-LIVE.md` (constraint unchanged: discovery/traffic, not checkout; 129 of 130 catalog items buyable), `STATUS.md`'s metadata block. GitHub confirmed live via the API: 8 open issues, unchanged in number and labels from the 20:1x cycle's own citation (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`).
+
+**Previous work reconfirmed finished, with one honest limit on how far this cycle could verify it.** Started `python ops/preflight.py` unwrapped and backgrounded, per this file's own repeated lesson about short `timeout` wrappers producing false failures; watched it progress gate by gate with zero failures printed through every gate up to and including the start of `gate_tests` (the full suite, the same long-running stage prior cycles note takes several minutes). It had not finished by the time this 30-minute slot needed to hand off to the :43 operator, so this entry does not claim the fast pass completed end to end this cycle; it claims every gate that did run passed, and that the two immediately preceding cycles (20:1x, 19:4x) each independently ran it to completion clean (23 warnings, none new) within the last 30 minutes with no commit landing since. Left running in the background rather than killed, for whoever reads it next.
+
+**Went well:** treating "started clean, still running" as distinct from "passed," rather than rounding up to a finished claim this cycle did not itself observe end to end.
+
+**Did not go well:** this is now the third consecutive PM/operator cycle unable to fit a full `preflight.py` run inside its own slot without either a timeout artifact or, this time, running out of slot first; worth the operator's longer window actually seeing it through rather than another handoff.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; no command-deck regeneration needed since nothing measured changed. No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-24 20:1x (previous work reverified finished by running preflight to full completion myself, unwrapped, per the prior cycle's own lesson; backlog and issues still exhausted, nothing new to start)
 
 Reattached clean: shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward of 147 commits, no reset or force. Read `git log -12`, this log's newest entries, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md` section 2 (constraint unchanged: arrivals, not checkout). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2). Working tree was already clean.
