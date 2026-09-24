@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 21:1x (previous work reconfirmed finished, preflight run to completion; found and corrected BLOCKER-001's stale RESOLVED claim, since production went stale again the moment it was written)
+
+**Did:** Reattached clean: `git fetch origin main`, shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (2980f041, fast-forward of 155 commits, no reset or force). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD), GitHub issues (8 open, unchanged, all `decision`/`blocked-on-art`, confirmed live via the API).
+
+**Previous work reconfirmed finished, this time to full completion myself:** started `python ops/preflight.py` unwrapped and backgrounded, watched it to its own exit rather than a bounded wait: **every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new.**
+
+**The find, while preflight ran.** `STATUS.md`'s `BLOCKER-001` and `OWNER-ACTIONS.md` item 0 both still read "RESOLVED"/"no action needed," written at 19:2x against build `4ec571da81db3b34`. Checked rather than trusted: `git diff --quiet 44ef380a HEAD -- site/ Dockerfile` is dirty again, 20 commits/29 site files (mostly the concurrent Micro Zones "Primary Bathroom personalised" push), exactly the "closes again the moment a future site/** commit lands" case that entry itself predicted. Went further than re-stating the gap: `publish-image.yml` run 399 had already built clean from `d5b0d5c8` (`git diff --quiet d5b0d5c8 HEAD -- site/ Dockerfile` clean, so GHCR already matches HEAD), and the new `deploy.yml` fired automatically off that build for the first time ever, run 5, `workflow_run` event, completed `success`. Read the job's own steps rather than the green checkmark: the "Deploy" step itself shows `conclusion: skipped`, the designed no-op for a missing `VPS_DEPLOY_KEY` secret, confirmed absent in this sandbox (`~/.ssh` empty). So the automation built earlier today is now proven correctly wired end to end for the first time, and still cannot close the gap without Phil's one paste. Corrected `STATUS.md` (BLOCKER-001 status line, the resolved-then-reopened entry, and the stale "66 commits behind" production-traceability row) and `OWNER-ACTIONS.md` (a reopened note after the redeploy correction) to the current, verified state rather than leaving a false "resolved" claim standing.
+
+**Verified:** `preflight.py` full run clean as above; regenerated the command deck (`python ops/dashboard.py`).
+
+**Went well:** treating "the automation ran and returned success" as distinct from "the automation deployed," the same over-rounding shape this file has caught in prior cycles, just this time in a CI status rather than a preflight result.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the deploy.yml design worked exactly as intended (fire, check, no-op safely). Worth a future cycle's note if `VPS_DEPLOY_KEY` is ever added: confirm the next `site/**` push actually reaches production automatically, not just that the workflow runs.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, now sharper: this is the only thing between every future content push and a customer seeing it) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing.
+
 ## Scheduled operator, 2026-09-24 20:4x (full preflight.py watched to completion this cycle, unwrapped; one small stale-citation defect found and fixed in the cold-read lane; backlog and issues genuinely exhausted)
 
 **Did:** Reattached clean: `git fetch origin main`, shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`. Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `BACKLOG-2026-H2.md`'s superseded-ordering note, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest four `ops/NIGHTLY-LOG.md` entries. Started `python ops/preflight.py` unwrapped and backgrounded (per this file's own repeated lesson against short shell `timeout` wrappers, which the three immediately preceding cycles each hit) and watched it to its own exit with `Monitor` rather than polling blindly. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2); read #29 in full to confirm it is genuinely blocked-on-art and not stale (it is: 16 withheld card codes, correctly excluded from the live gallery, art regeneration needs Phil's own machine). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, correctly reported rather than assumed empty.
