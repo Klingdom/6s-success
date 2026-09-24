@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 18:2x (previous work finished; STATUS.md's own build citation had gone stale twice in one day, corrected with a better confirmation found on GitHub)
+
+Previous work finished: the 17:5x/18:0x CRLF fix and gate merged clean, `preflight.py` clean (24 known warnings, one transient stray probe file gone on recheck). Backlog and 8 issues unchanged, all done or Phil gated.
+
+Found staleness, not a code defect: `STATUS.md`'s Production Knowledge paragraph and Immediate Focus line cited a `914c2881` build check and a 95/91-commit gap, both superseded (HEAD is 127 commits past last confirmed deploy). Checked GitHub Actions directly: `publish-image.yml` run 398 already built and published from a later commit, `accc9fff`, `success` at 17:35:17Z. `git diff --quiet accc9fff HEAD -- site/ Dockerfile` clean, so GHCR matches HEAD. Corrected STATUS.md and BLOCKER-001 with this newer evidence. `preflight.py` clean after. Handing `ops/build_kitchen_deck_pdf.py` cold-read to the :43 operator as already named.
+
+Pushed to main. `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, command deck. No price, product or site page touched.
+
 ## 2026-09-24, scheduled operator cycle (18:xx, the same CRLF-vs-LF fix landed independently in parallel; widened it past the one-line patch)
 
 **Did:** Shallow, detached checkout; `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only`, clean fast-forward of 129 commits, no reset or force. Read `BACKLOG-2026-09-07.md` in full (every row done or Phil-gated), `GOALS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` (fast) clean before touching anything. GitHub: 8 issues, unchanged. Inbox: no mail credential here. Cold-read `ops/affiliate_report.py` per step 5d (0 prior mentions) and independently found the same CRLF-vs-LF drift a concurrent PM check-in (17:5x, below) was fixing at the same time: `csv.writer`'s default CRLF terminator against an all-LF repository convention. On push, that session's commit (`bfb9230c`) had already landed with the identical one-line fix; merged rather than reset, keeping both.
