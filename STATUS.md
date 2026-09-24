@@ -16,7 +16,9 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-24, PM check-in. **Sections 2 and 5 had fallen 47 commits behind `BLOCKER-001`; this pass re-sized the gap rather than repeat the stale "one commit" figure several intervening cycles had carried forward unchecked.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD is now `38b20571260ea9ff` (`ops/build_id.py --check`: current), 47 commits and over 8 hours behind. The gap is no longer only internal-consistency work: `a16788fa` fixed a second live, real dead-nav-menu defect (`404.html`, `corporate.html`, `kit.html`, 2 B2B articles), and `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs; both are still live-broken/live-stale in production. No new material commit otherwise narrated here; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+**Last Updated:** 2026-09-24, PM check-in. **The 47-commit `BLOCKER-001` figure this file carried from the prior PM check-in was itself already stale within one cycle; re-derived fresh via `git log 8e4c8e33..HEAD` rather than repeated.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD is now `5be8798496029708` (`ops/build_id.py --check`: current), 50 commits and over 9 hours behind. A third live, real defect has entered the gap since the last check: `b6b35ee7` fixed invalid JSON-LD (single-quoted, not valid JSON) on both B2B articles, which had been silently unparseable by any real consumer, Google included, and excluding both from the feed; that fix is also sitting undeployed. The other two named last cycle are unchanged and still live-broken/live-stale: `a16788fa` (dead-nav-menu defect, 5 pages) and `b0166730` (65/65 Stripe SKU retirement). No new material commit beyond these three; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+
+**Prior (2026-09-24, PM check-in): Sections 2 and 5 had fallen 47 commits behind `BLOCKER-001`; that pass re-sized the gap rather than repeat the stale "one commit" figure several intervening cycles had carried forward unchecked. Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD was then `38b20571260ea9ff` (`ops/build_id.py --check`: current), 47 commits and over 8 hours behind. The gap was, at that point, no longer only internal-consistency work: `a16788fa` fixed a second live, real dead-nav-menu defect (`404.html`, `corporate.html`, `kit.html`, 2 B2B articles), and `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs; both were still live-broken/live-stale in production.**
 
 **Prior (2026-09-23, PM check-in): Corrected sections 2, 5 and 6: this file had stood claiming production deploy freshness was "genuinely unknown" and the Production Release table read all-UNKNOWN, both false and both contradicted by evidence already committed in this repository (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s own dated deploy confirmations). Corrected to state what is actually known and to stop conflating "this sandboxed session cannot verify directly" with "nobody knows."**
 
@@ -293,10 +295,12 @@ this session's own measurement.
 
 **Currently Deployed Build (last confirmed):** `5eba61fde231c1a7`
 **Confirmed At:** `2026-09-23T19:00:39Z` (`ops/deploy-verdict.json`)
-**Repository HEAD Build:** `38b20571260ea9ff` (47 commits ahead as of
-2026-09-24 PM check-in, not one; includes `a16788fa`, a second live
-dead-nav-menu defect on 5 pages, and `b0166730`, the finished 65/65 Stripe
-SKU retirement; none of it yet known to be deployed)
+**Repository HEAD Build:** `5be8798496029708` (50 commits ahead as of
+2026-09-24 04:1x PM check-in, re-derived after the 47-commit figure above
+went stale within one cycle; includes `a16788fa`, a live dead-nav-menu
+defect on 5 pages, `b0166730`, the finished 65/65 Stripe SKU retirement,
+and `b6b35ee7`, invalid JSON-LD fixed on both B2B articles; none of it
+yet known to be deployed)
 **Release / Tag:** NONE, every deploy is tracked by commit SHA / image
 digest, 0 GitHub tags or releases exist
 **Deployment Method:** `ops/deploy.py`, run manually by a local session
@@ -340,7 +344,7 @@ answer (no admin/security-alerts scope confirmed either way).
 | Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; a local session holding the VPS deploy key runs it manually, confirmed routinely since 2026-09-01 (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`). **Corrected 2026-09-23:** this row previously implied the click may never have happened; it has, repeatedly, just never from a sandboxed session |
 | Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
 | Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
-| Production traceability | Tracked, 47 commits behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the live defect sitting in it |
+| Production traceability | Tracked, 50 commits behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the three live defects sitting in it |
 | Repository hygiene | 7 open issues (5 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md`. Confirmed live via the GitHub API this cycle |
 
 ### GitHub Priority
@@ -890,6 +894,8 @@ redeployed. `site/build-id.txt` at HEAD read the same build id at that
 time, so the marker and the repository agreed then.
 
 **Reopened 2026-09-24 03:5x, PM check-in: the gap has grown to 47 commits and now includes a second live customer-facing defect, not just internal-consistency work.** `git log 8e4c8e33..HEAD` (the last deployed commit to HEAD): 47 commits. Two are not narrow: `a16788fa` fixed a real, live dead-nav-menu defect on `404.html`, `corporate.html`, `kit.html`, and 2 B2B articles (same class as `8e4c8e33` itself, which is why production is *already* known to have shipped this exact defect once): every one of those pages still ships the broken hamburger button in production right now, over 8 hours after the fix was committed. `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs, so production's catalogue is stale by that much too. No operator sandbox holds the deploy key or egress to verify or fix this itself, so the next confirmation still needs a session with real access, same structural limit as every prior occurrence, but this is no longer "nothing open to close": a real, known, live defect is sitting unfixed for customers, and the fix has been sitting ready in the repository for over 8 hours.
+
+**Corrected 2026-09-24 04:1x, PM check-in: the 47-commit figure was already stale within one cycle; a third live defect has entered the gap.** Re-derived directly rather than repeated: `git log 8e4c8e33..HEAD` is now 50 commits, over 9 hours behind the last confirmed deploy. `a16788fa` (dead-nav-menu, 5 pages) and `b0166730` (65/65 SKU retirement) are unchanged from last cycle. New: `b6b35ee7` fixed invalid JSON-LD on both B2B articles (`what-a-5s-engagement-costs.html`, `why-5s-decays-after-six-months.html`), single-quoted Python literals rather than valid JSON, which had made both blocks unparseable by any real structured-data consumer and had silently excluded both articles from `feed.xml`; that fix, and the `feed.xml`/`sitemap.xml`/`llms.txt` regeneration it required, are also sitting undeployed. Still the same structural limit: no operator sandbox holds the deploy key or VPS egress, confirmed again directly this cycle (no key at `~/.ssh`, `curl` to `6s-success.com` `connect_rejected` by the agent proxy). This number will keep growing every cycle until a session with real access redeploys; the standing instruction for future cycles is to re-derive it with `git log`, not cite the last cycle's figure.
 
 Impact:
 

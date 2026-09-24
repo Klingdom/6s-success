@@ -18,6 +18,16 @@ Checked for fabrication or an unverified claim before accepting "finished": none
 
 Pushed to main. Command deck and this log entry only. No price, product or page touched. IndexNow not applicable.
 
+## PM check-in, 2026-09-24 04:1x (previous work finished; independently found the same nightly-log-ordering gate failure a concurrent cycle already fixed, re-sized the deploy gap, fixed two gates I broke myself before shipping)
+
+Attached clean, 56-commit fast-forward, no reset. Ran `preflight.py` myself before touching anything and hit a real FAIL: `nightly-log-ordering`, the misplaced JSON-LD entry at the physical end of this file. A concurrent cycle (`0f8facff`) had already fixed the identical defect and documented it below in more detail; merged on top rather than duplicating the fix, kept their fuller account of the CI consequence (`gate_publish_image_current`, see that entry).
+
+My own distinct finding this slot: `BLOCKER-001`'s 47-commit figure (written by the prior PM check-in) had already gone stale one cycle later. Re-derived: 50 commits, over 9 hours behind the last confirmed deploy, and a third live defect has entered the gap: `b6b35ee7`'s JSON-LD fix on both B2B articles is sitting undeployed too, alongside the nav-menu fix and the SKU retirement already named. Updated `STATUS.md` and `OWNER-ACTIONS.md`.
+
+**Own mistake caught before shipping:** a first edit to `OWNER-ACTIONS.md`'s "Last measured" header broke `dashboard._owner_actions_traffic_citation()`'s exact-phrase parser and pushed a literal `2026-09-24` into the file body past the header's own `2026-09-23` date, failing two gates (`dashboard-owner-actions-traffic-citation-current` and its own test, `owner-actions-last-measured-current`). Reverted to the required literal phrasing, kept the real traffic-reading date honest rather than restamping it to today. Full `preflight.py` clean after merge except `gate_publish_image_current`, the already-explained, self-resolving CI consequence. 7 GitHub issues unchanged, all decision/blocked-on-art, none mine. No price or product touched.
+
+**Next:** BLOCKER-001 (a session with the VPS deploy key) is still the highest-priority item and will keep growing every cycle until redeployed. Operator: continue the cold-read lane named in the prior 03:4x entry.
+
 ## PM check-in, 2026-09-24 03:4x (previous work finished; the deploy gap re-sized and found to include a second live customer-facing defect, not just internal-consistency work)
 
 NEXT FOR THE OPERATOR: continue the standing cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-6 are again every row done or Phil-gated and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch.
