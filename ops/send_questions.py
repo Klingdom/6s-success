@@ -63,6 +63,18 @@ def ics(summary, description, start, minutes, organizer, attendee):
 
 
 BLOCKING = [
+    ("Add VPS_DEPLOY_KEY as a GitHub Actions secret",
+     "Settings -> Secrets and variables -> Actions -> New repository secret, "
+     "named exactly VPS_DEPLOY_KEY, pasting the contents of the "
+     "~/.ssh/6s_deploy private key already installed on the VPS.",
+     "Closes the single most repeated line in this repository's operating "
+     "history for good: production has fallen behind the repository over "
+     "and over because no automated session has ever held this key. "
+     ".github/workflows/deploy.yml is built and waiting; it runs "
+     "ops/deploy.py the moment a new image publishes, but does nothing "
+     "until this secret exists. After this, every push that changes the "
+     "site reaches a customer within minutes, unattended, forever.",
+     "2 minutes, once"),
     ("Listmonk: decide the instance, then fix its SMTP identity",
      "A VPS admin decision plus five minutes in Listmonk's settings.",
      "The shared Listmonk sends 6S Success's confirmation mail branded as "
