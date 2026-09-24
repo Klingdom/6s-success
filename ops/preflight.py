@@ -16288,6 +16288,120 @@ def check_diagnosis_authoring(rooms, kdeck) -> tuple:
     return claims, problems
 
 
+def check_diagnosis_branch_shape(rooms, valid_causes) -> list:
+    """Pure check: structural faults in any zone's authored diagnosis block.
+
+    WHY THIS EXISTS, AND WHAT IT CANNOT DO
+    --------------------------------------
+    On 2026-09-24 two rooms were authored by hand and the cause IDs were
+    assigned from memory of what the IDs meant. Memory was wrong. KC-012 is
+    CONFLICTING USERS ("two people run one zone by two designs") and it was
+    used for a printer whose rollers had never been cleaned; RC-016 is
+    DIFFICULT TO CLEAN and it was used three times for things that were
+    actually trip hazards and wrong-location faults; RC-014 is SENTIMENTAL
+    ATTACHMENT and it was used for "I am unsure what is safe to throw out",
+    which is RC-015 UNRESOLVED DECISION.
+
+    None of that is detectable by a machine, because every one of those IDs
+    is real and every branch was well formed. What IS detectable is the
+    shape, and in practice the shape is where these errors leave a mark:
+
+      - a friction that reaches the SAME cause twice has stopped branching,
+        which is what happened when two different labelling answers both
+        got KC-005;
+      - two frictions in one zone whose branch answers substantially repeat
+        each other are one friction written twice, which is what happened to
+        the Linen and Towel Storage zone;
+      - an unknown cause ID renders a branch with no confirmation test.
+
+    So this gate catches the structural half and the review notes in
+    DECISIONS.md D-026 carry the semantic half. It is not a substitute for
+    reading the branch against the cause's stated meaning.
+    """
+    problems = []
+    for r in rooms:
+        for z in r.get("zones", []):
+            diag = z.get("diagnosis")
+            if not diag:
+                continue
+            where = "%s / %s" % (r.get("room"), z.get("zone"))
+            frictions = diag.get("frictions") or []
+            if len(frictions) < 3:
+                problems.append("%s: %d friction(s); a zone that branches at "
+                                "all needs at least 3 to be worth asking"
+                                % (where, len(frictions)))
+            f15 = diag.get("first_15") or {}
+            if not (f15.get("action") and f15.get("victory")):
+                problems.append("%s: first_15 needs both an action and a "
+                                "victory; a household with fifteen minutes "
+                                "gets nothing otherwise" % where)
+
+            seen_answers = []
+            for f in frictions:
+                branches = f.get("branches") or []
+                if len(branches) < 2:
+                    problems.append("%s: %r branches %d way(s), so it is not "
+                                    "a diagnosis"
+                                    % (where, f.get("symptom"), len(branches)))
+                causes = [b.get("cause") for b in branches]
+                for c in causes:
+                    if c not in valid_causes:
+                        problems.append("%s: %r is not a real cause ID, so "
+                                        "its branch renders with no "
+                                        "confirmation test" % (where, c))
+                dupes = sorted({c for c in causes if causes.count(c) > 1})
+                if dupes:
+                    problems.append(
+                        "%s: %r sends %s to the same cause twice, so two "
+                        "different answers give the reader the same next "
+                        "step" % (where, f.get("symptom"),
+                                  ", ".join(str(x) for x in dupes)))
+                answers = {(b.get("answer") or "").strip().lower()
+                           for b in branches}
+                for prev_sym, prev in seen_answers:
+                    shared = answers & prev
+                    if len(shared) >= 2:
+                        problems.append(
+                            "%s: %r and %r share %d identical branch "
+                            "answer(s); that is one friction written twice"
+                            % (where, prev_sym, f.get("symptom"), len(shared)))
+                seen_answers.append((f.get("symptom"), answers))
+    return problems
+
+
+def gate_diagnosis_branch_shape() -> None:
+    """Structural integrity of every authored diagnosis block, all rooms.
+
+    Companion to gate_diagnosis_authoring above, which checks only that the
+    7 Kitchen pilot zones match the real deck. This one applies to every room
+    authored under D-026 and grows with them.
+    """
+    fp = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(fp):
+        warn("diagnosis-shape", "content.json missing, could not check.")
+        return
+    try:
+        rooms = json.load(io.open(fp, encoding="utf-8"))["rooms"]
+    except Exception as exc:                                   # noqa: BLE001
+        fail("diagnosis-shape", "content.json did not parse (%s)." % exc)
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        from root_causes import CAUSES
+    except Exception as exc:                                   # noqa: BLE001
+        warn("diagnosis-shape",
+             "ops/root_causes.py did not import (%s), so cause IDs were NOT "
+             "checked. Unchecked is not passing." % exc)
+        return
+    valid = {c["id"] for c in CAUSES}
+    problems = check_diagnosis_branch_shape(rooms, valid)
+    if problems:
+        fail("diagnosis-shape",
+             "%d structural fault(s) in authored diagnosis blocks: %s"
+             % (len(problems), "; ".join(problems[:6])
+                + ("; ..." if len(problems) > 6 else "")))
+
+
 def gate_diagnosis_authoring() -> None:
     """M3's own acceptance criteria (PLAN-MICROZONES-DECKS-APP.md): the 7
     Kitchen pilot zones' diagnosis.frictions must reuse the 21 real
@@ -20497,6 +20611,7 @@ def main() -> int:
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_root_cause_articles_current)
     run_gate(gate_diagnosis_authoring)
+    run_gate(gate_diagnosis_branch_shape)
     run_gate(gate_kitchen_deck_current)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)

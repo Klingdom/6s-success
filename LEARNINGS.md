@@ -319,6 +319,7 @@ Maintain:
 | LRN-0014 | A conflict in a newest-first file must be resolved by date order, not by marker order | PROCESS / GIT | SUPPORTED | HIGH |
 | LRN-0015 | A count is not a count until its unit is named; pageviews and events are not interchangeable | MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0016 | Fixing a generator does not fix what it already rendered; the expensive artifacts are the ones nobody checks | QUALITY / RELEASE | SUPPORTED | HIGH |
+| LRN-0017 | Authoring against an ID vocabulary from memory produces branches that are well formed, real, and wrong | CONTENT / BUILD | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -543,6 +544,48 @@ a rebase conflict resolution", moving an entry back into place.
 **Implication.** For any append-at-top file (`ops/NIGHTLY-LOG.md`, `STATUS.md`), a conflict resolution is not finished when the
 markers are gone. It is finished when the entries are in the order the file claims to keep. Verify the headings after every
 resolution, the same way a generated file is regenerated rather than hand-picked from either side of a conflict.
+
+#### LRN-0017: Authoring against an ID vocabulary from memory produces branches that are well formed, real, and wrong
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (13 mis-assignments in 13 zones, each verified against ops/root_causes.py)
+**Domain:** CONTENT / BUILD
+**Measured:** 2026-09-24
+
+Two rooms (Primary Bathroom, Home Office) were authored under D-026 with a
+`cause` ID on every diagnosis branch. The IDs were assigned from a remembered
+sense of what each one meant, because they read as self-describing. Checked
+against `ops/root_causes.py` afterwards, 13 branches were wrong:
+
+- `KC-012` is CONFLICTING USERS, "two people run one zone by two designs". It
+  was used for a printer whose rollers had never been cleaned.
+- `RC-016` is DIFFICULT TO CLEAN. It was used three times for a rucked floor
+  mat, an unlevelled bookcase and paper stored in the sun, none of which are
+  cleaning-cost faults.
+- `RC-014` is SENTIMENTAL ATTACHMENT. It was used for "I am unsure what is
+  safe to throw out", which is `RC-015` UNRESOLVED DECISION.
+- `KC-006` is POOR ACCESSIBILITY. It was used for backstock you cannot see,
+  which is `KC-005` POOR VISIBILITY almost verbatim.
+
+**Why it mattered more than a mislabel.** The renderer turns each cause into a
+30-second confirmation test and an entry pass. A wrong ID therefore ships a
+reader a test that does not match the answer they just picked: the "rollers
+never cleaned" branch was telling people to go and check whether two household
+members were running the zone by different designs. The page looked complete
+and read as authoritative while giving the wrong next step.
+
+**Why nothing caught it.** Every ID was real and every branch was well formed,
+so schema validation passed, the build passed, and all gates passed. The only
+signal available was semantic.
+
+**Implication.** When authoring against a closed vocabulary, read the
+definitions in the same pass as the authoring, not from memory, however
+self-describing the names look. Where the semantics cannot be checked
+mechanically, check the SHAPE the mistake leaves behind: `gate_diagnosis_
+branch_shape` now fails a friction that reaches one cause twice or two
+frictions that repeat each other's answers, and it found five more faults
+immediately, three of them created by the corrections themselves. The same
+correction pass that fixes this class of error is a likely source of it.
 
 #### LRN-0012: The local image model draws the room, not the micro zone; a close-up naming one or two objects is the only prompt shape that has produced acceptable art
 

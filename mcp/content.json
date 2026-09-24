@@ -6014,7 +6014,7 @@
          },
          {
           "answer": "Boxes were stacked on top of the tray",
-          "cause": "KC-010"
+          "cause": "KC-004"
          },
          {
           "answer": "Nothing prompts us to look in here between cleans",
@@ -6616,7 +6616,7 @@
          },
          {
           "answer": "Damp towels never dry, so they are washed again unused",
-          "cause": "RC-016"
+          "cause": "KC-003"
          }
         ]
        },
@@ -6638,19 +6638,19 @@
         ]
        },
        {
-        "symptom": "The shelf looks full but half of it is never used.",
+        "symptom": "Pulling one towel out brings the stack down, or I need a stool to reach it.",
         "branches": [
          {
-          "answer": "We keep towels nobody chooses",
-          "cause": "KC-001"
+          "answer": "The everyday towels are on a shelf above comfortable reach",
+          "cause": "KC-006"
          },
          {
-          "answer": "Guest sets are loose among the everyday towels",
-          "cause": "KC-003"
+          "answer": "The stack is tall enough to topple and the brackets are light",
+          "cause": "KC-010"
          },
          {
-          "answer": "Nothing says how many towels this house needs",
-          "cause": "KC-008"
+          "answer": "Everything is in one column instead of separate labelled ones",
+          "cause": "KC-005"
          }
         ]
        }
@@ -7723,8 +7723,8 @@
         "symptom": "The chair catches on something every time I move.",
         "branches": [
          {
-          "answer": "The power strip and cables are lying on the floor",
-          "cause": "KC-010"
+          "answer": "The power strip and cables have no fixing, so they lie across the floor",
+          "cause": "KC-002"
          },
          {
           "answer": "Boxes are stored under the desk",
@@ -7732,7 +7732,7 @@
          },
          {
           "answer": "The mat is rucked where the cables cross it",
-          "cause": "RC-016"
+          "cause": "KC-010"
          }
         ]
        }
@@ -7859,7 +7859,7 @@
          },
          {
           "answer": "Folders are labelled by department, not by what I would ask",
-          "cause": "KC-005"
+          "cause": "KC-008"
          }
         ]
        },
@@ -7867,16 +7867,16 @@
         "symptom": "I have cut myself or caught my hand in this drawer.",
         "branches": [
          {
-          "answer": "The scissors are loose rather than point-down in a slot",
-          "cause": "KC-010"
-         },
-         {
-          "answer": "Blades or craft knives are loose in the tray",
+          "answer": "Scissors and blades are loose in the tray rather than point-down in their own slots",
           "cause": "KC-010"
          },
          {
           "answer": "The drawer is so full things spring up when it opens",
           "cause": "KC-007"
+         },
+         {
+          "answer": "Nothing was ever agreed about where the sharp things live",
+          "cause": "KC-008"
          }
         ]
        }
@@ -7982,7 +7982,7 @@
         "branches": [
          {
           "answer": "Folders are labelled by company name rather than by what I would ask",
-          "cause": "KC-005"
+          "cause": "KC-008"
          },
          {
           "answer": "Tabs are staggered so my eye has to zigzag",
@@ -8007,7 +8007,7 @@
          },
          {
           "answer": "I am unsure what is safe to throw out, so nothing moves",
-          "cause": "RC-014"
+          "cause": "RC-015"
          }
         ]
        },
@@ -8158,16 +8158,16 @@
         "symptom": "The unit rocks or leans when I pull a book out.",
         "branches": [
          {
-          "answer": "It is not fixed to the wall",
+          "answer": "It is not fixed to the wall, and it stands on carpet or an uneven floor",
           "cause": "KC-010"
          },
          {
-          "answer": "The heavy binders are on the top shelves",
-          "cause": "KC-010"
+          "answer": "The heavy binders are on the top shelves instead of the bottom two",
+          "cause": "KC-003"
          },
          {
-          "answer": "It sits on carpet or an uneven floor without levelling",
-          "cause": "RC-016"
+          "answer": "The unit carries more weight than its shelves and brackets are rated for",
+          "cause": "KC-007"
          }
         ]
        }
@@ -8315,12 +8315,12 @@
           "cause": "KC-003"
          },
          {
-          "answer": "Paper is stored somewhere damp or in direct sun",
-          "cause": "RC-016"
+          "answer": "Paper has no proper home, so it sits somewhere damp or in direct sun",
+          "cause": "KC-002"
          },
          {
           "answer": "The rollers and paper path have never been cleaned",
-          "cause": "KC-012"
+          "cause": "RC-016"
          }
         ]
        }
@@ -8427,11 +8427,11 @@
         "branches": [
          {
           "answer": "Backstock is stored where the open pack cannot be seen",
-          "cause": "KC-006"
+          "cause": "KC-005"
          },
          {
           "answer": "There is no max written down for anything",
-          "cause": "KC-009"
+          "cause": "KC-008"
          },
          {
           "answer": "Supplies are split across several rooms",
@@ -8464,8 +8464,8 @@
           "cause": "KC-010"
          },
          {
-          "answer": "There is no step stool and I stand on a chair",
-          "cause": "KC-010"
+          "answer": "The step stool lives in another room, so a chair gets stood on instead",
+          "cause": "KC-003"
          },
          {
           "answer": "Shelves are so deep things get lost at the back",
