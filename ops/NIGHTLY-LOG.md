@@ -2,11 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-24 04:1x (previous work finished; a real gate failure found and fixed, deploy gap re-sized again)
+## PM check-in, 2026-09-24 04:1x (previous work finished; independently found the same nightly-log-ordering gate failure a concurrent cycle already fixed, re-sized the deploy gap, fixed two gates I broke myself before shipping)
 
-Attached clean, 56-commit fast-forward, no reset. Previous PM cycle's own docs work was finished and pushed, but this is the first slot in a while where `preflight.py` actually failed: `nightly-log-ordering` FAILed on a misplaced entry, dated 2026-09-24 but appended to the physical end of this file, after every 2026-09-04 entry, 15,000+ lines from where "read the last four entries" would ever look. Traced to a scheduled operator cycle that took "last entries" to mean the end of the file rather than the top. Moved the entry to its correct chronological position (between the 03:1x and 03:4x PM check-ins, matching its commit order), verified the gate's own logic now passes, removed the duplicate. This was the actual unfinished work this slot, not a fresh sweep.
+Attached clean, 56-commit fast-forward, no reset. Ran `preflight.py` myself before touching anything and hit a real FAIL: `nightly-log-ordering`, the misplaced JSON-LD entry at the physical end of this file. A concurrent cycle (`0f8facff`) had already fixed the identical defect and documented it below in more detail; merged on top rather than duplicating the fix, kept their fuller account of the CI consequence (`gate_publish_image_current`, see that entry).
 
-Also re-sized `BLOCKER-001`: the 47-commit figure the last PM check-in wrote was already stale one cycle later. Re-derived: 50 commits, over 9 hours behind the last confirmed deploy. A third live defect has entered the gap since last check: `b6b35ee7`'s JSON-LD fix on both B2B articles is also sitting undeployed, on top of the nav-menu fix and the SKU retirement already named. Updated `STATUS.md` accordingly. Full `preflight.py` clean after the ordering fix (0 failures, 23 warnings, all previously diagnosed sandbox limits). 7 GitHub issues unchanged, all decision/blocked-on-art, none mine. No price or product touched.
+My own distinct finding this slot: `BLOCKER-001`'s 47-commit figure (written by the prior PM check-in) had already gone stale one cycle later. Re-derived: 50 commits, over 9 hours behind the last confirmed deploy, and a third live defect has entered the gap: `b6b35ee7`'s JSON-LD fix on both B2B articles is sitting undeployed too, alongside the nav-menu fix and the SKU retirement already named. Updated `STATUS.md` and `OWNER-ACTIONS.md`.
+
+**Own mistake caught before shipping:** a first edit to `OWNER-ACTIONS.md`'s "Last measured" header broke `dashboard._owner_actions_traffic_citation()`'s exact-phrase parser and pushed a literal `2026-09-24` into the file body past the header's own `2026-09-23` date, failing two gates (`dashboard-owner-actions-traffic-citation-current` and its own test, `owner-actions-last-measured-current`). Reverted to the required literal phrasing, kept the real traffic-reading date honest rather than restamping it to today. Full `preflight.py` clean after merge except `gate_publish_image_current`, the already-explained, self-resolving CI consequence. 7 GitHub issues unchanged, all decision/blocked-on-art, none mine. No price or product touched.
 
 **Next:** BLOCKER-001 (a session with the VPS deploy key) is still the highest-priority item and will keep growing every cycle until redeployed. Operator: continue the cold-read lane named in the prior 03:4x entry.
 
@@ -40,11 +42,11 @@ Pushed to main. `OWNER-ACTIONS.md`, `STATUS.md`, command deck and this log entry
 
 **Went well:** cold-read found a real search-engine-facing defect, not a doc typo.
 
-**Did not go well:** nothing new.
+**Did not go well:** first wrote this entry appended at the physical end of the file instead of prepended at the top, exactly the trap `gate_nightly_log_ordering`'s own docstring names as a recurring failure mode; CI's `checks.yml` and `publish-image.yml` both caught it and failed, as designed, confirmed directly against both runs' job logs. Fixed by rebasing onto a concurrent push and moving the entry here; re-verified locally (`gate_nightly_log_ordering` and the full `preflight.py` both clean on the corrected tree). Consequence: since the fix commits touch only `ops/NIGHTLY-LOG.md` and the command deck, neither path triggers `checks.yml` or `publish-image.yml` (deliberate path filters), so `gate_publish_image_current` now correctly FAILs, loudly, exactly as its own docstring says it should outside that workflow's own run: HEAD's `site/` differs from the last commit actually published, because the run that would have published it failed on this same ordering bug. This is the same underlying deploy gap already tracked as `BLOCKER-001`, not a new one; it clears the next time any `site/**`- or `Dockerfile`-touching commit lands and `publish-image.yml` succeeds, which this sandbox cannot force without a real site-content change to make.
 
-**Changing next cycle:** none.
+**Changing next cycle:** none; the existing gates did their job, including one (`gate_publish_image_current`) proving it can loudly outlive a fix that does not itself retrigger the workflow it is about. Reconfirms for any future cycle: this file is newest-first at the top; the physical end is a legacy oldest-first section that stops in early September.
 
-**Next:** standing Phil-blocked list unchanged. Production behind repository; no deploy key here, so pushed and awaiting deploy.
+**Next:** standing Phil-blocked list unchanged. Production behind repository; no deploy key here, so pushed and awaiting deploy. `gate_publish_image_current`'s new FAIL is the same gap, more precisely stated, and self-resolves on the next real `site/**` commit.
 
 Pushed to main. No price/product touched, no new page (2 fixed).
 

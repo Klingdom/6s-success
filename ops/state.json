@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-24 04:35",
- "commit": "9542f0a9",
- "commit_msg": "PM check-in: re-size the deploy gap, found stale at 1 commit when it is 47, including a second live customer-facing defect",
- "commits_7d": 1139,
- "commits_total": 3609,
+ "generated": "2026-09-24 04:37",
+ "commit": "b94c5213",
+ "commit_msg": "PM check-in: fix a real preflight failure (misplaced NIGHTLY-LOG.md entry breaking newest-first ordering), re-size the deploy gap to 50 commits with a third live defect now sitting in it",
+ "commits_7d": 1140,
+ "commits_total": 3610,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
