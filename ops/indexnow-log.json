@@ -563,6 +563,13 @@
    "offered": 4,
    "accepted": 4,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-24T05:06:42Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -755,7 +762,7 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "af91c111eaba1b3f",
   "https://6s-success.com/kitchen-deck.html": "d93c7ef7c0e3dc98",
   "https://6s-success.com/bundle.html": "71a9ef3c43ee4edb",
-  "https://6s-success.com/articles/what-a-5s-engagement-costs": "aefd132c9de10c2c",
-  "https://6s-success.com/articles/why-5s-decays-after-six-months": "f4996d30ceb8ae07"
+  "https://6s-success.com/articles/what-a-5s-engagement-costs": "9c51599b6939626c",
+  "https://6s-success.com/articles/why-5s-decays-after-six-months": "e6035542d8dd4b4c"
  }
 }
