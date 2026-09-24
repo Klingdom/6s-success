@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-24 05:0x (gate_publish_image_current FAIL cleared by manually dispatching publish-image.yml, no site edit needed)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` in full: sections 2 to 4 every row done or superseded, section 5 correctly HOLD, section 6 owner-only. Read `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries (this file is newest-first at the top, not the physical end). Ran `python ops/preflight.py` myself: 1 gate FAILED, `gate_publish_image_current`.
+
+**Found the actual cause rather than repeat the standing BLOCKER-001 citation.** Prior cycles today correctly traced the FAIL to `publish-image.yml`'s last attempt (run 394, commit `b6b35ee7`) failing on `gate_nightly_log_ordering`, an unrelated repository-hygiene gate already fixed by a concurrent commit, and concluded it would self resolve on the next `site/`-touching push. That is true, but `publish-image.yml`'s own trigger block already carries `workflow_dispatch:` alongside its `push` path filter, so a fix does not have to wait for an unrelated `site/` edit to land. Dispatched it directly at `main` via the GitHub Actions API. Watched it to completion (a background poll against the Actions API rather than a blind wait): run 395 finished `success` in about 20 minutes, the same duration the last real successful run took. `preflight.py --fast` rerun after: `gate_publish_image_current` clean, every gate passing, 23 warnings, none new. A fresh image is now published to `ghcr.io/klingdom/6s-success` at current `main` (`42226e33` after a second fast-forward mid-cycle), ready for the one `Redeploy` click on the host that only Phil or a session with VPS access can make; `BLOCKER-001` itself (the VPS pull/restart) is unchanged and still needs that access, but the piece this sandbox could close on its own is closed.
+
+**Verified:** GitHub's 7 open issues checked live via the API, unchanged, all `decision`/`blocked-on-art` (`#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. `affiliate.py --check`: clean, 165 documents. No `BACKLOG-2026-09-07.md` row is genuinely unblocked and unstarted; the standing cold-read lane (`wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py`, `wire_pwa.py`) was not reached this cycle, since closing the one real gate FAIL took priority over a fresh cold-read per `CLAUDE.md` step 2.
+
+**Went well:** checking what the failing gate's own trigger configuration actually allowed instead of accepting "needs a `site/`-touching commit" as the only path; the fix needed no code change, no VPS access and no waiting.
+
+**Did not go well:** a new, low-priority `workflows-healthy` warning appeared (`checks.yml` failing on a commit 4 behind HEAD, nothing since has touched a path that retriggers it), the same self-resolving shape `publish-image.yml`'s own FAIL just was; noted, not chased, since it is a warning, not a gate FAIL, and chasing it would have meant starting a second workstream per `CLAUDE.md` 0.1's "finish one thing."
+
+**Changing next cycle:** worth recording generally, not just here: when a gate names a workflow's last attempt as failing on something already fixed elsewhere, check whether that workflow accepts `workflow_dispatch` before assuming the fix has to wait for an unrelated trigger.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. The cold-read lane on the four `wire_*.py` generators is still the next queued item once this cycle's own dashboard/log push lands.
+
+Pushed to main. Command deck, this log entry, `BACKLOG-2026-09-07.md` row. No price or product touched, no new page. IndexNow not applicable (no site edit this cycle).
+
 ## PM check-in, 2026-09-24 04:4x (previous work finished, correctly diagnosed; no new unblocked item, handing the operator the standing cold-read lane)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-4 are again every row Done or superseded, section 5 correctly HOLD, section 6 owner-only, and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch; a real fix found in one of these generators would also touch `site/`, which is the one thing that can clear `gate_publish_image_current`'s current FAIL.
