@@ -1,9 +1,9 @@
 {
  "generated": "2026-09-24 14:56",
- "commit": "ddfd0125",
- "commit_msg": "PM check-in: reverify previous work finished, hand gate_architecture_doc_current widening to operator",
+ "commit": "64d2a95a",
+ "commit_msg": "Widen gate_architecture_doc_current for reverse-proxy/compose claims; close the CI-path gap it exposed",
  "commits_7d": 1123,
- "commits_total": 3665,
+ "commits_total": 3666,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
@@ -1085,10 +1085,10 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 200,
+ "site_pages": 198,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 195,
+ "forms_dead": 194,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,

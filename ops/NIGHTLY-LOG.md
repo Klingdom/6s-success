@@ -22,6 +22,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_architecture_doc_current.py`, `.github/workflows/checks.yml`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
 
+## PM check-in, 2026-09-24 14:4x (previous work reverified finished; root-caused the twin's preflight stall as self-inflicted rather than leaving it unchecked a second time)
+
+NEXT FOR THE OPERATOR: widen `gate_architecture_doc_current` in `ops/preflight.py` to also check ARCHITECTURE.md's reverse-proxy and compose-file claims, because that handoff, made twice already (13:4x and 14:2x), is still unbuilt and is the only concrete unblocked engineering task once the backlog and cold-read lanes are both exhausted.
+
+Reattached clean: `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only origin/main`, no reset or force. Working tree was already clean and pushed before this cycle touched anything. `BACKLOG-2026-09-07.md`: every Now row done or Phil-gated. GitHub confirmed live: 8 open issues unchanged (2 `P0`/`blocked-on-art`: #2, #29; 6 `decision`: #35, #33, #31, #21, #18, #15), 0 open PRs. `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` agree the one open constraint is the Phil-gated `VPS_DEPLOY_KEY` (issue #35), unchanged.
+
+**Root-caused the 14:2x twin's own preflight stall rather than leave it as a second "unchecked" data point.** My own first `preflight.py --fast`, wrapped in a 60-second shell `timeout` out of habit, was itself killed mid-run (exit 143) inside `gate_tests`, and left the exact self-inflicted shape this file has already documented at least twice: an orphaned `site/_audit_catalog_fixture.lockdir`. Confirmed no live process held it (`fuser`, `lsof`, and a `/proc` scan of every process with this repo as `cwd`, all empty) before removing it, matching the precedent in this file rather than guessing. A second run, backgrounded with no hard kill, then completed clean end to end: at the same `gate_tests` stage its child was seen genuinely blocked in `do_wait` on a real subprocess, not spinning in the lock's retry loop, and the full pass finished with every gate passed, 23 warnings, the same standing set the last several cycles have each reported, none new. This makes the twin's own 13+ minute stall 26 minutes earlier very likely the identical self-inflicted class, not a defect in `audit_catalog.py` or `gate_tests` itself: a direct, unlocked run of `audit_catalog.py` alone completed in 7.4 seconds, clean.
+
+Confirmed `gate_architecture_doc_current` (read directly, `ops/preflight.py` lines 13639+) still only checks the CI and payment-processing claims. `ARCHITECTURE.md`'s own reverse-proxy section (read directly) is itself still correct and internally consistent, so there is no live documentation defect today, only the missing regression gate, same as the 14:2x cycle found. No new backlog defect found this cycle.
+
+**Went well:** treating a stall two consecutive cycles would otherwise have each logged as merely "unchecked" as a testable claim, and actually finding the real cause rather than repeating the pattern a third time.
+
+**Did not go well:** the lesson this fixed (never wrap `ops/preflight.py` in a hard shell `timeout`; background it instead) was already documented in this file at least twice before today, and this cycle repeated the mistake once before catching it.
+
+**Changing next cycle:** none; the existing lock self-heal (`STALE_AFTER=900`) already works as designed. This was about not creating unnecessary victims of it with a `timeout` wrapper, not about the gate itself.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. Handing `gate_architecture_doc_current`'s widening to the operator a third time as the one concrete unblocked item.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 14:2x (previous work reverified finished; own preflight run stalled under load, killed rather than trusted blind)
 
 Reattached clean via fetch/unshallow/checkout/merge --ff-only, no reset. `BACKLOG-2026-09-07.md` sections 2-4: every row done or Phil-gated, matching the 13:5x operator's own read. GitHub confirmed live: 8 open issues unchanged (2 P0, rest decision/blocked-on-art). `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` agree: the one open constraint is the VPS redeploy, already Phil-gated (issue #35), nothing new.
