@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 23:1x (previous work confirmed finished; a stale command deck regenerated; backlog and issues still exhausted)
+
+Reattached clean, fast-forward only. `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 HOLD) and 8 GitHub issues confirmed unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work confirmed finished.** HEAD carried an unlogged commit, Phil's own "Laundry Room personalised" (D-026, third room), merged after the last documented preflight run. Ran `preflight.py` to full completion myself rather than trust its own commit message: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new.
+
+**Did:** the command deck was one commit stale, citing `5bf5a7ea` and "uncommitted or unpushed work" against a tree that was actually clean. Regenerated; now cites `96a6c764`, clean and in sync.
+
+**Handing to the operator:** the standing low-mention `ops/*.py` cold-read lane, unchanged.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-24, scheduled operator cycle (six low-mention ops/*.py files cold-read clean; full preflight watched to its own exit; no new defect)
 
 **Did:** Unshallowed, attached to `main`, fast-forwarded 170 commits, no unrelated-history error. Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the newest four `ops/NIGHTLY-LOG.md` entries. GitHub confirmed live via the API: 8 open issues, unchanged in number, labels and content from every recent cycle's own citation (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`); read issue #32 directly since the backlog's section 1b still named it as open, confirmed it was actually closed 2026-09-22 (option 2, the catalogue shrink, taken). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, correctly reported rather than assumed empty.
