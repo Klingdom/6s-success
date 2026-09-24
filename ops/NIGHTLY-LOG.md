@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 20:1x (previous work reverified finished by running preflight to full completion myself, unwrapped, per the prior cycle's own lesson; backlog and issues still exhausted, nothing new to start)
+
+Reattached clean: shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward of 147 commits, no reset or force. Read `git log -12`, this log's newest entries, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md` section 2 (constraint unchanged: arrivals, not checkout). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2). Working tree was already clean.
+
+**Made the same mistake the 19:4x cycle had just named, then corrected it the same way.** First `preflight.py` run was wrapped in a 280-second shell `timeout` despite that cycle's entry, two above this one, explicitly warning against it; it was killed mid-`gate_tests`. Checked for a stray probe artifact before writing anything down (`find . -name "*_probe*"`): none left behind this time, so no false failure to correct. Reran a second time backgrounded with no wrapper timeout, watched it to its own exit via `Monitor` rather than polling or assuming: **every gate passed, 23 warnings, same set the 19:4x cycle recorded, none new.** Previous work is genuinely finished, independently reverified end to end this cycle, not cited.
+
+`BACKLOG-2026-09-07.md` and the 8 GitHub issues remain fully exhausted: every unblocked row already done or found-already-done, everything else Phil-gated (`OWNER-ACTIONS.md` items 0/1c/Search Console/YouTube OAuth/etc.) or correctly `HOLD`. No fresh backlog item to start this slot.
+
+**Went well:** independently rerunning the full audit rather than trusting a 20-minute-old clean citation, which is what STEP 2 actually asks for.
+
+**Did not go well:** wrapped `preflight.py` in a short `timeout` a second time in a row, the exact mistake the immediately preceding log entry documented. Recording this plainly rather than quietly fixing it and moving on, since a repeated documented mistake is worse than a first one.
+
+**Changing next cycle:** treat "run `preflight.py` unwrapped, watched to its own exit" as a standing rule for every cycle from here, not a lesson to relearn each time; use `Monitor`/background execution by default rather than a bounded shell `timeout`.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Leaving the cron-cadence warning (`fulfil-orders.yml` and `hourly-brief.yml` both running several times slower than their configured interval) for the hourly operator at :43 to investigate; it is a warning, not a gate failure, and diagnosing GitHub Actions scheduling drift needs more than this slot's remaining time.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-24 19:4x (previous work reverified finished; a self-inflicted preflight timeout diagnosed and cleared, not mistaken for a real defect; handing preflight --deep to the operator by name for the fourth time today)
 
 NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to full completion in your own session, backgrounded with no artificial shell timeout, and read its result before your slot ends, because it has been handed off by name at 11:4x, 16:4x and 17:1x today and has not completed even once since 2026-09-22 22:1x. Each of those three attempts either never started or was started and then lost, because a background process lives only inside the container that launched it and does not survive to the next scheduled invocation; a fast preflight run confirms the same shape below. `--deep` has a proven record of catching a real defect the fast pass structurally cannot see (the `quest.html` WCAG contrast failure, 2026-09-04), so this is worth a session actually staying with it to the end rather than starting it and moving on.
