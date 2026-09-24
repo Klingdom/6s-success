@@ -10,6 +10,8 @@ and the built site, not estimated.
 
 20 rooms, 114 micro zones. Per zone the corpus holds:
 
+<!-- COVERAGE:BEGIN -->
+
 | Field | Zones with it | Sub-items | What it is |
 |---|---|---|---|
 | purpose, done_looks_like, session, time_note | 114 | - | what this place is for and when it is finished |
@@ -18,14 +20,15 @@ and the built site, not estimated.
 | watch_for | 114 | **252** | what goes wrong here |
 | leave_behind | 114 | **228** | the standard that stays, and its trigger |
 | the_call | 114 | **235** | the judgement call this zone forces |
-| **diagnosis** | **12** | 31 | symptom to branching question to root cause |
-| **capacity** | **12** | 24 | how much actually fits, and the test for "it does not" |
-| **variants** | **12** | 24 | what to do when your home is not the assumed one |
+| **diagnosis** | **25** | 75 | symptom to branching question to root cause |
+| **capacity** | **25** | 50 | how much actually fits, and the test for "it does not" |
+| **variants** | **25** | 50 | what to do when your home is not the assumed one |
 
-**That split is the whole strategy.** The top block is complete and is already
-sold: the Print Pack ($19) carries the 684 passes, the Micro Zone Manual ($29)
-carries the clean-and-shine steps. The bottom block is the differentiator and
-it exists for **12 of 114 zones, 10.5%**.
+**That split is the whole strategy.** The top block is complete and is already sold: the Print Pack ($19) carries the 684 passes, the Micro Zone Manual ($29) carries the clean-and-shine steps. The bottom block is the differentiator and it exists for **25 of 114 zones, 21.9%**, across 4 fully personalised rooms: Entryway (5), Kitchen (7), Primary Bathroom (7), Home Office (6).
+
+<sub>Measured from `content/manual/source/content.json` by `ops/build_microzone_coverage.py`. Do not hand-edit.</sub>
+
+<!-- COVERAGE:END -->
 
 ## 2. Why the bottom three fields are the moat
 
@@ -70,13 +73,17 @@ stated philosophy.
 
 ## 4. The unit of work is a room, not a zone
 
-Entryway (5) and Kitchen (7) are complete. Both were done as whole rooms, and
-that is the right unit: a half-personalised room cannot ship as a Room Plan,
-and the app cannot offer diagnosis for a room where only some zones branch.
+Every room completed so far was done whole, and that is the right unit: a
+half-personalised room cannot ship as a Room Plan, and the app cannot offer
+diagnosis for a room where only some zones branch. The table above names which
+rooms are finished, and it is measured, so it cannot drift from the corpus.
 
-Next room by the owner's own stated launch order (the affiliate brief's launch
+The order is the owner's own stated launch order (the affiliate brief's launch
 rooms were Entryway, Kitchen, Primary Bathroom, Home Office, Laundry Room,
-Garage): **Primary Bathroom, 7 zones.**
+Garage). Entryway, Kitchen, Primary Bathroom and Home Office are done, so the
+next two are **Laundry Room** and then **Garage**. After those, the remaining
+fourteen rooms are unordered and should be picked by which rooms the site's
+own zone pages are actually being read in.
 
 ## 5. The rule that keeps this honest
 

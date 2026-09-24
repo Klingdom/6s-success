@@ -7668,6 +7668,79 @@
        "When you wipe the underside lip, push gently up and side to side and flag any joint or bracket that has started to work loose.",
        "Check the chair casters as you clear them: one that no longer swivels or a cracked wheel is worth flagging before it seizes mid-roll."
       ]
+     },
+     "capacity": {
+      "rule": "One notebook and one inbox tray holding fewer than a dozen sheets, with the monitor, keyboard and mouse in fixed positions and no sticky notes on the bezel.",
+      "does_not_fit": "If the tray passes a dozen sheets between sittings, the desk is being used as a filing cabinet. The fix is the weekly pass through the tray, not a deeper tray: a tray you cannot empty in one sitting stops being an inbox and becomes a pile with walls."
+     },
+     "variants": [
+      {
+       "condition": "The desk is also the dining table",
+       "guidance": "Fixed positions cannot survive a table that gets cleared for meals, so the unit becomes a single carry box: monitor riser, notebook and tray go in it and come out together. The dozen-sheet limit still holds, because the box has to close."
+      },
+      {
+       "condition": "Two monitors or a laptop plus a monitor",
+       "guidance": "Fixed positions matter more, not less. Set them once and mark the stand feet, because a screen that moves daily drags the keyboard, the mouse and eventually the notebook out of place with it."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I clear the desk and it is covered again by the end of the week.",
+        "branches": [
+         {
+          "answer": "Paper lands here because there is nowhere else to put it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The inbox tray is never emptied, only added to",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Work from three different jobs shares one surface",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "I keep losing the note I wrote down.",
+        "branches": [
+         {
+          "answer": "Notes are written on whatever sheet is nearest",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "They go on sticky notes that fall off the bezel",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "There is a notebook but it is not within arm's reach",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "The chair catches on something every time I move.",
+        "branches": [
+         {
+          "answer": "The power strip and cables are lying on the floor",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Boxes are stored under the desk",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The mat is rucked where the cables cross it",
+          "cause": "RC-016"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the desk except the monitor, keyboard and mouse. Put the loose paper into the inbox tray, give every sheet in it a verdict until it is under a dozen, and hook the power strip up off the floor.",
+       "victory": "One notebook and one tray under a dozen sheets, and the chair rolls the width of the desk without catching."
+      }
      }
     },
     {
@@ -7739,6 +7812,79 @@
        "Smell the deep file drawer while it is empty: a musty note means damp is reaching the paper, so flag it.",
        "Check the drawer pulls as you wipe them and flag a screw that has backed out or a handle that has gone loose in your hand."
       ]
+     },
+     "capacity": {
+      "rule": "A top drawer with a divided tray holding only pens that write, one stapler and one pair of scissors point-down in its own slot, and a deep pedestal drawer of hanging files whose tabs all stand in one line.",
+      "does_not_fit": "If the hanging files will not stand with their tabs in one line without compressing, the pedestal is holding files that are no longer live. Live means touched weekly; everything else belongs in file storage, not in the drawer you open all day."
+     },
+     "variants": [
+      {
+       "condition": "No pedestal, only shallow drawers",
+       "guidance": "Live files move to a single upright rack on the desk or the nearest shelf, kept to the width your hand can flick through in one pass. The top-drawer rule is unchanged, and it matters more, because shallow drawers silt up faster than deep ones."
+      },
+      {
+       "condition": "The drawers are shared with a partner or a child",
+       "guidance": "Divide by owner before dividing by kind: one drawer each, and the pen-that-writes test applied by whoever owns that drawer. A shared drawer with mixed ownership is where dead pens live longest, because nobody feels entitled to bin them."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I test three pens before I find one that writes.",
+        "branches": [
+         {
+          "answer": "Dead pens go back into the drawer instead of the bin",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody feels it is their place to throw them out",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There are far more pens than this office uses",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "I cannot find a live file without pulling several out.",
+        "branches": [
+         {
+          "answer": "The tabs are at different positions along the folder",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Files that are finished are still in the pedestal",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Folders are labelled by department, not by what I would ask",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "I have cut myself or caught my hand in this drawer.",
+        "branches": [
+         {
+          "answer": "The scissors are loose rather than point-down in a slot",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Blades or craft knives are loose in the tray",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The drawer is so full things spring up when it opens",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the top drawer, test every pen on a scrap and bin the ones that skip, then put back only what writes into a divided tray with the scissors point-down in their own slot.",
+       "victory": "Every pen in the drawer writes first time, and the scissors have a slot of their own."
+      }
      }
     },
     {
@@ -7814,6 +7960,79 @@
        "As you handle the files, flag any thermal receipt whose print has begun to gray and fade, so a copy can be made before it disappears.",
        "Give the cabinet a gentle push while it is empty and flag a rock or a lean that means it is not sitting square on the floor."
       ]
+     },
+     "capacity": {
+      "rule": "Hanging folders labelled by the question you would ask, every tab in the same position along the rail, a closed fireproof box for permanent originals, and a shred bag emptied before it overflows.",
+      "does_not_fit": "If a drawer will not close, or folders have to be squeezed to file one sheet, the drawer is full at about four fifths depth and the answer is a retention pass, not a second cabinet. Most of what is in a full home filing drawer is a statement you can download again."
+     },
+     "variants": [
+      {
+       "condition": "Mostly paperless, with a few originals that must stay paper",
+       "guidance": "One small box does the whole job: birth and marriage certificates, passports, titles, wills, immigration papers. Keep it fireproof and closed, and stop buying filing furniture for a filing problem you no longer have."
+      },
+      {
+       "condition": "A business or rental runs out of this office",
+       "guidance": "Split live from archive physically. The current tax year sits in the cabinet you open; closed years go in labelled archive boxes by year, so the drawer never carries seven years of depth at once."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I know the document is filed but I cannot find it.",
+        "branches": [
+         {
+          "answer": "Folders are labelled by company name rather than by what I would ask",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Tabs are staggered so my eye has to zigzag",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "The same kind of paper lives in two different places",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "There is a pile of paper waiting to be filed.",
+        "branches": [
+         {
+          "answer": "Filing takes too many steps from where the post lands",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "The drawer is too full to file into",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "I am unsure what is safe to throw out, so nothing moves",
+          "cause": "RC-014"
+         }
+        ]
+       },
+       {
+        "symptom": "Paper with my account numbers on it goes out in the bin.",
+        "branches": [
+         {
+          "answer": "There is no shred bag at the point where I open the post",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The bag is full so things get binned instead",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "The shredder is stored somewhere it has to be fetched from",
+          "cause": "KC-004"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take one drawer. Relabel each folder with the question you would ask when looking for it, set every tab in the same position, and shred the statements you could download again.",
+       "victory": "One drawer where the tabs read down in a single line, and it closes without pressure."
+      }
      }
     },
     {
@@ -7884,6 +8103,79 @@
        "Give the unit a gentle nudge with an empty shelf and flag any wobble or lean away from the wall.",
        "Feel the wall behind the top shelf and flag a damp or cold patch that could be softening the boards over time."
       ]
+     },
+     "capacity": {
+      "rule": "Working reference at seated eye level, heavy binders on the bottom two shelves, a hand's width of empty shelf at the end of every row, and the unit screwed to the wall.",
+      "does_not_fit": "The hand's width is the capacity test, and it is deliberately generous: when the last gap closes, the shelf is full and the next book in means one book out. Books stacked flat on top of the upright row are the same signal arriving a month late."
+     },
+     "variants": [
+      {
+       "condition": "The shelf is mostly decorative, not reference",
+       "guidance": "Then say so and run it by the eye rather than by reach: still a hand's width at the end of every row, still bolted, but do not force working-reference logic onto a shelf nobody consults. Keep the two or three books you actually open near the desk instead."
+      },
+      {
+       "condition": "Small children or a pet come into this room",
+       "guidance": "The wall fixing stops being optional. Anchor every unit over about a metre tall, put nothing climbable in front of it, and keep the bottom shelf free of anything worth reaching for."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The shelf looks full and I still cannot find the book I want.",
+        "branches": [
+         {
+          "answer": "Books are shelved by size or colour, not by what they are for",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Reference I use is above or below comfortable seated eye level",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Books I never open take the best shelf",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "Things are stacked flat on top of the upright books.",
+        "branches": [
+         {
+          "answer": "The shelves have been full for a while and nothing left",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "There is no rule for what leaves when something arrives",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Paper and folders are being stored on the book shelf",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "The unit rocks or leans when I pull a book out.",
+        "branches": [
+         {
+          "answer": "It is not fixed to the wall",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The heavy binders are on the top shelves",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It sits on carpet or an uneven floor without levelling",
+          "cause": "RC-016"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Move every heavy binder to the bottom two shelves, bring the reference you actually open to seated eye level, then check the wall fixing and fit one if it is missing.",
+       "victory": "The heaviest things are lowest, the unit does not move when you pull a book, and every row ends in a hand's width of space."
+      }
      }
     },
     {
@@ -7964,6 +8256,79 @@
        "Lift the lid slowly and flag a cracked or sagging hinge that no longer holds the lid where you put it.",
        "Note heavy toner dust building on the paper path or scoring marks on feeding sheets, which point to a roller starting to fail."
       ]
+     },
+     "capacity": {
+      "rule": "A paper bin beneath the printer with a min line and a max line drawn on it, one spare cartridge in a labelled box, a single scan tray with a to-do side and a done side, and clear air behind the machine.",
+      "does_not_fit": "Two spare cartridges is not twice as safe, it is money sitting in a drawer drying out; cartridges have a shelf life and printers get replaced. If the to-do side of the scan tray never empties, the problem is a missing weekly slot, not a bigger tray."
+     },
+     "variants": [
+      {
+       "condition": "The printer is shared by the household, not just the office",
+       "guidance": "Put the min line where a refill still leaves enough paper for somebody else's school form, and write on the card who buys when it is hit. A shared consumable with no named owner is the most reliable way to run out."
+      },
+      {
+       "condition": "You print rarely, a few times a year",
+       "guidance": "Hold one ream, not a paper bin, and skip the spare cartridge entirely: an inkjet cartridge bought as insurance will usually dry out before it is needed. Run the nozzle check monthly instead, which costs nothing and is the failure that actually happens."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I run out of paper or ink mid-job.",
+        "branches": [
+         {
+          "answer": "There is no min line, so nobody sees low coming",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Stock is kept somewhere else and nobody checks it",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nobody is named as the person who reorders",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Scanned paper piles up beside the machine.",
+        "branches": [
+         {
+          "answer": "There is one tray with no to-do and done sides",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There is no regular slot when scanning gets done",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Scanned sheets have nowhere to go afterwards",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "The printer jams or the paper comes out curled.",
+        "branches": [
+         {
+          "answer": "Things are stored on top of and behind the machine",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Paper is stored somewhere damp or in direct sun",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "The rollers and paper path have never been cleaned",
+          "cause": "KC-012"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the top of and the space behind the printer, draw a min line and a max line on the paper bin, and split the scan tray into a to-do side and a done side.",
+       "victory": "Air behind the machine, a paper level anyone can read at a glance, and a scan tray that says what still needs doing."
+      }
      }
     },
     {
@@ -8040,6 +8405,79 @@
        "Sight along each loaded shelf and flag a board that bows or a shelf pin that has slipped under the weight of the paper.",
        "Check the step stool as you wipe it and flag a wobbly leg, a loose step, or a worn foot before someone stands on it."
       ]
+     },
+     "capacity": {
+      "rule": "One open pack of each consumable at hand height with its backstock directly behind it, reams on the bottom shelf, and min and max written on a card inside the door.",
+      "does_not_fit": "One open, one behind is the whole rule. A third pack means the max on the card was wrong or nobody read it, and the cost is not the shelf space but the second purchase of something you already owned and could not see."
+     },
+     "variants": [
+      {
+       "condition": "No cabinet, just a shelf or a cupboard shared with other things",
+       "guidance": "Draw the boundary with a single labelled bin per consumable rather than a shelf edge. The card still goes where you look when you are deciding to buy, which on a shared shelf usually means taped inside the cupboard door."
+      },
+      {
+       "condition": "Supplies for a home business or a classroom",
+       "guidance": "Max goes up, the rule does not: still one open at hand height, still backstock directly behind, still written down. Volume is what makes the min line load-bearing, because running out costs a working day rather than an errand."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I buy something and find three of it at home.",
+        "branches": [
+         {
+          "answer": "Backstock is stored where the open pack cannot be seen",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "There is no max written down for anything",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Supplies are split across several rooms",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "We run out of something with no warning.",
+        "branches": [
+         {
+          "answer": "Nothing shows a min line to reorder at",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "The last person to take it does not tell anyone",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The list to add to is not where the supplies are",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "Reaching into this cabinet is awkward or unsafe.",
+        "branches": [
+         {
+          "answer": "Reams of paper are stored above shoulder height",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There is no step stool and I stand on a chair",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Shelves are so deep things get lost at the back",
+          "cause": "KC-006"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Bring every consumable together, move reams to the bottom shelf, put one open pack of each at hand height with its backstock directly behind, and write min and max on a card inside the door.",
+       "victory": "One open pack of each thing visible at hand height, nothing heavy above your shoulder, and a card that says when to buy."
+      }
      }
     }
    ]

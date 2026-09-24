@@ -1884,6 +1884,26 @@ and find it wrong.
 app diagnosis use or in what answer engines quote, stop and say so rather than
 finishing all twenty on momentum.
 
+**Which four, said plainly.** Written loosely above, "four rooms in" could mean
+four rooms complete in total, which was reached the same day this was written
+and would make the checkpoint meaningless. It means four rooms *authored under
+this decision*: Primary Bathroom, Home Office, Laundry Room, Garage. The
+checkpoint is therefore after Garage, and the reason for naming it now is that
+the ambiguity favoured continuing, which is exactly the bias a revisit clause
+exists to catch.
+
+**Progress, measured from the corpus rather than remembered.**
+`ops/build_microzone_coverage.py` regenerates the table in
+`STRATEGY-MICROZONES.md` on every preflight, so this line is the only place
+that can go stale and the table is not.
+
+| Date | Room authored | Zones with all three fields |
+|---|---|---|
+| 2026-09-24 | Primary Bathroom (7) | 19 of 114 |
+| 2026-09-24 | Home Office (6) | 25 of 114, 21.9% |
+
+Two of the four are done. Laundry Room and Garage remain before the checkpoint.
+
 ---
 
 ## D-021 | 2026-09-21 | M6's "21-day read" gate cannot be answered and must stop being re-litigated; it stays shut on a different, honest reason
