@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 01:4x (previous work finished, independently reconfirmed; backlog and issues re-exhausted from three fresh angles; nothing new to hand off)
+
+NEXT FOR THE OPERATOR: none found this pass, because BACKLOG-2026-09-07.md sections 2 to 4 are every row struck through done or superseded by a decision, section 5 is correctly on HOLD, section 6 is the owner-gate list, all 7 GitHub issues are `decision`/`blocked-on-art`, and `CHECKIN-LOG.md`'s own hourly measurements show nothing new moving. Continue the standing methods: cold-read a not-yet-reviewed `ops/*.py` file, or extend interactive-Chromium coverage to a page that still has none (checked: `bundle.html` has no dedicated interactive test, though it may be pure static links with no form to exercise, worth confirming before spending time there).
+
+Attached via `git fetch origin main`, `fetch --unshallow` (checkout arrived shallow and detached), `checkout main`, `merge --ff-only` onto `origin/main`: clean 46-commit fast-forward, no reset or force.
+
+**Previous work: finished, independently reconfirmed a second time.** The prior PM check-in (`ddb33fa0`, the dashboard traffic-citation staleness fix) was already reconfirmed by the very next scheduled cycle (`b91dade8`/`b86a0641`). Rather than cite that, ran `python ops/preflight.py` myself to completion this cycle: every gate passed, 23 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH/Pillow/Gemini credential, no live egress, the two cron-cadence drifts, the sample-PDF spelling, site verification, the 3 zone/7 card art gaps behind issues #2/#29), none new. Working tree clean before and after; main up to date with origin.
+
+**No new unblocked item found, checked from three independent sources rather than one.** Read `BACKLOG-2026-09-07.md` in full: sections 2 (micro zones/app), 3 (decks) and 4 (images/video) show every row done or reframed as a decision; section 5 correctly HOLD (traffic too low to justify the work); section 6 is the owner-gate list (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy, Apple/Play accounts), none operator-actionable. GitHub: 7 open issues confirmed live via the API, unchanged (`decision`: 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs. CI: the last several runs of `checks.yml` and `publish-image.yml` are all `success` against main, one `checks.yml` run still `in_progress` against the current HEAD at time of check, no failures anywhere. Read `CHECKIN-LOG.md`'s hourly entries (not previously read this cycle): nothing measurable has moved in several consecutive checks; the standing "production is behind the repository, deploy" note is `BLOCKER-001`, already tracked in `STATUS.md`/`OWNER-ACTIONS.md`, and needs a local session holding the VPS deploy key, not this one.
+
+**Went well:** re-deriving "nothing unblocked" independently from three sources that hadn't all been read together this cycle (the backlog file itself, GitHub's issue list, and the hourly check-in log), rather than trusting the immediately preceding cycle's identical conclusion.
+
+**Did not go well:** nothing new found broken or unblocked this slot; the backlog and issue queue remain genuinely, not just apparently, exhausted of operator-actionable work, same as the last several cycles today.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. `BLOCKER-001` (production one commit behind the repository) remains the standing P0-adjacent item and needs Phil's own VPS-key session, not this one.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 01:2x (previous work finished; a real dashboard staleness bug found and fixed)
 
 Attached clean (44-commit fast-forward). Previous work (the `.reveal`/`window.onerror` coverage fix) confirmed finished: full `preflight.py` clean, working tree clean, main pushed. Backlog sections 2-6 all done or Phil-gated; 7 GitHub issues unchanged, all `decision`/`blocked-on-art`, none mine to touch.
