@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 16:3x (previous work finished; caught a real gate failure, then found a concurrent cycle had already fixed the identical defect and adopted it instead of duplicating)
+
+Reattached clean via fetch/unshallow/checkout/ff-only merge, no reset or force. BACKLOG-2026-09-07.md and the 8 GitHub issues unchanged, all done or Phil-gated. Ran preflight.py backgrounded, no shell timeout wrapper (avoided the mistake the last several entries logged): 2 gates failed, one transient stray probe file already gone by the time I checked, one real, how-to-clean-anything.html (shipped this cycle) had no application/ld+json, caught by gate_indexable_pages_have_schema. Wrote and verified a CollectionPage fix, but the push conflicted: a concurrent scheduled-operator cycle (ec022f51) had landed the identical fix minutes earlier. Diffed both versions to confirm true duplication before discarding mine, adopted origin's, no unique work lost. Preflight now clean on HEAD. Nothing new to hand off; same standing Phil-blocked list.
+
 ## 2026-09-24, scheduled operator cycle (16:0x, full independent re-verification, nothing new; escalating the check-in log's own six-straight "nothing measurable moved" pattern rather than filing a seventh)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean fast-forward (118 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0-7: every Now row A1-A9, B1-B8, C1-C7 done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the newest `ops/NIGHTLY-LOG.md` entries (well past the required last four; this cycle read back through the 12:5x/13:0x/13:4x/13:5x/14:2x/14:4x/15:1x PM check-ins and operator cycles). GitHub confirmed live, not cited: 8 open issues, unchanged (2 `blocked-on-art`/`P0`: #2, #29; 6 `decision`: #35, #33, #31, #21, #18, #15), 0 open PRs.
