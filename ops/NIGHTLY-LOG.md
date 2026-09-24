@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 18:4x (previous work finished; a stale, twice-repeated handoff corrected: `build_kitchen_deck_pdf.py` was named "next cold-read target" by two straight cycles despite already being read clean at least three times today)
+
+NEXT FOR THE OPERATOR: cold-read `ops/stripe_brand.py` and `ops/youtube_upload.py` (both 18 mentions in this log, the actual lowest untouched tier right now), because `build_kitchen_deck_pdf.py`, the file the last two handoffs pointed at, is not unread: it was cold-read and confirmed clean at 16:0x-ish (this file, line ~909: "`build_kitchen_deck_pdf.py` (`--check`: current, matches the live print sheet)") and again shortly after (line ~1309, "two clean cold-reads"), both today, both before the 17:5x cycle re-named it as the "next-lowest unread tier." Both `stripe_brand.py` and `youtube_upload.py` carry real prior history (identity/dedupe bugs fixed 2026-09-06/09-09), so treat this as "least recently touched," not "never touched," and verify any finding against each file's own `--check`/`--status` mode before writing a gate.
+
+Reattached clean: `git fetch origin main`, `is-shallow-repository` true so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward of 134 commits, no reset or force. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries in full (not just the tail: the file is newest-first, and an earlier `tail -c` read of this same file mid-cycle pulled 2026-09-04 content by coincidence of byte offset, corrected by reading from the top instead), `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s top block. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2); working tree was already clean and `main` already matched `origin/main`.
+
+**Previous work genuinely finished:** the 18:2x cycle's own `STATUS.md` correction and the earlier CRLF/CSV fix are both on `main`, `preflight.py` was reported clean by that cycle minutes before this one started, and nothing has been committed since. This cycle's own `python ops/preflight.py` (no `--own`, full run, backgrounded and unbuffered per this log's own repeated lesson about the piped-timeout trap) was still executing `gate_tests` (the full `ops/tests/test_*.py` sweep) when this entry was written, every gate before it in the run order passing with no failure printed; left running past this entry, to be read by whoever checks next rather than left silently unverified. Backlog and 8 issues both confirmed unchanged and exhausted (every unblocked row done or Phil-gated).
+
+**Found, not a code defect: a document-honesty gap in the standing cold-read handoff itself.** The 17:5x PM check-in and the 18:2x PM check-in each independently named `ops/build_kitchen_deck_pdf.py` as "the next-lowest unread tier," but a plain count of its own name in this log (23 mentions, not low) and three separate "confirmed clean" citations earlier the same day (this file, roughly lines 909, 1309, 2603-2687) show it was read and cleared, not overlooked. This is the same "source corrected, artifact never re-derived" shape section 7 of the backlog names as the dominant defect class, here applied to a handoff instruction instead of a generated file: nobody re-checked the mention count before repeating the old target. No code changed for this; the correction is the NEXT line above, aimed at the genuinely lowest tier as counted fresh this cycle.
+
+**Went well:** counting mentions fresh instead of trusting two consecutive prior cycles' identical claim; catching the tail-read/byte-offset mistake mid-cycle rather than carrying a wrong read of stale content into this entry.
+
+**Did not go well:** two consecutive 30-minute cycles spent part of their slot repeating a handoff that a five-second grep would have shown was wrong; worth naming so a future cycle greps the mention count before restating a handoff rather than after.
+
+**Changing next cycle:** none beyond the corrected handoff above.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; redeploy click; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-24 18:2x (previous work finished; STATUS.md's own build citation had gone stale twice in one day, corrected with a better confirmation found on GitHub)
 
 Previous work finished: the 17:5x/18:0x CRLF fix and gate merged clean, `preflight.py` clean (24 known warnings, one transient stray probe file gone on recheck). Backlog and 8 issues unchanged, all done or Phil gated.
