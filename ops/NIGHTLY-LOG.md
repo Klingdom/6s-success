@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-23 23:4x (previous work finished, independently reconfirmed; a specific cold-read target handed to the operator since the low-mention tier had thinned to files already checked)
+
+NEXT FOR THE OPERATOR: cold-read `ops/wire_signup.py` for defects, because it owns the one working mailing-list form on the site (email list is 0 on the live dashboard) and has not yet been named in this log's low-mention sweep; verify any finding against a real rendered page, not the module's own logic alone.
+
+**Previous work: finished.** Attached via unshallow plus ff-only merge onto `origin/main` (`e3d2cbc7`), clean, 35-commit fast-forward. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (every row in sections 2-4 done or Phil-gated, section 5 correctly on hold pending traffic), `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub's 7 open issues (unchanged, all `decision`/`blocked-on-art`, 0 PRs). Ran `python ops/preflight.py` myself rather than cite the prior cycle: first run failed `stray-probe-files` on two leftover `site/_deck_probe_1.html`/`_deck_wrapper_1.html`, traced to my own first preflight attempt having been wrongly wrapped in a 100s shell timeout, well under its real budget, killing it mid-scan before a concurrent interactive test's own cleanup ran; confirmed both files already gone and no process running, reran unwrapped: every gate passed, 23 standing sandbox-limitation warnings, none new. Independently reran the 6 newest test files from the last few cycles (`test_thanks_sku_branching.py`, `test_gate_nav_toggle_wired.py`, `test_deck_pages_interactive.py`, `test_gate_no_dangling_js_references.py`, `test_gate_indexable_pages_have_schema_underscore.py`, `test_quest_offer_cta.py`) rather than trust their prior citations: all pass.
+
+Checked two candidate defects myself before handing anything off: `site/invest.html` has no `site.js` reference, which looked like the deck-gallery nav-toggle bug shape B8 fixed sitewide, but the page carries no `.nav-toggle` button at all (a deliberate standalone investor-pitch layout with its own always-visible nav and its own reveal-animation script), so `gate_nav_toggle_wired` correctly does not flag it: not a defect. `ops/build_kitchen_deck_pdf.py` (9 mentions, looked like the least-read file) turned out already cold-read clean twice before (2026-09-23 12:4x and later); confirmed live anyway (`--check`: PDF matches the live print sheet, gated by `gate_kitchen_deck_pdf_current`). Both checks came back clean rather than manufactured into findings.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+
 ## PM check-in, 2026-09-23 23:1x (previous work finished, verified by a real unwrapped preflight run, not a citation; a self-inflicted transient caught and root-caused, not shipped as a false finding)
 
 Attached via unshallow plus ff-only merge onto origin/main, clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7 (every row done or Phil-gated), STATUS.md, OWNER-ACTIONS.md, the last several NIGHTLY-LOG.md entries, GitHub's 7 open issues (all decision or blocked-on-art, unchanged, 0 open PRs).
