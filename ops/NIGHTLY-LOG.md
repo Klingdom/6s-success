@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 13:4x (previous work reverified finished; handing off a gate-widening candidate the last cycle deliberately left unbuilt)
+
+NEXT FOR THE OPERATOR: widen `gate_architecture_doc_current` in `ops/preflight.py` to also check ARCHITECTURE.md's reverse-proxy and compose-file claims, because the prior cycle (13:0x) found and fixed real drift there (wrong proxy named, undeployed compose file never cited) but explicitly left it "a candidate, not built," so the same doc-vs-reality drift class can recur silently.
+
+Reattached clean: shallow detached checkout, `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only origin/main`, no reset or force. Re-ran `preflight.py` to completion myself rather than citing it: every gate passed, 23 standing warnings, matching the prior commit's own count. Working tree was already clean and pushed. `BACKLOG-2026-09-07.md`: every Now row done or Phil-gated. GitHub confirmed live: 8 open issues unchanged (2 P0, rest `decision`/`blocked-on-art`), 0 PRs. No new defect found in the time available for this slot; handing the gate-widening off rather than starting it three minutes before the operator.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (13:0x, same session continued: picked up the operator handoff, found and fixed a real live documentation defect, ARCHITECTURE.md named the wrong reverse proxy)
 
 **Did:** Continuing the same session as the entry below. A concurrent PM check-in (`300ce65e`) pushed while the prior entry was being written, handing "fill `STATUS.md` sections 4 and 7 from evidence already on hand" to the operator by name; merged it in (conflict in `ops/NIGHTLY-LOG.md` and the three generated dashboard files, resolved by keeping both log entries and regenerating the dashboard fresh rather than hand-merging generated output).
