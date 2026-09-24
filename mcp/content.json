@@ -7189,6 +7189,79 @@
        "A musty smell that survives a hot clean cycle means biofilm deeper than the drum reaches. Note it.",
        "A scorch mark or a warm brown patch on the dryer cabinet, or a power cord that feels stiff or looks scuffed near the plug. Flag any of these."
       ]
+     },
+     "capacity": {
+      "rule": "Both drums empty between loads with the washer door propped ajar, nothing at all on either lid, a cleared lint screen back in its slot, and the month you last cleared the duct written on a strip of tape on the side of the dryer.",
+      "does_not_fit": "There is no capacity to negotiate here, because the machines hold one load and a lid is not a shelf. The test is the tape: if you cannot read a month off the side of the dryer, the duct is overdue by definition, because nobody remembers doing it and everybody assumes somebody did."
+     },
+     "variants": [
+      {
+       "condition": "A stacked or all-in-one washer-dryer",
+       "guidance": "There is no lid to keep bare, so the rule moves to the floor and the top of the column: nothing stored on top of a stack you would need a stool to reach, and nothing on the floor in front of the door. The duct tape date matters more, not less, because a condenser or heat-pump filter clogs faster than a vented duct."
+      },
+      {
+       "condition": "The machines live in a cupboard or a closet",
+       "guidance": "Clearance becomes the whole job. Leave the doors open after the last load so the drum can dry, keep the duct run as short and straight as the space allows, and store nothing in the gaps beside the machines, which is where lint collects against a hot surface."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Washing sits in the drum long enough to smell, and gets rewashed.",
+        "branches": [
+         {
+          "answer": "Nothing marks the moment a cycle ends",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Whoever starts a load is not the one who moves it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The door is shut between loads, so the drum never dries out",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "The dryer takes two or three cycles to dry one load.",
+        "branches": [
+         {
+          "answer": "The lint screen goes back in without being cleared",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nothing records when the duct was last cleared",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The duct behind the machine is crushed, kinked or packed with lint",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "There is always something sitting on top of the machines.",
+        "branches": [
+         {
+          "answer": "The lids are the nearest flat surface in the room",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The folding counter is covered, so things migrate here",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Nobody ever agreed the lids stay bare",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty both drums, take everything off both lids, clear the lint screen and put it back, prop the washer door ajar, and write this month on a strip of tape on the side of the dryer.",
+       "victory": "Both drums empty, both lids bare, the door propped open, and a date on the dryer you can read from the doorway."
+      }
      }
     },
     {
@@ -7266,6 +7339,79 @@
        "A pod that has swollen, sweated, or split inside the tub. Flag it.",
        "A container whose label has worn or bleached until you cannot read it. Flag it as unnamed."
       ]
+     },
+     "capacity": {
+      "rule": "One working detergent, one bleach, one tub of oxygen powder and one stain treatment standing on a wipeable tray, the pod tub latched and above shoulder height, and the true dose line inked on every cap.",
+      "does_not_fit": "One of each kind, open at a time, is the whole rule. A second open bottle of the same thing means the first one was invisible or the offer was too good, and both end their lives as a shelf of half-bottles nobody will finish. A bottle whose label you cannot read does not get a place on the tray at all: an unlabelled liquid in a house with children is a safety problem wearing a storage problem's clothes."
+     },
+     "variants": [
+      {
+       "condition": "A shared laundry room, or a laundromat",
+       "guidance": "The tray becomes a carry caddy that leaves with you, which makes the inked dose line more important rather than less, because the machine is not yours and its drum size is not the one your cap was designed around. Take the stain treatment; leave the backstock at home."
+      },
+      {
+       "condition": "Somebody in the house needs a specific detergent for skin",
+       "guidance": "Keep theirs physically separate and labelled with their name, not just its brand. Sitting next to the household bottle is how it quietly becomes the household default, and the person it was bought for is the last to find out."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are several half-used bottles of the same thing.",
+        "branches": [
+         {
+          "answer": "A new one is bought before the open one is finished",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The open bottle sits behind the others where it cannot be seen",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nothing says only one of each kind is open at a time",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "Washing comes out with detergent marks, or not properly clean.",
+        "branches": [
+         {
+          "answer": "No cap carries a true dose line, so everyone pours by eye",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Two people dose by two different habits",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "The measuring cap is sticky and almost never gets rinsed",
+          "cause": "RC-016"
+         }
+        ]
+       },
+       {
+        "symptom": "There is something down here a child could open.",
+        "branches": [
+         {
+          "answer": "The pod tub sits at or below a child's eye level",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Something was decanted into a container with no label",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The tray sits on the floor because the shelf is already full",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Bring every laundry product onto one wipeable tray. Keep one working bottle of each kind, ink the true dose line on each cap, and latch the pod tub above shoulder height.",
+       "victory": "One of each kind standing on a wipeable tray, a dose line you can see on every cap, and nothing a child can reach."
+      }
      }
     },
     {
@@ -7337,6 +7483,79 @@
        "A frayed carry strap or handle on a bag you haul up the stairs loaded. Flag it before it lets go.",
        "The small dish holding a button battery, a coin, or a screw that rode in on a pocket. Flag it."
       ]
+     },
+     "capacity": {
+      "rule": "Three labelled bags standing clear of the walking line, each below half full, a small dish on the shelf holding nothing older than today, and bare floor in front of the washer door.",
+      "does_not_fit": "Below half full is a laundry-frequency test, not a bag-size test. A bag that is regularly over half means the wash is running less often than the household produces clothes, and a fourth bag would only postpone the same evening. Three streams is also a ceiling: a household will honour two or three sorting decisions at the hamper and will quietly stop honouring five."
+     },
+     "variants": [
+      {
+       "condition": "Hampers live in bedrooms, not in the laundry room",
+       "guidance": "Then this zone is the arrival point, not the collection point, and the sorting decision has already been made upstairs. Keep the three labelled bags here anyway and make the bedroom hampers single and unsorted, because a sorting decision asked twice is a sorting decision made badly in both places."
+      },
+      {
+       "condition": "Small children, or anybody who dresses themselves at a low height",
+       "guidance": "One bag has to be reachable from their standing height, or clothes will land on the floor beside it and the bare-floor rule loses every time. Height beats labels for anyone who cannot yet read the labels."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Dirty clothes end up on the floor rather than in a bag.",
+        "branches": [
+         {
+          "answer": "The bags are behind a door or across the room from where clothes come off",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The nearest bag is too full to take anything more",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Whoever drops them cannot reach the bag from standing height",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "Loads have to be sorted again before they can go in the machine.",
+        "branches": [
+         {
+          "answer": "The bags are not labelled, so things go in the nearest one",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There are more sorting streams than anybody honours",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Two people sort by two different schemes",
+          "cause": "KC-012"
+         }
+        ]
+       },
+       {
+        "symptom": "Coins, tissues and receipts come out of the machine with the wash.",
+        "branches": [
+         {
+          "answer": "There is no dish to empty pockets into at the hamper",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The dish is never emptied, so nobody uses it",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Pockets are checked at the machine, by which point the load is already in",
+          "cause": "KC-004"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Cut the sorting streams to the three this household will actually honour, label those three bags, stand them clear of the walking line, and put an empty dish on the shelf for pockets.",
+       "victory": "Three labelled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents."
+      }
      }
     },
     {
@@ -7413,6 +7632,79 @@
        "The iron cord scuffed, kinked, or gone stiff near the plug. Flag it.",
        "A water stain or soft swelling on the underside of the counter, or a wobble in its legs. Note it."
       ]
+     },
+     "capacity": {
+      "rule": "A counter bare enough to roll pastry on, one empty basket per bedroom stacked underneath it, six spare hangers on the rail at the end, and no clean clothing anywhere in the room.",
+      "does_not_fit": "One basket per bedroom is the capacity, and it is deliberately not one basket per person: the basket is a delivery route, not a wardrobe. If a basket is still full the next morning, the zone has stopped being a folding surface and become storage, and the fix is the delivery, not a bigger basket."
+     },
+     "variants": [
+      {
+       "condition": "There is no counter, only the top of the machines",
+       "guidance": "Then the surface only exists while a load is being folded, which makes the bare-lid rule from the Washer and Dryer zone load-bearing for this one too. A board laid across the top of a front loader gives you the surface back, and it has to be put away afterwards or it becomes the shelf you were trying not to have."
+      },
+      {
+       "condition": "One person folds for the whole household",
+       "guidance": "Name the delivery, not the folding, as the shared job: the folder fills the baskets and each bedroom empties its own the same evening. Without that split the folder owns the whole chain and the baskets become the place clean clothes live."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are clean clothes in this room that were washed days ago.",
+        "branches": [
+         {
+          "answer": "Nothing says when the baskets get taken to the bedrooms",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "One person folds and delivers for everybody",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The wardrobes they are going to are already full",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "The folding counter is covered with things that are not laundry.",
+        "branches": [
+         {
+          "answer": "It is the only clear flat surface on this floor of the house",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Things were parked here on the way somewhere and never collected",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It has looked like this so long nobody sees it any more",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Folding a load takes far longer than it should.",
+        "branches": [
+         {
+          "answer": "The counter has to be cleared before folding can start",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "There are no hangers to hand for the things that should not be folded",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Loads are mixed, so every basket has to be sorted by bedroom first",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the counter completely, put one empty basket per bedroom underneath it, hang six spare hangers on the rail at the end, and take every piece of clean clothing in this room to the bedroom it belongs in.",
+       "victory": "A counter bare enough to roll pastry on, an empty basket per bedroom beneath it, and no clean clothing left in the room."
+      }
      }
     },
     {
@@ -7484,6 +7776,79 @@
        "A hinge or lock gone loose, or a bar that no longer holds its angle when you set it. Flag it.",
        "A water stain spreading on the wall or skirting behind the rack. Note it."
       ]
+     },
+     "capacity": {
+      "rule": "The rack folded flat against the wall with its bars dry, its drip tray wiped out and empty, six spare hangers on the rail, and nothing hanging that was washed before today.",
+      "does_not_fit": "The capacity is one rack's worth of the things a hot drum would genuinely ruin, and that list is shorter than most households assume. If the rack cannot fold flat because it is always loaded, the zone is being used as a second wardrobe, and the test is the date: anything hanging that was washed before today is storage, not drying."
+     },
+     "variants": [
+      {
+       "condition": "A damp climate, or a room with no window and no extractor",
+       "guidance": "Air movement is doing the work, not space, so a small fan pointed along the rack beats a bigger rack every time. Without it the rack stays loaded, the room gets humid, and the damp ends up in the walls rather than in the clothes."
+      },
+      {
+       "condition": "The drying happens outside on a line",
+       "guidance": "The rack still earns its place for the days the weather does not cooperate, but it folds flat and stays flat, and the same before-today rule applies to the line. Clothes left out overnight are usually wetter in the morning than when they went out."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The rack is permanently up and permanently loaded.",
+        "branches": [
+         {
+          "answer": "Things stay on it after they are dry because nothing prompts a check",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Far more is being air-dried than genuinely needs it",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The wardrobes these clothes belong in are full",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "Air-dried things still smell musty when they are dry.",
+        "branches": [
+         {
+          "answer": "The room has no moving air, so drying takes more than a day",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Items are hung overlapping, so the middle of the rack never dries",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "The drip tray is never emptied and sits wet under the rack",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "Things that should have been air-dried went through the dryer anyway.",
+        "branches": [
+         {
+          "answer": "The rack is folded away somewhere it has to be fetched from",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nothing at the machine says which items never go in the drum",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Two people apply two different rules about what can be tumbled",
+          "cause": "KC-012"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the rack that was washed before today, put the dry things away, wipe out the drip tray, fold the rack flat against the wall, and put six spare hangers on the rail.",
+       "victory": "The rack folded flat with dry bars, an empty tray beneath it, and nothing hanging that was not washed today."
+      }
      }
     },
     {
@@ -7564,6 +7929,79 @@
        "The vacuum cord scuffed or stiff near the plug, or a canister seal that no longer closes cleanly. Flag it.",
        "A weeping drain cleaner or bleach bottle, and the shelf bracket beneath it corroding or loosening under the weight. Note it."
       ]
+     },
+     "capacity": {
+      "rule": "Broom, mop and dustpan hanging heads up with a painted outline showing behind each one, every vacuum attachment in a single labelled caddy, a mop head dry to the touch, and the bucket inside its taped floor square with nothing stored in it.",
+      "does_not_fit": "The painted outlines are the capacity: one outline, one tool, and a tool with no outline has no place here. The bucket is the other test. The moment it is used to hold things, it has stopped being a bucket and the zone has started storing rather than working."
+     },
+     "variants": [
+      {
+       "condition": "The cleaning tools serve the whole house, not just this room",
+       "guidance": "The outlines stay here and become the home the tools return to, but add a second set wherever they are used most, because a tool that must be carried the length of the house gets left where it was last used. Two outlines is not two homes if only one of them is ever full."
+      },
+      {
+       "condition": "No wall you are allowed to fix anything to, such as a rental",
+       "guidance": "Use a freestanding tool rack or tension-mounted grips and draw the outlines on the rack itself. The point was never the paint, it was that an empty space shows you what is missing without anyone having to count."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The broom and mop end up leaning in a corner or lying on the floor.",
+        "branches": [
+         {
+          "answer": "There is no hook, so there is nowhere for them to go",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The hooks are above where the person who uses them can reach",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Handles lean against the wall and slide, which is how they end up down",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "The mop smells, or leaves the floor dirtier than it was.",
+        "branches": [
+         {
+          "answer": "The head is put away damp because nothing prompts drying it",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It hangs head down, so water sits in the fibres instead of draining",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The bucket is used to store things, so it is never rinsed out",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "A vacuum attachment is missing when it is needed.",
+        "branches": [
+         {
+          "answer": "Attachments are loose rather than in one labelled caddy",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "They are used elsewhere in the house and not brought back",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Nothing shows at a glance that one is missing",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Hang the broom, mop and dustpan heads up and mark an outline behind each one, gather every vacuum attachment into one labelled caddy, and empty the bucket and stand it inside a taped square on the floor.",
+       "victory": "Three handles off the floor with outlines showing behind them, every attachment in one caddy, and an empty bucket standing in its square."
+      }
      }
     }
    ]

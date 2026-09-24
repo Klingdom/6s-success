@@ -1901,8 +1901,20 @@ that can go stale and the table is not.
 |---|---|---|
 | 2026-09-24 | Primary Bathroom (7) | 19 of 114 |
 | 2026-09-24 | Home Office (6) | 25 of 114, 21.9% |
+| 2026-09-24 | Laundry Room (6) | 31 of 114, 27.2% |
 
-Two of the four are done. Laundry Room and Garage remain before the checkpoint.
+Three of the four are done. Garage remains before the checkpoint.
+
+**One thing the first two rooms taught, at cost.** The cause IDs on every
+branch were assigned from memory of what the IDs meant, and 13 were wrong
+across the two rooms (LRN-0017). Because the renderer turns a cause into a
+confirmation test and an entry pass, a wrong ID ships the reader a test that
+does not match the answer they picked. `gate_diagnosis_branch_shape` now
+catches the structural half. The semantic half is a rule for the author: read
+`ops/root_causes.py` in the same pass as the writing. Laundry Room was
+authored that way and passed the gate on the first run, with three further
+corrections found by reading each branch against its cause's stated meaning
+afterwards, which the gate cannot do and should not be expected to.
 
 ---
 
