@@ -245,28 +245,36 @@ happening to run one, not on any guaranteed cadence.
 
 # 4. Production Status
 
-Do not infer production health from this template.
-
-The `vps-docker-manager` and `devops-sre` should populate this section from actual production evidence.
+**Filled 2026-09-24, scheduled operator cycle, handed off by name by the
+12:4x PM check-in: this table had stood as the unfilled 2026-08-16 bootstrap
+template, every row `UNKNOWN`, even though sibling sections (5, 8, 17) had
+long since been corrected with real evidence, contradicting this section in
+the same document.** Filled from evidence already on hand across
+`ARCHITECTURE.md` (corrected this same cycle), `DEPLOY-VPS.md`,
+`RISKS.md`, `OWNER-ACTIONS.md` and `ops/deploy-verdict.json`, not guessed. No
+sandboxed session can re-run any of this directly (no VPS egress, no
+Stripe/SSH credential here); every row below is only as current as its own
+citation, not this session's own measurement. A row stays `UNKNOWN` where no
+session has ever actually measured it.
 
 | Area | Status | Evidence / Notes |
 |---|---|---|
-| Public website | UNKNOWN | Verify externally |
-| Application/API | UNKNOWN | Inspect implemented architecture |
-| Database | UNKNOWN | Identify authoritative production database |
-| Reverse proxy | UNKNOWN | Inspect VPS |
-| TLS/HTTPS | UNKNOWN | Verify certificate and renewal |
-| Docker host | UNKNOWN | Inspect Hostinger VPS |
-| Critical containers | UNKNOWN | Inventory required |
-| Persistent volumes | UNKNOWN | Inventory required |
-| Backups | UNKNOWN | Verify actual backup system |
-| Restore readiness | UNKNOWN | Restore validation required |
-| Disk capacity | UNKNOWN | Inspect host |
-| Memory capacity | UNKNOWN | Inspect host |
-| CPU health | UNKNOWN | Inspect host |
-| Production logs | UNKNOWN | Identify sources and retention |
-| Monitoring | UNKNOWN | Identify existing monitoring |
-| Active incidents | UNKNOWN | Verify |
+| Public website | LIVE, last confirmed 2026-09-23T19:00:39Z | Build `5eba61fde231c1a7`, `ops/deploy-verdict.json`, from a session with real production access. Not re-verifiable from this sandbox (no egress to 6s-success.com) |
+| Application/API | N/A BY DESIGN | No application server, database or backend exists; the site is static HTML served by nginx (`ARCHITECTURE.md` section 1) |
+| Database | N/A FOR THE SITE ITSELF | The site holds no database. The Umami analytics database lives on the same VPS but is not part of this site's own stack; it is not backed up off-host (`RISKS.md` RISK-0007's 2026-09-21 finding) |
+| Reverse proxy | Nginx Proxy Manager | A pre-existing shared instance, not Traefik; also fronts Ledgerium AI and Compassion Benchmark on the same VPS (`CLAUDE.md` 36b). `ARCHITECTURE.md` section 4, corrected this cycle after standing wrong (naming Traefik) since the file was written |
+| TLS/HTTPS | Let's Encrypt, issued through NPM's own panel | Not tracked by this repository; certificate expiry/renewal history has never been inspected by any session (genuinely `UNKNOWN`) |
+| Docker host | One Hostinger VPS, `187.77.25.50`, shared with two other businesses | Ledgerium AI and Compassion Benchmark on the same host (`DEPLOY-VPS.md`, `CLAUDE.md` 36b) |
+| Critical containers | `6s-success`: healthy, 0 restarts, as of 2026-09-16 | `OWNER-ACTIONS.md` 1f. Two other containers on the shared host were found crash-looping (177/197 restarts) the same day, traced to Ledgerium's own half-finished deploy, not this site's; no action needed on either. Not re-measured since 2026-09-16 |
+| Persistent volumes | One: the nginx access log | `docker-compose.hostinger.yml` (the file actually pasted into the Hostinger panel, confirmed by `RUNBOOK.md`'s own 2026-09-20 diff against the live host file) mounts `/var/log/6s-success:/var/log/nginx/persist`, added 2026-09-20 so the crawl log survives a redeploy. The `letsencrypt` volume named here previously belongs to the unused `docker-compose.proxy.yml` Traefik topology. NPM's own certificate/config data lives in NPM's own volume, external to this repository (`ARCHITECTURE.md` section 9, corrected this cycle) |
+| Backups | Site: not needed, rebuildable from Git + a fresh image pull. The access-log volume: not backed up. NPM's config: not backed up. Umami analytics: one manual point-in-time export exists (2026-09-21, `ops/backup_analytics.py`, verified by independently recomputing the headline numbers from the CSV), not on a schedule | `RISKS.md` RISK-0007's 2026-09-21 finding; `DISASTER-RECOVERY.md` section 7c/7d. NPM's proxy-host configuration is recorded field by field so it can be rebuilt from a document if that volume is lost, but the volume itself is not backed up |
+| Restore readiness | PARTIALLY MEASURED | A real container-loss drill ran 2026-09-21: pull 0.46s, run 0.38s, first HTTP 200 0.54s, total 1.38s, correct build id and full 159-item catalogue confirmed. Covers "container lost or bad deploy." Does NOT cover a lost host: no VPS has ever been reprovisioned, no DNS/NPM/certificate rebuild has been drilled (`RISKS.md` RISK-0007) |
+| Disk capacity | 40% used, 38G of 96G, 58G free | Measured 2026-09-20 (`OWNER-ACTIONS.md` 1f, closed); was 79% full on 2026-09-16 before something reclaimed ~38GB (not this operator). Re-open if free space ever drops under ~5G |
+| Memory capacity | UNKNOWN | No session has measured `free -h` on the host |
+| CPU health | UNKNOWN | No session has measured `nproc`/load on the host |
+| Production logs | Two sources, both real | NPM's own access log (survives container recreation, reaches back to 2026-08-19, has client IPs); a bind-mounted `/var/log/6s-success/access.log` since 2026-09-20 (rotated weekly, no IPs). Neither is shipped off-host |
+| Monitoring | Traffic only, confirmed no infrastructure monitoring | Umami tracks visitors/pageviews (not infra health). `RUNBOOK.md`'s own inventory: "no external uptime monitor... no error monitoring." Liveness is checked on demand only, by `ops/deploy.py`, `ops/check_live_links.py` and the container's own `HEALTHCHECK` |
+| Active incidents | NONE currently open | `INCIDENTS.md` is a policy standard with no live incident log entries. The nearest real production-impacting events on record are the 8-day dead-payment-link outage (2026-08-22 to 30, closed) and the Ledgerium crash-looping containers found 2026-09-16 (not this site's incident) |
 
 ### Production Rule
 
@@ -357,25 +365,32 @@ Establish a trustworthy mapping between:
 
 Owner: `vps-docker-manager`
 
+**Filled 2026-09-24, scheduled operator cycle, same handoff as section 4
+above: this table stood as the unfilled 2026-08-16 bootstrap template while
+`OWNER-ACTIONS.md`, `DEPLOY-VPS.md` and `RISKS.md` already had real, dated
+answers for several rows.** Same sourcing rule as section 4: no sandboxed
+session can measure any of this directly, so every row is only as current as
+its own citation; genuine gaps stay `UNKNOWN` rather than guessed.
+
 | Area | Status | Notes |
 |---|---|---|
-| VPS access | UNKNOWN | Confirm available authorized access |
-| Host OS | UNKNOWN | Inspect |
-| Docker Engine | UNKNOWN | Inspect |
-| Docker Compose | UNKNOWN | Inspect |
-| Compose projects | UNKNOWN | Inventory |
-| Running containers | UNKNOWN | Inventory |
-| Container health | UNKNOWN | Verify |
-| Networks | UNKNOWN | Inventory |
-| Volumes | UNKNOWN | Inventory before cleanup |
-| Images | UNKNOWN | Inventory |
-| Reverse proxy | UNKNOWN | Identify |
-| Public ports | UNKNOWN | Inspect |
-| Environment configuration | UNKNOWN | Map without exposing secrets |
-| Log rotation | UNKNOWN | Verify |
-| Backup jobs | UNKNOWN | Verify |
-| Off-host backup | UNKNOWN | Verify |
-| Restore procedure | UNKNOWN | Verify/document |
+| VPS access | No sandboxed session holds it | Sessions running on Phil's own machine hold `~/.ssh/6s_deploy` (installed 2026-09-01) and use it routinely (`ops/deploy-verdict.json`'s history). `GitHub Actions` does not yet: issue #35 (`decision`) asks Phil to add it as `VPS_DEPLOY_KEY` |
+| Host OS | Ubuntu 24.04.4 LTS, kernel 6.8.0-134-generic | `RUNBOOK.md`'s own hostinger inventory block |
+| Docker Engine | Present, version UNKNOWN | Hostinger's own Docker Manager runs the compose stacks; no session has recorded the engine version |
+| Docker Compose | Present; `docker-compose.hostinger.yml` is the file actually running | See `ARCHITECTURE.md` section 5, corrected this cycle. Confirmed by `RUNBOOK.md`'s own 2026-09-20 diff against the live host file. `docker-compose.yml` and `docker-compose.proxy.yml` also exist in this repository but neither is deployed |
+| Compose projects | This site plus at least Ledgerium AI, Compassion Benchmark, Cal.com and Nginx Proxy Manager share the host | `CLAUDE.md` 36b, `RISKS.md` RISK-0007's 2026-09-21 finding. Full inventory (`docker compose ls`) has never been run and recorded here |
+| Running containers | `6s-success`: confirmed healthy, 0 restarts, as of 2026-09-16 | `OWNER-ACTIONS.md` 1f. Two other containers on the shared host were crash-looping (177/197 restarts) the same day, traced to Ledgerium's own deploy, not this site's; no action taken on either, none needed. Full container inventory not recorded here |
+| Container health | Healthy as of 2026-09-16 (0 restarts) | Not re-measured since; see row above |
+| Networks | Known for this site | `docker-compose.hostinger.yml` joins the external `6s-proxy` network under the alias `6s-success`. NPM currently forwards to the VPS's own public IP on port 8973 rather than that alias (a tracked, not-yet-made improvement, `DISASTER-RECOVERY.md` 7c); the unused `docker-compose.proxy.yml` defines its own `web` network, not in use. No full `docker network ls` inventory of the whole shared host recorded |
+| Volumes | This site's own stack defines one: the nginx access log | `/var/log/6s-success:/var/log/nginx/persist`, see section 4 above. NPM's own data volume and the Umami database volume also exist on the shared host, outside this repository's control; neither has been fully inventoried. Per the VPS Safety Rule below, nothing has been deleted |
+| Images | 23.92 GB of images on the host as of 2026-09-20 (down from 62.65 GB on 2026-09-16) | `docker system df`, read by a session with real VPS access, `OWNER-ACTIONS.md` 1f. Includes images for every project on the shared host, not only this site's. ~38 GB of build cache was reclaimed between those two dates by an unidentified actor (not this operator) |
+| Reverse proxy | Nginx Proxy Manager, shared instance | See section 4 above and `ARCHITECTURE.md` section 4, corrected this cycle (previously wrongly named Traefik) |
+| Public ports | 80 and 443 held by NPM for all businesses on the host; this site's own container is not on either | `DEPLOY-VPS.md`. The site listens on host port 8973, reached only via NPM's forward |
+| Environment configuration | The live file (`docker-compose.hostinger.yml`) needs no `.env` values; the unused proxy topology needs `DOMAIN`/`ACME_EMAIL` | `ARCHITECTURE.md` section 5. "Zero credentials touch the VPS" for the image-pull deploy method (`DEPLOY-VPS.md`); this would change if issue #35's `VPS_DEPLOY_KEY` decision is approved |
+| Log rotation | Two logs, both rotate | NPM's own access log (rotation policy not recorded here) and the bind-mounted `/var/log/6s-success/access.log` (rotated weekly, confirmed in section 10 above) |
+| Backup jobs | Host-level: Hostinger's own VPS backup, frequency UNKNOWN, never restore-tested (`RUNBOOK.md`). Application-level: NONE for NPM's config or the access-log volume; the Umami database has one manual, unscheduled export (2026-09-21) | `RISKS.md` RISK-0007's 2026-09-21 finding; `DISASTER-RECOVERY.md` section 7d. The site itself needs no backup job, being rebuildable from Git plus a fresh image pull |
+| Off-host backup | The one manual Umami export (`ops/backup_analytics.py`, 2026-09-21) is the only off-host copy of anything VPS-side | NPM's config and the access-log volume have no off-host copy of any kind. Product masters (a separate, non-VPS risk, RISK-0011) have a OneDrive copy in progress, not yet restore-verified |
+| Restore procedure | Documented, PARTIALLY drilled | `DISASTER-RECOVERY.md` covers both the container-loss and lost-host cases; only the container-loss case has been executed and timed (2026-09-21, 1.38s total, `RISKS.md` RISK-0007). The lost-host case (new VPS, DNS, NPM and certificate rebuild) has never been drilled |
 
 ### VPS Safety Rule
 

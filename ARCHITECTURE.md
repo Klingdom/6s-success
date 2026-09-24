@@ -57,9 +57,9 @@ changed is the shape: still a folder of files served by nginx, no runtime.
 | Web server | nginx 1.27 alpine, config at `site/nginx/default.conf` |
 | Image | `6s-success:latest`, built from `Dockerfile` at the repository root |
 | Container | `6s-success`, restart policy `unless-stopped` |
-| TLS | Traefik v3.1 with Let's Encrypt, TLS ALPN challenge |
-| Host | One Hostinger VPS |
-| Domain | 6s-success.com, supplied to Traefik as `DOMAIN` from `.env` |
+| Reverse proxy / TLS | **Nginx Proxy Manager**, an instance already running on the shared VPS before this site existed (it also fronts Ledgerium AI and Compassion Benchmark), Let's Encrypt certificate issued through its own panel. **Not Traefik**, corrected below |
+| Host | One Hostinger VPS, shared with two other businesses (`CLAUDE.md` 36b) |
+| Domain | 6s-success.com, NPM proxy host 4, currently forwarding to `187.77.25.50:8973` (the VPS's own public IP; using the container's `6s-success` network alias on the shared `6s-proxy` network instead is a tracked, not-yet-made improvement, `DISASTER-RECOVERY.md` 7c) |
 
 Run `find site -name '*.html' | wc -l` and `find site -type f | wc -l` for
 today's real numbers before quoting either in a future edit of this file.
@@ -68,15 +68,39 @@ today's real numbers before quoting either in a future edit of this file.
 
 # 4. The Request Path
 
+**Corrected 2026-09-24, scheduled operator cycle: this diagram named the
+wrong reverse proxy.** It described `docker-compose.proxy.yml`'s Traefik
+stack terminating TLS directly on 80/443, which is the topology this
+repository ships as an option but is not what production actually runs.
+`DEPLOY-VPS.md` (written 2026-08-19, the actual deployment record),
+`RISKS.md`'s RISK-0007 (corrected 2026-09-21 "by reading the running host
+rather than the compose files"), `RUNBOOK.md` and `STATUS.md`'s own crawl-log
+section all independently name the real proxy: an Nginx Proxy Manager
+instance already running on this shared VPS before this site existed
+(`CLAUDE.md` 36b: the same host also carries Ledgerium AI and Compassion
+Benchmark), holding ports 80 and 443 for all three. Traefik's stack claims
+those same ports for itself, so it cannot be running alongside NPM without a
+conflict nobody has reported; the plain `docker-compose.yml` topology below,
+which does not touch 80/443 at all, is the one actually deployed. No gate
+covered this claim (`gate_architecture_doc_current` checks two narrower,
+unrelated absences), so it stood corrected everywhere except the one file
+every agent is told to read first.
+
 ```
 browser
   -> DNS A record for 6s-success.com
-  -> Hostinger VPS, ports 80 and 443
-  -> Traefik (container: traefik)
-       port 80 redirects to 443
-       certificate resolver "le", Let's Encrypt, TLS ALPN challenge
-       router rule Host(6s-success.com) or Host(www.6s-success.com)
-  -> web container (6s-success), port 80 on the internal "web" network
+  -> Hostinger VPS (187.77.25.50), ports 80/81/443 (owned by the
+       pre-existing jc21/nginx-proxy-manager container, shared with
+       Ledgerium AI, Compassion Benchmark, Umami, Listmonk and Cal.com)
+  -> Nginx Proxy Manager
+       proxy host 4: 6s-success.com / www.6s-success.com
+       forward host currently 187.77.25.50 (the VPS's own public IP,
+       a tracked improvement: the container's "6s-success" network
+       alias on the shared 6s-proxy network would avoid this round trip,
+       DISASTER-RECOVERY.md 7c)
+       forward port 8973, force SSL on, HTTP/2 off
+       Let's Encrypt certificate "npm-6", issued through NPM's own panel
+  -> web container (6s-success), published as host port 8973 -> 80
   -> nginx
        try_files $uri $uri.html $uri/ =404
   -> a static file from /usr/share/nginx/html
@@ -86,23 +110,65 @@ Nothing in this path executes application code. Every response is a file on disk
 
 ---
 
-# 5. Two Deployment Topologies
+# 5. Three Deployment Topologies, Not Two
 
-The repository defines two, and they must not run at once because they share the container name and image.
+**Corrected 2026-09-24, scheduled operator cycle: this section named only
+two files and both were wrong about which one runs in production.** A third
+file, `docker-compose.hostinger.yml`, is the actual production compose file:
+it is what is pasted into the Hostinger Docker Manager panel
+(`hpanel.hostinger.com/vps/1369835/docker-manager/compose/6s-success/edit`)
+and, per `RUNBOOK.md`'s own 2026-09-20 diff against the live host file,
+matches it apart from comments. Neither of the other two files below is
+deployed.
 
-## docker-compose.yml
+## docker-compose.hostinger.yml (the one actually running)
 
-Plain VPS. Publishes host port `8973` to container port 80. No TLS. Reachable at `http://SERVER_IP:8973`. Traefik labels are present but commented out.
+Pulls `ghcr.io/klingdom/6s-success:latest` with `pull_policy: always` (so a
+plain `docker compose up -d` cannot silently reuse a stale local image, a
+defect that cost a day of drift once before this was added). Publishes host
+port `8973` to container port 80. Joins the external `6s-proxy` Docker
+network under the alias `6s-success`, which is what the pre-existing Nginx
+Proxy Manager instance forwards to. Defines one real volume,
+`/var/log/6s-success:/var/log/nginx/persist`: the nginx access log, written
+by nginx itself with no IP addresses by design, rotated weekly by
+`/etc/logrotate.d/6s-success` (source of truth `ops/host/logrotate-6s-success`
+in this repository) and read by `ops/crawl_report.py`. It is the only thing
+about this container that would not survive being destroyed and recreated;
+everything else is stateless and comes from the image. Defines its own
+`HEALTHCHECK` (a `wget` against `http://127.0.0.1/`). Comments in the file
+itself explain why there is no Watchtower or other auto-updater: one was
+tried, crash-looped on this shared host, and was removed the same day, so a
+deploy is a deliberate `Redeploy` click or `ops/deploy.py` run, never an
+unattended pull.
 
-Use for a bare host or a quick check.
+## docker-compose.yml (unused, a generic template)
 
-## docker-compose.proxy.yml
+Publishes host port `8973` to container port 80, same as the real file, but
+defines no volume and no external network; a reverse-proxy user would attach
+their own network and remove the `ports:` block by hand (its own header
+comment says so). Useful as a from-scratch starting point or a bare
+unproxied check, not what is pasted into the Hostinger panel. Traefik labels
+are present in the file but commented out and unused.
 
-The production shape. Brings up Traefik and the web container on a shared `web` network, claims ports 80 and 443, and obtains an auto renewing certificate. Requires `DOMAIN` and `ACME_EMAIL` in `.env`, and requires ports 80 and 443 to be free.
+## docker-compose.proxy.yml (unused, would conflict with the real proxy)
 
-Use for the live domain.
+Brings up its own Traefik container and the web container on a shared `web`
+network, claims host ports 80 and 443 for itself, and obtains its own
+Let's Encrypt certificate. Requires `DOMAIN` and `ACME_EMAIL` in `.env`, and
+requires ports 80 and 443 to be free, which they are not on this VPS: Nginx
+Proxy Manager already holds them for five other services. Running this file
+would fight that existing proxy. Kept for a future single-tenant host, not
+for this one.
 
-**Which file is currently running on the VPS is UNKNOWN from this repository.** Running `docker compose ls` and `docker ps` on the host would establish it. Do not assume.
+**Which file is running on the VPS is established, not unknown.** This
+section used to say the answer needed `docker compose ls` and `docker ps` on
+the host and warned not to assume; `RUNBOOK.md`'s own 2026-09-20 diff against
+the live host file, `DEPLOY-VPS.md` and `RISKS.md` RISK-0007's 2026-09-21
+direct host read all independently confirm `docker-compose.hostinger.yml`.
+No sandboxed session here can re-run that check itself (no VPS egress), so
+treat this as current as of those citations, not as this session's own
+measurement, and re-verify directly if a future session holds real host
+access and has reason to doubt it.
 
 ---
 
@@ -178,7 +244,24 @@ Several of these are deliberate and good. Several are `RISKS.md` entries. They a
 
 # 9. State And Persistence
 
-The only persistent volume in the production stack is `letsencrypt`, holding `acme.json`, the certificate store.
+**Corrected 2026-09-24, scheduled operator cycle: this used to name a volume
+that belongs to a topology nobody actually runs, and missed the one
+production really defines.** The `letsencrypt` volume only exists in
+`docker-compose.proxy.yml` (section 5's unused Traefik stack). The real
+production file, `docker-compose.hostinger.yml`, defines exactly one volume:
+`/var/log/6s-success:/var/log/nginx/persist`, the nginx access log (no IP
+addresses, rotated weekly, read by `ops/crawl_report.py`), added 2026-09-20
+after a redeploy destroyed the entire crawl history that lived only in
+`docker logs` up to that point. That is the one thing about this container
+that would not survive being destroyed and recreated; it is not backed up
+off-host. Separately, the TLS certificate itself lives inside the
+pre-existing shared Nginx Proxy Manager instance's own data volume, which
+this repository does not define, does not control, and does not back up
+(`RISKS.md` RISK-0007's 2026-09-21 correction; also true for the other
+services sharing that NPM instance). That gap is why `DISASTER-RECOVERY.md`
+section 7c records NPM's proxy-host configuration field by field, so it can
+be rebuilt from a document instead of from memory if that volume is ever
+lost.
 
 Everything else is derived:
 
@@ -292,17 +375,27 @@ The image digest is the answer to "what is running". `RELEASES.md` governs how t
 
 # 15. Known Unknowns
 
-| Unknown | What would establish it |
-|---|---|
-| Which compose file is live | `docker compose ls` on the VPS |
-| The running image digest | `docker image inspect` on the VPS |
-| VPS specification and resource headroom | `nproc`, `free -h`, `df -h` on the host |
-| Whether the healthcheck is passing | `docker inspect` health status |
-| Certificate expiry and renewal history | Inspect the `letsencrypt` volume, or the served certificate |
-| Whether DNS points where we think | Resolve the A record from outside |
-| Actual page weight of the site | Measure served bytes for the heaviest page |
+**Corrected 2026-09-24, scheduled operator cycle: two rows below had real,
+dated answers sitting in `OWNER-ACTIONS.md` and section 4/5 above, not
+actually unknown any more.** Left as a table of what a *sandboxed* session
+still cannot check directly (no VPS egress here), not what has never been
+checked by any session:
 
-Do not fill these in from memory. Measure them, then record them in `SYSTEM-REGISTRY.md`.
+| Unknown | What would establish it | Answered? |
+|---|---|---|
+| Which compose file is live | `docker compose ls` on the VPS | **Yes, section 5 above: `docker-compose.hostinger.yml`, port 8973, behind NPM** |
+| The running image digest | `docker image inspect` on the VPS | Tracked continuously in `ops/deploy-verdict.json`, not this file |
+| VPS specification and resource headroom | `nproc`, `free -h`, `df -h` on the host | **Partly: disk 40% used (38G of 96G, 58G free) as of 2026-09-20, `OWNER-ACTIONS.md` 1f. CPU/RAM headroom not measured by any session yet** |
+| Whether the healthcheck is passing | `docker inspect` health status | **Yes, as of 2026-09-16: the `6s-success` container reported 0 restarts, healthy (`OWNER-ACTIONS.md` 1f); not re-measured since** |
+| Certificate expiry and renewal history | Inspect NPM's own certificate store (not the `letsencrypt` docker volume, see section 9 above) | No |
+| Whether DNS points where we think | Resolve the A record from outside | Yes, as of the 2026-08-19 deployment pass (`DEPLOY-VPS.md`); not re-checked routinely |
+| Actual page weight of the site | Measure served bytes for the heaviest page | No |
+
+No sandboxed session can re-run any of these directly (no VPS egress, no
+Stripe/SSH credential); treat the "Answered?" column as current only as of
+the citation next to it, and re-verify from a session with real access
+before relying on it for anything time-sensitive. Do not fill these in from
+memory. Measure them, then record them in `SYSTEM-REGISTRY.md`.
 
 ---
 
