@@ -23,7 +23,7 @@ every internal link and the on-disk file both use, so the site stays correct
 under any static host and the extensionless variant consolidates into it.
 The home page canonicals to the bare origin.
 """
-import hashlib, json, os, re, datetime, subprocess
+import hashlib, html, json, os, re, datetime, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -293,7 +293,7 @@ PAGES = {
              "Success about the book, a consulting quote, a workshop seat, or a "
              "press enquiry.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Contact", "/contact.html")),
                 {"@type": "ContactPage", "url": BASE + "/contact.html",
@@ -306,7 +306,7 @@ PAGES = {
              "counts only, no cookies, no trackers, no advertising networks "
              "and no third party requests.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Privacy", "/privacy.html"))],
     ),
@@ -317,7 +317,7 @@ PAGES = {
              "Stripe, what is not for sale yet, how the content may be used, "
              "and the limits of liability.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Terms", "/terms.html"))],
     ),
@@ -327,7 +327,7 @@ PAGES = {
         desc="Our accessibility commitment for 6s-success.com, what the site does "
              "today, and an honest list of the gaps we have not closed yet.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Accessibility", "/accessibility.html"))],
     ),
@@ -338,7 +338,7 @@ PAGES = {
              "cleaning or organizing instruction: chemicals, tools, height, "
              "children, pets, and emergencies.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Safety notice", "/disclaimer.html"))],
     ),
@@ -356,7 +356,7 @@ PAGES = {
              "and consulting. No ads, no sponsorship, no affiliate programme "
              "earning us anything.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"),
                        ("How we make money", "/how-we-make-money.html"))],
@@ -368,7 +368,7 @@ PAGES = {
              "earns a commission today. What that means, and where a paying "
              "link would never appear.",
         image="calm-living.jpg",
-        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household's shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"),
                        ("Affiliate disclosure", "/affiliate-disclosure.html"))],
@@ -836,7 +836,12 @@ def page_image(fp):
     if not im:
         return None, None
     dm = re.search(r'<meta\s+property="og:description"\s+content="([^"]*)"', src)
-    return im.group(1), (dm.group(1) if dm else "")
+    # The attribute value is already HTML-escaped (build_zone_pages.py's own
+    # esc() turns an apostrophe into &#x27;); html.unescape() it back to the
+    # real character before _xml_escape() escapes it again for the sitemap,
+    # or the "&" gets escaped a second time and ships "&amp;#x27;" (found
+    # live 2026-09-24, 6 instances across zone image captions).
+    return im.group(1), (html.unescape(dm.group(1)) if dm else "")
 
 
 def _git_content_date(fp, depth=15):

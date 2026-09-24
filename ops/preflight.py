@@ -19696,6 +19696,62 @@ def gate_us_spelling_consistency() -> None:
              f"spelling outside the one whitelisted URL: {names}")
 
 
+DOUBLE_ENCODED_ENTITY_RE = re.compile(r"&amp;(#x?[0-9a-fA-F]+|[a-zA-Z]+);")
+
+
+def check_double_encoded_entities(text: str) -> list[str]:
+    """Pure logic: which double-encoded HTML entities survive in the given
+    text. See gate_no_double_encoded_entities() for the finding this closes.
+    """
+    return sorted(set(m.group(0) for m in
+                       DOUBLE_ENCODED_ENTITY_RE.finditer(text)))
+
+
+def gate_no_double_encoded_entities() -> None:
+    """No shipped page should ever show a literal "&amp;#x27;" where a reader
+    expects an apostrophe.
+
+    Found 2026-09-24, cold-reading ops/build_cleaning_index.py (0 prior
+    mentions in this log, the untouched tier of the cold-read lane): its
+    strip_tags() stripped markup out of a zone page's own <h1>/<li><b> text
+    but never decoded the HTML entities already inside that source (e.g.
+    "season&#x27;s"), so the caller's own html.escape() re-encoded the
+    leading "&" a second time, shipping "season&amp;#x27;s kit" on the live
+    how-to-clean-anything.html instead of "season's kit" (2 live instances:
+    a Garage zone surface name, a Primary Bedroom zone title).
+
+    The same class turned out to be live in two more places, both reading
+    text that was already HTML-escaped and escaping it again: ops/build_seo.py
+    carried 7 hardcoded `image_alt="...household&#39;s..."` strings (the
+    literal entity, not an apostrophe, so esc() re-escaped the "&"), and its
+    page_image() read an og:description meta attribute straight off an
+    already-rendered page (correctly escaped there) and fed it un-unescaped
+    into the sitemap's own XML escaper, shipping "&amp;#x27;" in 6
+    image:caption rows. All three fixed at the source (decode once before
+    the one real escape, or stop hand-typing an already-escaped entity).
+
+    This gate re-derives the real corpus on every run rather than trusting
+    the three fixes to hold: a double-escaped entity is never correct output
+    anywhere on this site, so it scans every shipped HTML and XML page, not
+    just the ones that regressed.
+    """
+    bad = []
+    for p in (sorted(glob.glob(os.path.join(SITE, "**", "*.html"),
+                                recursive=True)) +
+              sorted(glob.glob(os.path.join(SITE, "**", "*.xml"),
+                                recursive=True))):
+        text = io.open(p, encoding="utf-8", errors="replace").read()
+        hits = check_double_encoded_entities(text)
+        if hits:
+            bad.append((os.path.relpath(p, SITE), hits))
+    if bad:
+        names = [f"{p} ({', '.join(h)})" for p, h in bad[:5]]
+        fail("no-double-encoded-entities",
+             f"{len(bad)} page(s) carry a double-encoded HTML entity (a "
+             f"literal '&amp;#...;' or '&amp;word;' instead of the real "
+             f"character): {names}")
+
+
 SAMPLE_PDF_REL = os.path.join(
     "site", "downloads",
     "6S Success Home Edition - Sample (Chapters 1-30).pdf")
@@ -20290,6 +20346,7 @@ def main() -> int:
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)
     run_gate(gate_us_spelling_consistency)
+    run_gate(gate_no_double_encoded_entities)
     run_gate(gate_sample_pdf_spelling)
     run_gate(gate_sample_pdf_cover_current)
     run_gate(gate_book_page_figure_disclosure)
