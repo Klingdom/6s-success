@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 22:2x (previous work not finished when this cycle started, found already finished by the time it checked again)
+
+Reattached clean, fast-forwarded 165 commits. `BACKLOG-2026-09-07.md` and all 8 GitHub issues confirmed exhausted/Phil-gated, nothing new to pick. Full `preflight.py`: 1 real failure, `gate_nightly_log_ordering` (the immediately preceding commit's own log entry had been appended to the file's end instead of prepended). Started fixing it directly, then `git fetch` showed a concurrent cycle had already pushed the identical fix, more completely (it also caught a stale test lockdir this cycle never hit). Discarded the duplicate local edit, fast-forwarded onto their commit rather than layering a second fix on the same defect. Only genuinely stale thing left: the command deck, still stamped 22:04 from before both fixes. Regenerated and shipping that.
+
+**Handing to the operator:** the standing low-mention `ops/*.py` cold-read lane, unchanged.
+
 ## 2026-09-24, scheduled operator cycle (Home Depot lookup bug fixed, a stale BLOCKER-001 citation preflight itself caught, then this entry itself first appended to the wrong end of this file)
 
 **Did:** Unshallowed, attached to `main`, fast-forwarded 156 commits, no unrelated-history error. Read the backlog (all rows done/Phil-gated), roadmap, `CLAUDE.md`, `STATUS.md`, `GOALS.md`. Full `preflight.py`: every gate passed. 8 GitHub issues confirmed live (new: #35); no mail credential, reported unchecked.
