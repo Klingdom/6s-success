@@ -109,6 +109,39 @@ def main() -> int:
           "| Rule | Enforced by |", "|---|---|"]
     for rule, where in ENFORCED:
         m.append("| %s | %s |" % (rule, where))
+    # Which retailers the catalogue actually points at, measured rather than
+    # assumed. This is the fact that decides whether any approval is worth
+    # anything, and it is not visible from the programme list alone.
+    merch = {}
+    for r in rows:
+        k = (r.get("Merchant") or "(none)").strip().lower() or "(none)"
+        merch[k] = merch.get(k, 0) + 1
+
+    m += ["", "## Which retailers the catalogue actually points at", "",
+          "| Merchant | Products | Programme state |", "|---|---|---|"]
+    for k in sorted(merch, key=lambda x: -merch[x]):
+        prog = progs.get(k) or progs.get(k.replace("homedepot", "home-depot"))
+        st = (prog or {}).get("status", "no programme record")
+        m.append("| %s | %d | %s |" % (k, merch[k], st))
+    m += ["",
+          "**Read those two tables together and the position is sharper than "
+          "either shows alone.** Every linked product in the catalogue points "
+          "at target or homedepot. Both are Impact-routed. Both are declined. "
+          "So the three programmes still pending (amazon, etsy, office-depot) "
+          "could all approve tomorrow and **not one product would become "
+          "linkable**, because no row points at any of them. Verified by "
+          "simulating an approval: with amazon set to approved and a store tag "
+          "pasted in, `affiliate.py --status` still reads 0 of 123 linkable.",
+          "",
+          "That leaves two routes, and they are the whole affiliate strategy:",
+          "",
+          "1. **Reopen Impact**, which unlocks the catalogue as it stands.",
+          "2. **Re-source the 120 products to a retailer that can approve.** "
+          "Amazon is the obvious candidate: it is in-house rather than "
+          "Impact-routed, already pending, and carries almost everything in "
+          "this catalogue. This is real work (120 rows re-verified against a "
+          "different retailer) but it needs no permission to start.",
+          ""]
     m += ["", "## The structural fact this matrix exists to show", "",
           "Five programmes (ace, home-depot, lowes, target, walmart) are not "
           "five separate rejections. They are ONE. All five route through "

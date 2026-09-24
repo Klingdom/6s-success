@@ -115,10 +115,25 @@ be reconciled against them. That is an input gap, not a defect.
 
 ## 7. The next three highest-value actions
 
-1. **Decide the Impact question.** One account decision is holding five
-   retailers shut. Either re-apply addressing the stated reason, or route
-   those retailers elsewhere. Nothing else in affiliate revenue moves until
-   this does.
+1. **Decide the Impact question, and know that it is bigger than five
+   retailers.** Measured 2026-09-24: every linked product in the catalogue
+   points at **target (83)** or **homedepot (37)**. Both are Impact-routed.
+   Both are declined. So Impact is not holding five programmes shut, it is
+   holding **100% of the catalogue** shut.
+
+   This was verified rather than reasoned: setting amazon to approved with a
+   store tag pasted in and re-running `affiliate.py --status` still reads
+   **0 of 123 linkable**, because no catalogue row points at amazon. The
+   three pending programmes could all approve tomorrow and nothing would
+   become sellable.
+
+   Two routes, and between them they are the entire affiliate strategy:
+   reopen Impact, which unlocks the catalogue as it stands; or re-source the
+   120 products to a retailer that can approve. Amazon is the obvious
+   candidate, being in-house rather than Impact-routed, already pending, and
+   stocking almost everything here. That second route is real work, 120 rows
+   re-verified against a different retailer, and it needs nobody's
+   permission to begin.
 2. **Chase the three pending programmes** (amazon, etsy, office-depot).
    office-depot already has a CJ publisher id on record (8057711), so it is
    the closest to live of any of the ten.
