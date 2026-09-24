@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 12:4x (previous work independently reverified finished; handing STATUS.md sections 4 and 7 to the operator, two unfilled bootstrap templates contradicted by evidence already sitting in the same document)
+
+NEXT FOR THE OPERATOR: fill in `STATUS.md` section 4 (Production Status, line 246) and section 7 (Hostinger VPS/Docker Status, line 356) from evidence already on hand, because both still read every single row as the original 2026-08-16 `UNKNOWN` bootstrap template while sibling sections in the same file (5, 8, 17/BLOCKER-001) have since been corrected with real evidence, so the document now contradicts itself about whether production state is known.
+
+Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`: clean fast forward, no reset or force. Read `git log -12`, this log's newest entry (the 12:1x PM check-in, already pushed and clean), `BACKLOG-2026-09-07.md` in full (every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and GitHub directly: 8 open issues, unchanged (2 P0, `blocked-on-art` #2/#29, `decision` #35/#33/#31/#21/#18/#15), 0 open PRs.
+
+**Previous work confirmed genuinely finished, not cited.** Ran `python ops/preflight.py` myself to full completion (backgrounded, about 5 minutes under concurrent load): every gate passed, the same 23 standing warnings the prior cycle's own commit reported, none new. Working tree was already clean and pushed before this cycle touched anything.
+
+**Found: two sections of STATUS.md are still the unfilled 2026-08-16 template, contradicting their own siblings in the same file.** Section 4 (Production Status) says "Public website: UNKNOWN, Verify externally" and section 7 (Hostinger VPS/Docker Status) says "VPS access: UNKNOWN, Confirm available authorized access," both with every other row the same placeholder. But section 5 was corrected 2026-09-23 with `ops/deploy-verdict.json`'s real reading (build `5eba61fde231c1a7`, confirmed `2026-09-23T19:00:39Z`, from a session with real production access), section 8 was corrected 2026-09-20 with real journey-level evidence, and section 17's BLOCKER-001 has been carrying a live, dated account of production state for weeks. `OWNER-ACTIONS.md` alone already has real, dated answers for several of section 7's own rows: item 1f (2026-09-16) read the VPS disk directly (79% full, 76G of 96G, 45.96GB reclaimable Docker build cache) and traced two crash-looping containers (177/197 restarts) to Ledgerium's own deploy, not this site's; that same session confirmed analytics alive end to end. This is the identical "one row corrected, its sibling never told" shape the last two cycles already fixed once inside this same file (section 5 vs section 30's "Production Knowledge" paragraph), just two more sections nobody had checked yet.
+
+**Not fixed this cycle, on purpose.** Filling both tables correctly means pulling each row's real answer from wherever it actually lives (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s dated VPS notes, `RISKS.md`'s closed-risk rows, this log's own VPS-access entries) and marking honestly UNKNOWN whatever genuinely has no evidence yet (TLS renewal, log rotation, off-host backup and restore procedure all look like real gaps, not just unread ones). That is real cross-referencing across several documents, not a three-minutes-before-the-operator job, and guessing a row instead of sourcing it would trade one dishonest table for another, the exact thing this file exists to avoid.
+
+**Verified:** `ops/fix_dashes.py --check`: 0 em dashes, 0 en dashes. No price, product or site page touched; not customer-facing.
+
+**Went well:** catching the same defect shape a second time in the same file by checking sections nobody had named yet, rather than treating the section 5/30 fix as having closed the file's own internal-consistency question.
+
+**Did not go well:** none this cycle.
+
+**Handing to the operator:** section 4 and section 7 above. Same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 12:1x (previous work independently reverified finished; a third, ungated stale commit-gap citation found and fixed)
 
 Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`: clean 99-commit fast-forward, no reset or force. Read `git log -12`, this log's newest three entries, `BACKLOG-2026-09-07.md` sections 0-7 (every row done or Phil-gated), `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and GitHub directly: 8 open issues, unchanged (2 P0, `blocked-on-art` #2/#29, `decision` #35/#33/#31/#21/#18/#15), 0 open PRs.
