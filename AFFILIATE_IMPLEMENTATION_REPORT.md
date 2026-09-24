@@ -122,9 +122,33 @@ be reconciled against them. That is an input gap, not a defect.
 2. **Chase the three pending programmes** (amazon, etsy, office-depot).
    office-depot already has a CJ publisher id on record (8057711), so it is
    the closest to live of any of the ten.
-3. **Replace the 83 search URLs with real product URLs.** This is useful work
-   that needs no approval at all: a search result is a weaker recommendation
-   than a named product regardless of whether it ever earns a commission.
+3. ~~Replace the 83 search URLs with real product URLs.~~ **WITHDRAWN the same
+   day, and the reason matters more than the recommendation did.**
+
+   I wrote that by applying the supplied plan's Phase 5 rule 7, which rejects
+   search-result URLs, without first checking whether this site had a position
+   on it. It does, and it is better than the rule. `ops/product_links.py` sets
+   it out: the catalogue holds 123 product **TYPES**, not products. A row
+   reads "Compact vacuum with attachments", never a brand and a model. We know
+   the type of thing that removes a root cause. We do not know that any
+   particular SKU is in stock, still made, sold in your state, or the best of
+   its kind, and a product URL verified today turns into a different item
+   without telling anybody. A search for the type never 404s and swaps for an
+   affiliate deep link later without a single page changing.
+
+   It is also the only form that matches how the method recommends: a kind of
+   thing, where often the honest answer is that you already own one.
+
+   Those links are not unverified either. `ops/product_links.py` renders each
+   search in a real headless browser, extracts the product slugs the retailer
+   actually put in the grid, and requires a type keyword to appear in a
+   minimum number of them, because a 200 from these sites proves nothing:
+   target.com returns 200 and a full grid for nonsense queries. The
+   per-link evidence is written to `ops/product-links-evidence.json`.
+
+   So the 83 are not a defect to fix. **The genuine unblocked work is the
+   Impact question in item 1**, and until that moves, the highest-value
+   affiliate action is not link surgery.
 
 ## 8. Honest limits of this report
 

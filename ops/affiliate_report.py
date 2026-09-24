@@ -171,8 +171,17 @@ def main() -> int:
             if not url:
                 why = "no URL at all"
             elif "searchterm=" in url.lower() or "/s?" in url.lower():
-                why = ("search-result URL, not a product page (Phase 5 rule "
-                       "7 rejects these)")
+                # NOT a defect. ops/product_links.py explains why a search
+                # for the product TYPE is the truthful form here: the
+                # catalogue holds types, not products, and a verified product
+                # URL turns into a different item without telling anybody.
+                # Each of these was verified by rendering the search in a real
+                # browser and matching result slugs, not by a status code.
+                # What it still lacks is tracking, and only an approval gives
+                # that.
+                why = ("search for the product type, verified by render; "
+                       "correct form for this catalogue, still has no "
+                       "affiliate tracking")
             else:
                 why = "URL present but carries no approved affiliate tracking"
             merch = (r.get("Merchant") or "").strip() or "(none chosen)"
