@@ -16,7 +16,25 @@ Attached via fetch, unshallow, checkout -B main origin/main, ff-only merge onto 
 
 Pushed to main. ops/wire_pwa.py, this log entry, command deck. No price, product or page touched (no site/ output changed). IndexNow not applicable.
 
-**Next for the operator (07:43):** the STATUS.md archive-rotation task from the 06:4x entry stands unchanged, still the highest-value unblocked item if nothing else is queued.
+**Next for the operator (07:43):** written before seeing that the scheduled operator cycle below had already closed the STATUS.md archive-rotation gap concurrently; superseded, see that entry.
+
+## 2026-09-24, scheduled operator cycle (closed the standing STATUS.md archive-rotation gap two prior cycles had named but not fixed)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached via `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (73-commit fast-forward, clean, no reset or force). Read `BACKLOG-2026-09-07.md` in full (sections 2-6 every row done, HOLD or Phil-gated), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md` and `GOALS.md` (the constraint is O1, arrivals; 68 visitors/160 visits/30 days, one $19 sale ever). Ran `python ops/preflight.py` to completion before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new.
+
+**Took the standing handoff rather than open a fresh sweep.** The last several PM check-ins had each named the same gap without fixing it: `STATUS.md`'s "Last Updated"/"Prior" stack had grown to 10 entries against its own documented "keep this stack at four" rotation policy (oldest archived into `STATUS-ARCHIVE.md` each time a new one lands), correctly deferred each time as "more than a 30-minute slot" because it needs the archive-scanning gates re-verified, not just the text moved. Moved the six oldest entries (2026-09-20 scheduled operator through 2026-09-23 PM check-in) into `STATUS-ARCHIVE.md` verbatim, prepended in the same newest-first order, `---` separators matching the archive's own established format; nothing paraphrased or summarized on the way over, per that file's own "nothing here was edited on the way over" rule. `STATUS.md`'s own pointer line updated (52 to 58 archived, "most recently added" re-pointed to this rotation). Verified rather than assumed: ran the five gates the pointer line itself names (`gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`) directly against the post-move files, all clean, plus `gate_status_currency`/`gate_status_deploy_verdict_current` and four more stale-claim gates, all clean. Full `preflight.py --fast` reran to completion twice (each timed out past 500s under this session's concurrent load, consistent with a prior cycle's own note about the same slowdown; the third run at a 900s timeout completed): every gate passed, same 23 warnings, identical set to the pre-change baseline. `check_urls.py` (190/190), `audit_pages.py` (194/0), `affiliate.py --check` (165 documents) all clean after. No em or en dash in either file.
+
+**A concurrent PM check-in pushed one commit while this cycle was in progress**, independently naming the same gap and handing it to the operator rather than fixing it; its own diff touched only the dashboard/log files, no conflict, merged in cleanly before this fix landed.
+
+**Went well:** picking up a real, sized, already-scoped handoff instead of starting a fresh cold-read; verifying the specific gates a change touches directly, before waiting on the full slow suite, then confirming with the full suite anyway.
+
+**Did not go well:** `preflight.py --fast` is now reliably taking longer than its old 500s working timeout under today's heavy concurrent session load; needs a longer default wait next time rather than two wasted partial runs.
+
+**Changing next cycle:** none; no new defect, so no new gate. `STATUS.md`'s stack is back to four; the same rotation will be due again once four more cycles land.
+
+**Next for the operator:** `GOALS.md`'s O1 (arrivals) remains the constraint; every distribution channel not already running (YouTube upload, Search Console, Instagram/Pinterest/TikTok posting, Amazon/Etsy accounts) needs Phil's own hand, per `OWNER-ACTIONS.md`'s ranked gate list. 7 GitHub issues unchanged, all `decision`/`blocked-on-art`, none the operator's to touch. No mail credential; inbox UNCHECKED, not empty.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, command deck, this log entry. No price, product or site page touched; not customer-facing. IndexNow not applicable.
 
 ## PM check-in, 2026-09-24 06:4x (30-minute triage twin; previous work confirmed finished, one documentation-integrity gap sized and handed off)
 
