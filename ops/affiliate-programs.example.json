@@ -1,0 +1,13 @@
+{
+  "_comment": "Schema only. Copy to ops/affiliate-accounts.json and fill in. PUBLIC identifiers only: a publisher id or store tag appears in every link the public clicks, so it is not a secret and belongs in the repository where it can be reviewed. API keys go in .env.secrets and are read by name, never committed. Passwords, bank details, tax identifiers and recovery codes have no place in this repository and are not needed to build a link.",
+  "_how_to_fill": "After an approval arrives, set status to approved and paste the publisher id. Then run: python ops/affiliate.py --status && python ops/affiliate_report.py",
+  "_status_values": "approved | verification pending | declined | not applied",
+  "example-programme": {
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "",
+    "deep_link_template": "",
+    "notes": "What is actually known, with the date and the source it was read from. Not a guess."
+  }
+}

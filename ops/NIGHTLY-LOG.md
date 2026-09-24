@@ -26,6 +26,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/build_cleaning_index.py`, `ops/build_seo.py`, `ops/preflight.py`, `ops/tests/test_gate_no_double_encoded_entities.py` (new), `ops/sitemap-content-hashes.json`, 7 static pages, `how-to-clean-anything.html`, `sitemap.xml`, command deck. No price or product touched. IndexNow: 8 pages changed content, picked up on the next successful run (no network egress from this sandbox to submit directly; see the standing `indexnow-current` warning).
 
+## PM check-in, 2026-09-24 16:4x (previous work reverified finished; the overdue preflight --deep handoff, stalled since 11:4x across ten cycles, started this cycle rather than deferred an eleventh time)
+
+NEXT FOR THE OPERATOR: check and act on the results of `python ops/preflight.py --deep`, started this cycle in the background, because it last completed 2026-09-22 22:1x, the 11:4x PM check-in's own handoff to run it went unactioned across ten cycles since (12:1x through 16:3x, each doing other named work instead), and it is the one check with a proven record of catching a real defect (the `quest.html` WCAG contrast failure, 2026-09-04) that the fast pass structurally cannot see.
+
+Reattached clean: `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only` onto `origin/main`, fast-forward from a shallow detached start, no reset or force. Read `git log -12`, this log's newest entries (16:3x PM check-in and 16:0x operator cycle), `BACKLOG-2026-09-07.md` sections 0-7 in full (every Now row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub directly via the API: 8 open issues, unchanged (2 `blocked-on-art`/`P0`: #2, #29; 6 `decision`: #35, #33, #31, #21, #18, #15), 0 open PRs.
+
+**Previous work confirmed genuinely finished, not cited.** Ran `python ops/preflight.py` (fast) myself to full completion, backgrounded, no hard shell timeout: every gate passed, 24 warnings, all previously diagnosed sandbox limits (Stripe/analytics/mail/VPS/Pillow credentials absent here, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml` already root-caused, dated disclosures, image/deck-art gaps, one sitemap URL, `how-to-clean-anything.html`, shipped last cycle and not yet announced to IndexNow), none new. Working tree was already clean and `main` already matched `origin/main` before this cycle touched anything. Confirmed CI directly rather than assumed: `98e42eb7`'s own Preflight step had already succeeded on GitHub before this cycle started; its ops-test-suite step was still running at last check, the same multi-minute duration this repository's own growing test count now takes there too.
+
+**Tried to close the new IndexNow gap, genuinely blocked, not just cited.** `python ops/indexnow.py --new` correctly refused to submit without confirming the key file is served (no egress to `6s-success.com` from this sandbox, the same standing wall every prior cycle has hit); wrote no new files, changed nothing, recorded honestly as unchecked rather than silently skipped.
+
+**Started the preflight --deep run other cycles kept deferring, rather than defer it an eleventh time.** No new backlog defect found in this cycle's own reading; the honest, valuable thing available was picking up a concrete, already-identified, repeatedly postponed task instead of a fresh cold-read. Left running in the background at handoff time; its result is unknown to this cycle and reported as unchecked, not clean, per `CLAUDE.md` 0.4.
+
+**Went well:** noticing the `--deep` handoff had gone ten cycles without being picked up, each one reasonably choosing other real work instead, and treating that pattern itself as the thing to fix this slot rather than adding an eleventh deferral.
+
+**Did not go well:** none new; the standing gaps (Phil-gated owner actions, sandbox credential absence) are unchanged.
+
+**Changing next cycle:** none beyond the handoff above.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable this cycle (one already-shipped page still blocked on egress, tracked above).
+
 ## PM check-in, 2026-09-24 16:3x (previous work finished; caught a real gate failure, then found a concurrent cycle had already fixed the identical defect and adopted it instead of duplicating)
 
 Reattached clean via fetch/unshallow/checkout/ff-only merge, no reset or force. BACKLOG-2026-09-07.md and the 8 GitHub issues unchanged, all done or Phil-gated. Ran preflight.py backgrounded, no shell timeout wrapper (avoided the mistake the last several entries logged): 2 gates failed, one transient stray probe file already gone by the time I checked, one real, how-to-clean-anything.html (shipped this cycle) had no application/ld+json, caught by gate_indexable_pages_have_schema. Wrote and verified a CollectionPage fix, but the push conflicted: a concurrent scheduled-operator cycle (ec022f51) had landed the identical fix minutes earlier. Diffed both versions to confirm true duplication before discarding mine, adopted origin's, no unique work lost. Preflight now clean on HEAD. Nothing new to hand off; same standing Phil-blocked list.
