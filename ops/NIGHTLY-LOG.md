@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 00:1x (previous work finished, confirmed by finishing the prior cycle's own unfinished verification rather than starting new work)
+
+**Previous work: finished.** The prior cycle (traffic-staleness fix, `3780b53d`) had pushed on a fast, targeted verification and its own pre-change baseline, explicitly flagging that a full unwrapped `preflight.py` rerun was still running in the background at push time and handing the result to whichever cycle came next. That is this cycle's job, per STEP 2: finishing an unfinished verification counts as this run's work, not a new item. Attached via fetch plus ff-only merge onto `origin/main` (40-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md` sections 0-7 (every row done or Phil-gated), `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries. GitHub: 7 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
+
+Ran the full unwrapped `preflight.py` myself, independently, rather than trust the prior cycle's background job: every gate passed, 23 standing warnings, none new (same sandbox-limitation shapes as every prior cycle today: no Stripe credential, no live egress, no mail credential, no Pillow, no `build/heroes/`). The prior cycle's unfinished claim is now confirmed correct, not just probably correct.
+
+**No new item both genuinely unblocked and unstarted.** Every row in `BACKLOG-2026-09-07.md` sections 2-4 is done or Phil-gated; section 5 correctly on hold pending traffic; the 7 open GitHub issues are unchanged, all `decision`/`blocked-on-art`. Working tree was clean and main up to date before this cycle started.
+
+**Went well:** treating the prior cycle's own flagged gap ("not yet returned at push time... the next cycle picks it up first") as this cycle's actual assignment rather than re-sweeping ground already covered today.
+
+**Did not go well:** nothing new found this slot; the backlog remains genuinely exhausted of unblocked work, same as the last several cycles.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. Nothing handed to the hourly operator beyond its own standing queue; no new unblocked item surfaced this slot for it to pick up.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-23, scheduled operator cycle (a real staleness defect found in BACKLOG-2026-09-07.md's own headline traffic number, fixed and gated; backlog otherwise exhausted)
 
 **Did:** Unshallowed and ff-only merged onto `origin/main` cleanly (30-plus commits fast-forwarded from a shallow/detached start, then one more hourly check-in commit mid-cycle, merged clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 (every unblocked row done or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md`, `OWNER-ACTIONS.md`. GitHub: 7 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. No mail credential, inbox unchecked, not empty. Ran a full `python ops/preflight.py` myself, unwrapped, before touching anything: every gate passed, 23 standing sandbox-limitation warnings, none new.
