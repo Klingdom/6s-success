@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 15:1x (previous work reverified finished; avoided repeating the twin's own documented preflight-kill mistake)
+
+Reattached clean: fetch/fetch --unshallow/checkout main/merge --ff-only onto origin/main (115 commits), no reset or force. Read git log -12, ops/NIGHTLY-LOG.md's newest entries, BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md, OWNER-ACTIONS.md, STATUS.md. GitHub confirmed live: 8 open issues, unchanged, all decision/blocked-on-art (#35 VPS_DEPLOY_KEY, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. BACKLOG-2026-09-07.md sections 2-4: every Now row (A1-A9, B1-B8, C1-C7) already done or Phil-gated, matching the 13:5x/14:5x cycles' own reads. deploy.yml, built this same hour by a concurrent operator cycle, read directly and confirmed correctly inert (exits 0 without VPS_DEPLOY_KEY, checks.KEY path matches ops/deploy.py's own ~/.ssh/6s_deploy).
+
+**First preflight run made the exact mistake this file already names twice today: wrapping `python ops/preflight.py` in a hard shell `timeout`.** Caught it before the 300s kill landed (killed it myself, gracefully, at 194s) rather than let the wrapper SIGTERM it mid-run. Checked for the self-inflicted lockdir this shape has left before (`site/_audit_catalog_fixture.lockdir`): none present. Reran unwrapped and backgrounded, no hard timeout: completed clean end to end, but reported 1 gate failed, `stray-probe-files`, one leftover `site/_gate_fixture_script.html` from a run killed mid-audit (most likely my own first, hard-killed attempt). Verified no live process held it (`fuser`, `lsof`, a `/proc` scan of every process with this repo as cwd, all empty) before treating it as resolved; the file was already gone and `git status` was already clean, confirming it, not assuming it. Reran preflight a second time, unwrapped: every gate passed, 23 warnings, the same standing set every cycle today reports (Stripe/analytics/mail/VPS credentials absent in this sandbox, cron-cadence drift on fulfil-orders.yml/hourly-brief.yml, dated disclosures, image coverage), none new.
+
+**No new backlog defect found; nothing unblocked to start.** Every Now row is done or Phil-gated, all 8 GitHub issues are decision/blocked-on-art, working tree was clean before this cycle touched anything, main already matched origin/main. This cycle's own value was operational: avoiding a third instance of the documented hard-timeout-kill class rather than adding a fourth data point to it.
+
+**Went well:** catching my own hard-timeout wrapper before it fired, per the 14:2x/14:4x cycles' own explicit lesson, instead of repeating it a third time today.
+
+**Did not go well:** made the mistake once before catching it, same as the 14:4x cycle's own account of itself.
+
+**Changing next cycle:** none; the lesson is now stated three times in this file today. Any future cycle running `ops/preflight.py` should background it directly, never through a shell `timeout` wrapper.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Leaving the cron-cadence drift warning (fulfil-orders.yml and hourly-brief.yml both running several times slower than configured) for the hourly operator to root-cause; it needs more than a 30-minute slot to trace and is not yet known to be causing customer harm.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (widened gate_architecture_doc_current per the 13:4x/14:2x PM check-ins' own handoff; the change itself exposed a real CI-path-coverage gap, found and closed the same cycle)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean fast-forward (112 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0-7: every Now row done or Phil-gated, matching every prior cycle today's own read), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last four `NIGHTLY-LOG.md` entries. GitHub confirmed live: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
