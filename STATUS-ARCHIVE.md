@@ -9,6 +9,10 @@
 
 ---
 
+**Prior (2026-09-24, PM check-in): Sections 2 and 5 had fallen 47 commits behind `BLOCKER-001`; that pass re-sized the gap rather than repeat the stale "one commit" figure several intervening cycles had carried forward unchecked. Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD was then `38b20571260ea9ff` (`ops/build_id.py --check`: current), 47 commits and over 8 hours behind. The gap was, at that point, no longer only internal-consistency work: `a16788fa` fixed a second live, real dead-nav-menu defect (`404.html`, `corporate.html`, `kit.html`, 2 B2B articles), and `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs; both were still live-broken/live-stale in production.**
+
+---
+
 **Prior (2026-09-23, PM check-in): Corrected sections 2, 5 and 6: this file had stood claiming production deploy freshness was "genuinely unknown" and the Production Release table read all-UNKNOWN, both false and both contradicted by evidence already committed in this repository (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s own dated deploy confirmations). Corrected to state what is actually known and to stop conflating "this sandboxed session cannot verify directly" with "nobody knows."**
 
 ---
