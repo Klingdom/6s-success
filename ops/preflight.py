@@ -18929,6 +18929,33 @@ def gate_llms_txt_current() -> None:
     exists for, just a number instead of a missing bullet, so this gate now
     re-derives the real count from disk on every run instead of only
     checking that the word "articles" appears somewhere.
+
+    Widened 2026-09-24: the feed sub-clause ("an Atom feed of N of the M
+    articles under it") drifted the same way and nothing caught it, because
+    this gate only ever checked the /articles/ bullet's own total, never the
+    feed parenthetical one line below it. Found live: two B2B articles
+    (what-a-5s-engagement-costs.html, why-5s-decays-after-six-months.html,
+    shipped 2026-09-21/22) carried Article and FAQPage JSON-LD with several
+    string values wrapped in single quotes instead of double, which is not
+    valid JSON (JSON requires double-quoted strings; a Python dict literal
+    tolerates either, which is how this passed a human read). That silently
+    broke two things at once: the page's own structured data was unparseable
+    by any real JSON-LD consumer, and ops/build_feed.py's regex, which
+    correctly expects double-quoted JSON, could not read the two articles'
+    dates and excluded both from the feed. llms.txt's own "27 of the 29"
+    parenthetical was written when exactly 2 of 29-then-current articles
+    predated dated metadata; it never moved when these two more recent,
+    separately-broken articles silently joined that excluded set, so it kept
+    reading "27 of 29" after the true count had become 27 of 31, an
+    understated total that also happened to still match the stale entry
+    count by coincidence. Both articles' JSON-LD fixed to valid double-quoted
+    JSON (ast.literal_eval + json.dumps, so no character inside any string
+    value was touched, only its delimiter), which also fixed the feed:
+    27 entries became 29. This gate now re-derives both the feed's live
+    entry count and its own denominator (dateable articles, i.e. every
+    article ops/build_feed.py's entries() actually resolves a title/desc/
+    canonical/datePublished for) from ops/build_feed.py itself, the single
+    real source, rather than trusting either number typed here.
     """
     f = os.path.join(SITE, "llms.txt")
     if not os.path.exists(f):
@@ -18959,6 +18986,29 @@ def gate_llms_txt_current() -> None:
              "site/articles/ actually has %d *.html files (excluding "
              "index.html). Update the bullet to the real count." %
              (claimed, real))
+
+    fm = re.search(r"feed of\s+(\d+)\s+of the\s+(\d+)\s+articles", s)
+    if not fm:
+        warn("llms-txt-current",
+             "site/llms.txt's feed sub-clause no longer states counts in "
+             "the form this gate expects, so it could not be checked "
+             "against the real feed entry count. Not a failure, but "
+             "re-verify by hand.")
+        return
+    claimed_feed, claimed_total = int(fm.group(1)), int(fm.group(2))
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_feed as bf
+    real_feed = len(bf.entries())
+    if claimed_feed != real_feed or claimed_total != real:
+        fail("llms-txt-current",
+             "site/llms.txt says the feed carries %d of %d articles; "
+             "ops/build_feed.py's own entries() actually resolves %d "
+             "dateable article(s) of %d real article file(s). Update the "
+             "feed sub-clause, or if the mismatch traces to an article's "
+             "own JSON-LD (a common cause: a string value wrapped in "
+             "single quotes instead of double, which is not valid JSON), "
+             "fix the article first." %
+             (claimed_feed, claimed_total, real_feed, real))
 
 
 def gate_breadcrumbs_current() -> None:
