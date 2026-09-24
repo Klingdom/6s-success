@@ -11971,6 +11971,14 @@ def gate_goals_traffic_current() -> None:
     2026-09-14 pull) while section 9 a thousand lines above it already read
     68/160. Now also parsed and compared, silent on the same terms as the
     DATA-SOURCES.md check.
+
+    Widened 2026-09-23, scheduled operator: BACKLOG-2026-09-07.md's own
+    section 0 ("the one number that decides the order") carries a fifth
+    copy, and it was the stale one this time: still 76/190 (the 2026-09-21
+    14:05 UTC pull) two days after GOALS.md O1 had moved on to 68/160
+    (2026-09-23 12:50 UTC), the same shape as every check above, just not
+    yet checked in this one file. Now also parsed and compared, silent on
+    the same terms.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -12139,6 +12147,26 @@ def gate_goals_traffic_current() -> None:
         if bdk and (int(bdk.group(1)), int(bdk.group(2))) != (sessions_30, visits_30):
             bad.append(f"STATUS.md's 'Business Data Knowledge' paragraph "
                        f"cites {bdk.group(1)} visitors/{bdk.group(2)} visits, "
+                       f"GOALS.md now says {sessions_30}/{visits_30}")
+
+    # Widened 2026-09-23, scheduled operator: BACKLOG-2026-09-07.md section 0,
+    # "the one number that decides the order", carries its own copy of this
+    # same figure to justify its own work ordering. Found stale that day: it
+    # still read "76 visitors and 190 visits" (the 2026-09-21 14:05 UTC pull)
+    # two days after GOALS.md O1 had already moved to 68/160 (2026-09-23
+    # 12:50 UTC), the same "source corrected, sibling never told" shape this
+    # gate exists to catch, here in the one document whose own opening line
+    # claims to decide the whole backlog's ordering from this number. Silent
+    # if the row is absent or no longer in this shape, same convention as
+    # every other sibling-document check above.
+    backlog_path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if os.path.exists(backlog_path):
+        bl = io.open(backlog_path, encoding="utf-8").read()
+        blm = re.search(r"(\d+) visitors and (\d+) visits in the last 30 "
+                         r"days", bl)
+        if blm and (int(blm.group(1)), int(blm.group(2))) != (sessions_30, visits_30):
+            bad.append(f"BACKLOG-2026-09-07.md section 0 cites "
+                       f"{blm.group(1)} visitors/{blm.group(2)} visits, "
                        f"GOALS.md now says {sessions_30}/{visits_30}")
 
     if bad:

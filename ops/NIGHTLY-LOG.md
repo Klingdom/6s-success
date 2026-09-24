@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-23, scheduled operator cycle (a real staleness defect found in BACKLOG-2026-09-07.md's own headline traffic number, fixed and gated; backlog otherwise exhausted)
+
+**Did:** Unshallowed and ff-only merged onto `origin/main` cleanly (30-plus commits fast-forwarded from a shallow/detached start, then one more hourly check-in commit mid-cycle, merged clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 (every unblocked row done or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md`, `OWNER-ACTIONS.md`. GitHub: 7 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. No mail credential, inbox unchecked, not empty. Ran a full `python ops/preflight.py` myself, unwrapped, before touching anything: every gate passed, 23 standing sandbox-limitation warnings, none new.
+
+**Found while re-checking every document that repeats GOALS.md O1's traffic figure, the standing cross-document sweep several PM check-ins have been running today.** `gate_goals_traffic_current` already cross-checks `STATUS.md`, `ops/roadmap_report.py`, `ops/experiments.json`, `OWNER-ACTIONS.md` and `DATA-SOURCES.md` against GOALS.md's own baseline, and DATA-SOURCES.md itself was already current (68/160, 2026-09-23 12:50 UTC), fixed by an earlier cycle today. `BACKLOG-2026-09-07.md` section 0, "the one number that decides the order," the very first thing this run's own instructions say to read, had never been added to that check and was the stale one: still "76 visitors and 190 visits" (the 2026-09-21 14:05 UTC pull) two days and one correction behind GOALS.md O1's current 68/160. Beyond the raw numbers, the section's own framing ("A three-week decline, not a rise... fell for the third week running: 18, then 14, then 10") had also gone stale in substance, not just citation: the most recent week is 12, up from 10, which GOALS.md itself already correctly describes as "the fall has stopped... 12 is not a recovery at this scale," a materially different claim than "still declining."
+
+**Fixed both.** Corrected section 0's citation to 68/160 (2026-09-23 12:50 UTC) and its own framing to match GOALS.md's more accurate "the fall has stopped, not reversed," including the real 7-day sequence (18, 14, 10, 12). Left the historical "Done this week" log row citing 76/190 untouched, since that was the correct, dated record of what DATA-SOURCES.md's own fix carried at the time it shipped, not a live claim.
+
+**Widened `gate_goals_traffic_current` in `ops/preflight.py`** to also parse and compare `BACKLOG-2026-09-07.md` section 0's own citation, silent if the row is absent or has changed shape, matching the existing OWNER-ACTIONS.md/DATA-SOURCES.md/STATUS.md checks' own convention exactly. Proved fail-then-pass directly against the real function, not assumed: reverted the fix, called `gate_goals_traffic_current()` directly, watched it fail by name ("BACKLOG-2026-09-07.md section 0 cites 76 visitors/190 visits, GOALS.md now says 68/160"), restored the fix, reran clean. `ops/tests/test_gate_goals_traffic_current.py` extended 18 to 21 cases (agreement, disagreement, missing-line and absent-file, the same four shapes every sibling check in this gate already gets); all 21 pass.
+
+**Verified:** the new test file directly (21/21), `ops/fix_dashes.py --check` (0 em dashes, 0 en dashes), `check_urls.py` (190/190), `audit_pages.py` (194/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents). A full unwrapped `preflight.py` rerun was started in the background to independently confirm the whole gate suite end to end; not yet returned at push time, so this entry is pushed on the fast, targeted verification above plus the pre-change full run's own clean baseline, not on the full rerun's result. If it surfaces anything, the next cycle picks it up first.
+
+**Went well:** the standing cross-document sweep found a live instance of exactly the defect class this repository keeps naming as dominant, in the one document this run's own instructions read first.
+
+**Did not go well:** this gap existed because six sibling documents were already wired into this check one at a time as each was found stale, but the check was never audited for which money-adjacent documents were still missing from it entirely; `BACKLOG-2026-09-07.md` should have been on the list from the first widening.
+
+**Changing next cycle:** when a document is found citing GOALS.md's traffic baseline for the first time, check whether every other document doing the same is already covered by this gate, not just the one just fixed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. No item in `BACKLOG-2026-09-07.md` is both genuinely unblocked and unstarted.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-23 23:1x (previous work finished, verified by a real unwrapped preflight run, not a citation; a self-inflicted transient caught and root-caused, not shipped as a false finding)
 
 Attached via unshallow plus ff-only merge onto origin/main, clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7 (every row done or Phil-gated), STATUS.md, OWNER-ACTIONS.md, the last several NIGHTLY-LOG.md entries, GitHub's 7 open issues (all decision or blocked-on-art, unchanged, 0 open PRs).

@@ -23,6 +23,13 @@ paragraph (section 29) carries a separate copy of the figure from the
 section 9 table this gate already checked, and was found nine days and two
 corrections stale.
 
+Widened 2026-09-23, scheduled operator: BACKLOG-2026-09-07.md's own
+section 0, "the one number that decides the order", carries a sixth copy
+of the figure and was the one found stale this time (76/190 two days
+after GOALS.md O1 had moved to 68/160), the same shape, in the one file
+whose own opening line claims to decide the whole backlog from this
+number.
+
 Run:  python ops/tests/test_gate_goals_traffic_current.py
 """
 import io
@@ -131,8 +138,22 @@ STATUS_DISAGREES = STATUS_SECTION_9 + (
 STATUS_NO_LINE = STATUS_SECTION_9 + (
     "Nothing resembling that phrase appears anywhere in this file.\n")
 
+# BACKLOG-2026-09-07.md section 0's own citation, found stale 2026-09-23:
+# it still read 76/190 (the 2026-09-21 pull) two days after GOALS.md O1 had
+# moved to 68/160, never checked against anything until this widening.
+BACKLOG_AGREES = (
+    "## 0. The one number that decides the order\n\n"
+    "**The fall has stopped, not reversed.** 68 visitors and 161 visits in "
+    "the last 30 days (read directly from the analytics database).\n")
+BACKLOG_DISAGREES = (
+    "## 0. The one number that decides the order\n\n"
+    "**A three-week decline, not a rise.** 76 visitors and 190 visits in "
+    "the last 30 days (read directly from the analytics database).\n")
+BACKLOG_NO_LINE = "Nothing resembling that phrase appears anywhere in this file.\n"
 
-def _run(goals: str, owner_actions: str, data_sources: str = None, status: str = None):
+
+def _run(goals: str, owner_actions: str, data_sources: str = None,
+         status: str = None, backlog: str = None):
     tmp = tempfile.mkdtemp()
     io.open(os.path.join(tmp, "GOALS.md"), "w", encoding="utf-8").write(goals)
     io.open(os.path.join(tmp, "OWNER-ACTIONS.md"), "w", encoding="utf-8").write(owner_actions)
@@ -140,6 +161,8 @@ def _run(goals: str, owner_actions: str, data_sources: str = None, status: str =
         io.open(os.path.join(tmp, "DATA-SOURCES.md"), "w", encoding="utf-8").write(data_sources)
     if status is not None:
         io.open(os.path.join(tmp, "STATUS.md"), "w", encoding="utf-8").write(status)
+    if backlog is not None:
+        io.open(os.path.join(tmp, "BACKLOG-2026-09-07.md"), "w", encoding="utf-8").write(backlog)
     old_root = preflight.ROOT
     preflight.ROOT = tmp
     preflight.FAIL, preflight.WARN = [], []
@@ -280,14 +303,37 @@ def main() -> int:
         fails.append("STATUS.md missing Business Data Knowledge paragraph "
                       "wrongly flagged: %r" % (r,))
 
+    # 19. BACKLOG-2026-09-07.md section 0's own citation agrees (68/161 both
+    #     places): no failure.
+    r = _run(GOALS, OA_AGREES, backlog=BACKLOG_AGREES)
+    if r:
+        fails.append("BACKLOG-2026-09-07.md agreement wrongly flagged: %r" % (r,))
+
+    # 20. It disagrees (76/190 vs. GOALS.md's 68/161): caught, naming both
+    #     numbers. This is the real 2026-09-23 regression shape: section 0's
+    #     own "one number that decides the order" sat two days behind
+    #     GOALS.md O1 after nothing had ever checked it.
+    r = _run(GOALS, OA_AGREES, backlog=BACKLOG_DISAGREES)
+    if not r or "76" not in r[0][1] or "68" not in r[0][1]:
+        fails.append("BACKLOG-2026-09-07.md disagreement not caught: %r" % (r,))
+
+    # 21. BACKLOG-2026-09-07.md carries no such line, or is absent entirely:
+    #     must not crash, must not invent a finding.
+    r = _run(GOALS, OA_AGREES, backlog=BACKLOG_NO_LINE)
+    if r:
+        fails.append("BACKLOG-2026-09-07.md missing line wrongly flagged: %r" % (r,))
+    r = _run(GOALS, OA_AGREES)
+    if r:
+        fails.append("absent BACKLOG-2026-09-07.md wrongly flagged: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
     print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md + DATA-SOURCES.md "
-          "+ STATUS.md Business Data Knowledge + same-document checks), "
-          "18/18 checks pass")
+          "+ STATUS.md Business Data Knowledge + BACKLOG-2026-09-07.md "
+          "+ same-document checks), 21/21 checks pass")
     return 0
 
 
