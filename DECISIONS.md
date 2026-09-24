@@ -1405,7 +1405,8 @@ Maintain a compact index as the file grows.
 | D-018 | Corporate Lean 6S gets a page and an enquiry route, no price | ACTIVE | Commerce |
 | D-019 | No new indexable page until the first Search Console read | ACTIVE | SEO |
 | D-020 | Zone in-degree floor of 8 is the real D9 bar; median above 15 is aspirational | ACTIVE | SEO |
-| D-021 | M6's 21-day read cannot be answered; the gate stays shut on a different reason | ACTIVE | PRODUCT |
+| D-021 | M6's 21-day read cannot be answered; the gate stays shut on a different reason | SUPERSEDED by D-026 | PRODUCT |
+| D-026 | Complete diagnosis, capacity and variants room by room; lifts D-021's gate on owner direction | ACTIVE | PRODUCT |
 | D-022 | Paid card-deck tiers stay held until a stranger buys something; BK-EB stays at $9.99 | ACTIVE | Commerce |
 | D-023 | The 6 Area Bundles and 15 Situation Kits are retired; a kit returns behind a proven page | ACTIVE | Commerce |
 | D-024 | The 7 Kitchen Micro Zone Packs and Kitchen Room Pack are retired, now the free Kitchen deck is downloadable | ACTIVE | Commerce |
@@ -1848,6 +1849,40 @@ named. It was proved to fail on a planted fault before being trusted.
   buy clicks do not, which would say the routing works and the page does not.
 - Delivery capacity changes, since fifty service events a month is the ceiling
   this decision accepts.
+
+---
+
+## D-026 | 2026-09-24 | Complete the diagnosis, capacity and variants layer room by room; this supersedes D-021's gate
+
+**Decision.** Author `diagnosis`, `capacity` and `variants` for the remaining
+102 micro zones, a whole room at a time, starting with Primary Bathroom.
+D-021's gate (no M6 until genuine human readers or a Search Console read) is
+lifted.
+
+**Why, and why the gate was not simply wrong.** D-021 asked "will more pages
+bring traffic", and on that question it was right: they would not, and the
+evidence for it still stands. Phil has directed this on a different question,
+which is the one that matters more. Measured 2026-09-24: the three fields that
+make this product diagnostic rather than prescriptive exist for **12 of 114
+zones**. Everything else is complete across all 114 and is already sold. So
+for 89.5% of the house the shipped product does not do what `CLAUDE.md`
+sections 5 and 6 say it does: understand the function, find the root cause,
+then prescribe. Closing that is not content volume, it is the product matching
+its own claim.
+
+**Why a room is the unit.** A half-personalised room cannot ship as a Room
+Plan and the app cannot offer diagnosis where only some zones branch. Entryway
+and Kitchen were both done whole, and are whole.
+
+**The constraint that keeps it honest.** Nothing in these fields may be
+invented. Each is authored from that zone's own purpose, done_looks_like and
+passes, and any capacity number must come from objects the zone already names.
+A guessed capacity rule is worse than none, because a household can measure it
+and find it wrong.
+
+**Revisit when.** If four rooms in, the completed zones show no difference in
+app diagnosis use or in what answer engines quote, stop and say so rather than
+finishing all twenty on momentum.
 
 ---
 

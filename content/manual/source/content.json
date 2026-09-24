@@ -5665,6 +5665,79 @@
        "A hairline crack in the basin, or a switch plate that is cracked, warm to the touch, or loose on the wall.",
        "Rust freckling on the tap fixings, or a towel ring that has begun to wobble in its screws."
       ]
+     },
+     "capacity": {
+      "rule": "One tray you can lift with one hand, holding the soap, the toothbrush holder and no more than four daily products, with bare stone on both sides of the basin.",
+      "does_not_fit": "If the fifth product has nowhere to go but the counter, or the tray needs two hands to move when you wipe under it, the counter is being asked to store what a drawer should hold. Move the overflow into the vanity drawers rather than buying a second tray."
+     },
+     "variants": [
+      {
+       "condition": "Two people share this counter",
+       "guidance": "One tray each, not one shared tray, and keep the four-product limit per tray rather than per person. A shared tray turns every morning into lifting one person's things to reach the other's, which is the motion the tray existed to remove."
+      },
+      {
+       "condition": "A pedestal basin with no counter at all",
+       "guidance": "There is no surface to keep bare, so the limit moves to the wall: one shallow shelf or a single wall cup within arm's reach of the basin, holding the same handful. Do not add a floor stand beside the pedestal; it puts the daily things below knee height and they stop going back."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The counter is covered again two days after I clear it.",
+        "branches": [
+         {
+          "answer": "The things on it are ones we use every single day",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "They belong in the drawers but the drawers are full",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nobody agreed what is allowed to live on the counter",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "I wipe the counter but it never looks clean.",
+        "branches": [
+         {
+          "answer": "I wipe around the things rather than lifting them",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "There is splatter on the mirror I stopped noticing",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "A cord crosses the sink and catches everything",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "Two of us share this counter and it is always somebody else's things in the way.",
+        "branches": [
+         {
+          "answer": "There is one shared tray rather than one each",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Neither of us agreed which side is whose",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There is not enough counter for two people's daily things",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the counter, wipe the bare stone and the mirror, then put back only the soap, the toothbrush holder and the four products you touched today.",
+       "victory": "Bare stone on both sides of the basin, and one tray you can lift with one hand."
+      }
      }
     },
     {
@@ -5743,6 +5816,79 @@
        "A runner that grinds or sticks, or a mounting screw that has backed out of the cabinet side.",
        "Soft black mould in a back corner where wet hair and cap drips collect."
       ]
+     },
+     "capacity": {
+      "rule": "One divided compartment per kind of thing, sized so the top drawer can be read in a single look without moving anything, and razor blades capped or in one lidded box in a single corner.",
+      "does_not_fit": "If reading the top drawer means lifting something out of the way, or a second lidded box is needed for blades, the drawer is holding more kinds of thing than it can show at once. Move the least-used kind to a lower drawer before adding dividers."
+     },
+     "variants": [
+      {
+       "condition": "One shallow drawer only, no drawer stack",
+       "guidance": "Divide across the day instead of across the drawer: morning things at the front edge where the hand lands first, evening things behind them. The single-look rule still applies, because a shallow drawer is the easiest of all to read and the easiest to let silt up."
+      },
+      {
+       "condition": "Hair tools that are hot when they go away",
+       "guidance": "They do not go in a divided compartment. Give them a heat-safe holder outside the drawer, because a tool that has to cool before it is put away is a tool that gets left out, and the drawer takes the blame for a rule it cannot keep."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I dig through the drawer every morning for the same thing.",
+        "branches": [
+         {
+          "answer": "It has no compartment of its own",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It is in a compartment but behind the things I use less",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There is more in the drawer than the drawer can show",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "Products go past their open-jar window before we finish them.",
+        "branches": [
+         {
+          "answer": "We own more of that kind than we can use in the window",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nothing tells us when a jar was opened",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The older jar sits behind the newer one",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "The drawer is tidy for a week and then it is not.",
+        "branches": [
+         {
+          "answer": "Things go back wherever there is a gap",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The dividers move when the drawer is opened hard",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Hot tools are left out to cool and never make it back",
+          "cause": "KC-003"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the top drawer onto a towel, bin anything past its open-jar window, cap the blades into one lidded box, and put back only what you reach for daily, each in its own compartment.",
+       "victory": "The top drawer can be read in a single look without moving anything."
+      }
      }
     },
     {
@@ -5825,6 +5971,79 @@
        "Rust bleeding from a can base or a bracket, and mould blooming in the back corner.",
        "A valve that will not turn, or a supply line that feels stiff and cracked where it bends."
       ]
+     },
+     "capacity": {
+      "rule": "Two pull-out bins that both clear the P-trap, one open bottle per job, and a pale tray on the cabinet floor carrying nothing stacked on it, with both shut-off valves visible when the doors swing open.",
+      "does_not_fit": "If a bin has to straddle the P-trap, or a valve is hidden behind anything when the doors open, the cabinet is storing more than its plumbing leaves room for. Backstock moves out before bins get bigger: this cupboard's first job is showing you a leak on the day it starts."
+     },
+     "variants": [
+      {
+       "condition": "A vanity with a solid floor and no visible plumbing",
+       "guidance": "The pale tray still goes in. A solid floor hides a slow leak for longer, not less time, so the tray is doing more work here than in a cabinet where you would see the drip. Keep one bin rather than two if the opening is narrow."
+      },
+      {
+       "condition": "Child locks on the doors",
+       "guidance": "Keep the one-open-bottle rule and move anything corrosive to the highest shelf in the room instead. A lock is a delay, not a barrier, and the safety standard for this zone is what is reachable, not what is latched."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I find several half-used bottles of the same cleaner.",
+        "branches": [
+         {
+          "answer": "We buy another when we cannot see the one we have",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There is no rule that one is open at a time",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "They are bought on offer regardless of what is here",
+          "cause": "KC-011"
+         }
+        ]
+       },
+       {
+        "symptom": "Something under here got damaged and nobody noticed.",
+        "branches": [
+         {
+          "answer": "The cabinet floor is dark and things sit directly on it",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Boxes were stacked on top of the tray",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nothing prompts us to look in here between cleans",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "I cannot tell whether anything down there is leaking.",
+        "branches": [
+         {
+          "answer": "There is no pale tray to show a drip against",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Bins and boxes sit over the P-trap",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "The shut-off valves are behind stored things",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull everything out, wipe the cabinet floor dry, put a pale tray down bare, and return only two bins that clear the P-trap with one open bottle per job.",
+       "victory": "Both shut-off valves are in plain sight when the doors swing open, and nothing is stacked on the tray."
+      }
      }
     },
     {
@@ -5903,6 +6122,79 @@
        "A shelf that has bowed, or a shelf clip pulling loose from its pin hole under the weight.",
        "A hairline crack in a glass shelf, or a door catch that no longer holds the door shut."
       ]
+     },
+     "capacity": {
+      "rule": "Three labeled bins, pain relief, stomach and cold, first aid, each holding only in-date items, with the first aid bin small enough to carry one-handed to whoever is bleeding and the whole cabinet above a child's reach.",
+      "does_not_fit": "If a fourth bin is needed, or the first aid bin now takes two hands, the cabinet is holding a pharmacy rather than tonight's medicine. Prescriptions grouped by the name on the label go back to the person they belong to; everything past its date leaves the house."
+     },
+     "variants": [
+      {
+       "condition": "Somebody in the house takes daily prescriptions",
+       "guidance": "Those do not live in the three bins. Give them their own container, grouped by the name on the label, kept where that person actually takes them, which is usually the kitchen rather than the bathroom. Steam and daily dosing are a bad pair, and a bin you open every day should not be above shoulder height."
+      },
+      {
+       "condition": "No cabinet, only an open shelf",
+       "guidance": "The three bins still hold, but height is now the only safety control you have, so it does the whole job: above a child's reach means above the reach of a child standing on the closed toilet lid, because that is the step every child finds."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "We reach for something in an emergency and cannot find it.",
+        "branches": [
+         {
+          "answer": "First aid is mixed in with everyday medicine",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The bins are not labeled, so we search all three",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "The first aid bin is too heavy to carry to the person",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "There is medicine in here that expired years ago.",
+        "branches": [
+         {
+          "answer": "Nothing ever prompts a check of the dates",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "We keep it in case it is still fine",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody knows whose it is, so nobody throws it out",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Nobody can find what they need without asking me.",
+        "branches": [
+         {
+          "answer": "The bins are not labeled",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Prescriptions are mixed in with everyday medicine",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Only I know the system",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything out, bin anything past its date, and sort what is left into three labeled bins: pain relief, stomach and cold, first aid.",
+       "victory": "Three labeled bins of in-date items, and a first aid bin you can carry one-handed."
+      }
      }
     },
     {
@@ -5985,6 +6277,79 @@
        "A drain running slower each week, showing a blockage building in the trap.",
        "Rust weeping from a screw or the frame, and a screen seal that has hardened and split."
       ]
+     },
+     "capacity": {
+      "rule": "One shampoo, one conditioner, one wash and one bar per person in the caddy, a squeegee on its hook inside the enclosure, and grip strips or a mat with real suction on the floor.",
+      "does_not_fit": "If the caddy will not hold one of each per person without a bottle standing on the tray edge or the floor, there are more products in here than people using them. A bottle on the floor of a shower is the thing that gets kicked over and the thing nobody cleans under."
+     },
+     "variants": [
+      {
+       "condition": "A shared shower with very different hair routines",
+       "guidance": "Keep the per-person count and give each person their own caddy basket rather than sharing one. Different routines do not mean more bottles in one basket; they mean two baskets that each pass the same test."
+      },
+      {
+       "condition": "A tub used mainly for bathing children",
+       "guidance": "Toys are the capacity question here, not bottles. One draining bag that hangs clear of the water line, emptied at the end of the bath, and the same one-of-each rule for the adult products. A toy that never dries is the dark line at the wall, arriving early."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There is a dark line where the wall meets the tray and it comes back.",
+        "branches": [
+         {
+          "answer": "Nothing dries the enclosure after the last shower",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Bottles sit on the tray so water never leaves that strip",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "The squeegee is outside the enclosure, so it is not used",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "The shower is crowded with bottles we do not use.",
+        "branches": [
+         {
+          "answer": "We keep almost-empty bottles in case there is one more wash",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody owns the ones that have been here longest",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "We buy a new kind before the old one is finished",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "Cleaning in here takes far longer than it should.",
+        "branches": [
+         {
+          "answer": "Everything has to come off the tray before I can start",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "There are more bottles than people using them",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The enclosure is never dried, so deposits build",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every bottle out, bin the empties, keep one shampoo, one conditioner, one wash and one bar per person in the caddy, then squeegee the walls and the tray dry.",
+       "victory": "Nothing stands on the shower floor, and the squeegee is back on its hook inside the enclosure."
+      }
      }
     },
     {
@@ -6066,6 +6431,79 @@
        "Rust on the seat hinge bolts, or a seat that has worked loose and rocks.",
        "Heavy mineral scale rebuilding under the rim, or a stain trail on the floor behind that points to a slow overflow."
       ]
+     },
+     "capacity": {
+      "rule": "Two reserve rolls within reach from a seated position and the rest of the pack in the cupboard, a lined bin with a lid, a brush in a holder that has been emptied and dried, and a completely bare cistern lid.",
+      "does_not_fit": "If the spare pack lives on the cistern because there is nowhere else, the storage for this room is undersized, not the cistern. Anything standing on a cistern lid falls behind the toilet eventually, and that is the one patch of floor nobody wants to reach into."
+     },
+     "variants": [
+      {
+       "condition": "No cupboard in the room at all",
+       "guidance": "Two within reach still holds. The rest of the pack goes to the nearest storage outside the room, and the trigger for refilling becomes taking the last reserve roll rather than seeing the pack run low, because you will no longer see the pack."
+      },
+      {
+       "condition": "A wall-hung toilet with no cistern lid",
+       "guidance": "The bare-surface rule moves to the shelf or ledge the fittings create. It is the same rule and the same reason: a narrow ledge above a toilet drops whatever it holds into the worst possible place."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "We run out of paper with nobody noticing until it matters.",
+        "branches": [
+         {
+          "answer": "The reserve is stored where you cannot see it from the seat",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nothing tells us to restock when the reserve is used",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Whoever takes the last roll is not the one who buys them",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "This area smells even after cleaning it.",
+        "branches": [
+         {
+          "answer": "The brush goes back into its holder wet",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The bin has no lid or no liner",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "The floor behind the pedestal is never reached",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "The cistern lid always has things on it.",
+        "branches": [
+         {
+          "answer": "There is nowhere else in the room to put them",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "It is the nearest flat surface to the door",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nobody agreed the lid stays bare",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the cistern lid completely, empty and dry the brush holder, put a liner and a lid on the bin, and set two reserve rolls within reach from the seat.",
+       "victory": "A completely bare cistern lid, and two reserve rolls reachable without standing up."
+      }
      }
     },
     {
@@ -6148,6 +6586,79 @@
        "Mildew spotting on the underside of a shelf, and a musty smell that lingers even after the towels come out.",
        "A soft or crumbling board edge low down, the kind of quiet damp that draws silverfish."
       ]
+     },
+     "capacity": {
+      "rule": "Three bath towels per person, one in use, one in the wash, one folded on the shelf, each guest set nested in its own pillowcase, hand towels and washcloths in separate labeled columns, and one spare bath mat rolled at the end of the shelf.",
+      "does_not_fit": "If three per person will not fit without compressing the stack past the shelf lip, the shelf is carrying more households' worth of towels than this one has. Count the people before buying a shelf: the number of towels is set by how this house does laundry, not by how much linen will physically fit."
+     },
+     "variants": [
+      {
+       "condition": "Laundry runs once a week rather than every few days",
+       "guidance": "Three per person is the minimum that survives a weekly wash; four is honest if towels do not dry fully between uses. Raise the number deliberately and write it on the shelf label, rather than letting the stack drift upward and calling it storage."
+      },
+      {
+       "condition": "No linen cupboard, only a shelf above the toilet or door",
+       "guidance": "Keep the per-person count and drop the guest sets to whatever the shelf holds after the household's own towels are on it. Guest linen is the thing to store elsewhere, because it is used least and is the only part of this zone that can live in another room without anybody noticing."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "We run out of clean towels before laundry day.",
+        "branches": [
+         {
+          "answer": "There are fewer than three per person on the shelf",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Towels go in the wash after one use by habit",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Damp towels never dry, so they are washed again unused",
+          "cause": "RC-016"
+         }
+        ]
+       },
+       {
+        "symptom": "The shelf is full but I can never find a matching set.",
+        "branches": [
+         {
+          "answer": "Guest sets are stacked loose among the everyday towels",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Hand towels and washcloths share a column",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "We keep towels we never choose to use",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "The shelf looks full but half of it is never used.",
+        "branches": [
+         {
+          "answer": "We keep towels nobody chooses",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Guest sets are loose among the everyday towels",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nothing says how many towels this house needs",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take the shelf down to three bath towels per person, nest each guest set in its own pillowcase, and put hand towels and washcloths into separate labeled columns.",
+       "victory": "Three bath towels per person on the shelf, and every guest set in its own pillowcase."
+      }
      }
     }
    ]

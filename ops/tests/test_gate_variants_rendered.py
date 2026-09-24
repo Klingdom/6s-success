@@ -112,12 +112,16 @@ def main() -> int:
 
     # 7. Against the real, committed corpus and site/zones/*.html: proves
     #    the 12 pilot zones actually ship what content.json says, today.
+    # The cohort GROWS, one room at a time, by design (DECISIONS.md D-026).
+    # Pinning the number here made this test fail as a REWARD for doing
+    # that work: Primary Bathroom's 7 zones took it from 12 to 19 and the
+    # suite went red on a correct change. A floor still catches the real
+    # regression this guards, which is the cohort silently SHRINKING.
     real_map = _load_real()
-    if len(real_map) != 12:
-        fails.append("expected 12 pilot zones with variants in the real "
-                     "corpus, found %d (has the pilot cohort changed? "
-                     "update this test's expectation deliberately if so)"
-                     % len(real_map))
+    if len(real_map) < 12:
+        fails.append("expected at least the 12 original pilot zones with variants "
+                     "in the real corpus, found %d: the cohort has SHRUNK, "
+                     "which is a regression" % len(real_map))
     real_pages = {}
     for f in sorted(glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))):
         real_pages[os.path.basename(f)] = io.open(
