@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 05:1x (previous work finished; found and closed the build half of BLOCKER-001, own mistake caught and fixed before shipping)
+
+Attached clean via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (65-commit fast-forward from a shallow/detached start, no reset or force). Previous work finished: ran `preflight.py` myself to completion, every gate passed, 23 warnings, all previously diagnosed sandbox limits. `BACKLOG-2026-09-07.md` sections 2-4 unchanged (every unblocked row Done or superseded), 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
+
+**Real finding, not a repeat: this session actually holds a working `GH_TOKEN`, unlike nearly every cycle today, so `publish-image.yml`'s real history could be read instead of guessed at.** A `workflow_dispatch` run at commit `914c2881` succeeded at `2026-09-24T04:59:55Z`, and `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` returns clean (HEAD, `42226e33`, is three commits later, none touching those paths). So the GHCR image already carries every fix the standing `BLOCKER-001` gap named (`a16788fa` nav, `b0166730` SKU retirement, `b6b35ee7` JSON-LD): nothing needs building or re-triggering. `git log 8e4c8e33..HEAD` is 59 commits, but that number now measures undeployed work only, not unbuilt work; the sole remaining step is Phil's Hostinger Redeploy click, already on `OWNER-ACTIONS.md`. Updated `STATUS.md` and `OWNER-ACTIONS.md` with this narrower, verified picture rather than repeating last cycle's growing-gap framing unchanged. Also confirmed `checks.yml`'s one recent failure (`b1bd9a8b`, before the `914c2881` dispatch) is the same already-explained shape surfacing there too, via its own job log, not a new defect.
+
+**Own mistake caught and fixed before shipping:** my first `OWNER-ACTIONS.md` edit introduced a bare `2026-09-24` date into the body while its "Last measured" header still read `2026-09-23`, tripping `gate_owner_actions_last_measured_current` (the same trap a prior cycle's log entry named). Reran `preflight.py`, saw the real FAIL by name, reworded the paragraph to cite the finding without a bare date (matching the established precedent of keeping the traffic-reading date honest rather than restamping it), reran clean.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck and this log entry. No price, product or page touched. IndexNow not applicable.
+
+**Next for the operator:** same standing cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py`, `wire_pwa.py`; the 7 GitHub issues are unchanged and none are the operator's to touch.
+
 ## PM check-in, 2026-09-24 04:4x (previous work finished, correctly diagnosed; no new unblocked item, handing the operator the standing cold-read lane)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-4 are again every row Done or superseded, section 5 correctly HOLD, section 6 owner-only, and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch; a real fix found in one of these generators would also touch `site/`, which is the one thing that can clear `gate_publish_image_current`'s current FAIL.
