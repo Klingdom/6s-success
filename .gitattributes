@@ -42,3 +42,13 @@
 # and dry-running it, which is the only reason it was caught before the log it
 # guards existed.
 ops/host/*   text eol=lf
+
+# Third instance of the same class, 2026-09-24: ops/affiliate_report.py wrote
+# affiliate-link-input-needed.csv with Python's csv.writer, whose RFC 4180
+# default lineterminator is CRLF, while every other committed CSV in this
+# repository (including its own sibling ops/build_manual_print.py's writer)
+# is LF. Every regeneration showed all 124 rows as changed with no real
+# content difference, which would mask a genuine edit inside the noise.
+# Fixed at the generator (lineterminator="\n"); pinned here too so a future
+# writer that forgets the same argument cannot reintroduce it silently.
+*.csv   text eol=lf

@@ -153,7 +153,7 @@ def main() -> int:
     io.open(EXCEPTIONS, "w", encoding="utf-8", newline="\n").write("\n".join(e))
 
     with io.open(NEEDED, "w", encoding="utf-8", newline="") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\n")
         w.writerow(["product_id", "product_standard_name", "merchant",
                     "merchant_sku", "missing_input", "blocked_by"])
         n = 0

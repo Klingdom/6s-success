@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-24, scheduled operator cycle (18:xx, third CRLF-vs-LF instance found in the brand-new affiliate_report.py, gated)
+
+**Did:** Shallow, detached checkout; `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only`, clean fast-forward of 129 commits, no reset or force. Read `BACKLOG-2026-09-07.md` in full (every row done or Phil-gated), `GOALS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` (fast) clean before touching anything: every gate passed, 24 warnings, all previously diagnosed. GitHub confirmed live: 8 open issues, unchanged, decision/blocked-on-art. Inbox: no mail credential here.
+
+Every unblocked backlog row was again done or Phil-gated, so cold-read `ops/affiliate_report.py` (0 prior mentions, newly arrived this fast-forward) per step 5d. Its CSV writer used `csv.writer`'s default CRLF terminator while every other committed CSV, including its own sibling `.md` outputs and `ops/build_manual_print.py`'s writer, is LF: regenerating showed all 124 rows "changed" with no real content difference, the exact "corrected source, artifact never re-derived" shape this repo keeps finding, now a third time under `.gitattributes`. Fixed at the source (`lineterminator="\n"`), pinned in `.gitattributes`, gated (`gate_affiliate_report_current`, fail-then-pass proved on the real file). Wiring the gate's own file read tripped `gate_ci_path_filter_covers_preflight_inputs` for real (`affiliate-link-input-needed.csv` had no CI path filter); fixed in `checks.yml`.
+
+**Verified:** full `preflight.py` (every gate passed, 24 warnings, all sandbox limits), `check_urls.py` (191/191), `audit_pages.py` (0 dupes), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0), new test 4/4.
+
+**Went well:** the CI-path-filter gate catching its own new dependency immediately, not a fourth accident.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list; 8 unchanged GitHub issues.
+
+Pushed to main. No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-24 17:1x (previous work reverified finished; the overdue preflight --deep handoff was lost with the prior container, ran a full fast preflight myself instead; backlog and issues both stay exhausted)
 
 Reattached clean: fetch/fetch --unshallow/checkout main/merge --ff-only onto origin/main, fast-forward from a shallow detached start (125 commits), no reset or force. Read git log -12, this log's newest entries (16:4x/16:3x PM check-ins, 16:0x operator cycle), BACKLOG-2026-09-07.md in full (every Now row A1-A9, B1-B8, C1-C7 done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), EXECUTIVE-DASHBOARD-LIVE.md, OWNER-ACTIONS.md, STATUS.md. GitHub confirmed live via the API: 8 open issues, unchanged, all decision/blocked-on-art (#35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs.

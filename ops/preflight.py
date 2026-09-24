@@ -13641,6 +13641,128 @@ def gate_affiliate_approved_claims_current() -> None:
              (", ".join(sorted(live)), ", ".join(stale)))
 
 
+def check_affiliate_report_current(expected_matrix: str, expected_exceptions: str,
+                                    expected_needed: str, actual_matrix: str,
+                                    actual_exceptions: str, actual_needed: str) -> list:
+    """Pure logic for gate_affiliate_report_current, testable without real
+    files. Each expected_*/actual_* pair is the full text of one of the
+    three files ops/affiliate_report.py writes (expected = freshly
+    regenerated, actual = what is committed). Strips the one line that
+    legitimately varies by the day it was run (the "Generated ... on
+    YYYY-MM-DD" stamp) before comparing; everything else, including line
+    endings, must match exactly.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    date_re = re.compile(r"on \d{4}-\d{2}-\d{2}\.")
+    pairs = [
+        ("AFFILIATE_COMPLIANCE_MATRIX.md", expected_matrix, actual_matrix),
+        ("AFFILIATE_INPUT_EXCEPTIONS.md", expected_exceptions, actual_exceptions),
+        ("affiliate-link-input-needed.csv", expected_needed, actual_needed),
+    ]
+    problems = []
+    for name, exp, act in pairs:
+        if "\r\n" in act:
+            problems.append(
+                "%s carries CRLF line endings; every other committed file "
+                "in this repository is LF (see .gitattributes)" % name)
+        if date_re.sub("on <date>.", exp) != date_re.sub("on <date>.", act):
+            problems.append(
+                "%s does not match what ops/affiliate_report.py currently "
+                "produces from ops/affiliate-accounts.json and "
+                "ops/affiliate-catalogue.csv; run it and commit the "
+                "result" % name)
+    return problems
+
+
+def gate_affiliate_report_current() -> None:
+    """The affiliate programme's compliance matrix, exceptions list and
+    Phil-facing input-needed CSV (ops/affiliate_report.py) are generated,
+    not hand-typed, specifically so they cannot drift from
+    ops/affiliate-accounts.json and ops/affiliate-catalogue.csv, the files
+    that actually decide what the site does. Nothing before this gate ever
+    checked that the committed copies still match what the generator
+    currently produces; the generator was not even in gate_generator_
+    ownership's own regenerate-and-diff list.
+
+    Found live 2026-09-24, this operator, cold-reading ops/affiliate_
+    report.py (0 prior mentions, newly arrived on main): its CSV writer
+    used Python's csv.writer default line terminator, CRLF per RFC 4180,
+    while every other committed CSV in this repository (including this
+    same generator's own two sibling outputs, and ops/build_manual_
+    print.py's own csv.writer two lines away) is LF. Regenerating the file
+    showed all 124 rows as changed with no real content difference, which
+    would mask a genuine edit inside pure line-ending noise. Fixed at the
+    generator (lineterminator="\\n") and pinned in .gitattributes
+    (*.csv text eol=lf); this gate re-derives all three outputs fresh on
+    every run and fails, by file name, if a future edit reintroduces
+    either that class of drift or a genuine data staleness (pure logic in
+    check_affiliate_report_current, proved to fail on a planted CRLF
+    regression and a planted stale-data regression in
+    ops/tests/test_gate_affiliate_report_current.py).
+    """
+    accounts_path = os.path.join(ROOT, "ops", "affiliate-accounts.json")
+    catalogue_path = os.path.join(ROOT, "ops", "affiliate-catalogue.csv")
+    if not os.path.exists(accounts_path) or not os.path.exists(catalogue_path):
+        warn("affiliate-report-current",
+             "ops/affiliate-accounts.json or ops/affiliate-catalogue.csv is "
+             "missing, so the generated affiliate reports were NOT checked "
+             "against them.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import tempfile
+    import importlib
+    try:
+        import affiliate_report as AR
+        importlib.reload(AR)
+    except Exception as e:                                          # noqa: BLE001
+        warn("affiliate-report-current",
+             "ops/affiliate_report.py could not be imported (%s), so the "
+             "committed reports were NOT checked against it." % e)
+        return
+
+    tmp = tempfile.mkdtemp(prefix="affiliate_report_gate_")
+    orig = (AR.MATRIX, AR.EXCEPTIONS, AR.NEEDED)
+    AR.MATRIX = os.path.join(tmp, "matrix.md")
+    AR.EXCEPTIONS = os.path.join(tmp, "exceptions.md")
+    AR.NEEDED = os.path.join(tmp, "needed.csv")
+    try:
+        AR.main()
+        expected_matrix = io.open(AR.MATRIX, encoding="utf-8", newline="").read()
+        expected_exceptions = io.open(AR.EXCEPTIONS, encoding="utf-8", newline="").read()
+        expected_needed = io.open(AR.NEEDED, encoding="utf-8", newline="").read()
+    except Exception as e:                                          # noqa: BLE001
+        warn("affiliate-report-current",
+             "ops/affiliate_report.py could not be run to check against "
+             "(%s)." % e)
+        return
+    finally:
+        AR.MATRIX, AR.EXCEPTIONS, AR.NEEDED = orig
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    def _read(path):
+        if not os.path.exists(path):
+            return None
+        return io.open(path, encoding="utf-8", newline="").read()
+
+    actual_matrix = _read(os.path.join(ROOT, "AFFILIATE_COMPLIANCE_MATRIX.md"))
+    actual_exceptions = _read(os.path.join(ROOT, "AFFILIATE_INPUT_EXCEPTIONS.md"))
+    actual_needed = _read(os.path.join(ROOT, "affiliate-link-input-needed.csv"))
+    if actual_matrix is None or actual_exceptions is None or actual_needed is None:
+        fail("affiliate-report-current",
+             "one or more of AFFILIATE_COMPLIANCE_MATRIX.md, "
+             "AFFILIATE_INPUT_EXCEPTIONS.md, "
+             "affiliate-link-input-needed.csv is missing. Run "
+             "python ops/affiliate_report.py")
+        return
+
+    problems = check_affiliate_report_current(
+        expected_matrix, expected_exceptions, expected_needed,
+        actual_matrix, actual_exceptions, actual_needed)
+    if problems:
+        fail("affiliate-report-current", "; ".join(problems))
+
+
 def gate_architecture_doc_current() -> None:
     """ARCHITECTURE.md must not assert absences that have since become
     present, for the two claims that are cheap to verify by name.
@@ -20443,6 +20565,7 @@ def main() -> int:
     run_gate(gate_no_stale_stripe_setup_book_blocker)
     run_gate(gate_doc_supersession_chain_current)
     run_gate(gate_affiliate_approved_claims_current)
+    run_gate(gate_affiliate_report_current)
     run_gate(gate_architecture_doc_current)
     run_gate(gate_architecture_workflow_count_current)
     run_gate(gate_visual_strategy_truncation_current)
