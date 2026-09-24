@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-24, scheduled operator cycle (Home Depot lookup bug fixed, a stale BLOCKER-001 citation preflight itself caught, then this entry itself first appended to the wrong end of this file)
+
+**Did:** Unshallowed, attached to `main`, fast-forwarded 156 commits, no unrelated-history error. Read the backlog (all rows done/Phil-gated), roadmap, `CLAUDE.md`, `STATUS.md`, `GOALS.md`. Full `preflight.py`: every gate passed. 8 GitHub issues confirmed live (new: #35); no mail credential, reported unchecked.
+
+**Verified:** cold-read `ops/build_cleaning_index.py` (4 mentions): clean. `ops/affiliate_report.py` (6): `Merchant` normalised inconsistently with the matrix table's own lookup, so 37 of 123 CSV rows wrongly read "no programme record" for Home Depot (a real, declined record). Fixed via one shared `program_key()` helper; gate test 4/4, `affiliate.py --check` clean, idempotent rerun. Surfaced preflight's own `status-deploy-verdict-current` warning: `STATUS.md`/`OWNER-ACTIONS.md` cited a superseded confirmation; corrected. `ops/build_microzone_coverage.py` (0): headline coverage used `have["diagnosis"]` as a proxy for "all three moat fields", agreeing today only by coincidence; fixed to count the real intersection.
+
+**Went well:** preflight caught its own staleness before this log had to.
+
+**Did not go well:** three self-caught mistakes. Pushed while a background preflight was mid-flight; killed it, reran clean. That kill orphaned `test_audit_catalog.py`'s lockdir (self-heal needs 900s+, harness gave up at 700s), failing the next run with a false "did not finish"; found the stale lock (age 995s, unheld), removed it, reran clean. Also first wrote this entry appended to the file's end, the exact misreading `gate_nightly_log_ordering` exists to catch; caught by name, moved here.
+
+**Changing next cycle:** none; existing gates already cover both generator fixes.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, item 0 (`VPS_DEPLOY_KEY`) highest-value. Continue the low-mention `ops/*.py` cold-read lane.
+
 ## PM check-in, 2026-09-24 21:4x (previous work reconfirmed finished; backlog and issues exhausted again; handoff kept narrow, three minutes ahead of the operator)
 
 NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read lane, specifically `image_style.py`, `image_local.py`, `video.py`, `refresh_hero_fallback.py` and `import_generated_art.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (unchanged, all `decision`/`blocked-on-art`, confirmed live via the API) are exhausted again, and a fresh defect is more likely from an unread file than another sweep of already-cleared ground.
@@ -37279,16 +37293,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
-## 2026-09-24, scheduled operator cycle (Home Depot lookup bug fixed, then a stale BLOCKER-001 citation preflight itself caught)
-
-**Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, fast-forwarded 156 commits clean, no unrelated-history error. Read `BACKLOG-2026-09-07.md` (all rows done or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`. Full `preflight.py` run: every gate passed. 8 GitHub issues confirmed live (new: #35, `VPS_DEPLOY_KEY` decision); no mail credential, `inbox_agent.py --apply` reported unchecked.
-
-**Verified:** cold-read `ops/build_cleaning_index.py` (4 mentions): clean. Cold-read `ops/affiliate_report.py` (6 mentions): the NEEDED-csv writer normalised `Merchant` with plain `.lower().replace(" ", "-")`, skipping the `homedepot`-to-`home-depot` fix the matrix table's own lookup already applied, so 37 of 123 rows wrongly read "no programme record" when Home Depot has one (declined via Impact). Fixed by consolidating both lookups into one `program_key()` helper; verified with the gate's own test (4/4), `affiliate.py --check`, an idempotent rerun. Full preflight then surfaced its own `status-deploy-verdict-current` warning: `STATUS.md`/`OWNER-ACTIONS.md` still cited a confirmation superseded twice since (a newer redeploy, then one more site commit reopening a 1-commit gap). Corrected all citations; warnings dropped 24 to 23.
-
-**Went well:** preflight caught its own staleness before this log had to.
-
-**Did not go well:** merged/pushed once while a background preflight run was still mid-flight; killed it, reran clean on a stable tree before committing.
-
-**Changing next cycle:** none new; the generator-ownership/freshness gate already re-derives affiliate_report.py's output every run, so no bespoke gate needed for this bug class.
-
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, item 0 (`VPS_DEPLOY_KEY`) highest-value. Continue the low-mention `ops/*.py` cold-read lane.
