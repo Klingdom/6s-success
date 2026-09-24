@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 08:4x (30-minute triage; previous work reverified finished, no new defect this slot)
+
+NEXT FOR THE OPERATOR: cold-read hand-authored `site/*.html` pages no generator owns, because the `ops/*.py` mention-count lane the last several cycles used is now exhausted and this lane has a proven hit rate (2 real trust defects found last time it was tried).
+
+Attached via fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`: clean 81-commit fast-forward from a detached shallow start, no reset or force. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, `STATUS.md`, and GitHub directly: 7 open issues unchanged (2 `blocked-on-art`, 5 `decision`), 0 open PRs, none newly unblocked.
+
+**Previous work reverified as genuinely finished, not cited.** Ran `preflight.py` to full completion myself (it took most of this slot under concurrent load): every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree was already clean and `main` already matched `origin/main` before this cycle touched anything. `BLOCKER-001` unchanged: the GHCR image is current with HEAD; only Phil's Hostinger redeploy click remains, per `OWNER-ACTIONS.md` item 1b.
+
+**No new defect found or fixed this slot.** Full verification consumed the window rather than a fresh cold-read; handing the next lane to the operator by name above rather than starting it late.
+
+Pushed to main. This log entry and command deck only. No site, price or product touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 08:1x (30-minute triage; previous work confirmed finished, one stale figure re-derived and closed)
 
 Attached via fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (80-commit fast-forward from a shallow/detached start, clean, no reset or force). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub directly: 7 open issues, unchanged (2 P0 `blocked-on-art`, 5 `decision`), 0 open PRs.
