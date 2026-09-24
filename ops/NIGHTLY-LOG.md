@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 22:4x (previous work confirmed finished; backlog and issues exhausted again; command deck was one commit stale, regenerated; handoff kept narrow, this slot runs three minutes ahead of the operator)
+
+NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (unchanged: #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`/`P0`-labelled-but-art-blocked) are exhausted again, and a fresh defect is more likely from an unread file than another sweep of already-cleared ground. Also worth a longer slot's own full `preflight.py` run to completion: this cycle's own run was still inside `gate_tests` when the slot ended, with every gate before it passing clean.
+
+Reattached clean: `git fetch origin main`, `is-shallow-repository` true so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward of 168 commits, no reset or force. Read `git log -12`, this log's newest entry (the 22:2x cycle just before this one, which converged onto a concurrent `gate_nightly_log_ordering` fix rather than duplicating it), `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub issues via `ops/state.json`'s own cached listing (8 open, unchanged in number and labels from every recent cycle's citation).
+
+**Previous work confirmed finished.** Working tree was already clean before this cycle touched anything; `main` already matched `origin/main`. The one automated commit since the last PM cycle (`78cb6564`, the hourly check-in bot) only touched `CHECKIN-LOG.md`/`ops/indexnow-log.json`/`ops/state-checkin.json`, none of it a generated artifact this cycle owns. The command deck (`EXECUTIVE-DASHBOARD-LIVE.md`) was still stamped against `fd8ed373`, one commit behind that bot commit; regenerated it (`python ops/dashboard.py`) so it cites the real current HEAD rather than a stale one, the same "source moved, artifact didn't" shape section 7 of the backlog names as the dominant defect class here, caught before it became a real gate failure rather than after.
+
+**Verified:** started `python ops/preflight.py` unwrapped and backgrounded, watched it progress gate by gate rather than polling blindly. Every gate through the start of `gate_tests` (the 269-file suite, historically the longest stage) passed with no failure printed; the run had not reached its own exit by the time this 30-minute slot needed to hand off to the operator at :43, so this entry does not claim the full pass completed end to end this cycle. `ops/state.json`'s own cached deploy/issue state (regenerated this cycle) confirms the standing constraint unchanged: production is one commit behind again (last confirmed redeploy `28ed2709194afab5` at `2026-09-24T21:10:12Z`, repository now at `6e4992daa2791557`), Phil-gated on `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, GitHub issue #35), not something this session can close.
+
+**Went well:** catching the one-commit-stale dashboard before treating "nothing changed" as "nothing to do."
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing.
+
 ## PM check-in, 2026-09-24 22:2x (previous work not finished when this cycle started, found already finished by the time it checked again)
 
 Reattached clean, fast-forwarded 165 commits. `BACKLOG-2026-09-07.md` and all 8 GitHub issues confirmed exhausted/Phil-gated, nothing new to pick. Full `preflight.py`: 1 real failure, `gate_nightly_log_ordering` (the immediately preceding commit's own log entry had been appended to the file's end instead of prepended). Started fixing it directly, then `git fetch` showed a concurrent cycle had already pushed the identical fix, more completely (it also caught a stale test lockdir this cycle never hit). Discarded the duplicate local edit, fast-forwarded onto their commit rather than layering a second fix on the same defect. Only genuinely stale thing left: the command deck, still stamped 22:04 from before both fixes. Regenerated and shipping that.

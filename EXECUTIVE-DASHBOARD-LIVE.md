@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-24 22:28 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-24 22:43 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,15 +28,15 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1118 of 3719 total |
+| Commits (7 days) | 1118 of 3721 total |
 | Working tree | clean, in sync |
-| Last commit | `fd8ed373` Fix nightly log entry placement and record the build_microzo |
+| Last commit | `78cb6564` Hourly check-in record |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 199 pages, 0 dead links, 4/4 legal pages, 195 disconnected forms |
+| Website | 200 pages, 0 dead links, 4/4 legal pages, 195 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
