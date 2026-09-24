@@ -56,6 +56,11 @@ DESC = ("A cleaning method for every surface in the house, grouped by room: "
 
 
 def strip_tags(t: str) -> str:
+    # Source markup carries entities (e.g. "season&#x27;s"); decode them here
+    # so the caller's own html.escape() re-encodes cleanly once, not twice.
+    # Skipping this step doubles the escape and ships a literal "&amp;#x27;"
+    # instead of an apostrophe (found live, 2026-09-24).
+    t = html.unescape(t)
     return re.sub(r"\s+", " ", re.sub(r"(?s)<[^>]+>", " ", t)).strip()
 
 
