@@ -2,23 +2,47 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-24, scheduled operator cycle (18:xx, third CRLF-vs-LF instance found in the brand-new affiliate_report.py, gated)
+## 2026-09-24, scheduled operator cycle (18:xx, the same CRLF-vs-LF fix landed independently in parallel; widened it past the one-line patch)
 
-**Did:** Shallow, detached checkout; `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only`, clean fast-forward of 129 commits, no reset or force. Read `BACKLOG-2026-09-07.md` in full (every row done or Phil-gated), `GOALS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` (fast) clean before touching anything: every gate passed, 24 warnings, all previously diagnosed. GitHub confirmed live: 8 open issues, unchanged, decision/blocked-on-art. Inbox: no mail credential here.
+**Did:** Shallow, detached checkout; `fetch`/`fetch --unshallow`/`checkout main`/`merge --ff-only`, clean fast-forward of 129 commits, no reset or force. Read `BACKLOG-2026-09-07.md` in full (every row done or Phil-gated), `GOALS.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. `preflight.py` (fast) clean before touching anything. GitHub: 8 issues, unchanged. Inbox: no mail credential here. Cold-read `ops/affiliate_report.py` per step 5d (0 prior mentions) and independently found the same CRLF-vs-LF drift a concurrent PM check-in (17:5x, below) was fixing at the same time: `csv.writer`'s default CRLF terminator against an all-LF repository convention. On push, that session's commit (`bfb9230c`) had already landed with the identical one-line fix; merged rather than reset, keeping both.
 
-Every unblocked backlog row was again done or Phil-gated, so cold-read `ops/affiliate_report.py` (0 prior mentions, newly arrived this fast-forward) per step 5d. Its CSV writer used `csv.writer`'s default CRLF terminator while every other committed CSV, including its own sibling `.md` outputs and `ops/build_manual_print.py`'s writer, is LF: regenerating showed all 124 rows "changed" with no real content difference, the exact "corrected source, artifact never re-derived" shape this repo keeps finding, now a third time under `.gitattributes`. Fixed at the source (`lineterminator="\n"`), pinned in `.gitattributes`, gated (`gate_affiliate_report_current`, fail-then-pass proved on the real file). Wiring the gate's own file read tripped `gate_ci_path_filter_covers_preflight_inputs` for real (`affiliate-link-input-needed.csv` had no CI path filter); fixed in `checks.yml`.
+**What this cycle adds beyond that fix:** `.gitattributes` pinned (`*.csv text eol=lf`, the same double-layer pattern already used for `.srt` and `ops/host/*`, so a future writer that forgets the argument cannot reintroduce this silently), plus a dedicated `gate_affiliate_report_current` in `preflight.py` that re-derives all three of the generator's outputs on every run and diffs them against committed copies, fail-then-pass proved on the real file. Wiring the gate's file read (`affiliate-link-input-needed.csv`) tripped `gate_ci_path_filter_covers_preflight_inputs` for real, a genuine gap, not a false positive; fixed in `checks.yml`.
 
-**Verified:** full `preflight.py` (every gate passed, 24 warnings, all sandbox limits), `check_urls.py` (191/191), `audit_pages.py` (0 dupes), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0), new test 4/4.
+**Verified:** full `preflight.py` (every gate passed, 24 warnings, all sandbox limits), `check_urls.py` (191/191), `audit_pages.py` (0 dupes), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0), both new tests pass.
 
-**Went well:** the CI-path-filter gate catching its own new dependency immediately, not a fourth accident.
+**Went well:** merging the concurrent fix instead of overwriting it; the CI-path-filter gate catching its own new dependency immediately.
 
-**Did not go well:** nothing new.
+**Did not go well:** two sessions spent time on the identical root cause; no way to see a concurrent session's in-flight work before push.
 
-**Changing next cycle:** none.
+**Changing next cycle:** none beyond the new gate.
 
-**Next:** same standing Phil-blocked list; 8 unchanged GitHub issues.
+**Next:** `ops/build_kitchen_deck_pdf.py`, named by the concurrent session's own handoff below as the next cold-read target. Same standing Phil-blocked list; 8 unchanged GitHub issues.
 
 Pushed to main. No price, product or site page touched; not customer-facing.
+
+## PM check-in, 2026-09-24 17:5x (previous work reverified finished; a real generated-artifact drift bug found and fixed in the newest, never-cold-read ops/*.py file)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read lane with `ops/build_kitchen_deck_pdf.py` (16 mentions in this log, the next-lowest unread tier now that `affiliate_report.py` and `retire_stripe_skus.py` are both covered), because every unblocked backlog row and GitHub issue is again done or Phil-gated, so a fresh defect is more likely to come from an unread file than from re-sweeping exhausted ground.
+
+Reattached clean: fetch/fetch --unshallow/checkout main/merge --ff-only onto origin/main, fast-forward from a shallow detached start (129 commits), no reset or force. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full (every row A1-A9/B1-B8/C1-C7 done or Phil-gated, section 5 correctly HOLD), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, `STATUS.md`. GitHub confirmed live: 8 open issues, unchanged, all `decision`/`blocked-on-art`/P0 (#35, #33, #31, #29, #21, #18, #15, #2); 0 open PRs. Working tree was already clean and main already matched origin/main.
+
+**Previous work genuinely finished**, not just committed: `CHECKIN-LOG.md`'s last six straight hourly check-ins and today's three prior PM check-ins (16:3x, 16:4x, 17:1x) all independently found the same thing, nothing newly unblocked, everything else Phil-gated (redeploy click, `VPS_DEPLOY_KEY` secret, Search Console, YouTube OAuth, Stripe business description). Confirmed rather than trusted: reran the dashboard and backlog against GitHub directly.
+
+**Found and fixed a real defect cold-reading `ops/affiliate_report.py` (0 mentions in this log, built this same day and never read since), the newest unread file in the lane several prior cycles have been working.** Its CSV writer (`affiliate-link-input-needed.csv`) opened the file correctly for CSV (`newline=""`) but never set `lineterminator`, so `csv.writer`'s default "excel" dialect emits CRLF on every run, while the committed file and every sibling generated artifact in this repository is LF-only (`.gitattributes`' own header names the exact opposite mistake, CRLF injected into a PDF, as a real production-breaking bug from 2026-09-07). Reproduced directly: a clean regeneration byte-differed from the committed file by exactly one `\r` per row (124), same content, different bytes, the "generated artifact drifts from what shipped" shape this repository's own section 7 names as its dominant defect class, here running in the direction of the generator drifting from its own committed output the moment anyone next runs it to verify it, exactly as this cycle just did. Fixed with `lineterminator="\n"`; regenerated output is now byte-identical to the committed file. New `ops/tests/test_affiliate_report_csv_line_endings.py`, fail-then-pass proved directly (reverted the fix, watched it fail naming the carriage return, restored, reran clean); also proves the CRLF-vs-LF distinction is reachable both ways so the test cannot silently stop testing anything.
+
+**Also found and repaired, not merely noted: a concurrent session's own `test_check_etsy_free_duplicate.py` had left the working tree dirty**, four `build/listings/etsy/*` files modified against HEAD, one (`6S-Moving-In-Kit-2-four-sheets.png`) truncated to 0 bytes mid-write. No process still held them; `git restore` returned all four to the committed state, confirmed byte-identical after. This was blocking `gate_etsy_pdfs_current` ("build/listings/etsy/ already differs from HEAD"), reran clean in isolation after the restore. Left for whoever owns that test next: it appears to write into a real tracked path rather than a gitignored scratch location, so any concurrent cycle's own run can collide with it the same way.
+
+**Verified:** full `python ops/preflight.py` run to completion (unbuffered, no `tail` pipe this time, after two earlier attempts through `timeout ... | tail -60` were themselves killed with no output ever flushed, the same self-inflicted-timeout shape a 2026-09-24 15:4x cycle already named). Two failures were real at the moment they were caught and both are now resolved: the etsy-pdfs gate (fixed above) and one transient test-fixture collision (`test_mobile_overflow.py`, `site/_fixture_wide.html` not found, the shared-scratch-filename class this log already documents under heavy concurrent load; reran standalone immediately after, clean). 24 warnings remained, all previously diagnosed sandbox limits (no Stripe/analytics/mail/VPS/Pillow credential here, cron-cadence drift already root-caused, dated disclosures, image/deck-art gaps, mobile-checks.yml correctly idle, one sitemap URL still blocked on IndexNow egress). New test passes standalone; `ops/affiliate_report.py` syntax-checked.
+
+**Went well:** writing the full preflight run's output straight to a file instead of through `tail`, so a timeout kill this time still left a readable partial log instead of losing everything, the exact gap the 15:4x cycle's own recovery named without fixing.
+
+**Did not go well:** a full, non-`--own` preflight run took long enough under today's concurrent load that a naive `timeout 280 | tail -60` genuinely could not complete inside it a second time; worth a standing note that `--own` or a longer, unbuffered run is the safer default under concurrency, not the piped short one.
+
+**Changing next cycle:** none beyond the new gate/test themselves.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; redeploy click; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Cold-read lane next candidate named above for the operator.
+
+Pushed to main. `ops/affiliate_report.py`, `ops/tests/test_affiliate_report_csv_line_endings.py`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; not customer-facing. IndexNow not applicable this cycle.
 
 ## PM check-in, 2026-09-24 17:1x (previous work reverified finished; the overdue preflight --deep handoff was lost with the prior container, ran a full fast preflight myself instead; backlog and issues both stay exhausted)
 
