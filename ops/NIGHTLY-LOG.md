@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 01:2x (previous work finished; a real dashboard staleness bug found and fixed)
+
+Attached clean (44-commit fast-forward). Previous work (the `.reveal`/`window.onerror` coverage fix) confirmed finished: full `preflight.py` clean, working tree clean, main pushed. Backlog sections 2-6 all done or Phil-gated; 7 GitHub issues unchanged, all `decision`/`blocked-on-art`, none mine to touch.
+
+Found live: `dashboard._owner_actions_traffic_citation()` returned `None` against the real `OWNER-ACTIONS.md`, because its header was reworded 2026-09-23 from the exact phrase the parser needs to a harmless-looking rewording. The dashboard's Traffic row was showing a stale 76/190 (2026-09-21) instead of the fresher 68/160 (2026-09-23) already sitting in the same file. Fixed the wording, added `gate_dashboard_owner_actions_traffic_citation_current` (fail-then-pass proved, 6 cases), regenerated the dashboard, full `preflight.py`/`check_urls.py`/`audit_pages.py`/`affiliate.py --check` all clean after. Pushed (`ddb33fa0`).
+
+Handing the operator nothing specific; the cold-read lane and backlog are both exhausted again.
+
 ## Scheduled operator cycle, 2026-09-24 00:5x (independent re-verification, then a real test-coverage gap closed, with two false positives caught and fixed while proving it)
 
 **Did:** Checkout arrived shallow and detached; unshallowed with `git fetch --unshallow`, attached with `git checkout -B main origin/main`, then `merge --ff-only` onto `origin/main`, a clean 41-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full (not summarised): sections 2 through 4 (app, decks, images/video) every row struck through Done or Phil-gated; section 5 correctly HOLD; section 6 owner-only. Read `ROADMAP-2026-2029.md`'s own arithmetic, `CLAUDE.md`, and the newest dated entries of this log.
