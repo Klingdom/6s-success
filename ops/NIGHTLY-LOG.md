@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 09:4x (previous work reconfirmed finished; hand-maintained page lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the hand-maintained-page cold-read lane on the 8 still-unread files, accessibility.html, book.html, consulting.html, contact.html, deck.html, index.html, method.html, quest.html, because it is the highest-value unblocked lane and everything above it is Phil-gated.
+
+Attached via fetch, unshallow, checkout -B main origin/main, merge --ff-only: clean 85-commit fast-forward, no reset or force. Working tree already matched origin/main, zero new commits since the immediately prior PM check-in, which had already run preflight to full completion clean minutes earlier. Re-verified GitHub directly rather than citing it: 7 open issues unchanged (2 P0 blocked-on-art, 5 decision), 0 PRs, none newly unblocked; OWNER-ACTIONS.md's BLOCKER-001 unchanged, only Phil's Hostinger click remains. preflight.py's own fast pass did not finish inside this slot under concurrent load; nothing in git or GitHub state changed since the last confirmed clean run, so this is not a fresh unchecked claim.
+
+Pushed to main. This log entry and command deck only. Not customer-facing.
+
 ## PM check-in, 2026-09-24 09:2x (previous work reverified finished; hand-maintained page lane continued, three more pages clean)
 
 Attached via fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`: clean 84-commit fast-forward from a detached shallow start, no reset or force. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7: every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s current BLOCKER-001 note, and GitHub directly: 7 open issues, unchanged (2 P0 `blocked-on-art`, 5 `decision`), 0 open PRs.
