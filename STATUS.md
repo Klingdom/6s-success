@@ -16,7 +16,7 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-24, PM check-in. **The 47-commit `BLOCKER-001` figure this file carried from the prior PM check-in was itself already stale within one cycle; re-derived fresh via `git log 8e4c8e33..HEAD` rather than repeated.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD is now `5be8798496029708` (`ops/build_id.py --check`: current), 50 commits and over 9 hours behind. A third live, real defect has entered the gap since the last check: `b6b35ee7` fixed invalid JSON-LD (single-quoted, not valid JSON) on both B2B articles, which had been silently unparseable by any real consumer, Google included, and excluding both from the feed; that fix is also sitting undeployed. The other two named last cycle are unchanged and still live-broken/live-stale: `a16788fa` (dead-nav-menu defect, 5 pages) and `b0166730` (65/65 Stripe SKU retirement). No new material commit beyond these three; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+**Last Updated:** 2026-09-24, PM check-in. **The 50-commit `BLOCKER-001` figure the prior PM check-in wrote was itself stale one cycle later; re-derived fresh via `git log 8e4c8e33..HEAD` rather than repeated.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD is now `bbf45e28`, 60 commits and over 10 hours behind. No new live defect entered the gap this cycle: the three already named are unchanged and still live-broken/live-stale in production: `a16788fa` (dead-nav-menu defect, 5 pages), `b0166730` (65/65 Stripe SKU retirement), `b6b35ee7` (invalid JSON-LD on both B2B articles). Most of the growth since the 50-commit reading is the 05:0x operator cycle's own fix to `gate_publish_image_current` (dispatched `publish-image.yml` directly, no `site/` edit) plus routine check-ins; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there. Still no operator sandbox holds the VPS deploy key (confirmed again this cycle: no key at `~/.ssh`), so this remains a real redeploy this pipeline cannot perform, not more sandbox verification.**
 
 **Prior (2026-09-24, PM check-in): Sections 2 and 5 had fallen 47 commits behind `BLOCKER-001`; that pass re-sized the gap rather than repeat the stale "one commit" figure several intervening cycles had carried forward unchecked. Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD was then `38b20571260ea9ff` (`ops/build_id.py --check`: current), 47 commits and over 8 hours behind. The gap was, at that point, no longer only internal-consistency work: `a16788fa` fixed a second live, real dead-nav-menu defect (`404.html`, `corporate.html`, `kit.html`, 2 B2B articles), and `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs; both were still live-broken/live-stale in production.**
 
@@ -295,9 +295,9 @@ this session's own measurement.
 
 **Currently Deployed Build (last confirmed):** `5eba61fde231c1a7`
 **Confirmed At:** `2026-09-23T19:00:39Z` (`ops/deploy-verdict.json`)
-**Repository HEAD Build:** `5be8798496029708` (50 commits ahead as of
-2026-09-24 04:1x PM check-in, re-derived after the 47-commit figure above
-went stale within one cycle; includes `a16788fa`, a live dead-nav-menu
+**Repository HEAD Build:** `bbf45e28` (60 commits ahead as of
+2026-09-24 05:4x PM check-in, re-derived after the 50-commit figure above
+went stale one cycle later; includes `a16788fa`, a live dead-nav-menu
 defect on 5 pages, `b0166730`, the finished 65/65 Stripe SKU retirement,
 and `b6b35ee7`, invalid JSON-LD fixed on both B2B articles; none of it
 yet known to be deployed)
@@ -344,7 +344,7 @@ answer (no admin/security-alerts scope confirmed either way).
 | Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; a local session holding the VPS deploy key runs it manually, confirmed routinely since 2026-09-01 (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`). **Corrected 2026-09-23:** this row previously implied the click may never have happened; it has, repeatedly, just never from a sandboxed session |
 | Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
 | Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
-| Production traceability | Tracked, 50 commits behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the three live defects sitting in it |
+| Production traceability | Tracked, 60 commits behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the three live defects sitting in it |
 | Repository hygiene | 7 open issues (5 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md`. Confirmed live via the GitHub API this cycle |
 
 ### GitHub Priority
