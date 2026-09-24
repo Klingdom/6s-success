@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 00:4x (previous work finished, independently reconfirmed with a full preflight run; a specific, scoped handoff given to the operator since the backlog and the low-mention cold-read lane are both genuinely exhausted)
+
+NEXT FOR THE OPERATOR: extend `ops/tests/test_site_js_no_runtime_error.py`'s `PAGES` tuple (or add an equivalent `window.onerror`/`.reveal` assertion to the pages' own interactive tests where one already exists) to cover `book.html`, `bundle.html`, `consulting.html`, `method.html`, `invest.html`, `about.html`, `shop.html` and `corporate.html`, because these are the 9 pages that carry `.reveal` (`grep -rl 'class="[^"]*reveal' site/*.html`), the exact defect class the 2026-09-23 sitewide `paint()` crash silently broke (nav toggle dead, `.reveal` content never unhidden) on every page with JS enabled, and only `index.html` of the 9 is actually driven by that test today; `shop.html` and `corporate.html` have their own interactive tests but neither asserts `window.onerror`, so a page-specific JS regression on any of these 8 could ship again with every existing gate green. Verify any finding by actually loading the page in headless Chromium the same way the existing test does, not by reading the script tags.
+
+**Previous work: finished, independently reconfirmed.** Attached via `git fetch origin main`, `fetch --unshallow` (checkout arrived shallow and detached), `checkout main`, `merge --ff-only` onto `origin/main`: clean 41-commit fast-forward, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (every row in sections 2-4 done or Phil-gated, section 5 correctly on hold pending traffic/evidence), `STATUS.md`, the two newest `NIGHTLY-LOG.md` entries. Rather than cite the prior cycle's own clean claim, ran `python ops/preflight.py` myself to full completion in the background (~4 minutes): every gate passed, 23 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH/Pillow/Gemini credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, deck/page-art gaps on #2/#29), none new. Working tree clean before and after.
+
+**GitHub: 7 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs.** Spot-checked one rather than trust the label alone: issue #31 (gallery vs. print-and-play deck, two different card designs) claims in its own thread that Option C (disclose the mismatch) already shipped 2026-09-08 (`98d3813a9`); confirmed live in the repository, not just cited: both `site/deck.html` and `site/deck-gallery.html` carry the disclosure sentence today. Correctly left open: Option A (unify the two designs) needs Phil's Gemini billing decision, a real owner gate, not an oversight.
+
+**No item in `BACKLOG-2026-09-07.md` sections 2-4 is both genuinely unblocked and unstarted; the low-mention `ops/*.py` cold-read lane was already declared thin two weeks ago (this log, `retire_stripe_skus.py`/`build_corporate_asset.py` entries) and a fresh method was recommended then.** Took that advice: re-derived which pages the 2026-09-23 sitewide JS-crash postmortem itself names as affected (`.reveal`-bearing pages) and checked which of them the fix's own regression test actually exercises. Only 1 of 9 is covered; the other 8 ship on the same shared `site.js` with no runtime-error assertion of any kind, GREEN-tier per `CLAUDE.md` 52 (test coverage only, no code path changed). Handed to the operator above rather than started here, since the PM slot's job is flow and handoff, not depth, and 3 minutes remained before :43.
+
+**Went well:** re-reading a fixed defect's own postmortem for what it didn't finish covering, rather than re-running an already-exhausted search method.
+
+**Did not go well:** nothing new found broken this slot; confirms the backlog is genuinely, not just apparently, exhausted of unblocked work.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. The handoff above for the :43 operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 00:1x (previous work finished, confirmed by finishing the prior cycle's own unfinished verification rather than starting new work)
 
 **Previous work: finished.** The prior cycle (traffic-staleness fix, `3780b53d`) had pushed on a fast, targeted verification and its own pre-change baseline, explicitly flagging that a full unwrapped `preflight.py` rerun was still running in the background at push time and handing the result to whichever cycle came next. That is this cycle's job, per STEP 2: finishing an unfinished verification counts as this run's work, not a new item. Attached via fetch plus ff-only merge onto `origin/main` (40-commit fast-forward, clean). Read `BACKLOG-2026-09-07.md` sections 0-7 (every row done or Phil-gated), `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries. GitHub: 7 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
