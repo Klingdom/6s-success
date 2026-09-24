@@ -13660,6 +13660,17 @@ def gate_architecture_doc_current() -> None:
     exist. Either check can fail in either direction, so a genuine future
     removal of CI or of Payment Links would also be caught here, not just
     the original false-negative shape.
+
+    Widened 2026-09-24 for two more claims in the same document, both
+    found and fixed live the same day but left ungated: the Request Path
+    diagram (section 4) wrongly named Traefik as the live reverse proxy
+    (the real one is a pre-existing Nginx Proxy Manager instance; the
+    Traefik stack in docker-compose.proxy.yml is unused and would conflict
+    with it on ports 80/443), and the compose-file section (section 5)
+    wrongly called an undeployed file "the one actually running" (the real
+    production file is docker-compose.hostinger.yml). Re-checks the
+    document's own diagram and headings directly, so either claim drifting
+    back is caught here rather than needing a seventh cold-read.
     """
     doc_path = os.path.join(ROOT, "ARCHITECTURE.md")
     if not os.path.exists(doc_path):
@@ -13705,6 +13716,57 @@ def gate_architecture_doc_current() -> None:
              "processing / cannot accept money, but a real Stripe Payment "
              "Link (buy.stripe.com) is live in site/. Correct the claim; "
              "see GOALS.md for the one real sale this contradicts.")
+
+    # Widened 2026-09-24, this operator, picking up the 13:4x/14:2x PM
+    # check-ins' own handoff. The 13:0x cycle found and fixed real drift
+    # in this same document, ungated: the Request Path diagram (section 4)
+    # named Traefik as the live reverse proxy when the real one is a
+    # pre-existing Nginx Proxy Manager instance (docker-compose.proxy.yml's
+    # Traefik stack is unused, would conflict on ports 80/443, RISKS.md
+    # RISK-0007), and the compose-file section (section 5) called an
+    # undeployed file "the one actually running" when the real production
+    # file is docker-compose.hostinger.yml (RUNBOOK.md's 2026-09-20 diff
+    # against the live host). Both fixes were correct but nothing would
+    # catch either regressing back, so both are re-checked directly against
+    # the document's own diagram and headings on every run.
+    diagram = re.search(r"# 4\. The Request Path.*?```(.*?)```", text,
+                         re.DOTALL)
+    if diagram:
+        if "traefik" in diagram.group(1).lower():
+            fail("architecture-doc-current",
+                 "ARCHITECTURE.md's Request Path diagram (section 4) names "
+                 "Traefik, but the live reverse proxy is a pre-existing "
+                 "Nginx Proxy Manager instance; docker-compose.proxy.yml's "
+                 "Traefik stack is unused and would conflict with it on "
+                 "ports 80/443. See RISKS.md RISK-0007.")
+        elif "nginx proxy manager" not in diagram.group(1).lower():
+            fail("architecture-doc-current",
+                 "ARCHITECTURE.md's Request Path diagram (section 4) no "
+                 "longer names Nginx Proxy Manager as the live reverse "
+                 "proxy.")
+
+    real_prod_compose = "docker-compose.hostinger.yml"
+    prod_headings = re.findall(
+        r"## (docker-compose(?:\.\w+)?\.ya?ml) \(([^)]*)\)", text)
+    running = [fn for fn, note in prod_headings
+               if "actually running" in note.lower()]
+    if running and running != [real_prod_compose]:
+        fail("architecture-doc-current",
+             "ARCHITECTURE.md's compose-file section (5) names %s as the "
+             "file actually running in production; %s is the real one "
+             "(RUNBOOK.md's 2026-09-20 diff against the live host file, "
+             "DEPLOY-VPS.md, RISKS.md RISK-0007)." %
+             (", ".join(running), real_prod_compose))
+    elif running and not os.path.exists(os.path.join(ROOT, running[0])):
+        fail("architecture-doc-current",
+             "ARCHITECTURE.md names %s as the file actually running in "
+             "production, but no such file exists in the repository root."
+             % running[0])
+    elif prod_headings and not running:
+        fail("architecture-doc-current",
+             "ARCHITECTURE.md's compose-file section (5) no longer marks "
+             "any docker-compose file as the one actually running in "
+             "production.")
 
 
 def gate_architecture_workflow_count_current() -> None:

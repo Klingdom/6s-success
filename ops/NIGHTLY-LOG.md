@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-24, scheduled operator cycle (widened gate_architecture_doc_current per the 13:4x/14:2x PM check-ins' own handoff; the change itself exposed a real CI-path-coverage gap, found and closed the same cycle)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean fast-forward (112 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0-7: every Now row done or Phil-gated, matching every prior cycle today's own read), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last four `NIGHTLY-LOG.md` entries. GitHub confirmed live: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
+
+**Picked up the one named, unbuilt handoff rather than a fresh cold-read**, since the backlog and GitHub were both exhausted: the 13:4x and 14:2x PM check-ins both explicitly asked for `gate_architecture_doc_current` to be widened to check ARCHITECTURE.md's reverse-proxy and compose-file claims, the same document's two other stale-claim classes it already covers. Read ARCHITECTURE.md sections 4 and 5 directly (not the prior cycles' own account of them): the Request Path diagram correctly names Nginx Proxy Manager, not Traefik, and section 5 correctly marks `docker-compose.hostinger.yml` "the one actually running." Added two new checks to the existing gate: the diagram must name Nginx Proxy Manager and must not name Traefik, and whichever compose file the doc calls "the one actually running" must be `docker-compose.hostinger.yml` and must actually exist on disk. Proved fail-then-pass directly, four new cases added to `ops/tests/test_gate_architecture_doc_current.py` (9/9 pass): a correct doc passes clean, a Traefik-as-live regression fails naming the proxy claim, a wrong-file-called-production regression fails naming both files, and a doc naming a compose file that does not exist on disk fails too.
+
+**The widening itself then failed a different, real gate**, `gate_ci_path_filter_covers_preflight_inputs`: the new code's `"docker-compose.hostinger.yml"` string literal is a genuine new dependency preflight.py's own AST-based scan picks up, and that file was not covered by `checks.yml`'s push-path filter (root-level, not `*.md`, not under any of the covered directories), so a future commit touching only that file would start no Checks run and this new gate would go unverified in CI, the exact three-times-already shape that gate's own docstring names. Not a false alarm: confirmed by reading `checks.yml`'s actual `paths:` list. Fixed by adding `docker-compose.hostinger.yml` to both `push.paths` and `pull_request.paths` in `checks.yml`. Re-ran the gate directly after: clean. Also re-ran `gate_checks_excludes_generated_files` and `gate_ops_test_suite_matches_gate_tests` (the two siblings most likely to react to a `checks.yml` edit): both clean.
+
+**Verified:** `ops/tests/test_gate_architecture_doc_current.py` (9/9), `ops/tests/test_gate_ci_path_filter_covers_preflight_inputs.py` (13/13, generic cases, unaffected by the specific file added), `python -c "import yaml; yaml.safe_load(...)"` on `checks.yml` (parses clean), `check_urls.py` (190/190), `audit_pages.py` (194/0 findings), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0 em/en dashes). Full `python ops/preflight.py` run to completion once before the `checks.yml` fix (correctly caught the real `ci-path-coverage` FAIL, 1 gate failed, 23 warnings, same standing set as every prior cycle today); a second full run was started after the fix to confirm the whole suite, not just the two gates touched, stays clean.
+
+**Went well:** the new gate's own regression proof worked exactly as designed, and the gate it broke caught a real, narrow gap in the same cycle that introduced it, before it ever reached a push.
+
+**Did not go well:** none; the CI-path-coverage failure was self-inflicted by this cycle's own change, not a pre-existing defect, and was closed in the same cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged. No backlog row newly unblocked.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_architecture_doc_current.py`, `.github/workflows/checks.yml`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 14:2x (previous work reverified finished; own preflight run stalled under load, killed rather than trusted blind)
 
 Reattached clean via fetch/unshallow/checkout/merge --ff-only, no reset. `BACKLOG-2026-09-07.md` sections 2-4: every row done or Phil-gated, matching the 13:5x operator's own read. GitHub confirmed live: 8 open issues unchanged (2 P0, rest decision/blocked-on-art). `EXECUTIVE-DASHBOARD-LIVE.md` and `OWNER-ACTIONS.md` agree: the one open constraint is the VPS redeploy, already Phil-gated (issue #35), nothing new.

@@ -49,8 +49,31 @@ NO_MONEY_LINE_DOC = (
     "- ~~no CI, no `.github` directory, no workflows~~ fixed.\n"
 )
 
+# 2026-09-24 widening: the reverse-proxy and compose-file claims a same-day
+# operator cycle found and fixed live but left ungated.
+PROXY_COMPOSE_GOOD_DOC = (
+    "# Architecture\n\n"
+    "# 4. The Request Path\n\n"
+    "```\n"
+    "browser -> Nginx Proxy Manager -> web container -> nginx -> file\n"
+    "```\n\n"
+    "# 5. Compose\n\n"
+    "## docker-compose.hostinger.yml (the one actually running)\n"
+    "text\n\n"
+    "## docker-compose.yml (unused, a generic template)\n"
+    "text\n"
+)
+PROXY_COMPOSE_TRAEFIK_DOC = PROXY_COMPOSE_GOOD_DOC.replace(
+    "Nginx Proxy Manager -> web", "Traefik -> web")
+PROXY_COMPOSE_WRONG_FILE_DOC = PROXY_COMPOSE_GOOD_DOC.replace(
+    "## docker-compose.hostinger.yml (the one actually running)",
+    "## docker-compose.hostinger.yml (unused)"
+).replace(
+    "## docker-compose.yml (unused, a generic template)",
+    "## docker-compose.yml (the one actually running)")
 
-def _run(doc, has_workflow, has_payment_link):
+
+def _run(doc, has_workflow, has_payment_link, compose_files=()):
     tmp = tempfile.mkdtemp()
     io.open(os.path.join(tmp, "ARCHITECTURE.md"), "w",
             encoding="utf-8").write(doc)
@@ -59,6 +82,8 @@ def _run(doc, has_workflow, has_payment_link):
         os.makedirs(wf_dir)
         io.open(os.path.join(wf_dir, "checks.yml"), "w",
                 encoding="utf-8").write("name: checks\n")
+    for fn in compose_files:
+        io.open(os.path.join(tmp, fn), "w", encoding="utf-8").write("x")
     site_dir = os.path.join(tmp, "site")
     os.makedirs(site_dir)
     body = "buy.stripe.com/abc123" if has_payment_link else "no link here"
@@ -115,12 +140,49 @@ def main() -> int:
         fails.append("the real committed ARCHITECTURE.md failed: %r" %
                       (preflight.FAIL,))
 
+    # 6. A correct proxy/compose doc, real compose files present: no fail.
+    r = _run(PROXY_COMPOSE_GOOD_DOC, has_workflow=True, has_payment_link=True,
+              compose_files=["docker-compose.hostinger.yml",
+                              "docker-compose.yml"])
+    if r:
+        fails.append("a correct proxy/compose doc was wrongly flagged: %r"
+                      % (r,))
+
+    # 7. The 2026-09-24 regression shape: diagram names Traefik as live.
+    #    Must fail, naming the proxy claim.
+    r = _run(PROXY_COMPOSE_TRAEFIK_DOC, has_workflow=True,
+              has_payment_link=True,
+              compose_files=["docker-compose.hostinger.yml",
+                              "docker-compose.yml"])
+    if not any("Traefik" in msg for _, msg in r):
+        fails.append("a Traefik-as-live regression was not caught: %r" %
+                      (r,))
+
+    # 8. The 2026-09-24 regression shape: compose section calls the wrong
+    #    file "the one actually running". Must fail, naming both files.
+    r = _run(PROXY_COMPOSE_WRONG_FILE_DOC, has_workflow=True,
+              has_payment_link=True,
+              compose_files=["docker-compose.hostinger.yml",
+                              "docker-compose.yml"])
+    if not any("docker-compose.yml" in msg and
+               "docker-compose.hostinger.yml" in msg for _, msg in r):
+        fails.append("a wrong-compose-file regression was not caught: %r"
+                      % (r,))
+
+    # 9. Doc names docker-compose.hostinger.yml as live, but the file does
+    #    not exist on disk. Must fail.
+    r = _run(PROXY_COMPOSE_GOOD_DOC, has_workflow=True, has_payment_link=True,
+              compose_files=["docker-compose.yml"])
+    if not any("no such file exists" in msg for _, msg in r):
+        fails.append("a missing production compose file was not caught: %r"
+                      % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_architecture_doc_current, 5/5 checks pass")
+    print("OK: gate_architecture_doc_current, 9/9 checks pass")
     return 0
 
 
