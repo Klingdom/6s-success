@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-24 23:19 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-24 23:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1118 of 3728 total |
-| Working tree | clean, in sync |
-| Last commit | `96a6c764` Merge branch 'main' of https://github.com/Klingdom/6s-succes |
+| Commits (7 days) | 1112 of 3732 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `3580ed4d` Merge concurrent PM check-in (nightly-log only, no file over |
 
 ## Product readiness
 
