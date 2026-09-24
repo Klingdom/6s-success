@@ -153,7 +153,10 @@ def plink_to_sku() -> dict:
     reissues links, so all four went stale at once on 2026-08-27, and seven of
     the nine buy-clicks ever recorded came back sku "unknown" simply because
     the link clicked was not one of those four. site/shop.html's product schema
-    is regenerated whenever the links are, and carries all 155.
+    is regenerated whenever the links are, so this always resolves against
+    the live catalogue rather than a count typed here, which would only go
+    stale again the next time an item is added or retired (as 21 were,
+    D-023, 2026-09-22).
     """
     if not os.path.exists(SHOP):
         return {}
