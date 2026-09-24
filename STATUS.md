@@ -16,7 +16,9 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-24, PM check-in. **The GHCR image is now fully current with HEAD; only the Hostinger redeploy click remains open.** A concurrent scheduled-operator cycle dispatched `publish-image.yml` directly (`workflow_dispatch` at commit `914c2881`, run 395, `success`); a concurrent PM check-in independently confirmed it via a working `GH_TOKEN` (rare for a sandboxed session), not merely citing the other cycle's own account: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` is clean. So every fix named below (`a16788fa`, `b0166730`, `b6b35ee7`) is already baked into the built image on GHCR; nothing further needs building or re-triggering. `git log 8e4c8e33..HEAD` is 60 commits as of this merge (was 59 one push earlier), but that count now measures undeployed work, not unbuilt work. Production itself is still confirmed only at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); full detail in `BLOCKER-001` below and `OWNER-ACTIONS.md` item 1b.
+**Last Updated:** 2026-09-24, PM check-in (30-minute triage twin). **Previous work independently re-verified as genuinely finished, not just cited: `preflight.py` run to completion (every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new), working tree clean, `main` already matched `origin/main` before this cycle's own edits.** `git log 8e4c8e33..HEAD` is now 66 commits (was 60 one merge earlier, growth being routine check-ins, not new site work); `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` re-run and still clean, so the GHCR image still carries every fix named below. Cold-read `ops/retire_stripe_skus.py` (17 mentions, next-lowest unread tier after the concurrent operator's sweep): correctly implemented, no defect found (refuses on any `metadata.ledgerium_plan` object per CLAUDE.md 36b, refuses to apply unless a live-site scan first confirms clean, records only Stripe-confirmed archival, never assumes). No backlog row is newly unblocked; 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. Only Phil's Hostinger redeploy click remains open; full detail in `BLOCKER-001` below and `OWNER-ACTIONS.md` item 1b.
+
+**Prior (2026-09-24, PM check-in): The GHCR image is now fully current with HEAD; only the Hostinger redeploy click remains open.** A concurrent scheduled-operator cycle dispatched `publish-image.yml` directly (`workflow_dispatch` at commit `914c2881`, run 395, `success`); a concurrent PM check-in independently confirmed it via a working `GH_TOKEN` (rare for a sandboxed session), not merely citing the other cycle's own account: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` is clean. So every fix named below (`a16788fa`, `b0166730`, `b6b35ee7`) is already baked into the built image on GHCR; nothing further needs building or re-triggering. `git log 8e4c8e33..HEAD` is 60 commits as of this merge (was 59 one push earlier), but that count now measures undeployed work, not unbuilt work. Production itself is still confirmed only at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`).
 
 **Prior (2026-09-24, PM check-in, concurrent with the above): re-derived the same 50-to-60 growth independently before merging and finding a sibling cycle had already narrowed the finding to "GHCR current, only the Hostinger click remains."** Also closed the standing four-file `wire_landmarks.py`/`wire_measure.py`/`wire_progressive.py`/`wire_pwa.py` cold-read lane this same slot (handed off across the 03:4x/04:1x/04:4x check-ins without being read): no live defect in any of the four; one real but non-live test-coverage gap named for whoever next touches `wire_pwa.py`, not fixed blind at the end of a PM slot: its own path-verification loop asserts every `href=` inside the PWA marker block resolves, but the service worker registration is inlined as a JavaScript string (`register("/sw.js")`), never an `href=`, so that path is asserted nowhere despite the loop's own "every icon and manifest path checked" claim; `site/sw.js` exists today so nothing is currently broken.
 
@@ -297,12 +299,14 @@ this session's own measurement.
 
 **Currently Deployed Build (last confirmed):** `5eba61fde231c1a7`
 **Confirmed At:** `2026-09-23T19:00:39Z` (`ops/deploy-verdict.json`)
-**Repository HEAD Build:** `bbf45e28` (60 commits ahead as of
-2026-09-24 05:4x PM check-in, re-derived after the 50-commit figure above
-went stale one cycle later; includes `a16788fa`, a live dead-nav-menu
-defect on 5 pages, `b0166730`, the finished 65/65 Stripe SKU retirement,
-and `b6b35ee7`, invalid JSON-LD fixed on both B2B articles; none of it
-yet known to be deployed)
+**Repository HEAD Build:** `6d1e472d` (66 commits ahead as of this
+PM check-in, re-derived fresh rather than repeating the 60-commit figure
+one merge earlier; includes `a16788fa`, a live dead-nav-menu defect on 5
+pages, `b0166730`, the finished 65/65 Stripe SKU retirement, and
+`b6b35ee7`, invalid JSON-LD fixed on both B2B articles. The GHCR image
+already carries all of it: `git diff --quiet 914c2881 HEAD -- site/
+Dockerfile` is clean, re-confirmed this check-in. Only the Hostinger
+redeploy click remains open, see `BLOCKER-001` below)
 **Release / Tag:** NONE, every deploy is tracked by commit SHA / image
 digest, 0 GitHub tags or releases exist
 **Deployment Method:** `ops/deploy.py`, run manually by a local session
@@ -346,7 +350,7 @@ answer (no admin/security-alerts scope confirmed either way).
 | Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; a local session holding the VPS deploy key runs it manually, confirmed routinely since 2026-09-01 (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`). **Corrected 2026-09-23:** this row previously implied the click may never have happened; it has, repeatedly, just never from a sandboxed session |
 | Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
 | Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
-| Production traceability | Tracked, 60 commits behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the three live defects sitting in it |
+| Production traceability | Tracked, 66 commits behind as of this check, GHCR image already current | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the three live defects sitting in it |
 | Repository hygiene | 7 open issues (5 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md`. Confirmed live via the GitHub API this cycle |
 
 ### GitHub Priority
@@ -904,6 +908,8 @@ time, so the marker and the repository agreed then.
 **Independently confirmed 2026-09-24 05:1x, PM check-in, same conclusion from a different angle: this cycle happened to hold a working `GH_TOKEN` (rare for a sandboxed session today) and read `publish-image.yml`'s history directly rather than trust the operator's own account. Same fact, verified rather than merely cited: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` returns clean, confirming the GHCR image already matches HEAD.** `git log 8e4c8e33..HEAD` is 59 commits, but that count now measures undeployed work only, not unbuilt work; the one remaining step is Phil's Redeploy click in Hostinger (or a session with the VPS key running `ops/deploy.py`), per `OWNER-ACTIONS.md` item 1b.
 
 **Re-confirmed 2026-09-24 05:4x/05:5x, two concurrent PM/operator cycles: unchanged, no new live defect.** `git log 8e4c8e33..HEAD` is 60 commits after this merge, growth being routine check-ins and log entries, not new site work. The two cycles collided on the same standing `wire_*.py` cold-read handoff (both closed it clean independently, folded into one account in section 1's "Last Updated" notes above rather than left as two competing claims) and merged rather than one overwriting the other. Still only Phil's Redeploy click (or a session with the VPS key) remains.
+
+**Re-confirmed 2026-09-24, this PM check-in: unchanged, no new live defect.** `git log 8e4c8e33..HEAD` is now 66 commits, growth again being routine check-ins, not new site work. `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` re-run and still clean, so the GHCR image still carries every fix named above. `preflight.py` run to completion: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Still only Phil's Redeploy click (or a session with the VPS key) remains.
 
 Impact:
 

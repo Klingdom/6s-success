@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 06:1x (30-minute triage twin, previous work confirmed finished by a real preflight completion, one stale figure closed, one file cold-read clean)
+
+Attached via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (72-commit fast-forward from a shallow/detached start, clean, no reset or force).
+
+**Previous work confirmed finished, not cited.** Ran `python ops/preflight.py` myself to full completion (about 4 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, two cron-cadence drifts, the sample-PDF spelling, site verification, deck/page-art gaps), none new. Working tree was clean and `main` already matched `origin/main` before this cycle's own edits.
+
+**Independently re-derived BLOCKER-001 rather than cite the last figure.** `git log 8e4c8e33..HEAD` is now 66 commits (was 60 at the last merge), growth being routine check-ins, not new site work. `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` re-run and still clean, confirming the GHCR image still carries every fix the gap names. Updated `STATUS.md` and `OWNER-ACTIONS.md`'s stale "60 commits" citations to the re-derived 66, without touching either file's own dated "Last measured" header (kept the established precedent of citing by commit rather than inserting a bare date, so `gate_owner_actions_last_measured_current` stays clean). Only Phil's Hostinger Redeploy click remains open, unchanged.
+
+**Cold-read `ops/retire_stripe_skus.py` (17 mentions, the next-lowest unread tier after the concurrent 05:5x operator cycle's own sweep).** Correctly implemented: refuses outright on any object carrying `metadata.ledgerium_plan` (CLAUDE.md 36b), refuses to `--apply` unless a fresh live-site scan first confirms no retired SKU or link is still served (the exact "eight days at $0" mistake this file's own docstring names), records only Stripe-confirmed archival rather than assumed, and correctly re-reads `ops/retired-skus.json` rather than taking a list on the command line so a typo cannot retire something still for sale. No defect found.
+
+**Checked, not assumed:** GitHub confirmed live via the API: 7 open issues, unchanged, all `decision`/`blocked-on-art`; issue #2's most recent comment (2026-09-18) already reflects the current 7-remaining count, nothing new since. `BACKLOG-2026-09-07.md` sections 2-6 again every row Done or Phil-gated. No mail credential, `inbox_agent.py` correctly UNCHECKED, not empty.
+
+**Went well:** re-deriving the commit gap and the GHCR-diff claim directly instead of repeating the last cycle's numbers; the cold-read method still finding genuinely unread files to check even this many cycles in.
+
+**Did not go well:** `STATUS.md`'s "Last Updated" stack has grown to 10 entries against its own stated "keep this stack at four" archival practice; not fixed this slot (moving entries into `STATUS-ARCHIVE.md` correctly needs checking the gates that scan the archive still resolve each moved claim, more than a 30-minute task), named here so it does not silently compound further.
+
+**Next for the operator:** the `STATUS.md` archive-rotation housekeeping named above is a genuine, sized, unblocked task if nothing else is queued. Otherwise continue the low-mention `ops/*.py` cold-read tier (`ops/build_corporate_asset.py`, 18 mentions, next after this cycle's file).
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck, this log entry. No price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 05:4x (concurrent with the operator cycle below; independently reached the same "wire_*.py lane clean" finding and a narrower BLOCKER-001 reading; folded in rather than left as a duplicate)
 
 NEXT FOR THE OPERATOR: cold-read `ops/build_kitchen_deck_pdf.py` and `ops/build_cover.py` next (12 and 15 mentions in this log, the two lowest-touched files under `ops/` that the concurrent 05:5x cycle below did not already reach), since both the four-file `wire_*.py` lane and the seven-file sweep below came back clean and `BACKLOG-2026-09-07.md` sections 2-6 are again every row done, HOLD or owner-gated.
