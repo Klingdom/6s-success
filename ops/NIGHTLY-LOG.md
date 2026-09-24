@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 04:1x (previous work finished; a real gate failure found and fixed, deploy gap re-sized again)
+
+Attached clean, 56-commit fast-forward, no reset. Previous PM cycle's own docs work was finished and pushed, but this is the first slot in a while where `preflight.py` actually failed: `nightly-log-ordering` FAILed on a misplaced entry, dated 2026-09-24 but appended to the physical end of this file, after every 2026-09-04 entry, 15,000+ lines from where "read the last four entries" would ever look. Traced to a scheduled operator cycle that took "last entries" to mean the end of the file rather than the top. Moved the entry to its correct chronological position (between the 03:1x and 03:4x PM check-ins, matching its commit order), verified the gate's own logic now passes, removed the duplicate. This was the actual unfinished work this slot, not a fresh sweep.
+
+Also re-sized `BLOCKER-001`: the 47-commit figure the last PM check-in wrote was already stale one cycle later. Re-derived: 50 commits, over 9 hours behind the last confirmed deploy. A third live defect has entered the gap since last check: `b6b35ee7`'s JSON-LD fix on both B2B articles is also sitting undeployed, on top of the nav-menu fix and the SKU retirement already named. Updated `STATUS.md` accordingly. Full `preflight.py` clean after the ordering fix (0 failures, 23 warnings, all previously diagnosed sandbox limits). 7 GitHub issues unchanged, all decision/blocked-on-art, none mine. No price or product touched.
+
+**Next:** BLOCKER-001 (a session with the VPS deploy key) is still the highest-priority item and will keep growing every cycle until redeployed. Operator: continue the cold-read lane named in the prior 03:4x entry.
+
 ## PM check-in, 2026-09-24 03:4x (previous work finished; the deploy gap re-sized and found to include a second live customer-facing defect, not just internal-consistency work)
 
 NEXT FOR THE OPERATOR: continue the standing cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-6 are again every row done or Phil-gated and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch.
@@ -19,6 +27,26 @@ Attached clean via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `o
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. `BLOCKER-001` is the real, current highest-priority item: a session with the VPS deploy key needs to redeploy, closing a live P0 mobile-nav defect on 5 pages.
 
 Pushed to main. `OWNER-ACTIONS.md`, `STATUS.md`, command deck and this log entry. No price or product touched, no new page. IndexNow not applicable.
+
+## 2026-09-24, scheduled operator cycle (invalid JSON-LD on both B2B articles found and fixed, silently excluding them from the feed; llms.txt's stale citation of the count fixed too, gate widened)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (53 commits). Backlog, roadmap, GOALS.md, CLAUDE.md read; all unblocked rows done or HOLD, 7 GitHub issues unchanged, 0 PRs. `preflight.py` clean before touching anything.
+
+**Verified, then found a real defect.** Cold-read `ops/build_feed.py`. `--check` showed 27 of 31 articles included, not 29 as `llms.txt` claimed. Traced: the two B2B articles (`what-a-5s-engagement-costs.html`, `why-5s-decays-after-six-months.html`) carry Article/FAQPage JSON-LD with values in single quotes, a Python literal, not valid JSON (`json.loads` failed both). So any real JSON-LD consumer, Google included, could not parse either block; the feed exclusion was a symptom, not the defect. Fixed both (hand-maintained, not generator-owned) via `ast.literal_eval`+`json.dumps`, touching only quote delimiters. Regenerated `feed.xml` (27 to 29), `sitemap.xml`. Corrected `llms.txt`'s stale "27 of the 29" to "29 of the 31".
+
+**Gated it.** `gate_llms_txt_current` checked the article total but never the feed sub-clause. Extended to re-derive both live from `build_feed.entries()`. Fail-then-pass proved twice directly, both restored byte-for-byte after.
+
+**Verified after:** full `preflight.py` clean, `check_urls.py` 190/190, `audit_pages.py` 194/0, `affiliate.py --check` 165 docs, `fix_dashes.py --check` 0/0, feed/llms tests pass. No mail credential. Dashboard regenerated. IndexNow refused to submit (no egress), correctly.
+
+**Went well:** cold-read found a real search-engine-facing defect, not a doc typo.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list unchanged. Production behind repository; no deploy key here, so pushed and awaiting deploy.
+
+Pushed to main. No price/product touched, no new page (2 fixed).
 
 ## PM check-in, 2026-09-24 03:1x (previous work finished, seventh independent reconfirmation; no new closeable item)
 
@@ -36309,23 +36337,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-24, scheduled operator cycle (invalid JSON-LD on both B2B articles found and fixed, silently excluding them from the feed; llms.txt's stale citation of the count fixed too, gate widened)
-
-**Did:** Unshallowed and fast-forwarded onto `origin/main` (53 commits). Backlog, roadmap, GOALS.md, CLAUDE.md read; all unblocked rows done or HOLD, 7 GitHub issues unchanged, 0 PRs. `preflight.py` clean before touching anything.
-
-**Verified, then found a real defect.** Cold-read `ops/build_feed.py`. `--check` showed 27 of 31 articles included, not 29 as `llms.txt` claimed. Traced: the two B2B articles (`what-a-5s-engagement-costs.html`, `why-5s-decays-after-six-months.html`) carry Article/FAQPage JSON-LD with values in single quotes, a Python literal, not valid JSON (`json.loads` failed both). So any real JSON-LD consumer, Google included, could not parse either block; the feed exclusion was a symptom, not the defect. Fixed both (hand-maintained, not generator-owned) via `ast.literal_eval`+`json.dumps`, touching only quote delimiters. Regenerated `feed.xml` (27 to 29), `sitemap.xml`. Corrected `llms.txt`'s stale "27 of the 29" to "29 of the 31".
-
-**Gated it.** `gate_llms_txt_current` checked the article total but never the feed sub-clause. Extended to re-derive both live from `build_feed.entries()`. Fail-then-pass proved twice directly, both restored byte-for-byte after.
-
-**Verified after:** full `preflight.py` clean, `check_urls.py` 190/190, `audit_pages.py` 194/0, `affiliate.py --check` 165 docs, `fix_dashes.py --check` 0/0, feed/llms tests pass. No mail credential. Dashboard regenerated. IndexNow refused to submit (no egress), correctly.
-
-**Went well:** cold-read found a real search-engine-facing defect, not a doc typo.
-
-**Did not go well:** nothing new.
-
-**Changing next cycle:** none.
-
-**Next:** standing Phil-blocked list unchanged. Production behind repository; no deploy key here, so pushed and awaiting deploy.
-
-Pushed to main. No price/product touched, no new page (2 fixed).
