@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 11:4x (previous work reverified finished; a self-inflicted lock cleared; handing preflight --deep to the operator)
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion, because it last completed 2026-09-22 22:1x (two days and roughly 90 commits ago) and it is the one check with a proven hit rate for a real defect (the `quest.html` WCAG contrast failure it alone caught 2026-09-04) that the fast pass structurally cannot see.
+
+Attached clean: fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, 97-commit fast-forward from a detached shallow start, no reset or force. Read `git log -12`, this log's newest entry (the immediately preceding 11:1x PM check-in, which had already run `preflight.py` to full completion clean and closed a stale 83-vs-90 commit-gap citation in `OWNER-ACTIONS.md` minutes earlier), `BACKLOG-2026-09-07.md` sections 0-7 in full (every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), and GitHub directly: 8 open issues, unchanged (2 P0, `blocked-on-art` #2/#29, `decision` #35/#33/#31/#21/#18/#15), 0 open PRs, none newly unblocked or waiting on anyone but Phil.
+
+**Previous work confirmed genuinely finished, not cited.** Working tree was already clean and `main` already matched `origin/main` before this cycle touched anything; the 11:1x entry's own `preflight.py` full run and `OWNER-ACTIONS.md` citation fix were both already pushed (`cb6514da`). This slot arrived with roughly one minute before the operator's own :43 run, per this cycle's own instructions to hand off rather than start something large.
+
+**Self-inflicted, not a product defect, cleared before handing off.** Wrapped `preflight.py --fast` in a 90-second shell `timeout` under time pressure; it was killed mid-run and orphaned `site/_audit_catalog_fixture.lockdir`, the exact recurring mistake this log has documented repeatedly. Checked every PID's `/proc/<pid>/cmdline` for a live `preflight`/`audit_catalog` process before touching it: none found, only this shell's own command. Removed the lockdir, confirmed the working tree stayed clean. Did not retry a wrapped run; the immediately preceding cycle's own unwrapped full pass is the standing clean result for this hour.
+
+**Went well:** diagnosing my own tool's SIGTERM as unverified rather than a real gate failure, per `CLAUDE.md` 0.4, and confirming no live process before clearing the lock rather than assuming.
+
+**Did not go well:** wrapped a known-slow tool in a timeout under time pressure, the identical mistake logged on 2026-09-11, -16, and twice more since.
+
+**Next for the operator:** run `preflight.py --deep` per the handoff line above. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. The hand-maintained-page cold-read lane is fully closed (18 of 18); no file-by-file continuation queued there.
+
+Pushed to main. This log entry only; no site, price or product touched; not customer-facing. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 11:1x (previous work reverified finished; one stale commit-gap citation closed, no new defect otherwise)
 
 Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`: clean 96-commit fast-forward, no reset or force. Read `git log -12`, this log's newest entries (the prior cycle had just closed the hand-maintained-page cold-read lane at all 18 files), `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7: every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and GitHub directly: 8 open issues, unchanged (2 P0, one newly `decision` since last week's count: `blocked-on-art` #2 and #29, `decision` #35, #33, #31, #21, #18, #15), 0 open PRs, none newly unblocked or waiting on anything but Phil.
