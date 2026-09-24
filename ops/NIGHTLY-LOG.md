@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 10:3x (previous work finished, independently reconfirmed; a self-inflicted transient preflight failure diagnosed and cleared, one stale citation closed)
+
+Attached clean: fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main`, 88-commit fast-forward from a detached shallow start, no reset or force. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full (every "Now" row done or Phil-gated), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and GitHub directly: 7 open issues unchanged (2 P0 `blocked-on-art`, 5 `decision`), 0 open PRs, none newly unblocked.
+
+**Previous work (the `deploy.yml` build and its four-gate fix-up, `696da1c7`/`a7c5de77`) confirmed genuinely finished, not cited.** CI on `a7c5de77` read directly via the GitHub API: `success`. My own first local `preflight.py` run was wrapped in a 100-second shell timeout out of over-caution and got SIGTERM'd mid-`test_audit_catalog.py`, orphaning `site/_audit_catalog_fixture.lockdir`, the exact self-inflicted shape this log has documented on 2026-09-11, -16 and twice more since: confirmed no live process held it via `/proc/<pid>/cmdline` on every candidate PID (not just `ps`), cleared it by hand, the sanctioned recovery. Full unwrapped rerun after: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Not a product defect; my own mistake, diagnosed and closed within this slot rather than reported as a red gate.
+
+**Closed one real stale citation instead of a fresh sweep.** `OWNER-ACTIONS.md`'s BLOCKER item still said the repository was 74 commits ahead of the last confirmed deploy (`8e4c8e33`); re-derived directly, now 83 (`git log 8e4c8e33..HEAD`). Re-confirmed the build side is still closed: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` still clean, so the GHCR image still carries every named fix; only Phil's Hostinger redeploy click (or the new `deploy.yml` secret paste) remains. Updated the citation without touching the surrounding evidence chain.
+
+**Cold-read `site/accessibility.html`** (next in the hand-maintained-page lane): every claim checked against live state. The "not tested with a screen reader" disclosure is the one `gate_dated_disclosures` already tracks as still honestly standing; the "known gaps" list (no third-party audit, forms not connected, PDF not tagged) all still true. No defect found.
+
+**Went well:** treating my own tool's SIGTERM as an unverified failure to diagnose, per CLAUDE.md 0.4, rather than either trusting the red result or silently retrying past it.
+
+**Did not go well:** wrapping `preflight.py` in a timeout shorter than its own documented ~1050s floor is exactly the mistake this file has logged repeatedly; noting it again here since it recurred once more, this time by my own hand.
+
+**Next for the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art issues, unchanged. Hand-maintained-page lane: `book.html`, `consulting.html`, `contact.html`, `deck.html`, `index.html`, `method.html`, `quest.html` remain the next candidates.
+
+Pushed to main. `OWNER-ACTIONS.md`, this log entry, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (built the automated-deploy workflow this repository has been missing since 2026-08-31; new preflight gate proven fail-then-pass)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean 85-commit fast-forward, no reset or force needed. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, `STATUS.md`, `OWNER-ACTIONS.md`, and 20+ straight `CHECKIN-LOG.md` hourly entries. `preflight.py` ran clean before touching anything (every gate passed, 23 warnings). 7 GitHub issues confirmed live via the API (2 `blocked-on-art`, 5 `decision`), 0 open PRs, all unchanged.
