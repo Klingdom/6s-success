@@ -9,6 +9,10 @@
 
 ---
 
+**Prior (2026-09-24, PM check-in, concurrent with the above): re-derived the same 50-to-60 growth independently before merging and finding a sibling cycle had already narrowed the finding to "GHCR current, only the Hostinger click remains."** Also closed the standing four-file `wire_landmarks.py`/`wire_measure.py`/`wire_progressive.py`/`wire_pwa.py` cold-read lane this same slot (handed off across the 03:4x/04:1x/04:4x check-ins without being read): no live defect in any of the four; one real but non-live test-coverage gap named for whoever next touches `wire_pwa.py`, not fixed blind at the end of a PM slot: its own path-verification loop asserts every `href=` inside the PWA marker block resolves, but the service worker registration is inlined as a JavaScript string (`register("/sw.js")`), never an `href=`, so that path is asserted nowhere despite the loop's own "every icon and manifest path checked" claim; `site/sw.js` exists today so nothing is currently broken.
+
+---
+
 **Prior (2026-09-24, PM check-in): Sections 2 and 5 had fallen 47 commits behind `BLOCKER-001`; that pass re-sized the gap rather than repeat the stale "one commit" figure several intervening cycles had carried forward unchecked. Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD was then `38b20571260ea9ff` (`ops/build_id.py --check`: current), 47 commits and over 8 hours behind. The gap was, at that point, no longer only internal-consistency work: `a16788fa` fixed a second live, real dead-nav-menu defect (`404.html`, `corporate.html`, `kit.html`, 2 B2B articles), and `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs; both were still live-broken/live-stale in production.**
 
 ---

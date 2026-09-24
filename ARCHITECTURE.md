@@ -142,15 +142,16 @@ true weeks ago and this section never said so, directly contradicting
 `RISKS.md`'s own tracking of the same two risks as CLOSED.** Payment exists
 (Stripe-hosted Payment Links, linked directly off product pages, e.g.
 `buy.stripe.com/...` on `book.html` and `consulting.html`; one real sale
-completed 2026-08-21, see `GOALS.md`) and CI exists (**10 workflows as of
-2026-09-13, corrected from 9: `social-drafts.yml` had shipped and was never
-added to this list**, under `.github/workflows/`: `checks.yml`,
-`fulfil-orders.yml`, `hourly-brief.yml`, `linkedin-drafts.yml`,
-`mobile-checks.yml`, `publish-image.yml`, `publish-mcp.yml`,
-`roadmap-report.yml`, `social-drafts.yml`, `status-email.yml`). Neither added a
-runtime: the payment mechanism is exactly the "hosted checkout" path section
-13 always recommended, and CI runs against the static output, it does not
-serve it.
+completed 2026-08-21, see `GOALS.md`) and CI exists (**11 workflows as of
+2026-09-24, corrected from 10: `deploy.yml` was added this cycle**, under
+`.github/workflows/`: `checks.yml`, `deploy.yml`, `fulfil-orders.yml`,
+`hourly-brief.yml`, `linkedin-drafts.yml`, `mobile-checks.yml`,
+`publish-image.yml`, `publish-mcp.yml`, `roadmap-report.yml`,
+`social-drafts.yml`, `status-email.yml`). Neither added a runtime: the
+payment mechanism is exactly the "hosted checkout" path section 13 always
+recommended, and CI runs against the static output; `deploy.yml` runs a
+credentialed SSH step only once `VPS_DEPLOY_KEY` is set as a GitHub secret
+(see `OWNER-ACTIONS.md`), otherwise it exits without touching production.
 
 - no backend or application server
 - no database of any kind
@@ -160,7 +161,7 @@ serve it.
 - ~~no analytics~~ **Self-hosted Umami analytics exists (`site/assets/js/measure.js` calls `window.umami.track()`), added after 2026-08-17. Still true as written: no third-party analytics, no advertising pixels, no session recording, no third-party trackers. `site/privacy.html` discloses this correctly ("self-hosted software running on our own server, not a third-party analytics service") and was not stale on this point. Verified 2026-09-11 by reading both files directly.**
 - no external network requests from any page, including fonts, which are self hosted
 - no CDN
-- ~~no CI, no `.github` directory, no workflows~~ **10 workflows exist, see above (corrected from a stale "9" here: the section above already counts 10 and names `social-drafts.yml` as the one this line had not been updated for). They build and check the site; nothing in the served page path changed.**
+- ~~no CI, no `.github` directory, no workflows~~ **11 workflows exist, see above. They build and check the site; nothing in the served page path changed.**
 - no staging environment
 
 Several of these are deliberate and good. Several are `RISKS.md` entries. They are not the same list, and the difference matters:

@@ -7,7 +7,9 @@
 ```
 push to main  ->  GitHub Action builds the image  ->  ghcr.io/klingdom/6s-success:latest
                                                             |
-                                          Hostinger Docker Manager pulls it (manual Redeploy click)
+                                    .github/workflows/deploy.yml pulls it and recreates the
+                                    container, once VPS_DEPLOY_KEY is set (see below); until
+                                    then, Hostinger Docker Manager pulls it (manual Redeploy click)
 ```
 
 The production host pulls a finished image. It does not clone this repository and it does not build anything, which means zero credentials touch the VPS. See `DEPLOY-VPS.md` for why this shape was chosen over the alternatives.
@@ -37,6 +39,16 @@ cycle that pushes a change must still say so plainly in
 `ops/NIGHTLY-LOG.md`: the image is built and published, and whether it is
 live is unconfirmed, not "awaiting a click" and not "deployed." Do not infer
 "deployed" from "CI succeeded."
+
+**Correction, 2026-09-24.** `.github/workflows/deploy.yml` now exists: it
+triggers the moment `publish-image.yml` finishes, installs `VPS_DEPLOY_KEY`
+(a GitHub Actions secret, not yet set) as `~/.ssh/6s_deploy` on the runner,
+and runs `python ops/deploy.py` exactly as a local session would. Until the
+secret is set (`OWNER-ACTIONS.md` "start here" item 0) the workflow runs,
+finds no key, and exits without touching production, so today's actual
+behaviour is unchanged: a real deploy still needs a session that holds the
+private key directly. The gap this closes is not "can a deploy happen" but
+"does it happen on every push without anyone remembering to run it."
 
 ## 2. Order of operations that must not be skipped
 

@@ -1,0 +1,73 @@
+name: Deploy to production
+
+# ops/deploy.py does what the Hostinger Redeploy button does: SSH in, pull the
+# freshly published image, recreate the container, then refuse to claim
+# success until production actually serves the new build id. Every cycle it
+# has ever run from has been a human's own machine or a concurrent session
+# that happened to be running there, because no sandboxed operator session
+# holds ~/.ssh/6s_deploy or has egress to the VPS. That gap is the single most
+# repeated line in ops/NIGHTLY-LOG.md and CHECKIN-LOG.md: dozens of cycles
+# ending in "production is behind the repository, deploy", none of them able
+# to do it. Commits landing without ever reaching a customer is exactly the
+# "source corrected, artifact never re-derived" defect class CLAUDE.md 0.2
+# and BACKLOG-2026-09-07.md section 7 both name as the dominant risk here.
+#
+# This closes the gap the same way publish-image.yml already closed the
+# "who builds the image" gap: move the one remaining manual step into a
+# workflow that runs itself, gated by a credential that lives in GitHub
+# Secrets rather than on any one laptop.
+#
+# It does nothing until VPS_DEPLOY_KEY is set (Settings -> Secrets and
+# variables -> Actions -> New repository secret, pasting the contents of
+# the existing ~/.ssh/6s_deploy private key). Until then this workflow runs,
+# finds no key, and exits 0 without touching production. See OWNER-ACTIONS.md.
+
+on:
+  workflow_run:
+    workflows: ["Publish site image"]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  # Never let two deploys race against the same container.
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    # ops/deploy.py's own SSH calls carry a 90s (reachability) and 420s
+    # (compose pull/up) timeout; this leaves headroom around both.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the deploy key, if one has been provided
+        id: setup_key
+        env:
+          VPS_DEPLOY_KEY: ${{ secrets.VPS_DEPLOY_KEY }}
+        run: |
+          if [ -z "$VPS_DEPLOY_KEY" ]; then
+            echo "No VPS_DEPLOY_KEY secret is set. Nothing to deploy from"
+            echo "here; production stays whatever a human or a local"
+            echo "session last set it to. See OWNER-ACTIONS.md to close"
+            echo "this permanently with a one-time paste."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_DEPLOY_KEY" > ~/.ssh/6s_deploy
+          chmod 600 ~/.ssh/6s_deploy
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy
+        if: steps.setup_key.outputs.skip != 'true'
+        # ops/deploy.py is the sole authority on what "deployed" means here:
+        # it pulls, recreates, then re-reads production's own build-id.txt
+        # and refuses to return success unless the live bytes match this
+        # commit's. A mismatch fails this job on purpose, the same way a
+        # human watching the Redeploy button would notice and try again.
+        run: python3 ops/deploy.py
