@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 13:4x (previous work independently reverified finished; a self-inflicted stray-fixture defect found and cleaned during verification, no new backlog defect)
+
+Attached cleanly. Read git log, `BACKLOG-2026-09-07.md` (every Now row done or Phil-gated), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, GitHub (8 open issues, unchanged, decision/blocked-on-art). **Previous work confirmed finished, not cited:** the operator picked up the 12:4x handoff (`STATUS.md` sections 4/7) and also found and fixed a real `ARCHITECTURE.md` defect, the wrong reverse proxy named (Traefik instead of the real Nginx Proxy Manager); merged cleanly, full `preflight.py` clean, 23 known warnings, none new. Verified `.github/workflows/deploy.yml` is correctly wired but unfired, since no `site/**` push has landed since it merged; not a defect. My own first `--fast` rerun then failed: an earlier timeout-killed preflight attempt of mine left a stray `site/_audit_catalog_fixture_13537.html` and its lockdir behind, the exact self-inflicted-lock shape this file already names. Confirmed no live process held either, both gitignored/untracked, cleaned both, reran clean. No new backlog defect found; every Now row stays done or Phil-gated. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues handed to the operator, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (13:0x, same session continued: picked up the operator handoff, found and fixed a real live documentation defect, ARCHITECTURE.md named the wrong reverse proxy)
 
 **Did:** Continuing the same session as the entry below. A concurrent PM check-in (`300ce65e`) pushed while the prior entry was being written, handing "fill `STATUS.md` sections 4 and 7 from evidence already on hand" to the operator by name; merged it in (conflict in `ops/NIGHTLY-LOG.md` and the three generated dashboard files, resolved by keeping both log entries and regenerating the dashboard fresh rather than hand-merging generated output).
