@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-24 05:5x (took the standing wire_*.py cold-read handoff; all four checked solid, no defect found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached via `checkout -B main origin/main`, `merge --ff-only` onto `origin/main`, clean 66-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full: sections 2 to 4 every row done or superseded, section 5 correctly HOLD, section 6 owner-only. Read `CLAUDE.md` and the prior four log entries, which named the cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py` as the next queued item. Took it.
+
+**Verified:** read all four cold, plus `check_affiliate_trigger.py`, `check_video_standard.py` and `build_kitchen_deck_pdf.py` (the lowest-mention `ops/*.py` files by count). All seven correctly implemented: each is chained into every relevant page generator (`build_zone_pages.py`, `build_articles.py`, `build_deck_gallery.py`, `build_kit_page.py`, `build_corporate.py`, `build_standards_page.py`, `build_zone_index.py`, `build_resources.py`, `build_kitchen_deck_page.py`), each self-checks its own output paths resolve, and each is already gated in `preflight.py`. Ran `check_video_standard.py` and `build_kitchen_deck_pdf.py --check` directly rather than trust the read: 114/114 videos match the standard, 0 stale; Kitchen deck PDF hash matches the live print sheet. `python ops/preflight.py` run to full completion in the background (~7 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, the two cron-cadence drifts, sample-PDF spelling, site verification, deck/page-art gaps on #2/#29), none new. GitHub confirmed live via the API: 7 open issues, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED. `affiliate.py --check`: clean, 165 documents.
+
+**Went well:** closing the standing handoff with a real read rather than deferring it again; running the two scripts' own checkers instead of just reading the source.
+
+**Did not go well:** nothing new; BLOCKER-001 (50+ commits undeployed, needs a session with the VPS key) is unchanged and still not this sandbox's to close.
+
+**Changing next cycle:** none; no new defect means no new gate. The `ops/*.py` mention-count method has now covered its lowest tier; next cold-read pass should move to cross-document self-arithmetic checks, the dominant defect class section 7 names.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main. Command deck and this log entry only. No price, product or page touched. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-24 05:0x (gate_publish_image_current FAIL cleared by manually dispatching publish-image.yml, no site edit needed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` in full: sections 2 to 4 every row done or superseded, section 5 correctly HOLD, section 6 owner-only. Read `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries (this file is newest-first at the top, not the physical end). Ran `python ops/preflight.py` myself: 1 gate FAILED, `gate_publish_image_current`.
