@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-24 09:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-24 10:49 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
+| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1127 of 3639 total |
+| Commits (7 days) | 1128 of 3642 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a8c2f51d` PM check-in: reconfirm previous work finished, hand hand-mai |
+| Last commit | `8acf66c5` Hourly check-in record |
 
 ## Product readiness
 
@@ -62,6 +62,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** (0 min). All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed.
+- **#35** Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
@@ -72,6 +73,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | # | Title | Labels |
 |---|---|---|
+| 35 | Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
 | 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |

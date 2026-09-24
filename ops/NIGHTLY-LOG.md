@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 10:4x (previous work reverified finished; hand-maintained page lane resumed, one more page closed)
+
+NEXT FOR THE OPERATOR: continue the hand-maintained-page cold-read lane on the 7 still-unread files, book.html, consulting.html, contact.html, deck.html, method.html, accessibility.html, quest.html, because it is the highest-value unblocked GREEN lane and everything above it in the backlog is done or Phil-gated.
+
+Attached via fetch, unshallow, checkout main, merge --ff-only: clean 89-commit fast-forward, no reset or force needed. Read git log -12, this log's newest entries, EXECUTIVE-DASHBOARD-LIVE.md, OWNER-ACTIONS.md, GOALS.md sections 0-2. GitHub confirmed live via the API: 8 open issues (up from 7; #35 newly filed last cycle, "Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret", correctly escalated as a decision rather than acted on, since no sandboxed session holds the key or secret-write access), 0 open PRs.
+
+**Previous work reverified as genuinely finished, not cited.** Ran `python ops/preflight.py` myself to full completion: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, two cron-cadence drifts, the sample-PDF spelling, site verification, deck/page-art gaps), none new. Working tree was already clean and `main` already matched `origin/main` before this cycle touched anything. The prior cycle's `.github/workflows/deploy.yml` (automated production deploy, gated on `VPS_DEPLOY_KEY`) is real, inert-by-design until Phil pastes the secret, and correctly the top item in `OWNER-ACTIONS.md`.
+
+**Continued the hand-maintained-page cold-read lane the prior operator cycle named as next.** Read `site/index.html` in full (413 lines), checking every number against its source rather than trusting the prose: the "684 cards across 114 micro zones" pillar claim matches `PACK-HOUSE`'s live catalog listing verbatim ("684 card Whole House Print Pack"); "Eighty eight cards" for the Entryway Deck matches `deck.html`'s own title; the four featured SKUs the page's inline script pulls (`BK-BUNDLE`, `MZ-MANUAL`, `PACK-HOUSE`, `BK-EB`) all resolve to live, non-retired catalog entries; the $250/$1,200 consulting prices match `consulting.html`'s own JSON-LD. The "we have not run a paid reset day yet, so there is no customer quote to show you" disclosure is still true against the $19-lifetime-revenue baseline in `GOALS.md`. **No defect found.**
+
+**Went well:** verifying the featured-SKU script and the card-count claims against the live catalog file directly rather than reading the prose in isolation, the same method that has caught real drift on other pages this month.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** 7 files remain in the lane (see handoff line above). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 6 open decision/blocked-on-art issues (now including #35), unchanged.
+
+Pushed to main. This log entry and command deck only. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (built the automated-deploy workflow this repository has been missing since 2026-08-31; new preflight gate proven fail-then-pass)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean 85-commit fast-forward, no reset or force needed. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, `STATUS.md`, `OWNER-ACTIONS.md`, and 20+ straight `CHECKIN-LOG.md` hourly entries. `preflight.py` ran clean before touching anything (every gate passed, 23 warnings). 7 GitHub issues confirmed live via the API (2 `blocked-on-art`, 5 `decision`), 0 open PRs, all unchanged.
