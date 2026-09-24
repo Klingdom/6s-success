@@ -32,11 +32,11 @@ Pushed to main. `OWNER-ACTIONS.md`, `STATUS.md`, command deck and this log entry
 
 **Went well:** cold-read found a real search-engine-facing defect, not a doc typo.
 
-**Did not go well:** first wrote this entry appended at the physical end of the file instead of prepended at the top, exactly the trap `gate_nightly_log_ordering`'s own docstring names as a recurring failure mode; CI's `checks.yml` caught it and failed, as designed. Moved here on the fix.
+**Did not go well:** first wrote this entry appended at the physical end of the file instead of prepended at the top, exactly the trap `gate_nightly_log_ordering`'s own docstring names as a recurring failure mode; CI's `checks.yml` and `publish-image.yml` both caught it and failed, as designed, confirmed directly against both runs' job logs. Fixed by rebasing onto a concurrent push and moving the entry here; re-verified locally (`gate_nightly_log_ordering` and the full `preflight.py` both clean on the corrected tree). Consequence: since the fix commits touch only `ops/NIGHTLY-LOG.md` and the command deck, neither path triggers `checks.yml` or `publish-image.yml` (deliberate path filters), so `gate_publish_image_current` now correctly FAILs, loudly, exactly as its own docstring says it should outside that workflow's own run: HEAD's `site/` differs from the last commit actually published, because the run that would have published it failed on this same ordering bug. This is the same underlying deploy gap already tracked as `BLOCKER-001`, not a new one; it clears the next time any `site/**`- or `Dockerfile`-touching commit lands and `publish-image.yml` succeeds, which this sandbox cannot force without a real site-content change to make.
 
-**Changing next cycle:** none; the existing gate did its job. Reconfirms for any future cycle: this file is newest-first at the top; the physical end is a legacy oldest-first section that stops in early September.
+**Changing next cycle:** none; the existing gates did their job, including one (`gate_publish_image_current`) proving it can loudly outlive a fix that does not itself retrigger the workflow it is about. Reconfirms for any future cycle: this file is newest-first at the top; the physical end is a legacy oldest-first section that stops in early September.
 
-**Next:** standing Phil-blocked list unchanged. Production behind repository; no deploy key here, so pushed and awaiting deploy.
+**Next:** standing Phil-blocked list unchanged. Production behind repository; no deploy key here, so pushed and awaiting deploy. `gate_publish_image_current`'s new FAIL is the same gap, more precisely stated, and self-resolves on the next real `site/**` commit.
 
 Pushed to main. No price/product touched, no new page (2 fixed).
 
