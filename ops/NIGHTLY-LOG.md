@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 07:1x (30-minute triage twin; previous work confirmed finished, one small live gap closed instead of taking the operator's queued task)
+
+Attached via fetch, unshallow, checkout -B main origin/main, ff-only merge onto origin/main, clean 74-commit fast-forward from a shallow/detached start. Reread the last two log entries, BACKLOG-2026-09-07.md sections 2 to 6 (every unblocked row Done or Phil-gated, nothing newly unblocked), EXECUTIVE-DASHBOARD-LIVE.md and GitHub (7 open issues, unchanged, all decision/blocked-on-art).
+
+**Previous work (06:4x twin) confirmed genuinely finished, not cited.** Ran python ops/preflight.py myself to completion (about 4 minutes): every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Independently re-confirmed the GHCR image is still current: git diff --quiet 914c2881 HEAD -- site/ Dockerfile is clean, so only Phil's Hostinger redeploy click remains (OWNER-ACTIONS.md item 1b, unchanged).
+
+**Did not take the STATUS.md archive-rotation task the 06:4x cycle sized and handed to the operator.** That cycle judged it too large for a 30-minute slot because each moved Prior entry needs its own scanning gate re-verified; the 07:43 operator has not run yet, so taking it now would either rush a documentation-integrity fix or collide with the operator mid-flight. Left it exactly as handed off.
+
+**Closed a real, small, live gap instead.** A prior PM check-in (05:1x) had named but not fixed a genuine test-coverage hole in ops/wire_pwa.py: its own end-of-run self-check asserts every href= inside the PWA marker block resolves, but the service worker registration (register("/sw.js")) is a JavaScript string, never an href=, so that path was asserted nowhere despite the script's own print claiming "every icon and manifest path checked." Nothing was live-broken (site/sw.js exists today), but the assertion could not have caught it if it ever went missing. Fixed: the self-check now also parses .register("...") calls inside the block and asserts the target exists. Proved fail-then-pass directly: moved site/sw.js aside, reran, watched it fail by name citing quest.html and the missing path; restored, reran clean, confirmed idempotent (git diff on site/ empty both times). wire_pwa.main() is already chained into every page generator's own main(), so this stronger check now runs on every regeneration without any new wiring.
+
+**Not fixed this slot:** the 1,145 commits in the last 7 days against $0 revenue moved (ops/state.json, CHECKIN-LOG.md's repeated "nothing measurable moved" entries) is a pattern, not a single defect a PM slot can close; GOALS.md section 0 already names it and the constraint (traffic) is already the backlog's own top-priority lens. Flagging here rather than re-measuring it again with no action attached, per CLAUDE.md 0.2.
+
+Pushed to main. ops/wire_pwa.py, this log entry, command deck. No price, product or page touched (no site/ output changed). IndexNow not applicable.
+
+**Next for the operator (07:43):** the STATUS.md archive-rotation task from the 06:4x entry stands unchanged, still the highest-value unblocked item if nothing else is queued.
+
 ## PM check-in, 2026-09-24 06:4x (30-minute triage twin; previous work confirmed finished, one documentation-integrity gap sized and handed off)
 
 NEXT FOR THE OPERATOR: rotate STATUS.md's oldest "Last Updated" entries into STATUS-ARCHIVE.md and re-verify the five gates scanning both for stale claims, because the stack is now 10 entries against its own stated four-entry policy, and no higher-priority backlog row is unblocked.

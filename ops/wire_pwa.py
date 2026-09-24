@@ -100,7 +100,14 @@ def main() -> int:
                       else os.path.normpath(os.path.join(os.path.dirname(f), href)))
             assert os.path.exists(target), \
                 f"{os.path.relpath(f, ROOT)} references {href}, which is not there"
-    print("  every icon and manifest path checked, all resolve")
+        # The service worker path is a JS string inside <script>, never an
+        # href=, so the loop above never sees it. Checked separately here or
+        # it goes unasserted despite the print below claiming otherwise.
+        for sw in re.findall(r'\.register\("([^"]+)"\)', blk.group(0)):
+            target = os.path.join(SITE, sw.lstrip("/"))
+            assert os.path.exists(target), \
+                f"{os.path.relpath(f, ROOT)} registers {sw}, which is not there"
+    print("  every icon, manifest and service worker path checked, all resolve")
     return 0
 
 
