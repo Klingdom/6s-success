@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-24 10:54",
- "commit": "ebf025a4",
- "commit_msg": "Close the hand-maintained-page cold-read lane, all 18 files now read",
- "commits_7d": 1130,
- "commits_total": 3644,
+ "generated": "2026-09-24 10:59",
+ "commit": "f5e16061",
+ "commit_msg": "Merge concurrent PM check-in into this cycle",
+ "commits_7d": 1132,
+ "commits_total": 3646,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "1",
+ "ahead": "2",
  "deploy": {
   "reachable": false,
   "assets": [],
