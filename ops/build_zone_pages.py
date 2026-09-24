@@ -322,6 +322,27 @@ def _slug(t):
     return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
 
 
+def surface_anchor(i, surface):
+    """A stable id for one cleaned surface, used by BOTH the visible list and
+    the HowToStep that describes it.
+
+    Until 2026-09-24 every one of the 749 surface methods on this site was
+    addressed by the same anchor, #shine-detail, one per zone. So a reader
+    searching for how to clean a range hood filter, and an answer engine
+    trying to cite it, had nothing to link to smaller than a page titled "How
+    to organize the kitchen stove area". The instruction was published and
+    unfindable, which is the most expensive way to own content.
+
+    The position prefix guarantees uniqueness even when two surfaces in one
+    zone slug to the same string, which the corpus does contain (several
+    zones clean "the shelves" more than once at different heights). Derived
+    in one place because the JSON-LD and the markup must agree; an anchor in
+    structured data that does not exist on the page is worse than the shared
+    anchor it replaced.
+    """
+    return "clean-%d-%s" % (i, _slug(surface)[:60])
+
+
 def _live_catalog_field(sku, field):
     src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                   encoding="utf-8").read()
@@ -2399,7 +2420,12 @@ def zone_page(room, zone, header, footer, all_rooms=()):
             for j, sf in enumerate(surfaces, 1):
                 sub.append({"@type": "HowToStep", "position": j,
                             "name": _cap(_clean(sf["surface"]))[:110],
-                            "url": url + "#shine-detail",
+                            # Its OWN anchor, not the shared section one.
+                            # All 749 steps previously carried the same URL,
+                            # which told a search engine that six different
+                            # methods all lived at one place.
+                            "url": url + "#" + surface_anchor(
+                                j, sf["surface"]),
                             "text": _clean(sf["method"])[:900]})
             steps.append({"@type": "HowToSection", "position": i,
                           "name": "Shine",
@@ -2678,11 +2704,25 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                            '<b>Carry these in with you.</b> '
                            + esc("; ".join(pu)) + '.</p>')
             out.append('<ol class="shine-surfaces">')
-            for sf in surfaces:
-                out.append(f'<li style="margin:0 0 14px">'
+            for _i, sf in enumerate(surfaces, 1):
+                # Each surface gets its own id so it can be linked to
+                # directly, by the cleaning index, by a reader sharing "how I
+                # clean the hood filter", and by an answer engine citing one
+                # method rather than a whole organising page. The same id is
+                # used as the HowToStep url in the structured data above.
+                _a = surface_anchor(_i, sf["surface"])
+                out.append(f'<li id="{_a}" style="margin:0 0 14px">'
                            f'<b>{esc(_cap(sf["surface"]))}'
                            f'</b><br>{esc(sf["method"])}</li>')
             out.append('</ol>')
+            # Out to the index of every other surface in the house. A reader
+            # who has just cleaned the hood filter is the likeliest person in
+            # the world to want the method for the next thing, and until this
+            # page existed there was nowhere to send them. It is also the
+            # only inbound link the index has from anywhere topical.
+            out.append('<p><a href="../how-to-clean-anything.html">'
+                       'How to clean anything else in the house, surface by '
+                       'surface</a>.</p>')
         if shine.get("inspect_as_you_clean"):
             v = shine["inspect_as_you_clean"]
             items = v if isinstance(v, list) else [v]
