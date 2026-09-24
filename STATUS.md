@@ -285,11 +285,11 @@ this session's own measurement.
 
 **Currently Deployed Build (last confirmed):** `5eba61fde231c1a7`
 **Confirmed At:** `2026-09-23T19:00:39Z` (`ops/deploy-verdict.json`)
-**Repository HEAD Build:** `2904fb09` (93 commits ahead as of this
-PM check-in, re-derived fresh rather than repeating the 66-commit figure
-several cycles earlier, which had gone stale in this section specifically
-because no gate re-checks it here, unlike the build_id citations in
-`BLOCKER-001` and "Production Knowledge" below; includes `a16788fa`, a live
+**Repository HEAD Build:** `b7a36ca1` (95 commits ahead as of this
+scheduled operator cycle, re-derived fresh rather than repeating the
+93-commit figure one merge earlier, which had gone stale in this section
+specifically because no gate re-checks it here, unlike the build_id
+citations in `BLOCKER-001` and "Production Knowledge" below; includes `a16788fa`, a live
 dead-nav-menu defect on 5 pages, `b0166730`, the finished 65/65 Stripe SKU
 retirement, and `b6b35ee7`, invalid JSON-LD fixed on both B2B articles. The
 GHCR image already carries all of it: `git diff --quiet 914c2881 HEAD --
@@ -1346,7 +1346,7 @@ Human edits should not be required for routine status maintenance.
 
 **Autonomous Execution Readiness:** FULL FOR GREEN-BAND WORK. AS OF 2026-09-15, THE AUTHORITATIVE QUEUE IS `BACKLOG-2026-09-07.md`, NOT `BACKLOG-2026-H2.md` (SUPERSEDED ON ORDERING, SECTION 21 ABOVE). SECTIONS 2 THROUGH 6 OF THAT FILE ARE, AS OF THIS DATE, ALL EITHER DONE OR EXPLICITLY GATED ON PHIL (ALL 8 OPEN GITHUB ISSUES CARRY A `P0`, `decision` OR `blocked-on-art` LABEL AS OF 2026-09-18, UP FROM 7 AFTER `#32` AND `#33` WERE OPENED SINCE 2026-09-15). WHEN THAT IS TRUE, THE ESTABLISHED FALLBACK IS A COLD READ OF A LOW-MENTION `ops/*.py` FILE OR HAND-MAINTAINED DOCUMENT, VERIFIED AGAINST THE LIVE OR GENERATED ARTIFACT RATHER THAN TRUSTED ON SIGHT; MOST REAL DEFECTS FOUND THIS MONTH CAME FROM THAT PRACTICE, NOT FROM THE BACKLOG.
 
-**Production Knowledge, corrected 2026-09-24, PM check-in: this paragraph was four days behind BLOCKER-001's own account in section 17 above.** LAST CONFIRMED CURRENT 2026-09-23T19:00:39Z (build `5eba61fde231c1a7`, per `ops/deploy-verdict.json`, a session with real production access that finished the Stripe SKU retirement and redeployed), SUPERSEDING the `7c765b634045a89c` (2026-09-18T17:20:47Z) reading this paragraph previously named as current. `site/build-id.txt` at HEAD now reads a different, newer id again: 93 commits have landed since that confirmation (`git log 8e4c8e33..HEAD`, re-derived directly this cycle, not carried from a prior count), but the build side of that gap is closed, not open: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` is clean, re-run this cycle, so the GHCR image already carries every fix named in BLOCKER-001. Only Phil's Hostinger Redeploy click (or a session holding the VPS key) remains, per `OWNER-ACTIONS.md` item 0/1b. NO OPERATOR SANDBOX HOLDS THE DEPLOY KEY'S PRIVATE HALF OR EGRESS TO THE VPS, SO NEITHER A FRESH CHECK NOR A REDEPLOY IS POSSIBLE FROM HERE; TREAT VPS ACCESS AS PER-SESSION, NOT UNIFORMLY AVAILABLE.
+**Production Knowledge, re-derived 2026-09-24, scheduled operator cycle: the 93-commit figure below was one merge stale within a single cycle, the same drift this paragraph itself keeps recording.** LAST CONFIRMED CURRENT 2026-09-23T19:00:39Z (build `5eba61fde231c1a7`, per `ops/deploy-verdict.json`, a session with real production access that finished the Stripe SKU retirement and redeployed). `site/build-id.txt` at HEAD now reads `5be8798496029708`: 95 commits have landed since that confirmation (`git log 8e4c8e33..HEAD`, re-derived directly this cycle, not carried from the prior 93), but the build side of that gap is closed, not open: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` is clean, re-run this cycle, so the GHCR image already carries every fix named in BLOCKER-001. Only Phil's Hostinger Redeploy click (or a session holding the VPS key) remains, per `OWNER-ACTIONS.md` item 0/1b. NO OPERATOR SANDBOX HOLDS THE DEPLOY KEY'S PRIVATE HALF OR EGRESS TO THE VPS, SO NEITHER A FRESH CHECK NOR A REDEPLOY IS POSSIBLE FROM HERE; TREAT VPS ACCESS AS PER-SESSION, NOT UNIFORMLY AVAILABLE.
 
 **Business Data Knowledge, corrected 2026-09-23, PM check-in: this row was nine days and two corrections behind section 9's own table above it.** ONE MEASURED TRANSACTION EVER ($19 GROSS, 2026-08-21, A REFERRAL). CURRENT TRAFFIC BASELINE (`GOALS.md`, MEASURED 2026-09-23 12:50 UTC BY A DIRECT UMAMI DATABASE READ): 68 VISITORS ACROSS 160 VISITS AND 813 PAGEVIEWS IN 30 DAYS. THE 7 SEPT AUTOMATED SESSION (431 PAGEVIEWS) HAS NOW ROLLED OUT OF THE 30-DAY WINDOW, WHICH IS MOST OF WHY THE COUNT FELL FROM 76, SO THIS FIGURE IS VERY NEARLY ALL HUMAN. IN UMAMI `session_id` IS THE VISITOR AND PERSISTS ACROSS DAYS, THE VISIT IS `visit_id`. STRANGERS' BUY-CLICKS SINCE 7 SEPT: 0 (`LEARNINGS.md` LRN-0010). THE EMAIL LIST IS READABLE, NOT UNREADABLE, AND MEASURED EMPTY: 0 SUBSCRIBERS (ISSUE #15, STILL UNRESOLVED, BLOCKS CAPTURE ENTIRELY).
 
