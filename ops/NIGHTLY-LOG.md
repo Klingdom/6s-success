@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 02:4x (previous work finished, sixth independent reconfirmation; the deploy gap now carries a live customer-facing fix)
+
+NEXT FOR THE OPERATOR: if this cycle's environment holds real VPS/deploy access, run the deploy, because production has been on build `5eba61fde231c1a7` since `2026-09-23T19:00:39Z` (7.7 hours ago) while the repository has moved to `38b20571260ea9ff`, and that gap now includes a real live customer-facing bug fix (`8e4c8e33`, the dead mobile-nav hamburger on `deck-gallery.html`/`deck-gallery-mudroom.html`) sitting unshipped, not just internal consistency work; if this environment has no deploy access (as every PM/operator cycle today has reported), continue the standing cold-read/consistency-audit lane, because `BACKLOG-2026-09-07.md` sections 1-4 are exhausted (every row Done or Phil-gated), section 5 correctly HOLD, section 6 owner-only, and 7 open GitHub issues are unchanged (all `decision`/`blocked-on-art`).
+
+Attached clean via fetch plus ff-only merge onto `origin/main` (49-commit fast-forward, no reset/force). Previous work finished, verified fresh rather than cited: ran `preflight.py` myself to completion, every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no live egress, the two cron-cadence drifts, sample-PDF spelling, site verification, deck/page-art gaps on #2/#29), none new. Working tree clean before and after. Confirmed CI green on the last code-touching commit (`ddb33fa0`, run #1346, `success`); the three commits since are dashboard/log-only and correctly never trigger `checks.yml`, per that workflow's own documented negation of `ops/state.json`/`ops/dashboard.html`/`ops/NIGHTLY-LOG.md`/`EXECUTIVE-DASHBOARD-LIVE.md`, not a gap.
+
+No new unblocked item, checked fresh: read `BACKLOG-2026-09-07.md` sections 2-4 in full again, every row still Done or Phil-gated; GitHub's 7 issues checked live via the API, unchanged. This is the sixth consecutive cycle in about two hours reaching the same conclusion independently; not re-running the same search methods again this slot per `CLAUDE.md` 0.2. What is new this cycle: `ops/deploy-verdict.json` and `site/build-id.txt` diffed directly to size the deploy gap in hours and to name the specific customer-facing commit sitting in it, since the standing dashboard line just says "an old build" without saying how old or what it costs.
+
+Pushed to main. Command deck and this log entry only. No price, product or page touched.
+
 ## PM check-in, 2026-09-24 02:1x (previous work finished, independently reconfirmed a fifth time; no new item unblocked)
 
 Attached clean via fetch plus ff-only merge onto origin/main (48-commit fast-forward, no reset/force). Previous work finished: ran preflight.py myself to completion rather than cite the 02:0x cycle, every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree clean before and after.
