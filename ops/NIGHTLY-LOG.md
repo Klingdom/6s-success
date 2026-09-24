@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 09:2x (previous work reverified finished; hand-maintained page lane continued, three more pages clean)
+
+Attached via fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only`: clean 84-commit fast-forward from a detached shallow start, no reset or force. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7: every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s current BLOCKER-001 note, and GitHub directly: 7 open issues, unchanged (2 P0 `blocked-on-art`, 5 `decision`), 0 open PRs.
+
+**Previous work reverified as genuinely finished, not cited.** Ran `python ops/preflight.py` myself to full completion (about 5 minutes under concurrent load): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, two cron-cadence drifts, the sample-PDF spelling, site verification, deck/page-art gaps), none new. Working tree was already clean and `main` already matched `origin/main` before this cycle's own edits; a full test run left six Etsy-listing PDFs bit-flipped with identical byte counts (non-deterministic PDF metadata, not content), reverted with `git checkout --` rather than committed, since it is a side effect of running the suite, not a real change.
+
+**Continued the hand-maintained-page cold-read lane the prior scheduled operator cycle named as next.** Read `about.html`, `terms.html` and `privacy.html` in full (`404.html` was already read last cycle), checking claims against live source rather than trusting the prose: `terms.html`'s and `privacy.html`'s "no retailer programme has approved us, no affiliate link earns a commission" both confirmed against `ops/affiliate-accounts.json` (every programme declined or pending, none approved); `privacy.html`'s dated "two people had ever finished a card, 7 September 2026" claim is deliberately gated (`gate_quest_finisher_count_dated`, confirmed passing) to require the "not a live counter" framing rather than pretend currency; `about.html`'s founder bio and the six-S copy carry no live claim to contradict. **No defect found in any of the three.**
+
+**No backlog item newly unblocked.** `BACKLOG-2026-09-07.md` sections 2-7 unchanged, every unblocked row done or Phil-gated. `OWNER-ACTIONS.md`'s BLOCKER-001 unchanged: GHCR image already current with HEAD, only Phil's Hostinger Redeploy click remains; not re-notified this slot since it is unchanged from many prior cycles' own reporting, not a new finding.
+
+**Went well:** verifying preflight to completion myself instead of citing the prior cycle's clean run; the hand-maintained-page lane still finding nothing wrong, which is itself information (no stale legal-page claim survived the last several fixes on this site).
+
+**Did not go well:** `preflight.py` again took close to 5 minutes under concurrent session load; nothing new to add beyond what recent cycles already noted.
+
+**Next for the operator:** checked the real list, not a remembered count: `preflight.py`'s `HAND_MAINTAINED_PAGES` holds 18 files, of which 10 are now confirmed cold-read this week (`404.html`, `about.html`, `affiliate-disclosure.html`, `bundle.html`, `disclaimer.html`, `how-we-make-money.html`, `invest.html`, `privacy.html`, `terms.html`, `thanks.html`). 8 remain genuinely unread by this lane: `accessibility.html`, `book.html`, `consulting.html`, `contact.html`, `deck.html`, `index.html`, `method.html`, `quest.html`. Continue there. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. This log entry and command deck only. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (full independent re-verification; hand-maintained page lane pushed further, no new defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed via `git fetch --unshallow`, attached with `checkout -B main origin/main`, `merge --ff-only` onto `origin/main`, clean 81-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7: every "Now" row Done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to full completion (about 5 minutes under concurrent load, backgrounded while reading other state in parallel): every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no egress, two cron-cadence drifts, the sample-PDF font-subset gap, site verification), none new.
