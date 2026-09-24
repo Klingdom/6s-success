@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 06:4x (30-minute triage twin; previous work confirmed finished, one documentation-integrity gap sized and handed off)
+
+NEXT FOR THE OPERATOR: rotate STATUS.md's oldest "Last Updated" entries into STATUS-ARCHIVE.md and re-verify the five gates scanning both for stale claims, because the stack is now 10 entries against its own stated four-entry policy, and no higher-priority backlog row is unblocked.
+
+Attached via fetch, unshallow, ff-only merge onto origin/main, clean. Reread the last two log entries, BACKLOG-2026-09-07.md (again every row Done or Phil-gated), the dashboard, and GitHub (7 open issues unchanged, all decision/blocked-on-art). Ran preflight.py to completion: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree clean, main matched origin/main. Confirmed the archive gap directly: 1 current plus 9 Prior entries, not 4.
+
+Not fixed this slot: sized past 30 minutes, each moved claim needs its scanning gate re-verified.
+
+Pushed to main. This log entry, command deck.
+
 ## PM check-in, 2026-09-24 06:1x (30-minute triage twin, previous work confirmed finished by a real preflight completion, one stale figure closed, one file cold-read clean)
 
 Attached via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (72-commit fast-forward from a shallow/detached start, clean, no reset or force).
