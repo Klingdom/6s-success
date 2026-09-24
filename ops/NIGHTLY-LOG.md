@@ -37278,3 +37278,17 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+## 2026-09-24, scheduled operator cycle (Home Depot lookup bug fixed, then a stale BLOCKER-001 citation preflight itself caught)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, fast-forwarded 156 commits clean, no unrelated-history error. Read `BACKLOG-2026-09-07.md` (all rows done or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`. Full `preflight.py` run: every gate passed. 8 GitHub issues confirmed live (new: #35, `VPS_DEPLOY_KEY` decision); no mail credential, `inbox_agent.py --apply` reported unchecked.
+
+**Verified:** cold-read `ops/build_cleaning_index.py` (4 mentions): clean. Cold-read `ops/affiliate_report.py` (6 mentions): the NEEDED-csv writer normalised `Merchant` with plain `.lower().replace(" ", "-")`, skipping the `homedepot`-to-`home-depot` fix the matrix table's own lookup already applied, so 37 of 123 rows wrongly read "no programme record" when Home Depot has one (declined via Impact). Fixed by consolidating both lookups into one `program_key()` helper; verified with the gate's own test (4/4), `affiliate.py --check`, an idempotent rerun. Full preflight then surfaced its own `status-deploy-verdict-current` warning: `STATUS.md`/`OWNER-ACTIONS.md` still cited a confirmation superseded twice since (a newer redeploy, then one more site commit reopening a 1-commit gap). Corrected all citations; warnings dropped 24 to 23.
+
+**Went well:** preflight caught its own staleness before this log had to.
+
+**Did not go well:** merged/pushed once while a background preflight run was still mid-flight; killed it, reran clean on a stable tree before committing.
+
+**Changing next cycle:** none new; the generator-ownership/freshness gate already re-derives affiliate_report.py's output every run, so no bespoke gate needed for this bug class.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, item 0 (`VPS_DEPLOY_KEY`) highest-value. Continue the low-mention `ops/*.py` cold-read lane.
