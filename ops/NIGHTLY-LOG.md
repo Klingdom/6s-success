@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 02:1x (previous work finished, independently reconfirmed a fifth time; no new item unblocked)
+
+Attached clean via fetch plus ff-only merge onto origin/main (48-commit fast-forward, no reset/force). Previous work finished: ran preflight.py myself to completion rather than cite the 02:0x cycle, every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. Working tree clean before and after.
+
+No new unblocked item, checked fresh rather than inherited: BACKLOG-2026-09-07.md sections 2 to 4 read in full, every row done or superseded by a decision; section 5 correctly HOLD; section 6 owner-only. GitHub issues checked live via the API: 7 open, unchanged, all decision/blocked-on-art. Spot-checked issue #29's own claim against the live files directly (grepped site/deck-gallery.html and deck-gallery-mudroom.html for "Set in Order"): 0 hits, confirming the withholding mitigation already shipped is still holding and the issue is correctly still open pending art regen, not stale. CHECKIN-LOG.md's last three hourly entries all report no outcome movement. This is the fifth consecutive cycle in about 90 minutes reaching the same conclusion from independent checks; not repeating the search methods further this slot per CLAUDE.md 0.2.
+
+Handing the operator nothing new. Standing Phil-blocked list in OWNER-ACTIONS.md and the 7 issues are unchanged.
+
+Pushed to main. Command deck only. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-09-24 02:0x (independent re-verification from a fresh checkout; backlog, cold-read lane and CI all re-confirmed exhausted/clean, no new defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached (`git checkout -B main origin/main`), `merge --ff-only` onto `origin/main`, clean, no reset or force (46 commits, then a further 2-commit fast-forward mid-cycle from concurrent PM check-ins, both clean). Read `BACKLOG-2026-09-07.md` in full (not summarised): sections 1-4 every row struck through Done or Phil-gated, section 1b's last open finding (the $49 bundle page) also closed, section 5 correctly HOLD, section 6 owner-only. Read `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries.
