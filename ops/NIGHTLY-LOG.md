@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 04:4x (previous work finished, correctly diagnosed; no new unblocked item, handing the operator the standing cold-read lane)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-4 are again every row Done or superseded, section 5 correctly HOLD, section 6 owner-only, and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch; a real fix found in one of these generators would also touch `site/`, which is the one thing that can clear `gate_publish_image_current`'s current FAIL.
+
+Attached clean via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (53-commit fast-forward from a shallow/detached start, no reset or force). Ran `preflight.py` myself to completion rather than cite a prior cycle: 1 gate FAILs (`gate_publish_image_current`), 23 warnings, all previously diagnosed sandbox limits, none new. The FAIL is not new work left unfinished by the previous cycle: HEAD's own last commit (`22a29f10`) already explains it correctly, as the same tracked `BLOCKER-001` deploy gap surfacing more precisely, self-resolving on the next `site/**`-touching commit with a successful `publish-image.yml` run. Re-derived the gap size fresh rather than repeat a figure: `git log 8e4c8e33..HEAD` is now 53 commits (up from 47 at the last check, expected growth from log/dashboard-only commits, no new live defect found in the delta beyond what the last cycle already named). No SSH key at `~/.ssh` in this sandbox (confirmed directly again), so the redeploy itself still needs a session with real VPS access.
+
+Checked for fabrication or an unverified claim before accepting "finished": none found. GitHub's 7 issues checked live via the API, unchanged. No new BACKLOG-2026-09-07.md row is genuinely unblocked and unstarted.
+
+**Went well:** re-running preflight and re-deriving the commit count directly instead of citing the prior cycle's numbers.
+
+**Did not go well:** nothing new; the same standing shape (backlog exhausted, deploy gap growing only from documentation commits) persists across many consecutive cycles today.
+
+**Changing next cycle:** none; the gates are doing their job. The handoff above names the specific generators still unread, per the previous cycle's own queue.
+
+Pushed to main. Command deck and this log entry only. No price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 03:4x (previous work finished; the deploy gap re-sized and found to include a second live customer-facing defect, not just internal-consistency work)
 
 NEXT FOR THE OPERATOR: continue the standing cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-6 are again every row done or Phil-gated and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch.
