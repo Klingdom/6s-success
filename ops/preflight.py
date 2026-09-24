@@ -12791,24 +12791,43 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     session with real production access writes the moment it confirms a
     build live.
 
-    Returns a problem string if STATUS.md's BLOCKER-001 section exists but
-    does not mention the real, current build_id; '' if there is nothing to
-    check or the citation is current.
+    Checks BOTH STATUS.md sections that independently cite a "last confirmed
+    current" build id: BLOCKER-001 (section 17) and the "Production
+    Knowledge" paragraph under "Current Overall Assessment" (section 30).
+    Widened 2026-09-24, PM check-in: found the two had drifted four days
+    apart (BLOCKER-001 correctly cited the 2026-09-23 confirmation;
+    "Production Knowledge" still cited 2026-09-18/09-20 builds), and this
+    gate only ever checked BLOCKER-001, so the second, stale citation shipped
+    unnoticed even while the first stayed current. Same "source corrected,
+    sibling section never told" shape this gate already exists to catch,
+    just with the sibling being another section of the same file rather than
+    another file.
+
+    Returns a problem string naming every stale section found; '' if there
+    is nothing to check or every citation is current.
     """
-    m = re.search(r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)", status_text,
-                  re.DOTALL)
-    if not m:
-        return ""
-    section = m.group(0)
     build_id = verdict.get("build_id")
     if not build_id:
         return ""
-    if build_id not in section:
+    sections = {
+        "BLOCKER-001": r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)",
+        "Production Knowledge (Current Overall Assessment)":
+            r"\*\*Production Knowledge.*?(?=\n\*\*|\Z)",
+    }
+    stale = []
+    for label, pattern in sections.items():
+        m = re.search(pattern, status_text, re.DOTALL)
+        if not m:
+            continue
+        if build_id not in m.group(0):
+            stale.append(label)
+    if stale:
         return (
-            "BLOCKER-001 does not mention the real current build_id (%s, "
+            "%s does not mention the real current build_id (%s, "
             "confirmed %s in ops/deploy-verdict.json). Its own account is "
             "citing an older confirmation." % (
-                build_id, verdict.get("checked_at", "unknown time")))
+                " and ".join(stale), build_id,
+                verdict.get("checked_at", "unknown time")))
     return ""
 
 

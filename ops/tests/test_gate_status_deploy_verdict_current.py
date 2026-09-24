@@ -11,6 +11,13 @@ checked BLOCKER-001's own prose against the one file whose whole job is to
 record this fact, the same "source corrected, sibling never told" shape
 gate_goals_traffic_current already guards for GOALS.md's traffic figure.
 
+Widened 2026-09-24, PM check-in: found a second STATUS.md section,
+"Production Knowledge" under "Current Overall Assessment", independently
+citing its own "last confirmed current" build_id, four days stale while
+BLOCKER-001 (fixed by the 2026-09-23 correction above) had already moved
+on. The gate only ever checked BLOCKER-001, so this second citation drifted
+unnoticed. status_deploy_verdict_problem() now checks both sections.
+
 Run:  python ops/tests/test_gate_status_deploy_verdict_current.py
 """
 import os
@@ -70,12 +77,42 @@ def main() -> int:
         fails.append("verdict with no build_id, but still flagged: %r"
                      % problem)
 
+    # 5. The real defect shape: BLOCKER-001 is current, but the separate
+    #    "Production Knowledge" section under "Current Overall Assessment"
+    #    independently cites a stale build_id. Must fire, and must name the
+    #    stale section specifically, not just "BLOCKER-001" again.
+    mixed = (
+        "# STATUS\n\n"
+        "## BLOCKER-001: Production State Verifiable Only From a Session "
+        "With Real Access\n\n"
+        "the tracked verdict now reads current at 2026-09-23T19:00:39Z, "
+        "build `" + verdict["build_id"] + "`.\n\n"
+        "# 30. Current Overall Assessment\n\n"
+        "**Production Knowledge, corrected earlier:** LAST CONFIRMED "
+        "CURRENT 2026-09-18T17:20:47Z (build `7c765b634045a89c`).\n\n"
+        "**Business Data Knowledge:** unrelated paragraph.\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(mixed, verdict)
+    if not problem:
+        fails.append("BLOCKER-001 current but Production Knowledge stale: "
+                     "expected a problem, got none")
+    elif "Production Knowledge" not in problem or "BLOCKER-001" in problem:
+        fails.append("problem string did not correctly name only the "
+                     "stale 'Production Knowledge' section: %r" % problem)
+
+    # 6. Both sections current: must not fire.
+    both_current = mixed.replace("7c765b634045a89c", verdict["build_id"])
+    problem = preflight.status_deploy_verdict_problem(both_current, verdict)
+    if problem:
+        fails.append("both sections current, but still flagged: %r"
+                     % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 4 checks")
+    print("PASS: 6 checks")
     return 0
 
 

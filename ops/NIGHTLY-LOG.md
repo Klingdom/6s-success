@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-24, scheduled operator cycle (a real STATUS.md self-contradiction found and fixed; the gate that missed it widened to cover both citing sections)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean 96-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7: every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, and the last several `ops/NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries (many dozens of cycles today, consistently reporting every backlog row done or Phil-gated, `CHECKIN-LOG.md` itself reading "nothing measurable moved" for the last several hourly check-ins in a row). Ran `python ops/preflight.py` to full completion before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
+
+**Found: STATUS.md contradicted itself about which build was last confirmed live in production.** Section 17's `BLOCKER-001` correctly cited the 2026-09-23T19:00:39Z confirmation (build `5eba61fde231c1a7`, from `ops/deploy-verdict.json`), kept current by several PM check-ins today. But section 30's separate "Production Knowledge" paragraph, under "Current Overall Assessment", still cited a 2026-09-18/09-20 confirmation (builds `7c765b634045a89c` and `4a09c1b7a41ab6c0`), four to six days stale, and the "Immediate Focus" paragraph in the same section repeated the stale build id a second time. `gate_status_deploy_verdict_current` already existed for exactly this class of drift but only ever parsed the `BLOCKER-001` section, so the second citation drifted unnoticed while the first stayed correct: the same "source corrected, sibling never told" shape this repository's gates keep finding, just between two sections of the same file rather than two files.
+
+**Fixed both paragraphs** to cite the real current confirmation (`5eba61fde231c1a7`, 2026-09-23T19:00:39Z) and the real current commit gap (91, re-derived directly via `git log 8e4c8e33..HEAD`, not carried from a stale figure), and to state plainly that the build side of the gap is closed (`git diff --quiet 914c2881 HEAD -- site/ Dockerfile` reruns clean), so only Phil's Redeploy click remains, matching `OWNER-ACTIONS.md`'s own current account.
+
+**Widened the gate rather than leaving it a one-section check.** `status_deploy_verdict_problem()` in `ops/preflight.py` now scans both `BLOCKER-001` and the "Production Knowledge" paragraph independently and names whichever is stale by label, so a future edit to only one of them fails loudly rather than silently. `ops/tests/test_gate_status_deploy_verdict_current.py` extended from 4 to 6 cases: case 5 plants the exact real defect shape (BLOCKER-001 current, Production Knowledge stale) and asserts the problem string names only the stale section; case 6 confirms both-current stays clean. Fail-then-pass proved directly: ran the new cases before the fix (case 5 failed, case 6 passed trivially since nothing needed clearing), confirmed all 6 pass after; also ran `status_deploy_verdict_problem()` directly against the real, now-fixed `STATUS.md` and the real `ops/deploy-verdict.json`, confirmed clean.
+
+**Verified:** `preflight.py` (fast) reran clean after the fix, every gate passed, same 23 warnings, none new. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. No price, product or customer-facing page touched.
+
+**Went well:** treating the many "no new defect" cycles logged today as a reason to check a different kind of thing (cross-section consistency inside a single frequently-edited file) rather than repeating the same cold-read-an-ops-file method; catching a gate that only covered half of the shape it was named for.
+
+**Did not go well:** none this cycle; the full `preflight.py` run took about 8 minutes as usual under today's concurrent load, backgrounded rather than blocked on.
+
+**Changing next cycle:** none; the gate that missed this now covers both sections, proven to fail on the real defect shape.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged. No backlog item newly unblocked.
+
+Pushed to main. `STATUS.md`, `ops/preflight.py`, `ops/tests/test_gate_status_deploy_verdict_current.py`, this log entry, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing. IndexNow not applicable, no site page changed.
+
 ## PM check-in, 2026-09-24 11:4x (previous work reverified finished; a self-inflicted lock cleared; handing preflight --deep to the operator)
 
 NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion, because it last completed 2026-09-22 22:1x (two days and roughly 90 commits ago) and it is the one check with a proven hit rate for a real defect (the `quest.html` WCAG contrast failure it alone caught 2026-09-04) that the fast pass structurally cannot see.
