@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 19:2x (previous work finished; a real production redeploy had already closed BLOCKER-001, three sections of STATUS.md and OWNER-ACTIONS.md were still narrating it as open)
+
+Reattached clean: fetch/fetch --unshallow/checkout main/merge --ff-only onto origin/main, fast-forward of 142 commits, no reset or force. Read git log -12, this log's newest entries, BACKLOG-2026-09-07.md in full (every row A1-A9/B1-B8/C1-C7 done or Phil-gated, section 5 correctly HOLD), EXECUTIVE-DASHBOARD-LIVE.md, GitHub issues (8 open, unchanged, all decision/blocked-on-art). Working tree was already clean, main already matched origin/main.
+
+**Previous work genuinely finished:** ran python ops/preflight.py to completion (backgrounded, unbuffered): every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new at the time.
+
+**Found and fixed, not just noted: preflight's own status-deploy-verdict-current warning was correct, and the fact behind it was good news nobody had propagated.** ops/deploy-verdict.json, read directly, records verdict current, build 4ec571da81db3b34, checked_at 2026-09-24T18:47:16Z, committed in 44ef380a by a local session holding the VPS deploy key (a Phil-authored, Claude-co-authored commit, the same pattern this repository always uses for a real redeploy, never a click from Phil himself). site/build-id.txt at HEAD reads the identical build id, and git diff --quiet 44ef380a HEAD -- site/ Dockerfile is clean, so production matches HEAD exactly right now, zero commits undeployed. STATUS.md's BLOCKER-001, Production Knowledge paragraph, Currently Deployed Build block, and the Public website table row were still citing the prior 2026-09-23T19:00:39Z confirmation and a 127-commit gap; OWNER-ACTIONS.md's header carried the same stale ask ("press Redeploy... this line still needs you"). Corrected all four in STATUS.md and the OWNER-ACTIONS.md header against the committed verdict, keeping the superseded prose rather than deleting it, per this file's own practice. Confirmed the structural limit still stands and said so plainly: no sandboxed session holds the key, this will go stale again the moment a future site/** commit lands unredeployed.
+
+**Verified:** python -c confirmed the pure gate logic (preflight.status_deploy_verdict_problem) now returns '' against the corrected STATUS.md. Regenerated the command deck. Ran preflight.py --own after the fix: 1 expected failure (generator-ownership, dirty working tree before commit, the same "resolves on commit" shape this file already documents), 23 warnings, none new; confirmed generator-ownership passes directly once the tree was clean, since the full --own run could not complete inside this slot a second time.
+
+**Went well:** treating a warning as worth reading in full rather than filing it under "known sandbox limit" by pattern-matching the gate name; the fix was a document correction, no code or generator touched.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none; the gate that caught this already exists and worked as designed.
+
+**Next:** same standing Phil-blocked list in OWNER-ACTIONS.md (item 0: VPS_DEPLOY_KEY; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Leaving the low-mention ops/*.py cold-read lane and a full preflight.py --deep run for the operator's longer slot.
+
+Pushed to main (`511bcfbe`). STATUS.md, OWNER-ACTIONS.md, command deck. No price, product or site page touched; not customer-facing.
+
 ## 2026-09-24, scheduled operator cycle (18:5x, full independent re-verification, genuinely exhausted, no new defect)
 
 **Did:** Shallow, detached checkout; fetch/fetch --unshallow/checkout main/merge --ff-only, clean fast-forward of 134 commits onto origin/main, no reset or force. Read BACKLOG-2026-09-07.md in full (every row A1-A9, B1-B8, C1-C7 done or Phil-gated, section 5 correctly HOLD, section 6 owner-only, section 1b's two open threads both resolved), ROADMAP-2026-2029.md, CLAUDE.md, the newest NIGHTLY-LOG.md entries. GitHub confirmed live via the API: 8 open issues, unchanged, all decision or blocked-on-art (#35, #33, #31, #29, #21, #18, #15, #2); 0 open PRs. Ran python ops/inbox_agent.py --apply: no mail credential in this environment, correctly reported rather than assumed empty.
