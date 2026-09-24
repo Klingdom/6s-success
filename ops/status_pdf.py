@@ -236,11 +236,12 @@ def build(path=None):
     ], [1.7 * inch, 5.0 * inch]))
 
     F.append(Paragraph("Experiments", S_H2))
+    why = x["blocked_reason"]
+    why = why[:1].upper() + why[1:] if why else why
     F.append(Paragraph(
-        f"{len(x['designed'])} designed, {x['executed']} executed. Until today "
-        "there was no traffic to run one on. Now that the site is public the "
-        "programme can start, and any result text already in EXPERIMENTS.md is "
-        "illustrative rather than measured.", S_BODY))
+        f"{len(x['designed'])} designed, {x['executed']} executed. "
+        f"{why}. Any result text already in "
+        "EXPERIMENTS.md is illustrative rather than measured.", S_BODY))
     F.append(table([["ID", "Experiment"]] +
                    [[i, n.strip()] for i, n in x["designed"][:10]],
                    [0.9 * inch, 5.8 * inch]))

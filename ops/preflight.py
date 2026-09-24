@@ -12875,6 +12875,61 @@ def gate_status_deploy_verdict_current() -> None:
         warn("status-deploy-verdict-current", problem)
 
 
+def gate_experiments_blocked_reason_current() -> None:
+    """The status report Phil actually reads (ops/status_report.py's text
+    output and the PDF ops/status_pdf.py builds from it) must not claim the
+    site has no deployment while ops/state.json says otherwise.
+
+    Found live 2026-09-24: ops/status_report.py's gather() hardcoded
+    experiments.blocked_reason to "no deployment, therefore no traffic and
+    no subjects", true only on 2026-08-19, the day EXPERIMENT-PLAN.md (the
+    source this sentence was copied from) was written. state.json's own
+    deploy_verdict has read "current" for weeks and traffic_line has carried
+    a real, if thin, number the whole time; the hardcoded string never once
+    consulted either before every status PDF told Phil the site was not
+    deployed. Fixed by pulling the derivation into its own function,
+    ops.status_report.experiments_blocked_reason(S), read from real state.
+    This gate re-derives it the same way and fails if that function's output
+    still claims "no deployment" while state.json's deploy_verdict says the
+    site is live.
+
+    Proof this can fail: ops/tests/test_gate_experiments_blocked_reason_
+    current.py calls experiments_blocked_reason({"deploy_verdict":
+    "current"}) directly and asserts it does not contain "no deployment",
+    then plants the old hardcoded string back and confirms the gate's own
+    problem-detection helper catches it by name.
+    """
+    state_path = os.path.join(ROOT, "ops", "state.json")
+    if not os.path.exists(state_path):
+        return
+    try:
+        S = json.loads(io.open(state_path, encoding="utf-8").read())
+    except Exception:                                            # noqa: BLE001
+        return
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import status_report as SR
+        why = SR.experiments_blocked_reason(S)
+    except Exception as e:                                       # noqa: BLE001
+        warn("experiments-blocked-reason-current",
+             "could not re-derive the experiments blocked-reason text: %s" % e)
+        return
+    problem = experiments_blocked_reason_problem(S.get("deploy_verdict"), why)
+    if problem:
+        fail("experiments-blocked-reason-current", problem)
+
+
+def experiments_blocked_reason_problem(deploy_verdict, blocked_reason) -> str:
+    """Pure logic behind gate_experiments_blocked_reason_current, unit
+    testable without touching the real state.json."""
+    if deploy_verdict in ("current", "stale") and "no deployment" in (blocked_reason or ""):
+        return ("state.json's own deploy_verdict is %r, but the status "
+                "report's experiments.blocked_reason still says %r. That is "
+                "the exact stale 2026-08-19 launch-day claim this gate "
+                "exists to catch." % (deploy_verdict, blocked_reason))
+    return ""
+
+
 def gate_changelog_current() -> None:
     """CHANGELOG.md must not go silent for weeks while material work ships,
     unnoticed, the same shape gate_status_currency and
@@ -20552,6 +20607,7 @@ def main() -> int:
     run_gate(gate_risks_traffic_citations_current)
     run_gate(gate_status_currency)
     run_gate(gate_status_deploy_verdict_current)
+    run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)

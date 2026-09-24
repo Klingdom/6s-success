@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator, 2026-09-24 20:1x (five-week-stale "no deployment" claim found baked into the status PDF Phil actually receives)
+
+**Did:** Reattached clean: fetch, fetch --unshallow, checkout main, merge --ff-only, 146-commit fast-forward, no reset or force. Read BACKLOG-2026-09-07.md, GOALS.md, ROADMAP-2026-2029.md, newest NIGHTLY-LOG.md entries, OWNER-ACTIONS.md. Confirmed backlog exhausted (every A/B/C row done or Phil-gated) and GitHub unchanged (8 open issues, all decision/blocked-on-art, confirmed live via the API). preflight.py clean, 23 warnings. Cold-read the lowest-mention untouched ops/*.py files: retire_stripe_skus.py, wire_footer.py, wire_breadcrumbs.py, ledgerium_price_check.py, verify_media_delivery.py, stripe_links.py all clean. status_pdf.py and ops/status_report.py behind it hardcoded experiments.blocked_reason = "no deployment, therefore no traffic and no subjects", copied verbatim from EXPERIMENT-PLAN.md's 2026-08-19 launch-day framing and never re-checked since: state.json's deploy_verdict has read current for weeks with real traffic (68 visitors/160 visits/30 days). Every status PDF sent to Phil since then has falsely claimed the site was not deployed. Fixed by extracting experiments_blocked_reason(S) into status_report.py, read from real state; fixed status_pdf.py's matching hardcoded sentence and a capitalize() bug that lowercased "EXPERIMENT-PLAN.md" mid-fix. New gate_experiments_blocked_reason_current in preflight.py re-derives the text live and fails if "no deployment" still appears while deploy_verdict is current/stale.
+
+**Verified:** Fail-then-pass proved directly: the old string fails the new gate by name when deploy_verdict is current/stale; the real fixed output passes. New ops/tests/test_gate_experiments_blocked_reason_current.py (6 cases, all pass). Existing test_status_report_retros.py unaffected. py_compile clean on all touched files. Full preflight.py rerun clean, same 23 warnings. Also ran preflight.py --deep in the background; it progressed cleanly through KDP/Etsy/visual-audit checks with no new FAIL before this slot ended, so it was stopped rather than left to finish, and it left one stray untracked probe file (site/_visual_probe.html) that gate_no_stray_probe_files correctly caught and this cycle removed.
+
+**Went well:** the cold-read lane surfaced a real, dated, owner-facing dishonesty defect, not just a code bug, after six other low-mention files came back clean.
+
+**Did not go well:** preflight --deep still cannot finish inside one operator slot; a future cycle with a longer window should let it run to completion.
+
+**Changing next cycle:** none; the new gate covers this defect class going forward.
+
+**Next:** standing Phil-blocked list unchanged (VPS_DEPLOY_KEY, Search Console, YouTube OAuth, Gemini billing, Amazon/Etsy/app-store accounts, Stripe business description); 8 open decision/blocked-on-art issues unchanged. Cold-read candidates remaining at the ~20-mention tier: generate_card_heroes.py, import_generated_art.py, optimize_sample_pdf.py, refresh_hero_fallback.py, video.py, video_zone_photo.py.
+
 ## PM check-in, 2026-09-24 19:2x (previous work finished; a real production redeploy had already closed BLOCKER-001, three sections of STATUS.md and OWNER-ACTIONS.md were still narrating it as open)
 
 Reattached clean: fetch/fetch --unshallow/checkout main/merge --ff-only onto origin/main, fast-forward of 142 commits, no reset or force. Read git log -12, this log's newest entries, BACKLOG-2026-09-07.md in full (every row A1-A9/B1-B8/C1-C7 done or Phil-gated, section 5 correctly HOLD), EXECUTIVE-DASHBOARD-LIVE.md, GitHub issues (8 open, unchanged, all decision/blocked-on-art). Working tree was already clean, main already matched origin/main.

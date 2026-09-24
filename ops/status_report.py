@@ -191,6 +191,31 @@ def port_open(host, port, timeout=6):
         return False
 
 
+def experiments_blocked_reason(S: dict) -> str:
+    """Why 0 experiments have executed, read from the same state this whole
+    report reads elsewhere, not typed once and left to go stale.
+
+    "No deployment, therefore no traffic and no subjects" was true the day
+    this file was written (2026-08-19) and false every day since: the site
+    has carried a real S["deploy_verdict"] and real, if thin, traffic for
+    over a month, and the old string never once looked at either before
+    saying so. Found live 2026-09-24, in both this report and the PDF it
+    feeds (ops/status_pdf.py): deploy_verdict read "current" while the text
+    Phil actually received still claimed no deployment existed at all.
+    Pulled out as its own function, rather than left inline in gather(), so
+    ops/preflight.py's gate_experiments_blocked_reason_current can call this
+    directly instead of hand-copying the logic, the shape that let the old
+    string drift unnoticed for five weeks.
+    """
+    if S.get("deploy_verdict") in ("current", "stale"):
+        traffic = (S.get("traffic_line_last_measured")
+                  or S.get("traffic_line", "not measured"))
+        return ("the site is deployed and has real traffic (%s), but at "
+                "this volume no test can reach a valid read yet; see "
+                "EXPERIMENT-PLAN.md" % traffic)
+    return "deployment state unknown from here, so traffic cannot be assumed"
+
+
 def gather():
     S = state()
     d = {"state": S, "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M")}
@@ -244,10 +269,8 @@ def gather():
     designed = sorted(set(re.findall(r"(EXP-\d{4}): ([^\n`|]{4,70})", exp)))
     d["experiments"] = {
         "designed": designed,
-        # An experiment needs traffic. With no deployment there is none, so any
-        # "result" in the file is illustrative rather than measured.
         "executed": 0,
-        "blocked_reason": "no deployment, therefore no traffic and no subjects",
+        "blocked_reason": experiments_blocked_reason(S),
     }
 
     # ---- content
