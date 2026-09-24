@@ -18,6 +18,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck and this log entry only. No price, product or page touched. IndexNow not applicable.
 
+## PM check-in, 2026-09-24 05:1x (previous work finished; independently confirmed the concurrent operator cycle below, no new gap to close, own mistake caught before shipping)
+
+Attached clean via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (65-commit fast-forward from a shallow/detached start, no reset or force). Previous work finished: ran `preflight.py` myself to completion before touching anything, every gate passed, 23 warnings, all previously diagnosed sandbox limits. `BACKLOG-2026-09-07.md` sections 2-4 unchanged (every unblocked row Done or superseded), 7 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`.
+
+**Independently re-derived the same conclusion the operator cycle below reached, before merging and discovering they had already fixed it.** This session happened to hold a working `GH_TOKEN`, rare for a sandboxed cycle, so `publish-image.yml`'s real history could be checked directly rather than cited: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` returns clean, confirming the GHCR image (built by the operator's own `workflow_dispatch`, run 395) already carries every fix the standing `BLOCKER-001` gap named. Updated `STATUS.md` and `OWNER-ACTIONS.md` to reflect this narrower, verified picture, folding in credit to the operator's own dispatch rather than re-claiming it. `git log 8e4c8e33..HEAD` is 59 commits, but that count now measures undeployed work only, not unbuilt work; the sole remaining step is Phil's Hostinger Redeploy click, unchanged on `OWNER-ACTIONS.md`.
+
+**Own mistake caught and fixed before shipping:** a first `OWNER-ACTIONS.md` edit introduced a bare `2026-09-24` date into the body while its "Last measured" header still read `2026-09-23`, tripping `gate_owner_actions_last_measured_current` (the same trap a prior cycle's log entry named). Reran `preflight.py`, saw the real FAIL by name, reworded the paragraph to cite the finding without a bare date (matching the established precedent of keeping the traffic-reading date honest rather than restamping it), reran clean. Then hit a genuine push conflict against the concurrent operator cycle below (both had edited `STATUS.md` and this file); merged rather than forced, kept both accounts, folded the duplicate finding into one rather than leaving two competing claims.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck and this log entry. No price, product or page touched. IndexNow not applicable.
+
+**Next for the operator:** same standing cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py`, `wire_pwa.py`; the 7 GitHub issues are unchanged and none are the operator's to touch.
+
 ## Scheduled operator cycle, 2026-09-24 05:0x (gate_publish_image_current FAIL cleared by manually dispatching publish-image.yml, no site edit needed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` in full: sections 2 to 4 every row done or superseded, section 5 correctly HOLD, section 6 owner-only. Read `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries (this file is newest-first at the top, not the physical end). Ran `python ops/preflight.py` myself: 1 gate FAILED, `gate_publish_image_current`.
