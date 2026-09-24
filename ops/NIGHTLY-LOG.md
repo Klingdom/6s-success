@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 12:1x (previous work independently reverified finished; a third, ungated stale commit-gap citation found and fixed)
+
+Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`: clean 99-commit fast-forward, no reset or force. Read `git log -12`, this log's newest three entries, `BACKLOG-2026-09-07.md` sections 0-7 (every row done or Phil-gated), `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, and GitHub directly: 8 open issues, unchanged (2 P0, `blocked-on-art` #2/#29, `decision` #35/#33/#31/#21/#18/#15), 0 open PRs.
+
+**Previous work confirmed genuinely finished, not cited.** Ran `python ops/preflight.py` myself to full completion (about 7 minutes): every gate passed, the same 23 standing warnings the last cycle's own commit claimed, none new. Working tree was already clean and pushed before this cycle touched anything. CI's own `checks.yml` run for the latest commit was still mid-`Preflight` step after 19+ minutes; checked the immediately prior run's own timing rather than assume a hang (that one's `Preflight` step alone took 18m50s, total job 33.5 minutes), so this is today's concurrent load, not a red gate; not blocked on further.
+
+**Found: a third, ungated citation of the repository/production commit gap had gone stale.** The prior cycle widened `gate_status_deploy_verdict_current` to scan both `BLOCKER-001` and the "Production Knowledge" paragraph for the build_id string, but neither that gate nor any other checks section 5's own "Repository HEAD Build" line, which still read "66 commits ahead" and a five-cycles-stale short hash (`6d1e472d`) while the live count (`git log 8e4c8e33..HEAD --oneline | wc -l`) is 93 and HEAD is `2904fb09`. `OWNER-ACTIONS.md`'s own citation had also drifted by three (90, now 93). Re-derived all three live rather than incrementing by guess, fixed all three (`STATUS.md` section 5, `STATUS.md` section 30 "Production Knowledge", `OWNER-ACTIONS.md`), and left a note in section 5 explaining why it drifts unnoticed (no gate covers it) rather than build a new gate for a purely descriptive, ever-changing number three cycles running now updated by hand, matching this file's own established practice for this exact figure.
+
+**Verified:** `ops/fix_dashes.py --check`: 0 em dashes, 0 en dashes. `preflight.py --fast` reran clean after the edits: every gate passed, same 23 warnings. No price, product or site page touched; not customer-facing.
+
+**Went well:** re-deriving the live commit count directly instead of trusting either sibling citation's own number.
+
+**Did not go well:** both local `preflight.py` full and CI's `checks.yml` are visibly slower today (7 and 30+ minutes respectively) under concurrent load from the other scheduled sessions; nothing broke, but it ate most of this 30-minute slot on verification rather than new work.
+
+**Handing to the operator:** both cold-read lanes (`ops/*.py` by mention count, hand-maintained pages) are fully exhausted; the productive method now is the one this cycle and the last one used, cross-section consistency inside a single frequently-edited file (`STATUS.md`, `OWNER-ACTIONS.md`, `RISKS.md`), not a new file-by-file sweep. Same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, this log entry. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (a real STATUS.md self-contradiction found and fixed; the gate that missed it widened to cover both citing sections)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean 96-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7: every "Now" row done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, and the last several `ops/NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries (many dozens of cycles today, consistently reporting every backlog row done or Phil-gated, `CHECKIN-LOG.md` itself reading "nothing measurable moved" for the last several hourly check-ins in a row). Ran `python ops/preflight.py` to full completion before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly UNCHECKED.
