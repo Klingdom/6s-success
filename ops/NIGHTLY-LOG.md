@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-24 02:0x (independent re-verification from a fresh checkout; backlog, cold-read lane and CI all re-confirmed exhausted/clean, no new defect)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached (`git checkout -B main origin/main`), `merge --ff-only` onto `origin/main`, clean, no reset or force (46 commits, then a further 2-commit fast-forward mid-cycle from concurrent PM check-ins, both clean). Read `BACKLOG-2026-09-07.md` in full (not summarised): sections 1-4 every row struck through Done or Phil-gated, section 1b's last open finding (the $49 bundle page) also closed, section 5 correctly HOLD, section 6 owner-only. Read `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, and the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries.
+
+Ran `python ops/preflight.py` myself to completion in the background (~4 minutes, not wrapped in a shorter timeout, per this file's own standing warning), rather than cite a prior cycle: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH/Pillow credential, no live egress, the two GitHub-scheduler cron-cadence drifts, sample-PDF spelling, site verification, deck/page-art gaps on issues #2/#29), none new. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly UNCHECKED, not empty. GitHub confirmed live via the API: 7 open issues, unchanged, all `decision`/`blocked-on-art` (#33, #31, #29, #21, #18, #15, #2); 0 open PRs. Checked CI directly rather than assume it: last 5 `checks.yml` runs on `main` all `success` (run #1342-#1346), one further run in progress at fetch time for the latest push.
+
+**No item in `BACKLOG-2026-09-07.md` is both genuinely unblocked and unstarted; three independent PM check-in cycles in the hour before this one (00:4x, 01:2x, and one titled "re-exhausted from three independent angles") had already reached the same conclusion from different angles, confirmed here as a fourth.** The two open P0 GitHub issues (#15 Listmonk identity, #2 stale card images) are both decision/art-blocked, unchanged for days. Production is one commit behind the repository (`ops/deploy-verdict.json` last confirmed build `5eba61fde231c1a7` at `2026-09-23T19:00:39Z`; repository has since moved several commits further), unreachable from this sandbox, already tracked as `BLOCKER-001`, not new and not a customer-facing regression (the pending commits are test-coverage and internal-consistency fixes, not a live defect).
+
+**Went well:** independently re-running preflight and the CI check rather than trusting the last cycle's citation, so this entry's "clean" is measured, not inherited.
+
+**Did not go well:** nothing new found this slot; confirms, again, that the backlog is genuinely exhausted of unblocked work at this traffic level, same as the last several cycles today.
+
+**Changing next cycle:** none new. Standing recommendation unchanged: the highest-value unblocked lever left is entirely owner-gated (`OWNER-ACTIONS.md` "start here": Search Console verification, YouTube OAuth, Stripe business description).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 01:4x (previous work finished, independently reconfirmed; backlog and issues re-exhausted from three fresh angles; nothing new to hand off)
 
 NEXT FOR THE OPERATOR: none found this pass, because BACKLOG-2026-09-07.md sections 2 to 4 are every row struck through done or superseded by a decision, section 5 is correctly on HOLD, section 6 is the owner-gate list, all 7 GitHub issues are `decision`/`blocked-on-art`, and `CHECKIN-LOG.md`'s own hourly measurements show nothing new moving. Continue the standing methods: cold-read a not-yet-reviewed `ops/*.py` file, or extend interactive-Chromium coverage to a page that still has none (checked: `bundle.html` has no dedicated interactive test, though it may be pure static links with no form to exercise, worth confirming before spending time there).
