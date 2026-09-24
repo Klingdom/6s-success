@@ -57,6 +57,17 @@ def load():
     return acc, progs, rows
 
 
+def program_key(merchant: str) -> str:
+    """Normalise a catalogue 'Merchant' value to its programme record key.
+
+    The catalogue and ops/affiliate-accounts.json spell Home Depot
+    differently ("homedepot" vs "home-depot"); every lookup against progs
+    must go through this one normalisation or it silently misses.
+    """
+    return (merchant or "").strip().lower().replace(" ", "-").replace(
+        "homedepot", "home-depot")
+
+
 def missing_fields(p):
     """Exactly what this programme still needs before a link can be built."""
     out = []
@@ -120,7 +131,7 @@ def main() -> int:
     m += ["", "## Which retailers the catalogue actually points at", "",
           "| Merchant | Products | Programme state |", "|---|---|---|"]
     for k in sorted(merch, key=lambda x: -merch[x]):
-        prog = progs.get(k) or progs.get(k.replace("homedepot", "home-depot"))
+        prog = progs.get(program_key(k))
         st = (prog or {}).get("status", "no programme record")
         m.append("| %s | %d | %s |" % (k, merch[k], st))
     m += ["",
@@ -218,10 +229,10 @@ def main() -> int:
             else:
                 why = "URL present but carries no approved affiliate tracking"
             merch = (r.get("Merchant") or "").strip() or "(none chosen)"
-            prog = merch.lower().replace(" ", "-")
-            p = progs.get(prog)
+            prog_key = program_key(merch)
+            p = progs.get(prog_key)
             blocked = ("no programme record for this merchant" if p is None
-                       else "%s: %s" % (prog, p.get("status")))
+                       else "%s: %s" % (prog_key, p.get("status")))
             w.writerow([r.get("Product ID", ""),
                         r.get("Product Standard Name", ""),
                         merch, r.get("Merchant SKU", ""),
