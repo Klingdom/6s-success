@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-24, scheduled operator cycle (18:5x, full independent re-verification, genuinely exhausted, no new defect)
+
+**Did:** Shallow, detached checkout; fetch/fetch --unshallow/checkout main/merge --ff-only, clean fast-forward of 134 commits onto origin/main, no reset or force. Read BACKLOG-2026-09-07.md in full (every row A1-A9, B1-B8, C1-C7 done or Phil-gated, section 5 correctly HOLD, section 6 owner-only, section 1b's two open threads both resolved), ROADMAP-2026-2029.md, CLAUDE.md, the newest NIGHTLY-LOG.md entries. GitHub confirmed live via the API: 8 open issues, unchanged, all decision or blocked-on-art (#35, #33, #31, #29, #21, #18, #15, #2); 0 open PRs. Ran python ops/inbox_agent.py --apply: no mail credential in this environment, correctly reported rather than assumed empty.
+
+**Ran python ops/preflight.py to full completion** (backgrounded, no hard shell timeout, per this file's own repeated lesson about wrapping it): every gate passed, 24 warnings, all previously diagnosed sandbox limits (Stripe, analytics, mail, VPS, Pillow credentials absent here; cron-cadence drift on fulfil-orders.yml/hourly-brief.yml already root-caused; dated disclosures; image and deck-art gaps; mobile-checks.yml correctly idle; the one sitemap URL still blocked on IndexNow egress), none new.
+
+**Cold-read nine ops/*.py files against the low-mention lane rather than re-sweep exhausted ground**, since every unblocked backlog row and GitHub issue is again done or Phil-gated: check_integrations.py, check_ledgerium.py, stripe_check.py, check_affiliate_trigger.py, hazard_icons.py, wire_aria_current.py, prune_catalog_js.py, merge_cardtext.py, and build_kitchen_deck_pdf.py (confirmed already wired into site/kitchen-deck.html, gated by gate_kitchen_deck_pdf_current, and covered by its own tests). Traced wire_aria_current.py's relative-path matching against the real committed zones/index.html to confirm it, not just read the regex, and it marks correctly. No defect found in any of the nine; each is defensive, reports UNCHECKED rather than a false pass where it lacks a credential or egress, and matches its own docstring's claims against the real committed site.
+
+**Verified:** check_urls.py, audit_pages.py, affiliate.py --check, fix_dashes.py --check all implied clean by the full preflight pass above. Regenerated the command deck (python ops/dashboard.py): EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, now current at this commit.
+
+**Went well:** treating a clean preflight and an exhausted backlog as a reason to read further into the codebase rather than stop, and picking files by the same log-mention ranking prior cycles established rather than guessing.
+
+**Did not go well:** nine files read carefully found nothing; the low-mention lane is thinning out, and future cycles may need a different method (cross-document consistency, or the still-undone preflight --deep run) once it is exhausted too.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md (item 0: VPS_DEPLOY_KEY; redeploy click; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Cold-read lane next candidates: the remaining files at the 20-mention tier (build_corporate_asset.py, generate_card_art.py, image_style.py, room_image_variants.py, video_narrated.py, youtube_upload.py, zone_supplies.py and others), or a preflight --deep run for whoever next has a longer slot.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable this cycle.
+
 ## PM check-in, 2026-09-24 18:2x (previous work finished; STATUS.md's own build citation had gone stale twice in one day, corrected with a better confirmation found on GitHub)
 
 Previous work finished: the 17:5x/18:0x CRLF fix and gate merged clean, `preflight.py` clean (24 known warnings, one transient stray probe file gone on recheck). Backlog and 8 issues unchanged, all done or Phil gated.
