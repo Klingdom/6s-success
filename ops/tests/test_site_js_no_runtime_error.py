@@ -66,6 +66,17 @@ import browser as B                                           # noqa: E402
 # deck-gallery pages that same day), and planting the exact dropped-script
 # defect on resources.html made this test fail by name before it was
 # restored, so the coverage is real, not assumed.
+#
+# book.html, bundle.html, consulting.html, method.html, invest.html,
+# about.html, shop.html and corporate.html added 2026-09-24, closing the
+# gap the 2026-09-23 paint()-crash postmortem itself left open: these are
+# the 9 pages that carry `.reveal` (`grep -rl 'class="[^"]*reveal'
+# site/*.html`), the exact defect class that crash broke sitewide, and
+# only index.html of the 9 was exercised by this test. shop.html and
+# corporate.html already had their own separate interactive tests
+# (test_shop_interactive.py, test_corporate_interactive.py) but neither
+# asserts window.onerror, so a page-specific JS regression on any of
+# these 8 could still ship with every existing gate green.
 PAGES = ("index.html", "zones/entryway-the-landing-spot.html", "404.html",
          "resources.html",
          "rooms/dining-room.html", "rooms/entryway.html",
@@ -77,7 +88,18 @@ PAGES = ("index.html", "zones/entryway-the-landing-spot.html", "404.html",
          "rooms/mudroom.html", "rooms/nursery.html", "rooms/pantry.html",
          "rooms/patio-or-deck.html", "rooms/primary-bathroom.html",
          "rooms/primary-bedroom.html", "rooms/stair-landing.html",
-         "rooms/workshop.html")
+         "rooms/workshop.html",
+         "book.html", "bundle.html", "consulting.html", "method.html",
+         "invest.html", "about.html", "shop.html", "corporate.html")
+
+# invest.html is a deliberately separate design (its own minimal header and
+# footer for an investor audience, confirmed against ops/preflight.py's own
+# no_footer_by_design set and its "invest.html has its own minimal legal
+# footer" comment): a single anchor-link <nav>, no hamburger toggle, no
+# assets/js/site.js dependency at all (it wires its own inline reveal
+# script). Every other page in PAGES carries a real .nav-toggle, checked
+# directly before adding this exception rather than assumed.
+NO_NAV_TOGGLE_BY_DESIGN = {"invest.html"}
 
 ERROR_HOOK = (
     '<script>window.__errs=[];window.onerror=function(m,s,l,c,e){'
@@ -105,8 +127,28 @@ frame.addEventListener("load", function(){
     var navEl = d.querySelector(".nav");
     out.navToggleOpenedClass = !!(navEl && navEl.classList.contains("open"));
     out.errs = w.__errs || [];
-    out.revealCount = d.querySelectorAll(".reveal").length;
-    out.revealInCount = d.querySelectorAll(".reveal.in").length;
+    /* Only the "already within the first screen at load" fallback
+       (site.js's own belt-and-suspenders getBoundingClientRect check,
+       200ms after DOMContentLoaded) can be verified here: scroll-triggered
+       IntersectionObserver reveal was tried (window.scrollTo, then
+       el.scrollIntoView on each element directly, each followed by a
+       further wait) and confirmed NOT to fire under headless --dump-dom
+       with --virtual-time-budget, on this page and independently on a
+       non-iframed direct load of the same file, real browsers do not
+       share this limitation. So this only counts .reveal elements whose
+       own getBoundingClientRect places them in the loaded viewport,
+       exactly the population the belt-and-suspenders fallback promises
+       to catch; content further down the page is real, correct,
+       scroll-to-reveal behaviour this harness cannot observe, not a
+       claim that it works. */
+    var vh = w.innerHeight || d.documentElement.clientHeight;
+    var top = 0, topIn = 0;
+    d.querySelectorAll(".reveal").forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > 0) { top++; if (el.classList.contains("in")) topIn++; }
+    });
+    out.revealTopCount = top;
+    out.revealTopInCount = topIn;
     done();
   }, 900);
 });
@@ -188,7 +230,8 @@ def main() -> int:
             bad.append("%s: JavaScript threw during load: %s"
                         % (page, o["errs"]))
         if not o.get("hasNavToggle"):
-            bad.append("%s: no .nav-toggle button found" % page)
+            if page not in NO_NAV_TOGGLE_BY_DESIGN:
+                bad.append("%s: no .nav-toggle button found" % page)
         elif not o.get("navToggleChangedAria"):
             bad.append(
                 "%s: clicking .nav-toggle did not change aria-expanded "
@@ -198,13 +241,13 @@ def main() -> int:
         elif not o.get("navToggleOpenedClass"):
             bad.append("%s: .nav-toggle changed aria-expanded but .nav "
                         "never gained the open class" % page)
-        rc, ric = o.get("revealCount", 0), o.get("revealInCount", 0)
+        rc, ric = o.get("revealTopCount", 0), o.get("revealTopInCount", 0)
         if rc and not ric:
             bad.append(
-                "%s: %d .reveal element(s), 0 carry .in; the belt-and-"
-                "suspenders initial-viewport reveal never ran, so this "
-                "page's content stays invisible to a visitor with motion "
-                "enabled" % (page, rc))
+                "%s: %d .reveal element(s) in the loaded viewport, 0 carry "
+                ".in; the belt-and-suspenders initial-viewport reveal never "
+                "ran, so this page's first-screen content stays invisible "
+                "to a visitor with motion enabled" % (page, rc))
 
     if bad:
         print("  %d problem(s) found:" % len(bad))
