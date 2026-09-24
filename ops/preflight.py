@@ -1075,6 +1075,14 @@ GENERATOR_OWNERSHIP_CHAIN = [
     # is not rebuilt, the index links at anchors that no longer exist. Owned
     # here so that cannot happen quietly. It must run AFTER build_zone_pages.
     "build_cleaning_index.py",
+    # The micro zone coverage table in STRATEGY-MICROZONES.md, added
+    # 2026-09-24. That document argues entirely from the size of the
+    # gap between the execution fields (114 zones) and the three
+    # differentiating fields, so the number IS the argument.
+    # Hand-written, it went stale after a single room of authoring.
+    # Owned here so it is re-derived from the corpus on every run and
+    # cannot understate or overstate the asset.
+    "build_microzone_coverage.py",
     "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
     "build_kit_page.py", "build_corporate.py",
     "build_corporate_asset.py",

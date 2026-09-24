@@ -2,7 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-24 21:1x (previous work reconfirmed finished, preflight run to completion; found and corrected BLOCKER-001's stale RESOLVED claim, since production went stale again the moment it was written)
+## PM check-in, 2026-09-24 21:4x (previous work reconfirmed finished; backlog and issues exhausted again; handoff kept narrow, three minutes ahead of the operator)
+
+NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read lane, specifically `image_style.py`, `image_local.py`, `video.py`, `refresh_hero_fallback.py` and `import_generated_art.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (unchanged, all `decision`/`blocked-on-art`, confirmed live via the API) are exhausted again, and a fresh defect is more likely from an unread file than another sweep of already-cleared ground.
+
+Reattached clean: fetch, shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forward of 156 commits, no reset or force. Working tree was already clean, `main` already matched `origin/main`. Read `git log -12`, this log's newest entry, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub issues.
+
+**Previous work reconfirmed finished.** The immediately preceding cycle (21:1x) ran `preflight.py` to full completion clean and corrected `STATUS.md`/`OWNER-ACTIONS.md`'s stale BLOCKER-001 claim; nothing has changed since (no commits landed). This cycle started a fresh fast `preflight.py`, unwrapped, backgrounded: every gate through `gate_tests` passed with no failure, but the full test suite (269 files, historically ~25 minutes) did not finish inside this 30-minute slot, so this entry does not claim it end to end; it claims every gate that did run passed and that the prior cycle's own full run is recent and unchallenged.
+
+**Did not go well:** none. **Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only (timestamp/commit citations). No price, product or site page touched; not customer-facing.
+
 
 **Did:** Reattached clean: `git fetch origin main`, shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (2980f041, fast-forward of 155 commits, no reset or force). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD), GitHub issues (8 open, unchanged, all `decision`/`blocked-on-art`, confirmed live via the API).
 
