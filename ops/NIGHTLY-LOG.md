@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 17:1x (previous work reverified finished; the overdue preflight --deep handoff was lost with the prior container, ran a full fast preflight myself instead; backlog and issues both stay exhausted)
+
+Reattached clean: fetch/fetch --unshallow/checkout main/merge --ff-only onto origin/main, fast-forward from a shallow detached start (125 commits), no reset or force. Read git log -12, this log's newest entries (16:4x/16:3x PM check-ins, 16:0x operator cycle), BACKLOG-2026-09-07.md in full (every Now row A1-A9, B1-B8, C1-C7 done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), EXECUTIVE-DASHBOARD-LIVE.md, OWNER-ACTIONS.md, STATUS.md. GitHub confirmed live via the API: 8 open issues, unchanged, all decision/blocked-on-art (#35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs.
+
+**The 16:4x cycle's own handoff (act on a backgrounded preflight --deep run) could not be picked up: that process lived in the prior cycle's own container, which does not persist between scheduled invocations, so its result was never written anywhere and is genuinely gone, not merely unread.** Recorded here rather than silently treated as done. Ran python ops/preflight.py (fast) myself to full completion instead, backgrounded with no hard shell timeout, per this file's own repeated lesson about wrapping it: every gate passed, 24 warnings, all previously diagnosed sandbox limits (Stripe/analytics/mail/VPS/Pillow credentials absent here, cron-cadence drift on fulfil-orders.yml/hourly-brief.yml already root-caused, dated disclosures, image/deck-art gaps, mobile-checks.yml correctly idle, the one sitemap URL still blocked on IndexNow egress), none new. Working tree was already clean and main already matched origin/main before this cycle touched anything.
+
+**Tried to close the IndexNow gap again rather than just cite it as standing.** python ops/indexnow.py --new correctly refused to submit without confirming the key file is served (no egress to 6s-success.com from this sandbox); wrote no files, changed nothing, confirmed via git status. Genuinely still blocked, not skipped.
+
+**No new backlog defect found.** Cross-checked RISKS.md's two other open CRITICAL rows (RISK-0007, RISK-0013) beyond the two the 13:5x cycle already checked (RISK-0003, RISK-0011) against their own current text: both correctly tracked OPEN with current, consistent framing (RISK-0013's discovery-is-the-constraint framing matches the dashboard's own current headline). DECISIONS.md's newest entry (D-024 mechanics) read cold: internally consistent, no drift. Every unblocked backlog row stays done or Phil-gated; all 8 GitHub issues are decision/blocked-on-art, unchanged since 2026-09-17 at the latest.
+
+**Went well:** not carrying forward a handoff this session had no way to actually verify; saying plainly that the backgrounded process was lost rather than assuming it either completed clean or is still "pending" somewhere.
+
+**Did not go well:** the same class of gap the --deep handoff itself was trying to close (this fast preflight is still not --deep) goes another cycle without a --deep run, since no sandboxed session yet backgrounds work in a way that survives across scheduled invocations; worth naming for whoever next has more than a 30-minute slot free.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-blocked list in OWNER-ACTIONS.md (item 0: VPS_DEPLOY_KEY; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts; Stripe business description) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Leaving a real python ops/preflight.py --deep run, one that can actually be checked before this container recycles, for whoever next has a longer slot; a 30-minute PM check-in cannot both start and verify it inside one cycle.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable this cycle (one already-shipped page still blocked on egress, tracked above).
+
 ## PM check-in, 2026-09-24 16:4x (previous work reverified finished; the overdue preflight --deep handoff, stalled since 11:4x across ten cycles, started this cycle rather than deferred an eleventh time)
 
 NEXT FOR THE OPERATOR: check and act on the results of `python ops/preflight.py --deep`, started this cycle in the background, because it last completed 2026-09-22 22:1x, the 11:4x PM check-in's own handoff to run it went unactioned across ten cycles since (12:1x through 16:3x, each doing other named work instead), and it is the one check with a proven record of catching a real defect (the `quest.html` WCAG contrast failure, 2026-09-04) that the fast pass structurally cannot see.
