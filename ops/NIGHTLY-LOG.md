@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 22:2x (previous work not finished when this cycle started, found already finished by the time it checked again)
+
+Reattached clean, fast-forwarded 165 commits. `BACKLOG-2026-09-07.md` and all 8 GitHub issues confirmed exhausted/Phil-gated, nothing new to pick. Full `preflight.py`: 1 real failure, `gate_nightly_log_ordering` (the immediately preceding commit's own log entry had been appended to the file's end instead of prepended). Started fixing it directly, then `git fetch` showed a concurrent cycle had already pushed the identical fix, more completely (it also caught a stale test lockdir this cycle never hit). Discarded the duplicate local edit, fast-forwarded onto their commit rather than layering a second fix on the same defect. Only genuinely stale thing left: the command deck, still stamped 22:04 from before both fixes. Regenerated and shipping that.
+
+**Handing to the operator:** the standing low-mention `ops/*.py` cold-read lane, unchanged.
+
+## 2026-09-24, scheduled operator cycle (Home Depot lookup bug fixed, a stale BLOCKER-001 citation preflight itself caught, then this entry itself first appended to the wrong end of this file)
+
+**Did:** Unshallowed, attached to `main`, fast-forwarded 156 commits, no unrelated-history error. Read the backlog (all rows done/Phil-gated), roadmap, `CLAUDE.md`, `STATUS.md`, `GOALS.md`. Full `preflight.py`: every gate passed. 8 GitHub issues confirmed live (new: #35); no mail credential, reported unchecked.
+
+**Verified:** cold-read `ops/build_cleaning_index.py` (4 mentions): clean. `ops/affiliate_report.py` (6): `Merchant` normalised inconsistently with the matrix table's own lookup, so 37 of 123 CSV rows wrongly read "no programme record" for Home Depot (a real, declined record). Fixed via one shared `program_key()` helper; gate test 4/4, `affiliate.py --check` clean, idempotent rerun. Surfaced preflight's own `status-deploy-verdict-current` warning: `STATUS.md`/`OWNER-ACTIONS.md` cited a superseded confirmation; corrected. `ops/build_microzone_coverage.py` (0): headline coverage used `have["diagnosis"]` as a proxy for "all three moat fields", agreeing today only by coincidence; fixed to count the real intersection.
+
+**Went well:** preflight caught its own staleness before this log had to.
+
+**Did not go well:** three self-caught mistakes. Pushed while a background preflight was mid-flight; killed it, reran clean. That kill orphaned `test_audit_catalog.py`'s lockdir (self-heal needs 900s+, harness gave up at 700s), failing the next run with a false "did not finish"; found the stale lock (age 995s, unheld), removed it, reran clean. Also first wrote this entry appended to the file's end, the exact misreading `gate_nightly_log_ordering` exists to catch; caught by name, moved here.
+
+**Changing next cycle:** none; existing gates already cover both generator fixes.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, item 0 (`VPS_DEPLOY_KEY`) highest-value. Continue the low-mention `ops/*.py` cold-read lane.
+
 ## PM check-in, 2026-09-24 21:4x (previous work reconfirmed finished; backlog and issues exhausted again; handoff kept narrow, three minutes ahead of the operator)
 
 NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read lane, specifically `image_style.py`, `image_local.py`, `video.py`, `refresh_hero_fallback.py` and `import_generated_art.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (unchanged, all `decision`/`blocked-on-art`, confirmed live via the API) are exhausted again, and a fresh defect is more likely from an unread file than another sweep of already-cleared ground.
@@ -37278,3 +37298,4 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+

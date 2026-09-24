@@ -82,6 +82,15 @@ def measure() -> dict:
                 base[f][0] += 1
                 base[f][1] += _base_sub(f, z[f])
 
+    # The headline percentage below is "zones with the full moat", not "zones
+    # with any one moat field": today those two counts happen to be equal
+    # (every zone that has been authored gets all three fields in the same
+    # pass), but nothing enforces that, and have["diagnosis"] alone would
+    # silently overstate coverage the day a zone gets diagnosis authored
+    # ahead of capacity/variants. Counted directly here, the same all()
+    # check rooms_done/rooms_open already use, so the two can never disagree.
+    moat_complete = sum(1 for _room, z in zones if all(z.get(f) for f in MOAT))
+
     rooms_done, rooms_open = [], []
     for r in d["rooms"]:
         zs = r.get("zones") or []
@@ -92,6 +101,7 @@ def measure() -> dict:
             (r.get("room"), n, len(zs)))
 
     return {"total": total, "have": have, "sub": sub, "base": base,
+            "moat_complete": moat_complete,
             "rooms_done": rooms_done, "rooms_open": rooms_open}
 
 
@@ -121,8 +131,8 @@ def render(m: dict) -> str:
                     % (f, m["have"][f], m["sub"][f], moat_lab[f]))
 
     done = m["rooms_done"]
-    pct = 100.0 * m["have"]["diagnosis"] / t if t else 0.0
-    n_done = m["have"]["diagnosis"]
+    n_done = m["moat_complete"]
+    pct = 100.0 * n_done / t if t else 0.0
 
     lines = [BEGIN, ""]
     lines += rows
@@ -168,8 +178,8 @@ def main() -> int:
     io.open(DOC, "w", encoding="utf-8", newline="").write(out)
     print("  %s: %d of %d zones carry all three moat fields (%.1f%%), %d "
           "rooms complete"
-          % (os.path.basename(DOC), m["have"]["diagnosis"], m["total"],
-             100.0 * m["have"]["diagnosis"] / m["total"],
+          % (os.path.basename(DOC), m["moat_complete"], m["total"],
+             100.0 * m["moat_complete"] / m["total"],
              len(m["rooms_done"])))
     return 0
 
