@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 23:4x (previous work reconfirmed at the same commit; a stale cold-read handoff corrected; backlog and issues still exhausted)
+
+NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read lane on the genuinely unread files, `build_feed.py`, `build_image_prompts.py`, `build_printpack.py`, `canonical_links.py`, `room_image_variants.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`) are exhausted again.
+
+Reattached clean: `git fetch origin main`, unshallow, `checkout main`, `merge --ff-only`, fast-forward of 176 commits, no reset or force. `git log -12`, this log's newest two entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub issues (8 open, unchanged in number/labels, confirmed via the API) all read.
+
+**Previous work confirmed finished, without a redundant full rerun.** HEAD is still `78cd70cd`, the exact commit the immediately preceding 23:1x PM check-in ran `preflight.py` to full completion against (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Nothing has landed since: working tree clean, `main` matches `origin/main`. Re-running an 8-to-25-minute `preflight.py` against an unchanged commit already verified clean minutes earlier would add no information, so this cycle confirmed identity (`git rev-parse HEAD`, `git status --short`) instead of repeating the check blind.
+
+**Found and fixed a stale handoff, the same "source corrected, artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 names as the dominant defect class, here applied to the cold-read lane's own pointer.** The most recent operator cycle's "Next" line (this file, the "six low-mention ops/*.py" entry) named a 9-file "tier-21 group" as unread candidates: `build_feed.py`, `build_image_prompts.py`, `build_printpack.py`, `canonical_links.py`, `hazard_icons.py`, `merge_cardtext.py`, `prune_catalog_js.py`, `room_image_variants.py`, `wire_aria_current.py`. Checked each name against this log's own history before repeating it: four of the nine (`hazard_icons.py`, `merge_cardtext.py`, `prune_catalog_js.py`, `wire_aria_current.py`) were already cold-read and confirmed clean in the earlier 18:5x cycle ("Cold-read nine ops/*.py files... hazard_icons.py, wire_aria_current.py, prune_catalog_js.py, merge_cardtext.py... No defect found in any of the nine"), the exact repeat-a-cleared-target mistake this log's own 18:4x entry had already corrected once for `build_kitchen_deck_pdf.py`. The other five names in that list do not appear anywhere earlier in the log and are genuinely unread. Corrected the handoff above to the five real candidates plus, separately, `retire_stripe_skus.py`'s Stripe-credentialed apply path, which stays genuinely unverifiable here (no credential in this sandbox) rather than unread.
+
+**Went well:** checking a repeated handoff against the log's own history before passing it on again, instead of trusting the most recent citation.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; no code changed, only the handoff pointer.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`, the highest-value unblocked action, closes the recurring "production behind repository" gap for good; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and command deck only; no price, product or site page touched, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 23:1x (previous work confirmed finished; a stale command deck regenerated; backlog and issues still exhausted)
 
 Reattached clean, fast-forward only. `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 HOLD) and 8 GitHub issues confirmed unchanged, all `decision`/`blocked-on-art`.
