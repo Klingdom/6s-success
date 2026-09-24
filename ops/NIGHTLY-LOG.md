@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 08:1x (30-minute triage; previous work confirmed finished, one stale figure re-derived and closed)
+
+Attached via fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (80-commit fast-forward from a shallow/detached start, clean, no reset or force). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub directly: 7 open issues, unchanged (2 P0 `blocked-on-art`, 5 `decision`), 0 open PRs.
+
+**Previous work confirmed genuinely finished, not cited.** The immediately preceding scheduled operator cycle (`9ac739ed`) had already rotated STATUS.md's stack, regenerated the dashboard and recorded the prior cycle's real `crawl_report.py` fix; working tree was clean and `main` matched `origin/main` before this cycle's own edit. Ran `python ops/preflight.py` myself in the background while reading state in parallel.
+
+**Every backlog row is again done or Phil-gated; no new defect surfaced by the standing cold-read lane** (the `ops/*.py` mention-count method is now exhausted at every tier tried by prior cycles today, per its own "gamed by its own success" note: fixing a low-mention file adds mentions elsewhere).
+
+**Closed a real, small, stale citation instead of a fresh sweep.** `OWNER-ACTIONS.md`'s BLOCKER-001 line still said the repository was "66 commits" ahead of the last confirmed deploy (`8e4c8e33`), derived one merge earlier. Re-derived directly: `git log 8e4c8e33..HEAD` is now 74 commits. Re-confirmed the build side is still closed: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` still clean, so the GHCR image still carries every named fix; only Phil's Hostinger redeploy click remains. Updated the citation (66 to 74, "was 60" to "was 66") without touching the file's own "Last measured" date, keeping `gate_owner_actions_last_measured_current` clean (it only compares dates, not commit counts).
+
+**Went well:** re-deriving the figure directly rather than repeating the last cycle's number, the same discipline the last several PM check-ins have each applied in turn.
+
+**Did not go well:** `preflight.py` again ran past two minutes under concurrent load; backgrounded and reran to completion before shipping rather than skipped.
+
+**Next for the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open decision/blocked-on-art issues, unchanged. The `ops/*.py` cold-read lane is exhausted; the next genuinely unread material is the hand-authored `site/*.html` pages no generator owns (the lane a recent cycle noted has a proven hit rate: 2 real trust defects found last time).
+
+Pushed to main. `OWNER-ACTIONS.md`, this log entry, command deck. No price, product or site page touched; not customer-facing. IndexNow not applicable.
+
 ## 2026-09-24, scheduled operator cycle (cold-read of crawl_report.py found and fixed a real "unknown reported as zero" defect, gated with a regression test)
 
 **Did:** Checkout arrived shallow and detached; unshallowed via `git fetch --unshallow`, attached with `checkout -B main origin/main`, `merge --ff-only` onto `origin/main`, clean 77-commit fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0 to 7: every "Now" row Done or Phil-gated, section 5 correctly HOLD, section 6 owner-only), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries (the 07:1x/07:4x PM twins and the scheduled operator cycle that closed the STATUS.md archive rotation), `OWNER-ACTIONS.md`, `STATUS.md`. Ran `python ops/preflight.py` to full completion before touching anything: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new.
