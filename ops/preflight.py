@@ -3011,6 +3011,53 @@ def gate_dashboard_traffic_carry_forward() -> None:
              f"on an unmeasured run; got {aff!r}")
 
 
+def gate_dashboard_owner_actions_traffic_citation_current(path=None) -> None:
+    """OWNER-ACTIONS.md's own "Last measured" header must stay in the exact
+    shape dashboard._owner_actions_traffic_citation() parses, or the
+    fresher-reading fallback that function exists for silently stops firing.
+
+    Found 2026-09-24, PM check-in. OWNER-ACTIONS.md's header was rewritten
+    2026-09-23 12:50 UTC from "traffic re-measured by a direct database
+    read: 76 visitors/190 visits/30 days" (the exact phrase
+    _owner_actions_traffic_citation()'s regex requires, and the phrasing
+    every prior header used) to "traffic re-read (68 visitors/160
+    visits/30 days, ...)", a harmless-looking rewording that dropped the
+    contract. Confirmed live: _owner_actions_traffic_citation() returned
+    None against the real committed file even though the header named a
+    fresher reading (68/160, 2026-09-23) than ops/state.json's own carried
+    figure (76/190, 2026-09-21), so EXECUTIVE-DASHBOARD-LIVE.md's Traffic
+    row kept showing the older number, silently, with no warning anywhere:
+    gate_owner_actions_last_measured_current only checks the header's date,
+    never its shape, so it could not have caught this. Fixed by restoring
+    the exact phrasing in OWNER-ACTIONS.md; this gate stops it drifting
+    silently again by requiring the real committed file to parse whenever
+    its own header still plainly names a traffic reading.
+    """
+    path = path or os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    header_match = re.search(r"\*\*Last measured:\*\*[^\n]*", text)
+    if not header_match:
+        return
+    header = header_match.group(0)
+    if not re.search(r"\d+\s*visitors?/\s*\d+\s*visits?", header):
+        # Header does not currently name a traffic reading at all; nothing
+        # for this parser to have caught, and _owner_actions_traffic_
+        # citation() correctly returning None is not a defect here.
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    if dashboard._owner_actions_traffic_citation(path) is None:
+        fail("dashboard-owner-actions-traffic-citation-current",
+             "OWNER-ACTIONS.md's \"Last measured\" header names a traffic "
+             "reading but dashboard._owner_actions_traffic_citation() "
+             "could not parse it (%r); keep the exact phrasing \"traffic "
+             "re-measured by a direct database read: N visitors/N "
+             "visits/30 days\", or the dashboard's fresher-reading "
+             "fallback silently stops firing." % header)
+
+
 def gate_dashboard_constraint_reflects_carried_deploy() -> None:
     """The dashboard's headline sentence must read the carried verdict, not
     only this run's own unmeasured probe.
@@ -20131,6 +20178,7 @@ def main() -> int:
     run_gate(gate_dashboard_deploy_carry_forward)
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
+    run_gate(gate_dashboard_owner_actions_traffic_citation_current)
     run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)
     run_gate(gate_dashboard_shallow_commits)
