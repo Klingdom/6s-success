@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-24 03:4x (previous work finished; the deploy gap re-sized and found to include a second live customer-facing defect, not just internal-consistency work)
+
+NEXT FOR THE OPERATOR: continue the standing cold-read lane on `wire_landmarks.py`, `wire_measure.py`, `wire_progressive.py` and `wire_pwa.py`, because `BACKLOG-2026-09-07.md` sections 2-6 are again every row done or Phil-gated and the 7 open GitHub issues (confirmed live via the API: `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`) are unchanged, all `decision`/`blocked-on-art`, none mine or the operator's to touch.
+
+Attached clean via fetch plus `fetch --unshallow` plus `merge --ff-only` onto `origin/main` (53-commit fast-forward from a shallow/detached start, no reset or force). Previous work finished: ran `preflight.py` myself to completion (unwrapped, ~4 minutes, per its own docstring), every gate passed. Working tree clean before this cycle's own edits.
+
+**The actual finding this slot: `OWNER-ACTIONS.md`'s and `STATUS.md`'s own "Last measured"/`BLOCKER-001` headers were themselves stale, understating the deploy gap.** Both still read "repository HEAD has moved one commit further" (`8e4c8e33`), a figure at least 6 PM/operator cycles had carried forward unchecked. Measured fresh: `git log 8e4c8e33..HEAD` is 47 commits, not 1, over 8 hours now since the last confirmed deploy (`ops/deploy-verdict.json`: build `5eba61fde231c1a7`, `2026-09-23T19:00:39Z`). Two of those 47 are not internal-consistency work: `a16788fa` fixed a real, live dead-nav-menu defect on `404.html`, `corporate.html`, `kit.html` and 2 B2B articles (same defect class as `8e4c8e33` itself, i.e. production is already known to have shipped this exact bug once) — every one of those pages is still serving the broken hamburger button to a customer on a phone right now. `b0166730` (Phil's own commit, 13:51:55 -0600, finishing the 65/65 Stripe SKU retirement) means production's catalogue is stale by that much too. Corrected both files' headers to the real 47-commit gap and named both live items by commit rather than repeat the "one commit, internal only" undercount. No operator sandbox holds the VPS deploy key or egress to `6s-success.com` (confirmed directly this cycle: no key at `~/.ssh`, `curl` to both `api.stripe.com` and `6s-success.com` `connect_rejected` by the agent proxy), so the fix itself still needs a session with real access; what changed this cycle is that the tracking documents now say so accurately instead of understating it.
+
+**Went well:** re-deriving the gap size directly (`git log`) instead of citing the stale header six prior cycles had already repeated.
+
+**Did not go well:** the same unrelated-history/shallow-checkout shape recurred again (issue #27's usual pattern); a live customer-facing defect has now been sitting fixed-but-undeployed for over 8 hours with nobody able to close it from this pipeline.
+
+**Changing next cycle:** none to the gates; the documents were wrong, not the checks. Worth a standing note: when the deploy-gap header says "one commit," re-derive it with `git log` before repeating it, since this is at least the second time that header has gone stale for hours while cycles cited it instead of checking it.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 7 open GitHub issues, unchanged. `BLOCKER-001` is the real, current highest-priority item: a session with the VPS deploy key needs to redeploy, closing a live P0 mobile-nav defect on 5 pages.
+
+Pushed to main. `OWNER-ACTIONS.md`, `STATUS.md`, command deck and this log entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-24 03:1x (previous work finished, seventh independent reconfirmation; no new closeable item)
 
 Attached clean via fetch plus ff-only merge onto origin/main (52-commit fast-forward, no reset or force). Previous work finished, verified fresh rather than cited: ran preflight.py myself to full completion, every gate passed, 23 warnings, all matching previously diagnosed sandbox limits I re-checked directly rather than took on faith: no SSH key at ~/.ssh (empty directory), no Stripe/mail/Gemini credential in env, curl to api.stripe.com and 6s-success.com both connect_rejected by the agent proxy. Working tree was clean before and after; main was already up to date with origin.

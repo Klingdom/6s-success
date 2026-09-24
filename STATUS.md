@@ -16,7 +16,7 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-23, later PM check-in. **Sections 2 and 5 had fallen one confirmation behind `BLOCKER-001`, which an earlier same-day cycle had already updated to a newer `ops/deploy-verdict.json` entry; this pass synced them.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z`; repository HEAD is now `a09bf555820bf5bf` (`ops/build_id.py --check`: current), one legitimate fix behind (the dead mobile-nav fix on the deck gallery pages, `8e4c8e33`). No new material commit narrated here; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
+**Last Updated:** 2026-09-24, PM check-in. **Sections 2 and 5 had fallen 47 commits behind `BLOCKER-001`; this pass re-sized the gap rather than repeat the stale "one commit" figure several intervening cycles had carried forward unchecked.** Production confirmed at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`); repository HEAD is now `38b20571260ea9ff` (`ops/build_id.py --check`: current), 47 commits and over 8 hours behind. The gap is no longer only internal-consistency work: `a16788fa` fixed a second live, real dead-nav-menu defect (`404.html`, `corporate.html`, `kit.html`, 2 B2B articles), and `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs; both are still live-broken/live-stale in production. No new material commit otherwise narrated here; that accounting is `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`'s job and is current there.**
 
 **Prior (2026-09-23, PM check-in): Corrected sections 2, 5 and 6: this file had stood claiming production deploy freshness was "genuinely unknown" and the Production Release table read all-UNKNOWN, both false and both contradicted by evidence already committed in this repository (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`'s own dated deploy confirmations). Corrected to state what is actually known and to stop conflating "this sandboxed session cannot verify directly" with "nobody knows."**
 
@@ -141,11 +141,19 @@ had fallen one confirmation behind `BLOCKER-001`, which a same-day cycle had
 already updated.** As of the last such check (`ops/deploy-verdict.json`,
 `2026-09-23T19:00:39Z`), production served build `5eba61fde231c1a7`, from a
 session that finished the Stripe SKU retirement (65 of 65 archived) and
-redeployed. The repository has since moved one further commit that changed
-shipped site content (`8e4c8e33`, the dead mobile-nav fix on
-`deck-gallery.html`/`deck-gallery-mudroom.html`; repository HEAD build
-`a09bf555820bf5bf`, confirmed current via `ops/build_id.py --check`), so
-production is genuinely one legitimate fix behind right now. "No automated
+redeployed (commit `8e4c8e33`, the dead mobile-nav fix on
+`deck-gallery.html`/`deck-gallery-mudroom.html`). **Re-sized 2026-09-24,
+PM check-in: the "one commit behind" figure above had itself gone stale
+for over 8 hours while several intervening cycles repeated it unchecked.**
+`git log 8e4c8e33..HEAD` is 47 commits, not 1 (repository HEAD build
+`38b20571260ea9ff`, confirmed current via `ops/build_id.py --check`), and
+two of those are live customer-facing, not internal-consistency work:
+`a16788fa` fixed a second, real dead-nav-menu defect on `404.html`,
+`corporate.html`, `kit.html` and 2 B2B articles (same defect class as
+`8e4c8e33` itself), still serving the broken hamburger button to every
+mobile visitor to those 5 pages right now; `b0166730` (Phil's own commit)
+finished retiring the last of 65 dead/superseded Stripe SKUs, so
+production's catalogue is stale by that much too. "No automated
 pipeline exercises `ops/deploy.py`" is also still true (no `.github/workflows/`
 job runs it) and remains a real gap: freshness depends on a local session
 happening to run one, not on any guaranteed cadence.
@@ -285,9 +293,10 @@ this session's own measurement.
 
 **Currently Deployed Build (last confirmed):** `5eba61fde231c1a7`
 **Confirmed At:** `2026-09-23T19:00:39Z` (`ops/deploy-verdict.json`)
-**Repository HEAD Build:** `a09bf555820bf5bf` (one commit ahead: `8e4c8e33`,
-the dead mobile-nav fix on `deck-gallery.html`/`deck-gallery-mudroom.html`;
-not yet known to be deployed)
+**Repository HEAD Build:** `38b20571260ea9ff` (47 commits ahead as of
+2026-09-24 PM check-in, not one; includes `a16788fa`, a second live
+dead-nav-menu defect on 5 pages, and `b0166730`, the finished 65/65 Stripe
+SKU retirement; none of it yet known to be deployed)
 **Release / Tag:** NONE, every deploy is tracked by commit SHA / image
 digest, 0 GitHub tags or releases exist
 **Deployment Method:** `ops/deploy.py`, run manually by a local session
@@ -331,8 +340,8 @@ answer (no admin/security-alerts scope confirmed either way).
 | Deployment workflow | NONE AUTOMATED | No workflow in `.github/workflows/` runs `ops/deploy.py`; a local session holding the VPS deploy key runs it manually, confirmed routinely since 2026-09-01 (`ops/deploy-verdict.json`, `OWNER-ACTIONS.md`). **Corrected 2026-09-23:** this row previously implied the click may never have happened; it has, repeatedly, just never from a sandboxed session |
 | Security/dependency alerts | UNKNOWN | This operator's GitHub access has not been confirmed to include the security-alerts scope; not checked |
 | Release convention | NONE | 0 tags, 0 releases. Every deploy is tracked by commit SHA / image digest, not a tag |
-| Production traceability | Tracked, one commit behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T12:51:31Z`) is the live-tracked answer, not unknown by design. See section 5 above for the current gap |
-| Repository hygiene | 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md` |
+| Production traceability | Tracked, 47 commits behind as of this check | No sandboxed session holds the deploy key, so this session cannot verify directly; but `ops/deploy-verdict.json` (checked `2026-09-23T19:00:39Z`) is the live-tracked answer, not unknown by design. See `BLOCKER-001` above for the current gap and the live defect sitting in it |
+| Repository hygiene | 7 open issues (5 `decision`, 2 `blocked-on-art`), 0 open PRs, 1 branch, 219+ test files, `preflight.py` clean | Not a formal audit, but the working facts a reader would otherwise have to reconstruct from `NIGHTLY-LOG.md`. Confirmed live via the GitHub API this cycle |
 
 ### GitHub Priority
 
@@ -877,12 +886,10 @@ access (`470834de`, then `7ae0e9b6`): the tracked verdict read current at
 `verdict: "current"`, build `5eba61fde231c1a7`, `checked_at:
 2026-09-23T19:00:39Z`, from a later session with real production access
 that finished the Stripe SKU retirement (65 of 65 confirmed archived) and
-redeployed. `site/build-id.txt` at HEAD reads the same build id, so the
-marker and the repository agree: production is confirmed current as of
-that check, not merely carried forward. No operator sandbox holds the
-deploy key or egress to verify this itself, so the next confirmation still
-needs a session with real access, same structural limit as every prior
-occurrence; there is simply nothing open to close right now.
+redeployed. `site/build-id.txt` at HEAD read the same build id at that
+time, so the marker and the repository agreed then.
+
+**Reopened 2026-09-24 03:5x, PM check-in: the gap has grown to 47 commits and now includes a second live customer-facing defect, not just internal-consistency work.** `git log 8e4c8e33..HEAD` (the last deployed commit to HEAD): 47 commits. Two are not narrow: `a16788fa` fixed a real, live dead-nav-menu defect on `404.html`, `corporate.html`, `kit.html`, and 2 B2B articles (same class as `8e4c8e33` itself, which is why production is *already* known to have shipped this exact defect once): every one of those pages still ships the broken hamburger button in production right now, over 8 hours after the fix was committed. `b0166730` finished retiring the last of 65 dead/superseded Stripe SKUs, so production's catalogue is stale by that much too. No operator sandbox holds the deploy key or egress to verify or fix this itself, so the next confirmation still needs a session with real access, same structural limit as every prior occurrence, but this is no longer "nothing open to close": a real, known, live defect is sitting unfixed for customers, and the fix has been sitting ready in the repository for over 8 hours.
 
 Impact:
 
