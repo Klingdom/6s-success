@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 14:2x (previous work verified finished; fixed a stale deploy-verdict citation gate_status_deploy_verdict_current flagged)
+
+**Previous work was finished.** Attached clean (unshallow, fetch, ff-only merge, 292 commits fast-forwarded). CI green on the last completed run (checks.yml #1431, success) for the prior cycle's own push. 8 GitHub issues unchanged, all decision or blocked-on-art. Backlog sections 2-4 closed or Phil-gated.
+
+**Found and fixed:** a full `preflight.py` run (not just fast) surfaced `gate_status_deploy_verdict_current`: both `BLOCKER-001` and the "Production Knowledge" paragraph in section 30 still cited the `aa7c7e7e578e9a18`/`890c43a3` confirmation, while `ops/deploy-verdict.json` had already moved to a newer one (`ea2e48125aa63502`, `checked_at: 2026-09-25T07:30:48Z`, resolving via `resolve_verdict_commit()` to `c6cc1a6a`, B9's Laundry Room deck). Confirmed `cb37d0c8` and `ad310568` (the commits the stale citation still called "open") are ancestors of `c6cc1a6a`, so that redeploy had already closed them; the real remaining gap, re-derived with `deploy_gap_material_commits()`, is 5 commits, not 8: three undeployed B9 room decks (Home Office, Primary Bathroom, Garage), the Kitchen-photo og:image fix, and one build-id restamp. Corrected both `STATUS.md` sections and `OWNER-ACTIONS.md`'s matching note, following each file's own append-only convention.
+
+**Verified:** called `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` directly against the corrected text, both clear. Full `preflight.py` reran clean after (every gate passed). Diff checked for em/en dashes: none. Cold-read two more low-mention `ops/*.py` candidates (`diagnosis.py`, `deploy_freshness.py`, `media_capability.py`, `build_pwa.py`): all four correctly implemented, `build_pwa.py`'s own regeneration produces no diff, no defect found in any.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 13:4x (previous work verified finished; no new defect, handing off the cold-read lane)
 
 NEXT FOR THE OPERATOR: continue `python ops/cold_read_ledger.py --next` (build_avif.py, build_corporate.py, build_deck_pdf.py and the rest of the 15-file lowest-mention tier), because BACKLOG-2026-09-07.md sections 2-4 are now fully closed (B7's print-tier defect and B9's fifth room both landed this morning) and all 8 open GitHub issues are owner-gated, so genuinely unread ops/*.py files are the only lane with real odds of finding a live defect.
