@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (a real unchecked-reported-as-checked defect found in generate_card_art.py, fixed and gated; cold-read lane pushed 15 files deep, no other defect)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 288 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest entries. Full `python ops/preflight.py` (not the fast pass) ran clean: every gate passed, 25 warnings, all previously diagnosed sandbox limits. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No mail credential; inbox unchecked, not empty.
+
+**Backlog sections 2-4 fully closed or Phil-gated, section 5 HOLD, section 6 owner-gated**, matching every recent cycle's own conclusion. Continued the standing cold-read lane (`ops/cold_read_ledger.py --next`), the only genuinely unblocked lane. Cold-read and ran live (not just read) 13 files: `build_avif.py`, `build_corporate.py`, `build_deck_pdf.py`, `build_pwa.py`, `build_social_captions.py`, `check_video_standard.py`, `diagnosis.py`, `import_room_images.py`, `build_youtube_metadata.py`, `wire_generated_catalog.py`, `wire_signup.py`, `zone_graphics.py`, `generate_card_heroes.py`; each ran clean, idempotent, no drift against the committed tree. Also reviewed `deploy_freshness.py`, `image_style.py`, `receive_deploy_key.py`, `shrink_sample.py`, `specific_articles.py`, `media_capability.py`, `launch_plan_pdf.py`, `render_all_zone_videos.py` and `experiments.py` (the last two already fixed on 2026-09-21 and 2026-09-23 respectively but never previously ledgered; backfilled). All recorded in `ops/cold-read-ledger.json`, 15 new plus 2 backfilled.
+
+**Found a real, live defect in `generate_card_art.py`.** Its `main()`, in the "NO PROVIDER AVAILABLE" branch every run currently takes (no image-generation credential in this sandbox), printed "Also checked: torch is CPU only with no CUDA" unconditionally, whatever the real state of torch actually was. Confirmed live: torch is not installed in this sandbox at all, so the line was a specific, false claim about a state nothing had looked at, the exact "unchecked reported as checked" defect `CLAUDE.md` 0.4 names, and the same defect class `ops/media_capability.py`'s own torch check already gets right two files away (try/except ImportError, then `torch.cuda.is_available()`). Fixed by extracting `torch_status()`, which imports torch itself and reports absent, CPU-only, or CUDA-available honestly, matching the sibling file's pattern; `main()` now calls it instead of asserting a fixed state.
+
+**Fail-then-pass proved directly.** New `ops/tests/test_generate_card_art.py` drives `torch_status()` against the real absent case (this sandbox) and two synthetic cases via a fake `sys.modules["torch"]` (CPU-only, CUDA-available), asserting each is reported distinctly and that the absent case never claims a CPU/CUDA state. Ran against the pre-fix code first (a lambda standing in for the old unconditional string) and watched all three checks fail by name, citing the exact false claim; restored the fix, reran clean. No new `preflight.py` gate needed: `gate_tests()` already globs every `ops/tests/test_*.py` file, the same precedent `ops/ship.py`'s 2026-09-21 fix used.
+
+**Verified:** `python3 -m py_compile ops/generate_card_art.py` clean; `python ops/generate_card_art.py --check` now correctly prints "torch is not installed" instead of the old false claim; `fix_dashes.py`-equivalent hand check (0 em/en dashes in the changed file). Full `preflight.py` (every gate passed, 25 warnings, identical set) and `preflight.py --fast` both reran clean after the fix, confirming no regression.
+
+**Went well:** the low-mention cold-read lane found a real defect on essentially the first file with a static-vs-dynamic claim to check; the ledger backfill closed a gap where two already-fixed files (`render_all_zone_videos.py`, `retire_stripe_skus.py`) had never been recorded, which would have let a future cycle re-read them as unknown.
+
+**Did not go well:** none new. The standing `gate_cold_read_handoff_not_stale` warning correctly flagged this cycle's own newly-ledgered files as appearing in an older handoff line further down the log; that is the append-only log design working as intended, not a defect, since the newest handoff at the top of the log is what a fresh cycle actually follows.
+
+**Changing next cycle:** none; the fix and its test are both live, and the cold-read ledger backfill keeps the standing lane accurate.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `generate_card_art.py` no longer applies now that it is fixed; next candidates by mention count after this cycle's additions). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/generate_card_art.py`, new `ops/tests/test_generate_card_art.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched (an internal media-generation tool and its test gained a fix and coverage); IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 13:1x (previous work verified finished; fixed a stale deploy-gap count and a self-inflicted lockdir)
 
 NEXT FOR THE OPERATOR: cold read wire_generated_catalog.py, wire_signup.py and zone_graphics.py, per ops/cold_read_ledger.py --next (lowest mention, genuinely unread), since every backlog row in sections 2 to 4 is done or Phil gated. A concurrent operator session reached the same conclusion independently below.
