@@ -206,6 +206,11 @@
       "date": "2026-09-25",
       "note": "local hero-image generation planner for Entryway cards; ran --plan live, 89/89 cards planned correctly, token-budget check correctly reports UNVERIFIED (transformers not installed here) rather than a false pass, Problem-vs-settled state framing and rule-word filtering both correct. No defect."
     },
+    "hazard_icons.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "correct and fully wired into build_zone_pages.py, gated by gate_hazard_icons_current; 252/252 coverage confirmed live; no defect"
+    },
     "image_style.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -276,6 +281,11 @@
       "date": "2026-09-11",
       "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
     },
+    "send_brief.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "needs_phil computed identically to dashboard.py's own definition (decision-labelled issues only); refuses to send a stale brief"
+    },
     "shrink_sample.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -290,6 +300,11 @@
       "status": "fixed",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 PM check-in: the offer table listed a second 'Entryway deck' row for the 16 withheld cards with its own card count and a contradicting Withheld state, alongside the live 72-card row from the same deck, reading as a second competing deck rather than a note about the first. Relabelled 'of which, N Entryway cards' to match status_report.py's own honest phrasing of the same figures. reportlab not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked and no test covers the changed string."
+    },
+    "stripe_check.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "diagnostic-only Stripe key check; masks keys correctly, leak_scan globs site/ correctly, no defect"
     },
     "stripe_links.py": {
       "status": "clean",
@@ -311,6 +326,11 @@
       "date": "2026-09-25",
       "note": "Cold-read for defects (PM check-in). Verified the known ffmpeg concat gotcha (last file's duration entry ignored) is correctly handled by repeating the last PNG path unduration'd after the loop. Silent-beat placeholder, retry/backoff on TTS throttling, audio/video hold durations staying in lockstep via apad(TAIL), and Desktop delivery failing soft rather than raising all check out. No defect."
     },
+    "wire_aria_current.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "aria-current wiring verified against real header nav; --check reports every page correct"
+    },
     "wire_consult_cta.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -330,6 +350,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "mailing-list signup block wiring; ran live, correctly REFUSED all 6 pages (issue #15 still open, withdrawal honored), no drift, cross-list-UUID assertion passed. No defect."
+    },
+    "youtube_upload.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "module docstring said '456 videos are built and 12 are public' without saying only 114 (one wide 16x9 master per zone) are ever eligible for this tool; a reader could misread the gap as 444 rather than the real 102. Clarified against GOALS.md's own corrected 12-of-114 framing; no code change, jobs()/upload_one() already correctly scoped to the wide file only"
     },
     "zone_graphics.py": {
       "status": "clean",
