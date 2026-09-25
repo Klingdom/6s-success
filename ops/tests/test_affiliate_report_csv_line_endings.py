@@ -25,7 +25,9 @@ Run:  python ops/tests/test_affiliate_report_csv_line_endings.py
 import csv
 import io
 import os
+import shutil
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -37,8 +39,34 @@ def main() -> int:
     failures = []
 
     # 1. The real generator, run for real, must not introduce a CRLF.
-    AR.main()
-    data = open(AR.NEEDED, "rb").read()
+    #
+    # Run against a tmp directory, never against AR's own ROOT-anchored
+    # MATRIX/EXCEPTIONS/NEEDED paths. Found live 2026-09-25: this test used to
+    # call AR.main() with those module constants untouched, which wrote
+    # AFFILIATE_COMPLIANCE_MATRIX.md and AFFILIATE_INPUT_EXCEPTIONS.md for
+    # real into the repository root every time the suite ran. Both carry a
+    # "Generated ... on <today>" line, so any run of this test on a later
+    # calendar day than the last commit left those two files dirty in the
+    # working tree, with nothing to notice. gate_generator_ownership found
+    # exactly that dirt live in CI run 403 (2 files differing, both these),
+    # and correctly refused to run rather than diff a meaningless tree,
+    # failing the whole publish-image.yml build and leaving real, already
+    # merged site/ content (a personalised Garage room) sitting unpublished
+    # behind it. gate_affiliate_report_current already proves this generator
+    # matches the committed files by running it in a tmp directory; this test
+    # only needs the real AR.main() codepath for its CRLF check, not the real
+    # file paths, so it now uses the same isolation.
+    tmp = tempfile.mkdtemp(prefix="affiliate_report_csv_test_")
+    orig = (AR.MATRIX, AR.EXCEPTIONS, AR.NEEDED)
+    AR.MATRIX = os.path.join(tmp, "matrix.md")
+    AR.EXCEPTIONS = os.path.join(tmp, "exceptions.md")
+    AR.NEEDED = os.path.join(tmp, "needed.csv")
+    try:
+        AR.main()
+        data = open(AR.NEEDED, "rb").read()
+    finally:
+        AR.MATRIX, AR.EXCEPTIONS, AR.NEEDED = orig
+        shutil.rmtree(tmp, ignore_errors=True)
     if b"\r" in data:
         failures.append(
             "affiliate-link-input-needed.csv contains a carriage return "
