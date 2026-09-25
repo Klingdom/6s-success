@@ -5480,7 +5480,7 @@ def gate_nav_toggle_wired() -> None:
              "404, corporate, kit, and two B2B articles).")
 
 
-def _lint_js_no_undef(eslint_exe: str):
+def _lint_js_no_undef(eslint_exe: str, overrides: dict | None = None):
     """Scan every shipped JS asset file plus every substantive inline
     <script> block on every page for an undefined reference. Returns a list
     of "file: 'name' at line N" strings (empty if clean), or None if eslint's
@@ -5491,6 +5491,17 @@ def _lint_js_no_undef(eslint_exe: str):
     Split out from gate_no_dangling_js_references() so the fail-then-pass
     proof above can call this directly against a planted regression without
     needing to run the whole gate machinery.
+
+    `overrides` (absolute path -> source text) substitutes content for a
+    real file without touching disk. Found live 2026-09-25: the fail-then-
+    pass test used to plant its regression by writing straight into the
+    real committed site/assets/js/site.js, restoring it in a `finally`.
+    `timeout`'s default SIGTERM (and any SIGKILL) terminates the process
+    immediately, Python `finally` blocks included, so a preflight run
+    interrupted mid-plant left the exact historical paint() bug live in the
+    working tree, undetected until the next full run happened to catch it.
+    Callers now hand this function planted content directly; the real file
+    on disk is never written.
     """
     import re as _re
     import tempfile as _tempfile
@@ -5531,14 +5542,20 @@ def _lint_js_no_undef(eslint_exe: str):
         cfg_path = os.path.join(tmp, "eslint.config.js")
         io.open(cfg_path, "w", encoding="utf-8", newline="").write(config_js)
 
+        overrides = overrides or {}
+
+        def _read(path):
+            ov = overrides.get(os.path.abspath(path))
+            if ov is not None:
+                return ov
+            return io.open(path, encoding="utf-8", errors="replace").read()
+
         targets = []
         for f in sorted(glob.glob(os.path.join(SITE, "assets", "js", "*.js"))):
-            targets.append((f, io.open(f, encoding="utf-8",
-                                        errors="replace").read()))
+            targets.append((f, _read(f)))
         sw = os.path.join(SITE, "sw.js")
         if os.path.isfile(sw):
-            targets.append((sw, io.open(sw, encoding="utf-8",
-                                         errors="replace").read()))
+            targets.append((sw, _read(sw)))
 
         inline_pat = _re.compile(
             r'<script(?![^>]*(?:src=|type=["\']application/ld\+json))'

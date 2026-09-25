@@ -51,9 +51,14 @@ def main() -> int:
     elif problems:
         fails.append("the real committed site was flagged: %s" % problems[:5])
 
-    # 2. Plant the exact 2026-09-23 regression in a scratch copy of site.js,
-    #    on disk (the scan function reads real files), then restore it
-    #    byte-for-byte no matter what happens.
+    # 2. Plant the exact 2026-09-23 regression and hand it to the scan
+    #    function as an override, never touching the real file on disk.
+    #    Found live 2026-09-25: this used to write the planted regression
+    #    straight into the real committed site.js and restore it in a
+    #    `finally`, but a SIGTERM/SIGKILL mid-plant (this exact test was
+    #    killed by an interrupted preflight run) skips `finally` entirely
+    #    and leaves the historical bug live in the working tree. An
+    #    override removes the real file from the blast radius altogether.
     original = io.open(SITE_JS, encoding="utf-8").read()
     if "paint();" in original:
         fails.append("site.js already contains the historical bug; "
@@ -66,14 +71,11 @@ def main() -> int:
                       "and needs updating, not the gate")
     else:
         planted = original.replace(marker, marker + "\n    paint();", 1)
-        io.open(SITE_JS, "w", encoding="utf-8", newline="").write(planted)
-        try:
-            bad = preflight._lint_js_no_undef(eslint)
-        finally:
-            io.open(SITE_JS, "w", encoding="utf-8", newline="").write(original)
+        bad = preflight._lint_js_no_undef(
+            eslint, overrides={os.path.abspath(SITE_JS): planted})
         restored = io.open(SITE_JS, encoding="utf-8").read()
         if restored != original:
-            fails.append("site.js was NOT restored byte-for-byte after the "
+            fails.append("site.js on disk was touched by the "
                          "planted-regression test; this is a real problem "
                          "with the test itself, fix before trusting any "
                          "other result here")
