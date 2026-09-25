@@ -16,7 +16,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** B9's remaining four rooms (Laundry, Home Office, Primary Bathroom, Garage), smallest first. Standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged.
 
-Pushed to main. `ops/cardtext/build_entryway_deck.py`, `ops/build_entryway_deck_page.py`, `site/entryway-deck.html`, `site/deck.html`, `ops/preflight.py` (+2 new gates), `ops/tests/test_gate_entryway_deck_rendered.py`, `ops/tests/test_deck_pages_interactive.py`, `ops/check_pack_pages.py`, `ops/build_card_prompts.py`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md`, command deck, this log. No price or product touched; one new free page. IndexNow refused to submit (could not verify the key file is served from this sandbox), key file written for a session with egress to finish.
+Pushed to main. `ops/cardtext/build_entryway_deck.py`, `ops/build_entryway_deck_page.py`, `site/entryway-deck.html`, `site/deck.html`, `ops/preflight.py` (+2 new gates), `ops/tests/test_gate_entryway_deck_rendered.py`, `ops/tests/test_deck_pages_interactive.py`, `ops/check_pack_pages.py`, `ops/build_card_prompts.py`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md`, `RISKS.md`, command deck, this log. No price or product touched; one new free page. IndexNow refused to submit (could not verify the key file is served from this sandbox), key file written for a session with egress to finish.
+
+## PM check-in, 2026-09-25 06:1x-06:3x (previous work confirmed finished; closed two stale citations the last redeploy confirmation never propagated to)
+
+Attached clean (fetch, unshallow, fast-forward onto `5e73ade8`). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**Previous work confirmed finished:** the prior PM cycle's deploy-gap correction and footer fix are on `main`; working tree was clean, `main` already matched `origin/main`. Ran `preflight.py` to completion (not just fast-checked): first attempt got killed by its own wrapper timeout mid-gate, leaving `build/listings/etsy/*.pdf` dirty (a regenerated-but-not-restored artifact, not a content defect); restored with `git checkout -- build/listings/etsy/` and reran clean end to end, every gate passed, 23 warnings, all standing sandbox-access limits, none new.
+
+**Found and fixed: `STATUS.md`'s GitHub health table had two rows the 05:4x BLOCKER-001 resolution never reached.** "Production traceability" still cited "20 commits/29 site files behind... run 399" from 2026-09-24 21:1x, directly contradicting section 1 and BLOCKER-001's own 05:4x entry (production confirmed current, real gap zero); corrected to cite the same `aa7c7e7e578e9a18`/`890c43a3` confirmation, re-verified `git log 890c43a3..HEAD -- site/ Dockerfile` empty myself rather than trust the citation. "Repository hygiene" undercounted at 7 issues (5 decision); live API count is 8 (6 decision, including #35, opened 2026-09-24, never added to this row). "CI health" also corrected: it still cited runs #1194-1196 from 2026-09-20, predating today's own shallow-checkout outage and fix; checked `checks.yml` runs #1408-1411 live, all green since `1da2f69e` landed. No gate covers this table's prose, so nothing failed on the drift; caught by reading it against BLOCKER-001 in the same file.
+
+**Did not go well:** none; the correction was found by normal cross-reading, not a gate.
+
+**Handing to the operator:** unchanged, `BACKLOG-2026-09-07.md` section 3 row B7 (the five other room decks from the diagnosis corpus), still the one genuinely unblocked item and still too large for a 30-minute slot.
+
+Pushed to main. `STATUS.md`, command deck, this log. No site content, price or product touched. IndexNow not applicable, no site page changed.
 
 ## PM check-in, 2026-09-25 05:5x (the backgrounded full preflight from the entry below finished after this cycle had already shipped; it surfaced good news, not a defect, and both STATUS.md sections were stale by name)
 
