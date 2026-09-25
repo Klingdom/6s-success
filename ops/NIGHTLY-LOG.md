@@ -16,7 +16,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Did not go well:** same unrelated-history checkout shape; issue #27 still open. Local `--fast` preflight did not finish inside this slot.
 
-**Changing next cycle:** none.
+**Correction, same cycle, after the slot closed:** the local `--fast` preflight above finished after this entry was first pushed, and it did not come back clean: 1 gate FAILED, `stray-probe-files`, `site/_reduced_motion_probe.html`, "left behind by a run that was killed mid-audit." Not assumed benign: checked directly, the file was untracked and gitignored (the same `gate_no_stray_probe_files` scratch-file shape a 2026-09-24 cycle already diagnosed), and the gate's own remediation had already deleted it before I looked; `git status` was clean immediately after. Reran `preflight.py --fast` a second time end to end to confirm rather than trust a one-off read: every gate passed, the same 25 standing warnings, no new ones. The stray file was almost certainly this cycle's own first `--fast` run colliding with a second background process (there was no second audit running that I started), consistent with the "transient artifact, self-resolving" class this repository's log has named before, not a defect needing a fix. Recorded here rather than left silently unchecked, per CLAUDE.md 0.4's own rule that a run which could not look must say so, and one that later did look and found something transient should say that too.
+
+**Changing next cycle:** none; the gate that caught this fired correctly and the file is already gone.
 
 **Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 100 of 164 done; next candidates `wire_zone_heroes.py`, `zone_supplies.py`, `accept_image.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6 unchanged. Leaving that lane's next file to the :43 operator, which has the fuller slot for it.
 
