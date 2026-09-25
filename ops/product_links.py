@@ -69,7 +69,8 @@ reported separately in the summary, loudly.
 
 Run:
   python ops/product_links.py --assign      verify every spec, write the CSV
-  python ops/product_links.py --check       re-verify what the CSV publishes
+  python ops/product_links.py --check       re-verify, and withdraw what rotted
+  python ops/product_links.py --check --dry same, print only, write nothing
   python ops/product_links.py --status      no network, just what the CSV says
   python ops/product_links.py --only MPL-00042[,MPL-00043...]
 """
@@ -901,7 +902,7 @@ def checkable(rows: list) -> list:
     return [r for r in rows if (r.get("Affiliate URL") or "").strip()]
 
 
-def check() -> int:
+def check(dry: bool = False) -> int:
     """Re-verify every link in the catalogue. Links rot.
 
     THE SCOPE BUG THIS FIXES, 2026-09-04
@@ -923,8 +924,25 @@ def check() -> int:
     So the scope is now every row carrying a URL, whatever its status says,
     and the summary names what it skipped and why. A checker does not get to
     choose a denominator that flatters it.
+
+    THE REPORT-WITHOUT-REPAIR BUG THIS FIXES, 2026-09-25
+    -----------------------------------------------------
+    Found cold-reading this file: this function rendered every retailer page,
+    correctly judged some DEAD, printed them under a "DEAD" heading, and then
+    returned. It never wrote the catalogue. `ops/affiliate.py` and
+    `ops/zone_supplies.py` both publish a row purely because its Link Status
+    begins "verified"; neither reads this function's stdout. So a dead link
+    this exact run had just proven broken stayed published, with a status
+    still reading "Verified search", until somebody read the console output
+    and remembered to run `--assign --only <id>` by hand. That is the
+    identical shape CLAUDE.md 0.2 names as this repository's most expensive
+    failure: a check that found the defect and reported it, correctly, while
+    nothing acted on it. `--assign` already demotes a dead/weak row the
+    moment it finds one; `--check` now does the same, using the identical
+    fields, so a re-check does not merely describe rot, it withdraws it.
+    `--dry` prints what would change without writing, matching `--assign`.
     """
-    rows, _ = read_catalogue()
+    rows, fields = read_catalogue()
     live = checkable(rows)
     no_url = [r for r in rows if r not in live]
     if not live:
@@ -963,13 +981,37 @@ def check() -> int:
 
     save_evidence(ev)
     for row, res in bad:
-        print(f"  DEAD  {res['id']}  {row['Product Standard Name'][:44]}")
+        # Demote exactly as --assign already does for a dead/weak result, so
+        # a re-check that finds rot actually withdraws it instead of only
+        # describing it. Unchecked rows are untouched: THE RULE THAT MATTERS
+        # in assign() applies here identically -- a run that could not look
+        # does not get to overwrite what a run that could look wrote.
+        # Not mutated when --dry, so the "actually render" count below stays
+        # honest about what is live right now, not what a dry run would do.
+        if not dry:
+            row["Merchant"] = ""
+            row["Affiliate URL"] = ""
+            row["Link Status"] = ("No results" if res["state"] == "dead"
+                                  else "Too weak to publish")
+            row["Last Checked"] = res["checked"]
+            row["Notes"] = (f'{res["merchant"]} re-check on {res["checked"]} '
+                            f'found {res.get("hits",0)} of {res.get("of",0)} '
+                            f'results matched. Was published; withdrawn by '
+                            f'--check.')
+        print(f"  DEAD  {res['id']}  {row['Product Standard Name'][:44]}  "
+              f"-- {'would be WITHDRAWN' if dry else 'WITHDRAWN'}")
         print(f"        {res['url']}")
         print(f"        {res.get('hits',0)} of {res.get('of',0)} results "
               f"matched the product type")
     for row, res in unchecked:
         print(f"  ----  {res['id']}  {row['Product Standard Name'][:44]}")
         print(f"        UNCHECKED, not dead: {res['why']}")
+
+    if bad and dry:
+        print(f"\n  --dry: {len(bad)} row(s) would be withdrawn, catalogue "
+              f"not written")
+    elif not dry:
+        write_catalogue(rows, fields)
 
     ok = len(live) - len(bad) - len(unchecked)
     print("")
@@ -1101,7 +1143,7 @@ def main() -> int:
     if a.assign:
         return assign(a.only, a.dry)
     if a.check:
-        return check()
+        return check(a.dry)
     return status()
 
 
