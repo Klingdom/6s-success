@@ -320,6 +320,7 @@ Maintain:
 | LRN-0015 | A count is not a count until its unit is named; pageviews and events are not interchangeable | MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0016 | Fixing a generator does not fix what it already rendered; the expensive artifacts are the ones nobody checks | QUALITY / RELEASE | SUPPORTED | HIGH |
 | LRN-0017 | Authoring against an ID vocabulary from memory produces branches that are well formed, real, and wrong | CONTENT / BUILD | SUPPORTED | HIGH |
+| LRN-0018 | Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log | SEO / AEO | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -544,6 +545,48 @@ a rebase conflict resolution", moving an entry back into place.
 **Implication.** For any append-at-top file (`ops/NIGHTLY-LOG.md`, `STATUS.md`), a conflict resolution is not finished when the
 markers are gone. It is finished when the entries are in the order the file claims to keep. Verify the headings after every
 resolution, the same way a generated file is regenerated rather than hand-picked from either side of a conflict.
+
+#### LRN-0018: Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (206,518 log lines, three cohorts, identical result)
+**Domain:** SEO / AEO / MEASUREMENT
+**Measured:** 2026-09-24
+
+D-026's checkpoint asked whether personalising a zone changed what answer
+engines take. Read across the full Nginx Proxy Manager log, GPTBot had fetched
+**every one of the 114 zone pages exactly four times**:
+
+| Cohort | Pages | Fetches | Per page |
+|---|---|---|---|
+| Authored weeks ago (Entryway, Kitchen) | 12 | 48 | 4.00 |
+| Authored the same day | 26 | 104 | 4.00 |
+| Not authored at all | 76 | 304 | 4.00 |
+
+Three cohorts differing by thousands of words of added depth, and the crawl is
+uniform to two decimal places. A crawler walks a sitemap. It does not read the
+page and decide to come back.
+
+**Two things this rules out, and one it does not.** It rules out using crawl
+frequency as a proxy for content quality, and it rules out "the crawlers will
+find the good pages" as a discovery strategy. It does **not** tell us whether
+any of it is quoted, cited or summarised, and nothing in this system can: that
+happens inside the model, and a server log cannot see it. If quoting matters,
+it has to be tested by asking the engines, not by reading logs.
+
+**The asymmetry is the actionable part.** Over the same window ClaudeBot made
+528 requests and fetched **zero** zone pages, and OAI-SearchBot made 104 and
+fetched zero, while GPTBot took all 114 four times and bingbot took 106 of
+them. Two large crawlers are reaching the site and never descending into its
+deepest content. That is a reachability question with an answer, unlike the
+quoting question, and it is worth more than another authored room.
+
+**Near miss worth recording.** The first count said zero zone-page fetches for
+every crawler including GPTBot, because the path in this log format sits in
+quotes after the hostname (`GET https host "/path"`) and the regex expected it
+after the verb. A tidy, confident, entirely wrong zero. It was caught only by
+asking how many zone-page requests existed from anybody, which returned 30,200.
+When a measurement returns zero, measure the denominator before publishing it.
 
 #### LRN-0017: Authoring against an ID vocabulary from memory produces branches that are well formed, real, and wrong
 

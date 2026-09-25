@@ -346,4 +346,68 @@
        above means whichever arrives first wins and the other is a no-op. */
     addEventListener("pagehide", report);
   }
+
+  /* ------------------------------------------- the three personalised blocks
+
+     DECISIONS.md D-026 authors capacity, variants and diagnosis a room at a
+     time, and its own revisit clause asks whether the completed zones changed
+     how the diagnosis is used. On 2026-09-24, with four rooms authored, that
+     question could not be answered at all: the blocks are static HTML, they
+     emit nothing, and the only signal on the page was a whole-page scroll
+     bucket that cannot tell "read the diagnosis" from "scrolled past it to
+     the FAQ".
+
+     A decision with a revisit clause and no way to satisfy it will be revisited
+     by whoever feels most strongly, so this fires once per page view per
+     section when at least half of it has been on screen.
+
+     What it deliberately does NOT record: anything the reader typed, chose or
+     matched. There is nothing to type here, and if that changes, the branch
+     somebody picked describes their home and does not belong in analytics.
+     The zone is already in url_path, so the event carries only which of the
+     three blocks was reached. */
+  if (typeof IntersectionObserver === "function") {
+    var blocks = ["capacity", "variants", "diagnosis"];
+    var seen = {};
+    /* A THRESHOLD OF 0.5 ALONE CANNOT FIRE HERE, and the first version of
+       this shipped with exactly that. The diagnosis block runs to ~680 words
+       and is reliably TALLER than a phone viewport, so half of it is never on
+       screen at once and the observer stays silent forever. A browser test
+       caught it before it shipped; nothing in the data ever would have, since
+       "never fired" and "nobody scrolled there" are the same empty result.
+
+       So a block counts as seen when half of IT is visible (short blocks) or
+       when what is visible fills 60% of the viewport (tall blocks). Both
+       thresholds are registered, because an observer only re-evaluates at the
+       ones it was given. */
+    /* Named, and kept a pure function of three numbers, because it is the
+       only part of this that can be tested deterministically. Headless
+       Chrome under --virtual-time-budget does not reliably render a frame
+       after a programmatic scroll, and IntersectionObserver is evaluated per
+       rendered frame, so a browser test can prove the observer fires at all
+       but cannot be trusted to decide this rule. ops/tests/
+       test_zone_block_seen.py extracts this function from this file and runs
+       it in node against the real numbers. */
+    function blockSeenEnough(ratio, shown, viewport) {
+      return ratio >= 0.5 || (viewport > 0 && shown / viewport >= 0.6);
+    }
+
+    var io2 = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var e = entries[i];
+        var id = e.target.id;
+        if (!e.isIntersecting || seen[id]) { continue; }
+        var vh = e.rootBounds ? e.rootBounds.height : innerHeight;
+        var shown = e.intersectionRect ? e.intersectionRect.height : 0;
+        if (!blockSeenEnough(e.intersectionRatio, shown, vh)) { continue; }
+        seen[id] = true;
+        io2.unobserve(e.target);
+        track("zone-block-seen", { block: id, sv: 1 });
+      }
+    }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+    for (var b = 0; b < blocks.length; b++) {
+      var el = document.getElementById(blocks[b]);
+      if (el) { io2.observe(el); }
+    }
+  }
 })();

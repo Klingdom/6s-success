@@ -1904,7 +1904,44 @@ that can go stale and the table is not.
 | 2026-09-24 | Laundry Room (6) | 31 of 114, 27.2% |
 | 2026-09-24 | Garage (7) | 38 of 114, 33.3% |
 
-**All four rooms are authored, so the checkpoint above is now due and is the next piece of work, not a formality to skip.** It asks whether the completed zones show any difference in app diagnosis use or in what answer engines quote. The honest prior is that they will not yet, because D-021 established there is almost no traffic to measure and Search Console is still unverified. If that is what the evidence says, this decision requires saying so plainly rather than starting a fifth room on momentum.
+**CHECKPOINT ANSWERED, 2026-09-24. The honest answer is no, and this decision
+therefore stops here.**
+
+It asked whether the completed zones show any difference in app diagnosis use
+or in what answer engines quote.
+
+*Diagnosis use: the question could not be asked at all.* The three blocks were
+static HTML and emitted nothing. The only signal on a zone page was a
+whole-page scroll bucket, which cannot separate "read the diagnosis" from
+"scrolled past it to the FAQ". A decision carrying a revisit clause it has no
+way to satisfy gets revisited by whoever feels most strongly, so the clause was
+worthless as written. That is now fixed rather than excused: `zone-block-seen`
+fires once per page view per block, proved in a real browser and in node
+(`ops/tests/test_zone_block_seen.py`). There is no data yet, because it shipped
+today.
+
+*Answer engines: measured, and the answer is a clean no.* Read across the full
+206,518-line proxy log, GPTBot fetched **every one of the 114 zone pages
+exactly four times**: 48 fetches over the 12 long-authored pilot zones, 104
+over the 26 authored today, 304 over the 76 plain ones, which is 4.00 per page
+in all three cohorts. Crawlers walk the sitemap; they do not reward depth, and
+nothing about authoring changed what they took. Whether any of it is *quoted*
+is not observable from a server log at all, and no tool here can observe it.
+
+*Traffic: too small and too confounded to carry weight.* 536 zone pageviews in
+30 days. The pilot zones show 6.92 views per page against 4.26 for unauthored
+ones, but Entryway and Kitchen were chosen as the pilot **because** they are
+the flagship rooms, and they are linked from the homepage, the deck and the
+quest. That is a selection effect, not a result, and 83 views cannot separate
+the two.
+
+**So: no fifth room on momentum.** Six of twenty rooms are personalised, 38 of
+114 zones. The remaining fourteen rooms are not forbidden, but they are no
+longer downstream of the constraint, and `GOALS.md`'s second question says so.
+Resume authoring when either (a) `zone-block-seen` shows readers actually
+reaching these blocks, which is now measurable and was not, or (b) the zone
+pages acquire readers at all. Until then the constraint is demand for the pages
+that exist, not the number of pages.
 
 **One thing the first two rooms taught, at cost.** The cause IDs on every
 branch were assigned from memory of what the IDs meant, and 13 were wrong
