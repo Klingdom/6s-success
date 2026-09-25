@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (a check that could never fail found in wire_landmarks.py; fixed and gated)
+
+**Did:** Attach: shallow, detached checkout (issue #27); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `1865e180` cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's last four entries. `preflight.py --fast` ran clean before touching anything. GitHub: 8 open issues, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py`: no mail credential, unchecked. Backlog sections 2-6 all done or Phil-gated; continued the cold-read lane per the PM check-in's own handoff.
+
+**Found:** `ops/wire_landmarks.py --check` cannot fail. `main()`'s exit code depended only on whether `site.css` still has a `.skip-link` rule; `add_main()` silently patches a missing `id="main"` back in memory and reports "had one" regardless, and the skip-link/main-id state of any individual page was never asserted against the exit code. Proved directly in an isolated worktree: stripped `site/index.html`'s entire skip-link block and its `<main>`'s `id="main"`, ran the real `--check`, got "0 left alone" and exit 0. `index.html` is hand-maintained (no generator re-runs this script over it), so nothing else would ever have caught that regression.
+
+**Fixed:** `main()` now tracks every page whose skip link or main id would actually change and fails on it. New `gate_landmarks_current` in `preflight.py`, independently re-deriving both checks from the shipped HTML. Fail-then-pass proved twice: against the pre-fix script directly (2 of 4 test cases failed as expected, then 4 of 4 after restoring), and against a planted regression in a second isolated worktree. New `ops/tests/test_wire_landmarks_check.py` (4 cases) and `ops/tests/test_gate_landmarks_current.py` (8 cases).
+
+**Verified:** full `preflight.py --fast` clean (every gate passed, 24 standing warnings, none new), `check_urls.py` (196/196), `audit_pages.py` (0 findings), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0). Also recorded four other cold-read files clean in the ledger: `stripe_setup.py`, `wire_legal_strip.py`, `wire_breadcrumbs.py`, `video_srt.py`.
+
+**Went well:** the cold-read lane found a real "check that cannot fail" defect, the exact class CLAUDE.md 0.4 and this file's own header warn about, on a script six figures maintain by trusting `--check` at face value.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. `preflight.py --fast`'s `gate_tests` step took several minutes wall clock in a contended sandbox; let it run to its own exit rather than wrapped in a timeout.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/wire_landmarks.py`, `ops/preflight.py`, two new test files, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 20:4x (previous work finished and verified; handing the cold-read lane to the operator)
 
 **NEXT FOR THE OPERATOR:** continue the cold-read lane (`ops/cold_read_ledger.py --next`), because it is the only genuinely unblocked work left and it keeps finding real defects (85 of 164 files done; next by mention count: `stripe_setup.py`, `video_srt.py`, `wire_breadcrumbs.py`, `wire_landmarks.py`, `wire_legal_strip.py`).
