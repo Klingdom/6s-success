@@ -275,6 +275,30 @@ def request_image(p: dict, key: str, prompt: str, size: str = "1024x1024") -> by
                      f"{json.dumps(data)[:300]}")
 
 
+def torch_status() -> str:
+    """What is actually true about local GPU generation, checked live.
+
+    Pulled out as its own function so ops/tests/test_generate_card_art.py
+    can prove it reports each real state honestly (absent, CPU only, CUDA
+    available) rather than asserting one of them unconditionally, the
+    defect this replaced: see the comment in main() below for what shipped
+    before this existed.
+    """
+    try:
+        import torch
+    except ImportError:
+        return ("torch is not installed, so no local model is available "
+                "here.")
+    if torch.cuda.is_available():
+        return (f"torch has a CUDA GPU available "
+                f"({torch.cuda.get_device_name(0)}), so a local model is "
+                f"usable, though it would not match the deck's frozen "
+                f"style.")
+    return (f"torch ({torch.__version__}) is installed but CPU only, so a "
+            f"local model would take minutes per image and would not "
+            f"match the deck's style either way.")
+
+
 def verify(raw: bytes) -> None:
     """Refuse an image that is broken, tiny, or effectively blank."""
     from PIL import Image
@@ -303,9 +327,15 @@ def main() -> int:
             print(f"    {q['name']:10} {q['key']:22} not set   "
                   f"${lo:.3f} to ${hi:.2f} an image")
         print()
-        print("  Also checked: torch is CPU only with no CUDA, so a local")
-        print("  model would take minutes per image and would not match the")
-        print("  deck's style. No connected tool generates images.")
+        # Actually checked, not asserted: this used to print "torch is CPU
+        # only with no CUDA" unconditionally, whether or not torch was even
+        # installed. Confirmed live 2026-09-25: torch is not installed in a
+        # bare sandbox, so that line was a specific, false claim of a state
+        # nothing here had looked at, the exact "unchecked reported as
+        # checked" defect CLAUDE.md 0.4 names. Same pattern as
+        # ops/media_capability.py's own torch check.
+        print(f"  Also checked: {torch_status()}")
+        print("  No connected tool generates images.")
         print()
         print("  Add ONE key to .env.secrets and this runs. Estimated spend")
         print("  (job sizes from OWNER-ACTIONS.md 1b, re-check there before")

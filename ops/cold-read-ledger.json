@@ -21,10 +21,30 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "build_avif.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "AVIF wiring/encode/check; idempotent, well-tested (test_build_avif.py 3/3), chained into every generator's main(), gate_generator_chains_avif covers it. No defect."
+    },
     "build_cleaning_index.py": {
       "status": "fixed",
       "date": "2026-09-24",
       "note": "strip_tags() re-escaped an already-escaped apostrophe entity, shipping literal &amp;#x27; on how-to-clean-anything.html. Fixed, gated by gate_no_double_encoded_entities."
+    },
+    "build_corporate.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "corporate.html generator; self-asserting (no price, correct enquiry routing, catalogue consistency), idempotent regen confirmed byte-identical against committed tree. No defect."
+    },
+    "build_corporate_asset.py": {
+      "status": "clean",
+      "date": "2026-09-23",
+      "note": "zone scoring/audit template asset for corporate.html. Regenerated, byte-identical, correctly registered in ownership chain and check_pack_pages.py's PRINTABLES. Backfilled from ops/NIGHTLY-LOG.md 2026-09-23 entry, never previously ledgered."
+    },
+    "build_deck_pdf.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "print-at-home PDF layout; place()/duplex-mirror logic correct (test_duplex.py 9/9 clean), aspect ratio and physical sizing verified. No defect."
     },
     "build_entryway_deck_page.py": {
       "status": "fixed",
@@ -81,10 +101,20 @@
       "date": "2026-09-17",
       "note": "Three generators hardcoded a price their own buy link reads live; found cold-reading this file. Fixed at the source."
     },
+    "build_pwa.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "manifest/service-worker generator; ran live, idempotent (no drift), precache existence-checked, cache name derives from content hash. No defect."
+    },
     "build_sample_html.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_social_captions.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Pinterest/Instagram caption generator; ran --all, 114/114 written, 0 length warnings, output git-clean (no drift). No defect."
     },
     "build_social_pins.py": {
       "status": "clean",
@@ -105,6 +135,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_youtube_metadata.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "YouTube title/description/tags generator; ran live, 114/114 written, 0 warnings, output git-clean (no drift). No defect."
     },
     "build_zone_index.py": {
       "status": "clean",
@@ -136,15 +171,55 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: EXPECTED/WEBHOOK imported from ledgerium_price_check.py (single source), correctly reports unchecked with no credential, no defect"
     },
+    "check_video_standard.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "compares rendered .srt checklists against video_zone.done_items(); ran live, 114/114 match the standard, 0 stale, 0 unreadable. No defect."
+    },
     "cold_read_ledger.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "Cold-read for defects (PM check-in). load_ledger/is_cleared/next_candidates/add_entry all correct; malformed or missing ledger safely returns {} rather than defaulting to clean, per CLAUDE.md 0.4. --next, --check (hit and miss) and the ledger JSON all manually verified working."
     },
+    "deploy_freshness.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "read-only code review only, no live egress from this sandbox to run it against production. Logic is sound: explicit unknown/stale/current tristate, normalises line endings, discovers probe pages rather than hardcoding a possibly-dead marker page. No defect found in the source."
+    },
+    "diagnosis.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "schema check for content.json diagnosis blocks; ran against real corpus, 38/114 zones carry diagnosis, all pass schema. No defect."
+    },
+    "experiments.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "experiment registry, Umami reader and sample-size arithmetic. Ran --offline live: correctly reports UNCHECKED throughout rather than defaulting to zero, matches its own documented contract. Ran --power 0.02 0.03: 3,826/arm, matches a manual two-proportion power calculation. website_id cross-site guard already covered by test_umami_website_filter.py (7/7). No sandbox ssh key here to exercise the live-read path end to end, but the SELECT-only guard, sentinel-row failure detection and the website_id guard were all read closely and are sound. No defect found."
+    },
     "fill_front_matter.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "generate_card_heroes.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "local hero-image generation planner for Entryway cards; ran --plan live, 89/89 cards planned correctly, token-budget check correctly reports UNVERIFIED (transformers not installed here) rather than a false pass, Problem-vs-settled state framing and rule-word filtering both correct. No defect."
+    },
+    "image_style.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "CLIP token-budget helper for local SDXL prompts; read-only review (no local model/network in this sandbox to exercise count()). Subject-first ordering and UNVERIFIED-vs-over-budget distinction both correctly implemented. No defect found in the source."
+    },
+    "import_room_images.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "book-photo importer; ran live, correctly reports MISSING for all figures (no access to Phil's local Windows master path from this sandbox) and reconcile() correctly refused to shrink any room's committed manifest. Guard behaved exactly as documented. No defect."
+    },
+    "launch_plan_pdf.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "one-shot PDF report generator ('written once, read once, and acted on' per its own docstring), not wired into preflight or any generator chain, not callable here (reportlab not installed). Read in full: measured() correctly pulls live facts (state.json, check_live_links, deploy_freshness) with honest except-to-unknown fallbacks; the hardcoded narrative content (155 items, the payment outage, www redirect) is a dated point-in-time snapshot by design, already superseded by events recorded elsewhere (www redirect and issue #20 both since resolved), not a live claim the document asserts is current. No defect in the generator's own logic."
     },
     "ledgerium_price_check.py": {
       "status": "clean",
@@ -156,15 +231,35 @@
       "date": "2026-09-11",
       "note": "Run live: 0 pages changed, 189 already carry the footer link; the 4 pages without it individually checked and confirmed legitimate exclusions."
     },
+    "media_capability.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "image-provider credential prober; ran live, correctly reports all 7 absent (no sandbox credentials) and torch absent, never prints a secret. No defect."
+    },
     "optimize_sample_pdf.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, pypdf/PIL unavailable in this sandbox (standing gap); not wired into any preflight gate, no defect found"
     },
+    "receive_deploy_key.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "IMAP mailbox deploy-key harvester/installer for GitHub; read-only review (no IMAP credential here to run live), dedupe()/existing() correctly pure/testable, read_only=true hardcoded on install, UNCHECKED-not-empty pattern for a failed gh api call. Own test suite (test_receive_deploy_key.py) passes. No defect."
+    },
     "render_all_narrated.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: not wired into any preflight gate by exit code (only slug() is cross-checked by gate_video_slug_single_source), --check correctly reports 0 of 228 in this sandbox, no defect"
+    },
+    "render_all_zone_videos.py": {
+      "status": "fixed",
+      "date": "2026-09-21",
+      "note": "batch zone-video renderer. The resource-exhaustion retry comparison (signed vs unsigned DWORD) was found and fixed 2026-09-21 per ops/NIGHTLY-LOG.md, never previously ledgered. Re-read in full this cycle: no further live defect, retry/skip/before-after-snapshot logic all correct; one harmless unreachable elif branch (len(after) > len(before) can never be true when the preceding 'if new' was false, since new empty implies after subseteq before) noted but not worth churning since it changes no behavior."
+    },
+    "retire_stripe_skus.py": {
+      "status": "fixed",
+      "date": "2026-09-23",
+      "note": "record_archived() only recorded SKUs actually deactivated this run, permanently skipping already-clean SKUs with zero active Stripe objects (gate_retired_skus_stripe_archived could never re-check them). Fixed to record every SKU in skus after the deactivation loop completes. Backfilled from ops/NIGHTLY-LOG.md 2026-09-23 entry, never previously ledgered."
     },
     "review_deck_art.py": {
       "status": "clean",
@@ -180,6 +275,16 @@
       "status": "clean",
       "date": "2026-09-11",
       "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
+    },
+    "shrink_sample.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
+    },
+    "specific_articles.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "pure-data single source of truth for the 6 specific-problem articles' opening direct answer; gate_specific_article_direct_answer passed as part of this cycle's full preflight run. No defect."
     },
     "status_pdf.py": {
       "status": "fixed",
@@ -215,6 +320,21 @@
       "status": "fixed",
       "date": "2026-09-25",
       "note": "All 134 room and zone pages shipped with no site footer at all, dropped by commit 6ba42a27 when build_zone_pages.py lifted chrome from a resources.html temporarily broken by an unrelated bug in the same commit. wire_footer.py only ever fixed drift on a footer that already existed, so it could not close that gap; extended it to also insert a missing footer, ran it to fix all 134 pages, and hardened gate_footer_consistent to fail (not warn) on a page with none."
+    },
+    "wire_generated_catalog.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "generated-pack catalogue wiring; ran live, 130 entries (120 generated), all self-checks passed (no dead superset pointer, no overpriced subset, no lost buy links), output git-clean (no drift). No defect."
+    },
+    "wire_signup.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "mailing-list signup block wiring; ran live, correctly REFUSED all 6 pages (issue #15 still open, withdrawal honored), no drift, cross-list-UUID assertion passed. No defect."
+    },
+    "zone_graphics.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "SVG/HTML zone-diagram and room-map renderer; ran --demo, output correct; gate_zone_graphics_trigger_not_truncated passed as part of this cycle's full preflight run. No defect."
     }
   }
 }
