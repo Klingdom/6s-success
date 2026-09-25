@@ -121,6 +121,11 @@
       "date": "2026-09-17",
       "note": "Three generators hardcoded a price their own buy link reads live; found cold-reading this file. Fixed at the source."
     },
+    "build_product_schema.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read in full (166 lines); re-ran against the real committed shop.html/consulting.html, byte-identical (idempotent), the price-match assertion passed for all 131 graphs. Noted but did not change: CN-VIRTUAL/CN-INHOME (Consulting cat) get a Product graph on both shop.html (only_cat=None, everything) and consulting.html (only_cat=Consulting), with url always defaulting to shop.html even in the consulting.html copy. The module's own comment reads as if each product belongs to one page, but both pages genuinely and accurately display these two buyable items with matching price/link, so this is duplication of accurate data, not fabrication or drift; left alone rather than remove real structured data for a stylistic mismatch with a comment."
+    },
     "build_pwa.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -300,6 +305,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, pypdf/PIL unavailable in this sandbox (standing gap); not wired into any preflight gate, no defect found"
+    },
+    "prerender_shop.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read in full (155 lines); re-ran the generator against the real committed site/shop.html and the file rewrote byte-identical (git diff empty), confirming this download/page is not stale against its own generator. --check mode agrees (130 cards). No live defect."
     },
     "product_links.py": {
       "status": "fixed",

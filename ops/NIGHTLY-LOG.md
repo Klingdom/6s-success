@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-25 23:5x (backlog confirmed exhausted a second time; cold-read lane clears two more files, no live defect found or fixed)
+
+**Did:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 359 commits cleanly onto `1f693e46`, no conflict. Read `BACKLOG-2026-09-07.md` sections 0 to 7 and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries. Confirmed via the GitHub API rather than trusted from the log: 9 open issues unchanged, all `decision`/`blocked-on-art`; `checks.yml` run #1453 and `publish-image.yml` both `success` on the current tip (`ae0e5060`). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle.
+
+**Step 3, ordering rule: nothing in sections 2 to 6 is both unblocked and undone**, matching the prior two cycles' own conclusion rather than assumed from them: section 2 (A1-A9) all Done, section 3 (B1-B9) all Done or closed by decision (D-027), section 4's C1-C4/C7 done and C5/C6 explicitly `YES, Phil`, section 5 deliberately HOLD on the traffic constraint, section 6 is six owner-gate actions none actionable here. No row justified a fourth workstream against the WIP cap of 3.
+
+**Cold-read lane, coordinated through `ops/cold_read_ledger.py` so concurrent sessions do not collide:** read two more files in full (102 of 164 now ledgered). `ops/prerender_shop.py` (155 lines): re-ran it live against the real committed `site/shop.html` rather than trusting the last run; `git diff` came back empty, so the shop's plain-HTML product grid is byte-identical to a fresh render and not stale against its own generator, and `--check` mode agrees (130 cards both ways). No defect. `ops/build_product_schema.py` (166 lines): also re-ran live, byte-identical output, and its own end-of-run assertion (every JSON-LD Offer price matches the live catalogue) passed for all 131 graphs. One thing looked at closely and deliberately left alone: the module's own comment says a product's structured data belongs on one page ("described on two pages at once competes with itself"), but `PAGES["shop.html"]` is `None` (everything), so the two Consulting-category items with real buy links (Virtual Home Consult, In-Home Reset Day) get a Product graph on both `shop.html` and `consulting.html`, and the `url` field defaults to `shop.html` even in the `consulting.html` copy. Checked live before deciding this was not a fix: both pages genuinely and accurately display these two buyable products with the same price and the same Stripe link, so this is agreement, not drift; removing either copy would delete real, correct structured data for a real, visible product to satisfy a comment's phrasing, which is not the kind of fix this repository's own gates exist to force. Recorded in the ledger rather than silently passed over.
+
+Full `python ops/preflight.py` (the un-timed-out morning run): every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/.env.secrets, no VPS SSH key, no live-site or analytics reach, no mail credential, no Pillow). `python ops/preflight.py --fast` also run to its own exit as a second, independent confirmation.
+
+**Verified rather than re-cited:** `git status` clean before and after except the ledger file; no site, price or product page touched this cycle.
+
+**Went well:** treating the module's own design comment as a claim to check against the real site rather than a license to delete working structured data; confirming CI green via the API instead of trusting the log's own last "success" mention.
+
+**Did not go well:** same unrelated-history shallow-checkout shape on every attach (issue #27 still open); the reprioritised backlog is genuinely exhausted a second consecutive cycle, so this cycle's only real output is two cleared cold-read files and a documented non-finding.
+
+**Changing next cycle:** none; no new defect means no new gate to write. Keep working down the un-ledgered `ops/*.py` tier: `build_quest.py`, `check_live_links.py`, `crawl_report.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py`, `render_cards.py`, `send_questions.py`, `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py` are the next un-ledgered candidates.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6 (YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts, the six screenshots) unchanged; all 9 open GitHub issues unchanged (`decision`/`blocked-on-art`).
+
 ## PM check-in, 2026-09-25 23:2x (previous work finished per CI's own confirmed green tip; nothing new unblocked; cold-read lane left to the operator to avoid duplicating a 600+ line read in a 30 minute slot)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 357 commits cleanly onto `ae0e5060`, no conflict.
