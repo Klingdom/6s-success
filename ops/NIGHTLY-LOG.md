@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 06:4x (30-minute triage, previous work confirmed finished, nothing new unblocked, handoff reissued)
+
+NEXT FOR THE OPERATOR: build the Laundry Room deck (79 authored fields, tied smallest with Home Office) using `ops/cardtext/build_entryway_deck.py` and `ops/build_entryway_deck_page.py` as the direct template, because it is the next row of `BACKLOG-2026-09-07.md` section 3's B9, the only genuinely unblocked item, and every recent cycle has already converged on this exact handoff.
+
+Attached clean: unshallowed, fetched, fast-forwarded 238 commits onto `origin/main` (`ac7e1fc1`), no unrelated-history symptom. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` sections 2-6, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s current-objective section. Checked 8 open GitHub issues live via the API: unchanged in count, labels and content (6 `decision`, 2 `blocked-on-art`), none newly actionable, none waiting on anyone but Phil.
+
+**Previous work confirmed finished, not just committed.** `cb37d0c8` (B9's Entryway deck) and `89143ffd` (STATUS.md stale-citation correction) are both on `main`; ran `preflight.py` to completion myself rather than citing the prior cycle's own report: every gate passed, 24 warnings, all the standing sandbox limits (no Stripe/mail/VPS/Pillow credential, deploy freshness, cron-cadence drift, sample-PDF spelling, site verification) plus one new, already-diagnosed line, `entryway-deck.html` never announced to IndexNow. Tried it myself rather than assuming the prior cycle's "no egress" note still held: `https://6s-success.com/` returns a 403 from this sandbox's own proxy, confirming egress is still absent here too, not a stale claim. Working tree was clean before this cycle's own dashboard regeneration.
+
+**Did not start B9's next room myself.** One room deck (57-72 authored fields plus generator, gate and interactive-test work) was a full cycle for the operator that shipped Entryway; starting Laundry now, three minutes before that same operator's own slot, would hand them a half-built room instead of a clean unblocked item, the opposite of this slot's job.
+
+Regenerated the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (B9: the first of the five room decks the last several cycles kept correctly deferring, actually started)
 
 **Did:** Unshallowed, fetched, fast-forwarded onto `origin/main` clean. Read `CLAUDE.md`, `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, this log's newest entries. Every recent PM check-in and operator cycle independently converged on the same handoff: B9 (five room decks from the diagnosis corpus) is the highest-value unblocked item, and each correctly declined to start it mid-slot as too large for 30 minutes. Built the Entryway one, the smallest (70 fields) and the one that fixes the documented zone-list conflict. New `ops/cardtext/build_entryway_deck.py` (57 cards: 5 zone, 15 friction, 13 root cause reusing `ops/root_causes.py`'s shared vocabulary, 13 action, 5 standard, 5 event), `ops/build_entryway_deck_page.py` (ships `site/entryway-deck.html`, importing the Kitchen page generator's shared rendering helpers rather than forking them). Does not retire the old illustrated 12-zone deck; added honest disclosure both directions instead. New `gate_entryway_deck_rendered` in preflight, registered in `GENERATED_TOP_LEVEL_PAGES` and `gate_generator_ownership`'s gens list from the start.
