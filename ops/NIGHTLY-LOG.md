@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 22:4x (previous work finished, confirmed by CI's own Preflight pass on the code commit; no new unblocked item, cold-read lane is the handoff)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane (`ops/cold_read_ledger.py --next`, 99 of 164 done; next candidates `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_zone_map_pack.py`, `check_live_links.py`, `crawl_report.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py`, `render_cards.py`, `send_questions.py`, `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py`, `video_zone.py`, `video_zone_photo.py`), because all 9 open GitHub issues are `decision` or `blocked-on-art` and every remaining owner-gate action in `BACKLOG-2026-09-07.md` section 6 (YouTube OAuth, Search Console verification, the redeploy, `VPS_DEPLOY_KEY`, the Stripe description) needs Phil's own hand, so hunting the "source corrected, artifact never re-derived" defect class the backlog's own section 7 names as the dominant risk is the highest-value unblocked work.
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 355 commits cleanly onto `a0d4480f`, no conflict.
+
+**Step 2: previous work is finished, confirmed against CI rather than local trust alone.** The prior operator cycle's two real fixes (`merge_cardtext.py`, `wire_nav.py`) are proven by CI itself: run #1452 on commit `222aff23` (the PM commit carrying both fixes) shows its own "Preflight" step completed `success` (22:23:50 to 22:41:57); "The ops test suite" step was still `in_progress` as of this check, matching the multi-minute `gate_tests` contention several prior cycles have already documented, not a stall. A local `python ops/preflight.py` started this cycle had not reached its own exit inside this slot; left running in the background, reported UNCHECKED per CLAUDE.md 0.4 rather than assumed clean. Two commits landed since (`5c6c853b`, `a0d4480f`) touch only `NIGHTLY-LOG.md`/`CHECKIN-LOG.md`/state files that `checks.yml`'s own path filter excludes by design, so no separate CI run exists for them; that is the documented, deliberate behavior, not a gap.
+
+**Step 3: nothing new is unblocked.** All 9 open GitHub issues confirmed via the API: unchanged, all `decision` or `blocked-on-art` (#36, #35, #33, #31, #29, #21, #18, #15, #2). `BACKLOG-2026-09-07.md` section 6's owner gates and section 7's own one-line summary are unchanged since the last cycle; the dashboard's "What needs you" list remains the real constraint. No closing job attempted this slot, per this run's own instruction to keep a :40 handoff small rather than start something large three minutes before the operator.
+
+Pushed to main. This log entry and the command deck regen only; no code, price, product or site page touched this slot.
+
 ## PM check-in, 2026-09-25 22:2x (previous work finished per its own prior local verification and progressing CI; one cold-read file cleared; one real finding escalated to #36 rather than applied, after the safety classifier blocked verifying the fix)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded 352 commits cleanly onto `938b02c2`.
