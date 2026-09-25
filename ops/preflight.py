@@ -13028,6 +13028,89 @@ def gate_status_deploy_gap_count_current() -> None:
         warn("status-deploy-gap-count-current", problem)
 
 
+def cold_read_handoff_stale_files(log_text: str, ledger: dict,
+                                   max_entries: int = 4) -> list[str]:
+    """Pure logic: returns the basenames of any ops/*.py file a handoff
+    line in the newest entries of ops/NIGHTLY-LOG.md names as a cold-read
+    candidate that ops/cold-read-ledger.json already records as read
+    (status "clean" or "fixed"). The log is newest-first (its own header
+    says so); checking the top max_entries matches the operating
+    prompt's own STEP 1, "read... the last four entries", since that is
+    the span a fresh cycle actually reads before picking up a handoff,
+    not only the single most recent entry (which often carries no
+    specific handoff of its own, e.g. a PM check-in that just confirms
+    the backlog is exhausted). A name inside ~~strikethrough~~ is a
+    correction acknowledging the staleness already, in the file's own
+    established markdown, not a live handoff, so it is stripped before
+    matching rather than flagged as if it were current.
+    """
+    blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
+              if b.startswith("## ")][:max_entries]
+    stale, seen = [], set()
+    for block in blocks:
+        for m in re.finditer(
+                r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:)"
+                r".*(?:\n(?!\n).*)*", block):
+            live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
+            names = re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live)
+            for name in names:
+                if name in seen:
+                    continue
+                seen.add(name)
+                entry = ledger.get(name)
+                if entry and entry.get("status") in ("clean", "fixed"):
+                    stale.append(name)
+    return stale
+
+
+def gate_cold_read_handoff_not_stale() -> None:
+    """None of the last four ops/NIGHTLY-LOG.md entries (the span STEP 1
+    of the operating prompt says to read) may hand off an ops/*.py cold-
+    read candidate that has already been read and cleared or fixed.
+
+    Found live 2026-09-25: the third-newest entry's own handoff ("continue
+    the low-mention ops/*.py cold-read lane on the genuinely unread
+    files, build_feed.py, build_image_prompts.py, build_printpack.py,
+    canonical_links.py, room_image_variants.py") named five files every
+    one of which this same log already recorded as read and cleared or
+    fixed, on dates from 2026-09-08 through 2026-09-24; a fresh cycle
+    reading "the last four entries" per STEP 1 would have picked it up
+    and repeated ground already covered. This is not a
+    one-off: the log records the identical shape at least twice before,
+    on 2026-09-11 (two concurrent sessions picked the same already-
+    covered pair) and 2026-09-24 (a nine-file handoff, four already
+    cleared). Raw log-mention count, the method every prior cycle used
+    to rank "next" candidates, cannot tell "read and cleared" apart from
+    "named in a list but never opened", because both leave a mention.
+    ops/cold_read_ledger.py replaces that proxy with an explicit record a
+    cycle writes only after it has actually read a file; this gate keeps
+    a stale handoff from silently sending the next cycle back over
+    ground already covered.
+
+    A WARNING, not a FAIL: a stale handoff wastes a future cycle's time,
+    it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_cold_read_handoff_not_stale.py
+    calls cold_read_handoff_stale_files() directly with a synthetic log
+    naming a ledgered file and asserts it is returned, then confirms a
+    handoff naming only un-ledgered files returns empty.
+    """
+    log_path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(log_path):
+        return
+    import cold_read_ledger as crl
+    log_text = io.open(log_path, encoding="utf-8").read()
+    ledger = crl.load_ledger()
+    stale = cold_read_handoff_stale_files(log_text, ledger)
+    if stale:
+        warn("cold-read-handoff-not-stale",
+             "ops/NIGHTLY-LOG.md's newest handoff names %s as a cold-read "
+             "candidate, but ops/cold-read-ledger.json already records "
+             "it as read. Run `python ops/cold_read_ledger.py --next` "
+             "for genuinely un-ledgered candidates instead."
+             % ", ".join("ops/%s" % n for n in stale))
+
+
 def gate_experiments_blocked_reason_current() -> None:
     """The status report Phil actually reads (ops/status_report.py's text
     output and the PDF ops/status_pdf.py builds from it) must not claim the
@@ -20909,6 +20992,7 @@ def main() -> int:
     run_gate(gate_status_currency)
     run_gate(gate_status_deploy_verdict_current)
     run_gate(gate_status_deploy_gap_count_current)
+    run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
