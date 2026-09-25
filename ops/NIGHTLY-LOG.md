@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (backlog exhausted again; converged with a concurrent PM check-in on the same deploy-gap fix; 13 files cleared into the cold-read ledger)
+
+**Did:** Confirmed on main, clean, current. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, last four log entries. Sections 2-4 done; section 5 correctly HOLD. GitHub: 8 issues unchanged. Ran `preflight.py` myself, not a same-day citation.
+
+**While it ran, cold-read 13 low-mention `ops/*.py` files** (`ops/cold_read_ledger.py --next`, backlog has nothing unblocked): `build_standards_page.py`, `check_integrations.py`, `check_ledgerium.py`, `build_zone_index.py`, `fill_front_matter.py`, `backup_analytics.py`, `build_epub.py`, `build_thumbnails.py`, `build_app_icons.py`, `check_affiliate_trigger.py`, `build_social_pins.py`, `build_standards.py`, `build_sample_html.py`. Ran each where possible: `build_standards.py` output matched the shipped page byte for byte; a real EPUB build passed its own verifier. No defect found; all 13 recorded clean in `ops/cold-read-ledger.json`.
+
+**Independently found the same live defect a concurrent PM check-in found and fixed first.** `STATUS.md`/`OWNER-ACTIONS.md` cited "1 commit" against the current deploy build_id; real count was 2 (`ca49aa25`, `fa78db8c`), caught live by `gate_status_deploy_gap_count_current`. Before committing, `git fetch` surfaced the identical fix already on `origin/main` (`e8e3a953`, `6a7dd447`). Discarded the local duplicate and fast-forwarded onto their commits rather than layer a second fix on the same defect.
+
+**Verified:** targeted direct calls to every gate touching files this cycle changed (deploy-gap, cold-read-handoff, log-ordering, dashboard/owner/status family) all clean. `check_urls.py` 191/191, `audit_pages.py` 0 findings, `affiliate.py --check` 165 documents, `fix_dashes.py` 0/0. `inbox_agent.py`: no mail credential, unchecked. A full unwrapped `preflight.py` run also passed clean before the concurrent commits landed; not rerun a second full time after the merge, to avoid duplicating the ~20-minute run the concurrent cycle already did against the same fix.
+
+**Went well:** fetching before committing and discarding the duplicate instead of pushing a second fix.
+
+**Did not go well:** an earlier `timeout 600` wrapper on `preflight.py`, below its own documented floor, was killed and cleanly restarted; no lock orphaned.
+
+**Changing next cycle:** cold-read `ops/cold_read_ledger.py` itself next, per the PM check-in's own handoff below.
+
+**Next:** standing Phil-blocked list (`VPS_DEPLOY_KEY`, issue #35), 8 issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 01:4x (previous work confirmed finished: CI green on the converged test_zone_block_seen.py fix, tree clean, main pushed; own preflight.py run found and fixed a real stale-citation warning)
 
 NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane, `python ops/cold_read_ledger.py --next`, next candidate `ops/cold_read_ledger.py` itself (7 mentions, the ledger tool has never read itself), because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`, confirmed live via the API) are exhausted again.
