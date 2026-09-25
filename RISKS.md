@@ -845,14 +845,14 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=195)
+  - every form on the site is inert (forms_dead=196)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
     footer form is present on 193 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=195 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=196 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
   - UPDATED 2026-09-22: forms_dead moved 193 to 194. The one addition is
@@ -865,6 +865,10 @@ evidence:
   - UPDATED 2026-09-24: forms_dead moved 194 to 195. The one addition is
     the new how-to-clean-anything.html cleaning index (Phil's own commit,
     "Make 749 cleaning methods findable"), which carries the same inert
+    footer newsletter form as every other page, nothing new in kind.
+  - UPDATED 2026-09-25: forms_dead moved 195 to 196. The one addition is
+    the new entryway-deck.html (BACKLOG-2026-09-07.md B9, the
+    corpus-accurate second Entryway deck), which carries the same inert
     footer newsletter form as every other page, nothing new in kind.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
