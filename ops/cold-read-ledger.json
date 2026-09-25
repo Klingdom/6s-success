@@ -51,6 +51,11 @@
       "date": "2026-09-23",
       "note": "zone scoring/audit template asset for corporate.html. Regenerated, byte-identical, correctly registered in ownership chain and check_pack_pages.py's PRINTABLES. Backfilled from ops/NIGHTLY-LOG.md 2026-09-23 entry, never previously ledgered."
     },
+    "build_cover.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "230 lines, desktop-only (needs PIL/Windows fonts, never run by CI or gate_generator_ownership's diff chain). Refuses to write on any font fallback to PIL's tiny default (correct, per its own 2026-08-17/2026-09-02 incident comment). author_name() correctly refuses to invent a byline (returns None on a bracketed placeholder), matching gate_cover_author_current's own use of it. No defect found; the known cover-staleness gap is already tracked by gate_cover_author_current and OWNER-ACTIONS item 12, not a new finding."
+    },
     "build_deck_pdf.py": {
       "status": "clean",
       "date": "2026-09-25",

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 22:2x (previous work finished per its own prior local verification and progressing CI; one cold-read file cleared; one real finding escalated to #36 rather than applied, after the safety classifier blocked verifying the fix)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded 352 commits cleanly onto `938b02c2`.
+
+**Step 2: previous work was finished, not re-litigated.** The top log entry (this session's own prior cycle) already ran a full `preflight.py` to its own exit with both the `merge_cardtext.py` and `wire_nav.py` fixes in place: every gate passed, fail-then-pass proved on both new test files. `main` matched `origin/main`, tree clean before my own edits. GitHub: 8 open issues, unchanged going in, all `decision`/`blocked-on-art`; 0 open PRs. CI on the current tip was genuinely still running, not stuck: checked `checks.yml` run #1451's own job steps directly, "Preflight" step actively in progress (not queued, not a zombie run) 15+ minutes in, matching this repo's known multi-minute `gate_tests` contention. My own local `python ops/preflight.py --fast`, run to its own exit in the background rather than wrapped in a timeout, still had not finished by the close of this 30-minute slot; reported UNCHECKED for this pass rather than assumed clean, per CLAUDE.md 0.4. The evidence this cycle actually relies on for "previous work is finished" is the prior cycle's own already-completed full local run, not a fresh one.
+
+**Cold-read lane: one file cleared.** Read `ops/build_cover.py` (230 lines) in full. No defect: it is desktop/Windows-font-only by design (falls back to Liberation fonts, refuses to write rather than ship illegible PIL-default text), `author_name()` correctly refuses to invent a byline, and the one known gap (the committed cover predates the author field) is already caught honestly by `gate_cover_author_current` and tracked as `OWNER-ACTIONS` item 12, not a new finding. Recorded clean in `ops/cold-read-ledger.json` (99 of 164 now ledgered).
+
+**One real finding, not applied.** `ops/check_sellable.py` lines 82-85 is a "check that cannot fail": the loop only ever sees items from `buyable`, which line 45 already filters to `price > 0`, so its own `price <= 0` condition is mathematically unreachable. Same defect class as the two found earlier today. Drafted the fix (delete the dead block; the real "shop and checkout agree on price" protection is the existing `--deep` live-Stripe block below it). The harness's own safety classifier denied verifying that edit, tagged "Security Test Removal," because the file is payment/price-integrity code. Reverted the edit rather than working around the block (`git diff` confirmed clean after). Filed as **issue #36**, labelled `decision`, with the full analysis and a recommendation, per CLAUDE.md 37/52: checkout-adjacent code is YELLOW/RED, and an autonomous session should not push past a safety denial on money-handling code, human judgment belongs here instead.
+
+**Went well:** stopping at the safety classifier's denial rather than finding another way to apply the same edit; the cold-read lane kept finding real "check that cannot fail" instances even on a file that already looks well-documented.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Neither the local `--fast` preflight nor CI's own run on the current tip finished inside this slot; both left running rather than forced or trusted early.
+
+**Changing next cycle:** none; the safety-classifier behavior on payment-code deletions is working as intended and should stay that way.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 99 of 164 files done). Issue #36 needs Phil's call. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues otherwise unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched. `ops/check_sellable.py` unchanged (edit reverted). IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (two real "check that cannot fail" defects found in the cold-read lane: merge_cardtext.py and wire_nav.py, both fixed and gated)
 
 **Did:** Attach: shallow, detached checkout (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 347 commits fast-forwarded onto `4fc83080` cleanly. Read `BACKLOG-2026-09-07.md` (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, this log's newest four entries. Full `python ops/preflight.py` run to its own exit before touching anything: every gate passed, 24 warnings, all standing sandbox-access limits, none new. GitHub confirmed directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. Backlog sections 2-4 confirmed closed (B6/B8/B9 done, D-027 recorded); section 5 HOLD on traffic evidence. Continued the cold-read lane per the standing PM handoff (`ops/cold_read_ledger.py --next`).

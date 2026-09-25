@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-25 22:05 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-25 22:22 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 200 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-25T14:15:05Z (build d40585d97500a3ca). The repository has since moved to build a6c5f96b77c7cff2, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -26,11 +26,11 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 |---|---|
 | Traffic | 68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
+| Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1087 of 3901 total |
+| Commits (7 days) | 1089 of 3905 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `31b54ff7` PM check-in: cold-read lane continues, merge_cardtext.py cle |
+| Last commit | `938b02c2` Merge remote-tracking branch 'origin/main' into main |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 41/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 111/114 zone pages carry a reviewed picture (live) |
+| Zone imagery | 111/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,11 +56,13 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 ## What needs you
 
+- **Redeploy the site.** Production is serving an older build: 0 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 111 reviewed pictures and every fix since the last deploy reach nobody.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** (0 min). All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed.
+- **#36** Decide: dead price-agreement check in ops/check_sellable.py (found during cold-read, autonomous edit blocked by safety classifier)
 - **#35** Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#31** Decide: the deck gallery and the deck download are two different card designs
@@ -72,6 +74,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | # | Title | Labels |
 |---|---|---|
+| 36 | Decide: dead price-agreement check in ops/check_sellable.py (found during cold-read, autonomous edit blocked by safety classifier) | decision |
 | 35 | Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
