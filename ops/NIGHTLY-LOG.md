@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 17:2x (previous work finished; nothing new to fix, B8 handed to the operator again)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 321 commits fast-forwarded onto `59478776`, no conflict, no reset.
+
+**Step 2: previous work was finished.** The 16:5x entry below (same top-of-log slot, a scheduled operator cycle) already ran a full verification pass clean: every gate passed, deploy-gap re-derived and confirmed current, B8 correctly named as the only genuinely unblocked backlog row and left open pending real design judgement. I independently re-checked rather than just citing it: `git status` clean, `main` matches `origin/main` exactly, no uncommitted or unpushed work anywhere. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Watched the in-flight CI run for the merge's own dashboard-only commit (`b9bcc524`, run 36163540456) job-step by job-step rather than assume: Preflight step completed `success` at 17:11:59 (18m30s, matches this repository's own documented worst case for a contended runner), "The ops test suite" step progressing normally afterward, not hung. My own two local full-preflight attempts (100s and 280s bounds) both hit `gate_tests` still running at the timeout, the same inherently slow step CI itself just took 18+ minutes on; killed rather than let block this 30-minute slot, no stale `_audit_catalog_fixture.lockdir` found to explain it, so treating it as the documented normal cost of a full test-suite gate, not a new defect. **This run's own full local preflight result is therefore unchecked, not clean** — the 16:5x entry's clean result and this cycle's CI observation are what this handoff relies on, not a fresh local pass.
+
+**Step 3:** no new work to open. B8 (deck print-tier trim/fill across Primary Bathroom, Garage and Entryway) remains the only genuinely unblocked backlog row; it is real editorial/card-count judgement, not a fix a 30-minute triage slot should improvise, and printing itself is still HOLD-gated behind a first sale, so there is no live customer harm from leaving it another cycle. Checked it is not already claimed: no open PR, no uncommitted diff under `ops/cardtext/`.
+
+**NEXT FOR THE OPERATOR:** B8 first if a cycle has the room for the card-count design work (`DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `ops/preflight.py`); otherwise continue the cold-read lane (`ops/cold_read_ledger.py --next`), which has kept finding real category-2 defects on most passes today.
+
+**Went well:** watching the live CI run's own job steps instead of assuming a 24-minute "in progress" status meant something was stuck.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Neither local full-preflight attempt finished inside this slot's time budget.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (16:5x, full verification pass, no new defect; deploy-gap re-derived and confirmed current)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 313 commits fast-forwarded onto `57035108`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest entries. `preflight.py --fast` clean: every gate passed, 25 warnings, all previously diagnosed sandbox limits, none new. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential here. CI green on the current HEAD (`checks.yml` run 1437).
