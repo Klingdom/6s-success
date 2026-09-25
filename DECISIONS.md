@@ -1949,6 +1949,26 @@ Twice in one session, from one missing predicate. `ops/traffic_query.sh` has
 always carried the filter; the mistake was writing a fresh query beside it
 instead of using it.
 
+**REOPENED IN PART, 2026-09-25, on owner direction and a new consumer.**
+Phil then asked for the cleaning content and the micro zones to be part of the
+card system. That changes what the diagnosis layer is FOR, and therefore
+changes this decision's reasoning rather than merely overriding it.
+
+The stop above was correct on its own terms: more zone-page depth is not
+downstream of the arrivals constraint. But a deck is not page depth. Measured
+by `ops/cardtext/derive_room_deck.py`, a seven-zone room needs **88 authored
+fields** to become a deck if it has a diagnosis layer and **133 if it does
+not**, because the layer supplies every friction's symptom and branches. So
+diagnosis now has a downstream consumer that is a product, and authoring it
+for a room is a third off the cost of that room's deck.
+
+What that does NOT do is reinstate "author all twenty rooms". It makes
+diagnosis a dependency to be authored **immediately ahead of the deck that
+consumes it**, room by room, rather than a stockpile built in advance against
+no consumer. The five rooms already done cover the five decks B7 names. The
+remaining fourteen stay stopped until a deck for that room is actually being
+built.
+
 **So: no fifth room on momentum.** Six of twenty rooms are personalised, 38 of
 114 zones. The remaining fourteen rooms are not forbidden, but they are no
 longer downstream of the constraint, and `GOALS.md`'s second question says so.
