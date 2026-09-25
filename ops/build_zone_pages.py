@@ -247,10 +247,29 @@ def slug(t):
 def load_chrome():
     """Reuse the real header and footer so these pages cannot drift from the
     rest of the site. Relative links get a prefix because these pages sit one
-    directory down."""
+    directory down.
+
+    Found 2026-09-25: str.find() returns -1 when it finds nothing, and -1 is
+    a valid slice index, so a transiently broken resources.html (missing its
+    own footer) made this silently lift an empty string rather than fail. On
+    2026-09-24 that produced 134 room and zone pages carrying no footer at
+    all, including every legal and affiliate-disclosure link on the site,
+    caught only as a warning (gate_footer_consistent's "missing" branch) and
+    not by anything that stops a build. Checked the same way
+    build_cleaning_index.py already checks its own lift from this file:
+    on what was actually found, not merely that a find() call returned.
+    """
     src = io.open(os.path.join(SITE, "resources.html"), encoding="utf-8").read()
-    head = src[src.find('<header class="site-header">'):src.find("</header>") + 9]
-    foot = src[src.find('<footer class="site-footer">'):src.find("</footer>") + 10]
+    head_start, head_end = src.find('<header class="site-header">'), src.find("</header>")
+    foot_start, foot_end = src.find('<footer class="site-footer">'), src.find("</footer>")
+    if head_start == -1 or head_end == -1:
+        raise SystemExit("resources.html has no <header class=\"site-header\">...</header>; "
+                          "refusing to lift an empty header into every room/zone page")
+    if foot_start == -1 or foot_end == -1:
+        raise SystemExit("resources.html has no <footer class=\"site-footer\">...</footer>; "
+                          "refusing to lift an empty footer into every room/zone page")
+    head = src[head_start:head_end + 9]
+    foot = src[foot_start:foot_end + 10]
 
     def up(frag):
         return re.sub(r'(href|src)="(?!https?:|#|mailto:|/)([^"]+)"',

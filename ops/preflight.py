@@ -8815,7 +8815,11 @@ def gate_footer_consistent() -> None:
     whose footer merely differs, not milder: it has zero legal/privacy links
     and zero cross-sell, where a drifted page at least has stale ones. Fixed
     on the content side by extending ops/wire_footer.py to insert a missing
-    footer, not only correct a drifted one (see that script's own history).
+    footer, not only correct a drifted one (see that script's own history);
+    and at the source by hardening build_zone_pages.py's own load_chrome()
+    to refuse rather than silently lift an empty string when resources.html's
+    header/footer markers are not found, closing the actual bug class rather
+    than only this one instance of it.
     """
     canon_path = os.path.join(SITE, "resources.html")
     if not os.path.exists(canon_path):
