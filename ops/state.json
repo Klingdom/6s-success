@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 14:33",
- "commit": "4ebb4625",
- "commit_msg": "Fix STATUS.md citing a superseded deploy-verdict confirmation",
- "commits_7d": 1102,
- "commits_total": 3848,
+ "generated": "2026-09-25 14:39",
+ "commit": "3a7ae192",
+ "commit_msg": "Merge origin/main: resolve STATUS.md deploy-verdict conflict",
+ "commits_7d": 1105,
+ "commits_total": 3851,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
@@ -1085,7 +1085,7 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 210,
+ "site_pages": 204,
  "dead_links": 0,
  "legal_pages": 4,
  "forms_dead": 200,

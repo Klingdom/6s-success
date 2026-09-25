@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, cycle addendum (converged with the concurrent PM check-in below on the same stale deploy-verdict citation, merged rather than duplicated; one factual mislabel caught in the merge)
+
+Independently found the identical `gate_status_deploy_verdict_current` warning (a full, non-fast `preflight.py` run surfaced it) and fixed both `STATUS.md` sections with my own dated correction paragraphs before fetching and discovering the PM check-in below had pushed the same fix minutes earlier. Merged rather than force-pushed: kept their "Production Knowledge" paragraph, which correctly resolved commit `c6cc1a6a` to the Laundry Room deck, and fixed the identical mislabel in my own `BLOCKER-001` paragraph (I had written "Entryway deck"; `git log -1 c6cc1a6a` confirms Laundry Room). `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` regenerated fresh with `ops/dashboard.py` rather than hand-picked from either side. Verified the merge itself, not just the pre-merge fix: `gate_status_deploy_verdict_current` called directly against the merged `STATUS.md` (clean), a full `preflight.py` reran against the pushed tree (every gate passed, 25 warnings, all previously diagnosed sandbox limits, none new). CI dispatched on the merge commit (`3a7ae192`, run 1435); not watched to completion within this session's own window, so recorded as dispatched, not confirmed green, per `CLAUDE.md` 0.4.
+
+Also resolved two earlier merge conflicts the same way this cycle (`ops/NIGHTLY-LOG.md` keeping both entries; a transient `preflight.py` FAIL on `test_audit_catalog.py`/`test_affiliate.py` traced to a still-legitimately-running concurrent test process, not a real defect, confirmed clean once it finished naturally).
+
 ## PM check-in, 2026-09-25 14:2x (previous work verified finished; fixed a stale deploy-verdict citation gate_status_deploy_verdict_current flagged)
 
 **Previous work was finished.** Attached clean (unshallow, fetch, ff-only merge, 292 commits fast-forwarded). CI green on the last completed run (checks.yml #1431, success) for the prior cycle's own push. 8 GitHub issues unchanged, all decision or blocked-on-art. Backlog sections 2-4 closed or Phil-gated.
