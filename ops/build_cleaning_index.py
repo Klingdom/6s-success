@@ -125,9 +125,31 @@ def main() -> int:
     # one page on this site least worth shipping blind. Copying rather than
     # typing also means the site id and host cannot drift from what every
     # other page sends.
-    tail = src[src.rfind("</footer>") + len("</footer>"):]
+    # str.rfind RETURNS -1 WHEN IT FINDS NOTHING, and -1 is a valid index, so
+    # the slice below silently becomes "almost the whole file" rather than
+    # failing. On 2026-09-24 a broken build of resources.html shipped with a
+    # literal {FOOTER} placeholder and no footer at all; this line found no
+    # </footer>, took garbage as the "script tail", and wrote an index page
+    # with no site.js and no measure.js. The result was a dead mobile nav
+    # button and a page built to be found that could not report whether anyone
+    # found it, which is the exact failure the comment above warns about.
+    #
+    # So it is checked rather than assumed, and the check is on what the tail
+    # must CONTAIN, not merely on whether a marker was located.
+    cut = src.rfind("</footer>")
+    if cut == -1:
+        print("  resources.html carries no </footer>, so the script tail "
+              "cannot be lifted from it. Refusing to write a page with no "
+              "navigation and no measurement. Rebuild resources.html first.")
+        return 1
+    tail = src[cut + len("</footer>"):]
     tail = tail.split("<!-- MEASURE:BEGIN -->")[0]
     tail = tail.replace("</body>", "").replace("</html>", "").strip()
+    if "site.js" not in tail:
+        print("  the script tail lifted from resources.html carries no "
+              "site.js, so this page's nav button would be dead on load. "
+              "Refusing to write it.")
+        return 1
 
     rooms: dict = {}
     for z in zones:

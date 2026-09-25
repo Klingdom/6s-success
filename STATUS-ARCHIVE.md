@@ -9,6 +9,10 @@
 
 ---
 
+**Prior (2026-09-24, PM check-in): The GHCR image is now fully current with HEAD; only the Hostinger redeploy click remains open.** A concurrent scheduled-operator cycle dispatched `publish-image.yml` directly (`workflow_dispatch` at commit `914c2881`, run 395, `success`); a concurrent PM check-in independently confirmed it via a working `GH_TOKEN` (rare for a sandboxed session), not merely citing the other cycle's own account: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` is clean. So every fix named below (`a16788fa`, `b0166730`, `b6b35ee7`) is already baked into the built image on GHCR; nothing further needs building or re-triggering. `git log 8e4c8e33..HEAD` is 60 commits as of this merge (was 59 one push earlier), but that count now measures undeployed work, not unbuilt work. Production itself is still confirmed only at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`).
+
+---
+
 **Prior (2026-09-24, PM check-in, concurrent with the above): re-derived the same 50-to-60 growth independently before merging and finding a sibling cycle had already narrowed the finding to "GHCR current, only the Hostinger click remains."** Also closed the standing four-file `wire_landmarks.py`/`wire_measure.py`/`wire_progressive.py`/`wire_pwa.py` cold-read lane this same slot (handed off across the 03:4x/04:1x/04:4x check-ins without being read): no live defect in any of the four; one real but non-live test-coverage gap named for whoever next touches `wire_pwa.py`, not fixed blind at the end of a PM slot: its own path-verification loop asserts every `href=` inside the PWA marker block resolves, but the service worker registration is inlined as a JavaScript string (`register("/sw.js")`), never an `href=`, so that path is asserted nowhere despite the loop's own "every icon and manifest path checked" claim; `site/sw.js` exists today so nothing is currently broken.
 
 ---

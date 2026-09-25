@@ -11,6 +11,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "build_all_prompts.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: require_desktop_sources() correctly refuses with a clear message and exit 0 when Desktop sources are absent, no defect"
+    },
     "build_app_icons.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -30,6 +35,11 @@
       "status": "clean",
       "date": "2026-09-10",
       "note": "Cold-read and run, closed clean, no defect found."
+    },
+    "build_icons.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, PIL unavailable in this sandbox (standing gap); maskable safe-zone arithmetic checked by hand and correct, no defect found"
     },
     "build_image_prompts.py": {
       "status": "fixed",
@@ -99,7 +109,7 @@
     "check_ledgerium.py": {
       "status": "clean",
       "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "note": "cold-read 2026-09-25 scheduled operator cycle: EXPECTED/WEBHOOK imported from ledgerium_price_check.py (single source), correctly reports unchecked with no credential, no defect"
     },
     "cold_read_ledger.py": {
       "status": "clean",
@@ -111,25 +121,55 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "ledgerium_price_check.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: no hardcoded secret, correctly gated by gate_ledgerium via check_ledgerium.py, ran clean (unchecked, no credential) in this sandbox, no defect"
+    },
     "link_standards.py": {
       "status": "clean",
       "date": "2026-09-11",
       "note": "Run live: 0 pages changed, 189 already carry the footer link; the 4 pages without it individually checked and confirmed legitimate exclusions."
+    },
+    "optimize_sample_pdf.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, pypdf/PIL unavailable in this sandbox (standing gap); not wired into any preflight gate, no defect found"
+    },
+    "render_all_narrated.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: not wired into any preflight gate by exit code (only slug() is cross-checked by gate_video_slug_single_source), --check correctly reports 0 of 228 in this sandbox, no defect"
     },
     "review_deck_art.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "Cold-read for defects (PM check-in). Sheet paging, sha-pinned verdicts, expand() range parsing all correct. Cross-checked its only consumer, import_generated_art.py: promotion requires verdict == 'ok' exactly, so an unvalidated/typo'd verdict here fails closed (never promoted) rather than open. No defect."
     },
+    "review_heroes.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: --status correctly reports honest 0/0/0 with no build/heroes/ present here, sha-based verdict invalidation on regeneration verified correct, no defect"
+    },
     "room_image_variants.py": {
       "status": "clean",
       "date": "2026-09-11",
       "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
     },
+    "verify_media_delivery.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: correctly reports exit 2 / unmeasured when no Desktop delivery folder exists (matches gate_checkin_undelivered_media_not_fabricated's own contract), no defect"
+    },
     "video_narrated.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "Cold-read for defects (PM check-in). Verified the known ffmpeg concat gotcha (last file's duration entry ignored) is correctly handled by repeating the last PNG path unduration'd after the loop. Silent-beat placeholder, retry/backoff on TTS throttling, audio/video hold durations staying in lockstep via apad(TAIL), and Desktop delivery failing soft rather than raising all check out. No defect."
+    },
+    "wire_consult_cta.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle: idempotent CTA-wiring migration, 0 changes on rerun (already fully applied), covered by gate_consult_cta_current, no defect"
     }
   }
 }
