@@ -181,6 +181,21 @@
       "date": "2026-09-11",
       "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
     },
+    "status_pdf.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 PM check-in: the offer table listed a second 'Entryway deck' row for the 16 withheld cards with its own card count and a contradicting Withheld state, alongside the live 72-card row from the same deck, reading as a second competing deck rather than a note about the first. Relabelled 'of which, N Entryway cards' to match status_report.py's own honest phrasing of the same figures. reportlab not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked and no test covers the changed string."
+    },
+    "stripe_links.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 PM check-in: superseded by stripe_catalog.py per its own docstring, correctly guards live writes (STRIPE_ALLOW_LIVE), idempotent (finds existing active link before creating another), no defect found"
+    },
+    "sync_push.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 PM check-in: rebase-and-push loop regenerates GENERATED files on conflict rather than picking a side, refuses to push files with conflict markers, verifies the push against origin/main after rather than trusting the exit code; no defect found"
+    },
     "verify_media_delivery.py": {
       "status": "clean",
       "date": "2026-09-25",

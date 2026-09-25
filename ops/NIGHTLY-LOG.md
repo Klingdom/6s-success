@@ -4,13 +4,25 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-09-25 13:1x (previous work verified finished; fixed a stale deploy-gap count and a self-inflicted lockdir)
 
-NEXT FOR THE OPERATOR: cold read wire_generated_catalog.py, wire_signup.py and zone_graphics.py, per ops/cold_read_ledger.py --next (lowest mention, genuinely unread), since every backlog row in sections 2 to 4 is done or Phil gated.
+NEXT FOR THE OPERATOR: cold read wire_generated_catalog.py, wire_signup.py and zone_graphics.py, per ops/cold_read_ledger.py --next (lowest mention, genuinely unread), since every backlog row in sections 2 to 4 is done or Phil gated. A concurrent operator session reached the same conclusion independently below.
 
 Previous work verified finished: CI green (checks.yml run 1429) on the prior cycle's ledger/build id fix; B9 closed, all five room decks done; 8 GitHub issues unchanged, all decision or blocked on art.
 
 Found and fixed two real defects: STATUS.md's BLOCKER-001 cited 6 undeployed commits, real count was 8 (missed 8f6c47b3, 9c6d4063), corrected. Cleared an orphaned test_audit_catalog.py lockdir my own killed preflight run left, same shape a prior cycle fixed once already today.
 
 Preflight clean after: every gate passed, 25 warnings, standing sandbox limits. Pushed 9869f2e0c, deck regenerated.
+
+## PM check-in, 2026-09-25 13:1x (previous work finished; fixed a misleading row in the PDF status report)
+
+**Previous work was finished.** Clean attach (fetch, unshallow, checkout main, ff-only merge onto origin/main, 281 commits fast-forwarded, no reset or force). Working tree already clean. Full `preflight.py` (not the fast pass): every gate passed, 26 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential here, cron-cadence drift on two workflows, deploy freshness unmeasurable, 2 tests that cannot exercise anything without a missing dependency), none new. GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`, none actionable here; 0 PRs.
+
+**Did:** section 2-4 of `BACKLOG-2026-09-07.md` closed or Phil-gated, section 5 HOLD, section 6 owner gates, so continued the cold-read lane per the prior PM check-in's own handoff. `stripe_links.py` and `sync_push.py` cold-read clean (both correctly guarded, no defect). `status_pdf.py` had a real defect: the offer table rendered a second "Entryway deck" row for the 16 withheld cards, its own card count and a contradicting "Withheld" state sitting right below the live 72-card row for the same deck, reading as a second, unavailable deck rather than a note about the first. `status_report.py`'s own text version phrases the identical figures honestly ("N of the Entryway deck's cards are withheld"); the PDF did not. Relabelled the row `of which, N Entryway cards` to match. `reportlab` is not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked, and no test covers the changed string. All three recorded in `ops/cold-read-ledger.json`.
+
+**Verified:** `preflight.py` reran clean after the edit, 26 warnings, unchanged. `python3 -m py_compile ops/status_pdf.py` clean.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `wire_generated_catalog.py`, `wire_signup.py`, `zone_graphics.py` next by mention count). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. `ops/status_pdf.py`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no new page, IndexNow not applicable.
 
 ## PM check-in, 2026-09-25 12:2x (previous work finished; closed a real ledger gap)
 
