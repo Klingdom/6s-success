@@ -8627,6 +8627,68 @@ def gate_ops_test_suite_matches_gate_tests(wf_path=None) -> None:
              "gets, and will fail this step's 700s bound by name again")
 
 
+# The two workflows that actually run ops/preflight.py on a push (the same
+# pair CI_PATH_COVERAGE_WORKFLOWS names). Both must check out full history.
+CI_FULL_HISTORY_WORKFLOWS = CI_PATH_COVERAGE_WORKFLOWS
+
+
+def gate_ci_checkout_full_history(wf_dir=None) -> None:
+    """Every workflow that runs preflight.py must fetch full git history.
+
+    Found live 2026-09-25, run 36085673021 on commit 41cce0e5: checks.yml's
+    `actions/checkout@v4` step took the default depth-1 shallow clone, and
+    ops/affiliate_report.py's inputs_date() stamps its three reports with the
+    newest commit date that touched ops/affiliate-accounts.json and
+    ops/affiliate-catalogue.csv via `git log -1 -- <path>`. Those two files
+    last changed 2026-09-09, 2,539 commits before the failing run; in a
+    depth-1 clone that commit is outside the fetched history, `git log`
+    returns nothing, and the stamp silently falls back to the checked-out
+    file's mtime, which is always "now". Every run after that regenerated a
+    report that differed from the committed one, so gate_generator_ownership
+    (and test_affiliate_report_stamp_stable.py, run separately in the same
+    job) failed on every single push, the identical "a date that moves when
+    nothing moved" bug inputs_date()'s own docstring says it exists to
+    prevent, reappearing through checkout depth instead of
+    datetime.date.today(). publish-image.yml runs the identical
+    `preflight.py --own`, through the identical gate, and was equally
+    exposed; it had not yet failed only because its own path filter
+    (site/**, Dockerfile) fires far less often, not because the shallow
+    checkout there is any safer. Fixed by adding `fetch-depth: 0` to both.
+
+    A fixed shallow depth (the 50 hourly-brief.yml/roadmap-report.yml/
+    status-email.yml use, enough for a 24-to-168-hour commit count) would
+    not be enough here: nothing bounds how long these particular inputs can
+    go between real edits, so only full history is reliably correct. This
+    gate does not care which depth a workflow chooses for some other
+    purpose; it only requires that the two workflows actually invoking
+    preflight.py do not leave the default (implicit depth-1) in place.
+    """
+    d = wf_dir or os.path.join(ROOT, ".github", "workflows")
+    problems = []
+    for wf in CI_FULL_HISTORY_WORKFLOWS:
+        p = os.path.join(d, wf)
+        if not os.path.isfile(p):
+            continue
+        text = open(p, encoding="utf-8", errors="replace").read()
+        m = re.search(r"-\s*uses:\s*actions/checkout@v\d+"
+                       r"(?P<rest>.*?)(?=\n\s*-\s*(?:uses|name):|\Z)",
+                       text, re.S)
+        if not m:
+            problems.append("%s has no actions/checkout step at all" % wf)
+            continue
+        rest = m.group("rest")
+        if not re.search(r"fetch-depth:\s*0\b", rest):
+            problems.append(
+                "%s's actions/checkout step does not set fetch-depth: 0, so "
+                "it takes the default depth-1 shallow clone; any gate "
+                "reading git history for a file that has not changed "
+                "recently (ops/affiliate_report.py's inputs_date() already "
+                "did) will silently see none and report today's date "
+                "instead" % wf)
+    if problems:
+        fail("ci-checkout-full-history", "; ".join(problems))
+
+
 _HARDCODED_GIT_HISTORY_RE = re.compile(
     r"""git\s+(?:show|log|diff)\s+['"]?[0-9a-fA-F]{7,40}\b"""
     r"""|['"](?:show|log|diff)['"]\s*,\s*['"][0-9a-fA-F]{7,40}\b"""
@@ -13043,13 +13105,24 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     correction acknowledging the staleness already, in the file's own
     established markdown, not a live handoff, so it is stripped before
     matching rather than flagged as if it were current.
+
+    Found live 2026-09-25: this only recognised "**Next:**" and "NEXT
+    FOR THE OPERATOR:" as handoff headers, but "Handing to operator:"/
+    "Handing to the operator:" (bold or not) is an equally established
+    phrasing, 64 uses across this same log's own history. The newest
+    entry at the time used that phrasing with a genuinely fresh, non-
+    stale candidate list; because the regex could not see it, the gate
+    instead flagged an older, now-superseded "NEXT FOR THE OPERATOR:"
+    line three entries back as if it were the live handoff.
     """
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
     stale, seen = [], set()
     for block in blocks:
         for m in re.finditer(
-                r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:)"
+                r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:|"
+                r"\*\*Handing to (?:the )?operator:\*\*|"
+                r"Handing to (?:the )?operator:)"
                 r".*(?:\n(?!\n).*)*", block):
             live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
             names = re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live)
@@ -20846,6 +20919,7 @@ def main() -> int:
     run_gate(gate_checks_main_not_cancelled)
     run_gate(gate_ci_path_filter_covers_preflight_inputs)
     run_gate(gate_ops_test_suite_matches_gate_tests)
+    run_gate(gate_ci_checkout_full_history)
     run_gate(gate_no_hardcoded_git_history)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)

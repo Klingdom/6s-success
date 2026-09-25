@@ -97,6 +97,34 @@ def main() -> int:
         fails.append("a stale name in the second entry was not caught: %r"
                       % stale)
 
+    # 3b. "**Handing to operator:**"/"Handing to the operator:" (bold
+    #     or not) must be recognised too: 64 uses across the real log's
+    #     own history, and the exact phrasing the live 2026-09-25 defect
+    #     used for its genuinely fresh handoff, invisible to the gate
+    #     until this case was added.
+    log_handing_style = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-25\n\n"
+        "**Handing to operator:** cold-read `affiliate_report.py` and "
+        "`crawl_report.py`.\n\n"
+        "Pushed to main.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_handing_style, LEDGER)
+    if stale != ["affiliate_report.py"]:
+        fails.append("**Handing to operator:** phrasing not recognised: "
+                      "got %r" % stale)
+
+    log_handing_the_style = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-09-25, cycle\n\n"
+        "Handing to the operator: cold-read `affiliate_report.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_handing_the_style, LEDGER)
+    if stale != ["affiliate_report.py"]:
+        fails.append("unbolded 'Handing to the operator:' phrasing not "
+                      "recognised: got %r" % stale)
+
     # 4b. But a stale name past the max_entries window (the sixth entry,
     #     with the default window of 4) must NOT be caught: that is
     #     older history, not the live handoff a fresh cycle will read.
@@ -126,7 +154,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 6/6 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 8/8 cases pass")
     return 0
 
 

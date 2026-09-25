@@ -254,6 +254,25 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history, not the default depth-1. ops/affiliate_report.py's
+          # inputs_date() stamps its reports with the newest commit date that
+          # touched ops/affiliate-accounts.json / ops/affiliate-catalogue.csv,
+          # via `git log -1 -- <path>`; those files last changed 2026-09-09,
+          # thousands of commits back. In a shallow clone that commit is
+          # outside the fetched history, git log returns nothing, and the
+          # function falls back to the checked-out file's mtime, which is
+          # always "now": the exact "a date that moves when nothing moved"
+          # bug the function's own docstring says it exists to prevent,
+          # reappearing through the checkout depth instead of datetime.today().
+          # Found 2026-09-25 live in run 36085673021 (commit 41cce0e5): every
+          # run since regenerated a report that differed from the committed
+          # one, so gate_generator_ownership failed every single time. A
+          # fixed depth (the 50 hourly-brief.yml/roadmap-report.yml use for
+          # a 24-to-168-hour commit count) is not enough here, since these two
+          # files can go thousands of commits between real edits; only full
+          # history is reliably correct.
+          fetch-depth: 0
 
       - name: Install python dependencies
         run: pip install --quiet -r ops/requirements.txt
