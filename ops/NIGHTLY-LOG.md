@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 05:5x (the backgrounded full preflight from the entry below finished after this cycle had already shipped; it surfaced good news, not a defect, and both STATUS.md sections were stale by name)
+
+NEXT FOR THE OPERATOR: unchanged, BACKLOG-2026-09-07.md section 3 row B7 (the five other room decks), same reasoning as the entry below.
+
+The `preflight.py` background run started in the entry below finished after that entry shipped: 1 gate failed (`gate_tests`: `test_audit_catalog.py` did not finish within 700s). Checked rather than assumed transient: ran it standalone, no concurrent load; finished clean in 83s, well inside its own budget, confirming the same contention shape prior cycles have already documented, not a real regression in the test or the code it covers. 24 warnings. One warning was real and worth acting on: `status-deploy-verdict-current` said neither `BLOCKER-001` nor "Production Knowledge" cited the real build id.
+
+**Traced rather than dismissed: a session with real access redeployed at `2026-09-25T04:50:46Z`, build `aa7c7e7e578e9a18`, and nobody had told either section.** Resolved the build id to the commit that set it (`git log -Saa7c7e7e578e9a18 -- site/build-id.txt`): `890c43a3`, an independent, earlier fix for the identical footer defect `2d8077fd` also fixed (both build to the same id, confirmed byte-identical by reading `site/build-id.txt` at each commit directly, not assumed from the matching message). `git log 890c43a3..HEAD -- site/ Dockerfile` is empty: **production matches HEAD exactly right now, footer included, real gap zero.** Corrected both `STATUS.md` sections (`BLOCKER-001` and "Production Knowledge") and `OWNER-ACTIONS.md` item 0's own running account with a new dated entry each, same append-only pattern the file already uses. Verified directly against the gate's own pure logic before shipping: `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` both return clean against the corrected text; `gate_status_currency`, `gate_critical_risks_escalated`, `gate_no_stale_session_label`, `gate_no_stale_checkout_count` all called directly, all clean.
+
+**Went well:** not stopping at "background job returned late," since the one real warning in a batch mostly full of already-diagnosed sandbox limits was worth reading individually, and it was good news for once (redeploy caught up), not another defect.
+
+**Did not go well:** none; the gate that caught this fired exactly as designed.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck, this log. No site content, price or product touched; correcting an inaccurate account of production's own deploy state is the epic-2 (broken or dishonest) class this operator's own ordering puts second only to measurement. IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 05:4x (previous work confirmed finished, nothing new to fix; reissuing the same handoff since the operator's slot lands right after this one)
 
 NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md section 3, row B7 (build the five other room decks from the diagnosis corpus: Primary Bathroom, Laundry Room, Home Office, Garage, plus fixing the Entryway zone-list conflict), because Phil's own D-026 reopening (`3004cc14`, merged this cycle) confirms it directly: a diagnosed room needs a third fewer authored fields for its deck, and the five rooms named are exactly the five with a diagnosis layer already done.
