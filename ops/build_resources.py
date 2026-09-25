@@ -66,6 +66,17 @@ def _chrome():
 HEADER, FOOTER = _chrome()
 
 content = json.load(open(os.path.join(SRC, "content.json"), encoding="utf-8"))
+
+# COUNTED, NEVER TYPED. This number is a promise on a customer-facing page
+# ("the cleaning method for all N surfaces"), and it was hardcoded at 749 on
+# the day the index was built. The moment a surface is added to any zone, a
+# typed number becomes a false claim about what the reader will find, which is
+# the one thing CLAUDE.md section 8 will not tolerate. ops/build_cleaning_index.py
+# already derives the same total from the rendered pages; this derives it from
+# the corpus those pages are built from, so the two can be compared.
+SHINE_SURFACES = sum(
+    len((z.get("shine_detail") or {}).get("surfaces") or [])
+    for r in content["rooms"] for z in r.get("zones") or [])
 zprod = json.load(open(os.path.join(SRC, "zone_products.json"), encoding="utf-8"))
 
 # The book renames seven zones that the Manual names differently, and the chapter
@@ -253,7 +264,7 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <h2>Where to go next</h2>
   <p class="meta">If you have finished a room</p>
   <ul>
-    <li><a href="how-to-clean-anything.html">How to clean anything in your house</a>, an index of the cleaning method for all 749 surfaces across these zones: what to use, what order to work in, and why. Free, no account.</li>
+    <li><a href="how-to-clean-anything.html">How to clean anything in your house</a>, an index of the cleaning method for all {SHINE_SURFACES} surfaces across these zones: what to use, what order to work in, and why. Free, no account.</li>
     <li><a href="downloads/6S-Micro-Zone-Map.html">The Micro Zone Map</a>, free to print: twenty sheets, one per room, naming all 114 micro zones with the time a single session takes. Put the sheet for the room you are standing in where the work happens.</li>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>

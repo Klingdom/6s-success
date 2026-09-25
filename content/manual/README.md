@@ -2,7 +2,7 @@
 
 Companion volume to **6S Success: Home Edition**. Updated 2026-08-17, prepared for print.
 
-20 rooms, 114 micro zones, 749 shine surfaces, 516 inspect points. Every zone carries a deepened **How to clean it** block. The package ships with two product appendices and a 7 x 10 in print edition.
+20 rooms, 114 micro zones, 762 shine surfaces, 516 inspect points. Every zone carries a deepened **How to clean it** block. The package ships with two product appendices and a 7 x 10 in print edition.
 
 ## Contents
 
@@ -53,7 +53,7 @@ Ink is one colour with no fills anywhere: every panel, chip and table header is 
 
 Every one of the 114 zones has a **How to clean it** block beneath the six passes:
 
-- A Shine summary, then a **surface-by-surface table**, 749 surfaces in all, 5 to 8 per zone, giving a concrete method for each surface, worked top to bottom and back to front.
+- A Shine summary, then a **surface-by-surface table**, 762 surfaces in all, 5 to 9 per zone, giving a concrete method for each surface, worked top to bottom and back to front.
 - **What you clean with**, the types for that zone, drawn from the product library.
 - **Inspect as you clean**, 2 to 5 things to *notice and flag* per zone, 516 in all: leaks, wear, frayed cords, mildew, loose fixings, rust, cracks.
 
