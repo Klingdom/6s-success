@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-25 23:0x (backlog confirmed exhausted; cold-read lane: build_zone_map_pack.py cleared, no defect; CI fix confirmed green via the API)
+
+**Did:** checkout already fetched, unshallowed and fast-forwarded onto `origin/main` before this cycle began. Read `CLAUDE.md`, `GOALS.md`, `STATUS.md` and `BACKLOG-2026-09-07.md` sections 0 to 7 in full, checking every row by content rather than by header. `git fetch` mid cycle picked up one further commit, `28ecee8a` (a concurrent PM check-in reaching the identical conclusion below independently), fast-forwarded clean, no collision.
+
+**Step 3, ordering rule: nothing in `BACKLOG-2026-09-07.md` sections 2 to 6 is both unblocked and undone.** Section 2 (micro zones and the app, A1 to A9) is all Done. Section 3 (decks, B1 to B9): B7, B8 and B9 all closed today, B9 by a concurrent session mid cycle (the five remaining room decks all shipped, verified corpus-accurate), B8's print-tier question closed by decision (D-027). Section 4 (images/video): C1 to C4 and C7 done; C5 and C6 explicitly `YES, Phil`. Section 5 is deliberately HOLD (ahead of the traffic constraint). Section 6 is six owner-gate actions, none actionable here. No row justified opening a fourth workstream against the WIP cap of 3 (`STATUS.md` section 14 already holds 3 active).
+
+**Verified rather than re-cited:** checked GitHub Actions directly for the shallow-checkout CI fix (`abfac35f`) that the prior cycle's `STATUS.md` entry could not watch to completion. `checks.yml` run #1452 and `publish-image.yml` run #421, both on the current tip, both `conclusion: success`; the fix is holding, not merely applied.
+
+**Cold-read lane, coordinated through `ops/cold_read_ledger.py` so concurrent sessions do not collide:** read `ops/build_zone_map_pack.py` (132 lines) in full. No defect. `main()` already refuses to write silently-wrong output (asserts exactly 20 rooms and 114 zones before returning). Verified live, not assumed: reran the generator against the real corpus; both outputs (`build/6S-Micro-Zone-Map.html` and `site/downloads/6S-Micro-Zone-Map.html`) came back byte-identical to the committed files (`git status` clean after), so this download is not stale against its own generator, the "source corrected, artifact never re-derived" defect class the backlog's own section 7 names as dominant. Recorded clean in `ops/cold-read-ledger.json` (100 of 164 now ledgered).
+
+`PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle. Full `python ops/preflight.py`: every gate passed, 25 warnings. One is new and self-caused: `cold-read-handoff-not-stale` now correctly flags that the prior entry's own handoff list named `build_zone_map_pack.py`, which this cycle just ledgered; it ages out of the gate's 4-entry window on its own and needed no separate fix. The other 24 are the same standing sandbox-access limits (no Stripe/.env.secrets, no VPS SSH key, no live-site or analytics reach, no mail credential) every prior cycle today has already recorded.
+
+**Went well:** checked the backlog by content rather than by header count, so B7/B8/B9 closing mid-cycle under a concurrent session was caught and recorded accurately instead of reported as still open.
+
+**Did not go well:** nothing new; found no unblocked backlog row to ship this cycle beyond the one cold-read file, because the reprioritised backlog is genuinely exhausted down to owner gates.
+
+**Changing next cycle:** none. 192 commits landed in the 24 hours before this cycle against a flat traffic number (12 visitors/week) and a check-in log recording "nothing measurable moved" for over 24 straight hourly checks; this is not a defect this cycle can fix by itself, see the report to Phil. The right response is what this cycle already did: verify the backlog is actually exhausted before picking new work, then do one small, real, verified thing rather than manufacture a bigger one.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 100 of 164 done). All 9 GitHub issues unchanged (`decision`/`blocked-on-art`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6 unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log, command deck regen. No price, product or site page touched. IndexNow not applicable (no new or changed page).
+
 ## PM check-in, 2026-09-25 22:4x (previous work finished, confirmed by CI's own Preflight pass on the code commit; no new unblocked item, cold-read lane is the handoff)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane (`ops/cold_read_ledger.py --next`, 99 of 164 done; next candidates `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_zone_map_pack.py`, `check_live_links.py`, `crawl_report.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py`, `render_cards.py`, `send_questions.py`, `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py`, `video_zone.py`, `video_zone_photo.py`), because all 9 open GitHub issues are `decision` or `blocked-on-art` and every remaining owner-gate action in `BACKLOG-2026-09-07.md` section 6 (YouTube OAuth, Search Console verification, the redeploy, `VPS_DEPLOY_KEY`, the Stripe description) needs Phil's own hand, so hunting the "source corrected, artifact never re-derived" defect class the backlog's own section 7 names as the dominant risk is the highest-value unblocked work.

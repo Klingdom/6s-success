@@ -166,6 +166,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "build_zone_map_pack.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "132 lines, read in full. Builds the 20-sheet printable Micro Zone Map from zone_graphics.py/video_zone.py, so a sheet cannot claim a zone the site does not have. main() asserts exactly 20 rooms and 114 zones before writing, refusing silently-wrong output. Verified live rather than assumed: reran the generator against the real corpus; both outputs (build/ and site/downloads/) came back byte-identical to the committed files (git diff clean), so the shipped download is not stale against its own source, the exact defect class this repository's own backlog section 7 names as dominant. SVG output already carries role=img/aria-labelledby via zone_graphics.py. No defect found."
+    },
     "canonical_links.py": {
       "status": "clean",
       "date": "2026-09-11",
