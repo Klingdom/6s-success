@@ -43,6 +43,24 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history, not the default depth-1. This job runs
+          # ops/preflight.py --own below, which runs gate_generator_ownership,
+          # which re-derives ops/affiliate_report.py's three reports and diffs
+          # them against the committed copies. Their stamp is the newest
+          # commit date that touched ops/affiliate-accounts.json /
+          # ops/affiliate-catalogue.csv (git log -1 -- <path>), and those
+          # files can go thousands of commits between real edits (2026-09-09
+          # to now, 2539 commits, at the time this was found). In a shallow
+          # clone that commit sits outside the fetched history, git log
+          # returns nothing, and the stamp silently falls back to the
+          # checked-out file's mtime, which is always "now": a report that
+          # differs from the committed one on every single run. Found and
+          # fixed for checks.yml 2026-09-25 (run 36085673021); this job runs
+          # the identical gate through the identical code path and was not
+          # yet failing only because its own path filter (site/**, Dockerfile)
+          # fires far less often, not because it is immune.
+          fetch-depth: 0
 
       - name: Install python dependencies
         # ops/requirements.txt: preflight.py's affiliate gate opens PDFs and
