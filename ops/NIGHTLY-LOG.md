@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (16:0x, a stale hardcoded word count found in the report Phil actually reads, fixed and gated)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 310 commits fast-forwarded onto `4a62b73c`). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. Full `python ops/preflight.py` (not fast) ran clean on the first try: every gate passed, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged from the last check. `inbox_agent.py --apply`: no mail credential here.
+
+Verified `B8` (deck print-tier alignment) directly before dismissing it: `preflight.py`'s own `deck-print-tier` warning confirms it live (5 of 6 built decks off the 18-card step), so the 15:3x check-in's blanket "sections 2-4 done or Phil-gated" claim understated it. Judged the actual work (trimming real diagnosed content out of Primary Bathroom/Garage, or inventing new cards to pad Entryway) too high-risk for this cycle without more design judgement than a single pass should improvise, and printing itself is still HOLD-gated on a first sale; left it for a dedicated pass rather than rush it. Continued the cold-read lane the 15:3x check-in handed off instead: `wire_progressive.py` (clean, idempotent, self-verifying, no defect), then `status_report.py`.
+
+**Found and fixed:** `status_report.py`'s `gather()` hardcoded `"words": 261876` for the book's word count, despite the file's own docstring promising every figure is measured at run time. Recomputed the real committed EPUB the same way `gate_kdp_word_count_current` already does: 271,362, 3.6% higher. This number reaches Phil directly, in both the plain-text status report and the PDF `status_pdf.py` builds from the same `gather()`. `MARKETPLACE-LISTINGS.md`/`OWNER-ACTIONS.md` already cite the correct figure (gated since 2026-09-11); only this independent hardcode had drifted. Fixed by having `ops/dashboard.py` measure it live into `state.json["book_words"]` (`None` if unmeasurable, matching `epub_has_cover`'s existing three-state convention), with `status_report.py`/`status_pdf.py` reading it from there and rendering "not measured this run" instead of guessing. New `gate_status_report_word_count_live` in `preflight.py`, pure logic in `check_status_report_word_count_stale`, fail-then-pass proved directly (planted the old 261876 into `state.json`, watched the gate fail by name citing both numbers, restored, reran clean) and against `ops/tests/test_gate_status_report_word_count_live.py` (8/8 cases).
+
+**Verified:** full `preflight.py` clean after (every gate passed, 25 warnings, identical set to the pre-fix baseline; `tests-unverified` count moved 284 to 285, the new test file). `check_urls.py` (196/196), `audit_pages.py` (0 duplicate titles/descriptions), `fix_dashes.py --check` (0/0) all clean. Confirmed `status_report.py --preview` and the raw `render()` call both print "271,362 words" now, and confirmed the `words=None` branch renders "words not measured this run" rather than crashing, by direct call, not assumed from the code.
+
+**Went well:** the cold-read lane found a real, live, owner-facing accuracy defect on the second file read; checking B8's own claim of being closed against the real preflight warning before working it, per step 5d, rather than trusting the prior check-in's summary.
+
+**Did not go well:** B8 itself is still open; a design-judgement call on trimming real diagnosed deck content is not something to improvise inside a single cycle's time budget, and it is low urgency since printing is still HOLD-gated on a first sale. Recording it here rather than a decision doc, since it is not actually settled, just correctly deferred.
+
+**Changing next cycle:** none; the gate that would have caught this class of drift now exists and proved it can fail. B8 remains available for a cycle that can give the card-count math real attention, or for a `DECISIONS.md` entry if a future cycle judges the tradeoff genuinely not worth closing.
+
+**Next:** cold-read lane continues (`import_chapter_svgs.py`, `service_orders.py`, `shoot_mobile.py`, `split_deck_cards.py`, `stripe_setup.py`, `video_srt.py`, `video_zone.py` next by the same handoff list, `status_report.py`/`wire_progressive.py` now read). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. B8 (deck print-tier alignment) is the next unblocked backlog row if a future cycle wants to take on the card-count design work.
+
+Pushed to main. `ops/dashboard.py`, `ops/status_report.py`, `ops/status_pdf.py`, `ops/preflight.py`, `ops/tests/test_gate_status_report_word_count_live.py`, `BACKLOG-2026-09-07.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 15:3x (previous work was NOT yet finished: a real preflight FAIL, same lockdir shape as the 15:0x entry below, this time actually blocking; cleared and reverified)
 
 **Attach:** checkout arrived shallow and detached (issue #27's shape); unshallowed, checked out main, ff-only merged 308 commits onto `ed129292`. Working tree clean.

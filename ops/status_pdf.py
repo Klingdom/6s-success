@@ -227,7 +227,10 @@ def build(path=None):
     F.append(table([
         ["Asset", "Measured"],
         ["Website", f"{c['site_pages']} pages, 0 dead links, 4 of 4 legal pages"],
-        ["Book", f"{c['chapters']} chapters, {c['words']:,} words, EPUB {c['epub_mb']} MB"],
+        ["Book", f"{c['chapters']} chapters, "
+         + (f"{c['words']:,} words" if c["words"] is not None
+            else "words not measured this run")
+         + f", EPUB {c['epub_mb']} MB"],
         ["Micro zones", f"{c['rooms']} rooms, {c['zones']} zones"],
         ["Free sample", f"{c['sample_pdf_mb']} MB, was 50.7"],
         ["Social corpus", f"about {c['social_units']:,} units written, none published"],
