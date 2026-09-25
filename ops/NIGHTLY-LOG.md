@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 08:4x (previous work confirmed finished, but preflight caught two real staleness FAILs, fixed; then a live, currently-corrupted production JS file found and fixed, and the test that caused it hardened at the root)
+
+NEXT FOR THE OPERATOR: build the Primary Bathroom deck (88 authored fields, smaller than Garage's 96) per BACKLOG-2026-09-07.md's B9, using `ops/cardtext/build_home_office_deck.py`/`ops/build_home_office_deck_page.py` as the direct template, because it is B9's next unclaimed room and the only genuinely unblocked backlog item; all 8 open GitHub issues remain decision/blocked-on-art, none actionable here.
+
+Attached clean: unshallowed, fetched, fast-forwarded 254 commits onto `origin/main` (`2cb970c1`, B9's Home Office deck). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 3 (B9: 3 of 5 rooms done, Primary Bathroom and Garage remain), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work was not actually finished.** A full `preflight.py` run found 2 real FAILs: `build-id` (stale, the Home Office deck's own generator never re-ran `ops/build_id.py`) and `risks-evidence-current` (`RISKS.md` still cited `forms_dead=197`, live is 198, the same room's new inert footer form uncounted). Fixed both: reran `build_id.py`, added `RISKS.md`'s next dated `UPDATED` line and fixed a second, narrative citation of the same stale number the gate also correctly caught on the next pass.
+
+**Found and fixed a live, currently-active production defect while re-verifying.** The working tree had `site/assets/js/site.js` silently modified with a `paint();` call inserted, byte-for-byte the 2026-09-23 dangling-reference bug (`gate_no_dangling_js_references`'s own namesake regression) that once broke the mobile nav and `.reveal` scroll-in on every page. Traced it: `ops/tests/test_gate_no_dangling_js_references.py` proves its gate by writing that exact regression straight into the real committed file and restoring it in a `finally`, but `finally` never runs on SIGTERM/SIGKILL, and an earlier `timeout`-wrapped preflight run in this same cycle had killed that test mid-plant. Restored `site.js` from `HEAD` immediately (confirmed the diff was exactly the one planted line, nothing else). Fixed the root cause, not just the symptom: `preflight._lint_js_no_undef()` now takes an `overrides` dict (absolute path to content) so a caller can hand it planted content directly; the test no longer touches the real file on disk at all, so no interrupted run can ever leave this corruption live again. Verified: the test still passes (real site clean, planted regression caught, no file touched), `py_compile` clean on both changed files.
+
+**Did not fix:** the same signal-unsafe write-then-restore-in-`finally` pattern exists in 7 other test files (`test_gate_architecture_workflow_count_current.py`, `test_gate_chapter_svgs_current.py`, `test_gate_hero_fallback_current.py`, `test_gate_kitchen_deck_current.py`, `test_gate_prerender_shop_current.py`, `test_gate_sitemap_lastmod_current.py`, `test_gate_zone_kit_disclosure_grammar.py`), found by grepping for the same shape. None are currently corrupting their target file (git status confirmed clean before this cycle's own edits), so this is latent risk, not a live incident, but it is the same defect class and should be hardened the same way (an `overrides`-style parameter, or equivalent) by whichever cycle picks it up next.
+
+**Verified:** two full `preflight.py --own` runs after the fixes, run to completion in the background rather than truncated by a foreground timeout (the exact mistake that caused the incident this cycle found). First run: only `generator-ownership` FAILs, correctly, because the tree was dirty mid-fix. Second run after the `RISKS.md` narrative-citation fix: same, only `generator-ownership` FAILs, which resolves on commit. 0 other FAILs, 26 warnings, all previously diagnosed sandbox limits.
+
+**Went well:** treating the stop hook's "uncommitted changes" nag as a reason to double check, not a reason to commit blind; catching the live corruption before it could ship, purely by reading `git diff` on every changed file rather than trusting `git status`'s file list.
+
+**Did not go well:** ran a preflight pass with a foreground `timeout` short enough to kill a test mid-plant, which is what caused the live corruption in the first place; backgrounding the process properly (detached, no truncating timeout) the second time avoided repeating it.
+
+**Changing next cycle:** harden the remaining 7 test files with the same real-file-mutation defect class, same fix shape (pass planted content in-memory, never write to the real committed file).
+
+**Next:** Primary Bathroom deck (B9, above). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `RISKS.md`, `site/build-id.txt`, `ops/preflight.py`, `ops/tests/test_gate_no_dangling_js_references.py`, command deck. No price, product or site page touched; not customer-facing directly, though the corrupted `site.js` would have been had it shipped. IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (B9: the Home Office deck built, third of five; a live CI-blocking footer defect found and fixed on the way)
 
 **Did:** Attached clean. Found a near-miss immediately: a concurrent session had already shipped the Laundry Room deck (`c6cc1a6a`) while this session independently built the same room from scratch. Discarded the duplicate work, fast-forwarded onto `main`, and picked the next unclaimed room per `ops/cardtext/derive_room_deck.py`: Home Office, tied-smallest at 79 fields. Built `ops/cardtext/build_home_office_deck.py` (66 cards: 6 zone, 18 friction, 14 root cause, 15 action, 6 standard, 6 event) and `ops/build_home_office_deck_page.py`, shipping `site/home-office-deck.html`.
