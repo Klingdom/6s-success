@@ -9799,6 +9799,112 @@ def gate_status_report_mail_unknown() -> None:
              "rather than 'could not be checked': %s" % "; ".join(bad))
 
 
+def check_status_report_word_count_stale(live, state_words):
+    """Pure comparison: does state.json's recorded word count disagree with
+    a fresh recompute of the real EPUB? None on either side means "could
+    not check", never treated as a mismatch. Returns a problem string or
+    None, factored out of gate_status_report_word_count_live so a test can
+    prove both the fail and the pass shape without touching disk.
+    """
+    if live is None or state_words is None:
+        return None
+    if live != state_words:
+        return ("state.json book_words (%r) does not match a fresh "
+                "recompute of the real EPUB (%r); ops/dashboard.py was "
+                "not rerun after the EPUB changed" % (state_words, live))
+    return None
+
+
+def gate_status_report_word_count_live() -> None:
+    """The book's word count in the owner-facing status report/PDF must be
+    measured from the live EPUB, not a hand-typed number that can go stale.
+
+    Found 2026-09-25, cold-reading ops/status_report.py: `gather()`
+    hardcoded `"words": 261876`, contradicting the file's own docstring
+    ("Every figure is measured at run time... a report that quietly fills
+    gaps is worse than one that admits them"). Independently recomputing
+    the real committed EPUB the same way `gate_kdp_word_count_current`
+    already does gives 271,362, 3.6% higher: Phil was being told the book
+    was almost 10,000 words shorter than it is, in the exact report and PDF
+    this repository builds specifically to tell him the truth about product
+    content. Fixed by having `ops/dashboard.py` recompute the count from
+    the live EPUB into `state.json["book_words"]` (None if the EPUB is
+    missing or unreadable, the same three-state convention as
+    `epub_has_cover`, never collapsed to a guess), with `status_report.py`
+    and `status_pdf.py` reading it from there and rendering "not measured
+    this run" rather than crashing or guessing when it is None.
+
+    This gate proves both halves: `state.json["book_words"]` matches an
+    independent recompute of the real committed EPUB (the actual
+    "hardcoded stale number" regression), and `status_report.render()`
+    never collapses an unmeasured word count into a number.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import status_report as sr
+
+    bad = []
+
+    epub_path = os.path.join(ROOT, "build", "6S-Success-Home-Edition.epub")
+    live = _epub_word_count(epub_path)
+    state_words = None
+    try:
+        with io.open(os.path.join(ROOT, "ops", "state.json"),
+                     encoding="utf-8") as fh:
+            state_words = json.load(fh).get("book_words")
+    except Exception:                                          # noqa: BLE001
+        pass
+    stale = check_status_report_word_count_stale(live, state_words)
+    if stale:
+        bad.append(stale)
+
+    base = {
+        "generated": "2026-01-01 00:00",
+        "state": {"overall": "YELLOW", "overall_why": "test",
+                  "revenue_text": "$0", "customers_text": "0",
+                  "email_list": 0, "needs_phil": 0,
+                  "constraint": "synthetic constraint for "
+                                 "gate_status_report_word_count_live"},
+        "domain": {"status": 200, "title": "t", "parked": False,
+                   "a_record": "0.0.0.0", "nameservers": [], "mx_working": True},
+        "vps": {"ip": "0.0.0.0", "ports": {22: False, 80: True, 443: True,
+                3000: False, 8973: False}, "default_title": "t",
+                "as_domain_title": "t", "vhost_configured": True},
+        "image_public": True,
+        "experiments": {"designed": [], "executed": 0, "blocked_reason": "x"},
+        "content": {"chapters": 50, "words": None, "rooms": 20, "zones": 114,
+                   "manual_kb": 1, "epub_mb": 1, "sample_pdf_mb": 1,
+                   "site_pages": 190, "deck_rooms": 0, "video": "0/114",
+                   "social_units": 1},
+        "catalogue": {"Micro Zone Packs": 109}, "catalogue_total": 111,
+        "catalogue_buyable": 107, "catalogue_free": 3,
+        "catalogue_unready": [],
+        "catalogue_buyable_other": 105,
+        "decks": {"Entryway": 72}, "decks_withheld": {"Entryway": 18},
+        "issues": [], "issues_available": True,
+        "commits_7d": 1, "recent": [], "retros": [],
+    }
+    _, text_none, _ = sr.render(base)
+    if "words not measured this run" not in text_none:
+        bad.append("render() with words=None does not say 'not measured', "
+                    "so an unmeasured count could render as blank or crash "
+                    "the report instead")
+    if "271,362 words" in text_none or re.search(r"\d,\d{3} words", text_none):
+        bad.append("render() with words=None still prints a specific "
+                    "word count")
+
+    with_words = dict(base)
+    with_words["content"] = dict(base["content"], words=271362)
+    _, text_num, _ = sr.render(with_words)
+    if "271,362 words" not in text_num:
+        bad.append("render() with words=271362 does not print "
+                    "'271,362 words'")
+
+    if bad:
+        fail("status-report-word-count-live",
+             "the book's word count is not wired to a live measurement: %s"
+             % "; ".join(bad))
+
+
 def gate_roadmap_report_issues_unknown() -> None:
     """The four-times-daily roadmap report must never report zero open
     GitHub issues just because gh could not be reached.
@@ -21895,6 +22001,7 @@ def main() -> int:
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
     run_gate(gate_status_report_mail_unknown)
+    run_gate(gate_status_report_word_count_live)
     run_gate(gate_roadmap_report_issues_unknown)
     run_gate(gate_roadmap_report_commits_unknown)
     run_gate(gate_roadmap_report_backlog_done)
