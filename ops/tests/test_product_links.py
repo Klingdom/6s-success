@@ -194,6 +194,78 @@ def test_the_checker_scope_is_not_chosen_by_the_status_it_writes():
     check("a row with no URL is not a link to check", "NOLINK" not in got)
 
 
+def test_check_withdraws_a_dead_link_it_finds():
+    """THE REPORT-WITHOUT-REPAIR BUG, found 2026-09-25.
+
+    Before this fix, check() rendered every link, correctly judged some DEAD,
+    printed them under a "DEAD" heading, and returned without ever writing
+    the catalogue. ops/affiliate.py and ops/zone_supplies.py both publish a
+    row purely because its Link Status begins "verified"; neither reads this
+    function's stdout. So a link this exact run had just proven dead stayed
+    published, status still reading "Verified search", until a human read
+    the console and remembered to run --assign by hand. --check must now
+    withdraw a dead/weak result itself, the same way --assign already does,
+    and --dry must change nothing on disk.
+    """
+    import tempfile
+
+    fields = ["Product ID", "Product Standard Name", "Merchant",
+              "Affiliate URL", "Link Status", "Last Checked", "Notes"]
+
+    def write_fixture(path):
+        with io.open(path, "w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=fields)
+            w.writeheader()
+            w.writerow({"Product ID": "DEAD1",
+                        "Product Standard Name": "Dead Thing",
+                        "Merchant": "target",
+                        "Affiliate URL": "https://example.com/s?q=x",
+                        "Link Status": "Verified search",
+                        "Last Checked": "2026-01-01", "Notes": "old"})
+            w.writerow({"Product ID": "OK1",
+                        "Product Standard Name": "Fine Thing",
+                        "Merchant": "target",
+                        "Affiliate URL": "https://example.com/s?q=y",
+                        "Link Status": "Verified search",
+                        "Last Checked": "2026-01-01", "Notes": "old"})
+
+    def fake_verify(pid, merchant, url, keywords, tries=3):
+        if pid == "DEAD1":
+            return {"id": pid, "merchant": merchant, "url": url,
+                    "state": "dead", "hits": 0, "of": 24, "matched": [],
+                    "checked": "2026-09-25"}
+        return {"id": pid, "merchant": merchant, "url": url, "state": "ok",
+                "hits": 5, "of": 24, "matched": ["x"], "checked": "2026-09-25",
+                "keywords": keywords}
+
+    tmp_csv = tempfile.NamedTemporaryFile(suffix=".csv", delete=False)
+    tmp_csv.close()
+    tmp_ev = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
+    tmp_ev.close()
+    old_catalogue, old_evidence, old_verify = P.CATALOGUE, P.EVIDENCE, P.verify
+    P.CATALOGUE, P.EVIDENCE, P.verify = tmp_csv.name, tmp_ev.name, fake_verify
+    try:
+        write_fixture(tmp_csv.name)
+        P.check()
+        by_id = {r["Product ID"]: r for r in rows()}
+        check("a dead link's status is withdrawn, not left verified",
+              by_id["DEAD1"]["Link Status"] == "No results")
+        check("a dead link's URL is cleared",
+              by_id["DEAD1"]["Affiliate URL"] == "")
+        check("a live link keeps its verified status",
+              by_id["OK1"]["Link Status"] == "Verified search")
+
+        write_fixture(tmp_csv.name)
+        P.check(dry=True)
+        by_id = {r["Product ID"]: r for r in rows()}
+        check("--dry leaves a dead link's status untouched on disk",
+              by_id["DEAD1"]["Link Status"] == "Verified search")
+    finally:
+        P.CATALOGUE, P.EVIDENCE, P.verify = old_catalogue, old_evidence, old_verify
+        os.unlink(tmp_csv.name)
+        os.unlink(tmp_ev.name)
+
+
 def test_no_row_claims_evidence_its_status_denies():
     bad = [r["Product ID"] for r in rows()
            if "when rendered" in (r.get("Notes") or "")

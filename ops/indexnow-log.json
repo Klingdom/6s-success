@@ -47,11 +47,15 @@
   "https://6s-success.com/deck/entryway-print-and-play.html",
   "https://6s-success.com/disclaimer.html",
   "https://6s-success.com/entryway-deck.html",
+  "https://6s-success.com/garage-deck.html",
+  "https://6s-success.com/home-office-deck.html",
   "https://6s-success.com/how-to-clean-anything.html",
   "https://6s-success.com/how-we-make-money.html",
   "https://6s-success.com/kit.html",
   "https://6s-success.com/kitchen-deck.html",
+  "https://6s-success.com/laundry-room-deck.html",
   "https://6s-success.com/method.html",
+  "https://6s-success.com/primary-bathroom-deck.html",
   "https://6s-success.com/privacy.html",
   "https://6s-success.com/quest.html",
   "https://6s-success.com/resources.html",
@@ -195,13 +199,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-09-04T04:03:29Z",
-   "mode": "new",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-09-04T05:36:38Z",
    "mode": "new",
@@ -614,6 +611,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-25T18:46:28Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -809,6 +813,10 @@
   "https://6s-success.com/articles/what-a-5s-engagement-costs": "2fadc5bddf383fbc",
   "https://6s-success.com/articles/why-5s-decays-after-six-months": "b420843afbc67e5b",
   "https://6s-success.com/how-to-clean-anything.html": "dbed12682c57096a",
-  "https://6s-success.com/entryway-deck.html": "78a44bafb784d2b1"
+  "https://6s-success.com/entryway-deck.html": "78a44bafb784d2b1",
+  "https://6s-success.com/garage-deck.html": "69f200cb852d1ae7",
+  "https://6s-success.com/home-office-deck.html": "b2def8b8bca17129",
+  "https://6s-success.com/laundry-room-deck.html": "d59d36addc305a2a",
+  "https://6s-success.com/primary-bathroom-deck.html": "f6b5843dd5c2bda7"
  }
 }

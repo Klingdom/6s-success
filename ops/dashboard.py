@@ -1288,6 +1288,15 @@ S["epub_mb"] = round(os.path.getsize(epub) / 1048576, 2) if S["epub_built"] else
 # Three states, not two. "No cover" and "could not open the file to look" are
 # different facts and only one of them is a reason not to publish a book.
 S["epub_has_cover"] = None          # None means nobody could check
+# The book's own word count, quoted to Phil in ops/status_report.py and
+# ops/status_pdf.py as a measured fact. Found 2026-09-25: status_report.py
+# hand-typed 261,876, never once recomputed since it was written, while
+# gate_kdp_word_count_current already recomputes the same EPUB independently
+# and gets 271,362, 3.6% higher, the same "source corrected, artifact never
+# re-derived" shape this repository's own gates already catch for epub_mb
+# and epub_has_cover just above. None means nobody could check, same
+# three-state convention as epub_has_cover, never collapsed to a guess.
+S["book_words"] = None
 if S["epub_built"]:
     import zipfile
     try:
@@ -1295,6 +1304,29 @@ if S["epub_built"]:
             S["epub_has_cover"] = "EPUB/images/cover.jpg" in _z.namelist()
     except Exception:                                         # noqa: BLE001
         S["epub_has_cover"] = None
+    try:
+        import posixpath
+        from xml.etree import ElementTree as _ET
+        with zipfile.ZipFile(epub) as _z:
+            _cx = _ET.fromstring(_z.read("META-INF/container.xml"))
+            _opf_path = _cx.find(
+                ".//{urn:oasis:names:tc:opendocument:xmlns:container}"
+                "rootfile").get("full-path")
+            _opf = _ET.fromstring(_z.read(_opf_path))
+            _opfns = "{http://www.idpf.org/2007/opf}"
+            _base = posixpath.dirname(_opf_path)
+            _words = 0
+            for _it in _opf.find(_opfns + "manifest"):
+                if _it.get("media-type") != "application/xhtml+xml":
+                    continue
+                _full = posixpath.normpath(
+                    posixpath.join(_base, _it.get("href")))
+                _raw = _z.read(_full).decode("utf-8", "replace")
+                _words += len(re.findall(r"[A-Za-z']+",
+                                         re.sub(r"<[^>]+>", " ", _raw)))
+            S["book_words"] = _words
+    except Exception:                                         # noqa: BLE001
+        S["book_words"] = None
 
 # The inverse defect, sitting in the next line. read() returns "" for a file
 # that is not there, so a missing front matter file found zero unfilled fields

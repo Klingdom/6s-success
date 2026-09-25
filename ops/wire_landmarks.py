@@ -92,6 +92,7 @@ def add_main(s: str) -> tuple:
 def main() -> int:
     check = "--check" in sys.argv
     wrapped = existing = odd = 0
+    stale = []
     for f in pages():
         s = io.open(f, encoding="utf-8").read()
         new, how = add_main(s)
@@ -103,19 +104,37 @@ def main() -> int:
         else:
             odd += 1
             print(f"  LEFT ALONE  {os.path.relpath(f, SITE)}: {how}")
-        if new != s and not check:
-            io.open(f, "w", encoding="utf-8", newline="").write(new)
+        if new != s:
+            # A page can reach here with an existing <main> that was merely
+            # missing its id (add_main patches that in memory, so `how`
+            # still reads "had one"): real work, not counted as "wrapped".
+            # --check must see it, or a hand edit that strips the skip link
+            # or the id from a hand-maintained page (nothing regenerates
+            # those) would report clean forever. Found live 2026-09-25: this
+            # exact shape, planted on site/index.html in an isolated
+            # worktree, printed "0 left alone" and exited 0.
+            stale.append(os.path.relpath(f, SITE))
+            if not check:
+                io.open(f, "w", encoding="utf-8", newline="").write(new)
 
     print(f"  {len(pages())} pages: {existing} already had a main landmark, "
           f"{wrapped} wrapped, {odd} left alone")
-    print(f"  skip link {'would be' if check else ''} present on every page "
-          f"that has a body")
+    if check:
+        if stale:
+            print(f"  FAIL  {len(stale)} page(s) would change (skip link "
+                  f"and/or main id): {stale[:6]}")
+        else:
+            print("  skip link and main id are current on every page")
+    else:
+        print("  skip link present on every page that has a body")
 
     css = io.open(os.path.join(SITE, "assets", "css", "site.css"),
                   encoding="utf-8").read()
     if ".skip-link" not in css:
         print("  WARNING: site.css has no .skip-link rule, so the link would "
               "sit visibly at the top of every page")
+        return 1
+    if check and (stale or odd):
         return 1
     return 0
 

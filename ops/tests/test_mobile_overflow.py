@@ -29,7 +29,7 @@ CONTAINED = SHELL % ('<div style="overflow-x:auto"><div style="width:900px;'
                      'height:40px;background:#333"></div></div>')
 
 
-def measure(name: str, html: str) -> str:
+def measure(name: str, html: str) -> subprocess.CompletedProcess:
     path = os.path.join(SITE, name)
     io.open(path, "w", encoding="utf-8", newline="").write(html)
     try:
@@ -46,7 +46,7 @@ def measure(name: str, html: str) -> str:
             shot = os.path.join(ROOT, "build", "shots", "%s-%d.png" % (stem, w))
             if os.path.exists(shot):
                 os.remove(shot)
-    return (r.stdout or "") + (r.stderr or "")
+    return r
 
 
 def main() -> int:
@@ -59,21 +59,29 @@ def main() -> int:
 
     bad = []
 
-    out = measure("_fixture_wide.html", WIDE)
+    r = measure("_fixture_wide.html", WIDE)
+    out = r.stdout + r.stderr
     if "OVERFLOWING" not in out:
         bad.append("a 900px block on a 390px screen was NOT reported:\n" + out)
+    if r.returncode == 0:
+        bad.append("exit code was 0 for a page that overflows:\n" + out)
 
-    out = measure("_fixture_narrow.html", NARROW)
+    r = measure("_fixture_narrow.html", NARROW)
+    out = r.stdout + r.stderr
     if "clean at 390px" not in out:
         bad.append("a page that fits was not reported clean:\n" + out)
+    if r.returncode != 0:
+        bad.append("exit code was nonzero for a page that fits:\n" + out)
 
-    out = measure("_fixture_contained.html", CONTAINED)
+    r = measure("_fixture_contained.html", CONTAINED)
+    out = r.stdout + r.stderr
     if "clean at 390px" not in out:
         bad.append("a wide block inside overflow-x:auto is contained by "
                    "design and must not be reported:\n" + out)
 
     # The tool must refuse to report on a viewport it did not get.
-    out = measure("_fixture_narrow.html", NARROW)
+    r = measure("_fixture_narrow.html", NARROW)
+    out = r.stdout + r.stderr
     if "viewport" in out and "390px" not in out:
         bad.append("reported on a width it did not render:\n" + out)
 

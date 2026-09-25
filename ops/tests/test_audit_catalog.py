@@ -61,7 +61,25 @@ SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
 # os.mkdir is atomic on both platforms and needs no dependency, so the lock is a
 # directory. Same guarantee, same window, no import that only exists on one
 # operating system.
-STALE_AFTER = 900
+#
+# Found live 2026-09-25, a fourth same-day occurrence after three prior cycles
+# each diagnosed it fresh and left it as self-healing noise: this constant used
+# to be 900, making _lock()'s own default timeout below 1020 (STALE_AFTER+120,
+# by design, so a waiter always outlives the staleness window). But
+# preflight.py's gate_tests() runs this whole file as one subprocess with a
+# 700s timeout, sized against a different, slower test file
+# (gate_etsy_pdfs_current's Chrome renders), not against this lock at all. Any
+# waiter blocked from the moment a lock is created must wait up to
+# STALE_AFTER+120 before even retrying, and 1020 > 700, so that case was not a
+# rare race, it was a guaranteed FAIL by construction every time it happened,
+# followed by a clean pass on the very next run once the stale lock had had
+# time to age past. Lowered so STALE_AFTER+120 (the actual _lock() wait) has
+# real margin under gate_tests()'s 700s, leaving room for this file's own real
+# work (about a dozen `run()` calls, each one audit_catalog.py invocation,
+# empirically well under a minute total) to still finish inside the same
+# budget after a stale lock breaks. 300 is still far above any legitimate
+# single hold, which is one audit_catalog.py run against ~200 local files.
+STALE_AFTER = 300
 
 
 # Found live 2026-09-16: a killed run's orphaned lockdir (this exact file's

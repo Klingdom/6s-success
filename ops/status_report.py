@@ -276,7 +276,11 @@ def gather():
     # ---- content
     d["content"] = {
         "chapters": S["chapters"],
-        "words": 261876,
+        # Measured by ops/dashboard.py from the live EPUB, same recompute
+        # gate_kdp_word_count_current independently cross-checks. None means
+        # nobody could check (the EPUB is missing or unreadable here), never
+        # a guess; render() must not collapse that into a number.
+        "words": S.get("book_words"),
         "rooms": S["rooms"], "zones": S["zones"],
         "manual_kb": round(os.path.getsize(os.path.join(
             ROOT, "content", "manual",
@@ -470,7 +474,10 @@ def render(d):
     if d["catalogue_unready"]:
         A(f"  NOT YET BUYABLE         {', '.join(d['catalogue_unready'])}")
     A("")
-    A(f"      Book, {c['chapters']} of 50 chapters, {c['words']:,} words, EPUB {c['epub_mb']} MB. Live, buyable.")
+    words_line = f"{c['words']:,} words" if c["words"] is not None else \
+        "words not measured this run (EPUB missing or unreadable)"
+    A(f"      Book, {c['chapters']} of 50 chapters, {words_line}, "
+      f"EPUB {c['epub_mb']} MB. Live, buyable.")
     A(f"      Micro Zone Manual, {c['rooms']} rooms, {c['zones']} zones, {c['manual_kb']} KB. Live, buyable.")
     for name, n in d["decks"].items():
         A(f"      {name} deck, {n} cards live and free to print at "
