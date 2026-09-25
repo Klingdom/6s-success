@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 02:4x (previous work confirmed finished: clean attach, own preflight green; found and fixed a real blind spot in a gate written three entries ago, own preflight green again after)
+
+NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane, `python ops/cold_read_ledger.py --next`, current candidates `verify_media_delivery.py`, `video_zone.py`, `wire_consult_cta.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (`decision`/`blocked-on-art`, confirmed live via the API) are exhausted again.
+
+Attached clean (fast-forward, no reset, no collision with the 02:1x cycle before it). Previous work confirmed finished, not cited: tree was clean and `main` matched `origin/main` before this cycle's own edits; `41cce0e5`'s fix has no open PR. Read `git log -12`, the newest log entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 GitHub issues, all unchanged from the 02:1x citation.
+
+**Ran `preflight.py` myself rather than trust a 25-minute-old same-day citation (CLAUDE.md 0.4), and its own `cold-read-handoff-not-stale` warning was itself wrong in a way worth tracing.** It named `ops/cold_read_ledger.py` as "the newest handoff" candidate, but the actual newest entry (02:1x) had already handed off five different, genuinely fresh files. Read `cold_read_handoff_stale_files()`: its regex only recognises `**Next:**` and `NEXT FOR THE OPERATOR:` as handoff headers. The 02:1x entry used `**Handing to operator:**` instead, an equally established phrasing (64 uses across this same log's own history), so the gate never saw the current, valid handoff and instead flagged a genuinely stale pointer three entries back (01:4x's own `NEXT FOR THE OPERATOR:` line, which named `cold_read_ledger.py` before it had been cleared). Fixed the regex to also match `**Handing to operator:**`/`**Handing to the operator:**`, bold or not. `ops/tests/test_gate_cold_read_handoff_not_stale.py` extended 6 to 8 cases; fail-then-pass proved directly (stashed the fix, both new cases failed by name citing the unrecognised phrasing, restored, reran clean). The 01:4x entry's own pointer is still correctly flagged after the fix, by design: it is genuinely stale, still inside the 4-entry window, and the gate's job is to surface that regardless of whether a later entry already superseded it.
+
+**Verified:** `python3 -m py_compile ops/preflight.py ops/tests/test_gate_cold_read_handoff_not_stale.py` clean. Full `preflight.py` reran end to end after the fix: every gate passed, 24 warnings, same count and same shapes as before this cycle's edit, none new. Direct call against the real committed log and ledger confirms the newest (`Handing to operator:`) entry no longer trips the check on its own text.
+
+**Went well:** treating a gate's own warning as something to trace, not just cite, the same discipline this file asks of every other check.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the fix is scoped to the one regex and does not change what counts as stale, only what counts as a handoff.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_cold_read_handoff_not_stale.py`, this log, command deck. No price, product or page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 02:1x (previous work confirmed finished: clean attach, preflight green; backlog and 8 GitHub issues still fully exhausted, so continued the standing cold-read lane and found a real small defect)
 
 Attached clean (fetch, unshallow, fast-forward, no reset). `BACKLOG-2026-09-07.md` sections 2-4 done or Phil-gated, section 5 correctly HOLD; 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. Ran `preflight.py` myself, not a citation: every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new. Previous work genuinely finished, tree was clean, main matched origin before my edits.

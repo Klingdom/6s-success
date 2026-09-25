@@ -13105,13 +13105,24 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     correction acknowledging the staleness already, in the file's own
     established markdown, not a live handoff, so it is stripped before
     matching rather than flagged as if it were current.
+
+    Found live 2026-09-25: this only recognised "**Next:**" and "NEXT
+    FOR THE OPERATOR:" as handoff headers, but "Handing to operator:"/
+    "Handing to the operator:" (bold or not) is an equally established
+    phrasing, 64 uses across this same log's own history. The newest
+    entry at the time used that phrasing with a genuinely fresh, non-
+    stale candidate list; because the regex could not see it, the gate
+    instead flagged an older, now-superseded "NEXT FOR THE OPERATOR:"
+    line three entries back as if it were the live handoff.
     """
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
     stale, seen = [], set()
     for block in blocks:
         for m in re.finditer(
-                r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:)"
+                r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:|"
+                r"\*\*Handing to (?:the )?operator:\*\*|"
+                r"Handing to (?:the )?operator:)"
                 r".*(?:\n(?!\n).*)*", block):
             live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
             names = re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live)
