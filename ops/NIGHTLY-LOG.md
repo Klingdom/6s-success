@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 12:2x (previous work finished; closed a real ledger gap)
+
+**Previous work was finished.** Full preflight clean, after a concurrent session's build-id fix (`8f6c47b3`) landed the same defect I independently found. Backlog sections 2-4 closed or Phil-gated, section 5 HOLD, section 6 owner gates; 8 GitHub issues unchanged.
+
+**Did:** the og:image fix's five deck-page generators were cold-read and fixed last cycle but never recorded in `ops/cold-read-ledger.json`, so the next cycle would have re-read them as unread work. Recorded all five, citing the real defect and gate that closed it.
+
+**Also:** cleared a stale `test_audit_catalog.py` lockdir and fixture file, both left by my own earlier killed preflight run.
+
+**Next:** cold-read lane continues, `status_pdf.py`/`stripe_links.py`/`sync_push.py` next. Pushed, deck regenerated.
+
 ## 2026-09-25, cycle addendum (the merge below's own push turned CI red; found and fixed within the same cycle)
 
 The og:image fix collided on push with a concurrent PM check-in (`0346c3d0`, dashboard/log-only). Merged rather than force-pushed: `ops/NIGHTLY-LOG.md` kept both entries, `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` regenerated fresh with `ops/dashboard.py` rather than hand-picked from either side, matching this repository's own established merge convention. That merge commit (`d9aca35c`) then failed CI's `Preflight` step: `build-id` FAIL, `site/build-id.txt` said `2538fa4466ddbdd4` but the tree now hashed to `d40585d97500a3ca`, because the dashboard regeneration that resolved the merge conflict changed the site's own content and nothing re-ran `ops/build_id.py` afterward. Fixed immediately: reran `ops/build_id.py` against the merged tree, confirmed clean by calling `gate_build_id_current()` directly (empty `FAIL`/`WARN`, the same function CI runs), committed (`8f6c47b3`) and pushed. That commit alone does not retrigger `checks.yml`, since `site/**` is not in its push path filter and `site/build-id.txt` was the only file it touched; checked this is not itself a coverage gap (`gate_ci_path_filter_covers_preflight_inputs` passes clean, by design, since it tracks files `preflight.py`'s own source reads by a fixed path, not the generated `site/` tree as a whole) before treating direct verification as sufficient rather than forcing an unrelated change just to get a green checkmark.
