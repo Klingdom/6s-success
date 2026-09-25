@@ -331,6 +331,11 @@
       "date": "2026-09-25",
       "note": "needs_phil computed identically to dashboard.py's own definition (decision-labelled issues only); refuses to send a stale brief"
     },
+    "shoot_mobile.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "exit code was hardcoded to 0 regardless of findings; a caller checking the return code instead of scraping stdout for OVERFLOWING would get a false pass. Now exits 1 when any page overflows. test_mobile_overflow.py extended to assert the exit code both ways."
+    },
     "shrink_sample.py": {
       "status": "clean",
       "date": "2026-09-25",

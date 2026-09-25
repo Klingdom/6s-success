@@ -159,4 +159,4 @@ if __name__ == "__main__":
     a = ap.parse_args()
     n = run(a.width, a.height, a.pages or DEFAULT_PAGES)
     print("\n  %d page(s) with findings" % n)
-    sys.exit(0)
+    sys.exit(1 if n else 0)

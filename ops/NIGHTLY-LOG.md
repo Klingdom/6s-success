@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (a real report-without-signal bug found in shoot_mobile.py: exit code was hardcoded to 0 regardless of findings; fixed and gated)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 335 commits fast-forwarded onto `59478776`, no conflict, no reset. Read `BACKLOG-2026-09-07.md` (sections 0-7), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. `python ops/preflight.py --fast` ran clean (0 failures) before touching anything. GitHub confirmed directly (via a worker call): 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. Backlog sections 2-4 confirmed closed or Phil-gated (B6/B8/B9 all done, D-023/D-024/D-027 recorded); section 5 stays HOLD on traffic evidence. Continued the cold-read lane (`ops/cold_read_ledger.py --next`).
+
+**Found:** `ops/shoot_mobile.py`, the tool `gate_mobile_overflow` (deep preflight) and its own test both drive by scraping stdout text for the word "OVERFLOWING" rather than the process exit code, because the script's `__main__` block called `sys.exit(0)` unconditionally after computing `n`, the count of overflowing pages. Neither current caller depends on the exit code, so this was not live-breaking anything today, but it is the exact "a check that could not fail is theatre" shape: any future caller (a shell script, a CI step, a human running it by hand and trusting `$?`) that checked the exit code instead of scraping text would get a false pass on a real horizontal-overflow defect, the identical failure mode `CLAUDE.md` 0.2 and 0.4 both name.
+
+**Fixed:** `sys.exit(1 if n else 0)`, so the exit code now agrees with the text it already prints. Also checked `ops/tests/test_mobile_overflow.py`'s own `measure()` helper: it discarded the `CompletedProcess` and returned only the concatenated stdout/stderr string, so the test itself could not have caught this even after the fix. Changed it to return the full `CompletedProcess` and added two assertions: exit code is nonzero for a genuinely overflowing fixture page, and zero for a page that fits.
+
+**Verified:** `python3 -c "import ast; ast.parse(...)"` on both edited files before trusting them. Fail-then-pass proved directly: reverted `shoot_mobile.py`'s exit line to the old `sys.exit(0)`, reran the test, watched it fail by name ("exit code was 0 for a page that overflows"), restored the fix byte for byte, reran clean ("ok probe distinguishes overflow, fit, and contained overflow"). `python ops/preflight.py --fast` reran clean after (0 failures). Recorded `ops/shoot_mobile.py` as fixed in `ops/cold_read_ledger.py` (82 of 164 files now ledgered).
+
+**Went well:** the cold-read lane found a real, if narrow, defect on the very file this cycle's own predecessor had already named as a next candidate; the fix needed no new preflight gate, since the existing test suite already covers this tool and only needed the missing assertion added to it.
+
+**Did not go well:** the deep (`--deep`) preflight run started as extra verification had not finished by the time this entry was written; this handoff relies on the `--fast` run plus the tool's own dedicated test, not a completed full deep pass. Same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; the existing test file was the right place for the new assertions, no new gate was needed.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 82 of 164 files done; next candidates: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, `service_orders.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/shoot_mobile.py`, `ops/tests/test_mobile_overflow.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 19:4x (previous work finished, verified by a full local preflight run to its own exit; backlog and GitHub both re-confirmed exhausted, no new defect)
 
 **NEXT FOR THE OPERATOR:** continue the cold-read lane, because it is the only genuinely unblocked work left and it keeps finding real defects (`ops/cold_read_ledger.py --next`, 81 of 164 files done; next candidates by mention count: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, `service_orders.py`, `shoot_mobile.py`).
