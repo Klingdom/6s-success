@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 01:14",
- "commit": "80e03242",
- "commit_msg": "Merge branch 'main' of https://github.com/Klingdom/6s-success",
- "commits_7d": 1100,
- "commits_total": 3741,
+ "generated": "2026-09-25 01:23",
+ "commit": "ac9cbb55",
+ "commit_msg": "Close a recurring stale-handoff pattern with a cold-read ledger and gate",
+ "commits_7d": 1095,
+ "commits_total": 3742,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -1085,7 +1085,7 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 205,
+ "site_pages": 199,
  "dead_links": 0,
  "legal_pages": 4,
  "forms_dead": 195,
