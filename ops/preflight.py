@@ -1091,6 +1091,7 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_laundry_room_deck_page.py",
     "build_home_office_deck_page.py",
     "build_primary_bathroom_deck_page.py",
+    "build_garage_deck_page.py",
     "build_youtube_metadata.py",
     "build_social_captions.py",
     "build_feed.py",
@@ -1131,6 +1132,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_laundry_room_deck.py": ("gate_laundry_room_deck_current",),
     "build_home_office_deck.py": ("gate_home_office_deck_current",),
     "build_primary_bathroom_deck.py": ("gate_primary_bathroom_deck_current",),
+    "build_garage_deck.py": ("gate_garage_deck_current",),
     "build_manual_print.py": ("gate_front_matter_filled",
                                "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
@@ -4663,6 +4665,95 @@ def gate_primary_bathroom_deck_rendered() -> None:
     problems = check_primary_bathroom_deck_rendered(deck["cards"], page)
     if problems:
         fail("primary-bathroom-deck-rendered", "; ".join(problems))
+
+
+def check_garage_deck_rendered(cards: list, page: str) -> list:
+    """Pure logic for gate_garage_deck_rendered, the fifth and last room's
+    equivalent BACKLOG-2026-09-07.md B9 calls for. `cards` is
+    ops/cardtext/build_garage_deck.py's own card list; `page` is the full
+    text of site/garage-deck.html. Same shape as
+    check_primary_bathroom_deck_rendered.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    corpus_ids = {c["id"] for c in cards}
+    page_ids = set(re.findall(r'<article class="kcard" id="([^"]+)"', page))
+    missing = sorted(corpus_ids - page_ids)
+    extra = sorted(page_ids - corpus_ids)
+    problems = []
+    if missing:
+        problems.append(f"{len(missing)} corpus card(s) missing from the "
+                        f"page, e.g. {missing[:3]}")
+    if extra:
+        problems.append(f"{len(extra)} card id(s) on the page do not exist "
+                        f"in the corpus, e.g. {extra[:3]}")
+
+    by_type = {}
+    for c in cards:
+        by_type.setdefault(c["type"], c)
+    for t in ("ROOM CARD", "ZONE CARD", "ROOT CAUSE CARD", "STANDARD CARD",
+              "EVENT CARD", "FRICTION CARD", "ACTION CARD"):
+        c = by_type.get(t)
+        if not c:
+            continue
+        raw = c.get("objective")
+        if not raw:
+            continue
+        needle = _html.escape(str(raw), quote=True)
+        if needle not in page:
+            problems.append(f"{c['id']} ({t}) corpus text does not appear "
+                            f"verbatim on the page. Re-run "
+                            f"ops/build_garage_deck_page.py.")
+
+    drifted_mq = []
+    for c in cards:
+        if c["type"] != "STANDARD CARD":
+            continue
+        for q in c.get("micro_quest") or []:
+            if _html.escape(q, quote=True) not in page:
+                drifted_mq.append(c["id"])
+                break
+    if drifted_mq:
+        problems.append(f"{len(drifted_mq)} standard card(s) whose micro "
+                        f"quests do not appear verbatim on the page, e.g. "
+                        f"{drifted_mq[:3]}.")
+    return problems
+
+
+def gate_garage_deck_rendered() -> None:
+    """BACKLOG-2026-09-07.md B9: the Garage deck, built straight off
+    content.json's real seven zones, must actually be the cards on
+    site/garage-deck.html, not just present in the gated cardtext corpus.
+    Same shape as gate_primary_bathroom_deck_rendered. This is B9's fifth
+    and last room.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_garage_deck as GA
+        import importlib
+        importlib.reload(GA)
+        deck = GA.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("garage-deck-rendered",
+             f"could not build the Garage cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "garage-deck.html")
+    if not os.path.exists(page_path):
+        fail("garage-deck-rendered",
+             "ops/cardtext/build_garage_deck.py's corpus exists but "
+             "site/garage-deck.html does not. Run "
+             "ops/build_garage_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_garage_deck_rendered(deck["cards"], page)
+    if problems:
+        fail("garage-deck-rendered", "; ".join(problems))
 
 
 def gate_front_matter_filled() -> None:
@@ -17339,6 +17430,43 @@ def gate_primary_bathroom_deck_current() -> None:
              "python ops/cardtext/build_primary_bathroom_deck.py")
 
 
+def gate_garage_deck_current() -> None:
+    """Same shape as gate_primary_bathroom_deck_current, for the fifth and
+    last corpus-accurate room deck (BACKLOG-2026-09-07.md B9):
+    ops/cardtext/garage-deck.json must be exactly what
+    ops/cardtext/build_garage_deck.py produces today.
+
+    This is the file's own entry in GENERATOR_PROTECTED_ELSEWHERE:
+    build_garage_deck.py lives one directory deeper than
+    gate_every_generator_has_a_protection_plan's top-level glob can see,
+    the same reason every prior room generator needed one.
+    """
+    gen_path = os.path.join(ROOT, "ops", "cardtext", "build_garage_deck.py")
+    out_path = os.path.join(ROOT, "ops", "cardtext", "garage-deck.json")
+    if not os.path.exists(gen_path) or not os.path.exists(out_path):
+        return
+    before = io.open(out_path, encoding="utf-8").read()
+    p = subprocess.run([PY, gen_path], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    after = (io.open(out_path, encoding="utf-8").read()
+             if os.path.exists(out_path) else "")
+    io.open(out_path, "w", encoding="utf-8", newline="").write(before)
+    if p.returncode != 0:
+        fail("garage-deck-current",
+             "build_garage_deck.py could not regenerate garage-deck.json "
+             "(exit %d), and the committed file was restored unchanged "
+             "rather than proven current: %s"
+             % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
+        return
+    if after != before:
+        fail("garage-deck-current",
+             "ops/cardtext/garage-deck.json does not match what "
+             "ops/cardtext/build_garage_deck.py produces today, so a "
+             "hand edit there (or an unrerun source edit) will be lost "
+             "on the next build. Run: "
+             "python ops/cardtext/build_garage_deck.py")
+
+
 def gate_diagnosis_schema() -> None:
     """ops/diagnosis.py is a real, working schema check for the `diagnosis`
     block (>= 3 frictions, every branch's `cause` a known root-cause id,
@@ -20606,6 +20734,7 @@ GENERATED_TOP_LEVEL_PAGES = {
     "laundry-room-deck.html": "build_laundry_room_deck_page.py",
     "home-office-deck.html": "build_home_office_deck_page.py",
     "primary-bathroom-deck.html": "build_primary_bathroom_deck_page.py",
+    "garage-deck.html": "build_garage_deck_page.py",
     "kit.html": "build_kit_page.py",
     "resources.html": "build_resources.py",
     "standards.html": "build_standards_page.py",
@@ -21446,6 +21575,7 @@ def main() -> int:
     run_gate(gate_laundry_room_deck_rendered)
     run_gate(gate_home_office_deck_rendered)
     run_gate(gate_primary_bathroom_deck_rendered)
+    run_gate(gate_garage_deck_rendered)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)
@@ -21515,6 +21645,7 @@ def main() -> int:
     run_gate(gate_laundry_room_deck_current)
     run_gate(gate_home_office_deck_current)
     run_gate(gate_primary_bathroom_deck_current)
+    run_gate(gate_garage_deck_current)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)
