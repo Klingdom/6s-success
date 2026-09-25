@@ -26,6 +26,11 @@
       "date": "2026-09-24",
       "note": "strip_tags() re-escaped an already-escaped apostrophe entity, shipping literal &amp;#x27; on how-to-clean-anything.html. Fixed, gated by gate_no_double_encoded_entities."
     },
+    "build_entryway_deck_page.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Entryway's own real photo. Fixed to use ch31-image01.jpg, the real entryway photo deck.html already uses; gated by gate_deck_og_image_honest."
+    },
     "build_epub.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -35,6 +40,16 @@
       "status": "clean",
       "date": "2026-09-10",
       "note": "Cold-read and run, closed clean, no defect found."
+    },
+    "build_garage_deck_page.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Garage's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+    },
+    "build_home_office_deck_page.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Home Office's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
     },
     "build_icons.py": {
       "status": "clean",
@@ -46,10 +61,20 @@
       "date": "2026-09-08",
       "note": "main() hardcoded a stale image count in its own prose. Fixed; reconfirmed clean on at least two later independent re-reads (reads only committed repo files, no hidden network dependency)."
     },
+    "build_laundry_room_deck_page.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Laundry Room's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+    },
     "build_microzone_coverage.py": {
       "status": "fixed",
       "date": "2026-09-24",
       "note": "Headline coverage used have[\"diagnosis\"] as a proxy for all three moat fields, agreeing with the real intersection only by coincidence. Fixed to count the real intersection."
+    },
+    "build_primary_bathroom_deck_page.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Primary Bathroom's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
     },
     "build_printpack.py": {
       "status": "fixed",
