@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 20:1x (previous work finished; fixed a stale cold-read handoff the last two entries left standing)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly onto `912801b1`, no conflict.
+
+**Step 2: previous work was finished.** `main` matched `origin/main` exactly, tree clean, `912801b1` (the `service_orders.py` idempotency fix) pushed. Ran `python ops/preflight.py --fast` to its own exit in the background rather than a short foreground wrapper (a first attempt under an artificial `timeout 280` was killed mid-run and produced nothing usable, a lesson for next cycle: never wrap this in `timeout`, let it finish): every gate passed, but a real warning fired, `cold-read-handoff-not-stale`.
+
+**Found and fixed:** two "Next"/handoff lines in this log's own top-4-entry window (line 47's PM check-in and line 41's `shoot_mobile.py`-cycle entry) still named `service_orders.py` and `shoot_mobile.py` as open cold-read candidates; `ops/cold-read-ledger.json` already records both `fixed`, by the two entries directly above them. Struck the stale names through in both lines with a short correction note, verified directly by calling `cold_read_handoff_stale_files()` against the edited file before and after (stale list went from `['service_orders.py']` to `[]`), then reran `preflight.py --fast` in full: every gate passed, 24 warnings (was 25), all the standing sandbox-access ones.
+
+**Step 3: no new work opened.** Backlog (`BACKLOG-2026-09-07.md` sections 1b-5) re-checked: all rows done or correctly Phil/decision-gated, section 5 still HOLD on traffic evidence. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs, confirmed directly via the GitHub tools.
+
+**Went well:** the stale-handoff gate caught exactly the shape it was built for, on the very next cycle after the fix that made it stale landed.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Wrapping `preflight.py` in an external `timeout` wasted one full cycle-minute on a useless "Terminated" output; running it to its own exit in the background the second time worked cleanly.
+
+**Handing to the operator:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 83 of 164 files done; next by mention count: `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` (two corrected handoff lines, this entry), command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle continued (a real idempotency-breaking bug found in service_orders.py: state was only saved once per batch, not once per send; fixed and gated)
 
 **Did:** Continued the same cycle after the `shoot_mobile.py` fix landed (`7c973511`, pushed). Re-fetched `origin/main` first: no concurrent push since. Continued the cold-read lane onto `ops/service_orders.py` (355 lines, forwards paid service bookings and enquiry emails to Phil with a calendar invite; its own docstring promises "Idempotent: every charge and message it has already handled is recorded in ops/state-service-orders.json, so a rerun does not forward the same booking twice").
@@ -38,13 +56,13 @@ Pushed to main. `ops/service_orders.py`, `ops/tests/test_service_orders.py`, `op
 
 **Changing next cycle:** none; the existing test file was the right place for the new assertions, no new gate was needed.
 
-**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 82 of 164 files done; next candidates: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, `service_orders.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 82 of 164 files done at the time; next candidates: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, ~~`service_orders.py`~~ (fixed by the entry above, written after this one)). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
 
 Pushed to main. `ops/shoot_mobile.py`, `ops/tests/test_mobile_overflow.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-09-25 19:4x (previous work finished, verified by a full local preflight run to its own exit; backlog and GitHub both re-confirmed exhausted, no new defect)
 
-**NEXT FOR THE OPERATOR:** continue the cold-read lane, because it is the only genuinely unblocked work left and it keeps finding real defects (`ops/cold_read_ledger.py --next`, 81 of 164 files done; next candidates by mention count: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, `service_orders.py`, `shoot_mobile.py`).
+**NEXT FOR THE OPERATOR:** continue the cold-read lane, because it is the only genuinely unblocked work left and it keeps finding real defects (`ops/cold_read_ledger.py --next`, 81 of 164 files done at the time; next candidates by mention count: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, ~~`service_orders.py`~~, ~~`shoot_mobile.py`~~). **Corrected 2026-09-25, PM check-in:** the two struck names are now `fixed` in `ops/cold-read-ledger.json` (both landed since this entry was written), so they are stale as a handoff, not a live candidate; use `ops/cold_read_ledger.py --next` for the current list rather than this line.
 
 **Attach:** checkout arrived shallow and detached again (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 335 commits fast-forwarded onto `59478776` cleanly, no conflict, no reset.
 
