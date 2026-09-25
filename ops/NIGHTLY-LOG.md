@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 15:4x (previous work finished; handing the operator a real unblocked item, not another cold-read cycle)
+
+**Attach:** checkout arrived shallow and detached again (issue #27's shape); `git fetch --unshallow` then `merge --ff-only` onto `4a62b73c`, 310 commits fast-forwarded, no conflict. Working tree clean.
+
+**Step 2: previous work was finished.** The two PM check-ins below (15:0x, 15:3x) both confirm a full `preflight.py` clean, the second one closing out a real stale-lockdir FAIL properly rather than by assumption. Nothing changed on `main` since: same HEAD, working tree clean. Started a third full `preflight.py` here anyway as an independent spot check, backgrounded; it had not finished `gate_tests` by the time this entry was written (own `test_audit_catalog.py` lock, same recurring shape, now a fourth same-day occurrence, still self-healing on its own timeline). Reporting that plainly: **this run's own full-preflight result is unchecked, not clean** — the 15:3x entry's clean result is what this handoff relies on, not a fresh one.
+
+**Step 3: read `BACKLOG-2026-09-07.md` sections 2-4 in full rather than trust the standing "exhausted or Phil-gated" line.** It was not fully exhausted. B9 (five room decks) finished today and B6 (Kitchen micro quests) was already done, but B9's own completion note surfaces **B8**, a real, small, genuinely unblocked, non-Phil item nobody has picked up: `gate_deck_print_tiers` (added today, warns, does not fail) shows Primary Bathroom (76 cards) and Garage (80) each cross into the 90-card print tier for 4 and 8 cards over, and Entryway (57) and Home Office (66) and Laundry Room (67) all under-fill the 72 tier by 5-15 slots, none of it caught before because every deck matched its own declared budget with no reference to the 18-card step. Checked GitHub directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none of them this. Confirmed nobody is mid-flight on it: no open PR, no uncommitted diff anywhere in `ops/cardtext/`.
+
+**NEXT FOR THE OPERATOR: B8, trim Primary Bathroom and Garage under 72 (or accept the 90 tier deliberately) and fill Entryway's blank slots toward 72, because it is the highest-ranked genuinely unblocked item (product, category 5) once traffic and conversion have nothing new to work and it closes a real, already-measured warning instead of adding another audit pass.** `DECK-GAME-DESIGN.md` 4.1 has the print-tier economics; `check_deck_print_tiers()` in `ops/preflight.py` (~17299) is the existing check to build against, and it is scoped small (~0.5d per the backlog row). If B8 is already claimed or finished by a concurrent session by the time the operator reads this, the standing fallback holds: continue the cold-read lane per `ops/cold_read_ledger.py --next` (`browser.py`, `build_card_prompts.py`, `build_kitchen_deck_page.py`, … 27-mention tier).
+
+**Went well:** re-reading the actual backlog table instead of carrying forward "exhausted" from 45 minutes ago, which was true then and stopped being true the moment B9 shipped.
+
+**Did not go well:** a fourth same-day occurrence of the orphaned `_audit_catalog_fixture.lockdir` shape under `gate_tests`; still self-healing correctly every time, still worth the `STALE_AFTER`/gate-budget fix noted in the 15:3x entry below if a fifth occurrence happens.
+
+Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log only. No price, product or site page touched, IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 15:3x (previous work was NOT yet finished: a real preflight FAIL, same lockdir shape as the 15:0x entry below, this time actually blocking; cleared and reverified)
 
 **Attach:** checkout arrived shallow and detached (issue #27's shape); unshallowed, checked out main, ff-only merged 308 commits onto `ed129292`. Working tree clean.
