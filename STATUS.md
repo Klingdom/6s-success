@@ -857,6 +857,15 @@ Full account in `ops/NIGHTLY-LOG.md`, 2026-09-25, and
 `BACKLOG-2026-09-07.md` row B9. Four rooms remain (Laundry, Home Office,
 Primary Bathroom, Garage).
 
+**Corrected 2026-09-25, PM check-in: the line above is stale.** All four
+named rooms have since shipped the same way (`site/laundry-room-deck.html`,
+`site/home-office-deck.html`, `site/primary-bathroom-deck.html`,
+`site/garage-deck.html`), each with its own `gate_<room>_deck_current`/
+`gate_<room>_deck_rendered` pair, fail-then-pass proved, per
+`ops/NIGHTLY-LOG.md`'s 2026-09-25 entries and `BACKLOG-2026-09-07.md` row
+B9. B9 is fully closed, five of five rooms; no room deck row remains
+open in section 3.
+
 ---
 
 # 15. Current Experiments

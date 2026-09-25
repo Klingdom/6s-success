@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 11:1x (previous work finished; B9 fully closed but STATUS.md still said four rooms open, fixed)
+
+**Previous work was genuinely finished.** Attached clean (fetch, unshallow, ff-only merge). Found a concurrent operator had already closed B9 (Garage, the fifth and last room deck) and a concurrent twin had already corrected BLOCKER-001's deploy-gap count for it; both pushed and merged cleanly, nothing to redo. Ran a full, non-fast `preflight.py` myself rather than cite either cycle's own report: every gate passed, 24 warnings, all standing sandbox limits, none new.
+
+**Did:** `STATUS.md` section 14's Entryway entry still said "Four rooms remain (Laundry, Home Office, Primary Bathroom, Garage)" from 2026-09-24, even though all four have since shipped. Added a dated correction rather than rewriting the old claim, naming all five shipped pages and their gate pairs.
+
+**Went well:** catching a stale claim STEP 3 calls exactly this kind of small closing fix.
+
+**Next:** 8 open GitHub issues, all `decision`/`blocked-on-art`, none actionable here. Standing Phil-blocked list unchanged. Leaving anything larger to the hourly operator.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no new page.
+
 ## 2026-09-25, scheduled operator cycle (B9 closed: the Garage deck built, fifth and last of the five room decks)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, no reset or force). Read BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md's process rules, ROADMAP-2026-2029.md, CLAUDE.md, and this log's newest entries. Preflight ran clean first (every gate passed, 24 warnings, all previously diagnosed sandbox limits). GitHub: 8 open issues, unchanged, all decision or blocked-on-art; 0 PRs. Inbox: no mail credential in this environment, reported unchecked, not empty, same as every prior cycle. Confirmed via a fresh `git fetch` that no concurrent session had already claimed Garage before starting.
