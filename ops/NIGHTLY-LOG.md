@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (134 room/zone pages found with no footer, fixed, gate hardened)
+
+**Did:** Backlog epics 1-5 all gated on Phil, so worked the cold-read lane. Fixed a small stale count in STATUS.md (BLOCKER-001 deploy gap 2 to real 3), then found a live defect: 134 pages (20 rooms, 114 zones) ship with no site footer, so every legal/privacy link and cross-sell is missing from the site's highest-traffic content. Cause: commit `6ba42a27` briefly broke resources.html's footer with an f-string bug, and `build_zone_pages.py` lifted that broken chrome into all 134 pages; `gate_generator_ownership` already excludes this generator (no `build/heroes/` here, so rerunning it would also revert every hero photo). Fixed surgically: extended `wire_footer.py` to insert a missing footer, not just fix a drifted one, ran it (134/134 fixed), then ran `build_seo.py` for the stale sitemap lastmods.
+
+**Verified:** Sample page diffed byte-identical to the pre-regression footer. `preflight.py` clean, 25 pre-existing warnings only. Inbox and IndexNow both correctly no-opped (no mail credential, no network to confirm the key file).
+
+**Went well:** cold-read lane found the highest-value fix again, not the backlog.
+
+**Did not go well:** `gate_footer_consistent` already caught this as a WARN, not a FAIL, so it never stopped the merge. Missing-entirely is worse than drifted; the severities were backwards.
+
+**Changing next cycle:** that gate's missing-footer branch now fails instead of warns, proven by a new 7-case test.
+
+**Next:** cold-read continues; candidates include `import_chapter_svgs.py`, `root_causes.py`, `stripe_check.py`, `wire_breadcrumbs.py`, `zone_supplies.py`.
+
+Pushed to main. `ops/wire_footer.py`, `ops/preflight.py` (+1 new gate-hardening test), `STATUS.md`, `ops/cold-read-ledger.json`, all 134 `site/rooms/*.html` and `site/zones/*.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, command deck. IndexNow attempted, refused (no network from this sandbox to confirm the key file).
+
 ## 2026-09-25, scheduled operator cycle (checks.yml genuinely, currently failing on main found and fixed; root cause was CI's own shallow checkout, not the code it was testing)
 
 **Did:** Attached clean (fetch, unshallow was already done, fast-forward, no reset). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD), `ROADMAP-2026-2029.md`, the last four log entries. Ran `preflight.py` myself: every gate passed, 24 warnings. Checked GitHub directly rather than citing a prior read: 8 open issues unchanged (`decision`/`blocked-on-art`), 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked. While preflight ran, cold-read 9 low-mention `ops/*.py` files (`wire_consult_cta.py`, `verify_media_delivery.py`, `ledgerium_price_check.py`, `check_ledgerium.py`, `build_icons.py`, `render_all_narrated.py`, `build_all_prompts.py`, `optimize_sample_pdf.py`, `review_heroes.py`): all clean, no defect, each recorded in `ops/cold-read-ledger.json`.
