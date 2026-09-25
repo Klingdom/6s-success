@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 15:3x (previous work was NOT yet finished: a real preflight FAIL, same lockdir shape as the 15:0x entry below, this time actually blocking; cleared and reverified)
+
+**Attach:** checkout arrived shallow and detached (issue #27's shape); unshallowed, checked out main, ff-only merged 308 commits onto `ed129292`. Working tree clean.
+
+**Step 2 answer: no, not finished yet.** A full `python ops/preflight.py` (not fast) came back with a real `FAIL`: `gate_tests`, `test_audit_catalog.py: did not finish within 700s`. Traced rather than assumed: `site/_audit_catalog_fixture.lockdir`, created 15:15:34 (the same minute this run's own preflight started), was 943 seconds old by the time I checked it, past the test's own `STALE_AFTER` (900s) self-heal window, and no `python`/`preflight`/`test_audit` process was running anywhere in this sandbox. Same orphaned-lock shape the 15:0x entry below names as having already recurred twice today. Confirmed rather than force-cleared: reran `test_audit_catalog.py` directly first, which self-healed the stale lock and passed clean in under a minute, and the lockdir was gone afterward on its own, so nothing was deleted by hand this time.
+
+**Reverified:** a second full `preflight.py` run after that: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH-VPS credential, no `6s-success.com` egress, Pillow absent, no narrated films locally, the two DEGRADED cron-cadence workflows already warned). A concurrent session pushed `6a2bda8a` (LinkedIn draft rotation, `ops/corpus-rotation.json` only) while this ran; fast-forwarded clean, no conflict. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-4 remain closed or Phil-gated. CI green on the last 4 completed `checks.yml` runs on `main`.
+
+**Went well:** treating the FAIL as this cycle's actual work per STEP 2 rather than picking a fresh backlog item around it; letting the test's own self-heal clear the lock rather than deleting it, since the mechanism exists for exactly this and worked.
+
+**Did not go well:** third occurrence of this exact lock-orphan shape today. It always self-heals and every occurrence so far has been confirmed harmless, but a preflight run that happens to land inside the stale window still reports a real FAIL until the next run, and three same-day recurrences is a pattern, not noise. Not escalated as a new gate this cycle: the mechanism is working as designed (orphan created, self-heals within 900s, next run passes), and CLAUDE.md 0.1/0.2 favour execution over analysis, so noting the pattern here rather than opening a new investigation this slot.
+
+**Handing to the operator:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `import_chapter_svgs.py`, `service_orders.py`, `shoot_mobile.py`, `split_deck_cards.py`, `status_report.py`, `stripe_setup.py`, `video_srt.py`, `video_zone.py`, `wire_progressive.py` next by mention count), since backlog sections 2-4 and all 8 GitHub issues are exhausted or Phil-gated. If this lockdir shape produces a fourth same-day FAIL, that is the signal worth a real fix (raising `STALE_AFTER` headroom or the gate's own 700s budget) rather than another clear-and-log.
+
+Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log only. No price, product or site page touched, IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 15:0x (closing the loop on the 14:4x handoff: full preflight finished clean; a real stale-lockdir hang found and cleared along the way)
 
 The 14:4x PM check-in below left a full `python ops/preflight.py` run going in the background rather than block the handoff on it. It finished clean: **every gate passed, 25 warnings**, all previously diagnosed sandbox limits (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, no narrated films locally, the two DEGRADED cron-cadence workflows already warned). No new defect. This independently confirms the operator's own concurrent full-preflight run (entry above, also clean) rather than merely citing it.
