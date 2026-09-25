@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 18:4x (previous work finished; nothing new to fix, same B8/cold-read handoff repeated, no operator cycle has landed since)
+
+**NEXT FOR THE OPERATOR:** B8 first if a cycle has the room for the card-count design work (`DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `ops/preflight.py`); otherwise continue the cold-read lane (`ops/cold_read_ledger.py --next`, 72 of 164 files done, next candidates by mention count: `generate_zone_heroes.py`, `import_generated_art.py`, `zone_supplies.py`).
+
+**Attach:** checkout arrived shallow and detached again (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 326 commits fast-forwarded onto `59478776`, no conflict, no reset.
+
+**Step 2: previous work was finished.** `main` at `f8ef6308`, the prior PM check-in's own commit, matches `origin/main` exactly; no operator cycle (or anything else) has pushed since 18:21:55, so there is nothing new on top to re-verify. That prior entry already ran the full `preflight.py` to its own exit on this exact tree: every gate passed, 0 failures, 25 warnings, all previously diagnosed sandbox limits. This cycle's own `preflight.py --fast` attempt hit the same slow `gate_tests` shape and did not finish inside a 100s bound; killed rather than let block this slot. **This run's own local preflight is therefore unchecked, not clean** — this handoff relies on the prior cycle's completed run against the identical current HEAD, not a fresh local pass. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 3:** no new work to open. Same reasoning as the prior two cycles: B8 (deck print-tier trim/fill across Primary Bathroom, Garage, Entryway, Home Office, Laundry Room) is real, small and genuinely unblocked but is editorial/card-count judgement that a 30-minute triage slot should not improvise; printing is still HOLD-gated behind a first sale so there is no live customer harm in leaving it. Checked it is not already claimed: no open PR, no uncommitted diff under `ops/cardtext/`. Ran `cold_read_ledger.py --next` to hand the operator concrete un-ledgered candidates rather than just naming the lane.
+
+**Went well:** confirming "nothing changed" against `origin/main` and GitHub directly rather than assuming the prior entry still holds.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Local preflight still cannot finish inside this slot's time budget, third PM slot in a row to hit that bound.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 18:2x (previous work finished, confirmed by a full local preflight run to its own exit rather than another timed-out attempt; two cold-reads independently duplicated the concurrent operator's own clean verdicts)
 
 **Attach:** shallow and detached again (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 324 commits fast-forwarded onto `59478776`, no conflict.
