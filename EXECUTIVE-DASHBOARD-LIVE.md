@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-25 21:02 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-25 21:20 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1090 of 3898 total |
+| Commits (7 days) | 1089 of 3899 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a331f8c9` Merge remote-tracking branch 'origin/main' |
+| Last commit | `3e527915` Nightly log entry and command deck regen for the wire_landma |
 
 ## Product readiness
 

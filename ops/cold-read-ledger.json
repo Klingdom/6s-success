@@ -91,6 +91,11 @@
       "date": "2026-09-08",
       "note": "main() hardcoded a stale image count in its own prose. Fixed; reconfirmed clean on at least two later independent re-reads (reads only committed repo files, no hidden network dependency)."
     },
+    "build_kit_page.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "8 tier-1 kit items, WHY dict keys all match CSV names exactly, retailer_link/disclosure branching correct for withheld/plain/tracked, Sort-before-Straighten assertion verified not trivially satisfied by header/footer text, full generator-ownership chain (canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif, fingerprint_assets) present. No defect."
+    },
     "build_laundry_room_deck_page.py": {
       "status": "fixed",
       "date": "2026-09-25",
@@ -171,6 +176,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "check_cron_cadence.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Cron-fire-count parser refuses to guess on day/month/weekday-restricted crons (UNMEASURABLE beats wrong number); intended_landing/scheduled_times/landing_minutes/most_recent_due/last_changed/runs_since all consumed by preflight.py's gate_scheduled_delivery_phase, not dead code as first appeared from a same-file grep. No defect."
+    },
     "check_integrations.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -185,6 +195,16 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read clean, no defect. Correctly reports UNCHECKED (pypdf not installed here) rather than a false pass, per CLAUDE.md 0.4; ran live and confirmed."
+    },
+    "check_sitemap_current.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Pre-commit-only content-hash staleness check; delegates hashing to build_seo.py's own _content_hash/_load_content_hashes, no duplicated logic to drift. CI-side backstop gate_sitemap_lastmod_current in preflight.py uses the same hash file independently and already caught/fixed a real path-resolution bug 2026-09-21, so this check is not the only line of defense. No defect."
+    },
+    "check_video_links.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "oEmbed-based YouTube liveness check, correctly reports UNCHECKED (not pass) when egress is unavailable, only wired into preflight on --deep (gate_site_video_links_alive) since it needs network. Regex ID extraction covers watch/embed/data-yt/quest.js video field forms. No defect."
     },
     "check_video_standard.py": {
       "status": "clean",

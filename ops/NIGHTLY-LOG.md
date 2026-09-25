@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 21:1x (previous work finished and verified; four more cold-read files cleared, none defective)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded 346 commits cleanly onto `3e527915`, no conflict.
+
+**Step 2: previous work was finished.** `main` matched `origin/main`, tree clean. Ran `python ops/preflight.py --fast` to its own exit, no external timeout wrapper: every gate passed, 24 warnings, all the same standing sandbox-access limits this log has recorded every cycle (no Stripe credential, no SSH key, no mail credential, site unreachable), none new. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs.
+
+**Step 3: continued the cold-read lane rather than opening new work.** Read four more `ops/*.py` files cold for the "check that cannot fail" and "source corrected, artifact never re-derived" defect classes this log's own header now watches for: `build_kit_page.py`, `check_sitemap_current.py`, `check_video_links.py`, `check_cron_cadence.py`. All four correct. Worth naming why each survived a real look rather than a glance: `build_kit_page.py`'s eight `WHY` dict entries were checked against the live CSV's `Product Standard Name` column and match exactly (a silent typo there renders an empty explanation with no error); its `Sort` must precede `Straighten` assertion was verified against the actual extracted header/footer HTML, not assumed safe, because a stray mention of either word in the site nav would make that assertion pass trivially regardless of true card order (neither word appears there). `check_cron_cadence.py` has six functions (`intended_landing`, `scheduled_times`, `landing_minutes`, `most_recent_due`, `last_changed`, `runs_since`) that a same-file grep shows as never called; confirmed in `preflight.py`'s `gate_scheduled_delivery_phase` that every one of them is a real consumer, not dead code. `check_sitemap_current.py` delegates its hashing to `build_seo.py` rather than duplicating it, and the CI-side backstop gate (`gate_sitemap_lastmod_current`) already caught and fixed a real bug in the same mechanism on 2026-09-21, so this file is not the only line of defense on that class. `check_video_links.py` correctly reports UNCHECKED rather than a false pass when egress is unavailable, and is wired into `preflight.py` only on `--deep`. Recorded all four in `ops/cold-read-ledger.json`: 94 of 164 files now ledgered.
+
+**Went well:** the `check_cron_cadence.py` read looked like a dead-code finding for several minutes before checking the actual caller; worth the extra grep before writing it up as a defect that was not one.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. `preflight.py --fast`'s `gate_tests` step again took several minutes wall clock; let it run to its own exit rather than wrapped in a timeout.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`): `build_quest.py`, `build_zone_map_pack.py`, `check_live_links.py`, `check_sellable.py`, `crawl_report.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py` are the next unledgered candidates. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Leaving the next cold-read file to the hourly operator at :43 since this was a 30-minute triage slot, not starting deeper work on it here.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (a check that could never fail found in wire_landmarks.py; fixed and gated)
 
 **Did:** Attach: shallow, detached checkout (issue #27); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `1865e180` cleanly. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's last four entries. `preflight.py --fast` ran clean before touching anything. GitHub: 8 open issues, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py`: no mail credential, unchecked. Backlog sections 2-6 all done or Phil-gated; continued the cold-read lane per the PM check-in's own handoff.
