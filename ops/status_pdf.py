@@ -207,7 +207,7 @@ def build(path=None):
         [f"{d['catalogue_buyable_other']} other zone, room, situation and bundle packs",
          "Live, buyable", "nothing"],
         *deck_rows,
-        [f"Entryway deck, {d.get('decks_withheld', {}).get('Entryway', '?')} cards",
+        [f"  of which, {d.get('decks_withheld', {}).get('Entryway', '?')} Entryway cards",
          "Withheld", "art fix, issues 1 and 2"],
         [f"Video, {c['video']}", "Not started", "filming"],
     ], [2.5 * inch, 1.5 * inch, 2.7 * inch]))

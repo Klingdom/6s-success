@@ -2,6 +2,42 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 13:1x (previous work verified finished; fixed a stale deploy-gap count and a self-inflicted lockdir)
+
+NEXT FOR THE OPERATOR: cold read wire_generated_catalog.py, wire_signup.py and zone_graphics.py, per ops/cold_read_ledger.py --next (lowest mention, genuinely unread), since every backlog row in sections 2 to 4 is done or Phil gated. A concurrent operator session reached the same conclusion independently below.
+
+Previous work verified finished: CI green (checks.yml run 1429) on the prior cycle's ledger/build id fix; B9 closed, all five room decks done; 8 GitHub issues unchanged, all decision or blocked on art.
+
+Found and fixed two real defects: STATUS.md's BLOCKER-001 cited 6 undeployed commits, real count was 8 (missed 8f6c47b3, 9c6d4063), corrected. Cleared an orphaned test_audit_catalog.py lockdir my own killed preflight run left, same shape a prior cycle fixed once already today.
+
+Preflight clean after: every gate passed, 25 warnings, standing sandbox limits. Pushed 9869f2e0c, deck regenerated.
+
+## 2026-09-25, scheduled operator cycle (converged with a concurrent PM check-in on the same BLOCKER-001 gap-count fix, not duplicated)
+
+**Did:** reattached to main clean (unshallow, fetch, checkout, ff-only merge, 281 commits fast-forwarded). CI showed a recent real failure (run #1428, the build-id gate) already fixed by a concurrent session's `8f6c47b3` before this cycle acted on it. Preflight ran clean (every gate passed). Checked all 8 open GitHub issues: unchanged, all owner-gated (decision or blocked-on-art), nothing new actionable. Backlog (`BACKLOG-2026-09-07.md`) sections 2-4 are fully closed (B9's five room decks all shipped today); section 5 is HOLD, section 6 is owner-gated. Found `gate_status_deploy_gap_count_current`'s own recount showing BLOCKER-001's latest `STATUS.md` entry citing a 6-commit undeployed gap while the real count was 8 (missing `9c6d4063`, the og:image fix for five room decks, a real customer-facing correctness defect). Wrote a corrected entry; before pushing, `git fetch` found a concurrent PM check-in (`9869f2e0`) had landed the identical correction seconds earlier, same real count, same newly-material commit. Discarded my own duplicate text and fast-forwarded onto their commit instead of pushing a second, redundant widening in the same spot. A second round of the same collision then happened on this very log file and the dashboard regen (`8f37b4f8`, `e5a4541c` landed mid-cycle); resolved the same way, taking theirs and re-adding only this entry on top.
+
+**Verified:** re-derived the real count directly with `preflight.resolve_verdict_commit()`/`deploy_gap_material_commits()` before either fix landed, confirmed `deploy_gap_count_problem()` returns `''` against the merged HEAD, ran `test_gate_status_deploy_gap_count_current.py` (6/6), then two full `preflight.py` reruns across the two merge points (every gate passed each time, 25 warnings, all previously diagnosed sandbox limits). Attempted `ops/indexnow.py --new` for the 4 unsubmitted deck-page URLs; correctly refused, no egress to `6s-success.com` from this sandbox, same wall every prior cycle hits. Inbox checked: no mail credential here.
+
+**Went well:** the gate caught a real, narrow drift before it compounded further; fetching before every push caught both collisions before competing content landed in the same files.
+
+**Did not go well:** two preflight timeouts on my own background-command wall clock (590s, then correctly widened to 1800s) cost real cycle time; two concurrent sessions converging on the same narrow fix within minutes cost a second round of rework, though nothing was lost.
+
+**Changing next cycle:** none; no new gate needed, the existing one caught this correctly on multiple sessions independently.
+
+**Next:** IndexNow submission for the 4 deck pages needs a session with real egress. Cold-read lane and owner-gated items unchanged.
+
+## PM check-in, 2026-09-25 13:1x (previous work finished; fixed a misleading row in the PDF status report)
+
+**Previous work was finished.** Clean attach (fetch, unshallow, checkout main, ff-only merge onto origin/main, 281 commits fast-forwarded, no reset or force). Working tree already clean. Full `preflight.py` (not the fast pass): every gate passed, 26 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential here, cron-cadence drift on two workflows, deploy freshness unmeasurable, 2 tests that cannot exercise anything without a missing dependency), none new. GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`, none actionable here; 0 PRs.
+
+**Did:** section 2-4 of `BACKLOG-2026-09-07.md` closed or Phil-gated, section 5 HOLD, section 6 owner gates, so continued the cold-read lane per the prior PM check-in's own handoff. `stripe_links.py` and `sync_push.py` cold-read clean (both correctly guarded, no defect). `status_pdf.py` had a real defect: the offer table rendered a second "Entryway deck" row for the 16 withheld cards, its own card count and a contradicting "Withheld" state sitting right below the live 72-card row for the same deck, reading as a second, unavailable deck rather than a note about the first. `status_report.py`'s own text version phrases the identical figures honestly ("N of the Entryway deck's cards are withheld"); the PDF did not. Relabelled the row `of which, N Entryway cards` to match. `reportlab` is not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked, and no test covers the changed string. All three recorded in `ops/cold-read-ledger.json`.
+
+**Verified:** `preflight.py` reran clean after the edit, 26 warnings, unchanged. `python3 -m py_compile ops/status_pdf.py` clean.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `wire_generated_catalog.py`, `wire_signup.py`, `zone_graphics.py` next by mention count). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. `ops/status_pdf.py`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 12:2x (previous work finished; closed a real ledger gap)
 
 **Previous work was finished.** Full preflight clean, after a concurrent session's build-id fix (`8f6c47b3`) landed the same defect I independently found. Backlog sections 2-4 closed or Phil-gated, section 5 HOLD, section 6 owner gates; 8 GitHub issues unchanged.
