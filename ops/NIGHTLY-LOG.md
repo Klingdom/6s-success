@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle continued (cold-read lane, two more files cleared after both fixes pushed, no further defect)
+
+**Did:** After the `service_orders.py` fix landed and preflight confirmed clean, continued the cold-read lane onto two more candidates. `ops/sync_page_links.py` (162 lines, repoints hardcoded dead Stripe links on 166 pages to the live link for the same SKU): read in full, checked the fixable/orphan classification by hand against edge cases (a retired SKU, a sku-less orphan link, an already-active link) and found it correct; considered whether its read(universal-newline)/write(newline="") pattern could reintroduce CRLF-vs-LF corruption on a Windows checkout (the exact class `.gitattributes` already documents three real prior incidents of, for PDFs, SRT captions and a CSV), but the same pattern is already the established convention across roughly 91 other `ops/*.py` files, every committed site `.html`/`.js` file is already LF-only, and `.gitattributes` deliberately does not pin those extensions; not a defect unique to this file, so not chased further. Already has its own regression test and preflight gate (`gate_sync_page_links_scans_js`). `ops/wire_measure.py` (86 lines, wires the analytics-adjacent measurement script onto every page after the tracker tag): read in full, checked the downloads/deck exclusion against the real `site/deck/` subdirectory versus the top-level `deck.html`/`deck-gallery.html`/room-deck pages (correctly distinct), the relative-path depth arithmetic for both root and nested pages, and its own self-verification loop plus `fingerprint_assets` chaining. No defect found in either file.
+
+**Verified:** both recorded clean in `ops/cold_read_ledger.py` (85 of 164 files now ledgered). No code changed this entry.
+
+**Went well:** stopping a plausible-looking theory (the CRLF risk in `sync_page_links.py`) once checking it against the actual codebase showed it was a systemic, deliberate convention rather than a defect isolated to the file under read, rather than reporting it as a finding anyway.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 85 of 164 files done). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle continued (a real idempotency-breaking bug found in service_orders.py: state was only saved once per batch, not once per send; fixed and gated)
 
 **Did:** Continued the same cycle after the `shoot_mobile.py` fix landed (`7c973511`, pushed). Re-fetched `origin/main` first: no concurrent push since. Continued the cold-read lane onto `ops/service_orders.py` (355 lines, forwards paid service bookings and enquiry emails to Phil with a calendar invite; its own docstring promises "Idempotent: every charge and message it has already handled is recorded in ops/state-service-orders.json, so a rerun does not forward the same booking twice").

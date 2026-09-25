@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 20:07",
- "commit": "7c973511",
- "commit_msg": "Fix shoot_mobile.py exit code always reporting success",
- "commits_7d": 1085,
- "commits_total": 3890,
+ "generated": "2026-09-25 20:14",
+ "commit": "912801b1",
+ "commit_msg": "Fix service_orders.py: state was saved once per batch, not once per send",
+ "commits_7d": 1086,
+ "commits_total": 3891,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -1084,7 +1084,7 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 205,
+ "site_pages": 204,
  "dead_links": 0,
  "legal_pages": 4,
  "forms_dead": 200,
