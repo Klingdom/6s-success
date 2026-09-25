@@ -1,0 +1,120 @@
+{
+  "_comment": "Structured record of ops/*.py files a cold-read cycle has actually read and either cleared or fixed. Not a full backfill: only entries a cycle has explicitly written here are authoritative. A file's absence means unknown, not unread and not clean; keep using ops/cold_read_ledger.py --next (or the old log-mention grep) for anything not listed. Written by ops/cold_read_ledger.py --add; do not hand-edit the ordering, it is sorted on write.",
+  "entries": {
+    "affiliate_report.py": {
+      "status": "fixed",
+      "date": "2026-09-24",
+      "note": "Merchant key normalised inconsistently with the matrix lookup (37/123 CSV rows wrongly read no-programme-record for Home Depot); CRLF line endings in its CSV output. Both fixed, gated by gate_affiliate_report_current."
+    },
+    "backup_analytics.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_app_icons.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_cleaning_index.py": {
+      "status": "fixed",
+      "date": "2026-09-24",
+      "note": "strip_tags() re-escaped an already-escaped apostrophe entity, shipping literal &amp;#x27; on how-to-clean-anything.html. Fixed, gated by gate_no_double_encoded_entities."
+    },
+    "build_epub.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_feed.py": {
+      "status": "clean",
+      "date": "2026-09-10",
+      "note": "Cold-read and run, closed clean, no defect found."
+    },
+    "build_image_prompts.py": {
+      "status": "fixed",
+      "date": "2026-09-08",
+      "note": "main() hardcoded a stale image count in its own prose. Fixed; reconfirmed clean on at least two later independent re-reads (reads only committed repo files, no hidden network dependency)."
+    },
+    "build_microzone_coverage.py": {
+      "status": "fixed",
+      "date": "2026-09-24",
+      "note": "Headline coverage used have[\"diagnosis\"] as a proxy for all three moat fields, agreeing with the real intersection only by coincidence. Fixed to count the real intersection."
+    },
+    "build_printpack.py": {
+      "status": "fixed",
+      "date": "2026-09-17",
+      "note": "Three generators hardcoded a price their own buy link reads live; found cold-reading this file. Fixed at the source."
+    },
+    "build_sample_html.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_social_pins.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_standards.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_standards_page.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_thumbnails.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_zone_index.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "canonical_links.py": {
+      "status": "clean",
+      "date": "2026-09-11",
+      "note": "Run live against the real tree: 0 links would rewrite, 2301 internal links extensionless, 0 .html. Confirmed the site-wide fix still holds."
+    },
+    "card_spec.py": {
+      "status": "clean",
+      "date": "2026-09-11",
+      "note": "Reconfirmed clean on repeated independent re-reads; all ten card families pass the file's own 4.5:1 contrast assertion at import time."
+    },
+    "check_affiliate_trigger.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "check_integrations.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "check_ledgerium.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "fill_front_matter.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "link_standards.py": {
+      "status": "clean",
+      "date": "2026-09-11",
+      "note": "Run live: 0 pages changed, 189 already carry the footer link; the 4 pages without it individually checked and confirmed legitimate exclusions."
+    },
+    "room_image_variants.py": {
+      "status": "clean",
+      "date": "2026-09-11",
+      "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
+    }
+  }
+}

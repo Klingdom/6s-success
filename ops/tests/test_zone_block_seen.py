@@ -67,13 +67,37 @@ DRIVER = """<script>
    IntersectionObserver is only evaluated per rendered frame. The tracker was
    correct in both runs; only the harness differed.
 
-   It also scrolls to the FOOT of the page rather than to a named element.
-   Zone pages shift layout as their images arrive, so scrollIntoView on a
-   specific block lands somewhere else by the time a frame is drawn: in one
-   run, scrolling to #capacity left #diagnosis on screen. The bottom of the
-   document is the one position that cannot move out from under the test. */
+   Scrolling to the FOOT of the page was tried first and is wrong: found
+   2026-09-25, it fails on every run, not flakily. The three blocks sit in
+   the first half of the document; the FAQ, the video section and the CTA
+   band after them add several more screen-heights, so the foot leaves all
+   three scrolled well out of view, at ratio 0. "The one position that
+   cannot move out from under the test" was true but not sufficient, since
+   it never claimed a block would be ON screen there, only that it would
+   not drift.
+
+   Centered on #diagnosis instead, same method the synthetic page below
+   uses: read its rect after 'load' (images above it are loading="eager"
+   with explicit width/height, so the rect is already final) and scroll so
+   its middle sits at the viewport's middle. A block present by
+   pick_page()'s own contract, so this never needs a fallback.
+
+   Found 2026-09-25, the reason the foot fix above still reported nothing:
+   site.css sets html{scroll-behavior:smooth}, which the synthetic page
+   never loads. A two-argument scrollTo() on this real page animates over
+   several requestAnimationFrame steps instead of jumping, and under
+   --virtual-time-budget those frames never run, so scrollY stayed 0 for
+   the whole 700ms wait, confirmed directly (rect unchanged before and
+   after). behavior:"instant" bypasses the CSS property and jumps in one
+   step, same as the synthetic page effectively does by having no CSS to
+   override. */
 window.addEventListener("load", function () {
-  if (%s) { window.scrollTo(0, document.body.scrollHeight); }
+  if (%s) {
+    var el = document.getElementById("diagnosis");
+    var r = el.getBoundingClientRect();
+    window.scrollTo({ top: window.scrollY + r.top + (r.height / 2)
+                       - (window.innerHeight / 2), behavior: "instant" });
+  }
   setTimeout(function () {
     var out = [];
     for (var i = 0; i < window.__sent.length; i++) {
@@ -268,17 +292,18 @@ def main() -> int:
     exe, args = found
     fails = []
 
-    # 1. Scrolled to the foot: at least one of the three blocks was genuinely
-    #    on screen, so at least one must report, and it must name a real block.
+    # 1. Scrolled to center #diagnosis: at least one of the three blocks was
+    #    genuinely on screen, so at least one must report, and it must name
+    #    a real block.
     v, err = run_case(exe, args, scroll=True)
     if err:
         print("  UNCHECKED: " + err)
         return 0
     got = blocks_in(v["sent"])
     if not got:
-        fails.append("the page was scrolled to its foot, where at least one "
-                     "of capacity/variants/diagnosis is on screen, and "
-                     "nothing reported at all: %r" % v["sent"])
+        fails.append("the page was scrolled to center #diagnosis, where at "
+                     "least one of capacity/variants/diagnosis is on "
+                     "screen, and nothing reported at all: %r" % v["sent"])
     for b in got:
         if b not in ("capacity", "variants", "diagnosis"):
             fails.append("reported an unexpected block name %r" % b)
@@ -320,7 +345,7 @@ def main() -> int:
         for f in fails:
             print("  - " + f)
         return 1
-    print("  ok  scrolled to the foot: %s reported" % ", ".join(got))
+    print("  ok  scrolled to center #diagnosis: %s reported" % ", ".join(got))
     print("  ok  no block reported twice in one page view")
     print("  ok  nothing reported when the page was never scrolled")
     print("  ok  the tall-block rule is right on 8 real-shaped cases")
