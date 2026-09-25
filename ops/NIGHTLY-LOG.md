@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 02:1x (previous work confirmed finished: clean attach, preflight green; backlog and 8 GitHub issues still fully exhausted, so continued the standing cold-read lane and found a real small defect)
+
+Attached clean (fetch, unshallow, fast-forward, no reset). `BACKLOG-2026-09-07.md` sections 2-4 done or Phil-gated, section 5 correctly HOLD; 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. Ran `preflight.py` myself, not a citation: every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new. Previous work genuinely finished, tree was clean, main matched origin before my edits.
+
+**Nothing new unblocked, so continued the cold-read lane.** Cleared `cold_read_ledger.py`, `review_deck_art.py`, `video_narrated.py` clean (no defect; cross-checked the ffmpeg last-frame concat gotcha and the ok/no verdict handoff to `import_generated_art.py`, both correct). Found one real bug in `generate_card_art.py`: its own docstring cites the OWNER-ACTIONS.md 1b backlog cost ($31) but its 429-block exception message hardcoded a stale, contradicting "$50", against the file's own stated no-duplicate policy. Fixed to point at OWNER-ACTIONS.md instead of repeating a number. No test referenced the old string.
+
+**Handing to operator:** next cold-read candidates `import_chapter_svgs.py`, `launch_plan_pdf.py`, `ledgerium_price_check.py`, `review_heroes.py`, `specific_articles.py` (`cold_read_ledger.py --next`). Same 8 GitHub issues, same Phil-blocked `VPS_DEPLOY_KEY` item 0.
+
+Pushed to main. `ops/generate_card_art.py`, `ops/cold-read-ledger.json`, this log, command deck. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (backlog exhausted again; converged with a concurrent PM check-in on the same deploy-gap fix; 13 files cleared into the cold-read ledger)
 
 **Did:** Confirmed on main, clean, current. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, last four log entries. Sections 2-4 done; section 5 correctly HOLD. GitHub: 8 issues unchanged. Ran `preflight.py` myself, not a same-day citation.

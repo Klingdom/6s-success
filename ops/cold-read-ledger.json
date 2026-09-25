@@ -101,6 +101,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "cold_read_ledger.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Cold-read for defects (PM check-in). load_ledger/is_cleared/next_candidates/add_entry all correct; malformed or missing ledger safely returns {} rather than defaulting to clean, per CLAUDE.md 0.4. --next, --check (hit and miss) and the ledger JSON all manually verified working."
+    },
     "fill_front_matter.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -111,10 +116,20 @@
       "date": "2026-09-11",
       "note": "Run live: 0 pages changed, 189 already carry the footer link; the 4 pages without it individually checked and confirmed legitimate exclusions."
     },
+    "review_deck_art.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Cold-read for defects (PM check-in). Sheet paging, sha-pinned verdicts, expand() range parsing all correct. Cross-checked its only consumer, import_generated_art.py: promotion requires verdict == 'ok' exactly, so an unvalidated/typo'd verdict here fails closed (never promoted) rather than open. No defect."
+    },
     "room_image_variants.py": {
       "status": "clean",
       "date": "2026-09-11",
       "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
+    },
+    "video_narrated.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Cold-read for defects (PM check-in). Verified the known ffmpeg concat gotcha (last file's duration entry ignored) is correctly handled by repeating the last PNG path unduration'd after the loop. Silent-beat placeholder, retry/backoff on TTS throttling, audio/video hold durations staying in lockstep via apad(TAIL), and Desktop delivery failing soft rather than raising all check out. No defect."
     }
   }
 }

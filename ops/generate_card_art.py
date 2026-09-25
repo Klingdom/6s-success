@@ -242,9 +242,10 @@ def request_image(p: dict, key: str, prompt: str, size: str = "1024x1024") -> by
                     "key is on the free tier, where Google does not offer image "
                     "generation at all.\n"
                     "  Enabling billing is a payment decision on Phil's "
-                    "account, so it is his to make. The whole illustration "
-                    "backlog costs under $50 at the best model.\n"
-                    "  See OWNER-ACTIONS.md item 1b for the exact step.")
+                    "account, so it is his to make.\n"
+                    "  See OWNER-ACTIONS.md item 1b for the exact step and the "
+                    "current backlog cost (kept there, not repeated here, so "
+                    "this message cannot go stale against it).")
             if e.code in (429, 500, 502, 503) and attempt < 3:
                 time.sleep(2 ** attempt * 3)
                 continue
