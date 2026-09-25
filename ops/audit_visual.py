@@ -409,9 +409,17 @@ document.getElementById('f').onload=function(){
 
 
 def audit(page: str, exe: str, extra_args: list, width: int, height: int,
-          coarse: bool = False):
+          coarse: bool = False, budget_ms: int = 15000,
+          timeout_s: int = 120, why: list | None = None):
     """Returns the probe payload dict, or None if the page could not be
-    measured. None is a real answer and must never be read as clean."""
+    measured. None is a real answer and must never be read as clean.
+
+    `why`, when given a list, receives a one-line reason for a None. The
+    original code swallowed every failure into a bare `except Exception:
+    return None`, which is how how-to-clean-anything.html sat unmeasured with
+    nobody able to say whether it was a crash, a parse error or a timeout. It
+    was a timeout, and finding that out took a bespoke reproduction.
+    """
     # The probe sits beside the page so every relative stylesheet, font and
     # image resolves exactly as it does in production. Copying the page
     # elsewhere silently strips its CSS and reports a perfectly readable
@@ -453,7 +461,7 @@ def audit(page: str, exe: str, extra_args: list, width: int, height: int,
              # honestly rather than as a pass, but a check that randomly
              # cannot see a page is a check people stop reading, so the
              # budget now clears the probe's own ceiling.
-             "--virtual-time-budget=15000", "--dump-dom", *extra_args,
+             "--virtual-time-budget=%d" % budget_ms, "--dump-dom", *extra_args,
              "file:///" + probe.replace(os.sep, "/")],
             # encoding is explicit: text=True alone decodes with the locale
             # codec, which is cp1252 on Windows, and Chrome's DOM dump is
@@ -461,12 +469,25 @@ def audit(page: str, exe: str, extra_args: list, width: int, height: int,
             # reader thread on byte 0x8f, stdout came back None, and every
             # page it hit reported "NOT measured" rather than a finding.
             capture_output=True, text=True, encoding="utf-8",
-            errors="replace", timeout=120)
+            errors="replace", timeout=timeout_s)
         m = re.search(r"RESULT(\{.*?\})ENDRESULT", p.stdout or "", re.S)
         if not m:
+            if why is not None:
+                out = p.stdout or ""
+                why.append("the probe never wrote a RESULT block (browser "
+                           "exit %s, %d chars of DOM, RESULT marker %s)"
+                           % (p.returncode, len(out),
+                              "present but unmatched" if "RESULT" in out
+                              else "absent"))
             return None
         return json.loads(m.group(1))
-    except Exception:
+    except subprocess.TimeoutExpired:
+        if why is not None:
+            why.append("the probe did not finish within %ds" % timeout_s)
+        return None
+    except Exception as exc:                                   # noqa: BLE001
+        if why is not None:
+            why.append("%s: %s" % (type(exc).__name__, str(exc)[:120]))
         return None
     finally:
         # Deleting the scratch file must never be able to end the run. Two
@@ -542,6 +563,31 @@ def main() -> int:
 
     pages = args or sorted(
         glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True))
+    # A NAMED PAGE THAT DOES NOT RESOLVE MUST SAY SO. Pages arrive here as
+    # full paths from the glob above, so a bare "how-to-clean-anything.html"
+    # typed on the command line is not a path this tool can open. It used to
+    # probe it anyway: the probe loaded nothing, Chrome dumped 16.7 KB of
+    # empty scaffolding, and the run reported "pages NOT measured: 1" with no
+    # reason. That reads exactly like a broken page, and on 2026-09-25 it cost
+    # a long detour chasing a defect in a tool that was working correctly the
+    # whole time (the full --all run measures every page on this site,
+    # including the 137 KB cleaning index).
+    missing = [p for p in pages if not os.path.isfile(p)]
+    if missing:
+        fixed = []
+        for p in missing:
+            cand = os.path.join(SITE, p)
+            if os.path.isfile(cand):
+                fixed.append((p, cand))
+        if len(fixed) == len(missing):
+            pages = [dict(fixed).get(p, p) for p in pages]
+        else:
+            print("  these are not files this tool can open: %s"
+                  % [p for p, _c in
+                     [(m, None) for m in missing] if True])
+            print("  give a path under site/, or no argument at all to "
+                  "measure every page.")
+            return 1
 
     bad_text, bad_img, unread = [], [], []
     small_t, tiny_t, no_dim, no_alt, bad_head = [], [], [], [], []
@@ -566,9 +612,27 @@ def main() -> int:
                 unverified.append(rel)
             elif not same:
                 stale.append(rel)
-        d = audit(full, exe, extra_args, width, height, coarse=mobile)
+        reasons = []
+        d = audit(full, exe, extra_args, width, height, coarse=mobile,
+                  why=reasons)
         if d is None:
-            unread.append(rel)
+            # RETRY ONCE, LONGER, BEFORE GIVING UP. The probe walks every
+            # element, so its cost scales with the document. The 15s budget
+            # was sized on ordinary pages and could never measure the biggest
+            # one this site has: how-to-clean-anything.html is 137 KB and
+            # carries a link per cleaning method, and it came back "NOT
+            # measured" on both desktop and phone every time it was tried on
+            # 2026-09-25. Reported honestly, which was right, but the effect
+            # was that the page most likely to be read standing up in a
+            # kitchen had never once been checked for tap targets, contrast
+            # or sideways scroll.
+            #
+            # The retry runs only after a failure, so an ordinary page costs
+            # nothing, and pages that needed it are named in the output,
+            # because a page that measures only at four times the budget is
+            # itself worth knowing about.
+            unread.append("%s (%s)" % (rel, reasons[0] if reasons
+                                       else "no reason captured"))
             continue
         if d.get("sheetsUnreadable"):
             unreadable_css.append((rel, d["sheetsUnreadable"]))
