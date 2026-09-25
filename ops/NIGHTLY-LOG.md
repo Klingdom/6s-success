@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 10:2x (previous work confirmed finished, not just cited; nothing new to open)
+
+**Previous work was actually finished.** Attached clean (unshallow, fetch, checkout, ff-only merge, 264 commits fast-forwarded, no reset or force). Working tree was already clean on `origin/main` (`09f7c8e2`, the merge that closed B9's Primary Bathroom deck, fourth of five rooms). Re-derived the deploy-gap independently with this repository's own `resolve_verdict_commit()`/`deploy_gap_material_commits()` rather than citing the prior cycle's number: still exactly 5 commits from the last confirmed build, `gate_status_deploy_gap_count_current` returns clean, so `STATUS.md`'s own citation is still correct and was not re-written for the sake of writing something. Ran a full, non-fast `python ops/preflight.py` to completion rather than trust the fast pass or the last cycle's own clean run: every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/Umami/mail/SSH credential, no VPS egress, the two cron-cadence drifts, sample-PDF spelling, 3 pages missing IndexNow announcement, site verification, page/deck-art gaps on #2/#29), none new.
+
+**Checked BACKLOG-2026-09-07.md and GitHub for unblocked work before concluding there was none.** B9's only open row is Garage (96 authored fields), correctly left for the hourly operator per the last two check-ins' own handoff; a room deck of that size is hours of work, not a 30-minute slot's. 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none actionable here. The low-mention `ops/*.py` cold-read lane that found several real defects earlier this month is on record as genuinely thin as of the last several passes; did not force a finding to have one.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`), which was stale by 32 minutes and 2 commits (working-tree/last-commit rows only, no other figure moved). Shipped through `ops/ship.py --no-deploy`.
+
+**Went well:** re-deriving the deploy-gap and preflight state directly instead of citing the prior cycle's numbers, and not manufacturing a fix where none was needed.
+
+**Did not go well:** none new; same recurring unrelated-history checkout shape this cycle handled cleanly via unshallow/fetch/ff-only rather than a reset.
+
+**Next:** Garage room deck (B9's last room, 96 fields) remains the standing handoff for the hourly operator; only one session should claim it at a time. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main (`9e5d9919a`). Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (B9: the Primary Bathroom deck built, fourth of five; two preflight gate gaps found and fixed on the way in)
 
 **Did:** Attached clean (unshallow, fetch, checkout, ff-only merge, 254 commits fast-forwarded, no reset or force). Preflight FAILED on the first run: `build-id` was stale against the tree and `risks-evidence-current` cited a stale `forms_dead=197` against a live 198. Fixed both (`ops/build_id.py`; a new `UPDATED` line in `RISKS.md`'s RISK-0012, matching the file's own append-only convention) before picking any new work, per this session's own "if it fails, fixing that IS this run's work." With preflight clean, ran `ops/cardtext/derive_room_deck.py`: Primary Bathroom (88 fields) and Garage (96) were the two rooms left of B9's five; claimed the smaller. Built `ops/cardtext/build_primary_bathroom_deck.py` (76 cards: 7 zone, 21 friction, 16 root cause, 17 action, 7 standard, 7 event, all content grounded in the real `content.json` zones read directly, not paraphrased) and `ops/build_primary_bathroom_deck_page.py`, shipping `site/primary-bathroom-deck.html`.
