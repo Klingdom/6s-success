@@ -1410,10 +1410,11 @@ Maintain a compact index as the file grows.
 | D-022 | Paid card-deck tiers stay held until a stranger buys something; BK-EB stays at $9.99 | ACTIVE | Commerce |
 | D-023 | The 6 Area Bundles and 15 Situation Kits are retired; a kit returns behind a proven page | ACTIVE | Commerce |
 | D-024 | The 7 Kitchen Micro Zone Packs and Kitchen Room Pack are retired, now the free Kitchen deck is downloadable | ACTIVE | Commerce |
+| D-027 | Room-deck card counts stay corpus-honest; print-tier alignment waits for a real print order; B8 closed | ACTIVE | Product |
 
-D-004 to D-013 were never assigned; no record exists under those IDs
-anywhere in this repository. Not a gap to fill, just a numbering fact worth
-stating so a future session does not go looking for missing decisions.
+D-004 to D-013 and D-025 were never assigned; no record exists under those
+IDs anywhere in this repository. Not a gap to fill, just a numbering fact
+worth stating so a future session does not go looking for missing decisions.
 
 ---
 
@@ -2506,3 +2507,96 @@ been met, not a fresh judgement call. If a future session finds the PDF
 gate lying (claiming current when the shipped file is stale or blank), that
 is a defect in `gate_kitchen_deck_pdf_current`, not a reason to reopen this
 decision.
+
+## D-027 | 2026-09-25 | Room-deck card counts stay corpus-honest; print-tier alignment is deferred until a room actually goes to print, and BACKLOG-2026-09-07.md B8 is closed on that basis
+
+**Decision.** None of the five room decks built after Kitchen (Entryway 57,
+Home Office 66, Laundry Room 67, Primary Bathroom 76, Garage 80 cards) will
+be trimmed or padded to land on the 18-card print-on-demand step
+(`DECK-GAME-DESIGN.md` 4.1) while they ship only as free typeset web pages.
+Each deck's card count stays exactly what its own room's real corpus,
+diagnosis layer and proportionate authorship produce. `gate_deck_print_tiers`
+keeps warning (correctly: those five counts are still not multiples of 18),
+but the warning is now a standing, understood fact about a future print
+decision, not an open question. BACKLOG-2026-09-07.md's B8 row is closed:
+its acceptance line, "every built deck's card count is a multiple of 18, or
+the warning names why it is deliberately not", is met by this decision plus
+the gate-message change below.
+
+**This is not a new call.** Every one of the five generators already says so
+in its own source, written the same day each deck shipped and never
+reopened: `ops/cardtext/build_entryway_deck.py` (lines 68-77): "This room
+ships as a free typeset page, the same stage Kitchen shipped at before any
+print-on-demand decision was made, so the budget here is instead the honest
+count of what this room's own corpus... produce[s]... If this room becomes a
+paid printed product later, the print-tier question is real and unresolved,
+and belongs to that decision, not this one." `build_garage_deck.py`,
+`build_home_office_deck.py`, `build_laundry_room_deck.py` and
+`build_primary_bathroom_deck.py` each carry the equivalent sentence.
+**BACKLOG-2026-09-07.md's own B8 row directly contradicts its siblings'
+source code**: it reads "Two directions, not one: trim Primary Bathroom and
+Garage back under 72... and FILL Entryway's 15 unbought slots, which cost
+nothing extra to print", the exact padding-for-print-economics move every
+generator's own comment says explicitly belongs to a later, unmade decision.
+Five PM check-ins and scheduled cycles between 2026-09-25 15:0x and 18:2x
+each correctly deferred acting on B8 as written, calling it "real editorial
+judgement" too large for a triage slot; the actual defect was that B8 was
+asking for the wrong thing, not that nobody had gotten to it.
+
+**Rationale.** Trimming Garage or Primary Bathroom to 72 today would mean
+deleting real, corpus-diagnosed root-cause and friction content (both rooms'
+overage is concentrated in root causes: 16 each, against the 12-13 the
+smaller rooms use, because a garage and a primary bathroom genuinely surface
+more of the shared 17-cause vocabulary than an entryway does) for a print
+cost that does not exist yet: nothing here has ever been printed, and
+printing itself is already HOLD-gated behind a first sale by prior decisions
+in this file and in `BACKLOG-2026-09-07.md`. Filling Entryway, Home Office or
+Laundry Room to 72 would require genuinely authoring 15, 6 and 5 new cards
+respectively, each with the same real, Manual-grounded prose every existing
+action/event card carries (verified directly: no unused derivable content
+remains in any of the three rooms' `content.json`, every zone already
+supplies exactly 3 frictions and one `first_15` action, the same ceiling
+Kitchen's own zones hit before its 4 whole-room actions and extra causes were
+hand-authored). Manufacturing that content only to round a page count to a
+print-economics multiple, with no buyer and no print order in sight, is
+exactly the "content volume is not the goal" and "no thin content" pressure
+`CLAUDE.md` sections 9 and 51 warn against, and it would take real authoring
+time (Kitchen's own equivalent build was costed at 5.75 days) away from
+higher-ranked, traffic-and-conversion work currently unblocked nowhere else
+in this backlog.
+
+**Alternatives.** Trim Garage/Primary Bathroom now and fill the other three
+now, per B8's literal text: rejected for the reasons above, and because it
+would reverse a decision each generator's own author already made and
+recorded, without new evidence to justify reversing it. Leave B8 exactly as
+written for a future cycle to eventually attempt: rejected per `CLAUDE.md`
+0.2, "do not report a problem twice that you could have fixed once"; five
+cycles had already re-read and re-deferred it. Silence the print-tier warning
+entirely: rejected, because the underlying fact (these five counts are not
+print-ready) stays true and worth surfacing the day someone opens a
+print-on-demand quote.
+
+**Consequences.** `ops/preflight.py`'s `gate_deck_print_tiers` warning message
+now names this decision directly, so a future reader sees the deliberateness
+inline rather than having to find this file first. No deck content changes;
+no price, product or site page touched. `BACKLOG-2026-09-07.md` B8 marked
+closed-by-decision rather than left in the "Now" section to be re-picked up
+a sixth time.
+
+**Evidence.** Direct read of all five `ops/cardtext/build_*_deck.py` budget
+comments (tier 2, the generators' own source). `ops/cardtext/derive_room_deck.py`
+run directly against Entryway, Home Office and Laundry Room confirming no
+unused derivable corpus content remains (tier 2, live tool output). Card-type
+breakdowns for all six decks recomputed directly from the committed
+`ops/cardtext/*-deck.json` files rather than trusted from any prior summary
+(tier 2). `ops/NIGHTLY-LOG.md`'s five 2026-09-25 PM check-ins between 15:0x
+and 18:2x, each independently naming B8 as the standing unblocked item and
+declining to act on it in a short slot (tier 7, corroborating evidence for
+the repeated-deferral claim only).
+
+**Revisit when.** A specific room's deck gets a real print order or a
+concrete print-on-demand listing is about to be built. At that point the
+print-tier question is real for that one room, and should be sized and
+scoped like Kitchen's own original build, not squeezed into the slot that
+raises it. Nothing here blocks that future work; it only stops the current,
+contentless version of the question from being re-asked in the meantime.

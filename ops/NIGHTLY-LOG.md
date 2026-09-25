@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (B8 closed: the row itself, not the judgement, was the defect; DECISIONS.md D-027 records why)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, no conflict. Read `BACKLOG-2026-09-07.md` (sections 0-7), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's newest four entries (five PM check-ins today, 16:1x through 18:4x, each independently naming B8, deck print-tier trim/fill across Entryway/Home Office/Laundry Room/Primary Bathroom/Garage, as the sole unblocked backlog row and correctly declining to improvise it in a short slot). Full `python ops/preflight.py` run to its own exit before touching anything: every gate passed, 0 failures, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Took B8, per the standing handoff, since this cycle had the room a 30-minute slot does not.** Before authoring or trimming anything, checked the premise directly rather than started cutting/writing: ran `ops/cardtext/derive_room_deck.py` against Entryway, Home Office and Laundry Room and confirmed no unused derivable corpus content remains (every zone already supplies its full 3 frictions and one `first_15` action; a real fill would mean authoring genuinely new Manual-grounded prose, not assembling existing fields). Recomputed all six decks' card-type breakdowns fresh from the committed `ops/cardtext/*-deck.json` files: Garage and Primary Bathroom's overage (8 and 4 over 72) is concentrated in root-cause cards (16 each, more of the shared 17-cause vocabulary than the smaller rooms reach), not padding. Then read all five room generators' own source: `ops/cardtext/build_entryway_deck.py` lines 68-77, and the equivalent comment in `build_garage_deck.py`, `build_home_office_deck.py`, `build_laundry_room_deck.py` and `build_primary_bathroom_deck.py`, each independently says its card count is "the honest count of what this room's own corpus... produce[s]" and that print-tier alignment "belongs to that decision, not this one" if a room is ever printed. **B8's own row directly asked for the opposite of what every generator it is about had already, deliberately decided**: "trim Primary Bathroom and Garage back under 72... and FILL Entryway's 15 unbought slots." That is why five cycles correctly found nothing safe to do with it in a short slot: the row was wrong, not merely large.
+
+**Fixed the row, not the deck.** `DECISIONS.md` D-027 records the decision (card counts stay corpus-honest; print-tier alignment waits for a real print order) with rationale, alternatives considered and rejected, consequences and a revisit condition, added to the section 43 index (`check_decisions_index` confirmed clean both directions). `ops/preflight.py`'s `gate_deck_print_tiers` docstring and warning message now cite D-027 directly, so the still-true warning (5 of 6 decks are not print-ready) reads as a recorded decision rather than an open question; `ops/tests/test_deck_print_tiers.py` reran clean (6/6, unchanged, since only the wrapping message changed, not `check_deck_print_tiers()`'s tested pure logic). `BACKLOG-2026-09-07.md`'s B8 row marked CLOSED with the same reasoning, so a sixth cycle does not re-read and re-defer it.
+
+**Verified after:** `python3 -c "import ast; ast.parse(...)"` on the edited `preflight.py` before trusting it. Full `python ops/preflight.py` rerun to its own exit: every gate passed, 25 warnings, identical set to the pre-change baseline (`gate_decisions_index_current` specifically confirmed clean). No deck content, price, product or site page touched; this is a decision and two documentation fixes only, so `check_urls.py`/`audit_pages.py`/IndexNow are not applicable.
+
+**Went well:** checking the generators' own source before writing a single new card, which turned a feared multi-day authoring task into a same-day decision that closes the real defect (a backlog row that contradicted its own subject matter).
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; the decision is recorded and gated, and reopening it needs a real print order, not another read.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 72 of 164 files done). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. `DECISIONS.md`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 18:4x (previous work finished; nothing new to fix, same B8/cold-read handoff repeated, no operator cycle has landed since)
 
 **NEXT FOR THE OPERATOR:** B8 first if a cycle has the room for the card-count design work (`DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `ops/preflight.py`); otherwise continue the cold-read lane (`ops/cold_read_ledger.py --next`, 72 of 164 files done, next candidates by mention count: `generate_zone_heroes.py`, `import_generated_art.py`, `zone_supplies.py`).

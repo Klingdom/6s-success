@@ -17426,6 +17426,15 @@ def check_deck_print_tiers(decks) -> list:
     without reference to the step. An under-filled tier is unbought value
     (Entryway could carry 15 more cards for the same money); an over-filled
     one is a whole extra tier bought for a handful of cards.
+
+    DECISIONS.md D-027 (2026-09-25): this stays open by design, not by
+    neglect. Every one of the five generators already says in its own
+    source that its count is the honest one for a free web page and that
+    print-tier alignment belongs to the day a room actually goes to print,
+    not before. Padding or trimming today would mean fabricating content
+    nobody asked for or deleting real diagnosed causes to save a print cost
+    that does not exist yet, so BACKLOG-2026-09-07.md's B8 is closed against
+    this decision instead.
     """
     problems = []
     for name, n in sorted(decks.items()):
@@ -17463,7 +17472,10 @@ def gate_deck_print_tiers() -> None:
         warn("deck-print-tier",
              "%d of %d built deck(s) do not land on the %d-card print step, "
              "so a print run pays for slots it cannot use: %s. Free on the "
-             "web today; the cost lands the day one is printed."
+             "web today; the cost lands the day one is printed. Deliberate, "
+             "per DECISIONS.md D-027: each count is the honest one for a "
+             "free page, and alignment is deferred to the day a room "
+             "actually goes to print."
              % (len(problems), len(decks), DECK_PRINT_STEP,
                 "; ".join(problems)))
 
