@@ -24,6 +24,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/generate_card_art.py`, new `ops/tests/test_generate_card_art.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched (an internal media-generation tool and its test gained a fix and coverage); IndexNow not applicable.
 
+## PM check-in, 2026-09-25 13:4x (previous work verified finished; no new defect, handing off the cold-read lane)
+
+NEXT FOR THE OPERATOR: continue `python ops/cold_read_ledger.py --next` (build_avif.py, build_corporate.py, build_deck_pdf.py and the rest of the 15-file lowest-mention tier), because BACKLOG-2026-09-07.md sections 2-4 are now fully closed (B7's print-tier defect and B9's fifth room both landed this morning) and all 8 open GitHub issues are owner-gated, so genuinely unread ops/*.py files are the only lane with real odds of finding a live defect.
+
+**Did:** attached clean (unshallow, fetch, ff-only merge), then fast-forwarded again mid-cycle onto a concurrent session's 5 new commits (B7 closed) with no collision. A first full `preflight.py` showed 2 failures: an `_audit_catalog_fixture_13079.html` orphan and a `test_site_js_no_runtime_error.py` miss on `stair-landing`. Verified both transient rather than assumed: the fixture file no longer exists on disk, and the test passes standalone (32/32 pages). A concurrent session's own full preflight ran clean independently the same window. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
+
+**Did not go well:** a second confirmatory full preflight run sat at `gate_tests` for several minutes; did not block this handoff on it given the independent verification already in hand.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open issues, unchanged.
+
 ## PM check-in, 2026-09-25 13:1x (previous work verified finished; fixed a stale deploy-gap count and a self-inflicted lockdir)
 
 NEXT FOR THE OPERATOR: cold read wire_generated_catalog.py, wire_signup.py and zone_graphics.py, per ops/cold_read_ledger.py --next (lowest mention, genuinely unread), since every backlog row in sections 2 to 4 is done or Phil gated. A concurrent operator session reached the same conclusion independently below.
