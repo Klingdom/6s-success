@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 01:4x (previous work confirmed finished: CI green on the converged test_zone_block_seen.py fix, tree clean, main pushed; own preflight.py run found and fixed a real stale-citation warning)
+
+NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane, `python ops/cold_read_ledger.py --next`, next candidate `ops/cold_read_ledger.py` itself (7 mentions, the ledger tool has never read itself), because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`, confirmed live via the API) are exhausted again.
+
+Attached clean (fast-forward, 194 commits, no reset or force). `git log -12`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` all read. Previous work confirmed finished, not just cited: working tree was clean and `main` matched `origin/main` before this cycle's own edits, and `test_zone_block_seen.py`'s fix (the entry below) is on `main` with no open PR.
+
+**Ran `preflight.py` myself rather than trust a same-day citation (CLAUDE.md 0.4), and it surfaced a real warning worth fixing: `gate_status_deploy_gap_count_current` fired on `STATUS.md`'s `BLOCKER-001`.** The 00:1x check-in's own latest entry cited the correct build_id (`6a10df205a3d058c`, resolving to commit `b8eca135`) but a stale gap of "1 commit" next to it. Recounted directly (`git log b8eca135..HEAD -- site/ Dockerfile`): the real gap is 2 commits, `fa78db8c` (Phil's own D-026 checkpoint, which shipped `measure.js`'s new zone-block-seen instrumentation to every zone page, missed because it landed the same day as the counted commit) and `ca49aa25`; 197 files, 808 insertions, 520 deletions. Corrected both `STATUS.md` and `OWNER-ACTIONS.md` (item 0's own citation carried the identical stale figure). Verified directly against the gate's own pure logic, not just by rerunning the whole suite: `deploy_gap_count_problem()` called against the corrected text returns `''`. Full `preflight.py` reran after: every gate passed, 23 warnings (was 24), all previously diagnosed sandbox limits, none new.
+
+**Went well:** running preflight as this cycle's own check rather than citing the 01:1x/01:36 entries' clean results, which is exactly what caught this: the drift happened after those checks ran.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the gate that caught this already existed and worked exactly as designed.
+
+Pushed to main (`e8e3a953`). `STATUS.md`, `OWNER-ACTIONS.md`, this log, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (converged with a concurrent session on the same test_zone_block_seen.py root cause, not duplicated)
 
 A final sanity `preflight.py` this cycle also hit the real, reproducible `test_zone_block_seen.py` failure (4/4 reruns) and independently traced it to the identical two defects the entry below already documents: `site.css`'s sitewide `scroll-behavior:smooth` never completing a `scrollTo()` under this environment's `--virtual-time-budget`, and the test's own document-bottom scroll target landing well past all three personalised blocks on the picked zone page (a FAQ, video section and CTA band follow them). `git fetch` surfaced the fix already shipped (`8484d018`/`7bf6ad16`) before this cycle's own equivalent fix was committed; discarded the local duplicate per this log's established practice rather than layering a second, differently-shaped fix (this cycle's version centered on the lowest of the three blocks dynamically; theirs centers `#diagnosis` directly and uses `behavior:"instant"` rather than overriding the CSS property, a cleaner mechanism for the same result) on the same defect.
