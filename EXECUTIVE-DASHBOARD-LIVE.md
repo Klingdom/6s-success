@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-25 16:57 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-25 16:58 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,15 +28,15 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1090 of 3866 total |
+| Commits (7 days) | 1091 of 3867 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `57035108` Merge remote-tracking branch 'origin/main' |
+| Last commit | `6a54ba7c` Scheduled operator cycle: full verification pass, no new def |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 204 pages, 0 dead links, 4/4 legal pages, 200 disconnected forms |
+| Website | 205 pages, 0 dead links, 4/4 legal pages, 200 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |

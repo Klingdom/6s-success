@@ -20,6 +20,38 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log. No price, product or site page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-25 16:4x (previous work finished; handing the operator the cold-read lane over B8, with the reasoning written down)
+
+NEXT FOR THE OPERATOR: continue `python ops/cold_read_ledger.py --next` (`build_quest.py`, `build_zone_map_pack.py`, `check_cron_cadence.py`, `check_live_links.py`, `check_sellable.py`, `check_sitemap_current.py`, `check_video_links.py`, ...), because it keeps finding real category-2 (broken/dishonest) defects on nearly every pass, which outranks B8 under `CLAUDE.md`'s own ordering.
+
+**Attach:** shallow and detached as usual (issue #27); unshallowed, checked out main, ff-only merged 313 commits onto `4a62b73c`, no conflict.
+
+**Step 2:** previous work finished. `git status` clean, `main` matches `origin/main` at `659121f2`. GitHub confirmed directly: 8 open issues, all `decision`/`blocked-on-art`, none actionable. A full (non-fast) `preflight.py` spot-check was started here but had not finished `gate_tests` by this cycle's close, the same slow-gate shape prior cycles have already named; not blocking on it since the 16:0x cycle already ran one clean on this identical tree before pushing.
+
+**Step 3:** B8 (deck print-tier trim) is still real and still open, but two operator cycles have now correctly deferred it: it only warns, and printing itself is HOLD-gated behind a first sale, so there is no live customer harm. Leaving it for a cycle with room for the design judgement, rather than re-flagging a third time.
+
+Pushed to main. Command deck and this log only.
+
+## PM check-in, 2026-09-25 16:1x (previous work finished; fixed the recurring lockdir FAIL itself rather than logging a fifth occurrence)
+
+**Attach:** shallow and detached again; unshallowed, ff-only merged 311 commits onto `c375bf4e`, clean.
+
+**Step 2: previous work was finished.** The 15:4x entry below confirmed the 15:3x preflight clean and correctly handed B8 (deck print-tier trim) to the operator as a real, unblocked, ~0.5d item, too large for this slot. No commit landed since; nothing to duplicate.
+
+**Fixed, not just re-logged, the lockdir shape the 15:0x/15:3x entries already flagged three times today.** `test_audit_catalog.py`'s own `_lock()` deliberately defaults to `STALE_AFTER+120` (1020s) so a waiter always outlives the staleness window, but `gate_tests()` in `preflight.py` kills the whole subprocess at 700s, a bound sized against a different, slower test file entirely (the etsy renders). 1020 > 700, so any waiter blocked from the moment a lock is created was not racing, it was guaranteed to hit the outer timeout first, every time, which is exactly the "self-heals, but only on the next run" pattern logged three times today. Traced the two files' own comments to confirm the mismatch was real and dated, not assumed: `STALE_AFTER=900` was set 2026-09-16, after `gate_tests()`'s bound was already reduced to 700 on 2026-09-13, so the two safety margins were never checked against each other. Lowered `STALE_AFTER` to 300 (preserving the `+120` relationship the file's own `_check_lock_self_heals()` self-test asserts, so that test still catches any future value that breaks the invariant), leaving real margin under 700s for the file's own actual work. Timed the real work directly rather than trusting "under a minute": one full clean run took 90s. Hit two self-inflicted false failures while verifying (a `timeout` I used killed the process mid-lock-hold twice, once leaving the same orphan the fix targets, once leaving a stray per-pid fixture HTML file that made the drift check see two fixtures at once, the exact collision class this file's own comments already name); traced both to my own commands rather than assumed a regression, cleared them, reran clean before treating either as evidence.
+
+**Verified:** `test_audit_catalog.py` standalone, clean, twice. Full `python ops/preflight.py`, no external timeout this time: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, no narrated films locally). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Working tree otherwise clean.
+
+**Handing to the operator (:43): B8 stands, unchanged from the 15:4x entry** (trim Primary Bathroom/Garage under 72 or accept the 90 tier deliberately, fill Entryway toward 72; `DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `preflight.py`). Nothing here touches it.
+
+**Went well:** treating the third same-day recurrence as the signal the 15:3x entry said it would be, and finding the actual cross-file constant mismatch instead of adjusting one more number by feel.
+
+**Did not go well:** caused two of my own false failures while verifying, both from using an external `timeout` against a process that holds a filesystem lock; cleared both, no residue left in `site/`.
+
+**Changing next cycle:** none; the fix is a corrected relationship between two existing constants, not a new mechanism, so nothing new to add.
+
+Pushed to main. `ops/tests/test_audit_catalog.py` (one constant plus its comment), command deck, this log. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (16:0x, a stale hardcoded word count found in the report Phil actually reads, fixed and gated)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 310 commits fast-forwarded onto `4a62b73c`). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. Full `python ops/preflight.py` (not fast) ran clean on the first try: every gate passed, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged from the last check. `inbox_agent.py --apply`: no mail credential here.
