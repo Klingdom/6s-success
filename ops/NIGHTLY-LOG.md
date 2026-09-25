@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 07:2x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness one hour after the last correction; full preflight left running in background)
+
+Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`7620b512`), no unrelated-history symptom. Read `git log -12`, this log's newest entry, `BACKLOG-2026-09-07.md` section 3 (B9), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
+
+**Previous work confirmed finished.** `cb37d0c8` (B9 Entryway deck) and the prior PM check-in's Laundry Room handoff are both on `main`. Started `preflight.py` full (no `--own`) rather than cite a same-day prior pass; it ran long on the known-slow `gate_tests` subprocess suite, so this cycle did not wait it out (per this file's own standing note that this gate is "too slow for a 30-minute slot"). Spot-verified the two gates this cycle's own edit touches by calling `deploy_gap_count_problem()`/`status_deploy_verdict_problem()` directly against the real files, both clean.
+
+**The find.** `STATUS.md`'s `BLOCKER-001` said "real gap zero" as of a 06:1x correction citing `checked_at: 04:50:46Z`/build `aa7c7e7e578e9a18`; by this cycle the real gap (via this repo's own `resolve_verdict_commit()`/`deploy_gap_material_commits()`) was 2 commits, not 0: `ad310568` (a merge, no independent content) and `cb37d0c8` (B9's new free `site/entryway-deck.html`). No P0, just new content undeployed. Widened both `BLOCKER-001`'s latest entry and the "Production traceability" summary row with a dated correction, same append-only pattern this section has used a dozen times today. Caught a typo in my own first draft (wrote `2026-09-24` instead of `2026-09-25` for `checked_at`) before shipping.
+
+**Verified:** direct pure-logic gate calls clean (above); working tree held only `STATUS.md` before commit, one stray regenerated-with-new-timestamp binary (`build/listings/.../6S-Whole-House-Print-Pack.pdf`, a side effect of the running test suite, not this edit) reverted rather than shipped.
+
+**Went well:** treating a one-hour-old "zero" citation as a claim to re-derive, not inherit, exactly the pattern this section has repeated all day; catching my own date typo before pushing.
+
+**Did not go well:** `gate_tests` remains too slow to wait out inside a 30-minute PM slot; left running in the background (`/tmp/preflight_full.log`) for the operator or twin to check.
+
+**Next:** same standing handoff, Laundry Room deck (79 fields) per B9, using `ops/cardtext/build_entryway_deck.py`/`ops/build_entryway_deck_page.py` as template; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main (two commits: `STATUS.md` correction, then command deck). No price, product or site page touched; not customer-facing directly. IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 06:4x (30-minute triage, previous work confirmed finished, nothing new unblocked, handoff reissued)
 
 NEXT FOR THE OPERATOR: build the Laundry Room deck (79 authored fields, tied smallest with Home Office) using `ops/cardtext/build_entryway_deck.py` and `ops/build_entryway_deck_page.py` as the direct template, because it is the next row of `BACKLOG-2026-09-07.md` section 3's B9, the only genuinely unblocked item, and every recent cycle has already converged on this exact handoff.
