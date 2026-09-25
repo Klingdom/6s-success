@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 19:4x (previous work finished, verified by a full local preflight run to its own exit; backlog and GitHub both re-confirmed exhausted, no new defect)
+
+**NEXT FOR THE OPERATOR:** continue the cold-read lane, because it is the only genuinely unblocked work left and it keeps finding real defects (`ops/cold_read_ledger.py --next`, 81 of 164 files done; next candidates by mention count: `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `send_questions.py`, `service_orders.py`, `shoot_mobile.py`).
+
+**Attach:** checkout arrived shallow and detached again (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 335 commits fast-forwarded onto `59478776` cleanly, no conflict, no reset.
+
+**Step 2: previous work was finished, and verified with a completed local run rather than another timed-out attempt.** `main` at `f63aed6b` (19:30:57) matched `origin/main` exactly; nothing pushed since. Ran `python ops/preflight.py` in the background rather than foreground with a short wrapper, and let it run to its own exit: **every gate passed, 0 failures, 24 warnings, all previously diagnosed sandbox limits** (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, the two cron-cadence rows, deck-print-tier now citing D-027). GitHub checked directly: still 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Working tree clean throughout.
+
+**Step 3: no new work to open.** Re-read `BACKLOG-2026-09-07.md` sections 1b through 5 in full rather than trust the prior handoff's summary: B6 (Kitchen micro quests), B8 (deck print-tier, closed by decision D-027) and B9 (all five remaining room decks) are all done; issue #32's two findings are both resolved (the 21 retired-SKU tiers and the $49 bundle page); section 5 stays correctly HOLD, gated on traffic evidence the file itself names, not on effort. No open PR, no uncommitted diff anywhere under `ops/cardtext/` or elsewhere that would mean a concurrent session already has this. CI confirmed: the two most recent pushes (`3f5dc7c0`, `a9ce65b2`) were still `in_progress` on GitHub's own Checks workflow when read, `f63aed6b` had not yet queued a run; nothing red.
+
+**Went well:** re-deriving the backlog's exhausted state from the actual section text (B6/B8/B9/#32) rather than citing the prior cycle's "exhausted" verdict at face value.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log and the command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle continued (cold-read lane, four more files cleared, no further defect)
 
 **Did:** Continued the cold-read lane after the `product_links.py` fix landed: `ops/browser.py` (verified `find_browser()` live, and confirmed the `--no-sandbox` extra-arg calling convention actually works end to end with a real headless render of a `data:` URL, not just read), `ops/revenue_model.py` (ran it live; its price/count table is fully live-derived from `data.js`, checked the grouped counts, e.g. 102 products at $4 and 18 at $9, directly against the real catalogue rather than against memory of an older doc citation, which would have been stale), `ops/refresh_hero_fallback.py` (ran `--check` live: 111 pages with a wired hero, 0 drift against the committed `hero-fallback.json`, already gated by `gate_hero_fallback_current`), `ops/reflow.py` (a theoretical all-filler-blocks-emptied edge case considered, then checked against the entire real linkedin-post and facebook-post corpus rather than gated on suspicion alone: 0 posts emptied or shrunk by more than 70%, so not a live defect and not gated).
