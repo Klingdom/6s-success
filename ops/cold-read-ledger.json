@@ -31,6 +31,11 @@
       "date": "2026-09-25",
       "note": "AVIF wiring/encode/check; idempotent, well-tested (test_build_avif.py 3/3), chained into every generator's main(), gate_generator_chains_avif covers it. No defect."
     },
+    "build_card_prompts.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read clean, no defect. Desktop-source guard correct, prompt framing table complete, wrong-room/lazy-prompt assertions correct."
+    },
     "build_cleaning_index.py": {
       "status": "fixed",
       "date": "2026-09-24",
@@ -176,6 +181,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: EXPECTED/WEBHOOK imported from ledgerium_price_check.py (single source), correctly reports unchecked with no credential, no defect"
     },
+    "check_pack_pages.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read clean, no defect. Correctly reports UNCHECKED (pypdf not installed here) rather than a false pass, per CLAUDE.md 0.4; ran live and confirmed."
+    },
     "check_video_standard.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -210,6 +220,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "local hero-image generation planner for Entryway cards; ran --plan live, 89/89 cards planned correctly, token-budget check correctly reports UNVERIFIED (transformers not installed here) rather than a false pass, Problem-vs-settled state framing and rule-word filtering both correct. No defect."
+    },
+    "generate_zone_heroes.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "stale 'WHY THIS IS THE UNLOCK' docstring said 109 of 114 zones had no imagery; real count is 3 of 114 zone pages with no hero (verified live against gate_pages_missing_art's own logic). Docstring corrected, no functional change."
     },
     "hazard_icons.py": {
       "status": "clean",
