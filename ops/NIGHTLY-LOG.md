@@ -22,6 +22,30 @@ Full `python ops/preflight.py` (the un-timed-out morning run): every gate passed
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6 (YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts, the six screenshots) unchanged; all 9 open GitHub issues unchanged (`decision`/`blocked-on-art`).
 
+**Merge note:** a concurrent PM check-in (`d1aa2a39`) pushed while this cycle was in progress, reaching the same "backlog exhausted, nothing new unblocked" conclusion independently and correcting the cold-read lane's own next-candidate list; merged cleanly here (this entry placed above it as the later of the two by wall clock), no collision on which files were read (it read none this slot; this cycle's own `ops/cold_read_ledger.py --next` at the time already differed slightly from its corrected list only in that `build_zone_map_pack.py` and `build_manual_print.py` sort ahead of the two this cycle actually read, both already ledgered or skipped in favour of the two smallest-remaining candidates).
+
+## PM check-in, 2026-09-25 23:4x (previous work confirmed finished on the exact current tip; nothing new unblocked; cold-read lane handed to the operator with a corrected candidate list)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane (`ops/cold_read_ledger.py --next`), because it is the only standing, genuinely unblocked, un-exhausted queue and it has found real defects most cycles it ran.
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 359 commits cleanly onto `1f693e46`, no conflict, working tree clean before and after.
+
+**Step 2: previous work is finished, confirmed on the exact commit now checked out, not re-cited from an older one.** `checks.yml` run #1453 is `success` on `ae0e5060`, the last commit that touched code under `ops/`/`site/`; the three commits since (`28ecee8a`, `8673c416`, `1f693e46`) each touch only the command deck and this log, which `checks.yml` does not build against, so run #1453 still speaks for the current tip. `publish-image.yml` run #421 is `success` on `2907a989`, also still current (no `site/**` or `Dockerfile` change since). The prior cycle's own "Correction, same cycle" entry (23:25, this same tip) already ran `preflight.py --fast` to its own exit twice after an initial transient stray-probe-file FAIL self-resolved, and reported 0 gates failed, 25 standing warnings on both reruns; re-running that full suite a third time in this slot would burn the slot re-deriving a result already confirmed on this identical commit hash, so it is cited, not re-run. GitHub confirmed live: 9 open issues, unchanged (`#36, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision` or `blocked-on-art`; 0 open PRs.
+
+**Step 3: nothing new is unblocked.** `BACKLOG-2026-09-07.md` sections 2 to 6 checked by content: every row is done, HOLD (ahead of the traffic constraint), or an owner gate already sitting in `OWNER-ACTIONS.md`/issue #35 (VPS_DEPLOY_KEY, the production-behind-repository redeploy gap the dashboard's own "one constraint" line names). No row justifies a fourth workstream against the WIP cap of 3.
+
+**Correction to the prior cycle's own handoff, not a new find:** that entry named `wire_zone_heroes.py`, `zone_supplies.py`, `accept_image.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py` as the cold-read lane's next candidates. Ran `ops/cold_read_ledger.py --next` myself rather than carry that list forward: none of those five are what the tool actually returns next. Live output, 100 of 164 ledgered, next 15 by lowest mention count: `build_manual_print.py`, `build_mobile_corpus.py`, `build_product_schema.py`, `build_quest.py`, `check_live_links.py`, `crawl_report.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py`, `prerender_shop.py`, `render_cards.py`, `send_questions.py`, `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py`. Not read myself this slot per this run's own instruction not to start something large three minutes before the operator; handed over with the corrected, verified list instead of repeating an inaccurate one.
+
+**Went well:** re-deriving the cold-read tool's actual next-candidate list instead of forwarding the prior cycle's, which had already drifted from what the tool returns.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none found to change.
+
+**Next:** cold-read lane continues with the corrected list above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues unchanged. Highest-value unblocked item outside the cold-read lane remains item 0 in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY), waiting on Phil.
+
+Pushed to main. This log entry and command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 23:2x (previous work finished per CI's own confirmed green tip; nothing new unblocked; cold-read lane left to the operator to avoid duplicating a 600+ line read in a 30 minute slot)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 357 commits cleanly onto `ae0e5060`, no conflict.
