@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (B9: the Home Office deck built, third of five; a live CI-blocking footer defect found and fixed on the way)
+
+**Did:** Attached clean. Found a near-miss immediately: a concurrent session had already shipped the Laundry Room deck (`c6cc1a6a`) while this session independently built the same room from scratch. Discarded the duplicate work, fast-forwarded onto `main`, and picked the next unclaimed room per `ops/cardtext/derive_room_deck.py`: Home Office, tied-smallest at 79 fields. Built `ops/cardtext/build_home_office_deck.py` (66 cards: 6 zone, 18 friction, 14 root cause, 15 action, 6 standard, 6 event) and `ops/build_home_office_deck_page.py`, shipping `site/home-office-deck.html`.
+
+**Verified:** the generator's own `gate()` passed on the first build (id uniqueness, budget, Manual-verbatim quoting, a `CAUSE_IDS`-matches-frictions assertion). New `gate_home_office_deck_current`/`gate_home_office_deck_rendered` wired into `preflight.py`'s three ownership registries from the start; new dedicated unit test (5/5, something the Laundry Room row never added for itself). Interactive Chromium test extended, 5/5 deck pages pass. **Found via the GitHub Actions API, not this sandbox: `publish-image.yml` had been failing its `preflight, including generator ownership` step on every push since before this cycle started**, because `build_laundry_room_deck_page.py`'s hardcoded footer template never matched `resources.html`'s real canonical footer the way Kitchen's and Entryway's already do. My own new generator had copied the identical bug. Fixed both templates to the shared canonical footer, confirmed idempotent regeneration and `gate_footer_consistent`/`gate_sitemap_lastmod_current` clean. `ROADMAP-2026-2029.md` page count corrected (197 to 198).
+
+**Went well:** catching the duplicate-work collision before pushing; checking real CI state via the API instead of trusting a clean-looking sandbox.
+
+**Did not go well:** the collision cost real time; nothing but close reading of `git log` caught it.
+
+**Changing next cycle:** none new.
+
+**Next:** B9's remaining two rooms, Primary Bathroom and Garage, smallest first, one session at a time.
+
+Pushed to main. `ops/cardtext/build_home_office_deck.py`, `ops/build_home_office_deck_page.py`, `ops/cardtext/home-office-deck.json`, `site/home-office-deck.html`, `ops/build_laundry_room_deck_page.py` (footer fix), `site/laundry-room-deck.html`, `site/deck.html`, `ops/preflight.py` (+2 gates), `ops/tests/test_gate_home_office_deck_rendered.py`, `ops/tests/test_deck_pages_interactive.py`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, command deck, this log. No price or product touched; one new free page. IndexNow attempted and correctly refused (could not verify the key file is served from this sandbox).
+
 ## PM check-in, 2026-09-25 08:1x, cycle addendum (the backgrounded full preflight from the entry below finished with one failure, verified transient, not real)
 
 `/tmp/preflight_pm.log` finished after this cycle had already shipped: 1 gate failed (`gate_no_stray_probe_files`: `site/_deck_probe_1.html`, `site/_deck_wrapper_1.html`, "left behind by a run that was killed mid-audit"), 24 warnings, all previously diagnosed sandbox limits. Checked rather than assumed transient, the same shape this file has hit before with this exact gate: neither file exists in `site/` now, and calling `gate_no_stray_probe_files()` directly against the current tree returns clean. A concurrent session's own interactive deck test almost certainly wrote and then cleaned up these probe/wrapper files while this cycle's snapshot was mid-run; `main` is unchanged since this cycle's own push, working tree clean. No action needed.

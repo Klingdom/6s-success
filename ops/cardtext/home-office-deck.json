@@ -1,0 +1,2882 @@
+{
+ "deck": "home-office",
+ "room": "Home Office",
+ "count": 66,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 14,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "HOR-001",
+   "title": "THE HOME OFFICE",
+   "type": "ROOM CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. START WITH THE DESK.",
+   "objective": "The home office is six small jobs built around one shared trap: physical clutter and unmade decisions about paper. This card is the map and the order.",
+   "zones_in_order": [
+    "HOZ-001 Primary Desk",
+    "HOZ-002 Desk Drawers and Pedestal",
+    "HOZ-003 File Storage",
+    "HOZ-004 Bookshelf and Reference Zone",
+    "HOZ-005 Printer and Scanning Station",
+    "HOZ-006 Supply Cabinet"
+   ],
+   "start_here": "HOZ-001 Primary Desk. Clear the desk surface completely before you open a single drawer. Every other zone in this room gets emptied onto that surface at some point, so it has to be the first thing finished and the last thing you let refill.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your home office. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, split the chain: one clears the desk and drawers, another works the filing and the shelf.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do HOA-015 The Quarterly Reach-Behind Clean and Safety Walk before any rebuild. It takes thirty minutes and covers the cables, the cabinets, the shelves and the printer.",
+   "related": {
+    "contents": "HOZ-001 to HOZ-006, HOF-001 to HOF-018, the shared root causes in ops/root_causes.py, HOA-001 to HOA-015, HOS-001 to HOS-006, HOE-001 to HOE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole tidy home office in its settled state, a cleared desk, a filing cabinet, a bookshelf, a printer station and a supply cabinet all visible in one frame, everything put away",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If two are not in frame, reshoot."
+   }
+  },
+  {
+   "id": "HOZ-001",
+   "title": "PRIMARY DESK",
+   "type": "ZONE CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "order": 1,
+   "difficulty": 3,
+   "tagline": "ONE INBOX TRAY. UNDER A DOZEN SHEETS, ALWAYS.",
+   "objective": "One clear surface for the work you are actually doing right now.",
+   "callouts": [
+    "Monitor, keyboard and mouse sitting in fixed positions",
+    "One notebook on the desk",
+    "One inbox tray holding fewer than a dozen sheets",
+    "No sticky notes on the monitor bezel",
+    "The power strip hooked off the floor onto the desk leg",
+    "Bare carpet under the full arc the chair rolls through"
+   ],
+   "done_looks_like": "The monitor, keyboard, and mouse in fixed positions, one notebook, one inbox tray holding fewer than a dozen sheets, no sticky notes on the monitor bezel, and the power strip hooked off the floor so the chair rolls over bare carpet.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "A mug of coffee sitting behind the keyboard on the same surface as a power strip and a laptop charger. Move drinks to the far side of the mouse, away from cables and the machine."
+    },
+    {
+     "question": "Fall",
+     "text": "Charger cables and the power strip lead running across the floor where the chair moves and where you push back to stand."
+    }
+   ],
+   "the_call": {
+    "title": "The half-finished thing",
+    "text": "One corner of the desk is held by a project you have not touched in weeks and cannot put away, because putting it away feels like admitting it is over. Say the next physical action out loud in one sentence. If you can name it (\"call the insurer\", \"sign page four\"), it is live: write that sentence on a card, clip it to the papers, and it goes in the inbox tray, not on the desk. If you cannot name a next action, it is not stalled, it is abandoned. Box it, write today's date on the lid, put it on the shelf, and if the box is still unopened on that date next year, it leaves unopened."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Screen-safe electronics cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HOS-001",
+    "actions": [
+     "HOA-001",
+     "HOA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a desk with a monitor, keyboard and mouse in fixed positions, one notebook beside the keyboard, a single inbox tray holding a small stack of fewer than a dozen sheets, a bare monitor bezel with no sticky notes, a power strip hooked onto the desk leg off the floor, and bare carpet visible in the arc where a chair would roll",
+    "must_show": [
+     "Monitor, keyboard and mouse sitting in fixed positions",
+     "One notebook on the desk",
+     "One inbox tray holding fewer than a dozen sheets",
+     "No sticky notes on the monitor bezel",
+     "The power strip hooked off the floor onto the desk leg",
+     "Bare carpet under the full arc the chair rolls through"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HOZ-002",
+   "title": "DESK DRAWERS AND PEDESTAL",
+   "type": "ZONE CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "order": 2,
+   "difficulty": 2,
+   "tagline": "EVERY PEN WRITES. THE SCISSORS POINT DOWN.",
+   "objective": "Hold the small tools you reach for without looking, and the live files you touch weekly.",
+   "callouts": [
+    "A divided tray in the top drawer",
+    "Pens in the tray that all write",
+    "One stapler in the tray",
+    "Scissors resting point-down in their own slot",
+    "A deep pedestal drawer of hanging files",
+    "File tabs all standing in one line"
+   ],
+   "done_looks_like": "A top drawer with a divided tray holding pens that all write, one stapler, one pair of scissors point-down in its own slot, and a deep pedestal drawer of hanging files with tabs all standing in one line.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Loose scissors and a letter opener rolling free in a drawer you reach into without looking, and a pedestal that tips forward if you pull the loaded file drawer fully out while the top drawer is open."
+    }
+   ],
+   "the_call": {
+    "title": "The cable bag",
+    "text": "Somewhere in the pedestal there is a bag or a drawer of cables, adapters, and wall bricks, and it survives because each individual cable is too cheap to think about and too specific to throw away. That decision cannot be made one cable at a time. Empty the whole lot onto the desk at once, pick up each cable, name the device it powers, and point at where that device physically is in this house. No device, no keep. Then keep exactly one spare of each connector type you still use daily, coil and band it, and take the rest to electronics recycling this week. Made in one batch at the cleared desk, it is a single sitting. Made one cable at a time, it never gets made at all."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HOS-002",
+    "actions": [
+     "HOA-003",
+     "HOA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open desk drawer showing a divided tray holding pens, one stapler, and scissors resting point-down in their own slot, beside a deep pedestal drawer of hanging files with every tab standing at the same height in one line",
+    "must_show": [
+     "A divided tray in the top drawer",
+     "Pens in the tray that all write",
+     "One stapler in the tray",
+     "Scissors resting point-down in their own slot",
+     "A deep pedestal drawer of hanging files",
+     "File tabs all standing in one line"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HOZ-003",
+   "title": "FILE STORAGE",
+   "type": "ZONE CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "ONE QUESTION PER FOLDER. ONE STRAIGHT LINE OF TABS.",
+   "objective": "Keep the documents you are genuinely required to hold, and put your hand on any one of them without opening a second drawer.",
+   "callouts": [
+    "Hanging folders labeled by the question you would ask",
+    "Every tab in the same position along the row",
+    "A closed fireproof box holding the permanent originals",
+    "A full shred bag standing by the door",
+    "A retention card taped inside the top drawer",
+    "The cabinet anchored to the wall"
+   ],
+   "done_looks_like": "Hanging folders labelled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "A four-drawer cabinet of dense paper standing against a heater, or the overflow boxes stacked on top of a power strip. Paper is the fuel load of this room, so keep it clear of heat and of the outlet."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A tall filing cabinet will tip forward onto you if the top drawer is loaded and pulled fully out. Anchor it to the wall and open one drawer at a time."
+    }
+   ],
+   "the_call": {
+    "title": "What you are actually required to keep",
+    "text": "Most of this drawer is neither obviously permanent nor obviously rubbish, and that middle band is why the whole job stalls. Split it into three by rule. Permanent originals, meaning birth and marriage certificates, deeds, vehicle titles, wills, and immigration papers, go into one closed fireproof box and never into the filing cabinet. Tax returns and their supporting paper get one folder per year and are held for whatever your local retention period is, which you look up once and write on the card. Everything else, the bank statements, the utility bills, the receipts for things you no longer own, goes by this test: if the issuer will reprint it on request, or it already lives inside an online account, it is information, not a record, and information does not get a folder."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HOS-003",
+    "actions": [
+     "HOA-005",
+     "HOA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open filing cabinet drawer showing hanging folders with tabs all standing in one straight line, a small closed fireproof box sitting nearby holding permanent documents, a full shred bag standing by the office door, a retention card taped inside the drawer, and the cabinet visibly anchored to the wall with a strap",
+    "must_show": [
+     "Hanging folders labeled by the question you would ask",
+     "Every tab in the same position along the row",
+     "A closed fireproof box holding the permanent originals",
+     "A full shred bag standing by the door",
+     "A retention card taped inside the top drawer",
+     "The cabinet anchored to the wall"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HOZ-004",
+   "title": "BOOKSHELF AND REFERENCE ZONE",
+   "type": "ZONE CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "A BOOKEND CLOSES EVERY GROUP. A HAND'S WIDTH LEFT OVER.",
+   "objective": "Hold the reference you genuinely reach for, at the height you reach for it from.",
+   "callouts": [
+    "Working reference books at seated eye level",
+    "Heavy binders and box files on the bottom two shelves",
+    "A bookend closing each group of books",
+    "A hand's width of empty shelf at the end of every row",
+    "The unit screwed to the wall",
+    "No books stacked flat on top of the upright row"
+   ],
+   "done_looks_like": "Working reference at seated eye level from the desk chair, heavy binders and box files on the bottom two shelves, a bookend closing each group, a hand's width of empty shelf left at the end of every row, and the unit screwed to the wall.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An unanchored shelf unit standing above the desk chair, with the heaviest binders and box files loaded on the top shelf. Anchor the unit and put the weight low."
+    }
+   ],
+   "the_call": {
+    "title": "The shelf that says who you used to be",
+    "text": "The textbooks from a degree, the professional library from a job you left, the reference set that a website now answers better and faster. These are the hardest books in the house to release, because they stand for a version of you that you have not formally retired. The rule that settles it: ask when you last took it down since it arrived on this shelf, not whether you might one day. If you cannot name a specific occasion, and the book is one you could borrow or reorder inside a week, it is no longer reference, it is display, and it must now win a display slot in open competition with everything else on the shelf. Most of them will not. Appliance manuals are simpler: model still in the house, keep it; model gone, it goes today."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HOS-004",
+    "actions": [
+     "HOA-007",
+     "HOA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a bookshelf unit screwed to the wall, working reference books at seated eye level closed off by a bookend, heavy binders and box files filling the bottom two shelves, a hand's width of empty space at the end of each row, and no books stacked flat on top of the upright rows",
+    "must_show": [
+     "Working reference books at seated eye level",
+     "Heavy binders and box files on the bottom two shelves",
+     "A bookend closing each group of books",
+     "A hand's width of empty shelf at the end of every row",
+     "The unit screwed to the wall",
+     "No books stacked flat on top of the upright row"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HOZ-005",
+   "title": "PRINTER AND SCANNING STATION",
+   "type": "ZONE CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "order": 5,
+   "difficulty": 2,
+   "tagline": "A MIN LINE INSIDE THE BIN. CLEAR AIR BEHIND THE MACHINE.",
+   "objective": "Turn paper into files and files into paper, without hunting for either.",
+   "callouts": [
+    "A paper bin directly beneath the printer",
+    "A min line and a max line drawn inside the bin",
+    "One spare cartridge in a labeled box beside it",
+    "A scan tray split into a to-do side and a done side",
+    "Clear air behind the machine",
+    "Nothing sitting on top of the lid"
+   ],
+   "done_looks_like": "Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labelled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "A laser printer pushed tight against the wall or into a closed cupboard with no clearance behind it, and powered through a strip plugged into another strip. The fuser needs air and the machine needs its own wall outlet."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A plant or a water glass sitting on top of the printer lid, directly above the electronics and the paper path."
+    }
+   ],
+   "the_call": {
+    "title": "The backup printer",
+    "text": "The old printer is still in the corner, or on the floor of the cupboard, because it might be a backup. Settle it before you leave this corner today: plug it in and print a test page right now. If it prints, and you are prepared to keep a spare cartridge for it in stock, it is a backup and it gets a home. If you will not plug it in today, it is not a backup, it is a large object you have not decided about, and it goes to electronics recycling this week. Apply the same blade to the sealed cartridges: hold each box against the model number on the machine you actually use. Anything unmatched sells this week for more than it will ever be worth again, because cartridge value only falls."
+   },
+   "supplies": [
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HOS-005",
+    "actions": [
+     "HOA-009",
+     "HOA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a printer with a paper bin directly beneath it marked with a min line and a max line, a labelled box holding one spare cartridge standing beside it, a scan tray divided into a to-do side and a done side nearby, a gap of clear air behind the machine, and a completely bare top of the lid",
+    "must_show": [
+     "A paper bin directly beneath the printer",
+     "A min line and a max line drawn inside the bin",
+     "One spare cartridge in a labeled box beside it",
+     "A scan tray split into a to-do side and a done side",
+     "Clear air behind the machine",
+     "Nothing sitting on top of the lid"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HOZ-006",
+   "title": "SUPPLY CABINET",
+   "type": "ZONE CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "order": 6,
+   "difficulty": 2,
+   "tagline": "ONE OPEN PACK. ONE SPARE BEHIND IT. NOTED ON THE SHELF.",
+   "objective": "Hold the consumables this office genuinely burns through in a year, and no more.",
+   "callouts": [
+    "One open pack of each consumable at hand height",
+    "Backstock standing directly behind the open pack",
+    "Reams of paper on the bottom shelf",
+    "Min and max noted on a card at the front edge of each shelf",
+    "A step stool standing in the corner of the room",
+    "Nothing stacked above shoulder height"
+   ],
+   "done_looks_like": "One open pack of each consumable at hand height with its backstock directly behind it, reams of paper on the bottom shelf, min and max written on a card at the front edge of each shelf, and a step stool standing in the corner of the room.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Reaching the top shelf from a rolling office chair. The chair moves under you the moment you shift your weight, so bring a step stool into this room and keep it here."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Reams of paper and boxes of envelopes stored above shoulder height, where a slipping box lands on your head and shoulders while your arms are up."
+    }
+   ],
+   "the_call": {
+    "title": "The deal you got",
+    "text": "The bulk box of 500 envelopes, the multipack of sticky notes, the case of paper bought because the price was good. The genuinely hard part is that you were not wrong about the price, and admitting the surplus was a mistake feels like throwing money away twice. It is not: the money left when you bought it, and the shelf space is being paid for now. Count the true stock and divide it by your honest annual use, out loud. Six letters a year against 500 envelopes is a lifetime supply and then some. Cap it at one open plus one spare of anything you use monthly, and a single year of use for everything else. The surplus goes to a school, a charity shop, or a neighbour this week. Not to the top shelf, and not to a box in the garage."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HOS-006",
+    "actions": [
+     "HOA-011",
+     "HOA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a supply cabinet with one open pack of each consumable standing at hand height with its backstock directly behind it, reams of paper stacked on the bottom shelf, a card noting min and max at the front edge of each shelf, a step stool standing in the corner of the room, and nothing stored above shoulder height",
+    "must_show": [
+     "One open pack of each consumable at hand height",
+     "Backstock standing directly behind the open pack",
+     "Reams of paper on the bottom shelf",
+     "Min and max noted on a card at the front edge of each shelf",
+     "A step stool standing in the corner of the room",
+     "Nothing stacked above shoulder height"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HOF-001",
+   "title": "CLEAR MONDAY, COVERED BY FRIDAY",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I clear the desk and it is covered again by the end of the week.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Paper lands here because there is nowhere else to put it",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The inbox tray is never emptied, only added to",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Work from three different jobs shares one surface",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-009",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a desk surface covered edge to edge with loose papers, a coffee mug and tangled cables, barely any bare wood visible between them",
+    "must_show": [
+     "I clear the desk and it is covered again by the end of the week."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-002",
+   "title": "THE NOTE IS SOMEWHERE, LOST AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I keep losing the note I wrote down.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Notes are written on whatever sheet is nearest",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "They go on sticky notes that fall off the bezel",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "There is a notebook but it is not within arm's reach",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand searching through loose papers and sticky notes scattered across a desk, one sticky note peeling and falling off the edge of a monitor bezel",
+    "must_show": [
+     "I keep losing the note I wrote down."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-003",
+   "title": "THE CHAIR CATCHES ON SOMETHING AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The chair catches on something every time I move.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The power strip and cables have no fixing, so they lie across the floor",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Boxes are stored under the desk",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The mat is rucked where the cables cross it",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-003",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an office chair with its caster wheel snagged on a loose power cable running across the floor beside a cardboard box stored under the desk",
+    "must_show": [
+     "The chair catches on something every time I move."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-004",
+   "title": "THREE DEAD PENS BEFORE ONE WRITES",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I test three pens before I find one that writes.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Dead pens go back into the drawer instead of the bin",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Nobody feels it is their place to throw them out",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There are far more pens than this office uses",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-002",
+    "root_causes": [
+     "KC-008",
+     "RC-013",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand testing several pens on a scrap of paper, three dry unwriting scribbles beside one that has finally made a mark",
+    "must_show": [
+     "I test three pens before I find one that writes."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-005",
+   "title": "PULLING THREE FOLDERS TO FIND ONE",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I cannot find a live file without pulling several out.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The tabs are at different positions along the folder",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Files that are finished are still in the pedestal",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Folders are labelled by department, not by what I would ask",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-002",
+    "root_causes": [
+     "KC-005",
+     "KC-001",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand pulling several hanging folders partway out of a drawer, their tabs staggered at different heights making none of them easy to read at a glance",
+    "must_show": [
+     "I cannot find a live file without pulling several out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-006",
+   "title": "THE SCISSORS CAUGHT MY HAND AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I have cut myself or caught my hand in this drawer.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Scissors and blades are loose in the tray rather than point-down in their own slots",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The drawer is so full things spring up when it opens",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Nothing was ever agreed about where the sharp things live",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-007",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand reaching blindly into an open desk drawer crowded with loose pens and paperclips, a pair of scissors lying with its open blade facing upward among them",
+    "must_show": [
+     "I have cut myself or caught my hand in this drawer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-007",
+   "title": "FILED SOMEWHERE, FOUND NOWHERE",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I know the document is filed but I cannot find it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Folders are labelled by company name rather than by what I would ask",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Tabs are staggered so my eye has to zigzag",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "The same kind of paper lives in two different places",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-003",
+    "root_causes": [
+     "KC-008",
+     "KC-005",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand flipping through a drawer of hanging folders with staggered, uneven tabs, two folders labeled with a company name rather than a clear subject",
+    "must_show": [
+     "I know the document is filed but I cannot find it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-008",
+   "title": "THE TO-BE-FILED PILE KEEPS GROWING",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a pile of paper waiting to be filed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Filing takes too many steps from where the post lands",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "The drawer is too full to file into",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "I am unsure what is safe to throw out, so nothing moves",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-003",
+    "root_causes": [
+     "KC-004",
+     "KC-007",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a stack of unsorted paper piled beside a filing cabinet drawer that is packed too tightly to slide a new folder into",
+    "must_show": [
+     "There is a pile of paper waiting to be filed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-009",
+   "title": "A BANK STATEMENT WENT OUT WITH THE TRASH",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Paper with my account numbers on it goes out in the bin.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no shred bag at the point where I open the post",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The bag is full so things get binned instead",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "The shredder is stored somewhere it has to be fetched from",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-003",
+    "root_causes": [
+     "KC-002",
+     "KC-007",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a wastebasket beside a desk with a bank statement visible among ordinary rubbish, no shredder or shred bag anywhere nearby",
+    "must_show": [
+     "Paper with my account numbers on it goes out in the bin."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-010",
+   "title": "THE SHELF IS FULL BUT THE BOOK ISN'T THERE",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The shelf looks full and I still cannot find the book I want.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Books are shelved by size or colour, not by what they are for",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Reference I use is above or below comfortable seated eye level",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Books I never open take the best shelf",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-004",
+    "root_causes": [
+     "KC-005",
+     "KC-004",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a crowded bookshelf with books arranged by height and colour rather than subject, a hand scanning the spines without finding the one it is looking for",
+    "must_show": [
+     "The shelf looks full and I still cannot find the book I want."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-011",
+   "title": "THINGS ARE PILING UP ON TOP OF THE BOOKS",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Things are stacked flat on top of the upright books.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The shelves have been full for a while and nothing left",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "There is no rule for what leaves when something arrives",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Paper and folders are being stored on the book shelf",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-004",
+    "root_causes": [
+     "KC-007",
+     "KC-009",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a row of upright books on a shelf with loose folders and binders stacked flat across the top of them, no bookend or empty space visible anywhere on the shelf",
+    "must_show": [
+     "Things are stacked flat on top of the upright books."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-012",
+   "title": "THE SHELF ROCKS WHEN A BOOK COMES OUT",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The unit rocks or leans when I pull a book out.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is not fixed to the wall, and it stands on carpet or an uneven floor",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The heavy binders are on the top shelves instead of the bottom two",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The unit carries more weight than its shelves and brackets are rated for",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-004",
+    "root_causes": [
+     "KC-010",
+     "KC-003",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tall bookshelf leaning slightly away from the wall with no visible anchor strap, heavy binders loaded on its topmost shelf",
+    "must_show": [
+     "The unit rocks or leans when I pull a book out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-013",
+   "title": "OUT OF PAPER HALFWAY THROUGH THE JOB",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I run out of paper or ink mid-job.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no min line, so nobody sees low coming",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "Stock is kept somewhere else and nobody checks it",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody is named as the person who reorders",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-005",
+    "root_causes": [
+     "KC-011",
+     "KC-004",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a printer paused mid-print with an empty paper tray, no ream of backup paper visible anywhere nearby",
+    "must_show": [
+     "I run out of paper or ink mid-job."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-014",
+   "title": "THE SCANNED PILE NEVER GETS SMALLER",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Scanned paper piles up beside the machine.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is one tray with no to-do and done sides",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There is no regular slot when scanning gets done",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Scanned sheets have nowhere to go afterwards",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-005",
+    "root_causes": [
+     "KC-005",
+     "KC-009",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single messy stack of paper sitting beside a scanner with no visible division between what has been scanned and what has not",
+    "must_show": [
+     "Scanned paper piles up beside the machine."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-015",
+   "title": "THE PAPER KEEPS COMING OUT CURLED",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The printer jams or the paper comes out curled.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Things are stored on top of and behind the machine",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Paper has no proper home, so it sits somewhere damp or in direct sun",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The rollers and paper path have never been cleaned",
+     "root_cause": "RC-016"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-005",
+    "root_causes": [
+     "KC-003",
+     "KC-002",
+     "RC-016"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a sheet of curled, jammed paper caught halfway out of a printer's feed tray, a box stored directly on top of the machine's lid",
+    "must_show": [
+     "The printer jams or the paper comes out curled."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-016",
+   "title": "THREE PACKS OF THE SAME THING, AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I buy something and find three of it at home.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Backstock is stored where the open pack cannot be seen",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There is no max written down for anything",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Supplies are split across several rooms",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-006",
+    "root_causes": [
+     "KC-005",
+     "KC-008",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "three identical unopened packs of sticky notes standing side by side on a cluttered shelf, one open pack tucked out of sight behind them",
+    "must_show": [
+     "I buy something and find three of it at home."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-017",
+   "title": "OUT OF STAPLES WITH NO WARNING AT ALL",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "We run out of something with no warning.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing shows a min line to reorder at",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "The last person to take it does not tell anyone",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The list to add to is not where the supplies are",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-006",
+    "root_causes": [
+     "KC-011",
+     "RC-013",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an empty stapler beside a bare shelf slot with no backstock and no card marking a min line anywhere nearby",
+    "must_show": [
+     "We run out of something with no warning."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HOF-018",
+   "title": "REACHING THE TOP SHELF ON A ROLLING CHAIR",
+   "type": "FRICTION CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Reaching into this cabinet is awkward or unsafe.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Reams of paper are stored above shoulder height",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The step stool lives in another room, so a chair gets stood on instead",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Shelves are so deep things get lost at the back",
+     "root_cause": "KC-006"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your home office, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HOZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-003",
+     "KC-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a person's foot balanced on the seat of a rolling office chair, reaching up toward a heavy box on the top shelf of a supply cabinet with no step stool in sight",
+    "must_show": [
+     "Reaching into this cabinet is awkward or unsafe."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-001",
+     "HOF-004",
+     "HOF-005",
+     "HOF-010"
+    ],
+    "actions": [
+     "HOA-004",
+     "HOA-008",
+     "HOA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shelf crowded with far more identical pens or notebooks than one desk could ever use",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-001",
+     "HOF-002",
+     "HOF-003",
+     "HOF-007",
+     "HOF-009",
+     "HOF-011",
+     "HOF-014",
+     "HOF-015",
+     "HOF-016"
+    ],
+    "actions": [
+     "HOA-001",
+     "HOA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a loose cable and a notepad lying on a desk with no drawer, tray or hook anywhere near them",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-003",
+     "HOF-012",
+     "HOF-015",
+     "HOF-018"
+    ],
+    "actions": [
+     "HOA-007",
+     "HOA-010",
+     "HOA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of cardboard boxes stored directly under a desk where a chair needs to roll",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-002",
+     "HOF-008",
+     "HOF-009",
+     "HOF-010",
+     "HOF-013",
+     "HOF-017"
+    ],
+    "actions": [
+     "HOA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a notebook sitting on a shelf across the room, out of arm's reach from the desk chair",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-005",
+     "HOF-007",
+     "HOF-010",
+     "HOF-014",
+     "HOF-016"
+    ],
+    "actions": [
+     "HOA-005",
+     "HOA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a row of hanging file folders with tabs staggered at different heights, one folder's tab hidden behind another",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-018"
+    ],
+    "actions": [
+     "HOA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a supply shelf set deep enough that a hand reaching in cannot see or feel what is at the back",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-006",
+     "HOF-008",
+     "HOF-009",
+     "HOF-011",
+     "HOF-012"
+    ],
+    "actions": [
+     "HOA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a drawer stuffed so full that a folder springs up the moment the drawer opens",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-002",
+     "HOF-004",
+     "HOF-005",
+     "HOF-006",
+     "HOF-007",
+     "HOF-016"
+    ],
+    "actions": [
+     "HOA-002",
+     "HOA-003",
+     "HOA-005",
+     "HOA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "one drawer holding pens, paper clips and tape all mixed with no divider between them",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-001",
+     "HOF-011",
+     "HOF-014"
+    ],
+    "actions": [
+     "HOA-001",
+     "HOA-008",
+     "HOA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an inbox tray stacked well past a dozen sheets, no calendar or clock nearby marking when it was last cleared",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-003",
+     "HOF-006",
+     "HOF-012",
+     "HOF-018"
+    ],
+    "actions": [
+     "HOA-003",
+     "HOA-007",
+     "HOA-012",
+     "HOA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a pair of scissors lying blade-up and loose in an open desk drawer",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-013",
+     "HOF-017"
+    ],
+    "actions": [
+     "HOA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty box of paper clips sitting back on the shelf where a full one used to be",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-004",
+     "HOF-013",
+     "HOF-017"
+    ],
+    "actions": [
+     "HOA-004",
+     "HOA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty printer paper bin standing untouched with nobody nearby to refill it",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-008"
+    ],
+    "actions": [
+     "HOA-002",
+     "HOA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single loose sheet of paper sitting alone on an otherwise cleared desk corner",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HOF-015"
+    ],
+    "actions": [
+     "HOA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching behind a printer into a narrow gap tight against the wall",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "HOA-001",
+   "title": "CLEAR THE DESK AND HOOK THE STRIP UP",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the desk down to the monitor, keyboard and mouse, and get the power strip off the floor.",
+   "why_it_matters": "Paper with no other place to land is why this desk fills back up by the end of the week, and a power strip on the floor is what the chair catches on every time.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing beyond fifteen minutes and the inbox tray"
+   ],
+   "steps": [
+    "Take everything off the desk except the monitor, keyboard and mouse. Put the loose paper into the inbox tray, give every sheet in it a verdict until it is under a dozen, and hook the power strip up off the floor.",
+    "Set the notebook on your writing-hand side and the phone face down beyond it.",
+    "Check the sweep the mouse travels is left completely bare."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-009"
+    ],
+    "zone": "HOZ-001",
+    "standard": "HOS-001"
+   },
+   "victory_condition": "One notebook and one tray under a dozen sheets, and the chair rolls the width of the desk without catching.",
+   "next_card": "HOS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a desk with only the monitor, keyboard and mouse on it, a notebook and a small inbox tray beside it holding fewer than a dozen sheets, and a power strip hooked onto the desk leg clear of the floor",
+    "must_show": [
+     "One notebook and one tray under a dozen sheets, and the chair rolls the width of the desk without catching."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-002",
+   "title": "PHOTOGRAPH THE CLEARED DESK",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Photograph the cleared desk, tape the print inside the drawer, and settle the half-finished project sitting in the corner.",
+   "why_it_matters": "A surface with no photographed standard drifts back to full by familiarity alone, not volume, and a project you cannot name a next action for is not stalled, it is abandoned.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a phone or camera",
+    "a printer or tape for the photo",
+    "an index card"
+   ],
+   "steps": [
+    "Clear the desk completely and photograph it.",
+    "Tape the printed photo inside the top drawer so the word clear stops being a matter of opinion.",
+    "Say the half-finished project's next physical action out loud in one sentence; if you can name it, write it on a card and clip it into the inbox tray.",
+    "If you cannot name a next action, box the project, mark today's date on the lid, and put it on the shelf."
+   ],
+   "root_causes": [
+    "KC-008",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "RC-015"
+    ],
+    "zone": "HOZ-001",
+    "standard": "HOS-001"
+   },
+   "victory_condition": "A taped photo of the bare desk hangs inside the drawer, and the half-finished project either carries a named next action or sits boxed and dated on the shelf.",
+   "next_card": "HOA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a photograph of a bare desk taped inside an open desk drawer, a small labelled box with a dated marking on its lid sitting on a shelf nearby",
+    "must_show": [
+     "A taped photo of the bare desk hangs inside the drawer, and the half-finished project either carries a named next action or sits boxed and dated on the shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-003",
+   "title": "TEST THE PENS AND SLOT THE SCISSORS",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the top drawer, test every pen, and give the scissors a fixed point-down slot.",
+   "why_it_matters": "A drawer you reach into without looking is the wrong place for a loose blade, and a dead pen that goes back in the drawer is a decision deferred, not avoided.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "scrap paper",
+    "the divided tray"
+   ],
+   "steps": [
+    "Empty the top drawer, test every pen on a scrap and bin the ones that skip, then put back only what writes into a divided tray with the scissors point-down in their own slot.",
+    "Wipe the tray before anything goes back into it.",
+    "Confirm the stapler sits in the tray, not riding on top of any folder."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-010"
+    ],
+    "zone": "HOZ-002",
+    "standard": "HOS-002"
+   },
+   "victory_condition": "Every pen in the drawer writes first time, and the scissors have a slot of their own.",
+   "next_card": "HOS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an open desk drawer with a divided tray holding only pens that write, a stapler in its own compartment, and scissors resting point-down in a dedicated slot",
+    "must_show": [
+     "Every pen in the drawer writes first time, and the scissors have a slot of their own."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-004",
+   "title": "EMPTY THE CABLE BAG",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Empty the whole bag of loose cables and adapters onto the desk, name each device, and keep one spare of each connector you actually use.",
+   "why_it_matters": "A drawer full of cables too cheap to think about and too specific to throw away only clears when the whole bag is judged at once, not one cable at a time.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "the cable bag",
+    "a labelled small box for the kept spares",
+    "a bag for electronics recycling"
+   ],
+   "steps": [
+    "Empty the whole cable bag onto the cleared desk in one go.",
+    "Pick up each cable and adapter and point at the device it powers, physically, somewhere in this house.",
+    "Anything with no device gets no keep: it goes straight into the recycling bag.",
+    "Coil and band exactly one spare of each connector type you still use daily, and box the rest for electronics recycling this week."
+   ],
+   "root_causes": [
+    "KC-001",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "RC-013"
+    ],
+    "zone": "HOZ-002",
+    "standard": "HOS-002"
+   },
+   "victory_condition": "One labelled box holds exactly one spare of each connector type still in daily use, and everything else is boxed for electronics recycling.",
+   "next_card": "HOA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a small labelled box holding one coiled spare of each cable connector type, a bag of surplus adapters set aside for electronics recycling nearby",
+    "must_show": [
+     "One labelled box holds exactly one spare of each connector type still in daily use, and everything else is boxed for electronics recycling."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-005",
+   "title": "RELABEL ONE DRAWER BY THE QUESTION",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Relabel one drawer's folders by the question you would ask, and line up every tab.",
+   "why_it_matters": "Nobody has ever gone looking for a folder called Correspondence, and a staggered row of tabs makes your eye zigzag instead of run straight down the line.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "blank tab inserts or a marker",
+    "the shred bag"
+   ],
+   "steps": [
+    "Take one drawer. Relabel each folder with the question you would ask when looking for it, set every tab in the same position, and shred the statements you could download again.",
+    "Check the drawer closes without pressure once the tabs are aligned.",
+    "Carry anything shredded straight to the bag by the door."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-005"
+    ],
+    "zone": "HOZ-003",
+    "standard": "HOS-003"
+   },
+   "victory_condition": "One drawer where the tabs read down in a single line, and it closes without pressure.",
+   "next_card": "HOS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an open filing cabinet drawer with folder tabs relabelled and standing in a single straight line, the drawer closing easily with room to spare",
+    "must_show": [
+     "One drawer where the tabs read down in a single line, and it closes without pressure."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-006",
+   "title": "SORT INTO KEEP, SCAN, SHRED",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Work the backlog pile into three piles by rule, and get the retention card written.",
+   "why_it_matters": "The middle band, neither obviously permanent nor obviously rubbish, is why this job stalls; a rule applied once settles the whole pile instead of one sheet at a time.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "the shred bag",
+    "a scanner if you keep digital copies",
+    "an index card for the retention rule"
+   ],
+   "steps": [
+    "Work one drawer at a time into three piles: keep as paper, scan then shred, shred now.",
+    "Move permanent originals into a closed fireproof box, never the filing cabinet.",
+    "Write your retention rule on a card and tape it inside the top drawer.",
+    "Carry the finished shred pile straight to the bag by the door."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-007"
+    ],
+    "zone": "HOZ-003",
+    "standard": "HOS-003"
+   },
+   "victory_condition": "Every sheet from the drawer sits in one of three piles, permanent originals are in the fireproof box, and the retention card is taped inside the drawer.",
+   "next_card": "HOA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "three piles of paper on a desk marked by role, keep, scan, and shred, a small fireproof box standing to one side and a retention card visible taped inside an open drawer",
+    "must_show": [
+     "Every sheet from the drawer sits in one of three piles, permanent originals are in the fireproof box, and the retention card is taped inside the drawer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-007",
+   "title": "MOVE THE WEIGHT DOWN AND ANCHOR THE SHELF",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Move the heaviest binders down, bring real reference to eye level, and confirm the wall fixing.",
+   "why_it_matters": "An unanchored shelf loaded heavy at the top is a fall risk the moment you pull the wrong book, and reference you cannot reach without standing is reference you stop using.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a wall anchor kit if none is fitted",
+    "a step stool"
+   ],
+   "steps": [
+    "Move every heavy binder to the bottom two shelves, bring the reference you actually open to seated eye level, then check the wall fixing and fit one if it is missing.",
+    "Close each group with a bookend.",
+    "Confirm a hand's width of empty shelf remains at the end of every row."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-010"
+    ],
+    "zone": "HOZ-004",
+    "standard": "HOS-004"
+   },
+   "victory_condition": "The heaviest things are lowest, the unit does not move when you pull a book, and every row ends in a hand's width of space.",
+   "next_card": "HOS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bookshelf with heavy binders moved to the bottom two shelves, working reference books at seated eye level closed off with a bookend, and a visible wall anchor strap securing the top of the unit",
+    "must_show": [
+     "The heaviest things are lowest, the unit does not move when you pull a book, and every row ends in a hand's width of space."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-008",
+   "title": "THIN ONE GROUP BY THE LAST-TAKEN-DOWN TEST",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "For one group of books, name the last time each was taken down, and remove anything that fails the test.",
+   "why_it_matters": "A book that stands for who you used to be is the hardest to release, and the shelf only stays a working shelf if reference wins its place in open competition with everything else on it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a box for books leaving the house",
+    "nothing else beyond thirty minutes"
+   ],
+   "steps": [
+    "Pick one group of books on the shelf.",
+    "For each one, name out loud a specific occasion you last took it down; if you cannot, it is display, not reference.",
+    "Box anything that fails the test for donation or resale.",
+    "Confirm a hand's width of empty shelf remains once the group is thinned."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-009"
+    ],
+    "zone": "HOZ-004",
+    "standard": "HOS-004"
+   },
+   "victory_condition": "Every book in the group has a named reason for staying, and a hand's width of shelf is free at the end of the row.",
+   "next_card": "HOA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a bookshelf group with several books removed and boxed for donation, the remaining books standing with clear space at the end of the row",
+    "must_show": [
+     "Every book in the group has a named reason for staying, and a hand's width of shelf is free at the end of the row."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-009",
+   "title": "DRAW THE MIN LINE AND CLEAR THE VENTS",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the space around the printer and mark a min and max line on the paper bin.",
+   "why_it_matters": "A printer with no clear air behind it and no visible paper level is how this room runs out mid-job and overheats at the same time.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "nothing else beyond fifteen minutes"
+   ],
+   "steps": [
+    "Clear the top of and the space behind the printer, draw a min line and a max line on the paper bin, and split the scan tray into a to-do side and a done side.",
+    "Move anything sitting on top of the lid off it for good.",
+    "Confirm the printer plugs straight into a wall outlet, not a strip chained off another strip."
+   ],
+   "root_causes": [
+    "KC-011",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "KC-002"
+    ],
+    "zone": "HOZ-005",
+    "standard": "HOS-005"
+   },
+   "victory_condition": "Air behind the machine, a paper level anyone can read at a glance, and a scan tray that says what still needs doing.",
+   "next_card": "HOS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a printer with a paper bin marked with a min line and a max line beneath it, clear space visible behind the machine, and a scan tray split into a to-do side and a done side",
+    "must_show": [
+     "Air behind the machine, a paper level anyone can read at a glance, and a scan tray that says what still needs doing."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-010",
+   "title": "SETTLE THE BACKUP PRINTER AND MATCH THE CARTRIDGES",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Test the spare printer for real, decide backup or recycle, and match every cartridge box to the machine you actually use.",
+   "why_it_matters": "An unplugged spare printer is a large object you have not decided about, not a backup, and an unmatched cartridge only loses value the longer it sits.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "the spare printer",
+    "its power cable",
+    "a marker to note the model on kept cartridge boxes"
+   ],
+   "steps": [
+    "Plug in the spare printer and print a test page right now.",
+    "If it prints and you will stock a spare cartridge for it, give it a real home; if not, box it for electronics recycling this week.",
+    "Hold every sealed cartridge box against the model number on the machine you actually use.",
+    "Sell or recycle any cartridge that does not match."
+   ],
+   "root_causes": [
+    "RC-013",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "KC-003"
+    ],
+    "zone": "HOZ-005",
+    "standard": "HOS-005"
+   },
+   "victory_condition": "The spare printer either has a real home with a named spare cartridge or is boxed for recycling, and every kept cartridge matches the machine on the desk.",
+   "next_card": "HOA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a spare printer either freshly settled onto a shelf with a printed test page beside it or boxed for recycling, a small stack of cartridge boxes matched against a printer's visible model number",
+    "must_show": [
+     "The spare printer either has a real home with a named spare cartridge or is boxed for recycling, and every kept cartridge matches the machine on the desk."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-011",
+   "title": "CONSOLIDATE TO ONE OPEN PACK EACH",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Bring every consumable together and consolidate to one open pack of each at hand height.",
+   "why_it_matters": "A dozen packs of sticky notes look like nothing until they stand side by side, and backstock nobody can see is backstock that gets bought again.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a card and marker for the min/max note"
+   ],
+   "steps": [
+    "Bring every consumable together, move reams to the bottom shelf, put one open pack of each at hand height with its backstock directly behind, and write min and max on a card inside the door.",
+    "Line up the true count of each item where you can see it before deciding what stays.",
+    "Recycle dried glue sticks, dead markers and cracked folders now."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-008"
+    ],
+    "zone": "HOZ-006",
+    "standard": "HOS-006"
+   },
+   "victory_condition": "One open pack of each thing visible at hand height, nothing heavy above your shoulder, and a card that says when to buy.",
+   "next_card": "HOS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a supply cabinet shelf with one open pack of each consumable at hand height, its backstock lined up directly behind it, and a card marked with min and max lines taped inside the door",
+    "must_show": [
+     "One open pack of each thing visible at hand height, nothing heavy above your shoulder, and a card that says when to buy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-012",
+   "title": "MOVE THE WEIGHT DOWN AND BRING IN THE STOOL",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move reams and heavy boxes below shoulder height, and put a real step stool in this room.",
+   "why_it_matters": "A rolling chair is not a ladder, and a slipping box from a shoulder-height shelf lands on your head while your arms are already up.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a step stool",
+    "nothing else beyond thirty minutes"
+   ],
+   "steps": [
+    "Move every ream of paper and heavy box down to the bottom shelf.",
+    "Bring an actual step stool into this room and leave it standing in the corner.",
+    "Confirm nothing heavier than light supplies sits above shoulder height.",
+    "Check the deepest shelf for anything lost at the back now that reach is easier."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-006"
+    ],
+    "zone": "HOZ-006",
+    "standard": "HOS-006"
+   },
+   "victory_condition": "A step stool stands in the corner, and nothing heavier than light supplies sits above shoulder height.",
+   "next_card": "HOA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a step stool standing in the corner of a supply room, heavy reams of paper stacked on the bottom shelf, and only light supplies visible above shoulder height",
+    "must_show": [
+     "A step stool stands in the corner, and nothing heavier than light supplies sits above shoulder height."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-013",
+   "title": "FOLLOW ONE PIECE OF PAPER FROM DOOR TO DRAWER",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Pick one real piece of paper that arrived today and walk it through every decision point in this room until it lands in a folder or the bin.",
+   "why_it_matters": "This room's whole job is unmade decisions about paper living in one drawer, and no single zone can be judged in isolation from the others it feeds.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "one real piece of paper that arrived today"
+   ],
+   "steps": [
+    "Pick up the newest piece of paper that arrived in this room today.",
+    "Give it a verdict at the desk: act, file, or recycle, the same test the inbox tray uses.",
+    "If it needs filing, carry it straight to the cabinet and give it a folder named for the question you would ask.",
+    "If a step along the way stalled, note which zone stalled it: that zone is today's real job, not this one."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "The one piece of paper reaches a folder or the bin, and you can name which zone, if any, slowed it down.",
+   "next_card": "HOA-014",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a single sheet of paper being carried from a desk inbox tray directly to a labelled folder in an open filing cabinet drawer, no other paper visible along the way",
+    "must_show": [
+     "The one piece of paper reaches a folder or the bin, and you can name which zone, if any, slowed it down."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-014",
+   "title": "THE HOLDING PEN SWEEP",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the whole room and carry out anything that is not actually office work.",
+   "why_it_matters": "This is the room with a door that closes, so it quietly becomes the household's holding pen, and anything that is not office work becomes permanent furniture if it stays past today.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing beyond fifteen minutes and somewhere else in the house to carry things to"
+   ],
+   "steps": [
+    "Walk every surface and the floor, and name each object: office work, or not.",
+    "Carry anything that is not office work to the room it actually belongs in, right now.",
+    "If nothing else in the house claims it, box it for donation rather than setting it back down here."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-003"
+    ]
+   },
+   "victory_condition": "Every object left in the room is genuinely office work.",
+   "next_card": "HOA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a home office with a broken lamp, an unopened moving box and a bag of miscellaneous items being carried out through the open door, the room behind them holding only office furniture",
+    "must_show": [
+     "Every object left in the room is genuinely office work."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOA-015",
+   "title": "THE QUARTERLY REACH-BEHIND CLEAN AND SAFETY WALK",
+   "type": "ACTION CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Clean the spots this room hides behind its furniture, and walk it once checking for the four things that hurt people here.",
+   "why_it_matters": "Dust settles behind the printer and the bookshelf where nobody looks, and water, electricity, a fall and a tipping cabinet are the four risks in this room that only show up if you look on purpose.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond thirty minutes and a working set of hands"
+   ],
+   "steps": [
+    "Ease the printer, the bookshelf and the filing cabinet out or reach behind each with the crevice tool, and clear the dust and any stray paper.",
+    "Check every charger cable and the power strip for a frayed lead or a cable crossing where the chair rolls.",
+    "Check the filing cabinet and bookshelf are both anchored, and that nothing heavy sits above head height on either.",
+    "Check the scissors and letter opener sit point-down in their own slot, and that the printer has clear air behind it.",
+    "Fix anything you find right there, or write it on a card in the inbox tray if it needs a tool you do not have to hand."
+   ],
+   "root_causes": [
+    "RC-016",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-016",
+     "KC-010"
+    ]
+   },
+   "victory_condition": "You can name, out loud, that behind the printer, behind the bookshelf, the cables, the cabinets and the sharp tools have each been checked today.",
+   "next_card": "HOA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand reaching behind a printer with a crevice tool attachment, a filing cabinet visibly anchored to the wall further along the same room, a charger cable being checked near a power strip",
+    "must_show": [
+     "You can name, out loud, that behind the printer, behind the bookshelf, the cables, the cabinets and the sharp tools have each been checked today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HOS-001",
+   "title": "PRIMARY DESK STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Home Office",
+   "zone": "Primary Desk",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The desk holds the tools of the current task plus one inbox tray, and nothing else stays there overnight.",
+   "trigger": "When you close the laptop lid for the day.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count the sheets in your inbox tray right now, and if it is more than a dozen, give the top three a verdict before you stand up.",
+    "Peel every sticky note off the monitor bezel and either act on it now or copy it into the notebook.",
+    "Check the power strip is still hooked on the desk leg, and coil any cable that crosses where the chair rolls."
+   ],
+   "related": {
+    "zone": "HOZ-001",
+    "actions": [
+     "HOA-001",
+     "HOA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a desk with a monitor, keyboard and mouse in fixed positions, one notebook beside the keyboard, a single inbox tray holding a small stack of fewer than a dozen sheets, a bare monitor bezel with no sticky notes, a power strip hooked onto the desk leg off the floor, and bare carpet visible in the arc where a chair would roll, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HOS-002",
+   "title": "DESK DRAWERS AND PEDESTAL STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Home Office",
+   "zone": "Desk Drawers and Pedestal",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One purpose per drawer, every pen in it writes, and the scissors live point-down in a fixed slot.",
+   "trigger": "When you sit down to pay the bills.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Pull three pens from the tray at random and test each on scrap paper, binning any that skip.",
+    "Check the scissors sit point-down in their own slot, not loose among the pens.",
+    "Run your finger along the hanging file tabs and nudge any that sit out of line back into place."
+   ],
+   "related": {
+    "zone": "HOZ-002",
+    "actions": [
+     "HOA-003",
+     "HOA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open desk drawer showing a divided tray holding pens, one stapler, and scissors resting point-down in their own slot, beside a deep pedestal drawer of hanging files with every tab standing at the same height in one line, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HOS-003",
+   "title": "FILE STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Home Office",
+   "zone": "File Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every folder is named for the question you would ask when looking for it, and the retention card taped inside the drawer decides what stays.",
+   "trigger": "When next year's tax paperwork lands on the desk.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Pull one folder and read its label out loud: if it names a company instead of a question, rename it now.",
+    "Check the shred bag by the door; if it is full, carry it out before you sit back down.",
+    "Open the fireproof box and confirm it still closes flush over what is inside."
+   ],
+   "related": {
+    "zone": "HOZ-003",
+    "actions": [
+     "HOA-005",
+     "HOA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open filing cabinet drawer showing hanging folders with tabs all standing in one straight line, a small closed fireproof box sitting nearby holding permanent documents, a full shred bag standing by the office door, a retention card taped inside the drawer, and the cabinet visibly anchored to the wall with a strap, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HOS-004",
+   "title": "BOOKSHELF AND REFERENCE ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Home Office",
+   "zone": "Bookshelf and Reference Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every shelf keeps a hand's width of empty space, and heavy binders and box files never live above head height.",
+   "trigger": "When you finish a book or close out a project binder.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run your hand along one shelf's end and confirm a hand's width of empty space is still there.",
+    "Pick one book you have not opened in a year and name out loud the last time you actually used it.",
+    "Give the shelf unit a gentle push and confirm it does not rock or lean away from the wall."
+   ],
+   "related": {
+    "zone": "HOZ-004",
+    "actions": [
+     "HOA-007",
+     "HOA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a bookshelf unit screwed to the wall, working reference books at seated eye level closed off by a bookend, heavy binders and box files filling the bottom two shelves, a hand's width of empty space at the end of each row, and no books stacked flat on top of the upright rows, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HOS-005",
+   "title": "PRINTER AND SCANNING STATION STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Home Office",
+   "zone": "Printer and Scanning Station",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Only cartridges matching the printer on the desk are stocked, the paper bin carries a min line, and the top of the machine stays bare.",
+   "trigger": "When you take the last sheet out of the paper bin.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Check the paper bin against its min line, and add paper to today's list if it is close.",
+    "Move anything sitting on top of the printer lid off it, right now.",
+    "Sort the scan tray into its to-do side and its done side before you leave the room."
+   ],
+   "related": {
+    "zone": "HOZ-005",
+    "actions": [
+     "HOA-009",
+     "HOA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a printer with a paper bin directly beneath it marked with a min line and a max line, a labelled box holding one spare cartridge standing beside it, a scan tray divided into a to-do side and a done side nearby, a gap of clear air behind the machine, and a completely bare top of the lid, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HOS-006",
+   "title": "SUPPLY CABINET STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Home Office",
+   "zone": "Supply Cabinet",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One open plus one spare of anything used monthly, with min and max written on a card at the front of every shelf.",
+   "trigger": "When you open the last pack of something.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count the open packs of one consumable; if more than one is open at a time, close and shelve the spare.",
+    "Check the min and max card on one shelf still matches what is actually sitting there.",
+    "Confirm the step stool is standing in its corner, not a chair being used in its place."
+   ],
+   "related": {
+    "zone": "HOZ-006",
+    "actions": [
+     "HOA-011",
+     "HOA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a supply cabinet with one open pack of each consumable standing at hand height with its backstock directly behind it, reams of paper stacked on the bottom shelf, a card noting min and max at the front edge of each shelf, a step stool standing in the corner of the room, and nothing stored above shoulder height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HOE-001",
+   "title": "THE DEADLINE ALL-NIGHTER",
+   "type": "EVENT CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A deadline lands and you need the desk and every drawer tool ready for six straight hours of work, starting now.",
+   "tests_zones": [
+    "HOZ-001",
+    "HOZ-002"
+   ],
+   "held_if": "The desk is already clear enough to spread out on, and the first pen you grab writes.",
+   "if_it_failed": "If you had to clear clutter or hunt for a working pen before you could start, the everyday reset was not being kept. Draw HOA-001 or HOA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HOZ-001",
+     "HOZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a desk cleared and ready for a long work session, a pen resting on an open notebook beside a keyboard, a lamp lit against a darkening window",
+    "must_show": [
+     "A deadline lands and you need the desk and every drawer tool ready for six straight hours of work, starting now."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "HOE-002",
+   "title": "THE TAX SEASON ENVELOPE",
+   "type": "EVENT CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "This year's tax documents arrive in the post and need a folder, a shred decision, and a place in the cabinet the same afternoon.",
+   "tests_zones": [
+    "HOZ-003"
+   ],
+   "held_if": "The new folder slots straight in at the front of this year's tabs, and the oldest year past your retention period comes out to be shredded the same day.",
+   "if_it_failed": "If the drawer would not close for the new folder, the retention pass has not been run. Draw HOA-005 or HOA-006.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HOZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a new folder of tax documents being slotted into a filing cabinet drawer with clearly labelled tabs, an older folder pulled out beside a shred bag",
+    "must_show": [
+     "This year's tax documents arrive in the post and need a folder, a shred decision, and a place in the cabinet the same afternoon."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "HOE-003",
+   "title": "THE SCHOOL PROJECT RESEARCH NIGHT",
+   "type": "EVENT CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A child needs three reference books from the shelf for a project due tomorrow, and needs to find them without help.",
+   "tests_zones": [
+    "HOZ-004"
+   ],
+   "held_if": "The right books sit at an eye level a child can actually reach and read the spines of, grouped by subject.",
+   "if_it_failed": "If a book had to be hunted for on a stool or was not there at all, the shelf is not grouped by why it gets used. Draw HOA-007 or HOA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HOZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a child's hand pulling a reference book from a shelf at their own eye level, the spines around it clearly grouped by subject",
+    "must_show": [
+     "A child needs three reference books from the shelf for a project due tomorrow, and needs to find them without help."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "HOE-004",
+   "title": "THE LAST-MINUTE PRINTING RUN",
+   "type": "EVENT CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Fifty pages need to print and scan back in within the hour, right before you have to leave the house.",
+   "tests_zones": [
+    "HOZ-005"
+   ],
+   "held_if": "The paper bin has enough stock to finish the job, and the finished scans land on the done side of the tray without a pause to sort them.",
+   "if_it_failed": "If you ran out of paper mid-job or the scan tray had no clear done side, the everyday reset was not being kept. Draw HOA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HOZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a printer running continuously with a full paper bin beneath it, a stack of finished scans sitting on the clearly marked done side of a nearby tray",
+    "must_show": [
+     "Fifty pages need to print and scan back in within the hour, right before you have to leave the house."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "HOE-005",
+   "title": "THE OFFICE SUPPLY RUN YOU ALMOST SKIPPED",
+   "type": "EVENT CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You are about to leave for the shop and need to know, in ten seconds, exactly what this room is actually low on.",
+   "tests_zones": [
+    "HOZ-006"
+   ],
+   "held_if": "The min and max cards on the shelf edges answer the question without opening a single box.",
+   "if_it_failed": "If you had to open boxes to find out what was low, the cards were not being kept current. Draw HOA-011.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HOZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand scanning a supply cabinet shelf edge where cards marked with min and max lines are clearly visible, no box needing to be opened",
+    "must_show": [
+     "You are about to leave for the shop and need to know, in ten seconds, exactly what this room is actually low on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "HOE-006",
+   "title": "THE DOOR-CLOSES-ON-IT WEEKEND",
+   "type": "EVENT CARD",
+   "room": "Home Office",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Nobody has been in this room in two weeks because the door stayed shut, and a guest is coming through the house this weekend.",
+   "tests_zones": [
+    "HOZ-001",
+    "HOZ-006"
+   ],
+   "held_if": "Nothing that is not office work has collected in the room, and the desk is still in its photographed state.",
+   "if_it_failed": "If a holding-pen item had crept in, or the desk had drifted from its photo, the room's own trap caught you. Draw HOA-014 or HOA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HOZ-001",
+     "HOZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a home office door standing open onto a tidy room with nothing but office furniture and supplies visible, a cleared desk matching a small taped photo inside its drawer",
+    "must_show": [
+     "Nobody has been in this room in two weeks because the door stayed shut, and a guest is coming through the house this weekend."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  }
+ ]
+}

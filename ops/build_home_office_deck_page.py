@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-Build the page that ships the Laundry Room deck: 67 cards, typeset, built
+Build the page that ships the Home Office deck: 66 cards, typeset, built
 straight off content.json's real six zones.
 
 WHY THIS FILE EXISTS
 ---------------------
-BACKLOG-2026-09-07.md B9, the third room built this way after Kitchen and
-Entryway. Unlike Entryway, there is no old, mismatched free Laundry deck to
-disclose against: no free Laundry product exists on the site yet, so this
-page is the first, at its own URL. This file mirrors
-ops/build_entryway_deck_page.py function for function, and imports the same
-shared, room-agnostic rendering helpers (`esc`, `band`, `art_panel`,
+BACKLOG-2026-09-07.md B9, the fourth room built this way after Kitchen,
+Entryway and Laundry Room. Like Laundry Room, there is no old, mismatched
+free Home Office deck to disclose against: no free Home Office product
+exists on the site yet, so this page is the first, at its own URL. This
+file mirrors ops/build_laundry_room_deck_page.py function for function, and
+imports the same shared, room-agnostic rendering helpers (`esc`, `band`,
 `card_html`, `print_tile`, the CSS) rather than forking a second copy of
 logic that has nothing room-specific in it.
 
-Run:  python ops/build_laundry_room_deck_page.py
-Out:  site/laundry-room-deck.html
+Run:  python ops/build_home_office_deck_page.py
+Out:  site/home-office-deck.html
 """
 from __future__ import annotations
 
@@ -29,20 +29,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
 
-import build_laundry_room_deck as LD                                  # noqa: E402
+import build_home_office_deck as HD                              # noqa: E402
 # Shared, room-agnostic rendering helpers: none of these read anything
 # Kitchen-specific, they read only the card dict shape every generator
 # here produces (id/type/title/tagline/...), so they are imported rather
-# than forked a third time.
+# than forked a fourth time.
 from build_kitchen_deck_page import (                            # noqa: E402
     esc, num_word as _num_word, colours, band,
     card_html, print_tile, CSS, UMAMI,
 )
 
 SITE = os.path.join(ROOT, "site")
-OUT = os.path.join(SITE, "laundry-room-deck.html")
+OUT = os.path.join(SITE, "home-office-deck.html")
 
-ZONE_ORDER = LD.ZONE_ORDER
+ZONE_ORDER = HD.ZONE_ORDER
 
 TYPE_LABEL = {
     "ROOM CARD": "Room", "ZONE CARD": "Zone", "FRICTION CARD": "Friction",
@@ -82,7 +82,7 @@ def build_body(deck: dict) -> str:
     whole = [c for c in cards
              if c["type"] == "ACTION CARD" and not c.get("zone")]
 
-    parts = [f'<section class="kzone kzone-room"><h2>The Laundry Room</h2>'
+    parts = [f'<section class="kzone kzone-room"><h2>The Home Office</h2>'
               f'{card_html(room, by_id)}</section>']
     for name in ZONE_ORDER:
         block = [f'<section class="kzone"><h2>{esc(name)}</h2>',
@@ -102,26 +102,27 @@ def build_body(deck: dict) -> str:
     # Names what the three whole-room cards are about, not just how many: a
     # count alone cannot prove the naming below still matches.
     whole_ids = [c["id"] for c in whole]
-    assert whole_ids == ["LRA-013", "LRA-014", "LRA-015"], (
-        "whole-room action cards changed (%s); the 'safety walk/fetch "
-        "test/name who runs laundry day' sentence in build_body() no "
-        "longer describes the real three and must be rewritten by hand"
-        % whole_ids)
+    assert whole_ids == ["HOA-013", "HOA-014", "HOA-015"], (
+        "whole-room action cards changed (%s); the 'follow one piece of "
+        "paper/holding pen sweep/reach-behind safety walk' sentence in "
+        "build_body() no longer describes the real three and must be "
+        "rewritten by hand" % whole_ids)
     parts.append('<section class="kzone"><h2>Whole room</h2>'
                   f'<p class="klead-p">{num_word(len(whole))} cards that '
-                  'are not one zone’s job: the full safety walk through '
-                  'the duct, the hoses and the chemicals, the five '
-                  'minute fetch test for excess motion, and naming who '
-                  'actually runs laundry day.</p>'
+                  'are not one zone’s job: following one real piece of '
+                  'paper from the door to a folder, sweeping out '
+                  'anything that is not actually office work, and the '
+                  'reach-behind clean and safety walk to do before any '
+                  'rebuild.</p>'
                   + "".join(card_html(c, by_id) for c in whole)
                   + '</section>')
     parts.append('<section class="kzone"><h2>Root causes, the shared '
                   'deck</h2>'
-                  f'<p class="klead-p">Every friction card in the '
-                  f'laundry room points at one of these '
+                  f'<p class="klead-p">Every friction card in the home '
+                  f'office points at one of these '
                   f'{num_word(len(causes)).lower()}, the same vocabulary '
-                  f'the Kitchen and Entryway decks use. Pull one when a '
-                  f'friction card sends you here.</p>'
+                  f'the Kitchen, Entryway and Laundry Room decks use. '
+                  f'Pull one when a friction card sends you here.</p>'
                   + "".join(card_html(c, by_id) for c in causes)
                   + '</section>')
     parts.append('<section class="kzone"><h2>Events, the day that tests '
@@ -160,22 +161,22 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Laundry Room Deck: __N__ cards, free to read</title>
-<meta name="description" content="The Manual's real __NZONES_LOWER__ Laundry Room zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
+<title>The Home Office Deck: __N__ cards, free to read</title>
+<meta name="description" content="The Manual's real __NZONES_LOWER__ Home Office zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <!-- SEO:BEGIN -->
-<link rel="canonical" href="https://6s-success.com/laundry-room-deck.html">
+<link rel="canonical" href="https://6s-success.com/home-office-deck.html">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="6S Success">
 <meta property="og:locale" content="en_US">
-<meta property="og:url" content="https://6s-success.com/laundry-room-deck.html">
-<meta property="og:title" content="The Laundry Room Deck: __N__ cards, typeset and free to read">
-<meta property="og:description" content="The Manual's real __NZONES_LOWER__ Laundry Room zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
+<meta property="og:url" content="https://6s-success.com/home-office-deck.html">
+<meta property="og:title" content="The Home Office Deck: __N__ cards, typeset and free to read">
+<meta property="og:description" content="The Manual's real __NZONES_LOWER__ Home Office zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <meta property="og:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
-<meta name="twitter:title" content="The Laundry Room Deck: __N__ cards, typeset and free to read">
-<meta name="twitter:description" content="The Manual's real __NZONES_LOWER__ Laundry Room zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
+<meta name="twitter:title" content="The Home Office Deck: __N__ cards, typeset and free to read">
+<meta name="twitter:description" content="The Manual's real __NZONES_LOWER__ Home Office zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <meta name="theme-color" content="#22323C">
 <script type="application/ld+json">
 {
@@ -183,7 +184,7 @@ PAGE = """<!doctype html>
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://6s-success.com/"},
-    {"@type": "ListItem", "position": 2, "name": "The Laundry Room Deck", "item": "https://6s-success.com/laundry-room-deck.html"}
+    {"@type": "ListItem", "position": 2, "name": "The Home Office Deck", "item": "https://6s-success.com/home-office-deck.html"}
   ]
 }
 </script>
@@ -191,15 +192,15 @@ PAGE = """<!doctype html>
 {
   "@context": "https://schema.org",
   "@type": "Game",
-  "@id": "https://6s-success.com/laundry-room-deck.html#deck",
-  "name": "The 6S Success Laundry Room Deck",
-  "url": "https://6s-success.com/laundry-room-deck.html",
+  "@id": "https://6s-success.com/home-office-deck.html#deck",
+  "name": "The 6S Success Home Office Deck",
+  "url": "https://6s-success.com/home-office-deck.html",
   "inLanguage": "en",
   "numberOfPlayers": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 6},
   "gameItem": {"@type": "Thing", "name": "__N__ printable cards, front and back, typeset, no illustrations yet"},
   "publisher": {"@id": "https://6s-success.com/#organization"},
   "genre": "Household organization",
-  "abstract": "A __N__ card deck for the laundry room, built from the Manual's real __NZONES_LOWER__ zones: the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath (shared with the Kitchen and Entryway decks), the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
+  "abstract": "A __N__ card deck for the home office, built from the Manual's real __NZONES_LOWER__ zones: the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath (shared with the Kitchen, Entryway and Laundry Room decks), the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
 }
 </script>
 <!-- SEO:END -->
@@ -253,13 +254,13 @@ __CSS__
   <div class="wrap">
     <div class="hero-copy">
       <p class="eyebrow on-deep">The deck, six zones</p>
-      <h1>The <em>Laundry Room</em> Deck</h1>
-      <p class="sub">__N__ cards: the Manual's real __NZONES_LOWER__ Laundry Room zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset and free. No illustrations yet, so every card reads as text, not a photograph.</p>
+      <h1>The <em>Home Office</em> Deck</h1>
+      <p class="sub">__N__ cards: the Manual's real __NZONES_LOWER__ Home Office zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset and free. No illustrations yet, so every card reads as text, not a photograph.</p>
       <div class="cta-row">
-        <a class="btn btn-primary btn-lg" href="#laundry-cards">Read the deck</a>
+        <a class="btn btn-primary btn-lg" href="#home-office-cards">Read the deck</a>
       </div>
       <p class="fulfil-note">Prefer paper? This page's own print layout lays the fronts out at true card size. Use your browser's print dialog.</p>
-      <p class="fulfil-note">This is the first Laundry Room deck on the site: built straight from the same Manual as the Kitchen and Entryway decks, with the same rules.</p>
+      <p class="fulfil-note">This is the first Home Office deck on the site: built straight from the same Manual as the Kitchen, Entryway and Laundry Room decks, with the same rules.</p>
     </div>
   </div>
 </section>
@@ -282,11 +283,11 @@ __CSS__
   </div>
 </section>
 
-<section class="section" id="laundry-cards">
+<section class="section" id="home-office-cards">
   <div class="wrap">
     <p class="eyebrow">The deck</p>
     <h2>Read it here, zone by zone</h2>
-    <p>Tap a card's "How it works" to see its back. Start at the machines: everything else in this room is waiting on the washer and dryer being ready to take a load.</p>
+    <p>Tap a card's "How it works" to see its back. Start at the desk: everything else in this room eventually gets emptied onto it, so it has to stay the one surface you can trust.</p>
 __BODY__
   </div>
 </section>
@@ -329,9 +330,9 @@ __UMAMI__
 
 
 def main() -> int:
-    deck = LD.build()
-    src = json.load(io.open(LD.SRC, encoding="utf-8"))
-    intro = [r for r in src["rooms"] if r["room"] == "Laundry Room"][0]["intro"]
+    deck = HD.build()
+    src = json.load(io.open(HD.SRC, encoding="utf-8"))
+    intro = [r for r in src["rooms"] if r["room"] == "Home Office"][0]["intro"]
 
     n_total = deck["count"]
     n_zones = len(ZONE_ORDER)
@@ -356,7 +357,7 @@ def main() -> int:
     by = {}
     for c in deck["cards"]:
         by[c["type"]] = by.get(c["type"], 0) + 1
-    print(f"  laundry deck page  {deck['count']} cards")
+    print(f"  home office deck page  {deck['count']} cards")
     for t in TYPE_COUNT_ORDER:
         print(f"    {TYPE_LABEL[t]:<10} {by.get(t, 0)}")
     print(f"  written  {os.path.relpath(OUT, ROOT)}")
