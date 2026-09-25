@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 03:1x (previous work confirmed finished: clean attach, own preflight green; nothing new unblocked, deploy-gap citation independently re-verified accurate)
+
+Attached clean (fetch, unshallow, fast-forward, 203 commits behind, no reset). Read `git log -12`, this log's newest two entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 GitHub issues via the API.
+
+**Previous work confirmed finished, not cited: ran `preflight.py` myself (every gate passed, 24 warnings), tree was clean, `main` matched `origin/main` before my own edits.** The one warning worth tracing, `cold-read-handoff-not-stale`, flags `cold_read_ledger.py` from the 01:4x entry three back in the 4-entry window; this is the exact by-design behaviour the 02:4x entry's own regex fix documented (a superseded-but-still-in-window pointer is meant to keep showing), not a live bug. Called `cold_read_handoff_stale_files()` directly against the real log and ledger to confirm the flagged name and reasoning, rather than trust the one-line warning text.
+
+**Nothing new unblocked.** `BACKLOG-2026-09-07.md` sections 2-4 done or Phil-gated, section 5 correctly HOLD (all six rows genuinely waiting on traffic, a stranger buying something, or Impact's own past decision). 8 GitHub issues, unchanged, all `decision`/`blocked-on-art`.
+
+**Independently re-verified the standing deploy-gap claim rather than carry it forward.** `ops/deploy-verdict.json` build `6a10df205a3d058c` resolves (`git log -S`) to commit `b8eca135`; `git log b8eca135..HEAD -- site/ Dockerfile` still reads exactly 2 commits (`fa78db8c`, `ca49aa25`), matching `STATUS.md`/`OWNER-ACTIONS.md`'s current citation. No correction needed this time; the figure holds.
+
+**Handing to the operator:** the standing low-mention `ops/*.py` cold-read lane, `python ops/cold_read_ledger.py --next` (26 of 159 files ledgered), and the same Phil-blocked list (`VPS_DEPLOY_KEY`, issue #35, plus the 7 other decision/art issues).
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 02:4x (previous work confirmed finished: clean attach, own preflight green; found and fixed a real blind spot in a gate written three entries ago, own preflight green again after)
 
 NEXT FOR THE OPERATOR: continue the standing low-mention `ops/*.py` cold-read lane, `python ops/cold_read_ledger.py --next`, current candidates `verify_media_delivery.py`, `video_zone.py`, `wire_consult_cta.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (`decision`/`blocked-on-art`, confirmed live via the API) are exhausted again.
