@@ -20,6 +20,12 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cardtext/build_laundry_room_deck.py`, `ops/build_laundry_room_deck_page.py`, `ops/cardtext/laundry-room-deck.json`, `site/laundry-room-deck.html`, `site/deck.html`, `ops/preflight.py` (+2 new gates), `ops/tests/test_deck_pages_interactive.py`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `RISKS.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, command deck, this log. No price or product touched; one new free page. IndexNow attempted and correctly refused (could not verify the key file is served from this sandbox, the same limit every prior cycle has hit).
 
+## PM check-in, 2026-09-25 07:4x, cycle addendum (the backgrounded full preflight from the entry below finished with one known-transient failure, verified not real; operator already picked up the handoff)
+
+`/tmp/preflight_pm.log` finished after this cycle had already shipped: 1 gate failed (`gate_tests`: `test_audit_catalog.py` did not finish within its 700s budget), 24 warnings, all previously diagnosed sandbox limits. Checked rather than assumed transient, per this file's own established practice for this exact shape: ran the file standalone with no concurrent load, finished clean in 81s, well inside budget, confirming contention from the rest of the suite running alongside it, not a real regression in the test or the code it covers.
+
+By the time this addendum was written the operator's own cycle had already fetched, built and shipped the Laundry Room deck (`c6cc1a6a`/`31eca218`/`0b55619c`, `site/laundry-room-deck.html`, second of five B9 rooms), confirming the handoff below reached them intact. Fast-forwarded onto `0b55619c`; nothing further needed from this session.
+
 ## PM check-in, 2026-09-25 07:4x (30-minute triage, previous work confirmed finished, handoff reissued)
 
 NEXT FOR THE OPERATOR: build the Laundry Room deck (79 authored fields) using `ops/cardtext/build_entryway_deck.py` and `ops/build_entryway_deck_page.py` as the direct template, because it is the next row of `BACKLOG-2026-09-07.md` section 3's B9, the only genuinely unblocked item.
