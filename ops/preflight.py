@@ -8804,6 +8804,22 @@ def gate_footer_consistent() -> None:
 
     Pages one directory down legitimately carry a ../ prefix on relative links,
     so that is normalised away before comparing. Anything else is drift.
+
+    A page with NO footer at all fails, the same as a drifted one, not just
+    warns. Found live 2026-09-25: commit 6ba42a27 dropped the footer from
+    all 114 zone pages and all 20 room pages when build_zone_pages.py lifted
+    its chrome from a resources.html that had been temporarily broken (an
+    f-string bug elsewhere in the same commit), and this gate only warned,
+    so it did not stop the merge and the gap sat live until a later cycle's
+    cold read found it. A page missing its footer entirely is worse than one
+    whose footer merely differs, not milder: it has zero legal/privacy links
+    and zero cross-sell, where a drifted page at least has stale ones. Fixed
+    on the content side by extending ops/wire_footer.py to insert a missing
+    footer, not only correct a drifted one (see that script's own history);
+    and at the source by hardening build_zone_pages.py's own load_chrome()
+    to refuse rather than silently lift an empty string when resources.html's
+    header/footer markers are not found, closing the actual bug class rather
+    than only this one instance of it.
     """
     canon_path = os.path.join(SITE, "resources.html")
     if not os.path.exists(canon_path):
@@ -8852,8 +8868,10 @@ def gate_footer_consistent() -> None:
              "link or an offer present on the rest of the site is absent there: "
              "%s" % (len(drifted), drifted[:4]))
     if missing:
-        warn("footer-consistent",
-             "%d page(s) have no site footer at all: %s"
+        fail("footer-consistent",
+             "%d page(s) have no site footer at all, not merely a drifted "
+             "one, so every legal/privacy/disclosure link and every "
+             "cross-sell in it is absent, not just outdated: %s"
              % (len(missing), missing[:4]))
 
 

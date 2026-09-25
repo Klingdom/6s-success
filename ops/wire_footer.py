@@ -16,6 +16,12 @@ gate_footer_consistent (ops/preflight.py) catches drift after the fact; this
 script is how a footer change gets applied everywhere in the first place,
 the same role wire_nav.py already plays for the primary nav.
 
+It also inserts the footer on a page that has none at all, not only fixing
+one that has drifted. Found 2026-09-25: all 134 room and zone pages (a
+generated set, not hand-authored) shipped with no footer whatsoever, and
+this script previously could not have closed that gap because it only
+ever rewrote a footer that already existed.
+
 WHAT THIS DELIBERATELY DOES NOT DO
 -----------------------------------
 It does not touch downloads/ (shipped artefacts, not site pages) or the two
@@ -62,6 +68,7 @@ def with_prefix(foot: str, prefix: str) -> str:
 def main() -> int:
     canon = canonical_footer()
     n = 0
+    inserted = 0
     for f in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(f, SITE).replace(os.sep, "/")
         if rel.startswith("downloads/") or rel in NO_FOOTER_BY_DESIGN:
@@ -69,6 +76,34 @@ def main() -> int:
         s = io.open(f, encoding="utf-8").read()
         m = FOOT_RE.search(s)
         if not m:
+            # No footer at all, not merely a drifted one. Found live
+            # 2026-09-25: all 134 room and zone pages shipped with none,
+            # because build_zone_pages.py lifted its footer from a
+            # resources.html that had been temporarily broken by an
+            # unrelated f-string bug (see that generator's own history) and
+            # nobody re-ran it once resources.html was fixed. This script
+            # previously only fixed drift on a footer that already existed,
+            # so it could not have caught or closed that gap; it can now,
+            # without touching anything else on the page, which matters
+            # here because the generator that actually owns these 134
+            # pages cannot be safely re-run in an environment missing its
+            # source hero photographs (build/heroes/zones/, gitignored) as
+            # doing so would silently replace every zone's approved hero
+            # image with the generic fallback (see gate_generator_ownership
+            # in ops/preflight.py, which excludes build_zone_pages.py from
+            # its regenerate-and-diff check for exactly that reason). A
+            # page with no <main> to anchor on is a fragment this script
+            # has no safe insertion point for, so it is left alone rather
+            # than guessed at.
+            main_close = s.rfind("</main>")
+            if main_close == -1:
+                continue
+            pre = ("../" * rel.count("/")) if rel.count("/") else ""
+            insert_at = main_close + len("</main>")
+            s2 = s[:insert_at] + "\n" + with_prefix(canon, pre) + s[insert_at:]
+            io.open(f, "w", encoding="utf-8", newline="").write(s2)
+            inserted += 1
+            n += 1
             continue
 
         # The prefix a page needs is the one its existing footer links
@@ -89,7 +124,7 @@ def main() -> int:
         io.open(f, "w", encoding="utf-8", newline="").write(s2)
         n += 1
 
-    print(f"  footer rewritten on {n} pages")
+    print(f"  footer rewritten on {n} pages ({inserted} of those had none at all)")
 
     # A footer link that 404s is worse than a missing one.
     bad = []

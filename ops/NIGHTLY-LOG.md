@@ -2,6 +2,80 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (BLOCKER-001's own gap count was stale by one commit, and that commit is the P0 footer fix; caught by the gate built for exactly this)
+
+**Did:** Checkout arrived shallow and detached (was 218 commits behind); unshallowed, fetched, fast-forwarded onto `origin/main`, no reset needed. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md` sections 1-9, and the last several `NIGHTLY-LOG.md` entries. Ran `preflight.py` myself rather than cite a same-day prior pass (CLAUDE.md 0.4).
+
+**Preflight's own `gate_status_deploy_gap_count_current` warning was the real, current finding, not a stale citation to skip past.** The latest `BLOCKER-001` entry cited a gap of 3 commits (`ca49aa25`, `fa78db8c`, `6ba42a27`) against build_id `6a10df205a3d058c`, unchanged since `checked_at: 2026-09-24T23:35:51Z` (`ops/deploy-verdict.json`, confirmed no new redeploy has happened). Recounted directly: `git log b8eca135..HEAD -- site/ Dockerfile` (`b8eca135` being the commit that build_id actually resolves to) now returns 4 commits, not 3. The uncounted one, `2d8077fd`, is not routine content: it is the fix for the live P0 defect a concurrent session found and shipped earlier the same day (all 134 room/zone pages serving with zero `<footer>`, no privacy/terms/accessibility/safety links, no newsletter form). Production is still missing that footer until a redeploy happens, and the standing citation was silently one commit short of saying so.
+
+**Fixed:** widened both `STATUS.md`'s `BLOCKER-001` and `OWNER-ACTIONS.md` item 0 with a dated correction naming the real 4-commit gap and calling out `2d8077fd` by name and by consequence, matching this file's own established append-only correction pattern rather than editing history. Verified directly against the gate's own pure logic before running anything else: `deploy_gap_count_problem()` called with the corrected `STATUS.md` text, `real_count=4`, the current build_id and `checked_at` returns `''` (clean).
+
+**Verified:** full `preflight.py` first showed one transient failure (`stray-probe-files`, two gitignored scratch files from a concurrent test run that had already cleared themselves by the time I checked `git status`); confirmed not a real defect and reran clean: every gate passed, 23 warnings (was 24; the gap-count warning is gone), all previously diagnosed sandbox limits, none new. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Went well:** treating the gate's own warning as this cycle's real work per STEP 2/0.4 instead of moving straight to the cold-read lane; naming the missed commit's actual customer impact (a still-undeployed P0 legal/trust fix) rather than just correcting a number.
+
+**Did not go well:** none this cycle; the gate that caught this already existed and worked exactly as designed.
+
+**Changing next cycle:** none; no new defect class, so no new gate needed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`, issue #35) and the 8 open GitHub issues, unchanged. The real production gap is now 4 commits including the footer fix; confirm on the next cycle whether a session with real access has redeployed.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched; not customer-facing directly, but an inaccurate account of a live P0 defect's deploy status is exactly the epic-2 (broken or dishonest) class this operator's own ordering puts second only to measurement. IndexNow not applicable.
+
+## PM check-in, 2026-09-25 04:4x (a third independent session found the same live footer P0 the two entries below already document; converged rather than duplicated, and closed the one gap neither of their fixes touched)
+
+Reached the same `gate_risks_evidence_current` failure (`forms_dead=195` cited, 61 measured) independently, mid-merge with a concurrent push, before seeing that `890c43a3` and `2d8077fd` below had already diagnosed and fixed the identical 134-page missing-footer defect. First attempt here was a full `ops/build_zone_pages.py` re-run, tried and then rejected after verification: this sandbox has no `build/heroes/zones/*.png` source images, so a fresh regenerate silently dropped all 114 zone heroes, a worse regression than the one being fixed. Reverted that in full before it could ship. Merged in the upstream fix (`site/rooms/`, `site/zones/`, `ops/wire_footer.py`, the gate severity change) rather than lay a fourth patch over the same content, keeping this session's one genuinely unique contribution: `ops/build_zone_pages.py`'s own `load_chrome()` now raises rather than silently lifting an empty header/footer when `resources.html`'s markers are not found, the exact root-cause bug class neither upstream fix touched (both fixed the 134 pages and the gate; neither hardened the generator that produced the gap). `python3 -m py_compile` clean; full `preflight.py` reran clean after (every gate passed, 24 warnings, all previously diagnosed). No further site content or test changed beyond what the two entries below already cover.
+
+Pushed to main. `ops/build_zone_pages.py`, this log, command deck.
+
+## PM check-in, 2026-09-25 03:1x (previous work confirmed finished: clean attach, own preflight green; nothing new unblocked, deploy-gap citation independently re-verified accurate)
+
+Attached clean (fetch, unshallow, fast-forward, 203 commits behind, no reset). Read `git log -12`, this log's newest two entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 GitHub issues via the API.
+
+**Previous work confirmed finished, not cited: ran `preflight.py` myself (every gate passed, 24 warnings), tree was clean, `main` matched `origin/main` before my own edits.** The one warning worth tracing, `cold-read-handoff-not-stale`, flags `cold_read_ledger.py` from the 01:4x entry three back in the 4-entry window; this is the exact by-design behaviour the 02:4x entry's own regex fix documented (a superseded-but-still-in-window pointer is meant to keep showing), not a live bug. Called `cold_read_handoff_stale_files()` directly against the real log and ledger to confirm the flagged name and reasoning, rather than trust the one-line warning text.
+
+**Nothing new unblocked.** `BACKLOG-2026-09-07.md` sections 2-4 done or Phil-gated, section 5 correctly HOLD (all six rows genuinely waiting on traffic, a stranger buying something, or Impact's own past decision). 8 GitHub issues, unchanged, all `decision`/`blocked-on-art`.
+
+**Independently re-verified the standing deploy-gap claim rather than carry it forward.** `ops/deploy-verdict.json` build `6a10df205a3d058c` resolves (`git log -S`) to commit `b8eca135`; `git log b8eca135..HEAD -- site/ Dockerfile` still reads exactly 2 commits (`fa78db8c`, `ca49aa25`), matching `STATUS.md`/`OWNER-ACTIONS.md`'s current citation. No correction needed this time; the figure holds.
+
+**Handing to the operator:** the standing low-mention `ops/*.py` cold-read lane, `python ops/cold_read_ledger.py --next` (26 of 159 files ledgered), and the same Phil-blocked list (`VPS_DEPLOY_KEY`, issue #35, plus the 7 other decision/art issues).
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; not customer-facing, IndexNow not applicable.
+
+## PM check-in, 2026-09-25 04:4x (previous work confirmed finished, nothing to add; reissuing the same handoff since the operator's slot lands right after this one)
+
+NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md section 3, row B7 (build the five other room decks from the `diagnosis` corpus: Primary Bathroom, Laundry Room, Home Office, Garage, plus fixing the Entryway zone-list conflict), because it is the highest-value genuinely unblocked item, now cheap (~3d for five rooms, corpus-driven) rather than needing fresh authoring, and everything else open is Phil-gated (8 GitHub issues, all `decision`/`blocked-on-art`).
+
+Attached clean (fetch, fast-forward onto `67346e58`, no reset needed). This cycle landed only 4 minutes after the prior PM check-in below, which had already reconciled the concurrent footer fix and confirmed a full clean `preflight.py` (0 gates failed, 24 warnings) on the current HEAD; HEAD has not moved since, so that verification still holds rather than needing a repeat. Re-ran the fast gates directly as a spot-check while a full run continued in the background past `gate_tests` (the same 150+-file, multi-minute gate prior cycles have documented as too slow for a 30-minute slot to wait out): every fast gate through `gate_price_matches_its_own_link` passed with no new failure, consistent with the already-verified clean state. Working tree clean, main in sync with origin, nothing to commit from this slot's own investigation. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art` (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), 0 open PRs.
+
+**Did not start B7 myself.** ~3 days of corpus-driven deck generation across five rooms is exactly the multi-cycle scale this PM slot exists to hand off, not attempt in 30 minutes; starting it here risks leaving it half-built for the operator to inherit mid-file rather than picked up clean at a natural boundary.
+
+**Went well:** treating the prior cycle's own verified clean preflight on an unchanged HEAD as still current, per CLAUDE.md 0.4's own caution against re-deriving what is genuinely unchanged, while still spot-checking the fast gates directly rather than only citing the log.
+
+**Did not go well:** this cycle's own slot landed only minutes behind the prior one, leaving little new state to report; the schedule's :10/:40 cadence and the operator's :43 slot are close enough together this cycle that there was no daylight to find anything the last one had not already covered.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## PM check-in, 2026-09-25 04:1x-04:4x (previous work confirmed finished only after reconciling a genuine concurrent duplicate fix; two full preflight runs, no new defect)
+
+Previous work was not cleanly finished at first read: a full preflight on ecb56085 showed 3 failures. Traced each rather than assumed: stray-probe-files and the test_audit_catalog.py 700s timeout were both transient, a killed run's own orphaned lockdir; confirmed by an isolated rerun finishing clean in 88s, no code change needed. publish-image-current traced to a real but already-fixed forms_dead staleness in the prior commit. Mid-investigation a concurrent session pushed 2d8077fd, an independent, different fix for the same footer defect, already merged as 733463e0. Fetched, fast-forwarded, no force. A second full preflight on the merged HEAD passed clean (every gate, 24 warnings). Dashboard regenerated, pushed. Backlog and GitHub issues (8, all decision/blocked-on-art) exhausted; handing the operator BACKLOG-2026-09-07.md section 3 row B7 (five room decks from the diagnosis corpus, ~3d), too large for this slot.
+
+## 2026-09-25, scheduled operator cycle (concurrent session had already fixed the footer P0; closed the open question its own entry left standing)
+
+**Did:** Independently found the same live defect the PM check-in below (`890c43a3`) already diagnosed and fixed while this cycle was still reading the backlog: all 134 room/zone pages shipping with no footer. Rather than duplicate that fix, merged it in (content byte-identical to what this cycle had independently produced via `ops/wire_footer.py`, confirmed by diff before merging) and instead closed the one thing that entry explicitly left open: "whether `warn` is still the right severity for a 'missing' count in the hundreds." It is not. `gate_footer_consistent`'s missing-footer branch now fails, not warns, same severity as a drifted footer; proven with a new 7-case test, `ops/tests/test_gate_footer_consistent_missing_fails.py`. Also extended `ops/wire_footer.py` itself to insert a missing footer, not only fix a drifted one, so this class of gap has a real fix path next time, not just a stricter alarm. Separately corrected STATUS.md's BLOCKER-001 deploy-gap count (stated 2, real 3: `ca49aa25`, `fa78db8c`, `6ba42a27`).
+
+**Verified:** `preflight.py` clean post-merge, only pre-existing sandbox-limit warnings. New test's own sanity case confirms the real merged site/ is clean today.
+
+**Went well:** diffing before merging caught that the two independent fixes were byte-identical, so nothing needed reconciling in `site/`; effort went into the actually-undone part (the gate) instead.
+
+**Did not go well:** two sessions spent time on the same root-cause diagnosis concurrently; not preventable without coordination this operating model doesn't yet have.
+
+**Next:** cold-read continues; candidates include `import_chapter_svgs.py`, `root_causes.py`, `stripe_check.py`, `wire_breadcrumbs.py`, `zone_supplies.py`.
+
+Pushed to main. `ops/wire_footer.py`, `ops/preflight.py` (+1 new test), `STATUS.md`, `ops/cold-read-ledger.json`, command deck. No site page changed beyond the already-merged fix. IndexNow not re-run (no new content change beyond what the entry below already covers).
+
 ## PM check-in, 2026-09-25 03:5x (continued: the backgrounded full `preflight.py` run from the entry below finally returned, and it was not a hang, it was 7 real findings, one of them a genuine P0 sitewide defect fixed this same cycle)
 
 NEXT FOR THE OPERATOR: run a full `preflight.py` yourself before picking new work, since this session never got a single clean full run despite fixing every real finding it produced; if it stays clean, resume the standing cold-read lane (`python ops/cold_read_ledger.py --next`), because backlog and GitHub issues remain exhausted.

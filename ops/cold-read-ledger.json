@@ -170,6 +170,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: idempotent CTA-wiring migration, 0 changes on rerun (already fully applied), covered by gate_consult_cta_current, no defect"
+    },
+    "wire_footer.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "All 134 room and zone pages shipped with no site footer at all, dropped by commit 6ba42a27 when build_zone_pages.py lifted chrome from a resources.html temporarily broken by an unrelated bug in the same commit. wire_footer.py only ever fixed drift on a footer that already existed, so it could not close that gap; extended it to also insert a missing footer, ran it to fix all 134 pages, and hardened gate_footer_consistent to fail (not warn) on a page with none."
     }
   }
 }
