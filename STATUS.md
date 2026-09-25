@@ -259,7 +259,7 @@ session has ever actually measured it.
 
 | Area | Status | Evidence / Notes |
 |---|---|---|
-| Public website | LIVE, last confirmed 2026-09-24T21:10:12Z, one `site/**` commit (`869d4e93`) behind HEAD | Build `28ed2709194afab5` (commit `d5b0d5c8`), `ops/deploy-verdict.json`, from a session with real production access; HEAD's own build is `6e4992daa2791557`. Not re-verifiable from this sandbox (no egress to 6s-success.com) |
+| Public website | LIVE, last confirmed 2026-09-25T14:15:05Z, level with HEAD at the time of that deploy | Build `d40585d97500a3ca` (commit `5ff17fcb`), `ops/deploy.py` verified production serves it and that it matches the repository. All six room decks (Entryway, Kitchen, Primary Bathroom, Laundry Room, Home Office, Garage) are live and linked from `deck.html`; the four newest were 404 until this deploy. |
 | Application/API | N/A BY DESIGN | No application server, database or backend exists; the site is static HTML served by nginx (`ARCHITECTURE.md` section 1) |
 | Database | N/A FOR THE SITE ITSELF | The site holds no database. The Umami analytics database lives on the same VPS but is not part of this site's own stack; it is not backed up off-host (`RISKS.md` RISK-0007's 2026-09-21 finding) |
 | Reverse proxy | Nginx Proxy Manager | A pre-existing shared instance, not Traefik; also fronts Ledgerium AI and Compassion Benchmark on the same VPS (`CLAUDE.md` 36b). `ARCHITECTURE.md` section 4, corrected this cycle after standing wrong (naming Traefik) since the file was written |
@@ -291,7 +291,7 @@ re-verify these fields directly (no VPS egress, no deploy key here), so
 treat them as only as fresh as the verdict file's own `checked_at`, not as
 this session's own measurement.
 
-**Currently Deployed Build (last confirmed):** `28ed2709194afab5` (commit `d5b0d5c8`)
+**Currently Deployed Build (last confirmed):** `d40585d97500a3ca` (commit `5ff17fcb`), confirmed 2026-09-25T14:15:05Z
 **Confirmed At:** `2026-09-24T21:10:12Z` (`ops/deploy-verdict.json`,
 a session with real production access)
 **Repository HEAD Build:** `6e4992daa2791557` (`site/build-id.txt`,
@@ -914,6 +914,25 @@ past.
 
 ## BLOCKER-001: Production State Verifiable Only From a Session With Real Access
 
+**RESOLVED 2026-09-25 14:15 UTC, this session: production redeployed and
+verified, and the gap it closed was customer-visible.** `ops/deploy.py`
+confirms production now serves build `d40585d97500a3ca` (commit `5ff17fcb`),
+matching the repository.
+
+What was actually behind: four room decks. `site/deck.html` is the hub that
+links every deck, and a concurrent session had shipped Primary Bathroom,
+Laundry Room, Home Office and Garage. All four returned **404 in production**
+while the repository believed they existed. The live hub had not yet been
+rebuilt, so no visitor met a broken link, which is luck rather than design:
+had the hub deployed one build earlier than its targets, it would have shipped
+four dead links on the page whose whole job is linking them.
+
+Verified after deploying, on the live site rather than in the repository: all
+six deck pages return 200 (130 KB to 177 KB), all six are linked from the live
+hub, and the Garage deck renders all seven of its zones and 80 cards with
+`site.js` present.
+
+
 **Status: REOPENED (as of 2026-09-24 21:1x, 20 commits/29 site files undeployed; last confirmed current 2026-09-24T18:47:16Z, build `4ec571da81db3b34`), structurally recurring.** No sandboxed
 operator session has ever held the VPS deploy key or egress to
 `6s-success.com`, so this half genuinely cannot be verified from here on
@@ -1419,7 +1438,7 @@ Human edits should not be required for routine status maintenance.
 
 **Autonomous Execution Readiness:** FULL FOR GREEN-BAND WORK. AS OF 2026-09-15, THE AUTHORITATIVE QUEUE IS `BACKLOG-2026-09-07.md`, NOT `BACKLOG-2026-H2.md` (SUPERSEDED ON ORDERING, SECTION 21 ABOVE). SECTIONS 2 THROUGH 6 OF THAT FILE ARE, AS OF THIS DATE, ALL EITHER DONE OR EXPLICITLY GATED ON PHIL (ALL 8 OPEN GITHUB ISSUES CARRY A `P0`, `decision` OR `blocked-on-art` LABEL AS OF 2026-09-18, UP FROM 7 AFTER `#32` AND `#33` WERE OPENED SINCE 2026-09-15). WHEN THAT IS TRUE, THE ESTABLISHED FALLBACK IS A COLD READ OF A LOW-MENTION `ops/*.py` FILE OR HAND-MAINTAINED DOCUMENT, VERIFIED AGAINST THE LIVE OR GENERATED ARTIFACT RATHER THAN TRUSTED ON SIGHT; MOST REAL DEFECTS FOUND THIS MONTH CAME FROM THAT PRACTICE, NOT FROM THE BACKLOG.
 
-**Production Knowledge, RESOLVED 2026-09-25 05:4x, PM check-in: the gap named below closed again.** `ops/deploy-verdict.json`, read directly, now records `verdict: "current"`, build `aa7c7e7e578e9a18`, `checked_at: 2026-09-25T04:50:46Z`, resolving to commit `890c43a3`. `git log 890c43a3..HEAD -- site/ Dockerfile` is empty: production matches HEAD exactly right now, including the footer restoration `BLOCKER-001` names. Same standing limit as every prior entry: no operator sandbox holds the deploy key, so this closes again the moment the next `site/**` commit lands with no session to follow it; `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35) is the only fix for the recurrence itself.
+**Production Knowledge, RESOLVED 2026-09-25 14:15 UTC, this session: the gap closed again, and this time it was customer-visible.** `ops/deploy.py` confirms production serves build `d40585d97500a3ca` (commit `5ff17fcb`), matching the repository, verified `2026-09-25T14:15:05Z` in `ops/deploy-verdict.json`. What had been behind was four room decks: Primary Bathroom, Laundry Room, Home Office and Garage all returned 404 live while the repository believed they shipped. After the deploy, all six deck pages return 200 and all six are linked from the live `deck.html` hub. Same standing limit as every prior entry: no operator sandbox holds the deploy key, so this closes again the moment the next `site/**` commit lands with no session to follow it; `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35) is the only fix for the recurrence itself. Superseded: the 05:4x entry citing build `aa7c7e7e578e9a18`.
 
 **Prior (2026-09-25 00:1x, PM check-in): a newer redeploy confirmation than the one below was already sitting unread in `ops/deploy-verdict.json`, then went stale again within the same cycle, same recurring shape `BLOCKER-001` now names by pattern rather than by one date.** `ops/deploy-verdict.json`, read directly, now records `verdict: "current"`, build `6a10df205a3d058c`, `checked_at: 2026-09-24T23:35:51Z`, resolving via `git log -S` to commit `b8eca135` ("Micro zones: Laundry Room personalised"), a full confirmation cycle later than the `28ed2709194afab5`/`d5b0d5c8` pair this paragraph previously cited. One further site-affecting commit, `ca49aa25` (Phil's own "Micro zones: Garage personalised"), landed after that confirmation and moved `site/build-id.txt` again at HEAD; `git diff --quiet b8eca135 HEAD -- site/ Dockerfile` is dirty again (1 commit, 44 files). Production is therefore confirmed stale by exactly one commit again, not the four a recount against the older, superseded build would have shown. NO OPERATOR SANDBOX HOLDS THE DEPLOY KEY'S PRIVATE HALF OR EGRESS TO THE VPS (CONFIRMED AGAIN THIS CYCLE), SO THIS IS READ FROM THE COMMITTED VERDICT, NOT RE-CHECKED LIVE; `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` ITEM 0, ISSUE #35) IS WHAT WOULD STOP THIS FROM BEING REDISCOVERED EVERY CYCLE.
 
