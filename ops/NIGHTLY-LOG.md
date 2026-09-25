@@ -2,6 +2,60 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-24, scheduled operator cycle (a correct build_id sitting next to a stale commit count in STATUS.md/OWNER-ACTIONS.md, found, fixed and gated; converged with a concurrent session on the identical fix; full preflight watched to its own exit)
+
+**Did:** Reattached clean (`git fetch origin main`, already fast-forward, working tree clean). Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD), `CLAUDE.md`, the newest four `ops/NIGHTLY-LOG.md` entries. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Started `python ops/preflight.py` unwrapped and backgrounded, watched it to its own exit with `Monitor` rather than a bounded wait or blind polling.
+
+**Found and fixed while preflight ran.** `gate_status_deploy_verdict_current` only checks that `STATUS.md`'s `BLOCKER-001` cites the real, current deploy `build_id`; it does not check whether the prose *around* that citation, specifically the "(N commit)" undeployed-gap count, stays accurate. The section's latest entry correctly named build `28ed2709194afab5` and said the gap was "(1 commit, `869d4e93`)". Verified against real `git log`: two further site-affecting commits had landed since and neither was mentioned (`29a84fa2`, "Correct 13 wrong cause IDs across two rooms"; `b8eca135`, "Micro zones: Laundry Room personalised"), so the true gap was 3 commits, 55 files, not 1. `OWNER-ACTIONS.md` item 0 carried the identical stale "exactly one commit" claim. Corrected both documents.
+
+**Gated.** New `gate_status_deploy_gap_count_current` in `preflight.py`: `resolve_verdict_commit()` re-derives which commit a deploy verdict's `build_id` actually came from (via `git log -S`), `deploy_gap_material_commits()` freshly recounts commits since then touching `site/`/`Dockerfile`, and `deploy_gap_count_problem()` (pure logic) compares that real count against the number cited in `BLOCKER-001`'s own latest entry. A correct `build_id` next to a wrong count now warns instead of passing silently. `ops/tests/test_gate_status_deploy_gap_count_current.py` (6 cases) and a direct call against the real, unfixed repository both proved fail-then-pass: the gate fired by name (citing "1" vs "3") against the actual committed `STATUS.md` before the fix, and returned clean immediately after.
+
+**Converged with a concurrent session, not duplicated.** While this cycle's fix was staged locally (uncommitted), `git fetch` surfaced that a concurrent session had independently found and shipped the identical defect and fix first (`9cd702fd`, "Add gate for stale deploy-gap commit counts next to a correct build_id": same three lines of prose correction, same three new functions, same test file, byte-identical diff to this cycle's own local edit). Confirmed with `git diff HEAD -- STATUS.md OWNER-ACTIONS.md ops/preflight.py ops/tests/test_gate_status_deploy_gap_count_current.py`: empty, so nothing further to commit for those files. This entry documents the work rather than re-shipping it, per this log's own established practice ("discarded the duplicate local edit, fast-forwarded onto their commit rather than layering a second fix on the same defect").
+
+**Verified:** `python ops/preflight.py` run to full completion, unwrapped, watched to its own exit, against this cycle's own locally staged (pre-merge) content, byte-identical to what is now on `main`: **every gate passed, 23 warnings, all previously diagnosed sandbox limits** (Stripe/analytics/mail/VPS/Pillow credentials or packages absent here, cron-cadence drift already root-caused, 2 dated disclosures, 3-of-114 zone pages and 7-of-88 card heroes still missing art, deploy freshness and IndexNow egress unreachable), none new; the two bare `FAIL\n  (none)` section headers (KDP/Etsy listings, 0 real failures) checked directly and confirmed harmless, same as prior cycles. `python -m py_compile ops/preflight.py` clean. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, correctly reported as unchecked. 0 open PRs.
+
+**Went well:** using the preflight wait productively to chase a real defect rather than idling, confirming the fix both by direct function call against the live repository (before and after) and by the full suite; catching the concurrent collision by diffing against HEAD before writing a redundant commit, rather than assuming a clean `git status` meant nothing had changed underneath.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; the new gate covers this defect class going forward.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged. Continue the standing low-mention `ops/*.py` cold-read lane, though recent cycles note it is thinning; cross-document consistency and end-to-end journey checks (the method that found this cycle's defect) are a live alternative once it is.
+
+The `STATUS.md`/`OWNER-ACTIONS.md`/`ops/preflight.py`/test-file work is already on `main` via `9cd702fd`. Pushed `ops/NIGHTLY-LOG.md` (this entry) and the command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
+## PM check-in, 2026-09-24 23:4x (previous work reconfirmed at the same commit; a stale cold-read handoff corrected; backlog and issues still exhausted)
+
+NEXT FOR THE OPERATOR: continue the low-mention `ops/*.py` cold-read lane on the genuinely unread files, `build_feed.py`, `build_image_prompts.py`, `build_printpack.py`, `canonical_links.py`, `room_image_variants.py`, because every unblocked row in `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 correctly HOLD) and all 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`) are exhausted again.
+
+Reattached clean: `git fetch origin main`, unshallow, `checkout main`, `merge --ff-only`, fast-forward of 176 commits, no reset or force. `git log -12`, this log's newest two entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub issues (8 open, unchanged in number/labels, confirmed via the API) all read.
+
+**Previous work confirmed finished, without a redundant full rerun.** HEAD is still `78cd70cd`, the exact commit the immediately preceding 23:1x PM check-in ran `preflight.py` to full completion against (every gate passed, 23 warnings, all previously diagnosed sandbox limits). Nothing has landed since: working tree clean, `main` matches `origin/main`. Re-running an 8-to-25-minute `preflight.py` against an unchanged commit already verified clean minutes earlier would add no information, so this cycle confirmed identity (`git rev-parse HEAD`, `git status --short`) instead of repeating the check blind.
+
+**Found and fixed a stale handoff, the same "source corrected, artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 names as the dominant defect class, here applied to the cold-read lane's own pointer.** The most recent operator cycle's "Next" line (this file, the "six low-mention ops/*.py" entry) named a 9-file "tier-21 group" as unread candidates: `build_feed.py`, `build_image_prompts.py`, `build_printpack.py`, `canonical_links.py`, `hazard_icons.py`, `merge_cardtext.py`, `prune_catalog_js.py`, `room_image_variants.py`, `wire_aria_current.py`. Checked each name against this log's own history before repeating it: four of the nine (`hazard_icons.py`, `merge_cardtext.py`, `prune_catalog_js.py`, `wire_aria_current.py`) were already cold-read and confirmed clean in the earlier 18:5x cycle ("Cold-read nine ops/*.py files... hazard_icons.py, wire_aria_current.py, prune_catalog_js.py, merge_cardtext.py... No defect found in any of the nine"), the exact repeat-a-cleared-target mistake this log's own 18:4x entry had already corrected once for `build_kitchen_deck_pdf.py`. The other five names in that list do not appear anywhere earlier in the log and are genuinely unread. Corrected the handoff above to the five real candidates plus, separately, `retire_stripe_skus.py`'s Stripe-credentialed apply path, which stays genuinely unverifiable here (no credential in this sandbox) rather than unread.
+
+**Went well:** checking a repeated handoff against the log's own history before passing it on again, instead of trusting the most recent citation.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none; no code changed, only the handoff pointer.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0: `VPS_DEPLOY_KEY`, the highest-value unblocked action, closes the recurring "production behind repository" gap for good; Search Console; YouTube OAuth; Gemini billing; Amazon/Etsy/app-store accounts) and the 8 open decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and command deck only; no price, product or site page touched, so IndexNow not applicable.
+
+## PM check-in, 2026-09-24 23:1x (previous work confirmed finished; a stale command deck regenerated; backlog and issues still exhausted)
+
+Reattached clean, fast-forward only. `BACKLOG-2026-09-07.md` (sections 2-4 done or Phil-gated, section 5 HOLD) and 8 GitHub issues confirmed unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work confirmed finished.** HEAD carried an unlogged commit, Phil's own "Laundry Room personalised" (D-026, third room), merged after the last documented preflight run. Ran `preflight.py` to full completion myself rather than trust its own commit message: every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new.
+
+**Did:** the command deck was one commit stale, citing `5bf5a7ea` and "uncommitted or unpushed work" against a tree that was actually clean. Regenerated; now cites `96a6c764`, clean and in sync.
+
+**Handing to the operator:** the standing low-mention `ops/*.py` cold-read lane, unchanged.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-24, scheduled operator cycle (six low-mention ops/*.py files cold-read clean; full preflight watched to its own exit; no new defect)
 
 **Did:** Unshallowed, attached to `main`, fast-forwarded 170 commits, no unrelated-history error. Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the newest four `ops/NIGHTLY-LOG.md` entries. GitHub confirmed live via the API: 8 open issues, unchanged in number, labels and content from every recent cycle's own citation (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`); read issue #32 directly since the backlog's section 1b still named it as open, confirmed it was actually closed 2026-09-22 (option 2, the catalogue shrink, taken). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, correctly reported rather than assumed empty.

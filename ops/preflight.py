@@ -12883,6 +12883,151 @@ def gate_status_deploy_verdict_current() -> None:
         warn("status-deploy-verdict-current", problem)
 
 
+def resolve_verdict_commit(build_id: str) -> str | None:
+    """Which commit's site/build-id.txt first became this exact build_id.
+
+    ops/deploy-verdict.json records only the build_id string, not which
+    commit produced it, so this re-derives it: -S(build_id) finds every
+    commit that changed whether site/build-id.txt contained that exact
+    string at all, which is the commit that set it (occurrence count
+    0 -> 1) and, if the repository has since moved on, the later commit
+    that replaced it (1 -> 0). git log lists newest first, so the oldest
+    match (the last line) is the one that set it. Returns None if the
+    string cannot be found at all (a verdict older than this repository's
+    visible history, or a malformed build_id).
+    """
+    out = subprocess.run(
+        ["git", "log", "-S%s" % build_id, "--format=%H", "--",
+         "site/build-id.txt"],
+        cwd=ROOT, capture_output=True, text=True, timeout=60,
+    ).stdout
+    hashes = [ln.strip() for ln in out.splitlines() if ln.strip()]
+    return hashes[-1] if hashes else None
+
+
+def deploy_gap_material_commits(verdict_commit: str) -> list:
+    """Commits after verdict_commit that touched site/ or Dockerfile, the
+    paths a redeploy actually needs to carry. Empty if verdict_commit is
+    unknown."""
+    if not verdict_commit:
+        return []
+    out = subprocess.run(
+        ["git", "log", "--format=%H", "%s..HEAD" % verdict_commit,
+         "--", "site/", "Dockerfile"],
+        cwd=ROOT, capture_output=True, text=True, timeout=60,
+    ).stdout
+    return [ln.strip() for ln in out.splitlines() if ln.strip()]
+
+
+def deploy_gap_count_problem(status_text: str, real_count: int,
+                              build_id: str, checked_at: str) -> str:
+    """Pure logic for gate_status_deploy_gap_count_current, testable
+    without git.
+
+    Found 2026-09-24: gate_status_deploy_verdict_current checks that
+    BLOCKER-001 cites the real, current build_id, but never checked whether
+    the PROSE describing the gap around that citation, specifically "the
+    gap is N commits", stays accurate as the repository keeps moving. The
+    21:2x-era entry correctly named build_id `28ed2709194afab5` and said
+    the gap was "(1 commit, `869d4e93`)"; by the time this gate was
+    written, two more site-affecting commits (`29a84fa2`, `b8eca135`) had
+    landed and nobody told that sentence, so the build_id citation stayed
+    correct while the count next to it was already off by 3x, the same
+    "cites the right fact, wrong number beside it" shape as gate_status_
+    deploy_verdict_current's own "Production Knowledge" widening, one level
+    more specific: right build_id, stale count.
+
+    Finds the LAST "(<n> commit" style count inside BLOCKER-001's most
+    recent entry (entries are appended, newest at the bottom, this file's
+    own convention inside a still-open section) and compares it to
+    real_count, freshly recomputed by the caller from git. Only the
+    section's final entry is checked; older entries are a deliberately kept
+    history, not the current standing claim.
+
+    Returns a problem string if the cited count and the real one disagree;
+    '' if there is no BLOCKER-001 section, no build_id, the latest entry
+    does not yet cite the current build_id (gate_status_deploy_verdict_
+    current owns that complaint instead), no parseable count in the latest
+    entry (prose that describes the gap with no bare number is not a
+    defect this can detect and is left alone rather than guessed at), or
+    the numbers already agree.
+    """
+    if not build_id:
+        return ""
+    m = re.search(r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)", status_text, re.DOTALL)
+    if not m:
+        return ""
+    section = m.group(0)
+    if build_id not in section:
+        return ""
+    entries = re.split(r"\n\n(?=\*\*)", section)
+    latest = entries[-1] if entries else section
+    if build_id not in latest:
+        return ""
+    counts = re.findall(r"\((\d+)\s+commits?\b", latest)
+    if not counts:
+        return ""
+    cited = int(counts[-1])
+    if cited != real_count:
+        return (
+            "BLOCKER-001's latest entry cites a gap of %d commit(s) next "
+            "to build_id %s (confirmed %s), but a fresh count of commits "
+            "since that build touching site/ or Dockerfile is %d. The "
+            "build_id citation is current; the commit-count next to it is "
+            "not." % (cited, build_id, checked_at or "unknown time",
+                      real_count))
+    return ""
+
+
+def gate_status_deploy_gap_count_current() -> None:
+    """BLOCKER-001's stated undeployed-commit count must match a fresh
+    recount, not just its build_id citation.
+
+    Found live 2026-09-24, scheduled operator: gate_status_deploy_verdict_
+    current passed clean (the section did cite the real, current build_id),
+    while the section's own "(1 commit)" gap claim next to that citation
+    had already gone stale to a real gap of 3 (`869d4e93`, `29a84fa2`,
+    `b8eca135`), all landed after the entry was written and none mentioned.
+    A correct build_id and a wrong commit count next to it is exactly the
+    "source corrected, sibling never told" shape this repository's other
+    staleness gates exist to catch, just one level more specific than the
+    existing gate reaches.
+
+    A WARNING, matching every sibling deploy-staleness gate: nothing in the
+    current commit caused a real redeploy to happen or not happen, and this
+    should not block unrelated work, only flag prose worth correcting.
+
+    Proof this can fail: ops/tests/test_gate_status_deploy_gap_count_
+    current.py calls deploy_gap_count_problem() directly with a synthetic
+    BLOCKER-001 entry citing "(1 commit)" against a real_count of 3 and
+    asserts the warning fires by name, then confirms it clears once the
+    entry says 3.
+    """
+    status_path = os.path.join(ROOT, "STATUS.md")
+    verdict_path = os.path.join(ROOT, "ops", "deploy-verdict.json")
+    if not os.path.exists(status_path) or not os.path.exists(verdict_path):
+        return
+    status_text = io.open(status_path, encoding="utf-8").read()
+    try:
+        verdict = json.loads(io.open(verdict_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    build_id = verdict.get("build_id")
+    if not build_id:
+        return
+    try:
+        commit = resolve_verdict_commit(build_id)
+        if commit is None:
+            return
+        real_count = len(deploy_gap_material_commits(commit))
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = deploy_gap_count_problem(status_text, real_count, build_id,
+                                        verdict.get("checked_at"))
+    if problem:
+        warn("status-deploy-gap-count-current", problem)
+
+
 def gate_experiments_blocked_reason_current() -> None:
     """The status report Phil actually reads (ops/status_report.py's text
     output and the PDF ops/status_pdf.py builds from it) must not claim the
@@ -20763,6 +20908,7 @@ def main() -> int:
     run_gate(gate_risks_traffic_citations_current)
     run_gate(gate_status_currency)
     run_gate(gate_status_deploy_verdict_current)
+    run_gate(gate_status_deploy_gap_count_current)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
