@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 06:48",
- "commit": "ac7e1fc1",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
- "commits_7d": 1091,
- "commits_total": 3791,
+ "generated": "2026-09-25 07:21",
+ "commit": "d0e6c9c0",
+ "commit_msg": "STATUS.md: BLOCKER-001's deploy-gap citation was one commit stale again, the same recurring pattern; corrected to the real 2-commit gap (B9's new Entryway deck page undeployed)",
+ "commits_7d": 1090,
+ "commits_total": 3795,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -1085,7 +1085,7 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 200,
+ "site_pages": 201,
  "dead_links": 0,
  "legal_pages": 4,
  "forms_dead": 196,
