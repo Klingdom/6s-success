@@ -2804,6 +2804,19 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     out.append('</ol>')
     out.append(f'<p><a href="../rooms/{rs}.html">The {esc(room["room"])} in full, '
                f'with what each of the {len(room["zones"])} zones is for</a></p>')
+    # The deck for this room, where one exists. Same reasoning as room_page():
+    # on 2026-09-25 six decks were live and reachable only from deck.html,
+    # while the 38 zone pages belonging to those same rooms said nothing about
+    # them. A reader who has just worked through one zone is the single most
+    # likely person to want the rest of that room as cards.
+    _deck = deck_for(rs)
+    if _deck:
+        _href, _cards = _deck
+        out.append(
+            f'<p><a href="{_href}">The {esc(room["room"].lower())} as a deck '
+            f'of {_cards} cards</a>: the frictions people report in each zone, '
+            f'the root cause behind each one, and the timed action that clears '
+            f'it. Free to read or print.</p>')
     # The same job in another room, where one genuinely exists. See the note
     # on _sibling_index above: this covers 14 pages, not 114, and it is here
     # because those 14 are the only ones that compete with each other.
@@ -3029,6 +3042,34 @@ def _validate_room_job(rooms):
                           f"missing {sorted(missing)}, extra {sorted(extra)}")
 
 
+def deck_for(room_slug: str):
+    """(href, card_count) for this room's deck, or None.
+
+    Derived from ops/cardtext/<slug>-deck.json, the COMMITTED SOURCE, not
+    from site/<slug>-deck.html, the build output. Deck pages are written by
+    separate generators, so keying off the rendered page would make this
+    file's output depend on the order generators happen to run in, and
+    gate_generator_ownership reruns the whole chain and diffs it. Source data
+    is stable whatever the order.
+
+    Why this exists: measured 2026-09-25, six room decks were live and linked
+    from exactly one page, deck.html. Not one of the 6 room pages or 38 zone
+    pages for those same rooms mentioned its deck. Those 44 pages are the most
+    topically relevant anchors the site has, and they pointed nowhere.
+    """
+    fp = os.path.join(ROOT, "ops", "cardtext", "%s-deck.json" % room_slug)
+    if not os.path.exists(fp):
+        return None
+    try:
+        d = json.load(io.open(fp, encoding="utf-8"))
+    except Exception:                                          # noqa: BLE001
+        return None
+    cards = d.get("cards")
+    if not isinstance(cards, list) or not cards:
+        return None
+    return ("../%s-deck.html" % room_slug, len(cards))
+
+
 def room_page(room, header, footer, all_rooms=()):
     rs = slug(room["room"])
     url = f"{BASE}/rooms/{rs}"
@@ -3192,6 +3233,18 @@ def room_page(room, header, footer, all_rooms=()):
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'
                 for t in tips]
         out.append('</ul>')
+    deck = deck_for(rs)
+    if deck:
+        href, cards = deck
+        out.append(
+            '<h2>The %s deck</h2>'
+            '<p>The same zones as a deck of %d cards you can read here or '
+            'print: what each zone is for, the frictions people actually '
+            'report in it, the root cause behind each one, and the timed '
+            'action that clears it. Free, no account. '
+            '<a href="%s">Read the %s deck</a>.</p>'
+            % (esc(room['room'].lower()), cards,
+               href, esc(room['room'].lower())))
     out.append(SAFETY)
     out.append(room_offer(room['room'], rs, n))
     # Every other room, by name, not just a link to the index.
