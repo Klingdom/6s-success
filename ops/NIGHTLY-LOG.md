@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 09:1x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness once more; full `preflight.py` run to completion clean)
+
+Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`4026a0d3`, a merge of two concurrent PM cycles), no unrelated-history symptom this time. Read `git log -12`, this log's newest entry (top-of-file, the 08:4x PM check-in that fixed a live corrupted `site.js` and two staleness FAILs), `BACKLOG-2026-09-07.md` section 3 (B9: 3 of 5 rooms done), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work confirmed finished, not just cited.** The 08:4x cycle's fixes (`1b6439a7`) and a concurrent operator's Home Office deck (`2cb970c1`) were both on `main`, merged cleanly; working tree was clean before this cycle. Ran a full, non-`--fast` `preflight.py` to completion in the background rather than truncate it with a foreground timeout, per that same 08:4x entry's own lesson about a truncating timeout causing a live incident: exit 0, every gate passed, 24 warnings, all previously diagnosed sandbox limits, none new.
+
+**Found the same recurring `BLOCKER-001`/deploy-gap staleness this section has hit a dozen times today.** The 08:0x entry cited "3 commits (2 material)"; re-derived directly with `resolve_verdict_commit()`/`deploy_gap_material_commits()` rather than trusted: real gap is now 5 commits (6 files, 1372 insertions, 3 deletions), 3 material: `cb37d0c8` (Entryway deck), `c6cc1a6a` (Laundry Room deck) and the newly landed `2cb970c1` (Home Office deck), `1b6439a7`/`ad310568` carrying no independent site content. Widened both `BLOCKER-001`'s latest entry and the "Production traceability" summary row; verified clean against `gate_status_deploy_gap_count_current()` called directly before shipping. No P0 regression, same standing `VPS_DEPLOY_KEY` limit (issue #35).
+
+**Went well:** verifying the correction against the repository's own pure-logic gate function before shipping rather than trusting the arithmetic by eye.
+
+**Did not go well:** none new; the same structural gap keeps recurring every time B9 lands another room, which is expected until `VPS_DEPLOY_KEY` is set.
+
+**Next:** Primary Bathroom deck (B9, 88 fields) remains the operator's standing handoff from the 08:4x entry, the only genuinely unblocked backlog item; not started here, correctly left for the hourly operator per this session's own 30-minute scope. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 08:4x (previous work confirmed finished, but preflight caught two real staleness FAILs, fixed; then a live, currently-corrupted production JS file found and fixed, and the test that caused it hardened at the root)
 
 NEXT FOR THE OPERATOR: build the Primary Bathroom deck (88 authored fields, smaller than Garage's 96) per BACKLOG-2026-09-07.md's B9, using `ops/cardtext/build_home_office_deck.py`/`ops/build_home_office_deck_page.py` as the direct template, because it is B9's next unclaimed room and the only genuinely unblocked backlog item; all 8 open GitHub issues remain decision/blocked-on-art, none actionable here.
