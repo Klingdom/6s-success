@@ -4,10 +4,19 @@ A hero photograph for every micro zone, generated locally.
 
 WHY THIS IS THE UNLOCK
 ----------------------
-109 of the 114 micro zones have no imagery. That single gap forced the video
-format to be typographic, left every zone page a wall of text, and made the
-matched before and after pairs, which are the strongest proof this site could
-carry, impossible to produce. One batch closes all three.
+Written when 109 of the 114 micro zones had no imagery at all: that gap
+forced the video format to be typographic, left every zone page a wall of
+text, and made the matched before and after pairs, the strongest proof this
+site could carry, impossible to produce. One batch closed all three.
+
+**Corrected 2026-09-25:** that gap is closed. 111 of 114 zone pages now ship
+a hero (`ops/preflight.py`'s `gate_pages_missing_art` measures this live off
+the real committed pages, not off this file's own local `build/heroes/zones`
+output, which is git-ignored and empty in a fresh checkout). Only 3 zones
+still ship with no picture at all (a rejected hero, not a missing one):
+`workshop-the-material-rack`, `home-office-the-printer-and-scanning-station`,
+`home-office-the-file-storage`. This tool's job now is regenerating those
+three and any future rejection, not the original 109-zone batch.
 
 THE SUBJECT COMES FROM THE ZONE, NOT FROM ME
 --------------------------------------------
