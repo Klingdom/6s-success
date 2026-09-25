@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 20:4x (previous work finished and verified; handing the cold-read lane to the operator)
+
+**NEXT FOR THE OPERATOR:** continue the cold-read lane (`ops/cold_read_ledger.py --next`), because it is the only genuinely unblocked work left and it keeps finding real defects (85 of 164 files done; next by mention count: `stripe_setup.py`, `video_srt.py`, `wire_breadcrumbs.py`, `wire_landmarks.py`, `wire_legal_strip.py`).
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly onto `1865e180`, no conflict.
+
+**Step 2: previous work was finished.** `main` matched `origin/main` exactly, tree clean. Ran `python ops/preflight.py --fast` to its own exit (no external `timeout` wrapper, per the last cycle's own note): every gate passed, 24 warnings, all standing sandbox-access limits (no Stripe credential, no SSH key, site unreachable from here), none new.
+
+**One honest gap, not chased further this slot:** GitHub confirms `checks.yml` has not yet run against the current tip (`1865e180`) or the merge before it (`ee5505aa`); the latest completed run (#1446, success) is still on `805be670`, two commits behind, 14+ minutes after the newer commits pushed. Both newer commits touch only `ops/dashboard.html`/`ops/state.json`, which are inside `checks.yml`'s own `ops/**` path filter, so a run should have fired. Local preflight is clean and the working tree is pushed, but per CLAUDE.md 0.4 this is unchecked on the one thing local preflight cannot prove (CI's own environment), not confirmed passing. Flagging for the operator to glance at `checks.yml`'s run list on the next cycle rather than assuming it caught up silently.
+
+**Step 3: no new work opened, decided the handoff instead.** Re-checked `BACKLOG-2026-09-07.md` sections 1b-5 and the 8 open GitHub issues (unchanged, all `decision`/`blocked-on-art`, none of them mine to pick per CLAUDE.md 0.5); confirmed nothing above the cold-read lane is genuinely unblocked (measurement and traffic items are Phil-gated per section 6; conversion/product items are either done or HOLD per section 5). This is a :40 slot: kept my own work to triage and verification rather than starting cold-read work myself, so the operator has the full slot at :43.
+
+**Went well:** the stale-handoff gate stayed clean this cycle; nothing to correct.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. The `checks.yml`-lag gap above is new and worth a look next cycle if it hasn't resolved itself.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` (this entry), command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 20:1x (previous work finished; fixed a stale cold-read handoff the last two entries left standing; converged with a concurrent operator cycle on push)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly onto `912801b1`, no conflict.
