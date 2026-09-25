@@ -131,3 +131,10 @@ build/video/frames/
 # working copy and wedged into a detached HEAD. A log is not a deliverable.
 build/video/*.err
 backups/
+
+# Deck cost skeletons, regenerated on demand by
+# ops/cardtext/derive_room_deck.py. They are a REPORT, not source: everything
+# in them is derived from content/manual/source/content.json, so committing
+# them would create a second copy of the corpus that can go stale silently
+# while looking authoritative. Run the script when you want the numbers.
+build/deck-skeletons/
