@@ -1928,12 +1928,26 @@ in all three cohorts. Crawlers walk the sitemap; they do not reward depth, and
 nothing about authoring changed what they took. Whether any of it is *quoted*
 is not observable from a server log at all, and no tool here can observe it.
 
-*Traffic: too small and too confounded to carry weight.* 536 zone pageviews in
-30 days. The pilot zones show 6.92 views per page against 4.26 for unauthored
-ones, but Entryway and Kitchen were chosen as the pilot **because** they are
-the flagship rooms, and they are linked from the homepage, the deck and the
-quest. That is a selection effect, not a result, and 83 views cannot separate
-the two.
+*Traffic: too small and too confounded to carry weight.* 270 zone pageviews in
+30 days. Broken out per page: the 12 long-authored pilot zones 4.50, the 26
+authored today 2.08, the 76 never authored 2.13.
+
+Read carefully, that table argues against personalisation rather than for it.
+The 26 rooms authored today were byte-identical to the plain ones for the whole
+window, and they score 2.08 against 2.13, which is the same number. So the
+pilot's 4.50 is not what authoring does to a zone page. It is what being
+Entryway or Kitchen does: those two were chosen as the pilot **because** they
+are the flagship rooms, and they are linked from the homepage, the deck and the
+quest. A selection effect, and 54 views cannot separate it from anything else.
+
+**These three figures were wrong in the first version of this entry (536, 6.92,
+4.26), by roughly a factor of two.** The query omitted `website_id`, and this
+Umami instance serves several sites, so it counted other businesses' traffic as
+ours. The same omission had already made the top-line look like 239 visitors in
+30 days, a 3.5x overnight jump, when the true figure is 57 and slightly down.
+Twice in one session, from one missing predicate. `ops/traffic_query.sh` has
+always carried the filter; the mistake was writing a fresh query beside it
+instead of using it.
 
 **So: no fifth room on momentum.** Six of twenty rooms are personalised, 38 of
 114 zones. The remaining fourteen rooms are not forbidden, but they are no

@@ -105,6 +105,29 @@ def umami_rows(sql: str, timeout: int = 60) -> list[list[str]]:
             raise Unreadable("refusing to run a %s against the analytics "
                              "database; this reader is SELECT only" % banned)
 
+    # THIS UMAMI INSTANCE SERVES SEVERAL BUSINESSES, so a query over
+    # website_event without a website_id predicate silently reports somebody
+    # else's traffic as ours. On 2026-09-24 that happened twice in one
+    # session: a top-line read came back as 239 visitors in 30 days, a 3.5x
+    # overnight jump, when the real figure was 57 and slightly down; and the
+    # zone-page figures written into DECISIONS.md D-026 were out by about a
+    # factor of two. Both were caught only by comparing against
+    # ops/traffic_query.sh, which has always carried the filter.
+    #
+    # A number that is confidently wrong is worse than no number, because it
+    # gets written into a decision. Any query touching website_event must
+    # either name the website or say plainly that it means to cross all of
+    # them.
+    if re.search(r"\bwebsite_event\b", stripped) and "website_id" not in stripped:
+        if "all-websites" not in sql:
+            raise Unreadable(
+                "this query reads website_event without a website_id "
+                "predicate, and this Umami instance serves more than one "
+                "site, so the result would mix other businesses' traffic "
+                "into ours. Add \"where website_id = '%s'\", or put the "
+                "comment -- all-websites in the query if crossing every "
+                "site is genuinely what you mean." % WEBSITE)
+
     if not os.path.exists(SSH_KEY):
         raise Unreadable("no ssh key at %s, so the database was not reached"
                          % SSH_KEY)

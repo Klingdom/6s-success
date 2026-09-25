@@ -6,8 +6,9 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-25 (header date; the traffic figure itself is the
-2026-09-23 12:50 UTC pull below, not re-measured since). 2026-09-23 12:50 UTC, traffic re-measured by a direct database read: 68 visitors/160 visits/30 days (2.3 a day; trailing week 12 after 10, 14, 18).
+**Last measured:** 2026-09-25 01:17 UTC, traffic re-measured by a direct
+database read: 57 visitors/144 visits/30 days (1.9 a day; trailing week 12
+after 12, 10, 14, 18).
 
 **Corrected 2026-09-25 00:1x, PM check-in: the "3 commits" figure below was already stale, and citing a superseded build_id besides.** Before re-deriving from the same `28ed2709194afab5`/`d5b0d5c8` citation the note below used, checked `ops/deploy-verdict.json` directly. It now records a newer, unread confirmation: `verdict: "current"`, build `6a10df205a3d058c`, `checked_at: 2026-09-24T23:35:51Z`, resolving (`git log -S`) to commit `b8eca135` ("Micro zones: Laundry Room personalised"). A session with real access redeployed again after the `d5b0d5c8` confirmation and closed the gap in full at that time. Reopened since by exactly one further `site/**` commit, Phil's own `ca49aa25` ("Micro zones: Garage personalised"): `git log b8eca135..HEAD -- site/ Dockerfile` reads 1 commit, 44 files, 547 insertions, 323 deletions, not the 4 a recount against the older, superseded build would have shown. No new action needed beyond item 0 below, same structural gap, just correctly sized against the current verdict; `STATUS.md`'s `BLOCKER-001` carries the same correction.
 
@@ -584,7 +585,7 @@ on the zone page" rather than presenting four sixths of a standard as the
 whole of it. One of those hidden items was "The cabinet strapped to a wall
 stud", which is a safety line.
 
-**Measured 2026-09-23 12:50 UTC by a direct database read.** Traffic is 68 visitors, 160 visits and 813 pageviews, 2.3 a day. It fell from 76 mostly because the 7 Sept automated session (431 pageviews) rolled out of the 30-day window, so this count is now very nearly all human. The last 7 days: **12 visitors**, against 10, 14 and 18 in the three weeks before, so the fall has stopped without reversing. The crawl rise I reported on 21 Sept turned out to be a two-day burst from the IndexNow submission, not a change (1, 17, 15, 2, 2 by day), so this is not a crawling problem and it is not a crawling success either:
+**Measured 2026-09-25 01:17 UTC by a direct database read.** Traffic is 57 visitors, 144 visits and 786 pageviews, 1.9 a day. It fell from 76 mostly because the 7 Sept automated session (431 pageviews) rolled out of the 30-day window, so this count is now very nearly all human. The last 7 days: **12 visitors**, against 10, 14 and 18 in the three weeks before, so the fall has stopped without reversing. The crawl rise I reported on 21 Sept turned out to be a two-day burst from the IndexNow submission, not a change (1, 17, 15, 2, 2 by day), so this is not a crawling problem and it is not a crawling success either:
 
 | Source | Visitors, 30 days |
 |---|---|

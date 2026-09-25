@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import csv
 import datetime
+import subprocess
 import io
 import json
 import os
@@ -86,9 +87,46 @@ def missing_fields(p):
     return out
 
 
+def inputs_date() -> str:
+    """The date the INPUTS last changed, not the date this happened to run.
+
+    Stamping "today" here broke CI once a day, every day. These three reports
+    are re-run and diffed by preflight's gate_generator_ownership, so a
+    generation date guarantees the tree is dirty on the first run after
+    midnight UTC even when nothing about the affiliate programme has moved.
+    That is exactly what failed the 2026-09-25 00:08 UTC build, which ran with
+    a file committed the previous day and was refused before it could check
+    anything real.
+
+    So the stamp is the newest commit date of the two files that actually
+    decide the content, which is the same approach ops/build_seo.py takes for
+    page lastmod and for the same reason: a date that moves when nothing moved
+    is not information, it is noise with a timestamp. Falls back to the file
+    mtime outside a git checkout, and only then to today.
+    """
+    newest = ""
+    for p in (ACCOUNTS, CATALOGUE):
+        try:
+            out = subprocess.run(
+                ["git", "log", "-1", "--format=%cs", "--", p],
+                cwd=ROOT, capture_output=True, text=True, timeout=30)
+            d = (out.stdout or "").strip()
+        except Exception:                                      # noqa: BLE001
+            d = ""
+        if not d:
+            try:
+                d = datetime.date.fromtimestamp(
+                    os.path.getmtime(p)).isoformat()
+            except OSError:
+                d = ""
+        if d > newest:
+            newest = d
+    return newest or datetime.date.today().isoformat()
+
+
 def main() -> int:
     acc, progs, rows = load()
-    today = datetime.date.today().isoformat()
+    today = inputs_date()
     approved = [k for k, v in progs.items()
                 if (v.get("status") or "").lower().startswith("approved")]
 

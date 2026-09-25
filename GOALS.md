@@ -58,8 +58,8 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **68 visitors / 160 visits / 30 days** | measured 2026-09-23 12:50 UTC by a direct Umami database read (`ops/traffic_query.sh`). 813 pageviews. The 7 Sept automated session (431 pageviews in 28 minutes) has now rolled OUT of the 30-day window, which is most of why the count fell from 76: this figure is very nearly all human. The last 7 days brought **12 visitors, 18 visits, 33 pageviews**, against 10/17/31, then 14/21/35, then 18/28/57. The fall has stopped without reversing. **The crawl rise this row used to cite was a burst, not a change** (LRN-0013 third reading): 1, 17, 15, 2, 2 by day, which is what an IndexNow submission causes once. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. Units trap recorded as LRN-0015. |
-| Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
+| Stranger to Visitor | **57 visitors / 144 visits / 30 days** | re-measured 2026-09-25 01:17 UTC against `website_id` f1fc5160-4473-422d-a89e-73ff6cbdca7a, the filter `ops/traffic_query.sh` has always carried. 786 pageviews. Last 7 days: **12 visitors, 14 visits, 27 pageviews**, against the 12/18/33 read on 2026-09-23. The trend is flat to slightly down, and the fall reported through September has stopped without reversing. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id` (LRN-0015). **A read taken the same night without the `website_id` predicate said 239 visitors, a 3.5x overnight jump, because this Umami instance serves three sites and the query was counting other businesses as ours.** Nothing here may be re-derived with a hand-written query; `ops/experiments.py` now refuses one that does not name a website, and `ops/tests/test_umami_website_filter.py` pins that. |
+| Visitor to Engaged | **71 views of /quest.html** | against 123 of the home page (`/` 101 plus `/index.html` 22), so a little over half of arrivals try it. Re-measured 2026-09-25 01:17 UTC with the `website_id` filter; the previous 53-against-61 reading was taken without it. |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
 | Customer to Repeat | n/a | one customer, ever |
@@ -112,17 +112,16 @@ not by how interesting they are.
 | Published videos | **12 of 114, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30. Corrected 2026-09-16: this row read "12 of 228" for six weeks, conflating the 228 total rendered video FILES (114 vertical plus 114 horizontal, two orientations of the same 114 zones) with the YouTube publishing target. `ops/youtube_upload.py`'s own docstring states only the wide 16:9 file is ever uploaded ("Shorts are a separate distribution decision and are not posted by this tool"), so the real denominator is 114, one per zone, matching `MEDIA-OPERATIONS-PLAN.md` and `OWNER-ACTIONS.md`'s own "102 of 114 remaining" framing, which was right the whole time. The numerator (12) was never wrong.** | all 114 |
 | Sessions from organic search | **5 visits from 4 visitors, whole life of the site, measured 2026-09-20** | Read directly from the Umami database, not carried forward: bing.com 1 visitor / 1 visit (21 August), google.com 3 visitors / 4 visits (4 to 18 September). **Corrected 2026-09-20:** this row said "4 visits from 3 visitors ... reconfirmed unchanged" earlier the same day. Nothing was re-measured to produce that line; a cloud session holds no VPS key and cannot read this table, so "reconfirmed" meant "carried forward". Google's most recent visit is 18 September, the day after the duplicate-URL redirects shipped. | 
 | Sessions, last 7 days | **12** | 12 visitors, 18 visits, 33 pageviews, measured 2026-09-23 12:50 UTC. The three-week fall (18, 14, 10) has stopped; 12 is not a recovery at this scale |
-| Weekly visitors | **12/wk (2026-09-23, up from 10), corrected: this row still read 14/wk (2026-09-20) two measurements behind the row above it** | 500/wk |
+| Weekly visitors | **12/wk (2026-09-25, flat on the 12 read 2026-09-23)** | 500/wk |
 
-**Why it is first, now with numbers.** 68 visitors (read directly from the
-database 2026-09-23 12:50 UTC, down from 76 on 2026-09-21, 78 on 2026-09-17,
-75 on 2026-09-14 and 68 on 2026-09-11 - the 7 Sept automated session, 431
-pageviews, has now rolled out of the 30-day window, which is most of why the
-count fell from 76) across 160 visits in thirty days (813 pageviews, very
-nearly all human now that the automated session is out of the window;
-**corrected 2026-09-23: this paragraph still cited the superseded
-2026-09-21 14:05 UTC read, 76/190, one read behind the table at section
-2's own top row, which already carried the newer figure**), and in the whole life
+**Why it is first, now with numbers.** 57 visitors (read directly from the
+database 2026-09-25 01:17 UTC, down from 68 on 2026-09-23, 76 on 2026-09-21,
+78 on 2026-09-17 and 75 on 2026-09-14) across 144 visits in thirty days (786
+pageviews, very nearly all human now that the 7 Sept automated session has
+rolled out of the window; **corrected 2026-09-25: a read taken the same night
+WITHOUT the `website_id` predicate said 239 visitors, because this Umami
+instance serves three sites. The guard in `ops/experiments.py` now refuses
+that query shape**), and in the whole life
 of this site **exactly five visits from four visitors arrived from a search
 engine**, per the "Sessions from organic search" row above, corrected today
 after the earlier "reconfirmed unchanged" line turned out to be an

@@ -60,11 +60,11 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 68, "visits": 160, "views": 813,
-           "days": 30, "as_of": "2026-09-23",
-           "how": "read directly from the Umami database 2026-09-23 12:50 UTC "
-                  "over ssh (ops/traffic_query.sh): 68 visitors, 160 visits, "
-                  "813 pageviews. Down from 76 mainly because the 7 Sept "
+TRAFFIC = {"visitors": 57, "visits": 144, "views": 786,
+           "days": 30, "as_of": "2026-09-25",
+           "how": "read directly from the Umami database 2026-09-25 01:17 UTC "
+                  "over ssh (ops/traffic_query.sh): 57 visitors, 144 visits, "
+                  "786 pageviews. Down from 76 mainly because the 7 Sept "
                   "automated session (431 pageviews in 28 minutes) has rolled "
                   "OUT of the 30-day window, so views here is very nearly all "
                   "human and is no longer net of an exclusion. The trailing "

@@ -420,8 +420,8 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
-  - current baseline, direct Umami database read 2026-09-23 12:50 UTC: 68
-    visitors/160 visits/813 pageviews/30 days. It fell from 76 mostly
+  - current baseline, direct Umami database read 2026-09-25 01:17 UTC: 57
+    visitors/144 visits/786 pageviews/30 days, down from 68 on 2026-09-23. It fell from 76 mostly
     because the 7 Sept automated session described above (431 pageviews)
     has now rolled OUT of the 30-day window, so this count is very nearly
     all human and no longer needs the exclusion this row exists to explain.
@@ -1015,11 +1015,15 @@ evidence:
     automated session, leaving 505 human pageviews from 75 visitors. The
     30-day figure looks flat at 76 only because the window still contains a
     busier fortnight that is rolling out of it.
-  - RE-MEASURED 2026-09-23: 68 visitors / 160 visits / 813 pageviews over 30
-    days, down from 76 as the busier fortnight rolls out of the window. The
-    trailing week is 12 visitors, against 10, 14 and 18 in the three weeks
-    before, so the fall has stopped without reversing; at this scale the
-    difference between 10 and 12 is noise, not recovery.
+  - RE-MEASURED 2026-09-25: 57 visitors / 144 visits / 786 pageviews over 30
+    days, down from 68 on 2026-09-23 and 76 before that, as the busier
+    fortnight rolls out of the window. The trailing week is 12 visitors,
+    against 12, 10, 14 and 18 in the four weeks before, so the fall has
+    stopped without reversing; at this scale the difference between 10 and 12
+    is noise, not recovery. A read taken the same night without the
+    `website_id` predicate said 239 visitors: this Umami instance serves three
+    sites, and `ops/experiments.py` now refuses a query that does not name
+    one (`ops/tests/test_umami_website_filter.py`).
   - THE CRAWL RISE THIS ROW USED TO CITE WAS A BURST, AND THE CORRECTION
     MATTERS MORE THAN THE FIGURE. It previously read that Googlebot content
     fetches "ROSE sharply" from about 1.3 a day to 17 on 20 Sept and 11 by
