@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 08:1x, cycle addendum (the backgrounded full preflight from the entry below finished with one failure, verified transient, not real)
+
+`/tmp/preflight_pm.log` finished after this cycle had already shipped: 1 gate failed (`gate_no_stray_probe_files`: `site/_deck_probe_1.html`, `site/_deck_wrapper_1.html`, "left behind by a run that was killed mid-audit"), 24 warnings, all previously diagnosed sandbox limits. Checked rather than assumed transient, the same shape this file has hit before with this exact gate: neither file exists in `site/` now, and calling `gate_no_stray_probe_files()` directly against the current tree returns clean. A concurrent session's own interactive deck test almost certainly wrote and then cleaned up these probe/wrapper files while this cycle's snapshot was mid-run; `main` is unchanged since this cycle's own push, working tree clean. No action needed.
+
 ## PM check-in, 2026-09-25 08:0x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness once more, full preflight left running in background)
 
 Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`a6619aa1`), no unrelated-history symptom. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 3, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API (unchanged, all `decision`/`blocked-on-art`).
