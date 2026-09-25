@@ -1902,8 +1902,9 @@ that can go stale and the table is not.
 | 2026-09-24 | Primary Bathroom (7) | 19 of 114 |
 | 2026-09-24 | Home Office (6) | 25 of 114, 21.9% |
 | 2026-09-24 | Laundry Room (6) | 31 of 114, 27.2% |
+| 2026-09-24 | Garage (7) | 38 of 114, 33.3% |
 
-Three of the four are done. Garage remains before the checkpoint.
+**All four rooms are authored, so the checkpoint above is now due and is the next piece of work, not a formality to skip.** It asks whether the completed zones show any difference in app diagnosis use or in what answer engines quote. The honest prior is that they will not yet, because D-021 established there is almost no traffic to measure and Search Console is still unverified. If that is what the evidence says, this decision requires saying so plainly rather than starting a fifth room on momentum.
 
 **One thing the first two rooms taught, at cost.** The cause IDs on every
 branch were assigned from memory of what the IDs meant, and 13 were wrong

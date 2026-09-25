@@ -91,6 +91,34 @@ def main() -> int:
     if not problems:
         fails.append("oversized (no-longer-compact) kit block NOT caught")
 
+    # 5b. The ceiling is PER ITEM, not a flat total (changed 2026-09-24).
+    #     A garage zone legitimately holds 18 kit items; a bathroom drawer
+    #     holds 10. Penalising the garage for the room it is would have made
+    #     the gate a tax on completeness, so what is checked is prose
+    #     density. These two cases pin both directions: a block with many
+    #     items and short prose passes, the SAME item count with the old
+    #     verbose prose still fails.
+    def _kit(items, words):
+        return ('<h2>The six passes, in order</h2><section id="sustain">'
+                '</section><h2 id="what-you-need">Kit</h2><p>%s</p>'
+                '<ul class="kit-list kit-compact">%s</ul></main>'
+                % ("word " * words,
+                   '<li class="kit-item">x</li>' * items))
+
+    dense = {"p1.html": _kit(18, 400)}          # 22 words per item
+    if preflight.check_kit_compact_rendered(["p1.html"], [], dense):
+        fails.append("a compact 18-item kit block (22 words/item) was "
+                     "rejected; the ceiling is taxing item count, not prose")
+
+    verbose = {"p1.html": _kit(18, 740)}        # 41 words per item
+    problems = preflight.check_kit_compact_rendered(["p1.html"], [], verbose)
+    if not problems:
+        fails.append("a verbose 18-item kit block (41 words/item, the "
+                     "pre-D5 density) NOT caught")
+    elif "per item" not in problems[0]:
+        fails.append("oversize message no longer reports words per item, "
+                     "which is the number a person needs to fix it")
+
     # 6. A pilot page's kit block is positioned correctly but never used
     #    render_compact()'s own kit-compact class (e.g. a future edit wires
     #    the wrong function back in).

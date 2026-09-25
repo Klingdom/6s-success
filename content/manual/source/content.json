@@ -9025,6 +9025,79 @@
        "A white salt bloom or a spreading damp patch on the slab under the bench, which says water is tracking in under the wall.",
        "Scorching, browning, or a warm smell at the bench outlet or along the light cord as your hand passes over it."
       ]
+     },
+     "capacity": {
+      "rule": "A bare bench top holding only the vise and the task light, one tray with the current job in it, clamps racked on the rail, and swept concrete visible under the bench.",
+      "does_not_fit": "One tray, one job. A second tray is a second unfinished job, and two unfinished jobs on one bench is how a workbench quietly becomes a shelf that nothing gets fixed on. The floor is the other half of the test: if you cannot see swept concrete under the bench, the bench has already overflowed downwards and the top is only the part you can see."
+     },
+     "variants": [
+      {
+       "condition": "The bench shares the garage with a parked car",
+       "guidance": "Every session has to end clear, because the space is borrowed rather than owned. A rolling cart that takes the current tray and the clamps and tucks against the wall makes that possible; a bench that cannot be ended is a bench that stays started."
+      },
+      {
+       "condition": "No fixed bench, only a portable workmate or a tailgate",
+       "guidance": "Then the tray is the zone, and the rule moves onto it: everything goes back in the tray at the end of the session, including the offcuts. Without a permanent surface, the tray is the only thing holding the standard."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The bench is never clear enough to start a job on.",
+        "branches": [
+         {
+          "answer": "Finished jobs are pushed aside rather than put away",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It is the largest flat surface in the house, so everything gets parked on it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "More than one job is part-done at the same time",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "I spend longer finding the tool than doing the job.",
+        "branches": [
+         {
+          "answer": "Tools stay where they were last used instead of going back",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The tools this bench needs are stored across the garage",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Two people use this bench and put things back differently",
+          "cause": "KC-012"
+         }
+        ]
+       },
+       {
+        "symptom": "There is always something underfoot while I am working.",
+        "branches": [
+         {
+          "answer": "Offcuts and packaging go on the floor because there is no bin here",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Extension cords run across the walking line to the nearest socket",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Boxes are stored under the bench where the broom should reach",
+          "cause": "KC-003"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the bench top down to the vise and the task light, put the current job in one tray, rack the clamps on the rail, and sweep until you can see concrete under the bench.",
+       "victory": "A bare bench, one tray holding one job, and swept concrete visible underneath."
+      }
      }
     },
     {
@@ -9106,6 +9179,79 @@
        "A soft, swollen, or stained patch on the pegboard, which means damp is coming through the wall behind it.",
        "A cabinet latch that no longer catches on the first push, and any droppings or gnaw marks behind the cabinet."
       ]
+     },
+     "capacity": {
+      "rule": "Every hand tool hanging on its own drawn outline with no blank silhouettes, one hammer and one adjustable wrench at chest height nearest the door, saw teeth sheathed, and the cabinet latched.",
+      "does_not_fit": "The outlines are the capacity, and a blank silhouette is the only inventory this zone needs: it tells you a tool is out before you go looking for it. A tool with no outline is a tool with no home, and the answer is to draw one or to let it go, never to lay it on the shelf below, because the shelf below is where a tool wall goes to die."
+     },
+     "variants": [
+      {
+       "condition": "Rented, or a wall you are not allowed to fix anything to",
+       "guidance": "Put the pegboard on a freestanding frame and draw the outlines on the board itself. The outline was always doing the work, not the wall, and a board can be carried to the next house with the standard still on it."
+      },
+      {
+       "condition": "Children or visitors come into the garage",
+       "guidance": "Latch and height carry the whole job here. Keep the cabinet latched, everything sharp sheathed, and reserve the chest-height row nearest the door for the two tools most often reached for, so nobody has a reason to go rummaging at a child's eye level."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A tool is missing and nobody knows where it went.",
+        "branches": [
+         {
+          "answer": "Tools hang with no outline behind them, so nothing shows a gap",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Tools get taken for jobs elsewhere and not brought back",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Nothing prompts a check at the end of a job",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "I own three of the same tool and still nearly bought another.",
+        "branches": [
+         {
+          "answer": "Duplicates are spread between the wall, the cabinet and a toolbox",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "The one I reach for first has no fixed place",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Buying another is quicker than finding the one I own",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "Somebody could get hurt reaching into this cabinet.",
+        "branches": [
+         {
+          "answer": "Saw teeth and chisel edges are stored unsheathed",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Heavy tools hang above head height",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nothing was ever agreed about which tools children may handle",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Draw an outline behind every hand tool that hangs, move one hammer and one adjustable wrench to chest height nearest the door, sheath every saw and chisel, and latch the cabinet.",
+       "victory": "Every tool on its own outline with no blank silhouettes, the two you reach for most at chest height by the door, and nothing sharp left unsheathed."
+      }
      }
     },
     {
@@ -9191,6 +9337,79 @@
        "A cracked or heat-discoloured tool housing, or a charger case that has browned around its own vents.",
        "Damp or rust spreading on the slab under a charger base, where water off the car reaches the power."
       ]
+     },
+     "capacity": {
+      "rule": "One shelf per battery system with its charger mounted at the front edge and no pack left sitting on it, every drill and saw in its case or on a labelled hook with guards down, and bits, blades and sanding discs in the shallow drawer underneath.",
+      "does_not_fit": "One shelf per system is the capacity, and the number of systems is the thing to question before the shelving is. Each one is another charger, another shelf and another set of packs ageing quietly out of use. A pack left sitting on a charger is the failure this zone exists to prevent, and it is not a storage fault: it is an unattended heat source on a shelf."
+     },
+     "variants": [
+      {
+       "condition": "Corded tools only",
+       "guidance": "The shelf becomes cases and cords: each cord coiled and hung rather than wrapped tight around the tool, which is what cracks the sheath at the strain relief. No charger rule is needed, and the guards-down rule is unchanged."
+      },
+      {
+       "condition": "An unheated garage that freezes in winter or bakes in summer",
+       "guidance": "Lithium packs lose capacity permanently at both extremes, so the packs come indoors and the shelf keeps the tools. This is one of the few cases where splitting a zone across two rooms is the right answer rather than a failure of nerve."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The tool I need is flat when I pick it up.",
+        "branches": [
+         {
+          "answer": "Packs go back on the shelf without going on the charger",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Charged and flat packs sit together with nothing telling them apart",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Whoever runs a pack flat is not the one who charges them",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Packs are left charging overnight, or for days.",
+        "branches": [
+         {
+          "answer": "Nothing says a pack comes off the charger when it is full",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The charger is somewhere nobody walks past",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The shelf is crowded, so a full pack has nowhere to move to",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "Blades and bits are blunt, missing, or loose in the drawer.",
+        "branches": [
+         {
+          "answer": "Bits live in pockets and tool cases rather than the shallow drawer",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nothing marks a blade as blunt, so it goes back in with the sharp ones",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Blades are stored unguarded where a hand goes looking",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Give each battery system one shelf, mount its charger at the front edge, take every pack off every charger, put each tool in its case or on a labelled hook with guards down, and put the bits and blades in the shallow drawer.",
+       "victory": "One shelf per system, no pack sitting on a charger, every guard down, and bits and blades in one drawer."
+      }
      }
     },
     {
@@ -9275,6 +9494,96 @@
        "An oil stain spreading on the concrete under where the car sits, telling you the car itself is dropping fluid.",
        "A bottle whose printed label has washed or faded illegible, and any rust weeping from the base of the rag can."
       ]
+     },
+     "capacity": {
+      "rule": "Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tyre gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.",
+      "does_not_fit": "The capacity test is not the shelf, it is the driveway: every bottle must match a vehicle parked at this address. The hard ones are always the two-thirds-full bottles, because they cost real money and have not gone off. They still fail the test. The rags are the other limit, and it is absolute: oily rags go in a closed metal can, never a plastic bin, because a pile of them generates its own heat."
+     },
+     "variants": [
+      {
+       "condition": "You do no servicing yourself, only top-ups",
+       "guidance": "The zone shrinks to screenwash, oil, a tyre gauge and the jump pack, and that is a complete zone rather than a deficient one. Do not keep a shelf of fluids for work you have decided you are not going to do; the garage that stores intentions is the one that runs out of room for cars."
+      },
+      {
+       "condition": "An electric vehicle",
+       "guidance": "Most of the fluid shelf simply does not apply, and the charging cable becomes the thing that needs a home: hung in a loop off the floor, not coiled on the slab where it gets driven over. Keep the tyre gauge and the screenwash; an EV is heavier and goes through tyres faster, not slower."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are bottles here for a car we no longer own.",
+        "branches": [
+         {
+          "answer": "They were expensive and still half full, so nothing is decided",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nothing ever prompts a check of the shelf against the driveway",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Bottles are unlabelled, so nobody can tell what fits what",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "There is a sticky film or a puddle under the shelf.",
+        "branches": [
+         {
+          "answer": "Bottles are stored lying down or leaning",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "There is no tray, so a weep goes straight onto the slab",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The shelf is too deep to reach the back of and wipe",
+          "cause": "RC-016"
+         }
+        ]
+       },
+       {
+        "symptom": "In an emergency I could not lay my hands on the jump leads.",
+        "branches": [
+         {
+          "answer": "Cables, gauge and torch are stored in three different places",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "They are at the back of the garage rather than by the door",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "They are in a bag under something heavy",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "Something here is a fire or poisoning risk.",
+        "branches": [
+         {
+          "answer": "Oily rags are in an open or plastic bin",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Antifreeze has been decanted into an unlabelled container",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Petrol or solvent is stored low near the water heater pilot",
+          "cause": "KC-003"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Stand every bottle upright on one wipeable tray, write today's date on the shoulder of each one you have opened, bin anything that fits no car on this driveway, and put the oily rags in a metal can with a lid.",
+       "victory": "Every bottle upright and dated on one tray, nothing for a car you do not own, and the rags in a closed metal can."
+      }
      }
     },
     {
@@ -9360,6 +9669,96 @@
        "Rust or seized links on a bike chain, and frayed or torn straps on helmets and pads.",
        "Mildew growing in the cooler seal or in the corners of a bin that went away damp."
       ]
+     },
+     "capacity": {
+      "rule": "Bikes on wall hooks with bare floor beneath them, one labelled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.",
+      "does_not_fit": "One bin per activity is the capacity, and it is the honest count of what this household currently plays, not what it owns equipment for. If an activity needs two bins it is really two activities, or one of them ended some years ago. Helmets are the exception to every keep-it-just-in-case instinct: a helmet that has been dropped hard, outgrown, or is more than about five years old protects nobody, and passing it on passes on the risk."
+     },
+     "variants": [
+      {
+       "condition": "Children who outgrow kit every year",
+       "guidance": "Add one clearly labelled outgrown bin and empty it on a fixed date each season, rather than letting each item make its own case. Everything except helmets can go on to the next child or the next family; helmets do not, and that is worth saying out loud to whoever is doing the passing on."
+      },
+      {
+       "condition": "Sports played by one person only",
+       "guidance": "Then ownership is already clear and the bins can be smaller and more specific, but the in-season rule matters more: with nobody else moving the kit, last season's gear will sit at the front of the shelf until it is next season's problem."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Getting the bikes out means moving three other things first.",
+        "branches": [
+         {
+          "answer": "Bikes stand on the floor rather than hanging on hooks",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Bins are stored in the path to the door",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The floor under the bikes has become storage",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "Kit for the sport we are playing this month is the hardest to reach.",
+        "branches": [
+         {
+          "answer": "Nothing moves the in-season kit to the front when the season turns",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Bins are not labelled, so the nearest one gets used for anything",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "The bins a child needs are above their reach",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "There is gear here for sports nobody plays any more.",
+        "branches": [
+         {
+          "answer": "It cost a lot and giving it up feels like admitting something",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody has decided whether that sport is coming back",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It has been in the corner so long the eye stops seeing it",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "I am not sure the helmets here are safe to wear.",
+        "branches": [
+         {
+          "answer": "Nobody knows how old any of them are or whether one was dropped",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "They are kept for a head that has outgrown them",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nothing ever prompts a check",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Hang the bikes on wall hooks and clear the floor beneath them, label one bin per activity this household currently plays, move this season's kit to the front of the shelf, and try every helmet on the head it belongs to.",
+       "victory": "Bikes hanging over bare floor, one labelled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it."
+      }
      }
     },
     {
@@ -9447,6 +9846,96 @@
        "A garden chemical container that is weeping, crusted, or swollen on the latched shelf, flagged without decanting or handling it further.",
        "A perished hose washer or a split fitting dripping at the reel."
       ]
+     },
+     "capacity": {
+      "rule": "Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labelled containers behind a latch above head height.",
+      "does_not_fit": "The rail is the capacity: one hook, one handle, and a tool with no hook leans in a corner until it falls on somebody. The chemicals are not a capacity question at all. Original container, legible label, latched, above head height, or it leaves the house, because a decanted weedkiller in an unmarked bottle is the single most dangerous object most garages hold."
+     },
+     "variants": [
+      {
+       "condition": "A small yard, a balcony, or no lawn at all",
+       "guidance": "Most of this zone should not exist. A trowel, a pair of secateurs, a watering can and one bag of compost is a complete kit, and the rail can be two hooks. Storing a full-size lawn kit for a lawn you do not have is how a garage loses a parking bay."
+      },
+      {
+       "condition": "Children, or a dog that goes in the garden",
+       "guidance": "The latch and the height stop being a preference. Anything granular, powdered or concentrated goes above head height behind a latch, and the empty containers leave the same day rather than waiting in the bin where they are just as reachable and look like toys."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Long-handled tools live leaning in a corner.",
+        "branches": [
+         {
+          "answer": "There are more handles than there are hooks on the rail",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "There is no rail, so leaning is the only option",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The rail is too high for the person who puts them away",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "The hose is a tangle on the floor, or it leaks.",
+        "branches": [
+         {
+          "answer": "It is coiled by hand on the slab instead of onto a reel",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The reel is not beside the door the hose goes out of",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "It is left connected and pressurised through a frost",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "I cannot tell what is in some of these containers.",
+        "branches": [
+         {
+          "answer": "Something was decanted out of its original container",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The label has weathered off and nobody rewrote it",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody knows who bought it or what it was for",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A child or a pet could reach the garden chemicals.",
+        "branches": [
+         {
+          "answer": "They sit on an open shelf at or below head height",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There is nowhere latched to put them, so they stay on the open shelf",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Empty containers wait in an open bin where they look like toys",
+          "cause": "KC-003"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Hang every long handle head-up on the rail, coil the hose onto its reel beside the door it goes out of, and move every garden chemical into a latched cupboard above head height, binning anything whose label you cannot read.",
+       "victory": "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labelled, latched and above head height."
+      }
      }
     },
     {
@@ -9528,6 +10017,96 @@
        "Rust, or a bend or sag, in a rack upright or a rail carrying the load.",
        "A rack bolt that has drawn part-way out of its hole, or that lands in plasterboard rather than a joist, and rodent droppings sitting on a lid."
       ]
+     },
+     "capacity": {
+      "rule": "Every overhead bin labelled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.",
+      "does_not_fit": "The last-opened date is the capacity rule, and it is the most honest one in the house. A bin that has not been opened in two years is not storage, it is a decision nobody made, and adding another rack simply buys that decision more time. Nothing overhangs the parking bay, ever: a bin that clears the roof of the car today does not clear the next car, and the cost of being wrong is measured in windscreens or heads."
+     },
+     "variants": [
+      {
+       "condition": "No overhead racks, only shelving or a loft hatch",
+       "guidance": "The labels and the dates do the same work on a shelf, and the map matters more, because a loft swallows things far more completely than a rack does. Keep the heaviest boxes at waist height, not overhead and not on the floor, because both ends of that range are where backs get hurt."
+      },
+      {
+       "condition": "Genuinely seasonal storage, such as decorations or camping",
+       "guidance": "Group by the occasion it comes down for rather than by what the things are, because that is how you will go looking for it. One bin that holds everything for one weekend beats four bins sorted by material, and the last-opened date will tell you honestly whether that weekend still happens."
+      }
+     ],
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I have to get a ladder and open three bins to find one thing.",
+        "branches": [
+         {
+          "answer": "Labels are too small to read standing on the slab",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Bins are grouped by what things are, not by when they come down",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "There is no map by the light switch",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "There are bins up there nobody has opened in years.",
+        "branches": [
+         {
+          "answer": "Nothing records when each bin was last opened",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "They hold things kept for what they represent",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "They hold a decision that has been postponed by putting it up high",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "Getting a bin down is a two-person job, or a risky one.",
+        "branches": [
+         {
+          "answer": "The heaviest bins are on the highest rack",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Bins are packed to a weight nobody can lower at arm's length",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "There is no stable ladder, so a chair or a bumper gets used",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "Something up there overhangs where the car parks.",
+        "branches": [
+         {
+          "answer": "The rack was loaded past its own footprint",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Nothing marks how far the bins may come forward",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It has been like that so long nobody sees it when parking",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Relabel every overhead bin in letters you can read standing on the slab, write the month and year on the end of each one you open, move the heaviest bins to the lowest rack, and tape a map of what is where beside the light switch.",
+       "victory": "Labels readable from the floor, a date on every bin, the heaviest ones lowest, and a map by the light switch."
+      }
      }
     }
    ]

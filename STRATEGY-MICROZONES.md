@@ -20,11 +20,11 @@ and the built site, not estimated.
 | watch_for | 114 | **252** | what goes wrong here |
 | leave_behind | 114 | **228** | the standard that stays, and its trigger |
 | the_call | 114 | **235** | the judgement call this zone forces |
-| **diagnosis** | **31** | 93 | symptom to branching question to root cause |
-| **capacity** | **31** | 62 | how much actually fits, and the test for "it does not" |
-| **variants** | **31** | 62 | what to do when your home is not the assumed one |
+| **diagnosis** | **38** | 118 | symptom to branching question to root cause |
+| **capacity** | **38** | 76 | how much actually fits, and the test for "it does not" |
+| **variants** | **38** | 76 | what to do when your home is not the assumed one |
 
-**That split is the whole strategy.** The top block is complete and is already sold: the Print Pack ($19) carries the 684 passes, the Micro Zone Manual ($29) carries the clean-and-shine steps. The bottom block is the differentiator and it exists for **31 of 114 zones, 27.2%**, across 5 fully personalised rooms: Entryway (5), Kitchen (7), Primary Bathroom (7), Laundry Room (6), Home Office (6).
+**That split is the whole strategy.** The top block is complete and is already sold: the Print Pack ($19) carries the 684 passes, the Micro Zone Manual ($29) carries the clean-and-shine steps. The bottom block is the differentiator and it exists for **38 of 114 zones, 33.3%**, across 6 fully personalised rooms: Entryway (5), Kitchen (7), Primary Bathroom (7), Laundry Room (6), Home Office (6), Garage (7).
 
 <sub>Measured from `content/manual/source/content.json` by `ops/build_microzone_coverage.py`. Do not hand-edit.</sub>
 

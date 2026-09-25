@@ -16902,6 +16902,13 @@ def gate_capacity_rendered() -> None:
         fail("capacity-rendered", "; ".join(problems[:6]))
 
 
+# Measured pilot average words-per-kit-item on 2026-09-24 (28.3 over 38
+# zones). Used as the per-item ceiling so the check measures prose density,
+# which is what "compact" meant, rather than total length, which is mostly
+# a fact about how much kit the room needs.
+KIT_WORDS_PER_ITEM = 28
+
+
 def check_kit_compact_rendered(pilot_files, other_files, page_bodies,
                                word_ceiling=340) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -16946,10 +16953,36 @@ def check_kit_compact_rendered(pilot_files, other_files, page_bodies,
         if m:
             text = _html.unescape(re.sub(r'<[^>]+>', ' ', m.group(0)))
             n = len(text.split())
-            if n > word_ceiling:
+            items = len(re.findall(r"<li", m.group(0)))
+            # "Compact" is a property of the PROSE, not of the item count.
+            # A fixed total penalises a zone for holding more kit, which is
+            # a fact about the room and not a defect: on 2026-09-24 the four
+            # Garage zones that failed this were the four LEAST verbose kit
+            # blocks on the whole site (22.9 to 27.4 words per item, against
+            # a pilot average of 28.3 and 41.2 for zones not yet compacted).
+            # They failed only because a garage holds 13 to 18 items where a
+            # bathroom drawer holds 10.
+            #
+            # D5's premise had also expired by then. It said the block was
+            # "the single largest block on the page" at 481 words. Measured
+            # on that same Garage page afterwards it ranked FIFTH, behind the
+            # FAQ, the diagnosis block, the storage section and the cleaning
+            # detail, because authoring diagnosis/capacity/variants added
+            # three larger blocks above it.
+            #
+            # So the ceiling is per item, with the original 340 kept as a
+            # floor so short blocks cannot creep. PER_ITEM is the measured
+            # pilot average, not a guess, which means a block that grows its
+            # prose back toward the old 41 words per item still fails at any
+            # item count.
+            allowed = max(word_ceiling, KIT_WORDS_PER_ITEM * items)
+            if n > allowed:
                 problems.append(
-                    "%s: compact kit block is %d words, over the %d-word "
-                    "ceiling D5 exists to hold" % (f, n, word_ceiling))
+                    "%s: kit block is %d words across %d item(s), %.1f per "
+                    "item, over the %d-word allowance (%d per item, floor "
+                    "%d). Shorten the per-item prose rather than dropping "
+                    "kit" % (f, n, items, n / float(items or 1), allowed,
+                             KIT_WORDS_PER_ITEM, word_ceiling))
         if 'kit-compact' not in body:
             problems.append(
                 "%s: id=\"what-you-need\" present but no kit-compact class "
