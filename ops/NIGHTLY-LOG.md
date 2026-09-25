@@ -20,6 +20,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cardtext/build_laundry_room_deck.py`, `ops/build_laundry_room_deck_page.py`, `ops/cardtext/laundry-room-deck.json`, `site/laundry-room-deck.html`, `site/deck.html`, `ops/preflight.py` (+2 new gates), `ops/tests/test_deck_pages_interactive.py`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `RISKS.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, command deck, this log. No price or product touched; one new free page. IndexNow attempted and correctly refused (could not verify the key file is served from this sandbox, the same limit every prior cycle has hit).
 
+## PM check-in, 2026-09-25 07:4x (30-minute triage, previous work confirmed finished, handoff reissued)
+
+NEXT FOR THE OPERATOR: build the Laundry Room deck (79 authored fields) using `ops/cardtext/build_entryway_deck.py` and `ops/build_entryway_deck_page.py` as the direct template, because it is the next row of `BACKLOG-2026-09-07.md` section 3's B9, the only genuinely unblocked item.
+
+Attached clean, fast-forwarded onto `origin/main` (`e6190d17`). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 3, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`.
+
+**Previous work confirmed finished, not just cited.** `cb37d0c8` (B9 Entryway) and the prior cycle's deploy-gap correction are on `main`; working tree was clean before this cycle. Re-resolved the deploy-gap citation myself rather than trust the hour-old figure: still exactly 2 commits (`ad310568`, `cb37d0c8`), matching `STATUS.md`'s current text, not stale this time. Full `preflight.py` started fresh; still running past the known-slow `gate_tests` suite at this slot's close, left backgrounded (`/tmp/preflight_pm.log`) for the operator or twin to check.
+
+Regenerated the command deck only. No price, product or site page touched. IndexNow not applicable.
+
+## PM check-in, 2026-09-25 07:3x, cycle addendum (the backgrounded full preflight from the entry below finished clean)
+
+`/tmp/preflight_full.log` completed after this cycle had already shipped: exit 0, every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress, the two known-unmeasurable test files), none new. Confirms the `STATUS.md` deploy-gap correction below broke nothing. No further action; handing the operator the same Laundry Room deck handoff.
+
 ## PM check-in, 2026-09-25 07:2x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness one hour after the last correction; full preflight left running in background)
 
 Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`7620b512`), no unrelated-history symptom. Read `git log -12`, this log's newest entry, `BACKLOG-2026-09-07.md` section 3 (B9), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`, 0 open PRs.

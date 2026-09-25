@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-25 07:38 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-25 07:50 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1092 of 3797 total |
+| Commits (7 days) | 1091 of 3798 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `58c234fe` PM check-in log: deploy-gap staleness correction, full prefl |
+| Last commit | `c6cc1a6a` Build the Laundry Room deck (BACKLOG B9), second of five roo |
 
 ## Product readiness
 
