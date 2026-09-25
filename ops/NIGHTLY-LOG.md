@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 15:0x (closing the loop on the 14:4x handoff: full preflight finished clean; a real stale-lockdir hang found and cleared along the way)
+
+The 14:4x PM check-in below left a full `python ops/preflight.py` run going in the background rather than block the handoff on it. It finished clean: **every gate passed, 25 warnings**, all previously diagnosed sandbox limits (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, no narrated films locally, the two DEGRADED cron-cadence workflows already warned). No new defect. This independently confirms the operator's own concurrent full-preflight run (entry above, also clean) rather than merely citing it.
+
+**Found and fixed one real thing along the way, not left as noise:** `gate_tests` sat motionless for roughly 10 minutes on `test_audit_catalog.py`. Traced rather than assumed: `site/_audit_catalog_fixture.lockdir`, created 14:45, was an orphan left by this same session's own first preflight attempt, killed by a 100s Bash timeout before it could release the lock. The test file's own self-heal (`STALE_AFTER=900s`) would have cleared it unattended within a few more minutes, but confirmed no concurrent real run held it (only this session's own `preflight.py` and the waiting test process were running) and removed it directly; the waiter proceeded within seconds and `gate_tests` completed normally after. Same recurring shape this log has already named twice today under a different PM check-in.
+
+Working tree clean, `main` fast-forwarded onto the operator's own concurrent push (`52f6a610`, no conflict). No new backlog row unblocked; cold-read lane and the 8 owner-gated issues unchanged.
+
+Pushed to main. This log only.
+
 ## 2026-09-25, scheduled operator cycle (full independent re-verification, cold-read lane pushed 8 more files, no new defect)
 
 **Did:** Attached clean (fetch, no unshallow needed this run, checkout main, ff-only merge, 299 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest entries. Full `python ops/preflight.py` (not fast) ran clean: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no network egress, Pillow absent, no narrated films locally). Checked GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged. `ops/inbox_agent.py --apply`: no mail credential here. CI green on the last completed run (checks.yml #1432); several concurrent sessions' merge commits in flight, none red.
