@@ -146,6 +146,23 @@ def derive(room: dict) -> dict:
             "have": have, "need": need}
 
 
+def already_built(room: str) -> str:
+    """The deck artefact for this room, if one has already shipped.
+
+    Without this the report overstates the work: Entryway's deck shipped on
+    2026-09-25 and a corpus-derived count still said "70 to write", because
+    this script measures what the CORPUS can supply, not what somebody has
+    since authored by hand. A number that is right about the corpus and wrong
+    about the world is the kind that gets pasted into a backlog.
+    """
+    slug = room.lower().replace(" ", "-")
+    for rel in ("ops/cardtext/%s-deck.json" % slug,
+                "site/%s-deck.html" % slug):
+        if os.path.exists(os.path.join(ROOT, rel)):
+            return rel
+    return ""
+
+
 def main() -> int:
     want = sys.argv[1] if len(sys.argv) > 1 else None
     rs = [r for r in rooms() if not want or r["room"] == want]
@@ -163,18 +180,25 @@ def main() -> int:
     for r in rs:
         d = derive(r)
         n = sum(c for _t, c, _w in d["need"])
-        tot_need += n
         derived = sum(c for _t, c, _w in d["have"])
-        worst = max(d["need"], key=lambda x: x[1])
-        print("  %-18s %6d %8d %8d  %s (%d)"
-              % (d["room"], d["zones"], derived, n, worst[0], worst[1]))
+        built = already_built(d["room"])
+        if built:
+            print("  %-18s %6d %8d %8s  already built: %s"
+                  % (d["room"], d["zones"], derived, "-", built))
+        else:
+            tot_need += n
+            worst = max(d["need"], key=lambda x: x[1])
+            print("  %-18s %6d %8d %8d  %s (%d)"
+                  % (d["room"], d["zones"], derived, n, worst[0], worst[1]))
         io.open(os.path.join(OUTDIR, "%s.json" % d["room"].lower().replace(" ", "-")),
                 "w", encoding="utf-8", newline="\n").write(
             json.dumps(d, indent=1, ensure_ascii=False))
 
     print()
-    print("  %d authored field(s) still needed across %d room(s)."
-          % (tot_need, len(rs)))
+    outstanding = [r for r in rs if not already_built(r["room"])]
+    print("  %d authored field(s) still needed across %d room(s) without a "
+          "deck (%d of %d already built)."
+          % (tot_need, len(outstanding), len(rs) - len(outstanding), len(rs)))
     print("  Skeletons written to %s" % os.path.relpath(OUTDIR, ROOT))
     return 0
 
