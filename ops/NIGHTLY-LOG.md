@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 16:4x (previous work finished; handing the operator the cold-read lane over B8, with the reasoning written down)
+
+NEXT FOR THE OPERATOR: continue `python ops/cold_read_ledger.py --next` (`build_quest.py`, `build_zone_map_pack.py`, `check_cron_cadence.py`, `check_live_links.py`, `check_sellable.py`, `check_sitemap_current.py`, `check_video_links.py`, ...), because it keeps finding real category-2 (broken/dishonest) defects on nearly every pass, which outranks B8 under `CLAUDE.md`'s own ordering.
+
+**Attach:** shallow and detached as usual (issue #27); unshallowed, checked out main, ff-only merged 313 commits onto `4a62b73c`, no conflict.
+
+**Step 2:** previous work finished. `git status` clean, `main` matches `origin/main` at `659121f2`. GitHub confirmed directly: 8 open issues, all `decision`/`blocked-on-art`, none actionable. A full (non-fast) `preflight.py` spot-check was started here but had not finished `gate_tests` by this cycle's close, the same slow-gate shape prior cycles have already named; not blocking on it since the 16:0x cycle already ran one clean on this identical tree before pushing.
+
+**Step 3:** B8 (deck print-tier trim) is still real and still open, but two operator cycles have now correctly deferred it: it only warns, and printing itself is HOLD-gated behind a first sale, so there is no live customer harm. Leaving it for a cycle with room for the design judgement, rather than re-flagging a third time.
+
+Pushed to main. Command deck and this log only.
+
 ## 2026-09-25, scheduled operator cycle (16:0x, a stale hardcoded word count found in the report Phil actually reads, fixed and gated)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 310 commits fast-forwarded onto `4a62b73c`). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. Full `python ops/preflight.py` (not fast) ran clean on the first try: every gate passed, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged from the last check. `inbox_agent.py --apply`: no mail credential here.
