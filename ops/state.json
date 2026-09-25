@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 12:35",
- "commit": "1f26a5ce",
- "commit_msg": "Close cold-read ledger gap for five deck-page generators, restamp stale build-id left behind by the og:image fix",
+ "generated": "2026-09-25 13:25",
+ "commit": "8f37b4f8",
+ "commit_msg": "Fix status_pdf.py's misleading Entryway deck row (competing withheld row vs live 72-card row); cold-read stripe_links.py and sync_push.py clean",
  "commits_7d": 1098,
- "commits_total": 3832,
+ "commits_total": 3836,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
