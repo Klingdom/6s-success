@@ -1,0 +1,2933 @@
+{
+ "deck": "laundry",
+ "room": "Laundry Room",
+ "count": 67,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 15,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "LRR-001",
+   "title": "THE LAUNDRY ROOM",
+   "type": "ROOM CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. START AT THE MACHINES.",
+   "objective": "Laundry is the one job that arrives dirty, sits wet, and only counts as finished once it is back in a drawer. This card is the map and the order.",
+   "zones_in_order": [
+    "LRZ-001 Washer and Dryer",
+    "LRZ-002 Detergent and Treatment Zone",
+    "LRZ-003 Sorting and Hamper Zone",
+    "LRZ-004 Folding Surface",
+    "LRZ-005 Hanging and Air-Dry Zone",
+    "LRZ-006 Utility and Cleaning Zone"
+   ],
+   "start_here": "LRZ-001 Washer and Dryer. Both machines first. Empty the drums, clear the lids, then pull the dryer out and look at what is behind it. Every other zone in this room is waiting on those two machines being ready to take a load.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your laundry room. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do LRA-013 The Full Laundry Safety Walk before any rebuild. It takes thirty minutes and covers the duct, the hoses, the chemicals, the rack and every hung tool in the room.",
+   "related": {
+    "contents": "LRZ-001 to LRZ-006, LRF-001 to LRF-018, the shared root causes in ops/root_causes.py, LRA-001 to LRA-015, LRS-001 to LRS-006, LRE-001 to LRE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole tidy laundry room in its settled state, washer, dryer, detergent shelf, sorting bags, folding counter, drying rack and cleaning tools all visible in one frame, everything put away",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If two are not in frame, reshoot."
+   }
+  },
+  {
+   "id": "LRZ-001",
+   "title": "WASHER AND DRYER",
+   "type": "ZONE CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "order": 1,
+   "difficulty": 3,
+   "tagline": "BOTH LIDS BARE. THE DUCT DATE ON THE TAPE.",
+   "objective": "Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops.",
+   "callouts": [
+    "Washer door propped ajar, drum empty",
+    "Dryer drum empty behind its door",
+    "Bare surface across both lids",
+    "Lint screen back in its slot",
+    "A strip of masking tape on the dryer's side",
+    "Nothing stacked on either machine"
+   ],
+   "done_looks_like": "Both drums empty with the washer door propped ajar, nothing at all sitting on either lid, a clean lint screen back in its slot, and a strip of masking tape on the side of the dryer with the month you last cleared the duct written on it.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Lint packed in the duct behind the dryer, and lint on the heating element side of the screen housing. This is the highest heat and the most fuel in any indoor room outside the kitchen."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand's width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the tap."
+    }
+   ],
+   "the_call": {
+    "title": "The duct you have not looked at",
+    "text": "You have been telling yourself the dryer just runs a bit slow these days, and that towels have always needed two cycles. The dryer is not slow, it is blocked. The rule: if you cannot name the month you last pulled the machine out and cleared the duct, that is today's job, no debate. And while the dryer is already out and the duct is disconnected, look at what it is made of. If it is the flexible foil accordion kind, replace it with rigid metal now rather than promising yourself you will do it next time, because there is rarely a next time. Once a year is a cheap habit, and the failure it prevents burns the room it happens in."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Small detail brush",
+    "Washer drum cleaning tablet"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LRS-001",
+    "actions": [
+     "LRA-001",
+     "LRA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a washer and dryer standing side by side, the washer door propped ajar with its drum empty, the dryer's door shut over an equally empty drum, both lids completely bare, a lint screen sitting clean in its slot on the dryer top, and a strip of masking tape stuck to the side of the dryer",
+    "must_show": [
+     "Washer door propped ajar, drum empty",
+     "Dryer drum empty behind its door",
+     "Bare surface across both lids",
+     "Lint screen back in its slot",
+     "A strip of masking tape on the dryer's side",
+     "Nothing stacked on either machine"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LRZ-002",
+   "title": "DETERGENT AND TREATMENT ZONE",
+   "type": "ZONE CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "order": 2,
+   "difficulty": 2,
+   "tagline": "ONE OF EACH KIND. THE DOSE LINE INKED.",
+   "objective": "Hold the chemistry that actually gets used, at a dose you can measure and out of a child's reach.",
+   "callouts": [
+    "One detergent bottle standing on the tray",
+    "One bleach bottle beside it",
+    "One tub of oxygen powder",
+    "One stain treatment bottle",
+    "The pod tub latched above shoulder height",
+    "A dose line marked on the cap"
+   ],
+   "done_looks_like": "One working detergent, one bleach, one tub of oxygen powder and one stain treatment standing on a wipeable tray, the pod tub latched and above shoulder height, the true dose line inked on the cap, and not one unlabeled bottle on the shelf.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Detergent pods within a child's reach, and bleach stored next to an ammonia based cleaner where a spill can mix the two into a gas in a small room with the door shut."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A full jug of detergent stored above head height. Wet hands, a smooth handle, and a shelf you reach into blind is how a heavy bottle lands on a face."
+    }
+   ],
+   "the_call": {
+    "title": "The five half used stain removers",
+    "text": "Every laundry shelf has them: a box of dye grabbing sheets, two spray bottles, a stick that dried solid in the cap, and something a relative swore by. You keep them because binning a mostly full bottle feels wasteful, so instead they sit there being wasteful slowly. The rule: keep the one treatment you have personally watched lift a stain, plus a tub of oxygen powder, which handles most of what the others promise. Everything else leaves today. A treatment you do not trust enough to reach for first is not a supply, it is a decision you have been postponing, and it is holding the one arm's reach of shelf next to the open washer lid."
+   },
+   "supplies": [
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Small detail brush",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LRS-002",
+    "actions": [
+     "LRA-003",
+     "LRA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a wipeable tray on a laundry shelf holding one bottle of detergent, one bottle of bleach, one tub of oxygen powder and one stain treatment standing side by side, a latched pod tub sitting on a higher shelf above shoulder height, and a dark ink line marked around the neck of the detergent cap",
+    "must_show": [
+     "One detergent bottle standing on the tray",
+     "One bleach bottle beside it",
+     "One tub of oxygen powder",
+     "One stain treatment bottle",
+     "The pod tub latched above shoulder height",
+     "A dose line marked on the cap"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LRZ-003",
+   "title": "SORTING AND HAMPER ZONE",
+   "type": "ZONE CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "THREE BAGS. NEVER PAST HALF FULL.",
+   "objective": "Turn dirty clothes into loads that can go straight into the machine without being handled twice.",
+   "callouts": [
+    "Three sorting bags standing upright",
+    "Each bag below half full",
+    "Bags standing clear of the walking line",
+    "A small dish on the shelf",
+    "The dish holding only today's pocket contents",
+    "Bare floor in front of the washer door"
+   ],
+   "done_looks_like": "Three labeled bags standing clear of the walking line, each below half full, a small dish on the shelf holding nothing older than today, and bare floor in front of the washer door.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "A hamper standing in the walking line between the door and the machines, or resting on a stair tread while you go back for the rest."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Reaching blind into a bag of work clothes where a utility knife, a razor blade or a pocketful of screws came home in a trouser pocket."
+    }
+   ],
+   "the_call": {
+    "title": "The delicates bag that never fills",
+    "text": "You sort into five streams because a care label once told you to, and one of those bags has been sitting a third full for three weeks while the thing you actually wanted washed waits inside it. The rule: a stream earns its own bag only if it has run as a full load, by itself, in the last month. Everything that fails that test merges into cold and gentle with a mesh bag inside the drum. Sorting is only worth doing when it produces a load you can run today, and a bag that waits three weeks is not sorting, it is a small pile of clothes you have taken out of circulation."
+   },
+   "supplies": [
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LRS-003",
+    "actions": [
+     "LRA-005",
+     "LRA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "three laundry sorting bags standing upright against a wall, each no more than half full and clear of the open floor path to a washing machine, a small dish sitting on a shelf nearby holding a single coin and a receipt, and a bare stretch of floor visible in front of the washer door",
+    "must_show": [
+     "Three sorting bags standing upright",
+     "Each bag below half full",
+     "Bags standing clear of the walking line",
+     "A small dish on the shelf",
+     "The dish holding only today's pocket contents",
+     "Bare floor in front of the washer door"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LRZ-004",
+   "title": "FOLDING SURFACE",
+   "type": "ZONE CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "order": 4,
+   "difficulty": 1,
+   "tagline": "THE COUNTER IS BARE OR HOLDING ONE LOAD.",
+   "objective": "Turn a finished dry load into clothes that are back in drawers the same day.",
+   "callouts": [
+    "Completely bare counter surface",
+    "Empty baskets stacked underneath",
+    "One basket per bedroom",
+    "Six spare hangers on the rail",
+    "No clean clothing left in the room",
+    "A clear run of counter long enough to fold on"
+   ],
+   "done_looks_like": "A counter bare enough to roll pastry on, one empty basket per bedroom stacked underneath it, six spare hangers on the rail at the end, and no clean clothing anywhere in the room.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "An iron left face down or resting on its cord on the folding counter, with clean clothing stacked within reach of the soleplate."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Baskets stacked high on the counter, and any wall cupboard above it loaded with heavy backstock over the spot where you stand and lean in to fold."
+    }
+   ],
+   "the_call": {
+    "title": "The single sock box",
+    "text": "You are keeping a growing bag of unmatched socks because tomorrow the partner might surface. Occasionally one does, which is exactly why the bag never gets thrown out, and meanwhile it has become a permanent tenant on the one surface in this room that has to stay clear. The rule: singles get one shoebox and nothing larger. When the box is full, or at the change of season, whichever arrives first, everything still unmatched becomes a cleaning rag or leaves the house. A sock that has waited a whole season is not going to be reunited. It is just going to keep charging you the counter, and the counter is where the whole room jams."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Food-area degreaser",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LRS-004",
+    "actions": [
+     "LRA-007",
+     "LRA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a laundry folding counter completely bare, a stack of empty baskets underneath it, six spare hangers hanging on a rail at one end, and no clean clothing anywhere else in the room",
+    "must_show": [
+     "Completely bare counter surface",
+     "Empty baskets stacked underneath",
+     "One basket per bedroom",
+     "Six spare hangers on the rail",
+     "No clean clothing left in the room",
+     "A clear run of counter long enough to fold on"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LRZ-005",
+   "title": "HANGING AND AIR-DRY ZONE",
+   "type": "ZONE CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "order": 5,
+   "difficulty": 2,
+   "tagline": "THE RACK IS FOLDED FLAT, OR IT IS WORKING.",
+   "objective": "Dry the few things a hot drum would ruin, and get them off the rack the moment they are dry.",
+   "callouts": [
+    "Drying rack folded flat against the wall",
+    "Bars on the rack completely dry",
+    "Drip tray wiped out and empty",
+    "Six spare hangers on the rail",
+    "Nothing hanging that is more than a day old",
+    "Clear floor beneath where the rack stands"
+   ],
+   "done_looks_like": "The rack folded flat against the wall with dry bars, its drip tray wiped out and empty, the rail holding six spare hangers, and nothing hanging that was washed before today.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "A drying rack standing over a wall outlet or across an extension lead, with garments dripping onto the floor beneath them."
+    },
+    {
+     "question": "Fall",
+     "text": "The wet patch under the rack on a hard laundry floor, walked over in socks by someone carrying a basket they cannot see past."
+    }
+   ],
+   "the_call": {
+    "title": "The garment that only ever hangs",
+    "text": "There is at least one thing on that rack you have washed more times than you have worn. It is hand wash only, it takes two days to give up its water, and it holds the rack hostage the entire time while everything else waits its turn. The rule: think back to the last three times it was washed and name the occasion you wore it for each one. If you cannot name all three, the garment is charging you rack space and drying days it has not earned, and it goes. Line dry only is a real running cost, not a neutral care label, and it should only ever be paid for clothes you genuinely reach for."
+   },
+   "supplies": [
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LRS-005",
+    "actions": [
+     "LRA-009",
+     "LRA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a collapsible drying rack folded completely flat against a wall, its bars dry, an empty drip tray resting beneath it, six spare hangers on a rail beside it, and a clear stretch of floor where the rack usually stands open",
+    "must_show": [
+     "Drying rack folded flat against the wall",
+     "Bars on the rack completely dry",
+     "Drip tray wiped out and empty",
+     "Six spare hangers on the rail",
+     "Nothing hanging that is more than a day old",
+     "Clear floor beneath where the rack stands"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LRZ-006",
+   "title": "UTILITY AND CLEANING ZONE",
+   "type": "ZONE CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "order": 6,
+   "difficulty": 2,
+   "tagline": "EVERY TOOL HANGS. THE OUTLINE SHOWS WHAT'S MISSING.",
+   "objective": "Hold the tools that keep this room and the strip of floor in front of the machines clean, dry and ready.",
+   "callouts": [
+    "Broom hanging heads up on the wall",
+    "Mop hanging heads up beside it",
+    "Dustpan hanging with the others",
+    "A caddy holding every vacuum attachment",
+    "The mop head fully dry",
+    "An empty bucket standing in its taped floor square"
+   ],
+   "done_looks_like": "Broom, mop and dustpan hanging heads up with painted outlines showing behind each one, a single labeled caddy holding every vacuum attachment, a mop head that is dry to the touch, and the bucket sitting inside its taped floor square with nothing stored inside it.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Long handled tools leaned against a wall or stored behind a door, ready to swing down at head height when the door moves."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Drain cleaner and bleach kept at floor level next to the mop bucket, where they get knocked, decanted, or mixed during a rinse."
+    }
+   ],
+   "the_call": {
+    "title": "The rag pile",
+    "text": "Worn towels, holed T-shirts and a retired set of sheets have quietly become a rag supply large enough to clean a small hotel. It grows because turning a worn item into a rag feels like thrift rather than a decision, so nothing is ever really discarded, only reclassified. The rule: rags live in one bin and only one bin, and nothing new becomes a rag until something old leaves as waste. If you cannot work through one bin of rags in a year, you are not saving cloth, you are storing it in the room with the least spare space. The same rule settles the second vacuum you are keeping for the garage: if it has not run in a year, it is not a spare, it is a broken machine with an excuse."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LRS-006",
+    "actions": [
+     "LRA-011",
+     "LRA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a broom, a mop and a dustpan hanging heads up on wall hooks with a painted outline visible behind each one, a caddy nearby holding every vacuum attachment in its place, the mop head hanging fully dry, and an empty bucket standing inside a taped square marked on the floor",
+    "must_show": [
+     "Broom hanging heads up on the wall",
+     "Mop hanging heads up beside it",
+     "Dustpan hanging with the others",
+     "A caddy holding every vacuum attachment",
+     "The mop head fully dry",
+     "An empty bucket standing in its taped floor square"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LRF-001",
+   "title": "THE LOAD NOBODY MOVED",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Washing sits in the drum long enough to smell, and gets rewashed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing marks the moment a cycle ends",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Whoever starts a load is not the one who moves it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The door is shut between loads, so the drum never dries out",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-001",
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a washing machine door standing open with a load of clothes visibly sitting still inside the drum, the room around it otherwise empty and undisturbed",
+    "must_show": [
+     "Washing sits in the drum long enough to smell, and gets rewashed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-002",
+   "title": "ONE LOAD, THREE CYCLES",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The dryer takes two or three cycles to dry one load.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The lint screen goes back in without being cleared",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Nothing records when the duct was last cleared",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The duct behind the machine is crushed, kinked or packed with lint",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-001",
+    "root_causes": [
+     "KC-008",
+     "KC-009",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dryer control panel showing a cycle restarting for a second time, a lint screen sitting nearby still coated in a thick grey mat of lint",
+    "must_show": [
+     "The dryer takes two or three cycles to dry one load."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-003",
+   "title": "THE LIDS ARE NEVER BARE",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is always something sitting on top of the machines.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The lids are the nearest flat surface in the room",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The folding counter is covered, so things migrate here",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Nobody ever agreed the lids stay bare",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-007",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "the tops of a washer and dryer cluttered with a stray sock, a box of dryer sheets and a bottle of softener crowded together across both lids",
+    "must_show": [
+     "There is always something sitting on top of the machines."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-004",
+   "title": "THREE HALF BOTTLES OF THE SAME THING",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are several half-used bottles of the same thing.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A new one is bought before the open one is finished",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The open bottle sits behind the others where it cannot be seen",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nothing says only one of each kind is open at a time",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-002",
+    "root_causes": [
+     "KC-001",
+     "KC-005",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a laundry shelf holding three nearly identical detergent bottles side by side, each filled to a different level",
+    "must_show": [
+     "There are several half-used bottles of the same thing."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-005",
+   "title": "NOBODY POURS THE SAME DOSE TWICE",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Washing comes out with detergent marks, or not properly clean.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "No cap carries a true dose line, so everyone pours by eye",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Two people dose by two different habits",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "The measuring cap is sticky and almost never gets rinsed",
+     "root_cause": "RC-016"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-002",
+    "root_causes": [
+     "KC-008",
+     "KC-012",
+     "RC-016"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a detergent cap held up to the light with a crusted ring of dried powder built up well above its moulded fill line",
+    "must_show": [
+     "Washing comes out with detergent marks, or not properly clean."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-006",
+   "title": "THE PODS SIT AT A CHILD'S EYE LEVEL",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is something down here a child could open.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The pod tub sits at or below a child's eye level",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Something was decanted into a container with no label",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The tray sits on the floor because the shelf is already full",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a laundry shelf at knee height holding an open tub of colourful detergent pods, well below shoulder height",
+    "must_show": [
+     "There is something down here a child could open."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-007",
+   "title": "THE CLOTHES LAND ON THE FLOOR, NOT THE BAG",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Dirty clothes end up on the floor rather than in a bag.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The bags are behind a door or across the room from where clothes come off",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The nearest bag is too full to take anything more",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Whoever drops them cannot reach the bag from standing height",
+     "root_cause": "KC-006"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-003",
+    "root_causes": [
+     "KC-003",
+     "KC-007",
+     "KC-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small pile of dirty clothes lying on a bedroom floor a short distance from a laundry bag standing mostly out of sight behind a door",
+    "must_show": [
+     "Dirty clothes end up on the floor rather than in a bag."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-008",
+   "title": "EVERY LOAD GETS SORTED TWICE",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Loads have to be sorted again before they can go in the machine.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The bags are not labelled, so things go in the nearest one",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There are more sorting streams than anybody honours",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Two people sort by two different schemes",
+     "root_cause": "KC-012"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-003",
+    "root_causes": [
+     "KC-005",
+     "KC-001",
+     "KC-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "five unlabelled sorting bags standing in a row, clothes of mixed colours visible spilling from more than one of them",
+    "must_show": [
+     "Loads have to be sorted again before they can go in the machine."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-009",
+   "title": "POCKETS EMPTY INTO THE DRUM, NOT THE DISH",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Coins, tissues and receipts come out of the machine with the wash.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no dish to empty pockets into at the hamper",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The dish is never emptied, so nobody uses it",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Pockets are checked at the machine, by which point the load is already in",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-003",
+    "root_causes": [
+     "KC-002",
+     "KC-009",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a washing machine drum holding a damp load with a few coins and a crumpled receipt caught among the clothes",
+    "must_show": [
+     "Coins, tissues and receipts come out of the machine with the wash."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-010",
+   "title": "THE CLEAN LOAD IS STILL HERE FROM MONDAY",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are clean clothes in this room that were washed days ago.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing says when the baskets get taken to the bedrooms",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "One person folds and delivers for everybody",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The wardrobes they are going to are already full",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-004",
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a laundry basket sitting full of neatly folded clothes on a counter, undisturbed, with dust visible settling faintly on the top layer",
+    "must_show": [
+     "There are clean clothes in this room that were washed days ago."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-011",
+   "title": "THE COUNTER HOLDS EVERYTHING BUT LAUNDRY",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The folding counter is covered with things that are not laundry.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is the only clear flat surface on this floor of the house",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Things were parked here on the way somewhere and never collected",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It has looked like this so long nobody sees it any more",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-004",
+    "root_causes": [
+     "KC-002",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a folding counter crowded with a stack of mail, a toolbox and a cardboard parcel, no clear space left for a basket of clothes",
+    "must_show": [
+     "The folding counter is covered with things that are not laundry."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-012",
+   "title": "CLEARING THE COUNTER TAKES LONGER THAN FOLDING",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Folding a load takes far longer than it should.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The counter has to be cleared before folding can start",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "There are no hangers to hand for the things that should not be folded",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Loads are mixed, so every basket has to be sorted by bedroom first",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-004",
+    "root_causes": [
+     "KC-004",
+     "KC-003",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand pushing aside a stack of unrelated objects on a counter to make room for a single dry laundry basket set down beside them",
+    "must_show": [
+     "Folding a load takes far longer than it should."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-013",
+   "title": "THE RACK NEVER COMES DOWN",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The rack is permanently up and permanently loaded.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Things stay on it after they are dry because nothing prompts a check",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Far more is being air-dried than genuinely needs it",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The wardrobes these clothes belong in are full",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-005",
+    "root_causes": [
+     "KC-009",
+     "KC-001",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a drying rack standing open and fully loaded with garments in a corner, its legs never folded flat against the wall behind it",
+    "must_show": [
+     "The rack is permanently up and permanently loaded."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-014",
+   "title": "DRY BY THE TAG, MUSTY BY THE NOSE",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Air-dried things still smell musty when they are dry.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The room has no moving air, so drying takes more than a day",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Items are hung overlapping, so the middle of the rack never dries",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "The drip tray is never emptied and sits wet under the rack",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-005",
+    "root_causes": [
+     "KC-003",
+     "KC-007",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "garments hung tightly overlapping on a drying rack with almost no gap between them, a shallow tray of standing water visible underneath",
+    "must_show": [
+     "Air-dried things still smell musty when they are dry."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-015",
+   "title": "THE DELICATE LOAD WENT IN THE DRYER ANYWAY",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Things that should have been air-dried went through the dryer anyway.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The rack is folded away somewhere it has to be fetched from",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nothing at the machine says which items never go in the drum",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Two people apply two different rules about what can be tumbled",
+     "root_cause": "KC-012"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-005",
+    "root_causes": [
+     "KC-004",
+     "KC-005",
+     "KC-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dryer door open with a single delicate garment visibly shrunken and misshapen lying among an otherwise ordinary load",
+    "must_show": [
+     "Things that should have been air-dried went through the dryer anyway."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-016",
+   "title": "THE BROOM ALWAYS ENDS UP ON THE FLOOR",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The broom and mop end up leaning in a corner or lying on the floor.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no hook, so there is nowhere for them to go",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The hooks are above where the person who uses them can reach",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "Handles lean against the wall and slide, which is how they end up down",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-006",
+    "root_causes": [
+     "KC-002",
+     "KC-006",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a broom and a mop leaning against a bare wall in a corner with no hook or rail above them, their heads resting directly on the floor",
+    "must_show": [
+     "The broom and mop end up leaning in a corner or lying on the floor."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-017",
+   "title": "THE MOP MAKES THE FLOOR WORSE, NOT BETTER",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The mop smells, or leaves the floor dirtier than it was.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The head is put away damp because nothing prompts drying it",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It hangs head down, so water sits in the fibres instead of draining",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The bucket is used to store things, so it is never rinsed out",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-006",
+    "root_causes": [
+     "KC-009",
+     "KC-008",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a mop head hanging with its bristles pointing downward, water still dripping from it onto the floor beneath, a bucket nearby holding stored items rather than water",
+    "must_show": [
+     "The mop smells, or leaves the floor dirtier than it was."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LRF-018",
+   "title": "AN ATTACHMENT IS ALWAYS MISSING",
+   "type": "FRICTION CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A vacuum attachment is missing when it is needed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Attachments are loose rather than in one labelled caddy",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "They are used elsewhere in the house and not brought back",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "Nothing shows at a glance that one is missing",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your laundry room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LRZ-006",
+    "root_causes": [
+     "KC-002",
+     "RC-013",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a caddy of vacuum attachments with one visible gap where a nozzle should sit, the loose attachments scattered rather than seated in the caddy",
+    "must_show": [
+     "A vacuum attachment is missing when it is needed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-004",
+     "LRF-008",
+     "LRF-013"
+    ],
+    "actions": [
+     "LRA-003",
+     "LRA-005",
+     "LRA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "three nearly full bottles of the same fabric softener lined up on a laundry shelf with no other products beside them",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-003",
+     "LRF-009",
+     "LRF-011",
+     "LRF-016",
+     "LRF-017",
+     "LRF-018"
+    ],
+    "actions": [
+     "LRA-002",
+     "LRA-007",
+     "LRA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single loose sock and a stray hair tie sitting on top of a washing machine with no tray or dish anywhere nearby",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-007",
+     "LRF-012",
+     "LRF-014"
+    ],
+    "actions": [
+     "LRA-006",
+     "LRA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a folded stack of clean towels sitting on a laundry room shelf far from the bathroom cupboard they are meant to fill",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-009",
+     "LRF-012",
+     "LRF-015"
+    ],
+    "actions": [
+     "LRA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stepladder standing open in front of a laundry room wall cupboard, a single box of detergent visible on the shelf behind it",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-004",
+     "LRF-008",
+     "LRF-015",
+     "LRF-018"
+    ],
+    "actions": [
+     "LRA-005",
+     "LRA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an open laundry cupboard with a stain treatment bottle pushed to the very back, barely visible behind taller bottles in front",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-007",
+     "LRF-016"
+    ],
+    "actions": [
+     "LRA-006",
+     "LRA-011",
+     "LRA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a wall hook holding a broom mounted well above head height, a short step stool standing beneath it",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-003",
+     "LRF-006",
+     "LRF-007",
+     "LRF-010",
+     "LRF-013",
+     "LRF-014"
+    ],
+    "actions": [
+     "LRA-008",
+     "LRA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a narrow laundry shelf with bottles and bins pressed edge to edge, one bin lid unable to close flat",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-001",
+     "LRF-002",
+     "LRF-003",
+     "LRF-004",
+     "LRF-005",
+     "LRF-006",
+     "LRF-012",
+     "LRF-017"
+    ],
+    "actions": [
+     "LRA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a washing machine lid with a stray glove sitting on one half and bare surface on the other, no consistent state to either side",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-001",
+     "LRF-002",
+     "LRF-009",
+     "LRF-010",
+     "LRF-013",
+     "LRF-014",
+     "LRF-017"
+    ],
+    "actions": [
+     "LRA-001",
+     "LRA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a dryer sitting finished and silent with a load of clothes still resting untouched inside its open drum",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-002",
+     "LRF-006",
+     "LRF-016"
+    ],
+    "actions": [
+     "LRA-002",
+     "LRA-003",
+     "LRA-012",
+     "LRA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bottle of drain cleaner sitting on a low shelf directly beside a stack of children's folded clothes",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-005",
+     "LRF-008",
+     "LRF-015"
+    ],
+    "actions": [
+     "LRA-004",
+     "LRA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two detergent scoops of different sizes sitting side by side on a laundry shelf, each showing a different dose line",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-001",
+     "LRF-010",
+     "LRF-018"
+    ],
+    "actions": [
+     "LRA-008",
+     "LRA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a laundry basket of dry folded clothes sitting untouched on a counter with no note or name attached to it",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-011"
+    ],
+    "actions": [
+     "LRA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single unopened parcel sitting on an otherwise bare laundry folding counter, waiting",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-005"
+    ],
+    "actions": [
+     "LRA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a mop bucket wedged into a tight corner behind a washing machine, barely reachable without moving the machine first",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LRF-011"
+    ],
+    "actions": [
+     "LRA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of unmatched socks in a shoebox that has sat in the same corner of a laundry shelf long enough to gather a faint layer of dust",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "LRA-001",
+   "title": "EMPTY THE DRUMS AND DATE THE DUCT",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty both drums, clear both lids, clear the lint screen, and write this month's date on the duct tape strip.",
+   "why_it_matters": "A drum you have to empty before you can fill is the single reason a household skips the last step of a wash day.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "masking tape and a pen",
+    "the vent brush if the lint screen is due a clean"
+   ],
+   "steps": [
+    "Empty both drums, take everything off both lids, clear the lint screen and put it back, prop the washer door ajar, and write this month on a strip of tape on the side of the dryer.",
+    "Check the tape already on the dryer: if the month reads more than a year ago, treat the duct itself as this cycle's real job, not next month's.",
+    "Wipe down anything sticky left on either lid before you leave the room."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-008"
+    ],
+    "zone": "LRZ-001",
+    "standard": "LRS-001"
+   },
+   "victory_condition": "Both drums empty, both lids bare, the door propped open, and a date on the dryer you can read from the doorway.",
+   "next_card": "LRS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a washer and dryer standing side by side with both doors open and their drums empty, a fresh strip of masking tape visible on the side of the dryer, both lids completely bare",
+    "must_show": [
+     "Both drums empty, both lids bare, the door propped open, and a date on the dryer you can read from the doorway."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-002",
+   "title": "PULL THE DRYER AND CLEAR THE DUCT",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Disconnect the duct, clear what has built up behind the machine, and check the fill hoses while everything is already pulled out.",
+   "why_it_matters": "Lint packed behind the dryer is the highest fuel and the highest heat of any indoor room outside the kitchen, and a hose gone hard at the collar sprays without warning.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a step stool or helper to ease the machine forward",
+    "a vacuum with a hose attachment",
+    "rigid metal duct if the current run is a foil accordion"
+   ],
+   "steps": [
+    "Unplug the dryer and ease it forward on its feet far enough to reach the duct connection.",
+    "Disconnect the duct and vacuum out any soft grey packing built up at the bend behind the machine.",
+    "If the duct is a flexible foil accordion, replace the run with rigid metal now rather than promising to do it later.",
+    "Check both fill hoses for a hard or bulged collar while the machines are already pulled out, and replace either one that has gone stiff.",
+    "Push both machines back, level on their feet, and reconnect the duct fully before running the next load."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-002"
+    ],
+    "zone": "LRZ-001",
+    "standard": "LRS-001"
+   },
+   "victory_condition": "The duct is clear and rigid where it can be, both fill hoses are supple at the collar, and both machines sit level on their feet.",
+   "next_card": "LRA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a dryer pulled away from the wall with its duct disconnected, a small pile of grey lint cleared from the bend, a coil of rigid metal duct ready beside it",
+    "must_show": [
+     "The duct is clear and rigid where it can be, both fill hoses are supple at the collar, and both machines sit level on their feet."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-003",
+   "title": "ONE TRAY, ONE BOTTLE OF EACH",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Bring every laundry product onto one tray, keep one working bottle of each kind, ink the true dose line, and latch the pod tub high.",
+   "why_it_matters": "A second open bottle of the same product almost always means the first one had gone invisible, and a low, unlatched pod tub is a poisoning risk in a house with children.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a permanent marker",
+    "a wipeable tray",
+    "a high shelf or latch for the pod tub"
+   ],
+   "steps": [
+    "Bring every laundry product onto one wipeable tray. Keep one working bottle of each kind, ink the true dose line on each cap, and latch the pod tub above shoulder height.",
+    "Recycle the empty or near-empty duplicate the moment the working bottle is confirmed.",
+    "Wipe the shelf under the tray before anything goes back onto it."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-010"
+    ],
+    "zone": "LRZ-002",
+    "standard": "LRS-002"
+   },
+   "victory_condition": "One of each kind standing on a wipeable tray, a dose line you can see on every cap, and nothing a child can reach.",
+   "next_card": "LRS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a wipeable tray on a laundry shelf holding one bottle of each product with a marked dose line on each cap, an empty duplicate bottle set aside for recycling, a latched pod tub on a shelf above shoulder height",
+    "must_show": [
+     "One of each kind standing on a wipeable tray, a dose line you can see on every cap, and nothing a child can reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-004",
+   "title": "SEPARATE THE SHELF FROM THE FLOOR",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move bleach away from any ammonia-based cleaner, fix the shelf bracket if it is corroding, and give the tray a rinse.",
+   "why_it_matters": "Bleach and an ammonia-based cleaner sharing a shelf, or a bucket, can mix into a gas in a small room with the door shut.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a spare shelf or bracket if the bleach shelf is corroding",
+    "the drip tray",
+    "a permanent marker"
+   ],
+   "steps": [
+    "Move bleach and any ammonia-based cleaner onto separate shelves, never sharing a tray or a bucket.",
+    "Check the bracket under the bleach shelf for rust or corrosion from fumes, and replace it if it has started to give.",
+    "Carry the drip tray to the sink, scrub the tacky corners, dry it, and set it back under the containers.",
+    "Write the job on the tray edge under each bottle, wash, whites, stains, so a returned bottle lands in its own footprint."
+   ],
+   "root_causes": [
+    "KC-012",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-012",
+     "RC-016"
+    ],
+    "zone": "LRZ-002",
+    "standard": "LRS-002"
+   },
+   "victory_condition": "Bleach and any ammonia-based cleaner sit on separate shelves, the bracket underneath is sound, and the tray is clean and marked by job.",
+   "next_card": "LRA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a laundry shelf with a bleach bottle standing well apart from an ammonia-based cleaner, a clean drip tray beneath them with each spot marked by its job",
+    "must_show": [
+     "Bleach and any ammonia-based cleaner sit on separate shelves, the bracket underneath is sound, and the tray is clean and marked by job."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-005",
+   "title": "CUT TO THREE BAGS",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Cut the sorting streams to three, label those bags, stand them clear of the walking line, and add a dish for pockets.",
+   "why_it_matters": "A bag that stays a third full for weeks is not sorting, it is clothes taken out of circulation.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "three bags",
+    "a marker or labels",
+    "a small dish"
+   ],
+   "steps": [
+    "Cut the sorting streams to the three this household will actually honour, label those three bags, stand them clear of the walking line, and put an empty dish on the shelf for pockets.",
+    "Empty any spare hamper you were holding for a stream that never filled on its own.",
+    "Check the floor in front of the washer door is bare before you leave."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-005"
+    ],
+    "zone": "LRZ-003",
+    "standard": "LRS-003"
+   },
+   "victory_condition": "Three labelled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents.",
+   "next_card": "LRS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "three labelled laundry sorting bags standing against a wall clear of an open floor path, a small dish on a shelf nearby, bare floor visible in front of a washing machine",
+    "must_show": [
+     "Three labelled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-006",
+   "title": "MOVE THE BAGS OUT OF THE WALKING LINE",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Reposition every sorting bag off the walking line and out of reach of a utility knife or blade riding home in a pocket.",
+   "why_it_matters": "A hamper in the walking line is a fall you take with your arms full, and reaching blind into a bag of work clothes is how a blade finds a hand.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "hooks or a low shelf for the bags",
+    "a small parts tray for pocket finds"
+   ],
+   "steps": [
+    "Walk the path from the door to the machines and move any bag standing in that line to the side.",
+    "Fix a hook or shelf for each bag so it has a real spot away from the walking line.",
+    "Add a rule out loud: check every pocket by hand before it goes in the bag, not by reaching in blind later.",
+    "Confirm the dish on the shelf catches what pockets hold, so nothing sharp waits at the bottom of a bag."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-006"
+    ],
+    "zone": "LRZ-003",
+    "standard": "LRS-003"
+   },
+   "victory_condition": "Every bag sits clear of the walking line at a reachable height, and pockets are checked going in, not pulled out blind.",
+   "next_card": "LRA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "laundry sorting bags mounted on wall hooks well clear of a walking path between a door and washing machines",
+    "must_show": [
+     "Every bag sits clear of the walking line at a reachable height, and pockets are checked going in, not pulled out blind."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-007",
+   "title": "CLEAR THE COUNTER AND DELIVER THE BASKETS",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the counter completely, set one empty basket per bedroom underneath, hang six spare hangers, and deliver every clean item in the room.",
+   "why_it_matters": "Clean clothes with nowhere to go are the reason a dry load goes back in for a second tumble.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "one basket per bedroom",
+    "six spare hangers"
+   ],
+   "steps": [
+    "Clear the counter completely, put one empty basket per bedroom underneath it, hang six spare hangers on the rail at the end, and take every piece of clean clothing in this room to the bedroom it belongs in.",
+    "Wipe the bare counter once it is cleared, before the next load lands on it.",
+    "Confirm no basket is left sitting full on the floor instead of stacked under the counter."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ],
+    "zone": "LRZ-004",
+    "standard": "LRS-004"
+   },
+   "victory_condition": "A counter bare enough to roll pastry on, an empty basket per bedroom beneath it, and no clean clothing left in the room.",
+   "next_card": "LRS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a completely bare laundry folding counter with empty baskets stacked underneath it and six spare hangers on a rail at one end",
+    "must_show": [
+     "A counter bare enough to roll pastry on, an empty basket per bedroom beneath it, and no clean clothing left in the room."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-008",
+   "title": "NAME WHO DELIVERS THE BASKET",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Split folding and delivery into two named jobs so the folder does not end up owning the whole chain.",
+   "why_it_matters": "One person folding and delivering for everybody is how the baskets quietly become where clean clothes live.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond a short conversation with the household"
+   ],
+   "steps": [
+    "Name the folder for this load and the deliverer for each basket, out loud, even if they are the same person today.",
+    "Agree the delivery happens the same evening the basket is filled, not whenever there is time.",
+    "Photograph the bare counter and keep the photo somewhere visible, so 'clear' has one agreed picture rather than a guess.",
+    "Check the wardrobes the baskets deliver to are not already full; if they are, that capacity problem belongs to the bedroom, not this counter."
+   ],
+   "root_causes": [
+    "RC-013",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "KC-007"
+    ],
+    "zone": "LRZ-004",
+    "standard": "LRS-004"
+   },
+   "victory_condition": "A named folder and a named deliverer for every load, and no basket sits full past the same evening it was filled.",
+   "next_card": "LRA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an empty laundry folding counter with a small photograph taped inside a nearby cupboard door showing the counter in its bare state",
+    "must_show": [
+     "A named folder and a named deliverer for every load, and no basket sits full past the same evening it was filled."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-009",
+   "title": "STRIP THE RACK AND FOLD IT FLAT",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take off everything washed before today, put dry things away, empty the tray, and fold the rack flat.",
+   "why_it_matters": "A rack that never folds flat has become a second wardrobe, not a drying rack.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing beyond fifteen minutes and the rack itself"
+   ],
+   "steps": [
+    "Take everything off the rack that was washed before today, put the dry things away, wipe out the drip tray, fold the rack flat against the wall, and put six spare hangers on the rail.",
+    "Check the drip tray corners for standing water before you fold the rack away.",
+    "Confirm nothing at all is left hanging when you are done."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-001"
+    ],
+    "zone": "LRZ-005",
+    "standard": "LRS-005"
+   },
+   "victory_condition": "The rack folded flat with dry bars, an empty tray beneath it, and nothing hanging that was not washed today.",
+   "next_card": "LRS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a drying rack folded completely flat against a wall with an empty drip tray resting beside it",
+    "must_show": [
+     "The rack folded flat with dry bars, an empty tray beneath it, and nothing hanging that was not washed today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-010",
+   "title": "GIVE THE RACK ROOM TO BREATHE",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "difficulty": 3,
+   "six_s": "Shine",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Space items apart on the rack, add air movement if the room is damp, and move overflow to the wardrobes it belongs in.",
+   "why_it_matters": "Items hung overlapping never dry in the middle, and a room with no moving air turns the rack into a permanent fixture.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a small fan, if the room has no window or extractor",
+    "space in the household's wardrobes for what the rack is holding long-term"
+   ],
+   "steps": [
+    "Hang each item with a hand's width of space from the next, rather than pressed together.",
+    "If the room has no window or extractor, point a small fan along the rack rather than reaching for a bigger rack.",
+    "Sort what has been up longer than a week: if the wardrobe it belongs in is full, fix that capacity problem directly instead of leaving the item on the rack.",
+    "Wipe the wall and floor behind the rack where splash marks have built up."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-007"
+    ],
+    "zone": "LRZ-005",
+    "standard": "LRS-005"
+   },
+   "victory_condition": "Every item on the rack has visible space around it, air is moving through the room, and nothing has been up longer than a week without a reason.",
+   "next_card": "LRA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "garments hanging on a drying rack with a clear hand's width of space between each one, a small fan pointed along the length of the rack",
+    "must_show": [
+     "Every item on the rack has visible space around it, air is moving through the room, and nothing has been up longer than a week without a reason."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-011",
+   "title": "HANG THE TOOLS AND OUTLINE THEIR HOMES",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Hang the broom, mop and dustpan heads up, mark an outline behind each, gather every attachment into one caddy, and empty the bucket into its taped square.",
+   "why_it_matters": "A tool that leans against a wall is a tool that will end up on the floor, and an outline is the only thing that reports a missing tool from the doorway.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a marker, paint pen, or tape for the outlines",
+    "a labelled caddy",
+    "tape for the bucket's floor square"
+   ],
+   "steps": [
+    "Hang the broom, mop and dustpan heads up and mark an outline behind each one, gather every vacuum attachment into one labelled caddy, and empty the bucket and stand it inside a taped square on the floor.",
+    "Knock any wound hair or lint off the dustpan and broom before you hang them.",
+    "Confirm the outlines are visible from the doorway, not hidden behind the door swing."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-006"
+    ],
+    "zone": "LRZ-006",
+    "standard": "LRS-006"
+   },
+   "victory_condition": "Three handles off the floor with outlines showing behind them, every attachment in one caddy, and an empty bucket standing in its square.",
+   "next_card": "LRS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a broom, mop and dustpan hanging heads up on a wall with a painted outline behind each, a labelled caddy of vacuum attachments nearby, an empty bucket standing in a taped floor square",
+    "must_show": [
+     "Three handles off the floor with outlines showing behind them, every attachment in one caddy, and an empty bucket standing in its square."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-012",
+   "title": "SEPARATE THE CHEMICALS FROM THE BUCKET",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move drain cleaner and bleach up off the floor, away from the mop bucket, and confirm nothing leans behind the door.",
+   "why_it_matters": "Drain cleaner and bleach kept at floor level next to the mop bucket get knocked, decanted or mixed during a rinse, and anything leaned behind a door swings down at head height.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a shelf above the bucket for chemicals",
+    "wall hooks for anything currently leaning"
+   ],
+   "steps": [
+    "Move drain cleaner and bleach onto a shelf above the bucket, never inside or beside it.",
+    "Walk the room for anything leaning against a wall behind a door, and hang or bin it instead.",
+    "Check the shelf bracket under the chemicals for corrosion from fumes, and fix or replace it if it has started to give.",
+    "Wipe the bottle exteriors and the shelf, keeping the cloth off the labels so they stay readable."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-005"
+    ],
+    "zone": "LRZ-006",
+    "standard": "LRS-006"
+   },
+   "victory_condition": "Drain cleaner and bleach sit on a shelf above the bucket, nothing leans behind the door, and the shelf bracket is sound.",
+   "next_card": "LRA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a laundry chemical shelf holding drain cleaner and bleach well above an empty mop bucket standing on the floor beneath",
+    "must_show": [
+     "Drain cleaner and bleach sit on a shelf above the bucket, nothing leans behind the door, and the shelf bracket is sound."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-013",
+   "title": "THE FULL LAUNDRY SAFETY WALK",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk the whole room once, standing where you use it, and confirm nothing hot, wet, heavy or overlooked could hurt somebody.",
+   "why_it_matters": "The things that hurt people in this room, a blocked duct, a hard fill hose, a chemical within reach, a tool that swings down, do not show up unless you look on purpose, and a room used every week stops getting looked at.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing beyond thirty minutes and a working set of hands"
+   ],
+   "steps": [
+    "Check the dryer duct and both fill hoses for the signs named in the Washer and Dryer zone: soft packing, a hard or bulged collar.",
+    "Check the pod tub and any chemical shelf are latched or out of a child's reach, and that bleach sits apart from anything ammonia based.",
+    "Check the drying rack and its drip tray are not standing in water on a hard floor.",
+    "Check nothing leans against a wall behind a door, and every long-handled tool is hung.",
+    "Fix anything you find right there, or write it down with today's date if it needs a part you do not have to hand."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "You can name, out loud, that the duct, the hoses, the chemicals, the rack and every leaning tool have each been checked today.",
+   "next_card": "LRA-002",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a wide view of a whole laundry room with a hand pointing in turn at a dryer duct, a chemical shelf and a wall-mounted broom, everything settled in its correct state",
+    "must_show": [
+     "You can name, out loud, that the duct, the hoses, the chemicals, the rack and every leaning tool have each been checked today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-014",
+   "title": "THE FIVE MINUTE FETCH TEST",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Fetch the item you use most in this room and count the movements it actually takes, then fix whichever one failed.",
+   "why_it_matters": "Extra steps to reach an everyday item are a cost paid every single time, and they hide in a room nobody times.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing beyond five minutes standing in the room"
+   ],
+   "steps": [
+    "Fetch the everyday detergent, the broom, and one clean hanger, counting the movements each one actually takes.",
+    "Anything past two movements, bending, unstacking, reaching overhead, moving something else first, gets a closer spot today.",
+    "Confirm the shortest person who uses this room could fetch the same three items without climbing or asking for help."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-006"
+    ]
+   },
+   "victory_condition": "The three everyday items each take two movements or fewer to fetch, and the shortest household member can reach all three unaided.",
+   "next_card": "LRA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand reaching directly for a bottle of detergent on an easily reached shelf, no stool or extra items in the way",
+    "must_show": [
+     "The three everyday items each take two movements or fewer to fetch, and the shortest household member can reach all three unaided."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRA-015",
+   "title": "NAME WHO RUNS LAUNDRY DAY",
+   "type": "ACTION CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Agree, out loud, who starts loads, who moves them, who folds and who delivers, so the room stops depending on whoever notices first.",
+   "why_it_matters": "Two people running one room by two designs is a permanent half-finished state, and a room with no named owner depends on whoever notices first.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing beyond a short conversation with the household"
+   ],
+   "steps": [
+    "Name, out loud, who starts a load, who moves it to the dryer or the rack, who folds, and who delivers each basket.",
+    "Agree on one dosing habit for the detergent cap, since two habits produce two different washes from the same jug.",
+    "Confirm the agreement against the room's own standard cards rather than leaving it as a conversation nobody can point back to.",
+    "Revisit the names the next time a load sits forgotten, rather than assuming the first agreement will hold forever."
+   ],
+   "root_causes": [
+    "RC-013",
+    "KC-012"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "KC-012"
+    ]
+   },
+   "victory_condition": "Every stage of a wash day has one named person, and both people who dose detergent use the same inked line.",
+   "next_card": "LRA-014",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a small chore board mounted on the wall beside the washing machine holding four tokens in a row, one for each stage of a wash day",
+    "must_show": [
+     "Every stage of a wash day has one named person, and both people who dose detergent use the same inked line."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LRS-001",
+   "title": "WASHER AND DRYER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Laundry Room",
+   "zone": "Washer and Dryer",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Both drums empty, washer door ajar, lint screen cleared, before you leave the room.",
+   "trigger": "when the dryer buzzer sounds and you are still standing next to it",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Pull the dryer forward, check the duct for a soft grey buildup, and write this month on the tape strip if it is clear.",
+    "Lift the folds of the washer door gasket and wipe out whatever has collected in the seal.",
+    "Prop the washer door open a hand's width and check the lint screen is fully clear before you leave the room."
+   ],
+   "related": {
+    "zone": "LRZ-001",
+    "actions": [
+     "LRA-001",
+     "LRA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a washer and dryer standing side by side, the washer door propped ajar with its drum empty, the dryer's door shut over an equally empty drum, both lids completely bare, a lint screen sitting clean in its slot on the dryer top, and a strip of masking tape stuck to the side of the dryer, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LRS-002",
+   "title": "DETERGENT AND TREATMENT ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Laundry Room",
+   "zone": "Detergent and Treatment Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One product per job, standing on a tray, with the real dose line marked on the cap.",
+   "trigger": "when a jug runs empty and you are holding it",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Ink the true dose line on the cap of whatever bottle you use next, right at the machine.",
+    "Line up every bottle on the shelf and carry any second open jug of the same product to recycling.",
+    "Check the pod tub is latched and standing above shoulder height, and move it if it is not."
+   ],
+   "related": {
+    "zone": "LRZ-002",
+    "actions": [
+     "LRA-003",
+     "LRA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a wipeable tray on a laundry shelf holding one bottle of detergent, one bottle of bleach, one tub of oxygen powder and one stain treatment standing side by side, a latched pod tub sitting on a higher shelf above shoulder height, and a dark ink line marked around the neck of the detergent cap, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LRS-003",
+   "title": "SORTING AND HAMPER ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Laundry Room",
+   "zone": "Sorting and Hamper Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every bag is a load, labeled by wash setting, and emptied before it passes half full.",
+   "trigger": "when you undress at the end of the day",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Tip the fullest sorting bag out and start that load right now, even if it is not the usual day.",
+    "Check the pocket dish on the shelf and empty anything sitting in it before the next load goes in.",
+    "Straighten each sorting bag so none of them stand in the walking line to the machines."
+   ],
+   "related": {
+    "zone": "LRZ-003",
+    "actions": [
+     "LRA-005",
+     "LRA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "three laundry sorting bags standing upright against a wall, each no more than half full and clear of the open floor path to a washing machine, a small dish sitting on a shelf nearby holding a single coin and a receipt, and a bare stretch of floor visible in front of the washer door, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LRS-004",
+   "title": "FOLDING SURFACE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Laundry Room",
+   "zone": "Folding Surface",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The counter is bare or holding one load, and every basket under it is empty before bed.",
+   "trigger": "when you tip a dry basket out onto the counter",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Carry one basket to its bedroom right now, even if the rest are not folded yet.",
+    "Clear anything off the counter that is not part of the load you are folding.",
+    "Hang one item that should not be folded onto the rail instead of stacking it."
+   ],
+   "related": {
+    "zone": "LRZ-004",
+    "actions": [
+     "LRA-007",
+     "LRA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a laundry folding counter completely bare, a stack of empty baskets underneath it, six spare hangers hanging on a rail at one end, and no clean clothing anywhere else in the room, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LRS-005",
+   "title": "HANGING AND AIR-DRY ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Laundry Room",
+   "zone": "Hanging and Air-Dry Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The rack is in use or folded flat, never left standing half loaded.",
+   "trigger": "when you open the washer to start the next load",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Touch every item on the rack and carry off anything that is already dry.",
+    "Empty the drip tray and dry it before it goes back under the rack.",
+    "Fold the rack flat against the wall the moment the last item comes off it."
+   ],
+   "related": {
+    "zone": "LRZ-005",
+    "actions": [
+     "LRA-009",
+     "LRA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a collapsible drying rack folded completely flat against a wall, its bars dry, an empty drip tray resting beneath it, six spare hangers on a rail beside it, and a clear stretch of floor where the rack usually stands open, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LRS-006",
+   "title": "UTILITY AND CLEANING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Laundry Room",
+   "zone": "Utility and Cleaning Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Nothing leans, nothing stores wet, and every hook has an outline behind it.",
+   "trigger": "when you clear the lint screen at the end of a wash day",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Hang the broom and dustpan back on their outlines instead of leaning them for later.",
+    "Rinse the mop head and hang it to dry before it goes back on the rail.",
+    "Check every vacuum attachment is in the caddy, and go find the one that is not."
+   ],
+   "related": {
+    "zone": "LRZ-006",
+    "actions": [
+     "LRA-011",
+     "LRA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a broom, a mop and a dustpan hanging heads up on wall hooks with a painted outline visible behind each one, a caddy nearby holding every vacuum attachment in its place, the mop head hanging fully dry, and an empty bucket standing inside a taped square marked on the floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LRE-001",
+   "title": "LAUNDRY DAY WITH A SICK KID",
+   "type": "EVENT CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A child is sick overnight, and every sheet, towel and set of pyjamas in the house needs washing before the next round starts.",
+   "tests_zones": [
+    "LRZ-001",
+    "LRZ-003"
+   ],
+   "held_if": "Both drums were already empty when the first load went in, and the sorting bags had room to take the sudden extra without spilling onto the floor.",
+   "if_it_failed": "If a load had to wait because the drum was already full, or the bags overflowed onto the floor, the machines or the sorting wall were not being kept at standard before this happened. Draw LRA-001 or LRA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LRZ-001",
+     "LRZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a washing machine mid cycle with a full load of white bedding and pyjamas visible through the glass door, an empty laundry basket standing ready beside it",
+    "must_show": [
+     "A child is sick overnight, and every sheet, towel and set of pyjamas in the house needs washing before the next round starts."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LRE-002",
+   "title": "THE OVERNIGHT GUEST'S TOWELS",
+   "type": "EVENT CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest stays the night and leaves behind two extra towels and a hand wash only sweater that needs to dry before they collect it.",
+   "tests_zones": [
+    "LRZ-004",
+    "LRZ-005"
+   ],
+   "held_if": "The extra towels found space on the counter without displacing anything already there, and the rack had room for one more hand wash item without crowding what was already hanging.",
+   "if_it_failed": "If the counter had to be cleared of other things first, or the rack was already full, the counter or the rack were not being kept clear as their own standard. Draw LRA-007 or LRA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LRZ-004",
+     "LRZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "two folded guest towels sitting on a laundry folding counter beside a single hand wash sweater hanging from a drying rack with visible space around it",
+    "must_show": [
+     "A guest stays the night and leaves behind two extra towels and a hand wash only sweater that needs to dry before they collect it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LRE-003",
+   "title": "THE MUDDY SPORTS KIT",
+   "type": "EVENT CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A sports kit comes home caked in mud and grass, tracking dirt across the laundry room floor on the way to the hamper.",
+   "tests_zones": [
+    "LRZ-003",
+    "LRZ-006"
+   ],
+   "held_if": "The kit went straight into its own bag without touching the floor for long, and the broom and dustpan were exactly where they belonged to clear the mess in under a minute.",
+   "if_it_failed": "If the mud sat on the floor while you hunted for the broom, the cleaning tools were not hanging in their outlines where this event needed them. Draw LRA-011.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LRZ-003",
+     "LRZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a muddy sports kit bag sitting open beside a scattering of dried mud and grass on a laundry room floor, a broom visible hanging on a nearby wall hook",
+    "must_show": [
+     "A sports kit comes home caked in mud and grass, tracking dirt across the laundry room floor on the way to the hamper."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LRE-004",
+   "title": "THE HOSE THAT LET GO",
+   "type": "EVENT CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A fill hose splits without warning and sprays water across the floor before anyone reaches the shutoff valve.",
+   "tests_zones": [
+    "LRZ-001",
+    "LRZ-006"
+   ],
+   "held_if": "The hoses had been checked recently enough that this was a surprise rather than an overdue warning, and the mop and bucket were within reach to clear the water fast.",
+   "if_it_failed": "If the hose had already looked hard or bulged at the collar before it split, the machine's own safety check was overdue. Draw LRA-002. If the mop was not where it belonged, draw LRA-011.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LRZ-001",
+     "LRZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a burst rubber fill hose spraying water across a laundry room floor near a washing machine, a mop and bucket visible standing nearby against the wall",
+    "must_show": [
+     "A fill hose splits without warning and sprays water across the floor before anyone reaches the shutoff valve."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LRE-005",
+   "title": "THE WEEK WITH NO TIME TO FOLD",
+   "type": "EVENT CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Three dry loads finish back to back during a busy week and nobody has ten minutes to fold any of them.",
+   "tests_zones": [
+    "LRZ-004",
+    "LRZ-003"
+   ],
+   "held_if": "The baskets from each load found a place under the counter without one being tipped onto the floor, and the sorting bags kept accepting new dirty clothes without backing up.",
+   "if_it_failed": "If clean laundry ended up in a pile on the floor because the baskets were already full, the one-basket-per-bedroom delivery habit had already slipped before this week started. Draw LRA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LRZ-004",
+     "LRZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "three full laundry baskets of dry clothes stacked neatly under a folding counter, none of them tipped over or spilling onto the floor",
+    "must_show": [
+     "Three dry loads finish back to back during a busy week and nobody has ten minutes to fold any of them."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LRE-006",
+   "title": "THE COLD SNAP WOOL SURGE",
+   "type": "EVENT CARD",
+   "room": "Laundry Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The temperature drops overnight and every wool jumper and hand wash item in the house needs washing and drying at once.",
+   "tests_zones": [
+    "LRZ-002",
+    "LRZ-005"
+   ],
+   "held_if": "A wool safe detergent was already on the shelf rather than needing an emergency trip to the shop, and the drying rack had room to take the sudden run of hand wash items.",
+   "if_it_failed": "If there was no wool safe detergent in the house, or the rack was already full of things that should have come down days ago, draw LRA-003 or LRA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LRZ-002",
+     "LRZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a row of wool jumpers laid flat to dry across a drying rack, a bottle of wool safe detergent standing on a nearby shelf",
+    "must_show": [
+     "The temperature drops overnight and every wool jumper and hand wash item in the house needs washing and drying at once."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  }
+ ]
+}
