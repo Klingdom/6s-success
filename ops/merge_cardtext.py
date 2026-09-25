@@ -151,6 +151,30 @@ def main() -> int:
     print(f"  em or en dashes  {len(dashes)}" +
           (f"  {dashes[:6]}" if dashes else ""))
 
+    # A dangling link or a banned dash is a real defect in the batches, not
+    # a note for later: writing the merged corpus anyway would ship it, and
+    # gate_card_related_links downstream (ops/preflight.py) only re-checks
+    # the merged file and the source batches, it does not stop this script
+    # from producing one. Refuse to write, matching what preflight.py's own
+    # gate_card_related_links docstring has claimed this script does since
+    # 2026-09-10 (it did not; found cold-reading this file 2026-09-25, this
+    # cycle). Duplicate ids and brand_visible notes are left non-fatal on
+    # purpose: dupes with matching titles are a benign double transcription
+    # (see KNOWN_AMBIGUOUS_DUPES above for the dangerous, differing-title
+    # case, already fatal via `unexplained`), and brand_visible is a note
+    # about the source artwork, not text this file ships (gate_card_corpus's
+    # own comment says so; the artwork itself is withheld at the site layer
+    # by gate_deck_art_withheld, independent of this file entirely).
+    if dangling or dashes:
+        problems = []
+        if dangling:
+            problems.append(f"{len(dangling)} dangling link(s)")
+        if dashes:
+            problems.append(f"{len(dashes)} card(s) with a banned dash")
+        print(f"\n  REFUSING to write build/entryway-cardtext.json: "
+              f"{', '.join(problems)}. Fix the batches, not this check.")
+        return 1
+
     brands = [(c["id"], c["brand_visible"]) for c in cards.values()
               if c.get("brand_visible")]
     if brands:

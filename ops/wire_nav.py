@@ -39,6 +39,7 @@ import glob
 import io
 import os
 import re
+import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -58,12 +59,22 @@ def build(prefix: str) -> str:
 
 
 def main() -> int:
-    n = 0
+    n, unreadable = 0, []
     for f in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(f, SITE).replace(os.sep, "/")
         if rel.startswith("downloads/") or rel.startswith("deck/"):
             continue
-        s = io.open(f, encoding="utf-8").read()
+        # A page must be read with its real encoding to be rewritten byte
+        # for byte, so this cannot fall back to errors="replace" the way
+        # the read-only link check below does; one file this script cannot
+        # safely read must not crash the whole pass, only be skipped and
+        # named, since a rewrite it could not perform is a smaller failure
+        # than a rewrite it never got to attempt on 190 other pages.
+        try:
+            s = io.open(f, encoding="utf-8").read()
+        except UnicodeDecodeError:
+            unreadable.append(rel)
+            continue
         m = re.search(r'(<nav class="nav"[^>]*>)(.*?)(</nav>)', s, re.S)
         if not m:
             continue
@@ -87,11 +98,18 @@ def main() -> int:
         n += 1
 
     print(f"  navigation rewritten on {n} pages, {len(NAV)} items")
+    if unreadable:
+        print(f"  UNREADABLE, skipped rather than crashed on: {unreadable}")
 
-    # A nav link that 404s is worse than a crowded nav.
+    # A nav link that 404s is worse than a crowded nav. Read-only scan, so
+    # errors="replace" is safe here the way it is not in the rewrite loop
+    # above, and matches every other read-only scan in this codebase
+    # (ops/preflight.py's gate_nav_canonical among them); without it, one
+    # unrelated file under site/ with a bad encoding crashes this whole
+    # script before the link check it exists to run ever completes.
     bad = []
     for f in glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
-        s = io.open(f, encoding="utf-8").read()
+        s = io.open(f, encoding="utf-8", errors="replace").read()
         m = re.search(r'<nav class="nav"[^>]*>(.*?)</nav>', s, re.S)
         if not m:
             continue
@@ -103,6 +121,32 @@ def main() -> int:
                 bad.append((os.path.relpath(f, ROOT), href))
     assert not bad, f"navigation links that resolve to nothing: {bad[:4]}"
     print(f"  every nav link on every page resolves")
+
+    # build() writes a plain nav with no aria-current marker at all (it has
+    # no notion of "which page is this"), so every page this script touches
+    # loses its "you are here" mark for a screen reader until something else
+    # restores it. Found 2026-09-25, cold-reading this file: running it
+    # against the real, currently-committed site silently stripped
+    # aria-current="page" from all 5 pages it touched (method.html,
+    # resources.html, book.html, consulting.html, zones/index.html), the
+    # exact live regression ops/preflight.py's gate_nav_current exists to
+    # catch on the next run, but only on the NEXT run, not this one, and
+    # this script's own docstring ("Idempotent. Run after any builder, then
+    # ops/fingerprint_assets.py.") never mentions needing wire_aria_current
+    # to follow, unlike wire_aria_current's own docstring, which names
+    # wire_measure and wire_pwa by name as passes it has to run after.
+    # Chain it here instead of trusting a human to remember a step nothing
+    # documents, the same fix already applied to ops/wire_measure.py this
+    # week for its own missing chain link.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_aria_current
+    wire_aria_current.main()
+
+    if unreadable:
+        # A page this script could not read is a page whose nav was not
+        # checked or rewired; per CLAUDE.md 0.4, unknown is not a default,
+        # so this cannot report success while one exists.
+        return 1
     return 0
 
 

@@ -282,9 +282,9 @@
       "note": "image-provider credential prober; ran live, correctly reports all 7 absent (no sandbox credentials) and torch absent, never prints a secret. No defect."
     },
     "merge_cardtext.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-09-25",
-      "note": "cold-read PM check-in 2026-09-25: KNOWN_AMBIGUOUS_DUPES prints through the generic duplicate-id line rather than a separate call-out, which satisfies the comment's own promise (never silently dropped or auto-fixed); no defect"
+      "note": "A concurrent PM check-in the same day cold-read this file and recorded it clean (KNOWN_AMBIGUOUS_DUPES reasoning only). A later cycle the same day found a real defect that read missed: main() computed dangling links and a banned em/en dash but wrote the merged corpus and exited 0 regardless. preflight's own gate_card_related_links docstring claimed since 2026-09-10 that this script already refuses in that case, which was false. Fixed: now refuses to write and exits 1 on either; duplicate ids and brand_visible notes stay non-fatal on purpose (see source comment). New ops/tests/test_merge_cardtext_refuses_on_defect.py, fail-then-pass proved."
     },
     "optimize_sample_pdf.py": {
       "status": "clean",
@@ -295,6 +295,11 @@
       "status": "fixed",
       "date": "2026-09-25",
       "note": "check() rendered every link, judged some DEAD, printed them, then returned without writing the catalogue -- a dead link stayed published (Link Status still 'Verified search') since affiliate.py/zone_supplies.py only read the CSV, never this tool's stdout. Fixed: check() now demotes a dead/weak result exactly as --assign already does, and persists it (write_catalogue), with a --dry flag matching --assign's. Fail-then-pass proved directly (temporarily skipped write_catalogue, watched 2 new test cases fail by name, restored, reran clean). ops/tests/test_product_links.py extended 32 to 36 cases."
+    },
+    "prune_catalog_js.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Ran live (--check and full): 0 pages need pruning today (data.js already absent from every page that does not render a product), and the site.js guard (window.CATALOG || []) that makes the removal safe is still present. Conservative NEEDS list checked against corporate.html's consulting grid and confirmed correct. No defect."
     },
     "receive_deploy_key.py": {
       "status": "clean",
@@ -460,6 +465,16 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25: read fully. Idempotent wiring logic checked (MARK/END block replace vs first-insert path), downloads/deck exclusion checked against real site/deck/ subdirectory vs top-level deck*.html pages (correct, distinct), relative-path depth math for pre= verified against root and nested pages, self-verification loop and fingerprint_assets chaining already present. No defect found."
+    },
+    "wire_nav.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "Two real defects found running it live against the committed site: (1) build() writes a plain nav with no aria-current marker, so a run silently stripped aria-current=\"page\" from all 5 pages it touched, and the docstring's own usage instructions never mention wire_aria_current.py needing to follow; (2) the link-resolution scan crashed with an uncaught UnicodeDecodeError on a transient bad-encoding read (a concurrency artifact of this sandbox, not reproducible standalone), with no errors=\"replace\" fallback unlike every comparable read-only scan elsewhere. Fixed: chains wire_aria_current.main() at the end, the read-only scan now uses errors=\"replace\", and the rewrite loop catches UnicodeDecodeError per file (names it, skips it, fails the run rather than silently continuing). Verified idempotent against the real committed site (git diff clean) on two consecutive runs. New ops/tests/test_wire_nav_preserves_aria_current.py, fail-then-pass proved, 4/4."
+    },
+    "wire_progressive.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Ran live: idempotent (no site/ diff on a rerun against the committed tree), and its own self-check (site.css gates .reveal behind .js) passed against the real committed CSS. No defect."
     },
     "wire_signup.py": {
       "status": "clean",
