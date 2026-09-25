@@ -173,12 +173,22 @@
   </url>
   <url>
     <loc>https://6s-success.com/deck.html</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://6s-success.com/assets/img/rooms/ch31-image01.jpg</image:loc>
       <image:caption>88 cards walking one entryway through twelve micro zones: what is wrong, the fix, the habit that holds it. 72 drawn. Free to print.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://6s-success.com/entryway-deck.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/rooms/ch32-image01.jpg</image:loc>
+      <image:caption>The Manual's real five Entryway zones, the friction each one causes, the root cause, the fix, and the standard to keep. 57 cards, typeset, free.</image:caption>
     </image:image>
   </url>
   <url>

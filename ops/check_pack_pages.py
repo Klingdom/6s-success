@@ -38,6 +38,7 @@ PACK = os.path.join(ROOT, "site", "downloads", "6S-Standards-Pack.html")
 PRINTABLES = [
     ("site/downloads/6S-Standards-Pack.html", "the free Standards Pack"),
     ("site/kitchen-deck.html", "the free Kitchen deck"),
+    ("site/entryway-deck.html", "the free Entryway deck (five zones)"),
     ("site/downloads/6S-Micro-Zone-Map.html", "the free Micro Zone Map"),
     ("site/downloads/6S-Zone-Scoring-and-Audit-Template.html",
      "the free corporate scoring sheet and audit template"),

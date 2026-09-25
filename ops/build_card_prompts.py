@@ -71,6 +71,19 @@ DECKS = {
         "cards": os.path.join(ROOT, "ops", "cardtext", "kitchen-deck.json"),
         "desktop_sources": False,
     },
+    # Deliberately NOT registering the new corpus-accurate Entryway deck
+    # (ops/cardtext/entryway-deck.json, 2026-09-25, B9) here yet. This
+    # file's own wrong_room check (below) assumes one deck per room name,
+    # and the "entryway" key above already claims "Entryway"; adding a
+    # second entry for the same room trips that check on every one of its
+    # own prompts (the room's own name is not "a wrong room", it is THE
+    # room, shared by design with the deck this file already knows about).
+    # Fixing that assumption is a real, separate change to a shared,
+    # image-billing-gated tool this cycle does not otherwise touch. Left
+    # for whoever next works the image pipeline; until then this deck's
+    # art briefs (already on every card in the corpus) are unreachable by
+    # this generator, the same "not yet wired to the queue" state the
+    # Kitchen deck was in before this comment existed.
 }
 
 # What the illustration should show, per card type. A card type is a promise

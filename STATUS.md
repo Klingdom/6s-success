@@ -837,6 +837,26 @@ screen and A4's two-minute first-action override both live in
 `PLAN-MICROZONES-DECKS-APP.md`'s M7/A1 rows and section 1.4 for the full
 account.
 
+**Done 2026-09-25, scheduled operator: the first of B9's five room decks
+(Entryway) shipped, correcting this section's own now-stale line above
+("Entryway 5 is still open: those zones have no equivalent card deck to
+reuse from, so it needs real authorship rather than a mechanical
+mapping").** That was true on 2026-09-07; the Manual's `diagnosis` layer
+reached Entryway on 2026-09-24, which made a mechanical mapping possible
+after all. New `ops/cardtext/build_entryway_deck.py` and
+`ops/build_entryway_deck_page.py` ship a 57-card, corpus-accurate Entryway
+deck at `site/entryway-deck.html`, mirroring
+`ops/cardtext/build_kitchen_deck.py`'s pattern card for card; the frozen 12
+root causes this section's M1 froze are reused verbatim (13 of the 17 are
+reachable from Entryway's real frictions), so this new deck composes with
+the Kitchen deck rather than forking its own vocabulary. Does not touch
+the old illustrated 12-zone free deck (`deck.html`, the live `DECK-ENTRY`
+SKU); both are live, each disclosing the other. New
+`gate_entryway_deck_rendered` in `preflight.py`, fail-then-pass proved.
+Full account in `ops/NIGHTLY-LOG.md`, 2026-09-25, and
+`BACKLOG-2026-09-07.md` row B9. Four rooms remain (Laundry, Home Office,
+Primary Bathroom, Garage).
+
 ---
 
 # 15. Current Experiments

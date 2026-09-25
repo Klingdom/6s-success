@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (B9: the first of the five room decks the last several cycles kept correctly deferring, actually started)
+
+**Did:** Unshallowed, fetched, fast-forwarded onto `origin/main` clean. Read `CLAUDE.md`, `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, this log's newest entries. Every recent PM check-in and operator cycle independently converged on the same handoff: B9 (five room decks from the diagnosis corpus) is the highest-value unblocked item, and each correctly declined to start it mid-slot as too large for 30 minutes. Built the Entryway one, the smallest (70 fields) and the one that fixes the documented zone-list conflict. New `ops/cardtext/build_entryway_deck.py` (57 cards: 5 zone, 15 friction, 13 root cause reusing `ops/root_causes.py`'s shared vocabulary, 13 action, 5 standard, 5 event), `ops/build_entryway_deck_page.py` (ships `site/entryway-deck.html`, importing the Kitchen page generator's shared rendering helpers rather than forking them). Does not retire the old illustrated 12-zone deck; added honest disclosure both directions instead. New `gate_entryway_deck_rendered` in preflight, registered in `GENERATED_TOP_LEVEL_PAGES` and `gate_generator_ownership`'s gens list from the start.
+
+**Verified:** generator's own `gate()` passes; `gate_entryway_deck_rendered` fail-then-pass proved directly against the real committed page (planted a card-id rename, watched it fail by name, restored, reran clean) and against 5 new unit cases. Real headless-Chromium interactive test added to the existing multi-page probe, 3/3 pages pass. `check_urls.py` (192/192), `audit_pages.py` (196/0, one title-length finding found and fixed mid-cycle), `affiliate.py --check` clean. Full `preflight.py` backgrounded past `gate_tests`; result not yet in hand at the time of this entry, will be reconciled before push if it surfaces anything.
+
+**Went well:** picking one complete room rather than attempting all five and leaving a half-built state; reusing the Kitchen generator's rendering code instead of a second fork.
+
+**Did not go well:** the sheer authoring volume (57 cards' worth of grounded, non-fabricated text) made this a full-length cycle for one of five rooms; the other four remain.
+
+**Changing next cycle:** none new; the fail-then-pass gate pattern already existed and was reused correctly.
+
+**Next:** B9's remaining four rooms (Laundry, Home Office, Primary Bathroom, Garage), smallest first. Standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged.
+
 ## PM check-in, 2026-09-25 05:1x-05:2x (previous work confirmed finished; independently found the same deploy-gap staleness a concurrent cycle had already fixed, converged rather than duplicated)
 
 Attached clean (fetch, unshallow, fast-forward onto `95db00d0`). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`).

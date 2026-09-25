@@ -1087,6 +1087,7 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_kit_page.py", "build_corporate.py",
     "build_corporate_asset.py",
     "build_kitchen_deck_page.py",
+    "build_entryway_deck_page.py",
     "build_youtube_metadata.py",
     "build_social_captions.py",
     "build_feed.py",
@@ -1123,6 +1124,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
     "build_kdp_cover.py": ("gate_kdp_cover_current",),
     "build_kitchen_deck.py": ("gate_kitchen_deck_current",),
+    "build_entryway_deck.py": ("gate_entryway_deck_current",),
     "build_manual_print.py": ("gate_front_matter_filled",
                                "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
@@ -4294,6 +4296,103 @@ def gate_kitchen_deck_print_tracked() -> None:
     problems = check_kitchen_deck_print_tracked(page)
     if problems:
         fail("kitchen-deck-print-tracked", "; ".join(problems))
+
+
+def check_entryway_deck_rendered(cards: list, page: str) -> list:
+    """Pure logic for gate_entryway_deck_rendered, the per-room equivalent
+    BACKLOG-2026-09-07.md B7/B9 calls for. `cards` is
+    ops/cardtext/build_entryway_deck.py's own card list; `page` is the full
+    text of site/entryway-deck.html.
+
+    Same two defect classes check_kitchen_deck_rendered already guards
+    against for the Kitchen deck: a card in the corpus missing from the
+    page (or vice versa), and a corpus field that drifted from what the
+    page actually ships. Adds one more this deck's own generator gate does
+    not check but a hand edit to the page template could still break: the
+    15 micro quest lines (DECK-GAME-DESIGN.md section 2/4.1) must appear on
+    the page verbatim, not just exist in the corpus.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    corpus_ids = {c["id"] for c in cards}
+    page_ids = set(re.findall(r'<article class="kcard" id="([^"]+)"', page))
+    missing = sorted(corpus_ids - page_ids)
+    extra = sorted(page_ids - corpus_ids)
+    problems = []
+    if missing:
+        problems.append(f"{len(missing)} corpus card(s) missing from the "
+                        f"page, e.g. {missing[:3]}")
+    if extra:
+        problems.append(f"{len(extra)} card id(s) on the page do not exist "
+                        f"in the corpus, e.g. {extra[:3]}")
+
+    by_type = {}
+    for c in cards:
+        by_type.setdefault(c["type"], c)
+    for t in ("ROOM CARD", "ZONE CARD", "ROOT CAUSE CARD", "STANDARD CARD",
+              "EVENT CARD", "FRICTION CARD", "ACTION CARD"):
+        c = by_type.get(t)
+        if not c:
+            continue
+        raw = c.get("objective")
+        if not raw:
+            continue
+        needle = _html.escape(str(raw), quote=True)
+        if needle not in page:
+            problems.append(f"{c['id']} ({t}) corpus text does not appear "
+                            f"verbatim on the page. Re-run "
+                            f"ops/build_entryway_deck_page.py.")
+
+    drifted_mq = []
+    for c in cards:
+        if c["type"] != "STANDARD CARD":
+            continue
+        for q in c.get("micro_quest") or []:
+            if _html.escape(q, quote=True) not in page:
+                drifted_mq.append(c["id"])
+                break
+    if drifted_mq:
+        problems.append(f"{len(drifted_mq)} standard card(s) whose micro "
+                        f"quests do not appear verbatim on the page, e.g. "
+                        f"{drifted_mq[:3]}.")
+    return problems
+
+
+def gate_entryway_deck_rendered() -> None:
+    """BACKLOG-2026-09-07.md B7/B9: a second Entryway deck, built straight
+    off content.json's real five zones (not the old 89-card deck's twelve
+    "micro zones"), must actually be the cards on
+    site/entryway-deck.html, not just present in the gated cardtext
+    corpus. Same shape as gate_kitchen_deck_rendered, the per-room
+    equivalent that row's own acceptance line calls for.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_entryway_deck as ED
+        import importlib
+        importlib.reload(ED)
+        deck = ED.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("entryway-deck-rendered",
+             f"could not build the Entryway cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "entryway-deck.html")
+    if not os.path.exists(page_path):
+        fail("entryway-deck-rendered",
+             "ops/cardtext/build_entryway_deck.py's corpus exists but "
+             "site/entryway-deck.html does not. Run "
+             "ops/build_entryway_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_entryway_deck_rendered(deck["cards"], page)
+    if problems:
+        fail("entryway-deck-rendered", "; ".join(problems))
 
 
 def gate_front_matter_filled() -> None:
@@ -16802,6 +16901,43 @@ def gate_kitchen_deck_current() -> None:
              "next build. Run: python ops/cardtext/build_kitchen_deck.py")
 
 
+def gate_entryway_deck_current() -> None:
+    """Same shape as gate_kitchen_deck_current, for the corpus-accurate
+    Entryway deck (BACKLOG-2026-09-07.md B9, 2026-09-25):
+    ops/cardtext/entryway-deck.json must be exactly what
+    ops/cardtext/build_entryway_deck.py produces today.
+
+    This is the file's own entry in GENERATOR_PROTECTED_ELSEWHERE:
+    build_entryway_deck.py lives one directory deeper than
+    gate_every_generator_has_a_protection_plan's top-level glob can see, the
+    same reason build_kitchen_deck.py needed one.
+    """
+    gen_path = os.path.join(ROOT, "ops", "cardtext", "build_entryway_deck.py")
+    out_path = os.path.join(ROOT, "ops", "cardtext", "entryway-deck.json")
+    if not os.path.exists(gen_path) or not os.path.exists(out_path):
+        return
+    before = io.open(out_path, encoding="utf-8").read()
+    p = subprocess.run([PY, gen_path], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    after = (io.open(out_path, encoding="utf-8").read()
+             if os.path.exists(out_path) else "")
+    io.open(out_path, "w", encoding="utf-8", newline="").write(before)
+    if p.returncode != 0:
+        fail("entryway-deck-current",
+             "build_entryway_deck.py could not regenerate "
+             "entryway-deck.json (exit %d), and the committed file was "
+             "restored unchanged rather than proven current: %s"
+             % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
+        return
+    if after != before:
+        fail("entryway-deck-current",
+             "ops/cardtext/entryway-deck.json does not match what "
+             "ops/cardtext/build_entryway_deck.py produces today, so a "
+             "hand edit there (or an unrerun source edit) will be lost on "
+             "the next build. Run: "
+             "python ops/cardtext/build_entryway_deck.py")
+
+
 def gate_diagnosis_schema() -> None:
     """ops/diagnosis.py is a real, working schema check for the `diagnosis`
     block (>= 3 frictions, every branch's `cause` a known root-cause id,
@@ -20065,6 +20201,7 @@ GENERATED_TOP_LEVEL_PAGES = {
     "deck-gallery.html": "build_deck_gallery.py",
     "deck-gallery-mudroom.html": "build_deck_gallery.py",
     "kitchen-deck.html": "build_kitchen_deck_page.py",
+    "entryway-deck.html": "build_entryway_deck_page.py",
     "kit.html": "build_kit_page.py",
     "resources.html": "build_resources.py",
     "standards.html": "build_standards_page.py",
@@ -20901,6 +21038,7 @@ def main() -> int:
     run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_action_related)
     run_gate(gate_kitchen_deck_print_tracked)
+    run_gate(gate_entryway_deck_rendered)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)
@@ -20966,6 +21104,7 @@ def main() -> int:
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_branch_shape)
     run_gate(gate_kitchen_deck_current)
+    run_gate(gate_entryway_deck_current)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)

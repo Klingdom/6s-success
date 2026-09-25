@@ -1,0 +1,2454 @@
+{
+ "deck": "entryway",
+ "room": "Entryway",
+ "count": 57,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 5,
+  "FRICTION CARD": 15,
+  "ROOT CAUSE CARD": 13,
+  "ACTION CARD": 13,
+  "STANDARD CARD": 5,
+  "EVENT CARD": 5
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "EYR-001",
+   "title": "THE ENTRYWAY",
+   "type": "ROOM CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "FIVE ZONES. START AT THE DOOR.",
+   "objective": "The entryway is five small places, not one big job. This card is the map and the order.",
+   "zones_in_order": [
+    "EYZ-001 Landing Zone",
+    "EYZ-002 Coat and Outerwear Zone",
+    "EYZ-003 Shoe and Boot Zone",
+    "EYZ-004 Entry Console or Bench",
+    "EYZ-005 Door, Mat, and Immediate Floor"
+   ],
+   "start_here": "EYZ-005 Door, Mat, and Immediate Floor. Do the Door, Mat, and Immediate Floor first. It is the shortest zone in the room, it gives you somewhere to stand while you work the other four, and the change shows on the hallway floor within a week.",
+   "how_to_play": [
+    "1. Deal the five ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your entryway. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do EYA-013 The Full Rebuild Walk before any rebuild. It takes thirty minutes and covers every hook, shelf and door in the room.",
+   "related": {
+    "contents": "EYZ-001 to EYZ-005, EYF-001 to EYF-015, the shared root causes in ops/root_causes.py, EYA-001 to EYA-013, EYS-001 to EYS-005, EYE-001 to EYE-005"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole tidy entryway in its settled state, front door, coat rail, shoe rack, console and floor mats all visible in one frame, everything put away",
+    "must_show": [
+     "all five zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the five zones is. If two are not in frame, reshoot."
+   }
+  },
+  {
+   "id": "EYZ-001",
+   "title": "LANDING ZONE",
+   "type": "ZONE CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "ONE VERDICT PER SHEET. NOTHING RETURNS UNDECIDED.",
+   "objective": "The spot where pockets empty on the way in and refill on the way out.",
+   "callouts": [
+    "One tray holding keys and sunglasses",
+    "One wallet and one phone per adult",
+    "A single folder standing upright, fewer than ten sheets",
+    "Bare surface on both sides of the tray",
+    "Charging dock clear of the drip line under the hooks",
+    "No loose paper anywhere on the surface"
+   ],
+   "done_looks_like": "One tray holding keys and sunglasses, one wallet and one phone per adult, a single upright folder with fewer than ten sheets of paper standing in it, and bare surface on both sides of the tray.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "Wet umbrellas and rain-soaked sleeves drip onto whatever sits directly below the hooks. If the charging dock or a power strip is under that line, move it out of the drip."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A phone dock, a lamp and a plug-in heater chained together behind the console is the overload that starts here. One dock, one outlet, nothing chained."
+    }
+   ],
+   "the_call": {
+    "title": "The paper with no verdict",
+    "text": "What you have been avoiding here is not the keys, it is the six sheets of paper you keep shifting from one end of the surface to the other. They stay because each needs a small unpleasant action: a form, a phone call, a payment. The rule is that nothing returns to the surface without a verdict, and there are only three: act, file, recycle. If it is act, it stands upright in the folder with the date written in the corner. When any item in that folder passes fourteen days, it stops being paperwork and becomes a decision. Do it tonight, or accept honestly that you never will and recycle it. Both of those are answers. Leaving it on the surface is not."
+   },
+   "supplies": [
+    "Streak-free glass and mirror cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Small detail brush (not in this zone's kit)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "EYS-001",
+    "actions": [
+     "EYA-001",
+     "EYA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a narrow entryway console surface with one shallow tray holding two sets of keys and a pair of sunglasses, one wallet and one phone lying beside it, a slim upright folder holding a handful of papers standing at one end, and bare wood visible on both sides of the tray",
+    "must_show": [
+     "One tray holding keys and sunglasses",
+     "One wallet and one phone per adult",
+     "A single folder standing upright, fewer than ten sheets",
+     "Bare surface on both sides of the tray",
+     "Charging dock clear of the drip line under the hooks",
+     "No loose paper anywhere on the surface"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "EYZ-002",
+   "title": "COAT AND OUTERWEAR ZONE",
+   "type": "ZONE CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "TWO EMPTY HOOKS, ALWAYS. COUNTED BY WEATHER, NOT BY NUMBER.",
+   "objective": "Hold the outerwear you will actually wear this week, at the moment you reach for it.",
+   "callouts": [
+    "One coat per person on the rail",
+    "One bag hanging, not stacked on the floor",
+    "Hats and gloves together in one labeled bin",
+    "Umbrellas standing upright in the stand",
+    "At least two hooks left empty",
+    "Nothing weighty stored above head height"
+   ],
+   "done_looks_like": "One coat per person on the rail, one bag, hats and gloves together in a single labeled bin on the shelf above, umbrellas standing in the stand, and at least two hooks left empty.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A bin of boots or a heavy holdall stored above head height on the coat shelf lands on whoever tugs the coat underneath it. Weight goes low, light bulky things go high."
+    },
+    {
+     "question": "Fall",
+     "text": "A rail loaded past what its brackets were fixed for sags first and lets go later, usually while somebody is standing directly beneath it."
+    }
+   ],
+   "the_call": {
+    "title": "The coat you feel guilty about",
+    "text": "Somewhere on this rail is a good coat that cost real money and goes outside roughly never. It survives every clear-out because getting rid of it feels like admitting to the money. The rule is that coats are counted by weather, not by number. Each person gets one coat per kind of weather your climate genuinely produces: wet, cold, and something in between. A second coat in the same category has to beat the first one on a specific, nameable day. If you cannot name that day, that is the coat that leaves. The expensive one is not exempt, because the money is already spent whether it hangs here or keeps someone else warm. Give it one trial: front hook, most reachable spot, two weeks. If you did not reach for it, you have your answer and you had it before you started."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Small detail brush (not in this zone's kit)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "EYS-002",
+    "actions": [
+     "EYA-003",
+     "EYA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a coat rail by a front door holding a small number of coats spaced apart with two hooks visibly empty at one end, a single bag hanging beside them, a labeled bin on the shelf above holding hats and gloves, and an umbrella stand with two umbrellas standing upright beside the rail",
+    "must_show": [
+     "One coat per person on the rail",
+     "One bag hanging, not stacked on the floor",
+     "Hats and gloves together in one labeled bin",
+     "Umbrellas standing upright in the stand",
+     "At least two hooks left empty",
+     "Nothing weighty stored above head height"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "EYZ-003",
+   "title": "SHOE AND BOOT ZONE",
+   "type": "ZONE CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "TWO PAIRS PER PERSON. THE SOLE DECIDES, NOT THE MEMORY.",
+   "objective": "Hold the footwear that comes off at the door, and keep the grit it carried in off every other floor in the house.",
+   "callouts": [
+    "Two pairs per person on the rack, soles down",
+    "Boots standing upright in the tray",
+    "One pair of slippers per person",
+    "A full stride of bare floor between door and rack",
+    "Shoe care solvents stored up and out of reach",
+    "Nothing loose on the floor beside the rack"
+   ],
+   "done_looks_like": "Two pairs per person on the rack, soles down, boots standing in the tray, one pair of slippers each, and a clear stretch of floor a full stride wide between the door and the rack.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Shoes left inside the arc of the door swing are the reason people go down while carrying bags with both hands. That strip of floor stays clear at full stride width, permanently."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Polish, suede cleaner and waterproofing spray are solvents, and they usually sit in an open basket at exactly toddler height. Move shoe care up onto a shelf or out of the room."
+    }
+   ],
+   "the_call": {
+    "title": "The worn out pair you keep for the garden",
+    "text": "Everyone has a pair with the tread rubbed smooth that survives on the grounds that it is fine for mucky jobs. Count them honestly and there are usually three such pairs and about one muddy job a year. The rule is that the sole decides, not the memory. Turn the shoe over. If the tread has gone smooth or the heel has worn through on the outer edge, that shoe is no longer safe on a wet step or a slick pavement, which means it is not gardening footwear, it is rubbish with sentimental value attached. Keep exactly one dirty-job pair per person and store it where the dirty jobs happen, not at the front door. The pair you would be embarrassed to be seen in is not a spare. It is a decision you already made and have not carried out."
+   },
+   "supplies": [
+    "Floor-material-compatible cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Stiff dry brush (not in this zone's kit)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "EYS-003",
+    "actions": [
+     "EYA-005",
+     "EYA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a shoe rack beside a front door holding pairs of shoes standing on their soles with visible gaps between pairs, a low boot tray in front of it holding two pairs of boots standing upright, and a clear stretch of bare floor between the door and the rack wide enough for a full stride",
+    "must_show": [
+     "Two pairs per person on the rack, soles down",
+     "Boots standing upright in the tray",
+     "One pair of slippers per person",
+     "A full stride of bare floor between door and rack",
+     "Shoe care solvents stored up and out of reach",
+     "Nothing loose on the floor beside the rack"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "EYZ-004",
+   "title": "ENTRY CONSOLE OR BENCH",
+   "type": "ZONE CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "THREE ITEMS ON TOP. EMPTY SEAT. EVERY SECTION NAMED.",
+   "objective": "Somewhere to sit while you lace a boot, and somewhere to set a bag down for thirty seconds.",
+   "callouts": [
+    "Three items or fewer on the top surface",
+    "The seat itself bare, nothing set down on it",
+    "Drawer sections each holding one named category",
+    "The base of the drawer visible between things",
+    "Nothing stored here that is not needed at the door",
+    "Bench strapped to the wall if it stands on narrow legs"
+   ],
+   "done_looks_like": "Three items or fewer on the top, a seat with nothing on it at all, and a drawer where every divided section has one named category and you can see the base of the drawer between things.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A narrow console with drawers is a climbing frame to a three year old, and it comes over forwards with the drawers out. Strap it to the wall and keep the heaviest contents in the bottom drawer."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Loose button batteries, coins and small magnets roll into the back corners of this drawer and it opens at exactly the height a toddler can reach. Batteries go in a lidded tin or out of the room entirely."
+    }
+   ],
+   "the_call": {
+    "title": "What the drawer is for",
+    "text": "This drawer becomes the second junk drawer within a month of being emptied. It happens every time, because it is the nearest place to set down something you do not want to carry any further. The decision being avoided is not what to throw away. It is admitting the drawer needs a job at all. The rule: this drawer serves the door and nothing else. One test question per item, would you need this while wearing your shoes, either on the way out or in the first ten seconds back in. Dog lead, yes. Sun cream, yes. Spare car charger, yes. The screwdriver, the birthday candles and the case for a phone you no longer own all fail, and they fail even though they genuinely have nowhere better to live. Find them somewhere better today, in another room, with a name on it. If you do not, they will be back in this drawer by the weekend and so will four of their friends."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Small detail brush (not in this zone's kit)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "EYS-004",
+    "actions": [
+     "EYA-007",
+     "EYA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a narrow entry console with a bare wooden seat and exactly three small items sitting on its top surface, and a shallow open drawer below divided into sections, each holding one distinct kind of item with visible space around them",
+    "must_show": [
+     "Three items or fewer on the top surface",
+     "The seat itself bare, nothing set down on it",
+     "Drawer sections each holding one named category",
+     "The base of the drawer visible between things",
+     "Nothing stored here that is not needed at the door",
+     "Bench strapped to the wall if it stands on narrow legs"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "EYZ-005",
+   "title": "DOOR, MAT, AND IMMEDIATE FLOOR",
+   "type": "ZONE CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "order": 5,
+   "difficulty": 1,
+   "tagline": "BOTH MATS FLAT. THE SWING STAYS BARE.",
+   "objective": "Catch grit, water and road salt at the threshold so none of it reaches the rest of the floors.",
+   "callouts": [
+    "Coarse mat outside the door, lying flat",
+    "Absorbent mat inside the door, lying flat",
+    "No curled corners on either mat",
+    "Nothing on the floor inside the door's swing",
+    "The door latches on the first push",
+    "Hinge screws snug, not loose"
+   ],
+   "done_looks_like": "A coarse mat outside the door and an absorbent one inside, both lying dead flat with no curled corners, nothing whatsoever on the floor inside the door's swing, and a door that latches on the first push.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "A curled mat edge at a doorway catches the toe of someone stepping in with their eyes on their phone or their arms full. Flat edges, gripped or taped, checked every time you vacuum."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A door with a loose hinge screw or a failing closer swings harder than expected and catches fingers against the frame. Tighten the hinge screws while you are down there with the cloth."
+    }
+   ],
+   "the_call": {
+    "title": "When the mat is finished",
+    "text": "A mat looks perfectly fine long after it has stopped working, and the decision being dodged is spending money to replace something that is not visibly broken. So test it instead of looking at it. Walk in from outside on a dry gritty day, wipe your feet the way you actually wipe them, then lift the mat and look at both the floor beneath it and the fibres themselves. A working mat holds grit down inside its pile and drops a clear line of dirt when you shake it out. A finished mat has fibres flattened all in one direction, and the grit sits on top of them and walks straight off on the next pair of shoes. If it fails that test, replace it this month rather than next winter. A worn mat is not saving you anything. It is quietly sanding the finish off every floor between this door and the kitchen."
+   },
+   "supplies": [
+    "Floor-material-compatible cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Streak-free glass and mirror cleaner (if the door has a glass panel; not in this zone's kit)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "EYS-005",
+    "actions": [
+     "EYA-009",
+     "EYA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a front door seen from inside with a flat absorbent mat lying just inside it and a coarser mat visible through the glass outside, both mats lying flat with no curled corners, and a completely bare stretch of floor in the arc where the door swings open",
+    "must_show": [
+     "Coarse mat outside the door, lying flat",
+     "Absorbent mat inside the door, lying flat",
+     "No curled corners on either mat",
+     "Nothing on the floor inside the door's swing",
+     "The door latches on the first push",
+     "Hinge screws snug, not loose"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "EYF-001",
+   "title": "THE FOLDER NEVER STAYS UNDER TEN",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The folder is never under ten sheets, no matter how often I sort it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing that goes back on the surface has been given a verdict",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "I only open post on the days I have time, not the days it arrives",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "There is no agreement on when a folder counts as full",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-001",
+    "root_causes": [
+     "RC-015",
+     "KC-009",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a slim upright folder overflowing with loose papers on an entryway console, sheets fanned out well past its top edge",
+    "must_show": [
+     "The folder is never under ten sheets, no matter how often I sort it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-002",
+   "title": "IT LANDS BESIDE THE TRAY, NOT IN IT",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Keys, chargers and sunglasses land beside the tray, not in it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The tray is not where my hand actually opens on the way in",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "There is more landing here than the tray was ever built to hold",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-001",
+    "root_causes": [
+     "KC-003",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an entryway console surface with a set of keys, a phone charger and a pair of sunglasses scattered beside an empty tray rather than inside it",
+    "must_show": [
+     "Keys, chargers and sunglasses land beside the tray, not in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-003",
+   "title": "THE DOCK SITS UNDER THE DRIP LINE",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The charging dock keeps ending up under the umbrella drip line.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The outlet behind the console already carries a lamp and a heater",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody moved the dock once the drip line became obvious",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-001",
+    "root_causes": [
+     "KC-010",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a phone charging dock plugged in directly beneath a row of coat hooks holding a dripping wet umbrella, a damp patch visible on the console beneath it",
+    "must_show": [
+     "The charging dock keeps ending up under the umbrella drip line."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-004",
+   "title": "THE RAIL IS FULL AND NO HOOK IS EMPTY",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The rail is full and there is still no empty hook.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is a coat for a weather category that already has one",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Off-season coats never left the rail for the bedroom closet",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nobody in particular clears what got left on a chair back",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-002",
+    "root_causes": [
+     "KC-001",
+     "KC-003",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a coat rail packed edge to edge with coats touching each other, every hook occupied, no gap visible anywhere along it",
+    "must_show": [
+     "The rail is full and there is still no empty hook."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-005",
+   "title": "THE EXPENSIVE COAT NEVER GETS WORN",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A coat that cost real money hangs there and is never worn.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Giving it up feels like admitting to the money",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "There is no rule for how many coats one kind of weather gets",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-002",
+    "root_causes": [
+     "RC-014",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single tailored coat with the price tag still attached hanging untouched at the end of a rail among visibly worn everyday coats",
+    "must_show": [
+     "A coat that cost real money hangs there and is never worn."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-006",
+   "title": "THE COLD SNAP LAYER NEVER COMES OFF",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "One cold snap and there is a layer per person that never comes back off.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing marks the day the seasonal swap should happen",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The two hooks nearest the door are already holding scarves and bags, not coats",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-002",
+    "root_causes": [
+     "KC-009",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a coat rail crowded with heavy winter layers still hanging in what looks like mild weather light, coats pressed shoulder to shoulder",
+    "must_show": [
+     "One cold snap and there is a layer per person that never comes back off."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-007",
+   "title": "A PAIR IS ALWAYS LOOSE ON THE FLOOR",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is always a pair sitting loose on the floor, not on the rack.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A shelf is already full, so a third pair has nowhere to stand",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "No shelf carries a name, so nobody is sure whose job it is to clear it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The rack sits further from the door than the floor does",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-003",
+    "root_causes": [
+     "KC-007",
+     "RC-013",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shoe rack with visibly full shelves and a single pair of shoes lying separately on the floor in front of it rather than on a shelf",
+    "must_show": [
+     "There is always a pair sitting loose on the floor, not on the rack."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-008",
+   "title": "THE SMOOTH-TREAD PAIR NEVER LEAVES",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I keep a pair with the tread rubbed smooth for the one muddy job a year.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Getting rid of it feels like admitting the money is gone",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "There is no rule for how worn is too worn to trust on a wet step",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-003",
+    "root_causes": [
+     "RC-014",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single worn shoe held sole-up, its tread rubbed completely smooth and flat, resting on top of a shoe rack among other pairs",
+    "must_show": [
+     "I keep a pair with the tread rubbed smooth for the one muddy job a year."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-009",
+   "title": "THE BOOT TRAY IS ALWAYS WET AND GRITTY",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The boot tray is always wet and gritty, and it scratches the hallway floor.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing marks when the tray gets carried out and hosed",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The salt and grit sit in corners a cloth cannot reach without taking it outside",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "Wet soles come straight off the tray onto the hard floor",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-003",
+    "root_causes": [
+     "KC-009",
+     "RC-016",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a low boot tray holding a shallow pool of gritty water with visible sand and salt residue, sitting directly on a hallway floor with faint scratch marks around its edge",
+    "must_show": [
+     "The boot tray is always wet and gritty, and it scratches the hallway floor."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-010",
+   "title": "THE DRAWER REFILLS WITHIN A MONTH",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The drawer fills back up within a month of being emptied.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is the nearest place to set something down I do not want to carry further",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The sections do not carry names, so anything fits anywhere",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Half of what is in it genuinely has nowhere better to live yet",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-004",
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an entryway drawer pulled open and crowded edge to edge with loose small objects of many different kinds, no visible dividers",
+    "must_show": [
+     "The drawer fills back up within a month of being emptied."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-011",
+   "title": "THE TOP HOLDS MORE THAN THREE AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is more than three items on the top by the time I notice.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Whoever clears the table after dinner does not pass this way",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It is the first flat surface anyone meets with their hands already full",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-004",
+    "root_causes": [
+     "RC-013",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an entry console top crowded with more than half a dozen small items of different kinds pushed together with no clear surface visible",
+    "must_show": [
+     "There is more than three items on the top by the time I notice."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-012",
+   "title": "SMALL THINGS ROLL INTO THE BACK CORNERS",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Batteries, coins, and small things end up loose in the back corners of the drawer.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no lidded tin, so loose things roll wherever the drawer tips",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nothing in the drawer has a smaller container of its own",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-004",
+    "root_causes": [
+     "KC-010",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open entryway drawer with loose batteries and coins scattered and gathered into its back corners, no container holding them",
+    "must_show": [
+     "Batteries, coins, and small things end up loose in the back corners of the drawer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-013",
+   "title": "GRIT GETS PAST THE MAT ANYWAY",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The mat looks fine, but grit still gets past it onto the rest of the floors.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The inside mat is not long enough for both feet to land on it",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "The fibres have gone flat, so grit rides across the top instead of down into the pile",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "Nothing marks when the outdoor mat last got hosed",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-005",
+    "root_causes": [
+     "KC-007",
+     "KC-011",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a doormat lying just inside a front door with a faint trail of gritty footprints continuing past it onto the hallway floor beyond",
+    "must_show": [
+     "The mat looks fine, but grit still gets past it onto the rest of the floors."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-014",
+   "title": "SOMETHING IS STORED IN THE DOOR'S SWING",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Something is stored on the floor inside the door's swing again.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Outgoing returns have no named spot anywhere else in the house",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Recycling and sports kit pause here on the way to somewhere else",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-005",
+    "root_causes": [
+     "KC-002",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a front door only partly open because a stack of boxes sits on the floor directly in the arc where it swings",
+    "must_show": [
+     "Something is stored on the floor inside the door's swing again."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "EYF-015",
+   "title": "THE MAT CURLS OR THE DOOR WON'T LATCH",
+   "type": "FRICTION CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The mat corner has curled, or the door does not latch on the first push.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A slow curl or a loose hinge screw goes unnoticed until someone finds it the hard way",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "This threshold wears on a schedule set by the weather, not by a fixed check",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your entryway, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "EYZ-005",
+    "root_causes": [
+     "RC-017",
+     "KC-011"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a doormat with one corner curled sharply upward beside a front door standing very slightly ajar where the latch has not caught",
+    "must_show": [
+     "The mat corner has curled, or the door does not latch on the first push."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-004"
+    ],
+    "actions": [
+     "EYA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shoe rack shelf holding four nearly identical black shoes side by side with no others in sight",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-010",
+     "EYF-011",
+     "EYF-012",
+     "EYF-014"
+    ],
+    "actions": [
+     "EYA-002",
+     "EYA-007",
+     "EYA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an entryway console with a phone charger, a dog lead and a single loose sock lying on it, none of them near any drawer or hook",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-002",
+     "EYF-004",
+     "EYF-007",
+     "EYF-014"
+    ],
+    "actions": [
+     "EYA-002",
+     "EYA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a winter coat hanging on a hook in a hallway far from the front door, the door itself visible in the far background",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-002",
+     "EYF-007",
+     "EYF-013"
+    ],
+    "actions": [
+     "EYA-004",
+     "EYA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a coat hook holding two coats stacked on the same peg, the second one's sleeve trailing down to the floor",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-001",
+     "EYF-005",
+     "EYF-006",
+     "EYF-008",
+     "EYF-010"
+    ],
+    "actions": [
+     "EYA-001",
+     "EYA-003",
+     "EYA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an entry console surface at dusk, half of it bare and half of it still holding the day's shoes, bags and mail",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-001",
+     "EYF-006",
+     "EYF-009",
+     "EYF-013"
+    ],
+    "actions": [
+     "EYA-011",
+     "EYA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a front hallway at night lit only by a porch light through the glass, a coat still lying over the end of the rail where it was dropped that morning",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-003",
+     "EYF-009",
+     "EYF-012"
+    ],
+    "actions": [
+     "EYA-006",
+     "EYA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a narrow entry console with an open drawer of loose batteries and coins at exactly a toddler's reaching height",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-013",
+     "EYF-015"
+    ],
+    "actions": [
+     "EYA-009",
+     "EYA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty shoe polish tin standing on an otherwise bare entry console shelf beside a pair of dull leather shoes",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-004",
+     "EYF-007",
+     "EYF-011"
+    ],
+    "actions": [
+     "EYA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a front hallway floor with a pair of shoes, a school bag and a dog lead all left in the same spot, nobody's coat hook nearby claimed",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-005",
+     "EYF-008"
+    ],
+    "actions": [
+     "EYA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single tailored coat with its price tag still attached hanging untouched at the end of an otherwise ordinary coat rail",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-001",
+     "EYF-010"
+    ],
+    "actions": [
+     "EYA-001",
+     "EYA-007",
+     "EYA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a slim folder standing upright on an entry console holding a handful of envelopes, one opened envelope with a form half pulled out",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-009"
+    ],
+    "actions": [
+     "EYA-006",
+     "EYA-009",
+     "EYA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "the corner of a boot tray pushed hard against a wall, a build-up of dried grit visible in the angle where it meets the skirting board",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "EYF-003",
+     "EYF-015"
+    ],
+    "actions": [
+     "EYA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a coat rail with one coat hanging crookedly off a bent hook, everything around it otherwise orderly",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "EYA-001",
+   "title": "CLEAR THE TRAY AND THE FOLDER",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the tray and the paper stack, give every sheet a verdict, and put back only what belongs.",
+   "why_it_matters": "Paper with no verdict is the reason this surface fills back up faster than any other reset in the house.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag",
+    "the recycling bin",
+    "a pen"
+   ],
+   "steps": [
+    "Empty the tray and the paper stack onto the surface, then give every sheet a verdict: act, file, or recycle, before anything goes back.",
+    "Anything that needs action stands upright in the folder with the date written in the corner.",
+    "Recycle what nobody is going to act on, honestly, rather than restack it.",
+    "Return only the tray, holding keys and sunglasses, and the folder, to the bare surface."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-008"
+    ],
+    "zone": "EYZ-001",
+    "standard": "EYS-001"
+   },
+   "victory_condition": "One tray holds only keys and sunglasses, and no loose paper sits anywhere on the surface.",
+   "next_card": "EYS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an entryway console with one tray holding keys and sunglasses and a slim folder standing beside it, the rest of the surface completely bare",
+    "must_show": [
+     "One tray holds only keys and sunglasses, and no loose paper sits anywhere on the surface."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-002",
+   "title": "REBUILD THE LANDING SURFACE",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Change the surface so a verdict happens in the moment, not the pile.",
+   "why_it_matters": "A pocket-emptying spot with no charging dock and no folder invites paper and cables to just sit there.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a shallow tray",
+    "a slim upright folder",
+    "a pen",
+    "a cable tie or clip"
+   ],
+   "steps": [
+    "Stand where your hands actually stop when you walk in, and put the tray there, not wherever it currently sits.",
+    "Move the charging dock clear of the drip line under any hooks, onto the outlet nearest the tray.",
+    "Set the folder upright at one end of the tray, and write today's date on a card inside it as the first entry.",
+    "Coil and clip any charging cable so it lies flat rather than trailing across the surface.",
+    "Count what has landed here in the past week that is not keys, sunglasses, a wallet, a phone, or paper, and give each item a home somewhere else in the house."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-002"
+    ],
+    "zone": "EYZ-001",
+    "standard": "EYS-001"
+   },
+   "victory_condition": "The tray sits exactly where your hand opens on the way in, the dock is clear of the drip line, and everything on the surface is one of the five named things.",
+   "next_card": "EYA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an entryway console with a shallow tray positioned right at hand height by the door, a charging dock plugged into an outlet well clear of the hooks above, its cable coiled flat",
+    "must_show": [
+     "The tray sits exactly where your hand opens on the way in, the dock is clear of the drip line, and everything on the surface is one of the five named things."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-003",
+   "title": "CLEAR TWO HOOKS",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the two hooks nearest the door and confirm every coat still on the rail earns its place this season.",
+   "why_it_matters": "Two hooks that are never empty are the first sign the rail is carrying coats by number instead of by weather.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag or box for coats leaving the room"
+   ],
+   "steps": [
+    "Take down every coat that did not go outside once this cold season, and clear the two hooks nearest the door.",
+    "Carry each coat you took down to a bedroom closet or the giveaway pile, not to the floor.",
+    "Space the coats that remain so shoulders do not touch."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-008"
+    ],
+    "zone": "EYZ-002",
+    "standard": "EYS-002"
+   },
+   "victory_condition": "Two hooks stand empty nearest the door, and every coat still on the rail was worn this season.",
+   "next_card": "EYS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a coat rail with two hooks nearest the door standing completely empty and the remaining coats spaced apart along the rest of the rail",
+    "must_show": [
+     "Two hooks stand empty nearest the door, and every coat still on the rail was worn this season."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-004",
+   "title": "REBUILD THE COAT RAIL",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Count coats by weather instead of by number, and fix what the rail can actually hold.",
+   "why_it_matters": "A rail loaded past its bracket weight sags and lets go, usually while somebody stands directly beneath it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a bin bag for the giveaway pile",
+    "a step stool"
+   ],
+   "steps": [
+    "Take every coat off the rail and lay them out where you can see all of them at once.",
+    "Sort into the weather categories your climate actually produces: wet, cold, and something in between.",
+    "Keep one per person per category. A second coat in the same category has to name a specific day it beats the first, or it goes.",
+    "Hang the kept coats back with a visible gap between each, heaviest nearest the door.",
+    "Move anything heavy or bulky off the shelf above head height down to a low shelf instead."
+   ],
+   "root_causes": [
+    "KC-007",
+    "RC-014"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "RC-014"
+    ],
+    "zone": "EYZ-002",
+    "standard": "EYS-002"
+   },
+   "victory_condition": "At least two hooks stand empty at all times, and nothing heavy sits above head height on the shelf.",
+   "next_card": "EYA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a coat rail with a clear gap of bare space between each hanging coat, a shelf above holding only a labeled bin and light hats, nothing heavy visible on it",
+    "must_show": [
+     "At least two hooks stand empty at all times, and nothing heavy sits above head height on the shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-005",
+   "title": "PAIR UP AND CUT TO TWO",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Pair every shoe up, and keep only two pairs per person on the rack.",
+   "why_it_matters": "A pair on the floor instead of the rack is usually a pair the rack was never told it needed to hold.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing beyond fifteen minutes and floor space to sort on"
+   ],
+   "steps": [
+    "Pull every shoe off the rack, pair them up on the floor, and put back only two pairs per person, soles down.",
+    "Set aside anything past two pairs per person for the giveaway pile or another room's closet.",
+    "Stand the boot tray's pairs upright rather than laid on their sides."
+   ],
+   "root_causes": [
+    "KC-007",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "RC-013"
+    ],
+    "zone": "EYZ-003",
+    "standard": "EYS-003"
+   },
+   "victory_condition": "Two pairs per person stand on the rack, soles down, and the floor between the door and the rack is bare.",
+   "next_card": "EYS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a shoe rack holding exactly two pairs of shoes per person, each standing sole-down with visible space between pairs, and a bare stretch of floor in front of it",
+    "must_show": [
+     "Two pairs per person stand on the rack, soles down, and the floor between the door and the rack is bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-006",
+   "title": "REBUILD THE SHOE RACK",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Move shoe care solvents out of toddler reach and fix the rack so it cannot tip.",
+   "why_it_matters": "Polish and waterproofing spray sitting in an open basket at toddler height are a poisoning risk, and a top-heavy rack a child climbs is a fall risk.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a shelf or high hook out of small hands' reach",
+    "wall anchors if the rack is tall and narrow"
+   ],
+   "steps": [
+    "Take every polish, cleaner and waterproofing spray off the rack and move them to a shelf above reach or out of the room.",
+    "Turn every shoe sole-down; nothing stands on its toe.",
+    "Move the heaviest pairs to the bottom shelf and the lightest to the top.",
+    "If the rack is tall and narrow, fix it to the wall so a climbing child cannot pull it forward.",
+    "Clear the floor between the door and the rack down to bare boards, a full stride wide."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-016"
+    ],
+    "zone": "EYZ-003",
+    "standard": "EYS-003"
+   },
+   "victory_condition": "Shoe care solvents sit out of a toddler's reach, the rack cannot tip, and the floor between door and rack is bare.",
+   "next_card": "EYA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a shoe rack fixed flush against a wall with a bare stretch of floor in front of it, a shelf well above head height holding shoe polish and cleaning bottles, out of a small child's reach",
+    "must_show": [
+     "Shoe care solvents sit out of a toddler's reach, the rack cannot tip, and the floor between door and rack is bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-007",
+   "title": "EMPTY THE DRAWER, KEEP THE DOOR TEST",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the drawer and keep only what you would want while wearing your outdoor shoes.",
+   "why_it_matters": "This drawer becomes the second junk drawer within a month of being emptied, every time, unless something is actually taken out rather than just tidied.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag",
+    "a box for things that belong in another room"
+   ],
+   "steps": [
+    "Tip the drawer out onto the bench and take out anything you would not want while wearing your outdoor shoes.",
+    "Give each removed item a real home elsewhere in the house, or let it go.",
+    "Wipe the seat and the top completely bare before putting the kept items back."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ],
+    "zone": "EYZ-004",
+    "standard": "EYS-004"
+   },
+   "victory_condition": "Three items or fewer sit on the top, the seat is empty, and every drawer section holds one named category.",
+   "next_card": "EYS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an entry console with a mostly empty drawer holding a small handful of items and a bare seat and top surface above it",
+    "must_show": [
+     "Three items or fewer sit on the top, the seat is empty, and every drawer section holds one named category."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-008",
+   "title": "NAME THE DRAWER'S SECTIONS",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Give every divided section of the drawer one named category so nothing new can drift in unchallenged.",
+   "why_it_matters": "A drawer with no named sections becomes the second junk drawer within a month, every time, because nothing tells the next loose item it does not belong.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "small dividers or boxes that fit the drawer",
+    "a marker or labels",
+    "a lidded tin for batteries and coins"
+   ],
+   "steps": [
+    "Take everything out of the drawer and group what earned its spot into like piles.",
+    "Fit a divider or small box for each pile, sized to the drawer.",
+    "Write one category name for each section, in your own words, and stick or write it where you will see it.",
+    "Put loose batteries, coins and small magnets into a lidded tin, not loose in a corner.",
+    "Wipe the seat and the top completely bare before putting the three kept items back."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-008"
+    ],
+    "zone": "EYZ-004",
+    "standard": "EYS-004"
+   },
+   "victory_condition": "Every drawer section carries a name, batteries and coins sit inside a lidded tin, and the seat is completely bare.",
+   "next_card": "EYA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open entry console drawer divided into labeled sections each holding one kind of small item, a lidded tin standing in one section holding batteries and coins",
+    "must_show": [
+     "Every drawer section carries a name, batteries and coins sit inside a lidded tin, and the seat is completely bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-009",
+   "title": "CLEAR THE SWING AND CHECK THE MATS",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Vacuum under both mats and clear anything stored inside the door's swing.",
+   "why_it_matters": "A flattened mat and something stored in the door's own swing are the two everyday ways this zone quietly stops doing its job.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a vacuum"
+   ],
+   "steps": [
+    "Lift both mats, vacuum the floor underneath, and check both faces of the inside mat for a flattened line where grit is riding across instead of catching.",
+    "Set both mats back down flat, corners uncurled.",
+    "Carry off anything at all sitting on the floor inside the door's swing."
+   ],
+   "root_causes": [
+    "KC-011",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "RC-016"
+    ],
+    "zone": "EYZ-005",
+    "standard": "EYS-005"
+   },
+   "victory_condition": "Both mats lie flat with no curled corners, and the floor inside the door's swing is bare.",
+   "next_card": "EYS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a front hallway with two mats vacuumed and lying flat and a completely bare stretch of floor in the door's swing",
+    "must_show": [
+     "Both mats lie flat with no curled corners, and the floor inside the door's swing is bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-010",
+   "title": "FIX THE DOOR AND TAPE THE OUTLINE",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Tighten what makes the door and mats fail, and mark where each mat belongs so it stops drifting.",
+   "why_it_matters": "A loose hinge screw catches fingers, and a curled mat edge catches toes; both are cheap to fix and expensive to ignore.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a screwdriver",
+    "low tack tape",
+    "a stiff brush or hose for the outdoor mat"
+   ],
+   "steps": [
+    "Tighten every visible hinge screw on the door while you are down at floor level.",
+    "Check the latch catches on the first push; adjust the strike plate if it does not.",
+    "Mark each mat's position on the floor with low tack tape so it always goes back the same way.",
+    "Brush or hose the outdoor mat clean and let it dry fully before it goes back down.",
+    "Confirm nothing at all sits on the floor inside the door's full swing."
+   ],
+   "root_causes": [
+    "RC-017",
+    "KC-011"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-017",
+     "KC-011"
+    ],
+    "zone": "EYZ-005",
+    "standard": "EYS-005"
+   },
+   "victory_condition": "The door latches on the first push, both mats sit flat inside their taped outline, and the swing is completely bare.",
+   "next_card": "EYA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a front door with a faint strip of tape on the floor marking a mat's outline just inside it, the mat sitting flat inside the taped line",
+    "must_show": [
+     "The door latches on the first push, both mats sit flat inside their taped outline, and the swing is completely bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-011",
+   "title": "THE SEASONAL SWAP",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Move the outgoing season's coats, mats and gear out and the incoming season's in, on the day the weather actually turns.",
+   "why_it_matters": "Nothing marks the day the seasonal swap should happen, so it happens weeks late, wedged around what is already there.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a storage bin or bag for the outgoing season's gear",
+    "space in another room's closet"
+   ],
+   "steps": [
+    "On the first morning cold enough that you go looking for gloves, or warm enough that a coat feels wrong, do the swap standing there.",
+    "Take down every coat, pair of boots and accessory for the season that is ending.",
+    "Box or bag them and move them to storage in another room, not a shelf in this one.",
+    "Bring the incoming season's coats and shoes in and hang or rack them in the cleared space.",
+    "Swap the coarse outdoor mat for whichever grips better in the coming weather, if your entryway keeps two."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-003"
+    ]
+   },
+   "victory_condition": "Every coat and pair of shoes on display belongs to the current season, and last season's gear is stored elsewhere in the house.",
+   "next_card": "EYA-004",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a storage bin half packed with out-of-season coats sitting beside a coat rail that now holds only the current season's coats, spaced apart",
+    "must_show": [
+     "Every coat and pair of shoes on display belongs to the current season, and last season's gear is stored elsewhere in the house."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-012",
+   "title": "THE FOURTEEN DAY PAPER RULE",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the folder down to nothing older than fourteen days, and act on or recycle every sheet past that line.",
+   "why_it_matters": "Paper in the folder without a deadline becomes furniture; the fourteen day line is what turns it back into a decision.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a pen",
+    "the recycling bin",
+    "your phone, to pay or call while you are standing there"
+   ],
+   "steps": [
+    "Take the folder off the landing surface and go through it sheet by sheet.",
+    "Check the date written in the corner of each one against today.",
+    "Anything past fourteen days gets done right now, standing there: paid, signed, called, or recycled.",
+    "Write today's date on anything new that goes back in.",
+    "Put the folder back with nothing in it older than fourteen days."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "No sheet in the folder is older than fourteen days, and the ones that were have all been acted on or recycled.",
+   "next_card": "EYA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a slim folder held open on an entryway console showing a handful of papers, a pen resting across the top sheet",
+    "must_show": [
+     "No sheet in the folder is older than fourteen days, and the ones that were have all been acted on or recycled."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYA-013",
+   "title": "THE FULL REBUILD WALK",
+   "type": "ACTION CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk the whole entryway once, standing where you use it, and confirm nothing weighty, sharp, or wet is somewhere it could hurt someone.",
+   "why_it_matters": "The four things that hurt people in this room are height, weight, water and a door swing, and none of them show up unless you look on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing beyond thirty minutes and a working set of hands"
+   ],
+   "steps": [
+    "Stand at the console and check nothing heavy is stored above head height that could come down on someone reaching for a coat.",
+    "Check the charging dock and any lamp are clear of where a wet umbrella or coat would drip on them.",
+    "Check the shoe rack for anything that could tip, and confirm solvents sit out of a small child's reach.",
+    "Check both mats lie flat with no curled corner and the door latches on the first push.",
+    "Fix anything you find right there, or write it on the folder's top sheet with today's date if it needs a tool you do not have to hand."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-016"
+    ]
+   },
+   "victory_condition": "You can name, out loud, that height, drip, tip and trip have each been checked today.",
+   "next_card": "EYA-010",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a wide view of a whole entryway with a hand pointing at a coat hook, a shoe rack and a floor mat in turn, everything in its settled, put-away state",
+    "must_show": [
+     "You can name, out loud, that height, drip, tip and trip have each been checked today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "EYS-001",
+   "title": "LANDING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Entryway",
+   "zone": "Landing Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The surface holds the tray and the folder and nothing else, and keys never ride out of the house in a coat pocket that lives on a hanger.",
+   "trigger": "As you take your coat off, your hands are already full and already stopped. That is the moment everything in them goes into the tray.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the tray, wipe the ring of dust underneath it, and set it back exactly where your hand opens on the way in.",
+    "Pull one sheet from the folder, give it its verdict right now, and write today's date on whatever goes back in.",
+    "Move the charging dock two inches clear of the drip line under the hooks and coil its cable flat."
+   ],
+   "related": {
+    "zone": "EYZ-001",
+    "actions": [
+     "EYA-001",
+     "EYA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a narrow entryway console surface with one shallow tray holding two sets of keys and a pair of sunglasses, one wallet and one phone lying beside it, a slim upright folder holding a handful of papers standing at one end, and bare wood visible on both sides of the tray, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "EYS-002",
+   "title": "COAT AND OUTERWEAR ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Entryway",
+   "zone": "Coat and Outerwear Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two empty hooks at all times. If there is no empty hook, one coat is in the wrong room.",
+   "trigger": "On the first morning cold enough that you go looking for gloves, that is the seasonal swap. Do it that morning, standing there, rather than noting it for later.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count the coats on the rail, and if both hooks nearest the door are full, carry one coat to a bedroom closet right now.",
+    "Straighten every coat hanger so shoulders sit square and no sleeve trails onto the floor.",
+    "Check the shelf above the rail for anything heavier than a hat, and move it down to a low shelf."
+   ],
+   "related": {
+    "zone": "EYZ-002",
+    "actions": [
+     "EYA-003",
+     "EYA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a coat rail by a front door holding a small number of coats spaced apart with two hooks visibly empty at one end, a single bag hanging beside them, a labeled bin on the shelf above holding hats and gloves, and an umbrella stand with two umbrellas standing upright beside the rail, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "EYS-003",
+   "title": "SHOE AND BOOT ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Entryway",
+   "zone": "Shoe and Boot Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two pairs per person at the door, soles down, everything else lives somewhere that is not the entryway.",
+   "trigger": "On the night the bins go out, the boot tray goes out with them and comes back empty.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Turn every pair on the rack sole-down and stand any pair lying on its side back upright.",
+    "Carry the boot tray outside, tip it out, and set it back down dry.",
+    "Pull one pair that is not on anyone's feet this season off the rack and carry it to its real home."
+   ],
+   "related": {
+    "zone": "EYZ-003",
+    "actions": [
+     "EYA-005",
+     "EYA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a shoe rack beside a front door holding pairs of shoes standing on their soles with visible gaps between pairs, a low boot tray in front of it holding two pairs of boots standing upright, and a clear stretch of bare floor between the door and the rack wide enough for a full stride, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "EYS-004",
+   "title": "ENTRY CONSOLE OR BENCH STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Entryway",
+   "zone": "Entry Console or Bench",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Three items on the top, an empty seat, and every drawer section holding one named category.",
+   "trigger": "You already open this drawer to put the dog lead back after a walk. While it is open, glance at the top and take it back to three.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count what is on the top right now, and carry anything past three items straight to where it actually belongs.",
+    "Open the drawer and return one item that has drifted into the wrong named section.",
+    "Wipe the seat completely bare, even if you are about to sit something on it for thirty seconds."
+   ],
+   "related": {
+    "zone": "EYZ-004",
+    "actions": [
+     "EYA-007",
+     "EYA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a narrow entry console with a bare wooden seat and exactly three small items sitting on its top surface, and a shallow open drawer below divided into sections, each holding one distinct kind of item with visible space around them, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "EYS-005",
+   "title": "DOOR, MAT, AND IMMEDIATE FLOOR STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Entryway",
+   "zone": "Door, Mat, and Immediate Floor",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Nothing is stored on the floor inside the door's swing, ever, and both mats lie flat inside their taped outline.",
+   "trigger": "Whoever comes home last and locks the door straightens the mat with a foot before turning the key.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Press both mats flat with your foot, corner by corner, checking for any edge starting to curl.",
+    "Look at the floor inside the door's swing and carry off anything at all that has been set there.",
+    "Push the door shut and pull the handle once to confirm the latch caught on the first try."
+   ],
+   "related": {
+    "zone": "EYZ-005",
+    "actions": [
+     "EYA-009",
+     "EYA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a front door seen from inside with a flat absorbent mat lying just inside it and a coarser mat visible through the glass outside, both mats lying flat with no curled corners, and a completely bare stretch of floor in the arc where the door swings open, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "EYE-001",
+   "title": "THE SCHOOL MORNING RUSH",
+   "type": "EVENT CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Everyone needs shoes, a coat and a bag in the same four minutes, and someone is already late.",
+   "tests_zones": [
+    "EYZ-003",
+    "EYZ-002"
+   ],
+   "held_if": "Every pair of shoes and every coat is found without anyone asking where it is.",
+   "if_it_failed": "If a shoe or a coat had to be hunted for, that item was not in its assigned spot. Draw EYA-006 or EYA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "EYZ-003",
+     "EYZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a front hallway with two pairs of small shoes and one adult pair being stepped into quickly beside an open door, a school bag already on a hook, morning light through the glass",
+    "must_show": [
+     "Everyone needs shoes, a coat and a bag in the same four minutes, and someone is already late."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "EYE-002",
+   "title": "THE WET DOG WALK RETURN",
+   "type": "EVENT CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A soaked dog, muddy leads and two pairs of wet boots come through the door at once.",
+   "tests_zones": [
+    "EYZ-005",
+    "EYZ-003"
+   ],
+   "held_if": "The mats catch the worst of it, and the boot tray takes the boots without a scramble for space.",
+   "if_it_failed": "If mud reached the hallway floor past the mats, the mats have finished, or the swing was not clear. Draw EYA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "EYZ-005",
+     "EYZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a front doormat holding two pairs of muddy wet boots set down on it, a damp dog lead hanging on a hook beside the door, water beading on the mat's surface",
+    "must_show": [
+     "A soaked dog, muddy leads and two pairs of wet boots come through the door at once."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "EYE-003",
+   "title": "THE MOVING BOX DROP",
+   "type": "EVENT CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A delivery of three flattened cardboard boxes and a parcel lands just inside the door and stays there.",
+   "tests_zones": [
+    "EYZ-005",
+    "EYZ-004"
+   ],
+   "held_if": "Nothing from the delivery is still on the floor inside the door's swing by that evening.",
+   "if_it_failed": "If it is still there the next morning, the console drawer or another room's real home for it was never named. Draw EYA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "EYZ-005",
+     "EYZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a cardboard parcel and a stack of flattened boxes sitting just inside a front door, partly blocking the door's swing",
+    "must_show": [
+     "A delivery of three flattened cardboard boxes and a parcel lands just inside the door and stays there."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "EYE-004",
+   "title": "GUESTS ARRIVE WITH THEIR OWN COATS",
+   "type": "EVENT CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Four extra coats and four extra pairs of shoes need somewhere to go for the evening, with no warning.",
+   "tests_zones": [
+    "EYZ-002",
+    "EYZ-003"
+   ],
+   "held_if": "A guest's coat finds an empty hook without anyone rearranging the rail first, and their shoes have a clear stretch of floor to stand on.",
+   "if_it_failed": "If a hook had to be freed up on the spot, the two-empty-hooks standard was not being kept. Draw EYA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "EYZ-002",
+     "EYZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a coat rail with two coats added among the household's own, both hanging on hooks with space still visible on either side",
+    "must_show": [
+     "Four extra coats and four extra pairs of shoes need somewhere to go for the evening, with no warning."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "EYE-005",
+   "title": "THE FIRST FROST",
+   "type": "EVENT CARD",
+   "room": "Entryway",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The temperature drops overnight and every glove, hat and scarf in the house is needed the same cold morning.",
+   "tests_zones": [
+    "EYZ-002",
+    "EYZ-001"
+   ],
+   "held_if": "Hats and gloves come out of the one labeled bin, together, and nobody is searching pockets or the car for a missing glove.",
+   "if_it_failed": "If gloves turned up in three different places, the seasonal swap has not happened yet. Draw EYA-011.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "EYZ-002",
+     "EYZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a labeled storage bin on a shelf above a coat rail, its lid off, hats and pairs of gloves visible inside sorted together",
+    "must_show": [
+     "The temperature drops overnight and every glove, hat and scarf in the house is needed the same cold morning."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  }
+ ]
+}

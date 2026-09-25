@@ -113,6 +113,10 @@ DECK_GALLERY_PROBE = """
 PAGES = (
     ("kitchen-deck.html", KITCHEN_DECK_PROBE),
     ("deck-gallery.html", DECK_GALLERY_PROBE),
+    # Same generator shape as kitchen-deck.html (ops/build_entryway_deck_page.py
+    # mirrors ops/build_kitchen_deck_page.py card for card), so the same
+    # native-<details> probe applies unchanged.
+    ("entryway-deck.html", KITCHEN_DECK_PROBE),
 )
 
 
@@ -190,8 +194,7 @@ def _check_common(page: str, o: dict, bad: list) -> None:
                     "gained the open class" % page)
 
 
-def _check_kitchen_deck(o: dict, bad: list) -> None:
-    page = "kitchen-deck.html"
+def _check_kitchen_deck(o: dict, bad: list, page: str = "kitchen-deck.html") -> None:
     if not o.get("hasDetails"):
         bad.append("%s: no details.kback card back found" % page)
         return
@@ -241,6 +244,8 @@ def _check_deck_gallery(o: dict, bad: list) -> None:
 CHECKERS = {
     "kitchen-deck.html": _check_kitchen_deck,
     "deck-gallery.html": _check_deck_gallery,
+    "entryway-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="entryway-deck.html"),
 }
 
 
