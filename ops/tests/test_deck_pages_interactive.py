@@ -124,6 +124,10 @@ PAGES = (
     # (ops/build_home_office_deck_page.py also mirrors the same card for
     # card), so the same native-<details> probe applies.
     ("home-office-deck.html", KITCHEN_DECK_PROBE),
+    # Fifth room, same generator shape again
+    # (ops/build_primary_bathroom_deck_page.py also mirrors the same card
+    # for card), so the same native-<details> probe applies.
+    ("primary-bathroom-deck.html", KITCHEN_DECK_PROBE),
 )
 
 
@@ -257,6 +261,8 @@ CHECKERS = {
         o, bad, page="laundry-room-deck.html"),
     "home-office-deck.html": lambda o, bad: _check_kitchen_deck(
         o, bad, page="home-office-deck.html"),
+    "primary-bathroom-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="primary-bathroom-deck.html"),
 }
 
 

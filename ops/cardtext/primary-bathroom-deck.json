@@ -1,0 +1,3341 @@
+{
+ "deck": "primary-bathroom",
+ "room": "Primary Bathroom",
+ "count": 76,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 7,
+  "FRICTION CARD": 21,
+  "ROOT CAUSE CARD": 16,
+  "ACTION CARD": 17,
+  "STANDARD CARD": 7,
+  "EVENT CARD": 7
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "PBR-001",
+   "title": "THE PRIMARY BATHROOM",
+   "type": "ROOM CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SEVEN ZONES. START WITH THE COUNTER.",
+   "objective": "The primary bathroom is the smallest room you use the most, and it carries three problems no other room has all at once: standing moisture, open chemistry, and dates that quietly pass while you sleep. This card is the map and the order.",
+   "zones_in_order": [
+    "PBZ-001 Vanity Counter",
+    "PBZ-002 Vanity Drawers",
+    "PBZ-003 Under-Sink Cabinet",
+    "PBZ-004 Medicine Cabinet or Wall Storage",
+    "PBZ-005 Shower or Tub",
+    "PBZ-006 Toilet Area",
+    "PBZ-007 Linen and Towel Storage"
+   ],
+   "start_here": "PBZ-001 Vanity Counter. Counter first, shower second. Those two are what you stand in front of every morning, and finishing them makes the under-sink cabinet worth opening. Leave the medicine cabinet for a session where you are willing to read small print on the back of a box.",
+   "how_to_play": [
+    "1. Deal the seven ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your bathroom. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 4. With more than one, split the chain: one clears the counter and drawers, another works the cabinet and the shower.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do PBA-016 The Open-Chemistry Check before any rebuild. It takes thirty minutes and covers what makes this room different from every other: chemicals, water and electricity, and dates that pass while you sleep.",
+   "related": {
+    "contents": "PBZ-001 to PBZ-007, PBF-001 to PBF-021, the shared root causes in ops/root_causes.py, PBA-001 to PBA-017, PBS-001 to PBS-007, PBE-001 to PBE-007"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole tidy primary bathroom in its settled state, a cleared vanity counter, a shower enclosure, a toilet area and a linen shelf all visible in one frame, everything put away",
+    "must_show": [
+     "all seven zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the seven zones is. If two are not in frame, reshoot."
+   }
+  },
+  {
+   "id": "PBZ-001",
+   "title": "VANITY COUNTER",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "ONE TRAY. FOUR PRODUCTS. BARE STONE EITHER SIDE.",
+   "objective": "To hold the handful of things you touch every morning and every night, and nothing else.",
+   "callouts": [
+    "One tray small enough to lift with one hand",
+    "Soap and the toothbrush holder inside the tray",
+    "No more than four daily products in the tray",
+    "Bare stone visible on both sides of the basin",
+    "A mirror with no splatter",
+    "No cord crossing the sink"
+   ],
+   "done_looks_like": "One tray you can lift with one hand, holding soap, the toothbrush holder, and no more than four daily products. Bare stone on both sides of the basin, a mirror with no splatter, and no cord crossing the sink.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "A plugged-in heat tool sitting within cord reach of a full basin. Nothing stays plugged in while there is water standing in the bowl."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A hot iron set down on a towel or a cosmetic bag to cool. Give it a metal or ceramic rest it always returns to, in the same spot every time."
+    }
+   ],
+   "the_call": {
+    "title": "The tool that lives out",
+    "text": "The straightener or the dryer sits on the counter because the outlet is right there and you use it three or four times a week. That convenience is exactly what is costing you a clear counter, and it is the decision you keep stepping around. The rule that settles it: the counter holds only what you touch every single day. Three times a week is a drawer tool, so buy the heat-safe pouch, give it a drawer, and accept the few seconds it costs you. If the drawer genuinely will not reach from where you stand to dry your hair, the honest fix is a wall-mounted holder beside the mirror, not the counter."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner",
+    "Color-coded microfiber cloth set",
+    "Small detail brush set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-001",
+    "actions": [
+     "PBA-001",
+     "PBA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a bathroom vanity counter holding one small tray light enough to lift with one hand, containing soap, a toothbrush holder and no more than four daily products, bare stone visible on both sides of the basin, a clean mirror with no splatter, and no cord crossing the sink",
+    "must_show": [
+     "One tray small enough to lift with one hand",
+     "Soap and the toothbrush holder inside the tray",
+     "No more than four daily products in the tray",
+     "Bare stone visible on both sides of the basin",
+     "A mirror with no splatter",
+     "No cord crossing the sink"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBZ-002",
+   "title": "VANITY DRAWERS",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "EVERY DRAWER DIVIDED. THE BLADES CAPPED.",
+   "objective": "To hold the grooming tools and products you actually reach for, arranged by when in the day you use them.",
+   "callouts": [
+    "Every drawer split into divided compartments",
+    "A dated strip on each opened jar's base",
+    "Razor blades capped, in a lidded box in one corner",
+    "Grooming tools sorted by time of day",
+    "The top drawer readable in a single glance",
+    "No item overlapping another in the tray"
+   ],
+   "done_looks_like": "Every drawer divided, nothing past its open-jar window, razor blades capped or in a lidded box in one corner, and a top drawer you can read in a single look without moving anything.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Bare cartridges and blade refills loose among the brushes. A hand going in for a comb without looking meets the blade first."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Polish remover, small scissors, and loose vitamins in a low drawer a child can pull open. Move liquids and pills to an upper drawer or fit a catch."
+    }
+   ],
+   "the_call": {
+    "title": "The expensive shade you never wear",
+    "text": "There is a palette or a bottle in there that cost more than you like to remember, and you have used it twice. Keeping it is not thrift, it is paying storage on a decision that already went wrong, and you skip past it on every Sort pass because binning it means admitting the money is gone. The money is gone either way. The rule: if it is open and past its window, or you reached for something else the last three times, it leaves today. If it is unopened and still in date, it gets one season, and you write that season on a strip of tape stuck to the base so the clock is visible instead of imaginary."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Bathroom grime and soap-film cleaner",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-002",
+    "actions": [
+     "PBA-003",
+     "PBA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open bathroom vanity drawer divided into compartments, one dated strip visible on the base of an opened jar, razor blades capped and stored in a small lidded box in one corner, grooming tools sorted into groups by time of day, and the top drawer's contents all visible in a single glance with nothing overlapping",
+    "must_show": [
+     "Every drawer split into divided compartments",
+     "A dated strip on each opened jar's base",
+     "Razor blades capped, in a lidded box in one corner",
+     "Grooming tools sorted by time of day",
+     "The top drawer readable in a single glance",
+     "No item overlapping another in the tray"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBZ-003",
+   "title": "UNDER-SINK CABINET",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "TWO BINS. A BARE TRAY. BOTH VALVES IN SIGHT.",
+   "objective": "To store cleaning supplies and backstock around the plumbing without ever hiding a leak.",
+   "callouts": [
+    "Two pull-out bins positioned clear of the P-trap",
+    "A pale tray bare on the cabinet floor",
+    "Nothing stacked on top of the tray",
+    "One open bottle per cleaning job",
+    "Both shut-off valves visible when the doors swing open",
+    "The P-trap joint fully visible, nothing blocking it"
+   ],
+   "done_looks_like": "Two pull-out bins clear of the P-trap, a pale tray on the cabinet floor with nothing stacked on it, one open bottle per job, and both shut-off valves in plain sight when the doors swing open.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bleach, drain opener, and bowl cleaner sitting at a crawling child's eye level behind one unlatched door. Fit a catch or move them above the sink line."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A drip at the trap creeping toward a socket or a plugged-in nightlight on the wall behind the cabinet. Find it, and fix it now."
+    }
+   ],
+   "the_call": {
+    "title": "The pipe you cannot see",
+    "text": "You have packed this cabinet wall to wall because it is the only storage in the room, and the P-trap is now buried behind a tower of paper towels. Here is the arithmetic you have been avoiding: a joint that weeps unnoticed for months turns a cheap washer into a rotted cabinet base and a floor that has to come up. The rule: the trap joint and both shut-off valves stay visible whenever the doors are open, and nothing sits on the tray. If that means the backstock will not fit, the backstock leaves this room, not the sightline. Spare shampoo and toilet rolls can live in a linen cupboard. A leak cannot live anywhere else."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Bathroom grime and soap-film cleaner",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-003",
+    "actions": [
+     "PBA-005",
+     "PBA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open under-sink bathroom cabinet with two pull-out bins positioned clear of the visible P-trap, a bare pale tray on the cabinet floor with nothing stacked on it, one open bottle for each cleaning job, and both shut-off valves plainly visible with the doors swung open",
+    "must_show": [
+     "Two pull-out bins positioned clear of the P-trap",
+     "A pale tray bare on the cabinet floor",
+     "Nothing stacked on top of the tray",
+     "One open bottle per cleaning job",
+     "Both shut-off valves visible when the doors swing open",
+     "The P-trap joint fully visible, nothing blocking it"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBZ-004",
+   "title": "MEDICINE CABINET OR WALL STORAGE",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "order": 4,
+   "difficulty": 3,
+   "tagline": "THREE BINS. IN DATE. ABOVE A CHILD'S REACH.",
+   "objective": "To hold the medicine and first aid you would need tonight, and nothing you stopped needing years ago.",
+   "callouts": [
+    "Three labeled bins: pain relief, stomach and cold, first aid",
+    "Only in-date items inside each bin",
+    "Prescriptions grouped together by the name on the label",
+    "A first aid bin small enough to carry one-handed",
+    "The cabinet mounted above a child's reach",
+    "A child safety catch fitted on the cabinet door"
+   ],
+   "done_looks_like": "Three labeled bins, pain relief, stomach and cold, first aid, each holding only in-date items. Prescriptions grouped by the name on the label, the first aid bin small enough to carry one-handed to whoever is bleeding, and the whole cabinet above a child's reach with a catch on it if children are in the house.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Loose tablets, gummy vitamins, and pushed-through blister packs at a height a child reaches by standing on a closed toilet lid. Measure the reach from what they can climb, not from the floor."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A glass peroxide bottle or a heavy first aid tin balanced on the top shelf above a hard basin. Heavy and breakable belongs at eye level, not overhead."
+    }
+   ],
+   "the_call": {
+    "title": "The leftover prescription",
+    "text": "There is a half-course of antibiotics in here, or a bottle of strong painkillers from a procedure two years ago, and you keep it because it might come in useful and because handing it back feels like waste. It is the single most common thing in this cabinet that should not be in it. The rule: a medicine belongs to a condition someone in this house has now, prescribed to that person, in date, with the label intact. Everything else goes in the take-back bag today, including the one you are quietly telling yourself is still fine. Leftover painkillers sitting behind a mirror are the most likely thing in this room to seriously hurt a visitor, and nothing about not wasting them outweighs that."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-004",
+    "actions": [
+     "PBA-007",
+     "PBA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open medicine cabinet with three clearly labeled bins reading pain relief, stomach and cold, and first aid, prescription bottles grouped together by name, a small first aid bin sized to carry one-handed, the whole cabinet mounted above a child's reach, and a visible safety catch fitted to the door",
+    "must_show": [
+     "Three labeled bins: pain relief, stomach and cold, first aid",
+     "Only in-date items inside each bin",
+     "Prescriptions grouped together by the name on the label",
+     "A first aid bin small enough to carry one-handed",
+     "The cabinet mounted above a child's reach",
+     "A child safety catch fitted on the cabinet door"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBZ-005",
+   "title": "SHOWER OR TUB",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "order": 5,
+   "difficulty": 2,
+   "tagline": "ONE OF EACH. THE SQUEEGEE ON ITS HOOK.",
+   "objective": "To keep only the products actually in use within reach, on surfaces that dry out between showers.",
+   "callouts": [
+    "One shampoo, one conditioner, one wash and one bar per person",
+    "All of them standing in the caddy",
+    "A squeegee hanging on its hook inside the enclosure",
+    "Grip strips or a mat with real suction on the floor",
+    "No dark line where the wall meets the tray",
+    "Clear glass with no soap film"
+   ],
+   "done_looks_like": "One shampoo, one conditioner, one wash, and one bar per person in the caddy. A squeegee on its hook inside the enclosure, grip strips or a mat with real suction on the floor, and no dark line where the wall meets the tray.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Soap film on wet glaze, worst at the moment you step over a high tub wall. Grip strips or a mat that truly grips, and a grab bar if anyone in the house is unsteady."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A razor resting on the tub edge at exactly the height a child grabs to steady themselves. High hook, out of reach, every single time."
+    }
+   ],
+   "the_call": {
+    "title": "The bottle you are keeping out of guilt",
+    "text": "There are four or five bottles in there you do not use. Some cost too much to admit, some were gifts, and some hold an inch you cannot bring yourself to pour away. Meanwhile the caddy never dries out, the shelf grows a ring, and you shift eight bottles to clean a space that should hold four. The rule: a product is in use if you touched it in the last two weeks of showers. If you did not, it leaves the enclosure today. The inch in the bottom is not saved money, it is what keeps mold on your shelf, so use it this week or pour it out and recycle the bottle. Gifts get no exemption for being gifts."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Floor-material-compatible cleaner",
+    "Color-coded microfiber cloth set",
+    "Small detail brush set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-005",
+    "actions": [
+     "PBA-009",
+     "PBA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a shower enclosure caddy holding exactly one shampoo, one conditioner, one wash and one bar per person, a squeegee hanging on its hook inside the enclosure, a grip mat with real suction visible on the floor, no dark mold line where the wall meets the tray, and clear glass free of soap film",
+    "must_show": [
+     "One shampoo, one conditioner, one wash and one bar per person",
+     "All of them standing in the caddy",
+     "A squeegee hanging on its hook inside the enclosure",
+     "Grip strips or a mat with real suction on the floor",
+     "No dark line where the wall meets the tray",
+     "Clear glass with no soap film"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBZ-006",
+   "title": "TOILET AREA",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "order": 6,
+   "difficulty": 1,
+   "tagline": "TWO ROLLS WITHIN REACH. A BARE CISTERN LID.",
+   "objective": "To keep the smallest and dirtiest patch of the room clean and stocked without letting it contaminate anything else.",
+   "callouts": [
+    "Two reserve toilet rolls within reach from the seat",
+    "The rest of the pack stored in the cupboard",
+    "The brush standing in an emptied, dried holder",
+    "A lined bin with a lid",
+    "A completely bare cistern lid",
+    "No phone charger cord anywhere near the cistern"
+   ],
+   "done_looks_like": "Two reserve rolls within reach from a seated position and the rest of the pack in the cupboard. The brush in a holder that has been emptied and dried, a lined bin with a lid, and a completely bare cistern lid.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bowl cleaner standing at floor level beside the pedestal, and the chance of it meeting bleach in the same bowl. One product per bowl, stored high."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A phone charger run up to the cistern top so you can sit and scroll. A cord, a water tank, and a hard tile floor is a combination worth ending today."
+    }
+   ],
+   "the_call": {
+    "title": "What you keep within splash range",
+    "text": "The cistern lid is the most tempting shelf in the room, and every flush throws a fine mist across it. The decision you have been avoiding is not whether that is true, it is which of your things you are willing to keep there anyway. Settle it with one line: nothing that touches your face, your mouth, or your food goes within arm's reach of the bowl. Toothbrushes, lens cases, hand cream, drinking glasses, and open candles all move out. What may stay is the brush, the lidded bin, the reserve rolls, and cleaner stored high. If that leaves the lid bare, that is the right answer, and it has the useful side effect that the lid finally gets wiped."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Color-coded microfiber cloth set",
+    "Small detail brush set",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-006",
+    "actions": [
+     "PBA-011",
+     "PBA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a toilet area with two reserve rolls set within reach of a seated position, the rest of the pack visible stored in a cupboard, a toilet brush standing in an emptied and dried holder, a lined bin with a lid beside it, a completely bare cistern lid, and no charging cord anywhere near it",
+    "must_show": [
+     "Two reserve toilet rolls within reach from the seat",
+     "The rest of the pack stored in the cupboard",
+     "The brush standing in an emptied, dried holder",
+     "A lined bin with a lid",
+     "A completely bare cistern lid",
+     "No phone charger cord anywhere near the cistern"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBZ-007",
+   "title": "LINEN AND TOWEL STORAGE",
+   "type": "ZONE CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "order": 7,
+   "difficulty": 2,
+   "tagline": "THREE PER PERSON. EVERY GUEST SET NESTED.",
+   "objective": "To hold enough clean towels for the way this house actually does laundry, and no more than the shelf can safely carry.",
+   "callouts": [
+    "Three bath towels per person folded on the shelf",
+    "Each guest set nested in its own pillowcase",
+    "Hand towels in one labeled column",
+    "Washcloths in a separate labeled column",
+    "A spare bath mat rolled at the end of the shelf",
+    "Shelf brackets visibly secure under the stack"
+   ],
+   "done_looks_like": "Three bath towels per person, one in use, one in the wash, one folded on the shelf. Each guest set nested in its own pillowcase, hand towels and washcloths in separate labeled columns, and a spare bath mat rolled at the end of the shelf.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An overloaded shelf on light brackets, or a stack tall enough to topple when you pull a towel from the middle. Check the fixings and keep the heavy bath towels low."
+    },
+    {
+     "question": "Fall",
+     "text": "A step stool on a wet bathroom floor to reach the top shelf. Move the everyday linens down to shelves you can reach flat-footed."
+    }
+   ],
+   "the_call": {
+    "title": "The good towels you never use",
+    "text": "You have a set kept back for guests who visit twice a year, and three thin gray towels you reach for every single day because using the good ones feels like spending them. That is a shelf running backwards, and it has been running backwards for years. The rule: rank every towel you own, use the top of that ranking daily, and let the worn ones go now instead of after another year of being the ones you actually touch. Keep exactly one guest set, in a pillowcase, and put everything else into rotation. A towel saved for a better occasion is a towel wearing out in a cupboard while you dry yourself on a rag."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Small detail brush set",
+    "Bathroom grime and soap-film cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PBS-007",
+    "actions": [
+     "PBA-013",
+     "PBA-014"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a linen shelf holding three folded bath towels per person, each guest towel set nested inside its own pillowcase, hand towels standing in one labeled column and washcloths in a separate labeled column, a spare bath mat rolled at the end of the shelf, and the shelf brackets visibly secure beneath the stack",
+    "must_show": [
+     "Three bath towels per person folded on the shelf",
+     "Each guest set nested in its own pillowcase",
+     "Hand towels in one labeled column",
+     "Washcloths in a separate labeled column",
+     "A spare bath mat rolled at the end of the shelf",
+     "Shelf brackets visibly secure under the stack"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PBF-001",
+   "title": "CLEAR MONDAY, COVERED BY WEDNESDAY",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The counter is covered again two days after I clear it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The things on it are ones we use every single day",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "They belong in the drawers but the drawers are full",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nobody agreed what is allowed to live on the counter",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-001",
+    "root_causes": [
+     "KC-007",
+     "KC-001",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a bathroom vanity counter covered edge to edge with loose bottles, hair tools and a phone charger, barely any bare stone visible around the basin",
+    "must_show": [
+     "The counter is covered again two days after I clear it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-002",
+   "title": "WIPED CLEAN, STILL LOOKS DIRTY",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I wipe the counter but it never looks clean.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "I wipe around the things rather than lifting them",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "There is splatter on the mirror I stopped noticing",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "A cord crosses the sink and catches everything",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-001",
+    "root_causes": [
+     "RC-016",
+     "RC-017",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand wiping a bathroom counter around a cluttered row of bottles, a hazy line of dried splatter still visible across the mirror above",
+    "must_show": [
+     "I wipe the counter but it never looks clean."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-003",
+   "title": "SOMEBODY ELSE'S THINGS, AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Two of us share this counter and it is always somebody else's things in the way.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is one shared tray rather than one each",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "Neither of us agreed which side is whose",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There is not enough counter for two people's daily things",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-001",
+    "root_causes": [
+     "KC-012",
+     "RC-013",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shared bathroom vanity counter with two overlapping piles of personal items pushed together in the middle, no clear boundary between either side",
+    "must_show": [
+     "Two of us share this counter and it is always somebody else's things in the way."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-004",
+   "title": "DIGGING FOR THE SAME THING AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I dig through the drawer every morning for the same thing.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It has no compartment of its own",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It is in a compartment but behind the things I use less",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There is more in the drawer than the drawer can show",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-002",
+    "root_causes": [
+     "KC-002",
+     "KC-005",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand digging through a jumbled bathroom drawer of loose grooming items, searching past several other objects for the one thing needed",
+    "must_show": [
+     "I dig through the drawer every morning for the same thing."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-005",
+   "title": "OPENED, FORGOTTEN, EXPIRED",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Products go past their open-jar window before we finish them.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "We own more of that kind than we can use in the window",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nothing tells us when a jar was opened",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The older jar sits behind the newer one",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-002",
+    "root_causes": [
+     "KC-001",
+     "KC-009",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open jar of skincare product with a visibly separated, discoloured surface sitting at the back of a crowded drawer",
+    "must_show": [
+     "Products go past their open-jar window before we finish them."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-006",
+   "title": "TIDY FOR A WEEK, THEN NOT",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The drawer is tidy for a week and then it is not.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Things go back wherever there is a gap",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The dividers move when the drawer is opened hard",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Hot tools are left out to cool and never make it back",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-002",
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a bathroom drawer with its dividers pushed out of position and small items scattered loose across the compartments",
+    "must_show": [
+     "The drawer is tidy for a week and then it is not."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-007",
+   "title": "THREE HALF-USED BOTTLES OF THE SAME THING",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I find several half-used bottles of the same cleaner.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "We buy another when we cannot see the one we have",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There is no rule that one is open at a time",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "They are bought on offer regardless of what is here",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-003",
+    "root_causes": [
+     "KC-005",
+     "KC-008",
+     "KC-011"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "three half-used bottles of the identical cleaning product standing side by side inside an open under-sink cabinet",
+    "must_show": [
+     "I find several half-used bottles of the same cleaner."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-008",
+   "title": "DAMAGED DOWN HERE, NOBODY NOTICED",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Something under here got damaged and nobody noticed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The cabinet floor is dark and things sit directly on it",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Boxes were stacked on top of the tray",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nothing prompts us to look in here between cleans",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-003",
+    "root_causes": [
+     "KC-005",
+     "KC-004",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a water-stained cardboard box sitting directly on the bare floor of an under-sink cabinet, its bottom corner visibly soft and discoloured",
+    "must_show": [
+     "Something under here got damaged and nobody noticed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-009",
+   "title": "NO WAY TO TELL IF IT'S LEAKING",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I cannot tell whether anything down there is leaking.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no pale tray to show a drip against",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Bins and boxes sit over the P-trap",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "The shut-off valves are behind stored things",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-003",
+    "root_causes": [
+     "KC-005",
+     "KC-006",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a crowded under-sink cabinet with bins and boxes stacked directly over a dark, hidden pipe joint, no pale tray visible beneath it",
+    "must_show": [
+     "I cannot tell whether anything down there is leaking."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-010",
+   "title": "CAN'T FIND IT WHEN IT MATTERS",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "We reach for something in an emergency and cannot find it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "First aid is mixed in with everyday medicine",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The bins are not labeled, so we search all three",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "The first aid bin is too heavy to carry to the person",
+     "root_cause": "KC-006"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-004",
+    "root_causes": [
+     "KC-003",
+     "KC-005",
+     "KC-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand searching through a jumbled medicine cabinet shelf where first aid supplies are mixed in among everyday medicine bottles with no visible bins",
+    "must_show": [
+     "We reach for something in an emergency and cannot find it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-011",
+   "title": "EXPIRED FOR YEARS, STILL HERE",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is medicine in here that expired years ago.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing ever prompts a check of the dates",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "We keep it in case it is still fine",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody knows whose it is, so nobody throws it out",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-004",
+    "root_causes": [
+     "KC-009",
+     "RC-015",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a medicine cabinet shelf holding a bottle with a faded, years-old expiry date printed on its label, sitting among current items",
+    "must_show": [
+     "There is medicine in here that expired years ago."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-012",
+   "title": "NOBODY CAN FIND IT WITHOUT ASKING",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Nobody can find what they need without asking me.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The bins are not labeled",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Prescriptions are mixed in with everyday medicine",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Only I know the system",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-004",
+    "root_causes": [
+     "KC-005",
+     "KC-003",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an unlabeled medicine cabinet shelf crowded with mixed prescription and everyday medicine bottles, no bins or dividers visible",
+    "must_show": [
+     "Nobody can find what they need without asking me."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-013",
+   "title": "THE DARK LINE KEEPS COMING BACK",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a dark line where the wall meets the tray and it comes back.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing dries the enclosure after the last shower",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Bottles sit on the tray so water never leaves that strip",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "The squeegee is outside the enclosure, so it is not used",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-005",
+    "root_causes": [
+     "KC-009",
+     "RC-016",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shower enclosure with a dark mold line visible where the wall tile meets the tray, several bottles standing directly over that same strip",
+    "must_show": [
+     "There is a dark line where the wall meets the tray and it comes back."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-014",
+   "title": "CROWDED WITH BOTTLES NOBODY USES",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The shower is crowded with bottles we do not use.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "We keep almost-empty bottles in case there is one more wash",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody owns the ones that have been here longest",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "We buy a new kind before the old one is finished",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-005",
+    "root_causes": [
+     "RC-015",
+     "RC-013",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shower caddy crowded with eight or more bottles of shampoo, wash and conditioner, several visibly near-empty and unused",
+    "must_show": [
+     "The shower is crowded with bottles we do not use."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-015",
+   "title": "CLEANING TAKES FAR TOO LONG",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Cleaning in here takes far longer than it should.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Everything has to come off the tray before I can start",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "There are more bottles than people using them",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The enclosure is never dried, so deposits build",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-005",
+    "root_causes": [
+     "RC-016",
+     "KC-001",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand lifting a crowded row of shower bottles off a caddy shelf before cleaning can even begin, a squeegee nowhere in sight",
+    "must_show": [
+     "Cleaning in here takes far longer than it should."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-016",
+   "title": "OUT OF PAPER, NOBODY NOTICED",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "We run out of paper with nobody noticing until it matters.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The reserve is stored where you cannot see it from the seat",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nothing tells us to restock when the reserve is used",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Whoever takes the last roll is not the one who buys them",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-006",
+    "root_causes": [
+     "KC-005",
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an empty toilet roll holder with no reserve roll anywhere visible nearby in the toilet area",
+    "must_show": [
+     "We run out of paper with nobody noticing until it matters."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-017",
+   "title": "STILL SMELLS, EVEN AFTER CLEANING",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "This area smells even after cleaning it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The brush goes back into its holder wet",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The bin has no lid or no liner",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "The floor behind the pedestal is never reached",
+     "root_cause": "KC-006"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-006",
+    "root_causes": [
+     "KC-008",
+     "RC-016",
+     "KC-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a toilet brush sitting wet inside its closed holder beside a bin with no visible lid",
+    "must_show": [
+     "This area smells even after cleaning it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-018",
+   "title": "THE CISTERN LID, COVERED AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The cistern lid always has things on it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is nowhere else in the room to put them",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "It is the nearest flat surface to the door",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nobody agreed the lid stays bare",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-006",
+    "root_causes": [
+     "KC-007",
+     "KC-003",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cistern lid crowded with a phone, a candle and a drinking glass, no bare surface visible",
+    "must_show": [
+     "The cistern lid always has things on it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-019",
+   "title": "OUT OF TOWELS BEFORE LAUNDRY DAY",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "We run out of clean towels before laundry day.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There are fewer than three per person on the shelf",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Towels go in the wash after one use by habit",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Damp towels never dry, so they are washed again unused",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-007",
+    "root_causes": [
+     "KC-007",
+     "KC-008",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a nearly bare linen shelf holding only one damp-looking towel, laundry day still several days away by a calendar visible nearby",
+    "must_show": [
+     "We run out of clean towels before laundry day."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-020",
+   "title": "FULL SHELF, NO MATCHING SET",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The shelf is full but I can never find a matching set.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Guest sets are stacked loose among the everyday towels",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Hand towels and washcloths share a column",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "We keep towels we never choose to use",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-007",
+    "root_causes": [
+     "KC-003",
+     "KC-005",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a crowded linen shelf with towels of different colours and sizes stacked loosely together, no guest set visible nested separately",
+    "must_show": [
+     "The shelf is full but I can never find a matching set."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PBF-021",
+   "title": "PULL ONE TOWEL, DOWN COMES THE STACK",
+   "type": "FRICTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Pulling one towel out brings the stack down, or I need a stool to reach it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The everyday towels are on a shelf above comfortable reach",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "The stack is tall enough to topple and the brackets are light",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Everything is in one column instead of separate labelled ones",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PBZ-007",
+    "root_causes": [
+     "KC-006",
+     "KC-010",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tall, leaning stack of towels on a high shelf with one towel half-pulled from the middle, a step stool standing beneath it",
+    "must_show": [
+     "Pulling one towel out brings the stack down, or I need a stool to reach it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-001",
+     "PBF-004",
+     "PBF-005",
+     "PBF-014",
+     "PBF-015",
+     "PBF-020"
+    ],
+    "actions": [
+     "PBA-001",
+     "PBA-004",
+     "PBA-006",
+     "PBA-009",
+     "PBA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shower caddy shelf crowded with far more bottles of shampoo and wash than one household could use before they expire",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-004",
+     "PBF-006"
+    ],
+    "actions": [
+     "PBA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hairdryer cord and a hairbrush lying loose on a bathroom counter with no drawer or hook anywhere near them",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-002",
+     "PBF-006",
+     "PBF-010",
+     "PBF-012",
+     "PBF-018",
+     "PBF-019",
+     "PBF-020"
+    ],
+    "actions": [
+     "PBA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bottle of toilet bowl cleaner standing on the bathroom counter instead of anywhere near the toilet itself",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-008",
+     "PBF-013"
+    ],
+    "actions": [
+     "PBA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching past several stacked boxes to a bottle at the very back of a low cabinet shelf",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-004",
+     "PBF-005",
+     "PBF-007",
+     "PBF-008",
+     "PBF-009",
+     "PBF-010",
+     "PBF-012",
+     "PBF-016",
+     "PBF-020",
+     "PBF-021"
+    ],
+    "actions": [
+     "PBA-003",
+     "PBA-007",
+     "PBA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a row of unlabeled bins on a bathroom shelf with no way to tell what is inside any of them without opening each one",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-009",
+     "PBF-010",
+     "PBF-017",
+     "PBF-021"
+    ],
+    "actions": [
+     "PBA-005",
+     "PBA-008",
+     "PBA-014",
+     "PBA-016"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a high bathroom shelf out of easy reach, a step stool standing on a wet tile floor beneath it",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-001",
+     "PBF-003",
+     "PBF-018",
+     "PBF-019"
+    ],
+    "actions": [
+     "PBA-011",
+     "PBA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single small tray on a bathroom counter with towels and toiletries spilling over its edge because it is too small for what sits in it",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-001",
+     "PBF-006",
+     "PBF-007",
+     "PBF-012",
+     "PBF-017",
+     "PBF-018",
+     "PBF-019"
+    ],
+    "actions": [
+     "PBA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bathroom drawer with several different systems of organization visible at once, one half divided and the other half loose",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-005",
+     "PBF-008",
+     "PBF-011",
+     "PBF-013",
+     "PBF-015",
+     "PBF-016"
+    ],
+    "actions": [
+     "PBA-015",
+     "PBA-017"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bathroom shelf with no calendar or reminder note nearby, dust visibly settled across an untouched row of bottles",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-009",
+     "PBF-021"
+    ],
+    "actions": [
+     "PBA-001",
+     "PBA-003",
+     "PBA-005",
+     "PBA-008",
+     "PBA-014",
+     "PBA-016"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a razor blade lying loose and exposed in an open bathroom drawer within a child's reach",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-007"
+    ],
+    "actions": [
+     "PBA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty spot on a bathroom shelf where a consumable ran out with no backstock or reminder card visible nearby",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-003"
+    ],
+    "actions": [
+     "PBA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two separate, mismatched piles of personal items pushed together in the middle of one shared bathroom counter",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-003",
+     "PBF-011",
+     "PBF-014",
+     "PBF-016"
+    ],
+    "actions": [
+     "PBA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty toilet roll holder with nobody visibly responsible for restocking it, a full spare pack sitting untouched in a cupboard nearby",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-011",
+     "PBF-014"
+    ],
+    "actions": [
+     "PBA-004",
+     "PBA-007",
+     "PBA-010",
+     "PBA-017"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single half-used bottle sitting alone on an otherwise cleared bathroom shelf corner",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-002",
+     "PBF-013",
+     "PBF-015",
+     "PBF-017"
+    ],
+    "actions": [
+     "PBA-009",
+     "PBA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching into the tight corner of a shower enclosure where the wall meets the tray, a visible dark line just out of easy reach",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PBF-002"
+    ],
+    "actions": [
+     "PBA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a dried splatter mark on a bathroom mirror that has clearly gone unwiped through several cleaning passes",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "PBA-001",
+   "title": "CLEAR THE COUNTER TO THE DAILY FOUR",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the counter down to bare stone and put back only the tray with the soap, the toothbrush holder and the four products you actually touched today.",
+   "why_it_matters": "A counter with no boundary on what belongs is why it fills back up within two days, and 'I might use it' is not the same test as 'I used it today.'",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a cloth",
+    "nothing else beyond fifteen minutes"
+   ],
+   "steps": [
+    "Take everything off the counter, wipe the bare stone and the mirror, then put back only the soap, the toothbrush holder and the four products you touched today.",
+    "Coil or unplug any cord that crosses the basin.",
+    "Move any glass bottle back off the counter edge to the row against the mirror.",
+    "If this counter is shared, give each person their own tray rather than one merged pile."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-010",
+    "KC-012"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-010",
+     "KC-012"
+    ],
+    "zone": "PBZ-001",
+    "standard": "PBS-001"
+   },
+   "victory_condition": "Bare stone on both sides of the basin, and one tray you can lift with one hand.",
+   "next_card": "PBS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bathroom vanity counter with bare stone on both sides of the basin, one small tray holding soap, a toothbrush holder and four daily products, no cord crossing the sink",
+    "must_show": [
+     "Bare stone on both sides of the basin, and one tray you can lift with one hand."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-002",
+   "title": "GIVE THE HEAT TOOL A DRAWER OR A WALL HOOK",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Settle the tool that lives out on the counter by fitting it a heat-safe pouch in the drawer, or a wall-mounted holder if the drawer genuinely will not reach.",
+   "why_it_matters": "The straightener sitting out because the outlet is close is the single biggest reason the counter never stays clear, and stepping around that decision every day costs more than the few seconds a drawer costs.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a heat-safe pouch",
+    "or a wall-mounted holder if the drawer will not reach"
+   ],
+   "steps": [
+    "Decide honestly whether you use the tool three or four times a week, which is a drawer tool, or daily, which stays on the counter as the one item.",
+    "If it's a drawer tool, buy or repurpose a heat-safe pouch and give it a fixed spot in the vanity drawer.",
+    "If the drawer genuinely will not reach from where you stand to dry your hair, fit a wall-mounted holder beside the mirror instead.",
+    "Confirm the tool has a rest it returns to every single time, on the counter or off it."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-003",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-003",
+     "KC-008"
+    ],
+    "zone": "PBZ-001",
+    "standard": "PBS-001"
+   },
+   "victory_condition": "The heat tool has one fixed home, either a labeled drawer pouch or a wall-mounted holder, and the counter no longer needs it to explain why it is not clear.",
+   "next_card": "PBA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a heat-safe pouch holding a hair straightener inside an open bathroom drawer, or a wall-mounted holder beside a mirror, the counter beneath it bare",
+    "must_show": [
+     "The heat tool has one fixed home, either a labeled drawer pouch or a wall-mounted holder, and the counter no longer needs it to explain why it is not clear."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-003",
+   "title": "EMPTY THE TOP DRAWER AND CAP THE BLADES",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the top drawer, clear anything past its open-jar window, and give the blades one capped, lidded home.",
+   "why_it_matters": "A drawer you reach into without looking is the wrong place for a loose blade, and a jar past its window is a decision you have already made, just not acted on.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a towel",
+    "a lidded box for blades"
+   ],
+   "steps": [
+    "Empty the top drawer onto a towel, bin anything past its open-jar window, cap the blades into one lidded box, and put back only what you reach for daily, each in its own compartment.",
+    "Wipe the drawer base before anything goes back in.",
+    "Confirm no compartment holds more than one kind of item."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-010"
+    ],
+    "zone": "PBZ-002",
+    "standard": "PBS-002"
+   },
+   "victory_condition": "The top drawer can be read in a single look without moving anything.",
+   "next_card": "PBS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an open bathroom vanity drawer divided into compartments, razor blades capped inside a small lidded box in one corner, every compartment holding one kind of item, nothing overlapping",
+    "must_show": [
+     "The top drawer can be read in a single look without moving anything."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-004",
+   "title": "JUDGE THE EXPENSIVE SHADE BY THE THREE-STRIKE RULE",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Work through every open product against the reach-for-something-else test, and write the season on anything unopened you're keeping.",
+   "why_it_matters": "Keeping an expensive product you don't use is not thrift, it's paying storage on a decision that already went wrong, and skipping the drawer on every Sort pass only lets it happen again.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a strip of tape and a marker",
+    "a bin for what leaves"
+   ],
+   "steps": [
+    "Pull every open product in the drawers and ask: did I reach for something else the last three times instead of this?",
+    "If yes and it's past its window, it leaves today, no exceptions for cost.",
+    "If it's unopened and in date, write the season on a strip of tape stuck to the base so the clock is visible.",
+    "Recheck any taped item at the next season's Sort pass and give it a real verdict then."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-001"
+    ],
+    "zone": "PBZ-002",
+    "standard": "PBS-002"
+   },
+   "victory_condition": "Every open product in the drawers has been reached for in the last three uses, and every kept unopened one carries a visible season on tape.",
+   "next_card": "PBA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a bathroom drawer with a bottle of skincare product carrying a strip of tape marked with a season, a small bin beside the drawer holding several discarded, unused products",
+    "must_show": [
+     "Every open product in the drawers has been reached for in the last three uses, and every kept unopened one carries a visible season on tape."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-005",
+   "title": "CLEAR THE CABINET FLOOR AND SET THE TRAY",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the cabinet, dry the floor, and return only two bins clear of the trap with a bare tray beneath them.",
+   "why_it_matters": "A joint that weeps unnoticed behind a tower of backstock turns a cheap washer into a rotted cabinet base, and you cannot catch a leak you cannot see.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a pale tray",
+    "a towel to dry the floor"
+   ],
+   "steps": [
+    "Pull everything out, wipe the cabinet floor dry, put a pale tray down bare, and return only two bins that clear the P-trap with one open bottle per job.",
+    "Confirm both shut-off valves are visible when the doors swing open.",
+    "Check nothing sits stacked on top of the tray."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-010"
+    ],
+    "zone": "PBZ-003",
+    "standard": "PBS-003"
+   },
+   "victory_condition": "Both shut-off valves are in plain sight when the doors swing open, and nothing is stacked on the tray.",
+   "next_card": "PBS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an open under-sink cabinet with a bare pale tray on the floor, two bins positioned clear of a visible P-trap, and both shut-off valves plainly visible",
+    "must_show": [
+     "Both shut-off valves are in plain sight when the doors swing open, and nothing is stacked on the tray."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-006",
+   "title": "MOVE THE BACKSTOCK OUT, NOT THE SIGHTLINE",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move any backstock crowding the trap out of this cabinet entirely, to a linen cupboard or elsewhere, and cap what stays at two bottles.",
+   "why_it_matters": "If the backstock won't fit without blocking the trap, the arithmetic says the backstock leaves, not the sightline: a leak cannot live anywhere else, but spare shampoo can.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "boxes for the relocated backstock",
+    "space identified in a linen cupboard"
+   ],
+   "steps": [
+    "Pull out everything beyond the two open-bottle bins.",
+    "Sort what's left into 'this belongs in the linen cupboard' and 'this is genuinely bathroom-only backstock.'",
+    "Move the relocatable backstock out of this cabinet today.",
+    "Cap whatever genuinely has to stay at two of any one item, never stacked on the tray."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-004"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-004"
+    ],
+    "zone": "PBZ-003",
+    "standard": "PBS-003"
+   },
+   "victory_condition": "The cabinet holds only the two working bins and nothing else, and the relocated backstock has a real home elsewhere in the house.",
+   "next_card": "PBA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an under-sink cabinet holding only two bins and a bare tray, a small stack of boxes being carried out through the bathroom door toward a linen cupboard",
+    "must_show": [
+     "The cabinet holds only the two working bins and nothing else, and the relocated backstock has a real home elsewhere in the house."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-007",
+   "title": "SORT INTO THREE LABELED BINS",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the cabinet, clear anything expired, and sort what remains into three labeled bins.",
+   "why_it_matters": "A leftover prescription kept 'in case' is the single most common thing in here that shouldn't be, and expired pain relief mixed with first aid costs you time in the one moment you can't afford to lose any.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "three bins",
+    "a marker for labels",
+    "a take-back bag"
+   ],
+   "steps": [
+    "Take everything out, bin anything past its date, and sort what is left into three labeled bins: pain relief, stomach and cold, first aid.",
+    "Group any prescriptions together by the name on the label.",
+    "Confirm the first aid bin is light enough to carry one-handed."
+   ],
+   "root_causes": [
+    "KC-005",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "RC-015"
+    ],
+    "zone": "PBZ-004",
+    "standard": "PBS-004"
+   },
+   "victory_condition": "Three labeled bins of in-date items, and a first aid bin you can carry one-handed.",
+   "next_card": "PBS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an open medicine cabinet with three labeled bins reading pain relief, stomach and cold, and first aid, prescription bottles grouped together, a small first aid bin light enough to carry one-handed",
+    "must_show": [
+     "Three labeled bins of in-date items, and a first aid bin you can carry one-handed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-008",
+   "title": "CONFIRM THE REACH AND FIT THE CATCH",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Measure the cabinet's real height against what a child can climb to reach, and fit a catch if children are ever in the house.",
+   "why_it_matters": "A leftover painkiller behind a mirror is the most likely thing in this room to seriously hurt a visiting child, and the reach test only works if you measure from what they can climb, not the floor.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a catch or child lock if none is fitted",
+    "a step stool to test the reach yourself"
+   ],
+   "steps": [
+    "Stand on the closed toilet lid yourself and check what you can reach: that is a child's real reach in this room, not the floor-to-shelf distance.",
+    "Move anything glass or heavy off any shelf within that reach.",
+    "Fit a catch or child lock on the cabinet door if children are ever in the house.",
+    "Confirm the whole cabinet, catch included, is checked working before you close it."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-010"
+    ],
+    "zone": "PBZ-004",
+    "standard": "PBS-004"
+   },
+   "victory_condition": "You have physically tested the child's-eye reach into this cabinet, and a catch is fitted if children are ever in the house.",
+   "next_card": "PBA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a medicine cabinet mounted above a closed toilet lid, a visible safety catch fitted to its door, nothing glass or heavy sitting on the lowest reachable shelf",
+    "must_show": [
+     "You have physically tested the child's-eye reach into this cabinet, and a catch is fitted if children are ever in the house."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-009",
+   "title": "DOWN TO ONE OF EACH, THEN SQUEEGEE DRY",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the caddy to one shampoo, one conditioner, one wash and one bar per person, and squeegee the whole enclosure dry.",
+   "why_it_matters": "Eight bottles sharing one caddy shelf is why it never dries out and grows a ring, and a squeegee not on its hook is a squeegee that doesn't get used.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bag for empties or recycling"
+   ],
+   "steps": [
+    "Take every bottle out, bin the empties, keep one shampoo, one conditioner, one wash and one bar per person in the caddy, then squeegee the walls and the tray dry.",
+    "Hang the squeegee back on its hook inside the enclosure.",
+    "Prop the door or window open to finish drying the space."
+   ],
+   "root_causes": [
+    "KC-001",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "RC-016"
+    ],
+    "zone": "PBZ-005",
+    "standard": "PBS-005"
+   },
+   "victory_condition": "Nothing stands on the shower floor, and the squeegee is back on its hook inside the enclosure.",
+   "next_card": "PBS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a shower enclosure caddy holding exactly one shampoo, one conditioner, one wash and one bar per person, the squeegee hanging on its hook, the floor and tray completely bare and dry",
+    "must_show": [
+     "Nothing stands on the shower floor, and the squeegee is back on its hook inside the enclosure."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-010",
+   "title": "USE IT THIS WEEK OR POUR IT OUT",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Test every bottle against the two-week rule, and settle the inch in the bottom of anything you're keeping out of guilt.",
+   "why_it_matters": "The inch you can't bring yourself to pour away is what keeps mold on the shelf, and a gift gets no exemption for being a gift once it stops being used.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond thirty minutes",
+    "a recycling bin"
+   ],
+   "steps": [
+    "Line up every bottle in the shower and ask: did I touch this in the last two weeks of showers?",
+    "Anything you didn't touch leaves the enclosure today, gift or not.",
+    "For anything you're keeping with an inch left in the bottom, commit to using it this week or pour it out and recycle the bottle now.",
+    "Recheck the caddy count against the one-per-person standard once the pass is done."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-001"
+    ],
+    "zone": "PBZ-005",
+    "standard": "PBS-005"
+   },
+   "victory_condition": "Every bottle remaining in the shower has been used in the last two weeks, and nothing is being kept purely out of guilt.",
+   "next_card": "PBA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a shower caddy holding only bottles in current daily use, a small stack of unused bottles set aside near a recycling bin outside the enclosure",
+    "must_show": [
+     "Every bottle remaining in the shower has been used in the last two weeks, and nothing is being kept purely out of guilt."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-011",
+   "title": "CLEAR THE LID AND SET THE RESERVE ROLLS",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the cistern lid completely, dry the brush holder, and put two reserve rolls within seated reach.",
+   "why_it_matters": "The cistern lid is the most tempting shelf in the room, and every flush throws a fine mist across whatever is sitting on it, including your toothbrush if it's still there.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin liner",
+    "two spare rolls from the cupboard"
+   ],
+   "steps": [
+    "Clear the cistern lid completely, empty and dry the brush holder, put a liner and a lid on the bin, and set two reserve rolls within reach from the seat.",
+    "Move anything that touches your face, mouth or food out of the room entirely.",
+    "Confirm the brush holder is genuinely dry before the brush goes back in."
+   ],
+   "root_causes": [
+    "KC-007",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "RC-017"
+    ],
+    "zone": "PBZ-006",
+    "standard": "PBS-006"
+   },
+   "victory_condition": "A completely bare cistern lid, and two reserve rolls reachable without standing up.",
+   "next_card": "PBS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a toilet area with a completely bare cistern lid, a toilet brush standing in a dry holder, a lined bin with a lid, two reserve rolls set within reach of a seated position",
+    "must_show": [
+     "A completely bare cistern lid, and two reserve rolls reachable without standing up."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-012",
+   "title": "MOVE THE BOWL CLEANER UP AND SET THE RESTOCK TRIGGER",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move any floor-level bowl cleaner to a high shelf, and fix the moment the reserve rolls get topped up.",
+   "why_it_matters": "Bowl cleaner at floor level next to the pedestal is one bad afternoon away from meeting bleach in the same bowl, and a reserve nobody restocks is a reserve that runs out exactly when it matters.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a high shelf or cupboard",
+    "nothing else beyond thirty minutes"
+   ],
+   "steps": [
+    "Move any bowl cleaner off the floor to a shelf stored high, away from any other bathroom chemical.",
+    "Confirm only one product lives near the bowl at a time.",
+    "Agree out loud who tops up the two reserve rolls, and when: on hanging the last roll, two more come from the cupboard on the next trip past.",
+    "Write that trigger somewhere it will actually be seen, like inside the cupboard door."
+   ],
+   "root_causes": [
+    "KC-011",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "RC-013"
+    ],
+    "zone": "PBZ-006",
+    "standard": "PBS-006"
+   },
+   "victory_condition": "The bowl cleaner is stored high, away from other chemicals, and everyone in the house can say who restocks the rolls and when.",
+   "next_card": "PBA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a bottle of toilet bowl cleaner stored on a high shelf away from other chemicals, a small note taped inside a cupboard door naming who restocks the reserve rolls",
+    "must_show": [
+     "The bowl cleaner is stored high, away from other chemicals, and everyone in the house can say who restocks the rolls and when."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-013",
+   "title": "DOWN TO THREE PER PERSON, NESTED AND LABELED",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take the shelf down to three bath towels per person and nest every guest set in its own pillowcase.",
+   "why_it_matters": "A shelf running backwards, with the good towels saved and the worn ones in daily use, has been running backwards for years, and it only stops the day you rank what's actually there.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "pillowcases for guest sets",
+    "labels for the columns"
+   ],
+   "steps": [
+    "Take the shelf down to three bath towels per person, nest each guest set in its own pillowcase, and put hand towels and washcloths into separate labeled columns.",
+    "Rank the remaining bath towels and put the best-ranked ones into daily rotation.",
+    "Set aside anything below the cut for rags or donation."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-007"
+    ],
+    "zone": "PBZ-007",
+    "standard": "PBS-007"
+   },
+   "victory_condition": "Three bath towels per person on the shelf, and every guest set in its own pillowcase.",
+   "next_card": "PBS-007",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a linen shelf holding exactly three folded bath towels per person, one guest towel set visibly nested inside its own pillowcase, hand towels and washcloths in separate labeled columns",
+    "must_show": [
+     "Three bath towels per person on the shelf, and every guest set in its own pillowcase."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-014",
+   "title": "CHECK THE FIXINGS AND MOVE THE WEIGHT DOWN",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Check the shelf brackets can carry the stack, and move the heaviest towels to a shelf you can reach flat-footed.",
+   "why_it_matters": "An overloaded shelf on light brackets, or a stack tall enough to topple when you pull from the middle, is a fall risk hiding behind something as ordinary as folded laundry.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a screwdriver to check the fixings",
+    "nothing else beyond thirty minutes"
+   ],
+   "steps": [
+    "Check the shelf brackets are actually fixed to a stud or a proper anchor, not just drywall.",
+    "Move the heaviest bath towels to the lowest shelf you can reach flat-footed.",
+    "Reroll the spare bath mat and set it at the end of the shelf rather than stacked on top of towels.",
+    "Confirm no step stool is needed for the everyday linens."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-010"
+    ],
+    "zone": "PBZ-007",
+    "standard": "PBS-007"
+   },
+   "victory_condition": "The shelf fixings are confirmed secure, and every everyday towel is reachable flat-footed, with nothing needing a stool.",
+   "next_card": "PBA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a linen shelf with its bracket visibly anchored to the wall, the heaviest bath towels stacked on the lowest reachable shelf, a spare bath mat rolled neatly at one end",
+    "must_show": [
+     "The shelf fixings are confirmed secure, and every everyday towel is reachable flat-footed, with nothing needing a stool."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-015",
+   "title": "THE STANDING-MOISTURE WALK",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Shine",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk every zone in this room in one pass, checking for the single thing all seven have in common: something left wet that should be dry.",
+   "why_it_matters": "This room has water in it more hours a day than any other, and mold does not wait for a dedicated Shine day; it grows in whichever zone your Shine pass skipped this month.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a squeegee",
+    "a dry cloth",
+    "nothing else beyond thirty minutes"
+   ],
+   "steps": [
+    "Squeegee the shower enclosure if it has not already been done today.",
+    "Check the under-sink cabinet's tray and the base of every bottle in every zone for standing moisture.",
+    "Dry the vanity counter around the basin and behind any bottle rings.",
+    "Name, out loud, which zone was wettest: that is the one to squeegee or dry first next time."
+   ],
+   "root_causes": [
+    "RC-016",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-016",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "Every zone has been checked for standing moisture in one pass, and you can name which one collects it fastest.",
+   "next_card": "PBA-016",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a person's hand running a squeegee down a shower wall, a dry cloth wiping a bathroom counter nearby, both in the same room in one continuous pass",
+    "must_show": [
+     "Every zone has been checked for standing moisture in one pass, and you can name which one collects it fastest."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-016",
+   "title": "THE OPEN-CHEMISTRY CHECK",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk the room checking that no two products stored near each other could ever mix badly, and that nothing corrosive sits within a child's reach.",
+   "why_it_matters": "This is the one room in the house where bleach, drain opener and bowl cleaner all live within a few feet of each other, and open chemistry does not announce itself until it is already mixed.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond thirty minutes",
+    "a high shelf or cupboard for anything relocated"
+   ],
+   "steps": [
+    "Check the under-sink cabinet, the toilet area and the vanity drawers for any two chemical products stored close enough to be grabbed by mistake.",
+    "Move anything corrosive to a single high shelf, away from anything it could react with.",
+    "Confirm nothing chemical sits within reach of a standing or climbing child anywhere in the room.",
+    "Cap every open bottle fully before closing the cabinet."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-006"
+    ]
+   },
+   "victory_condition": "You can name, out loud, that no two chemical products in this room are stored close enough to mix, and nothing corrosive sits within a child's reach.",
+   "next_card": "PBA-017",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "cleaning products stored together on one high shelf, well clear of a child's reach, each bottle capped closed",
+    "must_show": [
+     "You can name, out loud, that no two chemical products in this room are stored close enough to mix, and nothing corrosive sits within a child's reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBA-017",
+   "title": "THE SLEEPING-DATES SWEEP",
+   "type": "ACTION CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Sustain",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Read every expiry date in the room in one sitting, medicine, drawers and under-sink alike, and settle what has quietly gone out of date while nobody was checking.",
+   "why_it_matters": "This room holds more expiry dates than any other in the house, and every one of them passes at 3am with nobody watching; the only defense is reading them on purpose, on a schedule, rather than by accident.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a bag for anything expired",
+    "a pharmacy take-back bag for medicine"
+   ],
+   "steps": [
+    "Read the date on every open product in the vanity drawers, under the sink, and in the medicine cabinet in one sitting.",
+    "Anything past its date goes in the bag now; medicine goes in the take-back bag, not the toilet or the trash.",
+    "Confirm the medicine cabinet's three bins hold only in-date items.",
+    "Set a reminder for the next full sweep, tied to a date you will actually notice, like a season change."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-015"
+    ]
+   },
+   "victory_condition": "Every expiry date in the room has been read in one sitting, and nothing past its date remains in any zone.",
+   "next_card": "PBA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a small pile of expired products and a separate pharmacy take-back bag for medicine sitting on a cleared bathroom counter, a calendar reminder visible on a nearby phone",
+    "must_show": [
+     "Every expiry date in the room has been read in one sitting, and nothing past its date remains in any zone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PBS-001",
+   "title": "VANITY COUNTER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Counter",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The counter carries one liftable tray and nothing beside it. Anything used less than daily lives behind a door.",
+   "trigger": "The nightly toothbrush rinse. The tray goes back to the photo before you leave the room.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the tray off the counter, count what's in it, and put back only what you touched today.",
+    "Run a finger along both sides of the basin and confirm the stone is bare.",
+    "Check nothing is plugged in within cord's reach of the basin, and coil anything that is."
+   ],
+   "related": {
+    "zone": "PBZ-001",
+    "actions": [
+     "PBA-001",
+     "PBA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a bathroom vanity counter holding one small tray light enough to lift with one hand, containing soap, a toothbrush holder and no more than four daily products, bare stone visible on both sides of the basin, a clean mirror with no splatter, and no cord crossing the sink, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBS-002",
+   "title": "VANITY DRAWERS STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Vanity Drawers",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Each drawer is divided by routine, every category carries a written count on its label, and nothing stays past its date.",
+   "trigger": "Laundry day. As you carry towels in, open the top drawer and pull anything empty.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Open the top drawer and read it in one glance: if anything makes you pause, move it to its own compartment now.",
+    "Pull one product and check its open-jar window against today's date.",
+    "Confirm every razor blade is capped or in its lidded box, not loose among the brushes."
+   ],
+   "related": {
+    "zone": "PBZ-002",
+    "actions": [
+     "PBA-003",
+     "PBA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open bathroom vanity drawer divided into compartments, one dated strip visible on the base of an opened jar, razor blades capped and stored in a small lidded box in one corner, grooming tools sorted into groups by time of day, and the top drawer's contents all visible in a single glance with nothing overlapping, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBS-003",
+   "title": "UNDER-SINK CABINET STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Under-Sink Cabinet",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The P-trap and both shut-off valves stay in plain sight, one open bottle per job, backstock capped at two.",
+   "trigger": "Every hand soap refill. Crouch, check the cabinet floor, then close the doors.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Open the cabinet doors and confirm both shut-off valves are visible without moving anything.",
+    "Check the pale tray for any sign of standing water or staining.",
+    "Confirm nothing heavier than the tray is stacked on top of it."
+   ],
+   "related": {
+    "zone": "PBZ-003",
+    "actions": [
+     "PBA-005",
+     "PBA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open under-sink bathroom cabinet with two pull-out bins positioned clear of the visible P-trap, a bare pale tray on the cabinet floor with nothing stacked on it, one open bottle for each cleaning job, and both shut-off valves plainly visible with the doors swung open, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBS-004",
+   "title": "MEDICINE CABINET OR WALL STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Medicine Cabinet or Wall Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Only in-date, correctly labeled, currently needed medicine lives here, grouped by symptom and kept above child reach.",
+   "trigger": "Every trip home from the pharmacy. The new box goes in, the dates in that bin get read, and the take-back bag goes back with you next time.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Pull one bin and check every item's date against today.",
+    "Confirm the first aid bin can be carried one-handed.",
+    "Check the cabinet catch or door still sits above a child's reach."
+   ],
+   "related": {
+    "zone": "PBZ-004",
+    "actions": [
+     "PBA-007",
+     "PBA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open medicine cabinet with three clearly labeled bins reading pain relief, stomach and cold, and first aid, prescription bottles grouped together by name, a small first aid bin sized to carry one-handed, the whole cabinet mounted above a child's reach, and a visible safety catch fitted to the door, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBS-005",
+   "title": "SHOWER OR TUB STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One of each product in use per person, no empties in the caddy, squeegee on its hook, floor grip intact.",
+   "trigger": "Whoever showers last squeegees the walls and props the door open before drying off.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count the bottles in the caddy; if more than one of a kind, decide which stays.",
+    "Confirm the squeegee is on its hook, not lying loose.",
+    "Check the grip mat or strips still hold real suction underfoot."
+   ],
+   "related": {
+    "zone": "PBZ-005",
+    "actions": [
+     "PBA-009",
+     "PBA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a shower enclosure caddy holding exactly one shampoo, one conditioner, one wash and one bar per person, a squeegee hanging on its hook inside the enclosure, a grip mat with real suction visible on the floor, no dark mold line where the wall meets the tray, and clear glass free of soap film, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBS-006",
+   "title": "TOILET AREA STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The cistern lid stays bare, the toilet cloth is a color used for nothing else, and two reserve rolls is the minimum on hand.",
+   "trigger": "When you hang the last roll, two more come in from the cupboard on your next trip past.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count the reserve rolls within reach of the seat; refill from the cupboard if under two.",
+    "Empty and dry the brush holder.",
+    "Clear anything sitting on the cistern lid, right now."
+   ],
+   "related": {
+    "zone": "PBZ-006",
+    "actions": [
+     "PBA-011",
+     "PBA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a toilet area with two reserve rolls set within reach of a seated position, the rest of the pack visible stored in a cupboard, a toilet brush standing in an emptied and dried holder, a lined bin with a lid beside it, a completely bare cistern lid, and no charging cord anywhere near it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBS-007",
+   "title": "LINEN AND TOWEL STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bathroom",
+   "zone": "Linen and Towel Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Three bath towels per person, folded to one width, columns labeled by type, and nothing put away damp.",
+   "trigger": "Every laundry fold. Clean towels to the bottom of the column, and in a full column the most worn one becomes a rag.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Count the bath towels per person on the shelf against the standard.",
+    "Check each guest set is nested in its own pillowcase.",
+    "Confirm hand towels and washcloths sit in separate columns, not mixed."
+   ],
+   "related": {
+    "zone": "PBZ-007",
+    "actions": [
+     "PBA-013",
+     "PBA-014"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a linen shelf holding three folded bath towels per person, each guest towel set nested inside its own pillowcase, hand towels standing in one labeled column and washcloths in a separate labeled column, a spare bath mat rolled at the end of the shelf, and the shelf brackets visibly secure beneath the stack, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PBE-001",
+   "title": "THE BOTH-OF-US-LATE MORNING",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Two people need this counter in the same ten minutes before leaving the house, with no time to clear anything out of each other's way.",
+   "tests_zones": [
+    "PBZ-001"
+   ],
+   "held_if": "Both people find their own daily four products right where they left them, and the shared tray never has to be searched.",
+   "if_it_failed": "If either of you pushed the other's things aside to make room, the counter's daily-four standard was not being kept. Draw PBA-001 or PBA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a bathroom vanity counter with two small daily trays sitting side by side, each holding its own four products, both clearly separate",
+    "must_show": [
+     "Two people need this counter in the same ten minutes before leaving the house, with no time to clear anything out of each other's way."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "PBE-002",
+   "title": "THE FIRST DAY BACK AT WORK",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You are getting ready for an early meeting and need the drawer to give up exactly the tool you reach for, on the first try, in the dark.",
+   "tests_zones": [
+    "PBZ-002"
+   ],
+   "held_if": "The top drawer reads in one glance, and the first pen or tool your hand meets is the one you wanted.",
+   "if_it_failed": "If you had to dig, or met a capped blade before the tool you wanted, the drawer's divided standard was not being kept. Draw PBA-003 or PBA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching into an open bathroom drawer and finding one tool immediately, in a compartment of its own, no searching visible",
+    "must_show": [
+     "You are getting ready for an early meeting and need the drawer to give up exactly the tool you reach for, on the first try, in the dark."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "PBE-003",
+   "title": "THE PLUMBER'S FIVE-MINUTE NOTICE",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A plumber calls to say they can come right now to look at a slow drain, and needs the shut-off valve pointed out in under a minute.",
+   "tests_zones": [
+    "PBZ-003"
+   ],
+   "held_if": "The cabinet doors swing open and both shut-off valves are visible immediately, nothing to move first.",
+   "if_it_failed": "If you had to pull bins and boxes out before the valve was visible, the under-sink standard was not being kept. Draw PBA-005 or PBA-006.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "an open under-sink cabinet with both shut-off valves immediately visible, nothing blocking them, a plumber's hand pointing at one",
+    "must_show": [
+     "A plumber calls to say they can come right now to look at a slow drain, and needs the shut-off valve pointed out in under a minute."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "PBE-004",
+   "title": "THE MIDDLE-OF-THE-NIGHT FEVER",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A household member wakes at 2am with a fever and needs the right medicine in the dark, fast, without waking anyone else to ask where it is.",
+   "tests_zones": [
+    "PBZ-004"
+   ],
+   "held_if": "The pain relief bin is found by feel in the dark, and everything in it is in date.",
+   "if_it_failed": "If the search took light, noise, or more than one bin, the labeled-bin standard was not being kept. Draw PBA-007 or PBA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching into a dark medicine cabinet and finding one clearly labeled bin immediately by touch, a nightlight glowing faintly nearby",
+    "must_show": [
+     "A household member wakes at 2am with a fever and needs the right medicine in the dark, fast, without waking anyone else to ask where it is."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "PBE-005",
+   "title": "THE UNEXPECTED HOUSEGUEST'S FIRST SHOWER",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest arriving unannounced needs to shower within the hour, in an enclosure they have never seen before, with no explanation of which bottle is whose.",
+   "tests_zones": [
+    "PBZ-005"
+   ],
+   "held_if": "One shampoo, one conditioner, one wash and one bar per person stand obviously in the caddy, and the floor is completely bare.",
+   "if_it_failed": "If the guest had to guess which of eight bottles to use, or stepped around anything on the floor, the shower standard was not being kept. Draw PBA-009 or PBA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a shower caddy holding one clearly separated set of shampoo, conditioner, wash and bar per person, the floor completely bare beneath it",
+    "must_show": [
+     "A guest arriving unannounced needs to shower within the hour, in an enclosure they have never seen before, with no explanation of which bottle is whose."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "PBE-006",
+   "title": "THE STOMACH BUG AT 3AM",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Someone is sick in the night and needs this area stocked and bare with no warning, no shopping trip possible until morning.",
+   "tests_zones": [
+    "PBZ-006"
+   ],
+   "held_if": "Two reserve rolls are within reach from the seat, and the cistern lid is bare enough to actually be useful.",
+   "if_it_failed": "If the reserve ran out or the lid was too cluttered to set anything down, the toilet area's own standard was not being kept. Draw PBA-011 or PBA-012.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a toilet area at night with two reserve rolls visible within seated reach and a completely bare, usable cistern lid",
+    "must_show": [
+     "Someone is sick in the night and needs this area stocked and bare with no warning, no shopping trip possible until morning."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "PBE-007",
+   "title": "THE SAME-DAY GUEST ANNOUNCEMENT",
+   "type": "EVENT CARD",
+   "room": "Primary Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A relative texts that they are arriving to stay tonight, and need a full guest towel set handed to them within the hour.",
+   "tests_zones": [
+    "PBZ-007"
+   ],
+   "held_if": "One guest set, already nested in its own pillowcase, comes off the shelf in one motion with nothing else needing to be searched.",
+   "if_it_failed": "If you had to hunt through mismatched towels for a full guest set, the linen standard was not being kept. Draw PBA-013 or PBA-014.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PBZ-007"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting one complete guest towel set nested in its own pillowcase off a linen shelf, the rest of the shelf undisturbed",
+    "must_show": [
+     "A relative texts that they are arriving to stay tonight, and need a full guest towel set handed to them within the hour."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  }
+ ]
+}
