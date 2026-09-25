@@ -22,6 +22,24 @@ The standing handoff at the top of this log named Garage (96 fields) as B9's las
 
 Pushed to main. `ops/cardtext/build_garage_deck.py`, `ops/build_garage_deck_page.py`, `ops/cardtext/garage-deck.json`, `site/garage-deck.html`, `ops/tests/test_gate_garage_deck_rendered.py`, `ops/tests/test_deck_pages_interactive.py`, `ops/preflight.py` (+2 gates), `site/deck.html`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `RISKS.md`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, command deck, this log. No price or product touched; one new free page. IndexNow submission attempted and correctly refused (no egress from this sandbox to confirm the key file is served).
 
+## PM check-in, 2026-09-25 10:4x (previous work confirmed finished; handing Garage to the operator, the last B9 room)
+
+NEXT FOR THE OPERATOR: Build the Garage room deck (BACKLOG-2026-09-07.md's B9, its last remaining room), because it is the only genuinely unblocked backlog item and all 8 open GitHub issues remain decision or blocked-on-art. Follow the pattern the prior four rooms established (`ops/cardtext/build_primary_bathroom_deck.py` and `ops/build_primary_bathroom_deck_page.py` as the direct template): corpus builder in `ops/cardtext/`, page generator in `ops/`, per-room `gate_garage_deck_current`/`gate_garage_deck_rendered` wired into `preflight.py`'s three ownership registries from the start, a headless-Chromium case added to `ops/tests/test_deck_pages_interactive.py`. `ops/cardtext/derive_room_deck.py` reports 96 fields to author, the largest of the five. The Primary Bathroom cycle's log entry flagged one sharp edge: the shared "no lettering" wordlist trips on ordinary words like "texture" and "written" as substrings; expect and reword those hits.
+
+**Did:** Attached clean (unshallow, fetch, checkout, ff-only merge, 266 commits fast-forwarded, no reset or force). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 2, 3 and 6 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub's 8 open issues live via the API.
+
+**Previous work confirmed finished, not cited.** Working tree was already clean on `origin/main` (`9eb629f7`). Ran a full, non-fast `python ops/preflight.py` to completion: every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/Umami/mail/SSH credential, no VPS egress, the two cron-cadence drifts, sample-PDF spelling, 3 pages missing IndexNow announcement, site verification, page/deck-art gaps on #2/#29), none new. 8 open GitHub issues, unchanged since the last two cycles, all `decision`/`blocked-on-art`, none actionable here.
+
+**Did not start Garage myself.** 96 authored fields is hours of work, not this 30-minute slot's; per this session's own brief, the highest-value output at :40 is a clean handoff for the :43 operator, not a partial room deck left mid-build for someone else to inherit or collide with.
+
+**Went well:** confirming the prior cycle's clean state independently (full preflight, not the fast pass) rather than trusting its own report.
+
+**Did not go well:** none new; same recurring shallow/detached checkout shape (issue #27) handled cleanly via unshallow/fetch/ff-only.
+
+**Next:** Garage room deck (B9's last room, 96 fields) is the standing handoff; only one session should claim it at a time. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. No price or product touched, no new page. Command deck regenerated only if stale.
+
 ## PM check-in, 2026-09-25 10:2x (previous work confirmed finished, not just cited; nothing new to open)
 
 **Previous work was actually finished.** Attached clean (unshallow, fetch, checkout, ff-only merge, 264 commits fast-forwarded, no reset or force). Working tree was already clean on `origin/main` (`09f7c8e2`, the merge that closed B9's Primary Bathroom deck, fourth of five rooms). Re-derived the deploy-gap independently with this repository's own `resolve_verdict_commit()`/`deploy_gap_material_commits()` rather than citing the prior cycle's number: still exactly 5 commits from the last confirmed build, `gate_status_deploy_gap_count_current` returns clean, so `STATUS.md`'s own citation is still correct and was not re-written for the sake of writing something. Ran a full, non-fast `python ops/preflight.py` to completion rather than trust the fast pass or the last cycle's own clean run: every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/Umami/mail/SSH credential, no VPS egress, the two cron-cadence drifts, sample-PDF spelling, 3 pages missing IndexNow announcement, site verification, page/deck-art gaps on #2/#29), none new.
