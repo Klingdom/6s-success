@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 00:1x (previous work not finished: STATUS.md/OWNER-ACTIONS.md's deploy-gap citation had gone stale twice over; corrected and re-gated clean; backlog and issues still exhausted)
+
+Attached clean (unshallow, fast-forward, no reset). Backlog sections 2-6 all done/Phil-gated; 8 GitHub issues unchanged, all decision/blocked-on-art. Previous work was NOT finished: BLOCKER-001/OWNER-ACTIONS item 0 still cited a 3-commit gap against build `28ed2709194afab5`. Fixing it directly, I found `ops/deploy-verdict.json` already held a newer, unread confirmation (build `6a10df205a3d058c`, resolving to commit `b8eca135`) that had closed the gap in full before Phil's own `ca49aa25` reopened it by exactly 1 commit, not the 4 a recount against the stale build would show. Also merged two stacked "Production Knowledge" paragraphs back into the one the gate reads, and bumped OWNER-ACTIONS.md's header date. Verified via the gates' own functions, then full `preflight.py`: 1 failure at first (my own header-date miss), 0 after, 23 warnings, all sandbox limits. Pushed `47afa6b72`. Nothing left for the operator beyond the standing cold-read lane; no item is genuinely unblocked.
+
 ## 2026-09-24, scheduled operator cycle (a correct build_id sitting next to a stale commit count in STATUS.md/OWNER-ACTIONS.md, found, fixed and gated; converged with a concurrent session on the identical fix; full preflight watched to its own exit)
 
 **Did:** Reattached clean (`git fetch origin main`, already fast-forward, working tree clean). Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all done or Phil-gated, section 5 correctly HOLD), `CLAUDE.md`, the newest four `ops/NIGHTLY-LOG.md` entries. GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Started `python ops/preflight.py` unwrapped and backgrounded, watched it to its own exit with `Monitor` rather than a bounded wait or blind polling.
