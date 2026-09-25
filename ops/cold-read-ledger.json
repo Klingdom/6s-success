@@ -281,6 +281,11 @@
       "date": "2026-09-25",
       "note": "image-provider credential prober; ran live, correctly reports all 7 absent (no sandbox credentials) and torch absent, never prints a secret. No defect."
     },
+    "merge_cardtext.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read PM check-in 2026-09-25: KNOWN_AMBIGUOUS_DUPES prints through the generic duplicate-id line rather than a separate call-out, which satisfies the comment's own promise (never silently dropped or auto-fixed); no defect"
+    },
     "optimize_sample_pdf.py": {
       "status": "clean",
       "date": "2026-09-25",

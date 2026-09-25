@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 21:4x (previous work finished; cold-read lane continues, local --fast preflight did not finish inside this slot)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane with `ops/prune_catalog_js.py`, `ops/render_cards.py`, `ops/social_drafts.py`, `ops/split_deck_cards.py`, `ops/stripe_brand.py`, `ops/video_zone.py`, `ops/video_zone_photo.py`, `ops/wire_nav.py`, `ops/wire_progressive.py`, `ops/wire_zone_heroes.py`, `ops/zone_supplies.py` (`ops/cold_read_ledger.py --next`'s current tier), because all 8 open GitHub issues are still `decision`/`blocked-on-art` and no backlog row is newly unblocked, so operational-honesty defect hunting remains the highest-value unblocked work. Also re-run `python ops/preflight.py --fast` to its own exit and confirm the result this cycle could not obtain in time (see below).
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 347 commits cleanly onto `4fc83080`, no conflict.
+
+**Step 1/2: previous work was finished, verified against production CI rather than assumed.** `main` matched `origin/main`, tree clean before this cycle's own edits. Confirmed via the GitHub API directly (not the dashboard's stale carried-forward figures): `checks.yml` run #1447 completed `success` against the prior commit `3e527915`; the current tip's own run (#1448) was still `in_progress` partway through this cycle. 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`. `ops/cold_read_ledger.py --next`: 94 of 164 `ops/*.py` files ledgered going into this cycle; the prior PM check-in's four-file batch (`build_kit_page.py`, `check_sitemap_current.py`, `check_video_links.py`, `check_cron_cadence.py`) all recorded clean.
+
+**Started `python ops/preflight.py --fast` locally and it had not finished by the time this 30-minute slot needed to close.** Per CLAUDE.md 0.4, unchecked is not passing, so this is reported as UNCHECKED for this pass rather than assumed clean: CI green on the immediately prior commit is the actual evidence this cycle relied on to call the previous work finished, not this run. Left running in the background; the operator should read its result directly rather than re-trust this note.
+
+**Step 3: nothing new is unblocked.** All 8 open GitHub issues remain `decision` or `blocked-on-art`, none of them mine to act on; no backlog row in `BACKLOG-2026-09-07.md` moved this cycle. Continued the cold-read lane as this cycle's own small closing job: read `ops/merge_cardtext.py` cold in full. No defect. The `KNOWN_AMBIGUOUS_DUPES` allowlist looked at first like it broke its own comment's promise, "documented here rather than silently dropped", because a known-ambiguous duplicate id prints through the same generic `duplicate ids` line as any other dupe rather than a separate call-out. Re-read the comment: it promises the value is never silently dropped or auto-"fixed", which the generic line (printed every run, id included) already satisfies; no separate call-out was ever promised. Recorded clean in `ops/cold-read-ledger.json` (95 of 164 now ledgered).
+
+**Went well:** confirming CI status directly from the GitHub API instead of trusting the dashboard's stale carried-forward figures.
+
+**Did not go well:** the local `preflight.py --fast` run took longer than this 30-minute slot to reach its own exit (started 21:43, still running when this entry was written), so this cycle is closing without that local confirmation, contrary to Step 5's own instruction to reconfirm before shipping. Recorded as unchecked rather than papered over.
+
+**Changing next cycle:** none new; watch whether the slow `--fast` run recurs, since the standing note in prior entries already names `gate_tests` as the usual multi-minute step.
+
+**Next:** cold-read lane continues per the handoff line above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 21:1x (previous work finished and verified; four more cold-read files cleared, none defective)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded 346 commits cleanly onto `3e527915`, no conflict.
