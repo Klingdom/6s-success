@@ -5663,6 +5663,56 @@ def gate_nav_toggle_wired() -> None:
              "404, corporate, kit, and two B2B articles).")
 
 
+def gate_landmarks_current() -> None:
+    """Every page (outside downloads/ and deck/, the same exclusion
+    ops/wire_landmarks.py's own pages() applies) must carry a skip link
+    that targets #main and a `<main id="main">` landmark.
+
+    Found live 2026-09-25, cold-reading ops/wire_landmarks.py per CLAUDE.md
+    step 5d: its own `--check` mode could not fail. add_main() silently
+    patches a missing id="main" back in memory and still reports "had one"
+    either way, and main()'s exit code only ever depended on whether
+    site.css still carries a .skip-link rule, never on whether any page's
+    skip link or main id actually matched. Proved directly, in an isolated
+    worktree: stripped site/index.html's whole
+    <!-- SKIP:BEGIN -->...<!-- SKIP:END --> block and the id="main"
+    attribute from its <main> tag, ran `python ops/wire_landmarks.py
+    --check` against it, and it printed "0 left alone" and exited 0.
+    site/index.html is hand maintained (confirmed by grep across every
+    ops/build_*.py), so nothing regenerates it after a hand edit; that
+    script's own check was the only thing that could have caught a
+    keyboard/screen-reader regression there, and it could not. Fixed the
+    script itself (main() now tracks every page whose skip link or main id
+    would actually change and fails on it), and this gate re-derives both
+    checks directly from the shipped HTML as a second, independent line of
+    defence, the same belt-and-suspenders relationship
+    gate_footer_consistent has with ops/wire_legal_strip.py.
+
+    Proved fail-then-pass: ops/tests/test_gate_landmarks_current.py plants
+    a missing skip link and a missing main id on scratch pages and confirms
+    the real committed site/ is clean.
+    """
+    problems = []
+    for path in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
+        rel = os.path.relpath(path, SITE).replace(os.sep, "/")
+        if rel.startswith(("downloads/", "deck/")):
+            continue
+        html = io.open(path, encoding="utf-8").read()
+        if ('<!-- SKIP:BEGIN -->' not in html or 'class="skip-link"' not in html
+                or 'href="#main"' not in html):
+            problems.append(f"{rel}: no skip link to #main")
+        if '<main id="main"' not in html:
+            problems.append(f"{rel}: no <main id=\"main\"> landmark")
+    if problems:
+        shown = problems[:8]
+        more = "" if len(problems) <= 8 else f" (+{len(problems) - 8} more)"
+        fail("landmarks-current",
+             f"{len(problems)} page(s) missing a skip link to #main and/or a "
+             f"main id=\"main\" landmark: {shown}{more}. "
+             "ops/wire_landmarks.py --check cannot be trusted alone for this, "
+             "see this gate's own docstring.")
+
+
 def _lint_js_no_undef(eslint_exe: str, overrides: dict | None = None):
     """Scan every shipped JS asset file plus every substantive inline
     <script> block on every page for an undefined reference. Returns a list
@@ -21830,6 +21880,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_no_dangling_js_references)
     run_gate(gate_nav_toggle_wired)
+    run_gate(gate_landmarks_current)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
     run_gate(gate_quest_keep_releases_urls_first)

@@ -366,6 +366,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 PM check-in: superseded by stripe_catalog.py per its own docstring, correctly guards live writes (STRIPE_ALLOW_LIVE), idempotent (finds existing active link before creating another), no defect found"
     },
+    "stripe_setup.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read in full 2026-09-25; no defect found."
+    },
     "sync_page_links.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -386,10 +391,20 @@
       "date": "2026-09-25",
       "note": "Cold-read for defects (PM check-in). Verified the known ffmpeg concat gotcha (last file's duration entry ignored) is correctly handled by repeating the last PNG path unduration'd after the loop. Silent-beat placeholder, retry/backoff on TTS throttling, audio/video hold durations staying in lockstep via apad(TAIL), and Desktop delivery failing soft rather than raising all check out. No defect."
     },
+    "video_srt.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read in full 2026-09-25; no defect found."
+    },
     "wire_aria_current.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "aria-current wiring verified against real header nav; --check reports every page correct"
+    },
+    "wire_breadcrumbs.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read in full 2026-09-25; no defect found."
     },
     "wire_consult_cta.py": {
       "status": "clean",
@@ -405,6 +420,16 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "generated-pack catalogue wiring; ran live, 130 entries (120 generated), all self-checks passed (no dead superset pointer, no overpriced subset, no lost buy links), output git-clean (no drift). No defect."
+    },
+    "wire_landmarks.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "wire_landmarks.py --check could not fail: main() exit code only depended on site.css's .skip-link rule, never on whether any page's skip link or main id actually matched (add_main() silently patches a missing id in memory and still reports 'had one'). Fixed main() to track and fail on any page whose skip link/main id would change; new gate_landmarks_current in preflight.py re-derives both checks independently. Fail-then-pass proved against the old code and in an isolated worktree against a planted regression on site/index.html."
+    },
+    "wire_legal_strip.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read in full 2026-09-25; no defect found."
     },
     "wire_measure.py": {
       "status": "clean",
