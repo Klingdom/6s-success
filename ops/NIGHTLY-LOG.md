@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (converged with a concurrent session on the same test_zone_block_seen.py root cause, not duplicated)
+
+A final sanity `preflight.py` this cycle also hit the real, reproducible `test_zone_block_seen.py` failure (4/4 reruns) and independently traced it to the identical two defects the entry below already documents: `site.css`'s sitewide `scroll-behavior:smooth` never completing a `scrollTo()` under this environment's `--virtual-time-budget`, and the test's own document-bottom scroll target landing well past all three personalised blocks on the picked zone page (a FAQ, video section and CTA band follow them). `git fetch` surfaced the fix already shipped (`8484d018`/`7bf6ad16`) before this cycle's own equivalent fix was committed; discarded the local duplicate per this log's established practice rather than layering a second, differently-shaped fix (this cycle's version centered on the lowest of the three blocks dynamically; theirs centers `#diagnosis` directly and uses `behavior:"instant"` rather than overriding the CSS property, a cleaner mechanism for the same result) on the same defect.
+
 ## PM check-in, 2026-09-25 01:1x (previous work confirmed finished: CI green on the real fix; then a genuine red gate found and fixed, a test that never actually worked under the CSS this site ships)
 
 Attached clean (fast-forward, no reset), then fast-forwarded again onto a concurrent operator push (`ac9cbb55`, the cold-read ledger) mid-cycle. `BACKLOG-2026-09-07.md` sections 2-6 still all done or Phil-gated; 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
