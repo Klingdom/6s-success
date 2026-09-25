@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (full independent re-verification, cold-read lane pushed 8 more files, no new defect)
+
+**Did:** Attached clean (fetch, no unshallow needed this run, checkout main, ff-only merge, 299 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest entries. Full `python ops/preflight.py` (not fast) ran clean: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no network egress, Pillow absent, no narrated films locally). Checked GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged. `ops/inbox_agent.py --apply`: no mail credential here. CI green on the last completed run (checks.yml #1432); several concurrent sessions' merge commits in flight, none red.
+
+Backlog sections 2-4 (A1-A7, B1-B9, C1-C7) confirmed done or Phil-gated; section 5 HOLD (traffic-gated); section 6 owner-gated. Continued the standing cold-read lane (`ops/cold_read_ledger.py --next`): read and ran live `stripe_check.py`, `stripe_brand.py`, `wire_breadcrumbs.py`, `wire_zone_heroes.py`, `wire_legal_strip.py`, `youtube_upload.py --check`, `check_cron_cadence.py`, `zone_supplies.py` (partial, already densely gated). All either ran clean and idempotent against the committed tree, or matched behaviour already documented and gated (`stripe_brand.py`'s local-only `--apply` is a known, exempted design; `cron-cadence`'s two DEGRADED workflows are the same measured-2026-09-09 gap, already warned).
+
+**Verified:** `wire_breadcrumbs.py --check` (29 correct, 0 stale), `wire_legal_strip.py --check` (every strip matches), `wire_zone_heroes.py --check` (111 reviewed and ok, fallback path clean). `ops/dashboard.py` regenerated; diff is timestamps/commit-count only.
+
+**Went well:** preflight and every cold-read target came back clean on the first pass; no wasted rework.
+
+**Did not go well:** nothing new; the standing sandbox-credential gaps are the only thing unchecked.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`build_quest.py`, `build_zone_map_pack.py`, `check_live_links.py`, `check_video_links.py` next by mention count). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, cycle addendum (converged with the concurrent PM check-in below on the same stale deploy-verdict citation, merged rather than duplicated; one factual mislabel caught in the merge)
 
 Independently found the identical `gate_status_deploy_verdict_current` warning (a full, non-fast `preflight.py` run surfaced it) and fixed both `STATUS.md` sections with my own dated correction paragraphs before fetching and discovering the PM check-in below had pushed the same fix minutes earlier. Merged rather than force-pushed: kept their "Production Knowledge" paragraph, which correctly resolved commit `c6cc1a6a` to the Laundry Room deck, and fixed the identical mislabel in my own `BLOCKER-001` paragraph (I had written "Entryway deck"; `git log -1 c6cc1a6a` confirms Laundry Room). `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` regenerated fresh with `ops/dashboard.py` rather than hand-picked from either side. Verified the merge itself, not just the pre-merge fix: `gate_status_deploy_verdict_current` called directly against the merged `STATUS.md` (clean), a full `preflight.py` reran against the pushed tree (every gate passed, 25 warnings, all previously diagnosed sandbox limits, none new). CI dispatched on the merge commit (`3a7ae192`, run 1435); not watched to completion within this session's own window, so recorded as dispatched, not confirmed green, per `CLAUDE.md` 0.4.
