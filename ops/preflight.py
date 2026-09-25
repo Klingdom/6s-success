@@ -49,6 +49,7 @@ import collections
 import glob
 import io
 import json
+import math
 import os
 import re
 import shutil
@@ -17289,6 +17290,78 @@ def gate_diagnosis_branch_shape() -> None:
                 + ("; ..." if len(problems) > 6 else "")))
 
 
+# DECK-GAME-DESIGN.md 4.1, quoted rather than inferred: "print-on-demand
+# prices in 18-card steps, and 72 is exactly eight US Letter sheets at
+# nine-up. 75 is 90 with fifteen blanks paid for."
+DECK_PRINT_STEP = 18
+
+
+def check_deck_print_tiers(decks) -> list:
+    """Decks whose card count does not land on a print tier.
+
+    `decks` is {name: card_count}. Returns one line per deck that would be
+    paid for at a tier above its own size, worst waste first.
+
+    WHY THIS IS A WARNING AND NOT A FAILURE
+    ---------------------------------------
+    Every deck currently ships as a free web page, where a card costs
+    nothing. The waste is only realised on the day one is printed. So this
+    must not block a release; it must be impossible to reach that day without
+    having seen the number.
+
+    WHY IT EXISTS AT ALL
+    --------------------
+    Measured 2026-09-25, after five more decks shipped: only Kitchen landed
+    on a tier. Entryway 57 pays for 72, Home Office 66 pays for 72, Laundry
+    67 pays for 72, and the two that matter most, Primary Bathroom 76 and
+    Garage 80, cross into the 90 tier for 4 and 8 cards over 72. Each deck
+    was internally consistent with its own declared budget, so nothing
+    existing could have caught it: the budgets themselves were set per room
+    without reference to the step. An under-filled tier is unbought value
+    (Entryway could carry 15 more cards for the same money); an over-filled
+    one is a whole extra tier bought for a handful of cards.
+    """
+    problems = []
+    for name, n in sorted(decks.items()):
+        if n <= 0:
+            continue
+        tier = int(math.ceil(n / float(DECK_PRINT_STEP)) * DECK_PRINT_STEP)
+        waste = tier - n
+        if not waste:
+            continue
+        problems.append((waste, name, n, tier))
+    out = []
+    for waste, name, n, tier in sorted(problems, reverse=True):
+        out.append("%s is %d cards and prints at the %d tier, so %d slot(s) "
+                   "are paid for and left blank" % (name, n, tier, waste))
+    return out
+
+
+def gate_deck_print_tiers() -> None:
+    """Every built deck's card count against the 18-card print step."""
+    import glob as _glob
+    decks = {}
+    for fp in sorted(_glob.glob(os.path.join(ROOT, "ops", "cardtext",
+                                             "*-deck.json"))):
+        try:
+            d = json.load(io.open(fp, encoding="utf-8"))
+        except Exception:                                      # noqa: BLE001
+            continue
+        cards = d.get("cards")
+        if isinstance(cards, list):
+            decks[d.get("room") or os.path.basename(fp)] = len(cards)
+    if not decks:
+        return
+    problems = check_deck_print_tiers(decks)
+    if problems:
+        warn("deck-print-tier",
+             "%d of %d built deck(s) do not land on the %d-card print step, "
+             "so a print run pays for slots it cannot use: %s. Free on the "
+             "web today; the cost lands the day one is printed."
+             % (len(problems), len(decks), DECK_PRINT_STEP,
+                "; ".join(problems)))
+
+
 def gate_diagnosis_authoring() -> None:
     """M3's own acceptance criteria (PLAN-MICROZONES-DECKS-APP.md): the 7
     Kitchen pilot zones' diagnosis.frictions must reuse the 21 real
@@ -21732,6 +21805,7 @@ def main() -> int:
     run_gate(gate_root_cause_articles_current)
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_branch_shape)
+    run_gate(gate_deck_print_tiers)
     run_gate(gate_kitchen_deck_current)
     run_gate(gate_entryway_deck_current)
     run_gate(gate_laundry_room_deck_current)
