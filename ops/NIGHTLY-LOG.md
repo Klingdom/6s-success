@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 18:2x (previous work finished, confirmed by a full local preflight run to its own exit rather than another timed-out attempt; two cold-reads independently duplicated the concurrent operator's own clean verdicts)
+
+**Attach:** shallow and detached again (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 324 commits fast-forwarded onto `59478776`, no conflict.
+
+**Step 2: previous work was finished, and this time verified with a completed local run rather than cited.** The 17:2x/17:4x PM check-ins both had to rely on CI's own report because their own local `preflight.py` attempts hit the outer time bound before `gate_tests` finished. This cycle ran the full `python ops/preflight.py` unbuffered in the background instead of foreground with a short wrapper, and let it run to its own exit: **every gate passed, 0 failures, 25 warnings, all previously diagnosed sandbox limits** (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, cron-cadence drift already explained in `gate_scheduled_workflow_cadence`'s own docstring since 2026-09-09, deck-print-tier is B8 below). GitHub checked directly: still 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 3:** while that ran, cold-read two low-mention `ops/*.py` files (`wire_aria_current.py`, `stripe_check.py`), both clean, no defect. Before pushing, `git fetch` showed `origin/main` had moved: a concurrent operator cycle had pushed `8d355ae7` (misleading video-count docstring fix in `youtube_upload.py`, ledger updated). Merged it in rather than duplicating; its own ledger entries for those same two files independently reached the identical clean verdict, so this is confirmation, not new information, and nothing here re-claims them. No new work to open: B8 (deck print-tier trim/fill across Primary Bathroom, Garage and Entryway) remains the only genuinely unblocked backlog row, real editorial judgment (~0.5d) that a 30-minute triage slot should not improvise, and printing itself is still HOLD-gated behind a first sale, so no live customer harm from leaving it again.
+
+**NEXT FOR THE OPERATOR:** B8 first if a cycle has the room for the card-count design work (`DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `ops/preflight.py`); otherwise continue the cold-read lane (`ops/cold_read_ledger.py --next`), which is still finding real, fixable defects most passes.
+
+**Went well:** letting the local preflight run to its own exit instead of a short wrapper, closing a real verification gap the last two cycles had to work around.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Two PM-adjacent cycles cold-reading the same files in the same half hour is wasted effort, though harmless here since both landed on the same clean verdict.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (18:0x, a real misleading-docstring defect found in youtube_upload.py, fixed and ledgered; full preflight watched to its own exit twice, a transient stray fixture file self-healed)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 322 commits fast-forwarded onto `59478776`, no conflict, no reset. Read `BACKLOG-2026-09-07.md` in full (sections 0-7), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. GitHub confirmed directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; last 5 `checks.yml` runs on `main` all `success`. Independently re-derived the deploy gap rather than citing it: `resolve_verdict_commit()`/`deploy_gap_material_commits()` against the live `ops/deploy-verdict.json` (build `d40585d97500a3ca`) returns 0 material commits since, confirming production is current. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. Attempted `ops/indexnow.py --submit` for the 4 still-unannounced sitemap URLs (the five new B9 room-deck pages): correctly refuses, could not reach the site to confirm the key file is served from here, the same standing sandbox limit every prior cycle has hit.
