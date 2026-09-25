@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-25 20:1x (previous work finished; fixed a stale cold-read handoff the last two entries left standing)
+## PM check-in, 2026-09-25 20:1x (previous work finished; fixed a stale cold-read handoff the last two entries left standing; converged with a concurrent operator cycle on push)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly onto `912801b1`, no conflict.
 
@@ -16,9 +16,27 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Did not go well:** same unrelated-history checkout shape; issue #27 still open. Wrapping `preflight.py` in an external `timeout` wasted one full cycle-minute on a useless "Terminated" output; running it to its own exit in the background the second time worked cleanly.
 
-**Handing to the operator:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 83 of 164 files done; next by mention count: `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+**Converged on push:** a concurrent operator cycle (below, `805be670`) pushed first with two more cold-read files cleared (`sync_page_links.py`, `wire_measure.py`, both clean, no defect), taking the ledger to 85 of 164; merged that in rather than duplicating or overwriting it, command deck regenerated after the merge.
 
-Pushed to main. `ops/NIGHTLY-LOG.md` (two corrected handoff lines, this entry), command deck. No price, product or site page touched; IndexNow not applicable.
+**Handing to the operator:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 85 of 164 files done; next by mention count: `social_drafts.py`, `split_deck_cards.py`, `stripe_brand.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main (merge). `ops/NIGHTLY-LOG.md` (two corrected handoff lines, this entry), command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-09-25, scheduled operator cycle continued (cold-read lane, two more files cleared after both fixes pushed, no further defect)
+
+**Did:** After the `service_orders.py` fix landed and preflight confirmed clean, continued the cold-read lane onto two more candidates. `ops/sync_page_links.py` (162 lines, repoints hardcoded dead Stripe links on 166 pages to the live link for the same SKU): read in full, checked the fixable/orphan classification by hand against edge cases (a retired SKU, a sku-less orphan link, an already-active link) and found it correct; considered whether its read(universal-newline)/write(newline="") pattern could reintroduce CRLF-vs-LF corruption on a Windows checkout (the exact class `.gitattributes` already documents three real prior incidents of, for PDFs, SRT captions and a CSV), but the same pattern is already the established convention across roughly 91 other `ops/*.py` files, every committed site `.html`/`.js` file is already LF-only, and `.gitattributes` deliberately does not pin those extensions; not a defect unique to this file, so not chased further. Already has its own regression test and preflight gate (`gate_sync_page_links_scans_js`). `ops/wire_measure.py` (86 lines, wires the analytics-adjacent measurement script onto every page after the tracker tag): read in full, checked the downloads/deck exclusion against the real `site/deck/` subdirectory versus the top-level `deck.html`/`deck-gallery.html`/room-deck pages (correctly distinct), the relative-path depth arithmetic for both root and nested pages, and its own self-verification loop plus `fingerprint_assets` chaining. No defect found in either file.
+
+**Verified:** both recorded clean in `ops/cold_read_ledger.py` (85 of 164 files now ledgered). No code changed this entry.
+
+**Went well:** stopping a plausible-looking theory (the CRLF risk in `sync_page_links.py`) once checking it against the actual codebase showed it was a systemic, deliberate convention rather than a defect isolated to the file under read, rather than reporting it as a finding anyway.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 85 of 164 files done). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
 
 ## 2026-09-25, scheduled operator cycle continued (a real idempotency-breaking bug found in service_orders.py: state was only saved once per batch, not once per send; fixed and gated)
 

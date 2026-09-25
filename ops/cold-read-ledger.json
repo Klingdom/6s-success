@@ -366,6 +366,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 PM check-in: superseded by stripe_catalog.py per its own docstring, correctly guards live writes (STRIPE_ALLOW_LIVE), idempotent (finds existing active link before creating another), no defect found"
     },
+    "sync_page_links.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25: read fully. read()/write() newline handling (universal-newline read, newline='' write) matches the same convention used in ~91 other ops/*.py generators, not unique to this file, and every committed site .html/.js is already LF-only, so not chased as a live defect. fixable/orphan classification logic checked by hand against edge cases (retired SKU, sku-less orphan, already-active link) and is correct; already has its own regression test and preflight gate (gate_sync_page_links_scans_js). No defect found."
+    },
     "sync_push.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -400,6 +405,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "generated-pack catalogue wiring; ran live, 130 entries (120 generated), all self-checks passed (no dead superset pointer, no overpriced subset, no lost buy links), output git-clean (no drift). No defect."
+    },
+    "wire_measure.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "cold-read 2026-09-25: read fully. Idempotent wiring logic checked (MARK/END block replace vs first-insert path), downloads/deck exclusion checked against real site/deck/ subdirectory vs top-level deck*.html pages (correct, distinct), relative-path depth math for pre= verified against root and nested pages, self-verification loop and fingerprint_assets chaining already present. No defect found."
     },
     "wire_signup.py": {
       "status": "clean",
