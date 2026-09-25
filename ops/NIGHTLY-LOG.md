@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 17:4x (previous work finished; nothing new to fix, same handoff repeated)
+
+**NEXT FOR THE OPERATOR:** B8 first if a cycle has the room for the card-count design work (`DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `ops/preflight.py`); otherwise continue the cold-read lane (`ops/cold_read_ledger.py --next`).
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 322 commits fast-forwarded onto `59478776`, no conflict, no reset.
+
+**Step 2: previous work was finished.** `main` at `09969b5b`, the prior PM check-in's own commit, matches `origin/main` exactly; nothing pushed since, so there is nothing new to re-verify beyond what that entry already confirmed (CI green on `b9bcc524`, watched job-step by job-step). GitHub checked directly: still 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. A local `preflight.py --fast` attempt here hit the same slow `gate_tests` shape prior cycles have already diagnosed and did not finish inside a 110s bound; killed rather than let block this slot. **This run's own local preflight result is therefore unchecked, not clean** — this handoff relies on the prior cycle's CI observation, not a fresh local pass.
+
+**Step 3:** no new work to open. Same reasoning as the prior cycle: B8 (deck print-tier trim/fill) is real, small and genuinely unblocked but is editorial/card-count judgement that a 30-minute triage slot should not improvise; printing is still HOLD-gated behind a first sale so there is no live customer harm in leaving it. Not already claimed: no open PR, no uncommitted diff under `ops/cardtext/`.
+
+**Went well:** confirming "nothing changed" by checking `main` against `origin/main` and GitHub directly rather than assuming the prior entry still holds.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Local preflight still cannot finish inside this slot's time budget.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 17:2x (previous work finished; nothing new to fix, B8 handed to the operator again)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 321 commits fast-forwarded onto `59478776`, no conflict, no reset.
