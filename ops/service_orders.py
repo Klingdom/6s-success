@@ -312,6 +312,14 @@ def main() -> int:
         return 0
 
     owner = mailer.owner()
+    # Saved after each send, not once at the end. The docstring promises this
+    # tool is idempotent, but a batch of more than one new booking used to
+    # hold every id in memory and write state-service-orders.json only after
+    # the whole loop finished: a mail failure on booking 2 of 3 meant booking
+    # 1's already-sent forward was never persisted, so the next run forwarded
+    # it to Phil a second time. Persisting each id right after its own send
+    # succeeds means a later failure in the same run cannot undo an earlier
+    # send's idempotency.
     for c in new_c:
         text = ("A service was purchased.\n\n"
                 "Service   : %s\nAmount    : $%s\nCustomer  : %s\nEmail     : %s\n"
@@ -322,6 +330,7 @@ def main() -> int:
                    c.get("email") or "not given", c["id"]))
         mailer.send(owner, "BOOKING: %s, $%s" % (c["service"], c["amount"]), text)
         state["charges"].append(c["id"])
+        save_state(state)
         print("     forwarded charge %s" % c["id"])
 
     for e in new_e:
@@ -344,10 +353,10 @@ def main() -> int:
         mailer.send(owner, "SERVICE ENQUIRY: %s" % e["service"], head,
                     attachments=attach)
         state["messages"].append(e["id"])
+        save_state(state)
         print("     forwarded email about %s (invite: %s)"
               % (e["service"], "yes" if when else "no time named"))
 
-    save_state(state)
     return 0
 
 

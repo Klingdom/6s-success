@@ -331,6 +331,11 @@
       "date": "2026-09-25",
       "note": "needs_phil computed identically to dashboard.py's own definition (decision-labelled issues only); refuses to send a stale brief"
     },
+    "service_orders.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "state-service-orders.json was only written once, after both forward loops finished; a mail failure on booking N of a multi-item batch meant booking N-1's already-sent forward was never persisted, so a rerun forwarded it to Phil a second time, breaking the file's own idempotency promise. save_state() now runs after each successful send. test_service_orders.py extended with a monkeypatched partial-failure regression test, fail-then-pass proved."
+    },
     "shoot_mobile.py": {
       "status": "fixed",
       "date": "2026-09-25",

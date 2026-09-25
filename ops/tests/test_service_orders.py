@@ -18,13 +18,74 @@ match a slice of a longer digit run.
 Run:  python ops/tests/test_service_orders.py
 """
 import datetime as dt
+import json
 import os
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
+import mailer                                                     # noqa: E402
 import service_orders as so                                      # noqa: E402
+
+
+def check_incremental_persistence():
+    """A mail failure partway through a --send batch must not undo the
+    idempotency of sends that already went out.
+
+    Regression for a real bug found 2026-09-25, cold-reading this file:
+    the state file used to be written once, after both loops finished. A
+    batch of more than one new booking that raised on its second send (a
+    timeout, a bad attachment, anything) meant the first booking's forward
+    had already reached Phil but its id was never persisted, so the next
+    run forwarded that same booking to him again, exactly the double-send
+    this file's own docstring promises "idempotent" rules out.
+    """
+    orig_state, orig_charges, orig_emails, orig_argv = (
+        so.STATE, so.recent_service_charges, so.service_emails, sys.argv)
+    orig_send, orig_owner = mailer.send, mailer.owner
+
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".json")
+    tmp.close()
+    so.STATE = tmp.name
+    sent = []
+
+    def fake_send(to, subject, text, *a, **kw):
+        sent.append(subject)
+        if len(sent) == 2:
+            raise RuntimeError("simulated send failure on the second booking")
+
+    try:
+        so.recent_service_charges = lambda limit=100: [
+            {"id": "ch_1", "service": "Virtual Home Consult", "amount": 250.0,
+             "email": "a@example.com", "name": "A", "created": 0},
+            {"id": "ch_2", "service": "In-Home Reset Day", "amount": 1200.0,
+             "email": "b@example.com", "name": "B", "created": 0},
+        ]
+        so.service_emails = lambda: []
+        mailer.send = fake_send
+        mailer.owner = lambda: "owner@example.com"
+        sys.argv = ["service_orders.py", "--send"]
+        try:
+            so.main()
+        except RuntimeError:
+            pass
+        try:
+            with open(tmp.name, encoding="utf-8") as fh:
+                state = json.load(fh)
+        except Exception:                                          # noqa: BLE001
+            return ["state file was never written after the first send "
+                    "succeeded and the second raised"]
+        if "ch_1" not in state.get("charges", []):
+            return ["ch_1's forward was sent but never persisted to state, "
+                     "so a rerun would forward it a second time"]
+        return []
+    finally:
+        so.STATE, so.recent_service_charges, so.service_emails, sys.argv = (
+            orig_state, orig_charges, orig_emails, orig_argv)
+        mailer.send, mailer.owner = orig_send, orig_owner
+        os.remove(tmp.name)
 
 
 def main() -> int:
@@ -102,12 +163,17 @@ def main() -> int:
         if "DTEND:" + end.strftime("%Y%m%dT%H%M%S") not in body:
             fails.append("ics() for %r has the wrong duration" % service)
 
+    # 7. A send failure partway through a batch must not undo the
+    #    idempotency of the sends that already succeeded.
+    fails += check_incremental_persistence()
+
     if fails:
         print("FAIL")
         for f in fails:
             print("  -", f)
         return 1
-    print("PASS: %d case(s), find_time year-guard, which_service, ics all correct"
+    print("PASS: %d case(s), find_time year-guard, which_service, ics, "
+          "incremental persistence all correct"
           % (len(year_cases) + len(cases) + 4 + len(so.DURATION)))
     return 0
 

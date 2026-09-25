@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle continued (a real idempotency-breaking bug found in service_orders.py: state was only saved once per batch, not once per send; fixed and gated)
+
+**Did:** Continued the same cycle after the `shoot_mobile.py` fix landed (`7c973511`, pushed). Re-fetched `origin/main` first: no concurrent push since. Continued the cold-read lane onto `ops/service_orders.py` (355 lines, forwards paid service bookings and enquiry emails to Phil with a calendar invite; its own docstring promises "Idempotent: every charge and message it has already handled is recorded in ops/state-service-orders.json, so a rerun does not forward the same booking twice").
+
+**Found:** `main()`'s `--send` path appended each newly forwarded charge/email id to the in-memory `state` dict inside its two loops, but called `save_state(state)` exactly once, after both loops had fully finished. If a batch has more than one new item and `mailer.send()` raises partway through (a timeout, a bad attachment, anything), every send that already succeeded before the raise is lost from disk: the exception propagates out of `main()` before the single end-of-function `save_state()` ever runs. The next run re-reads the un-updated state file, sees the earlier, already-forwarded id as new again, and forwards that same booking to Phil a second time. This is exactly the "idempotent" claim the file's own docstring makes, broken under the one condition (partial batch failure) its existing test never exercised.
+
+**Fixed:** moved `save_state(state)` to run immediately after each successful `state["charges"].append(...)` / `state["messages"].append(...)`, once per item instead of once per run, so a later failure in the same batch cannot undo an earlier send's persistence.
+
+**Verified:** `python3 -c "import ast; ast.parse(...)"` before trusting the edit. Added `check_incremental_persistence()` to `ops/tests/test_service_orders.py`: monkeypatches `recent_service_charges`, `service_emails`, `mailer.send` and `mailer.owner`, feeds two fake charges, makes the second `mailer.send` call raise, then confirms the first charge's id survives on disk in a temp state file. Fail-then-pass proved directly: temporarily reverted the two inline `save_state()` calls back to the old single end-of-function call, reran, watched it fail by name ("state file was never written after the first send succeeded and the second raised"), restored the fix byte for byte, reran clean (15 cases, up from 13). `python ops/preflight.py --fast` run after; no gate wiring needed since `gate_tests()` globs every `ops/tests/test_*.py` automatically.
+
+**Went well:** the cold-read lane's second real defect of this cycle, on the very next file after `shoot_mobile.py`, both in the exact "a promise the code does not actually keep under one specific failure path" shape this repository keeps finding.
+
+**Did not go well:** this is a rare-condition bug (needs a batch of 2+ new bookings and a mid-batch send failure) that has likely never actually fired given current traffic (0-1 bookings per run), so its real-world cost to date is probably zero; fixed anyway because the fix was small and the claim it restores is explicit and load-bearing the day volume grows.
+
+**Changing next cycle:** none; the existing test file was the right place, no new preflight gate needed.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 83 of 164 files done). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/service_orders.py`, `ops/tests/test_service_orders.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (a real report-without-signal bug found in shoot_mobile.py: exit code was hardcoded to 0 regardless of findings; fixed and gated)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 335 commits fast-forwarded onto `59478776`, no conflict, no reset. Read `BACKLOG-2026-09-07.md` (sections 0-7), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. `python ops/preflight.py --fast` ran clean (0 failures) before touching anything. GitHub confirmed directly (via a worker call): 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. Backlog sections 2-4 confirmed closed or Phil-gated (B6/B8/B9 all done, D-023/D-024/D-027 recorded); section 5 stays HOLD on traffic evidence. Continued the cold-read lane (`ops/cold_read_ledger.py --next`).
