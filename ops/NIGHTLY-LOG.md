@@ -14,7 +14,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none.
 
-**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `build_card_prompts.py`, `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `check_pack_pages.py`, `generate_zone_heroes.py`, ...). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py`, `prune_catalog_js.py`, ...; re-run the command rather than trust this list, since a concurrent session may clear one first). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
 
 Pushed to main. `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
 
