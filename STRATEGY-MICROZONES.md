@@ -16,7 +16,7 @@ and the built site, not estimated.
 |---|---|---|---|
 | purpose, done_looks_like, session, time_note | 114 | - | what this place is for and when it is finished |
 | passes | 114 | **684** | the six S steps, per zone |
-| shine_detail | 114 | **749** | a cleaning method per surface, with product and order |
+| shine_detail | 114 | **762** | a cleaning method per surface, with product and order |
 | watch_for | 114 | **252** | what goes wrong here |
 | leave_behind | 114 | **228** | the standard that stays, and its trigger |
 | the_call | 114 | **235** | the judgement call this zone forces |
