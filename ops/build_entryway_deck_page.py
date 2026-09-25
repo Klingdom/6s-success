@@ -183,9 +183,9 @@ PAGE = """<!doctype html>
 <meta property="og:url" content="https://6s-success.com/entryway-deck.html">
 <meta property="og:title" content="The Entryway Deck (Five Zones): __N__ cards, typeset and free to read">
 <meta property="og:description" content="The Manual's real __NZONES_LOWER__ Entryway zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
-<meta property="og:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
+<meta property="og:image" content="https://6s-success.com/assets/img/rooms/ch31-image01.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
+<meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch31-image01.jpg">
 <meta name="twitter:title" content="The Entryway Deck (Five Zones): __N__ cards, typeset and free to read">
 <meta name="twitter:description" content="The Manual's real __NZONES_LOWER__ Entryway zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <meta name="theme-color" content="#22323C">

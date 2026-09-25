@@ -4756,6 +4756,97 @@ def gate_garage_deck_rendered() -> None:
         fail("garage-deck-rendered", "; ".join(problems))
 
 
+# Every deck page's own og:image/twitter:image, page filename -> room slug.
+# The two rooms with a real photographic before/after (BACKLOG-2026-09-07.md
+# section 3c) use that photo's own chapter file; every other room deck has
+# no real photo (confirmed: no CH*_IMAGE_FINALIZATION_NOTES.md exists for
+# those chapters) and must use its own first zone's already-generated hero
+# image instead, never another room's.
+DECK_OG_IMAGE_REAL_PHOTO = {
+    "kitchen-deck.html": "ch32-image01",
+    "entryway-deck.html": "ch31-image01",
+}
+DECK_OG_IMAGE_ZONE_SLUG = {
+    "garage-deck.html": "garage",
+    "laundry-room-deck.html": "laundry-room",
+    "home-office-deck.html": "home-office",
+    "primary-bathroom-deck.html": "primary-bathroom",
+}
+
+
+def check_deck_og_image_honest(pages: dict) -> list:
+    """Pure logic for gate_deck_og_image_honest. `pages` maps deck page
+    filename (e.g. "garage-deck.html") to its full shipped HTML text.
+
+    Found live 2026-09-25: all five room decks built after the Kitchen deck
+    (Entryway's second deck, Laundry Room, Home Office, Primary Bathroom,
+    Garage) were built by copying the Kitchen deck's own page generator as a
+    template, and every one of them kept the Kitchen chapter's real
+    photograph (ch32-image01.jpg) as its own og:image/twitter:image
+    verbatim. Sharing any of those five deck links anywhere (LinkedIn,
+    Facebook, iMessage, Pinterest) showed a photograph of a kitchen, not
+    the room the link was actually about. No gate caught it because no gate
+    checked the social preview image against the page's own subject.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import re as _re
+    problems = []
+    seen_images = {}
+    for fname, page in pages.items():
+        m = _re.search(r'<meta property="og:image" content="([^"]*)"', page)
+        if not m:
+            problems.append(f"{fname}: no og:image meta tag found")
+            continue
+        og = m.group(1)
+        tw = _re.search(r'<meta name="twitter:image" content="([^"]*)"', page)
+        if not tw or tw.group(1) != og:
+            problems.append(f"{fname}: twitter:image does not match "
+                            f"og:image ({og!r} vs "
+                            f"{tw.group(1) if tw else None!r})")
+
+        if fname in DECK_OG_IMAGE_REAL_PHOTO:
+            want = DECK_OG_IMAGE_REAL_PHOTO[fname]
+            if want not in og:
+                problems.append(f"{fname}: og:image {og!r} does not carry "
+                                f"this room's own real photo ({want!r})")
+        elif fname in DECK_OG_IMAGE_ZONE_SLUG:
+            want_prefix = f"assets/zones/{DECK_OG_IMAGE_ZONE_SLUG[fname]}--"
+            if want_prefix not in og:
+                problems.append(f"{fname}: og:image {og!r} is not this "
+                                f"room's own zone hero (expected a path "
+                                f"containing {want_prefix!r}); it may have "
+                                f"been copied from another room's deck "
+                                f"template")
+
+        if og in seen_images:
+            problems.append(f"{fname}: og:image {og!r} is identical to "
+                            f"{seen_images[og]}'s; two different room decks "
+                            f"cannot honestly share one social preview "
+                            f"image")
+        else:
+            seen_images[og] = fname
+    return problems
+
+
+def gate_deck_og_image_honest() -> None:
+    """Sitewide: every room deck's og:image/twitter:image must actually
+    depict that room, not a photo borrowed from a different room's deck
+    template. See check_deck_og_image_honest's own docstring for the live
+    defect this closes.
+    """
+    pages = {}
+    for fname in list(DECK_OG_IMAGE_REAL_PHOTO) + list(DECK_OG_IMAGE_ZONE_SLUG):
+        path = os.path.join(SITE, fname)
+        if not os.path.exists(path):
+            continue
+        pages[fname] = io.open(path, encoding="utf-8", errors="replace").read()
+
+    problems = check_deck_og_image_honest(pages)
+    if problems:
+        fail("deck-og-image-honest", "; ".join(problems))
+
+
 def gate_front_matter_filled() -> None:
     """A committed copyright page must not carry an answered placeholder.
 
@@ -21576,6 +21667,7 @@ def main() -> int:
     run_gate(gate_home_office_deck_rendered)
     run_gate(gate_primary_bathroom_deck_rendered)
     run_gate(gate_garage_deck_rendered)
+    run_gate(gate_deck_og_image_honest)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)

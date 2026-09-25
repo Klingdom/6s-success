@@ -59,6 +59,20 @@ def num_word(n: int) -> str:
     return _num_word(n)
 
 
+def hero_image_url(room: str, zone: str) -> str:
+    """No real photograph exists for this room (unlike Entryway/Kitchen,
+    which use a real chapter-opener photo): every prior room deck's own
+    generator hardcoded the Kitchen chapter photo here instead, found live
+    2026-09-25. Use this room's own first zone's already-generated hero
+    image (the same file its own zone page already uses for og:image),
+    honest and specific to the room rather than borrowed from another one.
+    """
+    def s(t):
+        return re.sub(r"[^a-z0-9]+", "-", (t or "").lower()).strip("-")
+    return (f"https://6s-success.com/assets/zones/"
+            f"{s(room)}--{s(zone)}-lg.jpg")
+
+
 # --------------------------------------------------------------- assembly
 
 def build_body(deck: dict) -> str:
@@ -174,9 +188,9 @@ PAGE = """<!doctype html>
 <meta property="og:url" content="https://6s-success.com/primary-bathroom-deck.html">
 <meta property="og:title" content="The Primary Bathroom Deck: __N__ cards, typeset and free to read">
 <meta property="og:description" content="The Manual's real __NZONES_LOWER__ Primary Bathroom zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
-<meta property="og:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
+<meta property="og:image" content="__HEROIMG__">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch32-image01.jpg">
+<meta name="twitter:image" content="__HEROIMG__">
 <meta name="twitter:title" content="The Primary Bathroom Deck: __N__ cards, typeset and free to read">
 <meta name="twitter:description" content="The Manual's real __NZONES_LOWER__ Primary Bathroom zones, the friction each one causes, the root cause, the fix, and the standard to keep. __N__ cards, typeset, free.">
 <meta name="theme-color" content="#22323C">
@@ -341,6 +355,7 @@ def main() -> int:
     n_zones = len(ZONE_ORDER)
     n_causes = len([c for c in deck["cards"] if c["type"] == "ROOT CAUSE CARD"])
     n_kinds = len(TYPE_COUNT_ORDER)
+    hero_img = hero_image_url("Primary Bathroom", ZONE_ORDER[0])
 
     page = (PAGE
             .replace("__CSS__", CSS)
@@ -353,7 +368,8 @@ def main() -> int:
             .replace("__NZONES_LOWER__", num_word(n_zones).lower())
             .replace("__NZONES__", num_word(n_zones))
             .replace("__NCAUSES_LOWER__", num_word(n_causes).lower())
-            .replace("__NKINDS_LOWER__", num_word(n_kinds).lower()))
+            .replace("__NKINDS_LOWER__", num_word(n_kinds).lower())
+            .replace("__HEROIMG__", hero_img))
 
     io.open(OUT, "w", encoding="utf-8", newline="").write(page)
 
