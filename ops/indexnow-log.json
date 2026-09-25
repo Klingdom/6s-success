@@ -196,13 +196,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-04T02:32:18Z",
-   "mode": "full",
-   "offered": 185,
-   "accepted": 185,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-04T04:03:29Z",
    "mode": "new",
    "offered": 1,
@@ -614,6 +607,13 @@
    "offered": 16,
    "accepted": 16,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-25T13:59:05Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -634,7 +634,7 @@
   "https://6s-success.com/corporate.html": "2d019d42db42900e",
   "https://6s-success.com/deck-gallery-mudroom.html": "acc8b4b42b95de7f",
   "https://6s-success.com/deck-gallery.html": "4a8828efaa18cc96",
-  "https://6s-success.com/deck.html": "dcc99bc1b2777774",
+  "https://6s-success.com/deck.html": "5bf6f0f9c90047a4",
   "https://6s-success.com/kit.html": "10aa1e1394572913",
   "https://6s-success.com/quest.html": "94a311984b7206bf",
   "https://6s-success.com/standards.html": "1e7bdcf4fd858b84",
@@ -809,6 +809,6 @@
   "https://6s-success.com/articles/what-a-5s-engagement-costs": "2fadc5bddf383fbc",
   "https://6s-success.com/articles/why-5s-decays-after-six-months": "b420843afbc67e5b",
   "https://6s-success.com/how-to-clean-anything.html": "dbed12682c57096a",
-  "https://6s-success.com/entryway-deck.html": "a0b71a5425290442"
+  "https://6s-success.com/entryway-deck.html": "78a44bafb784d2b1"
  }
 }
