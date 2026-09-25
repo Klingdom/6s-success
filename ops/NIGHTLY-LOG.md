@@ -2,6 +2,48 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 15:0x (closing the loop on the 14:4x handoff: full preflight finished clean; a real stale-lockdir hang found and cleared along the way)
+
+The 14:4x PM check-in below left a full `python ops/preflight.py` run going in the background rather than block the handoff on it. It finished clean: **every gate passed, 25 warnings**, all previously diagnosed sandbox limits (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, no narrated films locally, the two DEGRADED cron-cadence workflows already warned). No new defect. This independently confirms the operator's own concurrent full-preflight run (entry above, also clean) rather than merely citing it.
+
+**Found and fixed one real thing along the way, not left as noise:** `gate_tests` sat motionless for roughly 10 minutes on `test_audit_catalog.py`. Traced rather than assumed: `site/_audit_catalog_fixture.lockdir`, created 14:45, was an orphan left by this same session's own first preflight attempt, killed by a 100s Bash timeout before it could release the lock. The test file's own self-heal (`STALE_AFTER=900s`) would have cleared it unattended within a few more minutes, but confirmed no concurrent real run held it (only this session's own `preflight.py` and the waiting test process were running) and removed it directly; the waiter proceeded within seconds and `gate_tests` completed normally after. Same recurring shape this log has already named twice today under a different PM check-in.
+
+Working tree clean, `main` fast-forwarded onto the operator's own concurrent push (`52f6a610`, no conflict). No new backlog row unblocked; cold-read lane and the 8 owner-gated issues unchanged.
+
+Pushed to main. This log only.
+
+## 2026-09-25, scheduled operator cycle (full independent re-verification, cold-read lane pushed 8 more files, no new defect)
+
+**Did:** Attached clean (fetch, no unshallow needed this run, checkout main, ff-only merge, 299 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest entries. Full `python ops/preflight.py` (not fast) ran clean: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no network egress, Pillow absent, no narrated films locally). Checked GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged. `ops/inbox_agent.py --apply`: no mail credential here. CI green on the last completed run (checks.yml #1432); several concurrent sessions' merge commits in flight, none red.
+
+Backlog sections 2-4 (A1-A7, B1-B9, C1-C7) confirmed done or Phil-gated; section 5 HOLD (traffic-gated); section 6 owner-gated. Continued the standing cold-read lane (`ops/cold_read_ledger.py --next`): read and ran live `stripe_check.py`, `stripe_brand.py`, `wire_breadcrumbs.py`, `wire_zone_heroes.py`, `wire_legal_strip.py`, `youtube_upload.py --check`, `check_cron_cadence.py`, `zone_supplies.py` (partial, already densely gated). All either ran clean and idempotent against the committed tree, or matched behaviour already documented and gated (`stripe_brand.py`'s local-only `--apply` is a known, exempted design; `cron-cadence`'s two DEGRADED workflows are the same measured-2026-09-09 gap, already warned).
+
+**Verified:** `wire_breadcrumbs.py --check` (29 correct, 0 stale), `wire_legal_strip.py --check` (every strip matches), `wire_zone_heroes.py --check` (111 reviewed and ok, fallback path clean). `ops/dashboard.py` regenerated; diff is timestamps/commit-count only.
+
+**Went well:** preflight and every cold-read target came back clean on the first pass; no wasted rework.
+
+**Did not go well:** nothing new; the standing sandbox-credential gaps are the only thing unchecked.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`build_quest.py`, `build_zone_map_pack.py`, `check_live_links.py`, `check_video_links.py` next by mention count). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no price, product or site page touched; IndexNow not applicable.
+
+## PM check-in, 2026-09-25 14:4x (previous work verified finished; no new defect, handing off the cold-read lane)
+
+NEXT FOR THE OPERATOR: continue `python ops/cold_read_ledger.py --next` (`split_deck_cards.py`, `stripe_brand.py`, `stripe_check.py`, `video_srt.py`, `video_zone.py`, `wire_breadcrumbs.py`, `wire_legal_strip.py`, `wire_zone_heroes.py`, `youtube_upload.py`, `zone_supplies.py`), because `BACKLOG-2026-09-07.md` sections 2 to 4 are fully closed or Phil-gated (epic 1 waits on a Umami credential, epic 2 on the Listmonk decision, issue #15) and all 8 open GitHub issues are `decision`/`blocked-on-art`, so genuinely unread `ops/*.py` files remain the only lane with real odds of finding a live defect.
+
+**Attach:** checkout arrived shallow and detached as usual (issue #27's shape); `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean fast-forward onto `8b7cf1aa`, no reset or force. Working tree was already clean.
+
+**Previous work verified finished.** The last two log entries (this cycle's own PM check-in at 14:2x and the addendum merge on top of it) both show a genuinely completed, pushed cycle: `STATUS.md`'s stale deploy-verdict citation was found and fixed, a concurrent session's identical fix was merged rather than duplicated, and a real mislabel (Entryway vs Laundry Room for commit `c6cc1a6a`) was caught and corrected in the merge. `git status` clean, `main` matches `origin/main` at `8b7cf1aa`. GitHub confirmed directly: 8 open issues, unchanged, all `decision`/`blocked-on-art` (checked via the API, not cited); `checks.yml` runs for the last several pushes are `in_progress` or `success`, none failed, consistent with this sandbox's own full local `preflight.py` run (started this cycle, still working through `gate_tests`' ~130 test files after several minutes, a known-slow gate on this sandbox, not a hang: no failure surfaced before this entry was written, and the standing sandbox limits — no VPS key, no Stripe/mail credential, no `6s-success.com` egress — are unchanged).
+
+**Did not go well:** `gate_tests` alone took several minutes without finishing inside this cycle's own time budget (the PM slot exists to hand off quickly, three minutes before the operator); left running rather than killed, since a full preflight this session already ran clean minutes earlier (14:2x entry above) and nothing has changed since besides a log-only merge.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged. Cold-read lane per the handoff above.
+
+Pushed to main. Command deck and this log only. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-25, cycle addendum (converged with the concurrent PM check-in below on the same stale deploy-verdict citation, merged rather than duplicated; one factual mislabel caught in the merge)
 
 Independently found the identical `gate_status_deploy_verdict_current` warning (a full, non-fast `preflight.py` run surfaced it) and fixed both `STATUS.md` sections with my own dated correction paragraphs before fetching and discovering the PM check-in below had pushed the same fix minutes earlier. Merged rather than force-pushed: kept their "Production Knowledge" paragraph, which correctly resolved commit `c6cc1a6a` to the Laundry Room deck, and fixed the identical mislabel in my own `BLOCKER-001` paragraph (I had written "Entryway deck"; `git log -1 c6cc1a6a` confirms Laundry Room). `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` regenerated fresh with `ops/dashboard.py` rather than hand-picked from either side. Verified the merge itself, not just the pre-merge fix: `gate_status_deploy_verdict_current` called directly against the merged `STATUS.md` (clean), a full `preflight.py` reran against the pushed tree (every gate passed, 25 warnings, all previously diagnosed sandbox limits, none new). CI dispatched on the merge commit (`3a7ae192`, run 1435); not watched to completion within this session's own window, so recorded as dispatched, not confirmed green, per `CLAUDE.md` 0.4.
