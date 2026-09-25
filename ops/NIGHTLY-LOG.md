@@ -22,7 +22,25 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Backlog section 3 remains fully closed; next unblocked work is another low-mention `ops/*.py` cold read (`build_home_office_deck_page.py`, `build_primary_bathroom_deck_page.py` and `build_entryway_deck_page.py` are next by mention count) or a fresh sweep of the "done this week" section for a stale citation.
 
-Pushed to main. `ops/build_entryway_deck_page.py`, `ops/build_garage_deck_page.py`, `ops/build_home_office_deck_page.py`, `ops/build_laundry_room_deck_page.py`, `ops/build_primary_bathroom_deck_page.py`, `ops/preflight.py` (+1 gate), `ops/tests/test_gate_deck_og_image_honest.py`, `site/entryway-deck.html`, `site/garage-deck.html`, `site/home-office-deck.html`, `site/laundry-room-deck.html`, `site/primary-bathroom-deck.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, command deck, this log. No price or product touched, no new page (5 existing pages fixed, 0 added); IndexNow will pick up the 5 changed pages on its next successful run.
+Pushed to main. `ops/build_entryway_deck_page.py`, `ops/build_garage_deck_page.py`, `ops/build_home_office_deck_page.py`, `ops/build_laundry_room_deck_page.py`, `ops/build_primary_bathroom_deck_page.py`, `ops/preflight.py` (+1 gate), `ops/tests/test_gate_deck_og_image_honest.py`, `site/entryway-deck.html`, `site/garage-deck.html`, `site/home-office-deck.html`, `site/laundry-room-deck.html`, `site/primary-bathroom-deck.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, command deck, this log. No price or product touched, no new page (5 existing pages fixed, 0 added); IndexNow will pick up the 5 changed pages on its next successful run. This entry converges with the concurrent PM check-in immediately below, which handed the operator this exact cold-read lane at the same time this cycle was already working it independently.
+
+## PM check-in, 2026-09-25 11:4x (previous work confirmed finished by a full run, not the fast pass; no unblocked backlog row remains, handing the operator the cold-read lane)
+
+NEXT FOR THE OPERATOR: continue `python ops/cold_read_ledger.py --next`, starting with the five deck page generators B9 just shipped (`build_garage_deck_page.py`, `build_home_office_deck_page.py`, `build_primary_bathroom_deck_page.py`, `build_entryway_deck_page.py`, `build_laundry_room_deck_page.py`, in that ledger order), because they are the newest, least-reviewed code in the repository and B9's own log entries already found and fixed a real live CI-blocking footer defect in two sibling generators from this exact family, so the other three deserve the same scrutiny before assuming they are clean.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 273 commits fast-forwarded, no reset or force). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub's 8 open issues live via the API.
+
+**Previous work confirmed finished, not just cited.** Ran a full, non-fast `python ops/preflight.py` to completion (it runs long; watched it to the end rather than trust the fast pass or the prior cycle's own report): every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/Umami/mail/SSH credential, no VPS egress, the two cron-cadence drifts, sample-PDF spelling, 4 pages missing IndexNow announcement including the new Garage/Home Office decks, site verification, page/deck-art gaps on issues #2/#29), none new. Working tree was already clean on `origin/main`.
+
+**Checked BACKLOG-2026-09-07.md and GitHub for unblocked work before concluding there was none.** Sections 2 and 3 (micro zones/app, decks) are fully closed, including B9's fifth and last room (Garage). Section 1b is resolved. Section 4 (images/video) is entirely Phil-gated (Gemini billing, YouTube OAuth). Section 5 is correctly HOLD. Section 6 (owner gates) all need Phil's own hand. 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none actionable here.
+
+**Went well:** running the full preflight rather than the fast pass, since the prior three cycles today all did the same and a shortcut here would have been the first one to skip it for no reason.
+
+**Did not go well:** none new; the same recurring shallow/detached checkout shape (issue #27) handled cleanly via unshallow/fetch/ff-only.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged. The cold-read lane above is the only genuinely unblocked lane left; `ops/cold_read_ledger.py --next` tracks it so no session re-reads a file another already cleared.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
 
 ## PM check-in, 2026-09-25 11:1x (previous work finished; B9 fully closed but STATUS.md still said four rooms open, fixed)
 
