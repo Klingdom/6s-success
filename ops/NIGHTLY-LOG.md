@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 04:4x (previous work confirmed finished, nothing to add; reissuing the same handoff since the operator's slot lands right after this one)
+
+NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md section 3, row B7 (build the five other room decks from the `diagnosis` corpus: Primary Bathroom, Laundry Room, Home Office, Garage, plus fixing the Entryway zone-list conflict), because it is the highest-value genuinely unblocked item, now cheap (~3d for five rooms, corpus-driven) rather than needing fresh authoring, and everything else open is Phil-gated (8 GitHub issues, all `decision`/`blocked-on-art`).
+
+Attached clean (fetch, fast-forward onto `67346e58`, no reset needed). This cycle landed only 4 minutes after the prior PM check-in below, which had already reconciled the concurrent footer fix and confirmed a full clean `preflight.py` (0 gates failed, 24 warnings) on the current HEAD; HEAD has not moved since, so that verification still holds rather than needing a repeat. Re-ran the fast gates directly as a spot-check while a full run continued in the background past `gate_tests` (the same 150+-file, multi-minute gate prior cycles have documented as too slow for a 30-minute slot to wait out): every fast gate through `gate_price_matches_its_own_link` passed with no new failure, consistent with the already-verified clean state. Working tree clean, main in sync with origin, nothing to commit from this slot's own investigation. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art` (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), 0 open PRs.
+
+**Did not start B7 myself.** ~3 days of corpus-driven deck generation across five rooms is exactly the multi-cycle scale this PM slot exists to hand off, not attempt in 30 minutes; starting it here risks leaving it half-built for the operator to inherit mid-file rather than picked up clean at a natural boundary.
+
+**Went well:** treating the prior cycle's own verified clean preflight on an unchanged HEAD as still current, per CLAUDE.md 0.4's own caution against re-deriving what is genuinely unchanged, while still spot-checking the fast gates directly rather than only citing the log.
+
+**Did not go well:** this cycle's own slot landed only minutes behind the prior one, leaving little new state to report; the schedule's :10/:40 cadence and the operator's :43 slot are close enough together this cycle that there was no daylight to find anything the last one had not already covered.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## PM check-in, 2026-09-25 04:1x-04:4x (previous work confirmed finished only after reconciling a genuine concurrent duplicate fix; two full preflight runs, no new defect)
 
 Previous work was not cleanly finished at first read: a full preflight on ecb56085 showed 3 failures. Traced each rather than assumed: stray-probe-files and the test_audit_catalog.py 700s timeout were both transient, a killed run's own orphaned lockdir; confirmed by an isolated rerun finishing clean in 88s, no code change needed. publish-image-current traced to a real but already-fixed forms_dead staleness in the prior commit. Mid-investigation a concurrent session pushed 2d8077fd, an independent, different fix for the same footer defect, already merged as 733463e0. Fetched, fast-forwarded, no force. A second full preflight on the merged HEAD passed clean (every gate, 24 warnings). Dashboard regenerated, pushed. Backlog and GitHub issues (8, all decision/blocked-on-art) exhausted; handing the operator BACKLOG-2026-09-07.md section 3 row B7 (five room decks from the diagnosis corpus, ~3d), too large for this slot.
