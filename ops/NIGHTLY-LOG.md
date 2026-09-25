@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 16:1x (previous work finished; fixed the recurring lockdir FAIL itself rather than logging a fifth occurrence)
+
+**Attach:** shallow and detached again; unshallowed, ff-only merged 311 commits onto `c375bf4e`, clean.
+
+**Step 2: previous work was finished.** The 15:4x entry below confirmed the 15:3x preflight clean and correctly handed B8 (deck print-tier trim) to the operator as a real, unblocked, ~0.5d item, too large for this slot. No commit landed since; nothing to duplicate.
+
+**Fixed, not just re-logged, the lockdir shape the 15:0x/15:3x entries already flagged three times today.** `test_audit_catalog.py`'s own `_lock()` deliberately defaults to `STALE_AFTER+120` (1020s) so a waiter always outlives the staleness window, but `gate_tests()` in `preflight.py` kills the whole subprocess at 700s, a bound sized against a different, slower test file entirely (the etsy renders). 1020 > 700, so any waiter blocked from the moment a lock is created was not racing, it was guaranteed to hit the outer timeout first, every time, which is exactly the "self-heals, but only on the next run" pattern logged three times today. Traced the two files' own comments to confirm the mismatch was real and dated, not assumed: `STALE_AFTER=900` was set 2026-09-16, after `gate_tests()`'s bound was already reduced to 700 on 2026-09-13, so the two safety margins were never checked against each other. Lowered `STALE_AFTER` to 300 (preserving the `+120` relationship the file's own `_check_lock_self_heals()` self-test asserts, so that test still catches any future value that breaks the invariant), leaving real margin under 700s for the file's own actual work. Timed the real work directly rather than trusting "under a minute": one full clean run took 90s. Hit two self-inflicted false failures while verifying (a `timeout` I used killed the process mid-lock-hold twice, once leaving the same orphan the fix targets, once leaving a stray per-pid fixture HTML file that made the drift check see two fixtures at once, the exact collision class this file's own comments already name); traced both to my own commands rather than assumed a regression, cleared them, reran clean before treating either as evidence.
+
+**Verified:** `test_audit_catalog.py` standalone, clean, twice. Full `python ops/preflight.py`, no external timeout this time: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS-SSH credential, no `6s-success.com` egress, Pillow absent, no narrated films locally). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Working tree otherwise clean.
+
+**Handing to the operator (:43): B8 stands, unchanged from the 15:4x entry** (trim Primary Bathroom/Garage under 72 or accept the 90 tier deliberately, fill Entryway toward 72; `DECK-GAME-DESIGN.md` 4.1, `check_deck_print_tiers()` in `preflight.py`). Nothing here touches it.
+
+**Went well:** treating the third same-day recurrence as the signal the 15:3x entry said it would be, and finding the actual cross-file constant mismatch instead of adjusting one more number by feel.
+
+**Did not go well:** caused two of my own false failures while verifying, both from using an external `timeout` against a process that holds a filesystem lock; cleared both, no residue left in `site/`.
+
+**Changing next cycle:** none; the fix is a corrected relationship between two existing constants, not a new mechanism, so nothing new to add.
+
+Pushed to main. `ops/tests/test_audit_catalog.py` (one constant plus its comment), command deck, this log. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 15:4x (previous work finished; handing the operator a real unblocked item, not another cold-read cycle)
 
 **Attach:** checkout arrived shallow and detached again (issue #27's shape); `git fetch --unshallow` then `merge --ff-only` onto `4a62b73c`, 310 commits fast-forwarded, no conflict. Working tree clean.
