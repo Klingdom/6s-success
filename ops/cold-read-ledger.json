@@ -261,6 +261,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, pypdf/PIL unavailable in this sandbox (standing gap); not wired into any preflight gate, no defect found"
     },
+    "product_links.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "check() rendered every link, judged some DEAD, printed them, then returned without writing the catalogue -- a dead link stayed published (Link Status still 'Verified search') since affiliate.py/zone_supplies.py only read the CSV, never this tool's stdout. Fixed: check() now demotes a dead/weak result exactly as --assign already does, and persists it (write_catalogue), with a --dry flag matching --assign's. Fail-then-pass proved directly (temporarily skipped write_catalogue, watched 2 new test cases fail by name, restored, reran clean). ops/tests/test_product_links.py extended 32 to 36 cases."
+    },
     "receive_deploy_key.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -295,6 +300,11 @@
       "status": "clean",
       "date": "2026-09-11",
       "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
+    },
+    "root_causes.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Read fully: self-checking (dupe ids, six_s validity, required fields), gated via unknown_ids_in() in preflight.py, all 17 causes' articles verified to exist where set. No defect."
     },
     "send_brief.py": {
       "status": "clean",
