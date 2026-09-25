@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle continued (cold-read lane, four more files cleared, no further defect)
+
+**Did:** Continued the cold-read lane after the `product_links.py` fix landed: `ops/browser.py` (verified `find_browser()` live, and confirmed the `--no-sandbox` extra-arg calling convention actually works end to end with a real headless render of a `data:` URL, not just read), `ops/revenue_model.py` (ran it live; its price/count table is fully live-derived from `data.js`, checked the grouped counts, e.g. 102 products at $4 and 18 at $9, directly against the real catalogue rather than against memory of an older doc citation, which would have been stale), `ops/refresh_hero_fallback.py` (ran `--check` live: 111 pages with a wired hero, 0 drift against the committed `hero-fallback.json`, already gated by `gate_hero_fallback_current`), `ops/reflow.py` (a theoretical all-filler-blocks-emptied edge case considered, then checked against the entire real linkedin-post and facebook-post corpus rather than gated on suspicion alone: 0 posts emptied or shrunk by more than 70%, so not a live defect and not gated).
+
+**Verified:** all four recorded clean in `ops/cold_read_ledger.py` (78 of 164 files now ledgered). No code changed this entry; `preflight.py --fast` reran clean before pushing.
+
+**Went well:** checking a suspected edge case against the real corpus before deciding whether it needed a fix, rather than gating a case that never occurs.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `build_card_prompts.py`, `build_kitchen_deck_page.py`, `build_mobile_corpus.py`, `check_pack_pages.py`, `generate_zone_heroes.py`, ...). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (a real report-without-repair bug found in product_links.py --check: a dead affiliate link stayed published; fixed and gated)
 
 **Did:** Continued the cold-read lane after B8 closed (`ops/cold_read_ledger.py --next`): `ops/root_causes.py` read in full, clean (self-checking, gated via `unknown_ids_in()` in `preflight.py`, all mapped articles verified to exist), recorded clean. Then `ops/product_links.py` (1,100+ lines, the retailer-search-link layer behind 114 zone pages' affiliate recommendations).

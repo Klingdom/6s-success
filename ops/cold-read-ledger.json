@@ -11,6 +11,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "browser.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "41 lines. find_browser() checked live: correctly finds /opt/pw-browsers/chromium in this sandbox, returns --no-sandbox extra arg. Verified the calling convention in product_links.py (extra args appended after the URL in cmd list) actually works end to end with a real headless render (data: URL), not just read. No defect."
+    },
     "build_all_prompts.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -256,6 +261,16 @@
       "date": "2026-09-25",
       "note": "IMAP mailbox deploy-key harvester/installer for GitHub; read-only review (no IMAP credential here to run live), dedupe()/existing() correctly pure/testable, read_only=true hardcoded on install, UNCHECKED-not-empty pattern for a failed gh api call. Own test suite (test_receive_deploy_key.py) passes. No defect."
     },
+    "reflow.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Ran reflow() against the ENTIRE real linkedin-post and facebook-post corpus pools (raw=True): 0 posts emptied, 0 shrank by more than 70%. Theoretical all-filler-blocks-emptied edge case considered but not reachable by any real post in the corpus, so not gated. No defect."
+    },
+    "refresh_hero_fallback.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Ran --check live: 111 pages with a wired hero, 0 added/dropped/changed against the committed ops/hero-fallback.json. Already gated (gate_hero_fallback_current). No defect."
+    },
     "render_all_narrated.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -270,6 +285,11 @@
       "status": "fixed",
       "date": "2026-09-23",
       "note": "record_archived() only recorded SKUs actually deactivated this run, permanently skipping already-clean SKUs with zero active Stripe objects (gate_retired_skus_stripe_archived could never re-check them). Fixed to record every SKU in skus after the deactivation loop completes. Backfilled from ops/NIGHTLY-LOG.md 2026-09-23 entry, never previously ledgered."
+    },
+    "revenue_model.py": {
+      "status": "clean",
+      "date": "2026-09-25",
+      "note": "Ran directly: table is fully live-derived from data.js (verified group counts, e.g. 102 at $4/18 at $9, match the real catalogue exactly), DELIVERY_HOURS/mixes SKUs (CN-VIRTUAL, CN-INHOME, PACK-HOUSE) all exist and priced as coded. No hardcoded stale figures, no crash. No defect."
     },
     "review_deck_art.py": {
       "status": "clean",
