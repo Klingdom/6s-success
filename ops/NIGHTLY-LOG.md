@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 13:1x (previous work verified finished; fixed a stale deploy-gap count and a self-inflicted lockdir)
+
+NEXT FOR THE OPERATOR: cold read wire_generated_catalog.py, wire_signup.py and zone_graphics.py, per ops/cold_read_ledger.py --next (lowest mention, genuinely unread), since every backlog row in sections 2 to 4 is done or Phil gated.
+
+Previous work verified finished: CI green (checks.yml run 1429) on the prior cycle's ledger/build id fix; B9 closed, all five room decks done; 8 GitHub issues unchanged, all decision or blocked on art.
+
+Found and fixed two real defects: STATUS.md's BLOCKER-001 cited 6 undeployed commits, real count was 8 (missed 8f6c47b3, 9c6d4063), corrected. Cleared an orphaned test_audit_catalog.py lockdir my own killed preflight run left, same shape a prior cycle fixed once already today.
+
+Preflight clean after: every gate passed, 25 warnings, standing sandbox limits. Pushed 9869f2e0c, deck regenerated.
+
 ## PM check-in, 2026-09-25 12:2x (previous work finished; closed a real ledger gap)
 
 **Previous work was finished.** Full preflight clean, after a concurrent session's build-id fix (`8f6c47b3`) landed the same defect I independently found. Backlog sections 2-4 closed or Phil-gated, section 5 HOLD, section 6 owner gates; 8 GitHub issues unchanged.

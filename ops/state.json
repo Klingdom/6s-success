@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 12:35",
- "commit": "1f26a5ce",
- "commit_msg": "Close cold-read ledger gap for five deck-page generators, restamp stale build-id left behind by the og:image fix",
+ "generated": "2026-09-25 13:19",
+ "commit": "9869f2e0",
+ "commit_msg": "PM check-in: close the deploy-gap commit-count drift gate_status_deploy_gap_count_current found (6 cited vs 8 real), and clean up an orphaned test lockdir this session's own killed preflight run left behind",
  "commits_7d": 1098,
- "commits_total": 3832,
+ "commits_total": 3835,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
