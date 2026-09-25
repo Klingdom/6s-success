@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (BLOCKER-001's own gap count was stale by one commit, and that commit is the P0 footer fix; caught by the gate built for exactly this)
+
+**Did:** Checkout arrived shallow and detached (was 218 commits behind); unshallowed, fetched, fast-forwarded onto `origin/main`, no reset needed. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md` sections 1-9, and the last several `NIGHTLY-LOG.md` entries. Ran `preflight.py` myself rather than cite a same-day prior pass (CLAUDE.md 0.4).
+
+**Preflight's own `gate_status_deploy_gap_count_current` warning was the real, current finding, not a stale citation to skip past.** The latest `BLOCKER-001` entry cited a gap of 3 commits (`ca49aa25`, `fa78db8c`, `6ba42a27`) against build_id `6a10df205a3d058c`, unchanged since `checked_at: 2026-09-24T23:35:51Z` (`ops/deploy-verdict.json`, confirmed no new redeploy has happened). Recounted directly: `git log b8eca135..HEAD -- site/ Dockerfile` (`b8eca135` being the commit that build_id actually resolves to) now returns 4 commits, not 3. The uncounted one, `2d8077fd`, is not routine content: it is the fix for the live P0 defect a concurrent session found and shipped earlier the same day (all 134 room/zone pages serving with zero `<footer>`, no privacy/terms/accessibility/safety links, no newsletter form). Production is still missing that footer until a redeploy happens, and the standing citation was silently one commit short of saying so.
+
+**Fixed:** widened both `STATUS.md`'s `BLOCKER-001` and `OWNER-ACTIONS.md` item 0 with a dated correction naming the real 4-commit gap and calling out `2d8077fd` by name and by consequence, matching this file's own established append-only correction pattern rather than editing history. Verified directly against the gate's own pure logic before running anything else: `deploy_gap_count_problem()` called with the corrected `STATUS.md` text, `real_count=4`, the current build_id and `checked_at` returns `''` (clean).
+
+**Verified:** full `preflight.py` first showed one transient failure (`stray-probe-files`, two gitignored scratch files from a concurrent test run that had already cleared themselves by the time I checked `git status`); confirmed not a real defect and reran clean: every gate passed, 23 warnings (was 24; the gap-count warning is gone), all previously diagnosed sandbox limits, none new. GitHub: 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Went well:** treating the gate's own warning as this cycle's real work per STEP 2/0.4 instead of moving straight to the cold-read lane; naming the missed commit's actual customer impact (a still-undeployed P0 legal/trust fix) rather than just correcting a number.
+
+**Did not go well:** none this cycle; the gate that caught this already existed and worked exactly as designed.
+
+**Changing next cycle:** none; no new defect class, so no new gate needed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`, issue #35) and the 8 open GitHub issues, unchanged. The real production gap is now 4 commits including the footer fix; confirm on the next cycle whether a session with real access has redeployed.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched; not customer-facing directly, but an inaccurate account of a live P0 defect's deploy status is exactly the epic-2 (broken or dishonest) class this operator's own ordering puts second only to measurement. IndexNow not applicable.
+
 ## PM check-in, 2026-09-25 04:1x-04:4x (previous work confirmed finished only after reconciling a genuine concurrent duplicate fix; two full preflight runs, no new defect)
 
 Previous work was not cleanly finished at first read: a full preflight on ecb56085 showed 3 failures. Traced each rather than assumed: stray-probe-files and the test_audit_catalog.py 700s timeout were both transient, a killed run's own orphaned lockdir; confirmed by an isolated rerun finishing clean in 88s, no code change needed. publish-image-current traced to a real but already-fixed forms_dead staleness in the prior commit. Mid-investigation a concurrent session pushed 2d8077fd, an independent, different fix for the same footer defect, already merged as 733463e0. Fetched, fast-forwarded, no force. A second full preflight on the merged HEAD passed clean (every gate, 24 warnings). Dashboard regenerated, pushed. Backlog and GitHub issues (8, all decision/blocked-on-art) exhausted; handing the operator BACKLOG-2026-09-07.md section 3 row B7 (five room decks from the diagnosis corpus, ~3d), too large for this slot.
