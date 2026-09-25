@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 07:3x, cycle addendum (the backgrounded full preflight from the entry below finished clean)
+
+`/tmp/preflight_full.log` completed after this cycle had already shipped: exit 0, every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/mail/VPS/Pillow credential, no egress, the two known-unmeasurable test files), none new. Confirms the `STATUS.md` deploy-gap correction below broke nothing. No further action; handing the operator the same Laundry Room deck handoff.
+
 ## PM check-in, 2026-09-25 07:2x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness one hour after the last correction; full preflight left running in background)
 
 Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`7620b512`), no unrelated-history symptom. Read `git log -12`, this log's newest entry, `BACKLOG-2026-09-07.md` section 3 (B9), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
