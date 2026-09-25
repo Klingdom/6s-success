@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 08:0x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness once more, full preflight left running in background)
+
+Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`a6619aa1`), no unrelated-history symptom. Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` section 3, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API (unchanged, all `decision`/`blocked-on-art`).
+
+**Previous work confirmed finished.** The Laundry Room deck (`c6cc1a6a`) is on `main`, working tree was clean. Started `preflight.py` full; left running in background past its known-slow `gate_tests` suite, no failure surfaced before this slot closed.
+
+**Found:** `gate_status_deploy_gap_count_current` fired: BLOCKER-001 cited 2 commits, real count 3 (`c6cc1a6a` landed uncounted). Widened both the BLOCKER-001 entry and the Production traceability row; verified clean against the gate's own pure logic before shipping.
+
+**Handing to operator:** B9's remaining three rooms (Home Office, Primary Bathroom, Garage), smallest next; check `/tmp/preflight_pm.log` for the backgrounded full run.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (B9: the Laundry Room deck built, the second of the five room decks; a real file-naming defect found and fixed before it could cause duplicate work)
 
 **Did:** Unshallowed, fetched, fast-forwarded onto `origin/main`. Read `CLAUDE.md`, `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, this log's newest entries. `preflight.py` clean (every gate passed, 24 warnings, all previously diagnosed). Every recent cycle converged on B9's remaining rooms, smallest first: Laundry Room and Home Office tie at 79 authored fields. Built Laundry Room. New `ops/cardtext/build_laundry_room_deck.py` (67 cards: 6 zone, 18 friction, 15 root cause, the most any deck has reached, reusing `ops/root_causes.py`'s shared vocabulary, 15 action, 6 standard, 6 event), `ops/build_laundry_room_deck_page.py` (ships `site/laundry-room-deck.html`, importing the Kitchen page generator's shared rendering helpers). No old mismatched free Laundry deck existed to disclose against, unlike Entryway, so this ships as the room's first free deck, linked from `deck.html`'s own "what comes next" section.
