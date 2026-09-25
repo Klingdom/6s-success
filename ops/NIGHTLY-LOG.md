@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 09:4x (previous work confirmed finished; deploy-gap count re-verified unchanged, not re-widened; full `preflight.py` run to completion clean; handing off B9's Primary Bathroom room deck)
+
+NEXT FOR THE OPERATOR: Build the Primary Bathroom room deck (BACKLOG B9), because it is the smallest remaining diagnosed room (`ops/cardtext/derive_room_deck.py`: 88 authored fields against Garage's 96) and is genuinely unblocked, real product depth work matching Phil's own reprioritisation toward micro zones and decks, following the exact pattern `build_entryway_deck.py`/`build_laundry_room_deck.py`/`build_home_office_deck.py` already established (corpus builder in `ops/cardtext/`, page generator in `ops/`, a per-room `gate_<room>_deck_rendered` in `preflight.py`, a headless-Chromium interactive test added to `ops/tests/test_deck_pages_interactive.py`). Two rooms remain of five; claim Primary Bathroom before Garage since it is smaller.
+
+**Did:** Checkout arrived detached with local `main` sharing no common ancestor with `origin/main` (the standing issue #27 shallow-clone shape); `git fetch origin main && git fetch --unshallow && git checkout main && git merge --ff-only origin/main` landed cleanly on the real tip (`fb54f40c`), no reset needed this cycle. Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 1 to 3 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub's 8 open issues (all `decision` or `blocked-on-art`, none actionable here, unchanged from prior cycles).
+
+**Verified the previous cycle's own claim rather than citing it.** `ops/deploy-verdict.json` unchanged since 2026-09-25T04:50:46Z (build `aa7c7e7e578e9a18`); ran this repository's own `resolve_verdict_commit()`/`deploy_gap_material_commits()` directly rather than eyeballing `git log`: the gap is still exactly the 5 commits the 09:1x entry named (`1b6439a7`, `2cb970c1`, `c6cc1a6a`, `ad310568`, `cb37d0c8`), nothing new landed in `site/`/`Dockerfile` since. Deliberately did not touch `STATUS.md`/`OWNER-ACTIONS.md` BLOCKER-001 this cycle: the number has not moved, and re-writing an unchanged correction is the exact same-day churn loop the file's own 2026-09-25 entries already called out as adding no information. Full `python ops/preflight.py` run to completion (it runs long; watched it to the end rather than assuming the fast pass covers it): every gate passed, 24 warnings, all previously diagnosed sandbox limits (no Stripe/Umami/mail credential, no VPS key, no egress to `6s-success.com`, 2 of 279 test files can't exercise anything here). Two warnings worth naming though not new failures: `fulfil-orders.yml` and `hourly-brief.yml` are both firing several times slower than their configured cron cadence (7.9x and 4.2x over 49 real gaps); outside this session's reach to fix (GitHub Actions scheduling, not application code), noting it here since nobody else has.
+
+**Went well:** re-deriving the deploy-gap count with the repository's own function instead of hand-counting, and confirming it unchanged rather than manufacturing a correction to have something to write.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open. `preflight.py`'s full run took most of this slot, leaving less time than usual to verify the B9 handoff beyond `derive_room_deck.py`'s own field count.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY, Search Console, YouTube auth, Stripe description) and the 8 open decision/art issues, unchanged. Primary Bathroom is the operator's next room deck; Garage after it closes B9.
+
+Pushed to main. No price or product touched, no new page this cycle. Command deck regenerated.
+
 ## PM check-in, 2026-09-25 09:1x (previous work confirmed finished; found and fixed the same recurring deploy-gap staleness once more; full `preflight.py` run to completion clean)
 
 Attached clean: unshallowed, fetched, fast-forwarded onto `origin/main` (`4026a0d3`, a merge of two concurrent PM cycles), no unrelated-history symptom this time. Read `git log -12`, this log's newest entry (top-of-file, the 08:4x PM check-in that fixed a live corrupted `site.js` and two staleness FAILs), `BACKLOG-2026-09-07.md` section 3 (B9: 3 of 5 rooms done), `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`.
