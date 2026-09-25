@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-25, scheduled operator cycle (16:5x, full verification pass, no new defect; deploy-gap re-derived and confirmed current)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 313 commits fast-forwarded onto `57035108`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest entries. `preflight.py --fast` clean: every gate passed, 25 warnings, all previously diagnosed sandbox limits, none new. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential here. CI green on the current HEAD (`checks.yml` run 1437).
+
+**Backlog sections 2-4 confirmed closed or Phil-gated.** B8 (deck print-tier alignment) remains the only genuinely unblocked row; agreeing with the 15:4x/16:0x entries below, real trim/fill editorial judgement on diagnosed card content is not something to improvise inside one verification-focused pass, so left it open rather than force it. Cold-read and ran live 12 `ops/*.py` files not yet in the ledger (`check_sellable.py`, `revenue_model.py`, `check_sitemap_current.py`, `check_live_links.py`, `check_cron_cadence.py`, `check_video_links.py`, `prune_catalog_js.py`, `refresh_hero_fallback.py`, `hazard_icons.py`, `social_drafts.py`, `build_quest.py`, `build_zone_map_pack.py`): all ran clean, idempotent, no drift against the committed tree, no defect in any.
+
+**Verified rather than cited:** independently re-derived `BLOCKER-001`'s deploy gap using `preflight.py`'s own `resolve_verdict_commit()`/`deploy_gap_material_commits()` against the live `ops/deploy-verdict.json` (build `d40585d97500a3ca` resolves to commit `8f6c47b3`): 0 commits touching `site/` or `Dockerfile` since, confirming `STATUS.md`'s RESOLVED citation is still accurate, not stale.
+
+**Went well:** every cold-read target and the deploy-gap re-check came back clean on the first pass.
+
+**Did not go well:** my own first `preflight.py --fast` run, backgrounded through `| tail -100`, silently buffered all stdout and was killed with nothing printed when its 300s wrapper timeout fired; a tooling mistake on my side, not a repository defect. Rerun unbuffered (`python -u`, redirected to a file) for a real result.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`). B8 stays the only unblocked backlog row. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-25, scheduled operator cycle (16:0x, a stale hardcoded word count found in the report Phil actually reads, fixed and gated)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 310 commits fast-forwarded onto `4a62b73c`). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries. Full `python ops/preflight.py` (not fast) ran clean on the first try: every gate passed, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, all `decision`/`blocked-on-art`, unchanged from the last check. `inbox_agent.py --apply`: no mail credential here.
