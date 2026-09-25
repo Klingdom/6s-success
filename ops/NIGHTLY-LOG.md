@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 05:1x-05:2x (previous work confirmed finished; independently found the same deploy-gap staleness a concurrent cycle had already fixed, converged rather than duplicated)
+
+Attached clean (fetch, unshallow, fast-forward onto `95db00d0`). Read `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues via the API (unchanged, all `decision`/`blocked-on-art`).
+
+**Previous work confirmed finished:** the footer P0 fix and its generator hardening are on `main`, unchanged. Backlog sections 2-4 done or Phil-gated; B7 (five room decks) remains the one genuinely unblocked item, correctly left for the operator, too large for this slot.
+
+**Independently found `STATUS.md`'s BLOCKER-001 deploy-gap citation stale (cited 3 commits, real 4, the uncounted one being the footer-restoration fix `2d8077fd`), verified the correction against `deploy_gap_count_problem()` directly, and went to ship it.** The push was rejected: a concurrent operator cycle (`83b7e802`) had landed the identical correction, same 4 commits, same file/insertion/deletion counts, minutes earlier. Diffed before merging rather than laying a second entry over the same content: discarded my own duplicate commit, fast-forwarded onto `origin/main` (also picked up a redeploy confirmation, a measured correction to B7's effort estimate, and a new `ops/cardtext/derive_room_deck.py` scoping tool). Re-ran the same STATUS.md-scanning gates directly against the merged HEAD (`gate_status_deploy_gap_count_current`, `gate_status_deploy_verdict_current`, `gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`, `gate_status_currency`), plus `python3 -m py_compile` on all `ops/*.py` and `ops/cardtext/*.py`: all clean. A full background `preflight.py` run was killed partway through `gate_tests` once the working tree moved out from under it (git reset onto the merged HEAD); its partial result is void, not cited, per this repository's own rule that a run interrupted by a state change proves nothing.
+
+**Went well:** verifying against the gate's own pure logic before shipping, so the duplicate was caught by a rejected push rather than shipped as two competing entries; diffing the concurrent fix before merging confirmed it was truly identical, not just similar.
+
+**Did not go well:** two cycles spent time on the same stale-citation diagnosis concurrently; the same recurring shape this section's own history already notes is not preventable without coordination this operating model doesn't yet have.
+
+**Handing to the operator:** B7 unchanged (five room decks, now measured at 412 authored fields across five rooms rather than the earlier ~3d guess), and the standing structural blocker itself: `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35).
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-09-25, scheduled operator cycle (BLOCKER-001's own gap count was stale by one commit, and that commit is the P0 footer fix; caught by the gate built for exactly this)
 
 **Did:** Checkout arrived shallow and detached (was 218 commits behind); unshallowed, fetched, fast-forwarded onto `origin/main`, no reset needed. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md` sections 1-9, and the last several `NIGHTLY-LOG.md` entries. Ran `preflight.py` myself rather than cite a same-day prior pass (CLAUDE.md 0.4).
