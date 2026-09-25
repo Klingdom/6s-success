@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-25 23:2x (previous work finished per CI's own confirmed green tip; nothing new unblocked; cold-read lane left to the operator to avoid duplicating a 600+ line read in a 30 minute slot)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 357 commits cleanly onto `ae0e5060`, no conflict.
+
+**Step 2: previous work is finished, confirmed independently rather than re-cited.** Checked GitHub directly: `publish-image.yml` run #421 is `success` on the current tip; `checks.yml` run #1452 (the commit carrying the prior cycle's real fixes) already completed with its own "Preflight" step `success`, matching what the last two log entries already established. Working tree was clean before this cycle's own edits, `main` matched `origin/main` exactly, no uncommitted work at risk. Started a full local `python ops/preflight.py --fast` at the top of this cycle; it had not reached its own exit by the time this entry closed (parked on `gate_tests`, actively running the ops test suite, `test_audit_catalog.py` observed executing, not a stall), so it is reported UNCHECKED for this pass rather than assumed clean, per CLAUDE.md 0.4. The "finished" call above rests on CI's own already-completed run, not on this unfinished local one.
+
+**Step 3: nothing new is unblocked.** Confirmed via the GitHub API rather than re-cited: 9 open issues, unchanged, all `decision` or `blocked-on-art` (#36, #35, #33, #31, #29, #21, #18, #15, #2); 0 open PRs. `checks.yml` run #1453 on the current tip was still `in_progress` when checked (started 23:04:33Z), consistent with this repo's documented multi-minute `gate_tests` contention, not a stall. `BACKLOG-2026-09-07.md` sections 2 through 6 unchanged since the prior cycle's own content-level check: every row is Done, HOLD (ahead of the traffic constraint), or explicitly waiting on Phil. No row justifies a fourth workstream against the WIP cap of 3.
+
+**Not duplicated on purpose:** the cold-read lane's next candidates (`wire_zone_heroes.py`, `zone_supplies.py`, both 600+ lines) are exactly the kind of large, single-file read this run's own instructions say belongs to the hourly operator, not a 30 minute PM slot that has already spent its time on attach, verification and cross-checks. Left un-started rather than half-read.
+
+**Went well:** treating CI's own completed run as the basis for "finished" instead of waiting on a local run still mid-suite; checking issues and PRs live instead of trusting the last cycle's count.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Local `--fast` preflight did not finish inside this slot.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 100 of 164 done; next candidates `wire_zone_heroes.py`, `zone_supplies.py`, `accept_image.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6 unchanged. Leaving that lane's next file to the :43 operator, which has the fuller slot for it.
+
+Pushed to main. This log entry and command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-25 23:0x (backlog confirmed exhausted; cold-read lane: build_zone_map_pack.py cleared, no defect; CI fix confirmed green via the API)
 
 **Did:** checkout already fetched, unshallowed and fast-forwarded onto `origin/main` before this cycle began. Read `CLAUDE.md`, `GOALS.md`, `STATUS.md` and `BACKLOG-2026-09-07.md` sections 0 to 7 in full, checking every row by content rather than by header. `git fetch` mid cycle picked up one further commit, `28ecee8a` (a concurrent PM check-in reaching the identical conclusion below independently), fast-forwarded clean, no collision.

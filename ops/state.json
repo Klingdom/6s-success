@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-25 23:00",
- "commit": "28ecee8a",
- "commit_msg": "PM check-in: previous work finished, confirmed by CI's own Preflight pass on the code commit; no new unblocked item, cold-read lane handed to the operator",
- "commits_7d": 1088,
- "commits_total": 3909,
+ "generated": "2026-09-25 23:17",
+ "commit": "ae0e5060",
+ "commit_msg": "Scheduled operator cycle: backlog confirmed exhausted, CI fix confirmed green, cold-read lane clears build_zone_map_pack.py",
+ "commits_7d": 1089,
+ "commits_total": 3910,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
