@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 23:2x (previous work finished, confirmed by a full local preflight; a real stray-commit defect found and closed, gate widened so its own class cannot recur silently)
+
+Previous work (dashboard.py three-state fix) confirmed finished: full local preflight, every gate passed, 0 FAIL, 26 warnings, all standing sandbox limits. On attach, found `.preflight_jslint_3tpmhf47/` (34 files) tracked on main, a killed preflight run's own eslint scratch directory that `ops/ship.py`'s `git add -A` had committed, invisible to `gate_no_tracked_gitignored_dirs` because its wildcard-suffixed name defeated that gate's literal-prefix match. Untracked and deleted it, gitignored the pattern, and rewrote the gate's matching with fnmatch so a wildcard directory pattern is actually caught, not just a literal one; proved fail-then-pass with two new synthetic cases. Full preflight and mobile npm test both clean after. Handing to the operator: cold-read lane continues at `ops/dashboard.py`, unchanged.
+
+Pushed to main. `.gitignore`, `ops/preflight.py`, `ops/tests/test_gate_no_tracked_gitignored_dirs.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 (cold-read lane: three live "unknown collapsed into a number" defects found in ops/dashboard.py's own readiness rows, the exact class this repository names as dominant)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded onto `origin/main` clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` (full) clean on attach: every gate passed, 27 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done, HOLD, or Phil-gated.

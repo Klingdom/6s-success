@@ -35,29 +35,32 @@ def _git(repo, *args):
                     check=True, text=True)
 
 
-def _make_repo(tracked_in_ignored_dir: bool) -> str:
+def _make_repo(tracked_in_ignored_dir: bool, wildcard_dir: bool = False) -> str:
     tmp = tempfile.mkdtemp()
     _git(tmp, "init", "-q")
     _git(tmp, "config", "user.email", "test@example.com")
     _git(tmp, "config", "user.name", "test")
+    ignore_line = "scratch_*/\n" if wildcard_dir else "build/scratch/\n"
     io.open(os.path.join(tmp, ".gitignore"), "w", encoding="utf-8").write(
-        "build/scratch/\n")
-    os.makedirs(os.path.join(tmp, "build", "scratch"))
+        ignore_line)
+    stray_dir = os.path.join(tmp, "scratch_ab12cd") if wildcard_dir else \
+        os.path.join(tmp, "build", "scratch")
+    os.makedirs(stray_dir)
     kept = os.path.join(tmp, "kept.txt")
     io.open(kept, "w", encoding="utf-8").write("real content\n")
     _git(tmp, "add", "kept.txt", ".gitignore")
     if tracked_in_ignored_dir:
-        stray = os.path.join(tmp, "build", "scratch", "old.html")
+        stray = os.path.join(stray_dir, "old.html")
         io.open(stray, "w", encoding="utf-8").write("<html></html>")
         # add -f: this is exactly how the real fossil got in, a commit made
         # before (or overriding) the ignore rule.
-        _git(tmp, "add", "-f", "build/scratch/old.html")
+        _git(tmp, "add", "-f", os.path.relpath(stray, tmp))
     _git(tmp, "commit", "-q", "-m", "init")
     return tmp
 
 
-def _run(tracked_in_ignored_dir: bool):
-    repo = _make_repo(tracked_in_ignored_dir)
+def _run(tracked_in_ignored_dir: bool, wildcard_dir: bool = False):
+    repo = _make_repo(tracked_in_ignored_dir, wildcard_dir)
     old_root = preflight.ROOT
     preflight.ROOT = repo
     preflight.FAIL, preflight.WARN = [], []
@@ -77,6 +80,25 @@ def test_tracked_file_in_ignored_dir_fails_by_name():
     fails = _run(True)
     assert len(fails) == 1 and fails[0][0] == "tracked-gitignored", fails
     assert "build/scratch/old.html" in fails[0][1], fails[0][1]
+
+
+def test_tracked_file_in_wildcard_ignored_dir_fails_by_name():
+    """Found 2026-09-26: `.preflight_jslint_*/`, a random-suffixed mkdtemp
+    directory .gitignore matches with a wildcard segment, could leak a
+    killed preflight run's scratch files straight into a commit the same
+    way build/scratch/ could, but the gate's old plain-prefix check treated
+    `*` as a literal character and could never have caught it. One real
+    instance reached main this way. This proves the fnmatch-based rewrite
+    actually matches a wildcard directory pattern, not just a literal one.
+    """
+    fails = _run(True, wildcard_dir=True)
+    assert len(fails) == 1 and fails[0][0] == "tracked-gitignored", fails
+    assert "scratch_ab12cd/old.html" in fails[0][1], fails[0][1]
+
+
+def test_clean_repo_with_wildcard_ignore_passes():
+    fails = _run(False, wildcard_dir=True)
+    assert fails == [], f"expected no failure on a clean repo, got {fails}"
 
 
 def test_registered_in_main_after_stray_probe_gate():

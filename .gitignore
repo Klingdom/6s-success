@@ -70,6 +70,19 @@ site/**/_*.html
 # so a future test written the same way needs no matching edit here.
 ops/tests/_*
 
+# preflight.py's own JS-lint gate (_lint_js_no_undef) makes a random-suffixed
+# scratch directory at the repo root with tempfile.mkdtemp(dir=ROOT) to hand
+# eslint a config and copies of every inline/external script, and removes it
+# only in a finally block, same exposure to a killed run as every entry
+# above. Found live 2026-09-26: a prior cycle's preflight run was killed
+# mid-lint, left .preflight_jslint_3tpmhf47/ (34 files) on disk, and the
+# next `ops/ship.py` run's `git add -A` committed it straight to main,
+# since nothing here or in gate_no_tracked_gitignored_dirs covered a
+# wildcard-suffixed directory name. Untracked and gitignored here; the
+# gate's own matching was widened separately to actually catch this shape
+# rather than silently passing it.
+.preflight_jslint_*/
+
 # test_audit_catalog.py's own lock file, serializing concurrent runs of that
 # one test so their fixtures can never coexist in site/ (found 2026-09-08:
 # a per-pid fixture name stops two runs sharing a path, but not

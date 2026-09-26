@@ -46,6 +46,7 @@ from __future__ import annotations
 
 import ast
 import collections
+import fnmatch
 import glob
 import io
 import json
@@ -9863,6 +9864,15 @@ def gate_no_tracked_gitignored_dirs() -> None:
     the failure mode (a script globbing a "generated, gitignored" directory
     and finding old committed debris mixed in with nothing else) applies to
     any of them equally.
+
+    Found 2026-09-26: `.preflight_jslint_*/`, a random-suffixed mkdtemp
+    directory a killed preflight run can leak the same way, could never
+    have been caught here even after being gitignored, because the plain
+    `t.startswith(d + "/")` check treats `*` as a literal character rather
+    than a wildcard. Matched one real instance committed to main that same
+    day. Rewritten to compare path components with fnmatch so a wildcard
+    segment in a `.gitignore` directory line actually matches what it was
+    written to match, not just its literal text.
     """
     ignored_dirs = []
     gi = io.open(os.path.join(ROOT, ".gitignore"), encoding="utf-8").read()
@@ -9877,10 +9887,17 @@ def gate_no_tracked_gitignored_dirs() -> None:
     except Exception as e:                                     # noqa: BLE001
         warn("tracked-gitignored", f"could not list git-tracked files: {e}")
         return
+
+    def _inside_ignored_dir(tracked_path: str, pattern: str) -> bool:
+        p_parts = pattern.split("/")
+        t_parts = tracked_path.split("/")
+        if len(t_parts) <= len(p_parts):
+            return False
+        return all(fnmatch.fnmatch(t, p) for t, p in zip(t_parts, p_parts))
+
     stray = []
     for d in ignored_dirs:
-        prefix = d + "/"
-        stray.extend(t for t in tracked if t.startswith(prefix))
+        stray.extend(t for t in tracked if _inside_ignored_dir(t, d))
     if stray:
         fail("tracked-gitignored",
              "%d file(s) git tracks inside a directory .gitignore says is "
