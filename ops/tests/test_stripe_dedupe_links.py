@@ -22,6 +22,14 @@ What this proves, each fail-then-pass provable against a reverted function:
     it and makes no write call; --apply deactivates only the orphan(s), by
     id, and leaves the served link untouched
 
+Cases 6 and 7 were updated 2026-09-26 cold-reading stripe_dedupe.py: the
+return value used to be a "changed" counter, which is always 0 on a --check
+dry run even when a real duplicate is printed, so the two cases had baked in
+"0 in --check" and "1 in --apply" as if that meant the opposite of what it
+now means. dedupe_links() returns the number of SKUs still left duplicated:
+non-zero in --check means something was found to report; zero after --apply
+means it actually got resolved.
+
 Run:  python ops/tests/test_stripe_dedupe_links.py
 """
 import os
@@ -115,15 +123,18 @@ def main() -> int:
     writes = [c for c in calls if c[0] == "POST"]
     if writes:
         fails.append(f"--check made a write call: {writes}")
-    if r != 0:
-        fails.append(f"--check on a real duplicate returned {r}, expected 0")
+    if r != 1:
+        fails.append(f"--check on a real duplicate returned {r}, expected 1 "
+                      "(one SKU still left duplicated)")
 
     # 7. Same duplicate, --apply: deactivates only the orphan (l_old), by
-    #    id, and never touches the served link (l_new).
+    #    id, and never touches the served link (l_new). Fully resolved, so
+    #    nothing is left duplicated: 0.
     r, calls = _run(dupe, served={"new456"}, apply_it=True)
     writes = [c for c in calls if c[0] == "POST"]
-    if r != 1:
-        fails.append(f"--apply on one real duplicate returned {r}, expected 1 change")
+    if r != 0:
+        fails.append(f"--apply on one real duplicate returned {r}, expected "
+                      "0 (fully resolved)")
     if [c[1] for c in writes] != ["payment_links/l_old"]:
         fails.append(f"--apply wrote the wrong link(s): {writes}")
 
