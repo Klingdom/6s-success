@@ -6,9 +6,12 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-25 01:17 UTC, traffic re-measured by a direct
-database read: 57 visitors/144 visits/30 days (1.9 a day; trailing week 12
-after 12, 10, 14, 18).
+**Last measured:** 2026-09-26, item 1 (YouTube) re-measured and HELD: the 114
+films on disk are 30.2s each while their caption files run to 74.8s, so
+publishing would put captions 45 seconds past the end of the picture. Fixing it
+needs no owner action; see that row. Traffic figure below unchanged since
+2026-09-25 01:17 UTC, when a direct database read gave 57 visitors/144 visits/30
+days (1.9 a day; trailing week 12 after 12, 10, 14, 18).
 
 **Corrected 2026-09-25 00:1x, PM check-in: the "3 commits" figure below was already stale, and citing a superseded build_id besides.** Before re-deriving from the same `28ed2709194afab5`/`d5b0d5c8` citation the note below used, checked `ops/deploy-verdict.json` directly. It now records a newer, unread confirmation: `verdict: "current"`, build `6a10df205a3d058c`, `checked_at: 2026-09-24T23:35:51Z`, resolving (`git log -S`) to commit `b8eca135` ("Micro zones: Laundry Room personalised"). A session with real access redeployed again after the `d5b0d5c8` confirmation and closed the gap in full at that time. Reopened since by exactly one further `site/**` commit, Phil's own `ca49aa25` ("Micro zones: Garage personalised"): `git log b8eca135..HEAD -- site/ Dockerfile` reads 1 commit, 44 files, 547 insertions, 323 deletions, not the 4 a recount against the older, superseded build would have shown. No new action needed beyond item 0 below, same structural gap, just correctly sized against the current verdict; `STATUS.md`'s `BLOCKER-001` carries the same correction.
 
