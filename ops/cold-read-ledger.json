@@ -31,6 +31,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "build_articles.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Cold-read: all timing claims (shortest/longest room, band examples, sort-heavy examples, Coffee Table 'one of shortest', entryway door-mat shortest) verified against content.json, all correct. Regenerated: byte-identical output, confirming idempotency."
+    },
     "build_avif.py": {
       "status": "clean",
       "date": "2026-09-25",
