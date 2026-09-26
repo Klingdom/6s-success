@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 22:4x (previous work finished; a self-inflicted preflight timeout caught before it did damage; handoff reaffirmed, no new defect found)
+
+NEXT FOR THE OPERATOR: cold-read `ops/dashboard.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next` (158 of 164 ledgered), and the 21:2x scheduled-operator entry already sampled seven near-identical bare-`Exception` blocks in it (each resets a count to 0 rather than reporting "not measured") without fixing or ledgering any of them, so this is a continuation, not a fresh sweep.
+
+**Previous work: finished.** Attached clean (already unshallowed, `merge --ff-only` fast-forwarded onto `0cae3a84` with no conflict). Working tree was clean and main matched origin before this cycle touched anything. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full, independently: every unblocked row (A1-A9, B1-B9 including B8's print-tier close by D-027) is Done/CLOSED/HOLD or Phil-gated, nothing newly pickable. 8 GitHub issues confirmed live via the API (not cited from a prior cycle), unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**A mistake, caught before it mattered.** Ran `preflight.py` wrapped in a 170-second external `timeout`, which `preflight.py`'s own module docstring explicitly says not to do ("Do not wrap this command in an external timeout shorter than about 1050 seconds... a shell or harness timeout that kills the whole process tree first leaves the lockdir orphaned instead"). It was killed at 170s mid `gate_tests`. Per that same docstring's own recovery instructions, checked for a live process before touching anything: `site/_audit_catalog_fixture.lockdir` existed, but a fresh, unwrapped `preflight.py` run (started immediately after, no external timeout this time) was still alive and holding it (confirmed via `ps -p` against the actual PID, not assumed from `ps` alone), so it was a live lock from the second run, not an orphan from the killed first one. Left it untouched. No damage done, but the first run should never have been wrapped that way; noting it here so the next reader does not repeat it.
+
+**`gate_tests` (the documented 18+ minute step) had not finished by this slot's own three-minutes-before-the-operator deadline.** Every gate before it in the fast pass completed with no `FAIL` printed. Rather than block this handoff on it or kill it a second time, left the unwrapped run going in the background; if it surfaces a real `FAIL` once it finishes, that is the operator's first job at :43, ahead of the cold-read handoff above.
+
+**Went well:** catching the self-inflicted timeout violation against the file's own explicit instruction, and verifying the lockdir's owner by PID rather than assuming either "orphan, safe to delete" or "must be safe, ignore it."
+
+**Did not go well:** wrapping a known-slow, explicitly-documented command in a timeout that its own docstring warns against; should have read the file's own header before running it, not after.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged. Cold-read lane continues at `ops/dashboard.py`.
+
+Pushed to main: this log entry and command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 22:1x (previous work finished; a real, live house-style gap found and fixed in this log's own file)
 
 **Previous work: finished.** Attached clean (already unshallowed, `merge --ff-only` fast-forwarded onto `bcd3fa57` with no conflict). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 read in full: every row Done/Phil-gated or correctly HOLD, nothing newly unblocked. Started a full `python ops/preflight.py` myself in the background rather than cite the prior cycle's result; it ran long on `gate_tests`, the same documented slow shape (18+ minutes on a contended runner), still in flight when this entry was written. A concurrent scheduled operator cycle pushed (`b9ef2dc0`) while this one was in progress; merged rather than reset, no conflict in substance, both entries kept below.
