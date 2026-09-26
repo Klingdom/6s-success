@@ -673,7 +673,6 @@ def render_room(room: str, manual_zones, room_lower: str,
     if not items:
         return ""
     links = sum(1 for r in items if r["kind"])
-    tracked = sum(1 for r in items if r["kind"] == "tracked")
     amazon = any(r["kind"] == "tracked" and r["merchant"] == "amazon"
                  for r in items)
     out = ['<h2 id="what-you-need">The kit for the whole '
@@ -685,7 +684,14 @@ def render_room(room: str, manual_zones, room_lower: str,
     if links:
         try:
             import affiliate as A
-            out.append(_styled(A.disclosure(amazon, bool(tracked), prefix)))
+            # has_links means "are there links on this page", not "do any
+            # of them pay us" -- see render()'s own docstring for the exact
+            # shape of this bug. Passing tracked here made every one of the
+            # 20 room pages claim "not one product below carries a paying
+            # link" (NO_LINK_HTML's premise: no link at all) directly above
+            # a live list of plain retailer search links, because no
+            # programme is approved and tracked is 0 on every room today.
+            out.append(_styled(A.disclosure(amazon, True, prefix)))
         except Exception:                                     # noqa: BLE001
             pass
     out.append('<ul class="kit-list">')

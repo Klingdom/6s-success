@@ -600,6 +600,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "SVG/HTML zone-diagram and room-map renderer; ran --demo, output correct; gate_zone_graphics_trigger_not_truncated passed as part of this cycle's full preflight run. No defect."
+    },
+    "zone_supplies.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "render_room() passed bool(tracked) as A.disclosure()'s has_links, claiming no room page has an outbound link whenever no affiliate programme is approved; true on all 20 rooms today. Fixed to True, matching render()/render_storage(); regenerated all 20 site/rooms/*.html; new test_gate_room_kit_disclosure_honest.py"
     }
   }
 }
