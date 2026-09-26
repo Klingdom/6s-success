@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 18:2x (previous work confirmed finished; a second self-inflicted preflight FAIL, this cycle's own doing, diagnosed and cleared; no new defect, triage only)
+
+**NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/deploy.py`, then `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`, unchanged from the 18:0x handoff. Every backlog row and all 9 GitHub issues are still Done/HOLD/owner-gated.**
+
+Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main` (`43c4b577`, 472 commits, no conflict). Previous work (the 18:0x cycle's triage pass) confirmed finished: tree clean, main pushed, matched origin exactly before this cycle changed anything. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated; `OWNER-ACTIONS.md` and `STATUS.md`'s P1-P6 unchanged, all Phil-gated; 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+`preflight.py` (no `--fast` flag effect; the tool has no such flag, `--deep` is the only modifier) FAILED on the first full run with `stray-probe-files`, one leftover `site/_audit_catalog_fix...` path. Traced rather than trusted, per CLAUDE.md 0.4: self-inflicted by two of this cycle's own earlier attach-time runs, each killed by a 100s and 240s tool timeout mid-audit before the real run was let complete in the background, the same documented SIGTERM-mid-write shape this log has repeatedly diagnosed. The leftover path was already gone from disk by the time it was checked and the tree was already clean. Reran the full suite a second time end to end (not `--fast`, the whole ~298-file gate_tests pass, watched to its own exit rather than assumed): **every gate passed, 27 standing warnings, all previously diagnosed** (Stripe/mail/SSH/analytics credential gaps, `deck-print-tier`, `page-art`/`deck-art` art-blocked rows, `kdp-cover-current` needing Pillow, `cold-read-handoff-not-stale` correctly naming the 17:2x entry's own now-superseded handoff files, self-resolving as that entry ages out of the last-four window). No repository defect found; previous work independently reconfirmed finished, not just cited.
+
+**Went well:** treating the preflight FAIL as void-until-reconfirmed rather than shipping past it or assuming it was a leftover from a prior cycle without checking; letting the full run finish in the background instead of repeatedly killing it with a short timeout, which is what caused the FAIL in the first place.
+
+**Did not go well:** this cycle's own early attempts to run `preflight.py` with a 100s and then a 240s timeout both got killed mid-audit and produced exactly the stray-probe-file artifact the log warns about; should have started the full run in the background from the first attempt instead of guessing a short timeout would cover it. Same unrelated-history checkout shape on attach, issue #27's usual symptom.
+
+**Changing next cycle:** none in the codebase; note for future PM cycles running `preflight.py` cold: it is a large suite (298 test files, one gate renders PDFs in headless Chrome) and reliably takes several minutes, so start it in the background immediately rather than spending a cycle's budget on short-timeout attempts that self-inflict the exact FAIL this log keeps diagnosing.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane handoff unchanged from 18:0x: `ops/deploy.py`, then `ops/build_zone_pages.py`, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 18:0x (previous work confirmed finished; one self-inflicted preflight FAIL diagnosed and cleared; no new defect, triage only)
 
 **NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/deploy.py`, then `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`, because every backlog row and all 9 GitHub issues are Done/HOLD/owner-gated and this is the highest-value genuinely unblocked work left.**
