@@ -394,7 +394,7 @@ the grates is slow work. Thumbnail: "Six tools in the crock".**
 
 **Title: 6S for the Cooking Zone: Hob, Hood Filter, Spices, and the Utensil Crock**
 
-**Zone purpose:** the step of space either side of the burners where cooking happens with your hands
+**Zone purpose:** the strip of space either side of the burners where cooking happens with your hands
 busy and the heat already on.
 
 ### Shoot notes

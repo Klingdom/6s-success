@@ -2,7 +2,7 @@
  "generatedFrom": "site/assets/js/quest-data.js",
  "generatedBy": "ops/build_mobile_corpus.py",
  "doNotEdit": "Regenerate instead. This is a build product.",
- "sourceSha256": "ccadca4ff702c4195fc916cd67c8fa555a3993e9152fc6af2f3e8b8c13e39359",
+ "sourceSha256": "9f00e17726f378cff9ff9ae272f4975e792bacfbfd65947d9e3050f5ef80c07b",
  "roomCount": 20,
  "zoneCount": 114,
  "cardCount": 684,
@@ -330,7 +330,7 @@
    "roomSlug": "kitchen",
    "zone": "Cooking Zone",
    "session": "45-75 min",
-   "purpose": "The step of space either side of the burners where cooking happens with your hands busy and heat already on.",
+   "purpose": "The strip of space either side of the burners where cooking happens with your hands busy and heat already on.",
    "done": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.",
    "steps": [
     {

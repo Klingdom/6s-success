@@ -321,6 +321,7 @@ Maintain:
 | LRN-0016 | Fixing a generator does not fix what it already rendered; the expensive artifacts are the ones nobody checks | QUALITY / RELEASE | SUPPORTED | HIGH |
 | LRN-0017 | Authoring against an ID vocabulary from memory produces branches that are well formed, real, and wrong | CONTENT / BUILD | SUPPORTED | HIGH |
 | LRN-0018 | Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log | SEO / AEO | SUPPORTED | HIGH |
+| LRN-0019 | The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus fix never reaches the product | BUILD / PRODUCT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -546,6 +547,75 @@ a rebase conflict resolution", moving an entry back into place.
 markers are gone. It is finished when the entries are in the order the file claims to keep. Verify the headings after every
 resolution, the same way a generated file is regenerated rather than hand-picked from either side of a conflict.
 
+#### LRN-0019: The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus correction never reaches the product
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (traced from a single word through 21 artifacts)
+**Domain:** BUILD / PRODUCT
+**Measured:** 2026-09-26
+
+Found while verifying the 114 YouTube films were safe to publish. A caption read
+"The step of space either side of the burners", which parses as nothing; the
+word wanted is "strip". The caption was faithful. The typo was in
+`content/manual/source/content.json`, in the Kitchen Cooking Zone's `purpose`.
+
+One word, **21 artifacts**: the zone page, the room page, the zones index, the
+Kitchen deck and its page, `quest-data.js`, the mobile quest corpus, three SRT
+caption files, the social captions, the YouTube metadata, the image prompts, the
+shooting script, and four Manual HTML files including the one customers are
+actually sent.
+
+Fixing the corpus and rerunning the generators cleaned every site artifact. It
+did **not** clean the Manual. `ops/build_manual_print.py` reads content.json,
+passes all its own gates, rewrites all three Manual files, and still emitted the
+old sentence, because the `<p class="zpurpose">` body text is not something it
+derives. The only script that writes that element from `purpose` is
+`content/manual/source/build.py`, which is a local script writing to a hardcoded
+Desktop path outside the repository. The tracked Manual HTML is therefore a
+frozen snapshot that `ops/` post-processes for fonts and front matter without
+ever re-deriving the words.
+
+**Implication.** This is `BACKLOG-2026-09-07.md` section 7's dominant defect
+class, "the source was corrected and the shipped artifact was never re-derived
+from it", sitting inside the product with the highest price on it. Any future
+corpus correction silently fails to reach MZ-MANUAL, and every check passes
+while it does. The four files were corrected by hand this time, which fixes the
+instance and not the cause.
+
+**That exception was wrong, and chasing it found something much worse.** I first
+wrote here that the SRT files should keep saying "step" to match baked narration.
+Captions on these films transcribe the ON-SCREEN text, not speech
+(`ops/video_srt.py`: "their words are baked into the pixels"), so the fix is to
+re-render the film, which I did. It came out **93.2s**. Every other film in the
+batch is **30.2s**, to one decimal place, all 114 of them.
+
+So I measured `beats()` for zones I had never edited: Entryway Landing Zone
+74.8s, Garage Primary Workbench 74.8s, Pantry Dry Goods Shelves 78.8s. Today's
+generator produces films two and a half times longer than the ones on disk.
+**All 114 films are stale relative to the script that makes them**, and my
+corpus edit had nothing to do with it.
+
+Then the part that matters. The captions are CURRENT and the films are not:
+
+| slug | caption ends | film ends | |
+|---|---|---|---|
+| entryway--landing-zone | 74.8s | 30.2s | out by 45s |
+| kitchen--sink-and-dishwashing-zone | 74.8s | 30.2s | out by 45s |
+| garage--primary-workbench | 74.8s | 30.2s | out by 45s |
+| kitchen--cooking-zone (re-rendered) | 90.8s | 93.2s | match |
+
+Publishing the batch would put 102 videos on YouTube whose captions run
+**forty-five seconds past the end of the picture** and are out of step within
+the first few beats. For a deaf viewer that is worse than no captions, because
+the words do not correspond to what is on screen.
+
+**Correction to what I told the owner.** I reported the 114 films "verified
+ready" and the paste "would work", on the strength of ffprobe: 1920x1080, audio
+present, 30.2s, zero problems, all 114. Every one of those statements is true
+and the conclusion was still wrong, because I checked each artifact against
+itself and never checked two artifacts against each other. A file that is valid
+is not a file that is current.
+
 #### LRN-0018: Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log
 
 **Status:** SUPPORTED
@@ -574,12 +644,37 @@ any of it is quoted, cited or summarised, and nothing in this system can: that
 happens inside the model, and a server log cannot see it. If quoting matters,
 it has to be tested by asking the engines, not by reading logs.
 
-**The asymmetry is the actionable part.** Over the same window ClaudeBot made
-528 requests and fetched **zero** zone pages, and OAI-SearchBot made 104 and
-fetched zero, while GPTBot took all 114 four times and bingbot took 106 of
-them. Two large crawlers are reaching the site and never descending into its
-deepest content. That is a reachability question with an answer, unlike the
-quoting question, and it is worth more than another authored room.
+**The asymmetry looked actionable and is not. Corrected 2026-09-26 after
+actually testing it.** Over the same window ClaudeBot made 542 requests and
+fetched **zero** zone pages, OAI-SearchBot made 113 and fetched zero, while
+GPTBot took all 114 four times and bingbot took 106 of them. I wrote here that
+this was "a reachability question with an answer" and "worth more than another
+authored room". Both claims were wrong, and the test was cheap:
+
+- `robots.txt` allows everything but `/stats/`, with no AI-specific rule.
+- `sitemap.xml` parses cleanly: 196 URLs, zero empty `loc` elements, deck
+  pages present. Not a malformed-sitemap fault.
+- GPTBot crawls 757 distinct paths using that same robots.txt and that same
+  sitemap, which rules out anything about either file.
+
+What the request breakdown actually shows is not a blocked crawler but an
+uninterested one. **OAI-SearchBot fetched exactly one distinct path, 113
+times: `/robots.txt`.** It has never requested a single page of content.
+ClaudeBot spent 309 of its 542 requests, 57%, re-reading `robots.txt` and
+`sitemap.xml`.
+
+OAI-SearchBot is a retrieval crawler: it fetches a page when a person's
+question makes that page relevant. Asking permission 113 times and never
+following up is not a door that is stuck, it is a machine that evaluated this
+site and never had a reason to open it. That is the arrivals constraint
+restated by a crawler, not a defect to fix in the crawl path.
+
+**Implication, and the reason this correction is worth more than the original
+claim.** "Two crawlers cannot reach our content" would have justified days of
+crawl-path work. The evidence says the content is perfectly reachable and
+nothing is asking for it. Do not spend engineering on AI-crawler reachability
+here; the same effort belongs upstream of the constraint, on giving anybody a
+reason to look.
 
 **Near miss worth recording.** The first count said zero zone-page fetches for
 every crawler including GPTBot, because the path in this log format sits in

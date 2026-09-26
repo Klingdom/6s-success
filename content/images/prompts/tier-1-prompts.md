@@ -356,7 +356,7 @@ surface, showroom emptiness.
 *photograph*
 
 ```
-A photograph of this exact subject: The step of space either side of the burners where cooking happens with your hands busy and heat already on.
+A photograph of this exact subject: The strip of space either side of the burners where cooking happens with your hands busy and heat already on.
 
 Show it BEFORE any work, in the honest state described here: Empty the utensil crock into a box and cook for a week, returning to the crock only what your hand actually reaches for. The warped plastic turner, the corn holders, and the third pair of tongs are still in the box at the end of the week, which is your answer.
 
@@ -397,7 +397,7 @@ surface, showroom emptiness.
 *photograph*
 
 ```
-A photograph of this exact subject: The step of space either side of the burners where cooking happens with your hands busy and heat already on.
+A photograph of this exact subject: The strip of space either side of the burners where cooking happens with your hands busy and heat already on.
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named kitchen--cooking-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
