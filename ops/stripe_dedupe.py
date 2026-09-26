@@ -69,6 +69,42 @@ def duplicates() -> dict:
     return {k: v for k, v in by.items() if len(v) > 1}
 
 
+def _active_links_by_sku() -> dict:
+    """Every ACTIVE payment link carrying a sku, grouped: {sku: [links]}."""
+    import collections
+    links = [L for L in sc.list_all("payment_links", {})
+             if L.get("active") and (L.get("metadata") or {}).get("sku")]
+    by = collections.defaultdict(list)
+    for L in links:
+        by[L["metadata"]["sku"]].append(L)
+    return dict(by)
+
+
+def duplicate_active_links() -> dict:
+    """SKUs with more than one ACTIVE payment link, as {sku: [links]}.
+
+    The quiet half of the pagination bug this file exists for: a duplicate
+    PRODUCT breaks pricing loudly, at checkout, where a customer sees the
+    wrong number. A duplicate LINK breaks it quietly, per dedupe_links()'s
+    own docstring: both links usually charge the same amount on the day
+    they are found, and only diverge the next time the price moves, when
+    the orphan goes on selling at the old price to anyone holding its URL.
+    Extracted the same way duplicates() is above, so preflight can ask the
+    question without reading the live site to decide a survivor or running
+    the fix.
+
+    Raises rather than returning {} when Stripe cannot be reached, matching
+    duplicates()'s own contract: an empty dict must mean "checked, none
+    found," never "could not check."
+    """
+    by = _active_links_by_sku()
+    if not by:
+        raise RuntimeError("no active payment links with a sku came back "
+                           "from Stripe, which is not a believable account "
+                           "state")
+    return {k: v for k, v in by.items() if len(v) > 1}
+
+
 def live_link_ids() -> tuple:
     """Every buy.stripe.com link id the LIVE site serves, and a note.
 
@@ -126,15 +162,11 @@ def dedupe_links(sc, apply_it: bool) -> int:
     price to anyone holding the old URL, which is the shape of mispricing
     nobody would notice for months.
     """
-    import collections
-    links = [L for L in sc.list_all("payment_links", {})
-             if L.get("active") and (L.get("metadata") or {}).get("sku")]
-    by = collections.defaultdict(list)
-    for L in links:
-        by[L["metadata"]["sku"]].append(L)
+    by = _active_links_by_sku()
     dupes = {k: v for k, v in by.items() if len(v) > 1}
+    links_total = sum(len(v) for v in by.values())
     print("  %d active payment links across %d skus, %d duplicated"
-          % (len(links), len(by), len(dupes)))
+          % (links_total, len(by), len(dupes)))
     if not dupes:
         return 0
 

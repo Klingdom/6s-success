@@ -2508,6 +2508,50 @@ def gate_stripe_one_product_per_sku() -> None:
              % (len(dupes), sorted(dupes)[:4]))
 
 
+def gate_stripe_link_dedup() -> None:
+    """Every SKU must resolve to exactly one ACTIVE Stripe payment link.
+
+    gate_stripe_one_product_per_sku just above catches the loud half of the
+    2026-09-23 pagination-bug aftermath: a duplicate PRODUCT breaks pricing
+    at checkout, where a customer sees the wrong number immediately.
+    stripe_dedupe.py's own module docstring names the quiet half, found the
+    same day and never gated: five SKUs (BK-BUNDLE, CN-INHOME, CN-VIRTUAL,
+    MZ-MANUAL, PACK-HOUSE) each had two active payment links, harmless only
+    because both charged the same amount at the time. dedupe_links()'s own
+    docstring explains why that stops being true: rebuilding the link a
+    price change requires touches only the link the site currently serves
+    and leaves the orphan alone, still selling at the old price to anyone
+    holding its URL, a mispricing nobody would notice for months. That
+    cleanup was done once, by hand, with nothing to stop it recurring,
+    exactly the "found it, fixed it, never gated it" shape step 10b exists
+    to close.
+
+    Warns rather than fails, matching gate_stripe_one_product_per_sku's own
+    convention: it describes the Stripe account, not this commit, and it
+    cannot run at all without a credential. No credential reports
+    UNCHECKED, never clean.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import stripe_dedupe
+        dupes = stripe_dedupe.duplicate_active_links()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        warn("stripe-link-dedup",
+             "could NOT check whether every SKU has one active Stripe "
+             "payment link (%s: %s). Unchecked, not clean: an orphaned "
+             "duplicate link can quietly go on selling at a price nobody "
+             "approved the next time this SKU's price changes."
+             % (type(e).__name__, str(e)[:80]))
+        return
+    if dupes:
+        warn("stripe-link-dedup",
+             "%d SKU(s) have more than one active Stripe payment link, so "
+             "an orphan may still be selling at a stale price the moment "
+             "this SKU's price next changes: %s. Fix with "
+             "STRIPE_ALLOW_LIVE=1 python ops/stripe_dedupe.py --apply"
+             % (len(dupes), sorted(dupes)[:4]))
+
+
 def gate_live_links() -> None:
     """The buy buttons on the LIVE site must point at links Stripe honours.
 
@@ -21993,6 +22037,7 @@ def main() -> int:
     run_gate(gate_stripe_price_claims)
     run_gate(gate_no_duplicate_stripe_product_names)
     run_gate(gate_stripe_one_product_per_sku)
+    run_gate(gate_stripe_link_dedup)
     run_gate(gate_live_links)
     run_gate(gate_stripe_brand)
     run_gate(gate_stripe_write_tools_guarded)
