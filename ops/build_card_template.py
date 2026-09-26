@@ -639,7 +639,7 @@ def fit_front(c: dict, boiler: set) -> dict:
     need = min(MAX_ACT_LINES, lines_for(src, "body", body_px, ACT_W))
     raw_tag = tagline_of(c, boiler)
     for floor in (SHOT_MIN, SHOT_FLOOR):
-        for act_lines in range(need, 1, -1):
+        for act_lines in range(need, 0, -1):
             act = fit_lines(src, "body", body_px, act_lines, ACT_W)
             if not act:
                 continue

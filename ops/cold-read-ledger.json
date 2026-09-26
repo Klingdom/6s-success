@@ -46,6 +46,11 @@
       "date": "2026-09-25",
       "note": "cold-read clean, no defect. Desktop-source guard correct, prompt framing table complete, wrong-room/lazy-prompt assertions correct."
     },
+    "build_card_template.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "fit_front()'s main fitting loop used range(need, 1, -1), which is empty when a card's action text needs exactly 1 line, so any such card fell into the 'nothing fitted' fallback: falsely reported trimmed=True and unconditionally dropped the tagline (tag=''), even with room to spare. None of the 89 live Entryway cards currently has a 1-line action (checked directly), so no visible defect shipped, but the next short card would silently lose its tagline. Fixed by widening to range(need, 0, -1). Fail-then-pass proved via git stash against the real module; real-corpus trimmed count (2/89) unchanged before and after. New ops/tests/test_build_card_template_fit_front.py."
+    },
     "build_cleaning_index.py": {
       "status": "fixed",
       "date": "2026-09-24",
