@@ -200,13 +200,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-09T00:24:31Z",
-   "mode": "changed",
-   "offered": 188,
-   "accepted": 188,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-09T05:01:09Z",
    "mode": "changed",
    "offered": 187,
@@ -618,6 +611,13 @@
    "offered": 20,
    "accepted": 20,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-26T13:16:11Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -808,7 +808,7 @@
   "https://6s-success.com/zones/workshop-the-material-rack": "314ddc4b34fbe510",
   "https://6s-success.com/zones/workshop-the-power-tool-storage": "bda9d38d4c4de5ca",
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "4ffd6929632698bf",
-  "https://6s-success.com/kitchen-deck.html": "2c92bb2ed875f5f1",
+  "https://6s-success.com/kitchen-deck.html": "5767494b0b54015d",
   "https://6s-success.com/bundle.html": "c74133165c9c5dd9",
   "https://6s-success.com/articles/what-a-5s-engagement-costs": "2fadc5bddf383fbc",
   "https://6s-success.com/articles/why-5s-decays-after-six-months": "b420843afbc67e5b",
