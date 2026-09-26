@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 14:2x (30-minute triage; previous work confirmed finished; own preflight rerun left running past this slot, reported unchecked not clean)
+
+**Previous work: finished, verified independently.** Unshallowed, fast-forwarded onto `origin/main` (`fdcc214e`). Working tree clean, main pushed. All 9 open GitHub issues confirmed live via the API: unchanged, `decision`/`blocked-on-art`, none pickable. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated.
+
+**My own `preflight.py` rerun did not finish this slot.** `gate_tests` was still running `test_audit_catalog.py`'s subprocess after 6+ minutes; traced it (`/proc` inspection) to a live, actively-spawning child, not a hang or lock collision, just genuinely slow. Left running in background rather than kill mid-check; not reporting it clean since it has not concluded. Regenerated the dashboard. Cold-read lane (`build_catalog.py`/`build_deck_gallery.py`/`corpus_posts.py`/`roadmap_report.py`, tied lowest-mention) handed to the operator, unstarted here.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 13:4x (30-minute triage; previous work finished after clearing a self-inflicted stray-probe FAIL; cold-read lane handed to the operator)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_card_template.py`, because `BACKLOG-2026-09-07.md` sections 2-6 are Done/HOLD/owner-gated, all 9 GitHub issues are `decision`/`blocked-on-art` with none pickable, and 0 PRs are open, so the cold-read lane is again the only right-sized unblocked work.
