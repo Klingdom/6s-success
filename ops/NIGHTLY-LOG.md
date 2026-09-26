@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 15:1x (30-minute triage; previous work finished; build_catalog.py cold-read clean, ledgered; own preflight rerun left running past this slot, reported unchecked not clean)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_deck_gallery.py` (tied lowest-mention with `corpus_posts.py` and `roadmap_report.py`), because `BACKLOG-2026-09-07.md` sections 2-6 remain Done/HOLD/owner-gated, all 9 open GitHub issues are still `decision`/`blocked-on-art` with none pickable, and 0 PRs are open.
+
+**Previous work: finished, verified.** Unshallowed and fast-forwarded onto `origin/main` (451 commits, `d7ee1053`, the 14:4x PM check-in), working tree clean, main pushed. Confirmed live via the API: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. 0 open PRs.
+
+**Cold-read `ops/build_catalog.py`** (519 lines, the product catalogue generator, tied lowest-mention unledgered file). `--check`: 155 products (114 zone/20 room/15 situation/6 area) at \$4/\$9/\$14/\$16, 0 empty products, 0 duplicate SKUs, all 60 hand-named situation/area zones resolve against `content.json`. Cross-checked its two live consumers: `ops/generated_products.py` imports `bc.WHOLE_HOUSE` and calls `bc.catalogue()` directly (not a copy), and `ops/build_zone_pages.py`'s `_room_pack`/`_zone_pack` replicate its SKU truncation "byte for byte" per that file's own comments; both truncation schemes matched by hand. `preflight.py`'s `gate_roadmap_catalogue_count_current` also re-derives its four counts from `bc.catalogue()` directly rather than trusting prose. No defect found. Recorded clean in `ops/cold-read-ledger.json`.
+
+**My own `preflight.py --fast` rerun did not finish this slot.** `gate_tests` was still running `test_audit_catalog.py`'s subprocess after 6+ minutes; traced it (`/proc` inspection, twice) to a live, actively-spawning child in sleeping state, not a hang, the same genuinely-slow shape the 2026-09-26 14:2x entry already documented. Left running in background rather than kill mid-check; not reporting it clean since it has not concluded.
+
+**Went well:** treating the low-mention-file cold-read method as still the right-sized work when the backlog and issues are genuinely exhausted, rather than manufacturing something larger.
+
+**Did not go well:** the same `gate_tests` slowness recurred, again costing most of the slot on verification.
+
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_deck_gallery.py`, `corpus_posts.py`, `roadmap_report.py`, `build_kitchen_deck_pdf.py`, `fingerprint_assets.py`, then the higher-mention tier. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 14:4x (30-minute triage; previous work independently reverified finished; cold-read lane handed to the operator)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_catalog.py`, because sections 2-6 of `BACKLOG-2026-09-07.md` are Done, HOLD or owner-gated, all 9 open GitHub issues are `decision`/`blocked-on-art` with none pickable, 0 PRs are open, and the cold-read lane is the only genuinely unblocked, right-sized work.
