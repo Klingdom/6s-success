@@ -119,6 +119,37 @@ def test_stray_ops_tests_dir_caught_and_deleted():
     assert not still_there, "a stray directory must be rmtree'd, not left behind"
 
 
+def test_pycache_under_ops_tests_is_not_a_stray():
+    """Found 2026-09-26 in CI: the widened `ops/tests/_*` glob also matches
+    `ops/tests/__pycache__`, Python's ordinary bytecode cache (created when
+    CI's own test-collection step imports test modules rather than
+    invoking them as scripts). That is normal operation, not a killed-run
+    leftover, and the gate failed on it every single run, breaking CI
+    permanently the moment the widening merged. A real __pycache__/ with a
+    real .pyc inside must never be reported or deleted."""
+    tmp = tempfile.mkdtemp()
+    os.makedirs(os.path.join(tmp, "zones"))
+    tests_dir = os.path.join(tmp, "ops", "tests")
+    pycache = os.path.join(tests_dir, "__pycache__")
+    os.makedirs(pycache)
+    io.open(os.path.join(pycache, "test_foo.cpython-311.pyc"),
+            "wb").write(b"fake bytecode")
+    old_site, old_root = preflight.SITE, preflight.ROOT
+    preflight.SITE = os.path.join(tmp, "site")
+    os.makedirs(preflight.SITE)
+    preflight.ROOT = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_no_stray_probe_files()
+        assert preflight.FAIL == [], (
+            f"__pycache__ must never be reported as a stray probe file, "
+            f"got {preflight.FAIL}")
+        assert os.path.isdir(pycache), (
+            "__pycache__ must never be deleted by this gate")
+    finally:
+        preflight.SITE, preflight.ROOT = old_site, old_root
+
+
 def test_clean_ops_tests_dir_passes():
     tmp = tempfile.mkdtemp()
     os.makedirs(os.path.join(tmp, "site"))

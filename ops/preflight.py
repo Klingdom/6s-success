@@ -9690,12 +9690,21 @@ def gate_no_stray_probe_files() -> None:
     use, but the other four above still write into the repo tree, so the
     sweep below now covers both directories rather than assume the one
     instance found is the only one.
+
+    Found 2026-09-26, same day, in CI: that widening's own `ops/tests/_*`
+    glob also matches `ops/tests/__pycache__`, Python's ordinary bytecode
+    cache, created by CI's own test-collection step importing test modules
+    rather than invoking them as scripts. That is not a killed-run leftover,
+    it is normal operation, and the gate failed on it every time, breaking
+    the very next CI run after the widening merged. Excluded by basename
+    below; the sweep still catches any real `_`-prefixed probe/fixture path.
     """
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
         for pat in (os.path.join(SITE, "**", "_*.html"),
                     os.path.join(ROOT, "ops", "tests", "_*"))
-        for f in glob.glob(pat, recursive=True))
+        for f in glob.glob(pat, recursive=True)
+        if os.path.basename(f) != "__pycache__")
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture path(s) sitting in site/ or "
