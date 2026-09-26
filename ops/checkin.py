@@ -282,12 +282,26 @@ def next_action(persisted: dict, want_products) -> str:
     # "behind" forever after the next retirement. Matching production against
     # whatever the repository defines right now, in either direction, is the
     # actual question (see ops/deploy.py's own repo_product_count() comment).
-    live_products_now = persisted.get("products_live")
+    #
+    # Same carry-forward requirement as youtube_published above, found cold
+    # reading this file: this used to read the raw "products_live" field,
+    # which is None on every run with no egress to the live site. Every
+    # sandboxed run is exactly that, so this warning had never once fired
+    # from this environment despite main() already persisting a real
+    # "products_live_last_measured" carry-forward value for exactly this
+    # case. Reading the carried-forward value instead means a real,
+    # previously-confirmed mismatch still surfaces on a blind run, labelled
+    # with its own age rather than silently skipped.
+    live_products_now = persisted.get("products_live_last_measured")
+    live_products_fresh = persisted.get("products_live") is not None
+    live_products_asof = persisted.get("products_live_measured_at")
     if (live_products_now is not None and want_products is not None
             and live_products_now != want_products):
-        return ("Production is behind the repository. Deploy. (live serves "
-                 "%d products, repository now defines %d.)"
-                 % (live_products_now, want_products))
+        age = "" if live_products_fresh else (
+            " (last confirmed %s, not rechecked this run)" % live_products_asof)
+        return ("Production is behind the repository. Deploy. (live served "
+                 "%d products%s, repository now defines %d.)"
+                 % (live_products_now, age, want_products))
     if not yt_fresh:
         return ("Last confirmed YouTube count was %s as of %s; this run could "
                 "not reach YouTube to recheck. Work the next unblocked item "

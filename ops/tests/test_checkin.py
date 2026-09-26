@@ -41,6 +41,14 @@ def _base_persisted(**overrides):
         "products_live": 159,
     }
     p.update(overrides)
+    # Mirror main()'s own carry_forward: a fresh (non-None) raw reading
+    # becomes the standing "last measured" value immediately. A case that
+    # wants to test a *stale* carry-forward reading (this run could not
+    # reach the live site at all) passes products_live_last_measured
+    # itself, which this must not then overwrite.
+    if "products_live_last_measured" not in overrides:
+        p["products_live_last_measured"] = p["products_live"]
+        p["products_live_measured_at"] = overrides.get("at", "2026-09-12 12:00")
     return p
 
 
@@ -115,11 +123,40 @@ def main() -> int:
         fails.append("next_action did not treat a live catalogue reading "
                      "zero as production being behind: %r" % action)
 
-    p = _base_persisted(products_live=None)
+    p = _base_persisted(products_live=None, products_live_last_measured=None)
     action = checkin.next_action(p, 159)
     if "Production is behind" in action:
         fails.append("next_action claimed production was behind when "
                      "products_live was never measured at all")
+
+    # The real bug found cold-reading this file 2026-09-26: this run has no
+    # egress to the live site (products_live is None, the case on every
+    # sandboxed run), but a real prior measurement already caught a
+    # mismatch. The old code read the raw "products_live" field, which is
+    # None here, so this warning silently never fired from any sandboxed
+    # environment despite the carry-forward value existing for exactly
+    # this. It must still fire, labelled with its own age.
+    p = _base_persisted(products_live=None, products_live_last_measured=130,
+                        products_live_measured_at="2026-09-20 10:00")
+    action = checkin.next_action(p, 138)
+    if not action.startswith("Production is behind the repository. Deploy."):
+        fails.append("next_action did not use the carried-forward "
+                     "products_live reading when this run had no egress "
+                     "to the live site: %r" % action)
+    if "not rechecked this run" not in action or "2026-09-20 10:00" not in action:
+        fails.append("next_action's carried-forward deploy warning did not "
+                     "label itself with its own age: %r" % action)
+
+    # The matching negative: a stale carried-forward reading that agrees
+    # with the current repository count must stay silent, not warn just
+    # because this run could not recheck.
+    p = _base_persisted(products_live=None, products_live_last_measured=138,
+                        products_live_measured_at="2026-09-20 10:00")
+    action = checkin.next_action(p, 138)
+    if action.startswith("Production is behind"):
+        fails.append("next_action warned on a stale carried-forward "
+                     "reading that actually still matches the repository: "
+                     "%r" % action)
 
     p = _base_persisted(products_live=100)
     action = checkin.next_action(p, 159)
@@ -201,9 +238,10 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("PASS: 23 assertions, commits_24h_text, parse_undelivered, "
-         "carry_forward, repo_product_count and next_action (including both "
-         "the products_live==0 fix and the hardcoded-159 fix) all correct")
+    print("PASS: 26 assertions, commits_24h_text, parse_undelivered, "
+         "carry_forward, repo_product_count and next_action (including the "
+         "products_live==0 fix, the hardcoded-159 fix, and the "
+         "carried-forward-products_live-on-a-blind-run fix) all correct")
     return 0
 
 

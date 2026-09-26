@@ -241,6 +241,11 @@
       "date": "2026-09-25",
       "note": "compares rendered .srt checklists against video_zone.done_items(); ran live, 114/114 match the standard, 0 stale, 0 unreadable. No defect."
     },
+    "checkin.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "next_action() read the raw products_live field instead of the carried-forward products_live_last_measured value, so the deploy-behind warning silently never fired on any run with no egress to the live site (every sandboxed run). Fixed and gated with two new test_checkin.py cases proving fail-then-pass."
+    },
     "cold_read_ledger.py": {
       "status": "clean",
       "date": "2026-09-25",
