@@ -471,6 +471,11 @@
       "date": "2026-09-25",
       "note": "pure-data single source of truth for the 6 specific-problem articles' opening direct answer; gate_specific_article_direct_answer passed as part of this cycle's full preflight run. No defect."
     },
+    "split_deck_cards.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read cold; code correctly matches gate_deck_art_withheld's WITHHOLD set, both index.json and on-disk-URL checks cover withheld codes, no defect found."
+    },
     "status_pdf.py": {
       "status": "fixed",
       "date": "2026-09-25",
@@ -535,6 +540,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "Read in full 2026-09-25; no defect found."
+    },
+    "video_zone.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read cold; heavily gated already (gate_video_slug_single_source, gate_quest_data_videos_published, done_items/zone_slug single-source checks), no new defect found."
     },
     "wire_aria_current.py": {
       "status": "clean",
