@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 10:1x (previous work independently re-verified finished via a full preflight run including the deep test gate; the one failure found was self-inflicted by this cycle's own earlier killed run and confirmed self-cleared; no unblocked backlog item)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, then the rest of the tied tier), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 420 commits cleanly onto `origin/main` (`5a201da1`, the prior cycle's own manual-print fix). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s open section headers. 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. 0 open PRs.
+
+**Verified rather than trusted, Step 2's own question:** ran `preflight.py` to full completion in the background (not under a foreground timeout, learning from prior cycles' own self-inflicted artifacts). Result: **1 gate failed, 26 warnings.** The failure, `stray-probe-files`, named a leftover fixture path (`site/_audit_catalog_fix...`); traced it to this cycle's own earlier `timeout 100 python3 ops/preflight.py` invocation, which I ran first and which was SIGTERM'd mid-test before I switched to the background method. Read the gate's own source (`ops/preflight.py:9736-9766`) rather than assume: it deletes every stray path it finds as part of its own run, after reporting the failure, which is exactly why the file no longer exists on disk (confirmed: `find` and `git status --ignored` both show nothing). `gate_tests` (294 files, the slow headless-Chromium suites included) reported no FAIL; the only two unverifiable files (`test_build_cover.py`, `test_zone_hero_markup_keeps_avif.py`) correctly reported unverified, not passing, for the standing no-Pillow reason. Every other warning matches the standing sandboxed-environment set (no Stripe credential, no site egress, no SSH key, no mail credential, the two cron-cadence drifts already diagnosed). **Previous work (the manual-print regeneration) is genuinely finished.**
+
+**No genuinely unblocked backlog item this slot**, matching every prior cycle today: `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD, section 6 Phil's own six owner gates; `EXECUTIVE-DASHBOARD-LIVE.md`'s one open P0 (production serving an old build) already correctly on `OWNER-ACTIONS.md` and issue #35.
+
+**Went well:** reading the gate's own remediation code instead of just re-running preflight a second time to "see if it's clean now," which confirmed the self-clearing mechanism directly rather than inferring it from a second green run.
+
+**Did not go well:** I caused the same self-inflicted killed-run artifact class this log has diagnosed repeatedly, by running a foreground-timeout `preflight.py` invocation once before switching to the background method. Costs nothing (the gate exists precisely for this), but worth not repeating.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Continue the cold-read lane above.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (regenerated), `ops/NIGHTLY-LOG.md`. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 09:4x follow-up (the deep preflight run the entry below left unchecked finished: 2 gates failed, one self-inflicted and already self-cleared, one real and fixed here rather than left for the next cycle)
 
 **Did:** The `preflight.py` run the 09:4x entry below started in the background finished after that entry was already pushed. Read its result rather than assume the earlier "unchecked" note was the end of it, per CLAUDE.md 0.2 ("a correctly reported problem that nobody acts on costs exactly as much as an undetected one"): **2 gate(s) failed.**
