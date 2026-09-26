@@ -26,6 +26,26 @@ Six other files were also cold-read this cycle and ledgered clean (`ops/cold-rea
 
 Pushed to main. `ops/image_local.py`, `ops/preflight.py`, `ops/tests/test_image_local.py`, `ops/tests/test_image_negations.py`, `ops/tests/test_gate_image_prompt_negations_handled.py`, `ops/cold-read-ledger.json`, `STATUS.md`, `STATUS-ARCHIVE.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-26 05:4x (previous work verified locally, CI confirmation still in progress; no genuinely unblocked backlog item, cold-read lane is the handoff)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (top un-ledgered candidates: `build_card_template.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, ~~`build_quest.py`~~, ~~`build_resources.py`~~, ~~`check_sellable.py`~~, `roadmap_report.py`, ~~`verify_deploy.py`~~, `video_zone_photo.py`; the five struck were cleared by the newer entry above this one), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable; also confirm this slot's own CI run (#1469, commit `79d5fce9`) lands green before trusting the checkin.py fix below as fully closed.
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `05971654`. Mid-check, a further concurrent operator cycle pushed (`checkin.py`'s deploy-behind warning fix, merged through `e516ede2`/`79d5fce9`); fetched and fast-forwarded onto it rather than working from a stale tip, per step 8.
+
+**Step 2: previous work is substantively finished but not yet CI-confirmed on this exact HEAD.** Checked CI directly rather than trust the log's own claim: the prior PM cycle's commit (`05971654`) has a completed, successful `checks.yml` Preflight step (run #1468). The newest push (`checkin.py` fix, `79d5fce9`) already has its own log entry showing fail-then-pass verification (26/26 tests) and a clean full local `preflight.py` before it was pushed; its CI run (#1469) was still `in_progress` on Preflight when checked (18+ minutes in, the normal range), so reported honestly as unconfirmed rather than assumed green. A local `preflight.py` I started myself was killed by this slot's own time budget before finishing, consistent with every prior cycle's documented sandbox limit; not treated as a defect.
+
+**Backlog and issues reconfirmed, not just cited:** `BACKLOG-2026-09-07.md` section headers checked directly (sections 2-4 fully Done/CLOSED, section 5 HOLD, section 6 six owner gates). 9 open GitHub issues confirmed live via the API: #2, #15, #18, #21, #29, #31, #33, #35, #36, all carrying `decision` or `blocked-on-art` (two also `P0`), unchanged from every prior cycle today, none pickable.
+
+**No new closing job taken this slot.** Per this file's own opening instruction (the PM's most valuable output at :40 is the handoff, not new depth three minutes before the operator), and since the previous cycle's own fix is still mid-CI-confirmation, starting a fresh cold-read pick here would risk leaving two unconfirmed threads for the operator instead of one clean handoff.
+
+**Went well:** catching and merging a concurrent push mid-check rather than working from a stale attach point; treating "verified locally" and "confirmed by CI" as two different claims rather than conflating them.
+
+**Did not go well:** same shallow/detached checkout shape on attach; issue #27 still open. Local `preflight.py` still cannot finish inside a 30-minute slot; CI remains the only real confirmation.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log entry, command deck regen. No code, price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 (a deploy-drift warning that had never once fired from any sandboxed environment, found cold-reading checkin.py and fixed)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, fetched, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 393 commits cleanly onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `STATUS.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed). 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-4 fully Done/CLOSED, section 5 HOLD, section 6 owner-gated: no new unblocked item, so the cold-read lane (`ops/cold_read_ledger.py --next`) was the right-sized work. Re-checked egress directly rather than trust the standing finding: still denied, `CONNECT tunnel failed, response 403` against Stripe, the live site and Bing alike.
