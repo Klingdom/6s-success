@@ -496,6 +496,11 @@
       "date": "2026-09-25",
       "note": "Ran live: idempotent (no site/ diff on a rerun against the committed tree), and its own self-check (site.css gates .reveal behind .js) passed against the real committed CSS. No defect."
     },
+    "wire_pwa.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full (115 lines): icons wired site-wide, manifest+SW only on quest.html, downloads/ and deck/ deliberately skipped as standalone artifacts. Verified live: reran, every icon/manifest/SW href resolves (assert passes), git status clean after (idempotent, no drift). No defect."
+    },
     "wire_signup.py": {
       "status": "clean",
       "date": "2026-09-25",

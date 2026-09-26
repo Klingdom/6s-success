@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 00:2x (previous work confirmed finished on the last code-touching commit; cold-read lane clears one more file; full local preflight still mid-run when this slot closed, reported unchecked rather than assumed clean)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 362 commits cleanly onto the real tip, no conflict, working tree clean before this cycle's own edits.
+
+**Step 2: previous work is finished, on the last commit that actually changed code.** `checks.yml` run #1453 is `success` on `ae0e5060`, the last commit to touch anything under `ops/`/`site/`. The three commits since (`af0a5b20`, `d1aa2a39`, and the merge commit `9456c22f` that combined them) each touch only the command deck and this log, the same class of commit prior cycles have already established `checks.yml` does not need to re-confirm; `9456c22f`'s own run (#1454) was still `in_progress` when checked, consistent with that pattern rather than a new risk. GitHub confirmed live: 9 open issues, unchanged (`#36, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision` or `blocked-on-art`; 0 open PRs.
+
+**Step 3: nothing new is unblocked.** `BACKLOG-2026-09-07.md` sections 2 to 6 checked by content: every row is Done, closed by decision, or explicitly waiting on Phil (section 6's six owner gates, `OWNER-ACTIONS.md` item 0 chief among them). No row justifies a fourth workstream against the WIP cap of 3.
+
+**Cold-read lane:** ran `ops/cold_read_ledger.py --next` myself rather than trust the prior entry's own list (which named `build_quest.py`, `check_live_links.py`, etc; the tool's live output instead led with `stripe_fulfil.py`, `verify_deploy.py`, `video.py`, `video_zone.py`, `video_zone_photo.py`, `wire_pwa.py`, matching this repository's own recurring finding that a carried-forward handoff list drifts from what the tool actually returns). Read the smallest of these, `ops/wire_pwa.py` (115 lines), in full: wires a favicon/apple-touch-icon into every site page and the manifest plus service-worker registration only into `quest.html` (the only page that is genuinely an app), deliberately skipping `downloads/` and `deck/` pages as standalone artifacts a buyer opens from disk. Verified live, not just read: reran it against the real committed site, `git status` clean after (idempotent, no drift), and its own end-of-run assertion (every icon/manifest/service-worker href it wrote actually resolves on disk) passed. No defect. Recorded clean in `ops/cold-read-ledger.json` (103 of 164 now ledgered).
+
+**Verified rather than assumed:** started a full, untimed `python ops/preflight.py` at the top of this cycle; it had not reached its own exit by the time this slot closed (parked on `gate_tests`, the same multi-minute contention point this repository's own log has already documented, not a stall). Reported **UNCHECKED** for this pass rather than assumed clean, per `CLAUDE.md` 0.4. The "previous work is finished" call above rests on CI's own already-completed run on the last code-touching commit, not on this unfinished local one.
+
+**Went well:** re-deriving the cold-read tool's actual next-candidate list instead of forwarding a prior cycle's, which had already drifted; verifying `wire_pwa.py` live (rerun + idempotency check) instead of stopping at a clean read.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. Local full preflight did not finish inside this slot.
+
+**Changing next cycle:** none found to change.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`; next un-ledgered candidates after this cycle: `stripe_invoice.py`, `mailer.py`, `verify_deploy.py`, `check_sellable.py` (already escalated as issue #36, do not re-fix without a decision), `video_zone_photo.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen only. No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-25 23:5x (backlog confirmed exhausted a second time; cold-read lane clears two more files, no live defect found or fixed)
 
 **Did:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 359 commits cleanly onto `1f693e46`, no conflict. Read `BACKLOG-2026-09-07.md` sections 0 to 7 and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries. Confirmed via the GitHub API rather than trusted from the log: 9 open issues unchanged, all `decision`/`blocked-on-art`; `checks.yml` run #1453 and `publish-image.yml` both `success` on the current tip (`ae0e5060`). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle.
