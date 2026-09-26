@@ -2552,6 +2552,40 @@ def gate_stripe_link_dedup() -> None:
              % (len(dupes), sorted(dupes)[:4]))
 
 
+def gate_stripe_orphan_link_active() -> None:
+    """A deliverable SKU must never resolve to only an inactive payment link.
+
+    Found 2026-09-26 cold-reading stripe_catalog.py: ensure_link()'s
+    orphan-adoption loop matched an unmetadata'd payment link by price alone,
+    with no active check, and could tag a retired link with a live SKU's
+    metadata (now fixed). find_by_sku() then falls back to that inactive
+    match forever, so ensure_link() believes the SKU already has a link and
+    never builds a real one: a silent, self-reinforcing loss of that SKU's
+    ability to be bought. skus_stuck_on_inactive_link() is the live check
+    for whether any SKU is already in that state, from whatever cause.
+
+    Warns rather than fails, matching gate_stripe_link_dedup's own
+    convention just above: it describes the Stripe account, not this
+    commit, and it cannot run at all without a credential. No credential
+    reports UNCHECKED, never clean.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import stripe_catalog
+        stuck = stripe_catalog.skus_stuck_on_inactive_link()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        warn("stripe-orphan-link-active",
+             "could NOT check whether any SKU is stuck on an inactive "
+             "Stripe payment link (%s: %s). Unchecked, not clean."
+             % (type(e).__name__, str(e)[:80]))
+        return
+    if stuck:
+        warn("stripe-orphan-link-active",
+             "%d SKU(s) resolve only to an INACTIVE Stripe payment link, so "
+             "ensure_link() will never build them a real one until Stripe "
+             "is fixed by hand: %s." % (len(stuck), sorted(stuck)[:4]))
+
+
 def gate_live_links() -> None:
     """The buy buttons on the LIVE site must point at links Stripe honours.
 
@@ -22057,6 +22091,7 @@ def main() -> int:
     run_gate(gate_no_duplicate_stripe_product_names)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_stripe_link_dedup)
+    run_gate(gate_stripe_orphan_link_active)
     run_gate(gate_live_links)
     run_gate(gate_stripe_brand)
     run_gate(gate_stripe_write_tools_guarded)

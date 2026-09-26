@@ -239,6 +239,34 @@ def front_matter_blockers() -> int:
     return sum(1 for k, v in answers.items() if not k.startswith("_") and not v)
 
 
+def skus_stuck_on_inactive_link() -> list[str]:
+    """Deliverable SKUs whose only Stripe payment-link match is inactive.
+
+    find_by_sku() below deliberately falls back to an inactive match when no
+    active one exists, which is correct for retirement bookkeeping (it needs
+    to see a retired link to replace it). The cost is that ensure_link()
+    treats that fallback as "found" and never builds a new, real link: once a
+    SKU is in this state it stays in it until someone edits Stripe by hand.
+    2026-09-26 found one way to reach this state (ensure_link()'s
+    orphan-adoption loop tagging a retired link by price with no active
+    check, now fixed); this function is the live check for whether it, or
+    anything else, has already left a SKU here.
+    """
+    cat = catalogue()
+    stuck = []
+    for sku, spec in SELLABLE.items():
+        item = cat.get(sku)
+        if not item:
+            continue
+        ok, _why = deliverable(sku, item, spec)
+        if not ok:
+            continue
+        found = find_by_sku("payment_links", sku)
+        if found and not found.get("active", True):
+            stuck.append(sku)
+    return stuck
+
+
 # ---------------------------------------------------------------- sync
 def find_by_sku(kind: str, sku: str, adopt_names: list[str] | None = None) -> dict | None:
     """Stripe has no lookup by metadata, so scan. The catalogue is tiny.
@@ -482,6 +510,13 @@ def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | No
         # this script and would otherwise be duplicated.
         for l in list_all("payment_links"):
             if (l.get("metadata") or {}).get("sku"):
+                continue
+            # A retired link matching by price is still retired. Adopting one
+            # here would tag a dead link with this SKU's metadata and hand a
+            # customer a "This link is no longer active" page as the buy
+            # button, silently, since the URL, active flag and price all look
+            # unrelated to this SKU until read this closely.
+            if not l.get("active", True):
                 continue
             items = call("GET", f"payment_links/{l['id']}/line_items", {"limit": 5})["data"]
             if any(i.get("price", {}).get("id") == price_id for i in items):
