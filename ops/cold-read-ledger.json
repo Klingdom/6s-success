@@ -121,6 +121,11 @@
       "date": "2026-09-25",
       "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Laundry Room's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
     },
+    "build_manual_print.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "FIELD regex in fill_front_matter.py (colon in the character class) could not match [PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1], so scan()/--check never saw it, and it shipped as literal placeholder text on the copyright page of all 3 manual files. Also cold-read fill_front_matter.py itself while tracing this. Fixed: widened FIELD to allow an optional colon-qualified tail, made the apply-loop token a regex so drop/fill matches the whole bracket, added PRINTING NUMBER LINE as an alias of the existing TERRITORY/PRINTING STATEMENT drop, and moved the closing </p> in build_manual_print.py's COPYRIGHT_PAGE template off the same line as the bracket so dropping it doesn't eat the tag. gate_front_matter_filled already existed and now catches this shape; new ops/tests/test_fill_front_matter_colon_field.py locks in the regex and the line-drop behavior. Fail-then-pass proved directly against the real committed files via git stash (old regex+old files: 0 fields found, defect invisible; new regex+old files: fails citing the field; new regex+new files: clean)."
+    },
     "build_microzone_coverage.py": {
       "status": "fixed",
       "date": "2026-09-24",

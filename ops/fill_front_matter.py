@@ -42,7 +42,7 @@ TARGETS = [
     "content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html",
 ]
 
-FIELD = re.compile(r"\[([A-Z][A-Za-z0-9 ,._/-]+)\]")
+FIELD = re.compile(r"\[([A-Z][A-Za-z0-9 ,._/-]+)(?::[^\]]*)?\]")
 
 # The same field is spelled several different ways across the book and the
 # three copies of the manual, because they were drafted at different times.
@@ -57,7 +57,8 @@ ALIASES = {
     "ISBN": ["ISBN PLACEHOLDER"],
     "PUBLISHER CONTACT": ["CONTACT PLACEHOLDER", "CONTACT / RIGHTS PLACEHOLDER"],
     "TERRITORY / PRINTING STATEMENT": ["TERRITORY STATEMENT",
-                                       "COUNTRY OF MANUFACTURE"],
+                                       "COUNTRY OF MANUFACTURE",
+                                       "PRINTING NUMBER LINE"],
 }
 
 
@@ -133,14 +134,17 @@ def main(apply_it):
             continue
         text = original = io.open(path, encoding="utf-8", errors="replace").read()
         for name, value in ready.items():
-            token = "[" + name + "]"
+            # A bracket may carry printer's instructional text after a colon,
+            # e.g. [PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1]; match the
+            # whole bracket, not just a literal "[NAME]".
+            token = re.compile(r"\[" + re.escape(name) + r"(?::[^\]]*)?\]")
             if value == DROP:
                 # Drop the line the placeholder sits on rather than
                 # filling it with something untrue.
                 nl = chr(10)
-                text = nl.join(ln for ln in text.split(nl) if token not in ln)
+                text = nl.join(ln for ln in text.split(nl) if not token.search(ln))
                 continue
-            text = text.replace(token, value)
+            text = token.sub(value, text)
         if text != original:
             io.open(path, "w", encoding="utf-8", newline="").write(text)
             changed += 1
