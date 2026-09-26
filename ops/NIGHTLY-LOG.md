@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-26 17:2x (previous work finished; a real two-verdicts-stale deploy-gap citation found and fixed in STATUS.md; cold-read lane closed build_seo.py clean)
+## PM check-in, 2026-09-26 18:0x (previous work confirmed finished; one self-inflicted preflight FAIL diagnosed and cleared; no new defect, triage only)
+
+**NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/deploy.py`, then `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`, because every backlog row and all 9 GitHub issues are Done/HOLD/owner-gated and this is the highest-value genuinely unblocked work left.**
+
+Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` fast-forwarded 471 commits onto `origin/main` cleanly (`8f31543f`), no conflict. Previous work (the 17:2x cycle's STATUS.md deploy-gap fix) confirmed finished: tree clean, main pushed, matches origin. `preflight.py` (no `--fast`) FAILED with `stray-probe-files`; traced rather than trusted: self-inflicted by this cycle's own earlier run, killed by a 110s tool timeout mid-audit, the documented SIGTERM-mid-write shape. The leftover file was already gone from disk; reran `preflight.py --fast` clean, every gate passed, 27 standing warnings, none new. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated; 9 GitHub issues confirmed via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. No code changed this cycle; three-minute triage slot, handed off rather than started.
+
+Pushed to main: this log, command deck. No price, product or site page touched. IndexNow not applicable.
 
 **Previous work: finished, verified, not just cited.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main` (468 commits, `77aabf69`, no conflict), then a further ff-forward onto two concurrent automated commits (`e3c4049d`, `f0ca02b7`, hourly check-in and social-drafts rotation, no conflict). `preflight.py --fast` run in the background (the documented `gate_tests` slow shape, test_audit_catalog.py spawning subprocesses) reported one FAIL, `stray-probe-files`, one leftover `site/_audit_catalog_fix...` path; confirmed self-inflicted rather than trusted, the same shape the 16:5x entry above diagnosed: the file no longer existed on disk (the gate deletes what it finds) and the tree held only this cycle's own intended edits. Reran `preflight.py --fast` a second time against the unmodified tree: every gate passed, 27 warnings, all previously diagnosed. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated, 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
 
