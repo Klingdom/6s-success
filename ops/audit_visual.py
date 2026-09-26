@@ -755,7 +755,20 @@ def main() -> int:
                 lambda r: "%-26s doc %dpx > view %dpx  %s"
                           % (r[0], r[1], r[2],
                              [o["path"][:44] for o in r[3][:2]]))
-    return 1 if (bad_text or bad_img) else 0
+    # The exit code used to reflect only two of the nine categories this
+    # tool computes (bad_text, bad_img), so a broken image, a missing form
+    # label, an invisible focus outline, a bad landmark or heading jump --
+    # or, on --mobile, a crowded tiny target or a page scrolling sideways --
+    # could be printed right above a process exit of 0. Nothing in preflight
+    # was fooled by this (gate_visual_audit and gate_mobile_touch_targets
+    # both parse the printed counts, not this return value), but a person
+    # running this tool directly and trusting `$?` would have been. Same
+    # "check that cannot fail" shape as the other cold-read fixes this week.
+    findings = (bad_text or bad_img or broken_img or no_dim or no_alt or
+                bad_head or no_label or no_focus or no_land)
+    if mobile:
+        findings = findings or tiny_t or small_t or side_scroll
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":
