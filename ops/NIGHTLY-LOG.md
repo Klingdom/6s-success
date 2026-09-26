@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in addendum, 2026-09-26 22:5x (the unwrapped preflight run from the entry below finished after all, and its one live warning was a real gate false positive: fixed)
+
+NEXT FOR THE OPERATOR: cold-read `ops/dashboard.py` still stands, unchanged from the entry below.
+
+**The background `preflight.py` from the 22:4x entry finished on its own: every gate passed, 27 warnings, 0 `FAIL`.** All 27 match the standing, previously-diagnosed sandbox set (no Stripe/SSH/mail credential, no Pillow, no egress) with one exception worth reading rather than filing away: `cold-read-handoff-not-stale` fired against this very log's own newest entry at the time, naming `ops/ship.py`/`ops/fix_dashes.py` as stale.
+
+**Checked rather than dismissed as an artifact of the run straddling my own edit.** Re-ran `cold_read_handoff_stale_files()` directly against the current, already-pushed log: still flagged `ship.py`/`fix_dashes.py`, so this was live, not a timing fluke. Traced it to the 22:1x entry's own `**Next:**` line: "cold-read lane continues... at `ops/dashboard.py` (`ship.py` and `fix_dashes.py` both ledgered clean by the concurrent cycle below)". `ops/dashboard.py`, the actual live candidate, sits unwrapped exactly as intended; `ship.py`/`fix_dashes.py` are named only inside a parenthetical aside citing them as *already cleared*, the same shape a `~~strikethrough~~` correction already means in this log's own established convention, dozens of real uses. `cold_read_handoff_stale_files()` stripped strikethrough before matching but never stripped parentheses, so the aside was read as a live handoff naming two already-ledgered files, a false positive.
+
+**Fixed:** added the same `re.sub` strip for `\([^()]*\)` right beside the existing strikethrough strip, and documented why in the function's own docstring (a third "Found live" paragraph, matching this file's own established pattern for recording defect classes it existed to catch). Fail-then-pass proved directly: `git stash` on `ops/preflight.py` alone, the new test case failed exactly as expected (`['build_feed.py', 'canonical_links.py']` wrongly flagged), restored, reran clean (9/9). Confirmed against the real committed log, not only the synthetic case: `cold_read_handoff_stale_files()` now returns `[]` against the current `ops/NIGHTLY-LOG.md` and ledger. New case in `ops/tests/test_gate_cold_read_handoff_not_stale.py` (3c), built directly from this log's own real line rather than a generic stand-in.
+
+**Went well:** not filing a warning away as "probably a timing artifact of an edit mid-run" without actually re-checking it against the current file first.
+
+**Did not go well:** this is the same class of gap the function's own docstring already records twice (missed "Handing to operator:" phrasing on 2026-09-25); a parenthetical aside meaning the same thing as strikethrough should have been obvious the first time strikethrough was added.
+
+**Next:** unchanged from the entry below; cold-read lane continues at `ops/dashboard.py`. Standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_cold_read_handoff_not_stale.py`, this log, command deck. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 22:4x (previous work finished; a self-inflicted preflight timeout caught before it did damage; handoff reaffirmed, no new defect found)
 
 NEXT FOR THE OPERATOR: cold-read `ops/dashboard.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next` (158 of 164 ledgered), and the 21:2x scheduled-operator entry already sampled seven near-identical bare-`Exception` blocks in it (each resets a count to 0 rather than reporting "not measured") without fixing or ledgering any of them, so this is a continuation, not a fresh sweep.

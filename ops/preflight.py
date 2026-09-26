@@ -14067,7 +14067,13 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     the backlog is exhausted). A name inside ~~strikethrough~~ is a
     correction acknowledging the staleness already, in the file's own
     established markdown, not a live handoff, so it is stripped before
-    matching rather than flagged as if it were current.
+    matching rather than flagged as if it were current. A name inside a
+    parenthetical aside is the same shape one level less formal: this
+    log's own convention (dozens of real uses) is to name the live
+    candidate unwrapped and cite already-cleared names in parentheses
+    right beside it, e.g. "at `ops/dashboard.py` (`ship.py` and
+    `fix_dashes.py` both ledgered clean by the concurrent cycle below)",
+    so parenthetical content is stripped too.
 
     Found live 2026-09-25: this only recognised "**Next:**" and "NEXT
     FOR THE OPERATOR:" as handoff headers, but "Handing to operator:"/
@@ -14077,6 +14083,15 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     stale candidate list; because the regex could not see it, the gate
     instead flagged an older, now-superseded "NEXT FOR THE OPERATOR:"
     line three entries back as if it were the live handoff.
+
+    Found live 2026-09-26: a genuinely fresh handoff naming
+    `ops/dashboard.py` as the live candidate, in the same breath citing
+    `ship.py` and `fix_dashes.py` in parentheses as already ledgered
+    clean "by the concurrent cycle below", tripped this gate anyway,
+    because parenthetical text was never stripped the way strikethrough
+    already was. The two shapes mean the same thing in this log's own
+    convention (a name that is not the live candidate); only strikethrough
+    was recognised as such.
     """
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
@@ -14088,6 +14103,7 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                 r"Handing to (?:the )?operator:)"
                 r".*(?:\n(?!\n).*)*", block):
             live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
+            live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
             names = re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live)
             for name in names:
                 if name in seen:

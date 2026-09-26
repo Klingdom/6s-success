@@ -125,6 +125,27 @@ def main() -> int:
         fails.append("unbolded 'Handing to the operator:' phrasing not "
                       "recognised: got %r" % stale)
 
+    # 3c. A name inside a parenthetical aside, cited as already ledgered
+    #     clean right beside the live candidate, is the same shape as a
+    #     ~~strikethrough~~ correction (not a live handoff) and must not
+    #     be flagged. Found live 2026-09-26: this exact real log line
+    #     ("...at `ops/dashboard.py` (`ship.py` and `fix_dashes.py` both
+    #     ledgered clean by the concurrent cycle below)...") tripped the
+    #     gate on `ship.py`/`fix_dashes.py` even though the live
+    #     candidate, `dashboard.py`, is genuinely un-ledgered.
+    log_paren_aside = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-26\n\n"
+        "**Next:** cold-read lane continues per `ops/cold_read_ledger.py "
+        "--next` at `ops/crawl_report.py` (`build_feed.py` and "
+        "`canonical_links.py` both ledgered clean by the concurrent cycle "
+        "below). Standing Phil-blocked list unchanged.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_paren_aside, LEDGER)
+    if stale:
+        fails.append("a parenthetical already-cleared aside was wrongly "
+                      "flagged: %r" % stale)
+
     # 4b. But a stale name past the max_entries window (the sixth entry,
     #     with the default window of 4) must NOT be caught: that is
     #     older history, not the live handoff a fresh cycle will read.
@@ -154,7 +175,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 8/8 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 9/9 cases pass")
     return 0
 
 
