@@ -11,6 +11,11 @@
       "date": "2026-09-24",
       "note": "Merchant key normalised inconsistently with the matrix lookup (37/123 CSV rows wrongly read no-programme-record for Home Depot); CRLF line endings in its CSV output. Both fixed, gated by gate_affiliate_report_current."
     },
+    "audit_visual.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Corrected a stale comment claiming a longer-budget retry runs before a page is marked unread; that retry was written 2026-09-25 and deliberately never shipped (Phil's own commit message: real cost on a memory-short host, not needed once the real cause, an unresolved bare filename, was found). The comment still described the unshipped mechanism as active. No retry re-added; comment now matches the real, no-retry behavior."
+    },
     "backup_analytics.py": {
       "status": "clean",
       "date": "2026-09-25",
