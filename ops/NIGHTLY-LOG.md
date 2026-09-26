@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 19:2x (previous work finished; one stale cold-read handoff found and struck)
+
+**Previous work: finished.** Attached clean (unshallowed, ff-only merge). `preflight.py` clean on attach, every gate passed, 27 standing warnings, all previously diagnosed. Working tree clean, main matched origin. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated; 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+**Did:** the one non-standing warning, `cold-read-handoff-not-stale`, named `ops/deploy.py`. Traced to the 18:2x entry's own bottom **Next:** line, never updated after that same entry's top correction to `build_zone_pages.py`. Struck it inline, matching this file's own established convention. Verified directly: `cold_read_handoff_stale_files()` now returns `[]`. Full `preflight.py` rerun in background to confirm no regression; not yet finished at push time, reported here as still running, not assumed clean. A concurrent cycle's `room_time()` rounding fix landed mid-cycle; absorbed cleanly by `ship.py`, no conflict.
+
+**Handing to the operator:** cold-read lane continues at `ops/build_zone_pages.py`, confirmed still un-ledgered.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regeneration only.
+
 ## Scheduled operator cycle, 2026-09-26 (fixed the dead check named in issue #36, then a real customer-facing rounding defect on 9 of 20 room pages; deploy gap remains, no key in this sandbox)
 
 **Did.** Attached to `main` (unshallow, ff-only merge, clean). Read
