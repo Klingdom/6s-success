@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 09:4x follow-up (the deep preflight run the entry below left unchecked finished: 2 gates failed, one self-inflicted and already self-cleared, one real and fixed here rather than left for the next cycle)
+
+**Did:** The `preflight.py` run the 09:4x entry below started in the background finished after that entry was already pushed. Read its result rather than assume the earlier "unchecked" note was the end of it, per CLAUDE.md 0.2 ("a correctly reported problem that nobody acts on costs exactly as much as an undetected one"): **2 gate(s) failed.**
+
+**`stray-probe-files`:** 1 leftover fixture path from a run killed mid-test. Traced to this cycle's own earlier `timeout 110 python ops/preflight.py`, which this cycle itself had run and let get SIGTERM'd while `test_audit_catalog.py` was mid-flight, before switching to the background-run method the entry below describes. Checked rather than assumed: the named path no longer exists anywhere in the tree (`find`, plus `git status --ignored`), so the gate's own documented remediation had already cleared it before this was read. Not re-caused; no action needed beyond confirming it is gone.
+
+**`manual-print-fonts-current` was real, not self-inflicted, and is fixed.** `content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html` and its sibling `content/manual/micro-zone-manual-publishable.html` still shipped the front matter's original bracketed placeholders (`[YEAR]`, `[AUTHOR OR RIGHTS HOLDER]`, `[ISBN]`, `[PUBLISHER ADDRESS]`, `[COUNTRY OF MANUFACTURE]`, etc.) verbatim, even though the real values (2026, Philip Kling, Nova Consulting's real address, no ISBN yet) are already the generator's own current source data and already render correctly elsewhere. Neither file is live on the site or submitted anywhere yet (Amazon KDP account creation is still owner-gated per `OWNER-ACTIONS.md` #14), so no customer has seen the placeholders, but this is the exact "source corrected, artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 names as the dominant defect class. **Fixed at the source, never hand-edited:** ran `python ops/build_manual_print.py`, the file's own generator; both files regenerated with the real front matter, 19 lines changed across the two, nothing else moved. Verified rather than assumed: `python ops/tests/test_gate_manual_print_fonts_current.py` (5/5) and `python ops/tests/test_gate_manual_print_six_s_order.py` (6/6) both pass against the regenerated files; grepped `ops/tests/` for any dependency on the old placeholder text (none) before shipping.
+
+**Went well:** treating the finished background result as real work rather than letting the earlier "unchecked" note stand as the cycle's final answer once the run actually completed.
+
+**Did not go well:** running `preflight.py` under a foreground timeout at all, even once, early in this same cycle, before switching to the background method described below; it produced exactly the self-inflicted artifact class this log has already diagnosed several times.
+
+**Changing next cycle:** none new; the existing gate caught a real drift correctly and the fix is procedural (regenerate before shipping, never hand-edit a generated file).
+
+**Next:** same as the entry below; this follow-up does not change the handoff.
+
+Pushed to main. `content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html`, `content/manual/micro-zone-manual-publishable.html`, command deck. No price or product touched (neither file is a live SKU yet); no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 09:4x (previous work independently re-verified finished as far as this slot could confirm; the deep test gate was still running past slot close, reported unchecked, not assumed clean)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
