@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 09:4x (previous work independently re-verified finished, no unblocked backlog item, handoff to the cold-read lane)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`hourly_brief.py`, `indexnow.py`, `status_report.py`, `link_graph_report.py`, `video_zone_photo.py`, then `build_articles.py`/`build_card_template.py`/`build_catalog.py`/`build_deck_gallery.py`/`build_id.py`/`build_kitchen_deck_page.py`/`build_kitchen_deck_pdf.py`/`build_manual_print.py`/`corpus_posts.py`/`roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main`. Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` (sections 0, 1b, 6, 7 in full; sections 2-4 spot-checked, matching the last cycle's own Done/CLOSED read), `EXECUTIVE-DASHBOARD-LIVE.md`/`STATUS.md`. 9 open GitHub issues confirmed live via the API: unchanged from the 08:3x cycle, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+**Verified rather than trusted:** ran `preflight.py` fresh myself, full run to completion (not the short default timeout that produced this session's own two killed-mid-render artifacts earlier this morning). Every gate passed, 26 warnings, the same standing environment-access set as every cycle today (no Stripe credential, no site egress, no mail credential, no Pillow, cron-cadence drift on two workflows already diagnosed). Working tree clean throughout, `main` even with `origin/main`.
+
+**No genuinely unblocked backlog item this slot:** same conclusion as every cycle today, independently re-confirmed against current `BACKLOG-2026-09-07.md` and live GitHub state rather than carried forward from citation.
+
+**Went well:** running preflight to completion rather than risking a third killed-mid-render artifact.
+
+**Did not go well:** nothing new; same standing shallow/detached checkout shape on attach, issue #27 still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 08:3x (previous work independently re-verified finished, a second instance of this session's own killed-preflight artifact found and cleared, no unblocked backlog item)
 
 **Did:** Attached clean (unshallowed, fast-forwarded onto `origin/main`). Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, the newest log entries, confirmed 9 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. Sections 2-4 Done/CLOSED, section 5 HOLD, section 6 owner-gated: no genuinely unblocked item, same conclusion as every cycle today.
