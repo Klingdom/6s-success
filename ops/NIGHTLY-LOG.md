@@ -24,7 +24,15 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/stripe_catalog.py`, `ops/preflight.py`, `ops/tests/test_stripe_catalog_orphan_link_active.py`, `ops/tests/test_gate_stripe_orphan_link_active.py`, `ops/cold-read-ledger.json`, `STATUS.md`, `STATUS-ARCHIVE.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched; IndexNow not applicable.
 
-**Merge note, same push:** `git fetch` at close found two concurrent PM check-in cycles (06:2x, 06:4x, both below) had landed while this cycle worked, both confirming the prior `split_negations()` fix finished and neither picking a new item (backlog exhausted the same way this cycle found it). Merged rather than forced; no overlap with either, since both left `stripe_catalog.py` on their own "Next" list as a still-open candidate, which this cycle is what closed.
+**Merge note, same push:** `git fetch` at close found two concurrent PM check-in cycles (06:2x, 06:4x, both below) had landed while this cycle worked, both confirming the prior `split_negations()` fix finished and neither picking a new item (backlog exhausted the same way this cycle found it). Merged rather than forced; no overlap with either, since both left `stripe_catalog.py` on their own "Next" list as a still-open candidate, which this cycle is what closed. **Second merge note, next push:** a further concurrent 07:2x PM check-in (below) also landed, confirming CI green on the same `split_negations()` fix and clearing a self-inflicted, non-product preflight false failure; no overlap with this cycle's own stripe_catalog.py fix.
+
+## PM check-in, 2026-09-26 07:2x (previous work confirmed finished, one self-inflicted preflight false failure diagnosed and cleared, no unblocked backlog item)
+
+Previous work (`dcb80d21`'s `split_negations()` fix, merged at `9545d6ec`) is finished: CI's own `checks.yml` run 1470 completed `success` on that exact commit. Attach was clean, fast-forwarded onto `origin/main`, no collision with the 06:2x/06:4x twin cycles.
+
+This cycle's own first full local `preflight.py` run failed `gate_stray-probe-files` once. Traced it, not assumed: an earlier `timeout 100 python ops/preflight.py` command in this same session had been killed mid-run, and the file's own header comment names exactly that shape (an external timeout killing the process tree) as the cause of an orphaned `site/_audit_catalog_fixture.lockdir`. No such file exists on disk, git tree was clean, and a clean re-run confirmed every gate passing, 25 warnings, the same standing set. Self-inflicted, not a product defect; no gate change needed.
+
+No genuinely unblocked backlog item this slot: `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD, section 6 owner-gated; all 9 open GitHub issues `decision`/`blocked-on-art`, unchanged. Handing the cold-read lane to the operator at :43 (`ops/cold_read_ledger.py --next`).
 
 ## PM check-in, 2026-09-26 06:4x (collided with the 06:2x twin cycle, identical conclusion, nothing to add)
 
