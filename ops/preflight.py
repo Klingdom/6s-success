@@ -7113,9 +7113,20 @@ def gate_verify_deploy_pages_current() -> None:
     those pages plus how-we-make-money.html (the affiliate disclosure every
     product page promises).
 
+    Found 2026-09-26, PM check-in: that fix only protected the pages named
+    that day. bundle.html ($49 bundle) and standards.html ($19 Print Pack)
+    each carry a live buy.stripe.com link and were never in PAGES at all,
+    the identical gap for two pages that simply were not live yet on
+    2026-09-21. Fixed by adding both, and by re-deriving the check below
+    from every live Stripe link actually on a top-level site/*.html page
+    (not the ~200 zone/room/article pages, a different, larger surface
+    check_urls.py and audit_pages.py already cover), so the next new
+    top-level buy path is caught the day it ships rather than found cold.
+
     This gate is the reason it cannot regress unnoticed: it re-derives
-    verify_deploy.CRITICAL_PAGES and fails if a future edit removes one from
-    PAGES, or if the page it names stops existing in site/ at all.
+    verify_deploy.CRITICAL_PAGES and PAGES and fails if a future edit drops
+    a critical page, if the page it names stops existing in site/ at all, or
+    if a top-level page carrying a live Stripe link is missing from PAGES.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import verify_deploy as VD
@@ -7134,6 +7145,22 @@ def gate_verify_deploy_pages_current() -> None:
              "not exist in site/: %s. Either the page was renamed and "
              "CRITICAL_PAGES was not updated, or it was really removed and "
              "should come out of both lists." % ", ".join(repr(p) for p in missing_files))
+        return
+    unchecked_buy_paths = []
+    for fp in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        slug = os.path.splitext(os.path.basename(fp))[0]
+        page = slug if slug != "index" else ""
+        if page in VD.PAGES:
+            continue
+        text = io.open(fp, encoding="utf-8", errors="replace").read()
+        if "buy.stripe.com" in text or "checkout.stripe.com" in text:
+            unchecked_buy_paths.append(slug)
+    if unchecked_buy_paths:
+        fail("verify-deploy-pages-current",
+             "these top-level site/ page(s) carry a live Stripe link but "
+             "are not in ops/verify_deploy.py's PAGES, so a deploy that "
+             "broke them would score all green: %s. Add them to PAGES and "
+             "CRITICAL_PAGES." % ", ".join(repr(p) for p in unchecked_buy_paths))
 
 
 def gate_deck_gallery_identity() -> None:

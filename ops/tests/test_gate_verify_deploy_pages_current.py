@@ -64,12 +64,28 @@ def main() -> int:
     if r:
         fails.append("the real committed state failed: %r" % (r,))
 
+    # 4. Found 2026-09-26: a top-level site/ page carrying a live Stripe
+    #    link (bundle.html, standards.html) that was never in PAGES at all,
+    #    not even as an ordinary page. Simulate that shape directly against
+    #    the real committed pages rather than a synthetic file.
+    VD.PAGES = [p for p in orig_pages if p not in ("bundle", "standards")]
+    VD.CRITICAL_PAGES = orig_crit - {"bundle", "standards"}
+    r, w = _run()
+    if not r or r[0][0] != "verify-deploy-pages-current":
+        fails.append("a real Stripe-linked page missing from PAGES entirely "
+                      "was not caught: %r" % (r,))
+    elif "bundle" not in r[0][1] or "standards" not in r[0][1]:
+        fails.append("failure message did not name both missing buy "
+                      "pages: %r" % (r[0][1],))
+    VD.PAGES = orig_pages
+    VD.CRITICAL_PAGES = orig_crit
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_verify_deploy_pages_current, 3/3 checks pass")
+    print("OK: gate_verify_deploy_pages_current, 4/4 checks pass")
     return 0
 
 
