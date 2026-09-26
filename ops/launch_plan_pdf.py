@@ -213,8 +213,9 @@ def build(path=None) -> tuple:
          f"{S.get('zone_pages_with_image', '?')} of {S.get('zones', '?')} built",
          "None of them live yet"],
         ["Entryway deck",
-         f"{S.get('cards_rendered', '?')} of {S.get('cards_total', '?')} cards, "
-         f"fronts and backs, print and play PDF built",
+         f"{S.get('cards_rendered', '?')} of "
+         f"{S['cards_total'] if S.get('cards_total') is not None else 'an unmeasured'} "
+         f"cards, fronts and backs, print and play PDF built",
          "Complete, not yet live"],
         ["Catalogue", "155 priced items, all with active Stripe links in the repo",
          "Ready, not reachable"],

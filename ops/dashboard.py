@@ -333,11 +333,16 @@ def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     when the PDF really is shipped; an unshipped, unrendered deck is still
     reported plainly, because then 0 really does mean nobody can print it.
     """
+    # cards_total is None when the live gallery index could not be read (not
+    # zero, not a guess): say so plainly rather than print the word "None"
+    # into a sentence that reads like a measurement.
     if cards_rendered == 0 and pdf_shipped:
-        return (f"print PDF already built and shipped ({cards_total} cards); "
+        total_text = f"{cards_total} cards" if cards_total is not None else "card count not measured"
+        return (f"print PDF already built and shipped ({total_text}); "
                 f"local render cache empty here, so 0 is not a regression")
     if cards_rendered == 0:
-        return f"{cards_rendered}/{cards_total} cards render clean from the template layer"
+        total_text = str(cards_total) if cards_total is not None else "not measured"
+        return f"{cards_rendered}/{total_text} cards render clean from the template layer"
 
     # Rendered fronts ARE the deck: preflight's gate_deck_count counts the
     # advertised card total exactly this way, because a card with text and no
@@ -346,7 +351,9 @@ def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     # "88/72 cards render clean", a fraction reading over 100 percent and
     # comparing two different things.
     gallery = ""
-    if cards_total and cards_total != cards_rendered:
+    if cards_total is None:
+        gallery = "; the gallery total was not measured this run"
+    elif cards_total != cards_rendered:
         gallery = f"; the gallery publishes {cards_total} of them"
     return (f"{cards_rendered} cards render clean from the template "
             f"layer{gallery}")
@@ -1386,7 +1393,12 @@ _gallery_index = os.path.join(ROOT, "site", "assets", "cards", "entryway", "inde
 try:
     S["cards_total"] = len(json.load(open(_gallery_index, encoding="utf-8"))["cards"])
 except Exception:                                                # noqa: BLE001
-    S["cards_total"] = 88   # gallery index unreadable; fall back rather than crash
+    # Found live 2026-09-26: this used to fall back to a hardcoded 88, the
+    # exact stale number the comment above already explains is wrong (the
+    # real count has been 72 since issue #29). A number that looks measured
+    # is worse than a crash here, the same "could not check is not zero"
+    # contract this file already keeps for epub_has_cover and book_words.
+    S["cards_total"] = None  # gallery index unreadable; not measured, not a guess
 # The rendered count above is a local build cache (build/cards-rendered/),
 # gitignored and rebuilt only when someone runs render_cards.py with a real
 # Chromium on hand. It reads 0 in this sandbox every run regardless of whether
@@ -2065,6 +2077,28 @@ def gauge(pct, size=340):
             f'aria-label="Revenue gauge, {pct} percent of the twenty thousand dollar target">'
             + "".join(parts) + "</svg>")
 
+def book_sellable_detail(epub_built, epub_mb, epub_has_cover, front_matter_blanks):
+    """The 'Book, sellable' readiness row's detail text.
+
+    Pure so gate_dashboard_deck_readiness can prove it directly. Found live
+    2026-09-26: this used to write 'cover embedded/missing' and 'N unfilled
+    front-matter fields' straight from epub_has_cover/front_matter_blanks,
+    collapsing None (could not check, a real state this file already keeps
+    apart from True/False everywhere else, e.g. lines 1290/1299 above) into
+    the same text as a checked, genuinely missing cover or a checked, empty
+    front matter file. The readiness column right next to this text already
+    got this right ('not checkable here' when book_checkable is False); the
+    detail sentence beside it did not, so the row could read a state and its
+    own explanation as contradicting each other the day either check failed.
+    """
+    if not epub_built:
+        return "not packaged"
+    cover = ("embedded" if epub_has_cover is True
+             else "unreadable" if epub_has_cover is None else "missing")
+    blanks = (str(front_matter_blanks) if front_matter_blanks is not None
+              else "not measured")
+    return f"EPUB {epub_mb} MB, cover {cover}, {blanks} unfilled front-matter fields"
+
 # Readiness, each row given a state a person can read at a glance rather than a
 # number they have to interpret.
 ready = [
@@ -2074,9 +2108,8 @@ ready = [
      (("crit", "domain parked") if S["site_live"] is False else ("warn", "unverified this run"))),
     ("Book, written", f"{S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice",
      ("good", "complete") if S["chapters"] == 50 else ("warn", "in progress")),
-    ("Book, sellable", (f"EPUB {S['epub_mb']} MB, cover {'embedded' if S['epub_has_cover'] else 'missing'}, "
-                        f"{S['front_matter_blanks']} unfilled front-matter fields") if S["epub_built"]
-     else "not packaged",
+    ("Book, sellable", book_sellable_detail(S["epub_built"], S["epub_mb"],
+                                            S["epub_has_cover"], S["front_matter_blanks"]),
      ("good", "ready") if S["book_sellable"]
      else (("idle", "not checkable here") if not S["book_checkable"]
            else ("warn", "blocked on #3"))),

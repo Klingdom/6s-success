@@ -3338,6 +3338,25 @@ def gate_dashboard_deck_readiness() -> None:
     Proves both directions: an unshipped, unrendered deck must still read
     as a real "0/N" (not silently suppressed), and a shipped-but-locally-
     unrendered deck must not read as broken.
+
+    Also proves the fix for a sibling defect found live 2026-09-26, same
+    file, same failure direction: when the live gallery index itself could
+    not be read, dashboard.py's own exception handler fell back to a
+    hardcoded 88, the exact stale number this gate's own history above
+    already names as wrong (the real count has been 72 since issue #29).
+    A number that looks measured is worse than the honest "not measured"
+    this file already keeps for epub_has_cover and book_words, so the
+    fallback now sets cards_total to None and deck_readiness_line must
+    render that as plain unmeasured text, never the literal word "None".
+    Checked live, not assumed: grepping the source for the retired literal
+    proves the fallback itself was fixed, not only the renderer around it.
+
+    A third instance, found in the same cycle: the readiness table's "Book,
+    sellable" row wrote 'cover embedded/missing' and 'N unfilled fields'
+    straight from epub_has_cover/front_matter_blanks, collapsing None
+    (could not check) into the same text as a checked, genuinely missing
+    cover or empty front matter. Extracted to book_sellable_detail(), proved
+    below for all three states of each field.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import dashboard
@@ -3353,6 +3372,55 @@ def gate_dashboard_deck_readiness() -> None:
              f"deck_readiness_line(0, 72, True) returned {shipped!r}; a "
              f"deck whose PDF is already shipped must not read as broken "
              f"just because this run's local render cache is empty.")
+
+    dash_src = io.open(os.path.join(ROOT, "ops", "dashboard.py"),
+                       encoding="utf-8").read()
+    if re.search(r'S\["cards_total"\]\s*=\s*88\b', dash_src):
+        fail("dashboard-deck-readiness",
+             "ops/dashboard.py's gallery-index exception handler still "
+             "hardcodes cards_total to 88, the exact stale number this "
+             "gate's own history says is wrong; it must fall back to None "
+             "(not measured), never a number that looks measured.")
+    for rendered, total, shipped_flag, label in (
+            (0, None, True, "shipped, total unknown"),
+            (0, None, False, "unrendered, total unknown"),
+            (5, None, False, "rendered, total unknown")):
+        line = dashboard.deck_readiness_line(rendered, total, shipped_flag)
+        if "None" in line:
+            fail("dashboard-deck-readiness",
+                 f"deck_readiness_line({rendered}, None, {shipped_flag}) "
+                 f"({label}) returned {line!r}, which prints the literal "
+                 f"word 'None' into a sentence a reader would take as "
+                 f"measured; an unreadable gallery index must render as "
+                 f"plain unmeasured text instead.")
+
+    if not hasattr(dashboard, "book_sellable_detail"):
+        fail("dashboard-deck-readiness",
+             "ops/dashboard.py no longer defines book_sellable_detail(); "
+             "the 'Book, sellable' readiness row's three-state cover/"
+             "front-matter text must stay in a function this gate can "
+             "prove directly, not inline in the row list again.")
+    for cover, blanks, must_not_contain in (
+            (None, None, "None"),
+            (None, 3, "None"),
+            (False, None, "None")):
+        detail = dashboard.book_sellable_detail(True, 9.9, cover, blanks)
+        if must_not_contain in detail:
+            fail("dashboard-deck-readiness",
+                 f"book_sellable_detail(True, 9.9, {cover!r}, {blanks!r}) "
+                 f"returned {detail!r}, which contains the literal word "
+                 f"{must_not_contain!r}; a field this run could not check "
+                 f"must render as 'unreadable'/'not measured' text, never "
+                 f"the collapsed Python value.")
+    if "unreadable" not in dashboard.book_sellable_detail(True, 9.9, None, 0):
+        fail("dashboard-deck-readiness",
+             "book_sellable_detail(True, 9.9, None, 0) does not say "
+             "'unreadable' for a cover this run could not check; it must "
+             "not read the same as a cover checked and found missing.")
+    if "missing" not in dashboard.book_sellable_detail(True, 9.9, False, 0):
+        fail("dashboard-deck-readiness",
+             "book_sellable_detail(True, 9.9, False, 0) does not say "
+             "'missing' for a cover checked and genuinely absent.")
 
 
 def gate_deploy_fresh() -> None:
