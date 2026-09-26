@@ -616,21 +616,16 @@ def main() -> int:
         d = audit(full, exe, extra_args, width, height, coarse=mobile,
                   why=reasons)
         if d is None:
-            # RETRY ONCE, LONGER, BEFORE GIVING UP. The probe walks every
-            # element, so its cost scales with the document. The 15s budget
-            # was sized on ordinary pages and could never measure the biggest
-            # one this site has: how-to-clean-anything.html is 137 KB and
-            # carries a link per cleaning method, and it came back "NOT
-            # measured" on both desktop and phone every time it was tried on
-            # 2026-09-25. Reported honestly, which was right, but the effect
-            # was that the page most likely to be read standing up in a
-            # kitchen had never once been checked for tap targets, contrast
-            # or sideways scroll.
-            #
-            # The retry runs only after a failure, so an ordinary page costs
-            # nothing, and pages that needed it are named in the output,
-            # because a page that measures only at four times the budget is
-            # itself worth knowing about.
+            # NO RETRY. A longer-budget, second-browser retry was written and
+            # deliberately not shipped on 2026-09-25 (see that commit
+            # message): the page it was built for, how-to-clean-anything.html,
+            # was never actually failing on budget, it was failing because a
+            # bare filename on the command line did not resolve to a real
+            # path, a defect the missing-page handling above this loop now
+            # catches. Launching a second browser on every genuine failure is
+            # real cost on a host already short of memory for no measurement
+            # gained, so a page that cannot be probed is reported honestly,
+            # once, with its reason, rather than retried.
             unread.append("%s (%s)" % (rel, reasons[0] if reasons
                                        else "no reason captured"))
             continue
