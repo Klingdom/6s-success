@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 14:3x (correction: the preflight rerun that outran the prior entry's slot finished, self-inflicted FAIL and all)
+
+The rerun left running past the 14:2x entry finished: it FAILed once on `stray-probe-files`, one leftover `site/_audit_catalog_fixture...` path, self-inflicted by this cycle's own earlier foreground run getting killed by a 110s tool timeout before it fell back to background, the identical class the 2026-09-26 13:4x entry describes. The gate deleted the leftover itself, on disk confirmed. Reran once more: `EXIT:0`, every gate passed, 27 standing warnings, none new. Previous work is now genuinely verified finished, not just independently corroborated. No new gate needed; nothing here was a repository defect.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+
 ## Scheduled operator cycle, 2026-09-26 14:1x (a real, if latent, defect found cold-reading build_card_template.py: a one-line-action card would have silently lost its tagline and been falsely reported as trimmed; fixed and tested)
 
 **Did:** Unshallowed and attached, ff-only merged onto `origin/main` (401 commits, `9f9e0425`). Read `BACKLOG-2026-09-07.md` (sections 2-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach. `BACKLOG-2026-09-07.md` sections 2-4 fully Done/CLOSED, section 5 HOLD, section 6 owner-gated. 9 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable (issue #36, a dead-check finding in the payment-integrity file `ops/check_sellable.py`, correctly left for Phil: it is squarely CLAUDE.md section 52's YELLOW/RED checkout-adjacent tier and a prior session's own edit there was already blocked by the harness's safety classifier). 0 open PRs. No mail credential (`inbox_agent.py --apply`: unchecked, not empty). So the cold-read lane (`ops/cold_read_ledger.py --next`) was again the right-sized work.
