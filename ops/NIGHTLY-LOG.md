@@ -161,7 +161,7 @@ Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `c
 
 **Changing next cycle:** none in the codebase; note for future PM cycles running `preflight.py` cold: it is a large suite (298 test files, one gate renders PDFs in headless Chrome) and reliably takes several minutes, so start it in the background immediately rather than spending a cycle's budget on short-timeout attempts that self-inflict the exact FAIL this log keeps diagnosing.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane handoff unchanged from 18:0x: `ops/deploy.py`, then `ops/build_zone_pages.py`, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane handoff unchanged from 18:0x: ~~`ops/deploy.py`~~ (already fixed by the 18:0x entry directly above this one in the same cycle; this line was not updated to match this entry's own "Correction" paragraph above, caught by `gate_cold_read_handoff_not_stale` on a later cycle's preflight run), then `ops/build_zone_pages.py`, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched. IndexNow not applicable.
 
