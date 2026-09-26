@@ -30,28 +30,38 @@ import stripe_dedupe as sd                                     # noqa: E402
 def main() -> int:
     fails = []
 
-    # 1. No credential: stripe_catalog.secret_key() raises SystemExit, not
-    #    Exception (the exact shape gate_stripe_price_claims once missed).
-    #    Must warn, never crash or FAIL.
+    # 1. No credential: the gate must warn, never crash or FAIL.
+    #
+    #    CORRECTED 2026-09-26. This case used to patch builtins.__import__ to
+    #    raise SystemExit for the name "stripe_catalog", on the assumption that
+    #    the gate imports it. It does not: it imports `stripe_dedupe`, which
+    #    imports stripe_catalog at ITS module top level, and this test file
+    #    imports stripe_dedupe on line 27. So by the time the patch was
+    #    installed the module was long since cached, the patched importer was
+    #    never consulted for it, no SystemExit was raised, and the case failed
+    #    reporting "no stripe-link-dedup warning was recorded" against a gate
+    #    that was working correctly.
+    #
+    #    The seam that actually carries a missing credential is the call, so
+    #    that is what is simulated. stripe_catalog.secret_key() raises
+    #    SystemExit rather than an Exception, which is the exact shape
+    #    gate_stripe_price_claims once missed, so SystemExit is what is raised
+    #    here.
     P.FAIL.clear()
     P.WARN.clear()
-    real_import = __import__
+    real_dupe = sd.duplicate_active_links
 
-    def fake_import(name, *a, **kw):
-        if name == "stripe_catalog":
-            raise SystemExit(".env.secrets not found. Nothing to authenticate with.")
-        return real_import(name, *a, **kw)
+    def no_credential():
+        raise SystemExit(".env.secrets not found. Nothing to authenticate with.")
 
-    import builtins
-    real_builtin = builtins.__import__
-    builtins.__import__ = fake_import
+    sd.duplicate_active_links = no_credential
     try:
         P.gate_stripe_link_dedup()
     except SystemExit:
         fails.append("gate_stripe_link_dedup() let SystemExit escape instead "
-                      "of catching it")
+                     "of catching it")
     finally:
-        builtins.__import__ = real_builtin
+        sd.duplicate_active_links = real_dupe
 
     if P.FAIL:
         fails.append(f"a missing credential produced a FAIL, not a warn: {P.FAIL}")

@@ -17788,6 +17788,93 @@ def check_deck_print_tiers(decks) -> list:
     return out
 
 
+
+
+def gate_srt_matches_film() -> None:
+    """Every caption file's last timecode against the duration of the film it
+    will be published with.
+
+    WHY THIS EXISTS, AND WHY EVERY EXISTING CHECK MISSED IT
+    ------------------------------------------------------
+    On 2026-09-26 all 114 zone films were 30.2 seconds and all 114 caption
+    files ran to 74.8, because ops/video_zone.py had gained beats since the
+    batch was rendered. Publishing would have put captions 45 seconds past the
+    end of the picture on 102 videos.
+
+    Nothing caught it, and the reason is worth stating. Every check in place
+    compared an artifact with ITSELF: ffprobe said each mp4 was a valid
+    1920x1080 file with audio, the SRT parser said each caption was well
+    formed, and gate_srt_captions_current compared each caption to beats() and
+    was perfectly right to pass, because the captions were current. The defect
+    lived only in the relationship between two artifacts, and no check crossed
+    it.
+
+    So this one measures caption against FILM, which is the pair a viewer
+    actually experiences.
+
+    The films are gitignored build output and are absent in CI, so a missing
+    film is reported as unchecked and never as a pass.
+    """
+    import glob as _glob
+    srt_dir = os.path.join(ROOT, "build", "video", "zones")
+    film_dir = os.path.join(ROOT, "build", "video", "zones-16x9")
+    srts = sorted(_glob.glob(os.path.join(srt_dir, "*.srt")))
+    if not srts:
+        return
+    if not os.path.isdir(film_dir):
+        warn("srt-vs-film",
+             "%d caption file(s) present but no rendered films to compare "
+             "them against, so caption timing is UNCHECKED here. Run where "
+             "the films are." % len(srts))
+        return
+
+    ffprobe = shutil.which("ffprobe")
+    if not ffprobe:
+        warn("srt-vs-film",
+             "no ffprobe on PATH, so caption timing could not be compared "
+             "with film length. Unchecked, not clean.")
+        return
+
+    out_of_sync, no_film = [], []
+    for fp in srts:
+        stem = os.path.basename(fp)[:-4]
+        film = os.path.join(film_dir, stem + ".mp4")
+        if not os.path.exists(film):
+            no_film.append(stem)
+            continue
+        text = io.open(fp, encoding="utf-8", errors="replace").read()
+        ends = [int(h) * 3600 + int(m) * 60 + int(sec) + int(ms) / 1000.0
+                for h, m, sec, ms in re.findall(
+                    r"-->" + r"[^0-9]*" + r"(\d\d):(\d\d):(\d\d),(\d\d\d)", text)]
+        if not ends:
+            continue
+        try:
+            r = subprocess.run(
+                [ffprobe, "-v", "error", "-show_format", "-of", "json", film],
+                capture_output=True, text=True, timeout=180)
+            dur = float((json.loads(r.stdout or "{}").get("format") or {})
+                        .get("duration") or 0)
+        except Exception:                                      # noqa: BLE001
+            no_film.append(stem)
+            continue
+        gap = max(ends) - dur
+        if abs(gap) > 5.0:
+            out_of_sync.append("%s caption ends %.0fs, film ends %.0fs (out "
+                               "by %+.0fs)" % (stem, max(ends), dur, gap))
+
+    if no_film:
+        warn("srt-vs-film",
+             "%d caption file(s) have no rendered film to compare against, so "
+             "their timing is UNCHECKED: %s"
+             % (len(no_film), ", ".join(sorted(no_film)[:4])))
+    if out_of_sync:
+        fail("srt-vs-film",
+             "%d caption file(s) do not match the film they would be published "
+             "with. A caption running past the end of the picture is worse "
+             "than no caption for the viewer it exists for: %s"
+             % (len(out_of_sync), "; ".join(out_of_sync[:4])))
+
+
 def gate_deck_print_tiers() -> None:
     """Every built deck's card count against the 18-card print step."""
     import glob as _glob
@@ -22351,6 +22438,7 @@ def main() -> int:
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_branch_shape)
     run_gate(gate_deck_print_tiers)
+    run_gate(gate_srt_matches_film)
     run_gate(gate_kitchen_deck_current)
     run_gate(gate_entryway_deck_current)
     run_gate(gate_laundry_room_deck_current)

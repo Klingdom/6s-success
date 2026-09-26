@@ -616,6 +616,21 @@ and the conclusion was still wrong, because I checked each artifact against
 itself and never checked two artifacts against each other. A file that is valid
 is not a file that is current.
 
+**Resolved the same day, 117 minutes of compute.** All 114 films re-rendered
+with today's generator (`ops/video_zone.py` has no batch mode, so a resumable
+driver looped it one zone at a time, skipping any film already matching its own
+beats). Re-verified across the whole set rather than sampled: **114 of 114**
+films measure within 5s of their `beats()` total and carry a video and an audio
+stream, and **114 of 114** caption files now end within 5s of the film they
+belong to. The films are 75 to 93 seconds now, not 30.
+
+**The generalisable rule.** Every check that passed here compared an artifact
+with itself: is the mp4 valid, is the SRT well formed, does the caption match
+the beats. The defect lived in the relationship between two artifacts that no
+check crossed. When two files must be published together, the test that matters
+measures one against the other, and `gate_srt_captions_current` compared caption
+to beats, which is why it stayed green for 113 films that were 45 seconds out.
+
 #### LRN-0018: Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log
 
 **Status:** SUPPORTED
