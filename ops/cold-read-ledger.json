@@ -416,6 +416,11 @@
       "date": "2026-09-25",
       "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
     },
+    "social_drafts.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Ran --preview live (facebook + x combined), correct char-cap filtering, remaining count reflects rotation state, no TODO/placeholder text. No defect."
+    },
     "specific_articles.py": {
       "status": "clean",
       "date": "2026-09-25",

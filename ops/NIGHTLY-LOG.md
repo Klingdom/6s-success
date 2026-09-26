@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 01:5x (previous work confirmed finished; cold-read lane clears one more file; local --fast preflight still mid-run at slot close, reported unchecked)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, because the backlog's unblocked rows (B6, author the 21 Kitchen micro quests; B8, land Primary Bathroom/Garage under the 72-card print tier) are real product work too large for a 30-minute triage slot, and every Phil-gated and decision-labelled row is correctly untouched.
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 371 commits cleanly onto `39c9d7f4`, no conflict, working tree clean before and after this cycle.
+
+**Step 2: previous work is finished.** Working tree clean, `main` already matched `origin/main` before this cycle's own edits. 9 open GitHub issues confirmed live via the API, unchanged (`#36, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision` or `blocked-on-art`, none pickable. CI's `Checks` run on the current tip (`39c9d7f4`) was still `in_progress` when checked and `publish-image.yml` had no run yet for this exact SHA; reported unchecked rather than assumed either way, consistent with this repo's own documented CI latency.
+
+**Step 3: nothing new is unblocked.** Re-read `BACKLOG-2026-09-07.md` sections 2 to 7. Sections 2 to 4's rows are Done, closed by decision, or explicitly `YES, Phil`. Two real undone, unblocked rows exist, B6 and B8 above, both product-depth work (0.5 to 1 day) that this file's own opening instruction says not to start in this slot; left for a session with a full cycle. Section 5 stays HOLD on the traffic constraint, section 6 is six owner-gate actions none actionable here.
+
+**Cold-read lane:** ran `ops/cold_read_ledger.py --next` live rather than reuse a prior entry's list (which had drifted before). Read the shortest un-ledgered file, `ops/social_drafts.py` (156 lines): drafts Facebook and X posts by mail from the same book corpus `linkedin_drafts.py` already serves, correctly ships ahead of either platform's account per `CLAUDE.md` 0.5, filters X posts to 280 characters through `corpus_posts.take()`'s own `where` predicate before rotation (so an over-length post stays in the pool rather than being silently spent), and double-checks the filter held with a live assertion rather than trusting it. Ran `python ops/social_drafts.py --preview` live: correct output, both platforms, remaining-count reflects real rotation state (not the corpus-size bug this same file's own comment says it fixed 2026-09-12), no `TODO`/placeholder text, tree clean after (a `--preview` run never writes the rotation file). No defect. Recorded clean in `ops/cold-read-ledger.json` (109 of 164 now ledgered).
+
+`PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle.
+
+**Verified, not assumed:** `python ops/preflight.py` (full, untimed) was started and did not reach its own exit before the 120-second command window closed and was moved to background; `python ops/preflight.py --fast` was then run instead and was still on `gate_tests`, the same known multi-minute contention point this log has already documented repeatedly, when this slot closed. Neither is reported as clean. The "previous work is finished" call above rests on the clean working tree and unchanged GitHub state, not on either unfinished preflight run.
+
+**Went well:** re-deriving the cold-read tool's live candidate list instead of forwarding a prior entry's, which had already drifted twice before; verifying `social_drafts.py` with a live `--preview` run instead of stopping at a clean read.
+
+**Did not go well:** same unrelated-history shallow-checkout shape on this attach; issue #27 still open. Neither preflight run finished inside this slot, so this cycle cannot independently confirm the gates are clean beyond what the working tree and GitHub API already show.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`; next un-ledgered candidates after this cycle: `generate_card_art.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `linkedin_drafts.py`, `render_cards.py`, `send_questions.py`). B6 and B8 above are the next real product-depth items once a session has a full cycle to spend, ranked below the cold-read lane's "broken or dishonest" category per `BACKLOG-2026-09-07.md` section 0's own ordering. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen only. No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 01:2x (previous work confirmed finished by three independent checks; cold-read lane clears one more file)
 
 **Previous work: finished.** Reattached clean (364-commit fast-forward, no conflict). Local `preflight.py --fast`: every gate passed, the same 24 standing warnings. Working tree clean, main matches origin, nothing uncommitted. 9 open issues confirmed unchanged via the API, all `decision` or `blocked-on-art`. CI's own `Checks` run on this tip (`24bca6ad`) was still mid-`Preflight` after 19+ minutes; unusually slow, not treated as confirmation either way, reported unchecked.
