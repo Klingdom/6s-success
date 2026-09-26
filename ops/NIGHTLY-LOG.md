@@ -4,7 +4,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-09-26 18:2x (previous work confirmed finished; a second self-inflicted preflight FAIL, this cycle's own doing, diagnosed and cleared; no new defect, triage only)
 
-**NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/deploy.py`, then `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`, unchanged from the 18:0x handoff. Every backlog row and all 9 GitHub issues are still Done/HOLD/owner-gated.**
+**NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`. Every backlog row and all 9 GitHub issues are still Done/HOLD/owner-gated.**
+
+**Correction, same cycle, caught by a post-push preflight rerun:** this entry originally handed off `ops/deploy.py` next, unchanged from the 18:0x entry below. Between that entry being read and this one being pushed, the concurrent 18:0x operator cycle (merged in below) had already read and cleared `deploy.py` itself (`compose_drift()`'s untested branch, fixed). `gate_cold_read_handoff_not_stale` caught the now-stale pointer on the rerun after the merge; corrected above to `build_zone_pages.py`, the ledger's actual next un-ledgered file, rather than leaving a handoff that would have sent the operator over already-covered ground.
 
 Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main` (`43c4b577`, 472 commits, no conflict). Previous work (the 18:0x cycle's triage pass) confirmed finished: tree clean, main pushed, matched origin exactly before this cycle changed anything. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated; `OWNER-ACTIONS.md` and `STATUS.md`'s P1-P6 unchanged, all Phil-gated; 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
 
