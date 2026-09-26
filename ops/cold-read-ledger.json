@@ -211,6 +211,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: EXPECTED/WEBHOOK imported from ledgerium_price_check.py (single source), correctly reports unchecked with no credential, no defect"
     },
+    "check_live_links.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold-read 2026-09-26 scheduled operator cycle: verified live rather than assumed that bundle.html/standards.html (missing from PAGES) are not a coverage gap, since both slugs already surface via the scanned assets/js/data.js catalogue (confirmed: grep of every site/**/*.html slug vs. combined HTML+JS slug set is identical, 126 both ways). No defect found."
+    },
     "check_pack_pages.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -325,6 +330,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Daily LinkedIn draft generator (3 corpus posts + 1 connection note + a gated B2B corporate post). Ran --preview live: facts() correctly reads the live catalogue (20 rooms, 114 zones, 684 cards, .99 ebook), corporate_facts() anchor-checks corporate.html before including the B2B post, honesty block matches known state (1 customer, referral). Word caps and 'no TODO/[insert' assertions all held. No defect."
+    },
+    "mailer.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold-read 2026-09-26 scheduled operator cycle: load()/owner()/send() read cold end to end (credential precedence, owner-address self-inbox refusal, attachment ordering); no defect found."
     },
     "media_capability.py": {
       "status": "clean",
@@ -461,10 +471,20 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 PM check-in: the offer table listed a second 'Entryway deck' row for the 16 withheld cards with its own card count and a contradicting Withheld state, alongside the live 72-card row from the same deck, reading as a second competing deck rather than a note about the first. Relabelled 'of which, N Entryway cards' to match status_report.py's own honest phrasing of the same figures. reportlab not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked and no test covers the changed string."
     },
+    "stripe_brand.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold-read 2026-09-26 scheduled operator cycle: BAD_DESCRIPTION_TERMS gap detection, account-field read-only limitation (POST /v1/account correctly refused on a standard account) both consistent with Stripe's real API. No defect found."
+    },
     "stripe_check.py": {
       "status": "clean",
       "date": "2026-09-25",
       "note": "diagnostic-only Stripe key check; masks keys correctly, leak_scan globs site/ correctly, no defect"
+    },
+    "stripe_invoice.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold-read 2026-09-26 scheduled operator cycle: STRIPE_ALLOW_LIVE guard, customer-match-by-email, invoice/invoiceitem/send call order all read cold and checked against Stripe's own API shape; failures print the real API error rather than a false success. No defect found."
     },
     "stripe_links.py": {
       "status": "clean",
@@ -565,6 +585,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "mailing-list signup block wiring; ran live, correctly REFUSED all 6 pages (issue #15 still open, withdrawal honored), no drift, cross-list-UUID assertion passed. No defect."
+    },
+    "wire_zone_heroes.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold-read 2026-09-26 scheduled operator cycle: FIG regex reuse between the primary wire loop and the fallback/PULLED paths, approved()'s sha-vs-name fallback, orphan_derivatives' extension matching all read cold; already hardened by many prior documented fixes (avif regression, withdrawal desync, alt-text-from-prompt). No new defect found."
     },
     "youtube_upload.py": {
       "status": "fixed",
