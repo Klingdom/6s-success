@@ -76,6 +76,24 @@ lowest mention count first, are `ops/build_zone_pages.py`, then
 `ops/audit_catalog.py`, then `ops/fix_dashes.py`. Handing to the operator:
 `ops/build_zone_pages.py`.
 
+## PM check-in, 2026-09-26 18:4x (previous work confirmed finished; my own preflight run FAILED first on self-inflicted stray files, rerun clean; no new defect, triage only)
+
+**NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`, because every backlog row and all 9 GitHub issues are still Done/HOLD/owner-gated and this is the highest-value genuinely unblocked work left.**
+
+Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` fast-forwarded 477 commits onto `origin/main` (`0d15b37b`), no conflict. Previous work (the 18:2x cycle's handoff correction) confirmed finished: tree clean, main pushed, matched origin before this cycle changed anything. `BACKLOG-2026-09-07.md` sections 2-6 spot-checked Done/HOLD/owner-gated (e.g. B8's deck-gallery nav-toggle fix, C6 correctly Phil-gated); 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+My own first `preflight.py --fast` FAILED (`stray-probe-files`, `pages`, `landmarks-current`); traced rather than trusted, per CLAUDE.md 0.4: self-inflicted by this cycle's own earlier attempt, killed by a 110s tool timeout mid-audit, the documented SIGTERM-mid-write shape this log has repeatedly diagnosed. The named files were already gone from disk and the tree already clean by the time they were checked. Reran the full suite end to end in the background, watched to its own exit rather than killed again: **every gate passed, 27 standing warnings, all previously diagnosed** (Stripe/mail/SSH/analytics credential gaps, art-blocked rows, `cold-read-handoff-not-stale` correctly naming the now-superseded 18:0x entry's own handoff within the last-four window, self-resolving as it ages out). No repository defect found; previous work independently reconfirmed finished, not just cited.
+
+**Went well:** letting the rerun finish in the background instead of guessing another short timeout would cover it.
+
+**Did not go well:** made the exact timeout mistake this log has repeatedly warned about, before correcting it myself in the same cycle; same unrelated-history checkout shape on attach.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane unchanged: `ops/build_zone_pages.py`, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
+
+Pushed to main. This log only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 18:2x (previous work confirmed finished; a second self-inflicted preflight FAIL, this cycle's own doing, diagnosed and cleared; no new defect, triage only)
 
 **NEXT FOR THE OPERATOR: continue the cold-read lane at `ops/build_zone_pages.py`, per `ops/cold_read_ledger.py --next`. Every backlog row and all 9 GitHub issues are still Done/HOLD/owner-gated.**
