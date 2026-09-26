@@ -56,6 +56,32 @@ def main() -> int:
         fails.append(f"a genuinely unhandled bare 'no' must fail by name "
                      f"citing the stem, got {f2}")
 
+    # Case 2b, added 2026-09-26 alongside the widened bare regex. The current
+    # split_negations() now catches every "nothing" this file's own tests
+    # exercise (it drops the whole clause, unlike "no X" which has to
+    # extract a specific object, so there is no positional gap left to
+    # construct against today's fixed splitter). What the widened regex
+    # actually guards against is a FUTURE regression in that splitter, so
+    # this proves the defense-in-depth directly: simulate one by swapping in
+    # a splitter that does nothing at all, and confirm the gate still
+    # catches the surviving "nothing" by name rather than trusting the
+    # splitter forever.
+    import image_local as _il
+    real_split = _il.split_negations
+    _il.split_negations = lambda subject: (subject, "")
+    try:
+        f2b = with_plans(
+            [{"stem": "test-zone-2",
+              "subject": "a shelf holding a place for loose items so "
+                         "nothing gets lost"}],
+            [])
+    finally:
+        _il.split_negations = real_split
+    if not any(g == "image-prompt-negations" and "test-zone-2" in m
+               for g, m in f2b):
+        fails.append(f"a regressed splitter that stops handling 'nothing' "
+                     f"must still fail by name citing the stem, got {f2b}")
+
     # Case 3: a clean subject (real corpus shape, already fixed) must not fail.
     f3 = with_plans(
         [{"stem": "clean-zone",
@@ -83,7 +109,7 @@ def main() -> int:
         for f_ in fails:
             print(" -", f_)
         return 1
-    print("PASS: 4 of 4 cases")
+    print("PASS: 5 of 5 cases")
     return 0
 
 

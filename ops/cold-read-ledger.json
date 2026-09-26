@@ -141,6 +141,16 @@
       "date": "2026-09-25",
       "note": "manifest/service-worker generator; ran live, idempotent (no drift), precache existence-checked, cache name derives from content hash. No defect."
     },
+    "build_quest.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "heroes()/approved_and_published() disk-vs-approval reconciliation, symptom entry screen and BROKEN-build guards all correct; verified no zone currently lacks steps (the one theoretical gap in the pictured-vs-shipped check), so no live defect."
+    },
+    "build_resources.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Live SKU/price reads, book-name pairing by normalised match, and the full whole-site wiring chain (issue #26 shape) all present and correct; linked downloads/kit/how-to-clean pages confirmed to exist on disk. No defect."
+    },
     "build_sample_html.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -226,6 +236,11 @@
       "date": "2026-09-25",
       "note": "cold-read clean, no defect. Correctly reports UNCHECKED (pypdf not installed here) rather than a false pass, per CLAUDE.md 0.4; ran live and confirmed."
     },
+    "check_sellable.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full. Orphan/undeliverable/missing-file/superset-price checks all correct. Lines 82-85's price<=0 check is provably dead code (buyable already filters price>0), already filed as decision issue #36 and correctly left unedited per CLAUDE.md 37/52 (payment-integrity file, prior session's edit was blocked by the safety classifier); no other defect."
+    },
     "check_sitemap_current.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -255,6 +270,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). Ran live: 2745 files, 1050 ready, 4939 postable units, matches ops/corpus-index.json on disk. Sampled 15 of the 1195 'other' files by hand rather than trusting the count (CLAUDE.md 5c): they are manuscript chapters, internal strategy docs, and web-metadata fragments, correctly excluded as not finished postable prose, not a mis-classification. KINDS ordering and units_in() per-kind counting logic checked, both consistent with the file's own docstring. Already wired: imported by corpus_posts.py, dashboard.py, send_questions.py, and checked by two preflight gates. No defect."
+    },
+    "crawl_report.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Bot classification order, TRAINING/RETRIEVAL split, proxy vs container log parsing and reverse-DNS verification all correct on inspection. No defect."
     },
     "deploy_freshness.py": {
       "status": "clean",
@@ -301,6 +321,11 @@
       "date": "2026-09-25",
       "note": "correct and fully wired into build_zone_pages.py, gated by gate_hazard_icons_current; 252/252 coverage confirmed live; no defect"
     },
+    "image_local.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "split_negations() handled clause-initial 'nothing else' and mid-clause 'with no X' but missed a bare 'nothing' elsewhere in a clause (e.g. the real ET-010 override 'so nothing gets lost'), letting it ride into the positive prompt untouched; widened to a whole-clause search, gate_image_prompt_negations_handled's bare regex widened to match, fail-then-pass proved on both."
+    },
     "image_style.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -340,6 +365,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Daily LinkedIn draft generator (3 corpus posts + 1 connection note + a gated B2B corporate post). Ran --preview live: facts() correctly reads the live catalogue (20 rooms, 114 zones, 684 cards, .99 ebook), corporate_facts() anchor-checks corporate.html before including the B2B post, honesty block matches known state (1 customer, referral). Word caps and 'no TODO/[insert' assertions all held. No defect."
+    },
+    "linkedin_posts.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "10 posts run clean, all well under the 1400-char cap, with-link/without-link count derived live not hardcoded, no fabricated claim. No defect."
     },
     "mailer.py": {
       "status": "clean",
@@ -525,6 +555,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 PM check-in: rebase-and-push loop regenerates GENERATED files on conflict rather than picking a side, refuses to push files with conflict markers, verifies the push against origin/main after rather than trusting the exit code; no defect found"
+    },
+    "verify_deploy.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "PAGES/CRITICAL_PAGES cover every real buy path (bundle, standards added 2026-09-26 PM); parking-page, asset, legal-page and mail-pipe-disclosure checks all correctly implemented. No defect."
     },
     "verify_media_delivery.py": {
       "status": "clean",

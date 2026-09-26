@@ -16682,6 +16682,16 @@ def gate_image_prompt_negations_handled() -> None:
     cleanly without a GPU (confirmed: only image_local.pipe(), never
     called here, touches torch); no Desktop/GPU access is required to
     run this check.
+
+    Widened 2026-09-26 to also flag a bare "nothing": the same defect
+    shape, a scene statement with no object to move that a diffusion
+    model still reads as tokens to draw toward, was found in two real,
+    shipped subjects (Kitchen's "nothing loose beside it", the ET-010
+    override's "so nothing gets lost") that split_negations() itself did
+    not yet handle. The splitter was fixed in the same cycle, but this
+    gate exists specifically so a future regression in that fix, or a
+    new override with the same shape, fails loudly here rather than
+    shipping quietly a second time.
     """
     try:
         import generate_zone_heroes as gzh
@@ -16693,7 +16703,7 @@ def gate_image_prompt_negations_handled() -> None:
              "real prompts (%s: %s)" % (type(e).__name__, e))
         return
 
-    bare = re.compile(r"\b(no|without)\b", re.I)
+    bare = re.compile(r"\b(no|without|nothing)\b", re.I)
     offenders = []
     try:
         for row in gzh.plan():
@@ -16713,9 +16723,9 @@ def gate_image_prompt_negations_handled() -> None:
     if offenders:
         name, text = offenders[0]
         fail("image-prompt-negations",
-             "%d real image prompt(s) still carry a bare 'no'/'without' "
-             "after split_negations(), which a diffusion model reads as "
-             "the object it is meant to suppress, not its absence "
+             "%d real image prompt(s) still carry a bare 'no'/'without'/"
+             "'nothing' after split_negations(), which a diffusion model "
+             "reads as the object it is meant to suppress, not its absence "
              "(first: %s -> %r); %s" %
              (len(offenders), name, text,
               ", ".join(n for n, _t in offenders[1:4])))
