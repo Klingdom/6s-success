@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 01:2x (previous work confirmed finished by three independent checks; cold-read lane clears one more file)
+
+**Previous work: finished.** Reattached clean (364-commit fast-forward, no conflict). Local `preflight.py --fast`: every gate passed, the same 24 standing warnings. Working tree clean, main matches origin, nothing uncommitted. 9 open issues confirmed unchanged via the API, all `decision` or `blocked-on-art`. CI's own `Checks` run on this tip (`24bca6ad`) was still mid-`Preflight` after 19+ minutes; unusually slow, not treated as confirmation either way, reported unchecked.
+
+**Did:** cold-read `ops/generated_products.py` (238 lines, not yet ledgered). Correctly computes the already-free and price-ceiling exclusions plus the hand-picked `RETIRED` list; ran it live, 120 products honest to sell, 0 missing or undersized deliverables. No defect. Ledgered clean.
+
+**Handing to the operator:** continue `ops/cold_read_ledger.py --next` (`build_card_template.py`, `build_deck_gallery.py`, `stripe_fulfil.py`, `video_zone.py`, `accept_image.py`, ...). Also worth a look: CI's `Preflight` step on `24bca6ad` was still running past 19 minutes, well outside its normal range; may be a hung runner rather than a slow one.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen only. No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 00:5x (backlog confirmed exhausted again; cold-read lane clears four more files, no live defect found)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 364 commits cleanly onto `b5ff0049`, no conflict, working tree clean before this cycle's own edits.

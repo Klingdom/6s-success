@@ -271,6 +271,11 @@
       "date": "2026-09-25",
       "note": "stale 'WHY THIS IS THE UNLOCK' docstring said 109 of 114 zones had no imagery; real count is 3 of 114 zone pages with no hero (verified live against gate_pages_missing_art's own logic). Docstring corrected, no functional change."
     },
+    "generated_products.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Correctly implemented: computed exclusions (already-free, at/above whole-house ceiling) plus the hand-picked RETIRED list, matches its own docstring. Ran check(): 0 missing files, 0 undersized, 120 products honest to sell. No defect."
+    },
     "hazard_icons.py": {
       "status": "clean",
       "date": "2026-09-25",
