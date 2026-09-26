@@ -55,6 +55,21 @@ ops/brief-preview.html
 # fails loudly if one is ever found sitting in the tree regardless.
 site/**/_*.html
 
+# The same convention, one level up: several ops/tests/*.py files (
+# test_corpus_posts.py, test_gate_sample_pdf_cover_current.py,
+# test_render_all_narrated.py, test_render_cards.py, and formerly
+# test_gate_sample_pdf_spelling.py before it moved to tempfile.mkdtemp())
+# write their own scratch fixture (markdown, PNG, PDF, or a whole
+# directory) directly under ops/tests/ using the identical underscore-
+# prefixed name, cleaned up only in a finally block just as exposed to a
+# killed run. Found live 2026-09-26: a run interrupted mid-test left
+# ops/tests/_tmp_sample_pdf_spelling/ as untracked cruft, caught by a
+# stop-hook's own git-status check rather than by anything in this
+# repository. The site/ rule above never covered this directory at all.
+# Ignoring the whole convention here too, matching the reasoning above,
+# so a future test written the same way needs no matching edit here.
+ops/tests/_*
+
 # test_audit_catalog.py's own lock file, serializing concurrent runs of that
 # one test so their fixtures can never coexist in site/ (found 2026-09-08:
 # a per-pid fixture name stops two runs sharing a path, but not

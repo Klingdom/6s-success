@@ -9631,16 +9631,34 @@ def gate_no_stray_probe_files() -> None:
     picked that prefix, so the sweep now matches the convention itself
     rather than each name that currently uses it, and a script written next
     month needs no matching edit here as long as it keeps the convention.
+
+    Widened 2026-09-26: the identical convention, one level up. Several
+    ops/tests/*.py files (test_corpus_posts.py, test_gate_sample_pdf_cover_
+    current.py, test_render_all_narrated.py, test_render_cards.py) write
+    their own underscore-prefixed scratch fixture directly under
+    ops/tests/ itself, cleaned up the same fragile way. Found live: a run
+    of test_gate_sample_pdf_spelling.py killed mid-test left
+    ops/tests/_tmp_sample_pdf_spelling/ (two PDF fixtures, not HTML, not
+    under site/ at all) as untracked cruft, invisible to this gate's old
+    site/-only scan and caught only by an external stop-hook's own git-
+    status check. That file has since moved to tempfile.mkdtemp(), the
+    stronger fix test_gate_kdp_cover_current.py's own fixtures already
+    use, but the other four above still write into the repo tree, so the
+    sweep below now covers both directories rather than assume the one
+    instance found is the only one.
     """
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
-        for f in glob.glob(os.path.join(SITE, "**", "_*.html"), recursive=True))
+        for pat in (os.path.join(SITE, "**", "_*.html"),
+                    os.path.join(ROOT, "ops", "tests", "_*"))
+        for f in glob.glob(pat, recursive=True))
     if stray:
         fail("stray-probe-files",
-             "%d leftover probe/fixture file(s) sitting in site/, left "
-             "behind by a run that was killed mid-audit: %s. Deleting "
-             "them now so the pages/tests/footer gates below do not fail on "
-             "a symptom of this same cause." % (len(stray), stray[:4]))
+             "%d leftover probe/fixture path(s) sitting in site/ or "
+             "ops/tests/, left behind by a run that was killed mid-audit "
+             "or mid-test: %s. Deleting them now so the pages/tests/footer "
+             "gates below do not fail on a symptom of this same cause."
+             % (len(stray), stray[:4]))
         # Found 2026-09-10: this gate ran after gate_existing and gate_tests
         # in main()'s own order, so a stray file from an earlier killed run
         # was caught here only after audit_pages.py had already misread it as
@@ -9651,8 +9669,12 @@ def gate_no_stray_probe_files() -> None:
         # so the run that hits this reports one clear failure instead of
         # three confusing ones, and the gates below get a clean tree.
         for f in stray:
+            p = os.path.join(ROOT, f)
             try:
-                os.remove(os.path.join(ROOT, f))
+                if os.path.isdir(p):
+                    shutil.rmtree(p)
+                else:
+                    os.remove(p)
             except OSError:
                 pass
 
