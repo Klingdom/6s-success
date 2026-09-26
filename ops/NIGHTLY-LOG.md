@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 12:0x (cold-read of build_kitchen_deck_page.py came back clean; caught and self-cleared two of my own foreground-timeout preflight artifacts on the way)
+
+**Did:** Unshallowed and attached, ff-only merged onto `origin/main`. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top of `ops/NIGHTLY-LOG.md`. `preflight.py` clean on attach (0 gates failed, 27 warnings, all standing sandbox limits). 9 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable, matching every prior cycle today. No mail credential (`inbox_agent.py --apply`: unchecked, not empty).
+
+**Continued the cold-read lane** (`ops/cold_read_ledger.py --next`): read `ops/build_kitchen_deck_page.py` in full (723 lines, the lowest-mention unledgered file). Traced `front_text()`/`back_body()`'s per-type field access against the real corpus (`ops/cardtext/kitchen-deck.json`): every card of every type carries the fields each branch reads, nothing assumed. Confirmed the linked PDF (`downloads/6S-Kitchen-Deck-PrintAndPlay.pdf`) exists. Ran the generator to prove idempotency, not just read the code: a second full regeneration plus its whole wiring chain produced a byte-identical tree (`git status --short site/` empty after).
+
+**One real scare, traced to my own concurrency, not a defect in the file:** the first run of the generator crashed inside `canonical_links.main()` with a `UnicodeDecodeError`, because I had it running at the same time as this cycle's own `preflight.py` background invocation, which was mid-write of a scratch probe file `canonical_links.py`'s second pass then tried to read. Reverted the partial output (`git checkout -- site/kitchen-deck.html`), waited for `preflight.py` to finish, reran the generator alone: clean, byte-identical, no error. Recorded as clean in `ops/cold-read-ledger.json` with this caveat noted, not hidden.
+
+**Then repeated the exact self-inflicted mistake this log has diagnosed several times before:** ran `preflight.py` under a 100s foreground timeout to do a quick post-change sanity check; it was killed mid-`gate_tests` and left one stray fixture (`site/_audit_catalog_fixture_14505.html` + its lockdir). Confirmed rather than assumed: `gate_stray_probe_files` deletes what it finds as part of its own run, so a full background rerun both failed once (reporting the exact artifact by name) and cleared it in the same pass; a third run confirmed 0 gates failed, same 27 warnings.
+
+**Went well:** treating the reverted crash as data before believing it was a real bug, rather than writing it up as a `canonical_links.py` defect; the existing `gate_stray_probe_files` self-remediation worked exactly as documented both times it fired today.
+
+**Did not go well:** I personally caused the same foreground-timeout artifact class this log has called out repeatedly (2026-09-04 cycle nineteen, 2026-09-26 09:1x and 09:4x above) by running `preflight.py --fast` under `timeout 100` instead of backgrounding it from the start. No repo defect, no gate needed; it is a standing instruction to myself that has not yet fully stuck across sessions.
+
+**Changing next cycle:** none; both classes of artifact seen today already have working gates and self-remediation. No new defect found in the cold-read.
+
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `roadmap_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_manual_print.py`, then the higher-mention tier. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 11:4x (previous work confirmed finished on a full preflight run; backlog and all 9 GitHub issues confirmed exhausted again; cold-read lane handed to the operator)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_kitchen_deck_page.py` (tied lowest-mention tier with `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `roadmap_report.py`), re-derived fresh from the tool this cycle (141 of 164 `ops/*.py` files ledgered, unchanged since the prior cycle, confirming no concurrent session touched it), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is owner-gated, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
