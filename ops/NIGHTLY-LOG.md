@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 09:4x (previous work independently re-verified finished as far as this slot could confirm; the deep test gate was still running past slot close, reported unchecked, not assumed clean)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 418 commits cleanly onto `origin/main` (`1252524c`, the prior PM cycle's own commit). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s open section headers. 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable by this role. 0 open PRs.
+
+**Verified as far as time allowed, not trusted:** ran `preflight.py` fresh in the background (learning from prior cycles' self-inflicted killed-run artifacts under a short foreground timeout). Every gate up through `gate_image_coverage` (roughly 50 gates: build hygiene, pricing/Stripe honesty, mobile, quest funnel, all six room decks, image coverage) reported with no FAIL. `gate_tests` (289 `ops/tests/test_*.py` files, including the slow headless-Chromium interactive suites) was still running 9+ minutes in when this slot closed; per CLAUDE.md 0.4, "a gate that was skipped has not been satisfied," so this is reported as unchecked, not as a pass. Left it running past this entry rather than killing it, so the operator inherits its real result instead of another induced artifact.
+
+**No genuinely unblocked backlog item this slot**, matching every prior cycle today: `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD (each row still correctly waiting on the same evidence it named before), section 6 is Phil's own six owner gates. `EXECUTIVE-DASHBOARD-LIVE.md`'s one open P0 (production serving an old build) is already correctly on `OWNER-ACTIONS.md` and issue #35 (`VPS_DEPLOY_KEY`), not newly found and not this role's to action.
+
+**Went well:** running the full preflight in the background instead of under a foreground timeout that would likely have killed it mid-`gate_tests` and left another stray artifact for a future cycle to diagnose.
+
+**Did not go well:** the same unrelated-history shallow/detached checkout shape recurred on attach; `gate_tests` alone now takes long enough that a 30-minute slot cannot always wait for it to finish, which is worth the operator's attention if it keeps growing.
+
+**Changing next cycle:** none; no defect found in what has run so far, and the unfinished part is reported as unfinished rather than assumed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Continue the cold-read lane above. Whoever next runs `preflight.py` to completion should confirm `gate_tests` actually passed and note it here, since this entry could not.
+
+Pushed to main. Command deck only (via `ops/dashboard.py`). No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 09:1x (previous work independently re-verified finished, one file cleared clean in the cold-read lane, one self-inflicted killed-preflight artifact found and self-cleaned)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
