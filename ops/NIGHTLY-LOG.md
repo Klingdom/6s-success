@@ -2,9 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 20:4x (previous work finished; one live gate warning found and fixed, a stale handoff repeated across three entries)
+
+NEXT FOR THE OPERATOR: cold-read `ops/fix_dashes.py`, because it is the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`.
+
+**Previous work: finished.** Attached clean (shallow, unshallowed, `checkout main` then `merge --ff-only` fast-forwarded onto `origin/main` with no conflict). `preflight.py` (full, not `--fast`) ran clean: every gate passed, 27 warnings, all the same standing sandbox limits prior cycles have already diagnosed (no Stripe/SSH/mail credential, no egress, Pillow absent). Working tree clean, main matched origin before this cycle touched anything. `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD, section 6 owner-gated; 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**The one live warning: `gate_cold_read_handoff_not_stale`.** The last three log entries (20:3x, 19:5x, 19:4x) each carried a "NEXT FOR THE OPERATOR" line naming `ops/audit_catalog.py`, but `ops/cold-read-ledger.json` already recorded that file `fixed` (a concurrent session closed it and pushed while the 20:3x entry was mid-flight, per that entry's own text). Verified directly with `ops/cold_read_ledger.py --next`: the real lowest-mention un-ledgered candidate is now `ops/fix_dashes.py`. Struck the stale name in all three entries in the established `~~strikethrough~~` convention and pointed each at the real candidate. Reran `preflight.py`: `gate_cold_read_handoff_not_stale` no longer warns.
+
+**Went well:** checking the ledger directly instead of trusting three consecutive entries repeating the same line.
+
+**Did not go well:** nothing new; the recurring pattern is concurrent sessions outpacing each other's handoffs, already a known shape in this log.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues at `ops/fix_dashes.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`, unblocks automatic redeploy) and the 8 open decision/art issues, unchanged. No price or product touched, no new page; IndexNow not applicable.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, command deck regeneration.
+
 ## PM check-in addendum, 2026-09-26 20:3x (CI checked directly rather than trusted: a real, live gate FAIL found and converged on with a concurrent fix)
 
-NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.
+NEXT FOR THE OPERATOR: cold-read ~~`ops/audit_catalog.py`~~ (struck 2026-09-26 20:4x, PM check-in: a concurrent session had already fixed and ledgered this file by the time this entry was written, so the line was stale on arrival, caught live by `gate_cold_read_handoff_not_stale`) `ops/fix_dashes.py`, the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next` as of this correction.
 
 **Went further than the local `preflight.py` this time: checked GitHub's own CI directly, per CLAUDE.md 0.3 ("a local pass has not proved CI passes").** `publish-image.yml`'s most recent automatic run (on `0ce148e7`) had failed; local `HEAD` had since moved 2 commits ahead with no site/Dockerfile-path push to re-trigger it, so the red status was unproven either way. Manually dispatched the workflow (`workflow_dispatch`, no production impact: this workflow only builds and publishes an image to GHCR, never deploys) to get a real answer instead of citing a stale run or assuming the gap was cosmetic.
 
@@ -38,7 +56,7 @@ Pushed to main. `ops/audit_catalog.py`, `ops/tests/test_audit_catalog.py`, `ops/
 
 ## PM check-in addendum, 2026-09-26 19:5x (the entry below's own fix went stale within the same cycle: a concurrent real redeploy landed, and a second real gate FAIL was found and fixed)
 
-NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.
+NEXT FOR THE OPERATOR: cold-read ~~`ops/audit_catalog.py`~~ (struck 2026-09-26 20:4x, PM check-in: this file was fixed and ledgered shortly after this entry was written) `ops/fix_dashes.py`, now the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`.
 
 **Rerunning `preflight.py` after shipping the entry below surfaced two more real findings, neither caused by this cycle's own edit.**
 
@@ -54,7 +72,7 @@ Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, dashboard
 
 ## PM check-in, 2026-09-26 19:4x (previous work finished; a done-but-open GitHub issue closed, and a live deploy-gap undercount caught and corrected)
 
-NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.
+NEXT FOR THE OPERATOR: cold-read ~~`ops/audit_catalog.py`~~ (struck 2026-09-26 20:4x, PM check-in: this file was fixed and ledgered shortly after this entry was written) `ops/fix_dashes.py`, now the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`.
 
 **Previous work: finished.** Attached clean (unshallowed, ff-only merge onto `2b5b97ee`). Working tree was clean, main matched origin. `BACKLOG-2026-09-07.md` sections 2-3 done, section 4 credential-blocked, section 5 HOLD; 9 GitHub issues confirmed live via the API, all `decision`/`blocked-on-art`.
 
