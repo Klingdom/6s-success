@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Correction to the 02:4x PM check-in below, same PM session, after the operator's own 02:5x cycle had already pushed
+
+The 02:4x entry left its own local `preflight.py` "still running past this slot's close, not reported as evidence either way." It finished shortly after with **1 gate(s) failed**: `tests`, 4 of 289 test file(s), naming `test_gate_footer_consistent_missing_fails.py` (6 of 7 cases) and `test_gate_landmarks_current.py` (7 of 8 cases) among them. Not accepted at face value: that run was contending with two other `preflight.py`/`preflight.py --own` invocations this same session had started and killed moments earlier, the exact shared-scratch-file concurrency shape this log has already diagnosed several times (2026-09-25 twice, 2026-09-26 00:5x). Verified rather than assumed: ran both named test files standalone with nothing else running (7/7 and 8/8, both clean), then reran the entire `preflight.py` alone with `ps aux` confirming no contending process: **every gate passed, 25 warning(s)**, the same standing set. The FAIL was self-resolving noise from this session's own overlapping runs, not a regression; nothing that reached git was ever wrong, and no gate change is needed since the gate correctly reported what it saw. Lesson for future cycles, not yet worth a gate: don't run more than one `preflight.py` invocation at a time in the same checkout.
+
+Pushed to main. This log entry only. No code, price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 02:4x (previous work confirmed finished via CI's own Preflight step; no new defect, handoff is the cold-read lane)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, because sections 2 to 4 of the backlog are fully Done or CLOSED by decision (B6, B8, B9 all resolved), section 5 is HOLD, section 6 is six owner gates none pickable this slot, and the cold-read lane is the only category of work left that is both genuinely unblocked and sized for a 30 minute triage pass.
