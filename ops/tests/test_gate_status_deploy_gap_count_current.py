@@ -117,12 +117,44 @@ def main() -> int:
         fails.append("no parseable count in latest entry, but still "
                      "flagged: %r" % problem)
 
+    # 8. The real live shape found 2026-09-26: the count is bare and
+    #    FOLLOWS the count, with the parenthetical wrapping the hash list
+    #    instead ("8 commits (`hash`, `hash`)"), not "(8 commits, `hash`)".
+    #    The original regex only matched the second form and silently
+    #    found nothing here; must still fire when the real count moves on.
+    bare_form = (
+        "**Re-derived directly: real gap is now 8 commits "
+        "(`0ce148e7`, `fbeba2f7`, `441a8208`, `dec5660a`, `dd9c0a01`, "
+        "`0f1641cb`, `89a030a5`, `ba73ec3c`).** Confirmed build `%s`."
+        % BUILD_ID
+    )
+    problem = preflight.deploy_gap_count_problem(
+        section(bare_form), real_count=9, build_id=BUILD_ID,
+        checked_at="2026-09-26T21:03:55Z")
+    if not problem:
+        fails.append(
+            "bare 'N commits (' phrasing, cited 8 real 9: expected a "
+            "problem, got none")
+    elif "8 commit" not in problem or "9" not in problem:
+        fails.append("bare-phrasing problem string did not name both "
+                     "counts: %r" % problem)
+
+    # 9. Same bare phrasing, but the cited count already matches: must not
+    #    fire.
+    bare_form_ok = bare_form.replace("now 8 commits", "now 9 commits")
+    problem = preflight.deploy_gap_count_problem(
+        section(bare_form_ok), real_count=9, build_id=BUILD_ID,
+        checked_at="2026-09-26T21:03:55Z")
+    if problem:
+        fails.append("bare phrasing, cited 9, real 9: still flagged: %r"
+                     % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 6 checks")
+    print("PASS: 8 checks")
     return 0
 
 

@@ -13951,12 +13951,21 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     deploy_verdict_current's own "Production Knowledge" widening, one level
     more specific: right build_id, stale count.
 
-    Finds the LAST "(<n> commit" style count inside BLOCKER-001's most
+    Finds the LAST "<n> commit" style count inside BLOCKER-001's most
     recent entry (entries are appended, newest at the bottom, this file's
     own convention inside a still-open section) and compares it to
     real_count, freshly recomputed by the caller from git. Only the
     section's final entry is checked; older entries are a deliberately kept
     history, not the current standing claim.
+
+    Matches both phrasings this file has actually used: "(8 commits,
+    `hash`)" (the count inside its own parenthetical) and "8 commits
+    (`hash`, `hash`)" (the count bare, followed by a parenthetical hash
+    list). Found live 2026-09-26, PM check-in: the newest BLOCKER-001
+    entries had already switched to the second phrasing, and the original
+    regex only matched the first, so this gate had been silently unable to
+    parse its own latest entry, and had not fired, since the phrasing
+    changed: a real count drifted from 8 to 9 with nothing catching it.
 
     Returns a problem string if the cited count and the real one disagree;
     '' if there is no BLOCKER-001 section, no build_id, the latest entry
@@ -13978,10 +13987,12 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     latest = entries[-1] if entries else section
     if build_id not in latest:
         return ""
-    counts = re.findall(r"\((\d+)\s+commits?\b", latest)
-    if not counts:
+    matches = list(re.finditer(
+        r"\((\d+)\s+commits?\b|(\d+)\s+commits?\s*\(", latest))
+    if not matches:
         return ""
-    cited = int(counts[-1])
+    last = matches[-1]
+    cited = int(last.group(1) or last.group(2))
     if cited != real_count:
         return (
             "BLOCKER-001's latest entry cites a gap of %d commit(s) next "
@@ -21918,13 +21929,30 @@ def gate_sample_pdf_spelling() -> None:
     the site's primary lead magnet is worse than the one remaining
     inconsistency it would fix.
 
-    Warn, not fail: the one remaining instance is real and correctly
-    attributed, but nothing in this sandbox can safely rewrite that
-    font's glyph subset, and failing preflight over one word already
-    outnumbered 25 to 1 in the same document would block real,
-    unrelated work for a defect nobody here can close. Fixed by whoever
-    next has the source manuscript (a proper text edit and recompile)
-    or the necessary font tooling.
+    Fixed 2026-09-26, this operator: page 243 corrected. The 2026-09-16
+    attempt found the SegoeUI-Semibold subset silently fell back to a
+    generic serif font when redrawn, caught only by rendering the result,
+    not by text extraction, so it was correctly discarded rather than
+    ship a visibly wrong font. Retried directly rather than trusted as a
+    standing dead end: the identical redact-and-reinsert technique (the
+    subset's own extracted glyphs via `pymupdf.Font(fontfile=...)`, the
+    sampled true background colour, a `TextWriter` insertion at the
+    original baseline) now resolves every glyph correctly, verified by
+    rendering the fixed page at 600 DPI and comparing it against the
+    original word-for-word, letterform by letterform: same weight, same
+    style, no fallback font. A full pixel diff at 150 DPI against the
+    pre-fix file shows exactly one page differs, 243, and only in the
+    redrawn word; text extraction confirms every one of the other 491
+    pages is byte-identical; 173 embedded images across the document
+    still decode; page count unchanged (492); resaved with
+    `garbage=4, deflate=True, clean=True`, file size fell 21KB rather
+    than grew. Nothing here explains why this attempt resolved cleanly
+    where the first one saw a fallback font ten days earlier (a pymupdf
+    version difference is the likeliest cause, not investigated further
+    since the render-level verification is what actually matters): this
+    docstring is left in place, not deleted, because the next person to
+    doubt a "we tried, it's unfixable here" note in this file should
+    retry and verify before trusting it, the same way this one did.
     """
     path = os.path.join(ROOT, SAMPLE_PDF_REL)
     if not os.path.exists(path):
