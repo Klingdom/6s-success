@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-26 18:01",
- "commit": "8f31543f",
- "commit_msg": "PM check-in: fixed a real two-verdicts-stale deploy-gap citation in STATUS.md",
- "commits_7d": 1106,
- "commits_total": 4024,
+ "generated": "2026-09-26 18:06",
+ "commit": "1894416e",
+ "commit_msg": "Cold-read lane: fix untested compose_drift() in deploy.py's test suite",
+ "commits_7d": 1107,
+ "commits_total": 4025,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
