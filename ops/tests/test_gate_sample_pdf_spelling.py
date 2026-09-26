@@ -26,7 +26,9 @@ synthetic one.
 Run:  python ops/tests/test_gate_sample_pdf_spelling.py
 """
 import os
+import shutil
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -76,51 +78,49 @@ def main():
         print("  skipped: pymupdf not installed here")
         return 0
 
-    tmp = os.path.join(ROOT, "ops", "tests", "_tmp_sample_pdf_spelling")
-    os.makedirs(tmp, exist_ok=True)
-
-    clean = os.path.join(tmp, "clean.pdf")
-    make_pdf(clean, ["A tidy shelf, organized by activity, not by category."])
-    fails, warns = run_gate_against(clean)
-    check("clean PDF: no fail", fails == [])
-    check("clean PDF: no warn", warns == [])
-
-    dirty = os.path.join(tmp, "dirty.pdf")
-    make_pdf(dirty, ["Grouping the coffee things looks organised on a shelf."])
-    fails, warns = run_gate_against(dirty)
-    check("dirty PDF: never a hard fail (nothing here can safely rewrite it)",
-          fails == [])
-    check("dirty PDF: warns", len(warns) == 1)
-    check("dirty PDF: names the gate", warns and warns[0][0] == "sample-pdf-spelling")
-    check("dirty PDF: names the word", warns and "organised" in warns[0][1])
-    check("dirty PDF: names page 1", warns and "page 1" in warns[0][1])
-
-    missing = os.path.join(tmp, "does-not-exist.pdf")
-    fails, warns = run_gate_against(missing)
-    check("missing file: silent, not a false pass or crash",
-          fails == [] and warns == [])
-
-    real = os.path.join(ROOT, "site", "downloads",
-                        "6S Success Home Edition - Sample (Chapters 1-30).pdf")
-    if os.path.exists(real):
-        fails, warns = run_gate_against(real)
-        check("real committed file: 3 of 4 fixed, page 243 (semibold) "
-              "still carries the one instance nothing here can safely fix",
-              fails == [] and len(warns) == 1
-              and "organised" in warns[0][1]
-              and "1 page" in warns[0][1])
-    else:
-        print("  skipped: real sample PDF not present in this checkout")
-
-    for f in (clean, dirty):
-        try:
-            os.remove(f)
-        except OSError:
-            pass
+    # tempfile.mkdtemp(), outside the repo, the same convention
+    # test_gate_kdp_cover_current.py's own _repo() uses: a fixture directory
+    # git never sees at all is a run killed mid-test leaving nothing behind,
+    # unlike a hardcoded in-repo path, which left ops/tests/_tmp_sample_pdf_
+    # spelling/ as untracked cruft the one time this test did not reach its
+    # own cleanup lines below, found live 2026-09-26 in a stop-hook's own
+    # git-status check.
+    tmp = tempfile.mkdtemp()
     try:
-        os.rmdir(tmp)
-    except OSError:
-        pass
+        clean = os.path.join(tmp, "clean.pdf")
+        make_pdf(clean, ["A tidy shelf, organized by activity, not by category."])
+        fails, warns = run_gate_against(clean)
+        check("clean PDF: no fail", fails == [])
+        check("clean PDF: no warn", warns == [])
+
+        dirty = os.path.join(tmp, "dirty.pdf")
+        make_pdf(dirty, ["Grouping the coffee things looks organised on a shelf."])
+        fails, warns = run_gate_against(dirty)
+        check("dirty PDF: never a hard fail (nothing here can safely rewrite it)",
+              fails == [])
+        check("dirty PDF: warns", len(warns) == 1)
+        check("dirty PDF: names the gate", warns and warns[0][0] == "sample-pdf-spelling")
+        check("dirty PDF: names the word", warns and "organised" in warns[0][1])
+        check("dirty PDF: names page 1", warns and "page 1" in warns[0][1])
+
+        missing = os.path.join(tmp, "does-not-exist.pdf")
+        fails, warns = run_gate_against(missing)
+        check("missing file: silent, not a false pass or crash",
+              fails == [] and warns == [])
+
+        real = os.path.join(ROOT, "site", "downloads",
+                            "6S Success Home Edition - Sample (Chapters 1-30).pdf")
+        if os.path.exists(real):
+            fails, warns = run_gate_against(real)
+            check("real committed file: 3 of 4 fixed, page 243 (semibold) "
+                  "still carries the one instance nothing here can safely fix",
+                  fails == [] and len(warns) == 1
+                  and "organised" in warns[0][1]
+                  and "1 page" in warns[0][1])
+        else:
+            print("  skipped: real sample PDF not present in this checkout")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
     print(f"\n{PASS} of {PASS + FAIL} cases pass")
     return 1 if FAIL else 0

@@ -76,6 +76,16 @@ def main() -> int:
     if "1.5" in items and not items["1.5"]["waiting"]:
         fails.append("live row 1.5 (Search Console) still reads as operator-actionable")
 
+    # 6b. Found 2026-09-26, same defect class: a status cell reading "no
+    # operator credential" (row 3.10's real wording) did not match any
+    # existing alternative, so a row blocked on Phil's own YouTube OAuth
+    # paste printed under "NEXT IN THE QUEUE" as if unblocked.
+    if not rr.row_is_waiting(row(owner="102 to go, same wall, no operator credential")):
+        fails.append("'no operator credential' owner text did not read as waiting")
+    if "3.10" in items and not items["3.10"]["waiting"]:
+        fails.append("live row 3.10 (publish the remaining videos) still reads "
+                     "as operator-actionable")
+
     # 7. The real, live file: every backlog row still parses to exactly the
     # header's column count. A row with an extra cell silently shifts every
     # later column (Est read as Owner, etc.), the exact shape found in 1.2,
@@ -116,7 +126,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 16 cases (row_is_waiting x10, done-check, live-file column "
+    print("PASS: 18 cases (row_is_waiting x12, done-check, live-file column "
           "shape, commits_24h_text x4)")
     return 0
 

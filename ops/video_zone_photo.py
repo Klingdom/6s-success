@@ -182,7 +182,7 @@ def main() -> int:
           f"{os.path.relpath(OUT, ROOT)}")
     for z, why in failed[:6]:
         print(f"    FAILED {z[:28]:30} {why[:70]}")
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

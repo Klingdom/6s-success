@@ -13,6 +13,15 @@ back with nothing) printed "0 active products across 0 skus, 0 duplicated /
 nothing to do" instead of surfacing as unchecked. Fixed by adding the same
 raise to main()'s own loop.
 
+Case 3 below was updated 2026-09-26 cold-reading this same file: it had
+asserted `--check` returns 0 on a real duplicate PRODUCT, codifying a second
+bug rather than catching it. `--check`'s exit code was unconditionally 0 no
+matter what it found (products, links, or both), and a run that found
+duplicate products returned before ever reaching dedupe_links(), so link
+duplicates on the very same SKU went completely unread in that run. Both
+fixed: main() now always calls dedupe_links() and returns 0 only when
+nothing is left duplicated (see stripe_dedupe.py's own docstring on main()).
+
 Run:  python ops/tests/test_stripe_dedupe.py
 """
 import os
@@ -105,8 +114,9 @@ def main() -> int:
     except Exception as e:
         fails.append(f"--check on a real duplicate raised unexpectedly: {e}")
     else:
-        if rc != 0:
-            fails.append(f"--check on a real duplicate returned {rc}, expected 0")
+        if rc != 1:
+            fails.append(f"--check on a real duplicate returned {rc}, expected "
+                          "1 (a duplicate was found and not yet resolved)")
         if calls:
             fails.append(f"--check made write call(s): {calls}")
 
@@ -117,6 +127,35 @@ def main() -> int:
     def link(lid, sku, slug):
         return {"id": lid, "active": True, "metadata": {"sku": sku},
                 "url": "https://buy.stripe.com/" + slug}
+
+    # Case 3b: the mirror gap this cycle found. A duplicate PRODUCT must
+    # never stop a duplicate LINK on the same run from being read and
+    # reported; the two populations are independent and both must be
+    # checked every time, not only when the other is clean. Stub
+    # live_link_ids so this does not depend on real network access: an
+    # unreadable-site refusal still exercises dedupe_links(), which is the
+    # thing case 3 (the old, buggy version of this test) never reached.
+    dupe_links = [link("plink_x", real_sku, "XXXXXXX"),
+                  link("plink_y", real_sku, "YYYYYYY")]
+    link_calls = []
+    orig_live_ids_3b = sd.live_link_ids
+    sd.live_link_ids = lambda: ({"XXXXXXX"}, "")
+    sd.sc.list_all = fake_list_all_factory(dupes, dupe_links)
+    sd.sc.call = lambda method, path, data=None: link_calls.append((method, path)) or {}
+    try:
+        rc = sd.main(False)
+    except Exception as e:
+        fails.append(f"--check with product AND link duplicates raised: {e}")
+    else:
+        if rc != 1:
+            fails.append(f"--check with both kinds duplicated returned {rc}, "
+                          "expected 1")
+        if not any("payment_links" in c[1] for c in link_calls
+                   if "line_items" in c[1]):
+            fails.append("dedupe_links() never ran when products were also "
+                          "duplicated; the link duplicate on the same SKU "
+                          "would have gone completely unreported")
+    sd.live_link_ids = orig_live_ids_3b
 
     two = [link("plink_keep", "BK-EB", "SERVED1"),
            link("plink_orphan", "BK-EB", "ORPHAN1")]
@@ -171,7 +210,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("stripe_dedupe.py: 6 case(s) passed (3 product, 3 payment link)")
+    print("stripe_dedupe.py: 7 case(s) passed (4 product, 3 payment link)")
     return 0
 
 

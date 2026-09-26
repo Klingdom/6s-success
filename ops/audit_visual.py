@@ -616,21 +616,16 @@ def main() -> int:
         d = audit(full, exe, extra_args, width, height, coarse=mobile,
                   why=reasons)
         if d is None:
-            # RETRY ONCE, LONGER, BEFORE GIVING UP. The probe walks every
-            # element, so its cost scales with the document. The 15s budget
-            # was sized on ordinary pages and could never measure the biggest
-            # one this site has: how-to-clean-anything.html is 137 KB and
-            # carries a link per cleaning method, and it came back "NOT
-            # measured" on both desktop and phone every time it was tried on
-            # 2026-09-25. Reported honestly, which was right, but the effect
-            # was that the page most likely to be read standing up in a
-            # kitchen had never once been checked for tap targets, contrast
-            # or sideways scroll.
-            #
-            # The retry runs only after a failure, so an ordinary page costs
-            # nothing, and pages that needed it are named in the output,
-            # because a page that measures only at four times the budget is
-            # itself worth knowing about.
+            # NO RETRY. A longer-budget, second-browser retry was written and
+            # deliberately not shipped on 2026-09-25 (see that commit
+            # message): the page it was built for, how-to-clean-anything.html,
+            # was never actually failing on budget, it was failing because a
+            # bare filename on the command line did not resolve to a real
+            # path, a defect the missing-page handling above this loop now
+            # catches. Launching a second browser on every genuine failure is
+            # real cost on a host already short of memory for no measurement
+            # gained, so a page that cannot be probed is reported honestly,
+            # once, with its reason, rather than retried.
             unread.append("%s (%s)" % (rel, reasons[0] if reasons
                                        else "no reason captured"))
             continue
@@ -755,7 +750,20 @@ def main() -> int:
                 lambda r: "%-26s doc %dpx > view %dpx  %s"
                           % (r[0], r[1], r[2],
                              [o["path"][:44] for o in r[3][:2]]))
-    return 1 if (bad_text or bad_img) else 0
+    # The exit code used to reflect only two of the nine categories this
+    # tool computes (bad_text, bad_img), so a broken image, a missing form
+    # label, an invisible focus outline, a bad landmark or heading jump --
+    # or, on --mobile, a crowded tiny target or a page scrolling sideways --
+    # could be printed right above a process exit of 0. Nothing in preflight
+    # was fooled by this (gate_visual_audit and gate_mobile_touch_targets
+    # both parse the printed counts, not this return value), but a person
+    # running this tool directly and trusting `$?` would have been. Same
+    # "check that cannot fail" shape as the other cold-read fixes this week.
+    findings = (bad_text or bad_img or broken_img or no_dim or no_alt or
+                bad_head or no_label or no_focus or no_land)
+    if mobile:
+        findings = findings or tiny_t or small_t or side_scroll
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":

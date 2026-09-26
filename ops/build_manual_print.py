@@ -912,7 +912,8 @@ critical reviews and certain other noncommercial uses permitted by copyright law
 requests, write to the publisher at the address below.</p>
 
 <p>First edition, [YEAR]<br>
-[PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1]</p>
+[PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1]
+</p>
 
 <p>ISBN (paperback): [ISBN]<br>
 ISBN (ebook): [ISBN]</p>

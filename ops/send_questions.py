@@ -94,13 +94,7 @@ BLOCKING = [
     ("Authorise YouTube uploads",
      "Paste a YouTube OAuth token so ops/youtube_upload.py can publish.",
      "OWNER-ACTIONS.md calls this the biggest single lever on the business "
-     "right now. 102 narrated, captioned videos are built and sitting on a "
-     "disk where nobody can find them; only the 12 you posted by hand are "
-     "public. Authorising today publishes the 14 that already match their "
-     "own zone page; the tool itself refuses the rest by name rather than "
-     "risk a wrong video landing on a URL that can never be swapped, and "
-     "those are being re-rendered on a local machine, no further action "
-     "from you once that finishes.",
+     "right now. {youtube_claim}",
      "5 minutes, once"),
     ("Paste the business description into Stripe",
      "Open the Stripe dashboard and fill in the account's public business "
@@ -182,6 +176,59 @@ def site_status_lines():
     ]
 
 
+def youtube_claim() -> str:
+    """Live count of what authorising YouTube today would actually publish.
+
+    Found 2026-09-26, this operator: this line used to hardcode "publishes
+    the 14 that already match their own zone page... the rest are being
+    re-rendered on a local machine", frozen from 2026-09-17 when 100 of 114
+    rendered videos disagreed with their own zone page. OWNER-ACTIONS.md's
+    own item 1 records that re-render finishing overnight on 2026-09-18
+    ("ops/check_video_standard.py now reads 114 of 114 matching, and
+    ops/youtube_upload.py holds nothing back: --check lists 102 ready"), but
+    nothing had carried that forward here, so this email would have told
+    Phil his one action recovered 14 videos when the real number, for over a
+    week, has been all of them. Reads the same live signal
+    ops/youtube_upload.py itself gates uploads on
+    (ops/check_video_standard.compare(), against the committed narrated .srt
+    sidecars, not the gitignored .mp4 files this sandbox cannot see) rather
+    than repeating a snapshot.
+    """
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import video_zone as V
+        import check_video_standard as C
+        from youtube_upload import ledger
+        total = sum(1 for _ in V.zones())
+        published = set(ledger())
+        stale, _fresh, unreadable = C.compare()
+        stale_ids = {s for s, _c, _g in stale} - published
+        unclear_ids = {s for s, _c, _g in unreadable} - published
+        remaining = total - len(published)
+        ready = remaining - len(stale_ids) - len(unclear_ids)
+        base = (f"{remaining} narrated, captioned videos are built and "
+                f"sitting on a disk where nobody can find them; only the "
+                f"{len(published)} you posted by hand are public.")
+        if stale_ids or unclear_ids:
+            held = []
+            if stale_ids:
+                held.append(f"{len(stale_ids)} whose on-screen checklist no "
+                            f"longer matches the zone's own standard")
+            if unclear_ids:
+                held.append(f"{len(unclear_ids)} this check could not read")
+            return (f"{base} Authorising today publishes {ready} of them; "
+                    f"the tool itself refuses {' and '.join(held)} rather "
+                    f"than risk a wrong video landing on a URL that can "
+                    f"never be swapped.")
+        return (f"{base} Authorising today publishes all {remaining}, "
+                f"nothing held back.")
+    except Exception as e:                                       # noqa: BLE001
+        return (f"102 narrated, captioned videos were built as of "
+                f"2026-09-18; how many would publish today could not be "
+                f"measured this run ({type(e).__name__}), so treat that "
+                f"figure as unconfirmed rather than current.")
+
+
 def social_units_now():
     """Live count, not a number hand typed once and left to rot.
 
@@ -211,7 +258,9 @@ def build():
         "BLOCKING. Nothing I do can move these.",
         "",
     ]
+    yt = youtube_claim()
     for i, (title, what, why, cost) in enumerate(BLOCKING, 1):
+        why = why.format(youtube_claim=yt)
         lines += [f"  {i}. {title}", f"     {what}", f"     Why it matters: {why}",
                   f"     Cost to you: {cost}", ""]
     lines += ["DECISIONS. I will pick a sensible default if you would rather not.", ""]

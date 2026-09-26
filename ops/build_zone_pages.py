@@ -2947,7 +2947,17 @@ def room_time(room):
         hi += int(m.group(2))
 
     def hrs(mins):
-        return round(mins / 30.0) / 2.0
+        # Not round(): Python's round() breaks an exact tie (mins % 30 ==
+        # 15) toward the nearest EVEN half-hour, not the nearest higher
+        # one, so it silently understates the total on any room whose sum
+        # lands exactly on a tie (found live 2026-09-26: Kitchen's high end
+        # is 435 min, an exact tie between 7.0h and 7.5h, and round()
+        # reported 7.0, contradicting this function's own "rounded to the
+        # nearest half hour" claim, which nobody reading "banker's
+        # rounding" would take that promise to mean). math.floor(x + 0.5)
+        # always rounds a tie up, matching ordinary arithmetic and the
+        # docstring.
+        return math.floor(mins / 30.0 + 0.5) / 2.0
 
     def fmt(h):
         return str(int(h)) if h == int(h) else f"{h:.1f}".rstrip("0")

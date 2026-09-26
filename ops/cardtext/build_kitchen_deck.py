@@ -1293,10 +1293,9 @@ def room_card(zones: dict) -> dict:
         "objective": "The kitchen is seven small places, not one big job. "
                      "This card is the map and the order.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
-        "start_here": "KZ-003 Sink and Dishwashing Zone. It is the shortest "
-                      "zone, it is the point the whole kitchen resets from, "
-                      "and you will have finished something in fifteen "
-                      "minutes.",
+        "start_here": "KZ-003 Sink and Dishwashing Zone. It is the point "
+                      "the whole kitchen resets from, and you will have "
+                      "finished something in fifteen minutes.",
         "how_to_play": [
             "1. Deal the seven ZONE cards face up. Pick the one that is "
             "annoying you today, or take the one this card says to start at.",

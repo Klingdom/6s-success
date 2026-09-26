@@ -155,18 +155,22 @@ def split_negations(subject: str) -> tuple:
     invisible: the prompt reads correctly to a person, the image comes back
     wrong, and nothing connects the two.
 
-    Deliberately conservative in two ways. It moves only the clause introduced
-    by the negative word, not the rest of the sentence, and it handles "no" and
-    "without" ONLY.
+    Deliberately conservative. It moves only the clause introduced by the
+    negative word, not the rest of the sentence, and "never" stays untouched
+    for now: real examples exist ("the plug never drops behind the desk",
+    "bleach never shares a container with anything else") but none has yet
+    been checked against a generated image the way the cases below were, so
+    widening this to "never" without that evidence would be the same
+    unverified generalisation CLAUDE.md 5c warns against, not a fix.
 
-    "nothing" and "never" are excluded on purpose, and the reason is a bug this
-    function had for about ten minutes. The entryway door mat prompt reads "a
-    coir door mat on bare wood floor just inside a closed front door, nothing
-    else on the floor". Treating that like the nursery moved "on the floor"
-    into the negative prompt, which would tell the model to suppress the floor
-    the mat is standing on. "no X" and "without X" name objects to leave out.
-    "nothing else HERE" is a statement about a scene, and the two do not
-    survive the same treatment.
+    "nothing" is different, and the reason it gets special handling rather
+    than object-extraction is a bug this function had for about ten minutes.
+    The entryway door mat prompt reads "a coir door mat on bare wood floor
+    just inside a closed front door, nothing else on the floor". Treating
+    that like the nursery moved "on the floor" into the negative prompt,
+    which would tell the model to suppress the floor the mat is standing on.
+    "no X" and "without X" name objects to leave out. "nothing" is a
+    statement about a scene, and the two do not survive the same treatment.
 
     That was right about what NOT to do and wrong about doing nothing. Leaving
     the clause in the positive prompt hands the model the tokens "else on the
@@ -177,20 +181,47 @@ def split_negations(subject: str) -> tuple:
     came back carrying bowls, vegetables, a jar and two boards, against a
     standard of "nothing else is on the run".
 
-    So a "nothing else" clause is now dropped from the positive prompt and
+    So a clause carrying "nothing" is dropped from the positive prompt and
     answered with CLUTTER, generic terms for extra objects, rather than with
     the noun it mentions. The floor and the counter still get drawn. What
     should not be standing on them is what gets suppressed.
+
+    Widened 2026-09-26 from a clause-initial "^nothing else" to a bare
+    "nothing" anywhere in the clause. Found two real art briefs carrying the
+    identical statement-about-a-scene shape later in the sentence, where the
+    original anchor missed it entirely: Entryway card ET-010's own callout
+    (real subject fed through this exact function via
+    generate_card_heroes.py's nouns_from(), not a hand-authored override)
+    reads "a place for loose items so nothing gets lost", and it rode into
+    the positive prompt untouched until this fix. Kitchen's flatware drawer
+    card carries the same shape ("each compartment holding one kind of
+    utensil and nothing loose beside it"), not reachable through this
+    function today because no local generator yet exists for that deck,
+    cited here as a second, independent instance of the pattern rather than
+    a second live prompt. Neither clause starts with "nothing", and neither
+    names an object to move into the negative prompt any more than "nothing
+    else on the floor" does.
     """
     parts = [p.strip() for p in subject.split(",")]
     keep, drop = [], []
     for p in parts:
         low = p.lower()
-        if re.match(r"^nothing\s+else\b", low):
-            # Says "leave the surface clear". It cannot be drawn toward, and
-            # the noun it names (floor, surface, counter) must still appear,
-            # so neither keeping it nor negating it is right. Drop it, and
-            # suppress clutter instead.
+        if re.search(r"\bnothing\b", low):
+            # Widened 2026-09-26 from a narrower "^nothing\s+else\b" that only
+            # matched a clause STARTING with "nothing else". Two real art
+            # briefs use the identical shape one word later: entryway card
+            # ET-010's own callout, "a place for loose items so nothing gets
+            # lost" (fed through generate_card_heroes.py's nouns_from(), not
+            # a hand-authored override), and ops/cardtext/kitchen-deck.json's
+            # "each compartment holding one kind of utensil and nothing
+            # loose beside it". Neither clause starts with "nothing" and
+            # neither names a noun to move into the negative prompt; both
+            # say "leave this clear" the same way "nothing else on the
+            # floor" does. A diffusion model has no noun to draw away from
+            # in any of them, wherever in the clause the word falls, so
+            # every clause containing a bare "nothing" is dropped and
+            # clutter is suppressed instead, the same treatment the narrower
+            # check already gave the clause-initial case.
             drop.append(CLUTTER)
             continue
         if re.match(r"^(no|without)\b", low):

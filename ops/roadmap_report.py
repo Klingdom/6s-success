@@ -260,9 +260,17 @@ def is_backlog_row_done(cells: list) -> bool:
 # `OWNER-ACTIONS.md` item 1a shows Google Search Console has never been
 # verified and needs Phil's own paste; corrected there so this is not merely
 # patched around.
+#
+# Found again 2026-09-26, same class: row 3.10's own status cell reads "102
+# to go, same wall, no operator credential" (it needs Phil's YouTube OAuth
+# paste, OWNER-ACTIONS.md item 18/backlog C6), and none of the existing
+# alternatives matched "no operator credential", so this report's four-times-
+# daily "NEXT IN THE QUEUE, ordered by dependency not appeal" line listed a
+# row the operator cannot act on today as if it were unblocked.
 WAITING_RE = re.compile(
     r"\b(phil|blocked|needs \d|needs the|needs traffic|conditional|"
-    r"waiting on|owner-actions|owner action|spending decision)\b", re.I)
+    r"waiting on|owner-actions|owner action|spending decision|credential|"
+    r"no operator)\b", re.I)
 
 
 def row_is_waiting(cells: list) -> bool:

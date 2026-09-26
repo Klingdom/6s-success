@@ -59,6 +59,23 @@ CASES = [
     ("a north-facing window and a nook, in a study",
      [], ["north", "nook"],
      "word boundary: 'north' and 'nook' start with 'no' and are not negations"),
+
+    # Found 2026-09-26: the original fix only anchored "nothing else" at the
+    # START of a clause. Two real, shipped art briefs put the identical
+    # "this is a statement about the scene, not an object" shape later in
+    # the sentence, and the anchored version let both ride into the positive
+    # prompt untouched.
+    ("an open drawer holding a divided flatware insert, each compartment "
+     "holding one kind of utensil and nothing loose beside it, in a kitchen",
+     [], [],
+     "ops/cardtext/kitchen-deck.json's real EK card subject: 'nothing loose "
+     "beside it' does not start with 'nothing' and must still be dropped"),
+
+    ("drawer organizer, a place for loose items so nothing gets lost, tidy "
+     "and settled, in an entryway",
+     [], [],
+     "ET-010's real subject: 'so nothing gets lost' is mid-clause and must "
+     "still be dropped"),
 ]
 
 
@@ -79,31 +96,36 @@ def main() -> int:
                 fails.append("%s: %r wrongly moved to the negative prompt %r"
                              % (note, u, negative))
         # Nothing may be silently lost: every clause that is not an
-        # instruction-to-omit survives. "nothing else ..." IS such an
-        # instruction and is deliberately dropped, which is checked
-        # separately below, so it is skipped here.
+        # instruction-to-omit survives. A clause carrying "nothing" IS such
+        # an instruction and is deliberately dropped whole (checked
+        # separately below), wherever in the clause the word falls, not only
+        # when the clause happens to start with it.
         for clause in [c.strip() for c in subject.split(",")]:
             low = clause.lower()
-            if low.startswith(("no ", "without ", "nothing else")):
+            if low.startswith(("no ", "without ")) or "nothing" in low:
                 continue
             if clause not in positive:
                 fails.append("%s: clause %r vanished from the prompt entirely"
                              % (note, clause[:40]))
 
-        # A "nothing else" clause must leave the positive prompt AND put
-        # clutter terms in the negative one. Leaving it in the positive is
-        # what produced a kitchen counter covered in bowls and vegetables
-        # under a standard reading "nothing else is on the run", measured
-        # 2026-09-14. Dropping it without suppressing anything would be a
-        # quieter version of the same bug.
-        if "nothing else" in subject.lower():
-            if "nothing else" in positive.lower():
-                fails.append("%s: the 'nothing else' clause is still in the "
-                             "POSITIVE prompt, where its tokens tell the model "
-                             "to put things there" % note)
+        # Any clause carrying "nothing" must leave the positive prompt AND
+        # put clutter terms in the negative one, wherever in the clause the
+        # word sits. Leaving it in the positive is what produced a kitchen
+        # counter covered in bowls and vegetables under a standard reading
+        # "nothing else is on the run", measured 2026-09-14. Dropping it
+        # without suppressing anything would be a quieter version of the
+        # same bug.
+        for clause in [c.strip() for c in subject.split(",")]:
+            if "nothing" not in clause.lower():
+                continue
+            if clause in positive:
+                fails.append("%s: the clause %r carrying 'nothing' is still "
+                             "in the POSITIVE prompt, where its tokens tell "
+                             "the model to draw toward it" % (note, clause))
             if "clutter" not in negative.lower():
-                fails.append("%s: 'nothing else' was dropped but nothing was "
-                             "suppressed in its place: %r" % (note, negative))
+                fails.append("%s: a clause carrying 'nothing' (%r) was "
+                             "dropped but nothing was suppressed in its "
+                             "place: %r" % (note, clause, negative))
 
     # The seed must not change when a negation moves, or every previously
     # generated image silently becomes unreproducible.

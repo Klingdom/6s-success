@@ -27,7 +27,7 @@ appear anywhere on the live site.
 
 WHAT THIS IMPORTS
 -----------------
-Two verified figures. Not all 36, because 34 of them have not been read by a
+Six verified figures. Not all 36, because 30 of them have not been read by a
 human or by me, and the entire lesson above is about not bulk importing
 images on the strength of the folder they were filed in.
 

@@ -38,10 +38,19 @@ import urllib.error
 # plus how-we-make-money.html, the affiliate disclosure every product-page
 # link promises is "above them" per CLAUDE.md 5e: if that page 404s, every
 # disclosure on the site points at a dead link.
+#
+# Found 2026-09-26, PM check-in: bundle.html ($49 Complete Digital Bundle,
+# sku BK-BUNDLE) and standards.html ($19 Print Pack, sku PACK-HOUSE) each
+# carry a live buy.stripe.com link and were never in this list at all, not
+# even as an ordinary page, the exact "green check, broken customer path"
+# gap this file's own 2026-09-21 fix was written to close, just missed for
+# two pages that were not yet live when that pass was done. Found by
+# grepping every page under site/ for a live Stripe link and diffing the
+# result against PAGES directly, not by trusting this list was complete.
 PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
          "resources", "invest", "privacy", "terms", "accessibility",
          "disclaimer", "quest", "deck", "corporate", "thanks",
-         "how-we-make-money"]
+         "how-we-make-money", "bundle", "standards"]
 
 # The subset of PAGES that must never silently disappear from it again.
 # gate_verify_deploy_pages_current in preflight.py re-derives this set on
@@ -49,7 +58,7 @@ PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
 # 2026-09-21 (a broken buy path scoring 10 of 10 because nothing checked it)
 # cannot recur unnoticed a second time.
 CRITICAL_PAGES = {"", "shop", "quest", "deck", "corporate", "thanks",
-                   "how-we-make-money"}
+                   "how-we-make-money", "bundle", "standards"}
 NONSENSE = "this-path-does-not-exist-6s-check"
 
 results = []

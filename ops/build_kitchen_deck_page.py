@@ -534,7 +534,7 @@ __CSS__
   <div class="wrap">
     <p class="eyebrow">The deck</p>
     <h2>Read it here, zone by zone</h2>
-    <p>Tap a card's "How it works" to see its back. Start at the sink: it is the shortest zone and the one the rest of the kitchen resets from.</p>
+    <p>Tap a card's "How it works" to see its back. Start at the sink: it is the point the rest of the kitchen resets from.</p>
 __BODY__
   </div>
 </section>

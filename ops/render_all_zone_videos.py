@@ -131,7 +131,7 @@ def main() -> int:
     print("  mp4 files on disk now: %d" % len(mp4s()))
     for zn, err in failed[:5]:
         print("     %s: %s" % (zn[:40], err.replace("\n", " ")[:110]))
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

@@ -41,15 +41,42 @@ def _run_with_stray(name):
     if name is not None:
         path = os.path.join(zones, name)
         io.open(path, "w", encoding="utf-8").write("<html></html>")
-    old_site = preflight.SITE
+    old_site, old_root = preflight.SITE, preflight.ROOT
     preflight.SITE = tmp
+    preflight.ROOT = tmp
+    os.makedirs(os.path.join(tmp, "ops", "tests"))
     preflight.FAIL, preflight.WARN = [], []
     try:
         preflight.gate_no_stray_probe_files()
         still_there = path is not None and os.path.exists(path)
         return list(preflight.FAIL), still_there
     finally:
-        preflight.SITE = old_site
+        preflight.SITE, preflight.ROOT = old_site, old_root
+
+
+def _run_with_tests_stray(name, is_dir=False):
+    """Same shape, one level up: a stray under ops/tests/ instead of site/."""
+    tmp = tempfile.mkdtemp()
+    os.makedirs(os.path.join(tmp, "zones"))
+    tests_dir = os.path.join(tmp, "ops", "tests")
+    os.makedirs(tests_dir)
+    path = os.path.join(tests_dir, name)
+    if is_dir:
+        os.makedirs(path)
+        io.open(os.path.join(path, "clean.pdf"), "wb").write(b"fake")
+    else:
+        io.open(path, "wb").write(b"fake")
+    old_site, old_root = preflight.SITE, preflight.ROOT
+    preflight.SITE = os.path.join(tmp, "site")
+    os.makedirs(preflight.SITE)
+    preflight.ROOT = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_no_stray_probe_files()
+        still_there = os.path.exists(path)
+        return list(preflight.FAIL), still_there
+    finally:
+        preflight.SITE, preflight.ROOT = old_site, old_root
 
 
 def test_clean_tree_passes():
@@ -68,6 +95,75 @@ def test_stray_fixture_file_also_caught():
     fails, still_there = _run_with_stray("_audit_catalog_fixture.html")
     assert len(fails) == 1 and fails[0][0] == "stray-probe-files", fails
     assert not still_there
+
+
+def test_stray_ops_tests_file_caught_and_deleted():
+    """A killed test_render_cards.py-shaped run, a file directly."""
+    fails, still_there = _run_with_tests_stray("_scratch_render_cards.png")
+    assert len(fails) == 1 and fails[0][0] == "stray-probe-files", fails
+    assert "_scratch_render_cards.png" in fails[0][1], fails[0][1]
+    assert not still_there
+
+
+def test_stray_ops_tests_dir_caught_and_deleted():
+    """The real regression: a killed test_gate_sample_pdf_spelling.py-shaped
+    run leaving a whole DIRECTORY, not a bare file, under ops/tests/. The
+    old os.remove()-only cleanup would raise IsADirectoryError, get
+    silently swallowed by the bare except OSError, and leave the directory
+    in place to fail every future run; this proves shutil.rmtree actually
+    clears it."""
+    fails, still_there = _run_with_tests_stray(
+        "_tmp_sample_pdf_spelling", is_dir=True)
+    assert len(fails) == 1 and fails[0][0] == "stray-probe-files", fails
+    assert "_tmp_sample_pdf_spelling" in fails[0][1], fails[0][1]
+    assert not still_there, "a stray directory must be rmtree'd, not left behind"
+
+
+def test_pycache_under_ops_tests_is_not_a_stray():
+    """Found 2026-09-26 in CI: the widened `ops/tests/_*` glob also matches
+    `ops/tests/__pycache__`, Python's ordinary bytecode cache (created when
+    CI's own test-collection step imports test modules rather than
+    invoking them as scripts). That is normal operation, not a killed-run
+    leftover, and the gate failed on it every single run, breaking CI
+    permanently the moment the widening merged. A real __pycache__/ with a
+    real .pyc inside must never be reported or deleted."""
+    tmp = tempfile.mkdtemp()
+    os.makedirs(os.path.join(tmp, "zones"))
+    tests_dir = os.path.join(tmp, "ops", "tests")
+    pycache = os.path.join(tests_dir, "__pycache__")
+    os.makedirs(pycache)
+    io.open(os.path.join(pycache, "test_foo.cpython-311.pyc"),
+            "wb").write(b"fake bytecode")
+    old_site, old_root = preflight.SITE, preflight.ROOT
+    preflight.SITE = os.path.join(tmp, "site")
+    os.makedirs(preflight.SITE)
+    preflight.ROOT = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_no_stray_probe_files()
+        assert preflight.FAIL == [], (
+            f"__pycache__ must never be reported as a stray probe file, "
+            f"got {preflight.FAIL}")
+        assert os.path.isdir(pycache), (
+            "__pycache__ must never be deleted by this gate")
+    finally:
+        preflight.SITE, preflight.ROOT = old_site, old_root
+
+
+def test_clean_ops_tests_dir_passes():
+    tmp = tempfile.mkdtemp()
+    os.makedirs(os.path.join(tmp, "site"))
+    os.makedirs(os.path.join(tmp, "ops", "tests"))
+    old_site, old_root = preflight.SITE, preflight.ROOT
+    preflight.SITE = os.path.join(tmp, "site")
+    preflight.ROOT = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_no_stray_probe_files()
+        assert preflight.FAIL == [], (
+            f"expected no failure on a clean ops/tests/ tree, got {preflight.FAIL}")
+    finally:
+        preflight.SITE, preflight.ROOT = old_site, old_root
 
 
 def test_runs_before_gate_existing_and_gate_tests_in_main():

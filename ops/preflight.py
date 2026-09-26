@@ -2508,6 +2508,84 @@ def gate_stripe_one_product_per_sku() -> None:
              % (len(dupes), sorted(dupes)[:4]))
 
 
+def gate_stripe_link_dedup() -> None:
+    """Every SKU must resolve to exactly one ACTIVE Stripe payment link.
+
+    gate_stripe_one_product_per_sku just above catches the loud half of the
+    2026-09-23 pagination-bug aftermath: a duplicate PRODUCT breaks pricing
+    at checkout, where a customer sees the wrong number immediately.
+    stripe_dedupe.py's own module docstring names the quiet half, found the
+    same day and never gated: five SKUs (BK-BUNDLE, CN-INHOME, CN-VIRTUAL,
+    MZ-MANUAL, PACK-HOUSE) each had two active payment links, harmless only
+    because both charged the same amount at the time. dedupe_links()'s own
+    docstring explains why that stops being true: rebuilding the link a
+    price change requires touches only the link the site currently serves
+    and leaves the orphan alone, still selling at the old price to anyone
+    holding its URL, a mispricing nobody would notice for months. That
+    cleanup was done once, by hand, with nothing to stop it recurring,
+    exactly the "found it, fixed it, never gated it" shape step 10b exists
+    to close.
+
+    Warns rather than fails, matching gate_stripe_one_product_per_sku's own
+    convention: it describes the Stripe account, not this commit, and it
+    cannot run at all without a credential. No credential reports
+    UNCHECKED, never clean.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import stripe_dedupe
+        dupes = stripe_dedupe.duplicate_active_links()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        warn("stripe-link-dedup",
+             "could NOT check whether every SKU has one active Stripe "
+             "payment link (%s: %s). Unchecked, not clean: an orphaned "
+             "duplicate link can quietly go on selling at a price nobody "
+             "approved the next time this SKU's price changes."
+             % (type(e).__name__, str(e)[:80]))
+        return
+    if dupes:
+        warn("stripe-link-dedup",
+             "%d SKU(s) have more than one active Stripe payment link, so "
+             "an orphan may still be selling at a stale price the moment "
+             "this SKU's price next changes: %s. Fix with "
+             "STRIPE_ALLOW_LIVE=1 python ops/stripe_dedupe.py --apply"
+             % (len(dupes), sorted(dupes)[:4]))
+
+
+def gate_stripe_orphan_link_active() -> None:
+    """A deliverable SKU must never resolve to only an inactive payment link.
+
+    Found 2026-09-26 cold-reading stripe_catalog.py: ensure_link()'s
+    orphan-adoption loop matched an unmetadata'd payment link by price alone,
+    with no active check, and could tag a retired link with a live SKU's
+    metadata (now fixed). find_by_sku() then falls back to that inactive
+    match forever, so ensure_link() believes the SKU already has a link and
+    never builds a real one: a silent, self-reinforcing loss of that SKU's
+    ability to be bought. skus_stuck_on_inactive_link() is the live check
+    for whether any SKU is already in that state, from whatever cause.
+
+    Warns rather than fails, matching gate_stripe_link_dedup's own
+    convention just above: it describes the Stripe account, not this
+    commit, and it cannot run at all without a credential. No credential
+    reports UNCHECKED, never clean.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import stripe_catalog
+        stuck = stripe_catalog.skus_stuck_on_inactive_link()
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        warn("stripe-orphan-link-active",
+             "could NOT check whether any SKU is stuck on an inactive "
+             "Stripe payment link (%s: %s). Unchecked, not clean."
+             % (type(e).__name__, str(e)[:80]))
+        return
+    if stuck:
+        warn("stripe-orphan-link-active",
+             "%d SKU(s) resolve only to an INACTIVE Stripe payment link, so "
+             "ensure_link() will never build them a real one until Stripe "
+             "is fixed by hand: %s." % (len(stuck), sorted(stuck)[:4]))
+
+
 def gate_live_links() -> None:
     """The buy buttons on the LIVE site must point at links Stripe honours.
 
@@ -7113,9 +7191,20 @@ def gate_verify_deploy_pages_current() -> None:
     those pages plus how-we-make-money.html (the affiliate disclosure every
     product page promises).
 
+    Found 2026-09-26, PM check-in: that fix only protected the pages named
+    that day. bundle.html ($49 bundle) and standards.html ($19 Print Pack)
+    each carry a live buy.stripe.com link and were never in PAGES at all,
+    the identical gap for two pages that simply were not live yet on
+    2026-09-21. Fixed by adding both, and by re-deriving the check below
+    from every live Stripe link actually on a top-level site/*.html page
+    (not the ~200 zone/room/article pages, a different, larger surface
+    check_urls.py and audit_pages.py already cover), so the next new
+    top-level buy path is caught the day it ships rather than found cold.
+
     This gate is the reason it cannot regress unnoticed: it re-derives
-    verify_deploy.CRITICAL_PAGES and fails if a future edit removes one from
-    PAGES, or if the page it names stops existing in site/ at all.
+    verify_deploy.CRITICAL_PAGES and PAGES and fails if a future edit drops
+    a critical page, if the page it names stops existing in site/ at all, or
+    if a top-level page carrying a live Stripe link is missing from PAGES.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import verify_deploy as VD
@@ -7134,6 +7223,22 @@ def gate_verify_deploy_pages_current() -> None:
              "not exist in site/: %s. Either the page was renamed and "
              "CRITICAL_PAGES was not updated, or it was really removed and "
              "should come out of both lists." % ", ".join(repr(p) for p in missing_files))
+        return
+    unchecked_buy_paths = []
+    for fp in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        slug = os.path.splitext(os.path.basename(fp))[0]
+        page = slug if slug != "index" else ""
+        if page in VD.PAGES:
+            continue
+        text = io.open(fp, encoding="utf-8", errors="replace").read()
+        if "buy.stripe.com" in text or "checkout.stripe.com" in text:
+            unchecked_buy_paths.append(slug)
+    if unchecked_buy_paths:
+        fail("verify-deploy-pages-current",
+             "these top-level site/ page(s) carry a live Stripe link but "
+             "are not in ops/verify_deploy.py's PAGES, so a deploy that "
+             "broke them would score all green: %s. Add them to PAGES and "
+             "CRITICAL_PAGES." % ", ".join(repr(p) for p in unchecked_buy_paths))
 
 
 def gate_deck_gallery_identity() -> None:
@@ -9604,16 +9709,43 @@ def gate_no_stray_probe_files() -> None:
     picked that prefix, so the sweep now matches the convention itself
     rather than each name that currently uses it, and a script written next
     month needs no matching edit here as long as it keeps the convention.
+
+    Widened 2026-09-26: the identical convention, one level up. Several
+    ops/tests/*.py files (test_corpus_posts.py, test_gate_sample_pdf_cover_
+    current.py, test_render_all_narrated.py, test_render_cards.py) write
+    their own underscore-prefixed scratch fixture directly under
+    ops/tests/ itself, cleaned up the same fragile way. Found live: a run
+    of test_gate_sample_pdf_spelling.py killed mid-test left
+    ops/tests/_tmp_sample_pdf_spelling/ (two PDF fixtures, not HTML, not
+    under site/ at all) as untracked cruft, invisible to this gate's old
+    site/-only scan and caught only by an external stop-hook's own git-
+    status check. That file has since moved to tempfile.mkdtemp(), the
+    stronger fix test_gate_kdp_cover_current.py's own fixtures already
+    use, but the other four above still write into the repo tree, so the
+    sweep below now covers both directories rather than assume the one
+    instance found is the only one.
+
+    Found 2026-09-26, same day, in CI: that widening's own `ops/tests/_*`
+    glob also matches `ops/tests/__pycache__`, Python's ordinary bytecode
+    cache, created by CI's own test-collection step importing test modules
+    rather than invoking them as scripts. That is not a killed-run leftover,
+    it is normal operation, and the gate failed on it every time, breaking
+    the very next CI run after the widening merged. Excluded by basename
+    below; the sweep still catches any real `_`-prefixed probe/fixture path.
     """
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
-        for f in glob.glob(os.path.join(SITE, "**", "_*.html"), recursive=True))
+        for pat in (os.path.join(SITE, "**", "_*.html"),
+                    os.path.join(ROOT, "ops", "tests", "_*"))
+        for f in glob.glob(pat, recursive=True)
+        if os.path.basename(f) != "__pycache__")
     if stray:
         fail("stray-probe-files",
-             "%d leftover probe/fixture file(s) sitting in site/, left "
-             "behind by a run that was killed mid-audit: %s. Deleting "
-             "them now so the pages/tests/footer gates below do not fail on "
-             "a symptom of this same cause." % (len(stray), stray[:4]))
+             "%d leftover probe/fixture path(s) sitting in site/ or "
+             "ops/tests/, left behind by a run that was killed mid-audit "
+             "or mid-test: %s. Deleting them now so the pages/tests/footer "
+             "gates below do not fail on a symptom of this same cause."
+             % (len(stray), stray[:4]))
         # Found 2026-09-10: this gate ran after gate_existing and gate_tests
         # in main()'s own order, so a stray file from an earlier killed run
         # was caught here only after audit_pages.py had already misread it as
@@ -9624,8 +9756,12 @@ def gate_no_stray_probe_files() -> None:
         # so the run that hits this reports one clear failure instead of
         # three confusing ones, and the gates below get a clean tree.
         for f in stray:
+            p = os.path.join(ROOT, f)
             try:
-                os.remove(os.path.join(ROOT, f))
+                if os.path.isdir(p):
+                    shutil.rmtree(p)
+                else:
+                    os.remove(p)
             except OSError:
                 pass
 
@@ -10332,6 +10468,37 @@ def gate_hourly_brief_stripe_checks() -> None:
         problems.append("a confirmed fabricated price claim does not reach "
                         "the hourly brief's SUBJECT line: %r" % subject)
 
+    # Found live 2026-09-26, cold-reading this file: with commerce() reporting
+    # an error (no Stripe key, the only condition this sandbox has ever run
+    # in), build()'s subject silently defaulted revenue/sales to 0 instead of
+    # saying unknown, reading "$0 / 30d, 0 sale(s)" indistinguishable from a
+    # genuinely measured quiet month. The COMMERCE body section already said
+    # "could not read Stripe", but the subject is the one line a locked phone
+    # screen shows, the exact "unknown is not a default" shape
+    # gate_hourly_brief_build_line already covers for open_p0/needs_phil in
+    # this same function. Fixed with a stripe_unreadable branch in build().
+    real2 = (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check,
+             hb.sc.price_claim_gaps)
+    hb.commerce = lambda: {"error": "no Stripe key in this environment"}
+    hb.inbox = lambda: {"unread": []}
+    hb.site = lambda: {"home": 200}
+    hb.measured = lambda: {}
+    hb.cll.check = lambda: {"verdict": "unknown", "note": "no credential"}
+    hb.sc.price_claim_gaps = lambda: (_ for _ in ()).throw(SystemExit("no key"))
+    try:
+        unread_subject, _ = hb.build()
+    finally:
+        (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check,
+         hb.sc.price_claim_gaps) = real2
+    if "$0" in unread_subject or "0 sale" in unread_subject:
+        problems.append("hourly_brief's SUBJECT line reports a false $0/0 "
+                        "sale(s) when Stripe could not be read at all, "
+                        "instead of unknown: %r" % unread_subject)
+    if "unreadable" not in unread_subject.lower() and "unknown" not in unread_subject.lower():
+        problems.append("hourly_brief's SUBJECT line does not flag Stripe "
+                        "as unreadable when commerce() errors: %r"
+                        % unread_subject)
+
     if problems:
         fail("hourly-brief-stripe-checks",
              "hourly_brief's price/duplicate/brand summaries do not "
@@ -10668,6 +10835,48 @@ def gate_corpus_posts_extraction_yield() -> None:
         fail("corpus-posts-extraction-yield",
              "a kind's extractor is silently failing on most of its own "
              "ready files: " + "; ".join(bad))
+
+
+def gate_corpus_posts_no_free_claim_leak() -> None:
+    """No postable corpus entry may call a paid chapter's own content free.
+
+    Found 2026-09-26 cold-reading corpus_posts.py: FREE_CLAIM caught "read the
+    free chapter" but not "Read it free.", a different phrasing that 10 real
+    x-post entries from chapters 31-33 (inside the $18 eBook, per this same
+    module's own FREE_THROUGH_CHAPTER comment) end with. corpus_posts.py's
+    own comment calls a false claim about price "the one category of error
+    this business cannot make"; this phrasing sat live in the pool
+    social_drafts.py emails to Phil to "post as written, or edit freely."
+
+    Checks the real, live pool directly, independent of FREE_CLAIM's own
+    wording, so a future phrasing the regex misses is caught here rather than
+    only by the regex agreeing with itself. The phrase list is maintained by
+    hand as real corpus wording is found, the same way FREE_THROUGH_CHAPTER's
+    own word-bound comments are: read off the actual corpus, not guessed.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import corpus_index as ci
+    import corpus_posts as cp
+
+    known_phrasings = (
+        "read the free", "read it free", "free to read", "free chapter",
+        "free copy", "free version", "free online",
+    )
+    idx = ci.build_index()
+    kinds = sorted({r["kind"] for r in idx[0] if r["ready"]})
+    leaks = []
+    for kind in kinds:
+        for p in cp.pool(kind):
+            num = int("".join(c for c in p.get("chapter", "") if c.isdigit()) or 0)
+            if num <= cp.FREE_THROUGH_CHAPTER:
+                continue
+            low = p["body"].lower()
+            if any(ph in low for ph in known_phrasings):
+                leaks.append(f"{kind}/{p['chapter']}/{p['id']}")
+    if leaks:
+        fail("corpus-posts-free-claim-leak",
+             f"{len(leaks)} postable corpus entr{'y' if len(leaks) == 1 else 'ies'} "
+             f"from a paid chapter still call it free, e.g. {leaks[:3]}")
 
 
 def gate_affiliate_trigger() -> None:
@@ -13982,6 +14191,55 @@ def experiments_blocked_reason_problem(deploy_verdict, blocked_reason) -> str:
     return ""
 
 
+def gate_status_report_experiments_executed_current() -> None:
+    """The status report's experiments.executed figure must be derived from
+    EXPERIMENTS.md's own State markers, not a hand-typed literal.
+
+    Found 2026-09-26, cold-reading ops/status_report.py: gather() hardcoded
+    `"executed": 0`, the identical "hand-typed constant a report's own
+    docstring promises is measured at run time" defect class this same
+    file's mail_state() already names itself for once before (mx_working,
+    2026-09-23). It happened to be true (every real EXP-XXXX entry in
+    EXPERIMENTS.md reads "**State:** IDEA") on the day this was found, but
+    nothing would have caught it going stale the moment one of them
+    actually started. Fixed by adding ops.status_report.executed_count(),
+    which counts EXPERIMENTS.md entries whose State has moved past IDEA.
+
+    This gate re-derives the real figure directly from the live
+    EXPERIMENTS.md via that same function and fails if gather()'s dict ever
+    stops calling it (a hand revert to a bare literal would leave the
+    literal not matching a live, real "State: RUNNING" entry the moment one
+    exists; today, with every entry still IDEA, this also confirms the
+    function itself has not silently started miscounting).
+
+    Proof this can fail: ops/tests/test_status_report_executed_count.py
+    exercises executed_count() directly against synthetic all-IDEA and
+    mixed-state registries and asserts the counts differ. This gate covers
+    the other half: that gather() actually calls that function rather than
+    a hand-typed literal, without paying for gather()'s own live network
+    calls (Stripe/domain/VPS probes) on every preflight run.
+    """
+    sr_path = os.path.join(ROOT, "ops", "status_report.py")
+    if not os.path.exists(sr_path):
+        return
+    src = io.open(sr_path, encoding="utf-8").read()
+    dict_m = re.search(r'd\["experiments"\]\s*=\s*\{(.*?)\}', src, re.S)
+    m = re.search(r'"executed":\s*([^,\n]+),', dict_m.group(1)) if dict_m else None
+    if not m:
+        warn("status-report-experiments-executed-current",
+             "could not find the experiments.executed assignment in "
+             "ops/status_report.py to check it")
+        return
+    if m.group(1).strip() != "executed_count(exp)":
+        fail("status-report-experiments-executed-current",
+             "ops/status_report.py's gather() sets experiments.executed "
+             "= %r instead of calling executed_count(exp). A hand-typed "
+             "literal here is exactly the mx_working defect class this "
+             "file's own mail_state() docstring already names itself for "
+             "once before: it can go stale the moment a real experiment "
+             "moves past IDEA." % m.group(1).strip())
+
+
 def gate_changelog_current() -> None:
     """CHANGELOG.md must not go silent for weeks while material work ships,
     unnoticed, the same shape gate_status_currency and
@@ -15502,6 +15760,17 @@ def gate_send_questions_current() -> None:
     ops/deploy_freshness.py's live-checked verdict. Guards both the
     "automatic" claim and that the live-derived function is still actually
     called, so a future edit cannot quietly paste the hardcoded line back.
+
+    Extended 2026-09-26: the YouTube BLOCKING item hardcoded "publishes the
+    14 that already match their own zone page... the rest are being
+    re-rendered on a local machine", frozen from 2026-09-17 when 100 of 114
+    videos were genuinely stale. OWNER-ACTIONS.md's own item 1 records that
+    re-render finishing overnight on 2026-09-18 ("114 of 114 matching...
+    102 ready"), but this email, which exists specifically to tell Phil what
+    his own action would do, kept understating it by 88 videos for over a
+    week. Fixed the same way as the SITE STATUS line: a new youtube_claim()
+    reads ops/check_video_standard.compare() and ops/youtube_upload.ledger()
+    live and states the real ready count, whichever direction it moves.
     """
     p = os.path.join(ROOT, "ops", "send_questions.py")
     if not os.path.exists(p):
@@ -15531,6 +15800,13 @@ def gate_send_questions_current() -> None:
     if "deploy_freshness" not in src:
         bad.append("no longer derives site status from "
                    "ops/deploy_freshness.py's live verdict")
+    if re.search(r"publishes the 14 that already match", src):
+        bad.append('hardcodes "publishes the 14 that already match", frozen '
+                   'from 2026-09-17; OWNER-ACTIONS.md item 1 has read '
+                   '"114 of 114 matching... 102 ready" since 2026-09-18')
+    if "youtube_claim" not in src:
+        bad.append("no longer derives the YouTube BLOCKING line from a live "
+                   "check_video_standard.compare() count")
     if bad:
         fail("send-questions-current",
              "ops/send_questions.py: " + "; ".join(bad))
@@ -16562,6 +16838,16 @@ def gate_image_prompt_negations_handled() -> None:
     cleanly without a GPU (confirmed: only image_local.pipe(), never
     called here, touches torch); no Desktop/GPU access is required to
     run this check.
+
+    Widened 2026-09-26 to also flag a bare "nothing": the same defect
+    shape, a scene statement with no object to move that a diffusion
+    model still reads as tokens to draw toward, was found in two real,
+    shipped subjects (Kitchen's "nothing loose beside it", the ET-010
+    override's "so nothing gets lost") that split_negations() itself did
+    not yet handle. The splitter was fixed in the same cycle, but this
+    gate exists specifically so a future regression in that fix, or a
+    new override with the same shape, fails loudly here rather than
+    shipping quietly a second time.
     """
     try:
         import generate_zone_heroes as gzh
@@ -16573,7 +16859,7 @@ def gate_image_prompt_negations_handled() -> None:
              "real prompts (%s: %s)" % (type(e).__name__, e))
         return
 
-    bare = re.compile(r"\b(no|without)\b", re.I)
+    bare = re.compile(r"\b(no|without|nothing)\b", re.I)
     offenders = []
     try:
         for row in gzh.plan():
@@ -16593,9 +16879,9 @@ def gate_image_prompt_negations_handled() -> None:
     if offenders:
         name, text = offenders[0]
         fail("image-prompt-negations",
-             "%d real image prompt(s) still carry a bare 'no'/'without' "
-             "after split_negations(), which a diffusion model reads as "
-             "the object it is meant to suppress, not its absence "
+             "%d real image prompt(s) still carry a bare 'no'/'without'/"
+             "'nothing' after split_negations(), which a diffusion model "
+             "reads as the object it is meant to suppress, not its absence "
              "(first: %s -> %r); %s" %
              (len(offenders), name, text,
               ", ".join(n for n, _t in offenders[1:4])))
@@ -18790,6 +19076,94 @@ def gate_room_hub_current() -> None:
     problems = check_room_hub_current(job_map, start_map, page_bodies)
     if problems:
         fail("room-hub-current", "; ".join(problems[:6]))
+
+
+def check_room_time_current(expected_map, page_bodies) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    Found live 2026-09-26, cold-read: `ops.build_zone_pages.room_time()`'s
+    own `hrs()` used Python's `round()`, which breaks an exact tie
+    (session minutes landing precisely on a half-hour boundary) toward the
+    nearest EVEN half-hour rather than the nearest higher one. Nine of the
+    twenty rooms' zone-session sums land on such a tie: Kitchen's high end
+    is 435 minutes, an exact tie between 7.0h and 7.5h, and `round()`
+    silently reported 7.0, understating the room by half an hour on both
+    the visible "Added together..." sentence and the identical text
+    duplicated into the room's FAQPage JSON-LD, contradicting the
+    function's own "rounded to the nearest half hour" docstring. Fixed by
+    switching `hrs()` to `math.floor(x + 0.5)`, ordinary round-half-up.
+
+    `expected_map` is {room_slug: (low_hours_str, high_hours_str, n)} from
+    `ops.build_zone_pages.room_time()` itself, the single source of truth
+    both the shipped HTML and this gate read from. `page_bodies` is
+    {filename: html} for the real site/rooms/*.html files.
+
+    Returns problem strings, empty when every room's shipped "Added
+    together" sentence and its FAQPage duplicate both state the current
+    room_time() values.
+    """
+    problems = []
+    for slug, expected in sorted(expected_map.items()):
+        if expected is None:
+            continue
+        lo, hi, n = expected
+        fname = f"{slug}.html"
+        body = page_bodies.get(fname)
+        if body is None:
+            continue
+        want = (f"the {n} sessions below come to about {lo} to {hi} "
+                f"hours for the whole")
+        if want not in body:
+            problems.append(f"{fname}: visible room-time sentence does not "
+                             f"say '{want}'")
+        want_faq = (f"the {n} sessions come to about {lo} to {hi} hours "
+                    f"for the whole")
+        if want_faq not in body:
+            problems.append(f"{fname}: FAQPage room-time answer does not "
+                             f"say '{want_faq}'")
+    return problems
+
+
+def gate_room_time_rounding_current() -> None:
+    """The shipped-HTML half of the 2026-09-26 room_time() rounding fix
+    (see `check_room_time_current`'s own docstring for what this catches).
+    Re-derives the expected (low, high, n) hours for all twenty rooms via
+    `ops.build_zone_pages.room_time()` itself and diffs the sentence it
+    implies against the real site/rooms/*.html files, both the visible
+    copy and the FAQPage duplicate, so a future reversion to `round()` (or
+    any other drift between the generator and the shipped page) cannot
+    ship silently.
+
+    Proved to fail on a planted regression: the pre-fix `round()` shape
+    replanted on the real committed site/rooms/kitchen.html (7 hours
+    instead of 7.5) and site/rooms/stair-landing.html (1 hour instead of
+    1.5): ops/tests/test_gate_room_time_rounding_current.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("room-time-rounding", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+
+    expected_map = {}
+    for r in rooms:
+        expected_map[bzp.slug(r["room"])] = bzp.room_time(r)
+    if not expected_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "rooms", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("room-time-rounding", "no room pages built yet, could not check.")
+        return
+
+    problems = check_room_time_current(expected_map, page_bodies)
+    if problems:
+        fail("room-time-rounding", "; ".join(problems[:6]))
 
 
 def check_general_reading_picks(picks, diagnosed_usage, pool,
@@ -21926,6 +22300,8 @@ def main() -> int:
     run_gate(gate_stripe_price_claims)
     run_gate(gate_no_duplicate_stripe_product_names)
     run_gate(gate_stripe_one_product_per_sku)
+    run_gate(gate_stripe_link_dedup)
+    run_gate(gate_stripe_orphan_link_active)
     run_gate(gate_live_links)
     run_gate(gate_stripe_brand)
     run_gate(gate_stripe_write_tools_guarded)
@@ -21991,6 +22367,7 @@ def main() -> int:
     run_gate(gate_zone_direct_answer_current)
     run_gate(gate_specific_article_direct_answer)
     run_gate(gate_room_hub_current)
+    run_gate(gate_room_time_rounding_current)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
@@ -22102,6 +22479,7 @@ def main() -> int:
     run_gate(gate_status_deploy_gap_count_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
+    run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
@@ -22134,6 +22512,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_corpus_posts_no_manuscript_leak)
     run_gate(gate_corpus_posts_extraction_yield)
+    run_gate(gate_corpus_posts_no_free_claim_leak)
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_retired_skus_stripe_archived)

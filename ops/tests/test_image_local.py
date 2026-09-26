@@ -45,14 +45,20 @@ def test_nothing_else_drops_to_generic_clutter_not_the_named_noun():
     assert neg == CLUTTER
 
 
-def test_bare_nothing_without_else_is_left_alone():
-    # "nothing" alone (not "nothing else") is excluded on purpose per the
-    # function's own docstring: it is usually a benefit clause, not an
-    # instruction to leave a surface clear.
+def test_bare_mid_clause_nothing_drops_to_generic_clutter():
+    # Found 2026-09-26: this was the real, shipped ET-010 override subject,
+    # and until this fix it was this very test asserting the bug was
+    # correct. "so nothing gets lost" does not start with "nothing" (the
+    # clause starts with "a place"), so the old clause-initial-only match
+    # left it in the positive prompt, the same "nothing" tokens reach the
+    # model shape the docstring already paid to learn once on a door mat and
+    # a kitchen counter. Widened to search the whole clause, not just its
+    # start.
     pos, neg = split_negations(
         "drawer organizer, a place for loose items so nothing gets lost")
-    assert "nothing gets lost" in pos
-    assert neg == ""
+    assert "nothing gets lost" not in pos
+    assert "a place for loose items" not in pos
+    assert neg == CLUTTER
 
 
 def test_mid_clause_with_no_is_caught_the_real_ep001_shape():
@@ -82,7 +88,7 @@ if __name__ == "__main__":
     test_leading_no_moves_the_named_objects()
     test_leading_without_moves_the_named_object()
     test_nothing_else_drops_to_generic_clutter_not_the_named_noun()
-    test_bare_nothing_without_else_is_left_alone()
+    test_bare_mid_clause_nothing_drops_to_generic_clutter()
     test_mid_clause_with_no_is_caught_the_real_ep001_shape()
     test_mid_clause_with_no_strips_a_trailing_pronoun_tail()
     test_subject_with_no_negation_at_all_is_unchanged()
