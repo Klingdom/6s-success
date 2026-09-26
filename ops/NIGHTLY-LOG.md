@@ -20,11 +20,33 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none new; the existing `gate_tests()` glob already covers this without any additional wiring, and the two prior fixes to this file (youtube, undelivered-media) already had proven gates. This one now does too.
 
-**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`: `crawl_report.py`, `image_local.py`, `linkedin_posts.py`, `split_deck_cards.py`, `status_report.py`, `video_zone.py`, `corpus_posts.py`, `hourly_brief.py`, `indexnow.py`, `build_articles.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`: `crawl_report.py`, `image_local.py`, `linkedin_posts.py`, ~~`split_deck_cards.py`~~, `status_report.py`, ~~`video_zone.py`~~, `corpus_posts.py`, `hourly_brief.py`, `indexnow.py`, `build_articles.py`; the two struck were cleared by a concurrently-landing cycle, see the merge notes below). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
 
 Pushed to main. `ops/checkin.py`, `ops/tests/test_checkin.py`, `ops/cold-read-ledger.json`, `STATUS.md`, `STATUS-ARCHIVE.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched; IndexNow not applicable.
 
-**Merge note, same push:** `git fetch` at close found a concurrent PM check-in cycle (below) had regenerated the command deck against a slightly different merge base while this cycle's own fix landed; merged rather than forced, the deck regenerated fresh post-merge rather than picked from either side by hand.
+**Merge note, same push:** `git fetch` at close found a concurrent PM check-in cycle (below) had regenerated the command deck against a slightly different merge base while this cycle's own fix landed; merged rather than forced, the deck regenerated fresh post-merge rather than picked from either side by hand. **Second merge note, next push:** a further concurrent 05:1x PM check-in (below) also landed, cold-reading `split_deck_cards.py` and `video_zone.py` clean; its own "Next for the operator" line still named `checkin.py` as a candidate, now stale since this entry fixed it, corrected in place rather than left standing.
+
+## PM check-in, 2026-09-26 05:1x (previous work confirmed finished via CI's own Checks run; cold-read lane continued, two more files cleared, no new defect)
+
+**Attach clean:** ff-only, unshallowed onto `origin/main` at `a8665917`, no conflict, working tree clean.
+
+**Step 2: previous work is finished.** The 04:4x entry above handed off with its own local `preflight.py` "not yet confirmed clean." Checked independently rather than trusting that: the two commits it followed that actually touch code, `91aadd2c` and its merge `48fe6b68`, both have a completed, successful `checks.yml` run (#1466, #1467). The 04:4x commit itself (`a8665917`) only touches `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` and this log, all four of `checks.yml`'s own documented exclusions (generated dashboard output plus the log), so no run ever fires for it by design, not a gap. Previous work is genuinely finished.
+
+**Backlog:** `BACKLOG-2026-09-07.md` sections 2 to 4 confirmed still fully Done/CLOSED (checked every row, not just trusted the prior claim), section 5 HOLD, section 6 six owner gates. 9 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. So the cold-read lane is again the right-sized work.
+
+**Cold-read, two files, both clean.** `ops/cold_read_ledger.py --next`'s top two: `split_deck_cards.py` (the entryway card-sheet splitter behind issues #1/#29): its `WITHHOLD` set (`BRAND_EXCLUDE` union `CANON_EXCLUDE`) is read directly by `gate_deck_art_withheld`, which checks both `index.json` listings and raw on-disk files anywhere under `site/**` matching a withheld code, so a stale withheld image left on disk by a future partial regeneration cannot ship silently either way; no defect. `video_zone.py` (typographic zone-reset video renderer): its `zone_slug()` and `done_items()` are already the single, gated source of truth for two other generators (`gate_video_slug_single_source`, `gate_quest_data_videos_published` and neighbours), the exact "three reimplementations agreeing by luck" class this file's own docstring says was already found and fixed; no new defect. Both recorded `clean` in `ops/cold-read-ledger.json`.
+
+**Verified:** full untimed `preflight.py` started in the background at this cycle's open; still on `gate_tests` (the full suite) past this slot's close, not yet confirmed, reported honestly as still running rather than assumed. The independent CI confirmation above is what actually clears the previous cycle's handoff.
+
+**Went well:** treating a documented, deliberate CI-exclusion (dashboard/log-only commits) as exactly that rather than a fresh "unconfirmed" flag to chase.
+
+**Did not go well:** same shallow/detached checkout shape on attach; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the cold-read lane via `ops/cold_read_ledger.py --next` (top candidates now: ~~`checkin.py`~~ (fixed by a concurrently-landing cycle, see above), `corpus_posts.py`, `crawl_report.py`, `hourly_brief.py`, `image_local.py`, `indexnow.py`, `linkedin_posts.py`, `status_report.py`); confirm this cycle's own background `preflight.py` finishes clean. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log, command deck regen. No code, price, product or site page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-09-26 04:4x (previous work not yet CI-confirmed on the merged HEAD; command deck was one commit stale, regenerated and pushed)
 
