@@ -24,6 +24,24 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No code, price, product or site page touched this slot. IndexNow not applicable.
 
+## PM check-in, 2026-09-26 00:4x (previous work confirmed finished on CI's own signal; cold-read lane handed off with a freshly run candidate list, not the last cycle's)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, because it is the only category of unblocked work left and this cycle's own live run of that tool already disagrees with the prior entry's carried-forward list.
+
+**Attach:** shallow and detached again (issue #27, unchanged); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 364 commits cleanly onto `b5ff0049`, no conflict, tree clean.
+
+**Step 2:** previous work (the 00:2x twin cycle) is finished. Working tree clean, `b5ff0049` pushed. Read the run directly rather than trusting the commit message: CI run #1455 on `266db51c` (the last code-touching commit) had its `Preflight` step complete `success` at 00:42:44; `The ops test suite` step was still running when checked, reported unchecked, not assumed green. GitHub: 9 open issues unchanged (`#36,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`, 0 PRs. A local `preflight.py --fast` was started for independent confirmation but had not finished by this slot's close; reported unchecked, not counted as evidence either way.
+
+**Step 3:** re-ran `ops/cold_read_ledger.py --next` live rather than reuse the prior entry's list (`stripe_invoice.py, mailer.py, verify_deploy.py, video_zone_photo.py`, none of which appear in this run's top 15 despite the same 103/164 ledgered count). Current live candidates, lowest mention first: `build_card_template.py, build_deck_gallery.py, build_mobile_corpus.py, corpus_index.py, owner_inbox.py, stripe_fulfil.py, video.py, video_zone.py`. `check_sellable.py` still appears; already escalated as issue #36, do not re-fix without a decision.
+
+**Did not go well:** ran past the :43 operator slot on CI/preflight timing alone (both regularly take 18-20+ minutes in this sandbox); no closing job attempted this cycle so the handoff would post before :43.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues, unchanged.
+
+Pushed to main, log only. No code, price, product or site page touched. IndexNow not applicable.
+
+**Correction, same cycle, after the slot closed and this entry had already pushed:** the local `preflight.py --fast` above finished; it reported one `FAIL` (`stray-probe-files`: `site/_contact_form_interactive_probe.html`, left by a run killed mid-audit) rather than the clean pass its predecessor got. Checked before assuming stale: the file no longer exists (`ls` confirms) and is gitignored (`site/**/_*.html`), so it never reached the working tree this cycle touched or git at all. Re-ran `preflight.py --fast` a second time to confirm rather than guess: every gate passed, 24 warnings, same standing sandbox limits as before. Same transient shape this log has already diagnosed once (2026-09-25): a killed audit run's own probe file outliving it briefly, self-resolved, not a real defect. Recorded per `CLAUDE.md` 0.4 rather than left silent.
+
 ## PM check-in, 2026-09-26 00:2x (previous work confirmed finished on the last code-touching commit; cold-read lane clears one more file; full local preflight still mid-run when this slot closed, reported unchecked rather than assumed clean)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 362 commits cleanly onto the real tip, no conflict, working tree clean before this cycle's own edits.
