@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 19:4x (previous work finished; a done-but-open GitHub issue closed, and a live deploy-gap undercount caught and corrected)
+
+NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.
+
+**Previous work: finished.** Attached clean (unshallowed, ff-only merge onto `2b5b97ee`). Working tree was clean, main matched origin. `BACKLOG-2026-09-07.md` sections 2-3 done, section 4 credential-blocked, section 5 HOLD; 9 GitHub issues confirmed live via the API, all `decision`/`blocked-on-art`.
+
+**Did:** issue #36 ("dead price-agreement check") was still open and labelled `decision`, but its own comment showed the fix already merged (`f2d5df31`); read `ops/check_sellable.py` directly to confirm the dead block is gone and the replacement comment is live on `main`. Closed it with evidence rather than leaving a done item on the queue.
+
+**The real find.** Ran a full `preflight.py`: FAILED once on a transient `stray-probe-files` hit from `test_audit_catalog.py`'s own scratch fixture, mid-run; confirmed no live process held the lockdir and the file was gone on immediate recheck, the documented self-heal shape. Rerunning surfaced a real, separate warning: `gate_status_deploy_gap_count_current` said `STATUS.md`'s `BLOCKER-001` and its "Production traceability" row both undercounted the live deploy gap. Re-derived directly with `deploy_gap_material_commits()` rather than trusting the cited figure: 7 commits undeployed, not 5. The two missed: `441a8208` (restamp, no content) and `dec5660a`, a real customer-facing defect: `room_time()`'s tie-breaking rounded exact half-hour ties down instead of up, silently understating the stated time range on 9 of 20 room pages (Kitchen, Primary Bedroom, Guest Bedroom, Kids Bedroom, Primary Bathroom, Home Office, Garage, Stair Landing, Patio or Deck) and their FAQPage JSON-LD, still live in production until the next redeploy. Corrected both `STATUS.md` spots to the real count (7 commits, 4 material). Verified the fix directly against `deploy_gap_count_problem()`: no problem reported after the edit.
+
+**Went well:** running the full preflight instead of stopping at fast mode caught a real, live-serving content defect a stale count was hiding.
+
+**Did not go well:** same recurring pattern (`OWNER-ACTIONS.md` item 0, issue #35): no sandboxed session holds `VPS_DEPLOY_KEY` or `~/.ssh/6s_deploy`, so the actual fix (`room_time()`'s correction, already committed) stays undeployed until a session with real access redeploys or the secret is added.
+
+**Changing next cycle:** none; the gate did exactly its job.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, dashboard regeneration. No price or product touched, no new page.
+
 ## PM check-in, 2026-09-26 19:2x (previous work finished; one stale cold-read handoff found and struck, then this entry's own handoff went stale within the same cycle)
 
 **Previous work: finished.** Attached clean (unshallowed, ff-only merge). `preflight.py` clean on attach, every gate passed, 27 standing warnings, all previously diagnosed. Working tree clean, main matched origin. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated; 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
