@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 13:4x (30-minute triage; previous work finished after clearing a self-inflicted stray-probe FAIL; cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_card_template.py`, because `BACKLOG-2026-09-07.md` sections 2-6 are Done/HOLD/owner-gated, all 9 GitHub issues are `decision`/`blocked-on-art` with none pickable, and 0 PRs are open, so the cold-read lane is again the only right-sized unblocked work.
+
+**Previous work: finished, verified.** Unshallowed and attached (`fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), landed cleanly on `origin/main` (`9f9e0425`, the 13:2x PM check-in). Read `git log -12`, the newest `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section headings, `EXECUTIVE-DASHBOARD-LIVE.md`, and confirmed all 9 open GitHub issues live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable per the standing rule never to pick an item waiting on Phil. 0 open PRs. Working tree clean before and after.
+
+**Step 2's own instruction fired once, correctly, on my own mistake, not a repository defect.** A first foreground `preflight.py` run I started was killed by this tool's own timeout (exit 143) mid-audit, the exact `test_audit_catalog.py`/`audit_visual.py` SIGTERM-mid-write shape this log has repeatedly diagnosed in the operator role. The next full run correctly caught it: `FAIL stray-probe-files`, one leftover `site/_audit_catalog_fixture...` path. Confirmed rather than assumed: the file no longer existed on disk when I checked (the gate deletes what it finds after reporting, by its own design, `ops/preflight.py:9758-9766`), and a fresh full rerun came back genuinely clean: **0 gates failed, 27 standing warnings, all previously diagnosed** (Stripe/VPS/analytics credential gaps, the `deck-print-tier` and `page-art`/`deck-art` art-blocked rows, `cold-read-handoff-not-stale` correctly naming a now-superseded `build_articles.py` mention three entries back, self-resolving as that entry ages out of the last-four window).
+
+**Went well:** ran preflight to completion twice rather than stop at the first FAIL or assume it was the same self-inflicted class without checking the file was actually gone and a rerun actually clean.
+
+**Did not go well:** caused the exact foreground-timeout artifact this log has now flagged in the operator role several times; cost most of this cycle's slot on verification rather than new work, correctly, since a stale/self-inflicted FAIL is Step 2's own detour and this slot is not for starting something large anyway.
+
+**Next:** cold-read lane, `build_card_template.py` first (1,292 lines, tied lowest-mention unledgered file), then `build_catalog.py`, `build_deck_gallery.py`, `corpus_posts.py`, `roadmap_report.py`, `build_kitchen_deck_pdf.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 13:2x (previous work confirmed finished after clearing a self-inflicted stray-lock failure; build_articles.py cold-read clean, ledgered)
 
 **Previous work: finished, verified.** Unshallowed and attached, ff-only merged onto `origin/main` (`a077fc0e`). Backlog sections 2-6 confirmed Done/HOLD/owner-gated (section 7's own one-line summary unchanged: technically finished, commercially unproven). All 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. 0 open PRs.
