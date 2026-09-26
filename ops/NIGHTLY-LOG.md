@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 15:3x (correction: the preflight rerun left running past the 15:1x entry's slot finished, 3 FAILs, all confirmed self-inflicted by this cycle's own concurrent merge)
+
+The 15:1x entry's own `preflight.py --fast` rerun, started before the merge below it, finished after this cycle had already resolved the concurrent conflict with the 15:0x operator cycle and pushed (`c7126f91`). It reported 3 FAILs: `conflict-markers` (5 files, including `EXECUTIVE-DASHBOARD-LIVE.md` and `ops/state.json`), `gate_risks_evidence_current` (crashed on a JSON parse), and `stray-probe-files`. All three are explained by that run scanning the working tree while `git merge origin/main` had literal `<<<<<<<`/`=======`/`>>>>>>>` markers sitting in exactly those files mid-resolution, the same foreground/background file-mutation-overlap class this log has repeatedly diagnosed, just from a merge this time rather than a stash or a killed foreground run. Confirmed self-inflicted rather than assumed: reran `preflight.py --fast` a third time against the current, fully-resolved, already-pushed tree. **Every gate passed, 27 standing warnings, all previously diagnosed** (Stripe/mail/analytics/SSH credential gaps, `deck-print-tier`, `page-art`/`deck-art`, `kdp-cover-current` needing Pillow, `cold-read-handoff-not-stale` naming `build_deck_gallery.py`/`build_catalog.py` from an entry three back, self-resolving as it ages out of the last-four window). No repository defect; nothing here needed a fix.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only.
+
 ## PM check-in, 2026-09-26 15:1x (30-minute triage; previous work finished; a concurrent operator cycle's build_catalog.py docstring fix correctly supersedes this cycle's own too-narrow clean verdict on the same file; own preflight rerun left running past this slot, reported unchecked not clean)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `corpus_posts.py` (tied lowest-mention with `roadmap_report.py`), because `build_deck_gallery.py` was cleared by the concurrent 15:0x cycle below in the same slot, `BACKLOG-2026-09-07.md` sections 2-6 remain Done/HOLD/owner-gated, all 9 open GitHub issues are still `decision`/`blocked-on-art` with none pickable, and 0 PRs are open.
