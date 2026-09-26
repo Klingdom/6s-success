@@ -531,6 +531,11 @@
       "date": "2026-09-25",
       "note": "diagnostic-only Stripe key check; masks keys correctly, leak_scan globs site/ correctly, no defect"
     },
+    "stripe_dedupe.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "main() returned before ever calling dedupe_links() whenever duplicate PRODUCTS existed, so a duplicate payment LINK on the same SKU went completely unchecked in that run; and --check's exit code was unconditionally 0 no matter what was found, for both products and links. Fixed: main() always calls dedupe_links() now, and both it and dedupe_links() return non-zero only when something is left duplicated. Gated by fail-then-pass tests in test_stripe_dedupe.py and test_stripe_dedupe_links.py; no live gate change needed since preflight's own gates already call duplicates()/duplicate_active_links() directly, not main()."
+    },
     "stripe_fulfil.py": {
       "status": "clean",
       "date": "2026-09-26",

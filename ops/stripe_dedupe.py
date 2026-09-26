@@ -148,6 +148,14 @@ def live_link_ids() -> tuple:
 def dedupe_links(sc, apply_it: bool) -> int:
     """One active payment link per SKU, keeping the one the live site serves.
 
+    Returns the number of SKUs left with more than one active link once this
+    call is done: 0 in `--check` means nothing to report; 0 in `--apply`
+    means everything got resolved. Previously returned a "changed" counter
+    that was always 0 in `--check` (nothing is changed in a dry run) even
+    when real duplicates were printed, so a caller reading only the return
+    value could never tell "--check found problems" from "--check found
+    nothing." Fixed 2026-09-26 alongside main()'s own exit-code bug.
+
     Products were the loud half of the pagination bug this file was written
     for. Links are the quiet half: on 2026-09-23 five SKUs still had two
     active links each (BK-BUNDLE, CN-INHOME, CN-VIRTUAL, MZ-MANUAL,
@@ -175,10 +183,10 @@ def dedupe_links(sc, apply_it: bool) -> int:
         print("  REFUSING to touch links: %s. Which link the site serves is "
               "the only thing that decides which one survives, so an "
               "unreadable site means unknown, not safe." % note)
-        return 1
+        return len(dupes)
 
     import re
-    changed = 0
+    unresolved = 0
     for sku, ls in sorted(dupes.items()):
         amounts = set()
         for L in ls:
@@ -194,6 +202,7 @@ def dedupe_links(sc, apply_it: bool) -> int:
             print("  %-12s SKIPPED: the live site serves %d of its %d active "
                   "links, so there is no single obvious survivor"
                   % (sku, len(keep), len(ls)))
+            unresolved += 1
             continue
         drop = [L for L in ls if L["id"] != keep[0]["id"]]
         warn = "" if len(amounts) == 1 else "  PRICES DIFFER %s" % sorted(amounts)
@@ -201,16 +210,38 @@ def dedupe_links(sc, apply_it: bool) -> int:
             print("  %-12s keep %s (served), deactivate %s%s"
                   % (sku, keep[0]["id"][-8:],
                      [d["id"][-8:] for d in drop], warn))
+            unresolved += 1
             continue
         for d in drop:
             sc.call("POST", "payment_links/" + d["id"], {"active": False})
-            changed += 1
         print("  %-12s kept the served link, deactivated %d orphan(s)%s"
               % (sku, len(drop), warn))
-    return changed
+    return unresolved
 
 
 def main(apply_it: bool) -> int:
+    """Dedupe products, THEN always dedupe links, and report a real exit code.
+
+    Products and payment links are separate populations, both created by the
+    same pagination bug and both able to be duplicated independently. The
+    2026-09-23 fix made the "products clean" path fall through to
+    dedupe_links() so a clean-products/duplicated-links account would still
+    get checked. It missed the mirror case: when products WERE duplicated,
+    the function returned before ever reaching dedupe_links(), so a run that
+    found duplicate products silently skipped checking links in the same
+    breath, even though the docstring above already names five real SKUs
+    that had duplicated links on that very day. Found cold-reading this file
+    2026-09-26; confirmed live with a mock account carrying both a
+    duplicate product AND a duplicate link on the same SKU: dedupe_links()
+    never ran, and `--check` still exited 0.
+
+    The exit code itself was also unconditionally 0 in `--check` mode
+    regardless of what was found, for both products and links, so nothing
+    reading only the exit code (rather than the printed lines) could ever
+    learn that a problem exists. Fixed: exit 0 only when nothing was left
+    duplicated (nothing to report in `--check`, nothing unresolved after
+    `--apply`); non-zero otherwise.
+    """
     if apply_it and sc.live() and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
         sys.exit("Refusing to write to a LIVE account without STRIPE_ALLOW_LIVE=1")
 
@@ -227,55 +258,56 @@ def main(apply_it: bool) -> int:
     dupes = {k: v for k, v in by.items() if len(v) > 1}
     print(f"  {sum(len(v) for v in by.values())} active products across "
           f"{len(by)} skus, {len(dupes)} duplicated")
+
     if not dupes:
         print("  no duplicate products")
-        print()
-        # Links are a separate population from products and can be
-        # duplicated while products are clean, which is exactly the state
-        # found on 2026-09-23. Returning here would have skipped them.
-        return 1 if dedupe_links(sc, apply_it) and not apply_it else 0
+    else:
+        archived = 0
+        for sku, prods in sorted(dupes.items()):
+            target = want.get(sku)
+            scored = []
+            for p in prods:
+                prices = [x for x in sc.list_all("prices", {"product": p["id"]})
+                          if x.get("active")]
+                match = any(x["unit_amount"] == target for x in prices) if target else False
+                scored.append((not match, p.get("created") or 0, p["id"], p))
 
-    archived = 0
-    for sku, prods in sorted(dupes.items()):
-        target = want.get(sku)
-        scored = []
-        for p in prods:
-            prices = [x for x in sc.list_all("prices", {"product": p["id"]})
-                      if x.get("active")]
-            match = any(x["unit_amount"] == target for x in prices) if target else False
-            scored.append((not match, p.get("created") or 0, p["id"], p))
+            # A product carrying the right price wins. Among equals the
+            # oldest, because it is the one any purchase history hangs off.
+            scored.sort()
+            keep = scored[0][3]
+            drop = [x[3] for x in scored[1:]]
 
-        # A product carrying the right price wins. Among equals the oldest,
-        # because it is the one any purchase history hangs off.
-        scored.sort()
-        keep = scored[0][3]
-        drop = [x[3] for x in scored[1:]]
+            if not apply_it:
+                print(f"  {sku:24} keep {keep['id'][-8:]}, "
+                      f"archive {[d['id'][-8:] for d in drop]}")
+                continue
 
-        if not apply_it:
-            print(f"  {sku:24} keep {keep['id'][-8:]}, "
-                  f"archive {[d['id'][-8:] for d in drop]}")
-            continue
+            for d in drop:
+                sc.call("POST", f"products/{d['id']}", {"active": "false"})
+                archived += 1
+        sc.invalidate("products")
 
-        for d in drop:
-            sc.call("POST", f"products/{d['id']}", {"active": "false"})
-            archived += 1
-    sc.invalidate("products")
+        if apply_it:
+            print(f"  archived {archived} duplicate products")
+            left = {}
+            for p in sc.list_all("products"):
+                s = (p.get("metadata") or {}).get("sku")
+                if s and p.get("active"):
+                    left.setdefault(s, []).append(p)
+            still = {k: v for k, v in left.items() if len(v) > 1}
+            assert not still, f"still duplicated after the pass: {list(still)[:4]}"
+            print("  every sku now resolves to exactly one active product")
+
+    print()
+    link_problem = dedupe_links(sc, apply_it)
 
     if not apply_it:
-        print("\n  --check only, nothing written. Re-run with --apply.")
-        return 0
+        if dupes or link_problem:
+            print("\n  --check only, nothing written. Re-run with --apply.")
+        return 1 if (dupes or link_problem) else 0
 
-    print(f"  archived {archived} duplicate products")
-
-    left = {}
-    for p in sc.list_all("products"):
-        s = (p.get("metadata") or {}).get("sku")
-        if s and p.get("active"):
-            left.setdefault(s, []).append(p)
-    still = {k: v for k, v in left.items() if len(v) > 1}
-    assert not still, f"still duplicated after the pass: {list(still)[:4]}"
-    print(f"  every sku now resolves to exactly one active product")
-    return 0
+    return 1 if link_problem else 0
 
 
 if __name__ == "__main__":
