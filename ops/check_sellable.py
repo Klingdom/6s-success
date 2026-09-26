@@ -79,10 +79,14 @@ def main() -> int:
         fail.append(f"{len(missing)} name a file that is not built: "
                     f"{missing[:3]}. Run ops/build_catalog.py --build")
 
-    # The shop and the checkout must agree on the number.
-    for sku, item in buyable.items():
-        if sku in sellable and (item.get("price") or 0) <= 0:
-            fail.append(f"{sku} is in SELLABLE with no price")
+    # There is no local check possible for "the shop and the checkout agree
+    # on the number": `buyable` above is already filtered to price > 0, and
+    # Stripe prices are pushed FROM data.js, not held in an independent local
+    # source a price could be compared against. The only real check for that
+    # claim is the live Stripe read further down, gated behind --deep. A
+    # local loop here would either duplicate that filter (always passing) or
+    # invent a second source of truth this codebase does not have; neither
+    # is worth the false confidence of a check that reports green here too.
 
     # Nothing may cost as much as a product that contains all of it.
     import build_catalog as bc
