@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 (a live false-positive gap found cold-reading ops/audit_catalog.py: two concurrent sessions absorbed this cycle's first two finds before they could be pushed)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, ff-only merge clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean on attach, every gate passed. This cycle independently found and fixed the exact same two live defects two other concurrent sessions were fixing at the same moment (`STATUS.md`'s BLOCKER-001 commit-gap undercount, 5 to 7; `OWNER-ACTIONS.md`'s stale header date): both times `git push` was rejected, both times the concurrent commits already carried the identical fix (one from Phil himself), so both local commits were discarded and this session fast-forwarded onto theirs rather than push a duplicate. No time lost worth logging twice; not repeated here.
+
+**The real find, once attached to the settled tip.** GitHub's 8 open issues unchanged, all `decision`/`blocked-on-art`; `BACKLOG-2026-09-07.md` sections 2-6 done or gated. Picked up the standing cold-read lane's own handoff: `ops/audit_catalog.py`, the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next`. Reading `check_price_drift` cold against `check_retired_sold`'s own `mask_live_names` fix (2026-09-23, the same file, for a retired name embedded in a live one): `check_price_drift` never masked anything, and one live pair already collides the same way, "Vanity Counter Pack" ($4) is a genuine substring of "Guest Vanity Counter Pack" ($4 today). Proved live rather than assumed: with the code unchanged, searching for a wrong price next to the long name alone ("Guest Vanity Counter Pack is $5") reports BOTH SKUs, including the short one that was never actually mentioned. Both prices happen to agree today, so nothing has ever shipped wrong, but the day either price changes independently this would misreport, and `audit_catalog.py` is a CI gate that refuses to publish on drift. Fixed by masking every other live name that contains a given name as a substring before searching for it, the same helper the retired check already uses, aimed the other way.
+
+**Verified:** reproduced the false positive against the pre-fix code (`git stash`), confirmed it disappears after the fix and the real long-SKU drift still reports. New test case in `ops/tests/test_audit_catalog.py`, driven from the catalogue itself rather than a hardcoded pair so it keeps testing the real shape if the catalogue changes; fail-then-pass proved directly by stashing the fix and rerunning. Full `preflight.py` (every gate passed, 26 warnings, all previously diagnosed sandbox limits), `check_urls.py` (196/196), `audit_pages.py` (0 duplicate titles/descriptions) clean after. Ledgered `audit_catalog.py` as fixed.
+
+**Went well:** the retired-name masking fix's own docstring pointed straight at the sibling gap in the price-drift check.
+
+**Did not go well:** two of this cycle's first three finds were duplicate work against faster concurrent sessions; nothing to change about that, just the current pace of this repository.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues at `ops/fix_dashes.py`, the next lowest-mention un-ledgered file. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open issues, unchanged. No price or product touched, no new page; IndexNow not applicable.
+
+Pushed to main. `ops/audit_catalog.py`, `ops/tests/test_audit_catalog.py`, `ops/cold-read-ledger.json`, this log, command deck.
+
 ## PM check-in addendum, 2026-09-26 19:5x (the entry below's own fix went stale within the same cycle: a concurrent real redeploy landed, and a second real gate FAIL was found and fixed)
 
 NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.

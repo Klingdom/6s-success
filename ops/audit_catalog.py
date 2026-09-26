@@ -193,14 +193,35 @@ def check_retired_sold(rel: str, html: str, text: str, retired: list[dict],
     return found
 
 
-def check_price_drift(text: str, catalog: list[dict]) -> list[str]:
+def check_price_drift(text: str, catalog: list[dict],
+                       live_names_cased: list[str]) -> list[str]:
+    """
+    Found 2026-09-26, this operator, reading the file cold: one live pair
+    already collides the way mask_live_names was built to stop for retired
+    names, ("Vanity Counter Pack", $4) is a substring of ("Guest Vanity
+    Counter Pack", also $4 today), and this function never masked anything.
+    Reproduced directly: searching for the short name inside a sentence
+    naming only the long one ("Guest Vanity Counter Pack $5 today") matches
+    at offset 24 regardless, because re.finditer has no notion of the other
+    catalogue entry. The two prices happen to agree right now, so nothing
+    has ever been reported wrong, but the day either changes independently
+    the short SKU would be reported as drifting against a price that was
+    never its own, and CI refuses to publish on drift. Masking every OTHER
+    live name that contains this one as a substring before searching (the
+    same helper the retired check already uses, aimed the other way) fixes
+    this pair and any future one shaped like it, without weakening a real
+    standalone mention of the short name anywhere else on the site.
+    """
     found = []
     for sku in catalog:
         price = sku.get("price")
         if price is None:
             continue  # quoted engagement, no fixed price to drift from
         name = sku["name"]
-        for m in re.finditer(re.escape(name), text, re.I):
+        supersets = [n for n in live_names_cased
+                     if n.lower() != name.lower() and name.lower() in n.lower()]
+        haystack = mask_live_names(text, supersets) if supersets else text
+        for m in re.finditer(re.escape(name), haystack, re.I):
             tail = text[m.end(): m.end() + 60]
             if PRICE_NOISE.search(tail):
                 continue
@@ -291,7 +312,7 @@ def main() -> int:
         text = text_of(html)
         f = (check_retired_sold(rel, html, text, retired, live_names,
                                  live_names_cased)
-             + check_price_drift(text, catalog)
+             + check_price_drift(text, catalog, live_names_cased)
              + check_dead_links(html, live_links)
              + check_shop_prerender(html, catalog))
         if f:

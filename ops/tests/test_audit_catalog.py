@@ -225,6 +225,36 @@ def main() -> int:
         if not drift_count(out):
             bad.append("a wrong price for %r was not reported" % int_name)
 
+    # A live SKU whose name is a genuine substring of another live SKU's
+    # name (found 2026-09-26, this operator, reading the file cold:
+    # "Vanity Counter Pack" inside "Guest Vanity Counter Pack", both $4
+    # today, so nothing had ever actually drifted and this pair went
+    # unnoticed). Names a real pair from the catalogue itself rather than
+    # hardcoding one, so this keeps testing the real shape even if the
+    # catalogue changes. Mentioning only the LONG name at a WRONG price
+    # must report the long SKU and must never blame the short SKU it
+    # merely contains as text.
+    catalog_names = A.load_catalog()
+    collision = next(
+        ((short, long_) for short in catalog_names for long_ in catalog_names
+         if short is not long_ and short.get("price") is not None
+         and long_.get("price") is not None
+         and short["name"].strip().lower() != long_["name"].strip().lower()
+         and short["name"].strip().lower() in long_["name"].strip().lower()),
+        None,
+    )
+    if collision:
+        short, long_ = collision
+        wrong = float(long_["price"]) + 10
+        out = run("<p>%s is $%s today.</p>" % (long_["name"], ("%g" % wrong)))
+        if short["sku"] in out:
+            bad.append("a wrong price mentioned only next to the long name "
+                       "%r was wrongly attributed to the short SKU %s it "
+                       "contains as text" % (long_["name"], short["sku"]))
+        if long_["sku"] not in out:
+            bad.append("a wrong price next to %r was not reported against "
+                       "its own SKU %s" % (long_["name"], long_["sku"]))
+
     # A retired SKU offered for sale. The rule distinguishes two cases, so
     # both are exercised: a retired SKU whose name is unique is flagged on
     # buy-intent language alone, while one that shares a name with a live
