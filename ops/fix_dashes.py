@@ -25,6 +25,19 @@ import glob, io, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# ops/NIGHTLY-LOG.md is deliberately NOT a target. It is not one of the
+# authority documents this file's own docstring names (it does not tell
+# agents how to write), and unlike them it routinely quotes literal source
+# code in backticks, including the em dash used as pattern/dict-key data in
+# the same detector files this rule exempts (see gate_no_stray_dashes'
+# exempt_ops). fix_line() has no concept of a backtick span, so it would
+# convert that quoted literal into a comma and misrepresent the code being
+# described, a factual corruption worse than the style gap. Found live
+# 2026-09-26, PM check-in: the file had drifted to 27 stray em dashes in
+# ordinary prose entries with no such quoting, all fixed by hand that cycle
+# using this module's own fix_line(), with the one line that quotes
+# FORBIDDEN_CHARS's literal dash restored afterward rather than converted.
+# Re-sweep this file the same way if it drifts again; do not add it here.
 def targets():
     return sorted(set(glob.glob(os.path.join(ROOT, "*.md"))
                       + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)
