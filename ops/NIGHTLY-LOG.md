@@ -24,6 +24,44 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/status_report.py`, `ops/preflight.py`, `ops/tests/test_status_report_executed_count.py` (new), `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-26 09:4x follow-up (the deep preflight run the entry below left unchecked finished: 2 gates failed, one self-inflicted and already self-cleared, one real and fixed here rather than left for the next cycle)
+
+**Did:** The `preflight.py` run the 09:4x entry below started in the background finished after that entry was already pushed. Read its result rather than assume the earlier "unchecked" note was the end of it, per CLAUDE.md 0.2 ("a correctly reported problem that nobody acts on costs exactly as much as an undetected one"): **2 gate(s) failed.**
+
+**`stray-probe-files`:** 1 leftover fixture path from a run killed mid-test. Traced to this cycle's own earlier `timeout 110 python ops/preflight.py`, which this cycle itself had run and let get SIGTERM'd while `test_audit_catalog.py` was mid-flight, before switching to the background-run method the entry below describes. Checked rather than assumed: the named path no longer exists anywhere in the tree (`find`, plus `git status --ignored`), so the gate's own documented remediation had already cleared it before this was read. Not re-caused; no action needed beyond confirming it is gone.
+
+**`manual-print-fonts-current` was real, not self-inflicted, and is fixed.** `content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html` and its sibling `content/manual/micro-zone-manual-publishable.html` still shipped the front matter's original bracketed placeholders (`[YEAR]`, `[AUTHOR OR RIGHTS HOLDER]`, `[ISBN]`, `[PUBLISHER ADDRESS]`, `[COUNTRY OF MANUFACTURE]`, etc.) verbatim, even though the real values (2026, Philip Kling, Nova Consulting's real address, no ISBN yet) are already the generator's own current source data and already render correctly elsewhere. Neither file is live on the site or submitted anywhere yet (Amazon KDP account creation is still owner-gated per `OWNER-ACTIONS.md` #14), so no customer has seen the placeholders, but this is the exact "source corrected, artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 names as the dominant defect class. **Fixed at the source, never hand-edited:** ran `python ops/build_manual_print.py`, the file's own generator; both files regenerated with the real front matter, 19 lines changed across the two, nothing else moved. Verified rather than assumed: `python ops/tests/test_gate_manual_print_fonts_current.py` (5/5) and `python ops/tests/test_gate_manual_print_six_s_order.py` (6/6) both pass against the regenerated files; grepped `ops/tests/` for any dependency on the old placeholder text (none) before shipping.
+
+**Went well:** treating the finished background result as real work rather than letting the earlier "unchecked" note stand as the cycle's final answer once the run actually completed.
+
+**Did not go well:** running `preflight.py` under a foreground timeout at all, even once, early in this same cycle, before switching to the background method described below; it produced exactly the self-inflicted artifact class this log has already diagnosed several times.
+
+**Changing next cycle:** none new; the existing gate caught a real drift correctly and the fix is procedural (regenerate before shipping, never hand-edit a generated file).
+
+**Next:** same as the entry below; this follow-up does not change the handoff.
+
+Pushed to main. `content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html`, `content/manual/micro-zone-manual-publishable.html`, command deck. No price or product touched (neither file is a live SKU yet); no site page changed; IndexNow not applicable.
+
+## PM check-in, 2026-09-26 09:4x (previous work independently re-verified finished as far as this slot could confirm; the deep test gate was still running past slot close, reported unchecked, not assumed clean)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 418 commits cleanly onto `origin/main` (`1252524c`, the prior PM cycle's own commit). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s open section headers. 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable by this role. 0 open PRs.
+
+**Verified as far as time allowed, not trusted:** ran `preflight.py` fresh in the background (learning from prior cycles' self-inflicted killed-run artifacts under a short foreground timeout). Every gate up through `gate_image_coverage` (roughly 50 gates: build hygiene, pricing/Stripe honesty, mobile, quest funnel, all six room decks, image coverage) reported with no FAIL. `gate_tests` (289 `ops/tests/test_*.py` files, including the slow headless-Chromium interactive suites) was still running 9+ minutes in when this slot closed; per CLAUDE.md 0.4, "a gate that was skipped has not been satisfied," so this is reported as unchecked, not as a pass. Left it running past this entry rather than killing it, so the operator inherits its real result instead of another induced artifact.
+
+**No genuinely unblocked backlog item this slot**, matching every prior cycle today: `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD (each row still correctly waiting on the same evidence it named before), section 6 is Phil's own six owner gates. `EXECUTIVE-DASHBOARD-LIVE.md`'s one open P0 (production serving an old build) is already correctly on `OWNER-ACTIONS.md` and issue #35 (`VPS_DEPLOY_KEY`), not newly found and not this role's to action.
+
+**Went well:** running the full preflight in the background instead of under a foreground timeout that would likely have killed it mid-`gate_tests` and left another stray artifact for a future cycle to diagnose.
+
+**Did not go well:** the same unrelated-history shallow/detached checkout shape recurred on attach; `gate_tests` alone now takes long enough that a 30-minute slot cannot always wait for it to finish, which is worth the operator's attention if it keeps growing.
+
+**Changing next cycle:** none; no defect found in what has run so far, and the unfinished part is reported as unfinished rather than assumed.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Continue the cold-read lane above. Whoever next runs `preflight.py` to completion should confirm `gate_tests` actually passed and note it here, since this entry could not.
+
+Pushed to main. Command deck only (via `ops/dashboard.py`). No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 09:1x (previous work independently re-verified finished, one file cleared clean in the cold-read lane, one self-inflicted killed-preflight artifact found and self-cleaned)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
