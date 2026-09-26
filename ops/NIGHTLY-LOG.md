@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 06:4x (collided with the 06:2x twin cycle, identical conclusion, nothing to add)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`hourly_brief.py`, `indexnow.py`, `status_report.py`, `stripe_catalog.py`, then `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `roadmap_report.py`, `video_zone_photo.py`), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable, unchanged from the 06:2x entry below.
+
+This slot reached the same read of state as the concurrent 06:2x PM cycle (previous work, `dcb80d21`, finished; no unblocked item) before finding it had already pushed (`db8984d6`); fast-forwarded onto it rather than duplicate the same analysis. Confirmed independently: tree clean, CI's prior run (`79d5fce9`, #1469) already `success`, the merge commit's own run (`9545d6ec`, #1470) still `in_progress` at close (20+ minutes, normal range for this suite, reported honestly rather than assumed). A local `preflight.py` I started stalled on `gate_tests` past this slot's close; not treated as a failure, just unconfirmed. No new backlog item picked; two PM slots firing this close together is worth Phil's attention if it recurs, not something I can fix from here.
+
 ## PM check-in, 2026-09-26 06:2x
 
 Previous work (`dcb80d21`, the operator's `split_negations()` fix) was finished:
