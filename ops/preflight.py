@@ -10468,6 +10468,37 @@ def gate_hourly_brief_stripe_checks() -> None:
         problems.append("a confirmed fabricated price claim does not reach "
                         "the hourly brief's SUBJECT line: %r" % subject)
 
+    # Found live 2026-09-26, cold-reading this file: with commerce() reporting
+    # an error (no Stripe key, the only condition this sandbox has ever run
+    # in), build()'s subject silently defaulted revenue/sales to 0 instead of
+    # saying unknown, reading "$0 / 30d, 0 sale(s)" indistinguishable from a
+    # genuinely measured quiet month. The COMMERCE body section already said
+    # "could not read Stripe", but the subject is the one line a locked phone
+    # screen shows, the exact "unknown is not a default" shape
+    # gate_hourly_brief_build_line already covers for open_p0/needs_phil in
+    # this same function. Fixed with a stripe_unreadable branch in build().
+    real2 = (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check,
+             hb.sc.price_claim_gaps)
+    hb.commerce = lambda: {"error": "no Stripe key in this environment"}
+    hb.inbox = lambda: {"unread": []}
+    hb.site = lambda: {"home": 200}
+    hb.measured = lambda: {}
+    hb.cll.check = lambda: {"verdict": "unknown", "note": "no credential"}
+    hb.sc.price_claim_gaps = lambda: (_ for _ in ()).throw(SystemExit("no key"))
+    try:
+        unread_subject, _ = hb.build()
+    finally:
+        (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check,
+         hb.sc.price_claim_gaps) = real2
+    if "$0" in unread_subject or "0 sale" in unread_subject:
+        problems.append("hourly_brief's SUBJECT line reports a false $0/0 "
+                        "sale(s) when Stripe could not be read at all, "
+                        "instead of unknown: %r" % unread_subject)
+    if "unreadable" not in unread_subject.lower() and "unknown" not in unread_subject.lower():
+        problems.append("hourly_brief's SUBJECT line does not flag Stripe "
+                        "as unreadable when commerce() errors: %r"
+                        % unread_subject)
+
     if problems:
         fail("hourly-brief-stripe-checks",
              "hourly_brief's price/duplicate/brand summaries do not "

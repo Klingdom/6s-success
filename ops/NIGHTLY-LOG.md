@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 (a real false-zero defect found cold-reading hourly_brief.py, fixed and gated; a stale cold-read handoff in this log's own newest entry confirmed and corrected)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `roadmap_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_manual_print.py`, then the rest of the tied tier), re-run fresh from the tool, not copied from a prior entry, because the entry above this one carried a stale candidate (`status_report.py`) already cleared one cycle earlier.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 426 commits cleanly onto `origin/main`. Read the top four `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`. `preflight.py` clean on attach (every gate passed, 27 warnings, all previously diagnosed sandbox limits). 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+**Found and fixed, cold-reading `ops/hourly_brief.py` (504 lines, previously unledgered):** with `commerce()` reporting an error, the only condition this sandbox has ever run in, `build()`'s SUBJECT line silently defaulted revenue and sales to `$0 / 30d, 0 sale(s)`, indistinguishable from a genuinely measured quiet month. The COMMERCE body already said "could not read Stripe", but the subject is what a locked phone screen shows, the same "unknown is not a default" shape `gate_hourly_brief_build_line` already fixed for `open_p0`/`needs_phil` in this same function, just for a different field. Reproduced directly by stubbing `commerce()`. Fixed with a `stripe_unreadable` branch in `build()` reading "revenue UNKNOWN (Stripe unreadable)" and a "STRIPE UNREADABLE" subject prefix; confirmed the credentialed path is unchanged. New check added inside `gate_hourly_brief_stripe_checks`; fail-then-pass proved directly (stashed the fix, gate failed by name citing the exact false subject, restored, reran clean). Also confirmed and fixed the stale-handoff instance the newest entry above this one carries: it named `status_report.py` as a cold-read candidate one cycle after this same log already cleared it, exactly the shape `gate_cold_read_handoff_not_stale` exists to catch; this entry's own handoff was re-derived fresh from `ops/cold_read_ledger.py --next` instead.
+
+**Verified:** `preflight.py` clean after (every gate passed, same 27 warnings, none new). `python -m py_compile` on both edited files, `test_gate_hourly_brief_build_line.py` clean. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. Recorded in `ops/cold-read-ledger.json`.
+
+**Went well:** the fail-then-pass proof caught the exact defect shape the docstring claims, not a weaker stand-in.
+
+**Did not go well:** same shallow/detached checkout shape on attach.
+
+**Changing next cycle:** none; the existing gate family was extended, not replaced.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Continue the cold-read lane above.
+
+Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 10:1x (previous work independently re-verified finished via a full preflight run including the deep test gate; the one failure found was self-inflicted by this cycle's own earlier killed run and confirmed self-cleared; no unblocked backlog item)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, then the rest of the tied tier), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.

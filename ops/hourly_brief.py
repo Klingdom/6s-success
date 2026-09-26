@@ -420,17 +420,32 @@ def build() -> tuple[str, str]:
     retire_problem, retire_lines = link_retirement_summary(st)
     prev = load_last()
 
+    stripe_unreadable = bool(cm.get("error"))
     rev = cm.get("revenue_30d", 0)
     sales = cm.get("paid_30d", 0)
     life = cm.get("revenue_lifetime")
-    subject = (f"{'OUTAGE - PAYMENT LINK DEAD - ' if link_problem else ''}"
+    # Found 2026-09-26, cold-reading this file: with no Stripe key (every
+    # sandbox this project has ever run in, per commerce()'s own docstring
+    # above), rev and sales silently default to 0 here, so the subject line,
+    # the "one number that matters" per this file's own opening docstring,
+    # read "$0 / 30d, 0 sale(s)" indistinguishable from a genuinely
+    # measured quiet month. The COMMERCE body section already says "could
+    # not read Stripe", but a subject line is what a locked phone screen
+    # shows without opening the mail, the same "unknown is not a default"
+    # gap gate_hourly_brief_build_line already fixed for open_p0/needs_phil
+    # in this same subject-composing function, just for a different field.
+    money = (f"revenue UNKNOWN (Stripe unreadable)"
+             if stripe_unreadable else
+             f"${rev:,.0f} / 30d"
+             f"{f' (${life:,.0f} lifetime)' if life is not None else ''}, "
+             f"{sales} sale(s)")
+    subject = (f"{'STRIPE UNREADABLE - ' if stripe_unreadable else ''}"
+               f"{'OUTAGE - PAYMENT LINK DEAD - ' if link_problem else ''}"
                f"{'FABRICATED PRICE ON CHECKOUT - ' if price_problem else ''}"
                f"{'DUPLICATE STRIPE PRODUCT - ' if dupe_problem else ''}"
                f"{'PRODUCTION BEHIND REPOSITORY - ' if deploy_problem else ''}"
                f"{'LINK STILL CHARGES RETIRED PRICE - ' if retire_problem else ''}"
-               f"6S hourly: ${rev:,.0f} / 30d"
-               f"{f' (${life:,.0f} lifetime)' if life is not None else ''}, "
-               f"{sales} sale(s), "
+               f"6S hourly: {money}, "
                f"{len(ib.get('unread', []))} unread")
 
     L = [f"{now:%Y-%m-%d %H:%M} UTC", ""]
