@@ -246,6 +246,11 @@
       "date": "2026-09-25",
       "note": "132 lines, read in full. Builds the 20-sheet printable Micro Zone Map from zone_graphics.py/video_zone.py, so a sheet cannot claim a zone the site does not have. main() asserts exactly 20 rooms and 114 zones before writing, refusing silently-wrong output. Verified live rather than assumed: reran the generator against the real corpus; both outputs (build/ and site/downloads/) came back byte-identical to the committed files (git diff clean), so the shipped download is not stale against its own source, the exact defect class this repository's own backlog section 7 names as dominant. SVG output already carries role=img/aria-labelledby via zone_graphics.py. No defect found."
     },
+    "build_zone_pages.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "room_time()'s hrs() used round() (banker's rounding), silently understating 9 of 20 room pages' hours by half an hour on exact ties; fixed to math.floor(x+0.5), gate_room_time_rounding_current added"
+    },
     "canonical_links.py": {
       "status": "clean",
       "date": "2026-09-11",

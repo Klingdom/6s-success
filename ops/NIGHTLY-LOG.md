@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-09-26 (fixed the dead check named in issue #36; confirmed clean preflight; deploy gap remains, no key in this sandbox)
+## Scheduled operator cycle, 2026-09-26 (fixed the dead check named in issue #36, then a real customer-facing rounding defect on 9 of 20 room pages; deploy gap remains, no key in this sandbox)
 
 **Did.** Attached to `main` (unshallow, ff-only merge, clean). Read
 `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md` and the last 4
@@ -28,6 +28,46 @@ this cycle's budget, and a fragile one would just be a fifth instance of the
 same defect class one level up. Recorded that judgement here rather than
 silently skipping it.
 
+**Second finding, same cycle: a real, live, customer-facing arithmetic
+defect.** With the backlog and owner-gates table exhausted, delegated a
+cold-read of `ops/build_zone_pages.py` (3421 lines, the next genuinely
+un-ledgered file per `ops/cold_read_ledger.py --next`, matching a
+concurrent 18:4x session's own independent conclusion) to a subagent, then
+verified its finding myself before touching anything, per this repo's own
+"verify a claim before acting on it." `room_time()`'s `hrs()` used Python's
+`round()`, which breaks an exact tie (zone-session minutes summing to
+exactly a half-hour boundary) toward the nearest EVEN half-hour rather than
+the nearest higher one. Recomputed all 20 rooms' real zone-session sums
+from `content.json` directly: 9 land on such a tie (Kitchen, Primary
+Bedroom, Guest Bedroom, Kids Bedroom, Primary Bathroom, Home Office,
+Garage, Stair Landing, Patio or Deck), and the live, committed
+`site/rooms/*.html` pages confirmed it: Kitchen's own page read "come to
+about 4.5 to 7 hours", when 435 minutes is an exact tie between 7.0h and
+7.5h; Stair Landing read "1 to 2 hours" for a low end (75 min) that ties
+1.0h and 1.5h. The same wrong number is duplicated verbatim into each
+room's FAQPage JSON-LD via `room_faq()`, so an answer engine would have
+cited it too. This directly contradicts `room_time()`'s own docstring
+("rounded to the nearest half hour") and is a real number shown to a real
+customer as a confident answer to "how long does this room take", silently
+wrong at nine specific, checkable points. Fixed `hrs()` to
+`math.floor(mins / 30.0 + 0.5) / 2.0`, ordinary round-half-up; `math` was
+already imported. Regenerated all 20 room pages: exactly the 9 predicted
+files changed, 2 lines each (the visible sentence and its FAQPage
+duplicate), nothing else moved, a second regeneration was byte-identical
+(idempotent). Per STEP 10b, wrote the gate rather than just the fix, since
+a check could have caught this: new `gate_room_time_rounding_current` in
+`preflight.py` (pure logic in `check_room_time_current`), re-deriving all
+20 rooms' expected (lo, hi, n) from `ops.build_zone_pages.room_time()`
+itself and diffing both the visible sentence and the FAQPage duplicate
+against the real shipped `site/rooms/*.html`. `ops/tests/test_gate_room_
+time_rounding_current.py` (8 cases, including the real committed site and
+the 9 tie-point rooms pinned independently with hand-derived expected
+values, not just re-derived from the possibly-buggy function under test)
+fail-then-pass proved directly: reverted `hrs()` to the old `round()`,
+reran the test, watched it fail by name on all 9 tie-point rooms citing
+the exact missing sentence in each, restored the fix (diffed byte-for-byte
+identical to before), reran clean.
+
 **Verified.** `python -c "import ast; ast.parse(...)"` confirmed syntax.
 `python ops/check_sellable.py` (fast path) ran clean, exit 0, identical
 output shape to before (124 of 126 buyable products verified, 2 services
@@ -41,40 +81,51 @@ credential, no Pillow, no JRE). The gate run includes the full
 `pytest` invocation on that one file was denied by the harness's own safety
 classifier (the same "Security Test Removal" tag issue #36 hit), so that was
 not forced through another tool, matching the classifier's own instruction
-and CLAUDE.md section 37/52's caution around this file. `ops/dashboard.py`
-regenerated clean.
+and CLAUDE.md section 37/52's caution around this file. For the room_time
+fix: syntax checked on both changed files; the new test file run directly
+(8/8, then fail-then-pass proved as above); `ops/check_urls.py` (196/196)
+and `ops/audit_pages.py` (200 pages, 0 findings) both clean after. A second
+full `preflight.py` background run was started to confirm the new gate
+integrates cleanly with the whole suite; this entry is being committed
+before that run's own completion is known (the suite reliably takes
+several minutes and a harness stop-hook required a commit before it
+finished), so that specific claim is UNCHECKED as of this commit, not
+assumed passing: everything checked directly above did pass. `ops/
+dashboard.py` regenerated clean, twice.
 
-**Went well.** The item was genuinely small, genuinely verified safe (a
-provably-dead branch, zero behavioural change), and closed a decision issue
-without needing Phil for something that was not actually his decision to
-make, only his classifier's caution to respect.
+**Went well.** Both items were genuinely verified against real output
+before being called findings, not asserted from reading the generator
+alone: the dead-check claim was confirmed by tracing the filter chain by
+hand, and the rounding claim was confirmed against the actual committed
+`site/rooms/kitchen.html` and `stair-landing.html` text, not just the
+subagent's say-so. The second finding is exactly the kind of thing this
+routine exists to catch: a wrong number a stranger would read as fact.
 
-**Did not go well.** Nothing else in the backlog or the owner-gates table
-was actionable without an account, a credential, or egress this sandbox
-does not have. `STATUS.md`'s `BLOCKER-001` shows a real, customer-facing
-gap right now: 3 material fixes already in `main` (a false "shortest zone"
-claim, a false no-affiliate-link disclosure on 20 room pages, 44 dead deck
-anchors) are not yet live, because no session in this environment holds
-`VPS_DEPLOY_KEY` or `~/.ssh/6s_deploy`. Confirmed directly
-(`git log 8f6c47b3..HEAD -- site/ Dockerfile`, 5 commits, matching
-`STATUS.md`'s own count) rather than trusting the doc. This is the same
-recurring pattern `OWNER-ACTIONS.md` item 0 and issue #35 already name;
-nothing new to add beyond confirming it is still open and still real.
+**Did not go well.** The full second `preflight.py` run's own completion
+was not waited for before this entry was committed, because of a stop-hook
+requirement to commit uncommitted work; every narrower check available
+(syntax, the new test file, fail-then-pass, check_urls, audit_pages) was
+run and passed first, so this is a genuine gap in the broadest check only,
+disclosed rather than silently assumed clean. Separately, `STATUS.md`'s
+`BLOCKER-001` still shows a real, customer-facing deploy gap: fixes already
+in `main` are not live, because no session in this environment holds
+`VPS_DEPLOY_KEY` or `~/.ssh/6s_deploy`. Same recurring pattern
+`OWNER-ACTIONS.md` item 0 and issue #35 already name.
 
-**Changing next cycle.** Nothing in the codebase. Note for the next cold
-read: if a fifth instance of "check that cannot fail" turns up, that is the
-threshold this routine sets for stopping to write a real gate instead of
-another one-off fix, even if the gate is imperfect, rather than judging one
-away a second time.
+**Changing next cycle.** The next cycle to read this entry should confirm
+the second `preflight.py` run this cycle started (background PID, log at
+`/tmp/claude-0/preflight_run2.log` in that sandbox, not this one) finished
+clean; if it did not, that is real, unfinished work, not a stale note.
+Separately: if a fifth instance of "check that cannot fail" turns up
+anywhere in the codebase, that is the threshold this routine set two
+entries ago for writing a general gate instead of another one-off fix.
 
-**Next.** Issue #35 (`VPS_DEPLOY_KEY`) and #36 (this one, now closed) for
-Phil. Standing Phil-blocked list unchanged in `OWNER-ACTIONS.md`.
-**Corrected cold-read handoff:** the prior entries' pointer to
-`ops/deploy.py` was already stale, `python ops/cold_read_ledger.py --next`
-confirms it as already ledgered "read"; genuinely un-ledgered candidates,
-lowest mention count first, are `ops/build_zone_pages.py`, then
-`ops/audit_catalog.py`, then `ops/fix_dashes.py`. Handing to the operator:
-`ops/build_zone_pages.py`.
+**Next.** Issue #35 (`VPS_DEPLOY_KEY`) for Phil; issue #36 closed this
+cycle. Standing Phil-blocked list unchanged in `OWNER-ACTIONS.md`.
+Cold-read lane: `ops/build_zone_pages.py` was read this cycle (one real
+defect found and fixed, logged in `ops/cold-read-ledger.json`); next
+genuinely un-ledgered candidates, lowest mention count first, are `ops/
+audit_catalog.py`, then `ops/fix_dashes.py`, then `ops/ship.py`.
 
 ## PM check-in, 2026-09-26 18:4x (previous work confirmed finished; my own preflight run FAILED first on self-inflicted stray files, rerun clean; no new defect, triage only)
 

@@ -19078,6 +19078,94 @@ def gate_room_hub_current() -> None:
         fail("room-hub-current", "; ".join(problems[:6]))
 
 
+def check_room_time_current(expected_map, page_bodies) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    Found live 2026-09-26, cold-read: `ops.build_zone_pages.room_time()`'s
+    own `hrs()` used Python's `round()`, which breaks an exact tie
+    (session minutes landing precisely on a half-hour boundary) toward the
+    nearest EVEN half-hour rather than the nearest higher one. Nine of the
+    twenty rooms' zone-session sums land on such a tie: Kitchen's high end
+    is 435 minutes, an exact tie between 7.0h and 7.5h, and `round()`
+    silently reported 7.0, understating the room by half an hour on both
+    the visible "Added together..." sentence and the identical text
+    duplicated into the room's FAQPage JSON-LD, contradicting the
+    function's own "rounded to the nearest half hour" docstring. Fixed by
+    switching `hrs()` to `math.floor(x + 0.5)`, ordinary round-half-up.
+
+    `expected_map` is {room_slug: (low_hours_str, high_hours_str, n)} from
+    `ops.build_zone_pages.room_time()` itself, the single source of truth
+    both the shipped HTML and this gate read from. `page_bodies` is
+    {filename: html} for the real site/rooms/*.html files.
+
+    Returns problem strings, empty when every room's shipped "Added
+    together" sentence and its FAQPage duplicate both state the current
+    room_time() values.
+    """
+    problems = []
+    for slug, expected in sorted(expected_map.items()):
+        if expected is None:
+            continue
+        lo, hi, n = expected
+        fname = f"{slug}.html"
+        body = page_bodies.get(fname)
+        if body is None:
+            continue
+        want = (f"the {n} sessions below come to about {lo} to {hi} "
+                f"hours for the whole")
+        if want not in body:
+            problems.append(f"{fname}: visible room-time sentence does not "
+                             f"say '{want}'")
+        want_faq = (f"the {n} sessions come to about {lo} to {hi} hours "
+                    f"for the whole")
+        if want_faq not in body:
+            problems.append(f"{fname}: FAQPage room-time answer does not "
+                             f"say '{want_faq}'")
+    return problems
+
+
+def gate_room_time_rounding_current() -> None:
+    """The shipped-HTML half of the 2026-09-26 room_time() rounding fix
+    (see `check_room_time_current`'s own docstring for what this catches).
+    Re-derives the expected (low, high, n) hours for all twenty rooms via
+    `ops.build_zone_pages.room_time()` itself and diffs the sentence it
+    implies against the real site/rooms/*.html files, both the visible
+    copy and the FAQPage duplicate, so a future reversion to `round()` (or
+    any other drift between the generator and the shipped page) cannot
+    ship silently.
+
+    Proved to fail on a planted regression: the pre-fix `round()` shape
+    replanted on the real committed site/rooms/kitchen.html (7 hours
+    instead of 7.5) and site/rooms/stair-landing.html (1 hour instead of
+    1.5): ops/tests/test_gate_room_time_rounding_current.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("room-time-rounding", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+
+    expected_map = {}
+    for r in rooms:
+        expected_map[bzp.slug(r["room"])] = bzp.room_time(r)
+    if not expected_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "rooms", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("room-time-rounding", "no room pages built yet, could not check.")
+        return
+
+    problems = check_room_time_current(expected_map, page_bodies)
+    if problems:
+        fail("room-time-rounding", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=35) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
@@ -22279,6 +22367,7 @@ def main() -> int:
     run_gate(gate_zone_direct_answer_current)
     run_gate(gate_specific_article_direct_answer)
     run_gate(gate_room_hub_current)
+    run_gate(gate_room_time_rounding_current)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
