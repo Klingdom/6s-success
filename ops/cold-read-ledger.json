@@ -1,6 +1,11 @@
 {
   "_comment": "Structured record of ops/*.py files a cold-read cycle has actually read and either cleared or fixed. Not a full backfill: only entries a cycle has explicitly written here are authoritative. A file's absence means unknown, not unread and not clean; keep using ops/cold_read_ledger.py --next (or the old log-mention grep) for anything not listed. Written by ops/cold_read_ledger.py --add; do not hand-edit the ordering, it is sorted on write.",
   "entries": {
+    "accept_image.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "self-test 4/4, --check 89 cards + 114 zones/0 errors, both gates (gate_accept_image_derivation, gate_accept_image_contradicts_name_an_object) already wired and passing; no defect found"
+    },
     "affiliate_report.py": {
       "status": "fixed",
       "date": "2026-09-24",
@@ -480,6 +485,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "diagnostic-only Stripe key check; masks keys correctly, leak_scan globs site/ correctly, no defect"
+    },
+    "stripe_fulfil.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cross-checked DELIVERY against build_catalog.py's 4 real kind values (zone/room/situation/area, no KeyError risk) and stripe_catalog.py's own SELLABLE deliverable paths (all match); dry run correctly refuses without a Stripe credential (CLAUDE.md 0.4, no egress here); DECK-ENTRY-PDF pointing at a file with no generator was already found and correctly judged not-live 2026-09-04 (SKU retired, unreachable, deliver() fails loudly on a missing file rather than sending nothing) -- confirmed still true, not a new finding"
     },
     "stripe_invoice.py": {
       "status": "clean",

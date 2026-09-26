@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 04:2x (previous work confirmed finished via CI's own Preflight step; cold-read lane continued, two more files cleared, no new defect)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 385 commits cleanly onto `ac1af6e7`, no conflict.
+
+**Step 2: previous work is finished.** The 03:4x PM cycle above fixed two real CI gate failures (a `__pycache__` false-positive in `gate_no_stray_probe_files`, and a stale sitemap after the room-page disclosure fix) and pushed, but its own local `preflight.py` was still running past its slot's close, unconfirmed. Rather than trust that, checked CI directly: `checks.yml` run #1464 on `ac1af6e7` shows the **Preflight step completed successfully** (03:53:00 to 04:11:29, 18 minutes, the normal range), confirming both fixes for real. "The ops test suite" step was still `in_progress` when checked, reported unchecked rather than assumed. Working tree was clean and `main` matched `origin/main` before this cycle's own edits. 9 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 to 4 remain Done/CLOSED, section 5 HOLD, section 6 six owner gates: no genuinely unblocked backlog item this slot, so the cold-read lane (the standing handoff from the prior three cycles) is the right-sized work.
+
+**Cold-read, two files, both clean.** `ops/cold_read_ledger.py --next`'s top two un-ledgered candidates: `accept_image.py` and `stripe_fulfil.py` (payment fulfilment, prioritised over the other candidate given `CLAUDE.md`'s P0 trust/safety/payment ordering). `accept_image.py`: `--self-test` reproduces all 4 historical outcomes, `--check` derives checklists for all 89 cards and 114 zones with 0 errors, and both of its own gates (`gate_accept_image_derivation`, `gate_accept_image_contradicts_name_an_object`) are already wired into `preflight.py` and passing. `stripe_fulfil.py`: cross-checked its hardcoded `DELIVERY` table against `build_catalog.py`'s real `kind` values (zone/room/situation/area, exact match, no `KeyError` risk) and against `stripe_catalog.py`'s own `SELLABLE` deliverable paths (all match); a dry run correctly refuses without a Stripe credential rather than guessing (`CLAUDE.md` 0.4, no egress from this sandbox). One thing worth naming rather than re-finding: `DECK-ENTRY-PDF` points at `build/entryway-deck-illustrated.pdf`, which no generator in this repo builds; this was already found and correctly judged not-live on 2026-09-04 (the log's own thirteenth-today entry), because that SKU is retired, unreachable from `site/`, and `deliver()` fails loudly on a missing file rather than sending nothing. Confirmed still true, not a new finding. Both files recorded `clean` in `ops/cold-read-ledger.json` via `--add`, so a future cycle's `--next` moves past them.
+
+**Verified:** full untimed `preflight.py` started in the background at this cycle's own open; not yet confirmed clean by this entry's close, reported honestly as still running rather than assumed, the same standing sandbox-time-limit shape this log has already diagnosed repeatedly. CI's own Preflight step on `ac1af6e7` (above) is the independent confirmation that matters most and it is real.
+
+**Went well:** treating CI's own completed Preflight step as the confirmation for the previous cycle's unfinished local run, rather than either re-running the whole suite from scratch or trusting a clean `git status` alone; not re-finding the `DECK-ENTRY-PDF` gap as new when the log already had it.
+
+**Did not go well:** same shallow/detached checkout shape on attach; issue #27 still open.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next for the operator:** continue the cold-read lane via `ops/cold_read_ledger.py --next` (current top un-ledgered: `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `video_zone_photo.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `build_quest.py`, `build_resources.py`, `check_sellable.py`); confirm this cycle's own background `preflight.py` (or CI's Preflight step on the next pushed commit) finishes clean. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log, command deck regen. No code, price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 03:4x (previous work NOT finished: CI red on the current HEAD; both real gate failures found via CI logs and fixed, not left for the operator)
 
 NEXT FOR THE OPERATOR: confirm this cycle's push turns CI green on `ba73ec3c`'s successors, then continue the cold-read lane via `ops/cold_read_ledger.py --next`, because that is the only category of work in `BACKLOG-2026-09-07.md` that is both genuinely unblocked and sized for a 30 minute slot; sections 2 to 4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and the 9 open GitHub issues are unchanged, all `decision`/`blocked-on-art`.
