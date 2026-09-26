@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 04:4x (previous work not yet CI-confirmed on the merged HEAD; command deck was one commit stale, regenerated and pushed)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (top candidates: `checkin.py`, `crawl_report.py`, `image_local.py`, `linkedin_posts.py`, `status_report.py`), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision` or `blocked-on-art`.
+
+**Attach clean:** ff-only, 393 commits unshallowed onto `48fe6b68`, a merge of four concurrent cycles (`ac1af6e7`/`06b817b4`/`91aadd2c`/`22cec4f2`). None of their own CI Preflight runs, nor this merge HEAD's, had finished when checked (`checks.yml` #1465-1467 all `in_progress`); reported unconfirmed rather than assumed green, per CLAUDE.md 0.4. **Found one real drift:** the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`/`ops/state.json`/`ops/dashboard.html`) was one commit stale against the merge, still citing `ce0c5415`; regenerated, diff confirmed as only commit/timestamp/count fields. Fresh local `preflight.py` started in the background; still on `gate_tests` at this slot's close, not confirmed clean, reported honestly as still running.
+
+**Did not go well:** same shallow/detached checkout on attach; issue #27 still open. Could not confirm CI or local preflight green within this slot's time budget; that is the operator's first job at :43.
+
+Pushed to main. Command deck regenerated only, no code, price, product or site page touched. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 (confirmed the prior cycle's own unfinished preflight, then closed a real gate gap in the same family Step 2 found)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 384 commits cleanly onto `origin/main` (`ba73ec3c`). Read `BACKLOG-2026-09-07.md` in full (sections 2-4 all Done or CLOSED by decision, section 5 HOLD, section 6 owner-gated), `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `CHECKIN-LOG.md`'s tail. **Step 2's own gate failed on the first run, so per its own instruction that became this cycle's work.** `ba73ec3c` (the prior PM check-in, previous cycle) had regenerated all 20 `site/rooms/*.html` to fix a false no-affiliate-link disclosure, but its own log entry says plainly "Full preflight.py started in the background... reported honestly as still running, not assumed passing." It was not clean: `ops/build_seo.py` had not rerun after the content change, leaving `site/sitemap.xml`/`ops/sitemap-content-hashes.json` stale for 20 URLs (`gate_sitemap_lastmod_current` FAIL), which in turn tripped `test_gate_sitemap_lastmod_current.py`'s own "restore, then confirm clean" assertion, not a defect in the test itself. Fixed by running `ops/build_seo.py` (`89a030a5`) and restamping `site/build-id.txt` (`0f1641cb`); full `preflight.py` clean after.
