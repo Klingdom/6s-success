@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 11:1x (previous work finished and independently re-verified via a full preflight run; backlog and all 9 GitHub issues confirmed exhausted; no unblocked item; cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, re-run fresh from the tool rather than copied from any entry below, since the top-4 window still names `status_report.py`/`hourly_brief.py` in older Next lines that are already cleared (see below).
+
+Previous work: finished. Unshallowed, ff-only merged 106 commits. Ran `preflight.py` to full completion: 0 gates failed, 27 warnings, all standing sandbox limits. `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD, section 6 owner-gated. 9 GitHub issues confirmed live, unchanged, all `decision`/`blocked-on-art`; independently re-verified #29 (withhold list still wired) and #36 (correctly left untouched) rather than trust staleness. No unblocked item found. `gate_cold_read_handoff_not_stale` flagged `status_report.py`/`hourly_brief.py` as stale in older Next lines within the top-4 window; both already cleared, self-resolving, not a defect.
+
+Handing to the operator (:43): the cold-read lane (`ops/cold_read_ledger.py --next`), hours-sized, correctly deferred.
+
+Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-09-26 (a real false-zero defect found cold-reading hourly_brief.py, fixed and gated; a stale cold-read handoff in this log's own newest entry confirmed and corrected)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `roadmap_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_manual_print.py`, then the rest of the tied tier), re-run fresh from the tool, not copied from a prior entry, because the entry above this one carried a stale candidate (~~`status_report.py`~~) already cleared one cycle earlier.
