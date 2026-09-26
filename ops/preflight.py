@@ -10837,6 +10837,48 @@ def gate_corpus_posts_extraction_yield() -> None:
              "ready files: " + "; ".join(bad))
 
 
+def gate_corpus_posts_no_free_claim_leak() -> None:
+    """No postable corpus entry may call a paid chapter's own content free.
+
+    Found 2026-09-26 cold-reading corpus_posts.py: FREE_CLAIM caught "read the
+    free chapter" but not "Read it free.", a different phrasing that 10 real
+    x-post entries from chapters 31-33 (inside the $18 eBook, per this same
+    module's own FREE_THROUGH_CHAPTER comment) end with. corpus_posts.py's
+    own comment calls a false claim about price "the one category of error
+    this business cannot make"; this phrasing sat live in the pool
+    social_drafts.py emails to Phil to "post as written, or edit freely."
+
+    Checks the real, live pool directly, independent of FREE_CLAIM's own
+    wording, so a future phrasing the regex misses is caught here rather than
+    only by the regex agreeing with itself. The phrase list is maintained by
+    hand as real corpus wording is found, the same way FREE_THROUGH_CHAPTER's
+    own word-bound comments are: read off the actual corpus, not guessed.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import corpus_index as ci
+    import corpus_posts as cp
+
+    known_phrasings = (
+        "read the free", "read it free", "free to read", "free chapter",
+        "free copy", "free version", "free online",
+    )
+    idx = ci.build_index()
+    kinds = sorted({r["kind"] for r in idx[0] if r["ready"]})
+    leaks = []
+    for kind in kinds:
+        for p in cp.pool(kind):
+            num = int("".join(c for c in p.get("chapter", "") if c.isdigit()) or 0)
+            if num <= cp.FREE_THROUGH_CHAPTER:
+                continue
+            low = p["body"].lower()
+            if any(ph in low for ph in known_phrasings):
+                leaks.append(f"{kind}/{p['chapter']}/{p['id']}")
+    if leaks:
+        fail("corpus-posts-free-claim-leak",
+             f"{len(leaks)} postable corpus entr{'y' if len(leaks) == 1 else 'ies'} "
+             f"from a paid chapter still call it free, e.g. {leaks[:3]}")
+
+
 def gate_affiliate_trigger() -> None:
     """Warn only when the one authorised affiliate application becomes allowed.
 
@@ -22381,6 +22423,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_corpus_posts_no_manuscript_leak)
     run_gate(gate_corpus_posts_extraction_yield)
+    run_gate(gate_corpus_posts_no_free_claim_leak)
     run_gate(gate_affiliate_trigger)
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_retired_skus_stripe_archived)

@@ -165,6 +165,14 @@ def main() -> int:
         fails.append("'Read the free chapter.' on a real free chapter (5) was "
                      "wrongly rejected, the claim is true there")
 
+    # Found 2026-09-26 cold-reading this file: 10 real x-post entries from
+    # chapters 31-33 end "Read it free.", a different phrasing from "read the
+    # free" that the filter did not cover, so a false price claim on paid
+    # content sat live in the postable pool.
+    bad_it_free = {"body": f"{pad} Read it free.", "chapter": "ch31"}
+    if cp.clean(dict(bad_it_free)) is not None:
+        fails.append("'Read it free.' on a paid chapter (31) was not caught")
+
     # A newsletter/article-length body must not be squeezed through the same
     # 40-to-400-word box a short social post uses, and pool() has to be the
     # thing making that call, not clean()'s own default.
@@ -508,7 +516,7 @@ def main() -> int:
     if leaked:
         fails.append(f"video-script pool still leaks paid/non-script content: {leaked[:3]}")
 
-    total = 35
+    total = 36
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

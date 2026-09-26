@@ -374,7 +374,8 @@ WORD_BOUNDS = {
 FREE_THROUGH_CHAPTER = 30
 FREE_CLAIM = re.compile(
     r"free (in the )?online|free online|free in the|free,"
-    r"|free chapter|read the free|free to read|free copy|free version",
+    r"|free chapter|read the free|read it free|free to read|free copy"
+    r"|free version",
     re.I,
 )
 

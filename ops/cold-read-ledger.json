@@ -136,6 +136,11 @@
       "date": "2026-09-26",
       "note": "A concurrent cycle marked this file clean the same day without cross-checking the Room card's own 'start_here' claim against content.json's session-time data. It read: Sink and Dishwashing Zone is the kitchen's shortest zone. False: content.json's session field puts Sink at 30-45 min, tied second-shortest with Upper Cabinet Zone, while Utensil and Utility Drawers is the true shortest at 15-30 min. The true, grounded half of the same sentence (Sink is the point the whole kitchen resets from, per the SINK RESET action card's own why field) was correct and kept. Fixed at the source in ops/cardtext/build_kitchen_deck.py's ROOM card start_here field and this generator's own intro paragraph; regenerated kitchen-deck.json and site/kitchen-deck.html. Shipped dd9c0a01a."
     },
+    "build_kitchen_deck_pdf.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26. check() never raises, gate_kitchen_deck_pdf_current only calls check(). main()'s subprocess.run has no timeout guard against a raw TimeoutExpired traceback, but it is never invoked from CI/a generator chain, only run manually by an operator, so a loud crash there is acceptable, not a silent-failure class this repo gates against."
+    },
     "build_laundry_room_deck_page.py": {
       "status": "fixed",
       "date": "2026-09-25",
@@ -306,6 +311,11 @@
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). Ran live: 2745 files, 1050 ready, 4939 postable units, matches ops/corpus-index.json on disk. Sampled 15 of the 1195 'other' files by hand rather than trusting the count (CLAUDE.md 5c): they are manuscript chapters, internal strategy docs, and web-metadata fragments, correctly excluded as not finished postable prose, not a mis-classification. KINDS ordering and units_in() per-kind counting logic checked, both consistent with the file's own docstring. Already wired: imported by corpus_posts.py, dashboard.py, send_questions.py, and checked by two preflight gates. No defect."
     },
+    "corpus_posts.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Found 2026-09-26: FREE_CLAIM missed the real 'Read it free.' phrasing on 10 x-post entries from paid chapters 31-33; regex widened, new preflight gate gate_corpus_posts_no_free_claim_leak added and fail-then-pass proved directly."
+    },
     "crawl_report.py": {
       "status": "clean",
       "date": "2026-09-26",
@@ -330,6 +340,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "fingerprint_assets.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26. REF regex requires double-quoted href/src and a relative (assets/ or ../assets/) path; checked live site for single-quoted or absolute-path (/assets/...) refs that would silently bypass it: zero occurrences in site/**/*.html. --check reports 609 refs across 205 pages, all current. Rewrite-in-place logic (only advancing pos on a stale match) is correct: unchanged spans are swept into the next flush, not skipped."
     },
     "generate_card_art.py": {
       "status": "fixed",
@@ -510,6 +525,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: --status correctly reports honest 0/0/0 with no build/heroes/ present here, sha-based verdict invalidation on regeneration verified correct, no defect"
+    },
+    "roadmap_report.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Found 2026-09-26: WAITING_RE (same regex fixed once before, 2026-09-11) missed 'no operator credential' (row 3.10's real wording, blocked on Phil's YouTube OAuth paste, OWNER-ACTIONS.md item 18), so the 4x-daily report to Phil listed it under NEXT IN THE QUEUE as if the operator could just do it. Added 'credential'/'no operator' to the pattern, new regression test against the live file, fail-then-pass proved directly."
     },
     "room_image_variants.py": {
       "status": "clean",
