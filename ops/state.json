@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-26 16:46",
- "commit": "63efd1c1",
- "commit_msg": "Regenerate command deck after merge",
- "commits_7d": 1102,
- "commits_total": 4013,
+ "generated": "2026-09-26 17:00",
+ "commit": "c9c850a2",
+ "commit_msg": "PM check-in 16:5x: correction, preflight rerun confirmed genuinely clean, prior FAIL self-inflicted",
+ "commits_7d": 1101,
+ "commits_total": 4015,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

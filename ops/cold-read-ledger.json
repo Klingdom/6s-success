@@ -11,6 +11,11 @@
       "date": "2026-09-24",
       "note": "Merchant key normalised inconsistently with the matrix lookup (37/123 CSV rows wrongly read no-programme-record for Home Depot); CRLF line endings in its CSV output. Both fixed, gated by gate_affiliate_report_current."
     },
+    "audit_visual.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Two independent fixes landed the same day, non-overlapping regions of the file, merged together: (1) main()'s exit code only reflected bad_text/bad_img, 2 of 9 categories; a broken image, missing alt/label, invisible focus, bad landmark, heading jump, or (mobile) a crowded tiny target/sideways scroll could all print above a clean $?. No preflight gate relied on it (gate_visual_audit/gate_mobile_touch_targets both parse printed counts, not returncode), but a direct run trusting $? would have been fooled. Fixed to derive from all measured categories; ops/tests/test_audit_visual_exit_code.py fail-then-pass proved directly against a real headless-Chromium render. (2) A stale comment claimed a longer-budget retry runs before a page is marked unread; that retry was written 2026-09-25 and deliberately never shipped (Phil's own commit message: real cost on a memory-short host, not needed once the real cause, an unresolved bare filename, was found). Comment corrected to match the real, no-retry behavior."
+    },
     "backup_analytics.py": {
       "status": "clean",
       "date": "2026-09-25",
