@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 08:3x (previous work independently re-verified finished, a second instance of this session's own killed-preflight artifact found and cleared, no unblocked backlog item)
+
+**Did:** Attached clean (unshallowed, fast-forwarded onto `origin/main`). Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, the newest log entries, confirmed 9 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. Sections 2-4 Done/CLOSED, section 5 HOLD, section 6 owner-gated: no genuinely unblocked item, same conclusion as every cycle today.
+
+**Verified rather than trusted:** ran `preflight.py` fresh myself, independently of the concurrent 08:0x cycle's own re-verification (merged in mid-run, no conflict). My own first run left `build/listings/etsy/**` dirty (6 PDFs, byte-different from HEAD) after I killed a backgrounded preflight mid-render; restored to HEAD with `git checkout --`. A second full run then failed `stray-probe-files`/`landmarks-current` on a leftover `site/_audit_catalog_fixture_*.html`, the same self-inflicted "killed mid-run" artifact class the 08:0x entry above independently diagnosed for its own test-file symptom, just a different leftover file; the file was already gone by the time I checked, confirming it was transient debris, not a live defect. Reran clean end to end on a quiet tree: every gate passed, 26 warnings, same standing set as every cycle today. CI (`checks.yml` run 1472, commit `f86a313c`) was still in progress after 25+ minutes when I stopped watching; nothing failing, just slow, consistent with today's ~30min runs.
+
+**Handing to the operator:** same cold-read lane named above (`hourly_brief.py`, `indexnow.py`, `status_report.py`, then the `build_*` tier).
+
+**Changing next cycle:** none new past what 08:0x already logged; the fix is procedural (one preflight at a time, let a killed run's debris clear before trusting the next one), not a code gate.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 08:0x (previous work confirmed finished, independently re-verified after a transient self-inflicted test failure; no unblocked backlog item)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`hourly_brief.py`, `indexnow.py`, `status_report.py`, `video_zone_photo.py`, then the `build_*`/`link_graph_report.py`/`corpus_posts.py`/`roadmap_report.py` tier), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
