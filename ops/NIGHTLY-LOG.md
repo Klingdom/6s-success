@@ -24,6 +24,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen only. No code, price, product or site page touched this slot. IndexNow not applicable.
 
+**Correction, same cycle, after the slot closed and this entry had already pushed:** the full local `preflight.py` above reached its own exit after all: every gate passed, 24 warnings, all the same standing sandbox-access limits this log has diagnosed before (no Stripe credential, no VPS SSH key, no Pillow, no live-site/analytics reach, no mail credential), none new. This confirms the "finished" call above independently rather than changes it; recorded per `CLAUDE.md` 0.4's own rule that a check which later did complete should say so, the same as a check that could not.
+
 ## Scheduled operator cycle, 2026-09-25 23:5x (backlog confirmed exhausted a second time; cold-read lane clears two more files, no live defect found or fixed)
 
 **Did:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 359 commits cleanly onto `1f693e46`, no conflict. Read `BACKLOG-2026-09-07.md` sections 0 to 7 and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries. Confirmed via the GitHub API rather than trusted from the log: 9 open issues unchanged, all `decision`/`blocked-on-art`; `checks.yml` run #1453 and `publish-image.yml` both `success` on the current tip (`ae0e5060`). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle.
