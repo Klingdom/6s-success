@@ -2,9 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 (cold-read lane: ship.py and fix_dashes.py both hold up clean under adversarial testing; no live defect found)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` (full) clean on attach: every gate passed, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done, HOLD, or Phil-gated. Confirmed the Pinterest/Instagram distribution work `GOALS.md` section 3 still lists as open is in fact already built (`ops/build_social_pins.py`, live), so that line is stale prose, not open work; not fixed this cycle (out of scope for the cold-read lane picked up below, noted here so a future cycle does not re-open it as new).
+
+**The find: continued the standing cold-read lane at `ops/ship.py`, per the 21:2x PM check-in's own handoff.** Read it cold end to end, then tried to break it rather than trust the read. Constructed three adversarial scenarios against a real isolated bare-origin sandbox (the same harness `test_ship_conflict_safety.py` already uses, driving the actual shipped `ops/ship.py`/`ops/sync_push.py`, not a description of them): (1) a conflict confined to a single generated file, (2) two local commits where the first conflicts only in a generated file and resolves cleanly, then the second surfaces a real, non-generated conflict mid `rebase --continue`, and (3) a pre-commit hook forcing a non-conflict failure during the rebase step. Went in expecting to find the same "one file has a safety check, its sibling with duplicated logic does not" shape this repository has found repeatedly (`sync_push.py`'s own `in_progress`/dirty-tree guard was added by a commit that never touched `ship.py`'s copy of the same rebase-conflict logic, confirmed via `git log`/`git show`), and `ship.py` does in fact discard the `git rebase --continue`/`--skip` return code where `sync_push.py` checks it. But in every constructed scenario, `sync_push.markered()`'s defense-in-depth scan (checked on the real working tree regardless of what caused the pause) and the pre-existing `unknown`-conflict abort already catch the failure correctly before anything ships; case (2) proved this directly, with `ship.py` reporting "conflict markers survived resolution" and the repo left clean, not stuck mid-rebase. No exploitable gap found; the discarded return code is a real but currently harmless redundancy, not a live defect, and CLAUDE.md 0.1's own "don't add validation for scenarios that can't happen" cuts against hardening it further without a reproducible failure mode. Also read `ops/fix_dashes.py` cold: `--check` reports clean (0 em/en dashes), `ops/tests/test_fix_dashes.py` 10/10 pass, and its scope (root/`claude/`/`retro/` `*.md` only) is a deliberate, documented choice distinct from the sitewide em/en-dash gate in `preflight.py` that already covers `ops/*.py` and `site/**`, not a coverage gap.
+
+**Sampled `ops/dashboard.py` (2,363 lines, next in the ledger) rather than reading it whole:** seven near-identical blocks (`zone_videos_built`, `zone_photo_videos_built`, `zone_videos_16x9_built`, `narrated_videos_built`, `social_pins_built`, `youtube_metadata_built`, `thumbnails_built`) each catch a bare `Exception` around a file-existence loop and reset the count to `0` rather than reporting "not measured," which is exactly the shape CLAUDE.md 0.4 warns about in the abstract. Did not fix: the loop body (iterating `content.json`'s own already-validated structure, checking `os.path.exists`) has no realistic failure mode that wouldn't already crash earlier in the same run, so treating this as a live defect and building a three-state fix across seven call sites and their downstream renderers would be inventing risk to guard against, not closing one; left for a future cycle to revisit only if one of these ever actually raises.
+
+**Ledgered both files clean** (`ops/cold_read_ledger.py --add ops/ship.py --status clean`, same for `fix_dashes.py`), with the reasoning above recorded in each note so the next reader does not re-run the same three scenarios from scratch. `ops/cold_read_ledger.py --next` now points at `ops/dashboard.py`.
+
+**Went well:** trying to actually break `ship.py` in an isolated sandbox instead of stopping at a clean read; it would have been easy to "fix" the discarded return code as a plausible-sounding defensive improvement and call it a finding, and the adversarial testing is what showed that fix would have had nothing real to protect against.
+
+**Did not go well:** nothing new; the standing pattern (an intensely concurrent operating environment where most low-hanging defects are found within minutes by another session) continued, and this cycle's own two candidates both came back clean.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** cold-read lane continues at `ops/dashboard.py` (partially sampled this cycle, not exhausted). Standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`) and the 8 open decision/art issues, unchanged. No price or product touched, no site page changed; IndexNow not applicable.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log, command deck.
+
 ## PM check-in, 2026-09-26 21:5x (previous work finished, confirmed independently; handoff reaffirmed, no new defect surfaced)
 
-NEXT FOR THE OPERATOR: cold-read `ops/ship.py`, because `ops/cold_read_ledger.py --next` still names it the true lowest-mention un-ledgered candidate and nothing has changed that shape since the last cycle handed it off.
+NEXT FOR THE OPERATOR: cold-read ~~`ops/ship.py`~~ (struck 2026-09-26, scheduled operator cycle: this file and its own next-in-line sibling were both read cold, adversarially tested and ledgered clean shortly after this entry was written) `ops/dashboard.py`, the current lowest-mention un-ledgered candidate.
 
 **Previous work: finished, and re-verified rather than taken on trust.** Attached clean (already unshallowed, `merge --ff-only` fast-forwarded with no conflict onto `a2b19be2`). Ran `preflight.py` myself rather than citing the prior cycle's claim: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, deploy freshness unmeasurable from here), matching what `9f70474a`/`a2b19be2` claimed 15 minutes earlier. Working tree clean, `origin/main` unchanged since, no operator push landed yet at this slot. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 remain done or Phil-gated; the one open constraint (production serving an old build) needs `VPS_DEPLOY_KEY`, issue #35, Phil's own hand.
 
@@ -14,7 +34,7 @@ NEXT FOR THE OPERATOR: cold-read `ops/ship.py`, because `ops/cold_read_ledger.py
 
 **Did not go well:** nothing new; this was a quiet, confirmatory cycle.
 
-**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged. Cold-read lane continues at `ops/ship.py`.
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged. Cold-read lane continues at ~~`ops/ship.py`~~ (struck 2026-09-26, scheduled operator cycle: ledgered clean shortly after this entry) `ops/dashboard.py`.
 
 Pushed to main: this log entry and command deck only. No price or product touched, no new page, IndexNow not applicable.
 
@@ -24,7 +44,7 @@ Pushed to main: this log entry and command deck only. No price or product touche
 
 **The find.** `gate_status_deploy_gap_count_current`'s regex matched only `(N commits`, but BLOCKER-001's newest entries write "N commits (hash, hash)", so it had silently stopped checking: the real gap had drifted from 8 to 9 commits, the new one (`4afe5b0d`) material: the sample-PDF spelling fix. Fixed the regex for both phrasings, fail-then-pass proved, corrected STATUS.md's stale count. `preflight.py` clean after, `check_urls.py` 196/196.
 
-**Next:** cold-read lane continues at `ops/ship.py`, the true lowest-mention candidate. Standing Phil-blocked list unchanged.
+**Next:** cold-read lane continues at ~~`ops/ship.py`, the true lowest-mention candidate~~ (struck 2026-09-26, scheduled operator cycle: ledgered clean) `ops/dashboard.py`. Standing Phil-blocked list unchanged.
 
 Pushed to main. `ops/preflight.py`, its test, `STATUS.md`, this log, command deck.
 

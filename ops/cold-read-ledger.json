@@ -371,6 +371,11 @@
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26. REF regex requires double-quoted href/src and a relative (assets/ or ../assets/) path; checked live site for single-quoted or absolute-path (/assets/...) refs that would silently bypass it: zero occurrences in site/**/*.html. --check reports 609 refs across 205 pages, all current. Rewrite-in-place logic (only advancing pos on a stale match) is correct: unchanged spans are swept into the next flush, not skipped."
     },
+    "fix_dashes.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read cold end to end; --check reports clean, ops/tests/test_fix_dashes.py 10/10 pass. Scope (root/claude/retro *.md only) is deliberate per its own docstring, distinct from the sitewide em/en-dash gate in preflight.py that already covers ops/*.py and site/**."
+    },
     "generate_card_art.py": {
       "status": "fixed",
       "date": "2026-09-25",
@@ -580,6 +585,11 @@
       "status": "fixed",
       "date": "2026-09-25",
       "note": "state-service-orders.json was only written once, after both forward loops finished; a mail failure on booking N of a multi-item batch meant booking N-1's already-sent forward was never persisted, so a rerun forwarded it to Phil a second time, breaking the file's own idempotency promise. save_state() now runs after each successful send. test_service_orders.py extended with a monkeypatched partial-failure regression test, fail-then-pass proved."
+    },
+    "ship.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Adversarially tested the rebase-conflict-resolution path against sync_push.py's own sibling logic (isolated bare-origin sandbox scenarios): a generated-only conflict, a two-commit case where a generated-file conflict resolves cleanly then a second, real-file conflict surfaces mid rebase --continue, and a pre-commit hook forcing a non-conflict failure. In every case the existing sync_push.markered() defense-in-depth plus the unknown-conflict abort already catch it correctly; no exploitable gap found. fix_dashes.py: --check clean (0 em/en dashes), 10/10 own tests pass, deliberately scoped to root/claude/retro control docs per its own docstring (a separate sitewide gate already covers code/site dash usage)."
     },
     "shoot_mobile.py": {
       "status": "fixed",
