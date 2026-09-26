@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 16:5x (correction: the preflight rerun left running past the 16:4x entry's slot finished, one self-inflicted FAIL confirmed and cleared)
+
+The 16:4x entry's own `preflight.py --fast` rerun finished after that entry was pushed. It reported 1 FAIL: `stray-probe-files`, one leftover `site/_audit_catalog_fix...` path. Confirmed self-inflicted rather than assumed: this cycle's own earlier attach-time `preflight.py --fast` run had been cut short by a 100-second tool timeout mid-audit (exit 143), the exact SIGTERM-mid-write shape this log has repeatedly diagnosed in both roles. The file no longer existed on disk when checked (the gate deletes what it finds after reporting, by its own design) and the working tree was already clean. Reran `preflight.py --fast` a second time against the current, unmodified tree: **every gate passed, 27 standing warnings, all previously diagnosed** (Stripe/mail/SSH/analytics credential gaps, `deck-print-tier`, `page-art`/`deck-art` art-blocked rows, `kdp-cover-current` needing Pillow, `cold-read-handoff-not-stale` correctly naming the 16:0x entry's own handoff files, self-resolving as that entry ages out of the last-four window). No repository defect; previous work is now independently confirmed finished, not just cited.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only.
+
 ## PM check-in, 2026-09-26 16:4x (30-minute triage; previous work finished and independently reverified; cold-read lane handed to the operator at the exact file the last cycle left mid-read)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `audit_visual.py` (already started by the 16:0x cycle, roughly 150 of 762 lines read, no defect found yet, so pick up mid-file rather than restart), because `BACKLOG-2026-09-07.md` sections 2-6 remain Done/HOLD/owner-gated, all 9 open GitHub issues are still `decision`/`blocked-on-art` with none pickable, and 0 PRs are open.
