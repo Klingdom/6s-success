@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Same PM session, continued after the 04:2x push above: STATUS.md was 9 material commits stale, fixed, and a real undeployed customer-facing defect surfaced while doing it
+
+**Did:** this cycle's own background `preflight.py`, started at the 04:2x entry's own open, finished clean after that entry was pushed: **every gate passed, 25 warning(s)**, the same standing sandbox-limitation set (no Stripe/Gemini credential, no VPS key, no egress, two font/analytics races), one of them new and real: `status-currency` named `STATUS.md` as 9 material commits stale since its own last edit, including `ac1af6e7` and `ba73ec3c`. Per `CLAUDE.md` section 23 ("keep it current") and 0.2 ("do not report a problem twice you could have fixed once"), fixed it in this same slot rather than handing it to the operator. Rotated section 1's stack (new `Last Updated` entry, oldest `Prior` moved to `STATUS-ARCHIVE.md`, same four-deep practice since 2026-09-17) and wrote the new top entry citing the real commits: CI's own Preflight pass on `ac1af6e7`, this cycle's own clean full local `preflight.py`, and the two cold-read clears.
+
+**Found while fixing it, not separately:** re-derived `BLOCKER-001`'s deploy gap with this repository's own `resolve_verdict_commit()`/`deploy_gap_material_commits()` rather than assume it was still closed from the 2026-09-25 14:15 RESOLVED note. It is not: 3 material commits behind (`ac1af6e7`, `ba73ec3c`, `223f5111`), and `ba73ec3c` is this same day's fix for `render_room()` falsely telling every visitor to a room page "not one product below carries a paying link" directly above real outbound retailer links. That false disclosure is still what production serves until the next redeploy. Not a new defect (the repository-side fix already shipped and is correct), and not actionable from here (no `VPS_DEPLOY_KEY`/`~/.ssh/6s_deploy` in this sandbox, the standing `BLOCKER-001` limit), but worth surfacing loudly rather than leaving the last BLOCKER-001 entry to read as still-resolved: appended a new dated paragraph there rather than editing the old one, matching this section's own established practice of never rewriting a prior entry.
+
+**Verified:** `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current` and `gate_cold_read_handoff_not_stale` called directly against the edited files, all silent (no warn, no fail). `ops/dashboard.py` rerun after the STATUS.md edit (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` regenerated). A second full `preflight.py` started in the background at this entry's own close to cover the STATUS.md/STATUS-ARCHIVE.md edits themselves; not yet confirmed clean by this entry's own push, reported honestly as still running.
+
+**Went well:** treating a WARN this cycle's own run surfaced as real work rather than noise to wave past, and re-deriving the deploy gap while already in `BLOCKER-001` rather than only patching the staleness warning mechanically.
+
+**Did not go well:** the deploy gap now includes a live customer-facing honesty defect (`ba73ec3c`) that no sandboxed session can redeploy; this recurs every time `site/` work lands without a following redeploy, the same structural shape `BLOCKER-001` has recorded dozens of times.
+
+**Changing next cycle:** none; existing gates caught the staleness correctly, this was a hand-fix, not a gate gap.
+
+**Next for the operator:** same cold-read handoff as the 04:2x entry above (`build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `video_zone_photo.py`, ...); confirm this cycle's own background `preflight.py` finishes clean. `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35) remains the only fix for the deploy gap recurring; nothing here is newly actionable without it.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No code, price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 04:2x (previous work confirmed finished via CI's own Preflight step; cold-read lane continued, two more files cleared, no new defect)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 385 commits cleanly onto `ac1af6e7`, no conflict.
