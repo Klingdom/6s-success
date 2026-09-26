@@ -96,6 +96,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, PIL unavailable in this sandbox (standing gap); maskable safe-zone arithmetic checked by hand and correct, no defect found"
     },
+    "build_id.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold read, no defect: hash excludes itself correctly, git-blob-based so platform-independent, --check exit code correct"
+    },
     "build_image_prompts.py": {
       "status": "fixed",
       "date": "2026-09-08",
@@ -356,6 +361,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: no hardcoded secret, correctly gated by gate_ledgerium via check_ledgerium.py, ran clean (unchecked, no credential) in this sandbox, no defect"
     },
+    "link_graph_report.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "cold read, no defect: orphan/thin/dead-end reporting all correct, exit code correctly reflects orphans/depth failures"
+    },
     "link_standards.py": {
       "status": "clean",
       "date": "2026-09-11",
@@ -433,8 +443,8 @@
     },
     "render_all_zone_videos.py": {
       "status": "fixed",
-      "date": "2026-09-21",
-      "note": "batch zone-video renderer. The resource-exhaustion retry comparison (signed vs unsigned DWORD) was found and fixed 2026-09-21 per ops/NIGHTLY-LOG.md, never previously ledgered. Re-read in full this cycle: no further live defect, retry/skip/before-after-snapshot logic all correct; one harmless unreachable elif branch (len(after) > len(before) can never be true when the preceding 'if new' was false, since new empty implies after subseteq before) noted but not worth churning since it changes no behavior."
+      "date": "2026-09-26",
+      "note": "main() returned 0 unconditionally even when failed[] was non-empty, the exact 'success it never observed' defect the file's own docstring names; fixed to return 1 if failed, fail-then-pass proved"
     },
     "render_cards.py": {
       "status": "clean",
@@ -595,6 +605,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read cold; heavily gated already (gate_video_slug_single_source, gate_quest_data_videos_published, done_items/zone_slug single-source checks), no new defect found."
+    },
+    "video_zone_photo.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "same defect: --build's main() returned 0 unconditionally even when a render raised or verify() found a problem; fixed to return 1 if failed, fail-then-pass proved"
     },
     "wire_aria_current.py": {
       "status": "clean",

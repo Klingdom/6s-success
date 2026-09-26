@@ -27,9 +27,12 @@ that grounds the fix instead of the live crash.
 
 Run:  python ops/tests/test_render_all_zone_videos.py
 """
+import io
 import os
 import re
+import shutil
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -110,7 +113,51 @@ def main() -> int:
                       "keep both so a differently-signed runtime cannot "
                       "silently reopen this gap")
 
-    total = 5
+    # Case 6: main()'s own exit code used to be a bare `return 0`, even when
+    # `failed` was non-empty, on the very file whose own docstring names
+    # "a run reporting a success it never observed" as the costliest defect
+    # class here. Proved directly against main() with subprocess.run and OUT
+    # monkeypatched, so no real ffmpeg or video_zone.py subprocess is needed.
+    tmp = tempfile.mkdtemp()
+    old_out, old_zones, old_run, old_argv = (
+        razv.OUT, razv.zones, razv.subprocess.run, sys.argv)
+
+    class FakeCompleted:
+        def __init__(self, returncode):
+            self.returncode = returncode
+            self.stdout = ""
+            self.stderr = "simulated failure"
+
+    try:
+        razv.OUT = tmp
+        razv.zones = lambda: [("Test Room", "Test Zone")]
+        sys.argv = ["render_all_zone_videos.py"]
+
+        # A non-zero exit and no new file: main() must exit 1, not 0.
+        razv.subprocess.run = lambda *a, **k: FakeCompleted(1)
+        rc = razv.main()
+        if rc != 1:
+            fails.append(f"a subprocess failure with no new file must exit "
+                         f"1, got {rc} (this is the exact pre-fix bug: a "
+                         f"failed batch reporting success)")
+
+        # A clean render that actually writes a file: main() must exit 0.
+        def fake_run_ok(*a, **k):
+            slug = vz.zone_slug("Test Room", "Test Zone")
+            path = os.path.join(tmp, slug + ".mp4")
+            io.open(path, "wb").write(b"0" * 60_000)
+            return FakeCompleted(0)
+        razv.subprocess.run = fake_run_ok
+        rc = razv.main()
+        if rc != 0:
+            fails.append(f"a clean batch with no failures must exit 0, "
+                         f"got {rc}")
+    finally:
+        razv.OUT, razv.zones, razv.subprocess.run, sys.argv = (
+            old_out, old_zones, old_run, old_argv)
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    total = 6
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")
