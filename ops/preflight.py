@@ -15502,6 +15502,17 @@ def gate_send_questions_current() -> None:
     ops/deploy_freshness.py's live-checked verdict. Guards both the
     "automatic" claim and that the live-derived function is still actually
     called, so a future edit cannot quietly paste the hardcoded line back.
+
+    Extended 2026-09-26: the YouTube BLOCKING item hardcoded "publishes the
+    14 that already match their own zone page... the rest are being
+    re-rendered on a local machine", frozen from 2026-09-17 when 100 of 114
+    videos were genuinely stale. OWNER-ACTIONS.md's own item 1 records that
+    re-render finishing overnight on 2026-09-18 ("114 of 114 matching...
+    102 ready"), but this email, which exists specifically to tell Phil what
+    his own action would do, kept understating it by 88 videos for over a
+    week. Fixed the same way as the SITE STATUS line: a new youtube_claim()
+    reads ops/check_video_standard.compare() and ops/youtube_upload.ledger()
+    live and states the real ready count, whichever direction it moves.
     """
     p = os.path.join(ROOT, "ops", "send_questions.py")
     if not os.path.exists(p):
@@ -15531,6 +15542,13 @@ def gate_send_questions_current() -> None:
     if "deploy_freshness" not in src:
         bad.append("no longer derives site status from "
                    "ops/deploy_freshness.py's live verdict")
+    if re.search(r"publishes the 14 that already match", src):
+        bad.append('hardcodes "publishes the 14 that already match", frozen '
+                   'from 2026-09-17; OWNER-ACTIONS.md item 1 has read '
+                   '"114 of 114 matching... 102 ready" since 2026-09-18')
+    if "youtube_claim" not in src:
+        bad.append("no longer derives the YouTube BLOCKING line from a live "
+                   "check_video_standard.compare() count")
     if bad:
         fail("send-questions-current",
              "ops/send_questions.py: " + "; ".join(bad))

@@ -261,6 +261,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "generate_card_art.py": {
+      "status": "fixed",
+      "date": "2026-09-25",
+      "note": "torch_status() extracted so the NO-PROVIDER branch reports absent/CPU-only/CUDA honestly instead of a hardcoded false CPU-only claim; ops/tests/test_generate_card_art.py added. Entry lost from an earlier ledger write (concurrent-session merge), backfilled here; the code fix and test were already live and unaffected."
+    },
     "generate_card_heroes.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -286,6 +291,16 @@
       "date": "2026-09-25",
       "note": "CLIP token-budget helper for local SDXL prompts; read-only review (no local model/network in this sandbox to exercise count()). Subject-first ordering and UNVERIFIED-vs-over-budget distinction both correctly implemented. No defect found in the source."
     },
+    "import_chapter_svgs.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Docstring's own 'WHAT THIS IMPORTS' section said 'Two verified figures... 34 of them have not been read', stale since d83241a2 grew FIGURES from 2 to 6 (2026-09-xx) without updating this line; preflight's own gate_chapter_svgs_current docstring already correctly says six. Corrected to 'Six verified figures... 30 of them have not been read'; no functional change, verified live (6/6 wired, idempotent, 0 newly this run)."
+    },
+    "import_generated_art.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Card-sheet vs hero-photo router for the illustrated Entryway/Mudroom art pipeline (the two decks that use photographed card sheets, distinct from the newer typeset glyph-panel decks). Ran --check live: both Desktop drop folders correctly report missing, 126 cards indexed, 0 files found, no error. Verdicts/staging logic (sha-checked approval, promote() safe with no staged files) read correct. No defect."
+    },
     "import_room_images.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -305,6 +320,11 @@
       "status": "clean",
       "date": "2026-09-11",
       "note": "Run live: 0 pages changed, 189 already carry the footer link; the 4 pages without it individually checked and confirmed legitimate exclusions."
+    },
+    "linkedin_drafts.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Daily LinkedIn draft generator (3 corpus posts + 1 connection note + a gated B2B corporate post). Ran --preview live: facts() correctly reads the live catalogue (20 rooms, 114 zones, 684 cards, .99 ebook), corporate_facts() anchor-checks corporate.html before including the B2B post, honesty block matches known state (1 customer, referral). Word caps and 'no TODO/[insert' assertions all held. No defect."
     },
     "media_capability.py": {
       "status": "clean",
@@ -366,6 +386,11 @@
       "date": "2026-09-21",
       "note": "batch zone-video renderer. The resource-exhaustion retry comparison (signed vs unsigned DWORD) was found and fixed 2026-09-21 per ops/NIGHTLY-LOG.md, never previously ledgered. Re-read in full this cycle: no further live defect, retry/skip/before-after-snapshot logic all correct; one harmless unreachable elif branch (len(after) > len(before) can never be true when the preceding 'if new' was false, since new empty implies after subseteq before) noted but not worth churning since it changes no behavior."
     },
+    "render_cards.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Headless-Chromium card renderer + type-fit verifier. Read against its counterpart, build_card_template.py's embedded measuring script (FITREPORT/ENDFIT split across string literals so render_cards.py's own reversed-match regex comment makes sense): sizes/over/safe-area reporting shapes match exactly, including the sh==ch==0 sentinel for a safe-area-only violation. verify_png()'s three-way ok/bad/unchecked correctly distinguishes a missing-PIL environment from a real bad render. Could not exercise live: build/card-fronts (a gitignored build artifact) does not exist in this sandbox, same standing limitation as every other image-pipeline file; py_compile clean. No defect found."
+    },
     "retire_stripe_skus.py": {
       "status": "fixed",
       "date": "2026-09-23",
@@ -400,6 +425,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "needs_phil computed identically to dashboard.py's own definition (decision-labelled issues only); refuses to send a stale brief"
+    },
+    "send_questions.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "BLOCKING item 4's YouTube claim hardcoded 'publishes the 14 that already match... the rest are being re-rendered on a local machine', frozen from 2026-09-17 (100/114 stale). OWNER-ACTIONS.md item 1 recorded that re-render finishing overnight 2026-09-18 (114/114 matching, 102 ready) but this owner-facing email never caught up, understating the payoff by 88 videos for over a week -- the exact class gate_send_questions_current exists to prevent, just not this specific claim. Fixed by adding youtube_claim(), which reads ops/check_video_standard.compare() and ops/youtube_upload.ledger() live and states the real ready/held-back count either direction; verified live (currently: 'publishes all 102, nothing held back', matching OWNER-ACTIONS.md). gate_send_questions_current extended with two new checks (the exact old string, and youtube_claim wiring), fail-then-pass proved directly on both. ops/tests/test_send_questions.py, test_gate_send_questions_covers_top_owner_actions.py, test_youtube_upload.py, test_gate_youtube_sustain_anchor.py all still pass."
     },
     "service_orders.py": {
       "status": "fixed",

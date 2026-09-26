@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 (a stale owner-facing YouTube claim found and fixed; a lost ledger entry backfilled; cold-read lane pushed five more files)
+
+**Did:** attached clean (fetch, unshallow, checkout main, ff-only merge, 364 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the newest four log entries. Full `python ops/preflight.py`: every gate passed, 24 warnings, all previously diagnosed sandbox limits. 9 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. No mail credential; inbox unchecked, not empty. Backlog sections 2 to 4 all done or closed by decision, section 5 HOLD, section 6 owner-gated: matches every recent cycle's own conclusion, no row justifies a fourth workstream.
+
+**A ledger entry had been lost.** `ops/generate_card_art.py` was fixed and (per its own commit) recorded in the ledger on 2026-09-25, but the committed `ops/cold-read-ledger.json` did not contain it, most likely dropped in a concurrent-session merge; the code fix and its test were unaffected and still live. Backfilled the entry rather than let a future cycle re-read a file that was already fixed.
+
+**Cold-read lane, five files read in full.** `ops/import_chapter_svgs.py`: a real stale docstring, "Two verified figures... 34 of them have not been read", left over from when the file grew from 2 to 6 figures (`d83241a2`); preflight's own `gate_chapter_svgs_current` docstring already correctly says six. Corrected to six/30; verified live, all 6 figures still wire idempotently. `ops/import_generated_art.py`, `ops/render_cards.py`, `ops/linkedin_drafts.py`: all read and exercised live where this sandbox allows (the two art-pipeline files cannot fully run without a Desktop drop folder or `build/card-fronts`, both absent here as usual); no defect in any of the three.
+
+**A real, live defect found in `ops/send_questions.py`, the owner-facing "things only you can do" email.** Its YouTube BLOCKING item hardcoded "publishes the 14 that already match their own zone page... the rest are being re-rendered on a local machine", frozen from 2026-09-17 when 100 of 114 rendered videos were genuinely stale. Checked live rather than assumed: `OWNER-ACTIONS.md` item 1 records that re-render finishing overnight on 2026-09-18 ("`ops/check_video_standard.py` now reads 114 of 114 matching... `ops/youtube_upload.py` holds nothing back: `--check` lists 102 ready"), and running `check_video_standard.compare()` here directly confirms 0 stale today. So this email, whose entire purpose is telling Phil what his own action would do, has understated the payoff of a five-minute action by 88 videos for over a week. Fixed at the source: new `youtube_claim()` reads `check_video_standard.compare()` and `youtube_upload.ledger()` live and states the real ready/held-back count in whichever direction it moves, rather than a frozen sentence; verified live output now reads "Authorising today publishes all 102, nothing held back", matching `OWNER-ACTIONS.md`. `gate_send_questions_current` extended with two checks (the exact old string, and that `youtube_claim` is still wired in); both fail-then-pass proved directly against the real file.
+
+**Verified:** `ops/tests/test_send_questions.py`, `test_gate_send_questions_covers_top_owner_actions.py`, `test_youtube_upload.py`, `test_gate_youtube_sustain_anchor.py` all pass. Full `preflight.py` reran clean after both fixes (every gate passed, 24 warnings, identical set). `check_urls.py` (196/196), `audit_pages.py` (0 duplicate titles/descriptions), `fix_dashes.py --check` (0/0) all clean.
+
+**Went well:** treating OWNER-ACTIONS.md's own dated account as the check against send_questions.py's claim, rather than trusting either document on its own; catching the "0 ready to publish" false lead from this sandbox's missing `.mp4` files before reporting it as a finding (the committed `.srt` sidecars, not the gitignored video files, are what both `check_video_standard.py` and this fix actually read).
+
+**Did not go well:** same unrelated-history shallow-checkout shape on every attach; issue #27 still open. A lost ledger entry is a second instance of concurrent-session write loss in this same file; not yet worth a gate, since the cost so far is one re-readable file, not a wrong action.
+
+**Changing next cycle:** none beyond the two gates already added this cycle.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`: `split_deck_cards.py`, `status_report.py`, `stripe_brand.py`, `wire_zone_heroes.py`, `zone_supplies.py`, `build_catalog.py` and the rest of the 34-mention tier). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues unchanged.
+
+Pushed to main. `ops/import_chapter_svgs.py`, `ops/send_questions.py`, `ops/preflight.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or site page touched (three internal ops tools and one owner-facing email generator gained fixes); IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 01:2x (previous work confirmed finished by three independent checks; cold-read lane clears one more file)
 
 **Previous work: finished.** Reattached clean (364-commit fast-forward, no conflict). Local `preflight.py --fast`: every gate passed, the same 24 standing warnings. Working tree clean, main matches origin, nothing uncommitted. 9 open issues confirmed unchanged via the API, all `decision` or `blocked-on-art`. CI's own `Checks` run on this tip (`24bca6ad`) was still mid-`Preflight` after 19+ minutes; unusually slow, not treated as confirmation either way, reported unchecked.
