@@ -306,6 +306,11 @@
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). Ran live: 2745 files, 1050 ready, 4939 postable units, matches ops/corpus-index.json on disk. Sampled 15 of the 1195 'other' files by hand rather than trusting the count (CLAUDE.md 5c): they are manuscript chapters, internal strategy docs, and web-metadata fragments, correctly excluded as not finished postable prose, not a mis-classification. KINDS ordering and units_in() per-kind counting logic checked, both consistent with the file's own docstring. Already wired: imported by corpus_posts.py, dashboard.py, send_questions.py, and checked by two preflight gates. No defect."
     },
+    "corpus_posts.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26 (PM check-in). 504 lines, the corpus post-extraction reader for LinkedIn/Facebook/X/newsletter/quote/takeaway/summary content. Ran live: --stats shows 4978 usable posts across 13 kinds, consistent with the dashboard's ~4,939 figure. Checked the free-chapter false-claim guard (FREE_THROUGH_CHAPTER=30, FREE_CLAIM regex) against clean(): correctly held back only chapters 31-50 posts naming the book free. Checked the reflow() import: every real caller (linkedin_drafts.py, social_drafts.py, preflight.py, corpus_index.py) inserts ops/ onto sys.path before importing this module, so the bare 'from reflow import reflow' resolves in every real invocation, not only when run as a script. Ran ops/tests/test_corpus_posts.py and ops/tests/test_gate_corpus_posts.py directly (6 passed). No defect found."
+    },
     "crawl_report.py": {
       "status": "clean",
       "date": "2026-09-26",

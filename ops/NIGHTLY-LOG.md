@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 15:5x (previous work finished and verified; cold-read lane advanced one file, corpus_posts.py clean, ledgered; own preflight rerun left running past this slot)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_kitchen_deck_pdf.py` (tied lowest-mention with `roadmap_report.py`), because `corpus_posts.py` was cleared this slot, `BACKLOG-2026-09-07.md` sections 2-6 remain Done/HOLD/owner-gated, all 9 open GitHub issues are still `decision`/`blocked-on-art` with none pickable, and 0 PRs are open.
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main` (already existed), `merge --ff-only` fast-forwarded 3 commits onto `origin/main` (`bc806b30`, the 15:3x correction entry), no conflict, working tree clean. Read the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0-7, `EXECUTIVE-DASHBOARD-LIVE.md`. Confirmed live via the GitHub tools: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. The 15:3x entry's own preflight rerun already confirmed clean, so no unfinished claim was inherited.
+
+**Cold-read `ops/corpus_posts.py`** (504 lines, the corpus post-extraction reader, tied lowest-mention unledgered file). Read in full: the ten shape-specific extractors (`split_posts`, `split_numbered`, `split_whole`, `split_sales_copy`, `split_short`, `split_questions`, `split_quotes`, `split_summary`, `split_takeaways`), the `FREE_CLAIM` guard that holds back any chapter-31-to-50 post calling the book free, and `take()`'s rotation-exhaustion restart. Ran `--stats` live: 4,978 usable posts across 13 kinds, consistent with the dashboard's carried-forward ~4,939 figure. Specifically checked the one shape that looked riskiest cold: `clean()`'s bare `from reflow import reflow` (a relative import that only resolves with `ops/` on `sys.path`) against every real caller, `linkedin_drafts.py`, `social_drafts.py`, `preflight.py`, `corpus_index.py`, all four insert `ops/` onto `sys.path` before importing this module, so the import resolves in every real invocation, not only when run standalone; not a silent no-reflow defect. Ran `ops/tests/test_corpus_posts.py` and `ops/tests/test_gate_corpus_posts.py` directly (6 passed). No defect found. Recorded clean via `ops/cold_read_ledger.py --add`.
+
+**My own `preflight.py --fast` rerun did not finish this slot.** `gate_tests` was still on `test_audit_catalog.py`'s subprocess after 8+ minutes, the same genuinely-slow shape the 2026-09-26 14:2x and 15:1x entries already diagnosed (a live, sleeping-state child, not a hang). Left running in background; not reporting it clean since it has not concluded. Regenerated the dashboard (`ops/dashboard.py`), which does not depend on preflight finishing.
+
+**Went well:** the handoff from the 15:1x/15:3x entries pointed straight at the right file, no time spent re-deriving the queue.
+
+**Did not go well:** `gate_tests` still the same multi-minute bottleneck; nothing new to add beyond what is already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_kitchen_deck_pdf.py`, `roadmap_report.py`, `fingerprint_assets.py`, `audit_visual.py`, `build_seo.py`, then the higher-mention tier. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 15:3x (correction: the preflight rerun left running past the 15:1x entry's slot finished, 3 FAILs, all confirmed self-inflicted by this cycle's own concurrent merge)
 
 The 15:1x entry's own `preflight.py --fast` rerun, started before the merge below it, finished after this cycle had already resolved the concurrent conflict with the 15:0x operator cycle and pushed (`c7126f91`). It reported 3 FAILs: `conflict-markers` (5 files, including `EXECUTIVE-DASHBOARD-LIVE.md` and `ops/state.json`), `gate_risks_evidence_current` (crashed on a JSON parse), and `stray-probe-files`. All three are explained by that run scanning the working tree while `git merge origin/main` had literal `<<<<<<<`/`=======`/`>>>>>>>` markers sitting in exactly those files mid-resolution, the same foreground/background file-mutation-overlap class this log has repeatedly diagnosed, just from a merge this time rather than a stash or a killed foreground run. Confirmed self-inflicted rather than assumed: reran `preflight.py --fast` a third time against the current, fully-resolved, already-pushed tree. **Every gate passed, 27 standing warnings, all previously diagnosed** (Stripe/mail/analytics/SSH credential gaps, `deck-print-tier`, `page-art`/`deck-art`, `kdp-cover-current` needing Pillow, `cold-read-handoff-not-stale` naming `build_deck_gallery.py`/`build_catalog.py` from an entry three back, self-resolving as it ages out of the last-four window). No repository defect; nothing here needed a fix.
