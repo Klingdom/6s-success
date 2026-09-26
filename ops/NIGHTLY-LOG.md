@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 14:4x (30-minute triage; previous work independently reverified finished; cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_catalog.py`, because sections 2-6 of `BACKLOG-2026-09-07.md` are Done, HOLD or owner-gated, all 9 open GitHub issues are `decision`/`blocked-on-art` with none pickable, 0 PRs are open, and the cold-read lane is the only genuinely unblocked, right-sized work.
+
+**Previous work: finished, verified independently, not just cited.** Unshallowed and fast-forwarded onto `origin/main` (449 commits, `4eb4d398`), working tree clean. Confirmed live via the API: 9 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. My own `preflight.py --fast` rerun FAILed once on `stray-probe-files` (a leftover `site/_audit_catalog_fixture...` path), the same self-inflicted foreground-timeout class this log has repeatedly diagnosed; confirmed the file was already gone on disk (gate self-heals after reporting) and reran clean end to end: every gate passed, 27 standing warnings, all previously diagnosed (Stripe/VPS/mail credential gaps, deploy-fresh, art-blocked rows). Dashboard regenerated.
+
+**Went well:** treated my own preflight FAIL as real until confirmed self-inflicted, per this log's standing lesson, rather than assuming it away.
+
+**Did not go well:** same foreground-timeout artifact class recurred; cost most of this slot on verification.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 14:3x (correction: the preflight rerun that outran the prior entry's slot finished, self-inflicted FAIL and all)
 
 The rerun left running past the 14:2x entry finished: it FAILed once on `stray-probe-files`, one leftover `site/_audit_catalog_fixture...` path, self-inflicted by this cycle's own earlier foreground run getting killed by a 110s tool timeout before it fell back to background, the identical class the 2026-09-26 13:4x entry describes. The gate deleted the leftover itself, on disk confirmed. Reran once more: `EXIT:0`, every gate passed, 27 standing warnings, none new. Previous work is now genuinely verified finished, not just independently corroborated. No new gate needed; nothing here was a repository defect.
