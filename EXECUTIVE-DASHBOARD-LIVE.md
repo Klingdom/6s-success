@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-26 20:38 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-26 20:40 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -29,7 +29,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
 | Commits (7 days) | 1118 of 4048 total |
-| Working tree | clean, in sync |
+| Working tree | uncommitted or unpushed work |
 | Last commit | `e078c6c9` Merge concurrent fixes: Phil's caption regeneration and this |
 
 ## Product readiness

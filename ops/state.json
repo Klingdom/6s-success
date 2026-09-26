@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-26 20:38",
+ "generated": "2026-09-26 20:40",
  "commit": "e078c6c9",
  "commit_msg": "Merge concurrent fixes: Phil's caption regeneration and this cycle's youtube-metadata regeneration for the same stale Kitchen typo",
  "commits_7d": 1118,
