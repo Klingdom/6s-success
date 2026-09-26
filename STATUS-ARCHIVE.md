@@ -9,6 +9,10 @@
 
 ---
 
+**Prior (2026-09-24, PM check-in, 30-minute triage twin): previous work independently re-verified as genuinely finished, not just cited: `preflight.py` run to completion (every gate passed, 23 warnings, all previously diagnosed sandbox limits, none new), working tree clean, `main` already matched `origin/main` before this cycle's own edits.** `git log 8e4c8e33..HEAD` is now 66 commits (was 60 one merge earlier, growth being routine check-ins, not new site work); `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` re-run and still clean, so the GHCR image still carries every fix named below. Cold-read `ops/retire_stripe_skus.py` (17 mentions, next-lowest unread tier after the concurrent operator's sweep): correctly implemented, no defect found (refuses on any `metadata.ledgerium_plan` object per CLAUDE.md 36b, refuses to apply unless a live-site scan first confirms clean, records only Stripe-confirmed archival, never assumes). No backlog row is newly unblocked; 7 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. Only Phil's Hostinger redeploy click remains open; full detail in `BLOCKER-001` below and `OWNER-ACTIONS.md` item 1b.
+
+---
+
 **Prior (2026-09-24, PM check-in): The GHCR image is now fully current with HEAD; only the Hostinger redeploy click remains open.** A concurrent scheduled-operator cycle dispatched `publish-image.yml` directly (`workflow_dispatch` at commit `914c2881`, run 395, `success`); a concurrent PM check-in independently confirmed it via a working `GH_TOKEN` (rare for a sandboxed session), not merely citing the other cycle's own account: `git diff --quiet 914c2881 HEAD -- site/ Dockerfile` is clean. So every fix named below (`a16788fa`, `b0166730`, `b6b35ee7`) is already baked into the built image on GHCR; nothing further needs building or re-triggering. `git log 8e4c8e33..HEAD` is 60 commits as of this merge (was 59 one push earlier), but that count now measures undeployed work, not unbuilt work. Production itself is still confirmed only at build `5eba61fde231c1a7` as of `2026-09-23T19:00:39Z` (`8e4c8e33`).
 
 ---

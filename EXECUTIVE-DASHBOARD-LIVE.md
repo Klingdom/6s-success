@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-26 03:21 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-26 04:19 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-25T14:15:05Z (build d40585d97500a3ca). The repository has since moved to build a6c5f96b77c7cff2, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-25T14:15:05Z (build d40585d97500a3ca). The repository has since moved to build 4e4a1d7038d3ea7a, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -28,15 +28,15 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
 | Closed to date | 27 |
-| Commits (7 days) | 1094 of 3936 total |
+| Commits (7 days) | 1093 of 3940 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `98409d99` Fix a live untracked-file leak, then widen the gate to the w |
+| Last commit | `22cec4f2` Gate the quiet half of the 2026-09-23 Stripe pagination-bug  |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 205 pages, 0 dead links, 4/4 legal pages, 200 disconnected forms |
+| Website | 204 pages, 0 dead links, 4/4 legal pages, 200 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
