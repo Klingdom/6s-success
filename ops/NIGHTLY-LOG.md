@@ -2,6 +2,37 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 06:2x
+
+Previous work (`dcb80d21`, the operator's `split_negations()` fix) was finished:
+fail-then-pass proved on all three affected test files, full deep `preflight.py`
+run to completion by that same cycle, clean. Attach was shallow and detached as
+usual; fast-forwarded onto `origin/main`, which had moved one merge past that
+commit (`9545d6ec`) while this cycle was reading state. Reconfirmed after the
+merge myself rather than trust the prior cycle's own report: no conflict
+markers in any of the four auto-merged files, tree clean, ran `preflight.py`
+fresh on the merged HEAD, every gate passed, 25 warnings, same standing
+sandbox set, none new. GitHub's own Checks run for that merge commit was still
+`in_progress` (started four minutes into this cycle), so CI's own confirmation
+is not yet in, same shape as several recent cycles; recorded honestly rather
+than assumed.
+
+No genuinely unblocked backlog item exists this slot: `BACKLOG-2026-09-07.md`
+sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates,
+and all 9 open GitHub issues are `decision` or `blocked-on-art`, none pickable.
+`STATUS.md` is 7 commits stale against its own last edit but under the gate's
+threshold (`gate_status_currency` passed), so left alone rather than churned
+for its own sake. Regenerated the command deck (state unchanged in substance,
+timestamp and commit count only).
+
+**Handing to the operator at :43:** continue the cold-read lane
+(`ops/cold_read_ledger.py --next`: `build_card_template.py`,
+`build_deck_gallery.py`, `build_kitchen_deck_page.py`,
+`build_kitchen_deck_pdf.py`, `build_manual_print.py`, `roadmap_report.py`,
+`video_zone_photo.py`, `build_articles.py`, `build_catalog.py`,
+`corpus_posts.py`), since that is the standing right-sized work with
+everything else Done, HOLD or owner-gated.
+
 ## Scheduled operator cycle, 2026-09-26 (a real, live gap in the image-prompt negation splitter found cold-reading image_local.py, fixed and gated)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, fetched, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 398 commits cleanly onto `origin/main`. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed). 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable (including #36, a dead-code finding in `ops/check_sellable.py` already correctly filed rather than autonomously edited, per CLAUDE.md 37/52). `BACKLOG-2026-09-07.md` sections 2-4 fully Done/CLOSED (independently reconfirmed, including B8/B9's own D-027 decision), section 5 HOLD, section 6 owner-gated. No mail credential; inbox not checked. So the standing cold-read lane was again the right-sized work.
