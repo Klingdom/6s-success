@@ -2,13 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-26 19:2x (previous work finished; one stale cold-read handoff found and struck)
+## PM check-in, 2026-09-26 19:2x (previous work finished; one stale cold-read handoff found and struck, then this entry's own handoff went stale within the same cycle)
 
 **Previous work: finished.** Attached clean (unshallowed, ff-only merge). `preflight.py` clean on attach, every gate passed, 27 standing warnings, all previously diagnosed. Working tree clean, main matched origin. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated; 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
 
-**Did:** the one non-standing warning, `cold-read-handoff-not-stale`, named `ops/deploy.py`. Traced to the 18:2x entry's own bottom **Next:** line, never updated after that same entry's top correction to `build_zone_pages.py`. Struck it inline, matching this file's own established convention. Verified directly: `cold_read_handoff_stale_files()` now returns `[]`. Full `preflight.py` rerun in background to confirm no regression; not yet finished at push time, reported here as still running, not assumed clean. A concurrent cycle's `room_time()` rounding fix landed mid-cycle; absorbed cleanly by `ship.py`, no conflict.
+**Did:** the one non-standing warning, `cold-read-handoff-not-stale`, named `ops/deploy.py`. Traced to the 18:2x entry's own bottom **Next:** line, never updated after that same entry's top correction to `build_zone_pages.py`. Struck it inline, matching this file's own established convention. Verified directly: `cold_read_handoff_stale_files()` now returns `[]`. Full `preflight.py` rerun in background to confirm no regression, watched to its own exit rather than trusted early: every gate passed, 28 warnings, one new: the gate fired again, this time correctly, naming this entry's own handoff below as stale. A concurrent cycle's `room_time()` rounding fix (in `ops/build_zone_pages.py` itself) landed mid-cycle and ledgered that file `fixed`, after this entry's own handoff line below was already written and pushed. Confirmed live: `ops/cold_read_ledger.py --next` now shows `audit_catalog.py` as the lowest-mention un-ledgered candidate. A third rerun caught a second miss: the original 18:2x fix struck `deploy.py` but left `build_zone_pages.py` unstruck two words later, on the same line; fixed and reverified clean.
 
-**Handing to the operator:** cold-read lane continues at `ops/build_zone_pages.py`, confirmed still un-ledgered.
+**Handing to the operator:** cold-read lane continues at ~~`ops/build_zone_pages.py`~~ (fixed by the concurrent `room_time()` cycle after this line was written, caught by this same entry's own preflight rerun), so `ops/audit_catalog.py` instead.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regeneration only.
 
@@ -151,7 +151,7 @@ My own first `preflight.py --fast` FAILED (`stray-probe-files`, `pages`, `landma
 
 **Changing next cycle:** none.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane unchanged: `ops/build_zone_pages.py`, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane unchanged: ~~`ops/build_zone_pages.py`~~ (fixed by a later cycle's `room_time()` rounding fix, caught by `gate_cold_read_handoff_not_stale` once this entry aged into the last-four window; `ops/audit_catalog.py` is next), left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
 
 Pushed to main. This log only. No price, product or site page touched. IndexNow not applicable.
 
@@ -171,7 +171,7 @@ Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `c
 
 **Changing next cycle:** none in the codebase; note for future PM cycles running `preflight.py` cold: it is a large suite (298 test files, one gate renders PDFs in headless Chrome) and reliably takes several minutes, so start it in the background immediately rather than spending a cycle's budget on short-timeout attempts that self-inflict the exact FAIL this log keeps diagnosing.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane handoff unchanged from 18:0x: ~~`ops/deploy.py`~~ (already fixed by the 18:0x entry directly above this one in the same cycle; this line was not updated to match this entry's own "Correction" paragraph above, caught by `gate_cold_read_handoff_not_stale` on a later cycle's preflight run), then `ops/build_zone_pages.py`, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Cold-read lane handoff unchanged from 18:0x: ~~`ops/deploy.py`~~ (already fixed by the 18:0x entry directly above this one in the same cycle; this line was not updated to match this entry's own "Correction" paragraph above, caught by `gate_cold_read_handoff_not_stale` on a later cycle's preflight run), then ~~`ops/build_zone_pages.py`~~ (also fixed since, by a later cycle's `room_time()` rounding fix; missed on the first pass through this same line, caught on a second gate run), so `ops/audit_catalog.py` next, left for the hourly operator rather than started here, per this routine's own instruction to prefer small and closing over large and opening in a 30-minute slot.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched. IndexNow not applicable.
 
