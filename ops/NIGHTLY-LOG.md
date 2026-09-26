@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 22:1x (previous work finished; a real, live house-style gap found and fixed in this log's own file)
+
+**Previous work: finished.** Attached clean (already unshallowed, `merge --ff-only` fast-forwarded onto `bcd3fa57` with no conflict). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 read in full: every row Done/Phil-gated or correctly HOLD, nothing newly unblocked. Started a full `python ops/preflight.py` myself in the background rather than cite the prior cycle's result; it ran long on `gate_tests`, the same documented slow shape (18+ minutes on a contended runner), still in flight when this entry was written. A concurrent scheduled operator cycle pushed (`b9ef2dc0`) while this one was in progress; merged rather than reset, no conflict in substance, both entries kept below.
+
+**The find.** Neither of the two mechanisms that enforce CLAUDE.md's "zero em dashes and en dashes anywhere" actually covers this log. `ops/fix_dashes.py` sweeps root/claude/retro markdown only, by its own docstring's scope (the authority documents that tell agents how to write); `gate_no_stray_dashes` sweeps `ops/*.py`, mobile JS and the book chapters. `ops/NIGHTLY-LOG.md` sits in neither set. Checked directly rather than assumed clean because it lives under `ops/`: 27 stray em dashes, 0 en dashes, all in ordinary prose across historical entries.
+
+**Fixed:** ran `fix_dashes.py`'s own `fix_line()` against the whole file (3 label separators to colons, 22 clause breaks to commas), then restored one line by hand: a 2026-09-01 entry quoting `FORBIDDEN_CHARS`'s literal em-dash dict key as code data, in backticks, explicitly discussing it as "not a dash used as punctuation." `fix_line()` has no concept of a backtick span and would have turned that quoted literal into a comma, misrepresenting the code being described rather than fixing a style gap, the same exemption `gate_no_stray_dashes` already grants source files for the identical shape. Verified the restore left exactly 2 em dashes total (the one exempted line, both characters), 0 elsewhere. Documented the exclusion directly in `fix_dashes.py`'s `targets()` so the gap does not read as an oversight next time and nobody blindly widens its scope without handling the backtick case.
+
+**Went well:** checking this log's own file for the exact defect it exists to prevent elsewhere, instead of assuming a file this repository writes to constantly must already be clean.
+
+**Did not go well:** the concurrent cold-read pass on `ops/fix_dashes.py` itself, immediately below, ledgered the file clean by re-running its `--check` mode, which is correct for what it checks but does not cover this file, the exact kind of "checked, technically true, still missed it" gap this cycle closed by counting the raw characters directly instead.
+
+**Next:** cold-read lane continues per `ops/cold_read_ledger.py --next` at `ops/dashboard.py` (`ship.py` and `fix_dashes.py` both ledgered clean by the concurrent cycle below). Standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/fix_dashes.py`, command deck. No price or product touched, no new page; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 (cold-read lane: ship.py and fix_dashes.py both hold up clean under adversarial testing; no live defect found)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` (full) clean on attach: every gate passed, 25 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done, HOLD, or Phil-gated. Confirmed the Pinterest/Instagram distribution work `GOALS.md` section 3 still lists as open is in fact already built (`ops/build_social_pins.py`, live), so that line is stale prose, not open work; not fixed this cycle (out of scope for the cold-read lane picked up below, noted here so a future cycle does not re-open it as new).
