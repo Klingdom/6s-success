@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 16:4x (30-minute triage; previous work finished and independently reverified; cold-read lane handed to the operator at the exact file the last cycle left mid-read)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `audit_visual.py` (already started by the 16:0x cycle, roughly 150 of 762 lines read, no defect found yet, so pick up mid-file rather than restart), because `BACKLOG-2026-09-07.md` sections 2-6 remain Done/HOLD/owner-gated, all 9 open GitHub issues are still `decision`/`blocked-on-art` with none pickable, and 0 PRs are open.
+
+**Previous work: finished, verified independently, not just cited.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main` (already existed locally), `merge --ff-only` fast-forwarded cleanly onto `origin/main` (`63efd1c1`, the 16:0x cycle's own command-deck regeneration), no conflict, working tree clean before and after. Read the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section headings and every row not marked Done/HOLD, `EXECUTIVE-DASHBOARD-LIVE.md`. Confirmed live via the GitHub API rather than citing the log: 9 open issues, identical set and labels to every prior cycle today (`decision` x6, `blocked-on-art` x2, one carrying both `P0`+`decision` and one `P0`+`blocked-on-art`), none pickable per the standing rule never to pick an item waiting on Phil; 0 open PRs. `ops/cold_read_ledger.py --next` confirmed the handoff file order the 16:0x entry named (`audit_visual.py`, `build_seo.py`, `deploy.py`, `build_zone_pages.py`, then the higher-mention tier) is still correct.
+
+**My own `preflight.py --fast` rerun did not finish this slot.** Started at attach; `gate_tests` was still running past 15+ minutes, the same documented slow shape (a live, actively-spawning `test_audit_catalog.py` subprocess, not a hang) six separate cycles today have already diagnosed and traced via `/proc`. Left running in background rather than kill it mid-check or block the handoff on it; not reporting my own run clean since it has not concluded. The 16:0x entry's own full `preflight.py` (both `--fast` and the deep default) already reported every gate passed with 27 warnings, all previously diagnosed, so previous work stands as finished on that cycle's own verification; this run is an independent reconfirmation still in flight, not the thing that makes the prior work done.
+
+**Went well:** treating the 16:0x entry's own full preflight pass (not just its narrative) as the actual verification, and confirming GitHub/backlog/PR state fresh myself rather than trusting the log's "unchanged" claim on faith.
+
+**Did not go well:** same shallow/detached checkout shape on attach; `gate_tests` cost the whole slot again, the same standing bottleneck this log has repeatedly named without a fix, because the slowness is in the test subprocess's own real work, not a defect to patch.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 16:0x (a real, live false price claim found cold-reading corpus_posts.py, superseding a concurrent PM check-in's "clean" verdict on the same file below: 10 postable posts from paid chapters said "Read it free."; a second live defect found continuing the same lane in roadmap_report.py, a Phil-blocked row misreading as operator-actionable in the 4x-daily report)
 
 Supersedes the 15:5x entry below's "clean, ledgered" verdict on `ops/corpus_posts.py`: that pass checked the extractors and the `reflow` import path and ran the existing test suite, all real and correct, but did not independently re-derive `FREE_CLAIM`'s own coverage against the live pool, which is where this cycle found the leak. Not a contradiction to hide: `ops/cold-read-ledger.json`'s entry for this file is updated to `fixed`, dated after `clean`, and both entries stand in this log.
