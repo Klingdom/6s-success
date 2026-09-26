@@ -351,6 +351,11 @@
       "date": "2026-09-25",
       "note": "book-photo importer; ran live, correctly reports MISSING for all figures (no access to Phil's local Windows master path from this sandbox) and reconcile() correctly refused to shrink any room's committed manifest. Guard behaved exactly as documented. No defect."
     },
+    "indexnow.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full (405 lines). Checked --new/--changed/--submit/--status modes, key_is_live() three-state (True/False/None) handling, withhold_undeployed() skipping undeployed URLs, content_hashes() baseline-vs-changed logic and its own documented 2026-09-08 fix (hashes recorded only for accepted_now, not all of log[submitted]). run() only appends to log[runs] on an actual submission attempt (not on key-unreachable or refused-to-submit early returns), so status() last-submission line reflects last real submission, not last invocation; correct per this file's own stated purpose (when did we last submit), not a gap. No exit-code-lies-about-success shape (each mode returns rc from run() or an explicit failure code). No defect found."
+    },
     "launch_plan_pdf.py": {
       "status": "clean",
       "date": "2026-09-25",
