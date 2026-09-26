@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in addendum, 2026-09-26 20:3x (CI checked directly rather than trusted: a real, live gate FAIL found and converged on with a concurrent fix)
+
+NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.
+
+**Went further than the local `preflight.py` this time: checked GitHub's own CI directly, per CLAUDE.md 0.3 ("a local pass has not proved CI passes").** `publish-image.yml`'s most recent automatic run (on `0ce148e7`) had failed; local `HEAD` had since moved 2 commits ahead with no site/Dockerfile-path push to re-trigger it, so the red status was unproven either way. Manually dispatched the workflow (`workflow_dispatch`, no production impact: this workflow only builds and publishes an image to GHCR, never deploys) to get a real answer instead of citing a stale run or assuming the gap was cosmetic.
+
+**It failed again, for a real reason.** `gate_generator_ownership`: two committed, generator-owned artifacts had drifted from their generators and nothing local had caught it, because my own earlier check of this gate only tested for a raised exception, not the `FAIL` list `fail()` actually appends to (the same footgun this file's own `run_gate()` was written to guard main() against, just one layer up in my own verification). Properly checked: `build/social/captions/kitchen--cooking-zone.json` and `build/video/youtube/kitchen--cooking-zone.json` both still carried the "step of space" typo `fbeba2f7` fixed in `content.json` and 21 other artifacts, but not these two, because neither generator (`ops/build_social_captions.py`, `ops/build_youtube_metadata.py`) had been rerun after that fix. Regenerated both, verified the diff was the exact one-word fix and nothing else, committed.
+
+**Converged rather than duplicated:** the push was rejected, a concurrent session had found and fixed the identical gap independently (commits `989989dd`/`7de91d06`, merged as `e078c6c9`); diffed my local commit against origin's and confirmed byte-identical content, so reset to origin rather than push a redundant commit recording the same fix twice. `gate_generator_ownership` confirmed clean at the new HEAD. A fresh `publish-image.yml` run was already in flight against `e078c6c9` by the time this was checked; not duplicated.
+
+**Went well:** checking CI directly instead of trusting a local green, and checking a gate's actual `FAIL`/`WARN` lists instead of "did it raise," caught two real things a shallower check would have missed or misreported as passing.
+
+**Did not go well:** my own first verification of `gate_generator_ownership` (checking for a raised exception) was itself the "unchecked is not passing" shape CLAUDE.md 0.4 warns about; caught before it was recorded as a real check, not after.
+
+Pushed to main (superseded by the concurrent merge, no separate push needed). No price or product touched, no new page.
+
 ## Scheduled operator cycle, 2026-09-26 (a live false-positive gap found cold-reading ops/audit_catalog.py: two concurrent sessions absorbed this cycle's first two finds before they could be pushed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, ff-only merge clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean on attach, every gate passed. This cycle independently found and fixed the exact same two live defects two other concurrent sessions were fixing at the same moment (`STATUS.md`'s BLOCKER-001 commit-gap undercount, 5 to 7; `OWNER-ACTIONS.md`'s stale header date): both times `git push` was rejected, both times the concurrent commits already carried the identical fix (one from Phil himself), so both local commits were discarded and this session fast-forwarded onto theirs rather than push a duplicate. No time lost worth logging twice; not repeated here.
