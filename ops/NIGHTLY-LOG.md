@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 12:2x (false claim found and fixed on a live page; a concurrent cycle's clean verdict on the same file corrected)
+
+Previous work finished at attach: preflight clean, 9 issues unchanged, 0 PRs. Cold-read `build_kitchen_deck_page.py`, which a concurrent pass had just called clean minutes earlier: found the Kitchen Room card and page intro falsely claim the Sink zone is shortest (content.json: Sink 30-45 min; Utensil and Utility Drawers is truly shortest at 15-30 min). Entryway's identical claim checked and confirmed true, untouched. Fixed the corpus and page, refreshed a sitemap lastmod preflight caught stale, reran clean, corrected the ledger's wrong "clean" to "fixed".
+
+Handing to operator: cold-read lane at `build_kitchen_deck_pdf.py`.
+
+Pushed (`dd9c0a01a`, `37cc1b3ed`). No price or product touched.
+
 ## PM check-in, 2026-09-26 12:4x (previous work independently reverified via a full preflight run; backlog and issues confirmed exhausted; cold-read lane handed to the operator)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_kitchen_deck_pdf.py`, because backlog sections 2-6 are Done/HOLD/owner-gated and all 9 GitHub issues are decision/blocked-on-art, none pickable.
