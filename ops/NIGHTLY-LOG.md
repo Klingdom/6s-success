@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in addendum, 2026-09-26 19:5x (the entry below's own fix went stale within the same cycle: a concurrent real redeploy landed, and a second real gate FAIL was found and fixed)
+
+NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.
+
+**Rerunning `preflight.py` after shipping the entry below surfaced two more real findings, neither caused by this cycle's own edit.**
+
+First, a genuine FAIL: `gate_owner_actions_last_measured_current`, because a concurrent commit (`fbeba2f7`, Phil directly, holding real production access) had added a bare `2026-09-26` date ("Held back 2026-09-26: the films and captions are from different generations") to `OWNER-ACTIONS.md`'s body, past the header's `2026-09-25` "Last measured" line. Followed this repository's own established precedent for this exact shape (reword the bare date away rather than restamp the header, since the header's date is load-bearing for the traffic-reading citation `ops/dashboard.py` parses): changed it to cite the commit instead. Verified directly against the gate's own regex: no problem reported after.
+
+Second, a real warning: that same concurrent commit had also redeployed production (`ops/deploy-verdict.json` now records build `a6c5f96b77c7cff2`, `checked_at: 2026-09-25T22:21:27Z`, later than the `d40585d97500a3ca`/14:15:05Z this cycle's own STATUS.md fix had just cited), closing part of the gap this cycle had just widened and opening a new one. Re-derived directly: 8 commits now undeployed (`resolve_verdict_commit()` -> `223f5111`), 4 material, including a real content-typo fix (`fbeba2f7` itself, Kitchen zone `purpose` text reaching 21 downstream artifacts). Corrected `STATUS.md`'s `BLOCKER-001`, its "Production Knowledge" paragraph, its "Production traceability" row, and the two summary-table build citations to the new verdict, all by direct computation against `status_deploy_verdict_problem()`/`deploy_gap_count_problem()`, not guessed. Both gates confirmed clean after.
+
+**Went well:** rerunning preflight a second time after a fix, rather than trusting the first green, caught a real concurrent change this session had not seen.
+
+**Did not go well:** the deploy gap keeps reopening faster than it can be described; this is the same standing structural limit (`OWNER-ACTIONS.md` item 0, issue #35), not a new defect.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, dashboard regeneration. No price or product touched, no new page.
+
 ## PM check-in, 2026-09-26 19:4x (previous work finished; a done-but-open GitHub issue closed, and a live deploy-gap undercount caught and corrected)
 
 NEXT FOR THE OPERATOR: cold-read `ops/audit_catalog.py`, because it is still the lowest-mention un-ledgered `ops/*.py` file per `ops/cold_read_ledger.py --next`, unchanged since the last handoff.

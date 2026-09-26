@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-26 19:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-26 20:05 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-25T14:15:05Z (build d40585d97500a3ca). The repository has since moved to build bca3162dde68de66, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-25T22:21:27Z (build a6c5f96b77c7cff2). The repository has since moved to build d796fde95ddab137, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1109 of 4038 total |
+| Commits (7 days) | 1112 of 4041 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `2b5b97ee` PM check-in 19:2x: catch a second and third stale cold-read  |
+| Last commit | `5572757c` Close issue #36 (already fixed), correct BLOCKER-001's deplo |
 
 ## Product readiness
 
@@ -59,7 +59,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Redeploy the site.** Production is serving an older build: 0 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 111 reviewed pictures and every fix since the last deploy reach nobody.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
-- **Authorise YouTube uploads** (5 min). 102 finished, narrated, captioned videos are on a disk.
+- **Authorise YouTube uploads** (5 min, but **DO NOT PASTE YET**). **Held back (commit `fbeba2f7`): the films and their captions are from different generations and would publish badly out of sync.** Measured: every film on disk is 30.2 seconds, all 114 of them, while every caption file runs to 74.8 seconds, because `ops/video_zone.py` now builds 34 to 42 beats per zone where the rendered batch has far fewer.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** (0 min). All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed.
 - **#35** Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys
