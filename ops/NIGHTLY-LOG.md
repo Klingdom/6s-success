@@ -2,7 +2,9 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-09-26 16:0x (a real, live false price claim found cold-reading corpus_posts.py: 10 postable posts from paid chapters said "Read it free."; a second live defect found continuing the same lane in roadmap_report.py, a Phil-blocked row misreading as operator-actionable in the 4x-daily report)
+## Scheduled operator cycle, 2026-09-26 16:0x (a real, live false price claim found cold-reading corpus_posts.py, superseding a concurrent PM check-in's "clean" verdict on the same file below: 10 postable posts from paid chapters said "Read it free."; a second live defect found continuing the same lane in roadmap_report.py, a Phil-blocked row misreading as operator-actionable in the 4x-daily report)
+
+Supersedes the 15:5x entry below's "clean, ledgered" verdict on `ops/corpus_posts.py`: that pass checked the extractors and the `reflow` import path and ran the existing test suite, all real and correct, but did not independently re-derive `FREE_CLAIM`'s own coverage against the live pool, which is where this cycle found the leak. Not a contradiction to hide: `ops/cold-read-ledger.json`'s entry for this file is updated to `fixed`, dated after `clean`, and both entries stand in this log.
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 456 commits onto `origin/main` (`bc806b30`), no conflict. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach. GitHub confirmed live: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 Done/HOLD/owner-gated, so the cold-read lane was again the right-sized work, continuing where the prior cycle left off.
 
@@ -21,6 +23,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `audit_visual.py` (started, not finished: read the first ~150 of 762 lines, no defect found yet), `build_seo.py`, `deploy.py`, `build_zone_pages.py`, then the higher-mention tier. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
 
 Pushed to main. `ops/corpus_posts.py`, `ops/roadmap_report.py`, `ops/preflight.py`, `ops/tests/test_corpus_posts.py`, `ops/tests/test_roadmap_report.py`, `ops/cold-read-ledger.json`, command deck, this log. No price, product or page touched. IndexNow not applicable.
+
+## PM check-in, 2026-09-26 15:5x (previous work finished and verified; cold-read lane advanced one file, corpus_posts.py clean, ledgered; own preflight rerun left running past this slot)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_kitchen_deck_pdf.py` (tied lowest-mention with `roadmap_report.py`), because `corpus_posts.py` was cleared this slot, `BACKLOG-2026-09-07.md` sections 2-6 remain Done/HOLD/owner-gated, all 9 open GitHub issues are still `decision`/`blocked-on-art` with none pickable, and 0 PRs are open.
+
+**Previous work: finished, verified.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow`, `checkout main` (already existed), `merge --ff-only` fast-forwarded 3 commits onto `origin/main` (`bc806b30`, the 15:3x correction entry), no conflict, working tree clean. Read the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0-7, `EXECUTIVE-DASHBOARD-LIVE.md`. Confirmed live via the GitHub tools: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. The 15:3x entry's own preflight rerun already confirmed clean, so no unfinished claim was inherited.
+
+**Cold-read `ops/corpus_posts.py`** (504 lines, the corpus post-extraction reader, tied lowest-mention unledgered file). Read in full: the ten shape-specific extractors (`split_posts`, `split_numbered`, `split_whole`, `split_sales_copy`, `split_short`, `split_questions`, `split_quotes`, `split_summary`, `split_takeaways`), the `FREE_CLAIM` guard that holds back any chapter-31-to-50 post calling the book free, and `take()`'s rotation-exhaustion restart. Ran `--stats` live: 4,978 usable posts across 13 kinds, consistent with the dashboard's carried-forward ~4,939 figure. Specifically checked the one shape that looked riskiest cold: `clean()`'s bare `from reflow import reflow` (a relative import that only resolves with `ops/` on `sys.path`) against every real caller, `linkedin_drafts.py`, `social_drafts.py`, `preflight.py`, `corpus_index.py`, all four insert `ops/` onto `sys.path` before importing this module, so the import resolves in every real invocation, not only when run standalone; not a silent no-reflow defect. Ran `ops/tests/test_corpus_posts.py` and `ops/tests/test_gate_corpus_posts.py` directly (6 passed). No defect found. Recorded clean via `ops/cold_read_ledger.py --add`.
+
+**My own `preflight.py --fast` rerun did not finish this slot.** `gate_tests` was still on `test_audit_catalog.py`'s subprocess after 8+ minutes, the same genuinely-slow shape the 2026-09-26 14:2x and 15:1x entries already diagnosed (a live, sleeping-state child, not a hang). Left running in background; not reporting it clean since it has not concluded. Regenerated the dashboard (`ops/dashboard.py`), which does not depend on preflight finishing.
+
+**Went well:** the handoff from the 15:1x/15:3x entries pointed straight at the right file, no time spent re-deriving the queue.
+
+**Did not go well:** `gate_tests` still the same multi-minute bottleneck; nothing new to add beyond what is already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_kitchen_deck_pdf.py`, `roadmap_report.py`, `fingerprint_assets.py`, `audit_visual.py`, `build_seo.py`, then the higher-mention tier. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched, no new page, IndexNow not applicable.
 
 ## PM check-in, 2026-09-26 15:3x (correction: the preflight rerun left running past the 15:1x entry's slot finished, 3 FAILs, all confirmed self-inflicted by this cycle's own concurrent merge)
 

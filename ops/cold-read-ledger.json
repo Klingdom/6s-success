@@ -314,7 +314,7 @@
     "corpus_posts.py": {
       "status": "fixed",
       "date": "2026-09-26",
-      "note": "Found 2026-09-26: FREE_CLAIM missed the real 'Read it free.' phrasing on 10 x-post entries from paid chapters 31-33; regex widened, new preflight gate gate_corpus_posts_no_free_claim_leak added and fail-then-pass proved directly."
+      "note": "Found 2026-09-26: FREE_CLAIM missed the real 'Read it free.' phrasing on 10 x-post entries from paid chapters 31-33; regex widened, new preflight gate gate_corpus_posts_no_free_claim_leak added and fail-then-pass proved directly. Supersedes a concurrent PM check-in's 'clean' verdict on this same file the same day: that pass checked the extractors and the reflow() import path, both correctly, but did not independently re-derive FREE_CLAIM's own coverage against the live pool."
     },
     "crawl_report.py": {
       "status": "clean",
