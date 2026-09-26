@@ -2,9 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 10:5x (previous work finished and confirmed; the prior entry's own handoff had already gone stale, `gate_cold_read_handoff_not_stale` caught it correctly)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting with `build_kitchen_deck_page.py` (tied lowest tier with `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`), because the prior handoff's own named-next file was already fixed and ledgered by the 10:0x operator cycle before that PM check-in was even written, and `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 HOLD, section 6 owner gates, with all 9 open GitHub issues `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Attach was shallow and detached; unshallowed, `checkout -B main`, `merge --ff-only` fast-forwarded cleanly. Confirmed no concurrent push landed after. Read `git log -12`, top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`; GitHub API confirms 9 open issues unchanged, 0 PRs.
+
+**Verified rather than trusted:** ran `preflight.py` to completion in the background. Every gate passed, 27 warnings, all standing sandbox gaps except one real, live finding: `gate_cold_read_handoff_not_stale` correctly flagged that the top handoff named `status_report.py`, already recorded `fixed` in `ops/cold-read-ledger.json` by an operator cycle that ran and pushed before that PM entry landed. This entry replaces that stale line rather than leaving it for the gate to keep warning about.
+
+**Went well:** the new gate did exactly its job on its first live catch.
+
+**Next:** standing Phil-blocked list, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+
 ## PM check-in, 2026-09-26 10:1x (previous work independently re-verified finished via a full preflight run including the deep test gate; the one failure found was self-inflicted by this cycle's own earlier killed run and confirmed self-cleared; no unblocked backlog item)
 
-NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, then the rest of the tied tier), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (~~`status_report.py`~~ already fixed and ledgered by the 10:0x cycle, so start at `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, then the rest of the tied tier), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 420 commits cleanly onto `origin/main` (`5a201da1`, the prior cycle's own manual-print fix). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s open section headers. 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable. 0 open PRs.
 
