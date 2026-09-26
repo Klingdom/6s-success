@@ -111,6 +111,11 @@
       "date": "2026-09-24",
       "note": "Headline coverage used have[\"diagnosis\"] as a proxy for all three moat fields, agreeing with the real intersection only by coincidence. Fixed to count the real intersection."
     },
+    "build_mobile_corpus.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26 (scheduled operator). Verified live: --check reports the mobile corpus matches quest-data.js (114 zones, 684 cards), git status clean after. hero_plan()/hero_problems()/write_heroes() correctly derive zone pictures from the site's own approved -sm.jpg files, hard-erroring on any approved stem with no source file rather than silently skipping. Already gated (gate_mobile_corpus_current in preflight.py) and already imported by build_social_pins.py and wire_generated_catalog.py, so it is wired, not orphaned. No defect."
+    },
     "build_primary_bathroom_deck_page.py": {
       "status": "fixed",
       "date": "2026-09-25",
@@ -231,6 +236,11 @@
       "date": "2026-09-25",
       "note": "Cold-read for defects (PM check-in). load_ledger/is_cleared/next_candidates/add_entry all correct; malformed or missing ledger safely returns {} rather than defaulting to clean, per CLAUDE.md 0.4. --next, --check (hit and miss) and the ledger JSON all manually verified working."
     },
+    "corpus_index.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26 (scheduled operator). Ran live: 2745 files, 1050 ready, 4939 postable units, matches ops/corpus-index.json on disk. Sampled 15 of the 1195 'other' files by hand rather than trusting the count (CLAUDE.md 5c): they are manuscript chapters, internal strategy docs, and web-metadata fragments, correctly excluded as not finished postable prose, not a mis-classification. KINDS ordering and units_in() per-kind counting logic checked, both consistent with the file's own docstring. Already wired: imported by corpus_posts.py, dashboard.py, send_questions.py, and checked by two preflight gates. No defect."
+    },
     "deploy_freshness.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -305,6 +315,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, pypdf/PIL unavailable in this sandbox (standing gap); not wired into any preflight gate, no defect found"
+    },
+    "owner_inbox.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26 (scheduled operator). unread_from_owner() and unread_needing_action() both use BODY.PEEK (never mark read) and both correctly return None (not empty list) when the IMAP credential is missing, which preflight.py's gate_owner_waiting distinguishes from 'nothing waiting'. Third-party regex covers affiliate/payment/domain/account-security wording, the exact incident class this file's own docstring documents (Impact's decline sitting unread 8 days). ack() is a separate command from main(), so a read never silently claims an action. Already wired into preflight.py's gate_owner_waiting (both functions called, each with its own exception guard) as well as its own bare CLI. No defect."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -435,6 +450,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle: correctly reports exit 2 / unmeasured when no Desktop delivery folder exists (matches gate_checkin_undelivered_media_not_fabricated's own contract), no defect"
+    },
+    "video.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full 2026-09-26 (scheduled operator). Core caption/render/verify logic is already hardened against two documented past incidents (the 0:00:60.00 ASS timestamp overflow, the edge-to-edge unwrapped caption). verify() checks dimensions, duration, file size and a mid-frame flatness test rather than trusting a written file exists. One minor robustness gap noted but not fixed: the PIL import inside verify() is unguarded, so a missing Pillow would raise past a bare call site (video_zone.py's --zone demo path, line 567); the batch caller in video_zone_photo.py already wraps V.verify() in try/except so a missing Pillow there is caught and reported as a per-item failure, not a crash. Could not exercise render()/verify() here: this sandbox has no ffmpeg/ffprobe (confirmed via --probe), the same standing limitation already recorded for every other video-rendering file in this repository. No defect meeting this repo's bar (a check that cannot fail, a silent drift, a wrong default)."
     },
     "video_narrated.py": {
       "status": "clean",

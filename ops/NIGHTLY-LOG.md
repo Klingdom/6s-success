@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 00:5x (backlog confirmed exhausted again; cold-read lane clears four more files, no live defect found)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 364 commits cleanly onto `b5ff0049`, no conflict, working tree clean before this cycle's own edits.
+
+**Step 2: preflight.** Full `python ops/preflight.py` (untimed): every gate passed, 24 warnings, all the same standing sandbox-access limits already diagnosed on every prior cycle (no Stripe credential, no VPS SSH key, no live-site/analytics reach, no mail credential, no Pillow, no `ffmpeg`/`ffprobe`). Nothing new.
+
+**Step 3: nothing new is unblocked.** Read `BACKLOG-2026-09-07.md` sections 0 and 6 to 7 and `GOALS.md` in full. Confirmed via the GitHub API rather than trusted from the log: 9 open issues, unchanged, all `decision` or `blocked-on-art` (`#36, #35, #33, #31, #29, #21, #18, #15, #2`); 0 open PRs. Issue #36 (the dead price-agreement check in `check_sellable.py`) is correctly filed and correctly left alone: a payment-file deletion, filed for Phil per CLAUDE.md 37/52 rather than pushed. No backlog row justifies a fourth workstream against the WIP cap of 3.
+
+**Cold-read lane, coordinated through `ops/cold_read_ledger.py`:** read four more un-ledgered files in full (107 of 164 now ledgered). `ops/build_mobile_corpus.py` (207 lines): verified live, `--check` reports the mobile corpus matches `quest-data.js` (114 zones, 684 cards), `git status` clean after; `hero_plan()` hard-errors on any approved zone-picture stem with no source file rather than silently skipping one. `ops/corpus_index.py` (226 lines): ran live, 2,745 files / 1,050 ready / 4,939 postable units, matches the committed `ops/corpus-index.json`; sampled 15 of the 1,195 "other"-classified files by hand rather than trusting the count (CLAUDE.md 5c) and they are manuscript chapters, internal strategy docs and web-metadata fragments, correctly excluded, not a mis-classification. `ops/owner_inbox.py` (229 lines): both `unread_from_owner()` and `unread_needing_action()` correctly return `None` (not an empty list) when no IMAP credential exists, and both are already wired into `preflight.py`'s `gate_owner_waiting`, not orphaned. `ops/video.py` (233 lines): the two previously-fixed defects (ASS timestamp overflow, unwrapped captions) are still correctly guarded; one minor unguarded-Pillow-import path noted at a single interactive demo call site in `video_zone.py` but the real batch caller (`video_zone_photo.py`) already wraps the same call in `try/except`, so it does not meet this repo's bar for a live defect. Could not exercise `render()`/`verify()` here: no `ffmpeg`/`ffprobe` in this sandbox, the same standing limitation already recorded for every other video file. No defect found in any of the four.
+
+`PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle.
+
+**Went well:** sampling the "other" corpus-classification count instead of reporting it as a finding on its own; treating issue #36 as already correctly handled rather than re-litigating a payment-file change a prior cycle was right to escalate.
+
+**Did not go well:** same unrelated-history shallow-checkout shape on every attach; issue #27 still open. Nothing new shipped beyond four cleared cold-read files, because the reprioritised backlog is genuinely exhausted down to owner gates, the same conclusion dozens of consecutive cycles have now reached.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`; next un-ledgered candidates: `build_card_template.py`, `build_deck_gallery.py`, `stripe_fulfil.py`, `video_zone.py`, `accept_image.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `build_resources.py`, `crawl_report.py`; `check_sellable.py` already escalated as issue #36, do not re-fix without a decision). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 00:2x (previous work confirmed finished on the last code-touching commit; cold-read lane clears one more file; full local preflight still mid-run when this slot closed, reported unchecked rather than assumed clean)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 362 commits cleanly onto the real tip, no conflict, working tree clean before this cycle's own edits.
