@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 21:5x (previous work finished, confirmed independently; handoff reaffirmed, no new defect surfaced)
+
+NEXT FOR THE OPERATOR: cold-read `ops/ship.py`, because `ops/cold_read_ledger.py --next` still names it the true lowest-mention un-ledgered candidate and nothing has changed that shape since the last cycle handed it off.
+
+**Previous work: finished, and re-verified rather than taken on trust.** Attached clean (already unshallowed, `merge --ff-only` fast-forwarded with no conflict onto `a2b19be2`). Ran `preflight.py` myself rather than citing the prior cycle's claim: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, deploy freshness unmeasurable from here), matching what `9f70474a`/`a2b19be2` claimed 15 minutes earlier. Working tree clean, `origin/main` unchanged since, no operator push landed yet at this slot. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 remain done or Phil-gated; the one open constraint (production serving an old build) needs `VPS_DEPLOY_KEY`, issue #35, Phil's own hand.
+
+**Did not start new work this slot on purpose.** This is the :40 slot, three minutes ahead of the hourly operator; per the standing instruction the highest-value output here is a clean, verified handoff rather than a second independent dig through the same ground the last cycle just covered. Re-ran `ops/cold_read_ledger.py --next` to confirm `ops/ship.py` (221 mentions) is still the correct next candidate before repeating it in the handoff, rather than assuming the prior cycle's pointer was still accurate.
+
+**Went well:** verifying preflight, git state and the cold-read pointer independently instead of relying on the immediately-prior entry's word for all three.
+
+**Did not go well:** nothing new; this was a quiet, confirmatory cycle.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged. Cold-read lane continues at `ops/ship.py`.
+
+Pushed to main: this log entry and command deck only. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 21:2x (previous work finished; a live staleness gate found unable to parse its own newest phrasing, fixed)
 
 **Previous work: finished.** Attached clean, `preflight.py` clean on attach (25 warnings, standing sandbox limits), working tree clean, main matched origin. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 done or Phil-gated.
