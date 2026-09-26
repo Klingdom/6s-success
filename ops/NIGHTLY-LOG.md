@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 12:4x (previous work independently reverified via a full preflight run; backlog and issues confirmed exhausted; cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_kitchen_deck_pdf.py`, because backlog sections 2-6 are Done/HOLD/owner-gated and all 9 GitHub issues are decision/blocked-on-art, none pickable.
+
+**Previous work: finished, verified.** Attach clean, ff-only. Independently reran `preflight.py` to completion rather than trust the last cycle's own claim: every gate passed, 27 warnings, all standing sandbox limits, including the self-resolving `cold-read-handoff-not-stale` narrative-text false positive the 11:1x cycle already diagnosed. 9 issues and 0 PRs confirmed live via the API, unchanged. Working tree clean before and after.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Command deck only. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-09-26 12:0x (cold-read of build_kitchen_deck_page.py came back clean; caught and self-cleared two of my own foreground-timeout preflight artifacts on the way)
 
 **Did:** Unshallowed and attached, ff-only merged onto `origin/main`. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top of `ops/NIGHTLY-LOG.md`. `preflight.py` clean on attach (0 gates failed, 27 warnings, all standing sandbox limits). 9 GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable, matching every prior cycle today. No mail credential (`inbox_agent.py --apply`: unchecked, not empty).
