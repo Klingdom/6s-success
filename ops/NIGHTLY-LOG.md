@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 21:2x (previous work finished; a live staleness gate found unable to parse its own newest phrasing, fixed)
+
+**Previous work: finished.** Attached clean, `preflight.py` clean on attach (25 warnings, standing sandbox limits), working tree clean, main matched origin. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 done or Phil-gated.
+
+**The find.** `gate_status_deploy_gap_count_current`'s regex matched only `(N commits`, but BLOCKER-001's newest entries write "N commits (hash, hash)", so it had silently stopped checking: the real gap had drifted from 8 to 9 commits, the new one (`4afe5b0d`) material: the sample-PDF spelling fix. Fixed the regex for both phrasings, fail-then-pass proved, corrected STATUS.md's stale count. `preflight.py` clean after, `check_urls.py` 196/196.
+
+**Next:** cold-read lane continues at `ops/ship.py`, the true lowest-mention candidate. Standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/preflight.py`, its test, `STATUS.md`, this log, command deck.
+
 ## Scheduled operator cycle, 2026-09-26 (the last standing sample-PDF spelling defect, open ten days as a documented "cannot safely fix here" font limit, retried and closed)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded 499 commits onto `origin/main` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, 27 warnings, all previously diagnosed sandbox limits. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. No mail credential, inbox unchecked. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated; nothing newly pickable there.

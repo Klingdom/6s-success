@@ -13951,12 +13951,21 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     deploy_verdict_current's own "Production Knowledge" widening, one level
     more specific: right build_id, stale count.
 
-    Finds the LAST "(<n> commit" style count inside BLOCKER-001's most
+    Finds the LAST "<n> commit" style count inside BLOCKER-001's most
     recent entry (entries are appended, newest at the bottom, this file's
     own convention inside a still-open section) and compares it to
     real_count, freshly recomputed by the caller from git. Only the
     section's final entry is checked; older entries are a deliberately kept
     history, not the current standing claim.
+
+    Matches both phrasings this file has actually used: "(8 commits,
+    `hash`)" (the count inside its own parenthetical) and "8 commits
+    (`hash`, `hash`)" (the count bare, followed by a parenthetical hash
+    list). Found live 2026-09-26, PM check-in: the newest BLOCKER-001
+    entries had already switched to the second phrasing, and the original
+    regex only matched the first, so this gate had been silently unable to
+    parse its own latest entry, and had not fired, since the phrasing
+    changed: a real count drifted from 8 to 9 with nothing catching it.
 
     Returns a problem string if the cited count and the real one disagree;
     '' if there is no BLOCKER-001 section, no build_id, the latest entry
@@ -13978,10 +13987,12 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     latest = entries[-1] if entries else section
     if build_id not in latest:
         return ""
-    counts = re.findall(r"\((\d+)\s+commits?\b", latest)
-    if not counts:
+    matches = list(re.finditer(
+        r"\((\d+)\s+commits?\b|(\d+)\s+commits?\s*\(", latest))
+    if not matches:
         return ""
-    cited = int(counts[-1])
+    last = matches[-1]
+    cited = int(last.group(1) or last.group(2))
     if cited != real_count:
         return (
             "BLOCKER-001's latest entry cites a gap of %d commit(s) next "
