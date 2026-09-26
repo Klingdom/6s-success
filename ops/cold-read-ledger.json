@@ -331,6 +331,11 @@
       "date": "2026-09-26",
       "note": "Bot classification order, TRAINING/RETRIEVAL split, proxy vs container log parsing and reverse-DNS verification all correct on inspection. No defect."
     },
+    "deploy.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "compose_drift() was called from main() on every real run but had zero test coverage; the old test_deploy.py fake_ssh fell through to return True, \"\" for its cat command, so every one of the 20 existing cases silently compared the real committed docker-compose.hostinger.yml against an empty string and printed a false COMPOSE DRIFT warning, unasserted. Fixed test isolation (fake_ssh now answers the cat command; default matches the real local file so unrelated cases stay clean) and added 3 real cases exercising compose_drift's three branches (match, genuine drift, ssh read failure), fail-then-pass proved by reverting the fix and by planting a silent-failure regression in compose_drift itself. No production code bug; deploy.py's own verdict logic is unaffected. No new preflight gate needed, gate_tests() already globs this test file."
+    },
     "deploy_freshness.py": {
       "status": "clean",
       "date": "2026-09-25",
