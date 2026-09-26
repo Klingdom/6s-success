@@ -22,10 +22,19 @@ delivered the moment somebody pays: the file already exists.
       matter. Moving in, a new baby, going back to school. These are curated
       rather than mechanical: a person facing a move does not think in rooms,
       they think in the move.
+      RETIRED from the live catalogue since 2026-09-22, DECISIONS.md D-023:
+      $14 for 7-20% of the $19 superset, zero sales, no page, no internal
+      link. Still generated here so the assertions below keep checking them,
+      but ops/generated_products.py's RETIRED list drops every one of these
+      15 SKUs before anything reaches data.js or Stripe. A kit returns only
+      behind a page that has proven organic demand for that situation.
 
-  AREA BUNDLE, 6 of them, $24
+  AREA BUNDLE, 6 of them, $16
       Several rooms that get worked together. Wet rooms, sleeping areas,
       storage.
+      RETIRED from the live catalogue since 2026-09-22, DECISIONS.md D-023:
+      same shape as the Situation Kits above, 12-20% of the superset for
+      84% of its price. ops/generated_products.py drops all 6 SKUs.
 
 WHY NOT CHEAPER THAN $4
 -----------------------

@@ -52,9 +52,9 @@
       "note": "fit_front()'s main fitting loop used range(need, 1, -1), which is empty when a card's action text needs exactly 1 line, so any such card fell into the 'nothing fitted' fallback: falsely reported trimmed=True and unconditionally dropped the tagline (tag=''), even with room to spare. None of the 89 live Entryway cards currently has a 1-line action (checked directly), so no visible defect shipped, but the next short card would silently lose its tagline. Fixed by widening to range(need, 0, -1). Fail-then-pass proved via git stash against the real module; real-corpus trimmed count (2/89) unchanged before and after. New ops/tests/test_build_card_template_fit_front.py."
     },
     "build_catalog.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-09-26",
-      "note": "155 products (114 zone/20 room/15 situation/6 area) at $4/$9/$14/$16, --check 0 empty products, 0 duplicate SKUs, 60 hand-named situation zones all resolve; cross-checked against generated_products.py and build_zone_pages.py's byte-for-byte SKU replication (RP-/ZP- truncation matches), preflight's own gate_roadmap_catalogue_count_current imports bc.catalogue() directly; WHOLE_HOUSE ceiling assert and empty-product assert both correctly wired; no defect found"
+      "note": "Docstring described 15 Situation Kits and 6 Area Bundles as live sellable tiers; D-023 (2026-09-22) retired all 21, and generated_products.py already excludes them by SKU. Fixed the module docstring to state retirement status and point at the exclusion list. No logic change; catalogue() output unchanged (155 products, all assertions pass). No new gate: comment-only fix, same shape as the youtube_upload.py precedent. (A concurrent same-minute cold-read of catalogue()'s own logic and its two live consumers found 0 empty products, 0 duplicate SKUs, 60 hand-named zones resolving, and byte-for-byte SKU-truncation agreement with build_zone_pages.py; this docstring gap was outside that check's scope.)"
     },
     "build_cleaning_index.py": {
       "status": "fixed",
@@ -75,6 +75,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "230 lines, desktop-only (needs PIL/Windows fonts, never run by CI or gate_generator_ownership's diff chain). Refuses to write on any font fallback to PIL's tiny default (correct, per its own 2026-08-17/2026-09-02 incident comment). author_name() correctly refuses to invent a byline (returns None on a bracketed placeholder), matching gate_cover_author_current's own use of it. No defect found; the known cover-staleness gap is already tracked by gate_cover_author_current and OWNER-ACTIONS item 12, not a new finding."
+    },
+    "build_deck_gallery.py": {
+      "status": "clean",
+      "date": "2026-09-26",
+      "note": "Read in full (796 lines): DECKS/ORDER/BLURB tables, face()/_jpeg_size() intrinsic-size reader, title-repair heuristic, written-vs-drawn counting, ROOM_OG fallback, page assembly and its own three assertions. Ran the real generator (chains canonical_links/wire_landmarks/wire_progressive/wire_measure/wire_pwa/wire_aria_current/build_avif/fingerprint_assets): git diff across site/ empty after, byte-identical to the committed pages, so idempotent. Verified specific claims against source data rather than trusting the code read: mudroom's MR-001 Room-card title-repair traced end to end against build/mudroom-cards.json (correctly resolves to 'Mudroom', the slug-title bug the file's own comment names is fixed for real); zones count (12) traced against the same file's Category tally; both galleries' full_copy state text ('written in full...' vs 'named and outlined...') confirmed correct on the live pages for entryway vs mudroom respectively. No defect found."
     },
     "build_deck_pdf.py": {
       "status": "clean",
