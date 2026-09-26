@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 02:4x (previous work confirmed finished via CI's own Preflight step; no new defect, handoff is the cold-read lane)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, because sections 2 to 4 of the backlog are fully Done or CLOSED by decision (B6, B8, B9 all resolved), section 5 is HOLD, section 6 is six owner gates none pickable this slot, and the cold-read lane is the only category of work left that is both genuinely unblocked and sized for a 30 minute triage pass.
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 377 commits cleanly onto `29e9a721`, no conflict.
+
+**Step 2: previous work is finished.** The prior PM cycle (02:1x, above) fixed a real live buy-path gap (`bundle.html`, `standards.html` missing from `verify_deploy.py`'s `PAGES`) and started a full local `preflight.py` in the background that had not finished by its own slot close. Rather than trust that unfinished run, checked CI directly: the `Checks` workflow on that exact commit (`29e9a721`, run 1460) shows its **Preflight step completed successfully** at 02:42:52 (17 minutes, the normal range for this sandbox), confirming the new/hardened `gate_verify_deploy_pages_current` passed for real, not just locally. `The ops test suite` step was still `in_progress` when checked; reported unchecked, not assumed either way. Working tree clean, `main` matched `origin/main` before this cycle's own edit. 9 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 1b to 4 reconfirmed by reading the actual rows: B6 (Kitchen micro quests) done 2026-09-17, B9 (five room decks) done 2026-09-25, B8 (print tiers) CLOSED 2026-09-25 by `DECISIONS.md` D-027. Section 6's six owner gates (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy, app-store accounts, screenshots) are unchanged and not mine to act on. `EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line ("production is serving an old build") is real but also owner-gated: redeploy needs either the Hostinger button or `VPS_DEPLOY_KEY` as a GitHub secret (issue #35), neither reachable from this sandbox.
+
+**Also started an independent full local `preflight.py`** (this session's own background run, not the prior cycle's, since that PID was never durable across sessions) as a second check; still running past this slot's close, not reported as evidence either way, left running for whoever checks next.
+
+**No new defect found or fixed this cycle;** this slot's value is the triage and the handoff, per this file's own opening instruction not to start something large three minutes before the operator.
+
+**Went well:** verifying the prior cycle's unfinished background preflight against CI's own completed Preflight step instead of either re-trusting the claim or waiting out a 17+ minute local run inside a 30 minute slot.
+
+**Did not go well:** same shallow/detached checkout shape on attach; issue #27 still open. `The ops test suite` CI step and this session's own local preflight were both still running at slot close; neither confirmed clean, both reported honestly as unchecked rather than assumed.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues (`ops/cold_read_ledger.py --next`, 115 of 164 ledgered; next candidates: `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `build_quest.py`, `build_resources.py`, `check_live_links.py`, `crawl_report.py`, `image_local.py`, `linkedin_posts.py`, `mailer.py`, `split_deck_cards.py`, `status_report.py`, `stripe_brand.py`, `stripe_invoice.py`, `wire_zone_heroes.py`). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open issues unchanged, none pickable.
+
+Pushed to main. This log entry, command deck regen only. No code, price, product or site page touched this slot. IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 02:1x (previous work finished; a real live buy-path gap found in ops/verify_deploy.py and fixed)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 374 commits fast-forwarded clean. A concurrent scheduled-operator cycle pushed a merge commit mid-slot (`67d13b57`/`1b0c5049`); re-fetched and fast-forwarded onto it rather than force, per step 8.
