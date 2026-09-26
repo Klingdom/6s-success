@@ -326,6 +326,11 @@
       "date": "2026-09-25",
       "note": "correct and fully wired into build_zone_pages.py, gated by gate_hazard_icons_current; 252/252 coverage confirmed live; no defect"
     },
+    "hourly_brief.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Subject line silently defaulted revenue/sales to $0 when Stripe was unreadable (commerce() error), reading as a genuine quiet month; body section already said 'could not read Stripe'. Fixed with a stripe_unreadable branch; new check added to gate_hourly_brief_stripe_checks, fail-then-pass proved."
+    },
     "image_local.py": {
       "status": "fixed",
       "date": "2026-09-26",

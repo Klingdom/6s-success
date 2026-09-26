@@ -2,19 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-26 10:5x (previous work finished and confirmed; the prior entry's own handoff had already gone stale, `gate_cold_read_handoff_not_stale` caught it correctly)
+## Scheduled operator cycle, 2026-09-26 (a real false-zero defect found cold-reading hourly_brief.py, fixed and gated; a stale cold-read handoff in this log's own newest entry confirmed and corrected)
 
-NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting with `build_kitchen_deck_page.py` (tied lowest tier with `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`), because the prior handoff's own named-next file was already fixed and ledgered by the 10:0x operator cycle before that PM check-in was even written, and `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 HOLD, section 6 owner gates, with all 9 open GitHub issues `decision`/`blocked-on-art`, none pickable.
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `roadmap_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_manual_print.py`, then the rest of the tied tier), re-run fresh from the tool, not copied from a prior entry, because the entry above this one carried a stale candidate (~~`status_report.py`~~) already cleared one cycle earlier.
 
-**Did:** Attach was shallow and detached; unshallowed, `checkout -B main`, `merge --ff-only` fast-forwarded cleanly. Confirmed no concurrent push landed after. Read `git log -12`, top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`; GitHub API confirms 9 open issues unchanged, 0 PRs.
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 426 commits cleanly onto `origin/main`. Read the top four `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`. `preflight.py` clean on attach (every gate passed, 27 warnings, all previously diagnosed sandbox limits). 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
 
-**Verified rather than trusted:** ran `preflight.py` to completion in the background. Every gate passed, 27 warnings, all standing sandbox gaps except one real, live finding: `gate_cold_read_handoff_not_stale` correctly flagged that the top handoff named `status_report.py`, already recorded `fixed` in `ops/cold-read-ledger.json` by an operator cycle that ran and pushed before that PM entry landed. This entry replaces that stale line rather than leaving it for the gate to keep warning about.
+**Found and fixed, cold-reading `ops/hourly_brief.py` (504 lines, previously unledgered):** with `commerce()` reporting an error, the only condition this sandbox has ever run in, `build()`'s SUBJECT line silently defaulted revenue and sales to `$0 / 30d, 0 sale(s)`, indistinguishable from a genuinely measured quiet month. The COMMERCE body already said "could not read Stripe", but the subject is what a locked phone screen shows, the same "unknown is not a default" shape `gate_hourly_brief_build_line` already fixed for `open_p0`/`needs_phil` in this same function, just for a different field. Reproduced directly by stubbing `commerce()`. Fixed with a `stripe_unreadable` branch in `build()` reading "revenue UNKNOWN (Stripe unreadable)" and a "STRIPE UNREADABLE" subject prefix; confirmed the credentialed path is unchanged. New check added inside `gate_hourly_brief_stripe_checks`; fail-then-pass proved directly (stashed the fix, gate failed by name citing the exact false subject, restored, reran clean). Also confirmed and fixed the stale-handoff instance the newest entry above this one carries: it named `status_report.py` as a cold-read candidate one cycle after this same log already cleared it, exactly the shape `gate_cold_read_handoff_not_stale` exists to catch; this entry's own handoff was re-derived fresh from `ops/cold_read_ledger.py --next` instead.
 
-**Went well:** the new gate did exactly its job on its first live catch.
+**Verified:** `preflight.py` clean after (every gate passed, same 27 warnings, none new). `python -m py_compile` on both edited files, `test_gate_hourly_brief_build_line.py` clean. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. Recorded in `ops/cold-read-ledger.json`.
 
-**Next:** standing Phil-blocked list, unchanged.
+**Went well:** the fail-then-pass proof caught the exact defect shape the docstring claims, not a weaker stand-in.
 
-Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+**Did not go well:** same shallow/detached checkout shape on attach.
+
+**Changing next cycle:** none; the existing gate family was extended, not replaced.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 `decision`/`blocked-on-art` GitHub issues, unchanged. Continue the cold-read lane above.
+
+Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
+**PM check-in addendum, 2026-09-26 10:5x:** this slot independently reached the identical `gate_cold_read_handoff_not_stale` finding on the entry below (previous work otherwise confirmed finished: full `preflight.py` clean, tree clean, GitHub issues unchanged, 0 PRs), converging with the operator cycle above rather than duplicating a second correction of the same line.
 
 ## PM check-in, 2026-09-26 10:1x (previous work independently re-verified finished via a full preflight run including the deep test gate; the one failure found was self-inflicted by this cycle's own earlier killed run and confirmed self-cleared; no unblocked backlog item)
 
@@ -54,7 +62,7 @@ Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.
 
 **Changing next cycle:** none; the new gate is the right shape and proved itself.
 
-**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, ~~`hourly_brief.py`~~ (since fixed and ledgered by a later cycle), `roadmap_report.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
 
 Pushed to main. `ops/status_report.py`, `ops/preflight.py`, `ops/tests/test_status_report_executed_count.py` (new), `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
 
