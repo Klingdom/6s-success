@@ -18,6 +18,8 @@ NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py 
 
 Pushed to main, log only. No code, price, product or site page touched. IndexNow not applicable.
 
+**Correction, same cycle, after the slot closed and this entry had already pushed:** the local `preflight.py --fast` above finished; it reported one `FAIL` (`stray-probe-files`: `site/_contact_form_interactive_probe.html`, left by a run killed mid-audit) rather than the clean pass its predecessor got. Checked before assuming stale: the file no longer exists (`ls` confirms) and is gitignored (`site/**/_*.html`), so it never reached the working tree this cycle touched or git at all. Re-ran `preflight.py --fast` a second time to confirm rather than guess: every gate passed, 24 warnings, same standing sandbox limits as before. Same transient shape this log has already diagnosed once (2026-09-25): a killed audit run's own probe file outliving it briefly, self-resolved, not a real defect. Recorded per `CLAUDE.md` 0.4 rather than left silent.
+
 ## PM check-in, 2026-09-26 00:2x (previous work confirmed finished on the last code-touching commit; cold-read lane clears one more file; full local preflight still mid-run when this slot closed, reported unchecked rather than assumed clean)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape, unchanged); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 362 commits cleanly onto the real tip, no conflict, working tree clean before this cycle's own edits.
