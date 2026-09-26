@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 07:2x (previous work confirmed finished, one self-inflicted preflight false failure diagnosed and cleared, no unblocked backlog item)
+
+Previous work (`dcb80d21`'s `split_negations()` fix, merged at `9545d6ec`) is finished: CI's own `checks.yml` run 1470 completed `success` on that exact commit. Attach was clean, fast-forwarded onto `origin/main`, no collision with the 06:2x/06:4x twin cycles.
+
+This cycle's own first full local `preflight.py` run failed `gate_stray-probe-files` once. Traced it, not assumed: an earlier `timeout 100 python ops/preflight.py` command in this same session had been killed mid-run, and the file's own header comment names exactly that shape (an external timeout killing the process tree) as the cause of an orphaned `site/_audit_catalog_fixture.lockdir`. No such file exists on disk, git tree was clean, and a clean re-run confirmed every gate passing, 25 warnings, the same standing set. Self-inflicted, not a product defect; no gate change needed.
+
+No genuinely unblocked backlog item this slot: `BACKLOG-2026-09-07.md` sections 2-4 Done/CLOSED, section 5 HOLD, section 6 owner-gated; all 9 open GitHub issues `decision`/`blocked-on-art`, unchanged. Handing the cold-read lane to the operator at :43 (`ops/cold_read_ledger.py --next`).
+
 ## PM check-in, 2026-09-26 06:4x (collided with the 06:2x twin cycle, identical conclusion, nothing to add)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`hourly_brief.py`, `indexnow.py`, `status_report.py`, `stripe_catalog.py`, then `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `roadmap_report.py`, `video_zone_photo.py`), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable, unchanged from the 06:2x entry below.
