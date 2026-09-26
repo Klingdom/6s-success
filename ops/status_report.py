@@ -216,6 +216,33 @@ def experiments_blocked_reason(S: dict) -> str:
     return "deployment state unknown from here, so traffic cannot be assumed"
 
 
+def executed_count(exp_md: str) -> int:
+    """How many of EXPERIMENTS.md's own EXP-XXXX entries have moved past the
+    IDEA state, i.e. have actually been run rather than merely designed.
+
+    Found 2026-09-26, cold-reading this file: gather() hardcoded
+    `"executed": 0` as a bare literal, the identical "hand-typed constant a
+    report's own docstring promises is measured at run time" defect class
+    mail_state()'s own docstring already names this file for once before
+    (mx_working, found 2026-09-23). It happens to be true today, all nine
+    EXP-XXXX entries in EXPERIMENTS.md read "**State:** IDEA", but nothing
+    would have caught it silently going stale the moment one of them started,
+    the same way the mx_working constant silently went stale for weeks.
+
+    Every entry recorded so far uses IDEA for "not yet run"; anything else
+    (RUNNING, READING, DONE, or any other word a future entry uses) counts
+    as executed, so this does not need to enumerate every possible future
+    state name to stay correct.
+    """
+    sections = re.split(r"\n## EXP-\d+:", exp_md)[1:]
+    executed = 0
+    for section in sections:
+        m = re.search(r"\*\*State:\*\*\s*(\S+)", section)
+        if m and m.group(1).strip().upper() != "IDEA":
+            executed += 1
+    return executed
+
+
 def gather():
     S = state()
     d = {"state": S, "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M")}
@@ -269,7 +296,7 @@ def gather():
     designed = sorted(set(re.findall(r"(EXP-\d{4}): ([^\n`|]{4,70})", exp)))
     d["experiments"] = {
         "designed": designed,
-        "executed": 0,
+        "executed": executed_count(exp),
         "blocked_reason": experiments_blocked_reason(S),
     }
 

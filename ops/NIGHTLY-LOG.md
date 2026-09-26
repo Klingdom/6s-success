@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 10:0x (a real hardcoded-literal defect found cold-reading status_report.py, fixed and gated; independently reproduced issue #36's harness-classifier block)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 418 commits cleanly onto `origin/main`. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 27 warnings, all previously diagnosed). 9 open GitHub issues confirmed live via the API: unchanged, all `decision`/`blocked-on-art`.
+
+**Tried issue #36 first, independently.** Read `ops/check_sellable.py` myself before trusting the issue: confirmed `buyable` (line 45) is already filtered to `price > 0`, so the loop at lines 82-85 checking `item.get("price") or 0) <= 0` over `buyable.items()` can never be true, exactly as #36 describes. Drafted the same 4-line deletion the issue recommends; my own harness denied running/verifying it, tagged the same "Security Test Removal" classifier the filing session hit. Reverted (`git checkout --`), confirmed clean, left the issue as filed rather than duplicating it: a human should look at this one file.
+
+**Continued the standing cold-read lane instead** (`ops/cold_read_ledger.py --next`): read `ops/status_report.py` in full (635 lines, previously unledgered). Found a real defect: `gather()` hardcoded `d["experiments"]["executed"] = 0` as a bare literal. This is the identical "hand-typed constant a report's own docstring promises is measured at run time" shape this same file's `mail_state()` docstring already names itself for once before (`mx_working`, found 2026-09-23): true today (all 9 real EXP-XXXX entries in `EXPERIMENTS.md` read `**State:** IDEA`), but nothing would have caught it silently going stale the moment one actually started.
+
+**Fixed:** new `executed_count(exp_md)` in `ops/status_report.py`, parsing `EXPERIMENTS.md`'s own `## EXP-XXXX:` / `**State:**` pairs and counting anything past IDEA; `gather()` now calls it instead of the literal. Verified directly: returns 0 against the real live file (matching reality) and 2 against a synthetic mixed-state registry (proving it actually distinguishes). New `ops/tests/test_status_report_executed_count.py` (5 cases). New `gate_status_report_experiments_executed_current` in `preflight.py`, checking the real source text (not calling `gather()`'s own network-touching probes) so preflight stays cheap; fail-then-pass proved directly: planted the exact old `"executed": 0` literal, watched the gate fail by name citing the mismatch, restored, reran clean. Also recorded in `ops/cold-read-ledger.json`.
+
+**Verified:** full `preflight.py` (every gate passed, 27 warnings, none new), `check_urls.py` (196/196), `audit_pages.py` (0 findings), `affiliate.py --check` (165 documents) all clean after. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. No price or product touched, no new page; IndexNow not applicable.
+
+**Went well:** trying the flagged issue first rather than skipping straight past it, so the block is now reproduced independently rather than resting on one session's report; the cold-read lane found a real defect in a 635-line file six prior cycles had queued but not yet reached.
+
+**Did not go well:** same shallow/detached checkout shape on attach; issue #27 still needs Phil's own hand in the Routines UI. My own harness classifier blocks the same payment-file edit issue #36 already documents, confirming it is not specific to one session.
+
+**Changing next cycle:** none; the new gate is the right shape and proved itself.
+
+**Next:** continue the cold-read lane (`ops/cold_read_ledger.py --next`): `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged.
+
+Pushed to main. `ops/status_report.py`, `ops/preflight.py`, `ops/tests/test_status_report_executed_count.py` (new), `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 09:1x (previous work independently re-verified finished, one file cleared clean in the cold-read lane, one self-inflicted killed-preflight artifact found and self-cleaned)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`status_report.py`, `build_articles.py`, `build_card_template.py`, `build_catalog.py`, `build_deck_gallery.py`, `build_kitchen_deck_page.py`, `build_kitchen_deck_pdf.py`, `build_manual_print.py`, `corpus_posts.py`, `hourly_brief.py`, `roadmap_report.py`, all tied at the same log-mention count), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.

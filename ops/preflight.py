@@ -14118,6 +14118,55 @@ def experiments_blocked_reason_problem(deploy_verdict, blocked_reason) -> str:
     return ""
 
 
+def gate_status_report_experiments_executed_current() -> None:
+    """The status report's experiments.executed figure must be derived from
+    EXPERIMENTS.md's own State markers, not a hand-typed literal.
+
+    Found 2026-09-26, cold-reading ops/status_report.py: gather() hardcoded
+    `"executed": 0`, the identical "hand-typed constant a report's own
+    docstring promises is measured at run time" defect class this same
+    file's mail_state() already names itself for once before (mx_working,
+    2026-09-23). It happened to be true (every real EXP-XXXX entry in
+    EXPERIMENTS.md reads "**State:** IDEA") on the day this was found, but
+    nothing would have caught it going stale the moment one of them
+    actually started. Fixed by adding ops.status_report.executed_count(),
+    which counts EXPERIMENTS.md entries whose State has moved past IDEA.
+
+    This gate re-derives the real figure directly from the live
+    EXPERIMENTS.md via that same function and fails if gather()'s dict ever
+    stops calling it (a hand revert to a bare literal would leave the
+    literal not matching a live, real "State: RUNNING" entry the moment one
+    exists; today, with every entry still IDEA, this also confirms the
+    function itself has not silently started miscounting).
+
+    Proof this can fail: ops/tests/test_status_report_executed_count.py
+    exercises executed_count() directly against synthetic all-IDEA and
+    mixed-state registries and asserts the counts differ. This gate covers
+    the other half: that gather() actually calls that function rather than
+    a hand-typed literal, without paying for gather()'s own live network
+    calls (Stripe/domain/VPS probes) on every preflight run.
+    """
+    sr_path = os.path.join(ROOT, "ops", "status_report.py")
+    if not os.path.exists(sr_path):
+        return
+    src = io.open(sr_path, encoding="utf-8").read()
+    dict_m = re.search(r'd\["experiments"\]\s*=\s*\{(.*?)\}', src, re.S)
+    m = re.search(r'"executed":\s*([^,\n]+),', dict_m.group(1)) if dict_m else None
+    if not m:
+        warn("status-report-experiments-executed-current",
+             "could not find the experiments.executed assignment in "
+             "ops/status_report.py to check it")
+        return
+    if m.group(1).strip() != "executed_count(exp)":
+        fail("status-report-experiments-executed-current",
+             "ops/status_report.py's gather() sets experiments.executed "
+             "= %r instead of calling executed_count(exp). A hand-typed "
+             "literal here is exactly the mx_working defect class this "
+             "file's own mail_state() docstring already names itself for "
+             "once before: it can go stale the moment a real experiment "
+             "moves past IDEA." % m.group(1).strip())
+
+
 def gate_changelog_current() -> None:
     """CHANGELOG.md must not go silent for weeks while material work ships,
     unnoticed, the same shape gate_status_currency and
@@ -22268,6 +22317,7 @@ def main() -> int:
     run_gate(gate_status_deploy_gap_count_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
+    run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)

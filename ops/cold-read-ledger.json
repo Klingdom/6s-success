@@ -531,6 +531,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 PM check-in: the offer table listed a second 'Entryway deck' row for the 16 withheld cards with its own card count and a contradicting Withheld state, alongside the live 72-card row from the same deck, reading as a second competing deck rather than a note about the first. Relabelled 'of which, N Entryway cards' to match status_report.py's own honest phrasing of the same figures. reportlab not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked and no test covers the changed string."
     },
+    "status_report.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "gather() hardcoded experiments.executed=0; fixed with executed_count() deriving from EXPERIMENTS.md State markers; new gate_status_report_experiments_executed_current in preflight.py"
+    },
     "stripe_brand.py": {
       "status": "clean",
       "date": "2026-09-26",
