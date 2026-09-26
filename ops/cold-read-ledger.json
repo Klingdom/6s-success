@@ -341,6 +341,11 @@
       "date": "2026-09-26",
       "note": "Bot classification order, TRAINING/RETRIEVAL split, proxy vs container log parsing and reverse-DNS verification all correct on inspection. No defect."
     },
+    "dashboard.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "cold-read 2026-09-26 scheduled operator cycle: three 'unknown collapsed into a number' defects fixed (cards_total exception fallback to hardcoded 88, deck_readiness_line rendering literal 'None' text, book_sellable_detail collapsing None into checked-false text); gate_dashboard_deck_readiness extended, fail-then-pass proved. PM cycle same day found and fixed an unrelated stray tracked scratch dir on attach; no further dashboard.py defect found."
+    },
     "deploy.py": {
       "status": "fixed",
       "date": "2026-09-26",
