@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 11:4x (previous work confirmed finished on a full preflight run; backlog and all 9 GitHub issues confirmed exhausted again; cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, starting at `build_kitchen_deck_page.py` (tied lowest-mention tier with `build_kitchen_deck_pdf.py`, `corpus_posts.py`, `roadmap_report.py`), re-derived fresh from the tool this cycle (141 of 164 `ops/*.py` files ledgered, unchanged since the prior cycle, confirming no concurrent session touched it), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is owner-gated, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 433 commits cleanly onto `origin/main`, no conflict. Read `git log -12`, the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 2-6, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub API: 9 open issues confirmed live, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+**Verified rather than assumed:** ran `preflight.py` to full completion in the background rather than trust a truncated foreground run (a first attempt piped through `tail` and hit its own 280s timeout with zero output, correctly discarded as unchecked, not clean, per CLAUDE.md 0.4). The clean run took roughly 11 minutes end to end, dominated by `gate_tests`. Result: every gate passed, 27 warnings, all standing sandbox limits already diagnosed (no Stripe/mail credential, no network egress, no SSH deploy key, Pillow not installed). `gate_cold_read_handoff_not_stale` still flags `status_report.py`/`hourly_brief.py` inside the top-4 log window; both are ledgered `fixed` today already, and the prior 11:1x entry already recorded this as self-resolving narrative text, not a live defect, so no new action there. Working tree clean both before and after.
+
+**Went well:** treating the first, buffered preflight attempt's silent timeout as unchecked rather than inferring cleanliness from the prior cycle's own recent clean run.
+
+**Did not go well:** the same shallow/detached checkout shape recurred again; a `timeout N cmd | tail` pattern hides all progress until the whole pipeline finishes or dies, worth avoiding for any future long-running check in this slot.
+
+**Changing next cycle:** pipe long-running checks (`preflight.py` especially) straight to a file and poll it, not through `tail` at the end of a piped timeout, so a slow run's progress stays visible instead of going dark until it exits or is killed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## PM check-in, 2026-09-26 11:1x (previous work finished and independently re-verified via a full preflight run; backlog and all 9 GitHub issues confirmed exhausted; no unblocked item; cold-read lane handed to the operator)
 
 NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next`, re-run fresh from the tool rather than copied from any entry below, since the top-4 window still names `status_report.py`/`hourly_brief.py` in older Next lines that are already cleared (see below).
