@@ -13,9 +13,14 @@ instances of "organised"/"organisation" shipped in the real file; 3
 (pages 228, 253, 259, all plain SegoeUI) were fixed the same day by
 redacting and re-inserting the whole word with the page's own embedded
 font, verified pixel-correct and text-extraction-correct. The fourth
-(page 243, SegoeUI-Semibold) stays live: pymupdf cannot resolve that
-subset's glyphs when re-embedded as a fresh font resource, and a wrong
-font would be worse than the inconsistency it fixes.
+(page 243, SegoeUI-Semibold) stayed live for ten days: the 2026-09-16
+attempt found pymupdf resolved that subset's glyphs as a generic serif
+fallback when re-embedded as a fresh font resource, visible only on
+render, not in text extraction, so the edit was discarded rather than
+ship a wrong font. Retried 2026-09-26, this operator: the same
+redact-and-reinsert approach, checked this time by rendering the result
+before trusting the text-extraction pass, now resolves the Semibold
+subset's own glyphs correctly (no fallback), fixing the last instance.
 
 Builds small, isolated fixture PDFs with pymupdf rather than mutating the
 real 32 MB sample, the same fixture-over-real-asset approach
@@ -112,11 +117,9 @@ def main():
                             "6S Success Home Edition - Sample (Chapters 1-30).pdf")
         if os.path.exists(real):
             fails, warns = run_gate_against(real)
-            check("real committed file: 3 of 4 fixed, page 243 (semibold) "
-                  "still carries the one instance nothing here can safely fix",
-                  fails == [] and len(warns) == 1
-                  and "organised" in warns[0][1]
-                  and "1 page" in warns[0][1])
+            check("real committed file: all 4 fixed, page 243 (semibold) "
+                  "included, 2026-09-26",
+                  fails == [] and warns == [])
         else:
             print("  skipped: real sample PDF not present in this checkout")
     finally:

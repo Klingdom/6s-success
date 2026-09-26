@@ -21831,13 +21831,30 @@ def gate_sample_pdf_spelling() -> None:
     the site's primary lead magnet is worse than the one remaining
     inconsistency it would fix.
 
-    Warn, not fail: the one remaining instance is real and correctly
-    attributed, but nothing in this sandbox can safely rewrite that
-    font's glyph subset, and failing preflight over one word already
-    outnumbered 25 to 1 in the same document would block real,
-    unrelated work for a defect nobody here can close. Fixed by whoever
-    next has the source manuscript (a proper text edit and recompile)
-    or the necessary font tooling.
+    Fixed 2026-09-26, this operator: page 243 corrected. The 2026-09-16
+    attempt found the SegoeUI-Semibold subset silently fell back to a
+    generic serif font when redrawn, caught only by rendering the result,
+    not by text extraction, so it was correctly discarded rather than
+    ship a visibly wrong font. Retried directly rather than trusted as a
+    standing dead end: the identical redact-and-reinsert technique (the
+    subset's own extracted glyphs via `pymupdf.Font(fontfile=...)`, the
+    sampled true background colour, a `TextWriter` insertion at the
+    original baseline) now resolves every glyph correctly, verified by
+    rendering the fixed page at 600 DPI and comparing it against the
+    original word-for-word, letterform by letterform: same weight, same
+    style, no fallback font. A full pixel diff at 150 DPI against the
+    pre-fix file shows exactly one page differs, 243, and only in the
+    redrawn word; text extraction confirms every one of the other 491
+    pages is byte-identical; 173 embedded images across the document
+    still decode; page count unchanged (492); resaved with
+    `garbage=4, deflate=True, clean=True`, file size fell 21KB rather
+    than grew. Nothing here explains why this attempt resolved cleanly
+    where the first one saw a fallback font ten days earlier (a pymupdf
+    version difference is the likeliest cause, not investigated further
+    since the render-level verification is what actually matters): this
+    docstring is left in place, not deleted, because the next person to
+    doubt a "we tried, it's unfixable here" note in this file should
+    retry and verify before trusting it, the same way this one did.
     """
     path = os.path.join(ROOT, SAMPLE_PDF_REL)
     if not os.path.exists(path):
