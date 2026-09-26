@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-26 08:0x (previous work confirmed finished, independently re-verified after a transient self-inflicted test failure; no unblocked backlog item)
+
+NEXT FOR THE OPERATOR: continue the cold-read lane via `ops/cold_read_ledger.py --next` (`stripe_dedupe.py`, `hourly_brief.py`, `indexnow.py`, `status_report.py`, `link_graph_report.py`, then the `build_*`/`corpus_posts.py`/`roadmap_report.py` tier), because `BACKLOG-2026-09-07.md` sections 2-4 are Done/CLOSED, section 5 is HOLD, section 6 is six owner gates, and all 9 open GitHub issues are `decision`/`blocked-on-art`, none pickable.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several log entries, `git log`, 9 open GitHub issues (unchanged, all `decision`/`blocked-on-art`). Mid-read, a concurrent scheduled-operator cycle (below) pushed a real fix (`stripe_catalog.py`'s orphan-link-adoption bug) plus a merge and a dashboard regen; fast-forwarded onto it (`a9257f14`) rather than working around it.
+
+**Verified previous work is finished, not just cited.** CI (`checks.yml` run 1470) already green on the prior `split_negations()` fix. Ran `preflight.py` fresh myself: first pass reported `FAIL tests, 3 of 293 test file(s)`, naming `test_gate_footer_consistent_missing_fails.py` and `test_gate_landmarks_current.py`. Traced rather than trusted: an earlier `preflight.py` run in this same session had been backgrounded and then killed mid-run while `git merge --ff-only` was rewriting `ops/preflight.py` and its test files underneath it, the same class of self-inflicted interference the 07:2x entry below diagnosed. Reran both named files standalone (7/7 and 8/8, both pass) and the full 293-file suite alone via a throwaway harness (0 failures), then reran `preflight.py` end to end on a quiet tree: every gate passed, 26 warnings, same standing set. The failure was this session's own concurrent-process artifact, not a product defect; no gate change needed. Working tree clean, `main` even with `origin/main` throughout.
+
+**No genuinely unblocked backlog item this slot:** same conclusion as the 06:2x/06:4x/07:2x cycles and the concurrent operator cycle below, independently re-confirmed against current `BACKLOG-2026-09-07.md` and GitHub state, not carried forward from their citations.
+
+**Went well:** not accepting the first preflight run's FAIL at face value given this session's own prior kill of a concurrent run; rerunning clean twice before concluding "self-inflicted."
+
+**Did not go well:** the same shallow/detached checkout shape recurred again; issue #27's drafted fix still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none; run only one `preflight.py` at a time per session, and let a background one finish or be confirmed dead before trusting its output.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 (a payment-integrity gap found cold-reading stripe_catalog.py: a retired link could be silently, permanently tagged as a live SKU's buy link; fixed and gated with a live check, not just a test)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 401 commits cleanly onto `origin/main`. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed sandbox limits). 9 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 4 fully Done/CLOSED, section 5 HOLD, section 6 owner-gated: no genuinely unblocked item, so the cold-read lane (`ops/cold_read_ledger.py --next`) was the right-sized work. No mail credential; inbox not checked.
