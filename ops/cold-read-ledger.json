@@ -112,9 +112,9 @@
       "note": "8 tier-1 kit items, WHY dict keys all match CSV names exactly, retailer_link/disclosure branching correct for withheld/plain/tracked, Sort-before-Straighten assertion verified not trivially satisfied by header/footer text, full generator-ownership chain (canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif, fingerprint_assets) present. No defect."
     },
     "build_kitchen_deck_page.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-09-26",
-      "note": "723 lines read in full. Verified idempotent (full pipeline rerun produced a byte-identical tree). front_text()/back_body() field access confirmed against the real corpus (every card of every type carries the fields each branch reads). Downloaded PDF target (downloads/6S-Kitchen-Deck-PrintAndPlay.pdf) exists. og:image correctly uses the Kitchen's own ch32 photo (this deck IS the Kitchen, unlike the room-deck og:image bug fixed 2026-09-25 for decks that were not their own room). One transient UnicodeDecodeError seen mid-run in canonical_links.py, traced to running concurrently with this same cycle's own preflight.py invocation (a scratch/probe file mid-write), not reproducible standalone; not a defect in this file."
+      "note": "A concurrent cycle marked this file clean the same day without cross-checking the Room card's own 'start_here' claim against content.json's session-time data. It read: Sink and Dishwashing Zone is the kitchen's shortest zone. False: content.json's session field puts Sink at 30-45 min, tied second-shortest with Upper Cabinet Zone, while Utensil and Utility Drawers is the true shortest at 15-30 min. The true, grounded half of the same sentence (Sink is the point the whole kitchen resets from, per the SINK RESET action card's own why field) was correct and kept. Fixed at the source in ops/cardtext/build_kitchen_deck.py's ROOM card start_here field and this generator's own intro paragraph; regenerated kitchen-deck.json and site/kitchen-deck.html. Shipped dd9c0a01a."
     },
     "build_laundry_room_deck_page.py": {
       "status": "fixed",
