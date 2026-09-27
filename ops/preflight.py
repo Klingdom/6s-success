@@ -20251,6 +20251,100 @@ def gate_manual_print_fonts_current() -> None:
              % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
 
 
+def gate_manual_zone_content_current() -> None:
+    """The Manual's own zone text must not silently drift from content.json.
+
+    LRN-0019 (LEARNINGS.md, 2026-09-26): a typo in content.json's Kitchen
+    Cooking Zone `purpose` ("strip" mistyped) had propagated into 21
+    generated artifacts, and every one of them was fixed by rerunning its
+    generator except the Micro Zone Manual. content/manual/6S Home Micro
+    Zone SOP Field Manual v3.html is hand-authored HTML, not derived from
+    content.json by anything in ops/: ops/build_manual_print.py reads the
+    committed file byte for byte and only injects front matter, appendices
+    and a print stylesheet around it. So a future content.json correction
+    (a wrong word, a corrected root cause, a rewritten outcome) can reach
+    every zone page, video and card while MZ-MANUAL, the highest-priced
+    product on the site, keeps saying the old thing, and nothing would
+    notice, because no existing gate compares the Manual's own prose
+    against the corpus it claims to summarise.
+
+    Checks the two fields LRN-0019 traced this defect through, `purpose`
+    and `done_looks_like`, on all 114 zones: each content.json zone's
+    room+zone slug (the same room--zone id ops/build_zone_pages.py already
+    derives) is matched against the Manual's own `<article class="zone"
+    id="...">` block, and the visible zpurpose / "Done looks like" text
+    must match exactly, tags stripped. A missing article, or a text
+    mismatch, fails by name. content/manual/micro-zone-manual-publishable.html
+    and content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html are not
+    checked separately: ops/build_manual_print.py's own main() writes all
+    three from one in-memory `doc` read from the v3.html file, and
+    gate_manual_print_fonts_current already proves that copy is current, so
+    checking the source file once covers all three.
+
+    This is a content-drift gate, not a regeneration gate: nothing in ops/
+    can fix a mismatch automatically, because nothing derives this HTML from
+    content.json. The fix is the same hand-edit LRN-0019's own fix was.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    manual_path = os.path.join(
+        ROOT, "content", "manual", "6S Home Micro Zone SOP Field Manual v3.html")
+    if not (os.path.exists(src_path) and os.path.exists(manual_path)):
+        return
+
+    d = json.load(io.open(src_path, encoding="utf-8"))
+    corpus = {}
+    for r in d["rooms"]:
+        for z in r["zones"]:
+            zid = "%s--%s" % (_slugish(r["room"]), _slugish(z["zone"]))
+            corpus[zid] = {
+                "purpose": (z.get("purpose") or "").strip(),
+                "done_looks_like": (z.get("done_looks_like") or "").strip(),
+            }
+
+    html = io.open(manual_path, encoding="utf-8").read()
+    tag_re = re.compile(r"<[^>]+>")
+    article_re = re.compile(r'<article class="zone" id="([^"]+)">(.*?)</article>', re.S)
+    found = {}
+    for m in article_re.finditer(html):
+        zid, body = m.group(1), m.group(2)
+        pm = re.search(r'<p class="zpurpose">(.*?)</p>', body, re.S)
+        dm = re.search(
+            r'<div class="done"><div class="lbl">Done looks like</div><p>(.*?)</p></div>',
+            body, re.S)
+        found[zid] = {
+            "purpose": tag_re.sub("", pm.group(1)).strip() if pm else None,
+            "done_looks_like": tag_re.sub("", dm.group(1)).strip() if dm else None,
+        }
+
+    missing = sorted(zid for zid in corpus if zid not in found)
+    if missing:
+        fail("manual-zone-content-current",
+             "%d zone(s) in content.json have no matching <article "
+             "class=\"zone\" id=\"...\"> in the Manual: %s. Either the zone "
+             "is new and the Manual has not been extended to it, or the "
+             "Manual's id no longer matches ops/build_zone_pages.py's "
+             "room--zone slug convention." % (len(missing), missing[:5]))
+        return
+
+    mismatches = []
+    for zid, want in corpus.items():
+        have = found.get(zid) or {}
+        for field in ("purpose", "done_looks_like"):
+            if want[field] and have.get(field) is not None and want[field] != have[field]:
+                mismatches.append("%s.%s" % (zid, field))
+
+    if mismatches:
+        fail("manual-zone-content-current",
+             "%d field(s) in the Manual no longer match content.json, the "
+             "exact LRN-0019 shape (a corpus correction never reaches the "
+             "Manual, because nothing in ops/ re-derives its body text): "
+             "%s%s. Hand-edit the Manual's own text for each one to match "
+             "content.json, the same way LRN-0019's own fix did; nothing "
+             "regenerates it automatically." %
+             (len(mismatches), mismatches[:8],
+              " ... and %d more" % (len(mismatches) - 8) if len(mismatches) > 8 else ""))
+
+
 def _epub_word_count(epub_path: str) -> int | None:
     """Recompute the EPUB's word count the same way
     build/listings/verify_epub.py does (strip tags from every spine XHTML
@@ -22855,6 +22949,7 @@ def main() -> int:
     run_gate(gate_kdp_listing_valid)
     run_gate(gate_kdp_cover_current)
     run_gate(gate_manual_print_fonts_current)
+    run_gate(gate_manual_zone_content_current)
     run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_etsy_pdfs_current)

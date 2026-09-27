@@ -582,6 +582,23 @@ corpus correction silently fails to reach MZ-MANUAL, and every check passes
 while it does. The four files were corrected by hand this time, which fixes the
 instance and not the cause.
 
+**Cause closed 2026-09-27, scheduled operator cycle.** Nothing re-derives the
+Manual's body text from content.json, so the cause itself cannot be fixed
+without rewriting the Manual as a generated document, out of scope for one
+cycle. What could be closed cheaply is the silence: a new
+`gate_manual_zone_content_current` in `ops/preflight.py` now cross-checks
+every zone's `purpose` and `done_looks_like` (the two fields this defect
+actually traveled through) against the Manual's own `<article class="zone"
+id="...">` blocks, matched by the same room--zone slug
+`ops/build_zone_pages.py` already derives, and fails by name on a mismatch
+or a missing article. Confirmed clean against the real committed files
+first (0 mismatches across all 114 zones, so this was not a live defect
+today), then fail-then-pass proved on 7 cases in
+`ops/tests/test_gate_manual_zone_content_current.py`, including the real
+LRN-0019 shape (a purpose field silently drifting) and a renamed zone id.
+The next corpus correction that reaches these two fields but not the
+Manual will now fail preflight by name instead of shipping silently.
+
 **That exception was wrong, and chasing it found something much worse.** I first
 wrote here that the SRT files should keep saying "step" to match baked narration.
 Captions on these films transcribe the ON-SCREEN text, not speech
