@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-27 21:5x (eleventh consecutive cycle at the same broad verdict, but this one found and fixed a real one-commit drift, and confirmed a new commit from Phil)
+
+**Attached** clean: `git fetch origin main`, `fetch --unshallow` (checkout arrived shallow and detached, as every cycle's own step 0 warns), `checkout main`, `merge --ff-only origin/main` fast-forwarded 648 commits, no conflict, working tree clean on attach.
+
+**Read** `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four entries of this log, per step 1.
+
+**Ran `python ops/preflight.py` to completion in the background** (no foreground timeout wrapper): every gate passed, 26 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
+
+**Independently re-verified the standing "nothing genuinely unblocked" verdict rather than just cite it, going further than a citation check.** 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, still exhausted. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly unchecked. Re-tested egress directly with `curl` to `api.indexnow.org` and `6s-success.com`: both denied by the agent proxy, confirmed again, not assumed. Went beyond the standing citations and read `REVIEW-DISCOVERY-2026-09-07.md`'s D2 through D21 rows cold myself: every one is Done, correctly held (D3/D4's rollout past the 12-zone pilot to all 114 zones is gated on a 21-day read that started 2026-09-20 and is not due until 2026-10-11, so it stays HOLD), or genuinely Phil-gated (D19 Search Console, D20 professional-community links, D21 the named-author credential). Found nothing the prior ten cycles had missed.
+
+**Noticed and verified a new commit that had landed since the last log entry and was not yet logged by any autonomous cycle: `1ae12630f`, Phil's own "No zone page ships imageless: a typographic hero for the three with no photograph."** It gives the three zone pages whose photographic hero was rejected (LRN-0012: SD 1.5 draws the room and drops the micro zone) a typographic panel quoting the zone's own `done_looks_like` text, instead of the blank space `wire_zone_heroes`'s sweep had been leaving. This cycle's own full `preflight.py` run covers this commit and passed clean, confirming it did not break anything sitewide; not re-litigated further since it is Phil's own verified work, not a cold-read find.
+
+**Found and fixed the one real, live thing this cycle: `gate_status_deploy_gap_count_current` warned `BLOCKER-001`'s latest entry (07:3x) cited a gap of 20 commits (5 material) against a fresh recount of 21.** The one new commit is `1ae12630f` above, and, checked rather than assumed, it is material: a real, customer-visible fix to three live pages, not a dead-code removal or a proven-identical dedup like the six commits the 07:3x entry had already screened out. Corrected `BLOCKER-001`'s own latest entry with a new widening entry (matching its established pattern) and the two summary rows (`Public website`, `Production traceability`) that cited the same stale 20/5 figure, to 21 commits, 6 material. Rotated the oldest of `STATUS.md`'s four-entry stack into `STATUS-ARCHIVE.md` in the same edit, per the file's own rotation practice. Fail-then-pass proved directly: reproduced `gate_status_deploy_gap_count_current`'s warning by calling `deploy_gap_count_problem()` against the unfixed file before editing, confirmed it fires; reran after the fix and confirmed it clears (`problem` returns empty). Also ran the sibling stale-claim gates directly (`gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`, `gate_status_deploy_verdict_current`): all clean against the edited files. Full `preflight.py` rerun after the edit: every gate passed, 26 warnings, no new FAIL, no new warning.
+
+**Went well:** finding a real, small, provable defect instead of filing an eleventh identical "nothing moved" entry; independently spot-checking all 20 of the discovery review's own D-rows rather than trusting the citation that they were exhausted.
+
+**Did not go well:** nothing new; production is still one confirmed-stale build behind HEAD regardless of which commit count sits next to that fact, and that gap only closes on `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0) or a session holding the deploy key.
+
+**Changing next cycle:** none; the gate that caught this did its job.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description) and the 8 GitHub issues, unchanged. Nothing else is genuinely unblocked this cycle.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 21:1x (tenth consecutive cycle at the same verdict; independently built the same fix a concurrent cycle landed first, stood down rather than duplicate it)
 
 **Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, tree clean on attach).
