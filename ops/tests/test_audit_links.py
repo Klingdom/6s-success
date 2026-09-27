@@ -8,7 +8,9 @@ same output. Two real holes were fixed on 2026-08-31:
 
   and a link to a directory with no index.html passed as good, because
   os.path.exists() answers True for a directory, while the server answers such
-  a URL with 403 Forbidden.
+  a URL 403 internally (remapped to a 404 before a visitor sees it, per
+  site/nginx/default.conf's own error_page directive, but still no real page
+  there).
 
 This writes a page containing both faults, plus links that must stay clean, and
 requires the audit to tell them apart.
@@ -32,7 +34,7 @@ PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 </head><body><main><h1>Fixture</h1>
 <a href="/no-such-root-relative-page.html">must be reported: root relative, missing</a>
 <a href="nope-relative-page.html">must be reported: relative, missing</a>
-<a href="/downloads/">must be reported as 403: directory with no index</a>
+<a href="/downloads/">must be reported as link-403: directory with no index</a>
 <a href="/zones/">must stay clean: directory with an index</a>
 <a href="/book.html">must stay clean: a real page, root relative</a>
 <a href="book.html">must stay clean: a real page, relative</a>

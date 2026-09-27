@@ -311,6 +311,11 @@
       "date": "2026-09-25",
       "note": "Pre-commit-only content-hash staleness check; delegates hashing to build_seo.py's own _content_hash/_load_content_hashes, no duplicated logic to drift. CI-side backstop gate_sitemap_lastmod_current in preflight.py uses the same hash file independently and already caught/fixed a real path-resolution bug 2026-09-21, so this check is not the only line of defense. No defect."
     },
+    "check_urls.py": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "docstring, resolve()'s directory-403 comments, check_static()'s printed message, and the same claim duplicated in ops/audit_pages.py's link-403 comment and both files' tests all said a directory with no index.html answers 403 Forbidden to the visitor. Checked live against site/nginx/default.conf (the exact file COPY'd into the image, per Dockerfile): error_page 403 =404 /404.html; was added 2026-08-30, one day before check_urls.py's own first commit, and remaps that internal 403 to a 404 before it reaches a crawler or visitor. Verdict/behaviour unchanged (still a failure either way, directory-403 vs missing still told apart for the different fix each needs); only the prose claiming what a client actually receives was wrong. Fixed in all four locations. No preflight gate: no functional behaviour changed to regress-test, only comment/message accuracy."
+    },
     "check_video_links.py": {
       "status": "clean",
       "date": "2026-09-25",

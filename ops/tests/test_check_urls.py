@@ -3,7 +3,12 @@
 The sitemap currently resolves completely, so a working resolver and a broken
 one produce identical output. This drives the resolver directly with cases it
 must get right, including the one that started all this: a directory with no
-index.html, which nginx answers with 403 Forbidden rather than 404.
+index.html, which nginx answers internally with 403 Forbidden. Since
+2026-08-30 the config's own error_page directive remaps that 403 to a 404
+before a visitor or crawler ever sees it (site/nginx/default.conf), so the
+"directory-403" verdict names the cause, not the wire status; it is still a
+distinct failure from a genuinely missing file, so it still has to be told
+apart from "missing" here.
 """
 import os
 import sys
@@ -32,7 +37,8 @@ def main() -> int:
 
     # The defect this tool exists for.
     want("/downloads/", "directory-403",
-         "a directory with no index.html answers 403, not 404")
+         "a directory with no index.html, internally a 403 nginx's own "
+         "error_page then remaps to a 404 before a visitor sees it")
 
     # Plainly absent.
     want("/no-such-page-at-all", "missing", "nothing on disk")

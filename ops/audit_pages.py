@@ -255,7 +255,9 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
         # "what does the server do with this", covered by its own test. The old
         # code used os.path.exists(), which answers True for a directory, so a
         # link to a directory with no index.html passed as good while the
-        # server answers it with 403 Forbidden.
+        # server answers it 403 internally (remapped to a 404 before a
+        # visitor sees it, per site/nginx/default.conf's own error_page
+        # directive, but still no real page at that address).
         site_path = "/" + os.path.relpath(target, SITE).replace(os.sep, "/")
         if rel.endswith("/") and not site_path.endswith("/"):
             site_path += "/"

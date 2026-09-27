@@ -21,8 +21,20 @@ The static resolver mirrors these lines of site/nginx/default.conf:
 
 so "resolves" here means what nginx will actually do, not what looks plausible.
 The $uri/ step is the one that bit us: a directory with no index.html does not
-404, it 403s, because autoindex is off. That is treated as a failure with its
-own name rather than folded into "missing", because the fix is different.
+fall through to a plain 404, it 403s internally, because autoindex is off.
+That is treated as a failure with its own name rather than folded into
+"missing", because the fix is different: an index.html or a redirect, not a
+missing file.
+
+Checked against the live config, not assumed: since 2026-08-30 the same file
+also carries `error_page 403 =404 /404.html;` at server level, so that internal
+403 is remapped before it ever reaches a visitor or a crawler. What actually
+lands on the wire is this site's own 404 page with a 404 status, the same as
+a plain missing file. The "directory-403" verdict name describes the root
+cause nginx hits internally, not the status code a client receives; both
+verdicts already fail this check either way, so nothing about what gets
+flagged changes, only what the failure is honestly said to look like from
+outside.
 """
 import argparse
 import io
@@ -64,7 +76,12 @@ def path_of(url: str) -> str:
 def resolve(path: str) -> tuple:
     """(verdict, detail) for one path, by nginx's own rules.
 
-    verdict is "ok", "missing", or "directory-403".
+    verdict is "ok", "missing", or "directory-403". "directory-403" names the
+    internal try_files step nginx hits (a directory with no index.html,
+    autoindex off); since 2026-08-30 the config's own
+    `error_page 403 =404 /404.html;` remaps that to a 404 before it reaches
+    the visitor, so the client never actually sees a bare 403. Named for the
+    cause, not the wire status, and still a failure either way.
     """
     if path in SERVED_BY_CONFIG:
         return "ok", SERVED_BY_CONFIG[path]
@@ -85,8 +102,11 @@ def resolve(path: str) -> tuple:
         return "ok", rel + ".html"
 
     # try_files $uri/  -- a directory only resolves if it holds an index.html.
-    # Without one nginx answers 403 Forbidden, not 404, because autoindex is
-    # off. Different symptom, different fix, so it is named separately.
+    # Without one nginx answers 403 Forbidden internally, because autoindex is
+    # off; the config's own error_page directive then remaps that to a 404
+    # before a visitor or crawler ever sees it (site/nginx/default.conf,
+    # confirmed 2026-09-27). Still a different symptom and a different fix
+    # from a genuinely missing file, so it is named separately.
     if os.path.isdir(direct):
         if os.path.isfile(os.path.join(direct, "index.html")):
             return "ok", rel.rstrip("/") + "/index.html"
@@ -115,7 +135,10 @@ def check_static() -> int:
         n403 = sum(1 for b in bad if b[1] == "directory-403")
         print("\n  %d URL(s) we publish to search engines do not resolve"
               "%s." % (len(bad),
-                       ", %d of them answering 403 Forbidden" % n403 if n403 else ""))
+                       ", %d of them a directory with no index.html "
+                       "(nginx's error_page remaps the 403 to a 404 before "
+                       "a visitor sees it, but there is still no page there)"
+                       % n403 if n403 else ""))
         return 1
     print("  every URL in the sitemap resolves.")
     return 0
