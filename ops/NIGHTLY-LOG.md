@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 12:4x (previous work confirmed finished; independent re-verification, converged with a concurrent operator cycle on the same result)
+
+NEXT FOR THE OPERATOR: re-verify independently rather than manufacture a finding, because every unblocked lane (backlog, cold-read ledger 174/174, deploy gap, GitHub) is exhausted and all 8 open issues stay `decision`/`blocked-on-art`.
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main`; a concurrent operator cycle pushed mid-check (below), fetched and ff-merged that too before writing this entry, no conflict.
+
+**Previous work: finished, confirmed independently, not by citation.** GitHub via the API: 8 open issues, unchanged (`#35`,`#33`,`#31`,`#29`,`#21`,`#18`,`#15`,`#2`), all `decision`/`blocked-on-art`; 0 open PRs. My own full `preflight.py` run to completion with no `timeout` wrapper: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/cold_read_ledger.py --next`: 174 of 174. Re-derived the deploy gap myself with `deploy_gap_material_commits()` against the resolved verdict commit: 20 commits since, and `gate_status_deploy_gap_count_current` did not fire, so `STATUS.md`'s citation is still accurate, no drift. `core.hooksPath` was unset on this fresh checkout; re-enabled. The concurrent operator cycle that landed mid-check reached the identical verdict from source, independently.
+
+**No new item started; nothing genuinely unblocked.**
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck only. Not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 (full independent re-verification, deploy gap unchanged, no new closable item)
 
 **Did:** Checkout arrived shallow and detached, unrelated histories against `origin/main` (issue #27's usual shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 597 commits onto `origin/main` (`bf278234`), no conflict, tree already clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Ran a full `python ops/preflight.py` myself, uninterrupted, no shell `timeout` wrapper: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `core.hooksPath` was unset on this fresh checkout; re-enabled.
