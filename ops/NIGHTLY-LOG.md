@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-27, scheduled operator cycle (build/listings/*.py cold-read lane closed at 9/9: the last 5 files run, not just read, no defect found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, fetched origin, `checkout main`, `merge --ff-only` onto `origin/main` (586 commits, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran a full `python ops/preflight.py` myself in the background rather than trust a citation: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Confirmed live via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; last several workflow runs on `main` all green. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Picked up a live handoff rather than re-deriving one.** While the above was running, a concurrent PM check-in pushed (`4c824ba2`), fast-forwarded in with no conflict, naming the exact remaining work: the `build/listings/*.py` cold-read lane (a informal lane tracked in this log, separate from `ops/cold-read-ledger.json`, which only covers `ops/*.py`) had 4 of 9 files read and run clean this same day (`build_etsy_assets.py` fixed earlier, `check_etsy.py`/`verify_zone_claims.py`/`verify_epub.py` verified clean), leaving 5: `amazon_nodes.py`, `amazon_suggest.py`, `build_kdp_cover.py`, `check_kdp.py`, `etsy_economics.py`.
+
+**Closed the lane.** Read all 5 in full and ran what could run without network egress: `python build/listings/check_kdp.py` (PASS, 0 FAIL, the same UNCHECKED rows it already names for itself: no Pillow, no JRE, Amazon's real converted-file size unknowable from here); `python build/listings/etsy_economics.py` with the fee schedule cited in `MARKETPLACE-LISTINGS.md`, and checked its arithmetic by hand for all 4 listings (fees, net, and the direct-vs-Etsy comparison rule all correct). `amazon_nodes.py` and `amazon_suggest.py` need live Amazon egress, unreachable here (same standing limit); read both in full, `py_compile` clean, regex and control flow correct, both already correctly label their own output as not-volume evidence. `build_kdp_cover.py` needs Pillow, absent here; read in full and cross-checked its load-bearing claim (that the URL band at y=2395-2500 clears `ops/build_cover.py`'s actual draw positions) directly against that generator's source: strapline at y=2316, URL at y=2430 in a 40px font, both confirmed live in the file, not recalled. No defect found in any of the 5.
+
+**Went well:** treating a concurrent session's mid-run handoff as real, sized work rather than repeating a "nothing found" cycle or waiting for the next full sweep; running or hand-verifying every file rather than stopping at a read, per this log's own repeated lesson that a read alone does not prove a script still works.
+
+**Did not go well:** nothing new; the same standing sandbox limits (no egress, no Pillow, no JRE) capped how far 3 of the 5 could be verified, same as every other cycle touching this directory.
+
+**Changing next cycle:** none; no new gate warranted (nine files read clean is a verification result, not a fix). The `build/listings/*.py` lane is now fully closed (9 of 9), the same way the `ops/*.py`/JS/mobile lane closed at 174/174; a future idle cycle should look at a file class neither lane has covered yet (documented in the log entries around 2026-09-27 07:xx-09:xx: `.github/workflows/*.yml` and top-level CSS are already read, shell scripts under `ops/` are not).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube upload authorisation, Stripe business description) and the 8 GitHub issues, unchanged. No workstream sized for the operator beyond that list this cycle.
+
+Pushed to main. This log entry and the command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 09:4x (previous work confirmed finished; continued the build/listings/*.py cold-read lane, 3 more files verified clean, no defect found)
 
 NEXT FOR THE OPERATOR: cold-read the remaining 5 `build/listings/*.py` files (`amazon_nodes.py`, `amazon_suggest.py`, `build_kdp_cover.py`, `check_kdp.py`, `etsy_economics.py`), because that lane is the only genuinely unblocked work left: the main ops/JS/mobile cold-read ledger stays exhausted at 174/174 and all 8 open GitHub issues are `decision` or `blocked-on-art`, none pickable per this slot's own rule.
