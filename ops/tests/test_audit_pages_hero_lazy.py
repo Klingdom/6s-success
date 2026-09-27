@@ -77,12 +77,32 @@ def main():
     if "hero-lazy" not in names(both):
         fails.append("a real lazy hero before a video thumbnail was missed")
 
+    # Case 5: a video-play thumbnail followed by a genuine lazy hero whose
+    # markup is byte-identical to the thumbnail's own <img> tag. html.find()
+    # on the tag text would resolve to the thumbnail's own position for
+    # both occurrences, hiding a real lazy above-fold hero behind an
+    # unrelated video-play exemption. Found 2026-09-27, cold read.
+    padding = "<p>filler word</p>" * 20
+    duplicate_markup = (
+        '<html lang="en"><head><title>T</title>'
+        '<meta name="viewport" content="width=device-width">'
+        '<meta name="description" content="d"></head>'
+        '<body><h2>Watch this zone</h2>'
+        '<button type="button" class="video-play">'
+        '<img src="https://x/thumb.png" alt="" loading="lazy">'
+        "</button>" + padding +
+        '<img src="https://x/thumb.png" alt="" loading="lazy">' +
+        padding + "</body></html>")
+    if "hero-lazy" not in names(duplicate_markup):
+        fails.append("a real lazy hero was missed because its markup "
+                     "matched an earlier video-play thumbnail's")
+
     if fails:
         print("FAIL")
         for f in fails:
             print("  -", f)
         return 1
-    print("PASS: 4 case(s), a video-play thumbnail is excluded from the "
+    print("PASS: 5 case(s), a video-play thumbnail is excluded from the "
           "first-image check, a genuine lazy hero is still caught")
     return 0
 
