@@ -12206,6 +12206,15 @@ def gate_dashboard_social_pins_live() -> None:
     if "0/0" not in no_pool:
         fail("dashboard-social-pins",
              f"an empty pool did not render honestly: {no_pool!r}")
+    # Found live 2026-09-26: the counting loop's own except clause used to
+    # collapse a mid-run failure into the same bare 0 a genuinely empty build
+    # produces, so social_pin_line(0, 114) above could not tell "counted, and
+    # it is zero" from "could not count." unmeasured is the third state.
+    unmeasured = db.social_pin_line(None, 114)
+    if "0/114" in unmeasured or "not measured" not in unmeasured:
+        fail("dashboard-social-pins",
+             f"a mid-run counting failure rendered as a measured zero "
+             f"instead of unmeasured: {unmeasured!r}")
 
 
 def gate_dashboard_youtube_metadata_live() -> None:
@@ -12237,6 +12246,13 @@ def gate_dashboard_youtube_metadata_live() -> None:
     if "0/0" not in no_pool:
         fail("dashboard-youtube-metadata",
              f"an empty pool did not render honestly: {no_pool!r}")
+    # Same third state as gate_dashboard_social_pins_live: a mid-run counting
+    # failure must render as unmeasured, not as a measured zero.
+    unmeasured = db.youtube_metadata_line(None, 114)
+    if "0/114" in unmeasured or "not measured" not in unmeasured:
+        fail("dashboard-youtube-metadata",
+             f"a mid-run counting failure rendered as a measured zero "
+             f"instead of unmeasured: {unmeasured!r}")
 
 
 def gate_dashboard_thumbnails_live() -> None:
@@ -12271,6 +12287,13 @@ def gate_dashboard_thumbnails_live() -> None:
     if "0/0" not in no_pool:
         fail("dashboard-thumbnails",
              f"an empty pool did not render honestly: {no_pool!r}")
+    # Same third state as gate_dashboard_social_pins_live: a mid-run counting
+    # failure must render as unmeasured, not as a measured zero.
+    unmeasured = db.thumbnail_line(None, 114)
+    if "0/114" in unmeasured or "not measured" not in unmeasured:
+        fail("dashboard-thumbnails",
+             f"a mid-run counting failure rendered as a measured zero "
+             f"instead of unmeasured: {unmeasured!r}")
 
 
 def gate_dashboard_narrated_videos_live() -> None:

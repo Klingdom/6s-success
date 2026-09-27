@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-26 (cold-read lane closed on ops/dashboard.py: three video-count counters silently collapsed a mid-run failure into a measured zero)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded onto `origin/main` clean. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; no mail credential (`inbox_agent.py --apply`: unchecked, not empty). `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated, nothing newly unblocked, so the standing cold-read lane at `ops/dashboard.py` (per the immediately preceding entry's own handoff) was again the right-sized work.
+
+Read the seven near-identical zone/photo/16x9/narrated/social-pin/youtube-metadata/thumbnail video-count blocks (~lines 1480-1650). Four already carry `resolve_video_count()`'s carry-forward protection. The other three, `social_pins_built`, `youtube_metadata_built`, `thumbnails_built`, had none: their `except` handlers reset to a bare 0 on any mid-loop failure, which the three render functions then printed as a measured "not yet rendered/written" claim; fed the literal `None` (what the reset should have produced) they printed "None/114 zones... ready", the same unknown-collapsed-into-a-number shape the immediately preceding cycle had just fixed for `cards_total`/`book_sellable_detail`, just not yet at this call site.
+
+**Verified:** extracted the pre-fix functions from `HEAD` directly and confirmed `built=None` rendered "None/114 zones... ready" (a false completeness claim); the fix renders "not measured this run" instead. Ran the three real gate functions (`gate_dashboard_social_pins_live`/`youtube_metadata_live`/`thumbnails_live`) against both old and new code: old code fails by name on all three, new code passes. `py_compile` clean; six existing dashboard/social-pins test files all still pass unchanged. Full `preflight.py` re-run in progress at commit time.
+
+**Went well:** continuing the exact handoff rather than a fresh angle; proving fail-then-pass against the real gate code, not just reasoning about it.
+
+**Did not go well:** none of the three has ever hit this path live (all read clean today, 114/115/114); preventive, like the fix it follows.
+
+**Changing next cycle:** none; ledgered `ops/dashboard.py` as fixed in `ops/cold-read-ledger.json` (its `deploy_verdict`/`traffic_reading` functions and the render functions after line 1900 remain unread for a future pass).
+
+**Next:** cold-read lane continues at `ops/inbox_agent.py`, the next lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next`. Standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `ops/cold-read-ledger.json`, `STATUS.md`, `STATUS-ARCHIVE.md`, this log, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-26 23:2x (previous work finished, confirmed by a full local preflight; a real stray-commit defect found and closed, gate widened so its own class cannot recur silently)
 
 Previous work (dashboard.py three-state fix) confirmed finished: full local preflight, every gate passed, 0 FAIL, 26 warnings, all standing sandbox limits. On attach, found `.preflight_jslint_3tpmhf47/` (34 files) tracked on main, a killed preflight run's own eslint scratch directory that `ops/ship.py`'s `git add -A` had committed, invisible to `gate_no_tracked_gitignored_dirs` because its wildcard-suffixed name defeated that gate's literal-prefix match. Untracked and deleted it, gitignored the pattern, and rewrote the gate's matching with fnmatch so a wildcard directory pattern is actually caught, not just a literal one; proved fail-then-pass with two new synthetic cases. Full preflight and mobile npm test both clean after. Handing to the operator: cold-read lane continues at `ops/dashboard.py`, unchanged.

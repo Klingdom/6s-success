@@ -341,6 +341,11 @@
       "date": "2026-09-26",
       "note": "Bot classification order, TRAINING/RETRIEVAL split, proxy vs container log parsing and reverse-DNS verification all correct on inspection. No defect."
     },
+    "dashboard.py": {
+      "status": "fixed",
+      "date": "2026-09-26",
+      "note": "Read the seven near-identical zone/photo/16x9/narrated/social-pin/youtube-metadata/thumbnail video-count except-Exception blocks (~lines 1480-1650). Four (zone_videos, zone_photo_videos, zone_videos_16x9, narrated_videos) already wrap through resolve_video_count()'s carry-forward. The other three (social_pins_built, youtube_metadata_built, thumbnails_built) had no such protection: their except handlers reset to a bare 0, which social_pin_line/youtube_metadata_line/thumbnail_line then render as a measured 'not yet rendered/written' claim, and would render the literal word None if fed it, the same unknown-collapsed-into-a-number class this session already fixed in cards_total/book_sellable_detail. Fixed: except now sets None; all three line functions and the two dashboard render call sites distinguish None (not measured) from 0 (measured, empty). Not live today (a full run reads 114/115/114 with no exception), but proven fail-then-pass against the real gate functions. Deploy_verdict/traffic_reading and the render functions after line 1900 are still unread; next cycle should continue there."
+    },
     "deploy.py": {
       "status": "fixed",
       "date": "2026-09-26",

@@ -228,6 +228,8 @@ def youtube_metadata_line(built, total):
     """
     if total == 0:
         return "0/0, no zones to cover"
+    if built is None:
+        return f"not measured this run, of {total} zones"
     if built == 0:
         return f"0/{total}, not yet written"
     return f"{built}/{total} zones, title/description/tags written, not posted anywhere yet"
@@ -249,6 +251,8 @@ def thumbnail_line(built, total):
     """
     if total == 0:
         return "0/0, no zones to cover"
+    if built is None:
+        return f"not measured this run, of {total} zones"
     if built == 0:
         return f"0/{total}, not yet rendered"
     return f"{built}/{total} zones, YouTube thumbnail designed and ready"
@@ -268,6 +272,8 @@ def social_pin_line(built, total):
     """
     if total == 0:
         return "0/0, no zones to cover"
+    if built is None:
+        return f"not measured this run, of {total} zones"
     if built == 0:
         return f"0/{total}, not yet rendered"
     return f"{built}/{total} zones, Pinterest and Instagram cards ready, not posted anywhere yet"
@@ -1587,8 +1593,13 @@ if S["zones"]:
                 if (os.path.exists(os.path.join(PIN_DIR, _name))
                         and os.path.exists(os.path.join(IG_DIR, _name))):
                     S["social_pins_built"] += 1
-    except Exception:
-        S["social_pins_built"] = 0
+    except Exception:                                            # noqa: BLE001
+        # Found live 2026-09-26, the same shape already fixed for cards_total
+        # above this cycle: a mid-loop failure used to collapse whatever this
+        # run had already counted down to a bare 0, which social_pin_line()
+        # then prints as "not yet rendered", a false claim that finished work
+        # does not exist. None means this run could not check, not zero.
+        S["social_pins_built"] = None
 
 # YouTube upload text: title, description, tags and timestamps, one JSON per
 # zone. Same slug function as the video trackers above, since it names
@@ -1605,8 +1616,11 @@ if S["zones"]:
                     f"{_VZ.zone_slug(_r['room'], _z['zone'])}.json")
                 if os.path.exists(_fp) and os.path.getsize(_fp) > 100:
                     S["youtube_metadata_built"] += 1
-    except Exception:
-        S["youtube_metadata_built"] = 0
+    except Exception:                                            # noqa: BLE001
+        # Same fix as social_pins_built above: a mid-loop failure must not
+        # collapse into a bare 0, which youtube_metadata_line() would then
+        # print as "not yet written" even if most of the 114 files exist.
+        S["youtube_metadata_built"] = None
 
 # YouTube thumbnails: one designed 1280x720 PNG per zone, named by the same
 # canonical slug the video trackers above use.
@@ -1621,8 +1635,11 @@ if S["zones"]:
                     THUMB_DIR, f"{_VZ.zone_slug(_r['room'], _z['zone'])}.png")
                 if os.path.exists(_fp) and os.path.getsize(_fp) > 100:
                     S["thumbnails_built"] += 1
-    except Exception:
-        S["thumbnails_built"] = 0
+    except Exception:                                            # noqa: BLE001
+        # Same fix as social_pins_built above: a mid-loop failure must not
+        # collapse into a bare 0, which thumbnail_line() would then print as
+        # "not yet rendered" even if most of the 114 files exist.
+        S["thumbnails_built"] = None
 
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
@@ -2159,13 +2176,16 @@ ready = [
      else (("warn", "not posted") if S["narrated_videos_built"] else ("idle", "not started"))),
     ("Social cards, Pinterest and Instagram",
      social_pin_line(S['social_pins_built'], S['social_pins_total']),
-     ("warn", "not posted") if S["social_pins_built"] else ("idle", "not started")),
+     ("idle", "not measured") if S["social_pins_built"] is None
+     else (("warn", "not posted") if S["social_pins_built"] else ("idle", "not started"))),
     ("YouTube upload text",
      youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total']),
-     ("warn", "not posted") if S["youtube_metadata_built"] else ("idle", "not started")),
+     ("idle", "not measured") if S["youtube_metadata_built"] is None
+     else (("warn", "not posted") if S["youtube_metadata_built"] else ("idle", "not started"))),
     ("YouTube thumbnails",
      thumbnail_line(S['thumbnails_built'], S['thumbnails_total']),
-     ("warn", "not posted") if S["thumbnails_built"] else ("idle", "not started")),
+     ("idle", "not measured") if S["thumbnails_built"] is None
+     else (("warn", "not posted") if S["thumbnails_built"] else ("idle", "not started"))),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
                     f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
      ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),
