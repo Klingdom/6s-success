@@ -16,6 +16,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** 3 files remain unledgered (`measure.js`, `site.js`, `quest.js` at 2007 lines), too large for a rushed read, left for a cycle with room. Standing Phil-blocked list and 8 issues unchanged.
 
+## PM check-in, 2026-09-27 04:4x (previous work confirmed finished by two independent full preflight runs, the first of which caught my own self-inflicted stray-fixture race; nothing new unblocked, cold-read lane stays closed)
+
+NEXT FOR THE OPERATOR: no new backlog item is genuinely unblocked, so keep working the standing Phil-blocked list and re-verify rather than manufacture a finding, because the cold-read lane is closed at 164/164 and every open row in `BACKLOG-2026-09-07.md` and all 8 GitHub issues need Phil directly.
+
+**Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (553 commits, no conflict), working tree already clean on attach.
+
+**Did not take the prior cycle's own clean preflight claim on trust; ran it myself, and the first attempt genuinely failed.** A too-short `timeout 100` foreground probe was killed mid-run (the exact "short timeout" mistake this log has recorded and repeated before); the very next full background run then reported `FAIL stray-probe-files: site/_audit_catalog_fixture...`, the known race this file's history already diagnoses (a fixture cleaned up only in a `finally` block, exposed to a kill signal or an overlapping run). Did not record that FAIL as a live defect on the strength of the log's own prior diagnosis alone: checked the tree directly first (`find` for the path, `git status`), confirmed the file no longer existed, nothing untracked, and the path is gitignored (`site/_audit_catalog_fixture.lock`). Ran a second full `python3 -u ops/preflight.py`, alone, tree untouched throughout: clean, every gate passed, 26 warnings, all the standing sandbox limits already diagnosed by prior cycles (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift). Working tree stayed clean.
+
+**Backlog and issues: nothing genuinely unblocked.** Read `BACKLOG-2026-09-07.md` in full: sections 2-4 rows are struck through Done or CLOSED, section 5 is HOLD, section 6 is owner gates (the same four "start here" items: `VPS_DEPLOY_KEY`, Search Console, Stripe business description, and the already-cleared YouTube row). Confirmed live via the GitHub API, not copied: 8 open issues, all labelled `decision` or `blocked-on-art`, unchanged from the prior cycle; 0 open PRs. `ops/cold_read_ledger.py --next` confirms 164 of 164 `ops/*.py` files stay ledgered. Spot-checked `ops/deploy-verdict.json` and `site/build-id.txt` directly rather than cite the dashboard's own figure: the standing redeploy gap it names is accurate and unchanged, still Phil-gated on item 0.
+
+**Did not start new work this slot.** No small closing job was left undone, and no backlog row is genuinely unblocked without Phil. Regenerated the command deck anyway per the standing rule.
+
+**Went well:** not folding the self-inflicted stray-probe FAIL into a false pass, and not treating the log's own prior diagnosis of that race as license to skip checking this occurrence directly before writing it up.
+
+**Did not go well:** repeated an already-logged mistake (too-short preflight timeout) before correcting it within the same slot; this slot ran past the operator's own :43 mark as a result.
+
+**Changing next cycle:** none; the race is already gated and self-heals, and this occurrence confirms that again rather than showing a new gap.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console, Stripe business description) and the 8 GitHub issues, unchanged. The cold-read lane stays closed at 164/164.
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 04:1x (previous work confirmed finished by an independent full preflight run; nothing new unblocked; cold-read lane stays closed)
 
 **Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (552 commits, no conflict), working tree already clean on attach. Did not take the prior cycle's own preflight claim on trust; ran a full `python3 -u ops/preflight.py` myself, foreground, unbuffered, start to finish: every gate passed, 26 warnings, all the same standing sandbox limits prior cycles have already diagnosed (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift). `ops/cold_read_ledger.py --next` confirms 164 of 164 `ops/*.py` files stay ledgered; no candidate remains in that lane.
