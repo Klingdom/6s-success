@@ -2,6 +2,86 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 21:1x (tenth consecutive cycle at the same verdict; independently built the same fix a concurrent cycle landed first, stood down rather than duplicate it)
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, tree clean on attach).
+
+**Previous work (20:5x cycle): finished and verified**, not cited: it correctly found but deliberately left open `gate_cold_read_handoff_not_stale`'s new false positive rather than force a fix into a slot with no room, and said so plainly.
+
+**Picked up that exact handoff and built the fix independently, then found a concurrent cycle had pushed the same fix nine minutes earlier.** Reproduced the false positive live (`cold_read_handoff_stale_files()` returned `['preflight.py']`), wrote a narrower strip pattern (`runs? \`X\`(?: directly)?`) plus a new regression test case, proved fail-then-pass by stashing the fix and watching the new case fail by name, confirmed 17/17 passing and the real log returning `[]`. Before pushing, `git fetch` showed `origin/main` had moved: a concurrent operator cycle (`2fff44a31`) had landed a broader, better-scoped fix for the identical defect (stripping the whole "if a future cycle runs `X`..." conditional clause, not just the trailing "directly"), already verified with a full clean `preflight.py` rerun and its own log entry. Discarded my duplicate local changes to `ops/preflight.py`, the test file and `ops/cold-read-ledger.json` rather than force a conflicting second fix onto the same ~10 lines, and fast-forwarded onto their commit instead.
+
+**Independently re-verified rather than trusted the concurrent cycle's "nothing else unblocked" claim.** 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175/175, still exhausted. Read issue #29 (`blocked-on-art`, 16 defective card codes) in full: already fully mitigated (all 16 withheld from the live gallery, `gate_deck_art_withheld` proved to fail on reintroduction), correctly blocked only on Desktop art access this sandbox does not have; nothing left to do here. Checked `GOALS.md`'s revenue-baseline window that a 2026-09-04-era note flagged would go stale on 2026-09-20: already corrected in place that day ("Today is that day... Trailing-30-day revenue is now $0"), not stale. `check_urls.py` (196/196), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0) all clean.
+
+**Nothing genuinely unblocked**, a tenth straight cycle at the identical verdict, and the one candidate fix this slot could have closed was already closed by the time it finished building it.
+
+**Went well:** treating the concurrent push as authoritative and reconciling onto it rather than force-pushing a redundant fix or resolving a conflict by hand.
+
+**Did not go well:** two cycles independently spent full slots on the same single-line-cause defect because neither could see the other mid-flight; worth noting for whoever reads this, not changing anything structural over one occurrence.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing else genuinely unblocked this cycle.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-09-27 (tenth consecutive cycle at the same verdict; picked up the 20:5x check-in's own handoff and fixed the gate false positive it found but deliberately left open)
+
+**Did:** Attached (shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, clean fast-forward, no conflict, tree clean on attach). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion, unwrapped (no foreground timeout): every gate passed, 26 warnings.
+
+**Found and fixed, not just re-reported.** Independently reproduced the same false positive the 20:5x check-in below had just found and deliberately left open ("a genuinely small, bounded, non-Phil-gated fix for whichever cycle has room for it"): `gate_cold_read_handoff_not_stale` flagged `preflight.py` as an unread cold-read candidate because a handoff's own trailing advice sentence, "If a future cycle runs `preflight.py` directly rather than through this operator's own tooling, let it run to completion in the background...", named the tool inside a hypothetical instruction about how to invoke it, not as something proposed for reading. Confirmed live before touching anything: `cold_read_handoff_stale_files()` returned `['preflight.py']` against the real committed log and ledger. This is the gate's own docstring's tenth documented false-positive shape in three days; the prior nine all widened header/name matching, this one narrows it: stripped "if a future \w+ runs `X`..." hypothetical clauses the same way an existing "fixed in `X`" precedent citation is already stripped (cite, don't hand off). Fail-then-pass proved directly: stashed only the `preflight.py` fix, watched the new test case fail by name on a synthetic `build_feed.py` mention, restored, reran clean. New case 10 in `ops/tests/test_gate_cold_read_handoff_not_stale.py` (17/17). Full `preflight.py` rerun clean after: every gate passed, 25 warnings (one fewer, the false one gone), no new FAIL.
+
+**Verified:** re-derived rather than trusted every figure recent cycles converged on: 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`), 0 open PRs, `ops/cold_read_ledger.py --next` still 175/175 exhausted, `check_urls.py` (196/196), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), `ops/inbox_agent.py --apply` (no mail credential, correctly unchecked) all clean.
+
+**Went well:** a check-in named a fixable defect and stopped rather than force it into a slot with no room; the next cycle (this one) picked it up cleanly because the handoff said exactly what to verify and where. Confirms the operational-honesty tier (epic 6) is the only genuinely open tier: measurement, broken/dishonest, traffic, conversion and product are all Done, CLOSED-by-decision, or Phil-gated.
+
+**Did not go well:** nothing new; this gate has now needed ten live corrections in three days, all narrow patches to the same ~150-line function.
+
+**Changing next cycle:** none yet; if an eleventh false shape appears, replace the "match everything, then subtract known non-handoff shapes" design with a positive allowlist of handoff-verb phrases, rather than patch a twelfth subtraction.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth disk step, Stripe business description) and the 8 GitHub issues, unchanged. Nothing else is genuinely unblocked this cycle.
+
+Pushed to main. `ops/dashboard.py`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
+## PM check-in, 2026-09-27 20:5x (ninth consecutive cycle at the same verdict; a new small gate false positive found and named, not fixed, to keep this slot's own scope small)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube upload disk step, item 1d Stripe business description) plus the 8 open GitHub issues, unchanged again. If there is time left over, `gate_cold_read_handoff_not_stale` is a small, bounded, non-Phil-gated fix: see below.
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, no conflict, tree clean on attach, no concurrent push landed while working).
+
+**Previous work (20:1x cycle): confirmed finished, not cited.** Working tree was already clean on attach; `9dc425a0c` is both the prior cycle's own commit and still the true HEAD.
+
+**Re-derived rather than trusted every figure the last eight cycles have converged on.** 8 open GitHub issues, confirmed live via the API, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175/175, still exhausted. Deploy gap re-derived directly by calling `deploy_gap_material_commits('223f5111')` myself rather than citing it: 20 commits, unchanged, matching `STATUS.md`. `check_urls.py` 196/196; `audit_pages.py` 200 pages/0 findings; `affiliate.py --check` clean (165 documents); `fix_dashes.py --check` 0/0; `inbox_agent.py --apply` correctly reports no mail credential, unchecked not empty. `CHECKIN-LOG.md`'s newest hourly entry (18:33) still reads "nothing measurable moved."
+
+**Ran a full `python ops/preflight.py` myself, unwrapped, in true background this time (no shell `timeout`, and confirmed no `&`-detach-then-orphan trap either after the first attempt lost tool tracking): every gate passed, 26 warnings, the same standing set every recent cycle has recorded, plus one new one.**
+
+**Checked whether the four escalated `OWNER-ACTIONS.md` items had moved before assuming they had not.** Directly queried GitHub Actions rather than trust the standing citation: `deploy.yml` run #41 fired on this cycle's own attach commit (`9dc425a0c`) at 20:33 and completed `success`, but its own job log shows the "Deploy" step itself as `skipped`, exactly the credential-less no-op `OWNER-ACTIONS.md` documents. `VPS_DEPLOY_KEY` is still not set; a green workflow run is not evidence otherwise, and checking the step underneath the conclusion is what told the difference.
+
+**Found, not fixed: a new instance of the same false-positive class `gate_cold_read_handoff_not_stale`'s own docstring already lists several of.** The gate warned that the newest handoff (this file's own 20:1x entry) names `ops/preflight.py` as a cold-read candidate already ledgered read. Reproduced directly by calling `cold_read_handoff_stale_files()` the same way the gate does (via `cold_read_ledger.load_ledger()`, not a bare `json.load`, which gave a false negative on a first attempt). The actual line is the 20:1x entry's own `**Next:**` paragraph, "If a future cycle runs `preflight.py` directly... let it run to completion in the background" -- operational advice about the tool, not a handoff naming it as an unread file to cold-read. The regex cannot yet tell "advice mentioning the tool's name" from "a candidate handed off", the same shape as the parenthetical- and strikethrough-blindness bugs already fixed in this gate's history. A WARNING only, ships nothing broken; left for the operator or a future cycle rather than widening this slot into a regex-editing task.
+
+**Nothing genuinely unblocked, a ninth straight cycle at the identical verdict.** Did not send another push notification: the 20:0x cycle escalated the same four-item list under an hour ago and nothing measured since has moved beyond the one gate false-positive above.
+
+**Next:** same standing Phil-blocked list and the 8 GitHub issues, unchanged. The `gate_cold_read_handoff_not_stale` false positive above is a genuinely small, bounded, non-Phil-gated fix for whichever cycle has room for it.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+## PM check-in, 2026-09-27 20:1x (eighth consecutive cycle reaching the same verdict; the previous cycle's own preflight-killed-by-my-own-timeout mistake caught and corrected within this cycle)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube upload disk step, item 1d Stripe business description) plus the 8 open GitHub issues, unchanged again.
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, no conflict, tree clean on attach, no concurrent push landed while working).
+
+**Previous work (20:0x cycle): confirmed finished**, not cited: the Etsy-drift fix (D-023) and the seventh-consecutive-stall escalation are both on main (`7c4bb1993`), tree clean.
+
+**Re-derived rather than trusted every figure the last seven cycles have converged on**, and found no drift in any of them: 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`); 0 open PRs; `ops/cold_read_ledger.py --next` 175/175, still exhausted; deploy gap re-derived from `git log` directly against verdict commit `223f5111`, still 20 commits (matches `STATUS.md` exactly); `check_urls.py` 196/196; `audit_pages.py` 200 pages/0 findings; `affiliate.py --check` clean (165 documents); `fix_dashes.py --check` 0 em/en dashes; mobile `npm test` 5/5 suites green; `inbox_agent.py --apply` correctly reports no mail credential, unchecked not empty.
+
+**My own first full `preflight.py` run this cycle was killed by my own shell `timeout 300` wrapper (exit 143) after 5 minutes**, the exact self-inflicted mistake this log has repeatedly diagnosed and warned against. Caught it directly rather than reporting a false FAIL: checked the process table, saw `timeout` had SIGTERM'd a still-running, still-progressing `preflight.py`. Reran without any foreground timeout wrapper, in the background, to genuine completion: every gate passed, 25 warnings, the identical standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, plus the known cron-cadence and art-coverage warnings). No new FAIL, no new warning.
+
+**Nothing genuinely unblocked**, an eighth straight cycle at the identical verdict. Did not send a second push notification: the 20:0x cycle escalated the same four-item `OWNER-ACTIONS.md` list ten minutes before this one started, and nothing measured this cycle has moved since.
+
+**Next:** same standing Phil-blocked list and the 8 GitHub issues, unchanged. If a future cycle runs `preflight.py` directly rather than through this operator's own tooling, let it run to completion in the background rather than a foreground `timeout` call; 300 seconds is not always enough, and a timeout kill looks identical to a real FAIL until the process table is checked.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 631 commits onto `origin/main` with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed sandbox limits: no Stripe, mail, SSH deploy key or network egress, Pillow not installed). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `cold_read_ledger.py --next`: 175 of 175, exhausted.
