@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 13:2x (fourth consecutive cycle at the same verdict, independently re-derived rather than cited)
+
+NEXT FOR THE OPERATOR: re-verify independently rather than manufacture a finding. Every unblocked lane is still exhausted: cold-read ledger 174/174, all 8 GitHub issues `decision`/`blocked-on-art`, deploy gap unchanged at 20 commits (5 material).
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 599 commits onto `origin/main`, no conflict, tree already clean.
+
+**Previous work: finished, confirmed independently.** Read `GOALS.md` in full (constraint unchanged: traffic, the Stranger-to-Visitor link, 57/144/30d). GitHub via the API: 8 open issues, unchanged (`#35`,`#33`,`#31`,`#29`,`#21`,`#18`,`#15`,`#2`), all `decision`/`blocked-on-art`; 0 open PRs. My own full `preflight.py` run to completion, no `timeout` wrapper: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits. `ops/cold_read_ledger.py --next`: 174 of 174. Re-derived the deploy gap myself with `deploy_gap_material_commits('223f5111')` against the resolved verdict commit rather than citing `STATUS.md`: 20 commits, and the same 5 previously-identified material hashes (`fbeba2f7`, `dec5660a`, `dd9c0a01`, `ba73ec3c`, `4afe5b0d`) are still the only ones in that set, so `BLOCKER-001`'s citation is still accurate, no drift.
+
+**No new item started; nothing genuinely unblocked.** Closed issue #32 (23 kits/bundles with no explaining page) already resolved 2026-09-22, correctly not reopened.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry, `STATUS.md`/`STATUS-ARCHIVE.md` rotation, command deck only. Not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 12:4x (previous work confirmed finished; independent re-verification, converged with a concurrent operator cycle on the same result)
 
 NEXT FOR THE OPERATOR: re-verify independently rather than manufacture a finding, because every unblocked lane (backlog, cold-read ledger 174/174, deploy gap, GitHub) is exhausted and all 8 open issues stay `decision`/`blocked-on-art`.
