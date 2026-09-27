@@ -25,6 +25,7 @@ LEDGER = {
     "build_feed.py": {"status": "clean", "date": "2026-09-10", "note": "x"},
     "canonical_links.py": {"status": "clean", "date": "2026-09-11", "note": "x"},
     "affiliate_report.py": {"status": "fixed", "date": "2026-09-24", "note": "x"},
+    "videoLink.js": {"status": "clean", "date": "2026-09-27", "note": "x"},
 }
 
 
@@ -187,6 +188,23 @@ def main() -> int:
                       "flagged even though a newer entry in the same "
                       "window already named a live candidate: %r" % stale)
 
+    # 6. Extended 2026-09-27 to also cover the JS lanes ops/cold_read_ledger.py
+    #    tracks (site/assets/js/*.js, mobile/quest-app/lib/*.js). A handoff
+    #    naming an already-ledgered .js file, with or without its lane
+    #    prefix, must be caught the same way a .py one is; a *.test.js
+    #    name must never be, since tests are not ledgered on their own.
+    log_js = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-09-27, cycle\n\n"
+        "**Next:** cold-read `mobile/quest-app/lib/videoLink.js`, "
+        "`videoLink.test.js` and `format.js`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_js, LEDGER)
+    if stale != ["videoLink.js"]:
+        fails.append("a ledgered .js file (with or without its lane "
+                     "prefix) was not caught, or a .test.js/unledgered "
+                     "name was wrongly caught: got %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -202,7 +220,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 10/10 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 11/11 cases pass")
     return 0
 
 

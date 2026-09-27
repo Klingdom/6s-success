@@ -376,6 +376,11 @@
       "date": "2026-09-25",
       "note": "schema check for content.json diagnosis blocks; ran against real corpus, 38/114 zones carry diagnosis, all pass schema. No defect."
     },
+    "eventLog.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (65 lines): logEvent (append, cap at MAX_EVENTS=300, oldest dropped via slice from the end), summarize (counts by type + span), formatForDisplay (human text, not JSON, by design per its own comment). Confirmed wired: App.js imports logEvent and formatForDisplay and uses both at their call sites (event capture, diagnostics screen). npm test's eventLog cases (empty log, cap enforcement, formatForDisplay on empty vs populated) all pass. No defect found."
+    },
     "experiments.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -395,6 +400,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read cold end to end; --check reports clean, ops/tests/test_fix_dashes.py 10/10 pass. Scope (root/claude/retro *.md only) is deliberate per its own docstring, distinct from the sitewide em/en-dash gate in preflight.py that already covers ops/*.py and site/**."
+    },
+    "format.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (23 lines). Single string builder, zonesHoldingLine, extracted after a real 2026-09-05 JSX-whitespace bug (two adjacent text nodes collapsed with no space). Confirmed wired: App.js imports it and uses it at the one call site (finish screen note). npm test's format.js cases (singular/plural/zero, word-boundary check) all pass. No defect found."
     },
     "generate_card_art.py": {
       "status": "fixed",
@@ -435,6 +445,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "CLIP token-budget helper for local SDXL prompts; read-only review (no local model/network in this sandbox to exercise count()). Subject-first ordering and UNVERIFIED-vs-over-budget distinction both correctly implemented. No defect found in the source."
+    },
+    "importProgress.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (81 lines). parseBackup validates and drops non-finite/non-positive timestamps before mergeDone ever sees them; mergeDone additionally sanitizes both sides itself (sanitizeTimestamp) so it cannot be poisoned even by a caller that skips parseBackup, matching its own comment's stated goal. Falls back to rawA rather than undefined when both sides are invalid, correctly avoiding JSON.stringify silently dropping the key. Confirmed wired: App.js imports both and uses them at the one backup-restore call site. Ran the test directly (node lib/importProgress.test.js): 18/18 cases pass, including the corruption/poisoning edge cases the comments describe. No defect found."
     },
     "import_chapter_svgs.py": {
       "status": "fixed",
@@ -515,6 +530,16 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). unread_from_owner() and unread_needing_action() both use BODY.PEEK (never mark read) and both correctly return None (not empty list) when the IMAP credential is missing, which preflight.py's gate_owner_waiting distinguishes from 'nothing waiting'. Third-party regex covers affiliate/payment/domain/account-security wording, the exact incident class this file's own docstring documents (Impact's decline sitting unread 8 days). ack() is a separate command from main(), so a read never silently claims an action. Already wired into preflight.py's gate_owner_waiting (both functions called, each with its own exception guard) as well as its own bare CLI. No defect."
+    },
+    "photos.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (161 lines). IndexedDB wrapper for Home Quest before/after photos: no network call anywhere in the file, matches its own privacy claim (CLAUDE.md household-photo privacy rule). Cross-checked the objectUrl()/releaseUrls() blob-URL-leak invariant this file's neighbour quest.js documents: confirmed the 2026-09-2x fix is real and live, and actually stronger than the log described it (renderKeep() now calls releaseUrls() unconditionally at its own top, line 611, so all 5 call sites are covered by construction rather than by each caller remembering to call it). tx()'s undefined-vs-truthy-IDBRequest guard (line 70) matches its own comment's described past bug. No defect found."
+    },
+    "pickCard.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (51 lines). pickCard walks corpus in order, skips done, prefers an unskipped card but falls back to the first unfinished-but-skipped one so the player is never left with nothing (matches its own comment); returns null only when every card is done. isCardVisible and cardId both simple and correctly composed. Confirmed wired: App.js imports all three and uses them at multiple call sites (card selection, progress calc, visibility, per-step done check). npm test's pickCard cases (including the fallback-when-all-skipped edge case) all pass. No defect found."
     },
     "preflight.py": {
       "status": "clean",
@@ -626,6 +651,11 @@
       "date": "2026-09-25",
       "note": "exit code was hardcoded to 0 regardless of findings; a caller checking the return code instead of scraping stdout for OVERFLOWING would get a false pass. Now exits 1 when any page overflows. test_mobile_overflow.py extended to assert the exit code both ways."
     },
+    "shop.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (114 lines). Renders the catalogue grid and builds the category filter row from window.CATALOG rather than hardcoded buttons (a real 2026-09-22 fix for retired-SKU categories going stale is documented and confirmed still correct: CAT_ORDER has no Situation Kits/Area Bundles). buildFilters() replaces the row then the button NodeList is recaptured (a documented past bug: stale detached-node handlers). Verified script load order on site/shop.html (data.js, site.js, shop.js) matches this file's own dependency comment. No defect found."
+    },
     "shrink_sample.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -720,6 +750,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). Core caption/render/verify logic is already hardened against two documented past incidents (the 0:00:60.00 ASS timestamp overflow, the edge-to-edge unwrapped caption). verify() checks dimensions, duration, file size and a mid-frame flatness test rather than trusting a written file exists. One minor robustness gap noted but not fixed: the PIL import inside verify() is unguarded, so a missing Pillow would raise past a bare call site (video_zone.py's --zone demo path, line 567); the batch caller in video_zone_photo.py already wraps V.verify() in try/except so a missing Pillow there is caught and reported as a per-item failure, not a crash. Could not exercise render()/verify() here: this sandbox has no ffmpeg/ffprobe (confirmed via --probe), the same standing limitation already recorded for every other video-rendering file in this repository. No defect meeting this repo's bar (a check that cannot fail, a silent drift, a wrong default)."
+    },
+    "videoLink.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (26 lines) plus its 8-case test (videoLink.test.js), ran the test directly (node lib/videoLink.test.js, all pass including the live corpus check: 12 of 114 zones carry a usable video id). Confirmed the export is actually wired: App.js imports videoUrl and calls it against card.zone at the one call site that renders the zone's watch link. No defect found."
     },
     "video_narrated.py": {
       "status": "clean",

@@ -14163,10 +14163,11 @@ def gate_status_deploy_gap_count_current() -> None:
 
 def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                                    max_entries: int = 4) -> list[str]:
-    """Pure logic: returns the basenames of any ops/*.py file a handoff
-    line in the newest entries of ops/NIGHTLY-LOG.md names as a cold-read
-    candidate that ops/cold-read-ledger.json already records as read
-    (status "clean" or "fixed"). The log is newest-first (its own header
+    """Pure logic: returns the basenames of any ops/*.py, site/assets/js/*.js
+    or mobile/quest-app/lib/*.js file a handoff line in the newest entries
+    of ops/NIGHTLY-LOG.md names as a cold-read candidate that
+    ops/cold-read-ledger.json already records as read (status "clean" or
+    "fixed"). The log is newest-first (its own header
     says so); checking the top max_entries matches the operating
     prompt's own STEP 1, "read... the last four entries", since that is
     the span a fresh cycle actually reads before picking up a handoff,
@@ -14227,7 +14228,15 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                 r".*(?:\n(?!\n).*)*", block):
             live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
             live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
-            for name in re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live):
+            # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
+            # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger
+            # keys on bare basenames, so the prefix is optional and
+            # discarded here too.
+            for name in re.findall(
+                    r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
+                    r"([A-Za-z0-9_]+\.(?:py|js))`", live):
+                if name.endswith(".test.js"):
+                    continue
                 if name not in seen:
                     seen.add(name)
                     names.append(name)
@@ -14287,7 +14296,7 @@ def gate_cold_read_handoff_not_stale() -> None:
              "candidate, but ops/cold-read-ledger.json already records "
              "it as read. Run `python ops/cold_read_ledger.py --next` "
              "for genuinely un-ledgered candidates instead."
-             % ", ".join("ops/%s" % n for n in stale))
+             % ", ".join(crl.lane_path(n) or n for n in stale))
 
 
 def gate_experiments_blocked_reason_current() -> None:
