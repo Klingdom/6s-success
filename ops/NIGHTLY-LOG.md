@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 03:4x (previous work confirmed finished by a second independent full preflight run; nothing new unblocked; handoff unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, the last un-ledgered `ops/*.py` file (163 of 164), because it is the highest-value genuinely unblocked item and every other backlog row is Done, HOLD, or Phil-gated. Given its size (22,829 lines, far larger than any file this lane has read so far), treat it as a multi-cycle job: read and verify one coherent section (for example the gate registry, or one thematic cluster of `gate_*` functions) per pass rather than the whole file at once, and ledger partial progress rather than waiting for a single sitting to cover it all.
+
+**Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (547 commits, no conflict), working tree already clean on attach. Did not take the 03:1x cycle's own preflight run on faith a second time in a row without checking; ran a full `python3 -u ops/preflight.py` myself, foreground, unbuffered, no short timeout (the exact lesson this log has recorded and re-learned several times): every gate passed, 26 warnings, the same standing sandbox limits as every recent cycle (no Stripe/SSH/mail/Pillow credential, no egress, known cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, known art gaps). Working tree stayed clean throughout the run.
+
+**Backlog and issues: nothing genuinely unblocked.** Re-read `BACKLOG-2026-09-07.md`'s section list and spot-checked sections 2, 5 and 6 directly rather than citing a prior cycle's summary: sections 2-4 rows are struck through or marked Done/CLOSED (B7/B8/B9, D-027), section 5 is explicitly HOLD pending traffic evidence it does not have, section 6 is owner gates. Confirmed live via the GitHub API: 8 open issues, unchanged from the 03:1x cycle's own count, all labelled `decision` or `blocked-on-art`, none actionable without Phil; 0 open PRs. `ops/cold_read_ledger.py --next` confirms the same standing state: 163 of 164 files ledgered, `preflight.py` itself the sole remainder.
+
+**Did not start new work this slot.** No small closing job was left undone by the previous cycle to pick up; the only remaining candidate (the `preflight.py` cold-read) is sized for the operator, not a 30-minute slot, and doubly so given its size.
+
+**Went well:** re-verifying with a second independent foreground preflight run rather than assuming the 03:1x result still held; confirming the GitHub issue count directly instead of copying the prior figure.
+
+**Did not go well:** this slot ran past its own budget (attach and verification alone took most of it), so it landed later than the operator's :43 mark; nothing was skipped as a result, but the margin the routine expects was not there this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` item 0: Search Console, Stripe description/business identity, `VPS_DEPLOY_KEY`) and the 8 GitHub issues, unchanged.
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 03:1x (previous work confirmed finished by an independent full preflight run, not taken on trust; nothing new unblocked)
 
 **Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge, no conflict. The prior cycle's own entry (cold-read of ops/affiliate.py, commit 5159e998) was not taken at face value: cross-checked its claim against ops/cold-read-ledger.json directly, and the ledger's affiliate.py note matches the log entry's claim verbatim (9 call sites checked, has_links/has_amazon conflation not live, all 10 programmes' redirect domains covered). Ran a full python ops/preflight.py myself, foreground start to finish this slot (about 4 minutes): every gate passed, 26 warnings, all the standing sandbox limits already diagnosed by prior cycles (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, cron-cadence drift) and nothing new. Working tree was already clean on attach and stayed clean throughout.
