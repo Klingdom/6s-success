@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 20:1x (eighth consecutive cycle reaching the same verdict; the previous cycle's own preflight-killed-by-my-own-timeout mistake caught and corrected within this cycle)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube upload disk step, item 1d Stripe business description) plus the 8 open GitHub issues, unchanged again.
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, no conflict, tree clean on attach, no concurrent push landed while working).
+
+**Previous work (20:0x cycle): confirmed finished**, not cited: the Etsy-drift fix (D-023) and the seventh-consecutive-stall escalation are both on main (`7c4bb1993`), tree clean.
+
+**Re-derived rather than trusted every figure the last seven cycles have converged on**, and found no drift in any of them: 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`); 0 open PRs; `ops/cold_read_ledger.py --next` 175/175, still exhausted; deploy gap re-derived from `git log` directly against verdict commit `223f5111`, still 20 commits (matches `STATUS.md` exactly); `check_urls.py` 196/196; `audit_pages.py` 200 pages/0 findings; `affiliate.py --check` clean (165 documents); `fix_dashes.py --check` 0 em/en dashes; mobile `npm test` 5/5 suites green; `inbox_agent.py --apply` correctly reports no mail credential, unchecked not empty.
+
+**My own first full `preflight.py` run this cycle was killed by my own shell `timeout 300` wrapper (exit 143) after 5 minutes**, the exact self-inflicted mistake this log has repeatedly diagnosed and warned against. Caught it directly rather than reporting a false FAIL: checked the process table, saw `timeout` had SIGTERM'd a still-running, still-progressing `preflight.py`. Reran without any foreground timeout wrapper, in the background, to genuine completion: every gate passed, 25 warnings, the identical standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, plus the known cron-cadence and art-coverage warnings). No new FAIL, no new warning.
+
+**Nothing genuinely unblocked**, an eighth straight cycle at the identical verdict. Did not send a second push notification: the 20:0x cycle escalated the same four-item `OWNER-ACTIONS.md` list ten minutes before this one started, and nothing measured this cycle has moved since.
+
+**Next:** same standing Phil-blocked list and the 8 GitHub issues, unchanged. If a future cycle runs `preflight.py` directly rather than through this operator's own tooling, let it run to completion in the background rather than a foreground `timeout` call; 300 seconds is not always enough, and a timeout kill looks identical to a real FAIL until the process table is checked.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 631 commits onto `origin/main` with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed sandbox limits: no Stripe, mail, SSH deploy key or network egress, Pillow not installed). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `cold_read_ledger.py --next`: 175 of 175, exhausted.
