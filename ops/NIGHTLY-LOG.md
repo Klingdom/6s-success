@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 20:5x (ninth consecutive cycle at the same verdict; a new small gate false positive found and named, not fixed, to keep this slot's own scope small)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube upload disk step, item 1d Stripe business description) plus the 8 open GitHub issues, unchanged again. If there is time left over, `gate_cold_read_handoff_not_stale` is a small, bounded, non-Phil-gated fix: see below.
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, no conflict, tree clean on attach, no concurrent push landed while working).
+
+**Previous work (20:1x cycle): confirmed finished, not cited.** Working tree was already clean on attach; `9dc425a0c` is both the prior cycle's own commit and still the true HEAD.
+
+**Re-derived rather than trusted every figure the last eight cycles have converged on.** 8 open GitHub issues, confirmed live via the API, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175/175, still exhausted. Deploy gap re-derived directly by calling `deploy_gap_material_commits('223f5111')` myself rather than citing it: 20 commits, unchanged, matching `STATUS.md`. `check_urls.py` 196/196; `audit_pages.py` 200 pages/0 findings; `affiliate.py --check` clean (165 documents); `fix_dashes.py --check` 0/0; `inbox_agent.py --apply` correctly reports no mail credential, unchecked not empty. `CHECKIN-LOG.md`'s newest hourly entry (18:33) still reads "nothing measurable moved."
+
+**Ran a full `python ops/preflight.py` myself, unwrapped, in true background this time (no shell `timeout`, and confirmed no `&`-detach-then-orphan trap either after the first attempt lost tool tracking): every gate passed, 26 warnings, the same standing set every recent cycle has recorded, plus one new one.**
+
+**Checked whether the four escalated `OWNER-ACTIONS.md` items had moved before assuming they had not.** Directly queried GitHub Actions rather than trust the standing citation: `deploy.yml` run #41 fired on this cycle's own attach commit (`9dc425a0c`) at 20:33 and completed `success`, but its own job log shows the "Deploy" step itself as `skipped`, exactly the credential-less no-op `OWNER-ACTIONS.md` documents. `VPS_DEPLOY_KEY` is still not set; a green workflow run is not evidence otherwise, and checking the step underneath the conclusion is what told the difference.
+
+**Found, not fixed: a new instance of the same false-positive class `gate_cold_read_handoff_not_stale`'s own docstring already lists several of.** The gate warned that the newest handoff (this file's own 20:1x entry) names `ops/preflight.py` as a cold-read candidate already ledgered read. Reproduced directly by calling `cold_read_handoff_stale_files()` the same way the gate does (via `cold_read_ledger.load_ledger()`, not a bare `json.load`, which gave a false negative on a first attempt). The actual line is the 20:1x entry's own `**Next:**` paragraph, "If a future cycle runs `preflight.py` directly... let it run to completion in the background" -- operational advice about the tool, not a handoff naming it as an unread file to cold-read. The regex cannot yet tell "advice mentioning the tool's name" from "a candidate handed off", the same shape as the parenthetical- and strikethrough-blindness bugs already fixed in this gate's history. A WARNING only, ships nothing broken; left for the operator or a future cycle rather than widening this slot into a regex-editing task.
+
+**Nothing genuinely unblocked, a ninth straight cycle at the identical verdict.** Did not send another push notification: the 20:0x cycle escalated the same four-item list under an hour ago and nothing measured since has moved beyond the one gate false-positive above.
+
+**Next:** same standing Phil-blocked list and the 8 GitHub issues, unchanged. The `gate_cold_read_handoff_not_stale` false positive above is a genuinely small, bounded, non-Phil-gated fix for whichever cycle has room for it.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 20:1x (eighth consecutive cycle reaching the same verdict; the previous cycle's own preflight-killed-by-my-own-timeout mistake caught and corrected within this cycle)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube upload disk step, item 1d Stripe business description) plus the 8 open GitHub issues, unchanged again.
