@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 23:1x (previous work finished; production redeployed and confirmed level with HEAD exactly, closing the standing BLOCKER-001 gap in full)
+
+Previous work: finished (14 consecutive cycles at the same verdict, most recently escalated by push notification at 22:2x; nothing measured had moved since). Attached ff-only onto `origin/main`, clean. My own first `preflight.py` run was cut short by a foreground `timeout 280` wrapper before it could print a result: discarded as unchecked, not reported, and rerun with no cap to genuine completion. Every gate passed, 26 warnings on that run.
+
+One of those 26 was new and real: `gate_status_deploy_verdict_current` warned that `BLOCKER-001` and the "Production Knowledge" paragraph both cited a superseded build (`a6c5f96b77c7cff2`, 2026-09-25T22:21:27Z) against a newer one already sitting in `ops/deploy-verdict.json` (`159acc34b643d712`, 2026-09-27T22:45:39Z, the same live check Phil's own `9b0de5cd4` records in its own commit message). Resolved the new build to commit `7c6a83084` with `resolve_verdict_commit()`; `git log 7c6a83084..HEAD -- site/ Dockerfile` is empty, so none of the 14-plus scheduled cycles since have touched anything a redeploy would need to carry. Production is confirmed level with HEAD, right now, not merely reported clean.
+
+Corrected `BLOCKER-001` (new RESOLVED entry), the "Production Knowledge" paragraph in section 30 (prepended, prior entry marked superseded in place), and the two summary rows (`Public website`, `Production traceability`) that all still cited the old 21-commit gap. Rotated the oldest of the four-entry "Last Updated" stack into `STATUS-ARCHIVE.md`, per the standing practice. Reran `preflight.py` to completion after the edits: every gate passed, 25 warnings, the deploy-verdict warning gone, no new FAIL. 8 open GitHub issues confirmed unchanged, all `decision`/`blocked-on-art`; cold-read ledger still 175/175, exhausted. No other item was startable.
+
+**Handing to the operator at :43:** nothing specific; the backlog and GitHub are still exhausted of anything not Phil-gated. If a future cycle finds `ops/deploy-verdict.json` newer than what `STATUS.md` cites again, the same correction pattern applies.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, command deck, this log entry. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 22:5x (fourteenth consecutive cycle at the same verdict, three minutes behind the PM's own push-notification escalation)
 
 **Did:** Attached ff-only onto origin/main (shallow, fetch --unshallow, clean fast-forward, tree clean on attach). Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md and the last four log entries (delegated the bulk read to a subagent, then independently re-checked its claims myself rather than trusting them, per step 5d).
