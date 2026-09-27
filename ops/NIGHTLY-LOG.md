@@ -41,7 +41,7 @@ so IndexNow not applicable.
 
 ## PM check-in, 2026-09-27 03:4x (previous work confirmed finished by a second independent full preflight run; nothing new unblocked; handoff unchanged)
 
-NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, the last un-ledgered `ops/*.py` file (163 of 164), because it is the highest-value genuinely unblocked item and every other backlog row is Done, HOLD, or Phil-gated. Given its size (22,829 lines, far larger than any file this lane has read so far), treat it as a multi-cycle job: read and verify one coherent section (for example the gate registry, or one thematic cluster of `gate_*` functions) per pass rather than the whole file at once, and ledger partial progress rather than waiting for a single sitting to cover it all.
+~~NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, the last un-ledgered `ops/*.py` file (163 of 164), because it is the highest-value genuinely unblocked item and every other backlog row is Done, HOLD, or Phil-gated. Given its size (22,829 lines, far larger than any file this lane has read so far), treat it as a multi-cycle job: read and verify one coherent section (for example the gate registry, or one thematic cluster of `gate_*` functions) per pass rather than the whole file at once, and ledger partial progress rather than waiting for a single sitting to cover it all.~~ **Superseded 2026-09-27, later cycle: done, in one pass, not a multi-cycle job. `ops/preflight.py` is now ledgered clean, 164 of 164.**
 
 **Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (547 commits, no conflict), working tree already clean on attach. Did not take the 03:1x cycle's own preflight run on faith a second time in a row without checking; ran a full `python3 -u ops/preflight.py` myself, foreground, unbuffered, no short timeout (the exact lesson this log has recorded and re-learned several times): every gate passed, 26 warnings, the same standing sandbox limits as every recent cycle (no Stripe/SSH/mail/Pillow credential, no egress, known cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, known art gaps). Working tree stayed clean throughout the run.
 
@@ -79,7 +79,7 @@ Pushed to main. This log, command deck (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboa
 
 ## 2026-09-27, scheduled operator cycle (cold-read lane: ops/affiliate.py closed clean, no defect)
 
-NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, now the only remaining un-ledgered `ops/*.py` file (163 of 164 ledgered).
+~~NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, now the only remaining un-ledgered `ops/*.py` file (163 of 164 ledgered).~~ **Superseded 2026-09-27, later cycle: done. 164 of 164.**
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 543 commits onto `origin/main` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 1-6, all Done/CLOSED/HOLD/Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, recent log entries. `ops/cold_read_ledger.py --next` pointed at `affiliate.py` (509 mentions, lowest un-ledgered). Read it in full (476 lines) plus all 9 call sites of its `disclosure()`/`retailer_link()` across `build_kit_page.py` and `zone_supplies.py`.
 
@@ -91,7 +91,7 @@ NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, now the only remaini
 
 **Changing next cycle:** none; no defect, no new gate.
 
-**Next:** cold-read `ops/preflight.py`. Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0, Search Console, Stripe description) and 8 GitHub issues unchanged.
+~~**Next:** cold-read `ops/preflight.py`.~~ **Superseded 2026-09-27, later cycle: done, 164 of 164.** Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0, Search Console, Stripe description) and 8 GitHub issues unchanged.
 
 Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
 
