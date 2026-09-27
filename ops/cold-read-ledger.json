@@ -16,6 +16,11 @@
       "date": "2026-09-26",
       "note": "check_price_drift never masked overlapping live names the way check_retired_sold already did; a live substring pair (Vanity Counter Pack inside Guest Vanity Counter Pack, both $4 today) would falsely blame the short SKU for the long SKU's own price the day either price changes independently. Fixed by masking longer live names before searching, same helper the retired check already uses, aimed the other way. ops/tests/test_audit_catalog.py new case fail-then-pass proved directly."
     },
+    "audit_pages.py": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "hero-lazy check: html.find() resolved to the first occurrence of a byte-identical <img> tag, silently exempting a genuine lazy above-fold hero when its markup duplicated an earlier video-play thumbnail's; fixed with re.finditer tracking each match's own position (fe566979)"
+    },
     "audit_visual.py": {
       "status": "fixed",
       "date": "2026-09-26",
