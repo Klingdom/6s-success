@@ -144,7 +144,12 @@ def main(apply_it):
                 nl = chr(10)
                 text = nl.join(ln for ln in text.split(nl) if not token.search(ln))
                 continue
-            text = token.sub(value, text)
+            # A callable repl is used, not the value directly: re.sub
+            # treats a string repl's backslashes as backreferences
+            # (\1, \g<name>) and raises on a bare \ before a letter, so a
+            # future answer containing a backslash would corrupt the
+            # page or crash the script. A lambda returns it untouched.
+            text = token.sub(lambda _m, v=value: v, text)
         if text != original:
             io.open(path, "w", encoding="utf-8", newline="").write(text)
             changed += 1

@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 15:1x (previous work was not finished; closed it, one real defect found and fixed)
+
+Attached clean (unshallowed, ff-only onto `origin/main`). **Previous work: NOT finished.** The 14:4x cycle handed the operator 6 cold-read-ledger files whose code changed after their own ledger date; the concurrent 14:5x operator cycle worked a different item instead. Confirmed all 6 dates genuinely stale against git, then read each file's diff since its ledger date rather than the whole file cold.
+
+**Found and fixed a real defect:** `fill_front_matter.py`'s 09-26 change swapped a literal string replace for `token.sub(value, text)`. `re.sub`'s repl string treats backslashes as backreferences and raises on a bare backslash before a letter; today's answers are backslash-free so it had not fired, but a future one would crash the script or corrupt a public page. Proved fail-then-pass; fixed with a callable repl; added a permanent test. The other 5 files: no defect, re-ledgered with notes.
+
+**Verified:** a full `preflight.py`, no `timeout` wrapper, run to completion with the fix and its test already on disk: every gate passed, 25 standing warnings. A second confirmatory run started after the dashboard/log regeneration was still in `gate_tests` when this entry closed (reported as still running, not as passing, per CLAUDE.md 0.4); the fix itself was already proven directly (fail-then-pass) and by the completed run above. **Handing to operator:** nothing large pending, backlog/GitHub still exhausted of anything not Phil-gated; if the second run surfaces anything, it is the operator's or next PM cycle's to read.
+
+Pushed to main. `fill_front_matter.py`, its test, the ledger, command deck. Not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 14:5x (independent re-verification, one dead-scripts lane assessed and excluded rather than left for a future cycle to re-derive)
 
 **Did:** Attached (shallow checkout, `fetch --unshallow` pulled 607 commits, `checkout main`, `merge --ff-only origin/main`, clean fast-forward, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Every backlog row is Done, CLOSED by decision, HOLD pending traffic, or explicitly "YES, Phil"; nothing unblocked was left unattempted. Ran a full `python ops/preflight.py` to completion in the background (no shell `timeout` wrapper, the mistake this same log has repeatedly warned against), and confirmed live via the GitHub API rather than cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; CI green on the current `main` head (run 1536), the one `failure` in the last few runs (1534) already traced and fixed two commits later. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, nothing to act on. `bash ops/traffic_query.sh`: no Docker socket here, correctly unreachable, matching every prior cycle's sandbox limit.

@@ -71,6 +71,28 @@ def main() -> int:
     if "<p>next</p>" not in out2:
         fails.append("dropping a plain bracket's own line ate unrelated content: %r" % out2)
 
+    # 4. A fill value containing a backslash must land literally, not be
+    # read as a regex backreference. Found 2026-09-27 cold-read: the fill
+    # branch switched from a literal str.replace to token.sub(value, text),
+    # and re.sub's repl argument treats "\1"/"\g<name>" specially and
+    # raises on a bare "\" before a letter. ops/fill_front_matter.py's
+    # own fill loop now passes a callable repl instead, which is exempt
+    # from that processing; this proves the same shape directly.
+    token = re.compile(r"\[" + re.escape("PUBLISHER ADDRESS") + r"(?::[^\]]*)?\]")
+    backslash_value = r"4328 N \Morninggale Pl"
+    try:
+        token.sub(backslash_value, "before [PUBLISHER ADDRESS] after")
+        fails.append(
+            "a bare token.sub(value, text) no longer raises on a backslash "
+            "value; the regression this test guards against may have been "
+            "reintroduced without the callable-repl fix")
+    except re.error:
+        pass  # expected: proves the raw-string-repl shape is still unsafe
+    out3 = token.sub(lambda _m, v=backslash_value: v, "before [PUBLISHER ADDRESS] after")
+    if out3 != "before %s after" % backslash_value:
+        fails.append(
+            "callable-repl fill did not place a backslash value literally: %r" % out3)
+
     if fails:
         print("FAIL:")
         for f in fails:

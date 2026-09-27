@@ -142,9 +142,9 @@
       "note": "cold read, no defect: hash excludes itself correctly, git-blob-based so platform-independent, --check exit code correct"
     },
     "build_image_prompts.py": {
-      "status": "fixed",
-      "date": "2026-09-08",
-      "note": "main() hardcoded a stale image count in its own prose. Fixed; reconfirmed clean on at least two later independent re-reads (reads only committed repo files, no hidden network dependency)."
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "PM cold-read 2026-09-27: re-verified after the 09-17 comment-only edit fixing the stale nine-image count to six; no logic change, TIER0 list and load() unaffected."
     },
     "build_kit_page.py": {
       "status": "clean",
@@ -338,8 +338,8 @@
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Cold-read for defects (PM check-in). load_ledger/is_cleared/next_candidates/add_entry all correct; malformed or missing ledger safely returns {} rather than defaulting to clean, per CLAUDE.md 0.4. --next, --check (hit and miss) and the ledger JSON all manually verified working."
+      "date": "2026-09-27",
+      "note": "PM cold-read 2026-09-27: re-verified after this file's own 09-27 extension to a 4th ops/*.js lane; _all_candidate_files() collision check, lane_path(), and ledger_size (now counting only cleared candidates, not raw ledger length) all correct; py_compile clean, --next runs correctly (175/175)."
     },
     "corpus_index.py": {
       "status": "clean",
@@ -357,9 +357,9 @@
       "note": "Bot classification order, TRAINING/RETRIEVAL split, proxy vs container log parsing and reverse-DNS verification all correct on inspection. No defect."
     },
     "dashboard.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "cold-read 2026-09-26 scheduled operator cycle: three 'unknown collapsed into a number' defects fixed (cards_total exception fallback to hardcoded 88, deck_readiness_line rendering literal 'None' text, book_sellable_detail collapsing None into checked-false text); gate_dashboard_deck_readiness extended, fail-then-pass proved. Same day, a later cycle read the seven near-identical zone/photo/16x9/narrated/social-pin/youtube-metadata/thumbnail video-count except-Exception blocks (~lines 1480-1650): four (zone_videos, zone_photo_videos, zone_videos_16x9, narrated_videos) already wrap through resolve_video_count()'s carry-forward; the other three (social_pins_built, youtube_metadata_built, thumbnails_built) had no such protection, resetting to a bare 0 on any mid-loop failure and rendering the literal word None if fed it, the same class fixed one call site over. Fixed the same way: except now sets None; all three line functions and the two dashboard render call sites distinguish None (not measured) from 0 (measured, empty); proven fail-then-pass against the real gate functions. Not live today (a full run reads 114/115/114 with no exception). deploy_verdict/traffic_reading and the render functions after line 1900 are still unread; next cycle should continue there."
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "PM cold-read 2026-09-27: re-verified all changes since the 09-26 ledger date. The None-not-zero fix for cards_total/social_pins_built/youtube_metadata_built/thumbnails_built is consistently guarded everywhere each field is read (grepped all usages); book_sellable_detail() correctly separates could-not-check from checked-and-missing; gate_dashboard_deck_readiness proves the deck-readiness half fail-then-pass. Also re-verified the 09-27 traffic-citation paragraph-wide regex directly against the live OWNER-ACTIONS.md: returns (2026-09-25 01:17, 57, 144) correctly. The stray-probe-file glob exclusion (basename startswith '_') matches .gitignore's own rule. No defect."
     },
     "deploy.py": {
       "status": "fixed",
@@ -387,9 +387,9 @@
       "note": "experiment registry, Umami reader and sample-size arithmetic. Ran --offline live: correctly reports UNCHECKED throughout rather than defaulting to zero, matches its own documented contract. Ran --power 0.02 0.03: 3,826/arm, matches a manual two-proportion power calculation. website_id cross-site guard already covered by test_umami_website_filter.py (7/7). No sandbox ssh key here to exercise the live-read path end to end, but the SELECT-only guard, sentinel-row failure detection and the website_id guard were all read closely and are sound. No defect found."
     },
     "fill_front_matter.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "PM cold-read 2026-09-27: found and fixed a real regression from the 09-26 colon-field change. The fill loop had switched from text.replace(token, value) to token.sub(value, text); re.sub's repl string treats backslashes as backreferences/\\g<name> and raises on a bare backslash before a letter, so any future front-matter.json answer containing a backslash would crash the script or corrupt output. Today's answers happen to be backslash-free so it had not fired live. Fixed with a callable repl (token.sub(lambda _m, v=value: v, text)), which re.sub never post-processes. Proved fail-then-pass against the raw string-repl call and extended ops/tests/test_fill_front_matter_colon_field.py with a permanent case."
     },
     "fingerprint_assets.py": {
       "status": "clean",
@@ -478,8 +478,8 @@
     },
     "launch_plan_pdf.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "one-shot PDF report generator ('written once, read once, and acted on' per its own docstring), not wired into preflight or any generator chain, not callable here (reportlab not installed). Read in full: measured() correctly pulls live facts (state.json, check_live_links, deploy_freshness) with honest except-to-unknown fallbacks; the hardcoded narrative content (155 items, the payment outage, www redirect) is a dated point-in-time snapshot by design, already superseded by events recorded elsewhere (www redirect and issue #20 both since resolved), not a live claim the document asserts is current. No defect in the generator's own logic."
+      "date": "2026-09-27",
+      "note": "PM cold-read 2026-09-27: re-verified the 09-26 cards_total None-handling fix (part of the gate_dashboard_deck_readiness fail-then-pass commit aed56b96). S['cards_total'] is only read after S.get('cards_total') is not None, so the direct-index access is safe; falls back to 'an unmeasured' text otherwise. No defect."
     },
     "ledgerium_price_check.py": {
       "status": "clean",
@@ -628,8 +628,8 @@
     },
     "room_image_variants.py": {
       "status": "clean",
-      "date": "2026-09-11",
-      "note": "Confirmed already fully wired into the generator chain (build_avif --encode/--wire), not merely present; no defect found."
+      "date": "2026-09-27",
+      "note": "PM cold-read 2026-09-27: re-verified the 09-15 PAGE_PHOTOS/PAGE_OUT extension for hand-maintained page photos. made/skipped counters initialized once before both loops, idempotent mtime check correct, output paths (site/assets/img/w/<stem>-<w>.<ext>) match what home/about/method/consulting/book/shop/bundle/index.html actually reference. No defect."
     },
     "root_causes.py": {
       "status": "clean",
