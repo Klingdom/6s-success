@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 04:1x (previous work confirmed finished by an independent full preflight run; nothing new unblocked; cold-read lane stays closed)
+
+**Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (552 commits, no conflict), working tree already clean on attach. Did not take the prior cycle's own preflight claim on trust; ran a full `python3 -u ops/preflight.py` myself, foreground, unbuffered, start to finish: every gate passed, 26 warnings, all the same standing sandbox limits prior cycles have already diagnosed (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift). `ops/cold_read_ledger.py --next` confirms 164 of 164 `ops/*.py` files stay ledgered; no candidate remains in that lane.
+
+**Backlog and issues: nothing genuinely unblocked.** Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full: sections 2 to 3 rows are struck through Done (B9 five of five rooms shipped, B8 CLOSED by D-027); section 4's only open rows (C5 Gemini billing, C6 YouTube OAuth) need Phil directly; section 5 is HOLD; section 6 is owner gates. Confirmed live via the GitHub API rather than copied: 8 open issues, all labelled `decision` or `blocked-on-art`, unchanged from the prior cycle; 0 open PRs.
+
+**Did not start new work this slot.** No small closing job was left undone, and no backlog row is genuinely unblocked without Phil. Regenerated the command deck anyway per the standing rule (a stale deck reads as a current one): only the generated timestamp and commit count moved, no content drift.
+
+**Went well:** re-running preflight independently rather than trusting the previous log entry a second time in a row; confirming the GitHub issue and PR counts live instead of citing the prior figure.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` item 0: Search Console, Stripe description/business identity, `VPS_DEPLOY_KEY`) and the 8 GitHub issues, unchanged. Nothing sized for the operator either; the cold-read lane stays closed at 164/164.
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle (cold-read lane closed: ops/preflight.py read in full, no defect, 164 of 164 ops/*.py files now ledgered)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 547 commits onto `origin/main` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections
