@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-27, scheduled operator cycle (full independent re-verification, no new defect; deploy-gap material list re-derived unchanged, no timeout wrapper used this time)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean fast-forward of 593 commits, no conflict, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `ops/NIGHTLY-LOG.md` entries (top of file, this log's own newest-first convention). Ran a full `python ops/preflight.py` in the background with no shell `timeout` wrapper, the exact self-inflicted mistake several recent cycles have hit and re-diagnosed: let it run uninterrupted (about 8 minutes, `gate_tests` the slow step as usual) rather than poll it to death or truncate it.
+
+**Verified rather than cited, across every lane a cloud sandbox can reach.** GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`); 0 open PRs. `checks.yml` green on the last several `main` commits, checked directly rather than assumed. `ops/cold_read_ledger.py --next`: 174 of 174, still fully exhausted, zero un-ledgered candidates returned. `ops/affiliate.py --check`: clean, 165 delivered documents. `ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked. Re-tested this sandbox's own egress directly: `curl` to `6s-success.com` and `api.stripe.com` both `connect_rejected` from the agent proxy (organization policy), confirming the standing "no egress" finding rather than repeating it unchecked.
+
+**Independently re-derived `BLOCKER-001`'s deploy gap rather than trust the citation.** Called `resolve_verdict_commit()`/`deploy_gap_material_commits()` directly against the live `ops/deploy-verdict.json` build id: resolves to the same commit `223f5111` `STATUS.md` already cites, and the material list (commits touching `site/` or `Dockerfile` since that commit) is the same 20 it already records, including the same 5 previously judged customer-visible (`fbeba2f7`, `dec5660a`, `dd9c0a01`, `ba73ec3c`, `4afe5b0d`). No drift found; the figure did not need correcting this cycle.
+
+**Checked B8/deck-print-tier before treating its standing warning as new:** `preflight.py`'s `deck-print-tier` warning (5 of 6 decks off the 18-card step) is unchanged, and `DECISIONS.md` D-027 (2026-09-25) already closed this deliberately: card counts stay corpus-honest, print-tier alignment waits for a real print order. Not a defect, correctly still just a warning.
+
+`preflight.py`: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `core.hooksPath` was unset in this fresh checkout (expected, not tracked); re-enabled.
+
+**Went well:** ran the full preflight to genuine completion in the background with no timeout wrapper on the first attempt, avoiding the exact mistake the last several log entries had to correct mid-cycle; re-derived the deploy-gap material list from source instead of copying the cited number forward.
+
+**Did not go well:** nothing new; another cycle where every checkable lane (backlog, GitHub, cold-read ledger, affiliate rules, deploy gap, egress, mail) came back exactly as the prior cycle left it, and this sandbox still cannot reach Stripe, the VPS, or the analytics database to make progress on anything beyond re-verification.
+
+**Changing next cycle:** none new. The standing lesson (never wrap `preflight.py` in a `timeout`, foreground or background) held this time; nothing else to harden.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube upload authorisation, Stripe business description) and the 8 GitHub issues, unchanged. `BACKLOG-2026-09-07.md` sections 1-6 remain Done/CLOSED/HOLD or Phil-gated; no workstream sized for the operator beyond that list this cycle.
+
+Pushed to main: this log entry and the command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 11:2x (previous work confirmed finished; own preflight run self-inflicted a stray-probe-files failure by wrapping it in a shell timeout, exact mistake this log already warns against; re-run clean; no new closable item)
 
 **Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 592 commits onto `origin/main` (`f56bb1e7`), no conflict, tree already clean.
