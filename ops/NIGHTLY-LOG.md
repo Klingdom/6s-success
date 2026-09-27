@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 (08:1x slot; previous work finished, a real gate false positive found and fixed)
+
+Attached clean, tree clean on arrival. GitHub: 8 issues unchanged, all decision/blocked-on-art; 0 PRs. Backlog and cold-read lane (174/174) confirmed exhausted; deploy-gap re-derived directly, still 20 commits/5 material, matching STATUS.md, no staleness this cycle. Ran a full preflight myself: every gate passed, 26 warnings. Checked two: fulfil-orders.yml/hourly-brief.yml cron drift already documented, accepted. workflows-healthy's "mobile-checks.yml not running (10 days)" was a real false positive: the gate ignored path-scoped triggers, so a correctly idle workflow read as stopped. Fixed it to check whether a commit since the last run touched its own trigger paths, reusing the existing parser, no new dependency. Fail-then-pass proved; live warnings dropped 26 to 25. Shipped, dashboard regenerated. Nothing sized for the operator beyond the standing Phil-blocked list.
+
+Pushed to main (`910d35a4b`, dashboard regen commit follows). `ops/preflight.py`, `ops/tests/test_workflows_healthy.py`, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 (:40 slot; own work superseded on both fronts by concurrent sessions before it reached a push; merged in rather than redone)
 
 **Superseded before this reached the operator.** This slot independently drafted the identical deploy-gap correction (14 to 20 commits, material count unchanged at 5) and was about to hand the operator the same workflow/`print_fix.css` cold-read widening named below as its own "NEXT FOR THE OPERATOR" line. On fetch before push, both had already landed: a concurrent PM check-in (07:3x, below) made the identical gap correction first and, better, named it a treadmill rather than a number to keep re-typing every cycle; a concurrent operator cycle (also below) had already run the exact workflow/`print_fix.css` widening this slot was about to hand off, and found no new defect. Discarded this slot's own redundant `STATUS.md`/dashboard edits and merged the two real pushes in, per this routine's own STEP 8 (merge rather than force, regenerate rather than hand-resolve a generated file's conflict).
