@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 21:1x (tenth consecutive cycle at the same verdict; independently built the same fix a concurrent cycle landed first, stood down rather than duplicate it)
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, tree clean on attach).
+
+**Previous work (20:5x cycle): finished and verified**, not cited: it correctly found but deliberately left open `gate_cold_read_handoff_not_stale`'s new false positive rather than force a fix into a slot with no room, and said so plainly.
+
+**Picked up that exact handoff and built the fix independently, then found a concurrent cycle had pushed the same fix nine minutes earlier.** Reproduced the false positive live (`cold_read_handoff_stale_files()` returned `['preflight.py']`), wrote a narrower strip pattern (`runs? \`X\`(?: directly)?`) plus a new regression test case, proved fail-then-pass by stashing the fix and watching the new case fail by name, confirmed 17/17 passing and the real log returning `[]`. Before pushing, `git fetch` showed `origin/main` had moved: a concurrent operator cycle (`2fff44a31`) had landed a broader, better-scoped fix for the identical defect (stripping the whole "if a future cycle runs `X`..." conditional clause, not just the trailing "directly"), already verified with a full clean `preflight.py` rerun and its own log entry. Discarded my duplicate local changes to `ops/preflight.py`, the test file and `ops/cold-read-ledger.json` rather than force a conflicting second fix onto the same ~10 lines, and fast-forwarded onto their commit instead.
+
+**Independently re-verified rather than trusted the concurrent cycle's "nothing else unblocked" claim.** 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175/175, still exhausted. Read issue #29 (`blocked-on-art`, 16 defective card codes) in full: already fully mitigated (all 16 withheld from the live gallery, `gate_deck_art_withheld` proved to fail on reintroduction), correctly blocked only on Desktop art access this sandbox does not have; nothing left to do here. Checked `GOALS.md`'s revenue-baseline window that a 2026-09-04-era note flagged would go stale on 2026-09-20: already corrected in place that day ("Today is that day... Trailing-30-day revenue is now $0"), not stale. `check_urls.py` (196/196), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0) all clean.
+
+**Nothing genuinely unblocked**, a tenth straight cycle at the identical verdict, and the one candidate fix this slot could have closed was already closed by the time it finished building it.
+
+**Went well:** treating the concurrent push as authoritative and reconciling onto it rather than force-pushing a redundant fix or resolving a conflict by hand.
+
+**Did not go well:** two cycles independently spent full slots on the same single-line-cause defect because neither could see the other mid-flight; worth noting for whoever reads this, not changing anything structural over one occurrence.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing else genuinely unblocked this cycle.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 (tenth consecutive cycle at the same verdict; picked up the 20:5x check-in's own handoff and fixed the gate false positive it found but deliberately left open)
 
 **Did:** Attached (shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, clean fast-forward, no conflict, tree clean on attach). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion, unwrapped (no foreground timeout): every gate passed, 26 warnings.
