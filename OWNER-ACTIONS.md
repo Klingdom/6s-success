@@ -6,8 +6,11 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-26, item 1 (YouTube) held and then CLEARED the same
-day. The hold was real: all 114 films were 30.2s while their captions ran to
+**Last measured:** 2026-09-27, item 1 (YouTube) made genuinely actionable: the
+two prerequisites that would each have broken the first run are now done (the
+credential files are gitignored, the Google client libraries are installed), and
+the publish pair is verified at 114 of 114. Earlier, 2026-09-26, item 1 was held
+and then CLEARED the same day. The hold was real: all 114 films were 30.2s while their captions ran to
 74.8s, so publishing would have put captions 45 seconds past the end of the
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both film
 length and caption sync, so the row is actionable again. Traffic figure below unchanged since
@@ -106,7 +109,7 @@ anybody ever arrives. Everything else on this page can wait behind these four.
 |---|---|---|---|
 | **0** | Add `VPS_DEPLOY_KEY` as a GitHub Actions secret | 2 min | Closes the single most repeated line in this repository's whole operating history for good, not once. Every prior "redeploy" ask on this list has been a one-time chore that comes back the moment nobody happens to run it by hand for a few days; `CHECKIN-LOG.md`'s last several hourly check-ins each independently landed on "production is behind the repository, deploy" with no session able to act on it. `.github/workflows/deploy.yml` now exists, triggers itself the moment `publish-image.yml` finishes, and runs the exact `ops/deploy.py` a local session already runs by hand: pull the new image, recreate the container, refuse to claim success until production's own build id matches. It does nothing today because no sandbox holds the key to give it. Run `cat ~/.ssh/6s_deploy` on the machine that already has it (installed 2026-09-01), then `gh secret set VPS_DEPLOY_KEY < ~/.ssh/6s_deploy` (or paste the file's contents into Settings -> Secrets and variables -> Actions -> New repository secret, named exactly `VPS_DEPLOY_KEY`) in this repository. After that, every push that changes `site/**` reaches a customer within minutes, unattended, forever. Filed as GitHub issue #35 (`decision`) because it creates the first credential in this repository that gives GitHub Actions direct SSH access to production; recommendation is there, decision is yours. |
 | **1a** | Verify the site in Google Search Console | 3 min | Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since. Whether that is "read and judged not worth indexing" or something we can fix is the single most valuable unknown in the business, and Search Console is the only instrument that answers it. Nothing I can build substitutes for you being logged into your own Google account. |
-| **1** | Authorise YouTube uploads | 5 min | **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** All 114 films were re-rendered with today's generator and now measure against their own beats, with a video and an audio stream each; and all 114 caption files now end within 5 seconds of the film they belong to, where before every one of them ran 45 seconds past the picture. Checked by measuring each film against `beats()` and each SRT's last timecode against its film's duration, 114 of 114 on both, rather than sampling. The films are longer than the batch you saw: 75 to 93 seconds instead of 30, because the generator gained beats since that batch was rendered. 102 narrated, captioned videos are waiting on a disk; the 12 already public went up by your own hand. This category is searched on YouTube as much as on Google. |
+| **1** | Authorise YouTube uploads | 5 min | **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114. Separately, the 114 silent films in `build/video/zones-16x9` were genuinely stale (30s against a 75-93s generator) and have been re-rendered; that was a real defect but not one on the publish path, and an earlier note here implied otherwise. Checked by measuring each film against `beats()` and each SRT's last timecode against its film's duration, 114 of 114 on both, rather than sampling. The films are longer than the batch you saw: 75 to 93 seconds instead of 30, because the generator gained beats since that batch was rendered. 102 narrated, captioned videos are waiting on a disk; the 12 already public went up by your own hand. This category is searched on YouTube as much as on Google. |
 | **1d** | Paste the business description into Stripe | 2 min | The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today. |
 | ~~**1h**~~ | ~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** | 0 min | All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed. The 21 Area Bundles and Situation Kits went on 2026-09-22; the remaining 44 (the 2026-08-21 batch plus D-024's 8 Kitchen packs) went this morning in two runs of `ops/retire_stripe_skus.py`, each refusing to write until it had scanned all 192 live URLs and found no page serving a retired SKU or link. `check_live_links.py` afterwards: every payment link the live site serves is still active in Stripe. Nothing here needs you. |
 
@@ -621,6 +624,12 @@ engine with 102 finished files already made for it and no way to reach it.
 Uploading needs OAuth against the Google account that owns the channel. An API
 key cannot perform writes, so there is genuinely no way around this one.
 
+**Use `philklingmbb@gmail.com` throughout, not `phil@mediafier.ai`** (owner's instruction, 2026-09-27). That means: sign into the Cloud console as that account before step 1, add THAT address as the Test user in step 3, and pick that account on the consent screen when the browser opens. The same address already appears in `ops/affiliate-accounts.json`, so it is the account this business is run from.
+
+**The account must also manage the @6SSuccess channel**, which is the part worth pausing on. This tool uploads to whatever channel the approving account owns, and YouTube cannot move a video between channels or replace its file. Approving with an account that has its own personal channel would put 102 videos somewhere they can only be removed one at a time, by hand.
+
+That is now guarded rather than trusted: `confirm_right_channel()` asks the API which channel the token speaks for, asks which channel one of the 12 videos you already published belongs to, and refuses to upload anything unless the two ids match. It needs no hardcoded channel id and nothing to maintain. If the accounts differ it stops before the first upload and tells you to delete `ops/youtube-token.json` and authorise again. Proved against fakes in all three cases: same channel allowed, different channel blocked, no channel at all blocked.
+
 1. Go to https://console.cloud.google.com/ and create a project (any name).
 2. APIs & Services, then Library, then enable **YouTube Data API v3**.
 3. APIs & Services, then OAuth consent screen, choose External, fill the three
@@ -630,9 +639,39 @@ key cannot perform writes, so there is genuinely no way around this one.
 5. Download the JSON and save it into the repo as
    `ops/youtube-client-secret.json`.
 
-Then tell me. I run `python ops/youtube_upload.py`; a browser opens once for
-you to approve, and after that it publishes unattended and resumes across the
-daily quota.
+**Two things that were missing and are now done, 2026-09-27, so step 5 is safe
+to perform.**
+
+*The credential had nowhere safe to land.* `.gitignore` carried no rule for
+`ops/youtube-client-secret.json` or for the `ops/youtube-token.json` the tool
+writes beside it, so either could have been swept up by the next `git add -A`
+and pushed to a public repository. Both are ignored now, verified with
+`git check-ignore`. The token is the more dangerous of the two: it holds upload
+and force-ssl scope on the channel until revoked.
+
+*The client libraries were not installed.* `google-auth-oauthlib` and
+`google-api-python-client` were both absent, so the very first run would have
+failed on an import after the consent screen had already been approved.
+Installed and confirmed importable.
+
+**On step 3, add both scopes** if the console asks for them explicitly:
+`youtube.upload` and `youtube.force-ssl`. The second is what attaches the real
+caption track; without it the videos publish with words burned into the picture
+and nothing a screen reader or a translation can use.
+
+Then tell me. I run `python ops/youtube_upload.py`; a browser opens once for you
+to approve, and after that it publishes unattended.
+
+**Expect this to take days, not an hour, and that is normal.** The YouTube Data
+API meters writes against a daily quota, and an upload plus its caption track
+consumes a large share of a new project's default allowance, so the realistic
+rate is a handful of zones per day rather than 102 in one sitting. The tool is
+built for exactly that: it detects a quota error, stops cleanly rather than
+retrying into a ban, and records every success in `ops/youtube-published.json`
+so the next run resumes where it left off and can never double-post. I have not
+stated a precise per-day figure here because I cannot verify Google's current
+unit costs from this machine, and a guessed number in this file would be worse
+than none. The first run measures it, and I will write the real rate here then.
 
 **Already built and waiting:** `ops/youtube_upload.py` is written and dry-run
 clean. It uploads the narrated 16:9 file, attaches the real SRT caption track

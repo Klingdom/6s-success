@@ -616,6 +616,16 @@ and the conclusion was still wrong, because I checked each artifact against
 itself and never checked two artifacts against each other. A file that is valid
 is not a file that is current.
 
+**One more correction, 2026-09-27: the directory I fixed is not the one that
+publishes.** `ops/youtube_upload.py` reads `build/video/zones-narrated`, the
+~300-second narrated masters with their own `-16x9.srt` tracks. I measured and
+re-rendered `build/video/zones-16x9`, the 30-second silent films. Measured
+afterwards, the pair that actually ships was already sound: **114 of 114**
+narrated masters end within 5s of their own caption track. So the re-render
+fixed a real staleness in the silent films and the publish path never had the
+defect I reported. Both halves of that sentence matter, and I stated only the
+first.
+
 **Resolved the same day, 117 minutes of compute.** All 114 films re-rendered
 with today's generator (`ops/video_zone.py` has no batch mode, so a resumable
 driver looped it one zone at a time, skipping any film already matching its own

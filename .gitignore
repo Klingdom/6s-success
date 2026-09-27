@@ -166,3 +166,13 @@ backups/
 # them would create a second copy of the corpus that can go stale silently
 # while looking authoritative. Run the script when you want the numbers.
 build/deck-skeletons/
+
+# YouTube OAuth, added 2026-09-27 BEFORE the owner was asked to place the file.
+# ops/youtube_upload.py expects the downloaded Google client secret at
+# ops/youtube-client-secret.json and writes a refresh token beside it at
+# ops/youtube-token.json. Neither had a rule here, so either could have been
+# committed by the next `git add -A`, which is how a channel credential leaks
+# into a public repository. The token is the more dangerous of the two: it
+# grants upload and force-ssl scope on the channel until revoked.
+ops/youtube-client-secret.json
+ops/youtube-token.json

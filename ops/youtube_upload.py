@@ -150,6 +150,71 @@ def service():
     return build("youtube", "v3", credentials=creds)
 
 
+def confirm_right_channel(yt) -> None:
+    """Refuse to upload unless the authorised account owns the channel the 12
+    already-published videos are on.
+
+    WHY THIS IS NOT OPTIONAL
+    ------------------------
+    This tool uploads to whatever channel the approving Google account owns. It
+    never asked which one. Approve the consent screen with the wrong account,
+    which is easy when a browser is signed into several, and 102 videos land on
+    a personal channel instead of @6SSuccess. YouTube cannot move a video
+    between channels and cannot replace a file, so undoing that means deleting
+    102 videos by hand and re-uploading every one. It is the most expensive
+    only-reversible-by-hand mistake available here, and the guard costs one API
+    call.
+
+    HOW IT KNOWS, WITHOUT A HARDCODED CHANNEL ID
+    --------------------------------------------
+    ops/youtube-published.json already holds the video ids of the 12 zones the
+    owner published by hand from the real channel. So: ask the API which
+    channel this token speaks for, ask which channel one of those known videos
+    belongs to, and require the same id. Nothing is guessed, nothing needs
+    maintaining. An empty ledger cannot be checked this way and says so rather
+    than passing.
+    """
+    nl = chr(10)
+    known = [v.get("video_id") for v in ledger().values()
+             if isinstance(v, dict) and v.get("video_id")]
+    mine = yt.channels().list(part="id,snippet", mine=True).execute()
+    items = mine.get("items") or []
+    if not items:
+        raise SystemExit(
+            "  BLOCKED: the authorised account has no YouTube channel." + nl
+            + "  Authorise with the Google account that manages @6SSuccess.")
+    my_id = items[0]["id"]
+    my_title = (items[0].get("snippet") or {}).get("title") or "?"
+
+    if not known:
+        raise SystemExit(
+            "  BLOCKED: ops/youtube-published.json names no video id, so the"
+            + nl + "  right channel cannot be established. Authorised as "
+            + repr(my_title) + " (" + my_id + ")." + nl
+            + "  Seed the ledger from the live channel before uploading.")
+
+    probe = yt.videos().list(part="snippet", id=known[0]).execute()
+    pit = probe.get("items") or []
+    if not pit:
+        raise SystemExit(
+            "  BLOCKED: known published video " + known[0] + " is not visible"
+            + nl + "  to this account, so the channel could not be confirmed."
+            + nl + "  Authorised as " + repr(my_title) + " (" + my_id + ").")
+    want_id = (pit[0].get("snippet") or {}).get("channelId")
+
+    if my_id != want_id:
+        raise SystemExit(
+            "  BLOCKED: wrong channel. Nothing uploaded." + nl
+            + "    authorised as : " + my_id + "  (" + my_title + ")" + nl
+            + "    videos are on : " + str(want_id) + nl
+            + "  The 12 already published are on the second channel. Uploading"
+            + nl + "  here would put 102 videos somewhere they cannot be moved"
+            + nl + "  from. Delete ops/youtube-token.json and authorise again"
+            + nl + "  with the account that manages @6SSuccess.")
+    print("  channel confirmed: %s (%s), matches the 12 already published"
+          % (my_title, my_id))
+
+
 def upload_one(yt, m: dict, mp4: str, srt: str | None) -> dict:
     from googleapiclient.http import MediaFileUpload
 
@@ -260,6 +325,7 @@ def main() -> int:
         return 0
 
     yt = service()
+    confirm_right_channel(yt)
     ok, failed = 0, []
     for m, mp4, srt in todo:
         try:
