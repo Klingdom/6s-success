@@ -14375,6 +14375,22 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     "**"), the all-caps one to `NEXT FOR[^:\n]*:` (anything after "NEXT
     FOR" up to the colon), rather than adding another exact string this
     log's phrasing will just as easily drift past again.
+
+    Found live 2026-09-27 (second time): a real handoff line named four
+    live candidates by line number ("`ops/prerender_shop.py:139`", which
+    name_re never matches anyway, since a trailing `:139` sits before
+    the closing backtick) and, in the same breath, cited a fifth,
+    already-fixed file as precedent in bare prose: "...the same bug
+    shape the 15:1x cycle just fixed in `fill_front_matter.py`...". That
+    citation sits outside any parentheses, so the existing paren-
+    stripping never touched it, and it was the only name name_re could
+    actually match in the whole block, so it alone became this block's
+    "names" list and tripped the gate on a file with nothing left to
+    read. The established convention already treats a parenthetical
+    already-cleared citation as non-live; a bare "already/just fixed/
+    cleared/resolved in `X`" citation is the same shape one level less
+    formal, exactly the way an unwrapped parenthetical aside already is
+    per this log's own convention, so it is stripped the same way.
     """
     name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
                r"([A-Za-z0-9_]+\.(?:py|js))`")
@@ -14401,6 +14417,12 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                 addresses_a_file = True
             live = re.sub(r"~~.*?~~", "", raw, flags=re.S)
             live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
+            # A bare "already/just fixed/cleared/resolved in `X.py`"
+            # citation is the unwrapped-parenthetical shape: precedent
+            # for a different live candidate, not itself a handoff.
+            live = re.sub(
+                r"(?:already |just )?(?:fixed|cleared|resolved) in "
+                r"`[^`]*`", "", live, flags=re.I)
             # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
             # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger
             # keys on bare basenames, so the prefix is optional and

@@ -283,6 +283,31 @@ def main() -> int:
         fails.append("'NEXT FOR THE OPERATOR, as of this check-in:' "
                      "phrasing not recognised: got %r" % stale)
 
+    # 9. A bare (non-parenthetical) "already/just fixed/cleared/resolved
+    #    in `X`" citation, naming precedent for a DIFFERENT live
+    #    candidate, must not itself be flagged. Found live 2026-09-27:
+    #    the real handoff line named four live candidates by line number
+    #    (never matched by name_re, since a trailing `:NNN` breaks the
+    #    backtick-adjacency the regex requires) and, in the same
+    #    sentence but outside any parentheses, cited a fifth, already-
+    #    fixed file as precedent ("...the exact bug shape the 15:1x
+    #    cycle just fixed in `fill_front_matter.py`..."). Because that
+    #    citation was the only name name_re could match anywhere in the
+    #    block, it alone became the block's "names" list and tripped the
+    #    gate on a file with nothing left to read.
+    log_bare_precedent = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-27\n\n"
+        "NEXT FOR THE OPERATOR: harden `ops/prerender_shop.py:139` and "
+        "`ops/wire_pwa.py:79`'s repl calls, because they share the exact "
+        "bug shape the 15:1x cycle just fixed in `build_feed.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_bare_precedent, LEDGER)
+    if stale:
+        fails.append("a bare 'just fixed in `X`' precedent citation was "
+                     "wrongly flagged as a live stale handoff: %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -298,7 +323,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 15/15 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 16/16 cases pass")
     return 0
 
 
