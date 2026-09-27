@@ -681,6 +681,11 @@
       "date": "2026-09-26",
       "note": "Ran --preview live (facebook + x combined), correct char-cap filtering, remaining count reflects rotation state, no TODO/placeholder text. No defect."
     },
+    "social_pin_fit.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Cold-read in full (76 lines), PM check-in 2026-09-27 13:4x. Fits a social-pin card's checklist/picture to canvas via bounded shrink-type/drop-trailing/remove-art fallback chain, then records the steps taken on data-fit/data-steps for ops/build_social_pins.py's DOM-dump reader. Traced every branch: art-present path (drop purpose line, shrink art height, shrink type, drop up to 1 trailing item, then remove art entirely and rebuild the full item list from #full-items if still overflowing) and the no-art/post-removal fallback (shrink type, drop up to 99 trailing items down to a floor of 3). All three while-loops are bounded (height/font-size floors, maxDrop counts) so none can spin. No defect found."
+    },
     "specific_articles.py": {
       "status": "clean",
       "date": "2026-09-25",

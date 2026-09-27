@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-27 12:54",
- "commit": "a834e4da",
- "commit_msg": "Scheduled operator cycle: full independent re-verification, no new closable item",
- "commits_7d": 1120,
- "commits_total": 4151,
+ "generated": "2026-09-27 13:53",
+ "commit": "92cdab36",
+ "commit_msg": "PM check-in: fourth consecutive cycle at same verdict, deploy gap and issue set independently re-derived, no new closable item",
+ "commits_7d": 1114,
+ "commits_total": 4153,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -1085,10 +1085,10 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 204,
+ "site_pages": 206,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 200,
+ "forms_dead": 201,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,

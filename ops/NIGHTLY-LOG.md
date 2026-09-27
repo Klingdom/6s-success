@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 13:4x (found a real gap in the cold-read ledger's own coverage claim; fixed and re-exhausted; nothing else newly unblocked)
+
+NEXT FOR THE OPERATOR: another independent full re-verification (preflight, GitHub, backlog), because the cold-read lane is exhausted again at 175/175 after this cycle's fix; if there is time beyond that, apply the same "check the registry's own claim against reality" technique this cycle used to another lane that claims to be exhausted (`ops/zone-narrative-read.json`'s 114/114) or to a scope nothing has ever ledgered (`content/*/source/*.py`, 31 files, ~5,168 lines, untouched since the one-time `Aug 16` mirror-import commit, so lower-confidence value than the live `ops`/`site` lanes and worth presizing before committing a cycle to it, not a guaranteed find).
+
+**Attach:** checkout arrived shallow and detached, no common ancestor with `origin/main` (issue #27's usual shape, unchanged). `git fetch --unshallow` (600 commits), `checkout main`, `merge --ff-only origin/main`, clean fast-forward, tree already clean.
+
+**Read:** `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`. GitHub confirmed live via the API, not cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; CI green on the last several completed `checks.yml` runs on `main`.
+
+**Previous work: finished**, matching the prior four consecutive cycles exactly: `ops/cold_read_ledger.py --next` at 174/174, backlog sections 1-6 Done/CLOSED/HOLD or Phil-gated, deploy gap unchanged (`BLOCKER-001`, 20 commits/5 material). A full `python ops/preflight.py` was started at attach with no `timeout` wrapper; still in `gate_tests` at commit time (it alone has run past 8 minutes before in this same log), so reported as still running, not as passing, per CLAUDE.md 0.4.
+
+**Found, not left for the operator to discover cold:** `ops/cold_read_ledger.py`'s own `LANES` tuple, the thing that made "174 of 174, cold-read lane exhausted" a claim this log has repeated for several cycles, only ever globbed `ops/*.py`, `site/assets/js/*.js` and `mobile/quest-app/lib/*.js`. `ops/social_pin_fit.js`, the one hand-authored `.js` file living inside the `ops/` directory itself (used by `ops/build_social_pins.py` to fit each social-pin card's checklist and picture to its canvas), matched none of those three patterns, so it was never a candidate under any name, cleared or not. The "exhausted" claim was true only for the lanes as narrowly defined, the same "source corrected, artifact never re-derived" shape this repository's own tooling keeps finding in its own claims, just not caught in this specific registry before.
+
+**Fixed:** added `("ops", "*.js")` as its own lane rather than widen the existing `"ops"`/`"*.py"` pattern, so a future change to the Python glob cannot silently start sweeping in `.js` files it was never meant to. Cold-read `ops/social_pin_fit.js` in full (76 lines): traced every branch of its bounded shrink-type/drop-trailing/remove-art fallback chain (art-present path, and the post-removal fallback that rebuilds the full item list from `#full-items`); all three `while` loops are bounded by a height/font-size floor or a `maxDrop` count, none can spin. No defect found; recorded `clean` via `ops/cold_read_ledger.py --add` (never hand-edited the JSON the tool owns). `--next` now reads 175 of 175, zero un-ledgered candidates, confirmed exhausted again rather than assumed. Also fixed a cosmetic bug my own change introduced: the tool's summary line printed the `ops` lane directory twice (`"across ops, ops, site/assets/js, ..."`) once two lanes shared a directory; deduplicated before it shipped, not after.
+
+**Verified:** `python3 -m py_compile ops/cold_read_ledger.py` clean. `ops/tests/test_gate_cold_read_handoff_not_stale.py` (the one existing test that reads this module): 12/12 pass unchanged, confirming the new lane does not disturb the stale-handoff gate's own independent regex-based matching. A stray `site/audit_exit_code_probe.html` appeared and vanished between two `git status` calls seconds apart, mid-way through this cycle's own background preflight run: the known self-healing `gate_no_stray_probe_files` race this log has already diagnosed (a fixture cleaned up only in a `finally` block), not a new defect, confirmed by its own disappearance rather than assumed.
+
+**Went well:** treating a five-cycle-old "N of N, exhausted" claim as something to re-derive against the lane's own source code, not just its own last printed number.
+
+**Did not go well:** the full confirmatory `preflight.py` run had not finished by commit time; this entry does not claim gate_tests passed, only that the specific test covering the touched code does.
+
+**Changing next cycle:** none; the fix generalises to a fourth lane rather than adding a special case.
+
+Pushed to main. `ops/cold_read_ledger.py`, `ops/cold-read-ledger.json`, this log, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 13:2x (fourth consecutive cycle at the same verdict, independently re-derived rather than cited)
 
 NEXT FOR THE OPERATOR: re-verify independently rather than manufacture a finding. Every unblocked lane is still exhausted: cold-read ledger 174/174, all 8 GitHub issues `decision`/`blocked-on-art`, deploy gap unchanged at 20 commits (5 material).
