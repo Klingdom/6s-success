@@ -510,11 +510,33 @@ def _owner_actions_traffic_citation(path=None):
     if not os.path.exists(p):
         return None
     text = io.open(p, encoding="utf-8").read()
+    # The citation lives somewhere inside the "Last measured" paragraph, not
+    # necessarily on the header's own first line: found 2026-09-27, this
+    # operator, reading dashboard._owner_actions_traffic_citation() cold.
+    # The paragraph had grown a lead-in sentence about a different item
+    # ("item 1 (YouTube) held and then CLEARED...") before the traffic
+    # sentence, which now reads "Traffic figure below unchanged since
+    # DATE UTC, when a direct database read gave N visitors/N visits/30
+    # days" rather than the original "**Last measured:** DATE UTC, traffic
+    # re-measured by a direct database read: N visitors/N visits/30 days"
+    # this regex required word for word. Confirmed live: the real committed
+    # file's own citation (57 visitors/144 visits, 2026-09-25 01:17) is
+    # newer than state.json's carried reading (68/160, 2026-09-23), so the
+    # dashboard should have preferred it and did not, silently, the exact
+    # failure mode gate_dashboard_owner_actions_traffic_citation_current
+    # exists to catch (that gate had the same paragraph-vs-first-line blind
+    # spot, fixed alongside this). Widened to search the whole paragraph
+    # for either phrasing, and to tolerate a line-wrapped "visits/30\ndays".
+    para_m = re.search(r"\*\*Last measured:\*\*(.*?)(?:\n\n|\Z)", text, re.S)
+    if not para_m:
+        return None
+    para = para_m.group(1)
     m = re.search(
-        r"\*\*Last measured:\*\*\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}) UTC,\s*"
-        r"traffic re-measured by a direct database read:\s*"
-        r"(\d+) visitors/(\d+) visits/30 days",
-        text)
+        r"(\d{4}-\d{2}-\d{2}(?:\s+\d{2}:\d{2})?)\s*UTC,?\s*"
+        r"(?:traffic re-measured by a direct database read:|"
+        r"when a direct database read gave)\s*"
+        r"(\d+)\s*visitors?/\s*(\d+)\s*visits?/\s*30\s+days",
+        para, re.S)
     if not m:
         return None
     return m.group(1), int(m.group(2)), int(m.group(3))

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-27 (dashboard traffic-citation parser fixed and gated, a live defect three same-day cycles missed)
+
+**Did:** Attached (shallow checkout, unshallowed, `merge --ff-only` fast-forwarded 600 commits onto `origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Cold-read ledger 174/174; 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; no mail credential. Every backlog lane again done, HOLD or Phil-gated, matching the prior three cycles today, so kept looking rather than stop there. Found `dashboard._owner_actions_traffic_citation()` and its own gate, `gate_dashboard_owner_actions_traffic_citation_current`, both regex-anchored to the first line of `OWNER-ACTIONS.md`'s "Last measured" paragraph. Once that paragraph grew a lead-in sentence about an unrelated item, the real, fresher traffic reading (57 visitors/144 visits, 2026-09-25 01:17) fell past the first line break and both silently stopped seeing it, so the dashboard kept a stale, better-looking carried figure (68 visitors/160 visits, 2026-09-23) with no warning anywhere. Fixed both to scan the whole paragraph; widened the accepted phrasing.
+
+**Verified:** Confirmed the real committed file failed to parse under the old regex before touching anything. After the fix: `_owner_actions_traffic_citation()` returns `(2026-09-25 01:17, 57, 144)`; the regenerated dashboard now shows 57/144, not 68/160. Fail-then-pass proved directly: stashed the fix, the new test cases failed by name citing the exact real shape, restored, passed (8/8). A fully isolated, single-process `preflight.py` run (two earlier parallel runs gave false stray-probe-file failures from colliding scratch fixtures, diagnosed as non-live and discarded) came back clean: every gate passed, the same 25 standing warnings as every prior cycle. Dashboard regenerated after the fix, not before.
+
+**Went well:** not stopping at "preflight passes, nothing to do," the verdict three same-day cycles already reached, and finding a live measurement-honesty defect in the one mechanism meant to catch exactly this class.
+
+**Did not go well:** running `preflight.py` while other `ops/*.py` commands touched the repo in parallel produced false gate failures from colliding scratch probe files; cost real time before being correctly diagnosed as a concurrency artifact rather than a live defect.
+
+**Changing next cycle:** none; the gate itself now covers the shape that evaded it, so no further gate is owed here.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main: `ops/dashboard.py`, `ops/preflight.py`, the widened test, this log entry, the command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 13:2x (fourth consecutive cycle at the same verdict, independently re-derived rather than cited)
 
 NEXT FOR THE OPERATOR: re-verify independently rather than manufacture a finding. Every unblocked lane is still exhausted: cold-read ledger 174/174, all 8 GitHub issues `decision`/`blocked-on-art`, deploy gap unchanged at 20 commits (5 material).

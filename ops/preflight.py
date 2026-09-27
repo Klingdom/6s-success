@@ -3115,8 +3115,8 @@ def gate_dashboard_traffic_carry_forward() -> None:
 
 
 def gate_dashboard_owner_actions_traffic_citation_current(path=None) -> None:
-    """OWNER-ACTIONS.md's own "Last measured" header must stay in the exact
-    shape dashboard._owner_actions_traffic_citation() parses, or the
+    """OWNER-ACTIONS.md's own "Last measured" paragraph must stay in a shape
+    dashboard._owner_actions_traffic_citation() parses, or the
     fresher-reading fallback that function exists for silently stops firing.
 
     Found 2026-09-24, PM check-in. OWNER-ACTIONS.md's header was rewritten
@@ -3135,30 +3135,50 @@ def gate_dashboard_owner_actions_traffic_citation_current(path=None) -> None:
     the exact phrasing in OWNER-ACTIONS.md; this gate stops it drifting
     silently again by requiring the real committed file to parse whenever
     its own header still plainly names a traffic reading.
+
+    Widened 2026-09-27, this operator, the same blind spot one layer up.
+    This gate's own `header_match` only ever read up to the first `\\n`,
+    so once the paragraph grew a lead-in sentence about an unrelated item
+    ("item 1 (YouTube) held and then CLEARED...") ahead of the traffic
+    sentence, the traffic figure moved past that first line break and this
+    gate stopped seeing it at all: it silently took the "header does not
+    currently name a traffic reading" early return on the real committed
+    file, even though `_owner_actions_traffic_citation()` was, at the same
+    moment, genuinely failing to parse that same real reading (57
+    visitors/144 visits, 2026-09-25 01:17, newer than state.json's carried
+    68/160 from 2026-09-23). Proved live: `ops/tests/test_gate_dashboard_
+    owner_actions_traffic_citation_current.py`'s own case 6 ("the real
+    committed OWNER-ACTIONS.md must parse clean") was passing throughout,
+    for the wrong reason, because a gate that never looks does not fail.
+    Widened to scan the whole "Last measured" paragraph (to the next blank
+    line, the same boundary `_owner_actions_traffic_citation()` now uses),
+    not just its first line.
     """
     path = path or os.path.join(ROOT, "OWNER-ACTIONS.md")
     if not os.path.exists(path):
         return
     text = io.open(path, encoding="utf-8").read()
-    header_match = re.search(r"\*\*Last measured:\*\*[^\n]*", text)
+    header_match = re.search(r"\*\*Last measured:\*\*(.*?)(?:\n\n|\Z)", text, re.S)
     if not header_match:
         return
     header = header_match.group(0)
     if not re.search(r"\d+\s*visitors?/\s*\d+\s*visits?", header):
-        # Header does not currently name a traffic reading at all; nothing
-        # for this parser to have caught, and _owner_actions_traffic_
-        # citation() correctly returning None is not a defect here.
+        # Paragraph does not currently name a traffic reading at all;
+        # nothing for this parser to have caught, and _owner_actions_
+        # traffic_citation() correctly returning None is not a defect here.
         return
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import dashboard
     if dashboard._owner_actions_traffic_citation(path) is None:
         fail("dashboard-owner-actions-traffic-citation-current",
-             "OWNER-ACTIONS.md's \"Last measured\" header names a traffic "
-             "reading but dashboard._owner_actions_traffic_citation() "
-             "could not parse it (%r); keep the exact phrasing \"traffic "
-             "re-measured by a direct database read: N visitors/N "
-             "visits/30 days\", or the dashboard's fresher-reading "
-             "fallback silently stops firing." % header)
+             "OWNER-ACTIONS.md's \"Last measured\" paragraph names a "
+             "traffic reading but dashboard._owner_actions_traffic_"
+             "citation() could not parse it (%r); keep a recognisable "
+             "phrase (\"traffic re-measured by a direct database read:\" "
+             "or \"when a direct database read gave\") naming a UTC "
+             "timestamp and \"N visitors/N visits/30 days\", or the "
+             "dashboard's fresher-reading fallback silently stops firing."
+             % header)
 
 
 def gate_dashboard_constraint_reflects_carried_deploy() -> None:
