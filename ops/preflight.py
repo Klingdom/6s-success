@@ -8693,6 +8693,53 @@ def _commits_behind_head(sha):
     return n or None
 
 
+def _workflow_trigger_paths(name):
+    """The workflow's own `push:` `paths:` filter, as git pathspecs (an
+    exclude becomes `:(exclude)pattern`), or None if it has none (so it
+    triggers on every push and going quiet really does mean it stopped
+    running).
+
+    Reuses `_workflow_on_paths`, the indentation-based parser
+    `gate_ci_path_coverage` already relies on, rather than a second parser
+    for the same file shape.
+    """
+    path = os.path.join(ROOT, ".github", "workflows", name)
+    try:
+        with open(path, encoding="utf-8") as f:
+            text = f.read()
+    except OSError:
+        return None
+    includes, excludes = _workflow_on_paths(text, "push")
+    if not includes:
+        return None
+    return includes + [":(exclude)%s" % e for e in excludes]
+
+
+def _commits_touching_paths_since(sha, paths):
+    """How many commits since `sha` (exclusive) touch any of `paths`, or
+    None if that cannot be determined.
+
+    The staleness twin of `_commits_behind_head`'s "unconfirmed, not proven
+    broken" reasoning: a workflow scoped to `paths:` (`mobile-checks.yml`,
+    `checks.yml`, `publish-image.yml`, `publish-mcp.yml`) that has gone
+    quiet for a week because nothing has touched its own trigger paths is
+    idle by design, and looks exactly like a workflow that stopped running,
+    the false positive this gate's own docstring already names for the
+    failing branch but had never extended to the staleness branch. Found
+    live 2026-09-27: `mobile-checks.yml` flagged "not running (10 days)"
+    with its last run a `success`, because nothing under `mobile/quest-app/
+    lib/**` or `package.json` had changed since.
+    """
+    if not sha or not paths:
+        return None
+    out = subprocess.run(
+        ["git", "log", "--format=%H", "%s..HEAD" % sha, "--"] + paths,
+        cwd=ROOT, capture_output=True, text=True)
+    if out.returncode != 0:
+        return None
+    return len([ln for ln in out.stdout.splitlines() if ln.strip()])
+
+
 def gate_workflows_healthy() -> None:
     """Is every workflow still running, and still passing?
 
@@ -8760,7 +8807,12 @@ def gate_workflows_healthy() -> None:
             age = (now - dt.datetime.fromisoformat(
                 (when or "").replace("Z", "+00:00"))).days
             if age >= 7:
-                stale.append("%s (%d days)" % (n, age))
+                trigger_paths = _workflow_trigger_paths(n)
+                touched = (_commits_touching_paths_since(head_sha,
+                                                          trigger_paths)
+                           if trigger_paths else None)
+                if not (trigger_paths and touched == 0):
+                    stale.append("%s (%d days)" % (n, age))
         except ValueError:
             # A timestamp this cannot parse used to be dropped in silence,
             # which meant the staleness half of this gate simply did not run

@@ -128,6 +128,75 @@ def test_total_query_failure_reads_as_unchecked_not_healthy():
     assert "Unchecked, not healthy" in warnings[0][1], warnings
 
 
+OLD = (dt.datetime.now(dt.timezone.utc)
+       - dt.timedelta(days=10)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _run_with_staleness_helpers(fake_names, fake_lookup, token,
+                                 trigger_paths, touched):
+    """Like `_run_with`, but also forces `_workflow_trigger_paths` and
+    `_commits_touching_paths_since`, the two helpers the path-scoped-idle
+    fix below depends on, so this stays independent of both real git
+    history and the real workflow files on disk.
+    """
+    old_paths = preflight._workflow_trigger_paths
+    old_touching = preflight._commits_touching_paths_since
+    try:
+        preflight._workflow_trigger_paths = lambda n: trigger_paths
+        preflight._commits_touching_paths_since = lambda sha, paths: touched
+        return _run_with(fake_names, fake_lookup, token)
+    finally:
+        preflight._workflow_trigger_paths = old_paths
+        preflight._commits_touching_paths_since = old_touching
+
+
+def test_path_scoped_workflow_idle_since_last_run_is_not_stale():
+    """Found live 2026-09-27: `mobile-checks.yml` (paths: mobile/quest-app/
+    lib/**, package.json) had a `success` run 10 days old and was flagged
+    "not running", even though nothing had touched its own trigger paths
+    since. Correctly idle by design is not the same as stopped running."""
+    warnings = _run_with_staleness_helpers(
+        ["checks.yml", "mobile-checks.yml"],
+        lambda n: ("success", OLD, "deadbeef", None)
+                  if n == "mobile-checks.yml"
+                  else ("success", RECENT, "deadbeef", None),
+        token="fake-token",
+        trigger_paths=["mobile/quest-app/lib/**"],
+        touched=0)
+    assert warnings == [], warnings
+
+
+def test_path_scoped_workflow_idle_despite_a_matching_commit_is_still_stale():
+    """The fix above must not swallow a real regression: if a commit DID
+    touch the workflow's own trigger paths since its last recorded run and
+    it still has not re-run, that is a real "stopped running", not idle."""
+    warnings = _run_with_staleness_helpers(
+        ["checks.yml", "mobile-checks.yml"],
+        lambda n: ("success", OLD, "deadbeef", None)
+                  if n == "mobile-checks.yml"
+                  else ("success", RECENT, "deadbeef", None),
+        token="fake-token",
+        trigger_paths=["mobile/quest-app/lib/**"],
+        touched=2)
+    assert len(warnings) == 1, warnings
+    assert "mobile-checks.yml (10 days)" in warnings[0][1], warnings
+
+
+def test_unscoped_workflow_going_stale_is_unaffected_by_the_fix():
+    """A workflow with no `paths:` filter at all has nothing to be idle
+    about; the old age >= 7 behaviour must be unchanged for it."""
+    warnings = _run_with_staleness_helpers(
+        ["checks.yml", "hourly-brief.yml"],
+        lambda n: ("success", OLD, "deadbeef", None)
+                  if n == "hourly-brief.yml"
+                  else ("success", RECENT, "deadbeef", None),
+        token="fake-token",
+        trigger_paths=None,
+        touched=None)
+    assert len(warnings) == 1, warnings
+    assert "hourly-brief.yml (10 days)" in warnings[0][1], warnings
+
+
 if __name__ == "__main__":
     importlib.reload(preflight)
     test_all_healthy_produces_no_warning()
@@ -135,5 +204,8 @@ if __name__ == "__main__":
     test_a_failure_already_superseded_by_head_says_so()
     test_a_never_run_workflow_is_named_not_hidden_as_healthy()
     test_total_query_failure_reads_as_unchecked_not_healthy()
+    test_path_scoped_workflow_idle_since_last_run_is_not_stale()
+    test_path_scoped_workflow_idle_despite_a_matching_commit_is_still_stale()
+    test_unscoped_workflow_going_stale_is_unaffected_by_the_fix()
     print("ok  gate_workflows_healthy tells healthy, failing, already-"
-          "superseded, never-run and unqueryable apart")
+          "superseded, never-run, unqueryable and correctly-idle apart")
