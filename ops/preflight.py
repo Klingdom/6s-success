@@ -14391,6 +14391,18 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     cleared/resolved in `X`" citation is the same shape one level less
     formal, exactly the way an unwrapped parenthetical aside already is
     per this log's own convention, so it is stripped the same way.
+
+    Found live 2026-09-27 (third time): a genuine handoff line's own
+    trailing advice sentence, "If a future cycle runs `preflight.py`
+    directly rather than through this operator's own tooling, let it
+    run to completion in the background rather than a foreground
+    `timeout` call...", named the tool purely as the subject of a
+    hypothetical instruction about how to invoke it later, not as a
+    file anybody proposed reading. Nothing distinguished this from a
+    real handoff, so `preflight.py`, already ledgered clean, was
+    flagged as a stale candidate on a cycle that never actually named
+    one. Stripped the same way the "fixed in X" precedent citation
+    above already is: cite, don't hand off.
     """
     name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
                r"([A-Za-z0-9_]+\.(?:py|js))`")
@@ -14423,6 +14435,20 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
             live = re.sub(
                 r"(?:already |just )?(?:fixed|cleared|resolved) in "
                 r"`[^`]*`", "", live, flags=re.I)
+            # Found live 2026-09-27 (third time): "If a future cycle
+            # runs `preflight.py` directly rather than through this
+            # operator's own tooling, let it run to completion in the
+            # background..." names a file purely as the subject of a
+            # hypothetical instruction about HOW to invoke a tool later,
+            # not as a candidate to read. The old code had nothing that
+            # distinguished this from a genuine handoff, so it flagged
+            # preflight.py as stale even though nobody had proposed
+            # reading it. Strip the whole conditional clause, the same
+            # "cite, don't hand off" shape the "fixed in X" strip above
+            # already recognises for a different phrasing.
+            live = re.sub(
+                r"[Ii]f (?:an? )?future \w+ runs `[^`]*`[^.]*\.",
+                "", live)
             # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
             # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger
             # keys on bare basenames, so the prefix is optional and

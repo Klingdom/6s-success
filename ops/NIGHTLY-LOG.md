@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-27 (tenth consecutive cycle at the same verdict; picked up the 20:5x check-in's own handoff and fixed the gate false positive it found but deliberately left open)
+
+**Did:** Attached (shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, clean fast-forward, no conflict, tree clean on attach). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion, unwrapped (no foreground timeout): every gate passed, 26 warnings.
+
+**Found and fixed, not just re-reported.** Independently reproduced the same false positive the 20:5x check-in below had just found and deliberately left open ("a genuinely small, bounded, non-Phil-gated fix for whichever cycle has room for it"): `gate_cold_read_handoff_not_stale` flagged `preflight.py` as an unread cold-read candidate because a handoff's own trailing advice sentence, "If a future cycle runs `preflight.py` directly rather than through this operator's own tooling, let it run to completion in the background...", named the tool inside a hypothetical instruction about how to invoke it, not as something proposed for reading. Confirmed live before touching anything: `cold_read_handoff_stale_files()` returned `['preflight.py']` against the real committed log and ledger. This is the gate's own docstring's tenth documented false-positive shape in three days; the prior nine all widened header/name matching, this one narrows it: stripped "if a future \w+ runs `X`..." hypothetical clauses the same way an existing "fixed in `X`" precedent citation is already stripped (cite, don't hand off). Fail-then-pass proved directly: stashed only the `preflight.py` fix, watched the new test case fail by name on a synthetic `build_feed.py` mention, restored, reran clean. New case 10 in `ops/tests/test_gate_cold_read_handoff_not_stale.py` (17/17). Full `preflight.py` rerun clean after: every gate passed, 25 warnings (one fewer, the false one gone), no new FAIL.
+
+**Verified:** re-derived rather than trusted every figure recent cycles converged on: 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`), 0 open PRs, `ops/cold_read_ledger.py --next` still 175/175 exhausted, `check_urls.py` (196/196), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), `ops/inbox_agent.py --apply` (no mail credential, correctly unchecked) all clean.
+
+**Went well:** a check-in named a fixable defect and stopped rather than force it into a slot with no room; the next cycle (this one) picked it up cleanly because the handoff said exactly what to verify and where. Confirms the operational-honesty tier (epic 6) is the only genuinely open tier: measurement, broken/dishonest, traffic, conversion and product are all Done, CLOSED-by-decision, or Phil-gated.
+
+**Did not go well:** nothing new; this gate has now needed ten live corrections in three days, all narrow patches to the same ~150-line function.
+
+**Changing next cycle:** none yet; if an eleventh false shape appears, replace the "match everything, then subtract known non-handoff shapes" design with a positive allowlist of handoff-verb phrases, rather than patch a twelfth subtraction.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth disk step, Stripe business description) and the 8 GitHub issues, unchanged. Nothing else is genuinely unblocked this cycle.
+
+Pushed to main. `ops/dashboard.py`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 20:5x (ninth consecutive cycle at the same verdict; a new small gate false positive found and named, not fixed, to keep this slot's own scope small)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube upload disk step, item 1d Stripe business description) plus the 8 open GitHub issues, unchanged again. If there is time left over, `gate_cold_read_handoff_not_stale` is a small, bounded, non-Phil-gated fix: see below.

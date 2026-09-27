@@ -308,6 +308,32 @@ def main() -> int:
         fails.append("a bare 'just fixed in `X`' precedent citation was "
                      "wrongly flagged as a live stale handoff: %r" % stale)
 
+    # 10. A genuine handoff's own trailing advice sentence, naming a
+    #     tool purely as the subject of a hypothetical "if a future
+    #     cycle runs `X`..." instruction about how to invoke it later,
+    #     must not itself be flagged as a stale candidate. Found live
+    #     2026-09-27 (third time): the real newest entry's own "**Next:**
+    #     same standing Phil-blocked list..., unchanged. If a future
+    #     cycle runs `preflight.py` directly rather than through this
+    #     operator's own tooling, let it run to completion in the
+    #     background..." named no candidate at all, yet tripped the gate
+    #     on `preflight.py`, already ledgered clean.
+    log_hypothetical_advice = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-27\n\n"
+        "**Next:** same standing Phil-blocked list, unchanged. If a "
+        "future cycle runs `build_feed.py` directly rather than through "
+        "this operator's own tooling, let it run to completion in the "
+        "background rather than a foreground `timeout` call; 300 "
+        "seconds is not always enough.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_hypothetical_advice, LEDGER)
+    if stale:
+        fails.append("a hypothetical 'if a future cycle runs `X`' advice "
+                     "clause was wrongly flagged as a stale handoff: %r"
+                     % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -323,7 +349,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 16/16 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 17/17 cases pass")
     return 0
 
 
