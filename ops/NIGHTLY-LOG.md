@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-27, scheduled operator cycle
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 631 commits onto `origin/main` with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed sandbox limits: no Stripe, mail, SSH deploy key or network egress, Pillow not installed). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `cold_read_ledger.py --next`: 175 of 175, exhausted.
+
+With the backlog's own current sections (2 through 4) all Done or Phil-gated and the cold-read lane exhausted, read `DECISIONS.md` D-023 in full rather than another blind file sweep, since it names a defect it had already found and explicitly left open. **Found real, live drift in the Etsy listing package, the exact "source corrected, artifact never re-derived" shape this file names as dominant.** `build/listings/etsy_economics.py`'s `DIRECT_PRICE` table still priced L4 (Moving In Kit) and L5 (Holiday Hosting Kit) against a $14 site checkout that D-023 retired and archived in Stripe five days earlier (KIT-MOVING-IN, KIT-HOLIDAY-HOST), the exact gap D-023 flagged and left open. A second, undocumented instance of the same class sat beside it: `LISTINGS` still priced L2 (Kitchen Pack), withdrawn from the real package (`etsy-listings.json`) four days earlier (D-024) for an unrelated reason.
+
+**Fixed, not just re-reported.** Removed the false comparisons rather than inventing new ones: L2 dropped from both tables; L4/L5 dropped from `DIRECT_PRICE` only (the content is genuine, deliverable and not a free duplicate, so it stays listed; only the "cheaper on the site" claim, which is now false, is gone). `etsy_economics.py`'s print loop and prose corrected to show "no site price" honestly rather than silently fail. `MARKETPLACE-LISTINGS.md`'s listing table and "why these prices" rationale corrected to match, with a dated note. `DECISIONS.md` D-023 updated to record the closure.
+
+**Verified:** ran the fixed `etsy_economics.py` directly, output correct and aligned. New `check_etsy.stale_economics_entries()`, wired into `gate_etsy_listing_valid` via `check_etsy.main()`, re-derives both facts (which listings are current, which source SKUs are still live) from `etsy-listings.json` and `generated_products.py`. Proved fail-then-pass directly: planted both real defect shapes, watched `check_etsy.py` fail by name citing the listing and SKU, restored, reran clean. New `ops/tests/test_check_etsy_stale_economics.py` (5/5 cases). All three existing Etsy test files (`test_gate_etsy_pdfs_current.py`, `test_check_etsy_free_duplicate.py`, `test_gate_etsy_listing_valid.py`) still pass. Full `preflight.py` (every gate passed, 25 warnings, none new), `check_urls.py` (196/196), `audit_pages.py` (clean), `fix_dashes.py --check` (0/0) all clean after every edit, not just at the end.
+
+**Went well:** reading a decision record's own "flagged here so it is not forgotten" line as an instruction rather than a footnote, and finding a second live instance of the same defect while fixing the first, matching the pattern D-023 itself named.
+
+**Did not go well:** nothing new; the backlog and GitHub issues remain genuinely exhausted of anything not Phil-gated, so this cycle's real work came from reading a decision record cold rather than the usual ledgered file sweep.
+
+**Changing next cycle:** none; the fix pairs with a gate that can fail, proved directly, so the same drift cannot recur silently.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (owner gates 1-6 in `BACKLOG-2026-09-07.md` section 6, ranked). No price or product touched; no site page changed (internal listing-prep tooling and docs only); IndexNow not applicable.
+
+Pushed to main. Command deck regenerated.
+
 ## PM check-in, 2026-09-27 18:1x (previous work confirmed finished, independently, a third cycle in a row reaching the same verdict; nothing new unblocked)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted this cycle too: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).

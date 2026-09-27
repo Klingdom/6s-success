@@ -81,6 +81,73 @@ def free_duplicate_skus(listings: list) -> dict:
             if item.get("source_sku") in free_skus}
 
 
+def stale_economics_entries(listings: list) -> list:
+    """Find where etsy_economics.py's hardcoded tables have drifted from the
+    real, current listing package and the real, current site catalogue.
+
+    THE DEFECT THIS CATCHES
+    ------------------------
+    Two live instances, found 2026-09-27, cold-reading DECISIONS.md D-023
+    (which had already flagged the second one and left it open). Neither
+    was a hidden bug; both were a source corrected and the artifact never
+    re-derived, the class BACKLOG-2026-09-07.md section 7 names as
+    dominant here.
+
+    1. L2, Kitchen Pack, was withdrawn from `etsy-listings.json` and
+       `build/listings/etsy/L2-kitchen/` on 2026-09-23 (D-024), but
+       etsy_economics.py's own `LISTINGS`/`DIRECT_PRICE` tables still
+       carried it, so running that script would price a listing that does
+       not exist and no longer has a directory of files behind it.
+    2. L4 and L5's source SKUs (KIT-MOVING-IN, KIT-HOLIDAY-HOST) were
+       retired from the site's own paid catalogue on 2026-09-22 (D-023),
+       their Stripe payment links deactivated the same day, but
+       `DIRECT_PRICE` kept a $14 entry for each, so the script printed a
+       "the site is cheaper" comparison against a checkout that no longer
+       exists. The content is still genuine and still fine to sell on
+       Etsy (it is not a free duplicate, the other check above); only the
+       comparison to a live site price is false.
+
+    Reads `generated_products.py`'s own `dropped` list as the single
+    source of truth for what the site currently excludes and why, the
+    same source `free_duplicate_skus()` above already trusts, rather than
+    re-deriving retirement logic here.
+    """
+    import generated_products as gp
+
+    problems = []
+    try:
+        import etsy_economics as ee
+    except Exception as e:                                      # noqa: BLE001
+        problems.append("could not import build/listings/etsy_economics.py "
+                         "to check it (%s: %s)" % (type(e).__name__, e))
+        return problems
+
+    active_slug_prefixes = {item["slug"].split("-")[0] for item in listings}
+    for name, _price in ee.LISTINGS:
+        prefix = name.strip().split()[0]
+        if prefix not in active_slug_prefixes:
+            problems.append("etsy_economics.py's LISTINGS still prices %r, "
+                             "which is not in the current etsy-listings.json "
+                             "(withdrawn or never published)" % name.strip())
+
+    _keep, dropped = gp.products()
+    retired_skus = {sku for sku, why in dropped}
+    for name in ee.DIRECT_PRICE:
+        prefix = name.strip().split()[0]
+        matches = [item for item in listings
+                   if item["slug"].split("-")[0] == prefix]
+        for item in matches:
+            sku = item.get("source_sku")
+            if sku in retired_skus:
+                problems.append(
+                    "etsy_economics.py's DIRECT_PRICE still prices %r "
+                    "against a live site checkout, but its source SKU %r "
+                    "is retired from the site's own catalogue (%s)"
+                    % (name.strip(), sku,
+                       dict(dropped).get(sku, "no reason recorded")))
+    return problems
+
+
 def main() -> int:
     data = json.load(open(os.path.join(HERE, "etsy-listings.json"),
                           encoding="utf-8"))
@@ -97,6 +164,13 @@ def main() -> int:
     else:
         ok.append("no listed SKU duplicates content the site's own "
                   "catalogue already gives away free")
+
+    stale = stale_economics_entries(data["listings"])
+    if stale:
+        fail.extend(stale)
+    else:
+        ok.append("build/listings/etsy_economics.py's tables match the "
+                  "current listing package and the current site catalogue")
 
     for item in data["listings"]:
         slug = item["slug"]

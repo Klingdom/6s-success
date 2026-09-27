@@ -35,9 +35,16 @@ import sys
 # catalogue because the free Entryway deck covers it. See
 # MARKETPLACE-LISTINGS.md section 3.1 and build/listings/check_etsy.py's
 # free_duplicate_skus().
+#
+# L2, Kitchen Pack, was withdrawn 2026-09-23 for the identical reason
+# (DECISIONS.md D-024): its source SKU, RP-KITCHEN, was retired from the
+# site's own catalogue once the free 72-card Kitchen deck superseded it.
+# This module's own copy of the day-one list was not updated in that same
+# pass, the exact "source corrected, artifact never re-derived" gap
+# BACKLOG-2026-09-07.md section 7 names as the dominant defect class here;
+# fixed 2026-09-27, caught by check_etsy.py's stale_economics_entries().
 LISTINGS = [
     ("L1  Whole House Print Pack", 22.00),
-    ("L2  Kitchen Pack", 10.00),
     ("L4  Moving In Kit", 16.00),
     ("L5  Holiday Hosting Kit", 16.00),
 ]
@@ -46,11 +53,22 @@ LISTINGS = [
 # two channels can be compared rather than guessed at. Stripe's published US
 # card rate is 2.9% + $0.30; that rate is not verified here either, but it is
 # the one ops/build_catalog.py already reasons with.
+#
+# L4 and L5 have no entry here on purpose. Their source SKUs, KIT-MOVING-IN
+# and KIT-HOLIDAY-HOST, were retired from the site's own paid catalogue
+# 2026-09-22 (DECISIONS.md D-023: bad value ratio next to the $19 whole-house
+# pack, no page, zero site sales) and their Stripe payment links deactivated
+# the same day. There is no live $14 site alternative left to protect, so
+# printing one here would be comparing Etsy's price against a checkout that
+# does not exist. D-023 flagged this gap and left it open "if Etsy goes live
+# before the underlying kit content is either restored or re-priced
+# independently of the site"; fixed 2026-09-27, ahead of Etsy going live, by
+# removing the false comparison rather than inventing a new one. The retired
+# content is still genuinely deliverable (the PDFs are built and complete)
+# and is not a free duplicate of anything, so it stays listed; only the
+# false "cheaper on the site" comparison is removed.
 DIRECT_PRICE = {
     "L1  Whole House Print Pack": 19.00,
-    "L2  Kitchen Pack": 9.00,
-    "L4  Moving In Kit": 14.00,
-    "L5  Holiday Hosting Kit": 14.00,
 }
 STRIPE_PCT = 2.9
 STRIPE_FIXED = 0.30
@@ -98,23 +116,28 @@ def main() -> int:
                 + args.processing_fixed)
         net = price - fees
         total_net += net
-        direct = DIRECT_PRICE[name]
-        direct_net = direct - (direct * STRIPE_PCT / 100 + STRIPE_FIXED)
+        direct = DIRECT_PRICE.get(name)
+        direct_col = (("$%.2f" % (direct - (direct * STRIPE_PCT / 100 + STRIPE_FIXED))).rjust(12)
+                      if direct is not None else "no site price".rjust(14))
         line = (name.ljust(28) + ("$%.2f" % price).rjust(8)
                 + ("$%.2f" % fees).rjust(9) + ("$%.2f" % net).rjust(9)
                 + ("  %.0f%%" % (fees / price * 100)).rjust(7)
-                + ("$%.2f" % direct_net).rjust(12))
+                + direct_col)
         if args.offsite_pct:
             line += ("$%.2f" % (net - price * args.offsite_pct / 100)).rjust(11)
         print(line)
 
     carry = args.listing_fee * len(LISTINGS) * args.renewals_per_year
     print("")
-    print("The prices above are set by one rule: charge enough on Etsy that "
-          "the money left after Etsy's cut is not less than the money left "
+    print("L1's price is set by one rule: charge enough on Etsy that the "
+          "money left after Etsy's cut is not less than the money left "
           "after Stripe's cut on the site. That keeps the site the cheaper "
           "place to buy, which is where we would rather the customer be, "
-          "without making the marketplace unprofitable.")
+          "without making the marketplace unprofitable. L4 and L5 have no "
+          "site price to protect (DECISIONS.md D-023: retired from the "
+          "site's own catalogue) and are priced only to clear Etsy's own "
+          "fees, shown as 'no site price' above rather than a fabricated "
+          "comparison.")
     print("Standing cost of keeping these %d listings up for a year with no "
           "sales at all: $%.2f" % (len(LISTINGS), carry))
     print("Sales needed in a year just to cover that, at the average net of "

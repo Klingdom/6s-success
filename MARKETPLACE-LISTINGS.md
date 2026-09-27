@@ -355,19 +355,37 @@ under `build/listings/etsy/L2-kitchen/` are removed, and
 | L1 | Whole House Print Pack | does completeness sell | $22.00 | $19.00 |
 | ~~L2~~ | ~~Kitchen Pack~~ **withdrawn 2026-09-23** | ~~does the highest-demand single room sell~~ duplicates the free Kitchen deck | ~~$10.00~~ | ~~$9.00~~ |
 | ~~L3~~ | ~~Entryway Pack~~ **withdrawn 2026-09-09** | ~~does the smallest, easiest room sell~~ duplicates the free Entryway deck | ~~$10.00~~ | ~~$9.00~~ |
-| L4 | Moving In Kit | does a life event sell | $16.00 | $14.00 |
-| L5 | Holiday Hosting Kit | does a season sell, launched in time for one | $16.00 | $14.00 |
+| L4 | Moving In Kit | does a life event sell | $16.00 | none, see below |
+| L5 | Holiday Hosting Kit | does a season sell, launched in time for one | $16.00 | none, see below |
 
 **Deliberately not listed: the Standards Pack on its own.** It is free on
 6s-success.com. Selling it on Etsy for money would be a trust problem the first
 time a buyer noticed. It is included inside L1 as part of that bundle, with no
 claim of exclusivity attached.
 
-**Why these prices.** One rule: charge enough on Etsy that what is left after
+**Corrected 2026-09-27, operator: L4 and L5 no longer have a direct price to
+compare against.** This table said $14.00 for both until today, carried over
+from when their source SKUs (`KIT-MOVING-IN`, `KIT-HOLIDAY-HOST`) were still
+$14 Situation Kits on the site. `DECISIONS.md` D-023 (2026-09-22) retired both
+from the site's own paid catalogue for a value-ratio reason specific to being
+sold next to the $19 whole-house pack there, and archived their Stripe payment
+links the same day, so there is no longer anything a customer can buy direct
+for $14, or at all, off 6s-success.com. That reason does not apply on Etsy,
+where neither sits next to that comparison, so the content stays listed; only
+the false "direct price" was removed. D-023 itself flagged this exact gap and
+left it open pending Etsy going live; fixed now, ahead of that, since this
+file is the one Phil pastes from. `build/listings/check_etsy.py`'s new
+`stale_economics_entries()` fails if either listing's source SKU is ever
+retired again without this table being corrected in the same pass.
+
+**Why these prices.** L1's rule: charge enough on Etsy that what is left after
 Etsy's cut is not less than what is left after Stripe's cut on the site. That
 keeps the site the cheaper place to buy, which is where we would rather the
-customer be, without making the marketplace a loss. Under the fee rates in
-section 3.7, all four clear it. Re-run
+customer be, without making the marketplace a loss. L4 and L5 have no site
+price left to protect, so they are priced only to clear Etsy's own fees
+comfortably, at the same $14-to-$16 band this catalogue has always used for a
+kit of this scope. Under the fee rates in
+section 3.7, all three clear it. Re-run
 `build/listings/etsy_economics.py` with the real rates before publishing; if
 they have moved, the prices move with them.
 
@@ -469,7 +487,7 @@ regression rather than trusting this account.
 
 ### 3.3 Category and listing settings
 
-Same for all four:
+Same for all three:
 
 | Setting | Value |
 |---|---|

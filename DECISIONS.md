@@ -2420,6 +2420,29 @@ live channel (`BACKLOG-2026-09-07.md` section 6 item 4), flagged here so it
 is not forgotten if Etsy goes live before the underlying kit content is
 either restored or re-priced independently of the site.
 
+**Fixed 2026-09-22 citation, closed 2026-09-27, this operator, cold-reading
+this exact flag.** The file is `build/listings/etsy_economics.py`, not
+`ops/etsy_economics.py` (a second, smaller citation drift alongside the one
+this note exists to close). Removed the false comparison rather than
+inventing a new site price: `DIRECT_PRICE` no longer carries an entry for
+either SKU, `etsy_economics.py`'s print loop shows "no site price" for a
+listing with none, and `MARKETPLACE-LISTINGS.md`'s own listing table and
+pricing rationale were corrected to match. The retired content stays listed
+on Etsy (it is not a free duplicate of anything, and the value-ratio reason
+that retired it from the site does not apply to a standalone Etsy listing
+with no $19 pack sitting next to it); only the false "the site is cheaper"
+claim is gone. **A second, live instance of the identical class was found in
+the same file while fixing this one:** `LISTINGS` still priced "L2 Kitchen
+Pack" four days after L2 was withdrawn from `etsy-listings.json` (D-024,
+2026-09-23), never corrected in that pass either. Removed. New
+`check_etsy.stale_economics_entries()`, wired into `gate_etsy_listing_valid`
+via `check_etsy.main()`, re-derives both facts (which listings are actually
+current, and which source SKUs are actually still live) from
+`etsy-listings.json` and `generated_products.py` on every run, so neither
+shape can drift silently again; fail-then-pass proved directly against both
+real defect shapes, `ops/tests/test_check_etsy_stale_economics.py` (5/5
+cases). This closes the open flag; nothing here is still deferred.
+
 **Re-entry condition.** A kit returns when a page for it exists and has
 produced a measured organic entry (`REVIEW-COMMERCE-2026-09-07.md` 1.4). The
 three life-event kits with the clearest query shape (`KIT-MOVING-IN`,
