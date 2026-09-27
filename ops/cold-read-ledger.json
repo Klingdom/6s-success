@@ -6,6 +6,11 @@
       "date": "2026-09-26",
       "note": "self-test 4/4, --check 89 cards + 114 zones/0 errors, both gates (gate_accept_image_derivation, gate_accept_image_contradicts_name_an_object) already wired and passing; no defect found"
     },
+    "affiliate.py": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (476 lines). Checked all 9 call sites of A.disclosure()/A.retailer_link() across build_kit_page.py (1) and zone_supplies.py (4, plus product_links.py's read-only uses): every has_links=True call is correctly gated behind an any(kind) check first, so the has_links vs has_amazon conflation this file's own docstring already records as a fixed historical bug is not currently live anywhere. Checked the AFF tracking-parameter regex against every network in affiliate-accounts.json (10 programmes, CJ/Impact/Rakuten/in-house): all their known redirect domains (anrdoezrs, linksynergy, etc) are already in the regex, so a future approval would still be caught by the disclosure-placement and no-affiliate-in-documents checks without a code change. Ran affiliate.py --check (165 delivered documents clean, every disclosed page orders correctly) and --status (0 of 10 programmes approved, 0 of 123 products linkable) directly against the live catalogue rather than trusting a prior citation. No live defect found."
+    },
     "affiliate_report.py": {
       "status": "fixed",
       "date": "2026-09-24",

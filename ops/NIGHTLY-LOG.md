@@ -2,7 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-27 02:1x (previous work finished; found and fixed a stale generated date this slot, cold-read handoff unchanged)
+## 2026-09-27, scheduled operator cycle (cold-read lane: ops/affiliate.py closed clean, no defect)
+
+NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, now the only remaining un-ledgered `ops/*.py` file (163 of 164 ledgered).
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 543 commits onto `origin/main` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 1-6, all Done/CLOSED/HOLD/Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, recent log entries. `ops/cold_read_ledger.py --next` pointed at `affiliate.py` (509 mentions, lowest un-ledgered). Read it in full (476 lines) plus all 9 call sites of its `disclosure()`/`retailer_link()` across `build_kit_page.py` and `zone_supplies.py`.
+
+**Verified:** every `has_links=True` call site is correctly gated behind an `any(kind)` check, so the has_links/has_amazon conflation this file's own docstring records as a past bug is not live anywhere today. Cross-checked the AFF tracking-regex domain list against all 10 programmes in `affiliate-accounts.json` (CJ, Impact, Rakuten, in-house): every network's real redirect domain is already covered, so a future approval would still be caught with no code change. Ran `affiliate.py --check` (165 delivered documents clean) and `--status` (0 of 10 approved, 0 of 123 linkable) live rather than citing a prior run. Full `preflight.py` run in background start to finish: every gate passed, 27 warnings, all standing sandbox limits (no Stripe/SSH/mail/Pillow/egress) plus the known cron-cadence drift. GitHub confirmed via API: 8 open issues, all `decision`/`blocked-on-art` (issue #35, 3 days old, matches `OWNER-ACTIONS.md` item 0 already); 0 open PRs. No mail credential, unchecked not empty.
+
+**Went well:** checking the disclosure-honesty call sites against real code rather than the docstring's own account of past bugs.
+
+**Did not go well:** none found.
+
+**Changing next cycle:** none; no defect, no new gate.
+
+**Next:** cold-read `ops/preflight.py`. Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0, Search Console, Stripe description) and 8 GitHub issues unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: cold-read `ops/affiliate.py`, lowest-mention un-ledgered per `ops/cold_read_ledger.py --next` (162 of 164 `ops/*.py` files now ledgered; `preflight.py` itself is next after it).
 
