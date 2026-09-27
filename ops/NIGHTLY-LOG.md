@@ -2,6 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-27, scheduled operator cycle (cold-read lane closed: ops/preflight.py read in full, no defect, 164 of 164 ops/*.py files now ledgered)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 547 commits onto `origin/main` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections
+1-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed live via GitHub: 8 open issues, all `decision`/`blocked-on-art`, none actionable
+without Phil; 0 open PRs. `ops/cold_read_ledger.py --next` pointed at the same last candidate two prior cycles today had already named: `preflight.py`, 22,829 lines, the largest file in the repo and
+the only one of 164 `ops/*.py` files never cold-read, because of its size. The most recent handoff suggested treating it as a multi-cycle job (one thematic cluster of gates per pass); instead delegated
+the whole file to a sub-agent in one pass, since the standard of proof (read in full, verify suspicious functions against live behaviour, not sample) does not shrink just because the file is big and
+context budget was not the binding constraint this cycle.
+
+**Verified, not delegated blindly.** The sub-agent read all 22,829 lines in ~20 sequential chunks, every one of the 427 functions (317 `gate_*`, ~110 `check_*`/helper) plus `main()`, against the same
+recurring-defect checklist this repo's own `NIGHTLY-LOG.md` history supplied (a gate that can never fail, stale-hardcoded-vs-re-derived divergence, unknown treated as passing, single-source-of-truth
+splits, CRLF/encoding traps, checking the generator's own opinion instead of the shipped artifact). Programmatically cross-checked every `def gate_*` against every `run_gate(gate_*)` call in `main()`:
+identical sets, zero orphans either direction, and `gate_generator_ownership` correctly gated behind `--own`. Beyond reading, it ran roughly 30 of the more self-referential gates directly against the
+real repo (`gate_page_ownership_registry`, `gate_every_generator_has_a_protection_plan`, `gate_no_hardcoded_git_history`, `gate_us_spelling_consistency`, `gate_goals_traffic_current`,
+`gate_roadmap_prices_current`, `gate_architecture_doc_current`, others); all passed. One transient FAIL surfaced in `gate_page_ownership_registry` from a stray gitignored
+`site/_audit_catalog_fixture_*.html` left by a concurrently-running preflight's own test suite, not a `preflight.py` defect; removed and reran clean. **No finding cleared this repo's own bar for a real,
+verified defect.** Recorded in `ops/cold-read-ledger.json` with the full method and result, closing 163/164 to 164/164.
+
+Independently, ran a full `python3 -u ops/preflight.py` myself, foreground, to completion, not on faith: every gate passed, 27 warnings, all the standing sandbox limits already diagnosed by prior
+cycles (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift) and nothing new. One warning, `cold-read-handoff-not-stale`, fired correctly: the prior cycle's own
+handoff still named `preflight.py` as a candidate at the moment it ran, and my ledger commit had not yet landed; this entry's own "Next" line below clears it.
+
+**Went well:** treating "the file is 22,829 lines" as a reason to use a sub-agent for the reading, not a reason to shrink the standard of proof or split it across cycles when a single pass could cover
+it properly; independently re-running preflight myself rather than accepting the sub-agent's own scoped verification as sufficient for the commit.
+
+**Did not go well:** a first push raced a concurrent PM check-in's own dashboard/log commit; resolved with an ordinary merge (no content conflict, both sides touched different files), no destructive
+action taken.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** the cold-read lane is closed, 164 of 164. No unread `ops/*.py` file remains as a standing candidate. Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0: Search Console, Stripe
+description/business identity, `VPS_DEPLOY_KEY`) and the 8 GitHub issues (all `decision`/`blocked-on-art`) are unchanged; nothing new is unblocked. A future cycle finding no fresh defect on a full
+independent re-verification should say so plainly rather than manufacture a finding, the same as several recent cycles already have.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing,
+so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 03:4x (previous work confirmed finished by a second independent full preflight run; nothing new unblocked; handoff unchanged)
 
 NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, the last un-ledgered `ops/*.py` file (163 of 164), because it is the highest-value genuinely unblocked item and every other backlog row is Done, HOLD, or Phil-gated. Given its size (22,829 lines, far larger than any file this lane has read so far), treat it as a multi-cycle job: read and verify one coherent section (for example the gate registry, or one thematic cluster of `gate_*` functions) per pass rather than the whole file at once, and ledger partial progress rather than waiting for a single sitting to cover it all.
