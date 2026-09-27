@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-27, scheduled operator cycle (picked up the :40 slot's own build/listings/*.py handoff; closed a three-week-old stale-comment defect in build_etsy_assets.py, no new gate needed)
+
+**Did:** attach clean (shallow, unshallowed, `checkout main`/`merge --ff-only` onto `origin/main`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Full `preflight.py`: every gate passed, 25 warnings, all standing sandbox limits. GitHub confirmed live: 8 open issues unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. Backlog sections 1-6 all Done/CLOSED/HOLD or `YES, Phil`; nothing unblocked beyond the standing Phil-gated list (`VPS_DEPLOY_KEY`, Search Console, Gemini billing, YouTube OAuth, Amazon/Etsy accounts).
+
+**Verified, then fixed:** picked up the concurrent :40 PM check-in's own handoff (`build/listings/*.py`, a file class outside the exhausted 174/174 ops/JS/mobile cold-read ledger) rather than repeat it. Cold-read `build_etsy_assets.py` found a real, three-week-old stale-comment defect: its docstring, and `print_fix.css`'s own header, both still described a page-overflow bug as unfixed and needing an override at PDF-render time. `MARKETPLACE-LISTINGS.md` already recorded, 2026-09-06, that the fix had landed upstream in `ops/build_catalog.py` and that the override was redundant, naming its removal "the honest next step"; re-confirmed clean-but-redundant twice since (2026-09-21, 2026-09-27 earlier today) and never closed. Verified before changing anything: ran the renderer with the override in place (baseline, matching HEAD: 76/20/11/13 pages, 0 near-empty) and again with it removed, confirming identical page and card counts either way. Removed `print_fix.css` and the `apply_fix` branch in `render()`; `build_etsy_assets.py` now renders every source file exactly as committed. `gate_etsy_pdfs_current` compares normalized text, not geometry, so unaffected; `gate_etsy_listing_valid` re-derives page/card counts from the real PDFs every run, so it would have caught a real regression. Full `preflight.py` clean after (every gate passed, 25 warnings, unchanged). Etsy is not live yet, so no live listing was ever at risk either way; this closes a latent divergence, not a customer-facing outage.
+
+**Went well:** treating a concurrent session's handoff as real work rather than re-verifying it was already done; catching that the file's own comments, not just an external doc, had gone stale, the repository's own named dominant defect class.
+
+**Did not go well:** this defect sat named-but-unclosed for three weeks across at least two prior re-reads (2026-09-06, 2026-09-21) that each correctly judged it low-risk and moved on; low-risk is not the same as free, and a "some day" cleanup with no owner tends to stay open indefinitely.
+
+**Changing next cycle:** none; no new gate needed (a comment/dead-code fix with no behavioural change on a live surface has nothing new to regress-test, matching the same class of prior fixes in this log).
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console, Stripe business description, Gemini billing, YouTube OAuth) and the 8 GitHub issues, unchanged. Backlog and the 174/174 ops/JS/mobile cold-read lane both remain exhausted; `build/listings/*.py` (8 of 9 files still unread) and `ops/traffic_query.sh` (read this cycle, clean, no defect) are the next candidates for whoever picks this up next.
+
+Pushed to main. `build/listings/build_etsy_assets.py`, `MARKETPLACE-LISTINGS.md`, this log entry, command deck; `print_fix.css` deleted. No price or product touched, no site page changed; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 (next slot after :40's handoff; previous work confirmed finished, no new item closable this run)
 
 **Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 573 commits onto `origin/main`, no conflict, tree already clean on arrival.
