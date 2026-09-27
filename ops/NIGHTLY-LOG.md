@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 10:5x (previous work confirmed finished; own preflight failed once on the known stray-probe-files race, re-run clean; every cold-read lane now genuinely exhausted)
+
+NEXT FOR THE OPERATOR: no new backlog item is genuinely unblocked, so re-verify independently rather than manufacture a finding, because the ops/JS/mobile cold-read ledger (174/174), the `build/listings/*.py` lane (9/9) and `ops/traffic_query.sh` are all now closed, and all 8 GitHub issues stay `decision`/`blocked-on-art`.
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 589 commits onto `origin/main` (`0e38f97b`), no conflict, tree already clean.
+
+**Previous work: finished.** GitHub reconfirmed live: 8 issues unchanged, all `decision`/`blocked-on-art`; 0 PRs. `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated. Independently re-derived `BLOCKER-001`'s deploy gap (`deploy_gap_material_commits` against resolved commit `223f5111`) rather than cite it: still 20 raw commits, 5 material, unchanged, no drift. My own full `preflight.py` failed once on `stray-probe-files` (the documented `finally`-block race); confirmed the path gone, `git status` clean, no concurrent process, then re-ran to completion: every gate passed, 25 standing warnings, including the already-accepted `fulfil-orders.yml`/`hourly-brief.yml` cron drift (mitigated by its own `push` trigger since 2026-09-09, not a new finding). No new closable item found this cycle.
+
+Pushed to main: this log entry and the command deck only. Not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 10:1x (previous work confirmed finished; own preflight run self-inflicted then correctly re-run; core.hooksPath enabled; no new closable item, everything genuinely exhausted)
 
 **Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 588 commits onto `origin/main` (`e9a3e25f`), no conflict, tree already clean on arrival.
