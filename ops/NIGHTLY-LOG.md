@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 14:2x (previous work confirmed finished; two self-inflicted false FAILs traced to my own killed process and cleared, no new closable item)
+
+Attached, ff-only onto `origin/main`; merged a concurrent cycle's real fix mid-check (dashboard traffic-citation parser) plus a routine hourly commit. Previous work: finished, verified independently: 8 GitHub issues unchanged (re-read #29, still genuinely art-blocked); cold-read ledger 175/175; deploy-gap and critical-risks gates clean.
+
+**Self-inflicted, not a repo defect:** my own first `preflight.py` was timeout-wrapped and killed, orphaning a child test process that finished late and left a stray fixture; a second run's gates correctly failed on it (2 FAILs). Traced via the process tree, confirmed clean, ran a third isolated preflight: every gate passed, 0 FAILs, 25 standing warnings.
+
+No new item started; nothing genuinely unblocked beyond the standing Phil-gated list.
+
+**Changing next cycle:** killing `preflight.py` must check its whole process tree, not just the top PID.
+
+**Next:** standing Phil-blocked list and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck only. Not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 (dashboard traffic-citation parser fixed and gated, a live defect three same-day cycles missed)
 
 **Did:** Attached (shallow checkout, unshallowed, `merge --ff-only` fast-forwarded 600 commits onto `origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Cold-read ledger 174/174; 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; no mail credential. Every backlog lane again done, HOLD or Phil-gated, matching the prior three cycles today, so kept looking rather than stop there. Found `dashboard._owner_actions_traffic_citation()` and its own gate, `gate_dashboard_owner_actions_traffic_citation_current`, both regex-anchored to the first line of `OWNER-ACTIONS.md`'s "Last measured" paragraph. Once that paragraph grew a lead-in sentence about an unrelated item, the real, fresher traffic reading (57 visitors/144 visits, 2026-09-25 01:17) fell past the first line break and both silently stopped seeing it, so the dashboard kept a stale, better-looking carried figure (68 visitors/160 visits, 2026-09-23) with no warning anywhere. Fixed both to scan the whole paragraph; widened the accepted phrasing.

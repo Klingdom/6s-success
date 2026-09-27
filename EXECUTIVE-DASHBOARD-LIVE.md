@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-27 14:11 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-27 14:36 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 57 visitors across 144 visits, 30 days (OWNER-ACTIONS.md's own "Last measured" header, a direct database read carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Traffic | 57 visitors across 144 visits, 30 days (carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1113 of 4154 total |
+| Commits (7 days) | 1113 of 4159 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `52326e3e` Fix dashboard traffic citation parser blind to a multi-line  |
+| Last commit | `e2877c26` Hourly check-in record |
 
 ## Product readiness
 
