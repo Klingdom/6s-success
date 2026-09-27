@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-27 (seventh consecutive cycle at the same verdict; escalated to Phil directly instead of filing an eighth identical entry)
+
+**Did:** Attached (shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, clean fast-forward, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion, unwrapped: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, no candidate. GitHub confirmed live via the API, not cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked. `BACKLOG-2026-09-07.md` sections 1-4: every row Done, CLOSED by decision, or already-corrected; section 5 deliberately on hold pending traffic; section 6 is the owner-gate list itself.
+
+**Verified:** every check this cycle could run independently agreed with the six PM check-ins immediately before it (17:2x through 19:3x today): same 8 issues, same 0 PRs, same 175/175 ledger, same 25-warning preflight baseline. `CHECKIN-LOG.md`'s own hourly entries read "nothing measurable moved" for six straight check-ins spanning 2026-09-26 20:00 through 2026-09-27 18:33, over 22 hours, against 150+ commits a day; `ops/state.json`'s own revenue line is still carried forward from 2026-09-20 because this sandbox cannot reach Stripe this month.
+
+**Went well:** not filing a seventh copy of "nothing genuinely unblocked" with no other action. `OWNER-ACTIONS.md`'s own "start here" list is four items, each 2-5 minutes, and together they are the entire remaining unblocked surface: `VPS_DEPLOY_KEY` (closes the deploy gap for good, not just this once), Search Console verification (the single most valuable unknown in the business per `GOALS.md` O1), YouTube OAuth (cleared 2026-09-26, 102 finished, captioned videos waiting on a disk), and the Stripe business description (a live checkout-page gap a buyer sees today). Sent a push notification naming exactly these four rather than let an autonomous system keep re-deriving the same stall.
+
+**Did not go well:** same as every cycle since yesterday afternoon: every remaining lever needs a credential or a decision only Phil holds, and no amount of further cold-reading manufactures real customer-facing work around that.
+
+**Changing next cycle:** none beyond what six prior cycles already tried; the pattern itself, not a missing check, is what needed surfacing this time.
+
+**Next:** the four-item `OWNER-ACTIONS.md` "start here" list and the 8 GitHub issues, unchanged. If Phil acts on any of the four, the very next cycle should re-verify state before assuming the gate cleared.
+
+Pushed to main. `ops/dashboard.py`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 19:3x (sixth consecutive cycle reaching the same verdict; one preflight FAIL traced to the same self-healing race, confirmed clean on rerun)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted again: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 1-4 all Done or already-corrected, section 5 deliberately on hold pending traffic.
