@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-20 10:15; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1097 of 4172 total |
+| Commits (7 days) | 1100 of 4175 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `5058077f` Widen cold-read handoff-staleness gate's header regex to rea |
+| Last commit | `08fc6be1` Fix bare 'just fixed in X' precedent citations tripping the  |
 
 ## Product readiness
 
@@ -59,7 +59,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Redeploy the site.** Production is serving an older build: 0 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 111 reviewed pictures and every fix since the last deploy reach nobody.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
-- **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** All 114 films were re-rendered with today's generator and now measure against their own beats, with a video and an audio stream each; and all 114 caption files now end within 5 seconds of the film they belong to, where before every one of them ran 45 seconds past the picture.
+- **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** (0 min). All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed.
 - **#35** Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys

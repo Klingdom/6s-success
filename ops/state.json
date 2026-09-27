@@ -1,9 +1,9 @@
 {
  "generated": "2026-09-27 17:17",
- "commit": "5058077f",
- "commit_msg": "Widen cold-read handoff-staleness gate's header regex to real log phrasing",
- "commits_7d": 1097,
- "commits_total": 4172,
+ "commit": "08fc6be1",
+ "commit_msg": "Fix bare 'just fixed in X' precedent citations tripping the cold-read handoff-staleness gate",
+ "commits_7d": 1100,
+ "commits_total": 4175,
  "traffic_line": "57 visitors across 144 visits, 30 days (carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "57 visitors across 144 visits, 30 days",
  "traffic_line_measured_at": "2026-09-25 01:17",
