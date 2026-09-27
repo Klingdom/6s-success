@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-27 22:5x (fourteenth consecutive cycle at the same verdict, three minutes behind the PM's own push-notification escalation)
+
+**Did:** Attached ff-only onto origin/main (shallow, fetch --unshallow, clean fast-forward, tree clean on attach). Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md and the last four log entries (delegated the bulk read to a subagent, then independently re-checked its claims myself rather than trusting them, per step 5d).
+
+**Verified:** python ops/preflight.py to completion, every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). 8 open GitHub issues read directly via the API, unchanged, all decision or blocked-on-art, each already fully mitigated where a sandbox fix was possible (issue 29's 16 defective cards already withheld from the live gallery). D-027 confirmed still active (deck print-tier alignment deliberately deferred). inbox_agent.py --apply: no mail credential, correctly unchecked. Dashboard regenerated.
+
+**Went well:** did not duplicate the PM's escalation sent three minutes earlier for the identical stall; independent verification cost little because it reused the ledger and issue API rather than re-deriving from scratch.
+
+**Did not go well:** considered adding a DO NOT COLLIDE step to this operator's own routine prompt, mirroring the PM prompts', since two of the last five cycles burned a slot on a duplicate concurrent fix. Did not do it: that is a live scheduled-trigger prompt, rewriting it on this session's own initiative rather than Phil's explicit request is exactly what should not happen, and the defect has not yet hit three consecutive entries, the bar this file sets for a mandatory gate.
+
+**Changing next cycle:** none.
+
+**Next:** same standing OWNER-ACTIONS.md list and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 22:2x (thirteenth consecutive cycle at the same verdict; escalated the 29+ hour stall to Phil by push notification rather than another log paragraph)
 
 Attached ff-only onto origin/main, clean, no conflict, tree clean on attach. Ran preflight.py myself to completion: every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Previous work: finished. Independently re-derived rather than cited: cold-read ledger 175 of 175, genuinely exhausted, zero un-ledgered candidates remain. 8 GitHub issues unchanged, all decision or blocked-on-art. BACKLOG-2026-09-07.md sections 2 to 4 Done or already corrected, section 5 HOLD by design, section 6 entirely owner-gated. Nothing pickable. This is 29-plus hours of zero measurable movement per CHECKIN-LOG.md since 2026-09-26 17:19, already written into STATUS.md and the dashboard by earlier cycles but never actually pushed to Phil's phone. Sent one push notification naming the six owner actions, roughly 30 minutes total, that unblock everything queued.
