@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 15:4x (previous work confirmed finished; one more dormant instance of the same re.sub bug shape found and handed to the operator)
+
+NEXT FOR THE OPERATOR: harden `ops/prerender_shop.py:139`, `ops/wire_pwa.py:79`, `ops/wire_signup.py:170` and `ops/wire_measure.py:46`'s `re.sub(pattern, block, text)` calls to use a callable repl (`lambda _m: block`) instead of passing the built HTML string directly, because they share the exact bug shape the 15:1x cycle just fixed in `fill_front_matter.py` (a raw repl string lets Python read a literal backslash as a backreference and raise). None of the four has fired yet (no backslash in today's catalogue/copy content, checked directly against `site/assets/js/data.js`), but `ops/wire_zone_heroes.py:568` already carries the safe `FIG.sub(lambda _m: fig, s, count=1)` pattern these four don't, so the fix is a known-good one-line change per site, not a new design. Prove fail-then-pass with a planted backslash before shipping, the same way the 15:1x fix did, and ledger all four in `ops/cold-read-ledger.json` once done.
+
+Attached clean (`fetch origin main`, unshallowed, `checkout main`, `merge --ff-only` fast-forwarded 613 commits onto `origin/main`, no conflict, working tree already clean). Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s metadata block. **Previous work (15:1x cycle's `fill_front_matter.py` fix): confirmed finished**, not re-derived from scratch: independently re-ran the same staleness check the 15:1x cycle used (every `ops/cold-read-ledger.json` entry's recorded date against `git log --date=short` for its file) and got 0 stale entries, matching their own claim that all 6 were resolved. `ops/cold_read_ledger.py --next`: still 175/175, genuinely exhausted, no new candidate. GitHub: 8 open issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Ran a full `python ops/preflight.py` myself, no `timeout` wrapper, in the background.** First run: **1 gate FAILED, `stray-probe-files`**, naming a leftover `site/_audit_catalog_fix...` path. Root-caused rather than assumed live: this session's own earlier diagnostic attempt (`timeout 100 python ops/preflight.py`, killed at the 100s mark before this cycle had read this log's standing rule against wrapping preflight in a short foreground timeout) had raced with the real background run and orphaned a fixture mid-audit, the exact self-healing-race shape `gate_no_stray_probe_files`'s own docstring documents. Confirmed self-inflicted and already gone: the named file did not exist and `git status` was clean by the time the FAIL was read. Ran a second, uncontended full `preflight.py`: every gate passed, the same 25 standing warnings (Stripe/mail/SSH-deploy/Pillow credentials, no network egress, all previously diagnosed sandbox limits). Not a live defect.
+
+**Went well:** re-deriving the ledger-staleness claim independently instead of citing it; catching my own kill-induced FAIL by tracing cause rather than recording it as new.
+
+**Did not go well:** repeated this session's own version of the exact mistake this log has warned about before (a short foreground `timeout` on `preflight.py`), costing one extra full run.
+
+**Changing next cycle:** none; the existing gate and the documented race explanation both held.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. This log entry and the command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 15:1x (previous work was not finished; closed it, one real defect found and fixed)
 
 Attached clean (unshallowed, ff-only onto `origin/main`). **Previous work: NOT finished.** The 14:4x cycle handed the operator 6 cold-read-ledger files whose code changed after their own ledger date; the concurrent 14:5x operator cycle worked a different item instead. Confirmed all 6 dates genuinely stale against git, then read each file's diff since its ledger date rather than the whole file cold.
