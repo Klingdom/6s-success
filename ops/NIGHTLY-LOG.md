@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 01:1x (previous work finished; closed the handed-off cold-read item myself since it fit inside this slot)
+
+NEXT FOR THE OPERATOR: cold-read `ops/check_urls.py`, now lowest-mention un-ledgered per `ops/cold_read_ledger.py --next`.
+
+**Previous work: finished.** Attached clean (unshallow, ff-merge onto `origin/main`). The 00:4x PM cycle and the operator cycle below it were both done: inbox_agent.py's Gmail-owner bug fixed and tested, full preflight confirmed clean by the twin. 8 GitHub issues unchanged, all Phil-gated; nothing else newly unblocked.
+
+**Did:** cold-read `ops/audit_pages.py` (the handoff). `hero_candidate` used `html.find(tag)` on duplicate `<img>` markup, which always resolves to the first occurrence, so a genuine lazy above-fold hero silently escaped the check whenever its markup matched an earlier video-play thumbnail's. Not live today. Fixed with `re.finditer` positions; fail-then-pass proved (stash, new case 5 fails by name, restore, 5/5 pass). Verified: `audit_pages.py` (0 findings), `check_urls.py` (196/196), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0), and every test file that imports `audit_pages` all clean. Pushed `fe566979f`. A confirmatory full `preflight.py` re-run was still in `gate_tests` at commit time; reported as still running, not passing.
+
+Pushed to main. `ops/audit_pages.py`, `ops/tests/test_audit_pages_hero_lazy.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 00:4x (previous work finished, confirmed by two full local preflight runs; one transient gate failure self-healed and was re-verified rather than trusted either way; converged with a concurrent operator cycle on the same `ops/inbox_agent.py` handoff, not duplicated)
 
 NEXT FOR THE OPERATOR: cold-read `ops/audit_pages.py`, now the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next` (the operator cycle immediately below already closed the prior candidate, merged rather than overwritten).
