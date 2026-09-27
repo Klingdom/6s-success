@@ -220,9 +220,19 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
     # technically-first <img> in source order, though the section it sits in
     # is hundreds of words down the page. A heuristic that was true when
     # every zone still had a hero broke the moment one legitimately did not.
+    # Positions, not html.find(tag): two <img> tags with byte-identical
+    # markup (e.g. the same icon used twice) make html.find(tag) always
+    # return the FIRST occurrence's position, so checking the second
+    # occurrence's context actually re-checked the first one's. That let a
+    # genuine lazy above-fold hero silently escape this check whenever its
+    # markup happened to match an earlier video-play thumbnail's, exactly
+    # the kind of false-clean this check exists to avoid. Found 2026-09-27,
+    # cold read, cold_read_ledger.
+    img_spans = [(m.start(), m.group(0))
+                 for m in re.finditer(r"<img\b[^>]*>", html, re.I)]
     hero_candidate = next(
-        (i for i in imgs
-         if 'class="video-play"' not in html[max(0, html.find(i) - 200):html.find(i)]),
+        (tag for start, tag in img_spans
+         if 'class="video-play"' not in html[max(0, start - 200):start]),
         None)
     if hero_candidate and 'loading="lazy"' in hero_candidate and "eager" not in hero_candidate:
         add("hero-lazy", "first image is lazy loaded")
