@@ -14359,6 +14359,22 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     once a block in the window actually names a candidate (whether or
     not that candidate turns out to be stale), every older block's
     mentions are superseded and must not be checked.
+
+    Found live 2026-09-27: the header match was still hardcoded to the
+    exact strings "**Next:**" and "NEXT FOR THE OPERATOR:", but the log's
+    own history had already drifted to variants neither one recognises:
+    "**Next for the operator:**" (45 uses), "**Next for operator:**" (3),
+    "**Next for the operator (:43):**", "NEXT FOR THE OPERATOR, as of
+    this check-in:", "NEXT FOR WHOEVER PICKS THIS UP:", and plain
+    "**Next.**"/"**Next session:**". A newest entry using any of these
+    was invisible to this gate exactly like the 2026-09-25 "Handing to
+    operator:" case above, so the gate fell through to an older,
+    superseded entry and flagged its now-resolved name as if it were the
+    live handoff. Widened both header patterns: the bold one to
+    `\*\*Next\b[^*\n]*\*\*` (anything after "Next" up to the closing
+    "**"), the all-caps one to `NEXT FOR[^:\n]*:` (anything after "NEXT
+    FOR" up to the colon), rather than adding another exact string this
+    log's phrasing will just as easily drift past again.
     """
     name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
                r"([A-Za-z0-9_]+\.(?:py|js))`")
@@ -14368,7 +14384,7 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
         names, seen = [], set()
         addresses_a_file = False
         for m in re.finditer(
-                r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:|"
+                r"(?m)^(?:\*\*Next\b[^*\n]*\*\*|NEXT FOR[^:\n]*:|"
                 r"\*\*Handing to (?:the )?operator:\*\*|"
                 r"Handing to (?:the )?operator:)"
                 r".*(?:\n(?!\n).*)*", block):

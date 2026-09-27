@@ -43,7 +43,8 @@ def main() -> int:
                  + END)
 
         if MARK in s:
-            s2 = re.sub(re.escape(MARK) + r".*?" + re.escape(END), block, s, flags=re.S)
+            s2 = re.sub(re.escape(MARK) + r".*?" + re.escape(END),
+                        lambda _m: block, s, flags=re.S)
         else:
             # Immediately after the analytics tag, so the tracker is already
             # requested when this parses.

@@ -167,7 +167,8 @@ def main() -> int:
                       f"actually resolved.")
                 withheld += 1
                 continue
-            s2 = re.sub(re.escape(MARK) + r".*?" + re.escape(END), blk, s, flags=re.S)
+            s2 = re.sub(re.escape(MARK) + r".*?" + re.escape(END),
+                        lambda _m: blk, s, flags=re.S)
         else:
             # Immediately before the footer, so it is the last thing on the page
             # rather than an interruption in the middle of one.

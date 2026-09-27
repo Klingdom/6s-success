@@ -76,7 +76,8 @@ def main() -> int:
 
         s = io.open(f, encoding="utf-8").read()
         if MARK in s:
-            new = re.sub(re.escape(MARK) + r".*?" + re.escape(END), block, s, flags=re.S)
+            new = re.sub(re.escape(MARK) + r".*?" + re.escape(END),
+                         lambda _m: block, s, flags=re.S)
         elif "</head>" in s:
             new = s.replace("</head>", block + "\n</head>", 1)
         else:
