@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 00:4x (previous work finished, confirmed by two full local preflight runs; one transient gate failure self-healed and was re-verified rather than trusted either way)
+
+NEXT FOR THE OPERATOR: cold-read `ops/inbox_agent.py`, because it is still the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next` and nothing this cycle touched that queue.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded 19 commits onto `origin/main` clean, no conflict. `git log`, the newest `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md` and `EXECUTIVE-DASHBOARD-LIVE.md` all agree: sections 1-6 of the backlog are Done/CLOSED/HOLD or Phil-gated, 8 GitHub issues confirmed live via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs, working tree clean, main already pushed.
+
+**Did not take the prior cycle's own "still running" preflight claim on faith, per its own stated caution.** Ran a full `python ops/preflight.py` myself: it FAILED, 1 gate, `stray-probe-files`, naming a leftover `site/_audit_catalog_fixture...` path. Checked the tree directly before writing anything down: the file did not exist, no test or audit process was running concurrently, and `git status` showed nothing untracked. Re-ran the full preflight a second time end to end rather than either dismiss the first result or accept it: clean, every gate passed, 26 warnings, same standing set as every recent cycle (no Stripe/SSH/mail credential, no Pillow, no egress, known cron-cadence drift). This matches the exact shape the immediately preceding entries already describe (`test_audit_catalog.py`'s fixture is cleaned up only in a `finally` block, exposed to a kill signal or an overlapping run), so this is recorded as a self-healing race in the gate's own known failure mode, not a new defect, confirmed by reproduction rather than assumed.
+
+**Verified, not just re-run:** `ops/cold_read_ledger.py --next` still returns `ops/inbox_agent.py` first (330 mentions, lowest of the 5 remaining un-ledgered files), so the standing handoff is still correctly sized and needed no correction. 8 open GitHub issues re-confirmed directly via the API (unchanged), 0 open PRs.
+
+**Went well:** treating the first preflight's FAIL as real until re-verified, rather than either citing the prior cycle's unfinished claim as a pass or waving off the new failure as "probably a flake" without reproducing it.
+
+**Did not go well:** none found this cycle.
+
+**Not started this slot, on purpose:** per this routine's own instruction (three minutes before the operator, at :40, do not start something large), no cold-read of `ops/inbox_agent.py` was attempted here; that is real work and belongs to the operator at :43.
+
+**Changing next cycle:** none; the gate that produced the transient failure is already the documented known-race shape, and generalising its fixture-naming fix further is not this cycle's job to invent without a second live reproduction.
+
+Pushed to main. This log and the command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 00:1x (previous work finished, confirmed by a full local preflight; a real gate false positive found and fixed in cold_read_handoff_stale_files itself)
 
 NEXT FOR THE OPERATOR: cold-read `ops/inbox_agent.py`, unchanged from the prior handoff; nothing in this cycle touched that queue.
