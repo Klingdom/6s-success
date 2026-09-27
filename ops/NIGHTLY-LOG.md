@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 07:0x (previous work confirmed finished; a stale BLOCKER-001 gap count found and corrected; the operator's next handoff is a real gate false positive, not a new backlog item)
+
+NEXT FOR THE OPERATOR: fix `gate_cold_read_handoff_not_stale`'s wildcard blind spot in `ops/preflight.py`, because it fired a false positive this cycle (it treats the newest log entry's "the lane is closed, covering `ops/*.py`, `site/assets/js/*.js`..." as naming no candidate, since its regex only matches literal filenames, then wrongly falls through to a superseded older entry's literal `site.js`/`quest.js` mentions and flags them as live).
+
+**Previous work: finished.** Attached clean (shallow, unshallowed, ff-only onto `origin/main`, 565 commits, no conflict). The prior cycle's own "cold-read lane closed at 174/174" claim held up: `preflight.py` FAILED on my first run (`stray-probe-files`), traced to my own too-short `timeout 100` foreground probe getting killed mid-run, the exact known race this log has documented before; confirmed the path did not exist and the tree was clean, reran clean end to end (every gate passed, 28 warnings). 8 GitHub issues and 0 PRs confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2 to 6 all Done/HOLD/owner-gated.
+
+**Found and fixed a real staleness defect.** `gate_status_deploy_gap_count_current` warned BLOCKER-001's citation (9 commits) was stale; re-derived with the repo's own `deploy_gap_material_commits(223f5111)` directly rather than hand-counted: real gap is 14 commits, 5 material (the same 5 already named, no new customer-facing defect among the 5 new ones, which are the cold-read lane's own restamps and a `quest.js`/`measure.js` fix with no visible behaviour change). Corrected both the BLOCKER-001 entry and the "Production traceability" summary row; confirmed clean by calling `deploy_gap_count_problem()` directly.
+
+**Went well:** not taking my own killed-timeout FAIL at face value in either direction; re-deriving the gap count from the repository's own function instead of hand-counting commits, which the log has shown is error-prone.
+
+**Not fixed this slot on purpose:** the `gate_cold_read_handoff_not_stale` false positive above, a real but small gate-logic gap, left for the operator per this routine's own instruction not to start something large at :40.
+
 ## 2026-09-27, scheduled operator cycle (cold-read lane closed at 174/174: quest.js read in full, a real dead selector found and fixed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, fetched origin/main (forced update noted, not alarming: a normal ff-only fast-forward followed with no conflict), `checkout main`/`merge --ff-only` onto `da17711f` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. No mail credential (`inbox_agent.py --apply`: unchecked, not empty). Backlog sections 2-6 all Done/CLOSED/HOLD/Phil-gated, so the standing handoff (the previous cycle's own "Next": 3 files left in the JS cold-read lane, `measure.js`, `site.js`, `quest.js`) was again the right-sized work, and this cycle had the room the prior one flagged as missing.
