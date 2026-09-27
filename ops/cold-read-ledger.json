@@ -19,7 +19,7 @@
     "audit_pages.py": {
       "status": "fixed",
       "date": "2026-09-27",
-      "note": "hero-lazy check: html.find() resolved to the first occurrence of a byte-identical <img> tag, silently exempting a genuine lazy above-fold hero when its markup duplicated an earlier video-play thumbnail's; fixed with re.finditer tracking each match's own position (fe566979)"
+      "note": "Fixed a real hero-lazy false-negative: html.find(tag) resolved duplicate-markup img tags to the wrong occurrence's position, so a genuine lazy above-fold hero could silently escape the check whenever its markup matched an earlier video-play thumbnail. Not live today (0 pages currently trigger it), preventive. Fixed in fe566979f."
     },
     "audit_visual.py": {
       "status": "fixed",

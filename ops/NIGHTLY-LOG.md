@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 01:1x (previous work finished; closed the handed-off cold-read item myself since it fit inside this slot)
+
+NEXT FOR THE OPERATOR: cold-read `ops/check_urls.py`, now lowest-mention un-ledgered per `ops/cold_read_ledger.py --next`.
+
+**Previous work: finished.** Attached clean (unshallow, ff-merge onto `origin/main`). The 00:4x PM cycle and the operator cycle below it were both done: inbox_agent.py's Gmail-owner bug fixed and tested, full preflight confirmed clean by the twin. 8 GitHub issues unchanged, all Phil-gated; nothing else newly unblocked.
+
+**Did:** cold-read `ops/audit_pages.py` (the handoff). `hero_candidate` used `html.find(tag)` on duplicate `<img>` markup, which always resolves to the first occurrence, so a genuine lazy above-fold hero silently escaped the check whenever its markup matched an earlier video-play thumbnail's. Not live today. Fixed with `re.finditer` positions; fail-then-pass proved (stash, new case 5 fails by name, restore, 5/5 pass). Verified: `audit_pages.py` (0 findings), `check_urls.py` (196/196), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0), and every test file that imports `audit_pages` all clean. Pushed `fe566979f`. A confirmatory full `preflight.py` re-run was still in `gate_tests` at commit time; reported as still running, not passing.
+
+Pushed to main. `ops/audit_pages.py`, `ops/tests/test_audit_pages_hero_lazy.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 00:4x (previous work finished, confirmed by two full local preflight runs; one transient gate failure self-healed and was re-verified rather than trusted either way; converged with a concurrent operator cycle on the same `ops/inbox_agent.py` handoff, not duplicated)
 
 NEXT FOR THE OPERATOR: cold-read `ops/check_urls.py`, now the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next` (a second concurrent cycle closed `ops/audit_pages.py` while this entry was in flight; ledgered it, since its own commit landed the code fix but not the ledger record).
@@ -22,9 +32,9 @@ NEXT FOR THE OPERATOR: cold-read `ops/check_urls.py`, now the lowest-mention un-
 
 **Converged with the concurrent operator cycle below on `ops/inbox_agent.py`, resolved by merge rather than force, per this routine's own STEP 8.** Its fix landed on `origin/main` (`750c34d9`) while this entry's own preflight run was still in flight; `git merge origin/main --no-edit` conflicted on the four generated command-deck files plus this log itself, resolved by keeping this repository's own convention (`git checkout --ours` on the three `ops/dashboard.py` outputs, then regenerating fresh, rather than hand-editing a generator's output) and by hand for the log (both entries kept, ordered by actual commit timestamp, not left-vs-right). Also found, while re-verifying: the merge itself tripped `gate_cold_read_handoff_not_stale`, because this entry's own handoff line named the just-cleared `ops/inbox_agent.py` in plain backticks outside a parenthetical, which the gate's own name-extraction regex reads as a second live candidate; reworded to put that mention inside the parenthetical, matching the log's own established convention, confirmed clean by calling `cold_read_handoff_stale_files()` directly before the next full preflight. **One more found, not gated, low priority:** `ops/ship.py`'s push loop does `git rebase origin/main`, which cannot cleanly replay a merge commit still in the local branch; `git push` alone succeeded immediately (a real fast-forward, confirmed by `merge-base --is-ancestor`) where `ship.py` reported a false "conflict in real source" naming the same file the merge had already resolved. Not fixed this cycle: `ship.py`'s own workflow is rebase-first by design and a session that had to merge is the unusual case, not the common one; worth a fix if this recurs rather than a rewrite provoked by one occurrence.
 
-**Second convergence, same cycle: a fast-follow session fixed `ops/audit_pages.py` (`fe566979`, a real `html.find()`-resolves-to-first-occurrence bug in the hero-lazy check) but its commit never touched `ops/cold-read-ledger.json`, so `--next` still named the just-fixed file as the live candidate.** Recorded it `fixed` in the ledger directly from that commit's own message before writing this handoff, the same "found the code fix, closed the record it left open" shape as the earlier `ops/dashboard.py` ledger gap two PM check-ins back; `--next` now correctly returns `ops/check_urls.py`.
+**Second convergence, same cycle: the twin cycle immediately above closed `ops/audit_pages.py` (`fe566979`) and its own ledger record before this entry's merge landed.** Not duplicated: this entry's own ledger addition for the same file, written independently a few minutes earlier from the commit message alone, was superseded by the twin's own note on merge and dropped in favour of it, same content either way.
 
-Pushed to main (`f0f617d7`, plus this addendum, plus the merged-in `ops/audit_pages.py` fix). This log, `ops/cold-read-ledger.json`, and the command deck, plus the merged-in `ops/inbox_agent.py` and `ops/audit_pages.py` fixes from concurrent cycles. No price, product or site page touched; IndexNow not applicable.
+Pushed to main (merged with the twin cycle above; no unique content lost). This log and the command deck. No price, product or site page touched; IndexNow not applicable.
 
 ## 2026-09-27, scheduled operator cycle (cold-read lane: a live inbox-agent defect that misfiled a paying customer as the owner, found and fixed)
 
