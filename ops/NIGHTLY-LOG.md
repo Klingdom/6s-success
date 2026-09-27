@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 20:0x (seventh consecutive cycle reaching the same verdict, spanning 24+ hours; flagged to Phil directly rather than logged an eighth time)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description, plus the 8 open GitHub issues), because everything genuinely unblocked is still exhausted: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`), confirmed live via the GitHub API, not cited.
+
+**Attached** ff-only onto `origin/main`, clean, no conflict. Independently re-derived rather than cited: 8 open issues, 0 PRs, cold-read ledger 175/175, `OWNER-ACTIONS.md`'s four "start here" items read in full, each genuinely requiring Phil's own credential or account access, not busywork.
+
+**`preflight.py` FAILED on `stray-probe-files` again**, same shape as six prior cycles. Checked directly: named path absent, `git status` clean. Ran a full second `preflight.py` to completion: every gate passed, 25 warnings, standing set. Previous work confirmed finished.
+
+**Seven straight cycles, 24+ hours, zero measurable movement, entirely behind ~12 minutes of Phil's own action.** Per `CLAUDE.md` 0.2, a correctly reported blocker nobody acts on costs as much as an undetected one, so this is escalated directly to Phil this cycle rather than re-logged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 19:3x (sixth consecutive cycle reaching the same verdict; one preflight FAIL traced to the same self-healing race, confirmed clean on rerun)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted again: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 1-4 all Done or already-corrected, section 5 deliberately on hold pending traffic.
