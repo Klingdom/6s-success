@@ -322,6 +322,7 @@ Maintain:
 | LRN-0017 | Authoring against an ID vocabulary from memory produces branches that are well formed, real, and wrong | CONTENT / BUILD | SUPPORTED | HIGH |
 | LRN-0018 | Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0019 | The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus fix never reaches the product | BUILD / PRODUCT | SUPPORTED | HIGH |
+| LRN-0020 | When a gate has no available action, the format is usually the thing to change, not the blocker | MEDIA / BUILD | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -546,6 +547,56 @@ a rebase conflict resolution", moving an entry back into place.
 **Implication.** For any append-at-top file (`ops/NIGHTLY-LOG.md`, `STATUS.md`), a conflict resolution is not finished when the
 markers are gone. It is finished when the entries are in the order the file claims to keep. Verify the headings after every
 resolution, the same way a generated file is regenerated rather than hand-picked from either side of a conflict.
+
+#### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (14 pages closed, three defects caught by three different checks)
+**Domain:** MEDIA / BUILD
+**Measured:** 2026-09-27
+
+`page-art` had warned for weeks that pages ship with no image at all: 3 zone
+pages whose photographic hero was rejected, and 11 room pages whose book chapter
+is unillustrated. Nobody could act on it, because the only fix on offer was to
+generate a photograph, and that is blocked twice over: the local model cannot
+draw a micro zone (LRN-0012, 0 of 8 acceptable) and the better models need
+either RAM this machine does not have or a billing decision only the owner can
+make.
+
+The constraint was never the artwork. It was the assumption that the slot had to
+hold a photograph. This repository had already worked that out once, for the
+films, and written it down in `ops/video_zone.py`: *"A format built from type
+needs no imagery at all, so the constraint chooses the format rather than
+limiting it."* The same sentence applies to a page, and nobody had connected the
+two for a month.
+
+All 14 pages now carry a typographic panel built from text the corpus already
+holds, the zone's `done_looks_like` or the room's `intro`, captioned to say
+plainly that no photograph exists. Nothing invented, nothing owner-gated.
+
+**The part worth generalising is not the panel, it is what the panel did to the
+gates.** Twice, filling the slot made a gate report something false:
+
+- counting the panel as a hero made `gate_image_coverage` read 114 pages
+  carrying a photograph against 111 approved images;
+- giving the room panel the bare `room-lead` class would have marked all 11
+  unillustrated chapters as illustrated and erased the artwork gap
+  `OWNER-ACTIONS` 1b exists to track.
+
+Both times the gate was right to object and the fix belonged in the gate, not
+in the claim. A stand-in must be legible AS a stand-in to every check that
+counts it, or closing the visible gap quietly closes the real one too. The rule:
+**when you fill a hole with something honest but different, give it its own
+name, and teach every counter the difference in the same commit.**
+
+**Also worth keeping: the three defects, and which check caught each.** A fixed
+`width="900"` overflowed a 390px phone, caught by `ops/audit_visual.py` on the
+very page the figure was meant to improve. An extra attribute on the `<figure>`
+made `FIG` stop matching it, so the replace silently did nothing while the
+sweep reported success, and stranded a figure nothing could remove; caught by
+looking at the shipped bytes rather than the tool's own output. And the false
+photograph count, caught by a gate. Three different checks, three defects, none
+of which the other two would have found.
 
 #### LRN-0019: The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus correction never reaches the product
 
