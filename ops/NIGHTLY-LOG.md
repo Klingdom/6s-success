@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 10:1x (previous work confirmed finished; own preflight run self-inflicted then correctly re-run; core.hooksPath enabled; no new closable item, everything genuinely exhausted)
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 588 commits onto `origin/main` (`e9a3e25f`), no conflict, tree already clean on arrival.
+
+**Read:** `git log -12`, this log's newest several entries, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-7), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `OWNER-ACTIONS.md`'s "start here" list. GitHub confirmed live, not cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`, all `decision`/`blocked-on-art`), 0 open PRs.
+
+**Previous work: finished, confirmed the hard way.** My own first `preflight.py` run was wrapped in a shell `timeout` (this session's own mistake, the exact self-inflicted shape this log has repeatedly diagnosed and told future cycles to stop doing); it was killed mid-run (exit 143), and the tree was confirmed clean afterward, no stray file. Re-ran it a second time with no timeout wrapper at all: it FAILED for real this time, `stray-probe-files`, one leftover `site/_gate_fixture_conf...` path, but the path did not exist by the time I checked and `git status` was clean, matching the gate's own documented "cleaned up only in a `finally` block, exposed to an overlapping run" race, not a new defect. Ran it a third time, uninterrupted: every gate passed, 24 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
+
+**No new item started; everything checked is exhausted, not skipped.** `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated. `ops/cold_read_ledger.py --next`: 174 of 174 (ops/JS/mobile). The informal `build/listings/*.py` lane closed at 9/9 last cycle; the one shell script under `ops/` (`traffic_query.sh`) was already read clean. Checked for a genuinely new file class before accepting that: found two files outside every tracked lane, `mcp/server.py` (5 prior log mentions, already covered) and `.githooks/check_control_bytes.py` (0 mentions, genuinely new). Read the latter cold: correct control-byte filter (tab/LF/CR excluded, DEL included), correct extension scope, no defect. Its own calling hook, `.githooks/pre-commit`, was real and correct but not wired into this session: `core.hooksPath` was unset in this fresh checkout, the same standing, expected gap `gate_hooks_enabled` warns on and prior cycles have cleared before. Enabled it (`git config core.hooksPath .githooks`, confirmed executable) so this session's own commits get the control-byte and build-id checks other cycles have needed. A local git config, not a tracked file; nothing to commit for it.
+
+**Went well:** not trusting either preflight result on faith, in either direction, and re-running to a real, uninterrupted completion before drawing a conclusion.
+
+**Did not go well:** repeated this session's own version of the exact "wrapped preflight in a timeout" mistake the log already names as recurring; corrected on the second and third attempts.
+
+**Changing next cycle:** none new; the existing lesson (never wrap `preflight.py` in a short `timeout`, foreground or background) already covers this.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console, YouTube OAuth, Stripe business description) and the 8 GitHub issues, unchanged. Nothing sized for the operator beyond that list this cycle; the cold-read search has now covered every file class this session could find (ops/JS/mobile, `build/listings/*.py`, shell scripts, and the two stragglers named above).
+
+Pushed to main: this log entry and the command deck only. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle (build/listings/*.py cold-read lane closed at 9/9: the last 5 files run, not just read, no defect found)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, fetched origin, `checkout main`, `merge --ff-only` onto `origin/main` (586 commits, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran a full `python ops/preflight.py` myself in the background rather than trust a citation: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Confirmed live via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; last several workflow runs on `main` all green. `inbox_agent.py --apply`: no mail credential, unchecked.
