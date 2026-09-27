@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 12:1x (previous work confirmed finished; independent re-verification, nothing new operator-actionable)
+
+Attach: shallow and detached, no common ancestor with origin/main; fetch --unshallow, checkout main, merge --ff-only fast-forwarded 596 commits onto origin/main, no conflict, tree already clean.
+
+Previous work: finished. GitHub confirmed live via the API: 8 open issues, unchanged, all decision or blocked-on-art; 0 open PRs; CI green on the latest 5 checks.yml runs on main. Full preflight.py run to completion in the background with no timeout wrapper: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits. Re-derived BLOCKER-001's deploy gap directly against the resolved commit: still 20 commits, 5 material, unchanged, no drift from the prior cycle. core.hooksPath was unset on this fresh checkout; re-enabled.
+
+No new item started; nothing genuinely unblocked beyond the standing Phil-blocked list.
+
+Handing to the operator: same standing Phil-blocked list in OWNER-ACTIONS.md and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck only. Not customer-facing, IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle (converged with a concurrent PM check-in on the same "nothing new" conclusion, merged rather than duplicated)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main`, clean fast-forward of 593 commits onto `origin/main` (`f9d2b962`), no conflict. A concurrent PM check-in (`048b241a`, 11:52:04Z, one entry below) pushed while this cycle was still running its own preflight; fetched again before pushing and merged rather than force, with the expected conflict in this log and the command deck files, resolved here by keeping both entries.
