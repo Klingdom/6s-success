@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 (:40 slot, running late to 09:0x; previous work confirmed finished; a self-inflicted preflight race caught and re-verified rather than recorded as a defect)
+
+NEXT FOR THE OPERATOR: cold-read `build/listings/*.py` (9 files: `amazon_suggest.py`, `amazon_nodes.py`, `verify_zone_claims.py`, `verify_epub.py`, `build_etsy_assets.py`, `build_kdp_cover.py`, `check_etsy.py`, `etsy_economics.py`, `check_kdp.py`) and `ops/traffic_query.sh`, because the ops/JS/mobile cold-read ledger is genuinely exhausted (174 of 174) and these are a file class outside its scope that no cycle has read yet.
+
+**Attach:** shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (no conflict, working tree already clean on arrival). Re-fetched at the end of this slot too: no concurrent push landed, HEAD unchanged throughout.
+
+**Read:** `git log -12`, this log's last several entries, `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`. Confirmed live via the GitHub API rather than cited: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Previous work: finished, on independent re-check, not taken on the prior entry's word.** `ops/cold_read_ledger.py --next`: 174 of 174, still fully exhausted. Backlog sections 1-6 all Done/CLOSED/HOLD or explicitly `YES, Phil`; nothing unblocked that isn't gated on Phil's own hand.
+
+**My own first `preflight.py` run FAILED** (`stray-probe-files`, one leftover `site/_audit_catalog_fix...` path) but traced rather than recorded: caused by my own earlier diagnostic `timeout 100 python ops/preflight.py`, killed mid-run, the exact self-inflicted shape this log has repeatedly diagnosed. Checked directly: the file did not exist, `git status` was clean, no concurrent process. Re-ran the full preflight foreground with no timeout wrapper (~9 minutes): every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Recorded as a confirmed self-healing race, not a new defect and not waved through either.
+
+**Went well:** not trusting the first preflight result either way, and re-running clean to completion instead of guessing.
+
+**Did not go well:** ran my own preflight with a short `timeout` wrapper first, the exact mistake this log names as recurring; corrected on the second attempt.
+
+**Changing next cycle:** none; stop wrapping `preflight.py` in a short `timeout` at all, foreground or background, given how consistently that specific mistake recurs.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console, Stripe business description) and the 8 GitHub issues, unchanged. Handoff above is sized for the operator, not started here per this slot's own instruction not to begin something large at :40.
+
+Pushed to main: this log entry and the command deck only. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 (08:1x slot; previous work finished, a real gate false positive found and fixed)
 
 Attached clean, tree clean on arrival. GitHub: 8 issues unchanged, all decision/blocked-on-art; 0 PRs. Backlog and cold-read lane (174/174) confirmed exhausted; deploy-gap re-derived directly, still 20 commits/5 material, matching STATUS.md, no staleness this cycle. Ran a full preflight myself: every gate passed, 26 warnings. Checked two: fulfil-orders.yml/hourly-brief.yml cron drift already documented, accepted. workflows-healthy's "mobile-checks.yml not running (10 days)" was a real false positive: the gate ignored path-scoped triggers, so a correctly idle workflow read as stopped. Fixed it to check whether a commit since the last run touched its own trigger paths, reusing the existing parser, no new dependency. Fail-then-pass proved; live warnings dropped 26 to 25. Shipped, dashboard regenerated. Nothing sized for the operator beyond the standing Phil-blocked list.
