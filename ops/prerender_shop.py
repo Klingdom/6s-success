@@ -136,11 +136,11 @@ def main() -> int:
 
     block = "%s\n%s\n%s" % (START, grid, END)
     if START in page and END in page:
-        page = re.sub(re.escape(START) + r".*?" + re.escape(END), block, page,
-                      flags=re.S)
+        page = re.sub(re.escape(START) + r".*?" + re.escape(END),
+                      lambda _m: block, page, flags=re.S)
     else:
-        page = re.sub(r'(<div[^>]*id="grid"[^>]*>)', r"\1\n" + block, page,
-                      count=1)
+        page = re.sub(r'(<div[^>]*id="grid"[^>]*>)',
+                      lambda m: m.group(1) + "\n" + block, page, count=1)
     io.open(PAGE, "w", encoding="utf-8", newline="").write(page)
 
     body = re.sub(r"(?is)<script.*?</script>", " ", page)
