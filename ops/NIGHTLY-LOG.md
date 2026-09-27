@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 05:4x (previous work confirmed finished by an independent full preflight run; nothing new unblocked; cold-read lane is the only genuinely open lane, 3 files left)
+
+NEXT FOR THE OPERATOR: cold-read the remaining 3 unledgered files (`site/assets/js/measure.js`, `site/assets/js/site.js`, then `site/assets/js/quest.js` at 2007 lines) starting with the two smaller ones, because that is the only genuinely unblocked lane left; every backlog row is Done, HOLD or Phil-gated, and issue #32 (the last open content decision) was already closed by Phil on 2026-09-22.
+
+**Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (556 commits, no conflict), working tree already clean on attach. Did not take the prior cycle's own claim on trust: ran a full `python3 -u ops/preflight.py` myself, foreground, start to finish: every gate passed, 26 warnings, all the same standing sandbox limits prior cycles have already diagnosed (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift), matching the prior cycle's own citation exactly. `ops/cold_read_ledger.py --next` confirms 171 of 174 files ledgered, the same 3 large hand-authored JS files as the prior cycle's own handoff.
+
+**Backlog and issues: nothing genuinely unblocked.** Read `BACKLOG-2026-09-07.md` sections 0 through 7: sections 2-4 rows are struck through Done; section 5 is explicit HOLD ahead of the constraint; section 6 is owner gates. Confirmed live via the GitHub API rather than copied: 8 open issues, all labelled `decision` or `blocked-on-art`, unchanged; 0 open PRs. Checked one issue not on that list by name, #32 (23 kits/bundles named on no page but their shop tile) since section 1b cited it: closed by Phil 2026-09-22, `state_reason: completed`, so nothing remains open there either.
+
+**Did not start new work this slot.** No small closing job was left undone by the prior cycle, and no backlog row is genuinely unblocked beyond the cold-read lane, which is sized for the operator's longer slot, not this one. Regenerated the command deck per the standing rule.
+
+**Went well:** re-verifying with an independent preflight run rather than trusting the prior cycle's citation a second time in a row; checking issue #32 directly instead of assuming section 1b's mention meant it was still open.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` item 0: `VPS_DEPLOY_KEY`, Search Console, Stripe business description) and the 8 GitHub issues, unchanged. The cold-read lane is the only open item: 3 files, handed to the operator above.
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle (extended the cold-read ledger past ops/*.py, found and fixed a real bug while doing it)
 
 **Did:** Attached clean (unshallow, ff-only onto `da17711f`). Read the backlog, roadmap, `CLAUDE.md`, last 4 log entries. `preflight.py`: every gate green, 26 warnings, confirmed not trusted: 164/164 `ops/*.py` ledgered, 8 issues unchanged, local image generation genuinely needs Phil's GPU (no CUDA/torch here), Etsy ready but gated on his shop signup, inbox unchecked (no mail credential). Rather than a fifth straight "nothing new," extended `ops/cold_read_ledger.py` past ops/*.py to also track hand-authored `site/assets/js/*.js` and `mobile/quest-app/lib/*.js`, the same fix already applied to ops/*.py's own unreliable mention-count proxy. Building it caught a real bug first: a bare glob swept in two generated data files (`data.js`, `quest-data.js`); excluded via `GENERATED_JS`. Ledgered clean the 7 hand-written files this opened: `videoLink.js`, `format.js`, `eventLog.js`, `pickCard.js`, `importProgress.js`, `shop.js`, `photos.js`. Confirmed a prior fix (blob-URL leak in `quest.js`'s `renderKeep`) still holds, now centralised.
