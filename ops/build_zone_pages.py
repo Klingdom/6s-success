@@ -3151,6 +3151,33 @@ def room_page(room, header, footer, all_rooms=()):
     figs = room_figures(room["room"])
     if figs:
         out.append(figure_html(figs[0], "room-lead"))
+    else:
+        # A ROOM WITH NO CHAPTER ILLUSTRATION STILL GETS SOMETHING TO LOOK AT.
+        # 11 of 20 chapters are unillustrated and that is owner-gated on image
+        # generation (OWNER-ACTIONS 1b), so those 11 pages opened with a wall
+        # of text and no visual anchor. Same answer the zone pages and the
+        # films already use: set the room's OWN intro as type. Nothing is
+        # invented, and the caption says there is no illustration.
+        #
+        # The class is "room-lead room-lead-panel", not bare "room-lead", on
+        # purpose. gate_page_art counts room-lead to find unillustrated
+        # chapters, and letting a panel answer to that name would have marked
+        # all 11 illustrated and hidden the gap 1b still tracks. Two different
+        # facts, so two different markers.
+        try:
+            import wire_zone_heroes as _W
+            panel = _W.panel_figure(room["room"], "", room.get("intro") or "")
+            panel = panel.replace(
+                '<figure class="zone-hero" id="zone-hero">',
+                '<figure class="room-lead room-lead-panel">', 1)
+            panel = panel.replace(
+                "There is no photograph of this zone yet, so this is the "
+                "finished state in words, quoted from the manual.",
+                "There is no illustration for this room yet, so this is the "
+                "room in its own words.")
+            out.append(panel)
+        except Exception:                                      # noqa: BLE001
+            pass
     out.append(f'<h2>The {n} micro zones, in working order</h2>')
     out.append('<p>A micro zone is one session, not a whole day. Finish one before '
                'you start the next.</p>')

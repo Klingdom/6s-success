@@ -124,6 +124,41 @@ def case_photographic_pages_are_untouched():
     assert panels <= 6, panels
 
 
+def case_room_panels_use_their_own_class():
+    """A room panel must NOT answer to bare "room-lead".
+
+    gate_pages_missing_art counts class="room-lead" to find chapters with no
+    illustration. If a text panel took that name, all 11 unillustrated rooms
+    would read as illustrated and the artwork gap OWNER-ACTIONS 1b tracks would
+    disappear from the report. Two facts, two markers.
+    """
+    import xml.etree.ElementTree as _ET
+    rooms = glob.glob(os.path.join(ROOT, "site", "rooms", "*.html"))
+    rooms = [f for f in rooms if not f.endswith("index.html")]
+    assert rooms, "no room pages found"
+    panels, illustrated, bare = 0, 0, []
+    for fp in rooms:
+        s = io.open(fp, encoding="utf-8", errors="replace").read()
+        if "room-lead-panel" in s:
+            panels += 1
+            _ET.fromstring(re.search(r'(<svg xmlns.*?</svg>)', s, re.S).group(1))
+            assert "no illustration for this room yet" in s.lower(), fp
+        elif 'class="room-lead"' in s:
+            illustrated += 1
+        else:
+            bare.append(os.path.basename(fp))
+    assert not bare, "room page(s) with no lead at all: %s" % bare
+    assert panels >= 1 and illustrated >= 1, (panels, illustrated)
+
+
+def case_no_room_page_is_imageless():
+    rooms = [f for f in glob.glob(os.path.join(ROOT, "site", "rooms", "*.html"))
+             if not f.endswith("index.html")]
+    for fp in rooms:
+        s = io.open(fp, encoding="utf-8", errors="replace").read()
+        assert 'class="room-lead' in s, os.path.basename(fp)
+
+
 def main() -> int:
     cases = [v for k, v in sorted(globals().items()) if k.startswith("case_")]
     for c in cases:

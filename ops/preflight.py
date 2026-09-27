@@ -11414,7 +11414,17 @@ def gate_pages_missing_art() -> None:
     # thumbnails, so any <img> would report all eleven unillustrated chapters
     # as illustrated and hide the gap OWNER-ACTIONS.md 1b still counts.
     def _no_lead(f):
-        return 'class="room-lead"' not in _visible_html(f)
+        # ANY lead, panel or photograph. This gate's own headline is "pages
+        # shipping with no image at all", and since 2026-09-27 an unillustrated
+        # room carries a typographic panel built from its own intro, so it is
+        # not imageless. The separate, still-true fact that 11 chapters have no
+        # illustration is counted by _panel_lead below and reported on its own
+        # line, because collapsing the two would either hide the artwork gap
+        # OWNER-ACTIONS 1b tracks or claim a text panel is a drawing.
+        return 'class="room-lead' not in _visible_html(f)
+
+    def _panel_lead(f):
+        return 'room-lead-panel' in _visible_html(f)
 
     def _no_img(f):
         return not re.search(r"<img\b", _visible_html(f))
@@ -11436,6 +11446,22 @@ def gate_pages_missing_art() -> None:
                        % (len(bare), len(pages), label, total_note,
                           ", ".join(sorted(bare)[:3])
                           + (", ..." if len(bare) > 3 else "")))
+    # The artwork gap itself, separate from the imageless gap above.
+    rooms_glob = os.path.join(ROOT, "site", "rooms", "*.html")
+    room_pages = [f for f in _glob.glob(rooms_glob)
+                  if not f.endswith("index.html")]
+    panelled = sorted(os.path.basename(f)[:-5] for f in room_pages
+                      if _panel_lead(f))
+    if panelled:
+        warn("page-art",
+             "%d of %d room page(s) still have no chapter illustration and are "
+             "carrying a text panel built from the room's own intro instead: "
+             "%s. That is honest on the page and still a gap in the artwork; "
+             "OWNER-ACTIONS 1b is what closes it."
+             % (len(panelled), len(room_pages),
+                ", ".join(panelled[:3])
+                + (", ..." if len(panelled) > 3 else "")))
+
     if out:
         warn("page-art",
              "pages shipping with no image at all. " + " ".join(out)
