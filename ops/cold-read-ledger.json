@@ -511,6 +511,11 @@
       "date": "2026-09-26",
       "note": "cold-read 2026-09-26 scheduled operator cycle: load()/owner()/send() read cold end to end (credential precedence, owner-address self-inbox refusal, attachment ordering); no defect found."
     },
+    "measure.js": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "Cold-read: send() swallowed any exception from window.umami.track() but returned true unconditionally, so a throwing call was reported as delivered and silently dropped from the retry queue instead of being retried like the 'not loaded yet' case. Fixed: catch now returns false. Verified with a new browser-driven probe (PROBE_G in test_measure_events.py) that throws on the umami stub's first two calls: reproduced the loss against the old code (0 buy-click events), confirmed the fix delivers it after retry (1 event)."
+    },
     "media_capability.py": {
       "status": "clean",
       "date": "2026-09-25",

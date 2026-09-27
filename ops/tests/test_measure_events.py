@@ -155,6 +155,27 @@ setTimeout(function () {
 }, 150);
 """)
 
+# G: umami.track throws on its first two calls, then works. Proves a throwing
+# call is queued and retried rather than counted as sent: send() used to
+# return true unconditionally after the try/catch, so a throw here would have
+# lost the click for good instead of retrying it. 250ms per retry tick, so
+# 400ms covers the two throws (attempts 1 and 2) and the third, succeeding,
+# attempt.
+PROBE_G = probe("g", """
+window.__fails = 0;
+window.umami = { track: function (n, d) {
+  window.__fails++;
+  if (window.__fails <= 2) { throw new Error("boom"); }
+  window.__ev.push({ n: n, d: d });
+} };
+""", BUYS, """
+document.getElementById("plain").click();
+setTimeout(function () {
+  window.dispatchEvent(new Event("pagehide"));
+  setTimeout(finish, 120);
+}, 400);
+""")
+
 PROBES = {
     "zones/_measure_probe_a.html": PROBE_A,
     "zones/_measure_probe_b.html": PROBE_B,
@@ -162,6 +183,7 @@ PROBES = {
     "zones/_measure_probe_d.html": PROBE_D,
     "zones/_measure_probe_e.html": PROBE_E,
     "_measure_probe_f.html": PROBE_F,
+    "_measure_probe_g.html": PROBE_G,
 }
 
 
@@ -327,6 +349,14 @@ def main() -> int:
     elif f[0]["d"].get("what") != "6S-Some-Deck.pdf":
         bad.append("free-download sent what=%r for a root-page download "
                    "link, expected the filename" % f[0]["d"].get("what"))
+
+    # ---- G: a track() call that throws must be retried, not counted as sent.
+    g = only("_measure_probe_g.html", "buy-click")
+    if len(g) != 1:
+        bad.append("umami.track() throwing on its first two calls produced %d "
+                   "buy-click event(s) once it started working, expected 1. "
+                   "A throw must be queued and retried, not silently counted "
+                   "as delivered." % len(g))
 
     # ---- E: the internal marker, which is what makes EXP-001 answerable.
     def who(key):
