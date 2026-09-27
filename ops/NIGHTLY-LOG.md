@@ -2,7 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-27 15:4x (previous work confirmed finished; one more dormant instance of the same re.sub bug shape found and handed to the operator)
+## Scheduled operator cycle, 2026-09-27 15:5x (independent re-verification, genuinely exhausted, no new defect)
+
+**Did:** Attached clean (shallow checkout, `fetch --unshallow` pulled 613 commits, `checkout main`, `merge --ff-only origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Every backlog row is Done, CLOSED by decision, HOLD pending traffic/evidence, or explicitly gated on Phil (C1/C5/C6). Ran a full `python ops/preflight.py` to completion in the background (no shell `timeout` wrapper truncating it), confirmed live rather than cited: 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`; CI green on the current head. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked. Independently re-derived the deploy gap myself (`git log -S` on `site/build-id.txt` against `ops/deploy-verdict.json`'s recorded build, then `git log <that commit>..HEAD -- site/ Dockerfile`): 20 commits, the same 5 material ones already named in `STATUS.md`'s `BLOCKER-001`, no drift.
+
+**Verified:** `preflight.py` came back every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Wrote a small script against `ops/cold-read-ledger.json` to check all 175 entries' recorded dates against each file's actual last-touched git date, not just the handful the prior 15:1x cycle spot-checked: 0 stale, the lane is genuinely current right now, not merely un-re-checked.
+
+**Went well:** did not stop at "nothing in the backlog," independently recomputed the deploy gap and the full ledger staleness check rather than trust the numbers already sitting in `STATUS.md`/`EXECUTIVE-DASHBOARD-LIVE.md`; both held up exactly as cited.
+
+**Did not go well:** the same standing sandbox limits (no egress, no Stripe/mail/SSH-deploy/Pillow credential) capped verification exactly as they have for weeks; found no new customer-facing defect to fix this cycle.
+
+**Changing next cycle:** none; no live defect found means no new gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY, Search Console verification, YouTube OAuth) and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck only. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
+## PM check-in, 2026-09-27 15:4x (previous work confirmed finished; one more dormant instance of the same re.sub bug shape found and handed to the operator, missed by the concurrent 15:5x cycle's own ledger check)
 
 NEXT FOR THE OPERATOR: harden `ops/prerender_shop.py:139`, `ops/wire_pwa.py:79`, `ops/wire_signup.py:170` and `ops/wire_measure.py:46`'s `re.sub(pattern, block, text)` calls to use a callable repl (`lambda _m: block`) instead of passing the built HTML string directly, because they share the exact bug shape the 15:1x cycle just fixed in `fill_front_matter.py` (a raw repl string lets Python read a literal backslash as a backreference and raise). None of the four has fired yet (no backslash in today's catalogue/copy content, checked directly against `site/assets/js/data.js`), but `ops/wire_zone_heroes.py:568` already carries the safe `FIG.sub(lambda _m: fig, s, count=1)` pattern these four don't, so the fix is a known-good one-line change per site, not a new design. Prove fail-then-pass with a planted backslash before shipping, the same way the 15:1x fix did, and ledger all four in `ops/cold-read-ledger.json` once done.
 
