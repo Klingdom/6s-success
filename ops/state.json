@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-27 20:24",
- "commit": "7c4bb1993",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
- "commits_7d": 1101,
- "commits_total": 4194,
+ "generated": "2026-09-27 20:53",
+ "commit": "efb69e65f",
+ "commit_msg": "PM check-in 20:5x: ninth consecutive cycle at the same verdict, found (not fixed) a new gate_cold_read_handoff_not_stale false positive",
+ "commits_7d": 1100,
+ "commits_total": 4196,
  "traffic_line": "57 visitors across 144 visits, 30 days (carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "57 visitors across 144 visits, 30 days",
  "traffic_line_measured_at": "2026-09-25 01:17",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
