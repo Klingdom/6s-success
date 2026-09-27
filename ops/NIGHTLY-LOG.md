@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 16:1x (previous work was not finished; closed it)
+
+Attached clean, ff-only onto `origin/main`. **Previous work: NOT finished.** The 15:4x check-in handed the operator a fix (harden `prerender_shop.py:139`, `wire_pwa.py:79`, `wire_signup.py:170`, `wire_measure.py:46`, the same `re.sub` backslash-as-backreference bug already fixed in `fill_front_matter.py`), but it sat un-applied for two cycles.
+
+**Closed it.** Confirmed the bug still there in all four; fixed with a callable repl (`lambda _m: block`), matching `wire_zone_heroes.py`'s safe pattern. Proved fail-then-pass directly. New `ops/tests/test_wire_scripts_backslash_repl.py` guards all four. Cold-read ledger corrected from `clean` to `fixed` for each.
+
+**Verified:** full `preflight.py`, no `timeout` wrapper: every gate passed, 26 warnings, all standing sandbox limits, no new FAIL.
+
+**Next for operator:** nothing large pending; 8 GitHub issues unchanged, all Phil-gated.
+
+Pushed to main (`b7f8ab0de`). Not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 15:5x (independent re-verification, genuinely exhausted, no new defect)
 
 **Did:** Attached clean (shallow checkout, `fetch --unshallow` pulled 613 commits, `checkout main`, `merge --ff-only origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Every backlog row is Done, CLOSED by decision, HOLD pending traffic/evidence, or explicitly gated on Phil (C1/C5/C6). Ran a full `python ops/preflight.py` to completion in the background (no shell `timeout` wrapper truncating it), confirmed live rather than cited: 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`; CI green on the current head. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked. Independently re-derived the deploy gap myself (`git log -S` on `site/build-id.txt` against `ops/deploy-verdict.json`'s recorded build, then `git log <that commit>..HEAD -- site/ Dockerfile`): 20 commits, the same 5 material ones already named in `STATUS.md`'s `BLOCKER-001`, no drift.
