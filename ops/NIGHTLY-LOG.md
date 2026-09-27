@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 11:4x (previous work confirmed finished; independent re-verification only, nothing new operator-actionable)
+
+NEXT FOR THE OPERATOR: re-verify independently rather than manufacture a finding, because every genuinely unblocked lane is exhausted and all 8 open GitHub issues stay `decision`/`blocked-on-art`.
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 593 commits onto `origin/main` (`f9d2b962`), no conflict, tree already clean.
+
+**Previous work: finished.** GitHub confirmed live via the API, not cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 174 of 174, and this run's own attempt to widen it further found 0 un-ledgered candidates, not just a high mention count on the remainder. My own full `preflight.py`, run in the background with no shell `timeout` wrapper (last cycle's own diagnosed mistake, avoided this time): every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `core.hooksPath` was unset again in this fresh checkout (a local git config, not a tracked file, so it does not survive a new checkout); re-enabled.
+
+**Checked the standing deploy gap rather than citing it.** `ops/deploy-verdict.json` still reads `checked_at: 2026-09-25T22:21:27Z`, build `a6c5f96b77c7cff2`; `site/build-id.txt` at HEAD is `76c71eb8e3677e82` and self-confirms current against the tree (`build_id.py --check`), so the repository side is not stale, only the production side is unconfirmed, exactly `BLOCKER-001`'s standing shape. No egress or deploy key here to re-check production live, same as every prior cycle. `OWNER-ACTIONS.md`'s "start here" list (VPS_DEPLOY_KEY, Search Console, Stripe business description) is unchanged.
+
+**No new item started; nothing genuinely unblocked.** All 8 GitHub issues are Phil's call or art-blocked. `BACKLOG-2026-09-07.md` sections 1-6 remain Done/CLOSED/HOLD or Phil-gated per `STATUS.md` section 30's own standing note.
+
+**Changing next cycle:** none; no new defect means no new gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck only. Not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 11:2x (previous work confirmed finished; own preflight run self-inflicted a stray-probe-files failure by wrapping it in a shell timeout, exact mistake this log already warns against; re-run clean; no new closable item)
 
 **Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 592 commits onto `origin/main` (`f56bb1e7`), no conflict, tree already clean.
