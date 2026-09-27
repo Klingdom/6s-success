@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-27, scheduled operator cycle (cold-read lane: a live inbox-agent defect that misfiled a paying customer as the owner, found and fixed)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded onto `origin/main` clean, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries. Full `preflight.py` clean on attach (every gate passed, 26 warnings, all standing sandbox limits: no Stripe/SSH/mail credential, no Pillow, no egress). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated, nothing newly unblocked, so the standing cold-read handoff at `ops/inbox_agent.py` was again the right-sized work.
+
+**The find.** `is_owner` matched the bare domain `gmail.com`, so any sender using a Gmail address, not only Phil, classified as `kind="owner"`, an instruction from the owner, before the delivery-problem/billing/customer branches ever ran. Reproduced directly: `classify("Jane <janedoe123@gmail.com>", "help", "I did not receive my download link, I paid yesterday.")` returned `owner`, not `delivery-problem`. A real paying customer's "I never got what I paid for" from the most common consumer email domain would have been filed as a note to self and never surfaced for a human reply, the exact P0 shape this run's own step 8 exists to catch.
+
+**Fixed:** dropped the domain match; `is_owner` now matches only the exact `OWNER_EMAIL` address, the same convention `owner_inbox.py` already uses to find Phil's own mail, passed into `classify()` explicitly so it stays a pure, testable function. Fail-then-pass proved directly against the real module: pre-fix returns `owner`, post-fix returns `delivery-problem` for the same input. `ops/tests/test_inbox_agent.py` extended 5 to 8 cases (the regression, the same case with `OWNER_EMAIL` set to a different Gmail address, and the exact configured address still matching); 8/8 pass. No new `preflight.py` gate: `gate_tests()` already globs every `test_*.py` file, matching this repository's own established precedent for a fix reachable only through a unit test.
+
+**Verified:** `check_urls.py` (196/196), `audit_pages.py` (0 findings), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0) all clean after. A confirmatory full `preflight.py` re-run was still in `gate_tests` at commit time; reported as still running, not as passing, per CLAUDE.md 0.4.
+
+**Went well:** the standing handoff pointed at exactly the right file; the defect was real, reproducible, and live-shaped, not hypothetical.
+
+**Did not go well:** no mail credential in this sandbox, so whether this has actually misrouted a real customer message could not be checked; reported unchecked, not clean.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read lane continues per `ops/cold_read_ledger.py --next`: `audit_pages.py`, `check_urls.py`, `affiliate.py`, then `preflight.py` itself, lowest mention count first. Standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues) unchanged.
+
+Pushed to main. `ops/inbox_agent.py`, `ops/tests/test_inbox_agent.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 00:1x (previous work finished, confirmed by a full local preflight; a real gate false positive found and fixed in cold_read_handoff_stale_files itself)
 
 NEXT FOR THE OPERATOR: cold-read `ops/inbox_agent.py`, unchanged from the prior handoff; nothing in this cycle touched that queue.
