@@ -50,7 +50,6 @@ from email.header import decode_header, make_header
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "ops", "inbox-state.json")
 
-OWNER_DOMAINS = ("gmail.com",)
 OWNER_HINTS = ("philkling", "phil kling")
 
 # Mail this business sends itself. Counting a delivery receipt as a customer
@@ -114,10 +113,20 @@ def strip_quoted(text: str) -> str:
     return "\n".join(lines).strip()
 
 
-def classify(frm: str, subject: str, text: str, extra: dict | None = None) -> dict:
+def classify(frm: str, subject: str, text: str, extra: dict | None = None,
+             owner_email: str = "") -> dict:
+    """owner_email is an exact address (from the OWNER_EMAIL env var), not a
+    domain. Matching on the whole of "gmail.com" used to mean any customer
+    who happens to mail from a Gmail address, which is most of them, was
+    classified as the owner: an instruction from us to ourselves rather than
+    a message from a stranger, so a real "did not receive my download" never
+    reached the delivery-problem branch below it. Found live 2026-09-27,
+    cold-reading this file: classify("Jane <janedoe123@gmail.com>", "...",
+    "I paid and never got the file") returned kind="owner" before this fix.
+    """
     low = (frm or "").lower()
-    is_owner = any(h in low for h in OWNER_HINTS) or any(
-        low.endswith("@" + d) or ("@" + d) in low for d in OWNER_DOMAINS)
+    is_owner = any(h in low for h in OWNER_HINTS) or (
+        bool(owner_email) and owner_email.strip().lower() in low)
     is_ours = any(o in low for o in OURS) or any(
         subject.startswith(s) for s in OUR_SUBJECTS)
 
@@ -233,6 +242,7 @@ def main() -> int:
 
     state = load_state()
     seen = set(state.get("seen", []))
+    owner_email = env("OWNER_EMAIL")
 
     M = imaplib.IMAP4_SSL(host, int(env("IMAP_PORT", "993")))
     M.login(user, pw)
@@ -259,7 +269,7 @@ def main() -> int:
                 "prec": msg.get("Precedence", ""),
                 "auto": msg.get("Auto-Submitted", ""),
                 "lid": msg.get("List-Id", ""),
-            })
+            }, owner_email=owner_email)
             counts[c["kind"]] = counts.get(c["kind"], 0) + 1
             fresh.append({"id": mid, "box": box, "from": frm[:70],
                           "subject": sub[:90], "date": msg.get("Date", "")[:31],

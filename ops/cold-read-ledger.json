@@ -436,6 +436,11 @@
       "date": "2026-09-25",
       "note": "book-photo importer; ran live, correctly reports MISSING for all figures (no access to Phil's local Windows master path from this sandbox) and reconcile() correctly refused to shrink any room's committed manifest. Guard behaved exactly as documented. No defect."
     },
+    "inbox_agent.py": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "OWNER_DOMAINS matched the bare domain gmail.com, so any customer emailing from a Gmail address (not just Phil) classified as kind=owner, bypassing delivery-problem detection. Fixed: match only the exact OWNER_EMAIL address, same convention owner_inbox.py uses. See NIGHTLY-LOG 2026-09-27."
+    },
     "indexnow.py": {
       "status": "clean",
       "date": "2026-09-26",

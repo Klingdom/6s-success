@@ -21,6 +21,20 @@ alongside the affiliate mention would have been silently dropped, and the
 message would have sorted after billing and customer mail
 (order.get("affiliate", 9)) instead of first.
 
+A second, worse defect in the same is_owner check, found 2026-09-27
+cold-reading this file again: OWNER_DOMAINS used to be a bare domain match
+("gmail.com",), so ANY customer emailing from a Gmail address, which is
+most people, was classified as kind="owner" rather than a customer message.
+Reproduced directly before the fix: classify("Jane <janedoe123@gmail.com>",
+"help", "I did not receive my download link, I paid yesterday.") returned
+kind="owner", never reaching the delivery-problem branch below it, so a
+paying customer's "I never got what I paid for" would have been filed as
+an instruction from Phil and never surfaced for a human reply. Fixed by
+dropping the domain match entirely and matching only the exact OWNER_EMAIL
+address (the same env var owner_inbox.py already uses to find Phil's own
+mail), passed into classify() explicitly rather than read from the
+environment inside it, so this stays a pure function to test.
+
 Run:  python ops/tests/test_inbox_agent.py
 """
 import os
@@ -81,12 +95,39 @@ def main() -> int:
         fails.append(f"a real delivery problem must still classify as "
                       f"delivery-problem, got kind={c['kind']!r}")
 
+    # The regression: a paying customer who happens to use a Gmail address
+    # (most of them) must not be mistaken for the owner, with no OWNER_EMAIL
+    # configured at all.
+    c = ia.classify("Jane Customer <janedoe123@gmail.com>", "help",
+                     "I did not receive my download link, I paid yesterday.")
+    if c["kind"] != "delivery-problem":
+        fails.append(f"a customer's own Gmail address must never classify "
+                      f"as owner, got kind={c['kind']!r}")
+
+    # Same case, with a real OWNER_EMAIL configured: the customer's Gmail
+    # address must still not match, only the exact configured address may.
+    c = ia.classify("Jane Customer <janedoe123@gmail.com>", "help",
+                     "I did not receive my download link, I paid yesterday.",
+                     owner_email="philklingmbb@gmail.com")
+    if c["kind"] != "delivery-problem":
+        fails.append(f"a customer's Gmail address must not match even when "
+                      f"OWNER_EMAIL is a different Gmail address, got "
+                      f"kind={c['kind']!r}")
+
+    # The exact configured owner address must still be recognised.
+    c = ia.classify("Phil Kling <philklingmbb@gmail.com>", "status",
+                     "go ahead and ship it",
+                     owner_email="philklingmbb@gmail.com")
+    if c["kind"] != "owner":
+        fails.append(f"the exact configured OWNER_EMAIL address must "
+                      f"classify as owner, got kind={c['kind']!r}")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("inbox_agent.classify() owner-priority: 5 case(s) passed")
+    print("inbox_agent.classify() owner-priority: 8 case(s) passed")
     return 0
 
 
