@@ -859,7 +859,14 @@
        for as long as 372 KB of card data takes to parse. Leaving the old
        line would have left a returning visitor stuck on the first-run
        screen, which is the same defect pointing the other way. */
-    ["#p-done-wrap", "#rec-box", "#mode-list", "#start-head",
+    /* No #p-done-wrap: that id was never in quest.html (checked directly,
+       not assumed), so it silently matched nothing here on every call. The
+       elements it would have named are already covered on their own,
+       correctly: "#start-head" two lines below wraps p-done/p-total, and
+       "#p-bar"'s own parentNode (below, no id of its own) is the progress
+       track. Kept as a comment rather than left silent, so a future reader
+       does not reintroduce the same dead id. */
+    ["#rec-box", "#mode-list", "#start-head",
      "#go-map", "#go-keep"].forEach(function (sel) {
       var el = $(sel);
       if (el) { el.hidden = first; }
@@ -1801,7 +1808,10 @@
            going through renderStart at all, and an empty dropdown here is
            precisely the dead end being fixed. */
         fillRoomSelect();
-        ["#p-done-wrap", "#mode-list", "#go-map", "#go-keep", "#start-head",
+        /* No #p-done-wrap here either; see the matching comment in
+           applyFirstRunGate(). "#start-head" and "#p-bar"'s own parentNode
+           (below) already cover what it would have named. */
+        ["#mode-list", "#go-map", "#go-keep", "#start-head",
          "#p-note"].forEach(function (sel) {
           var el = $(sel); if (el) { el.hidden = false; }
         });

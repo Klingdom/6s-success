@@ -514,7 +514,7 @@
     "measure.js": {
       "status": "fixed",
       "date": "2026-09-27",
-      "note": "Cold-read: send() swallowed any exception from window.umami.track() but returned true unconditionally, so a throwing call was reported as delivered and silently dropped from the retry queue instead of being retried like the 'not loaded yet' case. Fixed: catch now returns false. Verified with a new browser-driven probe (PROBE_G in test_measure_events.py) that throws on the umami stub's first two calls: reproduced the loss against the old code (0 buy-click events), confirmed the fix delivers it after retry (1 event)."
+      "note": "Cold-read: send() swallowed any exception from window.umami.track() but returned true unconditionally, so a throwing call was reported as delivered and silently dropped from the retry queue instead of being retried like the 'not loaded yet' case. Fixed: catch now returns false. Verified with a new browser-driven probe (PROBE_G in test_measure_events.py) that throws on the umami stub's first two calls: reproduced the loss against the old code (0 buy-click events), confirmed the fix delivers it after retry (1 event). (A concurrent cold-read of the same file this same cycle checked the srcset/picture-source and IntersectionObserver-id logic and found those clean; superseded by this entry, which found the real defect.)"
     },
     "media_capability.py": {
       "status": "clean",
@@ -565,6 +565,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "Ran live (--check and full): 0 pages need pruning today (data.js already absent from every page that does not render a product), and the site.js guard (window.CATALOG || []) that makes the removal safe is still present. Conservative NEEDS list checked against corporate.html's consulting grid and confirmed correct. No defect."
+    },
+    "quest.js": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "Read in full (2007 lines). Found and fixed a real dead-selector defect: applyFirstRunGate() and the go-other handler both hid/showed #p-done-wrap via a guarded $(sel), but no element with that id exists anywhere in quest.html (checked directly against the file, not assumed) and never has per this file's own git history. Harmless only because of the if(el) guard: #start-head and #p-bar's own parentNode already correctly cover the same elements a separate two lines later. Removed the dead selector from both arrays, replaced with an explanatory comment (careful to use no quote marks around the id itself, since a quoted mention would itself match the new gate below). Verified no regression: all 8 quest.js browser-driven tests pass after the edit, node --check clean. Turned the lesson into a gate: ops/preflight.py's new gate_no_dangling_dom_id_selectors() scans every \"#id\"-shaped string literal in site/assets/js/*.js against every id= in shipped HTML, excluding hex-colour-shaped literals and runtime-built prefixes (\"#view-\" + n). Proved fail-then-pass by reintroducing the exact removed literal into a scratch copy and watching it fail by name, then confirmed the real committed files are clean."
     },
     "receive_deploy_key.py": {
       "status": "clean",
@@ -669,7 +674,7 @@
     "site.js": {
       "status": "fixed",
       "date": "2026-09-27",
-      "note": "Removed dead priceLo/priceHi price-range branch in renderProduct(): only the 21 Situation Kits/Area Bundles retired by D-023 (2026-09-22) ever carried those fields; zero live products, generators, or tests reference them now."
+      "note": "Removed dead priceLo/priceHi price-range branch in renderProduct(): only the 21 Situation Kits/Area Bundles retired by D-023 (2026-09-22) ever carried those fields; zero live products, generators, or tests reference them now. A concurrent cycle's own cold-read of this same file called it clean and missed this; this finding supersedes that verdict."
     },
     "social_drafts.py": {
       "status": "clean",

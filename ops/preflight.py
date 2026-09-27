@@ -5760,6 +5760,77 @@ def gate_no_dangling_js_references() -> None:
              "on 2026-09-23 (a stray call to a deleted function).")
 
 
+def gate_no_dangling_dom_id_selectors() -> None:
+    """Every `"#some-id"` string literal in shipped site JavaScript, wherever
+    it appears (a direct $()/getElementById()/querySelector() argument, or an
+    entry in an array of selectors later fed to one through a variable), must
+    name an id that actually exists somewhere in the shipped HTML.
+
+    Found 2026-09-27, cold-reading quest.js: applyFirstRunGate() and the
+    go-other handler both carried "#p-done-wrap" in an array of selectors to
+    hide or show, and no element with that id has ever existed in
+    quest.html, checked directly against the file rather than assumed. Only
+    a guarding `if (el)` at each call site kept this from throwing; the
+    selector itself did nothing, silently, on every single call. That is
+    gate_no_dangling_js_references()'s defect class (dead code left behind
+    after something moved) one level down: eslint's no-undef only sees JS
+    identifiers, and a string is not one, so a selector that has quietly
+    stopped matching anything is invisible to it.
+
+    Deliberately conservative about what counts as a checkable literal, to
+    keep false positives near zero:
+      - Only "#word-ish" literals starting with a letter are considered; a
+        hex colour like "#BC4B2A" is excluded by shape (3, 4, 6 or 8 hex
+        digits), matching the literal colour strings this codebase actually
+        ships, rather than by a hand-maintained exception list.
+      - A literal immediately followed by string concatenation ("#view-" +
+        n) is a prefix being built at runtime, not a complete id, and is
+        skipped rather than guessed at.
+    A literal is checked against every id="..." in every shipped page under
+    site/, not only the page(s) that happen to load that particular script,
+    because measure.js and site.js are shared across many page shapes and a
+    per-page match would need to model which script loads on which page all
+    over again. That is deliberately the weaker, safer condition: it still
+    catches an id that exists nowhere at all (this defect's actual shape),
+    at the cost of missing one that exists on some pages but not the one a
+    given call site actually reaches.
+
+    Proved fail-then-pass 2026-09-27: reintroduced the exact removed
+    "#p-done-wrap" literal into a scratch copy of quest.js, ran this gate's
+    own scan function against it directly, watched it fail by name citing
+    p-done-wrap and the file, then confirmed the real committed files pass
+    clean.
+    """
+    hex_shape = re.compile(r"^[0-9A-Fa-f]{3}$|^[0-9A-Fa-f]{4}$"
+                            r"|^[0-9A-Fa-f]{6}$|^[0-9A-Fa-f]{8}$")
+    id_ref = re.compile(r'"#([A-Za-z][A-Za-z0-9_-]*)"')
+
+    real_ids = set()
+    for html_path in glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
+        text = io.open(html_path, encoding="utf-8").read()
+        real_ids.update(re.findall(r'id="([A-Za-z][A-Za-z0-9_-]*)"', text))
+
+    problems = []
+    for js_path in sorted(glob.glob(os.path.join(SITE, "assets", "js", "*.js"))):
+        text = io.open(js_path, encoding="utf-8").read()
+        for m in id_ref.finditer(text):
+            ident = m.group(1)
+            if hex_shape.match(ident):
+                continue
+            if text[m.end():m.end() + 4].lstrip().startswith("+"):
+                continue  # a runtime-built prefix, e.g. "#view-" + n
+            if ident not in real_ids:
+                problems.append(f"{os.path.basename(js_path)}: #{ident}")
+    if problems:
+        shown = problems[:6]
+        more = "" if len(problems) <= 6 else f" (+{len(problems) - 6} more)"
+        fail("no-dangling-dom-id-selectors",
+             f"{len(problems)} DOM id selector(s) in shipped JavaScript name "
+             f"an id that exists on no shipped page: {shown}{more}. Guarded "
+             "call sites fail silently rather than throwing, which is how "
+             "the 2026-09-27 #p-done-wrap defect went unnoticed.")
+
+
 def gate_nav_toggle_wired() -> None:
     """Every page that ships a `.nav-toggle` button must also load
     `assets/js/site.js`, the one file that wires that button's click handler.
@@ -14217,30 +14288,58 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     not that candidate turns out to be stale), every older block's
     mentions are superseded and must not be checked.
     """
+    name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
+               r"([A-Za-z0-9_]+\.(?:py|js))`")
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
     for block in blocks:
         names, seen = [], set()
+        addresses_a_file = False
         for m in re.finditer(
                 r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:|"
                 r"\*\*Handing to (?:the )?operator:\*\*|"
                 r"Handing to (?:the )?operator:)"
                 r".*(?:\n(?!\n).*)*", block):
-            live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
+            raw = m.group(0)
+            # A name mentioned anywhere in the raw line, even one that
+            # strikethrough/paren-stripping below removes as already
+            # superseded, means this block is specifically addressing
+            # file-level handoff status (live or resolved) and is
+            # authoritative for this window. A handoff line naming no
+            # file at all ("nothing new, backlog exhausted") is too
+            # generic to supersede an older block's real handoff, so it
+            # does not set this flag; only that case still falls through.
+            if re.search(name_re, raw):
+                addresses_a_file = True
+            live = re.sub(r"~~.*?~~", "", raw, flags=re.S)
             live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
             # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
             # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger
             # keys on bare basenames, so the prefix is optional and
             # discarded here too.
-            for name in re.findall(
-                    r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
-                    r"([A-Za-z0-9_]+\.(?:py|js))`", live):
+            for name in re.findall(name_re, live):
                 if name.endswith(".test.js"):
                     continue
                 if name not in seen:
                     seen.add(name)
                     names.append(name)
-        if not names:
+        # Found live 2026-09-27: a newest entry's own "**Next:** none from
+        # this entry (the intended handoff, `quest.js`, was closed
+        # concurrently...)" legitimately hands off nothing, the one name
+        # it mentions is inside a parenthetical aside explaining it is
+        # already resolved. The old code treated "handoff line present,
+        # zero names survived stripping" identically to "no handoff line
+        # at all" (both `not names`) and kept searching older blocks,
+        # reaching a third-older entry's real but by-then-stale
+        # "site.js"/"quest.js" handoff and flagging it as still live.
+        # `addresses_a_file` distinguishes the two: a block that names a
+        # file at all (even one it then explains away) is authoritative
+        # for this window and must stop the search here, empty result
+        # included; only a block with no file-shaped mention whatsoever
+        # (this function's own test suite's "nothing new, backlog
+        # exhausted" case) is too generic to supersede an older real
+        # handoff and still falls through.
+        if not addresses_a_file:
             continue
         stale = []
         for name in names:
@@ -22520,6 +22619,7 @@ def main() -> int:
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_no_dangling_js_references)
+    run_gate(gate_no_dangling_dom_id_selectors)
     run_gate(gate_nav_toggle_wired)
     run_gate(gate_landmarks_current)
     run_gate(gate_quest_restore_validates_timestamps)
