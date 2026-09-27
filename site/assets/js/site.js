@@ -58,9 +58,7 @@
 
   /* ---------- shared product card ---------- */
   window.renderProduct = function (p) {
-    var priceHtml = (p.priceLo != null && p.priceHi != null && p.priceHi !== p.priceLo)
-      ? '<span class="price">$' + p.priceLo + '<small> to $' + p.priceHi + '</small></span>'
-      : (p.price === 0 && p.href)
+    var priceHtml = (p.price === 0 && p.href)
       ? '<span class="price">Free</span>'
       : '<span class="price">' + money(p.price) + (p.variant === "Pro (annual)" ? '<small>/yr</small>' : '') + '</span>';
     /* available: false means no supplier, no stock, no platform, or no build behind

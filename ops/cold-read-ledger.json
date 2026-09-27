@@ -666,6 +666,11 @@
       "date": "2026-09-25",
       "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
     },
+    "site.js": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "Removed dead priceLo/priceHi price-range branch in renderProduct(): only the 21 Situation Kits/Area Bundles retired by D-023 (2026-09-22) ever carried those fields; zero live products, generators, or tests reference them now."
+    },
     "social_drafts.py": {
       "status": "clean",
       "date": "2026-09-26",

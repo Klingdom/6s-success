@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 06:2x (previous work confirmed finished; a stale STATUS.md deploy-gap count corrected, and a real dead-code branch removed from site.js)
+
+**Previous work: finished.** Attached clean (unshallow, ff-only). `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and the GitHub API all agreed: every backlog row Done/HOLD/Phil-gated, 8 open issues unchanged, all `decision`/`blocked-on-art`. Full `preflight.py` on attach: every gate passed.
+
+**Found and fixed two real things.** `gate_status_deploy_gap_count_current` warned that `STATUS.md`'s BLOCKER-001 cited 9 undeployed commits; a fresh `deploy_gap_material_commits()` read 11 (two more landed since: the measure.js fix and its build-id restamp). Corrected with a new dated entry, matching the section's own convention. Separately, cold-reading `site/assets/js/site.js` (`ops/cold_read_ledger.py --next`, second-to-last of 174 files): `renderProduct()`'s `priceLo`/`priceHi` price-range branch is dead code, confirmed by grep across `data.js`, every `ops/*.py` generator and `ops/tests/`, zero references. That field only ever existed on the 21 Situation Kits/Area Bundles retired by D-023 (2026-09-22). Removed it; no live product's rendering changes.
+
+**Verified:** `fingerprint_assets.py`/`build_id.py` rerun for the content-hash change. `test_pack_pages.py`, `test_gate_product_images_exist.py`, full mobile `npm test` all pass. Full `preflight.py` clean (every gate, 27 standing warnings; the one FAIL mid-verification was the expected `prerender-shop-current` "differs from HEAD" refusal, resolved on commit).
+
+**Next:** `site/assets/js/quest.js` (2007 lines), the one remaining un-ledgered cold-read file, handed to the operator; too large for this slot.
+
+Pushed to main. `STATUS.md`, `site/assets/js/site.js`, `ops/cold-read-ledger.json`, ~200 pages' `?v=` fingerprints, `site/build-id.txt`, this log, command deck. No price or product touched; not a new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 05:5x (previous work confirmed finished after resolving a self-inflicted stray-probe FAIL; cold-read lane widened by a concurrent cycle mid-run, picked up the new candidate and fixed a real bug in it; supersedes the 05:4x hand-off below, which named the same three files but had not yet seen this fix land)
 
 **Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge, working tree already clean on attach. Ran a full `python ops/preflight.py` myself rather than take the prior cycle's own clean claim on trust: it FAILED, `stray-probe-files`, one leftover fixture path. Did not record it as a live defect on the strength of this log's own prior diagnosis of the same race: checked directly first (the path did not exist, `git status` showed nothing untracked, no concurrent preflight was running) and traced the likely cause, my own earlier `timeout 110` foreground probe that got killed mid-run, the exact "too-short timeout" mistake this log has recorded before. Ran a second full preflight, alone, tree untouched: every gate passed, 26 warnings, all previously diagnosed. Confirmed live via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated.
