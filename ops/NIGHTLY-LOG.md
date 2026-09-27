@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 11:2x (previous work confirmed finished; own preflight run self-inflicted a stray-probe-files failure by wrapping it in a shell timeout, exact mistake this log already warns against; re-run clean; no new closable item)
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 592 commits onto `origin/main` (`f56bb1e7`), no conflict, tree already clean.
+
+**Previous work: finished.** GitHub confirmed live, not cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated, cross-checked directly rather than cited. `STATUS.md`'s own latest entry matches this cycle's independent findings exactly. `ops/cold_read_ledger.py --next`: 174 of 174, still fully exhausted.
+
+**Repeated this log's own most-cited self-inflicted mistake, then corrected it.** Ran `python ops/preflight.py` wrapped in a shell `timeout 110` on the first attempt (the exact shape this log has repeatedly told future cycles to stop doing); it was killed, and the interruption left a stray `site/_audit_catalog_fixture...` path that the second, uninterrupted run then correctly FAILED on (`stray-probe-files`). Checked rather than assumed: the path did not exist by the time it was checked, `git status` was clean, no concurrent process. Re-ran a third time, uninterrupted, in the background: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Confirmed self-inflicted, not a new defect.
+
+**No new item started; nothing genuinely unblocked.** Standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube upload authorisation, Stripe business description) and the 8 GitHub issues, unchanged.
+
+**Changing next cycle:** none new; re-stating the existing lesson does not seem to be enough on its own, since this session hit it fresh anyway. Whoever runs `preflight.py` in this environment: run it to completion in the background with no `timeout` wrapper, foreground or background.
+
+Pushed to main: this log entry and the command deck only. Not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 10:5x (previous work confirmed finished; own preflight failed once on the known stray-probe-files race, re-run clean; every cold-read lane now genuinely exhausted)
 
 NEXT FOR THE OPERATOR: no new backlog item is genuinely unblocked, so re-verify independently rather than manufacture a finding, because the ops/JS/mobile cold-read ledger (174/174), the `build/listings/*.py` lane (9/9) and `ops/traffic_query.sh` are all now closed, and all 8 GitHub issues stay `decision`/`blocked-on-art`.
