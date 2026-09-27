@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 00:1x (previous work finished, confirmed by a full local preflight; a real gate false positive found and fixed in cold_read_handoff_stale_files itself)
+
+NEXT FOR THE OPERATOR: cold-read `ops/inbox_agent.py`, unchanged from the prior handoff; nothing in this cycle touched that queue.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded onto `origin/main` clean, no conflict. Ran a full `python ops/preflight.py` myself rather than cite the prior cycle's own "re-run in progress at commit time" note: every gate passed, 27 warnings, all standing sandbox limits (no Stripe/SSH/mail credential, no Pillow, no egress, known cron-cadence drift). Mobile `npm test`: 4/4 suites pass. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 and `OWNER-ACTIONS.md` read in full: everything unblocked is Done/CLOSED/HOLD, item 0 (`VPS_DEPLOY_KEY`) still the standing owner gate.
+
+**Found while reading the preflight output, not left for the next cycle:** the `cold-read-handoff-not-stale` warning fired against `ops/dashboard.py`, even though this same log's newest entry (immediately below) and the ledger both already correctly point past it to `ops/inbox_agent.py`. Traced it to `cold_read_handoff_stale_files()` itself: it collected candidate names from every one of the last four entries independently, so a PM check-in two slots back ("Handing to the operator: cold-read lane continues at `ops/dashboard.py`, unchanged"), correct when it was written, still tripped the gate after two newer entries in the same window had since ledgered `dashboard.py` fixed and moved on. A fresh cycle reading newest-first would hit the newer, correct handoff first and never act on the stale one, so the older mention should never have been checked at all. This is the third live false-positive this same function has produced (strikethrough handling, then parenthetical asides, now cross-entry supersession), all the same root shape: the log's own newest-wins convention wasn't fully modelled.
+
+**Fixed:** the function now scans blocks newest-first and stops at the first one that names any candidate at all, returning only that block's names (filtered against the ledger); older blocks in the window are never inspected once a newer one has named something, matching how a person actually reads the log. Fail-then-pass proved directly: `git stash` on `ops/preflight.py` alone, the new test case (a superseded older-entry mention behind a newer, live, non-stale handoff) failed exactly as expected (`['build_feed.py']` wrongly flagged), restored, reran clean (10/10). Confirmed against the real committed log and ledger, not only the synthetic case: `cold_read_handoff_stale_files()` now returns `[]` against the current `ops/NIGHTLY-LOG.md`, where it returned `['dashboard.py']` before the fix.
+
+**Verified:** `python3 -m py_compile` clean on both edited files. `ops/tests/test_gate_cold_read_handoff_not_stale.py` 10/10. Grepped for any other test referencing this function: none. Started a second full `preflight.py` run in the background at commit time to confirm no other gate regressed; per this same file's own past caution, that is reported as still running, not as passing.
+
+**Went well:** running preflight myself instead of trusting the prior cycle's own unfinished claim, exactly what this run exists to check; reading the warning list instead of only the pass/fail count.
+
+**Did not go well:** the same false-positive shape recurring a third time in one function suggests the underlying model (independent per-entry scanning) was wrong from the start, not just missing one more special case; worth remembering if a fourth shape turns up.
+
+**Changing next cycle:** none; the fix generalises the newest-wins rule rather than adding another special case.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_cold_read_handoff_not_stale.py`, this log, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-26 (cold-read lane closed on ops/dashboard.py: three video-count counters silently collapsed a mid-run failure into a measured zero)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded onto `origin/main` clean. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; no mail credential (`inbox_agent.py --apply`: unchecked, not empty). `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated, nothing newly unblocked, so the standing cold-read lane at `ops/dashboard.py` (per the immediately preceding entry's own handoff) was again the right-sized work.

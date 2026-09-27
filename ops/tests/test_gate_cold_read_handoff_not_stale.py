@@ -160,6 +160,33 @@ def main() -> int:
         fails.append("an entry outside the 4-entry window was wrongly "
                       "checked: %r" % stale)
 
+    # 5. A stale name in an OLDER entry inside the window must NOT be
+    #    flagged once a NEWER entry in the same window already names a
+    #    live (non-stale) candidate: the newer handoff supersedes the
+    #    older one, and a fresh cycle reading newest-first would hit the
+    #    newer one first and never act on the stale mention. Found live
+    #    2026-09-26: the real log had exactly this shape, a superseded
+    #    "cold-read lane continues at `ops/dashboard.py`" two entries
+    #    back, after `dashboard.py` was ledgered fixed and two newer
+    #    entries in the same window had already moved on to a genuinely
+    #    un-ledgered file.
+    log_superseded = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-09-26, cycle three\n\n"
+        "**Next:** cold-read lane continues at `crawl_report.py`, the "
+        "next un-ledgered file.\n\n"
+        "## 2026-09-26, cycle two\n\n"
+        "Some unrelated PM check-in text with no handoff line at all.\n\n"
+        "## 2026-09-26, cycle one\n\n"
+        "Handing to the operator: cold-read lane continues at "
+        "`build_feed.py`, unchanged.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_superseded, LEDGER)
+    if stale:
+        fails.append("a superseded older-entry mention was wrongly "
+                      "flagged even though a newer entry in the same "
+                      "window already named a live candidate: %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -175,7 +202,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 9/9 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 10/10 cases pass")
     return 0
 
 

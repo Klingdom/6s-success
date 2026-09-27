@@ -14200,11 +14200,26 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     already was. The two shapes mean the same thing in this log's own
     convention (a name that is not the live candidate); only strikethrough
     was recognised as such.
+
+    Found live 2026-09-26 (second time): a stale PM check-in entry two
+    slots back in the same 4-entry window ("Handing to the operator:
+    cold-read lane continues at `ops/dashboard.py`, unchanged") had been
+    genuinely correct when written, then fully superseded by two newer
+    entries in the same window whose own, later handoffs correctly moved
+    on to `ops/inbox_agent.py` once `dashboard.py` was ledgered fixed.
+    The old code collected names from every block in the window
+    independently, so the superseded mention still tripped the gate even
+    though a fresh cycle, reading newest first per STEP 1, would hit the
+    newer correct handoff first and never reach the stale one. A named
+    handoff is only "live" in the newest entry that names one at all:
+    once a block in the window actually names a candidate (whether or
+    not that candidate turns out to be stale), every older block's
+    mentions are superseded and must not be checked.
     """
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
-    stale, seen = [], set()
     for block in blocks:
+        names, seen = [], set()
         for m in re.finditer(
                 r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:|"
                 r"\*\*Handing to (?:the )?operator:\*\*|"
@@ -14212,15 +14227,19 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                 r".*(?:\n(?!\n).*)*", block):
             live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
             live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
-            names = re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live)
-            for name in names:
-                if name in seen:
-                    continue
-                seen.add(name)
-                entry = ledger.get(name)
-                if entry and entry.get("status") in ("clean", "fixed"):
-                    stale.append(name)
-    return stale
+            for name in re.findall(r"`(?:ops/)?([A-Za-z0-9_]+\.py)`", live):
+                if name not in seen:
+                    seen.add(name)
+                    names.append(name)
+        if not names:
+            continue
+        stale = []
+        for name in names:
+            entry = ledger.get(name)
+            if entry and entry.get("status") in ("clean", "fixed"):
+                stale.append(name)
+        return stale
+    return []
 
 
 def gate_cold_read_handoff_not_stale() -> None:
