@@ -5,10 +5,13 @@ lane has actually read and cleared or fixed, so the next cycle does not
 have to reconstruct that from a 40,000+ line, ever-growing
 ops/NIGHTLY-LOG.md by eye.
 
-Covers three lanes: ops/*.py (164 files, closed 2026-09-27), the
-hand-written site/assets/js/*.js (7 files) and mobile/quest-app/lib/*.js
-(5 files, excluding *.test.js: a test is read together with the module
-it tests, not ledgered separately). Extended to the last two 2026-09-27:
+Covers four lanes: ops/*.py (164 files, closed 2026-09-27), ops/*.js
+(1 file, added 2026-09-27 after the three-lane version above sat at
+"174 of 174" without ever covering the one hand-authored .js file
+living in the ops/ directory itself), and the hand-written
+site/assets/js/*.js (7 files) and mobile/quest-app/lib/*.js (5 files,
+excluding *.test.js: a test is read together with the module it tests,
+not ledgered separately). Extended to the JS lanes 2026-09-27:
 the log had been ranking them by raw mention count in prose ("already
 exhausted this month by multiple cycles"), the exact proxy this file's
 own history (below) shows failing at least three times for ops/*.py
@@ -78,10 +81,21 @@ GENERATED_JS = frozenset({"data.js", "quest-data.js"})
 # (lane directory relative to ROOT, glob pattern within it). A basename
 # collision across lanes would make the ledger's bare-name keys
 # ambiguous; _all_candidate_files() checks for that rather than assume
-# it stays true (checked 2026-09-27: 174 hand-authored files, zero
+# it stays true (checked 2026-09-27: 175 hand-authored files, zero
 # collisions, after excluding GENERATED_JS and *.test.js).
+#
+# Found live 2026-09-27, PM check-in: the JS lanes only ever globbed
+# site/assets/js and mobile/quest-app/lib, so ops/social_pin_fit.js, the
+# one hand-authored .js file living inside the "ops" lane directory
+# itself, was never a candidate under any pattern, not even a cleared
+# one; "174 of 174" and "the JS lane is exhausted" were both true only
+# for the lanes as narrowly defined, not for every hand-authored file
+# this repository actually has. Added ("ops", "*.js") rather than widen
+# the "ops" pattern to "*.py,*.js" so a future ops/*.py glob change
+# cannot silently start matching .js files it was never meant to.
 LANES = (
     ("ops", "*.py"),
+    ("ops", "*.js"),
     ("site/assets/js", "*.js"),
     ("mobile/quest-app/lib", "*.js"),
 )
@@ -242,11 +256,11 @@ def main() -> int:
     all_files = _all_candidate_files()
     ledger_size = sum(1 for f in all_files if is_cleared(f, ledger))
     total = len(all_files)
+    lane_dirs = list(dict.fromkeys(d for d, _ in LANES))
     print("%d of %d files across %s are in the ledger. "
           "Next %d un-ledgered candidates, lowest log-mention count first "
           "(mention count is a rough secondary signal only):\n"
-          % (ledger_size, total,
-             ", ".join(d for d, _ in LANES), n))
+          % (ledger_size, total, ", ".join(lane_dirs), n))
     for name, count in next_candidates(n):
         print("  %3d  %s" % (count, lane_path(name) or name))
     return 0

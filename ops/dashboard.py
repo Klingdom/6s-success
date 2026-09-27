@@ -1266,7 +1266,27 @@ if _cat_match:
 # undercounted the page total nine-fold and, worse, undercounted dead links,
 # disconnected forms, and stray em dashes on those 143 pages as zero instead
 # of not-scanned, which reads as clean when it was never checked at all.
-_all_site_html = glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)
+#
+# Found live 2026-09-27: this glob had no exclusion for the probe/fixture
+# pages several ops/tests/*.py files write under site/ (_visual_probe.html,
+# _audit_catalog_fixture_<pid>.html, _quest_flow_probe.html, etc.), cleaned
+# up in a finally block but real for as long as the writing test is mid-run.
+# A dashboard.py run whose window overlaps a concurrent preflight's own
+# gate_tests() catches one mid-existence and silently counts it as a real
+# page: caught live when this same run's forms_dead and site_pages both
+# came back inflated, committed, then proven wrong by RISKS.md's own stale-
+# citation gate. .gitignore's own site/**/_*.html pattern already states
+# the rule this file should have followed from the start: no real page
+# starts with an underscore. Excluded here now, broadly, unlike
+# audit_pages.py's deliberately narrower _is_probe() (which must still
+# catch _audit_link_fixture.html, a full valid page its own test exists to
+# require a finding on): a page-quality auditor needs to tell a probe
+# shell apart from a real page by shape, but a counter has no reason to
+# count a gitignored non-page at all.
+_all_site_html = [
+    p for p in glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)
+    if not os.path.basename(p).startswith("_")
+]
 site_pages = len(_all_site_html)
 S["site_pages"] = site_pages
 
