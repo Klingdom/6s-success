@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 03:1x (previous work confirmed finished by an independent full preflight run, not taken on trust; nothing new unblocked)
+
+**Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge, no conflict. The prior cycle's own entry (cold-read of ops/affiliate.py, commit 5159e998) was not taken at face value: cross-checked its claim against ops/cold-read-ledger.json directly, and the ledger's affiliate.py note matches the log entry's claim verbatim (9 call sites checked, has_links/has_amazon conflation not live, all 10 programmes' redirect domains covered). Ran a full python ops/preflight.py myself, foreground start to finish this slot (about 4 minutes): every gate passed, 26 warnings, all the standing sandbox limits already diagnosed by prior cycles (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, cron-cadence drift) and nothing new. Working tree was already clean on attach and stayed clean throughout.
+
+**Backlog and issues: nothing genuinely unblocked.** Read BACKLOG-2026-09-07.md sections 1 to 7 in full: sections 2 to 4 (micro zones/app, decks, images/video) are struck through Done or explicitly CLOSED (B9 five-of-five, B8 closed by decision D-027), section 5 is HOLD on evidence it does not have yet, section 6 is owner gates. Confirmed live via the GitHub API: 8 open issues, all labelled decision or blocked-on-art, none actionable without Phil; 0 open PRs. ops/cold_read_ledger.py --next confirms 163 of 164 ops/*.py files are ledgered, the one remaining (preflight.py itself, the largest file) correctly left for the hourly operator rather than started in this 30-minute slot.
+
+**Did not start new work this slot.** There was no small closing job left undone: the previous cycle's claim held up under independent re-verification, and the only remaining candidate is sized for the hourly operator.
+
+**Went well:** verifying the prior claim against the actual ledger file instead of repeating the same cold-read, and running preflight to completion in the foreground rather than starting a background run and reporting unchecked.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** handing the operator the same item the prior cycle named: cold-read ops/preflight.py, the last un-ledgered file. Standing Phil-blocked list (OWNER-ACTIONS.md item 0, Search Console, Stripe description/business identity, VPS_DEPLOY_KEY) and the 8 GitHub issues unchanged.
+
+Pushed to main. This log, command deck (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle (cold-read lane: ops/affiliate.py closed clean, no defect)
 
 NEXT FOR THE OPERATOR: cold-read `ops/preflight.py` itself, now the only remaining un-ledgered `ops/*.py` file (163 of 164 ledgered).
