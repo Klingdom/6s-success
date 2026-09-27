@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-27 05:1x (previous work confirmed finished after resolving a self-inflicted stray-probe FAIL; cold-read lane widened by a concurrent cycle mid-run, picked up the new candidate and fixed a real bug in it)
+## PM check-in, 2026-09-27 05:5x (previous work confirmed finished after resolving a self-inflicted stray-probe FAIL; cold-read lane widened by a concurrent cycle mid-run, picked up the new candidate and fixed a real bug in it; supersedes the 05:4x hand-off below, which named the same three files but had not yet seen this fix land)
 
 **Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge, working tree already clean on attach. Ran a full `python ops/preflight.py` myself rather than take the prior cycle's own clean claim on trust: it FAILED, `stray-probe-files`, one leftover fixture path. Did not record it as a live defect on the strength of this log's own prior diagnosis of the same race: checked directly first (the path did not exist, `git status` showed nothing untracked, no concurrent preflight was running) and traced the likely cause, my own earlier `timeout 110` foreground probe that got killed mid-run, the exact "too-short timeout" mistake this log has recorded before. Ran a second full preflight, alone, tree untouched: every gate passed, 26 warnings, all previously diagnosed. Confirmed live via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 all Done/CLOSED/HOLD or Phil-gated.
 
@@ -20,7 +20,27 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** `site/assets/js/site.js` (333 lines) and `site/assets/js/quest.js` (2,007 lines) remain in the newly widened cold-read lane, `site.js` the smaller and likely right-sized for the next operator slot. Standing Phil-blocked list (`OWNER-ACTIONS.md`) and the 8 GitHub issues, unchanged.
 
-Pushed to main (three commits: the measure.js fix, the build-id regen, this log/dashboard). `site/assets/js/measure.js`, `ops/tests/test_measure_events.py`, `ops/cold-read-ledger.json`, 203 site pages' `?v=` fingerprints, `site/build-id.txt`, this log, command deck. No price or product touched; not a new page; IndexNow not applicable (existing pages only, no content change visible to a reader).
+Pushed to main (four commits: the measure.js fix, the build-id regen, this log/dashboard, and merging the concurrent 05:4x hand-off below). `site/assets/js/measure.js`, `ops/tests/test_measure_events.py`, `ops/cold-read-ledger.json`, 203 site pages' `?v=` fingerprints, `site/build-id.txt`, this log, command deck. No price or product touched; not a new page; IndexNow not applicable (existing pages only, no content change visible to a reader).
+
+## PM check-in, 2026-09-27 05:4x (previous work confirmed finished by an independent full preflight run; nothing new unblocked; cold-read lane is the only genuinely open lane, 3 files left)
+
+~~NEXT FOR THE OPERATOR: cold-read the remaining 3 unledgered files (`site/assets/js/measure.js`, `site/assets/js/site.js`, then `site/assets/js/quest.js` at 2007 lines) starting with the two smaller ones, because that is the only genuinely unblocked lane left; every backlog row is Done, HOLD or Phil-gated, and issue #32 (the last open content decision) was already closed by Phil on 2026-09-22.~~ **Superseded 2026-09-27 05:5x, above: `measure.js` done already, concurrently, by the 05:1x-05:5x PM cycle. `site.js` and `quest.js` remain for the operator.**
+
+**Previous work: finished.** Attached clean via unshallow/checkout/ff-only merge (556 commits, no conflict), working tree already clean on attach. Did not take the prior cycle's own claim on trust: ran a full `python3 -u ops/preflight.py` myself, foreground, start to finish: every gate passed, 26 warnings, all the same standing sandbox limits prior cycles have already diagnosed (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift), matching the prior cycle's own citation exactly. `ops/cold_read_ledger.py --next` confirms 171 of 174 files ledgered, the same 3 large hand-authored JS files as the prior cycle's own handoff.
+
+**Backlog and issues: nothing genuinely unblocked.** Read `BACKLOG-2026-09-07.md` sections 0 through 7: sections 2-4 rows are struck through Done; section 5 is explicit HOLD ahead of the constraint; section 6 is owner gates. Confirmed live via the GitHub API rather than copied: 8 open issues, all labelled `decision` or `blocked-on-art`, unchanged; 0 open PRs. Checked one issue not on that list by name, #32 (23 kits/bundles named on no page but their shop tile) since section 1b cited it: closed by Phil 2026-09-22, `state_reason: completed`, so nothing remains open there either.
+
+**Did not start new work this slot.** No small closing job was left undone by the prior cycle, and no backlog row is genuinely unblocked beyond the cold-read lane, which is sized for the operator's longer slot, not this one. Regenerated the command deck per the standing rule.
+
+**Went well:** re-verifying with an independent preflight run rather than trusting the prior cycle's citation a second time in a row; checking issue #32 directly instead of assuming section 1b's mention meant it was still open.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md` item 0: `VPS_DEPLOY_KEY`, Search Console, Stripe business description) and the 8 GitHub issues, unchanged. The cold-read lane is the only open item: 3 files, handed to the operator above.
+
+Pushed to main. This log, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
 
 ## 2026-09-27, scheduled operator cycle (extended the cold-read ledger past ops/*.py, found and fixed a real bug while doing it)
 
