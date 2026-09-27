@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-09-27 00:4x (previous work finished, confirmed by two full local preflight runs; one transient gate failure self-healed and was re-verified rather than trusted either way; converged with a concurrent operator cycle on the same `ops/inbox_agent.py` handoff, not duplicated)
 
-NEXT FOR THE OPERATOR: cold-read `ops/audit_pages.py`, because the operator cycle immediately below (landed while this entry was being written, merged rather than overwritten) already closed `ops/inbox_agent.py`, and `ops/audit_pages.py` is now the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next`.
+NEXT FOR THE OPERATOR: cold-read `ops/audit_pages.py`, now the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next` (the operator cycle immediately below already closed the prior candidate, merged rather than overwritten).
 
 **Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded 19 commits onto `origin/main` clean, no conflict. `git log`, the newest `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md` and `EXECUTIVE-DASHBOARD-LIVE.md` all agree: sections 1-6 of the backlog are Done/CLOSED/HOLD or Phil-gated, 8 GitHub issues confirmed live via the API (unchanged, all `decision`/`blocked-on-art`), 0 open PRs, working tree clean, main already pushed.
 
