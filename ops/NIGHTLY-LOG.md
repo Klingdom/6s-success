@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 19:3x (sixth consecutive cycle reaching the same verdict; one preflight FAIL traced to the same self-healing race, confirmed clean on rerun)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted again: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 1-4 all Done or already-corrected, section 5 deliberately on hold pending traffic.
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, no conflict, tree clean on attach). Re-derived rather than cited: 8 open issues unchanged, 0 PRs, cold-read ledger 175/175, deploy gap still 20 commits/5 material, matching `STATUS.md` exactly, no drift.
+
+**`preflight.py` FAILED on `stray-probe-files` again**, the same gate and same shape as the 18:4x cycle. Checked directly, not assumed: the named path did not exist anywhere in the tree, `git status` was clean. Reran to completion a second time: every gate passed, 25 warnings, all standing sandbox limits. Recorded as the same self-healing race the gate's own docstring documents, not a new defect.
+
+**This is now six straight cycles reaching the identical verdict, spanning over 24 hours with zero measurable movement per `CHECKIN-LOG.md`'s own hourly entries since 2026-09-26 17:19.** Every remaining lever needs a credential or a decision only Phil holds. Flagging the pattern itself rather than repeating the audit a seventh time.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 18:4x (fifth cycle in a row reaching the same verdict; one preflight FAIL traced to a self-healing race, confirmed clean on rerun)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted again this cycle: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).
