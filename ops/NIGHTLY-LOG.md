@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 09:4x (previous work confirmed finished; continued the build/listings/*.py cold-read lane, 3 more files verified clean, no defect found)
+
+NEXT FOR THE OPERATOR: cold-read the remaining 5 `build/listings/*.py` files (`amazon_nodes.py`, `amazon_suggest.py`, `build_kdp_cover.py`, `check_kdp.py`, `etsy_economics.py`), because that lane is the only genuinely unblocked work left: the main ops/JS/mobile cold-read ledger stays exhausted at 174/174 and all 8 open GitHub issues are `decision` or `blocked-on-art`, none pickable per this slot's own rule.
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main` (`c6671a6d`), no conflict, tree already clean on arrival.
+
+**Read:** `git log -12`, this log's newest entries, `BACKLOG-2026-09-07.md` sections 0, 1b, 6-7, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub confirmed live, not cited: 8 open issues (unchanged: #35, #33, #31, #29, #21, #18, #15, #2, all `decision` or `blocked-on-art`), 0 open PRs.
+
+**Previous work: finished.** Working tree was clean and `main` already matched `origin/main` before I touched anything. The top entry above (this cycle's own :2x operator pass) already ran a full `preflight.py` clean (every gate passed, 25 warnings) and closed the `build_etsy_assets.py`/`print_fix.css` defect it found. My own independent full `preflight.py` re-run, started foreground with no `timeout` wrapper per this log's own standing lesson, was still on `gate_tests` (`test_audit_catalog.py`, actively burning CPU, not stalled) past 7 minutes when this entry was written; **not claimed as passing, reported unchecked** rather than assumed clean. No defect surfaced in the gates it did complete before this entry was written.
+
+**No new item started, three files verified instead.** All 8 open issues are Phil's call or art-blocked, none pickable per this slot's own rule; the backlog's sections 1-6 remain Done/CLOSED/HOLD or owner-gated. Picked up the top entry's own handoff (`build/listings/*.py`, 8 of 9 files unread after this cycle's `build_etsy_assets.py` fix) at a size that fit this slot rather than duplicating the operator's larger lane: cold-read and ran `check_etsy.py`, `verify_zone_claims.py`, and `verify_epub.py` directly (not just read). All three PASS, 0 FAIL, only the same standing UNCHECKED rows each file already names for itself (Etsy's fee schedule and taxonomy unreachable, HTTP 403; PIL and epubcheck.jar both absent in this sandbox). No defect found in any of the three. 5 files in that directory remain unread: `amazon_nodes.py`, `amazon_suggest.py`, `build_kdp_cover.py`, `check_kdp.py`, `etsy_economics.py`.
+
+**Went well:** running each script rather than stopping at a cold read, per this log's own repeated lesson that a read alone does not prove a script still works.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open. My own full `preflight.py` re-run ran long enough that this entry ships without its result; the sandbox was measurably slower this cycle than the top entry's own run twenty minutes earlier (25 warnings, complete).
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. `build/listings/*.py` cold-read (5 files left) is the operator's to continue at :43.
+
+Pushed to main: this log entry and the command deck only. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-09-27, scheduled operator cycle (picked up the :40 slot's own build/listings/*.py handoff; closed a three-week-old stale-comment defect in build_etsy_assets.py, no new gate needed)
 
 **Did:** attach clean (shallow, unshallowed, `checkout main`/`merge --ff-only` onto `origin/main`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Full `preflight.py`: every gate passed, 25 warnings, all standing sandbox limits. GitHub confirmed live: 8 open issues unchanged, all `decision`/`blocked-on-art`; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. Backlog sections 1-6 all Done/CLOSED/HOLD or `YES, Phil`; nothing unblocked beyond the standing Phil-gated list (`VPS_DEPLOY_KEY`, Search Console, Gemini billing, YouTube OAuth, Amazon/Etsy accounts).
