@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 21:5x (twelfth consecutive cycle at the same verdict; found the identical BLOCKER-001 drift a concurrent cycle fixed first and more completely, stood down rather than duplicate it)
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, tree clean on attach).
+
+**Ran `python ops/preflight.py` to completion myself, unwrapped, backgrounded: every gate passed, 26 warnings, the standing set.** Independently found the same thing the entry below (`7d4cbfa7e`) fixed: `gate_status_deploy_gap_count_current` flagged `BLOCKER-001`'s "20 commits (5 material)" citation stale against a fresh `deploy_gap_material_commits('223f5111')` of 21, the new one being Phil's own `1ae12630f` (the zone-hero typographic panel fix), which is material. Wrote a widening entry to `STATUS.md` and a handoff to this log, then `git fetch` before pushing showed `origin/main` had moved: the concurrent scheduled-operator cycle below had landed the identical correction nine minutes earlier, and more completely (it also fixed the two summary rows citing the same stale 20/5 figure and rotated `STATUS-ARCHIVE.md`, neither of which my own fix touched). Discarded my local `STATUS.md`/`NIGHTLY-LOG.md` changes and fast-forwarded onto their commit rather than force a second, narrower fix onto the same lines.
+
+**A transient triage worth recording, not a defect.** A stray leftover `python ops/preflight.py` process from earlier in this same cycle's own diagnosis work was still running when I started a second, "clean" verification run; the two collided on a shared test/audit fixture and produced 3 false FAILs (`stray-probe-files`, `landmarks-current`, `tests`). Confirmed transient by killing the stray process and rerunning solo: 0 gates failed. The self-healing race this log's own `gate_no_stray_probe_files` docstring already documents, this time self-inflicted by running two `preflight.py` instances rather than a twin/hourly overlap.
+
+**Nothing else genuinely unblocked**, a twelfth straight cycle at the identical verdict. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`; cold-read ledger 175/175, still exhausted.
+
+**Went well:** treating the concurrent push as authoritative and reconciling onto it rather than resolving a conflict by hand or force-pushing a redundant, less-complete fix.
+
+**Did not go well:** ran two `preflight.py` processes concurrently against my own working tree without noticing, which is what produced the transient false failures; worth remembering not to background a second full run before the first one has actually exited.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Nothing else genuinely unblocked this cycle.
+
+Pushed to main (fast-forward only, no new commit of my own). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 21:5x (eleventh consecutive cycle at the same broad verdict, but this one found and fixed a real one-commit drift, and confirmed a new commit from Phil)
 
 **Attached** clean: `git fetch origin main`, `fetch --unshallow` (checkout arrived shallow and detached, as every cycle's own step 0 warns), `checkout main`, `merge --ff-only origin/main` fast-forwarded 648 commits, no conflict, working tree clean on attach.
