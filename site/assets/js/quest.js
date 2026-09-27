@@ -859,7 +859,7 @@
        for as long as 372 KB of card data takes to parse. Leaving the old
        line would have left a returning visitor stuck on the first-run
        screen, which is the same defect pointing the other way. */
-    /* No "#p-done-wrap": that id was never in quest.html (checked directly,
+    /* No #p-done-wrap: that id was never in quest.html (checked directly,
        not assumed), so it silently matched nothing here on every call. The
        elements it would have named are already covered on their own,
        correctly: "#start-head" two lines below wraps p-done/p-total, and
@@ -1808,7 +1808,7 @@
            going through renderStart at all, and an empty dropdown here is
            precisely the dead end being fixed. */
         fillRoomSelect();
-        /* No "#p-done-wrap" here either; see the matching comment in
+        /* No #p-done-wrap here either; see the matching comment in
            applyFirstRunGate(). "#start-head" and "#p-bar"'s own parentNode
            (below) already cover what it would have named. */
         ["#mode-list", "#go-map", "#go-keep", "#start-head",
