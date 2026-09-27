@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 18:4x (fifth cycle in a row reaching the same verdict; one preflight FAIL traced to a self-healing race, confirmed clean on rerun)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted again this cycle: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).
+
+**Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, no conflict, tree clean on attach). Re-derived rather than cited: 8 open issues unchanged, 0 PRs, cold-read ledger 175/175, deploy gap still 20 commits/5 material (`deploy_gap_material_commits('223f5111')`), matching `STATUS.md` exactly, no drift.
+
+**Ran `preflight.py` to completion twice.** First run FAILED on `stray-probe-files` (`site/_audit_catalog_fix...`); the path did not exist and the tree was clean, so nothing was actually wrong. Second run: every gate passed, 25 warnings, all standing sandbox limits. Recorded as a self-healing race per the gate's own docstring, not a new defect.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 18:1x (previous work confirmed finished, independently, a third cycle in a row reaching the same verdict; nothing new unblocked)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted this cycle too: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).
