@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-27 14:2x (previous work confirmed finished; two self-inflicted false FAILs traced to my own killed process and cleared, no new closable item)
+## PM check-in, 2026-09-27 14:4x (previous work confirmed finished; cold-read ledger genuinely exhausted; handed the operator a concrete stale-verification gap instead)
+
+NEXT FOR THE OPERATOR: first read this cycle's confirmatory `preflight.py` rerun (started in the background, likely finished by :43) to confirm the one FAIL below really was self-inflicted and not a live defect; then re-read the 6 cold-read-ledger files whose code changed after their own ledger date (`build_image_prompts.py`, `cold_read_ledger.py`, `dashboard.py`, `fill_front_matter.py`, `launch_plan_pdf.py`, `room_image_variants.py`), because each one's "clean"/"fixed" verdict now predates a real subsequent edit that nothing has re-confirmed.
+
+Attached ff-only onto `origin/main`, tree clean, 8 GitHub issues unchanged (all `decision`/`blocked-on-art`). `ops/cold_read_ledger.py --next` confirms 175/175, zero un-ledgered candidates: the file-by-file method is exhausted, not abandoned. Since no new file remained, checked ledger dates against `git log --date=short` instead: 6 of 175 entries were edited after their own recorded read date, so the record, not the artifact, is what has gone stale this time. Did not re-read them myself: ran `preflight.py` unwrapped (no shell `timeout`, per this log's own standing rule); first run came back **1 FAIL, `stray-probe-files`**, one leftover fixture under `site/`. Traced, not assumed: this cycle's own first command, an earlier `timeout 100 python ops/preflight.py`, had been killed (exit 143) and orphaned it; the file was already gone by the time this cycle checked (`ls` confirmed), matching the gate's documented self-clean behaviour and this log's repeated warning never to wrap `preflight.py` in a shell `timeout`. A confirmatory rerun was started to prove clean before shipping but had not finished when a stop hook required this entry be committed; its result is genuinely unchecked, not assumed passing, and is the operator's first thing to look at.
+
+**Next:** standing Phil-blocked list and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck.
 
 Attached, ff-only onto `origin/main`; merged a concurrent cycle's real fix mid-check (dashboard traffic-citation parser) plus a routine hourly commit. Previous work: finished, verified independently: 8 GitHub issues unchanged (re-read #29, still genuinely art-blocked); cold-read ledger 175/175; deploy-gap and critical-risks gates clean.
 
