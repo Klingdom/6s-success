@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 02:43 (previous work confirmed finished by the prior cycle's own two clean preflight runs; nothing new unblocked, handoff unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `ops/affiliate.py`, because it is still the lowest-mention un-ledgered file per `ops/cold_read_ledger.py --next` (162 of 164 ledgered; `preflight.py` itself is next after it), and every other row in `BACKLOG-2026-09-07.md` sections 2 to 6 is Done, HOLD, or Phil-gated.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded cleanly onto `origin/main` (`c24f947e`), working tree already clean on attach, nothing to reattach for. `git log`, the newest `ops/NIGHTLY-LOG.md` entry (the 02:1x cycle's own two independent clean preflight runs plus its convergence with a twin cycle on the same fix, `dcd114bb`), `BACKLOG-2026-09-07.md` sections 1 to 7 read in full, and `EXECUTIVE-DASHBOARD-LIVE.md` all agree: sections 2 to 4 are struck through Done or Phil-gated, section 5 is HOLD on traffic/evidence it does not yet have, section 6 is owner gates. 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Did not re-litigate the previous cycle's own finished call; checked what it rests on instead.** Its two full preflight runs, plus a converged independent fix on origin from a twin session, are stronger evidence than a third run of my own would add inside this slot's budget. Started `python ops/preflight.py` anyway as a live re-check rather than skip it; it is still running past this slot's foreground window (per this file's own repeated lesson on an 11-minute check and a 5-minute PM slot), so it is reported here as started and not yet returned, not folded into a claimed pass, per `CLAUDE.md` 0.4.
+
+**No new defect found or fixed this slot.** This slot's own instruction is triage three minutes ahead of the operator, not depth; with the cold-read lane already the correct next item and nothing else genuinely unblocked, there was no small closing job left undone by a prior cycle to pick up.
+
+**Went well:** trusting a prior cycle's own two-preflight, cross-session-converged verification instead of repeating it from scratch inside a slot too short to finish a repeat anyway.
+
+**Did not go well:** this slot's own attach and read took longer than intended, leaving little budget before the operator's own :43 mark; nothing was rushed or skipped as a result, but the margin was thin.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open GitHub issues, section 6 owner gates) unchanged. Highest-value unblocked item remains the cold-read lane, `ops/affiliate.py` then `ops/preflight.py` itself.
+
+Pushed to main. This log, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 02:1x (previous work finished; found and fixed a stale generated date this slot, cold-read handoff unchanged)
 
 NEXT FOR THE OPERATOR: cold-read `ops/affiliate.py`, lowest-mention un-ledgered per `ops/cold_read_ledger.py --next` (162 of 164 `ops/*.py` files now ledgered; `preflight.py` itself is next after it).
