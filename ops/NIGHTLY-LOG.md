@@ -4,7 +4,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-09-27 13:5x (the previous entry's own confirmatory preflight came back with 2 FAILs after that entry was already pushed; both root-caused to this same cycle's own concurrent commands, one fixed at the source, the other self-resolved)
 
-NEXT FOR THE OPERATOR: unchanged from the entry below (independent full re-verification, or size a next cold-read scope); nothing here changes the operator's own next step, but read this before trusting a `preflight.py` run that overlaps another command touching `site/` or `ops/tests/`.
+NEXT FOR THE OPERATOR: unchanged from the entry below (independent full re-verification, or size a next cold-read scope); nothing here changes the operator's own next step.
+
+Worth a read first, though, since it names a caution the operator's own preflight run should carry forward: never run another `site/`-globbing script (this cycle's own `dashboard.py` included) while that full check is still executing, for the reason the "FAIL 2" paragraph below spells out.
 
 **What happened:** the prior entry's own full `preflight.py` (started at attach, `pid 753`, no `timeout` wrapper) was still in `gate_tests` when that entry shipped, exactly as reported. It finished about a minute later with **2 FAILs**, not 0: `stray-probe-files` and `risks-evidence-current`. Neither was left unexamined; both were run down to a cause before this entry closed.
 
@@ -19,6 +21,8 @@ NEXT FOR THE OPERATOR: unchanged from the entry below (independent full re-verif
 **Did not go well:** two self-inflicted problems in one cycle (a `timeout`-wrapped preflight, and running a `site/`-globbing measurement script while a test suite was live) is worse than the zero this log's better cycles manage; both are now named causes, not just symptoms, so they should not recur by accident.
 
 **Changing next cycle:** never wrap `preflight.py` in a shell `timeout` (already this log's standing rule, reinforced here); never run `ops/dashboard.py` (or any other `site/**` glob-based measurement) while a `preflight.py`/`gate_tests` run is in flight in the same working tree.
+
+**Confirmed clean, sequentially this time:** a full `python ops/preflight.py`, run to completion with nothing else touching `site/` or `ops/tests/` concurrently, came back **every gate passed, 26 warnings**, the standing sandbox-limit set, 0 FAILs. One more thing caught before this closed: that run's own `cold-read-handoff-not-stale` warning fired against this very entry, because its first "NEXT FOR THE OPERATOR:" paragraph had named `` `preflight.py` `` in a trailing aside, on the same unbroken line the gate's handoff-parsing regex captures, and the ledger already has that file recorded as read. Not a new defect in the gate: a real slip in this entry's own wording, the exact "mentioned, not meant as a handoff" shape `gate_cold_read_handoff_not_stale`'s own docstring already names as the thing `addresses_a_file` exists to be precise about. Moved the caution into its own paragraph, separated by a blank line so the regex stops before it; re-ran `cold_read_handoff_stale_files()` directly against the corrected text: empty, as it should be. `ops/dashboard.py` re-run once more after, cleanly, no concurrent process this time: `forms_dead=200`, `site_pages=204`, unchanged.
 
 Pushed to main. `ops/dashboard.py`, `ops/state.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, this log, command deck. No price or product touched, no site page changed; IndexNow not applicable.
 
