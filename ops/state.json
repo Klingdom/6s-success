@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-27 19:52",
- "commit": "192295c59",
- "commit_msg": "PM check-in 19:3x: sixth consecutive cycle confirming nothing new unblocked, preflight FAIL again traced to the same self-healing stray-probe-file race and reverified clean",
- "commits_7d": 1096,
- "commits_total": 4186,
+ "generated": "2026-09-27 19:54",
+ "commit": "040a66014",
+ "commit_msg": "Merge concurrent scheduled cycle",
+ "commits_7d": 1100,
+ "commits_total": 4191,
  "traffic_line": "57 visitors across 144 visits, 30 days (carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "57 visitors across 144 visits, 30 days",
  "traffic_line_measured_at": "2026-09-25 01:17",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": true,
- "ahead": "0",
+ "ahead": "4",
  "deploy": {
   "reachable": false,
   "assets": [],
