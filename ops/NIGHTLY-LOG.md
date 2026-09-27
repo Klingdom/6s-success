@@ -14,6 +14,30 @@ Corrected `BLOCKER-001` (new RESOLVED entry), the "Production Knowledge" paragra
 
 Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, command deck, this log entry. No price, product or site page touched; not customer-facing, IndexNow not applicable.
 
+## PM check-in, 2026-09-27 22:4x (fifteenth consecutive cycle at the same broad verdict; a real one-commit `BLOCKER-001` drift found and fixed, no new item unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+**Attached** shallow and detached as every cycle's own step 0 warns; `git fetch origin main` showed a forced update, `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main` fast-forwarded clean onto `3071f09fe`, no conflict, tree clean on attach.
+
+**Previous work: finished and verified, not cited.** `15f5c0b2e` (PM check-in 22:2x, the push-notification escalation) and `3071f09fe` (an unrelated github-actions hourly bot commit to `CHECKIN-LOG.md`) were both already on main; nothing pending. A concurrent operator cycle (`cd4844302`, below) landed while this one was working and reached the identical broad verdict independently; merged onto it by rebase, not force, rather than resolve the resulting `ops/NIGHTLY-LOG.md` conflict by discarding either entry.
+
+**Ran `python ops/preflight.py` to completion myself, in true background, no foreground `timeout`.** First attempt was killed by my own `timeout 100` wrapper (exit 143), the exact self-inflicted mistake this log has repeatedly diagnosed; reran without one. That first real run FAILED, 1 gate, `stray-probe-files`, naming a leftover `site/_audit_catalog_fix...` path. Checked directly before recording anything: `git status` showed nothing untracked and the path did not exist on disk. Reran the full preflight a second time end to end: clean, every gate passed, 25 warnings, the standing set. Confirmed the self-healing race this log has diagnosed before, not a real defect.
+
+**Re-derived rather than cited every figure the last fourteen cycles converged on.** 8 open GitHub issues confirmed live via the API (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 Done or already corrected, section 5 HOLD by design, section 6 entirely owner-gated. `CHECKIN-LOG.md`'s newest hourly entries still read "nothing measurable moved."
+
+**Found and fixed the one real, live thing this cycle: `BLOCKER-001`'s own commit count had gone stale by one commit again, and it is material again.** Re-derived directly with `deploy_gap_material_commits('223f5111')` rather than trust the 21:5x entry's "21 commits, 6 material": real gap is now 22, the new arrival being Phil's own `7c6a83084` ("Finish it: no page on this site ships with no image, room pages included"), which gives nine of twenty room pages with no chapter illustration a typographic panel instead of a bare wall of text, the same pattern `1ae12630f` already used for the zone pages. Checked, not assumed, that it is material: a real, customer-visible content fix, not a dead-code removal or a dedup. Added a widening entry to `STATUS.md`'s `BLOCKER-001` in the section's own established pattern, corrected the two summary rows (`Public website`, `Production traceability`) that cited the stale 21/6 figure, and verified `gate_status_deploy_gap_count_current`'s own pure logic function directly against the edited file before shipping: returns no problem. Full `preflight.py` rerun after the edit: every gate passed, 25 warnings, no new FAIL.
+
+**Nothing else genuinely unblocked, a fifteenth straight cycle at the identical broad verdict.** Did not send another push notification: the 22:2x cycle escalated the 29-plus-hour stall under an hour ago and nothing measured since has moved beyond the one-commit drift above.
+
+**Went well:** catching my own foreground-`timeout` mistake immediately rather than recording a false FAIL, exactly as prior cycles' own retrospectives warned; finding the one real, small, non-Phil-gated defect instead of filing a fifteenth identical "nothing moved" paragraph; reconciling onto the concurrent operator cycle by rebase rather than losing either entry.
+
+**Did not go well:** nothing new; `BLOCKER-001`'s commit count keeps drifting by exactly one at this repository's current commit velocity, and every cycle that runs a full `preflight.py` re-derives it fresh rather than trusting the prior citation, which is what caught this again.
+
+**Changing next cycle:** none; the gate that caught this did its job.
+
+Pushed to main. `STATUS.md`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 22:5x (fourteenth consecutive cycle at the same verdict, three minutes behind the PM's own push-notification escalation)
 
 **Did:** Attached ff-only onto origin/main (shallow, fetch --unshallow, clean fast-forward, tree clean on attach). Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md and the last four log entries (delegated the bulk read to a subagent, then independently re-checked its claims myself rather than trusting them, per step 5d).
