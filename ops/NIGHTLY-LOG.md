@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-27 (full independent re-verification, deploy gap unchanged, no new closable item)
+
+**Did:** Checkout arrived shallow and detached, unrelated histories against `origin/main` (issue #27's usual shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 597 commits onto `origin/main` (`bf278234`), no conflict, tree already clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Ran a full `python ops/preflight.py` myself, uninterrupted, no shell `timeout` wrapper: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `core.hooksPath` was unset on this fresh checkout; re-enabled.
+
+**Verified rather than cited.** GitHub confirmed live via the API: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs; `git log` HEAD matches the top `STATUS.md` entry exactly, no commits landed since. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked. `ops/cold_read_ledger.py --next`: 174 of 174, zero un-ledgered candidates. Re-read `BACKLOG-2026-09-07.md` sections 2-5 directly, item by item, rather than trust the standing "all Done/CLOSED/HOLD or Phil-gated" claim: confirmed B6 (Kitchen micro quests) and B9 (five room decks) both actually shipped despite lacking the strikethrough formatting other closed rows use, B8 (print-tier) CLOSED by D-027, and C5/C6 explicitly marked "YES, Phil" (Gemini billing, YouTube OAuth). `OWNER-ACTIONS.md`'s "start here" list unchanged: `VPS_DEPLOY_KEY` (item 0), Search Console verification, YouTube OAuth, Stripe business description. `RISKS.md`: same 3 open CRITICALs (RISK-0007, RISK-0011, RISK-0013), all already tracked and Phil-gated or the standing constraint itself, nothing new to escalate.
+
+**No new item started; nothing genuinely unblocked.** Every lane this cycle could check (backlog, GitHub, cold-read ledger, inbox, risks, owner-actions) came back exactly as the prior cycle left it.
+
+**Went well:** verifying the backlog's "all sections Phil-gated" claim by reading each open-looking row individually instead of repeating the citation.
+
+**Did not go well:** nothing new; the same standing sandbox limits (no egress, no Stripe/mail/SSH-deploy credential) capped verification the same way they have for weeks.
+
+**Changing next cycle:** none; no new defect means no new gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main: this log entry and the command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 12:1x (previous work confirmed finished; independent re-verification, nothing new operator-actionable)
 
 Attach: shallow and detached, no common ancestor with origin/main; fetch --unshallow, checkout main, merge --ff-only fast-forwarded 596 commits onto origin/main, no conflict, tree already clean.
