@@ -2,17 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-27 20:0x (seventh consecutive cycle reaching the same verdict, spanning 24+ hours; flagged to Phil directly rather than logged an eighth time)
+## 2026-09-27, scheduled operator cycle
 
-NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description, plus the 8 open GitHub issues), because everything genuinely unblocked is still exhausted: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`), confirmed live via the GitHub API, not cited.
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 631 commits onto `origin/main` with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py` clean on attach (every gate passed, 25 warnings, all previously diagnosed sandbox limits: no Stripe, mail, SSH deploy key or network egress, Pillow not installed). 8 GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `cold_read_ledger.py --next`: 175 of 175, exhausted.
 
-**Attached** ff-only onto `origin/main`, clean, no conflict. Independently re-derived rather than cited: 8 open issues, 0 PRs, cold-read ledger 175/175, `OWNER-ACTIONS.md`'s four "start here" items read in full, each genuinely requiring Phil's own credential or account access, not busywork.
+With the backlog's own current sections (2 through 4) all Done or Phil-gated and the cold-read lane exhausted, read `DECISIONS.md` D-023 in full rather than another blind file sweep, since it names a defect it had already found and explicitly left open. **Found real, live drift in the Etsy listing package, the exact "source corrected, artifact never re-derived" shape this file names as dominant.** `build/listings/etsy_economics.py`'s `DIRECT_PRICE` table still priced L4 (Moving In Kit) and L5 (Holiday Hosting Kit) against a $14 site checkout that D-023 retired and archived in Stripe five days earlier (KIT-MOVING-IN, KIT-HOLIDAY-HOST), the exact gap D-023 flagged and left open. A second, undocumented instance of the same class sat beside it: `LISTINGS` still priced L2 (Kitchen Pack), withdrawn from the real package (`etsy-listings.json`) four days earlier (D-024) for an unrelated reason.
 
-**`preflight.py` FAILED on `stray-probe-files` again**, same shape as six prior cycles. Checked directly: named path absent, `git status` clean. Ran a full second `preflight.py` to completion: every gate passed, 25 warnings, standing set. Previous work confirmed finished.
+**Fixed, not just re-reported.** Removed the false comparisons rather than inventing new ones: L2 dropped from both tables; L4/L5 dropped from `DIRECT_PRICE` only (the content is genuine, deliverable and not a free duplicate, so it stays listed; only the "cheaper on the site" claim, which is now false, is gone). `etsy_economics.py`'s print loop and prose corrected to show "no site price" honestly rather than silently fail. `MARKETPLACE-LISTINGS.md`'s listing table and "why these prices" rationale corrected to match, with a dated note. `DECISIONS.md` D-023 updated to record the closure.
 
-**Seven straight cycles, 24+ hours, zero measurable movement, entirely behind ~12 minutes of Phil's own action.** Per `CLAUDE.md` 0.2, a correctly reported blocker nobody acts on costs as much as an undetected one, so this is escalated directly to Phil this cycle rather than re-logged.
+**Verified:** ran the fixed `etsy_economics.py` directly, output correct and aligned. New `check_etsy.stale_economics_entries()`, wired into `gate_etsy_listing_valid` via `check_etsy.main()`, re-derives both facts (which listings are current, which source SKUs are still live) from `etsy-listings.json` and `generated_products.py`. Proved fail-then-pass directly: planted both real defect shapes, watched `check_etsy.py` fail by name citing the listing and SKU, restored, reran clean. New `ops/tests/test_check_etsy_stale_economics.py` (5/5 cases). All three existing Etsy test files (`test_gate_etsy_pdfs_current.py`, `test_check_etsy_free_duplicate.py`, `test_gate_etsy_listing_valid.py`) still pass. Full `preflight.py` (every gate passed, 25 warnings, none new), `check_urls.py` (196/196), `audit_pages.py` (clean), `fix_dashes.py --check` (0/0) all clean after every edit, not just at the end.
 
-Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+**Went well:** reading a decision record's own "flagged here so it is not forgotten" line as an instruction rather than a footnote, and finding a second live instance of the same defect while fixing the first, matching the pattern D-023 itself named.
+
+**Did not go well:** nothing new; the backlog and GitHub issues remain genuinely exhausted of anything not Phil-gated, so this cycle's real work came from reading a decision record cold rather than the usual ledgered file sweep.
+
+**Changing next cycle:** none; the fix pairs with a gate that can fail, proved directly, so the same drift cannot recur silently.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (owner gates 1-6 in `BACKLOG-2026-09-07.md` section 6, ranked). No price or product touched; no site page changed (internal listing-prep tooling and docs only); IndexNow not applicable.
+
+Pushed to main. Command deck regenerated.
+
+## Scheduled operator cycle, 2026-09-27 (seventh consecutive cycle at the same verdict; escalated to Phil directly instead of filing an eighth identical entry)
+
+**Did:** Attached (shallow checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, clean fast-forward, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to completion, unwrapped: every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, no candidate. GitHub confirmed live via the API, not cited: 8 open issues, unchanged (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked. `BACKLOG-2026-09-07.md` sections 1-4: every row Done, CLOSED by decision, or already-corrected; section 5 deliberately on hold pending traffic; section 6 is the owner-gate list itself.
+
+**Verified:** every check this cycle could run independently agreed with the six PM check-ins immediately before it (17:2x through 19:3x today): same 8 issues, same 0 PRs, same 175/175 ledger, same 25-warning preflight baseline. `CHECKIN-LOG.md`'s own hourly entries read "nothing measurable moved" for six straight check-ins spanning 2026-09-26 20:00 through 2026-09-27 18:33, over 22 hours, against 150+ commits a day; `ops/state.json`'s own revenue line is still carried forward from 2026-09-20 because this sandbox cannot reach Stripe this month.
+
+**Went well:** not filing a seventh copy of "nothing genuinely unblocked" with no other action. `OWNER-ACTIONS.md`'s own "start here" list is four items, each 2-5 minutes, and together they are the entire remaining unblocked surface: `VPS_DEPLOY_KEY` (closes the deploy gap for good, not just this once), Search Console verification (the single most valuable unknown in the business per `GOALS.md` O1), YouTube OAuth (cleared 2026-09-26, 102 finished, captioned videos waiting on a disk), and the Stripe business description (a live checkout-page gap a buyer sees today). Sent a push notification naming exactly these four rather than let an autonomous system keep re-deriving the same stall.
+
+**Did not go well:** same as every cycle since yesterday afternoon: every remaining lever needs a credential or a decision only Phil holds, and no amount of further cold-reading manufactures real customer-facing work around that.
+
+**Changing next cycle:** none beyond what six prior cycles already tried; the pattern itself, not a missing check, is what needed surfacing this time.
+
+**Next:** the four-item `OWNER-ACTIONS.md` "start here" list and the 8 GitHub issues, unchanged. If Phil acts on any of the four, the very next cycle should re-verify state before assuming the gate cleared.
+
+Pushed to main. `ops/dashboard.py`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
 
 ## PM check-in, 2026-09-27 19:3x (sixth consecutive cycle reaching the same verdict; one preflight FAIL traced to the same self-healing race, confirmed clean on rerun)
 
