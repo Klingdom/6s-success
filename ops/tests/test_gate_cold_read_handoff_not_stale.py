@@ -234,6 +234,55 @@ def main() -> int:
                      "elsewhere wrongly fell through to an older entry's "
                      "stale handoff: %r" % stale)
 
+    # 8. "**Next for the operator:**" (45 uses across the real log) and
+    #    its siblings ("**Next for operator:**", "**Next for the operator
+    #    (:43):**", "NEXT FOR THE OPERATOR, as of this check-in:", "NEXT
+    #    FOR WHOEVER PICKS THIS UP:") must be recognised the same way
+    #    "**Next:**" already is. Found live 2026-09-27: the newest entry's
+    #    own handoff used "**Next for operator:**" naming a genuinely
+    #    fresh, un-ledgered file; the old exact-string match could not see
+    #    that header at all, so the block looked file-less and the gate
+    #    fell through to an older, superseded "NEXT FOR THE OPERATOR:"
+    #    handoff naming a file already ledgered clean, flagging that one
+    #    instead of trusting the newest entry's own live candidate.
+    log_next_for_operator = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-27 16:1x\n\n"
+        "**Next for operator:** cold-read lane continues at "
+        "`crawl_report.py`, the next un-ledgered file.\n\n"
+        "## PM check-in, 2026-09-27 15:4x\n\n"
+        "NEXT FOR THE OPERATOR: cold-read `build_feed.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_next_for_operator, LEDGER)
+    if stale:
+        fails.append("'**Next for operator:**' not recognised, fell "
+                     "through to a superseded older handoff: %r" % stale)
+
+    log_next_for_the_operator_variants = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-27\n\n"
+        "**Next for the operator (:43):** cold-read `affiliate_report.py` "
+        "and `crawl_report.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_next_for_the_operator_variants, LEDGER)
+    if stale != ["affiliate_report.py"]:
+        fails.append("'**Next for the operator (:43):**' phrasing not "
+                     "recognised: got %r" % stale)
+
+    log_next_for_all_caps_variant = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-09-27, cycle\n\n"
+        "NEXT FOR THE OPERATOR, as of this check-in: cold-read "
+        "`affiliate_report.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_next_for_all_caps_variant, LEDGER)
+    if stale != ["affiliate_report.py"]:
+        fails.append("'NEXT FOR THE OPERATOR, as of this check-in:' "
+                     "phrasing not recognised: got %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -249,7 +298,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 12/12 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 15/15 cases pass")
     return 0
 
 
