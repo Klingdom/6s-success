@@ -93,8 +93,15 @@ VERDICTS = os.path.join(ROOT, "ops", "hero-verdicts.json")
 # (main()'s PULLED sweep, fallback_wire()'s own pull for a source-less
 # environment) the same block, so the two paths cannot drift into two
 # different ideas of what a hero figure looks like.
+# TOLERANT OF ATTRIBUTES ON PURPOSE. This used to require the opening tag to
+# be exactly '<figure class="zone-hero" id="zone-hero">'. A panel written
+# with one extra style attribute was invisible to it: FIG.sub() matched
+# nothing, the page was written back unchanged, the sweep still reported
+# success, and three pages ended up holding a figure that NOTHING in this
+# pipeline could replace or remove again. A regex that can strand its own
+# output is worse than a strict one, so attributes after the id are accepted.
 FIG = re.compile(
-    '\n?<figure class="zone-hero" id="zone-hero">.*?</figure>\n?', re.S)
+    '\n?<figure class="zone-hero" id="zone-hero"[^>]*>.*?</figure>\n?', re.S)
 
 
 def approved() -> dict:
@@ -311,6 +318,145 @@ ALT_VERIFIED = {
         "A planted wall on a deck: herbs and flowers in pots along the boards "
         "with garden hand tools hanging on the wall behind them.",
 }
+
+
+NL = chr(10)
+
+# The insertion point every wiring path shares: the end of the intro
+# paragraph, immediately before the first section, h2 or card.
+HERO_SLOT = r'(</p>)(\s*<(?:section|h2|div class="card))'
+
+_CORPUS_META_CACHE = {}
+
+
+def _corpus_meta() -> dict:
+    """{zone page filename: {room, zone, done_looks_like}} from the corpus.
+
+    Built through ops/zone-name-map.json for the same reason pairs() uses it:
+    the published filename comes from the DISPLAY name, and fuzzy-matching a
+    corpus zone name onto a filename matched 101 of 114 and silently dropped
+    13, because several are deliberately renamed (Landing Zone publishes as
+    The Landing Spot).
+    """
+    if _CORPUS_META_CACHE:
+        return _CORPUS_META_CACHE
+    src = os.path.join(ROOT, 'content', 'manual', 'source', 'content.json')
+    if not os.path.exists(src):
+        return {}
+    try:
+        rooms = json.load(io.open(src, encoding='utf-8'))['rooms']
+    except Exception:                                          # noqa: BLE001
+        return {}
+    for r in rooms:
+        room = r.get('room') or ''
+        for z in r.get('zones') or []:
+            zone = z.get('zone') or ''
+            display = NAME_MAP.get(room + '|' + zone)
+            if not display:
+                continue
+            fn = slug(room) + '-' + slug(display) + '.html'
+            _CORPUS_META_CACHE[fn] = {
+                'room': room,
+                'zone': display,
+                'done_looks_like': z.get('done_looks_like') or '',
+            }
+    return _CORPUS_META_CACHE
+
+
+def esc_svg(t: str) -> str:
+    """SVG is XML: an unescaped ampersand in a zone name is a parse error and
+    the browser drops the whole graphic, so every value is escaped.
+    """
+    import html as _h
+    return _h.escape(str(t or ''), quote=True)
+
+
+def _wrap(text: str, width: int) -> list:
+    """Greedy wrap. SVG has no line box, so the breaks are decided here."""
+    words, lines, cur = text.split(), [], ''
+    for w in words:
+        trial = (cur + ' ' + w).strip()
+        if len(trial) <= width:
+            cur = trial
+        else:
+            if cur:
+                lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def panel_figure(room: str, zone: str, done: str) -> str:
+    """A typographic hero for a zone with no acceptable photograph.
+
+    WHY A PANEL AND NOT A HOLE
+    --------------------------
+    Three zones have a rejected hero (home-office file-storage, home-office
+    printer-and-scanning-station, workshop material-rack). The PULLED sweep
+    below used to remove their figure and leave nothing, so three pages
+    shipped with no image while 111 carried one, and preflight's page-art
+    warning had no action available: the only fix on offer was a photograph
+    the local model cannot draw (LRN-0012, SD 1.5 draws the room and drops
+    the micro zone, 0 of 8 acceptable).
+
+    This repository already solved the same problem once. The zone VIDEOS are
+    fully typographic for exactly this reason, quoting ops/video_zone.py:
+    a format built from type needs no imagery at all, so the constraint
+    chooses the format rather than limiting it.
+
+    WHAT IT MAY SAY
+    ---------------
+    Only the zone's own done_looks_like, quoted from content.json, which is
+    already the answer to the question this slot on the page asks. Nothing is
+    written to fill space, and the caption says plainly that no photograph
+    exists rather than letting a reader assume the panel is one.
+    """
+    done = ' '.join((done or '').split())
+    lines = _wrap(done, 46)[:6]
+    top, line_h = 132, 30
+    height = top + line_h * len(lines) + 34
+    rows = ''.join(
+        '<text x="52" y="%d" class="d">%s</text>' % (top + line_h * i, esc_svg(ln))
+        for i, ln in enumerate(lines))
+    svg = (
+        # NO FIXED WIDTH. The first version carried width="900" and a
+        # 390px phone reported 926px of document against a 390px viewport,
+        # i.e. sideways scroll on the one page this figure was added to help.
+        # Caught by ops/audit_visual.py on a real phone viewport, which is
+        # the check that exists for exactly this. The viewBox does the
+        # scaling; preserveAspectRatio is explicit so the text cannot be
+        # stretched at any width.
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 %d" '
+        'preserveAspectRatio="xMidYMid meet" '
+        'style="width:100%%;height:auto;display:block;border-radius:14px;'
+        'margin:26px 0" '
+        'role="img" aria-label="%s: what done looks like, in words.">'
+        '<style>.bg{fill:#22323c}.k{fill:#bc4b2a}'
+        '.l{font:600 15px system-ui,sans-serif;fill:#9fb3bd;letter-spacing:.09em}'
+        '.z{font:700 34px Georgia,serif;fill:#fff}'
+        '.d{font:400 20px Georgia,serif;fill:#e6eef2}</style>'
+        '<rect width="900" height="%d" class="bg" rx="14"/>'
+        '<rect x="52" y="44" width="46" height="5" class="k" rx="2"/>'
+        '<text x="52" y="82" class="l">WHAT DONE LOOKS LIKE</text>'
+        '<text x="52" y="120" class="z">%s</text>%s</svg>'
+    ) % (height, esc_svg(room + ' / ' + zone), height,
+         esc_svg(zone), rows)
+    # THE OPENING TAG MUST MATCH FIG EXACTLY. The first version added
+    # style="margin:26px 0" here, so FIG (which matches
+    # '<figure class="zone-hero" id="zone-hero">') no longer matched this
+    # figure at all: FIG.sub() replaced nothing, the file was written back
+    # unchanged, and the sweep still appended to `pulled` and reported
+    # "(panel)" for three pages that had not changed. A false success, and
+    # precisely the drift FIG's own comment warns about, that the insert and
+    # remove paths must not hold two different ideas of what a hero looks
+    # like. Spacing belongs on the svg, which carries it below.
+    return ('<figure class="zone-hero" id="zone-hero">'
+            + svg
+            + '<figcaption style="font-family:var(--sans);font-size:13px;'
+              'color:var(--soft);margin-top:8px">There is no photograph of '
+              'this zone yet, so this is the finished state in words, quoted '
+              'from the manual.</figcaption></figure>')
 
 
 def figure(stem: str, meta: dict, prefix: str = "../",
@@ -589,11 +735,35 @@ def main(apply_it: bool) -> int:
         if os.path.basename(page) in keep:
             continue
         s = io.open(page, encoding="utf-8").read()
-        if 'id="zone-hero"' not in s:
+
+        # A ZONE WITHOUT AN ACCEPTABLE PHOTOGRAPH GETS A TYPOGRAPHIC PANEL,
+        # NOT A HOLE. This used to FIG.sub("") and leave nothing, so three
+        # pages shipped with no image while 111 carried one, and the page-art
+        # warning had no action available. panel_figure() quotes the zone's
+        # own done_looks_like and its caption says there is no photograph, so
+        # it informs instead of pretending.
+        meta = _corpus_meta().get(os.path.basename(page))
+        panel = panel_figure(meta["room"], meta["zone"],
+                             meta["done_looks_like"]) if meta else ""
+
+        if 'id="zone-hero"' in s:
+            if panel and panel in s:
+                continue
+            body = (NL + panel + NL) if panel else ""
+            io.open(page, "w", encoding="utf-8", newline="").write(
+                FIG.sub(body, s, count=1))
+            pulled.append(os.path.basename(page)
+                          + (" (panel)" if panel else ""))
             continue
-        io.open(page, "w", encoding="utf-8",
-                newline="").write(FIG.sub("", s, count=1))
-        pulled.append(os.path.basename(page))
+
+        if not panel:
+            continue
+        m2 = re.search(HERO_SLOT, s, re.S)
+        if not m2:
+            continue
+        io.open(page, "w", encoding="utf-8", newline="").write(
+            s[:m2.end(1)] + NL + panel + NL + s[m2.end(1):])
+        pulled.append(os.path.basename(page) + " (panel added)")
 
     print(f"  wired {wired}, alt or markup updated {updated}, "
           f"unchanged {unchanged}, no insertion point {skipped}")

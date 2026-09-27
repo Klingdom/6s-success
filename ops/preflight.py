@@ -3745,7 +3745,15 @@ def gate_image_coverage() -> None:
     with_hero, advertising, missing, wired_stems = 0, 0, [], []
     for f in zones:
         page = io.open(f, encoding="utf-8").read()
-        if 'id="zone-hero"' in page:
+        # A TYPOGRAPHIC PANEL IS NOT A PHOTOGRAPH. Since 2026-09-27 the three
+        # zones with a rejected hero carry a <figure id="zone-hero"> holding
+        # an inline <svg> of their own done_looks_like, so those pages are no
+        # longer imageless. Counting that as "carries a photograph" made this
+        # gate read 114 against 111 approved and fail, and it was right to
+        # object: the claim would have been false. What it counts is a raster
+        # hero, which is what the og:image preview and the approval ledger
+        # are both about.
+        if 'id="zone-hero"' in page and 'id="zone-hero"><svg' not in page:
             with_hero += 1
         m = re.search(r'og:image" content="([^"]+/assets/zones/'
                       r'([^"/]+)-lg\.[a-z]+)"', page)
