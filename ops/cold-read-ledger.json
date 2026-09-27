@@ -512,9 +512,9 @@
       "note": "cold-read 2026-09-26 scheduled operator cycle: load()/owner()/send() read cold end to end (credential precedence, owner-address self-inbox refusal, attachment ordering); no defect found."
     },
     "measure.js": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-09-27",
-      "note": "Read in full (413 lines). Cross-checked call sites: measure.js loads on 30+ pages; the three IntersectionObserver block ids (capacity/variants/diagnosis) match ops/build_zone_pages.py's generator output exactly, no id collisions on deck pages. pictureSources() width/suffix branching (cards/, zones/, bare top-level) verified against real files on disk for all three shapes. No defect found."
+      "note": "Cold-read: send() swallowed any exception from window.umami.track() but returned true unconditionally, so a throwing call was reported as delivered and silently dropped from the retry queue instead of being retried like the 'not loaded yet' case. Fixed: catch now returns false. Verified with a new browser-driven probe (PROBE_G in test_measure_events.py) that throws on the umami stub's first two calls: reproduced the loss against the old code (0 buy-click events), confirmed the fix delivers it after retry (1 event). (A concurrent cold-read of the same file this same cycle checked the srcset/picture-source and IntersectionObserver-id logic and found those clean; superseded by this entry, which found the real defect.)"
     },
     "media_capability.py": {
       "status": "clean",

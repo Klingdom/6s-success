@@ -39,8 +39,13 @@
 
   function send(name, data) {
     if (window.umami && typeof window.umami.track === "function") {
-      try { window.umami.track(name, data || {}); } catch (e) {}
-      return true;
+      /* A call that throws is not a call that sent. Returning true here
+         regardless of the catch (the bug this replaced) told track() the
+         event was delivered when it was not, so it was never queued and was
+         lost for good, silently, the exact hole the queue below exists to
+         prevent for the "not parsed yet" case. */
+      try { window.umami.track(name, data || {}); return true; }
+      catch (e) { return false; }
     }
     return false;
   }
