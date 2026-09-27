@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 18:0x (previous work confirmed finished; this cycle's own preflight FAIL traced to a transient self-inflicted artifact, confirmed clean on rerun; nothing new unblocked)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` item 0, `VPS_DEPLOY_KEY`, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted this cycle: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).
+
+**Attached**, ff-only onto `origin/main` (shallow checkout, `fetch --unshallow`, clean fast-forward, no conflict). Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, the last several `NIGHTLY-LOG.md` entries, `CHECKIN-LOG.md`'s last three hourly entries (each independently "nothing measurable moved," effort without outcome, the same conclusion this cycle reaches by a different path).
+
+**Previous work (17:2x): confirmed finished**, not just cited: GitHub live via the API, 8 open issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175/175, exhausted.
+
+**This cycle's own first full `preflight.py` run (no `timeout` wrapper) came back with 1 real-looking FAIL: `stray-probe-files`, naming `site/_audit_catalog_fix...`.** Did not take it either way on faith, per CLAUDE.md 0.4: checked the file directly and it did not exist anywhere in the tree at the moment I looked (`find` across the whole repository, nothing). Called the gate function directly in isolation: clean. Reran the full `preflight.py` a second time, start to finish, no shortcuts: every gate passed, 25 warnings, identical count to the first run. Traced the shape rather than shrugged at it: this matches the same self-inflicted flake a much earlier cycle (2026-09-04, cycle twenty) diagnosed for this exact gate, an audit script writing a transient scratch probe file mid-run that a concurrently-sampling gate can catch between write and cleanup; already gitignored, already the known shape, no code change needed, no new gate needed. Recorded here as a real FAIL that self-resolved on independent reverification, not suppressed or waved off.
+
+**Nothing genuinely unblocked.** GitHub's 8 issues are all Phil-gated (6 `decision`, 2 `blocked-on-art`); the cold-read sweep that has supplied most recent cycles' own work is exhausted at 175/175; 0 PRs; `CHECKIN-LOG.md`'s last three hourly entries each separately concluded "no outcome moved" for the same underlying reason, everything left is behind a credential this sandbox does not hold (Stripe, SSH deploy key, mail, Search Console verification). No new item started this cycle; manufacturing one would be the busywork CLAUDE.md 0.8 warns against.
+
+**Verified:** two independent full `preflight.py` runs to completion, 0 FAILs on the second, 25 warnings both times, all previously diagnosed sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
+
+**Next for the operator:** standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`, is the structural blocker behind the deploy gap) and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 17:2x (previous work confirmed finished twice over; nothing new unblocked; regenerated the command deck)
 
 Attached, ff-only onto `origin/main`; two concurrent pushes landed while reading (the 17:0x cycle's own gate-regex fix, then a 17:1x PM check-in that closed the exact gap that entry left open), merged cleanly, no conflict, no overlapping files with my own work.
