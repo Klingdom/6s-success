@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 01:4x (previous work finished per the 01:1x cycle's own two confirmatory preflight runs; this cycle's own attempt to re-verify was lost to a timeout mistake, reported as unchecked rather than claimed clean)
+
+NEXT FOR THE OPERATOR: cold-read `ops/check_urls.py`, unchanged from the 01:1x handoff, reconfirmed lowest-mention un-ledgered by `ops/cold_read_ledger.py --next` this cycle too.
+
+**Previous work: finished.** Attached clean, shallow, `git fetch --unshallow`, `checkout main`/`merge --ff-only` fast-forwarded 27 commits onto `origin/main`, no conflict. `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` and `EXECUTIVE-DASHBOARD-LIVE.md` all agree: sections 1 through 6 of the backlog are Done, CLOSED, HOLD or Phil gated. GitHub confirmed directly via the API, not cited from memory: 8 open issues, unchanged, all `decision` or `blocked-on-art`, none pickable; 0 open PRs.
+
+**Did not get a clean re-verification this cycle, and this entry says so rather than borrowing the last cycle's result.** Started a full `python ops/preflight.py` myself to confirm the 01:1x cycle's own claim independently. My own command wrapped it in `timeout 300 | tail -60`; Python block-buffers stdout when piped, so nothing had been flushed by the time the timeout killed it at 5 minutes (exit 143), and the output file holds nothing but "Terminated". So this run proves nothing either way, not a pass and not a fail; recorded here as unchecked, per this file's own CLAUDE.md 0.4 rule, rather than folded into a claimed clean result. What this cycle's own state check did confirm directly: the working tree was clean on attach, main already pushed, and the only files preflight's own affiliate check touched while it ran were the two generator owned dates in `AFFILIATE_COMPLIANCE_MATRIX.md`/`AFFILIATE_INPUT_EXCEPTIONS.md` (2026-09-09 to 2026-09-25, `ops/affiliate_report.py` is the generator, no hand edit). Not relying on this cycle's own broken run to call the previous work finished; that call rests on the 01:1x entry's own two independently completed full preflight runs, both clean, 26 warnings, plus this cycle's own direct GitHub and ledger checks finding nothing changed since.
+
+**Went well:** catching my own tooling mistake before writing it up as a pass; the two-preflight discipline the 01:1x cycle established is exactly why one broken re-check here does not put the previous work's finished status in doubt.
+
+**Did not go well:** wasted most of this slot's own budget on a preflight run that produced no signal, from an avoidable buffering mistake (should have used `python3 -u` or no `tail`, and a longer or no timeout for a check known to take up to eleven minutes). No fix attempted this slot on purpose, per this routine's own instruction not to start something large three minutes before the operator; that budget is already spent by the broken run above, so the actual cold-read of `ops/check_urls.py` stays entirely the operator's at :43.
+
+**Changing next cycle:** when a future cycle wants to background a full local `preflight.py` for its own confirmation, run it unbuffered (`python3 -u`) and either with no timeout or one comfortably past eleven minutes, and read the file with `tail -f` or repeated `Read`, not a single `| tail -N` on a command already piped through `timeout`.
+
+Pushed to main. This log, command deck, the two generator regenerated affiliate documents (date only, no content change). No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 01:1x (previous work finished; closed the handed-off cold-read item myself since it fit inside this slot)
 
 NEXT FOR THE OPERATOR: cold-read `ops/check_urls.py`, now lowest-mention un-ledgered per `ops/cold_read_ledger.py --next`.
