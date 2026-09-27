@@ -511,6 +511,11 @@
       "date": "2026-09-26",
       "note": "cold-read 2026-09-26 scheduled operator cycle: load()/owner()/send() read cold end to end (credential precedence, owner-address self-inbox refusal, attachment ordering); no defect found."
     },
+    "measure.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (413 lines). Cross-checked call sites: measure.js loads on 30+ pages; the three IntersectionObserver block ids (capacity/variants/diagnosis) match ops/build_zone_pages.py's generator output exactly, no id collisions on deck pages. pictureSources() width/suffix branching (cards/, zones/, bare top-level) verified against real files on disk for all three shapes. No defect found."
+    },
     "media_capability.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -560,6 +565,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "Ran live (--check and full): 0 pages need pruning today (data.js already absent from every page that does not render a product), and the site.js guard (window.CATALOG || []) that makes the removal safe is still present. Conservative NEEDS list checked against corporate.html's consulting grid and confirmed correct. No defect."
+    },
+    "quest.js": {
+      "status": "fixed",
+      "date": "2026-09-27",
+      "note": "Read in full (2007 lines). Found and fixed a real dead-selector defect: applyFirstRunGate() and the go-other handler both hid/showed '#p-done-wrap' via a guarded $(sel), but no element with that id exists anywhere in quest.html (checked directly against the file, not assumed) and never has per this file's own git history. Harmless only because of the if(el) guard: '#start-head' and '#p-bar'.parentNode already correctly cover the same elements a separate two lines later. Removed the dead selector from both arrays, replaced with an explanatory comment so it is not silently reintroduced. Fail-then-pass not applicable (no behaviour changed, since the selector never matched); instead verified no regression: all 8 quest.js browser-driven tests (test_quest_flow, test_quest_back_button_first_run, test_quest_draw_shortcut_full_completion, test_quest_install_button_wired, test_quest_mode_requires_room, test_quest_offer_cta, test_quest_storage_blocked, test_quest_keep_url_leak) pass after the edit. node --check clean."
     },
     "receive_deploy_key.py": {
       "status": "clean",
@@ -660,6 +670,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
+    },
+    "site.js": {
+      "status": "clean",
+      "date": "2026-09-27",
+      "note": "Read in full (333 lines). imgSrc/pictureSources srcset branching verified against real files in assets/img/w, assets/zones, assets/cards (sm/md/lg and 420/840 variants all present as expected). renderProduct(), the newsletter mailto fallback, and the reveal/nav wiring all checked against their real call sites. No defect found."
     },
     "social_drafts.py": {
       "status": "clean",
