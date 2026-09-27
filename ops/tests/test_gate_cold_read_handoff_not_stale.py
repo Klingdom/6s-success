@@ -205,6 +205,35 @@ def main() -> int:
                      "prefix) was not caught, or a .test.js/unledgered "
                      "name was wrongly caught: got %r" % stale)
 
+    # 7. A newest entry that names a file only to explain it was already
+    #    closed elsewhere ("none from this entry (the intended handoff,
+    #    `X`, was closed concurrently...)") must be treated as this
+    #    window's authoritative state, empty result included, and must
+    #    NOT fall through to an older entry's now-stale handoff for a
+    #    DIFFERENT file. Found live 2026-09-27: the real log had exactly
+    #    this shape, and the old code (which conflated "handoff line
+    #    present, zero names survived stripping" with "no handoff line at
+    #    all") fell through past this entry and a second, similarly empty
+    #    one to a third-newest entry's real but by-then-stale "site.js"/
+    #    "quest.js" handoff, flagging both as if still live.
+    log_explained_closed = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-09-27 cycle three\n\n"
+        "**Next:** none from this entry (the intended handoff, "
+        "`build_feed.py`, was closed concurrently by the operator cycle "
+        "below).\n\n"
+        "## 2026-09-27, cycle two\n\n"
+        "**Next:** the cold-read lane is closed. No unread file remains.\n\n"
+        "## 2026-09-27, cycle one\n\n"
+        "**Next:** `build_feed.py` and `canonical_links.py` remain in "
+        "the cold-read lane.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_explained_closed, LEDGER)
+    if stale:
+        fails.append("a newest entry explaining a name was already closed "
+                     "elsewhere wrongly fell through to an older entry's "
+                     "stale handoff: %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -220,7 +249,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 11/11 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 12/12 cases pass")
     return 0
 
 

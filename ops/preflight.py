@@ -14288,30 +14288,58 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     not that candidate turns out to be stale), every older block's
     mentions are superseded and must not be checked.
     """
+    name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
+               r"([A-Za-z0-9_]+\.(?:py|js))`")
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
     for block in blocks:
         names, seen = [], set()
+        addresses_a_file = False
         for m in re.finditer(
                 r"(?m)^(?:\*\*Next:\*\*|NEXT FOR THE OPERATOR:|"
                 r"\*\*Handing to (?:the )?operator:\*\*|"
                 r"Handing to (?:the )?operator:)"
                 r".*(?:\n(?!\n).*)*", block):
-            live = re.sub(r"~~.*?~~", "", m.group(0), flags=re.S)
+            raw = m.group(0)
+            # A name mentioned anywhere in the raw line, even one that
+            # strikethrough/paren-stripping below removes as already
+            # superseded, means this block is specifically addressing
+            # file-level handoff status (live or resolved) and is
+            # authoritative for this window. A handoff line naming no
+            # file at all ("nothing new, backlog exhausted") is too
+            # generic to supersede an older block's real handoff, so it
+            # does not set this flag; only that case still falls through.
+            if re.search(name_re, raw):
+                addresses_a_file = True
+            live = re.sub(r"~~.*?~~", "", raw, flags=re.S)
             live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
             # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
             # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger
             # keys on bare basenames, so the prefix is optional and
             # discarded here too.
-            for name in re.findall(
-                    r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
-                    r"([A-Za-z0-9_]+\.(?:py|js))`", live):
+            for name in re.findall(name_re, live):
                 if name.endswith(".test.js"):
                     continue
                 if name not in seen:
                     seen.add(name)
                     names.append(name)
-        if not names:
+        # Found live 2026-09-27: a newest entry's own "**Next:** none from
+        # this entry (the intended handoff, `quest.js`, was closed
+        # concurrently...)" legitimately hands off nothing, the one name
+        # it mentions is inside a parenthetical aside explaining it is
+        # already resolved. The old code treated "handoff line present,
+        # zero names survived stripping" identically to "no handoff line
+        # at all" (both `not names`) and kept searching older blocks,
+        # reaching a third-older entry's real but by-then-stale
+        # "site.js"/"quest.js" handoff and flagging it as still live.
+        # `addresses_a_file` distinguishes the two: a block that names a
+        # file at all (even one it then explains away) is authoritative
+        # for this window and must stop the search here, empty result
+        # included; only a block with no file-shaped mention whatsoever
+        # (this function's own test suite's "nothing new, backlog
+        # exhausted" case) is too generic to supersede an older real
+        # handoff and still falls through.
+        if not addresses_a_file:
             continue
         stale = []
         for name in names:

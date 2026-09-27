@@ -672,9 +672,9 @@
       "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
     },
     "site.js": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-09-27",
-      "note": "Read in full (333 lines). imgSrc/pictureSources srcset branching verified against real files in assets/img/w, assets/zones, assets/cards (sm/md/lg and 420/840 variants all present as expected). renderProduct(), the newsletter mailto fallback, and the reveal/nav wiring all checked against their real call sites. No defect found."
+      "note": "Removed dead priceLo/priceHi price-range branch in renderProduct(): only the 21 Situation Kits/Area Bundles retired by D-023 (2026-09-22) ever carried those fields; zero live products, generators, or tests reference them now. A concurrent cycle's own cold-read of this same file called it clean and missed this; this finding supersedes that verdict."
     },
     "social_drafts.py": {
       "status": "clean",
