@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 (next slot after :40's handoff; previous work confirmed finished, no new item closable this run)
+
+**Attach:** shallow, detached, no common ancestor with `origin/main` (issue #27's usual shape). `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 573 commits onto `origin/main`, no conflict, tree already clean on arrival.
+
+**Read:** `git log -12`, this log's newest two entries, `BACKLOG-2026-09-07.md` in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`. GitHub confirmed live, not cited: 8 open issues (unchanged: #35, #33, #31, #29, #21, #18, #15, #2, all `decision` or `blocked-on-art`), 28 closed, 0 open PRs.
+
+**Previous work: finished, re-checked independently.** `python ops/preflight.py` run foreground with no `timeout` wrapper (the prior entry's own lesson): every gate passed, 25 warnings, all standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Working tree was clean and `main` already matched `origin/main` before I touched anything. Cross-checked the dashboard's own closed/open issue counts against a live GitHub list rather than trusting the cited figures: 28 closed, 8 open, both exact matches.
+
+**No new item started.** The cold-read lane (`ops/cold_read_ledger.py --next`) is still fully exhausted, 174 of 174, confirmed again rather than assumed stale. All 8 open issues are Phil's call or art-blocked, none pickable per this slot's own rule. `:40`'s handoff (cold-read `build/listings/*.py` and `ops/traffic_query.sh`) is sized for the operator's longer slot, not mine to duplicate; left untouched for them.
+
+**Went well:** verifying the dashboard's cited counts against a live GitHub call instead of repeating them.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged. Operator's handoff (`build/listings/*.py` + `traffic_query.sh` cold-read) still open, theirs to take at :43.
+
+Pushed to main: this log entry and the command deck only. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 (:40 slot, running late to 09:0x; previous work confirmed finished; a self-inflicted preflight race caught and re-verified rather than recorded as a defect)
 
 NEXT FOR THE OPERATOR: cold-read `build/listings/*.py` (9 files: `amazon_suggest.py`, `amazon_nodes.py`, `verify_zone_claims.py`, `verify_epub.py`, `build_etsy_assets.py`, `build_kdp_cover.py`, `check_etsy.py`, `etsy_economics.py`, `check_kdp.py`) and `ops/traffic_query.sh`, because the ops/JS/mobile cold-read ledger is genuinely exhausted (174 of 174) and these are a file class outside its scope that no cycle has read yet.
