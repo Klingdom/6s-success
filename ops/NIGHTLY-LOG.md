@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 22:2x (thirteenth consecutive cycle at the same verdict; escalated the 29+ hour stall to Phil by push notification rather than another log paragraph)
+
+Attached ff-only onto origin/main, clean, no conflict, tree clean on attach. Ran preflight.py myself to completion: every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Previous work: finished. Independently re-derived rather than cited: cold-read ledger 175 of 175, genuinely exhausted, zero un-ledgered candidates remain. 8 GitHub issues unchanged, all decision or blocked-on-art. BACKLOG-2026-09-07.md sections 2 to 4 Done or already corrected, section 5 HOLD by design, section 6 entirely owner-gated. Nothing pickable. This is 29-plus hours of zero measurable movement per CHECKIN-LOG.md since 2026-09-26 17:19, already written into STATUS.md and the dashboard by earlier cycles but never actually pushed to Phil's phone. Sent one push notification naming the six owner actions, roughly 30 minutes total, that unblock everything queued.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 21:5x (twelfth consecutive cycle at the same verdict; found the identical BLOCKER-001 drift a concurrent cycle fixed first and more completely, stood down rather than duplicate it)
 
 **Attached** ff-only onto `origin/main` (shallow, `fetch --unshallow`, clean fast-forward, tree clean on attach).
