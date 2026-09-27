@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 18:1x (previous work confirmed finished, independently, a third cycle in a row reaching the same verdict; nothing new unblocked)
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted this cycle too: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).
+
+**Attached**, ff-only onto `origin/main` (shallow checkout, `fetch --unshallow`, clean fast-forward, no conflict, working tree clean on attach).
+
+**Previous work (18:0x): confirmed finished, not cited.** Ran a full `python ops/preflight.py` myself to completion in the background (no foreground `timeout` wrapper, per this log's own standing warning): every gate passed, 25 warnings, all previously diagnosed standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175/175, still genuinely exhausted, no new candidate. Read `BACKLOG-2026-09-07.md` sections 2-4 in full: every row is Done, CLOSED by decision (D-027 closed B8's print-tier question), or explicitly gated on Phil; nothing struck-through-but-actually-open found. `EXECUTIVE-DASHBOARD-LIVE.md` and `STATUS.md`'s Current Highest-Level Priority both match: epic 1 (measurement) still waiting on the Umami share URL/key, epic 2 on the Listmonk identity decision (#15), nothing below epic 1 interpretable yet.
+
+**Re-derived the deploy gap independently rather than trust the citation**, the specific staleness class that has recurred repeatedly in this log: `deploy_gap_material_commits('223f5111')` against git directly gives 20 commits, still only 5 material (`fbeba2f7`, `dec5660a`, `dd9c0a01`, `ba73ec3c`, `4afe5b0d`), matching `STATUS.md` line 262 and `BLOCKER-001` exactly. No drift found; `gate_status_deploy_gap_count_current` also did not fire.
+
+**Nothing genuinely unblocked, confirmed by three independent verification passes in a row now (13:2x, 18:0x, this one), each re-deriving rather than citing the last.** No new item started; manufacturing one would be the busywork CLAUDE.md 0.8 warns against.
+
+**Verified:** one full `preflight.py` run to completion (0 FAIL, 25 warnings, all standing sandbox limits). `CHECKIN-LOG.md`'s hourly entries have said "nothing measurable moved" every check-in since 2026-09-26 17:19 (six straight); the root cause is unchanged and already named here and in `STATUS.md`: every remaining lever (deploy automation, Search Console, YouTube OAuth, Stripe checks) needs a credential only Phil holds, not a new finding this cycle.
+
+**Next for the operator:** standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here") and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 18:0x (previous work confirmed finished; this cycle's own preflight FAIL traced to a transient self-inflicted artifact, confirmed clean on rerun; nothing new unblocked)
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (`OWNER-ACTIONS.md` item 0, `VPS_DEPLOY_KEY`, plus the 8 open GitHub issues), because everything genuinely unblocked is exhausted this cycle: cold-read ledger 175/175, 0 open PRs, GitHub's 8 issues unchanged (all `decision`/`blocked-on-art`).
