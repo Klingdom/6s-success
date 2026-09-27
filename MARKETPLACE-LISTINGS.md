@@ -450,6 +450,23 @@ there is no live listing this would fix today. Left as a same-day-doable task
 for whoever picks it up next, with the "needs Phil's machine" blocker removed
 since it was never really the blocker.
 
+**Corrected 2026-09-27, operator: the honest next step above was taken, three
+weeks after it was named and twice re-confirmed clean-but-redundant without
+being closed.** `print_fix.css`'s own header comment had itself gone stale in
+the meantime, still reading "until it lands there, this override keeps the
+two from diverging" as if the upstream fix had not shipped, when this section
+already recorded that it had, 2026-09-06. Removed the file and the
+`apply_fix` branch in `render()` that applied it; `build_etsy_assets.py` now
+renders every source file exactly as committed, with no override layered on
+top. Verified before removing, not after: ran the renderer with and without
+the override and confirmed both produce 76/20/11/13 pages for the four
+listings with 0 near-empty pages either way, so nothing customer-visible
+changes (Etsy is still not live, so there was no live listing to break
+either way). `gate_etsy_pdfs_current` compares normalized text, not page
+geometry, so it is unaffected; `gate_etsy_listing_valid` re-derives page/card
+counts from the real PDFs on every run, so it would have caught a real
+regression rather than trusting this account.
+
 ### 3.3 Category and listing settings
 
 Same for all four:
@@ -878,7 +895,6 @@ Ranked by how much it would change the outcome.
 | `build/listings/amazon_nodes.py` | Walks the live Kindle browse tree, the evidence behind the categories |
 | `build/listings/etsy-listings.json` | The three listings as data |
 | `build/listings/build_etsy_assets.py` | Renders and measures the Etsy deliverables and listing images |
-| `build/listings/print_fix.css` | The print geometry fix, with the reasoning |
 | `build/listings/print-instructions.html` | The one-page printing guide included in every listing |
 | `build/listings/check_etsy.py` | Checks the listings against the limits and the real files |
 | `build/listings/verify_zone_claims.py` | Prints the zones each pack really contains, so no description can name one it does not have |

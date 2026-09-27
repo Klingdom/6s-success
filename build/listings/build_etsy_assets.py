@@ -10,17 +10,22 @@ open in a browser and hope prints the same way. This renders each chosen pack
 through a headless browser, which honours the same print CSS the site uses, and
 then measures the result rather than trusting it.
 
-THE DEFECT IT CORRECTS ON THE WAY THROUGH
------------------------------------------
-Nine 3.5in cards is 10.5in of content, and the source sets a 0.4in page margin,
-leaving 10.2in of printable height. Every pack therefore overflowed by 0.3in
-and Chromium pushed that strip onto a page of its own: every second page of
+THE DEFECT THIS USED TO CORRECT ON THE WAY THROUGH
+---------------------------------------------------
+Nine 3.5in cards used to be 10.5in of content against a 0.4in page margin
+leaving 10.2in of printable height: every pack overflowed by 0.3in and
+Chromium pushed that strip onto a page of its own, so every second page of
 every rendered pack was a near-empty sheet carrying three orphaned card
-footers, and the card above it printed without its footer rule. A 152 page
-Whole House PDF is really 76 pages of cards and 76 pages of litter.
-print_fix.css corrects the geometry at render time. See that file for why the
-fix is what it is, and fix it upstream in ops/build_catalog.py so the site
-edition and the marketplace edition stay the same file.
+footers. Fixed upstream 2026-09-06 in `ops/build_catalog.py` itself (Phil's
+own `9e7b1cd1`/`f2885908`: 0.3in/0.4in page margin, 3.4in cards), which is
+where it belonged: the site edition and the marketplace edition read the same
+source file and no longer need a separate override here. A `print_fix.css`
+override used to sit on top of that, at slightly different values (0.25in
+margin, 3.49in rows), which still produced the right page count but was a
+second, silently divergent card size nobody had asked for; removed
+2026-09-27 once the two were confirmed to render the same normalized text
+and page counts either way (`MARKETPLACE-LISTINGS.md`'s own account of this
+fix names removing it as "the honest next step").
 
 WHAT IT DELIBERATELY DOES NOT DO
 --------------------------------
@@ -117,19 +122,13 @@ INSTRUCTIONS = ("build/listings/print-instructions.html",
                 "How-to-print-these-cards.pdf")
 
 
-def render(browser, src_rel, dest, apply_fix=True):
-    """Render one HTML to PDF, with the card-sheet geometry fix if it is a pack.
-
-    The fix is not applied to the instruction sheet, which is ordinary prose and
-    wants ordinary margins."""
+def render(browser, src_rel, dest):
+    """Render one HTML to PDF as-is: the source's own print CSS is correct
+    (see the module docstring for why no override is layered on top any more)."""
     html = open(os.path.join(ROOT, src_rel), encoding="utf-8").read()
-    patched = html
-    if apply_fix:
-        fix = open(os.path.join(HERE, "print_fix.css"), encoding="utf-8").read()
-        patched = html.replace("</style>", "</style>\n<style>" + fix + "</style>", 1)
     tmp_html = os.path.join(TMP, os.path.basename(src_rel))
     with open(tmp_html, "w", encoding="utf-8") as fh:
-        fh.write(patched)
+        fh.write(html)
     url = "file:///" + os.path.abspath(tmp_html).replace(os.sep, "/")
     # Every other headless-Chrome caller in this repository (render_cards.py,
     # prerender_shop.py, video_zone.py, build_thumbnails.py, build_social_
@@ -415,7 +414,7 @@ def main():
 
     for slug in sorted({s for s, _, _ in LISTINGS}):
         dest = os.path.join(OUT, slug, "files", INSTRUCTIONS[1])
-        render(browser, INSTRUCTIONS[0], dest, apply_fix=False)
+        render(browser, INSTRUCTIONS[0], dest)
         pages, sizes, cards, junk = audit(dest)
         rows.append((slug, INSTRUCTIONS[1], pages, cards, junk, sizes,
                      os.path.getsize(dest)))
