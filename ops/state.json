@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-27 11:01",
- "commit": "0e38f97b",
- "commit_msg": "PM check-in: preflight self-inflicted timeout race confirmed and re-run clean, core.hooksPath enabled, no new closable item found",
- "commits_7d": 1122,
- "commits_total": 4142,
+ "generated": "2026-09-27 11:02",
+ "commit": "0558dba3",
+ "commit_msg": "PM check-in: preflight self-healing race reconfirmed, deploy-gap re-derived unchanged, every cold-read lane genuinely exhausted, no new closable item",
+ "commits_7d": 1123,
+ "commits_total": 4143,
  "traffic_line": "68 visitors across 160 visits, 30 days (carried forward from 2026-09-23 12:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "68 visitors across 160 visits, 30 days",
  "traffic_line_measured_at": "2026-09-23 12:50",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
