@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-27 17:2x (previous work confirmed finished twice over; nothing new unblocked; regenerated the command deck)
+
+Attached, ff-only onto `origin/main`; two concurrent pushes landed while reading (the 17:0x cycle's own gate-regex fix, then a 17:1x PM check-in that closed the exact gap that entry left open), merged cleanly, no conflict, no overlapping files with my own work.
+
+**Previous work: finished.** Confirmed independently rather than cited: ran a full `python ops/preflight.py` myself to completion, no `timeout` wrapper: every gate passed, 25 warnings, all standing sandbox limits (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). GitHub confirmed live via the API: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; CI running clean on the latest pushes. `OWNER-ACTIONS.md`'s item 0 (VPS_DEPLOY_KEY) is still the standing structural blocker behind the deploy gap; unchanged. A local session (Phil, real access) separately pushed a legitimate credential-safety fix to `ops/youtube_upload.py` (refuses to upload to the wrong Google channel) in between; not mine to touch, no conflict with anything above.
+
+**No new item started; nothing genuinely unblocked.** Cold-read ledger and backlog both exhausted per the two cycles directly below, and my own independent checks agree.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 17:1x (previous work confirmed finished; closed the exact gap the prior cycle's own entry left open)
 
 Attached, ff-only onto `origin/main`; two concurrent pushes landed while working (the 17:0x cycle's own header-regex widening below, then a local session's YouTube-account/Etsy-PDF push), merged cleanly rather than forced, no overlapping files with either. **Previous work: finished**, but the 17:0x entry directly below named a real gap it deliberately left open rather than chase further: `cold_read_handoff_stale_files()` still false-positived on the exact live warning it started from, because the block naming `fill_front_matter.py` cites it as "the same bug shape ... just fixed in `fill_front_matter.py`", a bare (non-parenthetical) precedent citation the existing strikethrough/parenthetical stripping never covered.
