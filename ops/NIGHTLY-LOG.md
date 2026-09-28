@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 18:4x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable. If you want a fresh angle rather than repeating that verdict, the last two cycles (17:4x/17:5x) both found real value reading a live, recently-shipped customer-facing page cold instead of the now-exhausted `ops/*.py` ledger (the garage-deck "A 80" grammar defect); a page/generator not yet freshly re-read since its own last content change is the most promising next lane.
+
+Attached clean: checkout arrived shallow and detached (the standing issue #27 shape), `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 764 commits onto `origin/main`, no conflict, tree already clean on arrival. Read `git log -12`, the **top** of `ops/NIGHTLY-LOG.md` (newest-first, the exact trap a subagent fell into at 17:1x; read correctly this time), `STATUS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b-7), `EXECUTIVE-DASHBOARD-LIVE.md`.
+
+**Independently re-derived, not cited:** GitHub's 8 open issues fetched live via the API, byte-identical by number and label to the 17:4x/17:5x cycles (#35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted, 0 un-ledgered candidates. `OWNER-ACTIONS.md`'s "start here" list unchanged (VPS_DEPLOY_KEY, Search Console, Stripe description, YouTube OAuth). Started a full `python ops/preflight.py` via `ops/run_preflight.sh` (detached, `setsid`-backed, not a foreground timeout); it was still completing past four minutes at push time, longer than this cycle's own time budget allows while holding the operator's :43 slot. Not reporting it clean on that basis: the 17:5x cycle's own garage-deck fix is the most recent `site/**` change and nothing has touched gated content since, so the risk of it failing is low but genuinely unconfirmed by me this cycle, recorded here as unchecked rather than assumed passing, per CLAUDE.md 0.4. Whoever reads this next should confirm the run finished clean (`cat /tmp/preflight_run.*.log` or a fresh `ops/run_preflight.sh`) before trusting it.
+
+**Went well:** catching the newest-first trap before repeating it; independently re-fetching GitHub and the cold-read ledger rather than citing the 17:4x numbers.
+
+**Did not go well:** ran long on this slot (started the attach near 18:43 rather than 18:40) and could not hold open long enough to see `preflight.py` finish; leaving that unresolved for the operator rather than guessing at its result.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation, and the only open item this cycle (confirming this run's own preflight result) is for the very next session, not Phil.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 17:5x (a real, live grammar defect in the Garage deck's own JSON-LD found and fixed at the source; new gate added)
 
 **Did:** Attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 757 commits fast-forwarded, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, and the newest `ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` via `ops/run_preflight.sh` (detached, not a foreground timeout): every gate passed, 25 standing warnings, matching every recent cycle. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. 8 GitHub issues, byte-identical to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. No mail credential; no egress.
