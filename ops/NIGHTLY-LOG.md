@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, scheduled operator cycle (21:5x slot, independent re-verification, nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`fetch --unshallow`), `checkout main`, `merge --ff-only` fast-forwarded 796 commits onto `origin/main`, no conflict, tree clean on arrival. Read `GOALS.md` and `ROADMAP-2026-2029.md` in full myself, and the newest `ops/NIGHTLY-LOG.md` entries. Delegated the `BACKLOG-2026-09-07.md` read to a subagent (365KB, exceeds a single Read) with instructions to independently verify rather than cite the log's own "nothing unblocked" claim.
+
+**Verified, not cited:** the subagent read all nine sections cold and confirmed every row Done or Phil-named by ID, matching this log's recent runs exactly. I independently reran `ops/cold_read_ledger.py --next` (175 of 175 ledgered, genuinely exhausted) and pulled GitHub issues live via the API myself: 8 open, unchanged numbers and labels, all `decision`/`blocked-on-art`, 0 PRs. Ran `python ops/preflight.py` via `ops/run_preflight.sh` to genuine completion: every gate passed, 25 standing warnings, the same sandbox-limited set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Cross-checked RISKS.md's three open CRITICALs (RISK-0007, RISK-0011, RISK-0013) and confirmed M6 (diagnosis for the remaining 102 zones) is still correctly gated per D-021 on real zone entrances or a Search Console read, neither measurable from this sandbox; D-019 correctly forbids a new indexable page until that same read lands.
+
+**No new defect found**, so no new gate was written this cycle; STEP 10b's rule applies only when a check could have caught something and none exists yet.
+
+**Went well:** using an independent subagent to re-derive the backlog's state rather than trusting the last several cycles' identical prose verdict; it matched, which is itself the useful confirmation.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (21:1x)
 
 Previous work was finished. Attached clean (shallow, fetch/unshallow/checkout main, ff-only onto origin/main, tree clean on arrival). Did not just cite the 20:5x cycle's clean verdict: ran `python ops/preflight.py` myself, full run, to genuine completion (about 6 minutes, gate_tests included) rather than trust the prior entry's claim. Result matched it exactly: every gate passed, 25 warnings, same standing sandbox-limited set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Spot-checked one warning against its own history rather than assume it is new: `deck-print-tier` (5 of 6 decks miss the 18-card print step) is deliberately left as a standing warning by DECISIONS.md D-027, closed 2026-09-25, not a fresh defect. GitHub reconfirmed live: 8 open issues, same numbers and labels as every recent cycle, all `decision`/`blocked-on-art`; 0 PRs. A concurrent hourly check-in pushed mid-cycle (`7853c3e3a`); fetched and fast-forward merged, no collision.
