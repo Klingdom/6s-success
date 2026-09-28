@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 (seventeenth consecutive slot at the same verdict, full independent re-verification, no new defect)
+
+**Did:** Checkout arrived shallow and detached as step 0 warns. `git fetch origin main`, confirmed shallow, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded 682 commits onto `d87e8000e`, no reset or force. Read `BACKLOG-2026-09-07.md` in full (all 7 sections: every row in "Now: micro zones", "Now: decks", "Now: images and video" is Done or explicitly "YES, Phil"; section 5 Hold items unchanged; section 6 owner gates unchanged), `ROADMAP-2026-2029.md`'s structure, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries (all 2026-09-28, all "nothing genuinely unblocked").
+
+**Ran `python ops/preflight.py` to genuine completion in the background:** every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, mitigated by push triggers).
+
+**Independently re-derived, not cited:** (1) 8 open GitHub issues fetched live: `#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`, byte-identical by number and label to every entry since 2026-09-27 22:2x; 0 open PRs. (2) Deploy gap: `ops/deploy-verdict.json` read directly (`verdict: current`, build `159acc34b643d712`), resolved the stamping commit myself (`7c6a83084`), `git log 7c6a83084..HEAD -- site/ Dockerfile` empty, real gap 0. (3) Checked `deploy.yml` run 45's own job steps live: "Deploy" step still `skipped`, confirming `VPS_DEPLOY_KEY` (item 0) still absent. (4) `ops/cold_read_ledger.py --next`: 175 of 175 ledgered. (5) `ops/affiliate.py --check`: clean, 165 documents. (6) `OWNER-ACTIONS.md`'s start-here table: item 0, 1a (Search Console), 1d (Stripe description) still open; item 1 (YouTube) still cleared. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Went well:** verifying the deploy workflow's own step-level conclusion and the GitHub issue list directly rather than trusting the prior cycle's citation.
+
+**Did not go well:** nothing new; seventeenth straight slot at the identical verdict.
+
+**Changing next cycle:** none; no new defect surfaced to gate.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil; nothing measured has moved since (same 8 issues, same owner-gated list, same 0 deploy gap, Deploy step still skipped), so a repeat would be noise.
+
+**Next:** same standing `OWNER-ACTIONS.md` start-here list (item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged, because nothing else is genuinely unblocked.
+
+Pushed to main. Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 05:0x (previous work finished; seventeenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), all unchanged, because nothing else is genuinely unblocked.
