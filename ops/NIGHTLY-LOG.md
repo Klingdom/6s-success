@@ -2,6 +2,72 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 00:0x (found the identical BLOCKER-001/production-current fix a concurrent cycle landed first and more cleanly, stood down rather than duplicate it)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+Attached ff-only onto `origin/main`, clean. Ran `python ops/preflight.py` to completion in the background, no foreground timeout: it FAILED, `status-deploy-verdict-current`, naming `BLOCKER-001` as citing a superseded build. Traced it to Phil's own `9b0de5cd4` (LRN-0020), which had redeployed and recorded `ops/deploy-verdict.json` current at build `159acc34b643d712`; `resolve_verdict_commit()` to `7c6a83084`, `deploy_gap_material_commits('7c6a83084')` empty against HEAD, real gap 0. Wrote the fix (new `BLOCKER-001` entry, the Production Knowledge paragraph, both summary rows, an archive rotation), committed and ran `ops/ship.py`: the push was rejected, conflicting on the exact same three files. `git fetch` showed a concurrent PM cycle (`1ceeecadc`, "23:1x") had landed the identical diagnosis and an equally complete fix nine minutes earlier, already verified with its own clean `preflight.py` rerun (25 warnings, the deploy-verdict warning cleared) and already merged. Compared both fixes line by line rather than assumed: same root cause, same resolved commit, same four sites corrected, no gap theirs left open that mine closed. `git reset --hard origin/main` to discard the duplicate rather than force a conflicting second fix onto the same lines. Re-verified the merged state directly: `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` both return empty against the current file.
+
+**Nothing else genuinely unblocked.** 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Did not send a push notification: nothing has moved since the 22:2x escalation except this now-closed P0, which is good news for the next dashboard read, not a new stall.
+
+**Went well:** comparing both fixes in full before discarding either, rather than assuming a later timestamp meant a better fix.
+
+**Did not go well:** two consecutive PM slots (22:4x and this one) spent effort independently re-deriving the same live redeploy because neither could see the other mid-flight; worth noting, not yet a structural gate.
+
+Nothing pushed this cycle (fast-forward only, no new commit).
+
+## Scheduled operator cycle, 2026-09-27 23:5x (sixteenth consecutive cycle at the same verdict, independently re-derived rather than trusted)
+
+**Did:** Attached shallow and detached as step 0 warns: `git fetch origin main` showed a forced update, `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main` (local main was stale at `59478776`, 661 commits behind), `merge --ff-only origin/main` fast-forwarded clean onto `b5ec7f298`, no conflict, tree clean on attach. Read GOALS.md, the current backlog's unresolved sections (2 through 7), OWNER-ACTIONS.md and the last four NIGHTLY-LOG entries.
+
+**Verified, not cited:** ran `python ops/preflight.py` to true completion in the background rather than under a foreground timeout, the exact self-inflicted mistake this log has repeatedly diagnosed. Every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Independently re-derived rather than trusted: `ops/cold_read_ledger.py --next` confirmed 175 of 175 files ledgered, zero un-ledgered candidates, genuinely exhausted. 8 open GitHub issues read directly via the API, byte-identical to the last four entries' own count, all `decision`/`blocked-on-art`. `ops/inbox_agent.py --apply`: no mail credential, correctly unchecked. `git log 7c6a83084..HEAD -- site/ Dockerfile` empty: production still confirmed level with HEAD, no new site change since the last redeploy this log recorded at 23:1x. `BACKLOG-2026-09-07.md` sections 2 to 4 remain Done or already corrected, section 5 HOLD by design, section 6 entirely owner-gated.
+
+**Went well:** did not send a duplicate push notification. The 22:2x PM check-in already escalated the 29-plus-hour stall to Phil by phone roughly ninety minutes before this cycle started, and nothing measured has moved since (same 8 issues, same exhausted ledger, same owner-gated list, no new site commit). A second notification for the identical, already-reported condition would have been noise, not information.
+
+**Did not go well:** nothing new to report; this is the sixteenth cycle running against a backlog and issue queue that is genuinely exhausted of anything not gated on Phil (`VPS_DEPLOY_KEY`, Search Console verification, the Stripe business description, YouTube OAuth paste).
+
+**Changing next cycle:** none; the standing gates did their job again.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (items 0, 1a, 1, 1d) and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+## PM check-in, 2026-09-27 23:1x (previous work finished; production redeployed and confirmed level with HEAD exactly, closing the standing BLOCKER-001 gap in full)
+
+Previous work: finished (14 consecutive cycles at the same verdict, most recently escalated by push notification at 22:2x; nothing measured had moved since). Attached ff-only onto `origin/main`, clean. My own first `preflight.py` run was cut short by a foreground `timeout 280` wrapper before it could print a result: discarded as unchecked, not reported, and rerun with no cap to genuine completion. Every gate passed, 26 warnings on that run.
+
+One of those 26 was new and real: `gate_status_deploy_verdict_current` warned that `BLOCKER-001` and the "Production Knowledge" paragraph both cited a superseded build (`a6c5f96b77c7cff2`, 2026-09-25T22:21:27Z) against a newer one already sitting in `ops/deploy-verdict.json` (`159acc34b643d712`, 2026-09-27T22:45:39Z, the same live check Phil's own `9b0de5cd4` records in its own commit message). Resolved the new build to commit `7c6a83084` with `resolve_verdict_commit()`; `git log 7c6a83084..HEAD -- site/ Dockerfile` is empty, so none of the 14-plus scheduled cycles since have touched anything a redeploy would need to carry. Production is confirmed level with HEAD, right now, not merely reported clean.
+
+Corrected `BLOCKER-001` (new RESOLVED entry), the "Production Knowledge" paragraph in section 30 (prepended, prior entry marked superseded in place), and the two summary rows (`Public website`, `Production traceability`) that all still cited the old 21-commit gap. Rotated the oldest of the four-entry "Last Updated" stack into `STATUS-ARCHIVE.md`, per the standing practice. Reran `preflight.py` to completion after the edits: every gate passed, 25 warnings, the deploy-verdict warning gone, no new FAIL. 8 open GitHub issues confirmed unchanged, all `decision`/`blocked-on-art`; cold-read ledger still 175/175, exhausted. No other item was startable.
+
+**Handing to the operator at :43:** nothing specific; the backlog and GitHub are still exhausted of anything not Phil-gated. If a future cycle finds `ops/deploy-verdict.json` newer than what `STATUS.md` cites again, the same correction pattern applies.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, command deck, this log entry. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+## PM check-in, 2026-09-27 22:4x (fifteenth consecutive cycle at the same broad verdict; a real one-commit `BLOCKER-001` drift found and fixed, no new item unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+**Attached** shallow and detached as every cycle's own step 0 warns; `git fetch origin main` showed a forced update, `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main` fast-forwarded clean onto `3071f09fe`, no conflict, tree clean on attach.
+
+**Previous work: finished and verified, not cited.** `15f5c0b2e` (PM check-in 22:2x, the push-notification escalation) and `3071f09fe` (an unrelated github-actions hourly bot commit to `CHECKIN-LOG.md`) were both already on main; nothing pending. A concurrent operator cycle (`cd4844302`, below) landed while this one was working and reached the identical broad verdict independently; merged onto it by rebase, not force, rather than resolve the resulting `ops/NIGHTLY-LOG.md` conflict by discarding either entry.
+
+**Ran `python ops/preflight.py` to completion myself, in true background, no foreground `timeout`.** First attempt was killed by my own `timeout 100` wrapper (exit 143), the exact self-inflicted mistake this log has repeatedly diagnosed; reran without one. That first real run FAILED, 1 gate, `stray-probe-files`, naming a leftover `site/_audit_catalog_fix...` path. Checked directly before recording anything: `git status` showed nothing untracked and the path did not exist on disk. Reran the full preflight a second time end to end: clean, every gate passed, 25 warnings, the standing set. Confirmed the self-healing race this log has diagnosed before, not a real defect.
+
+**Re-derived rather than cited every figure the last fourteen cycles converged on.** 8 open GitHub issues confirmed live via the API (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 Done or already corrected, section 5 HOLD by design, section 6 entirely owner-gated. `CHECKIN-LOG.md`'s newest hourly entries still read "nothing measurable moved."
+
+**Found and fixed the one real, live thing this cycle: `BLOCKER-001`'s own commit count had gone stale by one commit again, and it is material again.** Re-derived directly with `deploy_gap_material_commits('223f5111')` rather than trust the 21:5x entry's "21 commits, 6 material": real gap is now 22, the new arrival being Phil's own `7c6a83084` ("Finish it: no page on this site ships with no image, room pages included"), which gives nine of twenty room pages with no chapter illustration a typographic panel instead of a bare wall of text, the same pattern `1ae12630f` already used for the zone pages. Checked, not assumed, that it is material: a real, customer-visible content fix, not a dead-code removal or a dedup. Added a widening entry to `STATUS.md`'s `BLOCKER-001` in the section's own established pattern, corrected the two summary rows (`Public website`, `Production traceability`) that cited the stale 21/6 figure, and verified `gate_status_deploy_gap_count_current`'s own pure logic function directly against the edited file before shipping: returns no problem. Full `preflight.py` rerun after the edit: every gate passed, 25 warnings, no new FAIL.
+
+**Nothing else genuinely unblocked, a fifteenth straight cycle at the identical broad verdict.** Did not send another push notification: the 22:2x cycle escalated the 29-plus-hour stall under an hour ago and nothing measured since has moved beyond the one-commit drift above.
+
+**Went well:** catching my own foreground-`timeout` mistake immediately rather than recording a false FAIL, exactly as prior cycles' own retrospectives warned; finding the one real, small, non-Phil-gated defect instead of filing a fifteenth identical "nothing moved" paragraph; reconciling onto the concurrent operator cycle by rebase rather than losing either entry.
+
+**Did not go well:** nothing new; `BLOCKER-001`'s commit count keeps drifting by exactly one at this repository's current commit velocity, and every cycle that runs a full `preflight.py` re-derives it fresh rather than trusting the prior citation, which is what caught this again.
+
+**Changing next cycle:** none; the gate that caught this did its job.
+
+Pushed to main. `STATUS.md`, this log entry, command deck. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-27 22:5x (fourteenth consecutive cycle at the same verdict, three minutes behind the PM's own push-notification escalation)
 
 **Did:** Attached ff-only onto origin/main (shallow, fetch --unshallow, clean fast-forward, tree clean on attach). Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md and the last four log entries (delegated the bulk read to a subagent, then independently re-checked its claims myself rather than trusting them, per step 5d).
