@@ -323,6 +323,7 @@ Maintain:
 | LRN-0018 | Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0019 | The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus fix never reaches the product | BUILD / PRODUCT | SUPPORTED | HIGH |
 | LRN-0020 | When a gate has no available action, the format is usually the thing to change, not the blocker | MEDIA / BUILD | SUPPORTED | HIGH |
+| LRN-0021 | nohup and disown do not protect a background job from a process-group signal; only a new session (setsid) does | ENGINEERING / RELIABILITY | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -547,6 +548,48 @@ a rebase conflict resolution", moving an entry back into place.
 **Implication.** For any append-at-top file (`ops/NIGHTLY-LOG.md`, `STATUS.md`), a conflict resolution is not finished when the
 markers are gone. It is finished when the entries are in the order the file claims to keep. Verify the headings after every
 resolution, the same way a generated file is regenerated rather than hand-picked from either side of a conflict.
+
+#### LRN-0021: nohup and disown do not protect a background job from a process-group signal; only a new session (setsid) does
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (reproduced twice, once failing and once passing, same
+machine, same command)
+**Domain:** ENGINEERING / RELIABILITY
+**Measured:** 2026-09-28
+
+"foreground timeout" appears dozens of times in `ops/NIGHTLY-LOG.md`, always
+the same shape: an agent runs `python ops/preflight.py` directly, the shell's
+own default command timeout fires before the full gate suite finishes, and
+the run is discarded and repeated in the background. `preflight.py`'s own
+docstring has warned against a short foreground wrapper for a long time. The
+warning never stopped the mistake, because a written warning is not a
+mechanism, and at least twice it left a generator mid-chain (a copyright page
+nearly shipped with an unfilled placeholder) before a human-shaped catch.
+
+The assumed fix, `nohup ... & disown`, was never actually verified against
+the failure it exists to survive. Tested directly this cycle: launch
+`nohup python ops/preflight.py & disown`, then send the launching shell the
+same kind of signal a caller's own timeout sends (`timeout 8 <that shell>`,
+SIGTERM to the whole invocation). **The nohup'd, disowned child died anyway.**
+`nohup` only blocks `SIGHUP`; `disown` only removes shell job-control
+bookkeeping. Neither takes the child out of the caller's process group, and a
+timeout (or a harness's own command-timeout enforcement) that signals the
+group takes the "detached" child down with it. Rerun with `setsid` in front
+of the same command, same kill: the child survived, because `setsid` gives it
+its own session and process group, which a group-targeted signal cannot
+reach.
+
+**The general rule: "detached" is a claim about *signal delivery*, not about
+whether a shell can see the job.** `nohup`/`disown` change what the shell
+does to the child on the shell's own exit; they do not change which
+process group the child sits in. Only a new session actually isolates a
+child from a signal aimed at its parent's group. `ops/run_preflight.sh` now
+does this (and also avoids launching a second, concurrent preflight run if
+called again while the first is still finishing, the other incident shape
+this log records). Any future wrapper meant to survive a caller being killed
+should be checked the same way: launch it, kill the launcher with the same
+signal shape the real constraint uses, and look at `ps`, not at the wrapper's
+own exit code, to see what actually happened to the child.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
