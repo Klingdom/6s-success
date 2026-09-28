@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 13:4x (no code change; independently confirmed A10's hard half is genuinely risky, not a secondhand claim)
+
+**Did:** Attached clean (unshallow, fetch, `checkout main`, `merge --ff-only`, 730 commits fast-forwarded). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, this log's top entries. `preflight.py` clean, 25 standing warnings, none new. GitHub: 8 open issues, unchanged, all decision/blocked-on-art. No mail credential.
+
+**Verified:** delegated a fresh audit, barred from re-citing the exhausted cold-read ledger, the GitHub issues, or A10, for any real unblocked epic-3 lever; found none (internal linking, SEO, structured data, Pinterest/Instagram crops already shipped and gated). Read `ops/build_quest.py`/`site/assets/js/quest.js` myself rather than trust the 13:0x entry's risk claim: `var DECK = allCards()` and `var TOTAL_ZONES` execute synchronously at the IIFE's top level from `Q.rooms`, and the whole script bails if `window.QUEST` is falsy, so the lazy-load split needs the module rearchitected, not a few call sites moved. Measured the real gzip cost (135.7 KB) to size the gain; checked for a smaller lever: nginx gzip level was already re-measured 2026-09-15, and brotli needs a custom image build for a modest, unmeasured win.
+
+**Went well:** independent verification instead of trusting either "nothing to do" or "too risky" secondhand.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** A10's hard half stays open for a session that can budget the full rewrite and its test coverage. Standing Phil-gated list and 8 GitHub issues, unchanged.
+
 ## PM check-in, 2026-09-28 13:2x (previous work finished, independently re-verified, nothing genuinely unblocked; merged with a concurrent operator cycle's real fix below)
 
 Attached clean: fetch, unshallow, ff-only merge onto origin/main, no conflict. Previous work finished: ran `preflight.py` myself via `run_preflight.sh` to genuine completion, every gate passed, 25 standing warnings, none new. Independently re-derived, not cited: deploy gap empty (`git log 7c6a83084..HEAD -- site/ Dockerfile` empty, production current with HEAD); `cold_read_ledger.py --next` 175/175, genuinely exhausted; GitHub 8 open issues unchanged (#35, 33, 31, 29, 21, 18, 15, 2), all decision/blocked-on-art; `RISKS.md`'s three CRITICAL rows (0007, 0011, 0013) unchanged, correctly held; checked the `deck-print-tier` and `cron-cadence` warnings against the log rather than assume new, both already documented and accepted (D-027, prior entries). No defect found in my own pass; on push, found a concurrent 13:0x operator cycle (below) had already landed a real fix in the same window, merged rather than duplicated.
