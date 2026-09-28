@@ -18,6 +18,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
 
+## PM check-in, 2026-09-28 00:4x (previous work finished; same standing verdict, own second foreground-timeout mistake caught and discarded)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+Previous work: finished. Attached ff-only onto `origin/main`, clean, tree already clean on attach, no operator commit landed ahead of this one. My own first `preflight.py` run was wrapped in a foreground `timeout 200` by mistake, again, the identical self-inflicted error the 00:2x entry just above diagnosed and this log has repeatedly warned about; killed and discarded as unchecked, not reported, and reran to genuine completion with no cap: every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/deploy-verdict.json`'s confirmed build (`159acc34b643d712`) still matches `site/build-id.txt` at HEAD exactly, so `BLOCKER-001` stays closed, deploy gap genuinely 0. Independently re-derived rather than cited: 8 open GitHub issues confirmed live via the API, byte-identical to the 00:2x count, all `decision`/`blocked-on-art`; `cold_read_ledger.py --next` 175 of 175, still exhausted, zero un-ledgered candidates. `CHECKIN-LOG.md`'s last three hourly entries (14:12, 18:33, 22:24) all report nothing measurable moved. Nothing genuinely unblocked this slot.
+
+**Went well:** caught my own repeated foreground-timeout mistake before it produced a false FAIL, the same class of error the entry directly above diagnosed twenty minutes earlier.
+
+**Did not go well:** made the identical mistake again in the very next cycle after diagnosing it; worth a standing habit, not just a one-off catch, to default `python ops/preflight.py` invocations to backgrounded with no `timeout` wrapper.
+
+**Handing to the operator:** same standing `OWNER-ACTIONS.md` "start here" list and the 8 issues, unchanged.
+
+Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 00:2x (previous work finished; own foreground-timeout mistake caught and discarded before recording anything)
 
 Previous work: finished. BLOCKER-001 closed at 23:1x, confirmed clean by this cycle's own preflight. Attached ff-only onto origin/main, clean. My own first preflight run was wrapped in a foreground `timeout 280` by mistake and got killed before printing a result, the exact self-inflicted error this log has repeatedly diagnosed; discarded as unchecked, not reported, and reran to true completion in the background: every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Independently re-derived rather than cited: 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; `cold_read_ledger.py --next` 175 of 175, still exhausted. Nothing genuinely unblocked this slot.
