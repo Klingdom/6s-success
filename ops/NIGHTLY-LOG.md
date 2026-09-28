@@ -16,6 +16,8 @@ Attached clean: checkout arrived shallow and detached (the standing issue #27 sh
 
 **Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation, and the only open item this cycle (confirming this run's own preflight result) is for the very next session, not Phil.
 
+**Addendum, same cycle: the background `preflight.py` run finished after push and closes the open item above.** Confirmed by reading its own log directly, not assumed: **every gate passed**, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/SSH-deploy/mail/Pillow credential, no network egress, the known `hourly-brief.yml`/`fulfil-orders.yml` cron-cadence gap, the known art/asset gaps already tracked by open issues). No regression from anything since the 17:5x garage-deck fix. Nothing further to hand off; the operator's next action is unchanged from the line above.
+
 Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
 
 ## Scheduled operator cycle, 2026-09-28 17:5x (a real, live grammar defect in the Garage deck's own JSON-LD found and fixed at the source; new gate added)
