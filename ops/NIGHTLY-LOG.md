@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 07:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; fetch origin main, confirmed shallow, fetch --unshallow, checkout main, merge --ff-only, fast-forwarded 695 commits onto origin/main, no conflict). Ran python ops/preflight.py myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, the two known cron-cadence drifts).
+
+**Independently re-derived, not cited:** 8 open GitHub issues fetched live via the API, byte-identical to every prior cycle, all decision/blocked-on-art; ops/cold_read_ledger.py --next: 175 of 175, still exhausted; deploy gap: git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml empty, production current; ops/affiliate.py --check clean, 165 documents; ops/inbox_agent.py --apply correctly reports no mail credential, unchecked not empty; OWNER-ACTIONS.md's start-here table read directly, all three rows genuinely Phil-gated. Working tree clean, main == origin/main throughout, no collision with the operator or the 06:4x/06:2x twin.
+
+**Did not send a push notification.** This stall was already escalated 2026-09-27 22:2x; nothing measured has moved since, so a repeat would be noise.
+
+No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 06:4x (previous work's own defect found and fixed: a misplaced log entry, not a product defect)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because nothing else is genuinely unblocked.
