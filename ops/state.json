@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-28 13:05",
- "commit": "fc2aa7e1c",
- "commit_msg": "PM check-in 12:1x: nothing genuinely unblocked, independently re-verified",
- "commits_7d": 1085,
- "commits_total": 4276,
+ "generated": "2026-09-28 13:12",
+ "commit": "a74dba749",
+ "commit_msg": "Fix: quest.html's 429KB card deck no longer blocks the symptom picker's download start",
+ "commits_7d": 1086,
+ "commits_total": 4277,
  "traffic_line": "57 visitors across 144 visits, 30 days (carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "57 visitors across 144 visits, 30 days",
  "traffic_line_measured_at": "2026-09-25 01:17",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

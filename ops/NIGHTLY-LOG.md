@@ -24,6 +24,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `site/quest.html`, `site/build-id.txt`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. Not a new page, so `IndexNow` was not run; `quest.html` itself is unchanged in URL and already indexed content, only its script loading changed.
 
+## PM check-in, 2026-09-28 12:4x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": YouTube OAuth paste, Search Console verification, Gemini billing) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0: checkout arrived shallow and detached (issue #27's usual shape), `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 723 commits onto `origin/main`, no conflict, working tree clean throughout and still clean now (`HEAD` == `origin/main` at close).
+
+**Independently re-derived rather than cited:**
+1. Ran `python ops/preflight.py` myself via `ops/run_preflight.sh`. First full run reported one FAIL, `stray-probe-files: 1 leftover... 'site/_audit_catalog_fix...'`, the first non-clean preflight result in a while, so per CLAUDE.md 0.4 this could not be waved through as the same old clean citation. Checked directly rather than assumed: `find site ops/tests -iname "_audit_catalog_fix*"` found nothing, the file no longer exists, the same transient concurrent-audit-write shape the 2026-09-25 18:0x and 2026-09-28 11:4x entries already diagnosed (a snapshot race with another cycle's `audit_visual.py`/test run, self-healed by that run's own `finally` cleanup). Reran a second, fully independent `preflight.py` end to end to confirm rather than assume it self-healed: clean, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, the two known cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No real defect, no gate change needed; the gate did its job.
+2. GitHub: 8 open issues fetched live via the API, byte-identical by number and label to the 12:1x entry above (#35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; 0 open PRs.
+3. `ops/cold_read_ledger.py --next`: 175 of 175 files ledgered, 0 un-ledgered candidates, genuinely exhausted.
+4. Deploy gap re-derived from source, not cited: `ops/deploy-verdict.json` reads `build_id 159acc34b643d712`; resolved with `git log -S` to `7c6a83084`; `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` is empty. Production confirmed current with HEAD.
+5. `RISKS.md` grepped directly: same three `CRITICAL` open (RISK-0007, RISK-0011, RISK-0013), unchanged, each already correctly held on evidence this file and prior cycles already checked (VPS-only restore proof, VPS-only product-master relocation, discovery being the constraint itself).
+6. `GOALS.md` section 0's three questions applied to every candidate found this cycle: nothing surfaced that serves an objective, sits downstream of the discovery constraint, and is startable without a credential this environment lacks.
+
+No price, product or site page touched; IndexNow not applicable. No push notification: this stall was already escalated and nothing measured has moved since, so a repeat would be noise.
+
+**Did not go well:** nothing new beyond the transient FAIL above (self-healed, confirmed, not a real defect); the same unrelated-history checkout shape recurred again (issue #27, still open, needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
 ## PM check-in, 2026-09-28 12:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
