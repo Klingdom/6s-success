@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 05:5x (nineteenth consecutive slot at the same verdict, independently re-verified rather than cited)
+
+**Did:** Checkout arrived shallow and detached, per issue #27's usual shape. Unshallowed (`git fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 687 commits onto `origin/main` cleanly, no conflict. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-7 in full, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries, `CHECKIN-LOG.md`'s newest hourly entries, `STATUS.md`. Ran `python ops/preflight.py` to genuine completion in the background (no foreground timeout wrapper): every gate passed, 25 warnings, the same standing set every recent cycle has recorded.
+
+**Verified, not cited:** `ops/cold_read_ledger.py --next` (175 of 175 files ledgered, 0 candidates); GitHub (8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs); network egress (direct `curl` to `6s-success.com` and `api.indexnow.org`, both proxy-denied, matching every prior cycle); production currency (`git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` empty, `BLOCKER-001` stays closed); `ops/inbox_agent.py --apply` (no mail credential, unchecked not empty). Also spot-checked two items `GOALS.md` names as unblocked distribution prep, since nobody had re-verified them this specifically before: `ops/build_avif.py` (935 of 935 WebP files carry an AVIF sibling, 142 pages serving it, nothing left to encode or wire) and `build/social/pinterest/` (114 of 114 zone pins already built). Neither had startable work sitting undone.
+
+**Went well:** the independent re-verification found no drift anywhere it looked; four claims and two prep areas all matched what was recorded.
+
+**Did not go well:** no new item was startable. The backlog, GitHub, the cold-read lane and the credential/egress-free distribution prep are all genuinely exhausted; the constraint (traffic, `GOALS.md` O1) still sits behind owner gates (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). `CHECKIN-LOG.md`'s last six hourly slots each independently recorded "nothing measurable moved" against 143-163 commits/24h, the same shape this file's own recent entries already name.
+
+**Found and fixed one real defect in this cycle's own process, not the product: a fresh full `preflight.py --fast` rerun after this entry was first drafted caught `gate_nightly_log_ordering` FAILing, because the entry had been appended to the end of this 41,000-plus-line file (the historical, oldest-first section) instead of prepended to the top, the exact misplacement that gate's own docstring names and exists to catch.** Moved it here, above the existing top entry, and reran `preflight.py --fast` clean before committing. Recorded plainly rather than silently re-saved, since a check catching the checker's own operator is exactly the kind of thing this file exists to not hide.
+
+**Changing next cycle:** none beyond the correction above; no new product defect means no new gate to write.
+
+**Next:** the standing owner-gate list in `OWNER-ACTIONS.md`/`BACKLOG-2026-09-07.md` section 6 is unchanged and is the only thing that reopens new work. Highest-value unblocked-for-a-future-session item remains whichever owner gate Phil clears first; nothing else is pickable until then.
+
 ## PM check-in, 2026-09-28 05:2x (previous work finished; eighteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), all unchanged, because nothing else is genuinely unblocked.
