@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 13:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+Attached clean: fetch, unshallow, ff-only merge onto origin/main, no conflict. Previous work finished: ran `preflight.py` myself via `run_preflight.sh` to genuine completion, every gate passed, 25 standing warnings, none new. Tree clean, main level with origin. Independently re-derived, not cited: deploy gap empty (`git log 7c6a83084..HEAD -- site/ Dockerfile` empty, production current with HEAD); `cold_read_ledger.py --next` 175/175, genuinely exhausted; GitHub 8 open issues unchanged (#35, 33, 31, 29, 21, 18, 15, 2), all decision/blocked-on-art; `RISKS.md`'s three CRITICAL rows (0007, 0011, 0013) unchanged, correctly held; checked the `deck-print-tier` and `cron-cadence` warnings against the log rather than assume new, both already documented and accepted (D-027, prior entries). No defect found this pass, no gate change needed.
+
+Next: standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged. Handing the hour-plus lane to the :43 operator.
+
 ## PM check-in, 2026-09-28 12:4x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": YouTube OAuth paste, Search Console verification, Gemini billing) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
