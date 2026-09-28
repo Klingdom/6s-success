@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 18:1x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable.
+
+Attached clean (`fetch origin main`, was shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only`, 759 commits fast-forwarded, no conflict, tree clean on arrival). Only commit since the 17:4x PM entry was the routine `Hourly check-in record` (github-actions, `CHECKIN-LOG.md`/`ops/state-checkin.json` only), nothing gated. Read `git log -12`, the top of this log, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`.
+
+**Independently re-derived, not cited:** ran a full `python ops/preflight.py` via `ops/run_preflight.sh` to genuine completion: every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). GitHub 8 open issues fetched live via a subagent, byte-identical by number and label to the last two cycles (#35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, 0 open PRs. `BLOCKER-001`'s deploy gap re-derived directly (`git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml`): still exactly the same 3 commits (`a74dba749`, `80a111d1d`, `a221c7a9c`), matching `STATUS.md`'s own current wording word for word. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. `CHECKIN-LOG.md`'s latest entry (17:46): nothing measurable moved.
+
+**Went well:** re-verifying preflight, the issue list and the deploy gap independently rather than trusting the 17:4x entry's citations; caught and killed two stray wait-loop processes that were self-matching their own `pgrep -f preflight.py` pattern before they could linger.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 17:4x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable.
