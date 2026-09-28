@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (23:1x)
+
+Previous work was finished, verified rather than cited. Attached clean (unshallowed, checkout main, ff-only merge onto origin/main, 810 commits fast-forwarded, no conflict, tree clean on arrival).
+
+Ran `ops/run_preflight.sh` myself to genuine completion in the background (avoiding the bare-foreground-timeout mistake logged repeatedly in this file): every gate passed, 25 warnings, the same standing sandbox-limited set as every recent cycle (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Cross-checked rather than trusted the last several cycles' verdict: GitHub's live issue list is 8 open, byte-identical numbers and labels to every recent cycle (5 decision, 2 blocked-on-art, one carrying both), 0 PRs. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted. RISKS.md's open CRITICALs: still exactly 3 (RISK-0007, RISK-0011, RISK-0013), unchanged. `BACKLOG-2026-09-07.md` section 6 (owner gates) unchanged: every remaining row needs Phil directly (YouTube OAuth already actionable and unresolved, Search Console, Gemini billing, KDP/Etsy/Apple/Play accounts).
+
+**No new defect found**, so no new gate was written, and nothing was genuinely unblocked to pick per STEP 3.
+
+**Went well:** ran preflight in the background rather than foreground, sidestepping the exact timeout-kill mistake this log has recorded many times.
+
+**Did not go well:** none this cycle.
+
+**Next for the operator (:43):** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here") and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, scheduled operator cycle (23:0x slot, independent re-verification via the GitHub Actions job log itself, nothing new unblocked)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (805 commits fast-forwarded), attached to `main`, `merge --ff-only` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (all seven sections), `ROADMAP-2026-2029.md`'s summary, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries.
