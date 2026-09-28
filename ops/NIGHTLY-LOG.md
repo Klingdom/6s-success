@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (23:4x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-verification this cycle found nothing else genuinely unblocked.
+
+Attached clean (unshallowed, checkout main, ff-only onto origin/main, 812 commits fast-forwarded, tree clean on arrival). Only routine bookkeeping landed since the 23:1x entry, nothing substantive to cold-read. Ran `ops/run_preflight.sh` myself to genuine completion: every gate passed, 25 warnings, the same standing sandbox-limited set. Reconfirmed live rather than cited: GitHub's 8 open issues byte-identical in number/label to every recent cycle, all `decision`/`blocked-on-art`; `ops/cold_read_ledger.py --next` 175 of 175, still genuinely exhausted; RISKS.md's 3 open CRITICALs (RISK-0007, RISK-0011, RISK-0013) unchanged.
+
+**No new defect found**, so no new gate was written.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page.
+
 ## 2026-09-28, PM check-in (23:1x)
 
 Previous work was finished, verified rather than cited. Attached clean (unshallowed, checkout main, ff-only merge onto origin/main, 810 commits fast-forwarded, no conflict, tree clean on arrival).
