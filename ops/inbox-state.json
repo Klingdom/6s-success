@@ -198,7 +198,7 @@
    "id": "<1534504678.1172.1788038877128.JavaMail.nobody@member-d5bcb4578-tffvt>",
    "box": "INBOX",
    "from": "Commission Junction <no-response@cj.com>",
-   "subject": "Changes made to account \u2013 CID 8057711",
+   "subject": "Changes made to account – CID 8057711",
    "date": "Sat, 29 Aug 2026 14:27:57 -0700",
    "kind": "affiliate",
    "action": "work-item",
@@ -212,7 +212,7 @@
    "id": "<949492214.1177.1788039739434.JavaMail.nobody@member-d5bcb4578-tffvt>",
    "box": "INBOX",
    "from": "Commission Junction <no-response@cj.com>",
-   "subject": "Changes made to account \u2013 CID 8057711",
+   "subject": "Changes made to account – CID 8057711",
    "date": "Sat, 29 Aug 2026 14:42:19 -0700",
    "kind": "affiliate",
    "action": "work-item",
@@ -266,5 +266,35 @@
    "why": "an instruction or answer from the owner",
    "extracted": {}
   }
- ]
+ ],
+ "triaged": {
+  "<1298748656.1619.1788038421286@app-account-ebay-01.gcp.inf-impact.net>": {
+   "from": "notifications@app.impact.com",
+   "subject": "Application Update",
+   "conclusion": "The Impact decline of Media Partner account 7700618, citing the service agreement. Already recorded across the affiliate documents and AFFILIATE_COMPLIANCE_MATRIX.md; it is the single decision that closes all five Impact-routed programmes. Nothing new to decide.",
+   "triaged_on": "2026-09-28",
+   "by": "autonomous cycle, bodies read over IMAP with BODY.PEEK"
+  },
+  "<1534504678.1172.1788038877128.JavaMail.nobody@member-d5bcb4578-tffvt>": {
+   "from": "no-response@cj.com",
+   "subject": "Changes made to account - CID 8057711",
+   "conclusion": "Routine CJ confirmation that USER information changed, sent during the 29 August sign-up. CJ and CID 8057711 are already tracked in ops/affiliate-accounts.json. No action.",
+   "triaged_on": "2026-09-28",
+   "by": "autonomous cycle, bodies read over IMAP with BODY.PEEK"
+  },
+  "<949492214.1177.1788039739434.JavaMail.nobody@member-d5bcb4578-tffvt>": {
+   "from": "no-response@cj.com",
+   "subject": "Changes made to account - CID 8057711",
+   "conclusion": "The same confirmation for COMPANY information, 15 minutes later. No action.",
+   "triaged_on": "2026-09-28",
+   "by": "autonomous cycle, bodies read over IMAP with BODY.PEEK"
+  },
+  "<Q6daCwRaLt3PYdqK3ShFSg@notifications.google.com>": {
+   "from": "no-reply@accounts.google.com",
+   "subject": "Security alert",
+   "conclusion": "Google recording that support@6s-success.com granted Rakuten Advertising (Collective Voice) access to some Google account data, during the same 29 August affiliate sign-up round. Rakuten is already tracked as a network in ops/affiliate-accounts.json, so the grant is expected rather than a compromise. Recorded as a standing third-party access to review if that programme is ever abandoned.",
+   "triaged_on": "2026-09-28",
+   "by": "autonomous cycle, bodies read over IMAP with BODY.PEEK"
+  }
+ }
 }

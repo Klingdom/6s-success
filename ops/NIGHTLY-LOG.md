@@ -16,6 +16,30 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** A10's hard half stays open for a session that can budget the full rewrite and its test coverage. Standing Phil-gated list and 8 GitHub issues, unchanged.
 
+## PM check-in, 2026-09-28 14:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+Previous work: finished. Attached ff-only onto origin/main (a container restart mid-cycle cost real time but no state; reattached clean, nothing lost). Own first `preflight.py` run FAILED on `stray-probe-files`, a leftover path that did not exist on disk or in `git status`, the same self-healing race this log has repeatedly diagnosed; caused this time by my own foreground-timeout kill of an earlier attempt (the exact mistake `ops/run_preflight.sh`, new since my last read, now exists to prevent). Discarded as unchecked, reran clean twice more, the second via the new wrapper: every gate passed, 25 standing warnings (no Stripe/mail/SSH-deploy/Pillow credential, no egress). Independently re-derived, not cited: 8 open GitHub issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, `BACKLOG-2026-09-07.md` sections 2-4 all Done or Phil-gated, `OWNER-ACTIONS.md` "start here" unchanged (items 0, 1a, 1, 1d, all Phil's own hand). No push notification: the standing owner-gate/no-revenue-movement state was already escalated at 22:2x yesterday and is unchanged, and `roadmap_report.py`/`hourly_brief.py` already carry it to Phil's inbox.
+
+**Handing to the operator:** same standing list, unchanged.
+
+Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished, including the concurrent 13:0x operator fix.** Attached clean per step 0: shallow and detached, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 730 commits onto `origin/main`, no conflict. Ran a real `preflight.py` myself, end to end via `run_preflight.sh` (background, polled to genuine completion, not a foreground timeout): every gate passed, 25 warnings, the identical standing set. Working tree clean, no drift landed while this cycle worked.
+
+**Independently re-derived, not cited:** GitHub 8 open issues, byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. `cold_read_ledger.py --next`: 175/175, genuinely exhausted. Checked the "Deploy to production" workflow's own latest run (13:39, against this cycle's HEAD) directly rather than assume: conclusion `success`, but its `Deploy` step itself is `skipped`, the same no-op every run has been since the workflow existed, because no `VPS_DEPLOY_KEY` secret is set. A green workflow run is not a deploy; confirmed the distinction rather than let a passing check imply otherwise.
+
+**Went well:** catching that the deploy workflow's green run was a skip, not a deploy, before it could be mistaken for the gap closing.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open, needs Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Handing the lane to the :43 operator (running concurrently with or just after this check-in).
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 13:2x (previous work finished, independently re-verified, nothing genuinely unblocked; merged with a concurrent operator cycle's real fix below)
 
 Attached clean: fetch, unshallow, ff-only merge onto origin/main, no conflict. Previous work finished: ran `preflight.py` myself via `run_preflight.sh` to genuine completion, every gate passed, 25 standing warnings, none new. Independently re-derived, not cited: deploy gap empty (`git log 7c6a83084..HEAD -- site/ Dockerfile` empty, production current with HEAD); `cold_read_ledger.py --next` 175/175, genuinely exhausted; GitHub 8 open issues unchanged (#35, 33, 31, 29, 21, 18, 15, 2), all decision/blocked-on-art; `RISKS.md`'s three CRITICAL rows (0007, 0011, 0013) unchanged, correctly held; checked the `deck-print-tier` and `cron-cadence` warnings against the log rather than assume new, both already documented and accepted (D-027, prior entries). No defect found in my own pass; on push, found a concurrent 13:0x operator cycle (below) had already landed a real fix in the same window, merged rather than duplicated.
