@@ -41,6 +41,19 @@ lockdir orphaned instead, live on 2026-09-11, 2026-09-16 and twice on
 confirm no live process holds site/_audit_catalog_fixture.lockdir (check
 /proc/<pid> for each candidate, not just ps) before removing it by hand;
 that is the sanctioned recovery, not a workaround.
+
+This warning has existed for a long time and agent sessions still trip it:
+"foreground timeout" appears dozens of times in ops/NIGHTLY-LOG.md as a
+caught-and-rerun incident, and at least twice (see LEARNINGS.md and the
+2026-09-2x entries) it left a generator mid-chain before being caught.
+Run ops/run_preflight.sh instead of calling this file directly from an
+agent shell. It launches this file with setsid so the real process
+survives even if the caller itself is killed (verified 2026-09-28: a
+plain nohup + disown child did NOT survive a SIGTERM/SIGKILL to the
+caller's process group; setsid does, because it gives the child its own
+session), and a second call to the wrapper attaches to the still-running
+job instead of starting a concurrent duplicate (the other recorded
+incident: two preflight runs against one working tree at once).
 """
 from __future__ import annotations
 
@@ -8599,6 +8612,56 @@ def gate_hooks_enabled() -> None:
                 " && ".join(
                     "chmod +x .githooks/%s && git update-index --chmod=+x "
                     ".githooks/%s" % (h, h) for h in not_exec)))
+
+
+def gate_preflight_wrapper_survives_kill() -> None:
+    """ops/run_preflight.sh must still exist, be executable, and still use
+    setsid, not a weaker substitute that looks equivalent but is not.
+
+    Found 2026-09-28 (LRN-0021): "foreground timeout" appears dozens of times
+    in ops/NIGHTLY-LOG.md, the same shape every time, an agent runs this
+    file directly, a caller-side timeout kills it mid-gate, and the run is
+    discarded and repeated. ops/run_preflight.sh exists to make that
+    structurally hard to do wrong: it always launches this file detached, so
+    a caller that gets killed does not take the real run down with it.
+
+    That guarantee rests on one specific mechanism, `setsid`, not on the
+    nohup-and-disown pattern every prior cycle's log entries describe using
+    by hand. Tested directly: a plain `nohup python ops/preflight.py &
+    disown` child DID NOT survive a SIGTERM sent to its launching shell's
+    process group (nohup only blocks SIGHUP; disown only removes shell
+    job-control bookkeeping; neither moves the child out of the group a
+    group-wide signal reaches). The same test with `setsid` in front of the
+    command DID survive, because setsid gives the child its own session.
+    A future edit that "simplifies" the wrapper back to nohup-only would
+    silently reintroduce the exact defect this file was written to end, and
+    nothing else would notice, so check for the real mechanism by name
+    rather than just checking the file exists.
+
+    Proof this can fail: rename the file, or strip the word "setsid" from
+    it, and this gate fails; restore it and the gate passes.
+    """
+    path = os.path.join(ROOT, "ops", "run_preflight.sh")
+    if not os.path.exists(path):
+        fail("preflight-wrapper",
+             "ops/run_preflight.sh is missing. Without it, an agent shell "
+             "is one default command timeout away from killing a real "
+             "preflight.py run mid-gate again (LRN-0021); recreate it "
+             "using setsid, not plain nohup/disown.")
+        return
+    if not os.access(path, os.X_OK):
+        fail("preflight-wrapper",
+             "ops/run_preflight.sh exists but is not executable "
+             "(chmod +x ops/run_preflight.sh).")
+        return
+    body = open(path, encoding="utf-8").read()
+    if "setsid" not in body:
+        fail("preflight-wrapper",
+             "ops/run_preflight.sh no longer uses setsid. Verified "
+             "2026-09-28 that nohup + disown alone do not survive a "
+             "process-group signal aimed at the caller (LRN-0021); a "
+             "version of this wrapper without setsid silently loses the "
+             "one guarantee it exists to provide.")
 
 
 def gate_agents_in_sync() -> None:
@@ -22959,6 +23022,7 @@ def main() -> int:
     run_gate(gate_indexable_pages_have_schema)
     run_gate(gate_checker_scope)
     run_gate(gate_hooks_enabled)
+    run_gate(gate_preflight_wrapper_survives_kill)
     run_gate(gate_agents_in_sync)
     run_gate(gate_workflows_healthy)
     run_gate(gate_publish_image_current)
