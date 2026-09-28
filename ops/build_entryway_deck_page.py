@@ -46,7 +46,7 @@ import build_entryway_deck as ED                                 # noqa: E402
 # produce (id/type/title/tagline/...), so they are imported rather than
 # forked a second time.
 from build_kitchen_deck_page import (                            # noqa: E402
-    esc, num_word as _num_word, short, strip_num, pips, colours, band,
+    esc, num_word as _num_word, article_for, short, strip_num, pips, colours, band,
     art_panel, diff_html, front_text, back_body, zone_place, card_html,
     print_tile, CSS, PRINT_PT, UMAMI,
 )
@@ -211,7 +211,7 @@ PAGE = """<!doctype html>
   "gameItem": {"@type": "Thing", "name": "__N__ printable cards, front and back, typeset, no illustrations yet"},
   "publisher": {"@id": "https://6s-success.com/#organization"},
   "genre": "Household organization",
-  "abstract": "A __N__ card deck for the entryway, built from the Manual's real __NZONES_LOWER__ zones: the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath (shared with the Kitchen deck), the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
+  "abstract": "__ARTICLE__ __N__ card deck for the entryway, built from the Manual's real __NZONES_LOWER__ zones: the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath (shared with the Kitchen deck), the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
 }
 </script>
 <!-- SEO:END -->
@@ -359,6 +359,7 @@ def main() -> int:
             .replace("__SHEET__", build_print_sheet(deck))
             .replace("__UMAMI__", UMAMI)
             .replace("__N__", str(n_total))
+            .replace("__ARTICLE__", article_for(n_total))
             .replace("__NZONES_LOWER__", num_word(n_zones).lower())
             .replace("__NZONES__", num_word(n_zones))
             .replace("__NCAUSES_LOWER__", num_word(n_causes).lower())

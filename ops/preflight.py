@@ -5130,6 +5130,74 @@ def gate_deck_og_image_honest() -> None:
         fail("deck-og-image-honest", "; ".join(problems))
 
 
+def check_deck_article_grammar(pages: dict, article_for) -> list:
+    """Pure logic for gate_deck_article_grammar. `pages` maps deck page
+    filename to its full shipped HTML text; `article_for` is
+    build_kitchen_deck_page.article_for, passed in rather than imported at
+    module scope so this stays a pure function to test.
+
+    Found live 2026-09-28: site/garage-deck.html's own Game JSON-LD
+    `abstract` read "A 80 card deck for the garage", wrong, because 80 is
+    spoken "eighty" and needs "An". Each of the six room-deck generators
+    (Kitchen, Entryway, Laundry Room, Home Office, Primary Bathroom,
+    Garage) hardcoded the literal word "A" in its own template next to a
+    card count only known at generation time, so any future count whose
+    spoken form starts with a vowel sound (eighty, eighteen, eleven, eight
+    itself) would ship the same mismatch silently. Fixed at the source: all
+    six now compute the article from the real count via
+    build_kitchen_deck_page.article_for(). This gate re-derives the
+    expected article from each page's own stated count and catches a
+    future template edit that reintroduces a hardcoded "A".
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import re as _re
+    problems = []
+    for fname, page in pages.items():
+        m = _re.search(r'"abstract": "(A|An) (\d+) card deck', page)
+        if not m:
+            problems.append(f"{fname}: no \"A/An <N> card deck\" abstract "
+                            f"found; the JSON-LD shape may have changed")
+            continue
+        got_article, n = m.group(1), int(m.group(2))
+        want_article = article_for(n)
+        if got_article != want_article:
+            problems.append(f"{fname}: abstract reads {got_article!r} {n} "
+                            f"card deck, should be {want_article!r} {n} "
+                            f"card deck")
+    return problems
+
+
+def gate_deck_article_grammar() -> None:
+    """Sitewide: every room deck's JSON-LD abstract must use the article
+    its own real card count actually calls for ("An 80", not "A 80"). See
+    check_deck_article_grammar's own docstring for the live defect this
+    closes.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import build_kitchen_deck_page as KDP
+        import importlib
+        importlib.reload(KDP)
+    except Exception as e:                                       # noqa: BLE001
+        fail("deck-article-grammar", f"could not import "
+             f"build_kitchen_deck_page: {e}")
+        return
+
+    pages = {}
+    for fname in ("kitchen-deck.html", "entryway-deck.html",
+                  "laundry-room-deck.html", "home-office-deck.html",
+                  "primary-bathroom-deck.html", "garage-deck.html"):
+        path = os.path.join(SITE, fname)
+        if not os.path.exists(path):
+            continue
+        pages[fname] = io.open(path, encoding="utf-8", errors="replace").read()
+
+    problems = check_deck_article_grammar(pages, KDP.article_for)
+    if problems:
+        fail("deck-article-grammar", "; ".join(problems))
+
+
 def gate_front_matter_filled() -> None:
     """A committed copyright page must not carry an answered placeholder.
 
@@ -23152,6 +23220,7 @@ def main() -> int:
     run_gate(gate_primary_bathroom_deck_rendered)
     run_gate(gate_garage_deck_rendered)
     run_gate(gate_deck_og_image_honest)
+    run_gate(gate_deck_article_grammar)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)
