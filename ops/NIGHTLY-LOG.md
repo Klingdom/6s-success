@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (23:4x, session interrupted by a container restart mid-run, resumed and independently re-verified)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because every independent check this cycle ran came back byte-identical to the 23:1x cycle's own verdict: nothing else is genuinely unblocked.
+
+**This session's own container restarted mid-run** (a backgrounded `preflight.py` invocation was lost with it, no result), so nothing from before the restart was trusted; every check below is a fresh run against the state found on resume, not a citation of what was in flight when the container went down.
+
+**Previous work: finished.** Attached clean per step 0 (fetched `origin/main`, fast-forwarded 810 then a further 5 commits after the restart, no conflict, tree clean throughout). Ran `ops/run_preflight.sh` (the new wrapper that survives a foreground timeout without killing the underlying process) to genuine completion: every gate passed, 25 warnings, the same standing sandbox-limited set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page-art/deck-art coverage gaps, all already owner-tracked).
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, byte-identical numbers and labels to the 23:1x/23:0x cycles (5 `decision`, 2 `blocked-on-art`, one carrying both), 0 open PRs. Working tree confirmed clean and `main` level with `origin/main` both before and after the preflight run, so no collision with the operator or twin while this session was down.
+
+**Did not go well:** the container restart itself, losing one backgrounded preflight run; cost one redo, no data lost since nothing had been written yet.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+No push notification: this stall has already been escalated repeatedly today (`OWNER-ACTIONS.md`'s start-here list), and nothing measured has moved since, so a repeat would be noise.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (23:1x)
 
 Previous work was finished, verified rather than cited. Attached clean (unshallowed, checkout main, ff-only merge onto origin/main, 810 commits fast-forwarded, no conflict, tree clean on arrival).
