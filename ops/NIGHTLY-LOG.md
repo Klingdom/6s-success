@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 09:0x (independent re-verification plus one fresh-eyes page read, nothing genuinely unblocked)
+
+**Did:** Attached clean per step 0 (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 702 commits onto `origin/main`, no conflict). Read `GOALS.md`, `STATUS.md`'s current snapshot, `BACKLOG-2026-09-07.md` sections 0-7 in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries.
+
+**Verified rather than trusted:** ran `python ops/preflight.py` to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded, no new FAIL. GitHub confirmed live: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. Read backlog rows B6/B8/B9 in full, since the table's own markup left them unstruck even though the prose says each is Done/CLOSED by decision (D-027 for B8); confirmed real, no open work hiding there. Cold-read a zone page never singled out in this log before, `garage-the-bulk-and-overhead-storage.html` (560 lines, full read): Safety fourth per D-014, Straighten never "Set in Order", affiliate disclosure correctly placed above both kit blocks and after Sort, no fabricated claims, JSON-LD matches the visible FAQ verbatim, price arithmetic (114 zones x 6 cards = 684 at $19) checks out. No defect found. `inbox_agent.py --apply`: no mail credential, unchecked, not empty, same as every prior cycle.
+
+**Went well:** the B6/B8/B9 spot-check caught a real markup inconsistency (finished rows left unstruck) before a future cycle mistook it for open work.
+
+**Did not go well:** nothing new; `gate_tests` again took several minutes in the background, matching prior cycles' own note.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": VPS_DEPLOY_KEY, Search Console verification, Gemini billing) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 08:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
