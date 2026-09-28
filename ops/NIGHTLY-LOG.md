@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 11:4x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0: origin/main had fast-forwarded 716 commits since the last local ref, no conflict, working tree clean throughout, and confirmed no further drift landed while this cycle worked (`git fetch` + `git log HEAD..origin/main` empty at close). Triage-depth pass only, per this slot's own instruction not to start something large three minutes before the operator.
+
+**Independently re-derived rather than cited, each one myself rather than trusting the 11:2x entry above:** 8 open GitHub issues fetched live via the API, byte-identical to that entry, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 candidates printed. `git status --porcelain`: clean.
+
+**Preflight: ran it myself via `ops/run_preflight.sh`, the setsid wrapper the 11:0x cycle built this same morning, and used it to confirm its own central claim rather than take it on faith:** the first foreground call was killed at its own timeout as expected, and the underlying `preflight.py` (pid 796) was confirmed still alive and running afterward with `ps`, exactly the survival the wrapper is built to guarantee; a second call re-attached to the same pid rather than starting a duplicate. It had not finished by the time this entry needed to ship, so this entry does not claim its result — that would be reporting unchecked as passing. What stands in its place: the 11:2x cycle's own full `preflight.py` run completed clean minutes earlier (every gate passed, 25 warnings, the standing set), and nothing under version control has changed since (confirmed by the empty `HEAD..origin/main` diff above), so that result is still current, not stale. The wrapper's own background run keeps going and the operator at :43 will see its outcome either way.
+
+No price, product or site page touched; IndexNow not applicable. No push notification: this stall was already escalated 2026-09-27 22:2x and nothing measured has moved since, so a repeat would be noise.
+
+**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
 ## PM check-in, 2026-09-28 11:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
