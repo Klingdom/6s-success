@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 09:4x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 707 commits onto `origin/main`, no conflict, working tree clean throughout). Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No new FAIL, no new warning.
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API (`list_issues`), unchanged from the prior cycle, byte-identical labels, all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 candidates. `ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty, same as every prior cycle. Fetched `origin/main` a second time immediately before writing this entry: no new commits landed while this cycle ran, no collision with the twin or the operator.
+
+No price, product or site page touched; IndexNow not applicable. Given how many consecutive cycles have already reached and independently re-verified this same exhausted state, no push notification: nothing measured has moved since the last escalation.
+
+**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 09:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
