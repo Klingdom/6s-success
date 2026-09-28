@@ -2,6 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 11:5x (full independent re-verification, nothing genuinely unblocked, no push repeated)
+
+**Did:** Checkout arrived shallow and detached, issue #27's usual shape. Unshallowed (`git fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 716 commits onto `origin/main` cleanly, no conflict, no reset. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b, 6 and 7 directly (the file is 361KB on 319 lines, several single lines over 4,700 characters, so read in targeted chunks rather than one pass), `CLAUDE.md`, and this log's newest entries back through the 08:4x slot.
+
+**Ran `python ops/preflight.py` through `ops/run_preflight.sh`, the setsid-based wrapper built specifically to survive a caller's foreground timeout**, rather than hand-rolling `nohup ... & disown` (which the 11:0x cycle proved does not survive a killed caller). Genuine completion, no truncation: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, the two known cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No new FAIL, no new warning.
+
+**Independently re-derived rather than cited, five separate claims, each checked against the live source:**
+1. GitHub: 8 open issues fetched live via the API, byte-identical by number and label to every cycle since 2026-09-27 22:2x (`#35, #33, #31, #29, #21, #18, #15, #2`), all `decision`/`blocked-on-art`; 0 open PRs.
+2. `ops/cold_read_ledger.py --next`: 175 of 175 files ledgered, 0 un-ledgered candidates, genuinely exhausted.
+3. Deploy gap: `ops/deploy-verdict.json` read directly (`build_id 159acc34b643d712`), resolved the stamping commit myself with `git log -S` (`7c6a83084`), `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` empty. Production confirmed current with HEAD.
+4. `RISKS.md` grepped directly: same three `CRITICAL` open (RISK-0007, RISK-0011, RISK-0013), unchanged.
+5. `ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty, same as every prior cycle.
+
+No new commit had landed between the prior cycle's close (`11b9c9057`) and this one starting; `git log --oneline -5` confirmed the merge commit as the only new ref.
+
+**Went well:** using `ops/run_preflight.sh` as instructed by its own docstring rather than repeating the foreground-timeout mistake three prior cycles today already made; every independent re-derivation landed on the identical verdict without needing to trust a citation.
+
+**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, needs Phil's own hand in the Routines UI). `BACKLOG-2026-09-07.md`'s very long single-paragraph lines (one exceeds 4,700 characters) made a full read expensive; worth flagging if it grows further, but not itself a defect worth a gate today.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Did not send a push notification.** This stall was already escalated 2026-09-27 22:2x (`OWNER-ACTIONS.md`'s three-item start-here list) and has been re-confirmed unchanged by roughly thirty consecutive cycles since; nothing measured has moved, so a repeat would be noise.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 11:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
