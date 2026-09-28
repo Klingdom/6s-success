@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 (fourteenth consecutive slot at the same verdict, full independent re-verification, no new defect)
+
+**Did:** Checkout arrived shallow and detached, as step 0 warns. `git fetch origin main`, confirmed `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded clean (678 commits) onto `6dae5d08f`, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and this log's newest four entries (all 2026-09-28, all converging on the identical "nothing genuinely unblocked" verdict).
+
+**Ran `python ops/preflight.py` to genuine completion:** every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress from this sandbox, confirmed directly this cycle with a live `curl` to `6s-success.com`, `api.stripe.com` and `www.bing.com`, all three refused by the agent proxy on organisation policy, not merely cited from a prior entry).
+
+**Independently re-derived rather than cited, six separate checks.** (1) 8 open GitHub issues fetched live via the API: `#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`, byte-identical by number and label to every entry since 22:2x on 2026-09-27, all `decision`/`blocked-on-art`; 0 open PRs. (2) Deploy gap: read `ops/deploy-verdict.json` directly (`verdict: current`, build `159acc34b643d712`), resolved the stamping commit myself with `git log -S` on `site/build-id.txt` (`7c6a83084`), then `git log 7c6a83084..HEAD -- site/ Dockerfile` came back empty, so `BLOCKER-001` genuinely stays closed, real gap 0. (3) Checked the actual `deploy.yml` job steps on the latest run (run 45, `36356165450`) rather than trusting its green `conclusion: success`: step 4, "Deploy", still reports `skipped`, confirming `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0) is still absent. A green workflow here proves the no-op ran cleanly, not that anything deployed. (4) `ops/cold_read_ledger.py --next`: 175 of 175 files ledgered, zero un-ledgered candidates. (5) `python ops/affiliate.py --check`: clean, 165 delivered documents, no affiliate link, every page with links discloses above them. (6) `BACKLOG-2026-09-07.md` sections 2 through 4 read directly line by line rather than trusted from a prior summary: every row is Done, CLOSED (B8 by `DECISIONS.md` D-027), or explicitly "YES, Phil" (C5 Gemini billing, C6 YouTube OAuth). No genuinely open, unblocked row found. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty.
+
+**Went well:** checking the deploy workflow's own step-level conclusion instead of its run-level `success`, the exact "green check, nothing actually happened" shape this repository's own gates exist to catch elsewhere.
+
+**Did not go well:** the same unrelated-history shallow checkout recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect surfaced to gate.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil; nothing measured has moved in the fourteen consecutive slots since (same issues, same owner-gated list, same 0 deploy gap, Deploy step still skipped), so a repeat notification would be noise, not new information.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (item 0 `VPS_DEPLOY_KEY`, Search Console verification, Gemini billing, KDP/Etsy accounts, YouTube OAuth) and the 8 open GitHub issues, unchanged, because nothing else is genuinely unblocked.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 03:1x (previous work finished; thirteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
