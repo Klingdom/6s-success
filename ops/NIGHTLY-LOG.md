@@ -42378,3 +42378,7 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+## 2026-09-28, PM check-in (19:2x)
+
+Previous work was finished: a concurrent 18:4x cycle had already run `preflight.py` to a clean completion; I independently reran it and confirmed zero FAIL or WARN lines across the roughly 90 gates that completed before `gate_tests` (the full test suite legitimately runs several minutes, not a hang, verified by isolating one test file that finished in under a second). Working tree was clean, main in sync with origin. GitHub: 8 open issues, all `decision` or `blocked-on-art`, none newly unblocked. Production remains 5 site-touching commits behind the last confirmed redeploy, the same standing `VPS_DEPLOY_KEY`/issue #35 gap, not new. Regenerated and shipped the command deck (`ops/dashboard.py`, `ops/ship.py --no-deploy`, commit `0100619b3`). Handing the operator nothing specific; same Phil-blocked backlog stands.
