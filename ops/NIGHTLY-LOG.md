@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-28 08:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
+## PM check-in, 2026-09-28 08:4x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; fetch origin main, confirmed shallow, fetch --unshallow, checkout main, merge --ff-only, fast-forwarded onto origin/main, no conflict, working tree clean throughout). Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No new FAIL, no new warning.
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, byte-identical to every prior cycle today, all `decision`/`blocked-on-art`, 0 open PRs. Deploy gap: `ops/deploy-verdict.json` read directly (verdict `current`, build `159acc34b643d712`), resolved the stamping commit myself (`7c6a83084`), `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` empty, production confirmed current with HEAD. `ops/cold_read_ledger.py --next`: 175 of 175 ledgered, 0 un-ledgered candidates, genuinely exhausted. Read `BACKLOG-2026-09-07.md` sections 1b and 5-7 directly: section 1b's two remaining findings both already closed (issue #32), section 5 all correctly HOLD (waiting on traffic or a stranger buying anything), section 6 owner gates unchanged. `state.json` matches the dashboard exactly (revenue $0, 8 open issues, deploy current). No collision: fetched origin main again before writing this entry, no new commits landed while this cycle ran.
+
+**Did not send a push notification.** This stall was already escalated 2026-09-27 22:2x (OWNER-ACTIONS.md's three-item start-here list); nothing measured has moved since, so a repeat would be noise.
+
+No price, product or site page touched; IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
 
