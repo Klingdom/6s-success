@@ -41,7 +41,9 @@ NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start he
 
 No price, product or site page touched; IndexNow not applicable. No push notification: this stall was already escalated 2026-09-27 22:2x and nothing measured has moved since, so a repeat would be noise.
 
-**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil's own hand in the Routines UI).
+**Addendum, after the deck regen above shipped:** the background `run_preflight.sh` call from this entry finished. It reported `FAIL stray-probe-files: 1 leftover probe/fixture path(s)... ['site/_audit_catalog_fix...`, the first FAIL any cycle has seen today, so this could not be left as a second reported-twice defect per CLAUDE.md 0.2: checked immediately rather than deferred to the operator. `git status --porcelain` was already clean and `find site ops/tests -name "_*.html"` found nothing: the concurrent `test_audit_catalog.py`/`audit_visual.py` run that wrote it had already reached its own `finally` cleanup by the time this session looked, the same transient self-healing shape `gate_no_stray_probe_files`'s own docstring and the 2026-09-25 18:0x entry both already document (this gate briefly sees a file mid-write by a still-running concurrent process, not a real leak). Re-ran a fresh, independent `preflight.py` end to end rather than assume: **every gate passed, 25 warnings**, confirming it self-healed and did not reflect a real defect, only a snapshot race between two concurrent cycles. No code change needed; the gate did exactly its job by catching a real file that existed for a moment, and this note exists so the operator does not re-discover and re-diagnose the same transient shape from scratch.
+
+**Did not go well:** nothing new beyond the transient FAIL above; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil's own hand in the Routines UI).
 
 **Changing next cycle:** none; no new defect, no new gate needed.
 
