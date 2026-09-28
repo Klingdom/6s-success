@@ -20,6 +20,7 @@ from __future__ import annotations
 import email
 import imaplib
 import io
+import json
 import os
 import re
 import sys
@@ -75,6 +76,36 @@ def unread_from_owner():
             M.logout()
         except Exception:                                       # noqa: BLE001
             pass
+
+
+def should_report(mid: str, frm: str, subj: str, interesting, triaged: dict) -> bool:
+    """Whether this unread third-party message still needs a human decision.
+
+    Pulled out of the IMAP loop so it can be tested without a mailbox. Two
+    rules, and the order matters: a message already triaged is retired even if
+    it still looks interesting, and a message with no recorded conclusion is
+    reported even if it is old.
+
+    Fails SAFE by construction: an empty or unreadable ledger retires nothing,
+    so the failure mode is a warning that repeats, never one that disappears.
+    """
+    if mid and mid in (triaged or {}):
+        return False
+    return bool(interesting.search(frm + " " + subj))
+
+
+def _triaged() -> dict:
+    """Message-IDs a cycle has opened and recorded a conclusion for.
+
+    Lives in ops/inbox-state.json beside the inbox agent's own append-only
+    `seen` set, because it is the same kind of claim about the same messages
+    and a second file would drift from the first.
+    """
+    fp = os.path.join(ROOT, "ops", "inbox-state.json")
+    try:
+        return json.load(io.open(fp, encoding="utf-8")).get("triaged") or {}
+    except Exception:                                          # noqa: BLE001
+        return {}
 
 
 def unread_needing_action():
@@ -134,8 +165,10 @@ def unread_needing_action():
         M.select("INBOX")
         typ, data = M.search(None, "UNSEEN")
         out = []
+        triaged = _triaged()
         for i in (data[0].split() if data and data[0] else []):
-            typ, d = M.fetch(i, "(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM DATE)])")
+            typ, d = M.fetch(
+                i, "(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM DATE MESSAGE-ID)])")
             if not d or not d[0]:
                 continue
             msg = email.message_from_bytes(d[0][1])
@@ -146,7 +179,26 @@ def unread_needing_action():
             # Our own delivery receipts are not somebody asking us for anything.
             if "support@6s-success.com" in frm.lower() and "your copy of" in subj.lower():
                 continue
-            if interesting.search(frm + " " + subj):
+            # ALREADY TRIAGED IS NOT THE SAME AS UNREAD.
+            #
+            # This searches IMAP UNSEEN, which only says whether a human has
+            # clicked the message in a mail client. Four third-party messages
+            # from 29 August sat here for a month reading as "may need a
+            # decision" after every one had been opened and found to need
+            # nothing: the Impact decline already recorded everywhere, two
+            # routine CJ account-change confirmations, and a Google alert for a
+            # Rakuten OAuth grant made during the same sign-up round.
+            #
+            # A warning that repeats a resolved item forever is how a real one
+            # gets skimmed past, so a conclusion recorded against the
+            # Message-ID in ops/inbox-state.json retires it here. The mailbox is
+            # never touched: marking somebody else's mail read would hide it
+            # from them, and the claim being made is "a cycle read this and
+            # concluded X", which belongs in the repository, not in his inbox.
+            mid = (msg.get("Message-ID") or "").strip()
+            if not should_report(mid, frm, subj, interesting, triaged):
+                continue
+            if True:
                 out.append("%s | %s | %s" % (msg.get("Date", "")[:22], frm[:40], subj))
         return out
     finally:
