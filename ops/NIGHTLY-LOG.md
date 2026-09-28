@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, scheduled operator cycle (23:5x slot, independent re-verification, one real staleness fix found and corrected)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`fetch --unshallow`), `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main` (813 commits, then a further one-commit fast-forward mid-cycle for a concurrent hourly check-in), no conflict. Read `GOALS.md`'s standing content via `ROADMAP-2026-2029.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7, read directly rather than delegated, avoiding the giant-line-length trap by reading in ranges), `CLAUDE.md`, and the newest entries of this log.
+
+**Verified, not cited:** ran `python ops/preflight.py` via `ops/run_preflight.sh` to genuine completion myself (about 8 minutes): every gate passed, 25 standing warnings, the same sandbox-limited set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page/deck-art coverage gaps, all already owner-tracked). GitHub's 8 open issues pulled live via the API: byte-identical numbers and labels to every cycle today, all `decision`/`blocked-on-art`, 0 open PRs. `ops/inbox_agent.py --apply`: no mail credential, unchecked. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 un-ledgered candidates. `build/listings/check_etsy.py` and `check_kdp.py` both PASS, 0 FAIL, confirming both marketplace packages are still fully built and waiting only on Phil creating the accounts (owner gate 4). RISKS.md's three open CRITICALs (RISK-0007, RISK-0011, RISK-0013) re-read in full: RISK-0011's remaining step needs Phil's own Windows machine and OneDrive account, RISK-0007 needs a lost-host drill nobody here can run, RISK-0013 is the discovery constraint itself, downstream of everything already shipped.
+
+**The one real finding: `STATUS.md`'s own `BLOCKER-001` deploy-gap citation had gone stale again, the same recurring shape this file's own history already names repeatedly.** It said "3 commits behind" (written 15:2x, about 8 hours earlier); recomputed directly with `deploy_gap_material_commits('7c6a83084')` rather than cited: real gap is 5, the original three plus `46ff9077f` (a live grammar fix on garage-deck.html) and `4d7189c1d` (a build-id restamp). Corrected in three places (the section 4 table cell, the section 6 table cell, and a new appended `BLOCKER-001` paragraph following this file's own append-only convention), not silently edited over the old text. Confirmed no sandboxed session here holds `~/.ssh/6s_deploy` or VPS egress, so this is reporting, not fixing; `VPS_DEPLOY_KEY` (issue #35) remains the only real fix for the recurrence itself.
+
+**Went well:** catching the stale citation by re-deriving it directly instead of trusting the last cycle's own correction, which is exactly the discipline `gate_status_deploy_gap_count_current` exists to check but had not yet caught this specific instance when I looked.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none new; the existing staleness gate already covers this shape, it is a matter of how often anyone happens to look between redeploys.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description, YouTube OAuth, Gemini billing) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged. No push notification: this stall has already been escalated repeatedly today and nothing measured has moved since.
+
+Pushed to main. Command deck regenerated (`ops/dashboard.py`). `STATUS.md` corrected in three places (deploy-gap count only). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (23:4x, session interrupted by a container restart mid-run, resumed and independently re-verified)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because every independent check this cycle ran came back byte-identical to the 23:1x cycle's own verdict: nothing else is genuinely unblocked.
