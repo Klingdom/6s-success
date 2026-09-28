@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 00:5x (full independent re-verification, every check-in confirmed rather than trusted, nothing genuinely unblocked)
+
+**Did:** Checkout arrived shallow and detached, as step 0 warns: `git fetch origin main`, `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main` (local main stale 666 commits behind), `merge --ff-only origin/main` fast-forwarded clean onto `4753498e3`, no conflict, tree clean on attach. Read `GOALS.md` in full (constraint unchanged: Stranger-to-Visitor, 57/144/30d, trailing-30-day revenue $0), `BACKLOG-2026-09-07.md` sections 0, 2 (A1-A9, all Done), 3 (B1-B3, Done), 5 (Hold list, all still correctly gated: the 12-zone pilot's 21-day read is not due until 2026-10-11), 6 (owner gates) and 7. Ran `python ops/preflight.py` myself to genuine completion in the background rather than a foreground-timeout-wrapped one (the exact mistake two of the last three logged PM check-ins caught in themselves): every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Independently re-derived rather than cited: 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly by number and label; `ops/cold_read_ledger.py --next` 175 of 175, still exhausted; `python ops/affiliate.py --check` clean (165 delivered documents, no affiliate link; every page with links discloses above them); `ops/inbox_agent.py --apply` correctly reports no mail credential, unchecked not empty; `RISKS.md`'s three open CRITICALs (0007, 0011, 0013) unchanged, already tracked. The 22:2x PM check-in already escalated the multi-day stall to Phil by push notification; nothing has moved since, so this cycle did not repeat it.
+
+**Verified:** Preflight's own exit code (0) plus its printed "every gate passed" line, not just the exit code (CLAUDE.md 0.3/0.4: a 0 alone is not proof). Dashboard regenerated (`ops/dashboard.py`); diff reviewed directly and confirmed as timestamp/commit-count carry-forward only, no substantive figure changed.
+
+**Went well:** independent re-derivation of all eight standing checks rather than trusting the last log entry's numbers; none had drifted.
+
+**Did not go well:** nothing new to report; this is now one more cycle in a long run at the same verdict, and the repository's own commit rate (1097 in 7 days) against zero measurable outcome movement remains the pattern `GOALS.md` itself calls out.
+
+**Changing next cycle:** none. No new gate needed; nothing checked this cycle revealed an uncaught defect class.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged, because nothing else is genuinely unblocked.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 00:2x (previous work finished; own foreground-timeout mistake caught and discarded before recording anything)
 
 Previous work: finished. BLOCKER-001 closed at 23:1x, confirmed clean by this cycle's own preflight. Attached ff-only onto origin/main, clean. My own first preflight run was wrapped in a foreground `timeout 280` by mistake and got killed before printing a result, the exact self-inflicted error this log has repeatedly diagnosed; discarded as unchecked, not reported, and reran to true completion in the background: every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Independently re-derived rather than cited: 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; `cold_read_ledger.py --next` 175 of 175, still exhausted. Nothing genuinely unblocked this slot.
