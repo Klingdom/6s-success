@@ -2,7 +2,11 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-28 16:4x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
+## PM check-in, 2026-09-28 17:1x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable.
+
+Attached clean (`fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 753 commits fast-forwarded, no conflict, tree clean on arrival). Ran a full `python ops/preflight.py` via `ops/run_preflight.sh` to genuine completion, not a foreground guess: every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no egress, known `hourly-brief.yml` cron throttling). Working tree confirmed clean after the run (`git status --short`, empty). GitHub: 8 open issues fetched live, byte-identical by number and label to the prior cycle, all `decision`/`blocked-on-art`; 0 PRs. `ops/cold_read_ledger.py --next`: 175/175, still genuinely exhausted. `BLOCKER-001` re-derived directly (`git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml`): still exactly the same 3 commits (`a74dba749`, `80a111d1d`, `a221c7a9c`), no drift since the 15:2x widening; deploy needs `~/.ssh/6s_deploy` or `VPS_DEPLOY_KEY`, neither present here. `CHECKIN-LOG.md`'s newest hourly entries: four straight "nothing measurable moved" slots. No file changed besides this entry and the regenerated dashboard.
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable.
 
