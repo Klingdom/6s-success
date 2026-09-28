@@ -12,6 +12,24 @@ Nothing new was genuinely unblocked: same conclusion as 20:1x/20:5x, reached ind
 
 **Handing to the operator (:43):** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2). If a substantive commit has landed by then that this cycle did not see, that is fresh ground to cold-read instead of repeating this verdict.
 
+## 2026-09-28, scheduled operator cycle (21:0x slot, self-caused stray-probe FAIL traced and cleared, no new defect)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (767 commits fast-forwarded), attached to `main`, `merge --ff-only` clean, no conflict. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`'s "start here" section, and the top of this log (newest-first). A first `preflight.py` attempt used a plain foreground `timeout 110` instead of `ops/run_preflight.sh`, the exact anti-pattern this file's own docstring warns against; it was killed mid-run and left one stray probe file (`site/_audit_catalog_fix...`), which a subsequent full run correctly caught as `stray-probe-files` FAIL. Traced to my own earlier command, not a repo defect (the file was already gone by the time the run finished, self-deleted as designed); reran clean via `ops/run_preflight.sh`: every gate passed, 25 standing warnings, byte-identical to every recent cycle (Stripe/VPS/mail credentials absent in this sandbox, Search Console unverified, deck art gaps, all previously diagnosed).
+
+**Verified:** `ops/inbox_agent.py --apply`: no mail credential, reported unchecked. `ops/affiliate.py --check`: clean, 165 delivered documents, correct disclosure on every linked page. GitHub checked directly: 8 open issues, byte-identical to the last several cycles (5 `decision`: #35 VPS_DEPLOY_KEY, #33 Momentum/Upgrade cards, #31 deck gallery vs PDF mismatch, #21 Stripe shared-entity fields, #18 chapter 47 monochrome plates; 2 `blocked-on-art`: #29, #2), 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, nothing un-ledgered. `BACKLOG-2026-09-07.md` section 6 (owner gates) and section 7 both confirm every remaining row needs Phil's own hand (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play accounts) or a physical printer.
+
+**The honest finding: none.** This repository is running many concurrent scheduled sessions inside the same hour (git log shows PM check-ins, hourly check-ins and scheduled cycles interleaved roughly every 10-20 minutes today, each independently reconfirming the same clean state). Duplicating another full cold-read pass would not have surfaced anything a dozen prior passes today have not already ruled out, so this cycle's real contribution is the one genuine thing found: my own foreground-timeout mistake, caught and cleared rather than left to fail the next session's preflight silently.
+
+**Went well:** treating the FAIL as this cycle's actual work per STEP 2 rather than working around it; confirming the stray file was self-caused before writing it off as pre-existing.
+
+**Did not go well:** ran preflight directly with a foreground timeout on the first attempt despite `ops/run_preflight.sh` existing exactly to prevent this; the wrapper should be the only way this operator ever invokes preflight going forward.
+
+**Changing next cycle:** none new to gate; the existing `stray-probe-files` gate caught this correctly and `ops/run_preflight.sh` already exists as the fix. Personal note for future cycles: always use the wrapper, never a bare `timeout ... python ops/preflight.py`.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` ("start here": items 0, 1a, 1, 1d) and the 8 open GitHub issues, unchanged. Nothing new is genuinely unblocked.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-09-28, PM check-in (20:5x)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable; if a fresh angle is wanted rather than repeating that verdict, no substantive commit has landed since the 20:1x cycle (only the routine hourly check-in and the automated social-draft rotation bookkeeping), so there is no new page or generator change yet to cold-read either.
