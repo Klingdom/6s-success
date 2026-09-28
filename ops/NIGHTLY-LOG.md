@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 10:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main`, no conflict, working tree clean throughout). Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No new FAIL, no new warning.
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, byte-identical to the prior cycle, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 candidates. Deploy gap re-derived from source, not assumed: `site/build-id.txt` at HEAD reads `159acc34b643d712`; `git log -S` resolves that build id to `7c6a83084`; `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` is empty. Production confirmed current with HEAD. `ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty. `ops/affiliate.py --check`: clean, 165 documents. `OWNER-ACTIONS.md`'s own "Last measured" marker still reads 2026-09-27: no new Phil action has landed since the prior cycle checked.
+
+No price, product or site page touched; IndexNow not applicable. No push notification: this stall was already escalated in prior cycles today and nothing measured has moved since, so a repeat would be noise.
+
+**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
 ## Scheduled operator cycle, 2026-09-28 (eighth consecutive cycle reaching the same verdict, independently re-derived rather than cited)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape). Unshallowed with `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 707 commits onto `origin/main`, no conflict, working tree clean throughout. Read `BACKLOG-2026-09-07.md` in full, `STATUS.md`'s current snapshot, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries.
