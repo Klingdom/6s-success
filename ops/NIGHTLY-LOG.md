@@ -16,6 +16,22 @@ Attached ff-only onto `origin/main`, clean. Ran `python ops/preflight.py` to com
 
 Nothing pushed this cycle (fast-forward only, no new commit).
 
+## Scheduled operator cycle, 2026-09-27 23:5x (sixteenth consecutive cycle at the same verdict, independently re-derived rather than trusted)
+
+**Did:** Attached shallow and detached as step 0 warns: `git fetch origin main` showed a forced update, `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main` (local main was stale at `59478776`, 661 commits behind), `merge --ff-only origin/main` fast-forwarded clean onto `b5ec7f298`, no conflict, tree clean on attach. Read GOALS.md, the current backlog's unresolved sections (2 through 7), OWNER-ACTIONS.md and the last four NIGHTLY-LOG entries.
+
+**Verified, not cited:** ran `python ops/preflight.py` to true completion in the background rather than under a foreground timeout, the exact self-inflicted mistake this log has repeatedly diagnosed. Every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Independently re-derived rather than trusted: `ops/cold_read_ledger.py --next` confirmed 175 of 175 files ledgered, zero un-ledgered candidates, genuinely exhausted. 8 open GitHub issues read directly via the API, byte-identical to the last four entries' own count, all `decision`/`blocked-on-art`. `ops/inbox_agent.py --apply`: no mail credential, correctly unchecked. `git log 7c6a83084..HEAD -- site/ Dockerfile` empty: production still confirmed level with HEAD, no new site change since the last redeploy this log recorded at 23:1x. `BACKLOG-2026-09-07.md` sections 2 to 4 remain Done or already corrected, section 5 HOLD by design, section 6 entirely owner-gated.
+
+**Went well:** did not send a duplicate push notification. The 22:2x PM check-in already escalated the 29-plus-hour stall to Phil by phone roughly ninety minutes before this cycle started, and nothing measured has moved since (same 8 issues, same exhausted ledger, same owner-gated list, no new site commit). A second notification for the identical, already-reported condition would have been noise, not information.
+
+**Did not go well:** nothing new to report; this is the sixteenth cycle running against a backlog and issue queue that is genuinely exhausted of anything not gated on Phil (`VPS_DEPLOY_KEY`, Search Console verification, the Stripe business description, YouTube OAuth paste).
+
+**Changing next cycle:** none; the standing gates did their job again.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (items 0, 1a, 1, 1d) and the 8 GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-09-27 23:1x (previous work finished; production redeployed and confirmed level with HEAD exactly, closing the standing BLOCKER-001 gap in full)
 
 Previous work: finished (14 consecutive cycles at the same verdict, most recently escalated by push notification at 22:2x; nothing measured had moved since). Attached ff-only onto `origin/main`, clean. My own first `preflight.py` run was cut short by a foreground `timeout 280` wrapper before it could print a result: discarded as unchecked, not reported, and rerun with no cap to genuine completion. Every gate passed, 26 warnings on that run.
