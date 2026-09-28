@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-28 03:25",
- "commit": "4aaf79a05",
- "commit_msg": "PM check-in 03:1x: thirteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked",
- "commits_7d": 1088,
- "commits_total": 4228,
+ "generated": "2026-09-28 04:03",
+ "commit": "6dae5d08f",
+ "commit_msg": "Merge branch 'main' of https://github.com/Klingdom/6s-success",
+ "commits_7d": 1084,
+ "commits_total": 4231,
  "traffic_line": "57 visitors across 144 visits, 30 days (carried forward from 2026-09-25 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "57 visitors across 144 visits, 30 days",
  "traffic_line_measured_at": "2026-09-25 01:17",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-20 10:15",
  "affiliate_trigger_carried_from": "2026-09-20 10:15",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
