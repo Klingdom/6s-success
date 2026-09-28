@@ -3716,6 +3716,22 @@ def gate_scheduled_workflow_cadence() -> None:
                  f"{r['mean_gap_min']:.0f} minutes (worst "
                  f"{r['worst_gap_min']:.0f}), {r['mean_over_configured']}x "
                  f"the configured interval.")
+        elif r.get("cron_late_but_covered"):
+            # The cron IS late, and nothing waits for it. Reported as its own
+            # line rather than suppressed: the throttling is real and would
+            # matter the day the push trigger were removed, but a buyer is not
+            # waiting hours, and saying they might when the measured worst case
+            # is 42 minutes is how warnings stop being read.
+            warn("cron-cadence",
+                 f"{r['workflow']}'s cron is throttled by GitHub to "
+                 f"{r['mean_gap_min']:.0f} min against a configured "
+                 f"{r['configured_interval_min']:.0f}, but its push trigger "
+                 f"covers it: the real gap across every trigger is a median of "
+                 f"{r['effective_median_gap_min']:.0f} min, worst "
+                 f"{r['effective_worst_gap_min']:.0f}, over "
+                 f"{r['effective_sample_size']} gaps. Nothing to do while "
+                 f"commits keep landing; it becomes real if that push trigger "
+                 f"is ever removed.")
 
 
 def gate_image_coverage() -> None:

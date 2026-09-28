@@ -161,7 +161,42 @@ def configured_interval_minutes(workflow_file: str) -> float | None:
     return 1440.0 / fires_per_day if fires_per_day else None
 
 
-def fetch_runs(workflow_file: str, per_page: int = 50) -> list[dict] | None:
+def has_push_trigger(workflow_file: str) -> bool:
+    """True when this workflow also runs on push to main.
+
+    It changes what the cadence number MEANS. fulfil-orders.yml gained a push
+    trigger on 2026-09-09 precisely because GitHub throttles its cron, and every
+    commit to main is then another chance to deliver a paid order. Measuring
+    only `event=schedule` after that answers "does the cron fire", which is a
+    real question, and silently stops answering "how long does a buyer wait",
+    which is the one the customer has.
+    """
+    fp = os.path.join(ROOT, ".github", "workflows", workflow_file)
+    try:
+        text = io.open(fp, encoding="utf-8", errors="replace").read()
+    except OSError:
+        return False
+    head = text.split("jobs:")[0]
+    if "push:" not in head:
+        return False
+    # AND THE PUSH RUN MUST ACTUALLY DO THE WORK.
+    #
+    # linkedin-drafts.yml and social-drafts.yml also trigger on push, but they
+    # branch on github.event_name and treat push as a gated fallback that only
+    # sends once the schedule is already overdue. Their push RUNS are frequent;
+    # their push DELIVERIES are not. Counting those runs as coverage produced a
+    # line claiming a real gap of 11.7 minutes median for a workflow whose job
+    # is to post once a day, which is a true statement about runs and a false
+    # one about anything a person cares about.
+    #
+    # fulfil-orders.yml carries no such branch: every triggered run attempts
+    # delivery, which is why it is safe there and why the distinction is drawn
+    # on the branch rather than on the trigger.
+    return "github.event_name" not in text
+
+
+def fetch_runs(workflow_file: str, per_page: int = 50,
+               event: str | None = "schedule") -> list[dict] | None:
     """Completed runs actually fired by this workflow's own cron.
 
     `event=schedule` on purpose: a manual `workflow_dispatch` run (someone
@@ -182,7 +217,7 @@ def fetch_runs(workflow_file: str, per_page: int = 50) -> list[dict] | None:
         req = urllib.request.Request(
             f"https://api.github.com/repos/{REPO}/actions/workflows/"
             f"{workflow_file}/runs?per_page={per_page}&status=completed"
-            f"&event=schedule",
+            + (f"&event={event}" if event else ""),
             headers={"Authorization": f"Bearer {token}",
                      "Accept": "application/vnd.github+json",
                      "User-Agent": "6s-cron-cadence-check"})
@@ -355,6 +390,45 @@ def check_one(workflow_file: str) -> dict:
     if configured:
         result["mean_over_configured"] = round(mean / configured, 1)
         result["degraded"] = mean > configured * 2.5
+
+    # THE NUMBER A CUSTOMER ACTUALLY EXPERIENCES, where a push trigger exists.
+    #
+    # Measured 2026-09-27 on fulfil-orders.yml: schedule-only gaps mean 284 min
+    # and worst 354, which is what this check had been reporting and is true of
+    # the cron. Across EVERY trigger the same window gives mean 15.7, median
+    # 12.9 and worst 42.1 minutes, because 76 of 80 runs came from push.
+    #
+    # Reporting only the first number said a buyer might wait six hours when
+    # the measured worst case was forty-two minutes. An alarming warning that
+    # overstates customer risk by an order of magnitude is not a safe error: it
+    # is how a team learns to scroll past warnings.
+    if has_push_trigger(workflow_file):
+        allruns = fetch_runs(workflow_file, event=None)
+        if allruns and len(allruns) >= 5:
+            ag = gaps_minutes(allruns)
+            if ag:
+                result["effective_mean_gap_min"] = round(statistics.mean(ag), 1)
+                result["effective_median_gap_min"] = round(statistics.median(ag), 1)
+                result["effective_worst_gap_min"] = round(max(ag), 1)
+                result["effective_sample_size"] = len(ag)
+                # COVERAGE HAS TO BE EARNED, NOT ASSUMED FROM THE TRIGGER.
+                #
+                # The first version cleared `degraded` for any workflow with an
+                # ungated push trigger. ops/tests/test_check_cron_cadence.py
+                # caught it: fed 210-minute gaps on BOTH queries, it still
+                # reported covered, which says the push trigger fixed a problem
+                # the same numbers show it did not. A trigger existing is not
+                # the same fact as a trigger helping.
+                #
+                # So coverage is claimed only when the real interval clears the
+                # same bar the degraded verdict uses. If pushes dry up, the
+                # effective gap rises to meet the schedule gap and this goes
+                # back to DEGRADED on its own, which is the behaviour wanted on
+                # a quiet week.
+                eff_mean = statistics.mean(ag)
+                if configured and eff_mean <= configured * 2.5:
+                    result["degraded"] = False
+                    result["cron_late_but_covered"] = True
     return result
 
 
@@ -379,6 +453,13 @@ def main() -> int:
               f"{cfg_txt}, actual mean {r['mean_gap_min']} min / "
               f"median {r['median_gap_min']} min / worst {r['worst_gap_min']} min "
               f"over {r['sample_size']} gaps{flag}")
+        if r.get("cron_late_but_covered"):
+            print(f"        cron is late, but a push trigger covers it: real "
+                  f"gap across every trigger is mean "
+                  f"{r['effective_mean_gap_min']} / median "
+                  f"{r['effective_median_gap_min']} / worst "
+                  f"{r['effective_worst_gap_min']} min over "
+                  f"{r['effective_sample_size']} gaps")
     return 0
 
 

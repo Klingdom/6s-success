@@ -34,7 +34,13 @@ def runs_every(minutes: float, count: int) -> list:
 
 
 def with_runs(runs):
-    real, C.fetch_runs = C.fetch_runs, (lambda wf, per_page=50: runs)
+    # `event` added 2026-09-27: check_one() now asks a second time with
+    # event=None to measure the interval a customer actually experiences
+    # on a workflow that also triggers on push. A stub that does not
+    # accept the keyword fails with a TypeError rather than a wrong
+    # number, which is the better failure but still a failure.
+    real, C.fetch_runs = C.fetch_runs, (
+        lambda wf, per_page=50, event='schedule': runs)
     try:
         return C.check_one("fulfil-orders.yml")
     finally:
