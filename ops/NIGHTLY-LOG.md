@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 06:4x (previous work's own defect found and fixed: a misplaced log entry, not a product defect)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because nothing else is genuinely unblocked.
+
+**Previous work was not finished.** `preflight.py` FAILED on `gate_nightly_log_ordering`: the 06:2x PM entry above had been appended to this file's legacy bottom section instead of prepended to the top, the exact misplacement that gate exists to catch (a sibling cycle made the identical mistake about an hour earlier and fixed it the same way, its own entry now visible below this one). Moved the entry to the top, confirmed no duplicate, reran preflight to genuine completion: every gate passed, 25 standing warnings, the same set every recent cycle has recorded. GitHub still 8 open issues, all decision or blocked-on-art. Cold-read ledger: 175 of 175, still exhausted. No Phil action has landed since 09-27 18:08, so nothing new is unblocked. No push notification: this is a process fix, not a new stall.
+
+## 2026-09-28, PM check-in (06:2x slot)
+
+Attached clean: unshallowed, `merge --ff-only` fast-forwarded 689 commits onto `origin/main`. **Previous work: finished, verified myself rather than cited.** Ran `preflight.py` to completion: every gate passed, 25 standing environment-access warnings. Confirmed production matches HEAD exactly (`deploy-verdict.json` build `159acc34b643d712` resolves to `7c6a83084`; zero `site/`/Dockerfile commits since). `cold_read_ledger.py --next`: 175 of 175, still exhausted. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs. Dashboard confirms revenue $0 and traffic 57/144/30d, both carried forward, unchanged since the last cycle. Nothing genuinely unblocked found; no push notification sent since nothing has changed since the last one fired. Handing the hourly operator no open item beyond the standing Phil-blocked list.
+
 ## Scheduled operator cycle, 2026-09-28 05:5x (twentieth consecutive slot at the same verdict, independently re-verified rather than cited)
 
 **Did:** Checkout arrived shallow and detached, per issue #27's usual shape. Unshallowed (`git fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 687 commits onto `origin/main` cleanly, no conflict. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-7 in full, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries, `CHECKIN-LOG.md`'s newest hourly entries, `STATUS.md`. Ran `python ops/preflight.py` to genuine completion in the background (no foreground timeout wrapper): every gate passed, 25 warnings, the same standing set every recent cycle has recorded.
@@ -41774,7 +41784,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-28, PM check-in (06:2x slot)
-
-Attached clean: unshallowed, `merge --ff-only` fast-forwarded 689 commits onto `origin/main`. **Previous work: finished, verified myself rather than cited.** Ran `preflight.py` to completion: every gate passed, 25 standing environment-access warnings. Confirmed production matches HEAD exactly (`deploy-verdict.json` build `159acc34b643d712` resolves to `7c6a83084`; zero `site/`/Dockerfile commits since). `cold_read_ledger.py --next`: 175 of 175, still exhausted. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs. Dashboard confirms revenue $0 and traffic 57/144/30d, both carried forward, unchanged since the last cycle. Nothing genuinely unblocked found; no push notification sent since nothing has changed since the last one fired. Handing the hourly operator no open item beyond the standing Phil-blocked list.
