@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 08:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (fetch origin main, ff-only merge, fast-forwarded onto origin/main, no conflict, working tree already clean). Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page-art/deck-art gaps already tracked).
+
+**Independently re-derived:** 8 open GitHub issues via the API, byte-identical to every prior cycle, all decision/blocked-on-art. `CHECKIN-LOG.md`'s last six hourly entries: all "nothing measurable moved." `BACKLOG-2026-09-07.md` section 1b: all items already Done, nothing awaiting decision. `OWNER-ACTIONS.md` unchanged since last cycle.
+
+Regenerated the dashboard (timestamp/commit-count refresh only, no content change). Did not send a push notification: this stall was already escalated, nothing measured has moved since.
+
 ## Scheduled operator cycle, 2026-09-28 07:5x slot (fresh session, independently re-derived the standing verdict rather than trusting it, nothing genuinely unblocked)
 
 **Did:** Checkout arrived shallow and detached, issue #27's usual shape. Unshallowed (`git fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 698 commits onto `origin/main` cleanly, no conflict, working tree already clean on attach.
