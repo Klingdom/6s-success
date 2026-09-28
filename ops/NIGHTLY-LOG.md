@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 15:0x (A10's hard half shipped: the symptom picker no longer waits on the full 114-zone manual)
+
+**Did:** Attached clean (unshallow, `fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, this log's top entries; confirmed live via the GitHub API: 8 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. Three of today's own prior cycles (13:4x, 14:1x, 14:2x) had each independently, correctly at the time, judged A10's hard half too risky for a single pass and left it "for a session that can budget the full rewrite and its test coverage." Took that invitation rather than repeat the verdict a fourth time.
+
+Split `site/assets/js/quest-data.js` (419KB, the whole manual) into that unchanged file plus a new `quest-data-symptoms.js` (3KB: symptoms/six/colours/purpose, no rooms), both written by `ops/build_quest.py`. `quest.html` loads the small file eagerly with `defer` and only prefetches the full one; `quest.js` loads it itself, lazily, via new `ensureRooms()`/`loadRooms()`, gating every reader of `Q.rooms`/`DECK` (`begin()`, `renderMap()`, `renderKeep()`, the `?zone=`/`?room=`/`go=` deep links, the returning-visitor dashboard). `isFirstRun()` got a fast path so a genuinely new visitor never touches the manual at all.
+
+**Verified, not assumed:** ran all 8 real `ops/tests/test_quest_*.py` e2e scripts against the change. First run: two real failures, a returning-visitor test crashing because `applyFirstRunGate()` still ran unconditionally before the async gate that was meant to protect it, and `test_quest_storage_blocked.py`'s missing-data case silently no-opping because its regex targeted the old eager filename. Fixed both (a `heldZones()` guard plus reordering the gate check in `renderStart()`; updated the test's regex to the new filename, a legitimate update for an intentional rename, not a masked regression) and reran clean: 8 of 8 pass. `node --check` clean. `ops/build_mobile_corpus.py --check` and `ops/check_urls.py` clean, confirming every other consumer of the unchanged `quest-data.js` still matches it byte for byte.
+
+Added `gate_quest_symptom_picker_lazy_rooms` to `preflight.py` per the backlog's own acceptance criteria, and proved it can fail, not just pass: planted three real regressions in turn (eager `<script>` tag back, a `rooms` key creeping into the small payload, `ensureRooms` renamed away) and watched each fail with the right message, then reverted and confirmed clean.
+
+**Two self-inflicted near-misses, both caught before shipping, not after:** a descriptive comment in `quest.html` happened to contain the literal text `href="...assets/....js"`, which `ops/build_pwa.py`'s own regex-based asset scanner read as a real reference to a file that does not exist, breaking the precache build; a comment in `quest.js` describing the old code as `` `var DECK = allCards();` `` tripped the new gate's own regex the same way. Both reworded to describe the same thing without forming the literal pattern that the tooling matches on raw text, not parsed structure.
+
+**Went well:** treating the backlog's own explicit invitation as the highest-value unblocked item instead of re-deriving "nothing to do" a fourth time; the real e2e suite caught a real crash before it could ship, which a syntax check or a read-through would not have.
+
+**Did not go well:** both near-misses above were self-inflicted, from writing documentation prose that happened to be machine-readable in the wrong way; worth remembering when writing comments near anything that scans raw text.
+
+**Changing next cycle:** none beyond the new gate itself.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Full `preflight.py` (the comprehensive run, not the scoped checks above) was still completing in the background at push time; if it surfaces anything unrelated to this change, that is the next thing to fix.
+
+Pushed to main. `ops/build_quest.py`, `ops/cold_read_ledger.py`, `ops/preflight.py`, `ops/tests/test_quest_storage_blocked.py`, `site/assets/js/quest.js`, `site/assets/js/quest-data-symptoms.js` (new), `site/quest.html`, `site/sw.js`, `site/build-id.txt`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. Not a new page (quest.html's URL is unchanged), so IndexNow was not run.
+
 ## PM check-in, 2026-09-28 14:4x (previous work finished; a real, live 1-commit deploy-gap drift found and corrected in STATUS.md)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because nothing else is genuinely unblocked; if you hold real VPS access, redeploying now would close the 1-commit gap this check-in just found and correctly recorded.

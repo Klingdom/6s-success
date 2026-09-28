@@ -85,8 +85,13 @@ def run_case(browser, args, throw, drop_data=False):
     if drop_data:
         # Simulate the card data failing to load, which for an installable app
         # is a service-worker cache miss while offline, not a hypothetical.
-        doctored = re.sub(r'<script[^>]+assets/js/quest-data\.js[^>]*>\s*</script>',
-                          '', doctored, count=1)
+        # quest-data-symptoms.js (added 2026-09-28) is the eager payload the
+        # symptom picker actually needs at parse time; the full quest-data.js
+        # is loaded lazily by quest.js itself and its absence is a different,
+        # later failure (see test_quest_lazy_rooms_failed.py).
+        doctored = re.sub(
+            r'<script[^>]+assets/js/quest-data-symptoms\.js[^>]*>\s*</script>',
+            '', doctored, count=1)
     doctored = doctored.replace("</body>", REPORT + "</body>", 1)
 
     page = os.path.join(site, "_test_storage_blocked.html")
