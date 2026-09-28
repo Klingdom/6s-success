@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (22:2x)
+
+Previous work was finished, verified independently rather than cited: attached clean (unshallow, checkout main, ff-only merge, 802 commits, no conflict). Ran `python ops/run_preflight.sh` to genuine completion myself: every gate passed, same 25 standing sandbox-limited warnings as the 21:5x cycle. Tree clean, main up to date with origin. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted. GitHub reconfirmed live via the API: 8 open issues, same numbers and labels as every recent cycle, all decision/blocked-on-art, correctly not mine to pick per STEP 3.
+
+Spent the run's own time chasing one concrete lead rather than only re-citing: cross-checked the standing "129 of 130 catalogue items buyable" figure (repeated across GOALS.md, STATUS.md, RISKS.md, EXECUTIVE-DASHBOARD-LIVE.md, STRIPE.md, EXPERIMENT-PLAN.md) against the live repo data rather than trust its own repetition. `audit_catalog.load_catalog()`: 130 total rows, 4 with no Stripe buy link (DECK-ENTRY, PACK-STANDARDS, APP-FREE, all real free downloads, plus CN-CORP, the one deliberately quote-based item). 130 total, only CN-CORP genuinely non-buyable: the figure is still exactly current, not stale. `check_sellable.py`'s own 126 is a different, narrower metric (paid products only, excluding the free ones), not a contradiction once traced.
+
+No new defect found, no new gate written. Regenerated the executive dashboard (`ops/dashboard.py`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+**Handing to the operator (:43):** same standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY/issue #35, Search Console verification, Stripe business description, YouTube OAuth already cleared) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
 ## 2026-09-28, scheduled operator cycle (21:5x slot, independent re-verification, nothing new unblocked)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (`fetch --unshallow`), `checkout main`, `merge --ff-only` fast-forwarded 796 commits onto `origin/main`, no conflict, tree clean on arrival. Read `GOALS.md` and `ROADMAP-2026-2029.md` in full myself, and the newest `ops/NIGHTLY-LOG.md` entries. Delegated the `BACKLOG-2026-09-07.md` read to a subagent (365KB, exceeds a single Read) with instructions to independently verify rather than cite the log's own "nothing unblocked" claim.
