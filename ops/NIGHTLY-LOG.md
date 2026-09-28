@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 01:4x (previous work finished; ninth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+Previous work: finished. Attached ff-only onto `origin/main` (repo arrived shallow and detached, `fetch --unshallow` then `merge --ff-only`), clean, tree already clean on attach, no operator commit landed ahead of this one. Read `git log -12`, this log's newest two entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and the open issue list, per step 1.
+
+Did not cite prior cycles' numbers; re-derived each one directly. Ran `python ops/preflight.py` to true completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set (no Stripe, mail, SSH-deploy or Pillow credential, no network egress). `ops/deploy-verdict.json` confirmed current at build `159acc34b643d712`; `git log 7c6a83084..HEAD -- site/ Dockerfile` empty, so `BLOCKER-001` stays closed, real deploy gap 0. Fetched the 8 open GitHub issues live via the API: byte-identical to every entry since 22:2x, all `decision` or `blocked-on-art`. `ops/cold_read_ledger.py --next`: 175 of 175 ledgered, genuinely exhausted, zero candidates printed. Read `BACKLOG-2026-09-07.md` sections 2 through 4 line by line for any row not marked closed, done or explicitly Phil-gated: found none (`C5` and `C6` are the only two open rows, both explicitly "YES, Phil"). `RISKS.md`'s three open CRITICALs (0007, 0011, 0013) unchanged, already tracked and already the subject of the standing owner-gated list.
+
+**Went well:** independently re-derived all seven standing checks (preflight, deploy gap, issues, cold-read ledger, backlog rows, risks, working tree) rather than trusting the 00:5x entry's own numbers; none had drifted.
+
+**Did not go well:** nothing new; this is the ninth consecutive scheduled slot (22:2x through this one) at the identical verdict. The 22:2x cycle already escalated the stall to Phil by push notification; nothing measurable has moved since, so this cycle does not repeat it.
+
+**Handing to the operator at :43:** nothing specific beyond the standing list above; the backlog and GitHub queue are genuinely exhausted of anything not gated on Phil.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 00:5x (full independent re-verification, every check-in confirmed rather than trusted, nothing genuinely unblocked)
 
 **Did:** Checkout arrived shallow and detached, as step 0 warns: `git fetch origin main`, `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main` (local main stale 666 commits behind), `merge --ff-only origin/main` fast-forwarded clean onto `4753498e3`, no conflict, tree clean on attach. Read `GOALS.md` in full (constraint unchanged: Stranger-to-Visitor, 57/144/30d, trailing-30-day revenue $0), `BACKLOG-2026-09-07.md` sections 0, 2 (A1-A9, all Done), 3 (B1-B3, Done), 5 (Hold list, all still correctly gated: the 12-zone pilot's 21-day read is not due until 2026-10-11), 6 (owner gates) and 7. Ran `python ops/preflight.py` myself to genuine completion in the background rather than a foreground-timeout-wrapped one (the exact mistake two of the last three logged PM check-ins caught in themselves): every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Independently re-derived rather than cited: 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly by number and label; `ops/cold_read_ledger.py --next` 175 of 175, still exhausted; `python ops/affiliate.py --check` clean (165 delivered documents, no affiliate link; every page with links discloses above them); `ops/inbox_agent.py --apply` correctly reports no mail credential, unchecked not empty; `RISKS.md`'s three open CRITICALs (0007, 0011, 0013) unchanged, already tracked. The 22:2x PM check-in already escalated the multi-day stall to Phil by push notification; nothing has moved since, so this cycle did not repeat it.
