@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (19:4x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": VPS_DEPLOY_KEY, Search Console, Stripe description, YouTube OAuth) and the 8 open GitHub issues, because backlog, RISKS.md and GitHub all reconfirm Done or Phil-gated; nothing new is unblocked.
+
+Previous work was NOT finished: `preflight.py` failed `stray-probe-files` (a killed run's leftover fixture, self-deletes on report) and `nightly-log-ordering` (the prior 19:2x entry got appended to the file's end instead of prepended to the top). Fixed both, moved that entry above rather than editing its words. Full rerun now clean: every gate passed, 25 standing warnings, unchanged. Tree clean, main in sync.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-28, PM check-in (19:2x)
+
+Previous work was finished: a concurrent 18:4x cycle had already run `preflight.py` to a clean completion; I independently reran it and confirmed zero FAIL or WARN lines across the roughly 90 gates that completed before `gate_tests` (the full test suite legitimately runs several minutes, not a hang, verified by isolating one test file that finished in under a second). Working tree was clean, main in sync with origin. GitHub: 8 open issues, all `decision` or `blocked-on-art`, none newly unblocked. Production remains 5 site-touching commits behind the last confirmed redeploy, the same standing `VPS_DEPLOY_KEY`/issue #35 gap, not new. Regenerated and shipped the command deck (`ops/dashboard.py`, `ops/ship.py --no-deploy`, commit `0100619b3`). Handing the operator nothing specific; same Phil-blocked backlog stands.
+
 ## Scheduled operator cycle, 2026-09-28 18:5x slot (converged with the concurrent PM check-in's own re-verification; a fresh read of today's newest shipped code, A10's lazy-load split, found no defect)
 
 **Did:** Attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 767 commits fast-forwarded, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the top of this log (newest-first, read correctly). Ran `python ops/preflight.py` via `ops/run_preflight.sh`: every gate passed, 25 standing warnings, the same set every recent cycle has recorded. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. GitHub: 8 open issues, byte-identical to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. No mail credential, no egress.
@@ -42378,7 +42390,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-28, PM check-in (19:2x)
-
-Previous work was finished: a concurrent 18:4x cycle had already run `preflight.py` to a clean completion; I independently reran it and confirmed zero FAIL or WARN lines across the roughly 90 gates that completed before `gate_tests` (the full test suite legitimately runs several minutes, not a hang, verified by isolating one test file that finished in under a second). Working tree was clean, main in sync with origin. GitHub: 8 open issues, all `decision` or `blocked-on-art`, none newly unblocked. Production remains 5 site-touching commits behind the last confirmed redeploy, the same standing `VPS_DEPLOY_KEY`/issue #35 gap, not new. Regenerated and shipped the command deck (`ops/dashboard.py`, `ops/ship.py --no-deploy`, commit `0100619b3`). Handing the operator nothing specific; same Phil-blocked backlog stands.
