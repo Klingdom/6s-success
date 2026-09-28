@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (20:1x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": VPS_DEPLOY_KEY, Search Console, Stripe description, YouTube OAuth) and the 8 open GitHub issues, unchanged; nothing new is unblocked.
+
+Previous work was finished. My own first `preflight.py` run this cycle failed `stray-probe-files`, but traced it to my own earlier foreground-timeout run of `preflight.py` (the exact anti-pattern its own docstring warns against), not a repo defect; the gate self-deleted the leftover as designed. Reran clean via `ops/run_preflight.sh`: every gate passed, 25 standing warnings, unchanged. GitHub's 8 issues, the cold-read ledger (175/175), and RISKS.md/OWNER-ACTIONS.md all re-confirmed byte-identical to recent cycles. Nothing new startable; shipping only this entry and the deck.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (19:4x)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": VPS_DEPLOY_KEY, Search Console, Stripe description, YouTube OAuth) and the 8 open GitHub issues, because backlog, RISKS.md and GitHub all reconfirm Done or Phil-gated; nothing new is unblocked.
