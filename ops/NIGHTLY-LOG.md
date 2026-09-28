@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 17:1x (closed a real, long-standing cron-cadence gap instead of repeating "nothing unblocked" an eleventh time)
+
+**Did:** Attached clean (unshallowed, 751 commits fast-forwarded). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md. Backlog sections 2-6, 8 GitHub issues, RISKS.md CRITICALs reconfirmed Done/Phil-gated; no egress, no Stripe/SSH/mail credential here.
+
+**Verified:** the standing "cron-cadence" warning (hourly-brief.yml averaging 266min against a 60min cron, 4.4x) is real, confirmed via 30 Actions API runs, and unlike the identical fulfil-orders.yml symptom, never mitigated. Read that fix before copying it.
+
+**Went well:** did not copy it blind. fulfil-orders.yml is safe to over-run (only emails a customer when an order is due); hourly-brief.yml emails Phil unconditionally, so an ungated push trigger would trade "hours late" for "150 emails a day." Added a send throttle in ops/hourly_brief.py (seconds_since_last_send/record_sent, a new committed ops/last-brief-sent.json, since the existing LAST file is gitignored and never survives a CI checkout). New preflight gate and test, fail-then-pass proved both halves.
+
+**Did not go well:** a subagent given the initial log read used `tail`, but this file is newest-first, so it reported the oldest 2026-09-04 entries as current. Caught by reading the top myself.
+
+**Changing next cycle:** none; the new gate/test guard this from regressing.
+
+**Next:** same standing Phil-gated list, 8 GitHub issues. check_cron_cadence.py will keep reporting hourly-brief.yml "degraded" even once fixed, deliberately (it cannot see the internal skip from timestamps alone), noted so this is not rediscovered as new.
+
+Pushed to main. Command deck regenerated. No price or product touched; not a new page; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 15:5x (a self-inflicted foreground-timeout kill, caught and fixed inside the same cycle; independent re-verification otherwise found nothing genuinely unblocked)
 
 **Did:** Attached clean per step 0 (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 746 commits fast-forwarded onto `origin/main`, no conflict). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b, 2, 3, 4, 5, 6, 7 (delegated the initial pass of section 1's "done this week" table to a wrapped read given its size, then read sections 2 through 7 directly), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the top entries of this log.

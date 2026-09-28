@@ -10980,6 +10980,86 @@ def gate_hourly_brief_deploy_staleness() -> None:
              "own body: %r" % body[:400])
 
 
+def gate_hourly_brief_push_trigger_throttled() -> None:
+    """hourly-brief.yml's push trigger must stay paired with a real send throttle.
+
+    Measured 2026-09-28 via ops/check_cron_cadence.py against the live Actions
+    API: this workflow's cron is configured for 60 minutes but its last 30
+    real gaps averaged 266 minutes, GitHub's own scheduler under-delivering
+    the same way fulfil-orders.yml's does (that workflow already carries a
+    `push` trigger as its documented fix). Copying the trigger alone would
+    fire this workflow on every one of a day's ~150 commits, and unlike
+    fulfil-orders.yml (which only emails a customer when a real order is
+    waiting), this workflow emails Phil unconditionally: an unguarded push
+    trigger replaces "arrives hours late" with "arrives 150 times a day,"
+    exactly what this file's own opening comment warns an hourly mail must
+    not become. ops/hourly_brief.py's seconds_since_last_send()/record_sent()
+    close that, throttling the actual send to roughly once every
+    MIN_SEND_INTERVAL_MINUTES regardless of how often the workflow fires.
+
+    This gate checks the two halves stay wired together: the workflow file
+    still has the `push` trigger (so the fix is not silently reverted while
+    the throttle stays behind, bringing the cadence gap right back) and the
+    script's `--send` path still calls the throttle before mailing anyone
+    (so the push trigger cannot be re-added, or a future edit could not
+    strip the throttle call, while a spam risk sits unflagged).
+    """
+    wf_path = os.path.join(ROOT, ".github", "workflows", "hourly-brief.yml")
+    try:
+        wf = open(wf_path, encoding="utf-8").read()
+    except OSError as e:
+        fail("hourly-brief-push-trigger-throttled",
+             "could not read hourly-brief.yml: %s" % e)
+        return
+    if not re.search(r"push:\s*\n\s*branches:\s*\[main\]", wf):
+        fail("hourly-brief-push-trigger-throttled",
+             "hourly-brief.yml no longer has a `push: branches: [main]` "
+             "trigger, so the standing ~4.4x cron-cadence gap "
+             "(gate_cron_cadence/ops/check_cron_cadence.py) is unmitigated "
+             "again.")
+
+    src_path = os.path.join(ROOT, "ops", "hourly_brief.py")
+    src = open(src_path, encoding="utf-8").read()
+    if "seconds_since_last_send" not in src or "record_sent" not in src:
+        fail("hourly-brief-push-trigger-throttled",
+             "ops/hourly_brief.py no longer defines the send throttle "
+             "(seconds_since_last_send/record_sent), but hourly-brief.yml "
+             "still fires on every push: nothing would stop it spamming "
+             "Phil on every commit.")
+        return
+    main_block = src.split('if __name__ == "__main__":', 1)[-1]
+    if "seconds_since_last_send" not in main_block:
+        fail("hourly-brief-push-trigger-throttled",
+             "ops/hourly_brief.py's __main__ block no longer calls "
+             "seconds_since_last_send() before sending, so the throttle "
+             "exists but is not actually in the send path.")
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import hourly_brief as hb
+    real_state = hb.SENT_STATE
+    tmp_state = real_state + ".gate-tmp"
+    hb.SENT_STATE = tmp_state
+    try:
+        if os.path.exists(tmp_state):
+            os.remove(tmp_state)
+        if hb.seconds_since_last_send() is not None:
+            fail("hourly-brief-push-trigger-throttled",
+                 "seconds_since_last_send() returned non-None with no "
+                 "record file present; a fresh checkout would wrongly "
+                 "skip its first real send.")
+        hb.record_sent()
+        gap = hb.seconds_since_last_send()
+        if gap is None or gap > 10:
+            fail("hourly-brief-push-trigger-throttled",
+                 "record_sent() followed immediately by "
+                 "seconds_since_last_send() should read as just now, got "
+                 "%r" % (gap,))
+    finally:
+        hb.SENT_STATE = real_state
+        if os.path.exists(tmp_state):
+            os.remove(tmp_state)
+
+
 def gate_checkin_youtube_carry_forward() -> None:
     """The hourly self check-in must not let "could not reach YouTube" collapse
     into "the channel is empty."
@@ -23240,6 +23320,7 @@ def main() -> int:
     run_gate(gate_hourly_brief_payment_links)
     run_gate(gate_hourly_brief_stripe_checks)
     run_gate(gate_hourly_brief_deploy_staleness)
+    run_gate(gate_hourly_brief_push_trigger_throttled)
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
