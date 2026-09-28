@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 05:0x (previous work finished; seventeenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), all unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; fetch origin main, confirmed shallow, fetch --unshallow, checkout main, merge --ff-only origin/main, fast-forwarded 682 commits onto origin/main, no conflict). Ran python ops/preflight.py myself to genuine completion in the background, no foreground timeout wrapper. **First run FAILED, 1 gate, stray-probe-files, naming a leftover site/_audit_catalog_fix... path.** Checked directly rather than trusted: the named path does not exist on disk and git status was clean, so nothing was actually wrong in the tree, the same self-healing race this log has diagnosed repeatedly (a fixture cleaned up only in a finally block, exposed to a concurrent audit run). Reran end to end a second time: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, byte-identical to every entry since 22:2x on 2026-09-27, all decision/blocked-on-art; ops/cold_read_ledger.py --next 175 of 175, still exhausted; ops/affiliate.py --check clean, 165 delivered documents; PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply correctly reports no mail credential, unchecked not empty; OWNER-ACTIONS.md's "start here" table and BACKLOG-2026-09-07.md sections 1b through 7 read directly: every open row is Done, correctly Held pending the 21-day diagnosis read, or genuinely Phil-gated. GOALS.md's own traffic baseline (57 visitors/144 visits/30 days) matches EXECUTIVE-DASHBOARD-LIVE.md's carried-forward figure exactly, no drift found.
+
+**Went well:** rerunning preflight to real completion rather than reporting the first, race-caused failure as current.
+
+**Did not go well:** nothing new; this is the seventeenth straight scheduled slot at the identical verdict.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil; nothing measured has moved since, so a repeat notification would be noise.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 (previous work finished; sixteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 **Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch origin main`, confirmed shallow, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded 681 commits onto `origin/main`, no conflict). Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, already accepted and mitigated by their push triggers).
