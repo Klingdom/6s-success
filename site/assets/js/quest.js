@@ -705,14 +705,10 @@
   /* The Keep view: what you have already fixed, and what holds it there.
      This is the half of the method the app was missing. */
   function renderKeepNow() {
-    /* Every repaint starts from zero live URLs. Two of the five paths that
-       reach this function (the Keep nav tab and the restore-backup flow)
-       never called releaseUrls() themselves before this fix, so repeatedly
-       opening Keep leaked a blob per photograph per visit, exactly the
-       failure mode releaseUrls()'s own comment above warns about. Doing the
-       release here once, unconditionally, means no future call site can
-       forget it. */
-    releaseUrls();
+    /* releaseUrls() itself moved to renderKeep() below, the real entry
+       point every call site (and gate_quest_keep_releases_urls_first) uses;
+       it does not need Q.rooms, so it runs before this function waits on
+       ensureRooms rather than after. */
     var held = heldZones();
     var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
     var el = $("#keep-body");
@@ -761,11 +757,19 @@
     show("keep");
   }
 
-  /* held/due above come from heldZones(), which needs the full manual. The
-     button that reaches this (go-keep) is hidden until a returning visitor's
-     dashboard has already rendered, itself already gated, so this is normally
-     synchronous; gated anyway, the same defense-in-depth as renderMap. */
+  /* Every repaint starts from zero live URLs. Two of the five paths that
+     reach this function (the Keep nav tab and the restore-backup flow) used
+     to not call releaseUrls() themselves, so repeatedly opening Keep leaked
+     a blob per photograph per visit, exactly the failure mode releaseUrls()'s
+     own comment above warns about; gate_quest_keep_releases_urls_first
+     checks that this stays the first real statement here, on the real
+     entry point every call site uses, not buried inside a function that
+     might not run yet. held/due in renderKeepNow() come from heldZones(),
+     which needs the full manual; the button that reaches this (go-keep) is
+     hidden until a returning visitor's dashboard has already rendered,
+     itself already gated, so this is normally synchronous. */
   function renderKeep() {
+    releaseUrls();
     ensureRooms(renderKeepNow);
   }
 

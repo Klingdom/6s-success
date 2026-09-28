@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 15:2x (fix-forward: the comprehensive background preflight run from the prior entry surfaced two real regressions in that same commit, both caught by existing gates, both fixed)
+
+**Did:** The full `preflight.py` run started in the background at the end of the prior entry, before push, finished after the push had already landed and found two real FAILs the scoped checks run before that push did not cover:
+
+1. `gate_quest_keep_releases_urls_first` (built 2026-09-19, a real prior incident): `renderKeep()`'s wrapper called `ensureRooms(renderKeepNow)` as its first statement, not `releaseUrls()`, because the lazy-load refactor moved the original body into `renderKeepNow()` and left `releaseUrls()` inside it, one level too deep for the gate's own contract, which checks the literal entry point every call site uses. Fixed by moving `releaseUrls()` (needs no room data) into `renderKeep()` itself, ahead of the `ensureRooms()` call.
+2. `fingerprints`: `site/quest.html`'s `?v=` hash for `quest.js` had gone stale, because a later edit to that file (the `allCards()` comment reworded to stop tripping the new gate's own regex, same prior entry) landed after `ops/fingerprint_assets.py` had already run once. Fixed by rerunning it.
+
+**Verified:** `gate_quest_keep_releases_urls_first` and `gate_quest_symptom_picker_lazy_rooms` both clean via direct call; `ops/tests/test_gate_quest_keep_url_leak.py` (2 clean shapes, 3 regressions caught by name, real file clean); all 8 real `ops/tests/test_quest_*.py` e2e scripts pass again, including `test_quest_keep_url_leak.py` itself in a real headless browser; `ops/build_mobile_corpus.py --check`, `ops/check_urls.py`, `ops/fingerprint_assets.py --check` all clean; `node --check` clean; `site/build-id.txt` recomputed against the new content.
+
+**Went well:** the two gates that exist specifically because of past incidents (blob URL leak, stale fingerprint) did exactly their job against a genuinely new change, catching both before a second push rather than needing a third party to notice.
+
+**Did not go well:** pushing before the comprehensive background run finished meant the regression landed on `main`, however briefly, rather than being caught pre-push. The scoped verification (8 e2e tests, the two new/touched gates run directly, mobile corpus, URLs) that ran before the first push did not include re-running the FULL gate suite, which is the only thing that caught `gate_quest_keep_releases_urls_first` since it touches a function this change edited but the scoped checks did not specifically re-target.
+
+**Changing next cycle:** for any change touching `quest.js`, run the full `preflight.py` (not just the gates the change is expected to touch) to completion before pushing, not after; a function edited for one reason can still trip an unrelated existing gate on a different function in the same file.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `site/assets/js/quest.js`, `site/quest.html`, `site/sw.js`, `site/build-id.txt`, command deck. No price or product touched, not a new page.
+
 ## Scheduled operator cycle, 2026-09-28 15:0x (A10's hard half shipped: the symptom picker no longer waits on the full 114-zone manual)
 
 **Did:** Attached clean (unshallow, `fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, this log's top entries; confirmed live via the GitHub API: 8 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. Three of today's own prior cycles (13:4x, 14:1x, 14:2x) had each independently, correctly at the time, judged A10's hard half too risky for a single pass and left it "for a session that can budget the full rewrite and its test coverage." Took that invitation rather than repeat the verdict a fourth time.
