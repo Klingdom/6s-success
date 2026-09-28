@@ -200,13 +200,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-10T18:36:06Z",
-   "mode": "changed",
-   "offered": 54,
-   "accepted": 54,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-11T09:52:34Z",
    "mode": "changed",
    "offered": 1,
@@ -618,6 +611,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-28T18:31:53Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -814,7 +814,7 @@
   "https://6s-success.com/articles/why-5s-decays-after-six-months": "7cac84dd7eeca83e",
   "https://6s-success.com/how-to-clean-anything.html": "3e6ba89cbbc9b694",
   "https://6s-success.com/entryway-deck.html": "42a4251f6f48358e",
-  "https://6s-success.com/garage-deck.html": "5e979ea7f3c5c991",
+  "https://6s-success.com/garage-deck.html": "71bf6b88452a653d",
   "https://6s-success.com/home-office-deck.html": "37b9f391b5315292",
   "https://6s-success.com/laundry-room-deck.html": "bd398a6c6c212af1",
   "https://6s-success.com/primary-bathroom-deck.html": "740f568985875d04"
