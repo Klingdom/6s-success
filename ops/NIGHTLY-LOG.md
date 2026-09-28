@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 03:1x (previous work finished; thirteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+Previous work: finished. Reattached (shallow, unrelated-history checkout, issue #27's usual shape): `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded clean onto `eafc6d657`, tree already clean on attach. Read `git log -12`, this log's newest entry, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, `STATUS.md`, `CHECKIN-LOG.md`'s newest hourly entries, per step 1.
+
+Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout wrapper: every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, `hooks-enabled` unset).
+
+Independently re-derived rather than cited, six separate checks: (1) Fetched all 8 open GitHub issues live via a subagent call to the GitHub API: byte-identical to the last several entries by number and label, all `decision`/`blocked-on-art`; 0 open PRs. (2) Deploy gap: read `ops/deploy-verdict.json` directly (`verdict: current`, build `159acc34b643d712`), resolved the commit with `git log -S` on `site/build-id.txt` (`7c6a83084`) myself, then `git log 7c6a83084..HEAD -- site/ Dockerfile` came back empty, so `BLOCKER-001` genuinely stays closed. (3) `ops/cold_read_ledger.py --next`: 175 of 175 ledgered, zero un-ledgered candidates printed. (4) `RISKS.md` grepped directly for `CRITICAL`: same three open (RISK-0007, RISK-0011, RISK-0013), unchanged. (5) `BACKLOG-2026-09-07.md` sections 2 to 4 read directly rather than trusted from a prior citation: B6 and B9 both read Done/CLOSED in the file body despite an inconsistent row-level strikethrough, B8 CLOSED by decision (`DECISIONS.md` D-027), C5 and C6 both explicitly "YES, Phil" (Gemini billing, YouTube OAuth paste). No genuinely open, unblocked row found. (6) Working tree and `main`/`origin` parity confirmed with `git status` and `git rev-parse`: identical.
+
+**Went well:** re-deriving the backlog rows directly against the file body rather than trusting either the strikethrough formatting or the prior cycle's summary of it.
+
+**Did not go well:** the same unrelated-history shallow checkout recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect surfaced to gate.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil; nothing measured has moved in the thirteen consecutive slots since (same issues, same owner-gated list, same 0 deploy gap), so a repeat notification would be noise, not new information.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 02:4x (previous work finished; twelfth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
