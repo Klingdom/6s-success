@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 05:4x (previous work finished; nineteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), all unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; fetch, confirmed shallow, unshallow, checkout main, ff-only merge onto origin/main, 687 commits, no conflict). Ran `python ops/preflight.py` to genuine completion twice. **First run FAILED, 1 gate, stray-probe-files, naming `site/_audit_catalog_fix...`.** Checked directly: the path does not exist and `git status` was clean, the same self-healing race this log has repeatedly diagnosed. Reran end to end: every gate passed, 25 standing warnings.
+
+**Independently re-derived:** 8 GitHub issues fetched live, byte-identical to every prior cycle; `ops/cold_read_ledger.py --next` 175 of 175, zero new candidates; `RISKS.md`'s three CRITICALs (0007/0011/0013) unchanged; `BACKLOG-2026-09-07.md` sections 2-4 and `OWNER-ACTIONS.md`'s start-here table both read directly, every row Done or genuinely Phil-gated; `inbox_agent.py` correctly reports no mail credential, unchecked not empty.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall; nothing measured has moved in nineteen consecutive slots, so a repeat would be noise.
+
+No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 05:2x (previous work finished; eighteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), all unchanged, because nothing else is genuinely unblocked.
