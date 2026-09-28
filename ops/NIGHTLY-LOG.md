@@ -20,6 +20,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
 
+## 2026-09-28, PM check-in (20:5x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable; if a fresh angle is wanted rather than repeating that verdict, no substantive commit has landed since the 20:1x cycle (only the routine hourly check-in and the automated social-draft rotation bookkeeping), so there is no new page or generator change yet to cold-read either.
+
+Previous work was finished: attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main`, no conflict, tree already clean on arrival). Read `GOALS.md` in full, `STATUS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 6-7), `EXECUTIVE-DASHBOARD-LIVE.md`. Ran `python ops/preflight.py` via `ops/run_preflight.sh`: every gate passed, the same 25 standing warnings (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). GitHub reconfirmed live via the API, not cited: 8 open issues, byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. `git log` since the 20:1x entry shows only `Hourly check-in record` and `Social drafts: advance rotation` (a rotation-bookkeeping JSON, not customer-facing), so nothing substantive shipped in the interim to check. Spot-verified the 17:1x cycle's own hourly-brief throttle is actually holding, not just claimed: `ops/last-brief-sent.json` reads `20:36:29Z`, and several workflow runs have fired since without producing a newer `sent_at`, consistent with the intended roughly-hourly cadence rather than the pre-fix 4-per-hour pattern.
+
+**Went well:** verifying the throttle fix live rather than trusting the same-day citation; catching before repeating the newest-first `ops/NIGHTLY-LOG.md` trap a subagent hit earlier today.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, scheduled operator cycle (20:3x slot)
 
 **Did:** Attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 778 commits fast-forwarded, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 to 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the top of this log. Delegated the backlog read to a subagent; it confirmed sections 2 to 4 (A1 to A10, B1 to B9, C1 to C7) are Done or Phil-gated by ID, matching every recent cycle. `ops/cold_read_ledger.py --next` reported 175 of 175 ledgered, genuinely exhausted, which directly contradicted a stale "next unread candidates" line an earlier entry had carried (`build_kit_page.py`, `build_mobile_corpus.py`, `owner_inbox.py`): all three, plus `import_room_images.py` and `stripe_setup.py`, were already ledgered `clean` on 2026-09-25/26. Re-read `import_room_images.py` and `stripe_setup.py` anyway before checking the ledger (duplicating already-done work); both confirmed still clean, matching their existing ledger notes. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; confirmed live via the API, not cited.
