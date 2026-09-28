@@ -39,7 +39,7 @@ Added `gate_quest_symptom_picker_lazy_rooms` to `preflight.py` per the backlog's
 
 **Changing next cycle:** none beyond the new gate itself.
 
-**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Full `preflight.py` (the comprehensive run, not the scoped checks above) was still completing in the background at push time; if it surfaces anything unrelated to this change, that is the next thing to fix.
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. The full comprehensive gate suite (not the scoped checks above) was still completing in the background at push time; see the 15:2x entry above for what it found and how it was fixed.
 
 Pushed to main. `ops/build_quest.py`, `ops/cold_read_ledger.py`, `ops/preflight.py`, `ops/tests/test_quest_storage_blocked.py`, `site/assets/js/quest.js`, `site/assets/js/quest-data-symptoms.js` (new), `site/quest.html`, `site/sw.js`, `site/build-id.txt`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. Not a new page (quest.html's URL is unchanged), so IndexNow was not run.
 
