@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 (eighth consecutive cycle reaching the same verdict, independently re-derived rather than cited)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape). Unshallowed with `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 707 commits onto `origin/main`, no conflict, working tree clean throughout. Read `BACKLOG-2026-09-07.md` in full, `STATUS.md`'s current snapshot, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Verified rather than trusted:** ran `python ops/preflight.py` to genuine completion in the foreground with no timeout wrapper: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 candidates. GitHub confirmed live via the API rather than cited: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2); 0 open PRs. `ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty. **Independently re-derived the deploy gap** rather than citing the last verdict: `resolve_verdict_commit('159acc34b643d712')` resolves to `7c6a83084`; `deploy_gap_material_commits('7c6a83084')` returns 0, matching `git log 7c6a83084..HEAD -- site/ Dockerfile` also empty. Production remains confirmed current with HEAD, re-derived, not assumed.
+
+**Went well:** the deploy-gap re-derivation and the cold-read/GitHub/mail checks all landed on the identical verdict seven prior cycles reached, this time re-run independently rather than copied forward.
+
+**Did not go well:** nothing new; the same standing Phil-gated list is the only remaining queue.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 09:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
