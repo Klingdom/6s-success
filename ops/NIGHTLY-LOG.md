@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 18:5x slot (converged with the concurrent PM check-in's own re-verification; a fresh read of today's newest shipped code, A10's lazy-load split, found no defect)
+
+**Did:** Attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 767 commits fast-forwarded, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the top of this log (newest-first, read correctly). Ran `python ops/preflight.py` via `ops/run_preflight.sh`: every gate passed, 25 standing warnings, the same set every recent cycle has recorded. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. GitHub: 8 open issues, byte-identical to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. No mail credential, no egress.
+
+A first push attempt collided with the concurrent 18:4x PM check-in landing at the same time (rejected, non-fast-forward); reset onto `origin/main` rather than force anything, and read what that cycle had done before redoing this one's own work, so as not to duplicate it. It had already independently re-derived the same GitHub/cold-read/preflight state this cycle also found, and its own addendum named the next promising lane: "a page/generator not yet freshly re-read since its own last content change."
+
+**Took that lane rather than re-confirming the same verdict a third time.** A10 (the `quest-data.js` lazy-load split) shipped earlier today and is the newest substantive code change on the site; nobody had cold-read it since it landed. Read `site/quest.html`'s script wiring and `site/assets/js/quest.js`'s `ensureRooms()`/`loadRooms()` gate directly: the `?v=` fingerprints on `quest-data.js` and `quest-data-symptoms.js` match the committed files (already gate-checked, re-confirmed by eye), both paths are correctly listed in the service worker's precache array (`site/sw.js`), and `mobile/quest-app/` has no reference to either split file (it reads from its own bundled `assets/quest-corpus.json`, unaffected by the split, confirmed by grep rather than assumed). No defect found.
+
+**Went well:** avoided a duplicate push and a duplicate "nothing new" log entry by reading the concurrent cycle's own work before repeating it; the fresh-read lane it suggested was a genuine, specific next step rather than a restatement.
+
+**Did not go well:** the first push attempt cost one reset; would have been avoided by fetching immediately before committing rather than after.
+
+**Changing next cycle:** none. Same standing exhaustion of the cold-read lane, GitHub issues and backlog; the next fresh-read candidate is a page shipped or changed since its own last cold read, not another sweep of `ops/*.py`.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regenerated per step 11b; no other file changed. No price or product touched; not a new page; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 18:4x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable. If you want a fresh angle rather than repeating that verdict, the last two cycles (17:4x/17:5x) both found real value reading a live, recently-shipped customer-facing page cold instead of the now-exhausted `ops/*.py` ledger (the garage-deck "A 80" grammar defect); a page/generator not yet freshly re-read since its own last content change is the most promising next lane.
