@@ -26,6 +26,38 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only. No price, product, or site page touched; not a new page; IndexNow not applicable.
 
+## PM check-in, 2026-09-28 15:4x (previous work finished, independently verified against CI, not just cited; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description, YouTube upload authorisation) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because nothing else is genuinely unblocked.
+
+**Previous work: finished, verified against GitHub's own CI, not the local claim alone.** Attached clean (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only`, 745 commits fast-forwarded, no conflict). The 15:0x/15:2x entries above describe A10 (quest-data lazy-load split) shipping, then a fix-forward commit (`a221c7a9c`) for two regressions a background preflight run found after that push. Checked directly rather than trust the entries' own "verified" claims: `publish-image.yml` run 441 (A10's own commit, `80a111d1d`) shows `conclusion: failure`; run 442, the very next run, on the fix-forward commit, shows `conclusion: success`. The fix-forward commit is real and CI-confirmed, not just locally claimed. `checks.yml` has no run on either the fix-forward or the reword commit that follows it, correctly: both touched only `site/**`/`ops/NIGHTLY-LOG.md`, neither of which is in that workflow's path filter.
+
+Ran a full `preflight.py` myself, independent of the entries above, to genuine completion: every gate passed, 26 warnings (25 standing plus `workflows-healthy` naming the now-superseded run 441 failure, which ages out once a path-triggering commit lands). GitHub: 8 open issues, byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. Read `BACKLOG-2026-09-07.md` sections 2-6: A1-A10 and B/C rows all Done; section 6 owner gates unchanged. `OWNER-ACTIONS.md` "start here" unchanged.
+
+**Went well:** checking the actual CI run objects instead of trusting the prior entries' own "verified" prose.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, this entry. No price, product or site page touched; IndexNow not applicable.
+
+## PM check-in, 2026-09-28 15:2x (previous work was NOT finished; converged with a concurrent session that reached the same fix independently; STATUS.md's deploy-gap tracker corrected twice as it kept going stale mid-cycle)
+
+**Previous work: not finished.** The 15:0x operator cycle shipped A10's hard half (`80a111d1d`) and said its own full `preflight.py` was "still completing in the background at push time." Took that at face value. Ran the full `preflight.py` myself: FAILED, 4 gates. Root cause: `renderKeep()`'s new `ensureRooms()` wrapper broke `gate_quest_keep_releases_urls_first` (releaseUrls() must be the literal first statement; it wasn't, and release now waited on the 419KB manual to load even though it has nothing to do with room data), plus a downstream stale fingerprint. Confirmed independently in CI's own logs first (`checks.yml` run 1561, `Preflight` step, `failure`), not just locally. Also found STATUS.md's BLOCKER-001 (corrected 14:4x for a 1-commit gap) had already gone stale by one more commit, `80a111d1d` itself.
+
+**Fixed the code, then found a concurrent session had fixed the identical regression the same way before I could push.** Moved `releaseUrls()` to be the true first statement of `renderKeep()`, ahead of `ensureRooms()`. Full preflight clean after. On push: conflict. `git fetch` showed a concurrent session's `a221c7a9c` ("Fix-forward: renderKeep() gate regression and stale fingerprint from A10") had landed with the same diagnosis and the same fix. Rather than force a duplicate, reset my local commit, discarded my copy of the code/fingerprint/dashboard changes, kept only the STATUS.md correction (untouched by their push), and rebased clean onto `origin/main`.
+
+**STATUS.md's own gap count had to be corrected twice in the same cycle, honestly, not smoothed over: first to 2 commits (`a74dba749` + `80a111d1d`), then to 3 once the concurrent fix-forward commit itself landed and was confirmed material** (`deploy_gap_material_commits('7c6a83084')` re-run after the rebase, not assumed from the count before it). Both BLOCKER-001's narrative entry and the two summary rows updated to the real, current 3-commit figure.
+
+**Went well:** independent convergence on the same root cause and the same fix from two sessions is a real signal the diagnosis was right, not a coincidence to paper over; reconciling by rebase and dropping the duplicate kept the history honest instead of layering two commits that did the same thing.
+
+**Did not go well:** the 15:0x cycle shipped ahead of its own preflight result, which is exactly what CLAUDE.md 0.3/0.4 warn against; it cost a real CI-red cycle two sessions then spent fixing independently.
+
+**Changing next cycle:** none needed on any gate; restating for future cycles: a background `preflight.py` that has not finished by push time is not evidence of a clean state.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md` only (the code fix itself shipped in the concurrent session's `a221c7a9c`). No price or product touched; not a new page; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 15:2x (fix-forward: the comprehensive background preflight run from the prior entry surfaced two real regressions in that same commit, both caught by existing gates, both fixed)
 
 **Did:** The full `preflight.py` run started in the background at the end of the prior entry, before push, finished after the push had already landed and found two real FAILs the scoped checks run before that push did not cover:
