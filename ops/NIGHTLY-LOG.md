@@ -18,6 +18,22 @@ Previous work was finished: attached clean (shallow, detached; `fetch origin mai
 
 Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-09-28, scheduled operator cycle (20:3x slot)
+
+**Did:** Attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 778 commits fast-forwarded, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 to 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the top of this log. Delegated the backlog read to a subagent; it confirmed sections 2 to 4 (A1 to A10, B1 to B9, C1 to C7) are Done or Phil-gated by ID, matching every recent cycle. `ops/cold_read_ledger.py --next` reported 175 of 175 ledgered, genuinely exhausted, which directly contradicted a stale "next unread candidates" line an earlier entry had carried (`build_kit_page.py`, `build_mobile_corpus.py`, `owner_inbox.py`): all three, plus `import_room_images.py` and `stripe_setup.py`, were already ledgered `clean` on 2026-09-25/26. Re-read `import_room_images.py` and `stripe_setup.py` anyway before checking the ledger (duplicating already-done work); both confirmed still clean, matching their existing ledger notes. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; confirmed live via the API, not cited.
+
+**Found the same two real `preflight.py` failures the concurrent 19:4x cycle below also found, and fixed them independently before discovering it had already pushed the identical fix.** `stray-probe-files` (7 leftover fixture paths from my own first, unsafe `timeout`-wrapped preflight attempt; self-deleted on report) and `nightly-log-ordering` (the "PM check-in 19:2x" entry appended to the file's physical end instead of prepended). Fixed both locally, reran clean, committed, then on `git fetch` before push found `origin/main` had diverged by 5 commits: the 19:4x and 20:1x entries below show a concurrent cycle fixed the exact same `nightly-log-ordering` instance a few minutes earlier and already pushed it. Rather than force a duplicate fix through, merged `origin/main` in and discarded the now-redundant half of the local diff, keeping only what was genuinely new: this retrospective, the cold-read-handoff correction above, and a `STATUS.md` rotation (untouched by the concurrent commits).
+
+**Verified:** confirmed the merged file carries no duplicate of the "19:2x" entry (`grep -c` for its heading returns 1) and that `gate_nightly_log_ordering`/`gate_nightly_log_no_duplicate_entries` both still pass; full `preflight.py` rerun after the merge, every gate passed, 25 standing warnings; `ops/inbox_agent.py --apply` run, unchecked (no mail credential); dashboard regenerated against the merged state.
+
+**Went well:** fetched before pushing rather than after, so the collision surfaced as a rejected non-fast-forward rather than a corrupted push; read the concurrent cycle's own fix before redoing anything, per this log's own established practice, and avoided landing a duplicate entry.
+
+**Did not go well:** two real minutes of work (the `nightly-log-ordering` fix itself) were fully duplicated effort between two concurrent cycles, because both started from a checkout old enough to still see the defect; no way to have known without a faster fetch cadence than a single cycle can offer. My own first `preflight.py` invocation also used a plain foreground `timeout` wrapper, exactly the mistake `ops/run_preflight.sh` exists to prevent; caught it from the stalled CPU time, killed it cleanly, switched to the wrapper after.
+
+**Changing next cycle:** none new. `gate_cold_read_handoff_not_stale`, already in `preflight.py` from an earlier fix for this exact recurring shape, caught this very entry's own first draft naming three already-ledgered files as live candidates, corrected before commit.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. The cold-read lane is genuinely exhausted (175 of 175 ledgered); do not name a "next candidate" file without checking `ops/cold_read_ledger.py --next` first.
+
 ## 2026-09-28, PM check-in (20:1x)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": VPS_DEPLOY_KEY, Search Console, Stripe description, YouTube OAuth) and the 8 open GitHub issues, unchanged; nothing new is unblocked.
