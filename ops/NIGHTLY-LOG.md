@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 01:5x (tenth consecutive slot at the same verdict, full independent re-verification, converged with a concurrent PM check-in mid-run)
+
+**Did:** Checkout arrived shallow and detached, as step 0 warns: `git fetch origin main`, confirmed `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main` (local main stale 670 commits behind), `merge --ff-only origin/main` fast-forwarded clean onto `0000c1079`, no conflict, tree clean on attach. Read `GOALS.md` (constraint unchanged), `BACKLOG-2026-09-07.md` in full (section 0's traffic figure, sections 1 and 1b's done items, section 2 through 4's current work, section 5's HOLD list and why, section 6's owner gates, section 7's summary), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout wrapper:** every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, `hooks-enabled` unset). Independently re-derived rather than cited: 8 open GitHub issues confirmed live via the API (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, still exhausted, zero candidates printed. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly reported unchecked, not empty. `python ops/affiliate.py --check`: clean, 165 delivered documents, no affiliate link, every page with links discloses above them. Re-derived the deploy gap directly rather than trusted the citation: `git log 7c6a83084..HEAD -- site/ Dockerfile` empty, so `BLOCKER-001` stays closed, real gap 0. Read `RISKS.md`'s three open CRITICALs (0007, 0011, 0013) in full: RISK-0011 (product masters) stays open on Phil's own OneDrive account confirming the upload, RISK-0007 (single host, no staging) and RISK-0013 (no stranger has converted) are both tracked and already the subject of the standing owner-gated list and the roadmap gates; nothing here is actionable from this sandbox.
+
+**Converged mid-run with a concurrent PM check-in (`84dc01cb5`, "01:4x") that landed the identical verdict independently while this cycle was still reading.** Compared its findings to my own rather than assume agreement: same 25 warnings, same 8 issues, same 175/175 ledger, same 0 deploy gap. Fast-forwarded onto it rather than force a duplicate commit.
+
+**Nothing genuinely unblocked, a tenth straight slot at the identical verdict.** Did not send a push notification: the 2026-09-27 22:2x cycle already escalated the multi-hour stall to Phil by phone, and nothing measured has moved since (same issues, same exhausted ledger, same owner-gated list, no new site or Dockerfile commit).
+
+**Went well:** independent re-derivation of every standing check rather than citing the concurrent cycle's numbers; reading the full current backlog (not just its "Done" summary) confirmed sections 2 through 5 hold no row this sandbox could start.
+
+**Did not go well:** nothing new to report; this remains a long run at the same verdict, unchanged since the last several entries.
+
+**Changing next cycle:** none. No new defect surfaced to gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged, because nothing else is genuinely unblocked.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 01:4x (previous work finished; ninth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
