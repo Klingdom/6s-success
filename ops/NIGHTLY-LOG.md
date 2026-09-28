@@ -22,6 +22,24 @@ Independently re-derived rather than cited, six separate checks: (1) Fetched all
 
 Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
 
+## Scheduled operator cycle, 2026-09-28 02:5x (D3/D4's own stale "Blocked on. Nothing." status lines found and corrected; converged with the concurrent 02:4x PM check-in on everything else)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`fetch --unshallow`), `checkout main`, `merge --ff-only origin/main` fast-forwarded clean (673 commits) onto `bc481e358`, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md`'s O1 arithmetic, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries.
+
+**Ran `python ops/preflight.py` to genuine completion in the background, no foreground timeout wrapper:** every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Independently re-derived: `ops/cold_read_ledger.py --next` still 175 of 175, exhausted. GitHub's 8 open issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`. `python ops/affiliate.py --check` clean, 165 documents. Checked CI directly rather than trusted: `checks.yml` run 1553 on the latest `main` commit is `success`. `OWNER-ACTIONS.md` item 0 (`VPS_DEPLOY_KEY`) and the deploy gap both re-checked live, unchanged (`deploy_verdict: current`, per `ops/state.json`).
+
+**Found and fixed one real, small documentation-drift defect, the repository's own named dominant class:** `REVIEW-DISCOVERY-2026-09-07.md`'s D3 (sizing/capacity guidance) and D4 (household variants) sections still ended "**Blocked on.** Nothing." with no status note, even though `ops/NIGHTLY-LOG.md` records both shipped and closed on 2026-09-20, and every sibling D-item in the same document (D1, D6, D7, D9, D10, D15, D16, D17) already carries an inline "Done"/"Status" block recording its own closure. The document's own top-of-file summary (lines 37, 50-56) already correctly says "D1, D3 and D5 have since shipped," so the drift was narrow: two section bodies never got the same treatment their own summary already gave them. Verified live before writing anything, not assumed from the summary: `check_capacity_rendered()`/`gate_capacity_rendered()` and `check_variants_rendered()`/`gate_variants_rendered()` both exist in `ops/preflight.py`, each re-deriving its pilot zone's rule/conditions from `content.json` and diffing them byte for byte against the real shipped HTML; both gates are in the passing set from this cycle's own full `preflight.py` run. Added a dated "Done" note to each section, same shape as the sibling items, citing the real check functions rather than restating the summary's claim. No gate parses this document's own prose (confirmed by grep: every `REVIEW-DISCOVERY` reference in `preflight.py` is a docstring citation, not a text scan), so no gate needed touching or re-proving.
+
+**Went well:** reading the review document's own section bodies instead of trusting its top-of-file summary table found a real, if narrow, gap the summary had already silently outgrown.
+
+**Did not go well:** two `preflight.py --fast` verification attempts after the edit ran far longer than a fast pass should and were killed rather than left to finish; the change itself is prose-only in a file no gate scans, confirmed directly by grep, so this did not block shipping, but the fast path's own slowness in this sandbox is unexplained and worth a look if it recurs.
+
+**Changing next cycle:** none; this is a one-off doc correction, not a new defect class needing a gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (item 0 `VPS_DEPLOY_KEY`, Search Console verification, Gemini billing, KDP/Etsy accounts) and the 8 open GitHub issues, unchanged, because nothing else is genuinely unblocked. No push notification sent: this is a documentation correction, not new information Phil needs now, and the 2026-09-27 22:2x cycle already escalated the standing owner-gated stall.
+
+Command deck regenerated and committed. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 02:4x (previous work finished; twelfth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.

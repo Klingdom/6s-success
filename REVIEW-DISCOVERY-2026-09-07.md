@@ -549,6 +549,18 @@ the customer's units, and the "does not fit" case links to the existing article
 with a specific anchor.
 **Blocked on.** Nothing.
 
+**Done, 2026-09-20, confirmed live 2026-09-28.** This section's own status
+line went stale the day the fix shipped: `ops/NIGHTLY-LOG.md` records D3
+closed 2026-09-20 (the same 12-zone pilot cohort D4 uses), but this row was
+never updated to say so, unlike every sibling D-item in this document.
+Checked directly rather than taken on trust: `check_capacity_rendered()` and
+`gate_capacity_rendered()` exist in `ops/preflight.py`, re-deriving each
+pilot zone's capacity rule and "does not fit" sentence from `content.json`
+and diffing them byte for byte against the shipped HTML, checking the
+`#honest-count` anchor and rejecting a duplicate rule across zones; the gate
+is passing clean in this cycle's own full `preflight.py` run. This row's own
+acceptance line is met.
+
 ### D4. Variants: small space, rented, shared, accessible
 **What.** A short conditional block: what changes if the entryway is a corridor
 with no console, if you cannot drill the wall, if three people share it.
@@ -561,6 +573,15 @@ for everyone. This is that commitment, made visible.
 **Acceptance.** Each pilot page carries a named "if your zone is not like this"
 section with at least two real conditions and different guidance under each.
 **Blocked on.** Nothing.
+
+**Done, 2026-09-20, confirmed live 2026-09-28.** Same stale-status shape as
+D3 above: `ops/NIGHTLY-LOG.md` records D4 shipped 2026-09-20 (before D3, on
+the same pilot cohort), but this row was never updated. Checked directly:
+`check_variants_rendered()` and `gate_variants_rendered()` exist in
+`ops/preflight.py`, re-deriving each pilot zone's named conditions and
+guidance from `content.json` and diffing them against the shipped HTML,
+rejecting a duplicate block across zones; the gate is passing clean in this
+cycle's own full `preflight.py` run. This row's own acceptance line is met.
 
 ### D5. What competitors have that we should **not** copy
 Do not add: a listicle of 25 product picks; a shoppable grid with prices we do
