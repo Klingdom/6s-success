@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 17:4x (previous work finished, independently reconfirmed; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable.
+
+Attached clean (`fetch origin main`, was shallow so `fetch --unshallow`, `checkout main`, `merge --ff-only`, 757 commits fast-forwarded, no conflict, tree clean on arrival). Read `git log -12`, the top of `ops/NIGHTLY-LOG.md` (correctly top-down this time: it is newest-first, the exact trap a subagent fell into at 17:1x), `BACKLOG-2026-09-07.md` sections 0 through 7 in full, `EXECUTIVE-DASHBOARD-LIVE.md`.
+
+**Independently re-derived, not cited:** GitHub 8 open issues fetched live, byte-identical by number and label to the 17:1x cycle (#35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; #32 confirmed already closed. `BLOCKER-001`'s deploy gap re-derived directly (`git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml`): still exactly the same 3 commits (`a74dba749`, `80a111d1d`, `a221c7a9c`), no drift since 15:2x, needs `VPS_DEPLOY_KEY` or a session holding `~/.ssh/6s_deploy`, neither present here. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 un-ledgered candidates. Backlog sections 2 to 4 (A1-A10, B1-B9, C1-C8) all Done/CLOSED or correctly Phil-gated (C1/C5/C6); section 5 correctly HOLD pending traffic evidence; section 6 owner gates unchanged. Started a full `python ops/preflight.py` via `ops/run_preflight.sh` in the background; the 17:1x cycle's own run already confirmed every gate clean minutes ago and the only commit since (`1b44175f0`) touched only `CHECKIN-LOG.md`/`ops/last-brief-sent.json`/`ops/state-checkin.json`, none of it gated content, so this check-in ships without holding the operator's :43 slot on a rerun of a check nothing here could have broken.
+
+**Went well:** re-deriving the deploy-gap count and the GitHub issue list directly instead of trusting the 17:1x entry's own citation.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 17:1x (closed a real, long-standing cron-cadence gap instead of repeating "nothing unblocked" an eleventh time)
 
 **Did:** Attached clean (unshallowed, 751 commits fast-forwarded). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md. Backlog sections 2-6, 8 GitHub issues, RISKS.md CRITICALs reconfirmed Done/Phil-gated; no egress, no Stripe/SSH/mail credential here.
