@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (22:4x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-verification this cycle found nothing else genuinely unblocked.
+
+Previous work was finished, but not cited blind: ran `ops/run_preflight.sh` myself to genuine completion. First run FAILED `stray-probe-files`, self-caused by my own bare foreground `timeout` invocation of `preflight.py` (the exact anti-pattern the wrapper exists to prevent), not a repo defect; the leftover fixture had already self-deleted by the time I checked. Reran clean via the wrapper: every gate passed, 26 standing warnings (two `cron-cadence` lines, `fulfil-orders.yml` and `hourly-brief.yml`, both already diagnosed and mitigated). Cross-checked `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and GitHub's live issue list directly: 8 open, byte-identical labels/numbers to every recent cycle, all `decision`/`blocked-on-art`, none mine to pick per STEP 3. Tree clean, main up to date with origin.
+
+**Went well:** caught and fixed my own preflight-invocation mistake before handing it off as a false FAIL.
+
+**Did not go well:** used a bare foreground `timeout` instead of the wrapper on the first attempt, despite this exact mistake being logged repeatedly before.
+
+**Next:** same standing Phil-gated list, unchanged.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (22:2x)
 
 Previous work was finished, verified independently rather than cited: attached clean (unshallow, checkout main, ff-only merge, 802 commits, no conflict). Ran `python ops/run_preflight.sh` to genuine completion myself: every gate passed, same 25 standing sandbox-limited warnings as the 21:5x cycle. Tree clean, main up to date with origin. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted. GitHub reconfirmed live via the API: 8 open issues, same numbers and labels as every recent cycle, all decision/blocked-on-art, correctly not mine to pick per STEP 3.
