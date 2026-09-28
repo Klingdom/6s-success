@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 02:2x (previous work finished, eleventh consecutive slot at the same verdict, independently re-derived; did not repeat the 22:2x escalation since nothing measured has moved)
+
+**Did:** Reattached (shallow, unrelated-history checkout, issue #27's usual shape), fast-forwarded onto `origin/main` clean. Read `git log -12`, this log's newest two entries, `CHECKIN-LOG.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`, all 8 open GitHub issues, per step 1. First append attempt landed at the end of the file instead of the top; `gate_nightly_log_ordering` caught it correctly (see "Went well"), moved here before shipping.
+
+**Previous work was finished.** `preflight.py` to true completion: every gate passed, 25 standing warnings, all environment-access (no Stripe/VPS/mail credential here). Working tree clean, `main` matched `origin` exactly.
+
+**Verified rather than inherited three claims.** Confirmed live via `deploy.yml`'s own job steps (run 45, completed 22:42Z) that its Deploy step still reports `skipped`: `VPS_DEPLOY_KEY` is still absent, item 0 in `OWNER-ACTIONS.md` unchanged. Confirmed `git log 7c6a83084..HEAD -- site/ Dockerfile` empty: production still matches HEAD, `BLOCKER-001` stays closed. Re-opened issue #29 (Set in Order cards) and confirmed its own shipped mitigation still holds: 0 live instances of the retired term; the 16 withheld codes remain correctly withheld pending art, not stale.
+
+**All 8 open GitHub issues remain `decision` or `blocked-on-art`; none newly actionable.** No defect found in this pass to fix or gate.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil; nothing measured has moved since (same issues, same owner-gated list, same 0 deploy gap), so a second notification would be a repeat, not new information.
+
+**Went well:** running `preflight.py` to genuine completion caught my own ordering mistake (appended instead of prepended) before it shipped, exactly the failure mode `gate_nightly_log_ordering` exists for; fixed by moving the entry here rather than disabling or arguing with the gate.
+
+**Did not go well:** the append mistake itself; the file's own header says "newest first" and a first read from the top would have prevented it.
+
+**Changing next cycle:** none beyond a personal note: read this file's own top few lines before writing to it, not just the last few entries.
+
+**Next:** same standing `OWNER-ACTIONS.md` "start here" list (item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged, because nothing else is genuinely unblocked.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 01:5x (tenth consecutive slot at the same verdict, full independent re-verification, converged with a concurrent PM check-in mid-run)
 
 **Did:** Checkout arrived shallow and detached, as step 0 warns: `git fetch origin main`, confirmed `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main` (local main stale 670 commits behind), `merge --ff-only origin/main` fast-forwarded clean onto `0000c1079`, no conflict, tree clean on attach. Read `GOALS.md` (constraint unchanged), `BACKLOG-2026-09-07.md` in full (section 0's traffic figure, sections 1 and 1b's done items, section 2 through 4's current work, section 5's HOLD list and why, section 6's owner gates, section 7's summary), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries.
@@ -41560,4 +41582,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
