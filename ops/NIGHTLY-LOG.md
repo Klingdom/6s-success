@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 07:5x slot (fresh session, independently re-derived the standing verdict rather than trusting it, nothing genuinely unblocked)
+
+**Did:** Checkout arrived shallow and detached, issue #27's usual shape. Unshallowed (`git fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 698 commits onto `origin/main` cleanly, no conflict, working tree already clean on attach.
+
+Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0 through 7, in full, not a summary), `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, `STATUS.md`, the last several `ops/NIGHTLY-LOG.md` entries and `CHECKIN-LOG.md`'s newest hourly entries, per step 1.
+
+**Ran `python ops/preflight.py` to genuine completion, twice.** The first attempt used a foreground `timeout 590` wrapper, the exact self-inflicted mistake this log has repeatedly named; caught it directly (the process was still progressing through `gate_tests` when the cap would have killed it) rather than let it produce a false result, killed it, and reran with `nohup ... &` and no cap, polling the output file rather than a wrapper's own PID. Genuine result: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, the two known cron-cadence drifts, `page-art`/`deck-art` coverage gaps already tracked as owner-gated). No new warning, no new FAIL.
+
+**Independently re-derived rather than cited, four separate standing claims, each checked against the live source, not against a prior cycle's account of it:**
+1. Production deploy gap: `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` is empty against current HEAD (`e9de2bd36`); `ops/deploy-verdict.json` (`build 159acc34b643d712`, `checked_at 2026-09-27T22:45:39Z`) resolves to that same commit. Production is confirmed current with HEAD.
+2. GitHub: 8 open issues fetched live via the API (`#35, #33, #31, #29, #21, #18, #15, #2`), byte-identical in content and label to every prior cycle's citation, all `decision`/`blocked-on-art`; 0 open PRs.
+3. `ops/cold_read_ledger.py --next`: 175 of 175 files ledgered, 0 un-ledgered candidates, genuinely exhausted.
+4. `ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
+
+**Beyond the standing four, did two things no recent entry recorded doing this specifically:**
+- Read a zone page never singled out in this log before, `dining-room-the-china-or-display-cabinet.html` (496 lines, full read, not sampled), for editorial and structural defects with fresh eyes rather than trusting the automated 0-findings audits alone. Found none: Straighten (never "Set in Order"), Safety fourth per D-014, honest zero-commission affiliate disclosure above both the pre-Sort and post-Sort kit blocks, hazard callouts specific to the zone (tip-over, lead glaze), no fabricated claims, correct cross-links. No defect.
+- Read `CHECKIN-LOG.md`'s tail directly rather than trust `STATUS.md`'s summary of it: the last real "Moved" entry is 2026-09-22 15:04; every hourly check-in since, roughly 40 of them across 6 days, reads "Nothing measurable moved since the last check-in." Considered manually widening `hourly-brief.yml`'s cron per its own docstring ("TURN THIS DOWN when the hourly cadence stops being useful"), then did not: this same cycle's own preflight output shows the job's *real* average gap over its last 49 runs is already 259 minutes (worst 468) against its configured 60, a standing, already-diagnosed GitHub-throttling warning, not a choice anybody is making. The job also carries the only real network egress in this whole pipeline (`ops/indexnow.py --changed`, inbox reads), so narrowing it further on top of the throttling already happening would trade real SEO/inbox responsiveness for a marginal cut to an email cadence nobody has reported as a problem. Left it alone; recorded the reasoning here rather than silently doing nothing.
+
+**Went well:** the fresh-eyes zone-page read and the cron-cadence tangent both turned into a real check rather than a rubber stamp, and both came back with an actual reason to change nothing, not just a shrug.
+
+**Did not go well:** the first `preflight.py` attempt repeated the foreground-timeout mistake this log has named at least four times before, costing roughly 10 minutes before the kill-and-restart. Personal note, again: `nohup python ops/preflight.py > out.txt 2>&1 &` and poll the file, never a `timeout N` wrapper around the whole run.
+
+**Changing next cycle:** none; no new product defect means no new gate to write, per step 10b.
+
+**Next:** the standing owner-gate list is unchanged and is the only thing that reopens new work: `OWNER-ACTIONS.md` "start here" (item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth now cleared and ready, item 1d Stripe business description) and the 8 open GitHub decision/art issues. No price, product or site page touched; not a new page; IndexNow not applicable. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) per step 11b.
+
 ## PM check-in, 2026-09-28 07:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
