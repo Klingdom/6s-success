@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-09-28 09:0x (independent re-verification plus one fresh-eyes page read, nothing genuinely unblocked)
+## PM check-in, 2026-09-28 09:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached, fetch --unshallow, checkout main, merge --ff-only fast-forwarded 706 commits onto origin/main, no conflict, working tree clean throughout). Ran python ops/preflight.py myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set every recent cycle has recorded. No new FAIL, no new warning.
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, unchanged, all decision/blocked-on-art, 0 open PRs. ops/cold_read_ledger.py --next: 175 of 175, genuinely exhausted, 0 candidates. Read BACKLOG-2026-09-07.md sections 0 through 7 in full: 1 through 4 all Done or Phil-gated, 5 correctly HOLD, 6 owner-gated, 7 unchanged. checks.yml last succeeded on 74f8c4e9, confirmed an ancestor of current HEAD via merge-base, not assumed current from a stale citation. Dashboard regenerated.
+
+No price, product or site page touched; IndexNow not applicable.
 
 **Did:** Attached clean per step 0 (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 702 commits onto `origin/main`, no conflict). Read `GOALS.md`, `STATUS.md`'s current snapshot, `BACKLOG-2026-09-07.md` sections 0-7 in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries.
 
