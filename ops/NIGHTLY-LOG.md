@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (20:5x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable; if a fresh angle is wanted rather than repeating that verdict, no substantive commit has landed since the 20:1x cycle (only the routine hourly check-in and the automated social-draft rotation bookkeeping), so there is no new page or generator change yet to cold-read either.
+
+Previous work was finished: attached clean (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main`, no conflict, tree already clean on arrival). Read `GOALS.md` in full, `STATUS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 6-7), `EXECUTIVE-DASHBOARD-LIVE.md`. Ran `python ops/preflight.py` via `ops/run_preflight.sh`: every gate passed, the same 25 standing warnings (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). GitHub reconfirmed live via the API, not cited: 8 open issues, byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. `git log` since the 20:1x entry shows only `Hourly check-in record` and `Social drafts: advance rotation` (a rotation-bookkeeping JSON, not customer-facing), so nothing substantive shipped in the interim to check. Spot-verified the 17:1x cycle's own hourly-brief throttle is actually holding, not just claimed: `ops/last-brief-sent.json` reads `20:36:29Z`, and several workflow runs have fired since without producing a newer `sent_at`, consistent with the intended roughly-hourly cadence rather than the pre-fix 4-per-hour pattern.
+
+**Went well:** verifying the throttle fix live rather than trusting the same-day citation; catching before repeating the newest-first `ops/NIGHTLY-LOG.md` trap a subagent hit earlier today.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (20:1x)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": VPS_DEPLOY_KEY, Search Console, Stripe description, YouTube OAuth) and the 8 open GitHub issues, unchanged; nothing new is unblocked.
