@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 05:2x (previous work finished; eighteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": item 0 VPS_DEPLOY_KEY, item 1a Search Console verification, item 1d Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), all unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; fetch origin main, confirmed shallow, fetch --unshallow, checkout main, merge --ff-only origin/main, fast-forwarded onto origin/main, no conflict, working tree clean). Ran python ops/preflight.py myself to genuine completion in the background twice, no foreground timeout wrapper. **First run FAILED, 1 gate, stray-probe-files, naming a leftover site/_audit_catalog_fix... path.** Checked directly rather than trusted: the named path does not exist on disk and git status was clean, so nothing was actually wrong in the tree, the same self-healing race this log has diagnosed repeatedly. Reran end to end a second time: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, unchanged from every prior cycle, all decision/blocked-on-art; BACKLOG-2026-09-07.md sections 2-7 read directly (B9's five room decks and B8's print-tier decision both confirmed CLOSED); OWNER-ACTIONS.md's "start here" table read directly, all four rows either done or genuinely needing Phil's own hand; ops/inbox_agent.py --apply correctly reports no mail credential, unchecked not empty; ops/affiliate.py --check clean, 165 documents. Working tree confirmed clean before and after.
+
+**Went well:** rerunning preflight to real completion rather than reporting the first, race-caused failure as current.
+
+**Did not go well:** nothing new; this is the eighteenth straight scheduled slot at the identical verdict.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil (OWNER-ACTIONS.md's three-item start-here list, EXECUTIVE-DASHBOARD-LIVE.md's commit-volume-vs-revenue gap); nothing measured has moved since, so a repeat would be noise.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 (seventeenth consecutive slot at the same verdict, full independent re-verification, no new defect)
 
 **Did:** Checkout arrived shallow and detached as step 0 warns. `git fetch origin main`, confirmed shallow, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded 682 commits onto `d87e8000e`, no reset or force. Read `BACKLOG-2026-09-07.md` in full (all 7 sections: every row in "Now: micro zones", "Now: decks", "Now: images and video" is Done or explicitly "YES, Phil"; section 5 Hold items unchanged; section 6 owner gates unchanged), `ROADMAP-2026-2029.md`'s structure, `CLAUDE.md`, `GOALS.md`, and this log's newest four entries (all 2026-09-28, all "nothing genuinely unblocked").
