@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 (previous work finished; sixteenth consecutive slot at the same verdict, independently re-derived, nothing genuinely unblocked)
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch origin main`, confirmed shallow, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded 681 commits onto `origin/main`, no conflict). Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout: every gate passed, 25 warnings, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, known cron-cadence drift on `fulfil-orders.yml`/`hourly-brief.yml`, already accepted and mitigated by their push triggers).
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, byte-identical to every entry since 22:2x on 2026-09-27 (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all `decision`/`blocked-on-art`; `ops/cold_read_ledger.py --next` 175 of 175, still exhausted; `RISKS.md` grepped for `CRITICAL`: same three open (RISK-0007, RISK-0011, RISK-0013), unchanged; `OWNER-ACTIONS.md`'s "start here" table read directly: item 0 (`VPS_DEPLOY_KEY`), 1a (Search Console) and 1d (Stripe description) still open, item 1 (YouTube) still cleared 2026-09-26; working tree and `main`/`origin` parity confirmed identical.
+
+**Went well:** running preflight to true completion rather than trusting a prior cycle's citation, since the last several entries each did the same and it caught a real defect once (the `dashboard.py` word-count hardcode, 2026-09-25).
+
+**Did not go well:** nothing new; this is the sixteenth straight scheduled slot at the identical verdict.
+
+**Did not send a push notification.** The 2026-09-27 22:2x cycle already escalated this exact stall to Phil; nothing measured has moved in the sixteen consecutive slots since, so a repeat notification would be noise.
+
+**Handing to the operator at :43:** nothing specific beyond the standing list above; the backlog and GitHub queue remain genuinely exhausted of anything not gated on Phil.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 (fifteenth consecutive slot at the same verdict, full independent re-verification, no new defect)
 
 **Did:** Checkout arrived shallow and detached, as step 0 warns. `git fetch origin main`, confirmed `git rev-parse --is-shallow-repository` true, `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main`, fast-forwarded clean (678 commits) onto `6dae5d08f`, no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and this log's newest four entries (all 2026-09-28, all converging on the identical "nothing genuinely unblocked" verdict).
