@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 11:2x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0: origin/main had force-updated since the last local ref (712 commits), fetch/unshallow/checkout/ff-only merge landed cleanly, no conflict, working tree clean throughout. Ran `python ops/preflight.py` myself to genuine completion in the background, no foreground timeout wrapper: every gate passed, 25 warnings, the identical standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, the two known cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No new FAIL, no new warning.
+
+**Independently re-derived rather than cited:** 8 open GitHub issues fetched live via the API, byte-identical to the prior cycle, all `decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted, 0 candidates. Deploy gap re-derived from source: `git log -S "159acc34b643d712" -- site/build-id.txt` resolves to `7c6a83084`; `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` is empty. Production confirmed current with HEAD. Tested this session's own access directly rather than citing prior cycles: `curl` to `6s-success.com` and `api.indexnow.org` both return `000` (proxy-denied), no key at `~/.ssh/`, no `GEMINI_API_KEY` in the environment. All match every prior cycle exactly. `RISKS.md`'s three CRITICALs (0007/0011/0013) unchanged and already tracked; `GOALS.md`'s traffic baseline (57/144/30d, measured 2026-09-25 01:17) is 3 days old against its own weekly re-measure rule, not yet stale.
+
+No price, product or site page touched; IndexNow not applicable. No push notification: this stall was already escalated 2026-09-27 22:2x and nothing measured has moved since (`CHECKIN-LOG.md`'s last four hourly slots all read "nothing measurable moved," spanning 2026-09-26 17:19 to now), so a repeat would be noise.
+
+**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, still needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
 ## PM check-in, 2026-09-28 10:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
