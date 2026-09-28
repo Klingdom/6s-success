@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-09-28 15:5x (a self-inflicted foreground-timeout kill, caught and fixed inside the same cycle; independent re-verification otherwise found nothing genuinely unblocked)
+
+**Did:** Attached clean per step 0 (shallow, detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 746 commits fast-forwarded onto `origin/main`, no conflict). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b, 2, 3, 4, 5, 6, 7 (delegated the initial pass of section 1's "done this week" table to a wrapped read given its size, then read sections 2 through 7 directly), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the top entries of this log.
+
+**Made the exact mistake this repository's own tooling exists to prevent, then caught it.** First preflight invocation this cycle was a plain `python ops/preflight.py --fast` under a 120s foreground timeout; it was killed (SIGTERM, exit 143) mid-run, the identical "foreground timeout" shape `ops/run_preflight.sh`'s own docstring and dozens of prior log entries already name as costly. Discarded that run as unchecked rather than reported, and switched to `ops/run_preflight.sh` (the `setsid`-backed detached wrapper) for every run after.
+
+**The rerun surfaced a real, if minor, consequence of that same kill: `FAIL stray-probe-files`**, 2 leftover probe/fixture paths (including `site/_deck_probe_6.html`) left behind when the killed run's `audit_visual.py` pass didn't reach its own cleanup. `gate_no_stray_probe_files` did exactly what its docstring says it will: reported the failure by name, then deleted the stray paths itself (it runs first in `main()` and self-heals after reporting). Verified rather than assumed: confirmed both paths gone from disk and `git status` clean, then ran the full wrapped `preflight.py` a second time end to end: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
+
+**Independently re-verified, not cited, four standing claims:** (1) `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. (2) `ops/inbox_agent.py --apply`: no mail credential, unchecked not empty. (3) Network egress: live `curl` to `6s-success.com`, `api.indexnow.org` and `api.stripe.com` all three denied by the agent proxy (403), matching every prior cycle. (4) GitHub: 8 open issues, fetched live via the API and read in full (not just the label) for all 8, not a sample — #2 and #29 (blocked-on-art) both genuinely need Desktop-only source art or a stronger image model neither of which exist in this sandbox; #18, #21, #31, #33, #35 (decision) and #15 (P0, decision) are each a real whole-book-style commitment, a Stripe legal-identity edit, a product-mismatch call, a game-design tradeoff, a new SSH-credential-into-production risk decision, and a second-Listmonk-instance cost, none foldable into a GREEN-tier fix from here. 0 open PRs.
+
+**Spot-checked Phil's own most recent commit** (`9915548c4`, this morning): reading the four third-party mail messages `gate_owner_waiting` had been flagging since 29 August, concluding none needed a decision, and retiring them via `ops/inbox-state.json` so the warning stops repeating. Already merged, nothing left open there.
+
+**Re-read RISKS.md's three open CRITICALs in full** (RISK-0007 single host/unproven full-host restore, RISK-0011 product masters outside the repo, RISK-0013 no stranger has ever converted): no new evidence beyond what `OWNER-ACTIONS.md` and the last several cycles already carry; each stays genuinely gated on Phil's own machine, account or budget. Reconciled `BACKLOG-2026-09-07.md` sections 2 to 4 (A1 to A10, B1 to B9, C1 to C7) directly against their own rows rather than trusting a summary: every one is Done or names Phil/an owner gate by ID; section 5 correctly stays HOLD pending traffic evidence; section 6's owner gates are unchanged.
+
+**Went well:** the self-healing gate and its own documented convention worked exactly as designed against a mistake made inside this very cycle, not just against a historical one; catching and fixing it before it could compound into a confusing three-gate failure downstream (`gate_existing`, `gate_tests`) rather than the one clear one it was built to produce.
+
+**Did not go well:** the mistake was avoidable and self-inflicted. `ops/run_preflight.sh` existed before this cycle started and its own docstring says plainly not to wrap `preflight.py` in a foreground timeout; the first invocation used one anyway.
+
+**Changing next cycle:** none beyond the obvious procedural one: reach for `ops/run_preflight.sh` on the first `preflight.py` call, not after a kill.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, all independently re-confirmed genuinely blocked this cycle rather than carried forward.
+
+Pushed to main. Command deck only. No price, product, or site page touched; not a new page; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 15:2x (fix-forward: the comprehensive background preflight run from the prior entry surfaced two real regressions in that same commit, both caught by existing gates, both fixed)
 
 **Did:** The full `preflight.py` run started in the background at the end of the prior entry, before push, finished after the push had already landed and found two real FAILs the scoped checks run before that push did not cover:
