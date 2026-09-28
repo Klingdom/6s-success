@@ -20,6 +20,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-09-28, PM check-in (21:4x)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because every independent check this cycle ran came back byte-identical to the 21:1x cycle's own verdict: nothing new is genuinely unblocked.
+
+Attached clean, but not without friction: the checkout arrived shallow and detached with local `main` stale by 106/125 commits against `origin/main` (the standing issue #27 shape). The first `fetch --unshallow` attempt was still running in the background from an earlier command in this session rather than dead, so a second concurrent `fetch --unshallow` correctly hit a `shallow.lock` conflict; waited for the first process to finish rather than force anything, then `checkout main` and `merge --ff-only` fast-forwarded cleanly onto `origin/main`, no conflict, tree clean on arrival.
+
+Did not just cite the 21:1x cycle's clean verdict: ran `python ops/preflight.py` myself via `ops/run_preflight.sh` to genuine completion (about 7 minutes). Result matched it exactly: every gate passed, 25 standing warnings, same sandbox-limited set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, deploy-fresh unmeasured). Cross-checked `RISKS.md` directly rather than trust the summary: exactly 3 open CRITICAL-severity risks (RISK-0007 single host/no staging, RISK-0011 product masters outside the repo, RISK-0013 no stranger has ever converted), matching `STATUS.md`'s own count. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted, zero un-ledgered candidates. GitHub reconfirmed live via the API, not cited: 8 open issues, same numbers and labels as every recent cycle (5 `decision`, 2 `blocked-on-art`, one carrying both), 0 open PRs. `git log` since the 21:1x entry shows only routine `Hourly check-in record` bookkeeping, nothing substantive to cold-read.
+
+**Went well:** waiting out the genuinely-running background fetch instead of forcing a second one past the lock file; independently re-deriving the RISKS.md CRITICAL count rather than trusting STATUS.md's own citation of it.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27's drafted fix still sits unapplied, only Phil can paste it into the Routines UI.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (21:1x)
 
 Previous work was finished. Attached clean (shallow, fetch/unshallow/checkout main, ff-only onto origin/main, tree clean on arrival). Did not just cite the 20:5x cycle's clean verdict: ran `python ops/preflight.py` myself, full run, to genuine completion (about 6 minutes, gate_tests included) rather than trust the prior entry's claim. Result matched it exactly: every gate passed, 25 warnings, same standing sandbox-limited set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Spot-checked one warning against its own history rather than assume it is new: `deck-print-tier` (5 of 6 decks miss the 18-card print step) is deliberately left as a standing warning by DECISIONS.md D-027, closed 2026-09-25, not a fresh defect. GitHub reconfirmed live: 8 open issues, same numbers and labels as every recent cycle, all `decision`/`blocked-on-art`; 0 PRs. A concurrent hourly check-in pushed mid-cycle (`7853c3e3a`); fetched and fast-forward merged, no collision.
