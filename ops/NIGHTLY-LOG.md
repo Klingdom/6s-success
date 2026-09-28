@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 15:4x (previous work finished, independently verified against CI, not just cited; nothing new genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description, YouTube upload authorisation) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because nothing else is genuinely unblocked.
+
+**Previous work: finished, verified against GitHub's own CI, not the local claim alone.** Attached clean (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only`, 745 commits fast-forwarded, no conflict). The 15:0x/15:2x entries above describe A10 (quest-data lazy-load split) shipping, then a fix-forward commit (`a221c7a9c`) for two regressions a background preflight run found after that push. Checked directly rather than trust the entries' own "verified" claims: `publish-image.yml` run 441 (A10's own commit, `80a111d1d`) shows `conclusion: failure`; run 442, the very next run, on the fix-forward commit, shows `conclusion: success`. The fix-forward commit is real and CI-confirmed, not just locally claimed. `checks.yml` has no run on either the fix-forward or the reword commit that follows it, correctly: both touched only `site/**`/`ops/NIGHTLY-LOG.md`, neither of which is in that workflow's path filter.
+
+Ran a full `preflight.py` myself, independent of the entries above, to genuine completion: every gate passed, 26 warnings (25 standing plus `workflows-healthy` naming the now-superseded run 441 failure, which ages out once a path-triggering commit lands). GitHub: 8 open issues, byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs. Read `BACKLOG-2026-09-07.md` sections 2-6: A1-A10 and B/C rows all Done; section 6 owner gates unchanged. `OWNER-ACTIONS.md` "start here" unchanged.
+
+**Went well:** checking the actual CI run objects instead of trusting the prior entries' own "verified" prose.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 15:2x (fix-forward: the comprehensive background preflight run from the prior entry surfaced two real regressions in that same commit, both caught by existing gates, both fixed)
 
 **Did:** The full `preflight.py` run started in the background at the end of the prior entry, before push, finished after the push had already landed and found two real FAILs the scoped checks run before that push did not cover:
