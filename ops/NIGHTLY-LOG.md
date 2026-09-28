@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, scheduled operator cycle (23:0x slot, independent re-verification via the GitHub Actions job log itself, nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (805 commits fast-forwarded), attached to `main`, `merge --ff-only` clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (all seven sections), `ROADMAP-2026-2029.md`'s summary, `CLAUDE.md`, and the newest four `ops/NIGHTLY-LOG.md` entries.
+
+**Verified, not cited:** ran `ops/run_preflight.sh` to genuine completion (about 4 minutes): every gate passed, 25 warnings, the same standing sandbox-limited set. `check_urls.py` (196/196), `audit_pages.py` (200/0), `affiliate.py --check` (165 documents) all clean. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. GitHub issues pulled live: 8 open, same numbers and labels as every recent cycle, all `decision`/`blocked-on-art`. `ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Went one step further than reading `ops/deploy-verdict.json`'s own citation: pulled the `deploy.yml` workflow's last 5 runs and its own job steps directly from the GitHub API. Run 49 (this afternoon, on a "preflight finished clean" commit) shows job-level conclusion `success` but its own `Deploy` step individually marked `skipped`, confirming `VPS_DEPLOY_KEY` (owner item 0, issue #35) is still absent, not just inferred from a stale build-id diff. Retested this sandbox's own egress directly (`curl` to `6s-success.com` and the proxy status endpoint): still a 403 policy denial, unchanged.
+
+**No new defect found**, so no new gate was written.
+
+**Went well:** checking the deploy gate at the job-step level instead of only the build-id diff, a slightly stronger form of the same standing confirmation.
+
+**Did not go well:** none this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-28, PM check-in (22:2x)
 
 Previous work was finished, verified independently rather than cited: attached clean (unshallow, checkout main, ff-only merge, 802 commits, no conflict). Ran `python ops/run_preflight.sh` to genuine completion myself: every gate passed, same 25 standing sandbox-limited warnings as the 21:5x cycle. Tree clean, main up to date with origin. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted. GitHub reconfirmed live via the API: 8 open issues, same numbers and labels as every recent cycle, all decision/blocked-on-art, correctly not mine to pick per STEP 3.
