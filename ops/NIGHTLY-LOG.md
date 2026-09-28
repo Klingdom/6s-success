@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 14:4x (previous work finished; a real, live 1-commit deploy-gap drift found and corrected in STATUS.md)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because nothing else is genuinely unblocked; if you hold real VPS access, redeploying now would close the 1-commit gap this check-in just found and correctly recorded.
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only`, 740 commits fast-forwarded onto `origin/main`, no conflict). Read `git log -12`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 1b, 2 and 6 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, and fetched the 8 open GitHub issues live via the API: byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. Started `python ops/preflight.py` via `ops/run_preflight.sh` in the background; it ran long (this repo's own docstring warns it can take up to ~1050s) and this check-in shipped before it finished rather than hold the operator's :43 slot on it, since nothing shipped here touches generated or code content.
+
+**Found, not cited: BLOCKER-001 in STATUS.md had gone stale by one real commit.** The standing "RESOLVED 2026-09-27 23:1x" entry says production is level with HEAD, build `159acc34b643d712` resolving to `7c6a83084`. Re-derived directly rather than trusted: `git log 7c6a83084..HEAD -- site/ Dockerfile` now returns one commit, `a74dba749` ("Fix: quest.html's 429KB card deck no longer blocks the symptom picker's download start", A10's safe half). This is material: a real customer-facing performance fix to `quest.html`, the app's own entry point, moving the four script tags into `<head>` with `defer`; production is still serving the slower placement until the next redeploy. The automatic gate (`gate_status_deploy_gap_count_current`) did not catch this itself, because the RESOLVED entry it checks against never stated an explicit "(0 commits)" figure for its regex to compare against, so this was found by re-deriving the count directly, the way CLAUDE.md 0.3/0.4 require, not by trusting the gate's silence. Corrected `BLOCKER-001` with a new widening entry, and the two summary rows (`Public website`, `Production traceability`) that both still cited "0 commits behind, resolved."
+
+**Went well:** re-checking a claim the last several cycles had all correctly closed, rather than assuming a `RESOLVED` heading stays true indefinitely.
+
+**Did not go well:** same unrelated-history checkout shape recurred again (issue #27, still open, needs Phil's own hand); `preflight.py` ran long enough that this check-in could not wait on it without missing the operator's slot.
+
+**Changing next cycle:** none; the gap-count gate did its job as designed everywhere it has an explicit figure to compare against, this was a phrasing gap in one entry, not a broken gate.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved in a way Phil needs to act on beyond the standing escalation.
+
+Pushed to main. `STATUS.md` only (BLOCKER-001 and two summary rows), command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 14:2x (previous work finished, independently re-verified; converged with two concurrent cycles rather than duplicating)
 
 **Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only`, 732 then further commits fast-forwarded onto `origin/main` twice more as concurrent cycles pushed mid-run, no conflict, no reset).
