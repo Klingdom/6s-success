@@ -2,7 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-28 13:4x (previous work finished, independently re-verified, nothing genuinely unblocked)
+## PM check-in, 2026-09-28 14:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+Previous work: finished. Attached ff-only onto origin/main (a container restart mid-cycle cost real time but no state; reattached clean, nothing lost). Own first `preflight.py` run FAILED on `stray-probe-files`, a leftover path that did not exist on disk or in `git status`, the same self-healing race this log has repeatedly diagnosed; caused this time by my own foreground-timeout kill of an earlier attempt (the exact mistake `ops/run_preflight.sh`, new since my last read, now exists to prevent). Discarded as unchecked, reran clean twice more, the second via the new wrapper: every gate passed, 25 standing warnings (no Stripe/mail/SSH-deploy/Pillow credential, no egress). Independently re-derived, not cited: 8 open GitHub issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, `BACKLOG-2026-09-07.md` sections 2-4 all Done or Phil-gated, `OWNER-ACTIONS.md` "start here" unchanged (items 0, 1a, 1, 1d, all Phil's own hand). No push notification: the standing owner-gate/no-revenue-movement state was already escalated at 22:2x yesterday and is unchanged, and `roadmap_report.py`/`hourly_brief.py` already carry it to Phil's inbox.
+
+**Handing to the operator:** same standing list, unchanged.
+
+Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
 
