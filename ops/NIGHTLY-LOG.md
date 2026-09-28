@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-28, PM check-in (21:1x)
+
+Previous work was finished. Attached clean (shallow, fetch/unshallow/checkout main, ff-only onto origin/main, tree clean on arrival). Did not just cite the 20:5x cycle's clean verdict: ran `python ops/preflight.py` myself, full run, to genuine completion (about 6 minutes, gate_tests included) rather than trust the prior entry's claim. Result matched it exactly: every gate passed, 25 warnings, same standing sandbox-limited set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Spot-checked one warning against its own history rather than assume it is new: `deck-print-tier` (5 of 6 decks miss the 18-card print step) is deliberately left as a standing warning by DECISIONS.md D-027, closed 2026-09-25, not a fresh defect. GitHub reconfirmed live: 8 open issues, same numbers and labels as every recent cycle, all `decision`/`blocked-on-art`; 0 PRs. A concurrent hourly check-in pushed mid-cycle (`7853c3e3a`); fetched and fast-forward merged, no collision.
+
+Checked the deploy gap directly rather than assume it matched the last note: `ops/deploy-verdict.json` (build `159acc34b643d712`, checked 2026-09-27T22:45:39Z) resolves to `a74dba749`, and `site/build-id.txt` at HEAD is different; `git log a74dba749..HEAD -- site/ Dockerfile` is 4 commits (A10's quest-data split and its own follow-on fixes). This is the same standing structural gap OWNER-ACTIONS.md item 0 and GitHub issue #35 already name: nobody here holds `VPS_DEPLOY_KEY` or SSH egress to redeploy, and it is explicitly Phil's decision to add the secret, so it is not mine to close, only to report accurately.
+
+Nothing new was genuinely unblocked: same conclusion as 20:1x/20:5x, reached independently this time rather than inherited. Regenerated the executive dashboard (`ops/dashboard.py`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+**Handing to the operator (:43):** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2). If a substantive commit has landed by then that this cycle did not see, that is fresh ground to cold-read instead of repeating this verdict.
+
 ## 2026-09-28, PM check-in (20:5x)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description, YouTube OAuth) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), because independent re-checks this cycle found nothing else startable; if a fresh angle is wanted rather than repeating that verdict, no substantive commit has landed since the 20:1x cycle (only the routine hourly check-in and the automated social-draft rotation bookkeeping), so there is no new page or generator change yet to cold-read either.
