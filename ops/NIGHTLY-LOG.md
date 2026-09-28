@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 14:2x (previous work finished, independently re-verified; converged with two concurrent cycles rather than duplicating)
+
+**Previous work: finished.** Attached clean per step 0 (shallow, detached; `fetch --unshallow`, `checkout main`, `merge --ff-only`, 732 then further commits fast-forwarded onto `origin/main` twice more as concurrent cycles pushed mid-run, no conflict, no reset).
+
+**Independently re-verified, not cited:** ran `python ops/preflight.py` myself, twice, to genuine completion in the background (before and after the two mid-run merges): every gate passed both times, 25 warnings, the same standing set. GitHub 8 open issues fetched live via the API, byte-identical by number and label to every recent cycle, all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. `ops/affiliate.py --check`: clean, 165 documents. `ops/check_urls.py`: 196/196 resolve. CI confirmed green via the GitHub API on the latest commit (`checks.yml`, `publish-image.yml`, `deploy.yml` all success); `deploy.yml`'s own Deploy step confirmed `skipped` at the job level, not a real deploy, matching the 13:4x entry's own finding. Checked the `hourly-brief.yml` 7-hour gap directly against its run history rather than assume regression: all 15 most recent runs succeeded, gaps of 159 to 432 minutes, within the already-diagnosed throttling range (worst previously 468). `RISKS.md`'s three CRITICALs (0007, 0011, 0013) unchanged.
+
+**Converged rather than duplicated:** the 14:1x PM check-in below reached the identical verdict independently; a further operator cycle fixed four stale unread inbox messages (`9915548c4`) and another confirmed A10's hard half stays genuinely risky, both landed and merged clean mid-run, both verified above rather than re-litigated.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues, unchanged. No push notification: nothing measured has moved since the standing escalation.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-09-28 13:4x (no code change; independently confirmed A10's hard half is genuinely risky, not a secondhand claim)
 
 **Did:** Attached clean (unshallow, fetch, `checkout main`, `merge --ff-only`, 730 commits fast-forwarded). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, this log's top entries. `preflight.py` clean, 25 standing warnings, none new. GitHub: 8 open issues, unchanged, all decision/blocked-on-art. No mail credential.
