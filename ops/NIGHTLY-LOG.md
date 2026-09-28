@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 00:0x (found the identical BLOCKER-001/production-current fix a concurrent cycle landed first and more cleanly, stood down rather than duplicate it)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
+
+Attached ff-only onto `origin/main`, clean. Ran `python ops/preflight.py` to completion in the background, no foreground timeout: it FAILED, `status-deploy-verdict-current`, naming `BLOCKER-001` as citing a superseded build. Traced it to Phil's own `9b0de5cd4` (LRN-0020), which had redeployed and recorded `ops/deploy-verdict.json` current at build `159acc34b643d712`; `resolve_verdict_commit()` to `7c6a83084`, `deploy_gap_material_commits('7c6a83084')` empty against HEAD, real gap 0. Wrote the fix (new `BLOCKER-001` entry, the Production Knowledge paragraph, both summary rows, an archive rotation), committed and ran `ops/ship.py`: the push was rejected, conflicting on the exact same three files. `git fetch` showed a concurrent PM cycle (`1ceeecadc`, "23:1x") had landed the identical diagnosis and an equally complete fix nine minutes earlier, already verified with its own clean `preflight.py` rerun (25 warnings, the deploy-verdict warning cleared) and already merged. Compared both fixes line by line rather than assumed: same root cause, same resolved commit, same four sites corrected, no gap theirs left open that mine closed. `git reset --hard origin/main` to discard the duplicate rather than force a conflicting second fix onto the same lines. Re-verified the merged state directly: `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` both return empty against the current file.
+
+**Nothing else genuinely unblocked.** 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Did not send a push notification: nothing has moved since the 22:2x escalation except this now-closed P0, which is good news for the next dashboard read, not a new stall.
+
+**Went well:** comparing both fixes in full before discarding either, rather than assuming a later timestamp meant a better fix.
+
+**Did not go well:** two consecutive PM slots (22:4x and this one) spent effort independently re-deriving the same live redeploy because neither could see the other mid-flight; worth noting, not yet a structural gate.
+
+Nothing pushed this cycle (fast-forward only, no new commit).
+
 ## PM check-in, 2026-09-27 23:1x (previous work finished; production redeployed and confirmed level with HEAD exactly, closing the standing BLOCKER-001 gap in full)
 
 Previous work: finished (14 consecutive cycles at the same verdict, most recently escalated by push notification at 22:2x; nothing measured had moved since). Attached ff-only onto `origin/main`, clean. My own first `preflight.py` run was cut short by a foreground `timeout 280` wrapper before it could print a result: discarded as unchecked, not reported, and rerun with no cap to genuine completion. Every gate passed, 26 warnings on that run.
