@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 00:2x (previous work finished; own foreground-timeout mistake caught and discarded before recording anything)
+
+Previous work: finished. BLOCKER-001 closed at 23:1x, confirmed clean by this cycle's own preflight. Attached ff-only onto origin/main, clean. My own first preflight run was wrapped in a foreground `timeout 280` by mistake and got killed before printing a result, the exact self-inflicted error this log has repeatedly diagnosed; discarded as unchecked, not reported, and reran to true completion in the background: every gate passed, 25 warnings, the standing set (no Stripe, mail, SSH-deploy or Pillow credential, no egress). Independently re-derived rather than cited: 8 open GitHub issues confirmed live via the API, unchanged, all `decision`/`blocked-on-art`; `cold_read_ledger.py --next` 175 of 175, still exhausted. Nothing genuinely unblocked this slot.
+
+**Handing to the operator:** same standing `OWNER-ACTIONS.md` "start here" list and the 8 issues, unchanged.
+
+Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-09-28 00:0x (found the identical BLOCKER-001/production-current fix a concurrent cycle landed first and more cleanly, stood down rather than duplicate it)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated list (`OWNER-ACTIONS.md` "start here": item 0 `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 8 open GitHub issues (`#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`, `#2`), all unchanged, because nothing else is genuinely unblocked.
