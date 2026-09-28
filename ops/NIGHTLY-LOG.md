@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-28 12:1x (previous work finished, independently re-verified, nothing genuinely unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated list (OWNER-ACTIONS.md "start here": VPS_DEPLOY_KEY, Search Console verification, Stripe business description) and the 8 open GitHub issues (#35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing else is genuinely unblocked.
+
+**Previous work: finished.** Attached clean per step 0: checkout arrived shallow and detached (issue #27's usual shape), `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 716 commits onto `origin/main`, no conflict, working tree clean throughout and still clean now.
+
+**Independently re-derived rather than cited, six separate claims, each checked against the live source myself, not copied from the 11:5x entry above:**
+1. Ran `python ops/preflight.py` myself, through `ops/run_preflight.sh` (the setsid wrapper, backgrounded and polled to genuine completion rather than a foreground timeout): every gate passed, 25 warnings, the identical standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, the two known cron-cadence drifts, page-art/deck-art coverage gaps already owner-tracked). No new FAIL, no new warning.
+2. GitHub: 8 open issues fetched live via the API, byte-identical by number and label to every cycle since 2026-09-27 22:2x (#35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; 0 open PRs.
+3. `ops/cold_read_ledger.py --next`: 175 of 175 files ledgered, 0 un-ledgered candidates, genuinely exhausted.
+4. Deploy gap re-derived from source: `ops/deploy-verdict.json` reads `build_id 159acc34b643d712`; resolved with `git log -S` to `7c6a83084`; `git log 7c6a83084..HEAD -- site/ Dockerfile docker-compose.hostinger.yml` is empty. Production confirmed current with HEAD.
+5. `RISKS.md` grepped directly: same three `CRITICAL` open (RISK-0007, RISK-0011, RISK-0013), unchanged.
+6. `BACKLOG-2026-09-07.md` section 6 (owner gates) and `GOALS.md` section 0-2 read directly: every remaining actionable row names Phil (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts); the constraint is still discovery, not product.
+
+Cleared one session-local warning at no cost: `core.hooksPath` was unset in this fresh checkout (a per-container setting, not tracked in git, so it resets every session); set it to `.githooks` so this session's own commits run the existing pre-commit/pre-push control-byte checks. Not logged as a fix because it fixes nothing upstream, only this session's own local git config.
+
+No price, product or site page touched; IndexNow not applicable. No push notification: this stall was already escalated 2026-09-27 22:2x and nothing measured has moved since, so a repeat would be noise.
+
+**Did not go well:** nothing new; the same unrelated-history checkout shape recurred again (issue #27, still open, needs Phil's own hand in the Routines UI).
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
 ## Scheduled operator cycle, 2026-09-28 11:5x (full independent re-verification, nothing genuinely unblocked, no push repeated)
 
 **Did:** Checkout arrived shallow and detached, issue #27's usual shape. Unshallowed (`git fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 716 commits onto `origin/main` cleanly, no conflict, no reset. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b, 6 and 7 directly (the file is 361KB on 319 lines, several single lines over 4,700 characters, so read in targeted chunks rather than one pass), `CLAUDE.md`, and this log's newest entries back through the 08:4x slot.
