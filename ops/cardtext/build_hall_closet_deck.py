@@ -299,18 +299,6 @@ EXPECTED_DIAGNOSIS = {
  },
  "Cleaning Supply Zone": {
   "frictions": [
-   {"symptom": "Four glass cleaners and three floor sprays, each bottle "
-               "a third full, crowd this shelf because you can't tell "
-               "what's already here before buying another.",
-    "branches": [
-     {"answer": "You can't see the fill level from the doorway, so a "
-                "new one seems safer than trusting the old",
-      "cause": "KC-005"},
-     {"answer": "There's no rule that says one open bottle per job, so a "
-                "new bottle just joins the others", "cause": "KC-008"},
-     {"answer": "The shelf holds more of everything than any one job "
-                "actually needs", "cause": "KC-001"},
-    ]},
    {"symptom": "A bottle of bleach sits on the same shelf as an "
                "ammonia-based glass cleaner, both within reach from the "
                "hallway floor.",
@@ -334,6 +322,18 @@ EXPECTED_DIAGNOSIS = {
      {"answer": "The coolest shelf in this closet is already full of "
                 "something else, so the aerosols default to whatever's "
                 "left", "cause": "KC-007"},
+    ]},
+   {"symptom": "Four glass cleaners and three floor sprays, each bottle "
+               "a third full, crowd this shelf because you can't tell "
+               "what's already here before buying another.",
+    "branches": [
+     {"answer": "You can't see the fill level from the doorway, so a "
+                "new one seems safer than trusting the old",
+      "cause": "KC-005"},
+     {"answer": "There's no rule that says one open bottle per job, so a "
+                "new bottle just joins the others", "cause": "KC-008"},
+     {"answer": "The shelf holds more of everything than any one job "
+                "actually needs", "cause": "KC-001"},
     ]},
   ],
   "first_15": {
@@ -477,9 +477,6 @@ FRICTION_META = [
   "a damp mop head resting directly against a coiled vacuum cord at the "
   "back of a closed cleaning closet"),
 
- ("Cleaning Supply Zone", "HCF-007", "ELEVEN BOTTLES, EACH A THIRD FULL",
-  "a crowded cleaning supply shelf holding several duplicate glass "
-  "cleaner and floor spray bottles, each visibly only partly full"),
  ("Cleaning Supply Zone", "HCF-008", "BLEACH BESIDE THE AMMONIA CLEANER",
   "a bottle of bleach standing directly beside an ammonia-based glass "
   "cleaner on a low cleaning supply shelf within reach from the hallway "
@@ -488,6 +485,9 @@ FRICTION_META = [
   "a row of aerosol cans and a solvent-based spray bottle standing "
   "against a closet wall, positioned close to a household boiler "
   "visible on the other side"),
+ ("Cleaning Supply Zone", "HCF-007", "ELEVEN BOTTLES, EACH A THIRD FULL",
+  "a crowded cleaning supply shelf holding several duplicate glass "
+  "cleaner and floor spray bottles, each visibly only partly full"),
 
  ("Paper and Household Backstock", "HCF-010", "THE WAREHOUSE PACK THAT WON'T FIT THE BIN",
   "an oversized shrink-wrapped bulk pack of paper towels wedged "
