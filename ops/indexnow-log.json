@@ -209,13 +209,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-17T00:07:24Z",
-   "mode": "changed",
-   "offered": 3,
-   "accepted": 3,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-17T01:34:06Z",
    "mode": "changed",
    "offered": 4,
@@ -627,6 +620,13 @@
    "offered": 61,
    "accepted": 61,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-29T17:58:05Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -647,7 +647,7 @@
   "https://6s-success.com/corporate.html": "132c247d1f557628",
   "https://6s-success.com/deck-gallery-mudroom.html": "acc8b4b42b95de7f",
   "https://6s-success.com/deck-gallery.html": "d79189ee5369fec9",
-  "https://6s-success.com/deck.html": "7dbede4a96f90e9c",
+  "https://6s-success.com/deck.html": "2c9f7d9b73d38fbd",
   "https://6s-success.com/kit.html": "29d5f44057cfdb3e",
   "https://6s-success.com/quest.html": "3f5eff76564400eb",
   "https://6s-success.com/standards.html": "1e9d372cce6680a3",
