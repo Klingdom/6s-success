@@ -6,6 +6,12 @@
       "claimed_at": "2026-09-29T11:50:06Z",
       "note": "scheduled operator cycle 2026-09-29, tied-smallest remaining room, 5 zones",
       "released_at": "2026-09-29T12:24:20Z"
+    },
+    {
+      "room": "Family Room",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T12:50:32Z",
+      "note": "scheduled operator cycle, thirteenth room"
     }
   ]
 }
