@@ -12397,23 +12397,6 @@
      "diagnosis": {
       "frictions": [
        {
-        "symptom": "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another.",
-        "branches": [
-         {
-          "answer": "You can't see the fill level from the doorway, so a new one seems safer than trusting the old",
-          "cause": "KC-005"
-         },
-         {
-          "answer": "There's no rule that says one open bottle per job, so a new bottle just joins the others",
-          "cause": "KC-008"
-         },
-         {
-          "answer": "The shelf holds more of everything than any one job actually needs",
-          "cause": "KC-001"
-         }
-        ]
-       },
-       {
         "symptom": "A bottle of bleach sits on the same shelf as an ammonia-based glass cleaner, both within reach from the hallway floor.",
         "branches": [
          {
@@ -12444,6 +12427,23 @@
          {
           "answer": "The coolest shelf in this closet is already full of something else, so the aerosols default to whatever's left",
           "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another.",
+        "branches": [
+         {
+          "answer": "You can't see the fill level from the doorway, so a new one seems safer than trusting the old",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule that says one open bottle per job, so a new bottle just joins the others",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The shelf holds more of everything than any one job actually needs",
+          "cause": "KC-001"
          }
         ]
        }

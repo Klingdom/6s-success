@@ -664,50 +664,6 @@
    }
   },
   {
-   "id": "HCF-007",
-   "title": "ELEVEN BOTTLES, EACH A THIRD FULL",
-   "type": "FRICTION CARD",
-   "room": "Hall Closet",
-   "zone": "Cleaning Supply Zone",
-   "difficulty": 1,
-   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another.",
-   "prompt": "Why does this happen here?",
-   "branches": [
-    {
-     "answer": "You can't see the fill level from the doorway, so a new one seems safer than trusting the old",
-     "root_cause": "KC-005"
-    },
-    {
-     "answer": "There's no rule that says one open bottle per job, so a new bottle just joins the others",
-     "root_cause": "KC-008"
-    },
-    {
-     "answer": "The shelf holds more of everything than any one job actually needs",
-     "root_cause": "KC-001"
-    }
-   ],
-   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
-   "related": {
-    "zone": "HCZ-003",
-    "root_causes": [
-     "KC-005",
-     "KC-008",
-     "KC-001"
-    ]
-   },
-   "source": "content/manual/source/content.json",
-   "art": {
-    "framing": "Friction",
-    "subject": "a crowded cleaning supply shelf holding several duplicate glass cleaner and floor spray bottles, each visibly only partly full",
-    "must_show": [
-     "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another."
-    ],
-    "must_show_kind": "condition",
-    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
-   }
-  },
-  {
    "id": "HCF-008",
    "title": "BLEACH BESIDE THE AMMONIA CLEANER",
    "type": "FRICTION CARD",
@@ -790,6 +746,50 @@
     "subject": "a row of aerosol cans and a solvent-based spray bottle standing against a closet wall, positioned close to a household boiler visible on the other side",
     "must_show": [
      "A row of aerosol cans and a solvent-based spray sit against the closet wall that backs onto the boiler, on the same shelf they've always used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-007",
+   "title": "ELEVEN BOTTLES, EACH A THIRD FULL",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "You can't see the fill level from the doorway, so a new one seems safer than trusting the old",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There's no rule that says one open bottle per job, so a new bottle just joins the others",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The shelf holds more of everything than any one job actually needs",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-003",
+    "root_causes": [
+     "KC-005",
+     "KC-008",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a crowded cleaning supply shelf holding several duplicate glass cleaner and floor spray bottles, each visibly only partly full",
+    "must_show": [
+     "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
