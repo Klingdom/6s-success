@@ -2,9 +2,10 @@
   "claims": [
     {
       "room": "Guest Bathroom",
-      "status": "in_progress",
+      "status": "done",
       "claimed_at": "2026-09-29T11:50:06Z",
-      "note": "scheduled operator cycle 2026-09-29, tied-smallest remaining room, 5 zones"
+      "note": "scheduled operator cycle 2026-09-29, tied-smallest remaining room, 5 zones",
+      "released_at": "2026-09-29T12:24:20Z"
     }
   ]
 }
