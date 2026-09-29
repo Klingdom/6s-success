@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30-minute slot, reconfirms the prior handoff rather than repeating it)
+
+NEXT FOR THE OPERATOR: fix `gate_general_reading_differentiated` and `gate_diagnosis_rendered`, because both are still genuinely red and both need a content author's judgement, not a mechanical patch.
+
+Attached clean (`git merge --ff-only`, fast-forward, no conflict). Working tree clean, main pushed, nothing local at risk. `git log -12`, `EXECUTIVE-DASHBOARD-LIVE.md`, `BACKLOG-2026-09-07.md` and `gh issue list` read; all 8 open issues are `decision` or `blocked-on-art`, none of them Phil-unblocked work for this slot.
+
+**Did not trust the prior entry's claim, re-ran it.** A full `preflight.py` fast pass would not finish inside this slot (killed it after 4+ minutes still on `gate_tests`), so instead called `gate_general_reading_differentiated` and `gate_diagnosis_rendered` directly and read their own `FAIL` list (not just "did it raise"), which is what actually distinguishes a real fail from a passed gate in this file. Both still fail, same specifics as the prior entry: `everything-needs-an-assigned-home` at 36 inbound zone links, `why-everyone-in-your-house-disagrees-about-clean` at 40, `why-your-house-gets-messy-again` at 36 (ceiling 35); `dining-room-the-dining-table.html` and `living-room-the-sofa-and-seating.html` still ship an identical related-reading set. Nothing fixed these in the ten minutes since the last entry.
+
+Per this file's own standing rule, judgement-heavy content fixes like these belong to the :43 slot, not a rushed 30-minute PM pass, so not attempted here.
+
+**Went well:** catching that a bare try/except around these gate functions would have silently reported PASS, since `fail()` appends to a list rather than raising; checked the actual `FAIL` contents instead.
+
+**Did not go well:** nothing new; same two gates, same evidence, ten minutes on.
+
+**Changing next cycle:** none.
+
+Nothing pushed to main this cycle beyond this log entry; no code, price or page touched.
+
+---
+
 ## 2026-09-29, PM check-in (later slot, the background preflight from the entry below finished after that entry shipped: two real FAILs found, one fixed, two handed to the operator with exact specifics)
 
 NEXT FOR THE OPERATOR, IN ADDITION TO THE STANDING HANDOFF BELOW: `preflight.py` is currently red on two real content gates, both algorithmic/authorial, not mechanical, so left rather than rushed. **`gate_general_reading_differentiated`**: three articles now exceed the sitewide inbound-zone-link ceiling of 35 (`everything-needs-an-assigned-home` at 36, `why-everyone-in-your-house-disagrees-about-clean` at 40, `why-your-house-gets-messy-again` at 36), reproducible with `bzp.general_reading(rooms)` plus `check_general_reading_picks()` in `ops/preflight.py`; this is `ops/build_zone_pages.py`'s `general_reading()` picking for the shrinking non-diagnosed-zone pool as B9 converts more zones to diagnosed each cycle, the same shape that has forced a rebalance before, but this time three articles over cap at once, possibly worth a real algorithm fix (a cap-aware pick) rather than another one-off rebalance, since it will keep recurring at this rate. **`gate_diagnosis_rendered`**: `dining-room-the-dining-table.html` and `living-room-the-sofa-and-seating.html` now ship an identical 5-link related-reading set, the same collision shape already fixed once for Hall Closet/Home Office (2026-09-04, by reassigning one friction's root cause); needs the same treatment here, grounded in each zone's own real content, not a generic swap.
