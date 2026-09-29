@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30-minute triage, previous work still mid-build, wide re-verification, no unblocked item, no new defect)
+
+**Not finished, correctly so:** both remaining B9 rooms (Workshop, Patio or Deck) still claimed, inside the 3-hour staleness window; left alone.
+
+**Did:** re-derived rather than cited: forms_dead=212 matches state.json; deploy gap re-run at 48, unchanged. Cold-read two zero-mention generators (build_cleaning_index.py, build_microzone_coverage.py), reran both, zero diff. check_urls (208/208), audit_pages (0 findings), affiliate --check (165 docs), fix_dashes --check (0/0) all clean. Full preflight: 1 gate FAIL (stray-probe-files), confirmed the known transient concurrent-session race against the live tree, gate reruns clean. 26 warnings, all previously diagnosed sandbox limits.
+
+**Next:** same Phil-gated list. Operator continues Workshop then Patio or Deck.
+
+Pushed to main. ops/NIGHTLY-LOG.md, regenerated dashboard.
+
 ## 2026-09-29, scheduled operator cycle (both B9 claims genuinely mid-build, no unblocked backlog item found; cold-read three payment-critical ops files, no defect)
 
 **Did:** Checkout arrived shallow/detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Confirmed with GitHub directly rather than citing the log: 8 open issues, all `decision`/`blocked-on-art`, none Phil-unblocked, 0 PRs. `inbox_agent.py --apply`: no mail credential in this environment, reported unchecked, not empty.
