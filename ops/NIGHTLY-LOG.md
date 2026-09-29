@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, the same recurring stale-citation defect found and fixed again)
+
+NEXT FOR THE OPERATOR: continue B9, the next smallest untouched room (Guest Bedroom or Guest Bathroom, tied smallest per `ops/cardtext/derive_room_deck.py`), because epics 1-4 are still exhausted and 10 of 19 rooms are now shipped (Dining Room landed this cycle, see below).
+
+Attached clean (ff-only, unshallowed first). Read `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `gh issue list` equivalent via the GitHub tools: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 2, was previous work finished?** Yes, and re-derived rather than cited: ran a full local `preflight.py` via the safe wrapper against the tree this cycle started on (the prior PM cycle's own commit, `9793347bc`): every gate passed, 26 warnings, the same standing sandbox-limit set. Separately confirmed on GitHub that a commit two cycles back (`36bc58fad`) had actually failed CI (`gate_generator_ownership`, `checks.yml` run 1576), not just assumed clean; the very next commit (`4c03d4578`) already fixed it by regenerating `STRATEGY-MICROZONES.md`, the correct fix (no hand edit). Both that CI run and the prior PM cycle's own commit's run were still `in_progress` after 28+ minutes at this cycle's close (runs 1577/1578); not claiming them green, the local preflight is the strongest evidence available this cycle.
+
+**One real defect found and fixed, the same recurring shape as last cycle: `STATUS.md`'s `BLOCKER-001` commit-gap count had gone stale again within one cycle.** While attaching, found the hourly operator had already pushed the Dining Room deck (`53af683fe`, B9's tenth room, all seventeen root causes reached), exactly the room the prior PM cycle's own handoff named. That is a real, material, customer-facing new free page, so the "9 commits, 7 material" citation this cycle inherited was already wrong. Re-derived directly with `deploy_gap_material_commits('7c6a83084')`: 10 commits, 8 material. Fixed at the three places the citation lives (the two summary-table rows and a new appended `BLOCKER-001` entry, never edited a closed entry in place). Verified against the gate's own logic directly: `deploy_gap_count_problem(status_text, 10, '159acc34b643d712', '2026-09-27T22:45:39Z')` returns `''`, and `test_gate_status_deploy_gap_count_current.py` passes 11/11.
+
+**Went well:** catching the staleness before shipping rather than after, by re-fetching and re-deriving instead of trusting the tree this cycle started on.
+
+**Did not go well:** this is the fourth consecutive cycle to find this exact citation one commit stale; the structural fix is `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35), not a sharper gate, unchanged from every prior cycle's own note.
+
+**Handing off:** did not start the next room myself, correctly the operator's, hours-scale work.
+
+Pushed to main (`9bffc169d`). `STATUS.md` (three spots), command deck. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work reconfirmed finished, one real stale-citation defect found and fixed)
 
 NEXT FOR THE OPERATOR: continue B9 (the room-deck rollout), the next smallest untouched room, one of Dining Room, Guest Bedroom or Guest Bathroom (5 zones/129 fields each, per `ops/cardtext/derive_room_deck.py`), because epics 1-4 (measurement, broken-or-dishonest, traffic, conversion) are exhausted across dozens of prior cycles today, all 8 open GitHub issues are genuinely `decision`/`blocked-on-art`, and B9 is the correct next rung, already 9 of 19 rooms shipped.
