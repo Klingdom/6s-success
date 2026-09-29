@@ -16182,6 +16182,65 @@
        "Water that keeps running from a frame long after the rest has drained points to a split in the tubing holding a reservoir inside.",
        "A cover that went away damp comes out with a musty smell and a bloom in the folds. Flag it to be washed rather than refolded."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A resin or plastic chair with a wobble, a cracked arm, or a seat pan that flexes when you press it hard is still standing in the evening seating circle instead of at the curb.",
+        "branches": [
+         {
+          "answer": "A chair failing under someone is a real fall risk, and that outranks how many of the other chairs still look fine standing there",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There is no agreed point where a chair officially fails the standard, so it stays in rotation until it actually gives out under someone",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It has creaked in that same spot for months, long enough that the sound stopped registering as a warning",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A cushion is stacked on a seat under a towel that never actually dries out underneath it, or a furniture cover lies crumpled on the ground behind a planter instead of over the chairs.",
+        "branches": [
+         {
+          "answer": "Carrying the cushions in only happens if someone remembers on the last trip with the glasses, and some nights nobody does",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The deck box already looks full of what else has migrated into it, so a returning cushion gets left on the chair instead of forced in",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Whoever is still outside when the weather turns assumes somebody else will grab the cushions before it rains",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A folded lounger or a stacked chair has ended up parked across the route from the door to the steps instead of against the rail.",
+        "branches": [
+         {
+          "answer": "There is nowhere specific that a folded lounger is supposed to live when it is not in use, so it leans wherever there is a gap",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Its real spot is against the rail at the far end, but it is easier to fold it and lean it right where you are already standing",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nobody has actually walked that route at night carrying something heavy, so it has never been obvious that it became the shortcut for temporary parking",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Sit in every chair and press the seat pan hard with your palm, pull any chair that wobbles, cracks, or flexes out of the circle, and carry every cushion sitting anywhere except a chair into the deck box.",
+       "victory": "Every remaining chair passes a hard press with no flex or crack, and every cushion is in the deck box."
+      }
      }
     },
     {
@@ -16274,6 +16333,65 @@
        "A cracked or perished hose, or green corrosion crusting the regulator fitting, is worth flagging the moment you see it while wiping around the valve.",
        "Burner ports that are rusted or clogged on one side and clear on the other explain a flame that is strong at one end and absent at the other."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The shelf and the cabinet under the grill hold three sets of tongs, a thermometer with a dead battery, and a sauce bottle that has ridden through a whole summer of outdoor heat, while only one of each tool ever actually gets picked up mid-cook.",
+        "branches": [
+         {
+          "answer": "A cook needs at least one of everything, and buying a backup without checking whether the first one still works is how the second and third arrived",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nothing has ever forced a look at what is actually behind that closed cabinet door, so it just accumulates unseen",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Whoever is cooking grabs the tool that is already sitting out from last time and never has a reason to sort through the rest",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "There are two or three propane tanks against the wall and nobody is sure which ones actually have gas left, so a fresh one gets bought before the tanks get checked.",
+        "branches": [
+         {
+          "answer": "The collar has no level marked on it and nobody has weighed one on the bathroom scale, so guessing feels faster than checking",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "An empty tank still looks and feels heavy enough to seem fine, so it runs out mid-cook instead of getting caught ahead of time",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Checking the real level means finding the scale, doing the subtraction, and marking the collar; buying a new one skips all of that",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "The flame runs yellow and lazy along one side of the burner, and the grease tray under the grill has not been scraped out in longer than anyone can say.",
+        "branches": [
+         {
+          "answer": "A grease tray that is overdue is exactly what turns a normal flare-up into a real fire, especially with the grill sitting close to the siding or the rail",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody wants to reach up into the burner tubes or pull the flavorizer bars while they are still greasy, so that part gets skipped every time",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "There is no tracked count of cooks between empties, so it only gets done whenever someone happens to notice the smell",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the side shelf and the cabinet completely, wipe the grease tray out, and hang the one tong, one spatula, one thermometer, and one basting brush you are keeping back on the grill's own hooks.",
+       "victory": "The grill's own hooks hold exactly one tong, one spatula, one thermometer, and one basting brush, and the grease tray sits empty in its rails."
+      }
      }
     },
     {
@@ -16361,6 +16479,65 @@
        "Cracked or brittle insulation on a string-light cord, or a warm or discolored connector, is worth flagging while the strand is in your hand.",
        "Standing water that will not leave the pole collar, and a dark ring in the wood around it, means the joint is staying wet long enough to rot or rust."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The table always has something standing on it besides the umbrella and the weighted tray: a citronella bucket burned down to the rim, a lighter that no longer sparks, or four faded plates and a mismatched tumbler from a set that never got completed.",
+        "branches": [
+         {
+          "answer": "Buying the rest of a matching outdoor set felt like an unnecessary expense for a table you only eat at a handful of times a year",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody has settled whether this table gets its own dishware or borrows from the kitchen, so a half-answer just sits here instead",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The table's job is to hold a meal, but every season adds one more not-quite-empty item that never actually leaves it",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "The umbrella stays cranked up overnight, or a household extension lead runs out to the string lights across boards that stay wet with dew.",
+        "branches": [
+         {
+          "answer": "An open umbrella catching wind, or a lead lying in a puddle, is a real hazard, and that outranks the extra step of cranking it down or running proper outdoor-rated cord",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Whoever strung the lights years ago used whatever cord was in the garage, and nobody has swapped it for outdoor-rated cord since",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Cranking the umbrella down is one more thing to remember on the way in, and it is easy to skip when your hands are already full of dishes",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "A chair is pushed back at an angle instead of tucked fully under the table, or the umbrella and tray are still standing out well after the last plate went inside.",
+        "branches": [
+         {
+          "answer": "Clearing the table is the very last thing before the evening actually ends, and skipping it feels like nothing because the mess is invisible from indoors",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There is no single person whose job it is to do the closing pass, so on a night with guests everyone assumes somebody else already did it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There is nothing that reminds you the umbrella still needs cranking down until it is already dark and the evening has moved on",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the table down to bare surface, crank the umbrella down, and tuck every chair fully under.",
+       "victory": "The table holds only the umbrella and the one weighted tray, the umbrella is cranked down, and every chair is tucked fully under."
+      }
      }
     },
     {
@@ -16449,6 +16626,65 @@
        "Wrigglers in the standing water of a saucer or the watering can are mosquito larvae, so flag any water that has been sitting long enough to breed.",
        "A chewed corner, a leak, or a swollen container spotted inside the chemical box when you open it is a spill risk to flag, not to sort out here."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A saucer under a pot is holding standing water days after the last rain, or the upturned wheelbarrow has a puddle sitting in its well.",
+        "branches": [
+         {
+          "answer": "Checking every saucer only takes ten seconds, but nothing about filling the watering can actually forces you to look down at them first",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "A saucer that has been full for two days looks the same as one that just got filled, so the row never seems urgent enough to check",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Standing water breeding mosquitoes near a patio people actually sit on is a real health hazard, not just an eyesore to get to eventually",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "There is a shelf of part-used weed killer, rooting hormone, and bug spray whose label has worn away, avoided rather than sorted for more than one season.",
+        "branches": [
+         {
+          "answer": "An unlabelled garden chemical cannot be used safely by anyone who finds it later, which outranks just leaving it where it is",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There is no easy way to get rid of them, so avoiding the shelf entirely has been the actual plan for a while now",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "The value-size container seemed smart when it was bought, and using it up before it goes stale never quite happened",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "A long-handled tool leans blade down against the rail instead of hanging head up, or a pot with no drainage hole and last year's dead root ball is still nested in with the ones you will actually use.",
+        "branches": [
+         {
+          "answer": "The plant in that pot came from a cutting off a family member's garden, and repotting it properly into something with a drain hole keeps getting put off",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Pots with no drainage hole or a dead root ball do not look any different from the ones you will use again once they are all nested together in a row",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nested inside a stack, you cannot tell which ones even have a working drain hole until you are already planting into them",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Walk the row of saucers, the wheelbarrow well, and any upturned pot lid tipping out standing water, then pull any pot with no drainage hole or last year's dead root ball out of the nested stack.",
+       "victory": "No saucer, wheelbarrow well, or pot lid on the patio holds standing water, and every pot in the nested stack has a clear drain hole and nothing dead in it."
+      }
      }
     },
     {
@@ -16536,6 +16772,65 @@
        "Black mildew spotting spreading up the interior walls is moisture that has been trapped inside long enough to bloom.",
        "A pool that will not leave the base points to drain holes that are blocked rather than doing their job."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The deck box holds a croquet set missing two mallets, four covers for furniture you no longer own, and a bag of charcoal that drew moisture months ago and will never light properly again.",
+        "branches": [
+         {
+          "answer": "None of it has anywhere else assigned to go, so it just keeps living in the one lidded space outside",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Getting rid of a game missing pieces feels like giving up on it turning up complete somehow",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Once it is under the cushions, nobody sees it again until the box gets fully emptied, so it never comes up for a decision",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "The lid does not stay up on its own when you let go halfway, or a cushion pulled out from under the pile still smells faintly of mildew after a wash.",
+        "branches": [
+         {
+          "answer": "A heavy lid dropping at exactly a child's hand height is a real crush risk, and that is worth a lid stay before anything else in this box gets sorted",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "A cushion that went in damp last autumn had all winter for that smell to work into the foam, and no amount of washing this week reaches that",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Cushions only go in damp because they come in at the very end of a long evening, when checking each one properly is the last thing anyone wants to do",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labelled place.",
+        "branches": [
+         {
+          "answer": "There is no line drawn for what this box is actually for, so anything without another home defaults to going in here too",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Different people packing the box at each end of the season each have their own idea of what goes on top, so it never settles into the same layout twice",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "The lid standing half open in the rain does not look urgent in the moment you are closing it, just heavier than usual",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the deck box completely onto the boards, and pull out anything that is mildewed past saving, missing half its pieces, or belongs to furniture you no longer own.",
+       "victory": "The deck box floor is visible with only cushions and the two labelled totes waiting to go back in, and nothing else."
+      }
      }
     },
     {
@@ -16632,6 +16927,65 @@
        "A tread that flexes underfoot as you scrub, or a stringer gone soft at the bottom, is a stair losing its footing.",
        "A step light gone dead or fogged behind its lens, and algae that regrows fast in one spot, both point to water pooling where it should drain."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A planter has drifted into the path between the door and the steps, a hose is coiled across the top step, or a bag of paving sand leans against a rail post.",
+        "branches": [
+         {
+          "answer": "None of it looks like it is blocking anything until you are actually carrying something with both arms and cannot see your feet",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The hose and the sand bag do not have anywhere else assigned to live, so the top step is just where they landed after the last job",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Whatever is leaning against the deck also holds damp against the wood underneath it, and that rot risk outranks the convenience of leaving it there",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "Nobody has pushed the top rail hard at every post recently, and a board you step over daily flexes slightly or feels soft underfoot without anyone testing it with a screwdriver.",
+        "branches": [
+         {
+          "answer": "A rail that gives under a stumble, or a board that is finished underneath, is a real fall-through risk, and that is worth the ten seconds it takes to check",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The check has no trigger attached to it, so it only happens if someone happens to think of it separately from any other job",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the house has actually been assigned as the one who does the seasonal push-and-probe, so it depends on whether anyone remembers",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Green algae film has built up on the shaded boards and the stair treads, or the gaps between boards are packed with debris instead of clear.",
+        "branches": [
+         {
+          "answer": "Getting into every gap with a putty knife and scrubbing the shaded boards is real work compared to the rest of a sweep, so it is the part that gets skipped",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "The film only shows up as a slightly duller color in a corner that is already shaded, so it does not read as the slip hazard it actually is until it rains",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "A blocked gap holding water against a board end is invisible unless you are down at board level looking for it, not just walking across the top",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Walk the full route from the door to the steps to the gate carrying a full laundry basket in both arms, and pull off the route anything you have to step around.",
+       "victory": "The full route from the door to the steps to the gate is clear enough to walk carrying a full laundry basket without stepping around anything."
+      }
      }
     }
    ]

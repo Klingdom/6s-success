@@ -1,0 +1,3008 @@
+{
+ "deck": "patio-or-deck",
+ "room": "Patio or Deck",
+ "count": 68,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 16,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "PDR-001",
+   "title": "THE PATIO OR DECK",
+   "type": "ROOM CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. THE SURFACE AND THE RAIL COME FIRST.",
+   "objective": "A patio lives outdoors, on a clock the indoor rooms never feel. This card is the map and the order.",
+   "zones_in_order": [
+    "PDZ-001 Outdoor Seating Zone",
+    "PDZ-002 Grill and Outdoor Cooking Zone",
+    "PDZ-003 Outdoor Dining Zone",
+    "PDZ-004 Garden and Plant Care Zone",
+    "PDZ-005 Outdoor Storage Zone",
+    "PDZ-006 Surface, Rail, and Safety Zone"
+   ],
+   "start_here": "PDZ-006 Surface, Rail, and Safety Zone. Do the Surface, Rail, and Safety Zone first, on a dry morning, before you touch a single cushion. If the boards and the railing are not sound, everything you arrange on top of them is decoration.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Start with the Surface, Rail, and Safety Zone on a dry morning, before you touch a single cushion.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true on your patio. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 2. Cleaning out here is how you inspect: you will never spot a popped fastener, a soft board end, or a spider web in a burner tube while sitting in a chair.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do PDA-013 The Full Patio Hazard Walk before any rebuild. It takes thirty minutes and covers the rail and boards, the grease tray and tank, the chemical box latch, and the deck box lid stay in one pass.",
+   "related": {
+    "contents": "PDZ-001 to PDZ-006, PDF-001 to PDF-018, the shared root causes in ops/root_causes.py, PDA-001 to PDA-015, PDS-001 to PDS-006, PDE-001 to PDE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole patio in its settled state, four chairs set for conversation with cushions visible, a grill with its tools on the hooks, a dining table holding only its umbrella and tray, a closed deck box, and nested pots along the wall, all visible in one frame",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "PDZ-001",
+   "title": "OUTDOOR SEATING ZONE",
+   "type": "ZONE CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "FOUR CHAIRS YOU TRUST. EVERY CUSHION IN THE BOX BY NIGHTFALL.",
+   "objective": "Seats people can drop into without checking them first, with the cushions kept dry.",
+   "callouts": [
+    "Four outdoor chairs set close enough to talk across without raising your voice",
+    "Every seat cushion sitting inside the closed deck box rather than on a chair",
+    "A furniture cover folded flat rather than crumpled on the ground behind a planter",
+    "A bare walking route from the back door to the steps with nothing parked in it",
+    "A deck box lid closing flat under its own weight",
+    "A chair frame standing on its side, drying after a hose-down"
+   ],
+   "done_looks_like": "Four chairs you can sit in without testing, set close enough to talk across, every cushion in the deck box, and no cover crumpled on the ground behind a planter.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Sun-aged plastic and resin chairs fail suddenly at the leg joint, and they fail under the person least able to catch themselves."
+    },
+    {
+     "question": "Fall",
+     "text": "A folded lounger or a stacked chair left across the route between the door and the steps is the thing people trip on carrying a tray in the dark."
+    }
+   ],
+   "the_call": {
+    "title": "The speckled cushion",
+    "text": "You have a cushion with grey and black speckling along the piping. It got rained on, it went into the box damp, and every spring you tell yourself you will scrub it properly. Give it exactly one honest attempt: wash it with a fabric cleaner meant for outdoor material, dry it fully in sun, and put it back. If the speckling returns within the same season, the growth is inside the foam core and no surface cleaning reaches it. That cushion is finished. Replace it or go without, and either is better than a seat nobody chooses. The pattern to break is buying replacement cushions before you have fixed the reason the last set died, which was that they had nowhere dry to go in a hurry."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Garden hose",
+    "Stiff-bristled scrub brush",
+    "Mild fabric-safe cushion cleaner",
+    "Broom"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PDS-001",
+    "actions": [
+     "PDA-001",
+     "PDA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a patio seating area with four chairs set close enough to talk across, a closed deck box beside them, a furniture cover folded flat rather than crumpled behind a nearby planter, a bare walking route from the back door to the steps, and one chair frame standing on its side drying after being hosed down",
+    "must_show": [
+     "Four outdoor chairs set close enough to talk across without raising your voice",
+     "Every seat cushion sitting inside the closed deck box rather than on a chair",
+     "A furniture cover folded flat rather than crumpled on the ground behind a planter",
+     "A bare walking route from the back door to the steps with nothing parked in it",
+     "A deck box lid closing flat under its own weight",
+     "A chair frame standing on its side, drying after a hose-down"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PDZ-002",
+   "title": "GRILL AND OUTDOOR COOKING ZONE",
+   "type": "ZONE CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "FOUR TOOLS ON THE HOOKS. THE TANK LEVEL MARKED ON THE COLLAR.",
+   "objective": "Cook over fire without leaving the grill to find a tool or wondering if there is gas.",
+   "callouts": [
+    "Grates scraped bare of built-up residue",
+    "An empty grease tray sitting back in its rails",
+    "Exactly four tools hanging on the grill's own hooks, nothing extra",
+    "A propane tank standing upright with its fuel level marked on the collar",
+    "A clear arm's length of open air between the grill body and the siding",
+    "No fifth tool anywhere near the hooks"
+   ],
+   "done_looks_like": "Grates scraped bare, grease tray emptied and back in its rails, four tools on the grill's own hooks and no fifth anywhere, the propane tank upright with its level written on the collar, and a clear arm's length between the grill body and the siding, railing, and umbrella canopy.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Accumulated grease in the tray and drip pan is what turns a normal flare-up into a fire, and a grill within reach of siding, decking rail, or a canopy gives that fire somewhere to go."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bristles shed from a worn wire brush stick to the grates and then to food, and a swallowed bristle is a genuine emergency."
+    }
+   ],
+   "the_call": {
+    "title": "The tank you are not sure about",
+    "text": "You have two propane tanks and no idea which has gas in it, so you keep buying a third and the collection grows against the wall. Settle it with a bathroom scale. The tare weight is stamped on the collar as TW and a number; weigh the tank, subtract that number, and what remains is propane. If what is left would not carry you through one long cook with guests, that is a refill errand, not a spare. Write the answer on the collar in marker, and write it again the day a tank comes back from the exchange. While you are reading the collar, find the date stamp: tanks have a requalification life and the exchange counter will simply refuse an old one, which is worth knowing now rather than on a Saturday with people arriving. Two tanks is the right number. Anything beyond two is a storage problem pretending to be preparedness."
+   },
+   "supplies": [
+    "Food-area degreaser",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Grate scraper or coiled grill brush",
+    "Nylon brush",
+    "Hot soapy water and bucket"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PDS-002",
+    "actions": [
+     "PDA-003",
+     "PDA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a backyard grill with bare scraped grates, an empty grease tray back in its rails, exactly four tools, tongs, a spatula, a thermometer and a basting brush, hanging from the grill's own hooks, a propane tank standing upright with its fuel level marked in grease pencil on its collar, and a clear arm's length of open space between the grill body and the house siding",
+    "must_show": [
+     "Grates scraped bare of built-up residue",
+     "An empty grease tray sitting back in its rails",
+     "Exactly four tools hanging on the grill's own hooks, nothing extra",
+     "A propane tank standing upright with its fuel level marked on the collar",
+     "A clear arm's length of open air between the grill body and the siding",
+     "No fifth tool anywhere near the hooks"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PDZ-003",
+   "title": "OUTDOOR DINING ZONE",
+   "type": "ZONE CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "BARE TABLE. ONE TRAY. THE UMBRELLA CRANKED DOWN EVERY NIGHT.",
+   "objective": "Feed people outdoors without carrying the kitchen out in four trips.",
+   "callouts": [
+    "A bare tabletop holding only the umbrella and one weighted tray",
+    "Six chairs tucked fully under the table",
+    "String lights clipped along the rail",
+    "No cord crossing the deck floor",
+    "A closed umbrella, cranked down",
+    "Nothing stored in the open space beneath the table"
+   ],
+   "done_looks_like": "A bare tabletop except the umbrella and one weighted tray, six chairs tucked fully under, string lights clipped along the rail with no cord crossing the floor, and nothing stored beneath the table.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An umbrella left open on an undersized base lifts in a gust and comes down pole first, usually across the table where people were sitting."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "Indoor extension leads run out to string lights or a speaker sit in rain and puddles on the boards, which is the one electrical shortcut outdoors that genuinely kills."
+    }
+   ],
+   "the_call": {
+    "title": "Its own set, or nothing",
+    "text": "Decide once whether this table gets dishware of its own, because the half-answer is what keeps it covered. Count the meals you genuinely ate out here last season. If it was more than a handful, buy one stackable set, plates, tumblers, and flatware for the number of seats, and keep it in a lidded tote in the deck box so eating outdoors costs one trip. If it was two or three meals all year, admit that, and carry the indoor plates out on those few occasions. What you must stop is the middle option: storing four faded plates, a mismatched tumbler, and a serving bowl outdoors for a set you will never complete. That orphaned half-set is precisely why the table always has something standing on it, and why it never looks ready to sit down at."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Detail brush",
+    "Soft brush for canopy fabric",
+    "Gloves"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PDS-003",
+    "actions": [
+     "PDA-005",
+     "PDA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an outdoor dining table with a bare top holding only a closed, cranked-down umbrella and one weighted tray, six chairs tucked fully under, string lights clipped along a rail overhead with no cord crossing the deck floor, and nothing stored in the open space beneath the table",
+    "must_show": [
+     "A bare tabletop holding only the umbrella and one weighted tray",
+     "Six chairs tucked fully under the table",
+     "String lights clipped along the rail",
+     "No cord crossing the deck floor",
+     "A closed umbrella, cranked down",
+     "Nothing stored in the open space beneath the table"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PDZ-004",
+   "title": "GARDEN AND PLANT CARE ZONE",
+   "type": "ZONE CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "EMPTY SAUCERS. THE CHEMICALS LATCHED UP HIGH.",
+   "objective": "Keep the containers alive and keep everything that feeds them off the ground and out of reach.",
+   "callouts": [
+    "Every plant saucer sitting empty",
+    "Pots nested by size along the wall",
+    "Clear, unobstructed drain holes on the visible pots",
+    "One tool caddy holding a trowel, pruners, and gloves",
+    "A latched chemical box mounted above the tools",
+    "A short row of labelled containers inside the latched box"
+   ],
+   "done_looks_like": "Every saucer empty, pots nested by size along the wall with drain holes clear, one tool caddy holding trowel, pruners, and gloves, and a latched chemical box above the tools with no more in it than you can name from the doorway.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Slug pellets and fertilizer granules look like food to a dog, and a concentrate decanted into a drink bottle is the classic route to a poisoning in a house with children."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A large glazed pot full of wet soil is far heavier than it looks and it lands on feet; slide it on a wheeled saucer instead of lifting it."
+    }
+   ],
+   "the_call": {
+    "title": "The half bottles",
+    "text": "There is a shelf of part-used concentrates: a weed killer bought for one path, a rooting hormone, a bug spray whose label has washed to nothing. You avoid this shelf because there is no easy way to get rid of them, and pouring them down a drain is not one. Two rules settle it. First, if you cannot read the label, that container is finished, no exceptions, because an unlabelled garden chemical cannot be used safely by you or by anyone who finds it later; it goes to the household hazardous waste collection. Second, if you can read it, ask whether you have used it in the last two growing seasons. If not, it goes the same way. What survives is a short row you can name from the doorway. From this point on, buy the smallest container the shop sells rather than the best value size, because the value size is what created this shelf."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Stiff-bristled scrub brush",
+    "Tool oil",
+    "Gloves",
+    "Broom"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PDS-004",
+    "actions": [
+     "PDA-007",
+     "PDA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a patio garden corner with every plant saucer empty, pots nested by size along the wall with their drain holes visible and clear, one tool caddy holding a trowel, pruners and gloves, and a latched chemical box mounted above the tools holding only a short row of labelled containers",
+    "must_show": [
+     "Every plant saucer sitting empty",
+     "Pots nested by size along the wall",
+     "Clear, unobstructed drain holes on the visible pots",
+     "One tool caddy holding a trowel, pruners, and gloves",
+     "A latched chemical box mounted above the tools",
+     "A short row of labelled containers inside the latched box"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PDZ-005",
+   "title": "OUTDOOR STORAGE ZONE",
+   "type": "ZONE CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "order": 5,
+   "difficulty": 3,
+   "tagline": "ONE LAYER OF CUSHIONS. THE LID CLOSES FLAT AND LATCHES.",
+   "objective": "Get the cushions under a lid within a minute of the first drop of rain.",
+   "callouts": [
+    "A deck box lid closing flat without anyone pressing down",
+    "Cushions sitting in one layer on top",
+    "Two labelled totes visible beneath the cushions",
+    "The bare floor of the box showing once the cushions lift out",
+    "A lid stay holding the open lid safely up",
+    "A latch fastened across the closed lid"
+   ],
+   "done_looks_like": "The lid closes flat without anyone pressing down, cushions in one layer on top, two labelled totes beneath them, and the floor of the box visible the moment the cushions come out.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An unsupported deck box lid falls at hand height and catches fingers on the hinge side, which is where children reach when they help."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Mice nest in stored cushions and fabric, and shaking out contaminated bedding indoors sends droppings and dust into the air you breathe."
+    }
+   ],
+   "the_call": {
+    "title": "What the box is actually for",
+    "text": "You bought the deck box for cushions, and now it holds everything on this patio that has nowhere else to be. So the cushions ride on a layer of pool toys and dead covers, they never go all the way down, and the lid stands half open in the rain. Decide the box's single job and hold it against pressure: it stores cushions, because cushions are the only thing out here that must be under a lid within a minute of the first drop. Everything else that has crept in gets a real home in the garage or leaves the property this weekend. Carrying it all out will look like waste while you are doing it. It is not. A box that cannot close protects nothing inside it, so the arrangement you have now is already costing you the cushions, one damp night at a time."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Warm soapy water and bucket",
+    "Stiff-bristled scrub brush",
+    "Gloves",
+    "Broom"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PDS-005",
+    "actions": [
+     "PDA-009",
+     "PDA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open deck box showing cushions sitting in a single layer on top, two totes labelled games and covers beneath them, the bare floor of the box visible underneath, a lid stay holding the open lid safely in place, and a latch ready to fasten across the lid once it closes flat",
+    "must_show": [
+     "A deck box lid closing flat without anyone pressing down",
+     "Cushions sitting in one layer on top",
+     "Two labelled totes visible beneath the cushions",
+     "The bare floor of the box showing once the cushions lift out",
+     "A lid stay holding the open lid safely up",
+     "A latch fastened across the closed lid"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PDZ-006",
+   "title": "SURFACE, RAIL, AND SAFETY ZONE",
+   "type": "ZONE CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "order": 6,
+   "difficulty": 4,
+   "tagline": "PUSH THE RAIL HARD. IF IT MOVES, NOBODY STANDS ON IT TONIGHT.",
+   "objective": "The structure you stand on and lean against, kept sound and kept clear.",
+   "callouts": [
+    "Nothing on the deck surface that is not furniture",
+    "Daylight visible through clear gaps between the boards",
+    "No green film on the shaded stair treads",
+    "A rail post standing immovable under a hard push",
+    "A dated tag hanging just inside the back door",
+    "Stair treads that rise the same height as the ones above and below"
+   ],
+   "done_looks_like": "Nothing on the deck that is not furniture, daylight visible through the gaps between boards, no green film on the shaded treads, and every rail post immovable when you push it hard.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "A railing post that moves when you push it will not hold an adult who stumbles into it, and the drop off the side of a deck is onto whatever is stored below."
+    },
+    {
+     "question": "Fall",
+     "text": "Algae film on the shaded boards and the stair treads turns to grease after rain, and the treads are where a slip costs the most."
+    }
+   ],
+   "the_call": {
+    "title": "The board that gives",
+    "text": "There is a board you step over without thinking, or one that flexes slightly under your weight, and you have quietly filed it as fine. Test it properly instead. Push a screwdriver into the board where it crosses a joist, and again into the board end nearest the house. If the tip sinks in with light pressure, that board is finished and replacing one board is a morning's work. The harder judgment is what a soft board is telling you. If two boards side by side are soft, or if the softness is at the ledger where the deck meets the wall of the house, then the framing underneath has the problem and the surface is only the symptom. The rule that settles it: soft in one spot on top, replace the board yourself; soft in two adjacent places or soft at the wall, stop putting people on it and get someone underneath it with a torch before the next time you have guests standing out here together."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Long-handled deck brush",
+    "Putty knife or paint stirrer",
+    "Garden hose",
+    "Broom"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PDS-006",
+    "actions": [
+     "PDA-011",
+     "PDA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a bare deck surface holding nothing but furniture, daylight visible through clear gaps between the boards, algae-free shaded stair treads, a hand pushing hard on a rail post that does not move, a dated tag hanging just inside the back door, and evenly rising stair treads",
+    "must_show": [
+     "Nothing on the deck surface that is not furniture",
+     "Daylight visible through clear gaps between the boards",
+     "No green film on the shaded stair treads",
+     "A rail post standing immovable under a hard push",
+     "A dated tag hanging just inside the back door",
+     "Stair treads that rise the same height as the ones above and below"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PDF-001",
+   "title": "A CHAIR WITH A WOBBLE, A CRACKED ARM, OR A FLEXING SEAT IS STILL IN THE CIRCLE",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A resin or plastic chair with a wobble, a cracked arm, or a seat pan that flexes when you press it hard is still standing in the evening seating circle instead of at the curb.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A chair failing under someone is a real fall risk, and that outranks how many of the other chairs still look fine standing there",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There is no agreed point where a chair officially fails the standard, so it stays in rotation until it actually gives out under someone",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It has creaked in that same spot for months, long enough that the sound stopped registering as a warning",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-001",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a resin patio chair with a visible hairline crack near a leg joint sitting among three other chairs arranged for conversation",
+    "must_show": [
+     "A resin or plastic chair with a wobble, a cracked arm, or a seat pan that flexes when you press it hard is still standing in the evening seating circle instead of at the curb."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-002",
+   "title": "A CUSHION SITS UNDER A DAMP TOWEL, OR A COVER LIES CRUMPLED BEHIND A PLANTER",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A cushion is stacked on a seat under a towel that never actually dries out underneath it, or a furniture cover lies crumpled on the ground behind a planter instead of over the chairs.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Carrying the cushions in only happens if someone remembers on the last trip with the glasses, and some nights nobody does",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The deck box already looks full of what else has migrated into it, so a returning cushion gets left on the chair instead of forced in",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Whoever is still outside when the weather turns assumes somebody else will grab the cushions before it rains",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-001",
+    "root_causes": [
+     "KC-009",
+     "KC-007",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a patio cushion stacked on a chair seat with a damp towel draped over it, and a furniture cover crumpled on the ground behind a large planter nearby",
+    "must_show": [
+     "A cushion is stacked on a seat under a towel that never actually dries out underneath it, or a furniture cover lies crumpled on the ground behind a planter instead of over the chairs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-003",
+   "title": "A FOLDED LOUNGER OR STACKED CHAIR SITS ACROSS THE ROUTE FROM DOOR TO STEPS",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A folded lounger or a stacked chair has ended up parked across the route from the door to the steps instead of against the rail.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is nowhere specific that a folded lounger is supposed to live when it is not in use, so it leans wherever there is a gap",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Its real spot is against the rail at the far end, but it is easier to fold it and lean it right where you are already standing",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nobody has actually walked that route at night carrying something heavy, so it has never been obvious that it became the shortcut for temporary parking",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-003",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a folded lounge chair leaning across a narrow patio walkway between a back door and a short flight of steps",
+    "must_show": [
+     "A folded lounger or a stacked chair has ended up parked across the route from the door to the steps instead of against the rail."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-004",
+   "title": "THE GRILL'S SHELF AND CABINET HOLD THREE SETS OF TONGS AND A DEAD THERMOMETER",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The shelf and the cabinet under the grill hold three sets of tongs, a thermometer with a dead battery, and a sauce bottle that has ridden through a whole summer of outdoor heat, while only one of each tool ever actually gets picked up mid-cook.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A cook needs at least one of everything, and buying a backup without checking whether the first one still works is how the second and third arrived",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nothing has ever forced a look at what is actually behind that closed cabinet door, so it just accumulates unseen",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Whoever is cooking grabs the tool that is already sitting out from last time and never has a reason to sort through the rest",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-002",
+    "root_causes": [
+     "KC-001",
+     "KC-005",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open grill-side cabinet crowded with three sets of grilling tongs, a food thermometer with a cracked display, and a faded sauce bottle",
+    "must_show": [
+     "The shelf and the cabinet under the grill hold three sets of tongs, a thermometer with a dead battery, and a sauce bottle that has ridden through a whole summer of outdoor heat, while only one of each tool ever actually gets picked up mid-cook."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-005",
+   "title": "TWO OR THREE PROPANE TANKS STAND AGAINST THE WALL WITH NO LEVEL MARKED ON ANY OF THEM",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are two or three propane tanks against the wall and nobody is sure which ones actually have gas left, so a fresh one gets bought before the tanks get checked.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The collar has no level marked on it and nobody has weighed one on the bathroom scale, so guessing feels faster than checking",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "An empty tank still looks and feels heavy enough to seem fine, so it runs out mid-cook instead of getting caught ahead of time",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "Checking the real level means finding the scale, doing the subtraction, and marking the collar; buying a new one skips all of that",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-002",
+    "root_causes": [
+     "KC-008",
+     "KC-011",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "three propane tanks of similar size lined up against a patio wall, their collars bare with no fuel level noted on any of them",
+    "must_show": [
+     "There are two or three propane tanks against the wall and nobody is sure which ones actually have gas left, so a fresh one gets bought before the tanks get checked."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-006",
+   "title": "THE FLAME RUNS YELLOW ALONG ONE SIDE AND THE GREASE TRAY IS OVERDUE",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The flame runs yellow and lazy along one side of the burner, and the grease tray under the grill has not been scraped out in longer than anyone can say.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A grease tray that is overdue is exactly what turns a normal flare-up into a real fire, especially with the grill sitting close to the siding or the rail",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody wants to reach up into the burner tubes or pull the flavorizer bars while they are still greasy, so that part gets skipped every time",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "There is no tracked count of cooks between empties, so it only gets done whenever someone happens to notice the smell",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-002",
+    "root_causes": [
+     "KC-010",
+     "RC-016",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a lit grill burner showing a yellow, lazy flame along one side, with a grease tray visibly crusted and overflowing beneath the grates",
+    "must_show": [
+     "The flame runs yellow and lazy along one side of the burner, and the grease tray under the grill has not been scraped out in longer than anyone can say."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-007",
+   "title": "A BURNED-DOWN CITRONELLA BUCKET AND FOUR FADED PLATES SIT ON THE TABLE",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The table always has something standing on it besides the umbrella and the weighted tray: a citronella bucket burned down to the rim, a lighter that no longer sparks, or four faded plates and a mismatched tumbler from a set that never got completed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Buying the rest of a matching outdoor set felt like an unnecessary expense for a table you only eat at a handful of times a year",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody has settled whether this table gets its own dishware or borrows from the kitchen, so a half-answer just sits here instead",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The table's job is to hold a meal, but every season adds one more not-quite-empty item that never actually leaves it",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-003",
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an outdoor dining table holding a citronella candle bucket burned down to its rim, a broken lighter, and four sun-faded plastic plates in mismatched colors",
+    "must_show": [
+     "The table always has something standing on it besides the umbrella and the weighted tray: a citronella bucket burned down to the rim, a lighter that no longer sparks, or four faded plates and a mismatched tumbler from a set that never got completed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-008",
+   "title": "THE UMBRELLA STAYS UP OVERNIGHT AND AN INDOOR CORD RUNS TO THE STRING LIGHTS",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The umbrella stays cranked up overnight, or a household extension lead runs out to the string lights across boards that stay wet with dew.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "An open umbrella catching wind, or a lead lying in a puddle, is a real hazard, and that outranks the extra step of cranking it down or running proper outdoor-rated cord",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Whoever strung the lights years ago used whatever cord was in the garage, and nobody has swapped it for outdoor-rated cord since",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Cranking the umbrella down is one more thing to remember on the way in, and it is easy to skip when your hands are already full of dishes",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-003",
+    "root_causes": [
+     "KC-010",
+     "RC-017",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open patio umbrella standing overnight above an empty table, a household extension cord running from an indoor outlet across wet deck boards to string lights along the rail",
+    "must_show": [
+     "The umbrella stays cranked up overnight, or a household extension lead runs out to the string lights across boards that stay wet with dew."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-009",
+   "title": "A CHAIR SITS PUSHED BACK AT AN ANGLE WHILE THE UMBRELLA AND TRAY ARE STILL OUT",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A chair is pushed back at an angle instead of tucked fully under the table, or the umbrella and tray are still standing out well after the last plate went inside.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Clearing the table is the very last thing before the evening actually ends, and skipping it feels like nothing because the mess is invisible from indoors",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "There is no single person whose job it is to do the closing pass, so on a night with guests everyone assumes somebody else already did it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There is nothing that reminds you the umbrella still needs cranking down until it is already dark and the evening has moved on",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-003",
+    "root_causes": [
+     "RC-017",
+     "RC-013",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an outdoor dining table late in the evening with one chair pushed back at an angle, the umbrella still open and the condiment tray still sitting out after the meal has ended",
+    "must_show": [
+     "A chair is pushed back at an angle instead of tucked fully under the table, or the umbrella and tray are still standing out well after the last plate went inside."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-010",
+   "title": "A PLANT SAUCER HOLDS STANDING WATER DAYS AFTER THE LAST RAIN",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A saucer under a pot is holding standing water days after the last rain, or the upturned wheelbarrow has a puddle sitting in its well.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Checking every saucer only takes ten seconds, but nothing about filling the watering can actually forces you to look down at them first",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "A saucer that has been full for two days looks the same as one that just got filled, so the row never seems urgent enough to check",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Standing water breeding mosquitoes near a patio people actually sit on is a real health hazard, not just an eyesore to get to eventually",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-004",
+    "root_causes": [
+     "KC-009",
+     "RC-017",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a terracotta plant saucer holding a shallow pool of standing water, sitting beside an upturned wheelbarrow with a puddle collected in its well",
+    "must_show": [
+     "A saucer under a pot is holding standing water days after the last rain, or the upturned wheelbarrow has a puddle sitting in its well."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-011",
+   "title": "A SHELF OF PART-USED CHEMICALS HAS LABELS TOO WORN TO READ",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a shelf of part-used weed killer, rooting hormone, and bug spray whose label has worn away, avoided rather than sorted for more than one season.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "An unlabelled garden chemical cannot be used safely by anyone who finds it later, which outranks just leaving it where it is",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There is no easy way to get rid of them, so avoiding the shelf entirely has been the actual plan for a while now",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "The value-size container seemed smart when it was bought, and using it up before it goes stale never quite happened",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-004",
+    "root_causes": [
+     "KC-010",
+     "RC-015",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a garden shelf holding several part-used spray bottles and a jug, their printed labels faded and peeling past legibility",
+    "must_show": [
+     "There is a shelf of part-used weed killer, rooting hormone, and bug spray whose label has worn away, avoided rather than sorted for more than one season."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-012",
+   "title": "A TOOL LEANS BLADE DOWN AND A DRAINLESS POT SITS NESTED WITH THE GOOD ONES",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A long-handled tool leans blade down against the rail instead of hanging head up, or a pot with no drainage hole and last year's dead root ball is still nested in with the ones you will actually use.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The plant in that pot came from a cutting off a family member's garden, and repotting it properly into something with a drain hole keeps getting put off",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Pots with no drainage hole or a dead root ball do not look any different from the ones you will use again once they are all nested together in a row",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Nested inside a stack, you cannot tell which ones even have a working drain hole until you are already planting into them",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-004",
+    "root_causes": [
+     "RC-014",
+     "RC-017",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a long-handled garden tool leaning blade-first against a patio rail beside a stack of nested terracotta pots, one of them clearly missing a drainage hole",
+    "must_show": [
+     "A long-handled tool leans blade down against the rail instead of hanging head up, or a pot with no drainage hole and last year's dead root ball is still nested in with the ones you will actually use."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-013",
+   "title": "A CROQUET SET MISSING TWO MALLETS AND A DAMP BAG OF CHARCOAL SIT IN THE DECK BOX",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The deck box holds a croquet set missing two mallets, four covers for furniture you no longer own, and a bag of charcoal that drew moisture months ago and will never light properly again.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it has anywhere else assigned to go, so it just keeps living in the one lidded space outside",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Getting rid of a game missing pieces feels like giving up on it turning up complete somehow",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Once it is under the cushions, nobody sees it again until the box gets fully emptied, so it never comes up for a decision",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-005",
+    "root_causes": [
+     "KC-002",
+     "RC-015",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open deck box revealing a croquet set with only two mallets, several old furniture covers, and a bag of charcoal visibly clumped with moisture",
+    "must_show": [
+     "The deck box holds a croquet set missing two mallets, four covers for furniture you no longer own, and a bag of charcoal that drew moisture months ago and will never light properly again."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-014",
+   "title": "THE LID DOESN'T STAY UP ON ITS OWN AND A CUSHION STILL SMELLS OF MILDEW",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The lid does not stay up on its own when you let go halfway, or a cushion pulled out from under the pile still smells faintly of mildew after a wash.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A heavy lid dropping at exactly a child's hand height is a real crush risk, and that is worth a lid stay before anything else in this box gets sorted",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "A cushion that went in damp last autumn had all winter for that smell to work into the foam, and no amount of washing this week reaches that",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "Cushions only go in damp because they come in at the very end of a long evening, when checking each one properly is the last thing anyone wants to do",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-005",
+    "root_causes": [
+     "KC-010",
+     "RC-016",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a deck box lid caught mid-fall at a child's hand height beside a cushion pulled halfway out, faint grey speckling visible along its seam",
+    "must_show": [
+     "The lid does not stay up on its own when you let go halfway, or a cushion pulled out from under the pile still smells faintly of mildew after a wash."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-015",
+   "title": "CLOSING THE LID TAKES LEANING YOUR WEIGHT ON IT",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labelled place.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no line drawn for what this box is actually for, so anything without another home defaults to going in here too",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Different people packing the box at each end of the season each have their own idea of what goes on top, so it never settles into the same layout twice",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "The lid standing half open in the rain does not look urgent in the moment you are closing it, just heavier than usual",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-005",
+    "root_causes": [
+     "KC-008",
+     "KC-012",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a person's hand pressing down hard on an overstuffed deck box lid that will not close flat on its own",
+    "must_show": [
+     "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labelled place."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-016",
+   "title": "A PLANTER, A COILED HOSE, AND A SAND BAG SIT ALONG THE WALKING ROUTE",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A planter has drifted into the path between the door and the steps, a hose is coiled across the top step, or a bag of paving sand leans against a rail post.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it looks like it is blocking anything until you are actually carrying something with both arms and cannot see your feet",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "The hose and the sand bag do not have anywhere else assigned to live, so the top step is just where they landed after the last job",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Whatever is leaning against the deck also holds damp against the wood underneath it, and that rot risk outranks the convenience of leaving it there",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-006",
+    "root_causes": [
+     "RC-017",
+     "KC-002",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a large planter sitting in the middle of a deck walkway, a garden hose coiled across the top step nearby, and a bag of paving sand leaning against a rail post",
+    "must_show": [
+     "A planter has drifted into the path between the door and the steps, a hose is coiled across the top step, or a bag of paving sand leans against a rail post."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-017",
+   "title": "NOBODY HAS PUSHED THE RAIL OR PROBED THE SOFT BOARD IN A WHILE",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Nobody has pushed the top rail hard at every post recently, and a board you step over daily flexes slightly or feels soft underfoot without anyone testing it with a screwdriver.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A rail that gives under a stumble, or a board that is finished underneath, is a real fall-through risk, and that is worth the ten seconds it takes to check",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The check has no trigger attached to it, so it only happens if someone happens to think of it separately from any other job",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Nobody in the house has actually been assigned as the one who does the seasonal push-and-probe, so it depends on whether anyone remembers",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand pushing against a deck rail post that visibly leans, with a screwdriver resting nearby beside a board showing a faint soft spot",
+    "must_show": [
+     "Nobody has pushed the top rail hard at every post recently, and a board you step over daily flexes slightly or feels soft underfoot without anyone testing it with a screwdriver."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PDF-018",
+   "title": "GREEN ALGAE FILM COATS THE SHADED TREADS AND THE BOARD GAPS ARE PACKED",
+   "type": "FRICTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Green algae film has built up on the shaded boards and the stair treads, or the gaps between boards are packed with debris instead of clear.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Getting into every gap with a putty knife and scrubbing the shaded boards is real work compared to the rest of a sweep, so it is the part that gets skipped",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "The film only shows up as a slightly duller color in a corner that is already shaded, so it does not read as the slip hazard it actually is until it rains",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "A blocked gap holding water against a board end is invisible unless you are down at board level looking for it, not just walking across the top",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your patio, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PDZ-006",
+    "root_causes": [
+     "RC-016",
+     "RC-017",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shaded wooden stair tread coated in a thin green algae film, with debris-packed gaps visible between the deck boards beside it",
+    "must_show": [
+     "Green algae film has built up on the shaded boards and the stair treads, or the gaps between boards are packed with debris instead of clear."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-004",
+     "PDF-007",
+     "PDF-011"
+    ],
+    "actions": [
+     "PDA-003",
+     "PDA-005",
+     "PDA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "three sets of grilling tongs and extra sauce bottles crowding a grill-side cabinet that was only ever meant to hold one of each",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-003",
+     "PDF-013",
+     "PDF-016"
+    ],
+    "actions": [
+     "PDA-002",
+     "PDA-009",
+     "PDA-011",
+     "PDA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a garden hose and a bag of paving sand leaning against a deck rail post with no shed or box ever assigned to either",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-003"
+    ],
+    "actions": [
+     "PDA-002",
+     "PDA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a folded lounge chair leaning by the back door instead of against the rail at the far end of the patio",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-005",
+     "PDF-008"
+    ],
+    "actions": [
+     "PDA-004",
+     "PDA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching to buy a third propane tank rather than carrying the first two to a scale and marking the level on the collar",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-004",
+     "PDF-012",
+     "PDF-013",
+     "PDF-018"
+    ],
+    "actions": [
+     "PDA-003",
+     "PDA-007",
+     "PDA-010",
+     "PDA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of nested terracotta pots hiding a drainage hole nobody can see until the pot is already lifted off the stack",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-002"
+    ],
+    "actions": [
+     "PDA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a deck box already packed with pool toys and old covers, leaving no room for the cushion trying to come in for the night",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people in the house to describe this zone when it is finished. Two different answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-001",
+     "PDF-005",
+     "PDF-007",
+     "PDF-015"
+    ],
+    "actions": [
+     "PDA-002",
+     "PDA-004",
+     "PDA-006",
+     "PDA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a propane tank collar with no level ever marked on it, so every household member decides differently whether it needs replacing",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-002",
+     "PDF-004",
+     "PDF-006",
+     "PDF-009",
+     "PDF-010",
+     "PDF-014",
+     "PDF-017"
+    ],
+    "actions": [
+     "PDA-001",
+     "PDA-004",
+     "PDA-006",
+     "PDA-007",
+     "PDA-010",
+     "PDA-012",
+     "PDA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a grease tray sitting unemptied under a grill with no tracked count of cooks anywhere to say it is overdue",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-001",
+     "PDF-006",
+     "PDF-008",
+     "PDF-010",
+     "PDF-011",
+     "PDF-014",
+     "PDF-016",
+     "PDF-017"
+    ],
+    "actions": [
+     "PDA-001",
+     "PDA-004",
+     "PDA-005",
+     "PDA-007",
+     "PDA-008",
+     "PDA-010",
+     "PDA-012",
+     "PDA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a deck rail post that shifts under a hard push, right where a hand would grab it to keep from falling",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-005"
+    ],
+    "actions": [
+     "PDA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a propane tank that feels heavy enough to seem full, quietly running out mid-cook with nobody having weighed it first",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-015"
+    ],
+    "actions": [
+     "PDA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two different sets of hands packing the same deck box at each end of a season, neither agreeing on what goes on top",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-002",
+     "PDF-009",
+     "PDF-017"
+    ],
+    "actions": [
+     "PDA-002",
+     "PDA-006",
+     "PDA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an emptied patio table after dinner with nobody having claimed the job of cranking the umbrella down on the way inside",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-012"
+    ],
+    "actions": [
+     "PDA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a leggy plant grown from a cutting off a family member's garden, still sitting in a drainage-less pot nobody wants to disturb",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-007",
+     "PDF-011",
+     "PDF-013"
+    ],
+    "actions": [
+     "PDA-006",
+     "PDA-008",
+     "PDA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shelf of half-used garden chemicals with worn labels, avoided rather than sorted for another season",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-006",
+     "PDF-014",
+     "PDF-018"
+    ],
+    "actions": [
+     "PDA-004",
+     "PDA-010",
+     "PDA-012",
+     "PDA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a burner tube packed with spider web, reachable only by pulling the flavorizer bars first",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PDF-001",
+     "PDF-003",
+     "PDF-008",
+     "PDF-009",
+     "PDF-010",
+     "PDF-012",
+     "PDF-015",
+     "PDF-016",
+     "PDF-018"
+    ],
+    "actions": [
+     "PDA-002",
+     "PDA-006",
+     "PDA-008",
+     "PDA-010",
+     "PDA-011",
+     "PDA-012",
+     "PDA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a green film on a shaded stair tread that has been there long enough to stop looking like a hazard",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "PDA-001",
+   "title": "PRESS EVERY CHAIR AND BOX THE CUSHIONS",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Press every chair for a wobble, a crack, or a flex, and carry every cushion sitting anywhere except a chair into the deck box.",
+   "why_it_matters": "A chair that fails under someone fails suddenly, and a cushion left out is what turns one damp night into a week of drying or a replacement cost.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the deck box"
+   ],
+   "steps": [
+    "Sit in every chair and press the seat pan hard with your palm, pull any chair that wobbles, cracks, or flexes out of the circle, and carry every cushion sitting anywhere except a chair into the deck box.",
+    "Carry a failed chair straight to the curb rather than setting it back down in a corner of the patio."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009"
+    ],
+    "zone": "PDZ-001",
+    "standard": "PDS-001"
+   },
+   "victory_condition": "Every remaining chair passes a hard press with no flex or crack, and every cushion is in the deck box.",
+   "next_card": "PDS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand pressing hard on a patio chair seat pan, a cushion being carried toward an open deck box behind it",
+    "must_show": [
+     "Every remaining chair passes a hard press with no flex or crack, and every cushion is in the deck box."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-002",
+   "title": "SET THE CHAIR COUNT AND CLEAR THE ROUTE",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Count who actually sits out here on an ordinary evening, settle that many chairs plus two as the standing rule, hang the furniture cover on its own hook, and clear anything parked in the route between the door and the steps.",
+   "why_it_matters": "A hazard chair only gets replaced once there is an agreed point where 'looks fine' stops being enough, a cover with nowhere of its own ends up crumpled on the ground, and a route nobody's specifically checking is the one people trip on carrying a tray in the dark.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a wall hook for the cover"
+   ],
+   "steps": [
+    "Count who actually sits out here on an ordinary evening, settle that many chairs plus two as the standing rule, and move any extra chair off the patio.",
+    "Fold and hang the furniture cover on its own hook, and carry anything parked in the route between the door and the steps back to where it belongs."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-007",
+    "KC-002",
+    "KC-003",
+    "RC-013",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-007",
+     "KC-002",
+     "KC-003",
+     "RC-013",
+     "RC-017"
+    ],
+    "zone": "PDZ-001",
+    "standard": "PDS-001"
+   },
+   "victory_condition": "The chair count matches how many people actually sit out here plus two, the cover hangs on its own hook, and the route from the door to the steps is bare.",
+   "next_card": "PDA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand hanging a folded furniture cover on a wall hook beside a bare patio walkway, extra chairs stacked at the edge ready to leave",
+    "must_show": [
+     "The chair count matches how many people actually sit out here plus two, the cover hangs on its own hook, and the route from the door to the steps is bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-003",
+   "title": "EMPTY THE CABINET AND HANG FOUR TOOLS",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the side shelf and the cabinet completely, wipe the grease tray out, and hang exactly one tong, one spatula, one thermometer, and one basting brush back on the grill's own hooks.",
+   "why_it_matters": "A cabinet nobody's looked inside all season is how three sets of tongs and a dead thermometer accumulate, and the tools you actually need should be on the hooks, not buried behind them.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Empty the side shelf and the cabinet completely, wipe the grease tray out, and hang the one tong, one spatula, one thermometer, and one basting brush you are keeping back on the grill's own hooks.",
+    "Bag the dried-out lighter cubes, the extra tongs, and any sauce bottle that spent the summer at outdoor temperature."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-005"
+    ],
+    "zone": "PDZ-002",
+    "standard": "PDS-002"
+   },
+   "victory_condition": "The grill's own hooks hold exactly one tong, one spatula, one thermometer, and one basting brush, and the grease tray sits empty in its rails.",
+   "next_card": "PDS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an emptied grill-side cabinet with a single tong, spatula, thermometer and basting brush hanging from the grill's own hooks nearby",
+    "must_show": [
+     "The grill's own hooks hold exactly one tong, one spatula, one thermometer, and one basting brush, and the grease tray sits empty in its rails."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-004",
+   "title": "WEIGH THE TANKS AND START THE COOK COUNT",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Weigh each propane tank on a bathroom scale, subtract the tare weight, and mark the result on the collar; then start a tracked count of cooks on a card taped inside the cabinet door for when the grease tray gets emptied.",
+   "why_it_matters": "Guessing a tank's level by lifting it is slower and less honest than the five minutes weighing takes, and a grease tray with no tracked trigger only gets scraped once somebody notices the smell, by which point the flare-up risk has already been sitting there.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a bathroom scale",
+    "a marker",
+    "an index card"
+   ],
+   "steps": [
+    "Weigh each tank, subtract the tare weight stamped on the collar as TW, and mark the remaining propane weight on the collar in marker.",
+    "Tape a card inside the cabinet door and start a tally of cooks toward the next grease tray emptying, and brush soapy water on the hose and regulator to check for leaking bubbles while the tanks are out."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-011",
+    "KC-004",
+    "KC-009",
+    "KC-010",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-011",
+     "KC-004",
+     "KC-009",
+     "KC-010",
+     "RC-016"
+    ],
+    "zone": "PDZ-002",
+    "standard": "PDS-002"
+   },
+   "victory_condition": "Every tank's remaining level is marked on its collar, and a card inside the cabinet door is tracking cooks toward the next grease tray emptying.",
+   "next_card": "PDA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a propane tank standing on a bathroom scale beside a hand marking a number on its collar, an index card taped inside a grill cabinet door nearby",
+    "must_show": [
+     "Every tank's remaining level is marked on its collar, and a card inside the cabinet door is tracking cooks toward the next grease tray emptying."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-005",
+   "title": "CLEAR THE TABLE AND CRANK THE UMBRELLA DOWN",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the table down to bare surface, crank the umbrella down, and tuck every chair fully under.",
+   "why_it_matters": "Everything else that lives on this table, the burned-down bucket, the dead lighter, the faded plates, is easier to face once the table is actually bare, and an open umbrella left up is a sail waiting for wind.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Clear the table down to bare surface, crank the umbrella down, and tuck every chair fully under.",
+    "Bag the burned-down citronella bucket, the dead lighter, and any plate or tumbler from a set you are not keeping."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-010"
+    ],
+    "zone": "PDZ-003",
+    "standard": "PDS-003"
+   },
+   "victory_condition": "The table holds only the umbrella and the one weighted tray, the umbrella is cranked down, and every chair is tucked fully under.",
+   "next_card": "PDS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bare outdoor dining tabletop holding only a weighted tray and a cranked-down umbrella, chairs tucked fully under on every side",
+    "must_show": [
+     "The table holds only the umbrella and the one weighted tray, the umbrella is cranked down, and every chair is tucked fully under."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-006",
+   "title": "DECIDE THE DISHWARE AND NAME THE CLOSER",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Decide once whether this table gets its own stackable dishware set or borrows from the kitchen, swap any household extension cord running to the string lights for outdoor-rated cord, and agree who does the closing pass each night.",
+   "why_it_matters": "A half-answer on dishware is why the table always has something standing on it, an indoor cord across wet boards is a real shock risk, and a closing pass with no name attached depends on hoping somebody else already did it.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a lidded tote",
+    "outdoor-rated extension cord"
+   ],
+   "steps": [
+    "Count the meals you genuinely ate out here last season: if it was more than a handful, buy one stackable set for the seats and keep it in a lidded tote in the deck box; if it was two or three, carry the indoor plates out instead and let the orphaned half-set go.",
+    "Swap any indoor extension cord running to the string lights for outdoor-rated cord on a proper outlet, and say out loud which one of you does the closing pass, cranking the umbrella and clearing the table, each night."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-008",
+    "RC-017",
+    "KC-004",
+    "RC-013",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "RC-017",
+     "KC-004",
+     "RC-013",
+     "KC-009"
+    ],
+    "zone": "PDZ-003",
+    "standard": "PDS-003"
+   },
+   "victory_condition": "The dishware decision is made and the orphaned half-set is gone, the string lights run on outdoor-rated cord, and one of you is named as the one who does the closing pass.",
+   "next_card": "PDA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a stackable set of outdoor dishware in a lidded tote beside a coil of outdoor-rated cord, a patio table visible behind them",
+    "must_show": [
+     "The dishware decision is made and the orphaned half-set is gone, the string lights run on outdoor-rated cord, and one of you is named as the one who does the closing pass."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-007",
+   "title": "TIP OUT THE STANDING WATER AND PULL THE BAD POTS",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the row of saucers, the wheelbarrow well, and any upturned pot lid tipping out standing water, then pull any pot with no drainage hole or last year's dead root ball out of the nested stack.",
+   "why_it_matters": "Standing water breeding mosquitoes near a patio people actually sit on is a real health hazard, and a pot with no working drain hole is doing nothing for the plant it is supposedly housing.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a rag"
+   ],
+   "steps": [
+    "Walk the row of saucers, the wheelbarrow well, and any upturned pot lid tipping out standing water, then pull any pot with no drainage hole or last year's dead root ball out of the nested stack.",
+    "Wipe each emptied saucer dry before setting it back under its pot."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-010",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-010",
+     "KC-005"
+    ],
+    "zone": "PDZ-004",
+    "standard": "PDS-004"
+   },
+   "victory_condition": "No saucer, wheelbarrow well, or pot lid on the patio holds standing water, and every pot in the nested stack has a clear drain hole and nothing dead in it.",
+   "next_card": "PDS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand tipping standing water out of a terracotta plant saucer, an upturned wheelbarrow with a dry well beside it",
+    "must_show": [
+     "No saucer, wheelbarrow well, or pot lid on the patio holds standing water, and every pot in the nested stack has a clear drain hole and nothing dead in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-008",
+   "title": "CLEAR THE CHEMICAL SHELF AND TAG EVERY POT",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Read every bottle on the chemical shelf and take anything unlabelled or unused in the last two growing seasons to household hazardous waste, decide whether the pot with the family cutting gets repotted properly this week, and tag every remaining pot with what is in it and the month it went in.",
+   "why_it_matters": "An unlabelled concentrate cannot be used safely by whoever finds it later, an undecided cutting just occupies a drainage-less pot indefinitely, and a pot with no tag is a question you have to walk over and ask instead of read from the doorway.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "small tags and a marker",
+    "a box for hazardous waste drop-off"
+   ],
+   "steps": [
+    "Read every bottle on the chemical shelf: anything with a label too worn to read, or anything you have not used in the last two growing seasons, goes into the hazardous waste box, and buy the smallest container the shop sells from now on.",
+    "Decide whether the cutting from a family member's garden gets repotted into something with a drain hole this week or given away, and tag every pot you are keeping with what is in it and the month it went in."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-015",
+    "KC-001",
+    "RC-014",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-015",
+     "KC-001",
+     "RC-014",
+     "RC-017"
+    ],
+    "zone": "PDZ-004",
+    "standard": "PDS-004"
+   },
+   "victory_condition": "The chemical shelf holds only labelled containers you have used in the last two seasons, the family cutting has either been repotted or given away, and every remaining pot carries a tag.",
+   "next_card": "PDA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand placing an unlabelled spray bottle into a hazardous waste box, a small tag being tied to a repotted plant nearby",
+    "must_show": [
+     "The chemical shelf holds only labelled containers you have used in the last two seasons, the family cutting has either been repotted or given away, and every remaining pot carries a tag."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-009",
+   "title": "EMPTY THE BOX AND PULL THE ORPHANS",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the deck box completely onto the boards, and pull out anything mildewed past saving, missing half its pieces, or belonging to furniture you no longer own.",
+   "why_it_matters": "None of it has anywhere else assigned to go, which is why a box meant for cushions has slowly filled with a croquet set missing two mallets and four covers for furniture that left years ago.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a donation bag",
+    "a bin bag"
+   ],
+   "steps": [
+    "Empty the deck box completely onto the boards, and pull out anything that is mildewed past saving, missing half its pieces, or belongs to furniture you no longer own.",
+    "Sort what is left into what is actually cushions, and everything else waiting to go into the two labelled totes."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ],
+    "zone": "PDZ-005",
+    "standard": "PDS-005"
+   },
+   "victory_condition": "The deck box floor is visible with only cushions and the two labelled totes waiting to go back in, and nothing else.",
+   "next_card": "PDS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "the contents of a deck box spread across patio boards, a croquet set with missing mallets and old furniture covers being sorted into a donation bag",
+    "must_show": [
+     "The deck box floor is visible with only cushions and the two labelled totes waiting to go back in, and nothing else."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-010",
+   "title": "FIT THE LID STAY AND LATCH IT EVERY NIGHT",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Fit a lid stay so the lid cannot drop free at hand height, wash and fully dry anything worth saving from the sort, settle the box's single job as cushions only, and agree that cushions go in last, latched, every night.",
+   "why_it_matters": "An unsupported lid crushes fingers at exactly the height a child reaches, a cushion that still smells of mildew after washing has the growth inside the foam and no scrubbing reaches that, and a box with no agreed single job is why it never stays organized past the first week.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a lid stay",
+    "a screwdriver"
+   ],
+   "steps": [
+    "Fit a lid stay so the lid cannot drop free at hand height, and confirm it holds when you let go halfway.",
+    "Wash and fully dry anything worth saving, discard any cushion that still smells of mildew once dry, settle that the box holds cushions and the two totes only, and agree that cushions go in last with the latch fastened every night."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-016",
+    "KC-008",
+    "KC-012",
+    "KC-009",
+    "RC-017",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-016",
+     "KC-008",
+     "KC-012",
+     "KC-009",
+     "RC-017",
+     "KC-005"
+    ],
+    "zone": "PDZ-005",
+    "standard": "PDS-005"
+   },
+   "victory_condition": "A lid stay holds the open lid safely, nothing mildewed went back in, the box holds only cushions and the two totes, and the lid is latched every night without anyone leaning on it to close.",
+   "next_card": "PDA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand fitting a lid stay bracket to an open deck box, a latch visible on the closed lid beside it",
+    "must_show": [
+     "A lid stay holds the open lid safely, nothing mildewed went back in, the box holds only cushions and the two totes, and the lid is latched every night without anyone leaning on it to close."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-011",
+   "title": "WALK THE ROUTE WITH A FULL LAUNDRY BASKET",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the full route from the door to the steps to the gate carrying a full laundry basket in both arms, and pull off the route anything you have to step around.",
+   "why_it_matters": "A planter, a hose, or a sand bag does not look like it is blocking anything until you actually cannot see your feet, and each of them also holds damp against the wood it sits on.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a laundry basket"
+   ],
+   "steps": [
+    "Walk the full route from the door to the steps to the gate carrying a full laundry basket in both arms, and pull off the route anything you have to step around.",
+    "Carry each item to where it actually belongs rather than setting it down again somewhere else on the deck."
+   ],
+   "root_causes": [
+    "RC-017",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-017",
+     "KC-002"
+    ],
+    "zone": "PDZ-006",
+    "standard": "PDS-006"
+   },
+   "victory_condition": "The full route from the door to the steps to the gate is clear enough to walk carrying a full laundry basket without stepping around anything.",
+   "next_card": "PDS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a person carrying a full laundry basket in both arms along a cleared deck walkway from a back door toward a short flight of steps",
+    "must_show": [
+     "The full route from the door to the steps to the gate is clear enough to walk carrying a full laundry basket without stepping around anything."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-012",
+   "title": "PUSH THE RAIL, PROBE THE BOARD, SCRUB THE TREADS",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Push the top rail hard, outward and down, at every post, probe any board that flexes or feels soft with a screwdriver at the joist and at the board end nearest the house, scrub the green algae film off every shaded board and stair tread, and mark today's date on the tag inside the back door.",
+   "why_it_matters": "A rail or board that fails does so suddenly and from underneath, algae on the shaded treads turns to grease after rain on the exact surface people cross barefoot, and a check with no dated record behind it is an argument waiting to happen about whether it happened at all.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a screwdriver",
+    "a stiff brush"
+   ],
+   "steps": [
+    "Push the top rail hard, outward and then down, at every post, and probe any board that flexes or feels soft with a screwdriver at the joist and at the board end nearest the house.",
+    "Scrub the green algae film off every shaded board and stair tread, and mark today's date on the tag inside the back door."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009",
+    "RC-013",
+    "RC-016",
+    "RC-017",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-013",
+     "RC-016",
+     "RC-017",
+     "KC-005"
+    ],
+    "zone": "PDZ-006",
+    "standard": "PDS-006"
+   },
+   "victory_condition": "Every rail post holds firm under a hard push, any soft board has been dealt with, the shaded treads are free of algae film, and today's date is marked on the tag inside the back door.",
+   "next_card": "PDA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand pushing hard against a deck rail post, a screwdriver resting on a nearby board, a dated tag visible just inside a back door",
+    "must_show": [
+     "Every rail post holds firm under a hard push, any soft board has been dealt with, the shaded treads are free of algae film, and today's date is marked on the tag inside the back door."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-013",
+   "title": "THE FULL PATIO HAZARD WALK",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every zone checking the rail and boards, the grease tray and tank, the chemical box latch, and the deck box lid stay in one pass.",
+   "why_it_matters": "This room's own hazards, a rail post that gives, an overdue grease tray next to the siding, an unlatched chemical box, a deck box lid with no stay, sit across four different zones and only get found together if someone walks the whole patio on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a screwdriver"
+   ],
+   "steps": [
+    "Push the top rail hard at every post and probe any board that flexes underfoot, and check the grease tray is not overdue and the grill sits a clear arm's length from the siding and the rail.",
+    "Confirm the chemical box is latched and every container inside it is labelled, and check the deck box lid holds itself up on its own stay rather than dropping free."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-016"
+    ]
+   },
+   "victory_condition": "No rail post moves under a hard push, no board is soft, the grease tray is not overdue, the chemical box is latched, and the deck box lid holds itself up on its own stay.",
+   "next_card": "PDE-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand checking a deck rail post beside a latched chemical box and an open deck box held safely up on its own lid stay",
+    "must_show": [
+     "No rail post moves under a hard push, no board is soft, the grease tray is not overdue, the chemical box is latched, and the deck box lid holds itself up on its own stay."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-014",
+   "title": "WHAT THE REST OF THE HOUSE OFFLOADED ONTO THE PATIO",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk the whole patio looking for anything that belongs to another part of the house or yard entirely, and move each thing back to where it is actually used.",
+   "why_it_matters": "This is the only dry lidded space outside, so anything with nowhere else assigned to it tries to live here too: a recycling bin waiting on pickup, a box of holiday lights, a tool that belongs in the garage.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a hand truck for anything heavy"
+   ],
+   "steps": [
+    "Walk the whole patio and pull out anything that plainly belongs somewhere else: a recycling bin waiting past pickup day, a box meant for the garage, decor from a season that has already ended.",
+    "Carry each item to where it is actually used today, not to a corner of the deck box, and if nowhere else in the house wants it, that is itself the answer."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-003"
+    ]
+   },
+   "victory_condition": "Nothing remains on the patio that plainly belongs to another room or the garage's own job, and every item pulled has either moved to where it is used or left the house.",
+   "next_card": "PDA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a box of holiday decor and a recycling bin being carried off a patio toward a back door and a garage",
+    "must_show": [
+     "Nothing remains on the patio that plainly belongs to another room or the garage's own job, and every item pulled has either moved to where it is used or left the house."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDA-015",
+   "title": "THE LAST-ONE-OUTSIDE RESET",
+   "type": "ACTION CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1 TO 2.",
+   "objective": "Whoever is last outside for the night carries the cushions in and latches the box, closes and scrapes the grill, cranks the umbrella down, and glances down the row of saucers.",
+   "why_it_matters": "Every standard on this patio is built to survive a bad evening, and the only way that holds is checking it against its own standard on the way inside, not noticing days later that it slipped.",
+   "time_target_minutes": 15,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing, this is a walk-through"
+   ],
+   "steps": [
+    "Carry the cushions into the deck box and fasten the latch, and scrape the grill's hot grates before you close the lid.",
+    "Crank the umbrella down and glance along the row of saucers on your way back to the door."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "The cushions are latched in the deck box, the grill grates are scraped and the lid closed, the umbrella is cranked down, and no saucer is holding standing water.",
+   "next_card": "PDA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand latching a deck box lid at dusk, a cranked-down umbrella and a closed grill visible on the same patio",
+    "must_show": [
+     "The cushions are latched in the deck box, the grill grates are scraped and the lid closed, the umbrella is cranked down, and no saucer is holding standing water."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PDS-001",
+   "title": "OUTDOOR SEATING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Seating Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One cushion per seat, all of them in the deck box overnight, and no chair blocking the door swing.",
+   "trigger": "When you pick up the last glass at the end of an evening, the cushions ride in on the same trip.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Hose each chair frame to float the loose grit off, then scrub the woven webbing across the weave with a stiff brush until the rinse water runs clear.",
+    "Stand each washed chair on its side so water trapped inside the hollow leg tubing runs out instead of sitting there all summer.",
+    "Sponge each cushion with mild soapy water, stand it on its edge with both faces open to the air, and check the underside for black speckling before it dries."
+   ],
+   "related": {
+    "zone": "PDZ-001",
+    "actions": [
+     "PDA-001",
+     "PDA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a patio seating area with four chairs set close enough to talk across, a closed deck box beside them, a furniture cover folded flat rather than crumpled behind a nearby planter, a bare walking route from the back door to the steps, and one chair frame standing on its side drying after being hosed down, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PDS-002",
+   "title": "GRILL AND OUTDOOR COOKING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Patio or Deck",
+   "zone": "Grill and Outdoor Cooking Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Four tools on the hooks, grease tray emptied on a written count of cooks, and the tank level marked on the collar.",
+   "trigger": "When you shut the lid at the end of a cook, scrape the hot grates and look in the tray.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run the burners hot for ten minutes to char residue to ash, then scrape the grates clean with the grill's own scraper, not a wire brush.",
+    "Pull the flavorizer bars, scrape the baked-on crust into the bin, and look straight up into each burner tube for nest debris blocking the venturi.",
+    "Slide the grease tray and drip pan out of their rails, wash both with degreaser and hot water, and dry them fully before they go back."
+   ],
+   "related": {
+    "zone": "PDZ-002",
+    "actions": [
+     "PDA-003",
+     "PDA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a backyard grill with bare scraped grates, an empty grease tray back in its rails, exactly four tools, tongs, a spatula, a thermometer and a basting brush, hanging from the grill's own hooks, a propane tank standing upright with its fuel level marked in grease pencil on its collar, and a clear arm's length of open space between the grill body and the house siding, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PDS-003",
+   "title": "OUTDOOR DINING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Dining Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Bare table plus umbrella and one weighted tray, umbrella cranked down whenever the table is empty.",
+   "trigger": "Whoever carries the last plate in closes the umbrella on the way past.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wash the tabletop along the grain, working extra suds into the collar where the umbrella pole passes through so no puddle sits in the joint.",
+    "Open the umbrella canopy, brush off bird mess and cobwebs, sponge the fabric, and leave it open to dry fully before furling it closed.",
+    "Wipe the underside lip of the tabletop where hands pull chairs in and wasps like to start a nest, clearing any early mud start you find."
+   ],
+   "related": {
+    "zone": "PDZ-003",
+    "actions": [
+     "PDA-005",
+     "PDA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an outdoor dining table with a bare top holding only a closed, cranked-down umbrella and one weighted tray, six chairs tucked fully under, string lights clipped along a rail overhead with no cord crossing the deck floor, and nothing stored in the open space beneath the table, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PDS-004",
+   "title": "GARDEN AND PLANT CARE ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Patio or Deck",
+   "zone": "Garden and Plant Care Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Chemicals latched and labelled above the tools, every saucer empty, every pot tagged with what and when.",
+   "trigger": "When you fill the watering can, run your eye down the saucers first.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Tip the standing water out of every saucer, then scrub the white mineral crust off the rims with a stiff brush and rinse clean.",
+    "Tip each pot to check its drain hole is open, poking any clogged one clear with a stick before it goes back on the shelf.",
+    "Scrape the caked soil off the trowel and pruner blades, dry them fully, and put a drop of tool oil on the pruner pivot."
+   ],
+   "related": {
+    "zone": "PDZ-004",
+    "actions": [
+     "PDA-007",
+     "PDA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a patio garden corner with every plant saucer empty, pots nested by size along the wall with their drain holes visible and clear, one tool caddy holding a trowel, pruners and gloves, and a latched chemical box mounted above the tools holding only a short row of labelled containers, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PDS-005",
+   "title": "OUTDOOR STORAGE ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Patio or Deck",
+   "zone": "Outdoor Storage Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Cushions only on top, two labelled totes below, lid closing flat with no pressure.",
+   "trigger": "When the cushions go in for the night, the latch goes across.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Empty the deck box completely, wipe the rubber sealing edge in its fold, then scrub the interior walls with warm soapy water and rinse.",
+    "Prop the lid open on a dry, breezy day and leave it until the corners are genuinely dry to the touch, not just cool.",
+    "Tip the box forward and sweep out the packed leaf mulch built up underneath it, then wipe the latch and handles clean."
+   ],
+   "related": {
+    "zone": "PDZ-005",
+    "actions": [
+     "PDA-009",
+     "PDA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open deck box showing cushions sitting in a single layer on top, two totes labelled games and covers beneath them, the bare floor of the box visible underneath, a lid stay holding the open lid safely in place, and a latch ready to fasten across the lid once it closes flat, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PDS-006",
+   "title": "SURFACE, RAIL, AND SAFETY ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Patio or Deck",
+   "zone": "Surface, Rail, and Safety Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Nothing stored on the walking route, gaps clear, and a dated tag recording the last rail push and board probe.",
+   "trigger": "Every time you sweep, push the rail at two posts before you put the broom away.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Rake each gap between the boards clear with a putty knife until you can see daylight through it, before water packs in and starts rot.",
+    "Scrub the green algae film off the stair treads with a stiff brush, since that shaded film turns to grease and is the slipperiest surface here after rain.",
+    "Wash the top rail where hands leave grime, then work down the balusters and into the gaps between the spindles where cobwebs gather unseen."
+   ],
+   "related": {
+    "zone": "PDZ-006",
+    "actions": [
+     "PDA-011",
+     "PDA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a bare deck surface holding nothing but furniture, daylight visible through clear gaps between the boards, algae-free shaded stair treads, a hand pushing hard on a rail post that does not move, a dated tag hanging just inside the back door, and evenly rising stair treads, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PDE-001",
+   "title": "THE NIGHT GUESTS SHOW UP UNANNOUNCED",
+   "type": "EVENT CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Neighbors text that they are coming over in twenty minutes for a last-minute evening on the patio, chairs and all.",
+   "tests_zones": [
+    "PDZ-001"
+   ],
+   "held_if": "Every chair is trustworthy to sit in without checking it first, and the cushions come out of the deck box dry and ready in one trip.",
+   "if_it_failed": "If you had to test a chair before offering it to a guest, or a cushion came out damp or missing, the reset never actually finished. Draw PDA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PDZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a small group of patio chairs with cushions being lifted from an open deck box just before guests arrive",
+    "must_show": [
+     "Neighbors text that they are coming over in twenty minutes for a last-minute evening on the patio, chairs and all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PDE-002",
+   "title": "THE COOKOUT WHERE THE FLAME GOES YELLOW MID-SEAR",
+   "type": "EVENT CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You light the grill for a full cookout and the flame on one side burns yellow and lazy instead of blue.",
+   "tests_zones": [
+    "PDZ-002"
+   ],
+   "held_if": "The burner tubes were checked clear of debris last time the grates came off, so the flame lights evenly across every burner.",
+   "if_it_failed": "If one side runs yellow and weak, a blocked venturi tube was never cleared last time. Draw PDA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PDZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a lit gas grill with one burner showing a yellow, uneven flame compared to the clean blue flame beside it",
+    "must_show": [
+     "You light the grill for a full cookout and the flame on one side burns yellow and lazy instead of blue."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PDE-003",
+   "title": "THE EVENING WIND PICKS UP MID-DINNER",
+   "type": "EVENT CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You are partway through dinner outside when the wind picks up hard enough to lift the corner of the tablecloth.",
+   "tests_zones": [
+    "PDZ-003"
+   ],
+   "held_if": "The umbrella base is weighted to match the canopy, so cranking it down before the gusts get worse is a five-second job, not a scramble.",
+   "if_it_failed": "If the umbrella lifted or the base could not hold it down, the base weight was never actually matched to the canopy. Draw PDA-006.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PDZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a patio table with a tablecloth corner lifting in the wind, a hand reaching to crank the umbrella down",
+    "must_show": [
+     "You are partway through dinner outside when the wind picks up hard enough to lift the corner of the tablecloth."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PDE-004",
+   "title": "THE WEEK WITH NO RAIN AT ALL",
+   "type": "EVENT CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "It has not rained in a week and every pot on the patio is relying entirely on you and the watering can.",
+   "tests_zones": [
+    "PDZ-004"
+   ],
+   "held_if": "Every pot carries a tag naming what is in it and when it went in, so you can water the right amount without guessing or coming to find anyone.",
+   "if_it_failed": "If you had to guess what a pot needed or ask someone else, the tag was never written. Draw PDA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PDZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand holding a watering can beside a row of tagged pots on a dry patio",
+    "must_show": [
+     "It has not rained in a week and every pot on the patio is relying entirely on you and the watering can."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PDE-005",
+   "title": "THE STORM THAT ARRIVES WITHOUT WARNING",
+   "type": "EVENT CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A storm rolls in fast on an evening when the cushions are still out on the chairs.",
+   "tests_zones": [
+    "PDZ-005"
+   ],
+   "held_if": "Every cushion goes into the deck box in one trip and the latch goes across before the first hard rain hits.",
+   "if_it_failed": "If a cushion got left out, or the lid stood unlatched in the wind, the box was not holding to its one job. Draw PDA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PDZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "hands lowering a cushion into an open deck box as dark clouds gather overhead",
+    "must_show": [
+     "A storm rolls in fast on an evening when the cushions are still out on the chairs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PDE-006",
+   "title": "THE PARTY WHERE EVERYONE LEANS ON THE RAIL AT ONCE",
+   "type": "EVENT CARD",
+   "room": "Patio or Deck",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A party fills the patio and several people end up leaning on the rail together at the same time.",
+   "tests_zones": [
+    "PDZ-006"
+   ],
+   "held_if": "Every post holds firm because the rail was pushed hard at every post and any soft board was already replaced.",
+   "if_it_failed": "If a post gave even slightly under the weight, the seasonal push-and-probe check has slipped. Draw PDA-012.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PDZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "several people leaning against a deck rail at an evening gathering, the rail posts standing firm beneath them",
+    "must_show": [
+     "A party fills the patio and several people end up leaning on the rail together at the same time."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

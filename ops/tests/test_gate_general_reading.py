@@ -134,7 +134,23 @@ def main() -> int:
         for f in sorted(glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))):
             real_pages[os.path.basename(f)] = io.open(
                 f, encoding="utf-8", errors="replace").read()
-        if real_pages:
+        non_diagnosed = sum(1 for r in rooms for z in r.get("zones", [])
+                           if not z.get("diagnosis"))
+        # Mirrors gate_general_reading_differentiated()'s own early return:
+        # once every zone carries a diagnosis, general_reading() has no
+        # zones left to assign, so its floor-per-article check has nothing
+        # real to enforce and would flag every article general_reading()
+        # used to be the only source for. Found live 2026-09-29 at 114 of
+        # 114 diagnosed zones (Workshop was the last): this case called
+        # check_general_reading_picks() unconditionally, with no such
+        # guard, so it flagged "decluttering-vs-organizing" and others at
+        # "0 inbound zone links, floor is 3" the moment the real corpus
+        # crossed that line, while the real registered gate it mirrors
+        # had already stopped checking and stayed green. Same shape as
+        # test_reading_spread_and_uniqueness.py's fix the same day: a
+        # test's own copy of a check drifting from what the real gate
+        # actually enforces.
+        if real_pages and non_diagnosed:
             import build_zone_pages as bzp                        # noqa: E402
             picks_raw = bzp.general_reading(rooms)
             real_picks = {k: [e[0].rsplit("/", 1)[-1][:-len(".html")]
@@ -169,9 +185,13 @@ def main() -> int:
             if render_problems:
                 fails.append("real, built site wrongly flagged at render "
                              "level: %s" % render_problems[:3])
-        else:
+        elif not real_pages:
             print("  note: site/zones/ not built in this environment, "
                   "skipping the live-site case")
+        else:
+            print("  note: 0 non-diagnosed zones in the real corpus (B9 "
+                  "complete), general_reading() has nothing to assign, "
+                  "skipping the picks/render checks same as the real gate")
     else:
         print("  note: content.json not found, skipping the live-site case")
 

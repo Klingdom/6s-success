@@ -77,21 +77,18 @@ site/**/_*.html
 # Ignoring the whole convention here too, matching the reasoning above,
 # so a future test written the same way needs no matching edit here.
 #
-# Found live 2026-09-29: this blanket rule also swallows a real, shared
-# source module that happens to follow the same underscore-prefixed,
-# leading-underscore-means-private convention every other Python package
-# uses for an internal helper. ops/tests/_worktree.py (changed_files(),
-# is_changed(), imported by five gate self-tests) was written, used, and
-# described as shipped in STATUS.md, but `git add` silently skipped it
-# every time because of the rule below, and nobody checked. The five
-# importing tests failed with ModuleNotFoundError in CI for days,
-# reported correctly by gate_tests and publish-image-current on every
-# run, because a scratch-fixture rule and a real-source-file convention
-# share one glob. Naming the one real exception explicitly, rather than
-# narrowing the glob, keeps the scratch-cleanup guarantee above intact
-# for every future underscore-prefixed fixture.
+# Found 2026-09-29: this pattern also silently swallowed a real, committed
+# shared helper module that used the same underscore prefix
+# (ops/tests/_worktree.py, imported by five gate-cleanliness tests):
+# `git add -A` saw nothing to add, not because the file was missing, but
+# because this line hid it from git entirely. Fixed at the naming
+# convention rather than by carving an exception into this rule: the
+# helper was renamed to ops/tests/worktree_state.py, which this pattern
+# does not match, respecting what this rule exists to protect rather than
+# working around it. A shared helper module belongs outside the
+# underscore convention; a scratch/probe fixture a killed run can leave
+# behind belongs inside it.
 ops/tests/_*
-!ops/tests/_worktree.py
 
 # preflight.py's own JS-lint gate (_lint_js_no_undef) makes a random-suffixed
 # scratch directory at the repo root with tempfile.mkdtemp(dir=ROOT) to hand
