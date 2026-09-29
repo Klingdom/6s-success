@@ -305,16 +305,17 @@ EXPECTED_DIAGNOSIS = {
  },
  "Buffet or Sideboard Storage": {
   "frictions": [
-   {"symptom": "A tablecloth that doesn't actually fit the table "
-               "anymore is still folded in this drawer, kept because "
-               "letting go of good linen feels wasteful.",
+   {"symptom": "The everyday platters are stacked flat, so getting the "
+               "one you actually need means lifting the two or three "
+               "sitting on top of it first.",
     "branches": [
-     {"answer": "Nobody's actually measured it against the table you "
-                "own now", "cause": "RC-015"},
-     {"answer": "It came from somebody else's table and giving it up "
-                "feels like giving up the memory", "cause": "RC-014"},
-     {"answer": "There's no rule that a cloth has to actually fit to "
-                "earn a spot in the drawer", "cause": "KC-008"},
+     {"answer": "There's no divider or system to stand them on edge, "
+                "so reaching the one you want means moving the others "
+                "every time", "cause": "KC-004"},
+     {"answer": "It's only used a handful of times a year, so the "
+                "extra effort never feels worth solving", "cause": "RC-017"},
+     {"answer": "Reorganizing the platter shelf has never been "
+                "anyone's assigned job", "cause": "RC-013"},
     ]},
    {"symptom": "The punch bowl and the heavy stoneware platters live on "
                "a shelf above shoulder height, and they only come down "
@@ -327,17 +328,16 @@ EXPECTED_DIAGNOSIS = {
      {"answer": "It's been stored that way so long it doesn't register "
                 "as a reach risk anymore", "cause": "RC-017"},
     ]},
-   {"symptom": "The everyday platters are stacked flat, so getting the "
-               "one you actually need means lifting the two or three "
-               "sitting on top of it first.",
+   {"symptom": "A tablecloth that doesn't actually fit the table "
+               "anymore is still folded in this drawer, kept because "
+               "letting go of good linen feels wasteful.",
     "branches": [
-     {"answer": "There's no divider or system to stand them on edge, "
-                "so reaching the one you want means moving the others "
-                "every time", "cause": "KC-004"},
-     {"answer": "It's only used a handful of times a year, so the "
-                "extra effort never feels worth solving", "cause": "RC-017"},
-     {"answer": "Reorganizing the platter shelf has never been "
-                "anyone's assigned job", "cause": "RC-013"},
+     {"answer": "Nobody's actually measured it against the table you "
+                "own now", "cause": "RC-015"},
+     {"answer": "It came from somebody else's table and giving it up "
+                "feels like giving up the memory", "cause": "RC-014"},
+     {"answer": "There's no rule that a cloth has to actually fit to "
+                "earn a spot in the drawer", "cause": "KC-008"},
     ]},
   ],
   "first_15": {
@@ -404,6 +404,18 @@ EXPECTED_DIAGNOSIS = {
  },
  "Beverage or Coffee Station": {
   "frictions": [
+   {"symptom": "A bottle of wine and a couple of spirits sit open on a "
+               "shelf at this station, within easy reach of a small "
+               "child standing at the counter.",
+    "branches": [
+     {"answer": "There's no latch or high shelf assigned for alcohol "
+                "at this station, only in the kitchen", "cause": "KC-002"},
+     {"answer": "This station never got the same childproofing pass "
+                "the kitchen did", "cause": "KC-010"},
+     {"answer": "Moving the bottles higher keeps getting put off "
+                "because it's a small job with no deadline",
+      "cause": "KC-009"},
+    ]},
    {"symptom": "The bean jar has run below its own marked fill line "
                "more than once with nobody noticing until the machine "
                "sputtered out mid-pour.",
@@ -427,18 +439,6 @@ EXPECTED_DIAGNOSIS = {
                 "register as extra anymore", "cause": "RC-017"},
      {"answer": "There's no actual rule for how little use earns a "
                 "machine its spot", "cause": "KC-008"},
-    ]},
-   {"symptom": "A bottle of wine and a couple of spirits sit open on a "
-               "shelf at this station, within easy reach of a small "
-               "child standing at the counter.",
-    "branches": [
-     {"answer": "There's no latch or high shelf assigned for alcohol "
-                "at this station, only in the kitchen", "cause": "KC-002"},
-     {"answer": "This station never got the same childproofing pass "
-                "the kitchen did", "cause": "KC-010"},
-     {"answer": "Moving the bottles higher keeps getting put off "
-                "because it's a small job with no deadline",
-      "cause": "KC-009"},
     ]},
   ],
   "first_15": {
@@ -492,20 +492,20 @@ FRICTION_META = [
   "nearest a drawer"),
 
  ("Buffet or Sideboard Storage", "DRF-007",
-  "THE TABLECLOTH FOR A TABLE YOU DON'T OWN",
-  "an open sideboard drawer with a folded tablecloth clearly too small "
-  "laid across a dining table, its edge falling short of the table's "
-  "corners"),
+  "THREE PLATTERS TO REACH THE FOURTH",
+  "a stack of flat serving platters inside a sideboard cupboard with "
+  "the bottom platter partly pulled, the two platters above it lifted "
+  "off to one side"),
  ("Buffet or Sideboard Storage", "DRF-008",
   "THE PLATTER ABOVE SHOULDER HEIGHT",
   "a stoneware platter and a punch bowl standing on a sideboard shelf "
   "above shoulder height, a hand reaching up toward them with both "
   "arms already full"),
  ("Buffet or Sideboard Storage", "DRF-009",
-  "THREE PLATTERS TO REACH THE FOURTH",
-  "a stack of flat serving platters inside a sideboard cupboard with "
-  "the bottom platter partly pulled, the two platters above it lifted "
-  "off to one side"),
+  "THE TABLECLOTH FOR A TABLE YOU DON'T OWN",
+  "an open sideboard drawer with a folded tablecloth clearly too small "
+  "laid across a dining table, its edge falling short of the table's "
+  "corners"),
 
  ("China or Display Cabinet", "DRF-010",
   "TWELVE SETTINGS FROM YOUR GRANDMOTHER",
@@ -524,18 +524,18 @@ FRICTION_META = [
   "eye level"),
 
  ("Beverage or Coffee Station", "DRF-013",
-  "THE BEAN JAR BELOW ITS OWN LINE",
-  "a coffee bean jar on a counter with its contents sitting visibly "
-  "below a marked fill line drawn on the glass"),
- ("Beverage or Coffee Station", "DRF-014", "THE SECOND MACHINE",
-  "two coffee-making machines side by side on a counter, one with a "
-  "sticky note and tally marks on it, the other bare and unused beside "
-  "it"),
- ("Beverage or Coffee Station", "DRF-015",
   "THE WINE WITHIN A CHILD'S REACH",
   "an open shelf at a beverage station holding a wine bottle and two "
   "spirit bottles at the height of a small child standing at the "
   "counter"),
+ ("Beverage or Coffee Station", "DRF-014",
+  "THE BEAN JAR BELOW ITS OWN LINE",
+  "a coffee bean jar on a counter with its contents sitting visibly "
+  "below a marked fill line drawn on the glass"),
+ ("Beverage or Coffee Station", "DRF-015", "THE SECOND MACHINE",
+  "two coffee-making machines side by side on a counter, one with a "
+  "sticky note and tally marks on it, the other bare and unused beside "
+  "it"),
 ]
 
 

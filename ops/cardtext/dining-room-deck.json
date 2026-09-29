@@ -672,43 +672,43 @@
   },
   {
    "id": "DRF-007",
-   "title": "THE TABLECLOTH FOR A TABLE YOU DON'T OWN",
+   "title": "THREE PLATTERS TO REACH THE FOURTH",
    "type": "FRICTION CARD",
    "room": "Dining Room",
    "zone": "Buffet or Sideboard Storage",
    "difficulty": 1,
    "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
+   "objective": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Nobody's actually measured it against the table you own now",
-     "root_cause": "RC-015"
+     "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
+     "root_cause": "KC-004"
     },
     {
-     "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
-     "root_cause": "RC-014"
+     "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
+     "root_cause": "RC-017"
     },
     {
-     "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
-     "root_cause": "KC-008"
+     "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
+     "root_cause": "RC-013"
     }
    ],
    "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "DRZ-003",
     "root_causes": [
-     "RC-015",
-     "RC-014",
-     "KC-008"
+     "KC-004",
+     "RC-017",
+     "RC-013"
     ]
    },
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "an open sideboard drawer with a folded tablecloth clearly too small laid across a dining table, its edge falling short of the table's corners",
+    "subject": "a stack of flat serving platters inside a sideboard cupboard with the bottom platter partly pulled, the two platters above it lifted off to one side",
     "must_show": [
-     "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful."
+     "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -760,43 +760,43 @@
   },
   {
    "id": "DRF-009",
-   "title": "THREE PLATTERS TO REACH THE FOURTH",
+   "title": "THE TABLECLOTH FOR A TABLE YOU DON'T OWN",
    "type": "FRICTION CARD",
    "room": "Dining Room",
    "zone": "Buffet or Sideboard Storage",
    "difficulty": 1,
    "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
+   "objective": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
-     "root_cause": "KC-004"
+     "answer": "Nobody's actually measured it against the table you own now",
+     "root_cause": "RC-015"
     },
     {
-     "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
-     "root_cause": "RC-017"
+     "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
+     "root_cause": "RC-014"
     },
     {
-     "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
-     "root_cause": "RC-013"
+     "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
+     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "DRZ-003",
     "root_causes": [
-     "KC-004",
-     "RC-017",
-     "RC-013"
+     "RC-015",
+     "RC-014",
+     "KC-008"
     ]
    },
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a stack of flat serving platters inside a sideboard cupboard with the bottom platter partly pulled, the two platters above it lifted off to one side",
+    "subject": "an open sideboard drawer with a folded tablecloth clearly too small laid across a dining table, its edge falling short of the table's corners",
     "must_show": [
-     "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first."
+     "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -936,6 +936,50 @@
   },
   {
    "id": "DRF-013",
+   "title": "THE WINE WITHIN A CHILD'S REACH",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no latch or high shelf assigned for alcohol at this station, only in the kitchen",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "This station never got the same childproofing pass the kitchen did",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Moving the bottles higher keeps getting put off because it's a small job with no deadline",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-005",
+    "root_causes": [
+     "KC-002",
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open shelf at a beverage station holding a wine bottle and two spirit bottles at the height of a small child standing at the counter",
+    "must_show": [
+     "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-014",
    "title": "THE BEAN JAR BELOW ITS OWN LINE",
    "type": "FRICTION CARD",
    "room": "Dining Room",
@@ -979,7 +1023,7 @@
    }
   },
   {
-   "id": "DRF-014",
+   "id": "DRF-015",
    "title": "THE SECOND MACHINE",
    "type": "FRICTION CARD",
    "room": "Dining Room",
@@ -1017,50 +1061,6 @@
     "subject": "two coffee-making machines side by side on a counter, one with a sticky note and tally marks on it, the other bare and unused beside it",
     "must_show": [
      "There are two ways to make a hot drink on this counter, and one of them hasn't earned its counter space in months but nobody's tested that."
-    ],
-    "must_show_kind": "condition",
-    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
-   }
-  },
-  {
-   "id": "DRF-015",
-   "title": "THE WINE WITHIN A CHILD'S REACH",
-   "type": "FRICTION CARD",
-   "room": "Dining Room",
-   "zone": "Beverage or Coffee Station",
-   "difficulty": 1,
-   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter.",
-   "prompt": "Why does this happen here?",
-   "branches": [
-    {
-     "answer": "There's no latch or high shelf assigned for alcohol at this station, only in the kitchen",
-     "root_cause": "KC-002"
-    },
-    {
-     "answer": "This station never got the same childproofing pass the kitchen did",
-     "root_cause": "KC-010"
-    },
-    {
-     "answer": "Moving the bottles higher keeps getting put off because it's a small job with no deadline",
-     "root_cause": "KC-009"
-    }
-   ],
-   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
-   "related": {
-    "zone": "DRZ-005",
-    "root_causes": [
-     "KC-002",
-     "KC-010",
-     "KC-009"
-    ]
-   },
-   "source": "content/manual/source/content.json",
-   "art": {
-    "framing": "Friction",
-    "subject": "an open shelf at a beverage station holding a wine bottle and two spirit bottles at the height of a small child standing at the counter",
-    "must_show": [
-     "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -1114,7 +1114,7 @@
     "frictions": [
      "DRF-001",
      "DRF-004",
-     "DRF-015"
+     "DRF-013"
     ],
     "actions": [
      "DRA-001",
@@ -1178,7 +1178,7 @@
    "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
    "related": {
     "frictions": [
-     "DRF-009"
+     "DRF-007"
     ],
     "actions": [
      "DRA-006"
@@ -1306,8 +1306,8 @@
      "DRF-002",
      "DRF-005",
      "DRF-006",
-     "DRF-007",
-     "DRF-014"
+     "DRF-009",
+     "DRF-015"
     ],
     "actions": [
      "DRA-002",
@@ -1343,7 +1343,7 @@
      "DRF-003",
      "DRF-011",
      "DRF-013",
-     "DRF-015"
+     "DRF-014"
     ],
     "actions": [
      "DRA-008",
@@ -1377,7 +1377,7 @@
     "frictions": [
      "DRF-003",
      "DRF-006",
-     "DRF-015"
+     "DRF-013"
     ],
     "actions": [
      "DRA-006",
@@ -1410,7 +1410,7 @@
    "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
    "related": {
     "frictions": [
-     "DRF-013"
+     "DRF-014"
     ],
     "actions": [
      "DRA-009"
@@ -1475,11 +1475,11 @@
      "DRF-001",
      "DRF-002",
      "DRF-005",
+     "DRF-007",
      "DRF-008",
-     "DRF-009",
      "DRF-011",
      "DRF-012",
-     "DRF-013"
+     "DRF-014"
     ],
     "actions": [
      "DRA-002",
@@ -1513,7 +1513,7 @@
    "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
    "related": {
     "frictions": [
-     "DRF-007",
+     "DRF-009",
      "DRF-010"
     ],
     "actions": [
@@ -1546,9 +1546,9 @@
    "related": {
     "frictions": [
      "DRF-004",
-     "DRF-007",
+     "DRF-009",
      "DRF-010",
-     "DRF-014"
+     "DRF-015"
     ],
     "actions": [
      "DRA-003",
@@ -1614,10 +1614,10 @@
     "frictions": [
      "DRF-002",
      "DRF-004",
+     "DRF-007",
      "DRF-008",
-     "DRF-009",
      "DRF-011",
-     "DRF-014"
+     "DRF-015"
     ],
     "actions": [
      "DRA-007"
