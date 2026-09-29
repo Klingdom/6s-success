@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (16:1x, previous work confirmed finished; found and fixed two real preflight FAILs the Mudroom ship left behind)
+
+Attached clean: fetch, unshallow (was shallow this time), `checkout main`, `merge --ff-only` fast-forwarded 974 commits onto `origin/main` (`0e0e3193b`), no conflict. Read `git log -12`, the two newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section headings, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub open issues (8, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked for this slot).
+
+**Step 2: was the previous work (Mudroom, B9's fifteenth room) actually finished? No.** That cycle's own entry honestly flagged `gate_tests` as unverified at push time. A full `python ops/preflight.py` run here got legitimately stuck on the slow sequential test sweep (5+ minutes on `test_audit_catalog.py` alone, still running after 15+ minutes, never hung, just slow), so per the prior PM cycle's own precedent (16:1x-era entries above), called the gates directly instead of waiting on the whole suite, checking each one's actual `FAIL` list rather than trusting a bare try/except (the exact silent-pass trap this file has already recorded once). `gate_general_reading_differentiated`, `gate_diagnosis_rendered`, `gate_mudroom_deck_current`, `gate_mudroom_deck_rendered`, `gate_risks_evidence_current`, `gate_mcp_corpus_current` all genuinely passed. Two did not: **`gate_generator_ownership`** (`ops/sitemap-content-hashes.json` and `site/sitemap.xml` had drifted from `ops/build_seo.py`'s own output, the Mudroom page never having triggered a resync) and **`gate_build_id_current`** (`site/build-id.txt` stale against the real tree hash). Both mechanical, both fixed this slot: ran `ops/build_seo.py` (205 URLs) and `ops/build_id.py`, re-checked both gates clean against the regenerated files.
+
+**Verified the fix, not just the regeneration:** `check_urls.py` (205/205), `audit_pages.py` (209 pages, 0 findings, 0 duplicate titles/descriptions), `fix_dashes.py --check` (0 em/en dashes). `RISKS.md`'s `forms_dead=209` citation cross-checked directly against `ops/state.json`'s live value: matches, no drift. B9 claims: Kids Bedroom's claim (12:55Z) is now well past the 3-hour staleness window with no release recorded; confirmed `ops/b9_claims.py --status` already excludes it from `active_claims()` automatically (`is_stale()` in the tool itself), so nothing needed hand-fixing there, and `--status` already reports Nursery/Patio or Deck/Primary Bedroom/Workshop as the next tied-smallest unclaimed rooms alongside it.
+
+**Went well:** treating the two real FAILs as this slot's actual work per step 2, and checking gate `FAIL` contents directly instead of trusting a bare function call not to raise.
+
+**Did not go well:** the wider `gate_tests` sweep (300+ files) still has not finished in this environment inside a 30-minute slot; not claiming it clean end to end, per CLAUDE.md 0.4.
+
+**Handing to the operator (:43):** B9's next room, one of Nursery/Patio or Deck/Primary Bedroom/Workshop (all 6 zones, tied-smallest), once Kids Bedroom's own claim is confirmed abandoned rather than just stale. Epics 1-4 remain Phil-blocked.
+
+Pushed to main. `ops/sitemap-content-hashes.json`, `site/sitemap.xml`, `site/build-id.txt`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched, no new page, IndexNow not applicable (sitemap URL set unchanged, only content hashes/dates refreshed).
+
+---
+
 ## 2026-09-29, scheduled operator (hourly), fixed a live cross-zone related-reading defect preflight found, then built Mudroom as B9's fifteenth room
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` (step 2's mandatory gate) failed with 4 real problems, so per this run's own step 2 instruction ("if it fails, fixing that IS this run's work"), fixed those first rather than picking a backlog item.
