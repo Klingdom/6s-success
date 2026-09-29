@@ -16,6 +16,24 @@ Pushed to main. No price or product touched; no new page from this cycle (Hall C
 
 ---
 
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished by CI itself, the same recurring stale-citation defect found and fixed again)
+
+Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only`), 896 commits fast-forwarded onto `origin/main`, no conflict. Read `git log`, the top of `ops/NIGHTLY-LOG.md` (newest-first, not the tail), `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 2, was previous work finished?** Yes, confirmed independently rather than cited: `checks.yml` run 1582 (head `c34ba22a3`, an ancestor of this cycle's starting HEAD) completed with every step, including the full `Preflight` step and the 313-file ops test suite, `success`. That commit carries the Dining Room deck cycle's own 7-failure fix pass (`7859be181`) and the build-id/sitemap regeneration (`11ca245dd`) that followed it, so CI itself, not a citation, confirms that work is genuinely finished and green on the merged tip.
+
+**One real defect found and fixed, the same recurring shape as the last several PM cycles: `STATUS.md`'s `BLOCKER-001` commit-gap citation had gone stale again.** Two more site-touching commits (`7859be181`, `11ca245dd`) had landed since the last citation ("10 commits, 8 material") without anyone updating it. Re-derived directly with `deploy_gap_material_commits('7c6a83084')`: 12 commits total, not 10. `11ca245dd` is a build-id/sitemap restamp only; `7859be181` is material, a real customer-facing fix (corrects two zones' rendered related-reading links, which had been duplicating each other's set, and a missing-standard article's link count). Fixed at the three places the citation lives: the "Public website" and "Production traceability" summary rows, and a new appended `BLOCKER-001` entry (never edited a closed entry in place). Verified against the gate's own logic directly, not assumed: `deploy_gap_count_problem(status_text, 12, '159acc34b643d712', '2026-09-27T22:45:39Z')` returns `''` against the corrected file, and `test_gate_status_deploy_gap_count_current.py` passes 11/11.
+
+**Verification note, honestly incomplete:** a full local `preflight.py` (via the safe wrapper) was still running its own test-suite step at this cycle's close, past the 30-minute slot; not claiming it clean, per CLAUDE.md 0.4. What was actually verified directly instead: the specific gates that read `STATUS.md` (`gate_status_deploy_verdict_current`, `gate_status_currency`, `gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_critical_risks_escalated`, `gate_status_deploy_gap_count_current`) all run clean against the corrected file, `fix_dashes.py --check` is clean (0 em dashes, 0 en dashes), and CI's own green run on `c34ba22a3` covers everything upstream of this cycle's one-file change. The next cycle should confirm the local preflight run (or CI on this push) actually finished clean rather than re-run a fresh one from scratch.
+
+**Went well:** trusting CI's own completed Preflight run on an ancestor commit instead of re-deriving "is the prior work finished" from scratch a dozenth time; verifying the STATUS.md fix against the exact gate functions it touches when the full local run could not finish inside the slot.
+
+**Did not go well:** the same commit-gap citation keeps going stale roughly once per cycle at this repository's current commit velocity; the structural fix is `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35), not a sharper gate, unchanged from every prior cycle's own note.
+
+**Handing off to the operator:** continue B9, one of Guest Bedroom or Guest Bathroom (tied smallest of the remaining nine rooms), since epics 1-4 stay exhausted and this is the same unblocked item every recent cycle has named. Did not start it myself, correctly the operator's, hours-scale work.
+
+Pushed to main. `STATUS.md` (three spots), command deck. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, scheduled operator cycle (the Dining Room deck, B9's tenth room)
 
 **Did:** Unshallowed, attached to main clean (ff-only). Read GOALS.md, the backlog, roadmap, CLAUDE.md, and the last four log entries (an agent cross-checked independently, same conclusion). First preflight found one real FAIL: `STRATEGY-MICROZONES.md`'s diagnosis count (46) had gone stale after Hall Closet shipped (real count 51), failing `gate_generator_ownership` and `publish-image.yml` run 448. Fixed at the source (`ops/build_microzone_coverage.py`, no hand edit), pushed, re-triggered the workflow. With epics 1-4 genuinely exhausted, picked B9: Dining Room, tied-smallest with Guest Bedroom and Guest Bathroom.
