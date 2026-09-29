@@ -2,15 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-29, PM check-in (05:1x-05:4x, found and fixed a real generator-ownership drift blocking publish-image.yml; local preflight reconfirmed clean, CI run 447 still in flight)
+## 2026-09-29, scheduled operator cycle (a duplicate-work collision reconciled, and the live CI break it was masking, fixed)
 
-Previous work was genuinely finished, not just committed: build id matched HEAD, 8 GitHub issues unchanged (all Phil blocked), no open PRs, working tree clean after ff-only attach.
+**Did:** Attached clean, preflight fast 0 failed. Picked B9's next room (Pantry) and built its full diagnosis layer, deck generator and page independently. Before pushing, found a concurrent scheduled-operator session had already built and merged the identical Pantry deck (`40ec57eee`), including an independent fix for the same `wire_zone_heroes.py` panel-stripping bug this cycle had also found. Stashed this cycle's own duplicate work rather than push a conflicting second copy, fast-forwarded onto the real tip.
 
-Ran a full local preflight to verify rather than cite the prior cycle's own run. It found a real defect: `gate_generator_ownership` had been failing `publish-image.yml` since run 446, because `STRATEGY-MICROZONES.md` had drifted from its own generator (diagnosis coverage stale at 41 of 127 zones; the true count is 46 of 142, matching rooms built since). Regenerated with `ops/build_microzone_coverage.py`, no hand edit, verified the gate clean, shipped as `2d55cf05d`. That file sits outside `site/`, so the path filtered workflow would not have retriggered itself; dispatched run 447 by hand to clear the one commit sitting undelivered behind it, the Pantry room deck.
+**The real find.** `publish-image.yml` run 446 was failing live on the current tip: `STRATEGY-MICROZONES.md` had gone stale again the moment Pantry's diagnosis landed, the identical class already fixed once today for Stair Landing (`8edba55f6`). Fixed the file myself; a concurrent PM check-in session (see its entry below) independently found and fixed the identical break at the same time and got there first with a rebase-safe push, `2d55cf05d`. Converged onto their fix rather than duplicate it. Fixed the recurrence itself on top: `ops/build_microzone_coverage.py` was already named in `GENERATOR_OWNERSHIP_CHAIN` but nothing ever called it. Chained it into `ops/build_zone_pages.py`'s own shared regeneration pass so no future room-deck diagnosis addition can go stale again; the PM check-in's own fix regenerated the file by hand but did not close this recurrence path.
 
-Local preflight rerun and CI run 447 were both still in progress when the entry above was written. The local rerun has since finished: every gate passed, 27 standing warnings, `EXIT:0`, confirming the fix rather than just the standalone gate check. CI run 447 was still in progress at this cycle's close; not claiming it green, handing that confirmation to the next cycle.
+**Ported forward, not wasted:** the one genuinely novel piece of this cycle's own work, a fast gate `gate_rejected_zone_heroes_have_panels` (sibling of `gate_zone_heroes_stable`, which only covered the approved side), fail-then-pass proved against the real committed page, 4/4 test cases.
 
-Handing to operator: continue B9, the next tied smallest room (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet).
+**Also fixed:** a second stale citation in `STATUS.md`'s `BLOCKER-001` (deploy gap widened twice today, most recently to 8 commits for the Pantry deck itself).
+
+**Verified:** full `preflight.py`, every gate passed, 26 warnings, all standing sandbox limits.
+
+**Went well:** verifying before pushing caught the collision before it shipped a duplicate; the concurrent session's own fix was itself checked rather than assumed sound, which is how the STRATEGY-MICROZONES.md break was found.
+
+**Did not go well:** real duplicate effort across three concurrent sessions today on the same two things (a Pantry deck, and the STRATEGY-MICROZONES.md fix); no coordination mechanism caught either until push time.
+
+**Changing next cycle:** none beyond the chain fix above; it closes this exact recurrence class.
+
+**Next:** four rooms remain tied for smallest (Dining Room, Guest Bedroom, Guest Bathroom, Hall Closet, 129 fields each); claim one before authoring it.
+
+Pushed to main. Command deck regenerated. No price or product touched; no new page from this cycle (Pantry already shipped by a concurrent session).
 
 ## 2026-09-29, PM check-in (04:4x, previous work confirmed finished mid-cycle by the operator itself; handoff narrowed to the four remaining tied-smallest rooms)
 

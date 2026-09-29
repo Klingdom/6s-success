@@ -3451,6 +3451,23 @@ def main():
     import fingerprint_assets
     fingerprint_assets.main(False)
 
+    # STRATEGY-MICROZONES.md's own coverage table is measured straight from
+    # content.json's diagnosis layer, so any room-deck generator that adds
+    # one (this function's whole reason for running standalone after a
+    # content.json edit) moves the real coverage number the moment it runs.
+    # Found live twice now, once after the Stair Landing deck (fixed in
+    # 8edba55f6) and again after the Pantry deck (this same recurrence,
+    # tripping gate_generator_ownership on CI both times): the fix landed on
+    # the DOCUMENT each time, never on the CHAIN that would have kept it
+    # from happening a third time. build_microzone_coverage.py is already
+    # named in GENERATOR_OWNERSHIP_CHAIN as a generator this repository owns
+    # centrally; it was simply never called from anywhere. Chained here,
+    # not in each room generator individually, because this function is the
+    # one thing every room-deck generator's own diagnosis ripple already
+    # runs through.
+    import build_microzone_coverage
+    build_microzone_coverage.main()
+
     return urls
 
 

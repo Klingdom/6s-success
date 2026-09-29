@@ -8060,6 +8060,91 @@ def gate_zone_heroes_stable() -> None:
              f"the fallback in wire_zone_heroes.py did not restore them.")
 
 
+def gate_rejected_zone_heroes_have_panels() -> None:
+    """A zone whose photo was rejected must still carry the typographic
+    panel, never nothing at all. The sibling of gate_zone_heroes_stable
+    above, which only ever checked the APPROVED side of this same file.
+
+    Found 2026-09-29, independently by two concurrent sessions: this
+    repository's own room-deck generators (Pantry's own) run
+    `ops/build_zone_pages.py` after a content.json diagnosis edit, and in
+    every sandboxed/CI checkout (no build/heroes/zones/*.png, gitignored,
+    only ever exists on Phil's own machine) `wire_zone_heroes.py`'s
+    `fallback_wire()` had no path to restore the "no photo yet" panel for a
+    REJECTED hero, because that logic lived only in `main()`'s `have>0`
+    branch this kind of sandbox can never reach. Two Home Office zone pages
+    and one Workshop zone page shipped with no image or panel at all the
+    next time anything regenerated site/zones/*.html here, and only the
+    slow full test suite (`gate_tests`, not run on every cycle) ever caught
+    it (`test_zone_hero_panel.py`). Both sessions fixed `fallback_wire()`
+    itself; this is the fast equivalent that fails on every plain
+    `preflight.py`, not only a full or `--deep` run, reading the same
+    ground truth (`ops/hero-verdicts.json`) `gate_zone_heroes_stable`
+    already reads, just for the rejected rows instead of the approved ones.
+    """
+    verdicts_path = os.path.join(ROOT, "ops", "hero-verdicts.json")
+    if not os.path.exists(verdicts_path):
+        return
+    verdicts = json.load(io.open(verdicts_path, encoding="utf-8"))
+    rejected_stems = {s for s, r in verdicts.items()
+                       if isinstance(r, dict) and r.get("verdict") != "ok"}
+    if not rejected_stems:
+        return
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import wire_zone_heroes as W
+        import importlib
+        importlib.reload(W)
+    except Exception as e:                                       # noqa: BLE001
+        warn("rejected-zone-heroes-have-panels",
+             f"could not import wire_zone_heroes to check this: {e}")
+        return
+
+    # stem -> fname. The stem is built from content.json's own RAW zone
+    # name (room--zone, wire_zone_heroes.slug()'s exact shape), not the
+    # published DISPLAY name _corpus_meta() itself keys on: pairs()'s own
+    # docstring is the reason the two differ ("Landing Zone publishes as
+    # The Landing Spot"), and building this from the display name silently
+    # matched 0 of the 3 real regressions this gate exists to catch.
+    src_path = os.path.join(ROOT, "content", "manual", "source",
+                             "content.json")
+    stem_to_fname = {}
+    try:
+        rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+        for r in rooms:
+            room = r.get("room") or ""
+            for z in r.get("zones") or []:
+                zone = z.get("zone") or ""
+                display = W.NAME_MAP.get(room + "|" + zone)
+                if not display:
+                    continue
+                stem = f"{W.slug(room)}--{W.slug(zone)}"
+                stem_to_fname[stem] = W.slug(room) + "-" + W.slug(display) + ".html"
+    except Exception as e:                                       # noqa: BLE001
+        warn("rejected-zone-heroes-have-panels",
+             f"could not derive stem-to-page mapping from content.json: {e}")
+        return
+
+    bare = []
+    for stem in sorted(rejected_stems):
+        fname = stem_to_fname.get(stem)
+        if not fname:
+            continue
+        path = os.path.join(SITE, "zones", fname)
+        if not os.path.exists(path):
+            continue
+        page = io.open(path, encoding="utf-8", errors="replace").read()
+        if 'id="zone-hero"' not in page:
+            bare.append(fname)
+
+    if bare:
+        fail("rejected-zone-heroes-have-panels",
+             f"{len(bare)} zone page(s) whose hero was rejected carry no "
+             f"figure at all, photo or panel: {bare}. Run "
+             f"python ops/wire_zone_heroes.py --apply.")
+
+
 def check_hero_fallback_current(fresh: dict, committed: dict) -> list:
     """Pure logic for gate_hero_fallback_current. Returns a list of problem
     strings, empty when the committed ops/hero-fallback.json still matches
@@ -23649,6 +23734,7 @@ def main() -> int:
     run_gate(gate_verify_deploy_pages_current)
     run_gate(gate_room_images_stable)
     run_gate(gate_zone_heroes_stable)
+    run_gate(gate_rejected_zone_heroes_have_panels)
     run_gate(gate_hero_fallback_current)
     run_gate(gate_chapter_svgs_current)
     run_gate(gate_deck_gallery_identity)
