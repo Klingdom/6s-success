@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30-minute triage, previous work confirmed finished (B9, 20/20 rooms), a real stale deploy-gap citation found and fixed)
+
+**Was the previous work finished?** Yes. Confirmed against the real ledger, not the prose: `python ops/b9_claims.py --status` returns no undiagnosed rooms, `STATUS.md` section 0 has no open claims, and `BACKLOG-2026-09-07.md`'s B9 row was already marked DONE (20/20 rooms) by the prior cycle's own commit (`b969c96d1`). No mid-build room to leave alone; nothing to finish before starting new work.
+
+**Did:** Attached per STEP 0 (shallow, detached, unrelated-history shape; unshallowed, fast-forwarded onto `origin/main`, 1108 commits, no reset needed). Read `git log -12`, the top `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md`'s B8/B9 rows, `EXECUTIVE-DASHBOARD-LIVE.md`, `GOALS.md`. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked.
+
+**Found and fixed a real stale citation, not just re-derived a number that already matched.** `ops/deploy-verdict.json` records a redeploy Phil made directly (commit `09381b55f`, his own author line, not a Claude co-author): build `72f0b37c784c7b60`, `checked_at: 2026-09-29T20:29:14Z`, superseding `159acc34b643d712`. `STATUS.md`'s BLOCKER-001, its Public website and Production traceability rows, and its "Production Knowledge"/"Immediate Focus" prose were all still citing the older verdict and a stale "51 commits behind" figure, none of them picking up that Phil's own redeploy had already closed that entire gap. Re-derived directly with `resolve_verdict_commit('72f0b37c784c7b60')` (resolves to `295ad54f9`) and `deploy_gap_material_commits('295ad54f9')`: the real gap is 15 commits, 11 material (B9's last two room decks, Workshop and Patio or Deck, closing B9 at 20/20; a real root-cause wording fix that had told 100 pages to picture a surface "at bedtime"; the related-reading load-balanced allocator fix; their supporting regenerations), 4 restamp-only. Updated all four sections to the new verdict and the real count.
+
+**Verified against the gates themselves, not assumed:** called `gate_status_deploy_gap_count_current()` and `gate_status_deploy_verdict_current()` directly in a Python shell against the edited file; both return no warning. Ran `ops/tests/test_gate_status_deploy_gap_count_current.py` (11/11) and `test_gate_status_deploy_verdict_current.py` (6/6). `fix_dashes.py --check STATUS.md` clean (0 em/en dashes). `check_urls.py` 210/210, `audit_pages.py` 214/0. Full `preflight.py` was still running in the background past several minutes when this entry shipped (this repository's documented `gate_tests` runtime pattern); not claimed clean end to end this cycle, per CLAUDE.md 0.4, since the specific gates this change touches were independently confirmed clean by direct call and by their own test files.
+
+**Went well:** treating the dashboard's own already-current constraint text (it had picked up the new verdict; `STATUS.md` had not) as a clue that something else was stale, rather than assuming the two sibling sources agreed.
+
+**Did not go well:** same unrelated-history checkout shape at attach; `gate_tests`' own runtime remained too slow to finish inside this slot.
+
+**Changing next cycle:** none; the gates that should catch this drift exist and would have fired on the next full run regardless.
+
+**Next:** no operator-scope item unblocked this slot; B9 is done, B8 (landing each deck on an 18-card print step) is the next BACKLOG item but is hours of work, left for the hourly operator. All 8 GitHub issues remain Phil-gated.
+
+Pushed to main. `STATUS.md` (four sections corrected), `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` regenerated. No price, product or page touched.
+
 ## 2026-09-29, scheduled operator cycle wrap-up (B9 complete, 20/20 rooms; two more real defects found and fixed while reconciling with three concurrent sessions)
 
 **Did:** Continuation of this same cycle's own entries below. Workshop (the twentieth and final room) shipped from a concurrent session while this cycle was mid-verification; merged cleanly (different rooms, no collision). Regenerated the full 114-zone corpus against the merged content twice more (once after Workshop landed, once after a separate concurrent commit fixed a shared root-cause wording bug), confirming the round-robin allocator holds under both.
