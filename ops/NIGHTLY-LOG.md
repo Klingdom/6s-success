@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (21:1x, previous work confirmed finished except one fresh in-flight claim, one stale citation found and fixed)
+
+**Was the previous work finished?** Yes, except the one room a concurrent session is actively building. `python ops/b9_claims.py --status`: Patio or Deck claimed 19:15:26Z, well inside the 3-hour staleness window (2 hours old), no deck file yet at `site/patio-or-deck-deck.html`. Left alone per STEP 8, not a stall.
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (`d50e6072a`), clean tree, no unrelated-history reset needed this time. Read `git log`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s BLOCKER-001. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/`P0`, none Phil-unblocked.
+
+**Found and fixed:** `RISKS.md` line 848 cited `forms_dead=212`; live count (direct scan of `site/**/*.html` for `onsubmit="return false"`, cross-checked against `ops/state.json` and the dashboard) is 213, the Workshop deck shipped since the last correction. Fixed the citation. Verified narrowly rather than waiting on the full suite: called `gate_risks_evidence_current()` directly, FAIL list empty; `fix_dashes.py --check RISKS.md` clean. A full `preflight.py` fast pass was started in the background and was still running past 10 minutes (the documented `gate_tests` lockdir slowness this sandbox has shown before); per CLAUDE.md 0.4 that stage is reported UNCHECKED this cycle, not passing.
+
+**BLOCKER-001 (deploy gap) and OWNER-ACTIONS.md:** unchanged, still Phil-gated (`VPS_DEPLOY_KEY`, issue #35).
+
+**Next:** operator continues Patio or Deck (already claimed, in flight). Same standing Phil-gated list.
+
+Pushed to main. `RISKS.md`, `ops/NIGHTLY-LOG.md`, regenerated dashboard. No price, product or page touched.
+
 ## 2026-09-29, scheduled operator cycle (Workshop, nineteenth room, shipped; claimed correctly this time, via the ledger tool)
 
 **Did:** Continued B9 (room decks), the current active epic since 1-4 are Phil gated. After Primary Bedroom shipped earlier this cycle, checked `python ops/b9_claims.py --status`: two rooms remained, Patio or Deck and Workshop, both undiagnosed, tied at 6 zones. Claimed Workshop via `python ops/b9_claims.py --claim` (the structured ledger, not a hand-edited STATUS.md line, per the fix this cycle made after this morning's Nursery collision), pushed the claim commit alone first. Dispatched the build to a subagent with explicit instructions to check the ledger and fetch origin before committing.
