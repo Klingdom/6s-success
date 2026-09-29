@@ -5100,6 +5100,65 @@
        "A cool, damp feel or a mildew smell on the wall behind the headboard, which can mean moisture is coming through from outside.",
        "A bolt or joint on the frame worked loose enough to let a rail flex when you press on it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are three or more sheet sets stacked on the linen shelf, including the good set you have never actually put on the bed.",
+        "branches": [
+         {
+          "answer": "One was a wedding gift and letting it go feels like refusing the person who gave it",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "The honest number is one on, one clean, but nobody has ever said that out loud as the rule",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "A set that has stood on the shelf that long stops registering as more than the bed actually needs",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "There is a storage bin, a pair of shoes, or a charging cable sitting in the strip of floor between the bed and the door.",
+        "branches": [
+         {
+          "answer": "The cable has nowhere else it is supposed to live once it reaches this side of the room",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It is what your foot finds at three in the morning, and that risk outranks the two seconds it takes to leave it there",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nothing marks the moment to clear that strip, so it only gets checked once someone trips",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "A stack of books, a speaker, or a framed picture sits on a headboard shelf directly above the pillows.",
+        "branches": [
+         {
+          "answer": "It is weight sitting right over a sleeping head, and that outranks how it looks on the shelf",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody has decided the shelf above the pillows is off limits to anything but the lamp",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It has been up there since before anyone thought about what is underneath it, so the height stopped reading as a hazard",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the floor strip between the bed and the door of anything sitting on it, and move any headboard-shelf item that is not the lamp off the shelf.",
+       "victory": "The floor strip between the bed and the door is bare, and the headboard shelf above the pillows holds only the lamp."
+      }
      }
     },
     {
@@ -5174,6 +5233,65 @@
        "The water ring darkening into the wood rather than wiping away, meaning the finish is starting to fail.",
        "A leg or joint that rocks when you lean your weight on the nightstand."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The phone is charging on the nightstand top and doubles as your alarm clock.",
+        "branches": [
+         {
+          "answer": "You have decided the phone cannot leave but have not bought the clock that would replace its one job",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "The charger has no other assigned spot in the room, so it stayed exactly where it was first plugged in",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It has been the alarm for so long that calling the arrangement temporary does not feel dishonest anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "There is an open glass of water sitting on the same small top as the lamp and a power strip.",
+        "branches": [
+         {
+          "answer": "It is a single knocked elbow from water and electricity meeting, and that outranks the convenience of a lidless glass",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The power strip has never had anywhere else on this nightstand to go besides the top",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody set the rule that water needs a lid near this outlet, so it is whoever's habit wins that night",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "The drawer holds a charger for a phone you do not own anymore, a dead pen, and a couple of books you started months ago.",
+        "branches": [
+         {
+          "answer": "None of it has been used in months, but nothing has forced the drawer to prove it is still earning its spot",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Once it is stirred into the pile you cannot see it without digging, so it never surfaces to be judged",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody clears it out on any schedule, so it only gets sorted whenever someone happens to dump the drawer on the bed",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the top down to five items and empty the drawer onto the bed: the dead pen, the chargers for phones you do not own, and any book you have not picked up this week go straight to the shelf or the bin.",
+       "victory": "The nightstand top holds five things or fewer with no cable crossing it, and the drawer holds only what you would actually reach for tonight."
+      }
      }
     },
     {
@@ -5254,6 +5372,65 @@
        "Tarnish or a green bloom on a metal lamp base or the metal frame of the photo.",
        "A drawer pull or knob that has worked loose in its screw."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There is medication, capped or not, sitting loose in the open drawer on this side.",
+        "branches": [
+         {
+          "answer": "It is a poisoning risk at exactly the height a toddler or a dog reaches from the mattress, and that is worth raising even though the rest of the drawer is not yours to touch",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody has checked the dates together in a while, so a bottle ages out of use unnoticed",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "It has been in that drawer long enough that neither of you registers it as open and unsecured anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The lamp cord on this side runs loose across the floor instead of behind the leg.",
+        "branches": [
+         {
+          "answer": "It crosses the exact strip you both walk in the dark, and that is a real trip risk ahead of how it looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "This side's cord was never run behind the leg the way the other side's was, so the shared standard stopped at one nightstand",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The floor beside this side is not yours to rearrange, so a hazard sitting in shared space does not get fixed because it is not your side",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "The two nightstand tops are holding different numbers of things, one cluttered, one clear.",
+        "branches": [
+         {
+          "answer": "One person tidied the other's side once, and it started an argument that has made both of you avoid the topic since",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "There is no agreed number for this side the way there is for the other, so clear means something different to each of you",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Whoever notices the gap first assumes it is the other person's job to close it",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Check the medication dates together right now: cap anything loose, and if a child or a dog gets onto this bed, move it into a closed box. Then run the lamp cord behind the leg on this side to match the other.",
+       "victory": "Medication on this side is capped and closed away, and the lamp cord runs behind the leg instead of across the floor."
+      }
      }
     },
     {
@@ -5330,6 +5507,65 @@
        "The anti-tip strap gone slack, or its wall screw sitting proud of the anchor.",
        "A leg that rocks on the floor, or a caster that has cracked."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There is loose change, a receipt, or a single earring sitting on the bare wood beside the tray instead of inside it.",
+        "branches": [
+         {
+          "answer": "The tray is already full, so the honest fix is thinning the keyring or moving a ring to the jewellery box, not starting a second pile",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Loose change and receipts have no assigned home of their own once they leave your pocket",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "One receipt on bare wood does not look like much on its own, which is exactly how a second pile starts",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "There are three or four fragrance bottles standing on the top, but you only reach for one of them.",
+        "branches": [
+         {
+          "answer": "The others were gifts, and letting them go feels like it dishonors who gave them",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nothing has actually been decided about the ones you have not worn in a year, so they just keep standing there",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "They have stood in the same spot so long that four bottles does not register as three too many",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The dresser is not strapped to the wall, and a drawer left open sits low enough for a child to lean on.",
+        "branches": [
+         {
+          "answer": "A tall unstrapped chest can tip forward and pin a child, and that outranks how a strap looks on the wall",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Fitting it means finding a stud and doing a small job that keeps getting pushed to another weekend",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It has stood unstrapped since it was delivered, so the risk stopped registering the moment it became furniture",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewellery) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
+       "victory": "The dresser top holds only the valet tray and a small dish of fragrance bottles, and nothing loose sits on the bare wood."
+      }
      }
     },
     {
@@ -5402,6 +5638,65 @@
        "A musty or damp smell in the empty drawer, or a tide line low on the back panel.",
        "Moth casings, grazed holes in a folded wool item, or crumbled cedar that mean pests have been at work."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A drawer needs a shove or a press-down to close, and it is the one holding workout tops or t-shirts.",
+        "branches": [
+         {
+          "answer": "You own more of that category than you actually wear, six workout tops when you wear two",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "There is no fill line anyone is applying, so the drawer just absorbs more until it will not shut",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The overflow only shows up as effort at closing time, so it is easy to keep ignoring until today",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Two of the drawers are part filled with clothes that do not fit you today.",
+        "branches": [
+         {
+          "answer": "You have not decided yet whether these come back, so they sit exactly where they always have instead of leaving the bedroom",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "They stayed in the main rotation of drawers instead of moving to a box elsewhere in the house, so there is no boundary marking them as separate",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nobody has re-checked these drawers since your size changed; there was no moment that prompted it",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "Mothballs or cedar blocks are rolling loose in the bottom of a sock or underwear drawer.",
+        "branches": [
+         {
+          "answer": "Loose in an open drawer, they look like candy to a toddler standing at drawer height, and that outranks the moth protection",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "They have never been given their own mesh bag, so loose is just how they have always been stored",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "They have rolled around long enough, under the folded rows, that nobody notices them as loose anymore",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open the drawer that needs a shove to close and pull one full category's worth of overflow out right now: extra workout tops, a wrong-size stack, or loose mothballs, whichever is worst.",
+       "victory": "Every drawer closes without being pressed down, and a hand's width of free space shows in each one."
+      }
      }
     },
     {
@@ -5481,6 +5776,65 @@
        "Moth casings or grazed holes on the shoulders of stored wool coats.",
        "A soft or springy board underfoot in the closet floor."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There is a wire hanger or a plastic dry-cleaner sheath still on a garment on the rod.",
+        "branches": [
+         {
+          "answer": "The dry cleaner sends them home and nothing has ever swapped them out for the one hanger style the rest of the closet uses",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The plastic sheath is a real suffocation risk if a small child gets in here, and that outranks leaving it on for now",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It blends into a rod that is this full, so a wire hanger among dozens of matching ones does not stand out anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "There is a suit, a coat, or a pair of shoes in here that cost real money and has not been worn in over a year.",
+        "branches": [
+         {
+          "answer": "Letting it go feels like admitting the money is gone, so it stays even though the money already left the day it was bought",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "There is no deadline attached to it, photograph it, list it, thirty days, so someday never actually arrives",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It has hung in the same spot long enough that walking past it barely registers anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "You cannot slide two fingers between the hangers anywhere along the rod, and there is no bare stretch left at the end.",
+        "branches": [
+         {
+          "answer": "The rod is carrying more than the two-finger standard allows, so one in one out has stopped happening",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Winter coats and heavy knits that should have moved to the labelled bin for the off season never actually left the rod",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The overloaded rod is putting real weight on brackets only ever meant to hold what one season needs, and it can tear out of the plasterboard while you are reaching in underneath",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Walk the rod and pull every wire hanger and plastic dry-cleaner sheath off the garments right now, and bag them for the bin.",
+       "victory": "Every hanger on the rod is the same style, and no wire hanger or dry-cleaner sheath remains on anything hanging."
+      }
      }
     }
    ]
