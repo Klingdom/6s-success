@@ -19,6 +19,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** thirteen rooms still have no diagnosis layer (1,709 fields, `ops/cardtext/derive_room_deck.py`); each is real, valuable, unblocked epic-5 work of roughly this same size. Pick the next-smallest and repeat. Standing Phil-gated list unchanged (`OWNER-ACTIONS.md` start-here) and the same 8 GitHub issues.
 
 Pushed to main. Command deck regenerated. No price or product touched; one new free page, IndexNow submission attempted and correctly refused (could not verify the key file is served from this sandbox).
+## 2026-09-29, PM check-in (01:5x)
+
+NEXT FOR THE OPERATOR: the 14 rooms still missing a Manual content.json diagnosis layer (129 to 133 authored fields each, 1,830 total, per BACKLOG-2026-09-07.md's B9 row), because it is the highest ranked item that is genuinely unblocked, not Phil gated, and not the zone page rollout that stays on hold. It is hours of work, not a 30 minute item, so start it in a longer session rather than here.
+
+Previous work was finished, verified rather than cited. Attached clean per STEP 0 (unshallowed, checkout main, ff-only onto origin/main, 826 then a further 2 commits mid cycle from the scheduled operator run, no conflict, tree clean throughout). Did not trust the prior cycle's own clean citation: ran preflight myself, twice, end to end via ops/run_preflight.sh. My own first run hit the same stray-probe-files FAIL the prior cycle had already chased down once, citing site/_audit_catalog_fix, a leftover fixture from a concurrent audit or test run; confirmed the path does not exist and the tree was clean, then reran the whole suite a second time rather than trust the single gate. Second run: every gate passed, the same 25 standing warnings every recent cycle has recorded, nothing new. Worth a note: this transient has now recurred independently across two consecutive cycles rather than once, still matching the race this gate's own docstring already names and self-heals from.
+
+Re-derived three claims directly instead of citing them: deploy_gap_material_commits(resolve_verdict_commit('159acc34b643d712')) still returns exactly 5 material commits, unchanged. GitHub's 8 open issues (#35, #33, #31, #29, #21, #18, #15, #2) pulled live, byte-identical to every recent cycle, all decision or blocked-on-art, 0 open PRs. ops/cold_read_ledger.py --next: 175 of 175, still genuinely exhausted. RISKS.md's three open CRITICALs (RISK-0007, RISK-0011, RISK-0013) unchanged. A scheduled operator cycle landed mid check-in confirming the identical state independently (same preflight result, same deploy gap, same issue list); no collision, fast-forwarded onto it cleanly.
+
+One correction worth flagging, not acted on here: the standing handoff phrase "B9's follow-on, the 14 room decks" blurs two different things. BACKLOG-2026-09-07.md section 5 holds "roll Sustain-style depth and diagnosis to all 114 [zone pages]" pending a 21-day read of the 12-zone pilot (M4 shipped 2026-09-07, so that window has now passed, but this sandbox has no analytics access to actually read it). B9's own remaining 14 rooms are a separate stream, the Manual's content.json diagnosis field used to derive room decks, already extended past the original 12-zone pilot for 6 rooms without objection, and not covered by that hold. The two should not be conflated in future handoffs; the deck work is unblocked, the zone page rollout is not.
+
+No new defect found, no new gate written. This was a 30 minute triage slot spent independently reconfirming the previous cycle's clean result rather than starting new work, per STEP 2.
+
+No push notification: nothing measured moved since the last one, and this cycle confirmed rather than changed the standing verdict.
+
+Pushed to main. Dashboard regenerated. No price or product touched, no new page.
 
 ## 2026-09-29, scheduled operator cycle
 
