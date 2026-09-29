@@ -1481,7 +1481,7 @@ def _cause_candidates(zone):
     return out
 
 
-def diagnosed_reading(rooms, cap=5, article_cap=35):
+def diagnosed_reading(rooms, cap=5, article_cap=33):
     """Cross-zone-aware related reading for every zone that carries a
     diagnosis layer, the M4 sibling of general_reading()'s M5 mechanism.
 
@@ -1507,6 +1507,17 @@ def diagnosed_reading(rooms, cap=5, article_cap=35):
     convention cause_reading()'s callers already apply by hand, so this
     is a drop-in replacement for a per-zone cause_reading(zone) call once
     precomputed once for the whole corpus.
+
+    article_cap defaults to 33, not the real 35-link ceiling
+    check_general_reading_picks() enforces: a handful of universal causes
+    (no assigned home, a shared zone never staying reset...) sit near the
+    top of almost every zone's own real diagnosis, so with 84 diagnosed
+    zones sharing about 19 articles the swap-buyback pass below can run
+    out of any under-cap alternative for the last one or two zones right
+    at 35 itself (found live 2026-09-29 on the real corpus: targeting 35
+    left two articles at 36). Targeting 33 leaves the buyback pass two
+    links of slack to work with and keeps the real, enforced ceiling
+    clear; proved directly against the live corpus, not assumed.
     """
     entries = []
     for room in rooms:
@@ -1550,6 +1561,56 @@ def diagnosed_reading(rooms, cap=5, article_cap=35):
         for e in chosen:
             s = e[0].rsplit("/", 1)[-1][:-len(".html")]
             counts[s] += 1
+
+    # An article can still finish over article_cap: every zone's own
+    # fallback above (take the next-ranked real cause anyway rather than
+    # ship fewer links than a zone's diagnosis supports) can push several
+    # zones onto the same already-full article at once. Before accepting
+    # that, try to buy each one back: for every zone using an over-cap
+    # article, look for a real alternative cause in that zone's own
+    # ranked list that is not itself over cap, in stable key order, and
+    # swap it in. A swap can push a DIFFERENT article over the cap in
+    # turn (found live 2026-09-29: fixing the alphabetically-first
+    # over-cap article this way pushed a second one from 35 to 36, and a
+    # single top-to-bottom pass over `sorted(counts)` had already moved
+    # past that second article's own turn before the overage existed), so
+    # this repeats to a fixed point rather than a single pass: keep going
+    # while any article is over cap and at least one swap happened, and
+    # stop once nothing changes, at which point what remains is a genuine
+    # structural overage (this room's real diagnosed causes concentrate on
+    # one popular article more than the ceiling allows), the same honest
+    # remainder general_reading()'s own floor top-up already accepts.
+    while True:
+        changed = False
+        for s in sorted(counts):
+            if counts[s] <= article_cap:
+                continue
+            for key, _ in entries:
+                if counts[s] <= article_cap:
+                    break
+                if s not in [e[0].rsplit("/", 1)[-1][:-len(".html")]
+                            for e in picks[key]]:
+                    continue
+                for pos in range(len(picks[key]) - 1, -1, -1):
+                    old = picks[key][pos]
+                    old_s = old[0].rsplit("/", 1)[-1][:-len(".html")]
+                    if old_s != s:
+                        continue
+                    for cand in candidates[key]:
+                        if cand in picks[key]:
+                            continue
+                        cand_s = cand[0].rsplit("/", 1)[-1][:-len(".html")]
+                        if counts[cand_s] >= article_cap:
+                            continue
+                        picks[key] = (picks[key][:pos] + [cand]
+                                      + picks[key][pos + 1:])
+                        counts[old_s] -= 1
+                        counts[cand_s] += 1
+                        changed = True
+                        break
+                    break
+        if not changed:
+            break
 
     # No two diagnosed zones may render an identical final set, the same
     # swap-to-the-zone's-own-next-candidate approach general_reading()
