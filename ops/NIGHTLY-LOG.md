@@ -2,6 +2,46 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (02:1x)
+
+Previous work (Stair Landing room deck, B9's sixth room) was finished and
+independently verified, not just cited: attached clean (unshallowed, ff-only
+onto origin/main, 837 commits, tree clean), reran the full backgrounded
+preflight myself. It came back clean on the first pass, but did not stop
+there: re-derived STATUS.md's BLOCKER-001 deploy-gap citation directly with
+`deploy_gap_material_commits()` instead of trusting the cited "5 commits",
+and got 7. Traced why: CI's own `publish-image.yml` run 444 (the latest push)
+had actually FAILED, on `gate_generator_ownership`, because
+STRATEGY-MICROZONES.md's diagnosis-coverage numbers (38/118 zones) had gone
+stale the moment the Stair Landing deck's diagnosis layer landed (real count
+41/127). Regenerated it with its own owning script, `ops/build_microzone_
+coverage.py`. Also found, while re-deriving the gap, that `gate_status_
+deploy_gap_count_current`'s regex had gone blind again: STATUS.md's newest
+entries dropped parentheses around the commit count entirely ("real gap is
+now 5 commits, not 3."), a third phrasing this file has drifted to, so the
+gate matched nothing and stayed silent while the true count climbed. Widened
+the regex to a bare digits-plus-"commit(s)" match, added two fail-then-pass
+test cases (11 checks total, confirmed passing), and corrected STATUS.md's
+stale citation and its two summary rows to the real count. Caught and fixed
+a self-inflicted bug in that same STATUS.md edit: my first draft re-quoted
+the old "5 commits" phrasing later in the same paragraph, which the parser's
+last-match logic then picked up instead of the real figure; reworded so the
+entry's own last count is the current one, reran the gate to confirm clean.
+
+Shipped via `ops/ship.py --no-deploy` (`8edba55f6`), preflight clean apart
+from the one FAIL this commit itself resolves (`publish-image-current`,
+which reports exactly the undelivered gap until CI reruns on this push).
+GitHub's 8 open issues unchanged, all `decision`/`blocked-on-art`. IndexNow
+correctly refused to submit the new Stair Landing deck URL (no network
+egress here to confirm the key file is served).
+
+**Handing to the hourly operator at :43:** the next room-deck item, one of
+the thirteen rooms still missing a diagnosis layer (1,709 authored fields
+per `BACKLOG-2026-09-07.md`'s B9 row), because it is genuinely unblocked but
+sized in hours, not a 30-minute PM slot. Also worth a look next cycle: watch
+that `publish-image.yml` actually goes green on `8edba55f6` before assuming
+the deploy gap is only a redeploy away.
+
 ## 2026-09-29, scheduled operator cycle (the Stair Landing room deck, B9's sixth room)
 
 **Did:** Unshallowed, attached to main, ff-only clean. Read GOALS.md, ROADMAP-2026-2029.md, BACKLOG-2026-09-07.md in full, CLAUDE.md, the newest log entries. Ran preflight: 1 test flaked under load in a full run (`test_zone_block_seen.py`, a headless-Chromium timing race its own comments already document), confirmed clean on 4 isolated reruns plus a second full run, so no real defect and no fix needed. GitHub's 8 open issues and the mail inbox were byte-identical to recent cycles, all owner-gated; the cold-read ledger is exhausted; image generation needs a GPU this sandbox does not have (confirmed: no torch, no nvidia-smi). With epics 1 to 4 (measurement, broken or dishonest, traffic, conversion) genuinely exhausted by many independent prior cycles, picked the highest-value unblocked item: BACKLOG's B9, room decks. Six of twenty rooms had a deck; the other fourteen have real Manual content but no `diagnosis` layer at all, 1,830 authored fields total (`ops/cardtext/derive_room_deck.py`). Chose Stair Landing, the smallest (3 zones), to finish one complete room rather than spread thin.
