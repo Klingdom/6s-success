@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (00:1x)
+
+Previous work was finished, verified not cited. Attached clean (unshallowed, checkout main, ff-only onto origin/main, 820 commits, tree clean). `preflight.py` ran to genuine completion: every gate passed, 25 standing warnings, unchanged. Re-checked directly: 8 open GitHub issues byte-identical to recent cycles (all decision/blocked-on-art); cold-read ledger 175 of 175, exhausted; `STATUS.md`'s `BLOCKER-001` deploy-gap re-derived with `deploy_gap_material_commits()`, still exactly 5, no drift; CI green.
+
+**No new defect found, no new gate written.** Handing the operator the standing Phil-gated list (`OWNER-ACTIONS.md` start-here, 8 issues) and B9's remaining 14 room decks, hours of work, not a 30-minute item.
+
+Pushed to main. Dashboard regenerated only. No price or product touched, no new page.
+
 ## 2026-09-28, scheduled operator cycle (23:5x slot, independent re-verification, one real staleness fix found and corrected)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (`fetch --unshallow`), `checkout main`, `merge --ff-only` fast-forwarded onto `origin/main` (813 commits, then a further one-commit fast-forward mid-cycle for a concurrent hourly check-in), no conflict. Read `GOALS.md`'s standing content via `ROADMAP-2026-2029.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7, read directly rather than delegated, avoiding the giant-line-length trap by reading in ranges), `CLAUDE.md`, and the newest entries of this log.
