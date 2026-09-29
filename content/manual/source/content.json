@@ -6273,6 +6273,65 @@
        "Soft dark spots in the corner where the headboard meets an outside wall, the first sign of condensation mould.",
        "A carpet gripper or a floorboard nail lifting proud under the bed, found the moment you reach in with the vacuum."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A blind cord or looped drawstring hangs down near the pillow, well within reach of a sleeping child's neck.",
+        "branches": [
+         {
+          "answer": "A cord or loop hanging at a sleeping child's neck height is a strangling risk that outranks how the window dressing looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There's no separate rule yet that says cords get cleated up near a bed specifically, only that the room should look tidy",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's hung in that exact spot for so long that a dangling cord reads as part of the window, not a hazard",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Stuffed animals have spread off the basket and onto the floor by the door, far more than the handful that actually get slept with.",
+        "branches": [
+         {
+          "answer": "Most of them were gifts, and moving one out feels like admitting it won't be missed, not a decision about what gets slept with",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's actually pulled them all out and counted what was really in the bed the way the sort pass calls for",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "The basket is sized for a handful a child actually sleeps with, and a floor full of animals is more than that job needs",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "The duvet most mornings no longer matches the made-bed photo taped inside the wardrobe door, and it happens on the mornings an adult remade it rather than the child.",
+        "branches": [
+         {
+          "answer": "Whoever ends up remaking the bed on a given morning isn't the child it's supposed to teach, so the slip never actually costs the person who caused it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Making the bed isn't actually tied to the school bag going on some mornings, it just happens whenever, if at all",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "A top sheet, blanket and quilt on top of a duvet is more layers to square away than a young child can manage before the door closes",
+          "cause": "KC-004"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Check every blind or curtain cord near the bed head right now and cleat any hanging loop up out of a sleeping child's reach. Strip the duvet and pillow off, count how many stuffed animals were actually in the bed, and move the rest into the basket at the foot where they're still visible. Square the pillow and pull the duvet flat before you finish.",
+       "victory": "No cord or loop hangs within reach of the pillow, the bed carries a squared pillow and a flat duvet with only the animals that fit in two arms on top, and the rest sit visible in the basket at the foot."
+      }
      }
     },
     {
@@ -6353,6 +6412,65 @@
        "A mildew smell or a dark bloom inside a bin, which means something went back in damp.",
        "A carpet gripper or a lifting seam at the skirting, felt as the vacuum snags on it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Small figures and a loose button battery from a broken toy sit in an open bin at floor height, well within reach of a younger sibling who is starting to crawl.",
+        "branches": [
+         {
+          "answer": "Anything small enough to fit through a toilet roll tube sitting at a crawling sibling's reach is a safety constraint that outranks which bin it's tidiest in",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It's sat in that low bin through enough tidy-ups that a choke-sized piece doesn't register as different from any other toy",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no rule yet that says small parts specifically go up high, only that each toy family gets a bin",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A big block set gets tipped across the carpet and walked away from before anything gets built, then sits untouched on the floor until the next tidy-up.",
+        "branches": [
+         {
+          "answer": "Nobody's actually run the rotation trial the way the sort pass calls for, so the question of whether it's still wanted just gets deferred",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's expensive and a relative asks after it, so moving it to the rotation box feels like deciding they won't play with it again",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Even with the broken pieces and the orphans already gone, one growing set alone is more than one bin can actually hold, and the overflow is what ends up on the floor",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "A bin's photo label shows blocks, but figures and a puzzle piece have ended up mixed in during a rushed pickup, so the label no longer matches what's inside.",
+        "branches": [
+         {
+          "answer": "Two different people put this bin away by two different rules, one sorting by family and one just tipping whatever's nearest in",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "The label is the only way anyone sees what's actually in the bin, so once it's wrong the contents are as good as invisible",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "It's been slightly wrong for long enough that a mismatched label reads as normal rather than a signal to fix it",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Tip out the bin nearest the door and check every piece against the toilet-roll-tube test: anything small enough to fit through goes up into a bin on the wardrobe top shelf, out of a younger sibling's reach, right now. Wipe that bin's photo label clean enough to read, and clear a lie-down-sized patch of carpet before you stop.",
+       "victory": "No choke-sized piece or loose battery sits in a bin at floor height, the wiped label is readable and matches what's actually inside, and there's enough clear carpet to lie down on."
+      }
      }
     },
     {
@@ -6439,6 +6557,65 @@
        "A drawer runner cracked or bent so the drawer will not close flush even after the grit is out.",
        "A hairline crack or a lifted patch of veneer on the desktop, uncovered once the surface is bare and wiped."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Worksheets and finished exercise books pile up on the desk surface instead of going to the memory box or recycling, because no specific sheet has anywhere in particular it's supposed to end up.",
+        "branches": [
+         {
+          "answer": "There's no single defined destination for a given sheet, so it lands wherever the hand opens, on the desk",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Binning any of it feels like deciding you didn't care, not a decision about whether this term's work is current",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Keep, photograph or recycle is a decision that hasn't actually been made for this sheet, so it gets stacked instead",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A lamp, a laptop charger and a second extension strip are all chained into one strip under the desk, with the water bottle sitting at the same end.",
+        "branches": [
+         {
+          "answer": "A chain of strips feeding a desk this size is an overloaded socket, a safety constraint that outranks how convenient the chain was to build",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody's specifically the one who checks under the desk for a growing chain of plugs, so it grows until someone trips over it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been wired that way for so long that one more strip stopped registering as a change worth noticing",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Craft supplies and small toys keep migrating from the toy storage zone onto the desk, because it's the nearest flat surface, crowding out the pen cup and the tray.",
+        "branches": [
+         {
+          "answer": "It's landing here because the desk is the closest flat surface, not because anything is actually used at the desk",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nothing specific happens at a fixed moment that clears the desk of stray items, so whatever lands there just stays",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The drift has been happening for so long that a desk half covered in toys reads as how this desk normally looks",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the desk down to bare wood right now. Sort every loose sheet of paper into exactly one of three piles, live work into the tray, keepsake into the memory box, everything else into recycling, and count the plugs under the desk, bringing any chain of strips back to one strip in one wall socket.",
+       "victory": "The desk holds only the lamp, the pen cup and one tray of live work, every other sheet of paper has a verdict, and exactly one power strip runs from exactly one wall socket."
+      }
      }
     },
     {
@@ -6521,6 +6698,65 @@
        "Moth signs, small holes or webbing, in the clothes on the rod or the stored box, found as you brush the shoulders.",
        "A water stain or a soft patch on the closet floor, uncovered once the floor is emptied and vacuumed."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The rod sits at adult shoulder height, so the child stands on a step stool or asks for help to get a hanger down, and getting dressed becomes a two-person job.",
+        "branches": [
+         {
+          "answer": "The people actually dressing from this rod can't reach it safely, or at all, without a stool or an adult",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "The rod's been at that height since it went in, before anyone measured it against the child's own reach",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no agreed rule yet that hanger height should match whoever's actually dressing from this closet",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "The box of next-size-up clothes on the top shelf hasn't been opened in over a season, so nobody knows whether it still matches the child's actual size by the time the rod clothes run out.",
+        "branches": [
+         {
+          "answer": "The stock in that box is ageing out of use unseen, exactly the way clothes nobody checks on quietly stop fitting by the time they're needed",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Nobody's actually opened it and checked the sizing against the child the way the rule calls for",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no fixed moment, like a seasonal changeover, that triggers checking the box at all",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "The back wall behind the hanging clothes and the top shelf above it haven't been wiped in longer than anyone can remember, because reaching either means clearing the closet first.",
+        "branches": [
+         {
+          "answer": "Reaching that back wall costs more effort than wiping the visible parts of the closet combined, so it gets skipped every time",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Getting to it means unloading the rod and the shelf first, which is more steps than a normal tidy-up ever involves",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nobody's specifically the one who checks behind stored boxes for damp on a wall shared with the outside",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Stand the shortest person who dresses from this closet at the rod right now and check whether they can reach a hanger unaided. If they can't, lower the rod one bracket notch immediately. While you're in there, pull down the next-size box and check its labeled size against how the child actually measures today.",
+       "victory": "The rod sits at a height the child reaches without a stool, and the next-size box on the shelf is labeled with a size that still matches where the child actually is."
+      }
      }
     },
     {
@@ -6597,6 +6833,65 @@
        "An anti-tip strap gone slack or its wall screw backing out, or a drawer front rubbing because a runner is bent, noticed while the dresser is pulled out. Flag it.",
        "A musty smell or a damp corner inside a drawer that means clothes went back not fully dry."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A drawer needs a hard yank to open because it's overstuffed, and it comes free suddenly enough to pull the child backwards off balance.",
+        "branches": [
+         {
+          "answer": "A jammed drawer that gives suddenly when it finally opens is a fall risk that outranks how full the drawer looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Eleven shirts in a drawer sized for the wash rhythm is more than that drawer's own job needs",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nobody's actually counted the days between washes and set a real quantity the way the arithmetic test calls for",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The chest of drawers has no anti-tip strap fitted, and a tablet sits on top where a child is tempted to climb for it using the open drawers as steps.",
+        "branches": [
+         {
+          "answer": "An unanchored chest of drawers with something worth climbing for on top is a safety constraint independent of how full the drawers are",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There's no agreed rule yet that the dresser top stays bare of anything a child would want to climb for",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Fitting the anti-tip strap has been on the list for so long that the unstrapped dresser stopped reading as urgent",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A drawer that used to close with one push now needs a press, and the socks inside are lying flat instead of standing upright, because the last laundry load went in stacked on top rather than filed in.",
+        "branches": [
+         {
+          "answer": "Refolding isn't actually happening straight out of the laundry basket the way the sustain rule calls for",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Whoever put this load away isn't necessarily the person who owns this drawer, so the standard slips without anyone noticing it was theirs to keep",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Two different people run this drawer two different ways, one filing upright and one stacking flat",
+          "cause": "KC-012"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open every drawer right now and push on it once without leaning. Any drawer that needs a press to close gets emptied onto the bed immediately, and anything with dead elastic, no pair, or a hem that now stops above the ankle comes out for good. Refile what's left standing upright before you move to the next drawer.",
+       "victory": "Every drawer closes with a single push, socks and underwear stand upright rather than lying flat, and nothing with a broken pair, dead elastic or the wrong size is back in a drawer."
+      }
      }
     },
     {
@@ -6675,6 +6970,65 @@
        "A frayed backpack strap, a split base seam, or a broken zip pull, noticed while you turn the bag out.",
        "A damp patch or a water stain on the floor, or a mildew smell in the sports bag, spotted as you clear and mop the corner."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The backpack sits unzipped and half in the doorway most mornings instead of hanging packed on its hook, so it becomes the thing everyone's foot finds at seven o'clock.",
+        "branches": [
+         {
+          "answer": "A bag left on the floor in the doorway everyone walks at seven in the morning is a fall risk independent of whose turn it was to hang it up",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Packing isn't actually anchored to the bath running the way the sustain rule calls for, so it happens whenever, if at all",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's genuinely unclear some nights whether the child or an adult is the one who packs and hangs the bag",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A signed form goes missing on a Wednesday because it never made it into the backpack's front pocket, and by Thursday nobody can say where it went.",
+        "branches": [
+         {
+          "answer": "A form has no single defined destination beyond somewhere in the bag, so it lands wherever the hand let go of it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The five line checklist by the hook has no line for forms specifically, only bag, shoes, lunch and kit",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Forms going missing has happened often enough that nobody flags it as a real gap in the checklist anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "An inhaler ends up loose in a side pocket instead of the one named pocket it's supposed to live in, hard to find fast at the school gate and easy for a younger sibling to reach.",
+        "branches": [
+         {
+          "answer": "Medication loose in a side pocket a younger sibling can reach is a safety constraint that outranks which pocket was quickest at packing time",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Whoever packed the bag that morning didn't specifically check the named pocket, so it drifted to wherever was quickest",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Different people pack this bag on different days, and each one has their own idea of where the medication actually goes",
+          "cause": "KC-012"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Check the hook right now: if the backpack isn't hanging there zipped, empty it onto the floor, sort tomorrow's real needs back in, and hang it up. Confirm any inhaler, epipen or daily medication is in its one named pocket, and set the shoes directly underneath the hook before you finish.",
+       "victory": "The backpack hangs zipped on its hook with shoes underneath, any medication sits in its one named pocket, and the floor by the door is completely clear."
+      }
      }
     }
    ]

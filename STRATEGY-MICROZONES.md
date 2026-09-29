@@ -20,7 +20,7 @@ and the built site, not estimated.
 | watch_for | 114 | **252** | what goes wrong here |
 | leave_behind | 114 | **228** | the standard that stays, and its trigger |
 | the_call | 114 | **235** | the judgement call this zone forces |
-| **diagnosis** | **90** | 274 | symptom to branching question to root cause |
+| **diagnosis** | **96** | 292 | symptom to branching question to root cause |
 | **capacity** | **38** | 76 | how much actually fits, and the test for "it does not" |
 | **variants** | **38** | 76 | what to do when your home is not the assumed one |
 
