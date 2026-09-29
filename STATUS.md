@@ -14,6 +14,36 @@ Update this file whenever the material operating state changes.
 
 ---
 
+# 0. Claim before you start, if more than one session is running
+
+**Added 2026-09-29 after three collisions in a single afternoon.** Two
+autonomous sessions independently built the same cross-zone
+`diagnosed_reading()` precompute, wrote the same `forms_dead` increments into
+`RISKS.md`, and then independently worked out the same rewording of the same
+line in that file. Every one of those was correct work. All of it but the first
+copy was waste, and the merges cost more than the fixes.
+
+`BACKLOG-2026-09-07.md` B7 already says to claim a room before authoring it.
+That rule was written for content and the collisions were not in content. It
+applies to anything shared:
+
+- a generator in `ops/`
+- a gate in `ops/preflight.py`
+- an operating document (`RISKS.md`, `STATUS.md`, `GOALS.md`, `OWNER-ACTIONS.md`)
+- a workflow in `.github/workflows/`
+
+**Before starting non-trivial work on one of those, append a line below.**
+Delete it when the work lands. A stale claim is much cheaper than a duplicated
+one: if a line here is older than a day and its work is in `main`, remove it.
+
+This is a convention, not a lock. It cannot stop a collision on its own; it
+makes one visible in the thirty seconds before the work starts, which is the
+only moment it is cheap.
+
+## Open claims
+
+_(none right now)_
+
 # 1. Status Metadata
 
 **Last Updated:** Scheduled operator cycle, 2026-09-29: started by fixing the two preflight FAILs a PM check-in had handed off (`gate_diagnosis_rendered`, `gate_general_reading_differentiated`), then discovered mid-work that a concurrent session and Phil himself had already fixed both, with a more complete algorithmic solution (`diagnosed_reading()`, giving the diagnosed-zone pool the same uniqueness-and-ceiling guarantees `general_reading()` already had for the non-diagnosed pool, plus a proportional inbound-link ceiling instead of a fixed count) already merged and reconciled through two rounds of "two sessions solved the same problem" merges. **Discarded this cycle's own conflicting fix rather than push a duplicate or fight the merge**, matching this file's own established practice for exactly this shape of collision: verified the already-shipped version directly (both gates re-run clean against the real corpus) before adopting it, deleted this cycle's own now-incompatible test file. With that item already closed, picked BACKLOG's B9 (room decks): claimed Kids Bedroom (the standing claim from 12:55 had passed the 3-hour staleness window with no deck shipped), delegated the build to a subagent following the Mudroom reference pattern, independently re-verified before commit. New diagnosis layer for all six Kids Bedroom zones (18 frictions, 54 branches, all 17 shared root causes reachable, tying the best of any room so far), every branch grounded in the zone's own already-published text (a strangling cord at a sleeping child's neck height, a choke-sized toy part, an unanchored dresser a child climbs, a backpack carrying daily medication), new `ops/cardtext/build_kids_bedroom_deck.py` (69 cards) and `ops/build_kids_bedroom_deck_page.py`, shipped `site/kids-bedroom-deck.html`. **Verified, not assumed:** re-ran the two new gates and the two originally-red gates directly (0 problems, all four); `mcp/content.json` byte-identical; `build_zone_pages.py`/the two new generators confirmed idempotent; the dedicated test (6/6, fail-then-pass proved on the real committed files); `check_urls.py` (206/206), `audit_pages.py` (210/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0). One real gap the subagent's own pass caught and fixed: the new page was initially missing from `site/sitemap.xml` until `ops/build_seo.py` reran. No price or product touched; one new free page. Dashboard regenerated per step 11b.

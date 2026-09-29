@@ -22,6 +22,82 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. No price or product touched; one new free page (site/kids-bedroom-deck.html), IndexNow submission attempted.
 
+## 2026-09-29, cycle addendum (16:5x: the 16:4x push conflicted with a concurrent twin PM cycle, merged rather than forced)
+
+`ops/ship.py` refused the 16:4x entry's push: a twin PM check-in (the "previous work not finished" entry two below) had landed on origin first, with a real content conflict in `ops/NIGHTLY-LOG.md` (both cycles prepended at the same line). Merged rather than forced, per STEP 8: kept both entries, this cycle's own on top since it was written last, the twin's directly below it, both above the 16:2x entry the twin's own text refers to. `EXECUTIVE-DASHBOARD-LIVE.md`, `LEARNINGS.md`, `STATUS.md`, `ops/dashboard.html`, `ops/state.json`, `site/build-id.txt`, `site/sitemap.xml` all auto-merged with no conflict; regenerated `build_id.py`, `build_seo.py` and `dashboard.py` directly afterward rather than trusting the auto-merge, per STEP 8's own preference for regenerating a generated file over a hand-resolved one, and all three came back byte-identical to the merged state, confirming it rather than changing it. Re-checked `gate_sitemap_complete`, `gate_build_id_current`, `gate_generator_ownership`, `gate_b9_claims_current`, `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_dashboard_working_tree` and `gate_conflict_markers` directly: all clean. `fix_dashes.py --check`: 0/0. Pushed (`b6176291d`). The background full `preflight.py` from the 16:4x entry was still on `gate_tests` when this addendum was written; still not claiming the wider suite clean end to end, per CLAUDE.md 0.4.
+
+---
+
+## 2026-09-29, PM check-in (16:4x slot, previous work confirmed finished, nothing new unblocked; B9 continues unchanged)
+
+NEXT FOR THE OPERATOR: continue B9, claim the next tied-smallest unclaimed room (Nursery, Patio or Deck, Primary Bedroom or Workshop, all 6 zones), because Kids Bedroom is already claimed and in progress and B9 remains the only unblocked, gated, operator-actionable stream on the board.
+
+Attached clean: `git fetch origin main`, repository already unshallow, `checkout main`, `merge --ff-only` fast-forwarded with no conflict onto `c7aad219c` (an automated GitHub Actions commit, LinkedIn draft rotation, no file overlap with product work). Working tree clean, main pushed. Read `git log -12`, the top `ops/NIGHTLY-LOG.md` entry (16:2x slot), `BACKLOG-2026-09-07.md` sections 0, 6 and 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s top, and GitHub directly (8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs).
+
+**Step 2, was the previous work actually finished? Yes.** The 16:2x entry's own two fixes (the discarded duplicate content patch, the corrected Kids Bedroom claim ledger entry) are committed and pushed; `git status` is clean. A full `python ops/preflight.py` would not finish its ~300-file `gate_tests` sweep inside this slot (started it in the background, still running after several minutes, matching this file's own repeated precedent for that gate), so per that same precedent, called the gates this cycle's own recent changes actually touch directly against their pure functions rather than waiting on the whole suite: `gate_general_reading_differentiated`, `gate_diagnosis_rendered`, `gate_b9_claims_current`, `gate_build_id_current`, `gate_generator_ownership`, `gate_sitemap_complete`, `gate_mudroom_deck_current` and `gate_mudroom_deck_rendered` all returned clean, zero `FAIL` entries. Not claiming the wider suite clean end to end, per CLAUDE.md 0.4.
+
+**Confirmed nothing changed since the last handoff.** `ops/b9_claims.py --status` shows Kids Bedroom still `CLAIMED` (claimed 16:24:17Z, well under the 3-hour staleness window) and Nursery, Patio or Deck, Primary Bedroom, Workshop still unclaimed at 6 zones each, identical to the 16:2x entry's own count. GitHub's 8 open issues are the same 8, still all `decision` or `blocked-on-art`, none Phil-unblocked for this slot. `OWNER-ACTIONS.md`'s top is unchanged: `VPS_DEPLOY_KEY` (item 0) remains the standing structural blocker behind the deploy gap, nothing new to add.
+
+**Did not start new work myself.** No preflight FAIL to fix, no stale citation found in the files read this slot, and a room-deck build is hours-scale, correctly the operator's job at :43, not this slot's.
+
+**Went well:** verifying the specific gates this cycle's recent history actually touches directly, rather than either waiting on a slow full suite past this slot's own budget or skipping verification entirely.
+
+**Did not go well:** the full `gate_tests` sweep still routinely outlasts a 30-minute slot in this environment; nothing new about that today, but it remains the reason this entry cannot honestly claim an end-to-end clean preflight.
+
+**Changing next cycle:** none.
+
+Nothing pushed to main this cycle beyond this log entry; no code, price or page touched, no deploy triggered.
+
+---
+
+## 2026-09-29, PM check-in (previous work not finished: 6 real preflight FAILs from the Family Room/Living Room merge; converged with a better concurrent fix rather than duplicating it)
+
+**Not finished:** a full preflight after this morning's Family Room and Living Room merge showed 6 real FAILs: stale build-id, a stale forms_dead citation in RISKS.md (state.json itself was stale too), a related-reading collision (Dining Table vs Sofa and Seating), and three articles over their 35-zone ceiling.
+
+**Fixed the small ones directly:** build-id, RISKS.md's forms_dead citation, the dashboard regeneration.
+
+**Chased the collision and ceiling by hand first, then discarded that in favor of a better concurrent fix.** Reordering whole frictions broke build_family_room_deck.py's own EXPECTED_DIAGNOSIS check (positional card metadata pairing), caught and reverted. A branch-order-within-a-friction version across 9 zones avoided that, but mid-ship a concurrent push showed Phil and another session had independently found the identical two zones and two over-cap articles this cycle diagnosed, and fixed it properly: a new `diagnosed_reading()` in `ops/build_zone_pages.py` computes cross-zone uniqueness and an article_cap (33, with buyback slack) at generation time, permanently, rather than a one-off hand reorder that the next diagnosed room would just break again. Took their version, discarded this cycle's own 9-zone content.json edit and the two EXPECTED_DIAGNOSIS edits that went with it, regenerated every affected deck and page from the clean merge, reverified full preflight clean.
+
+**Went well:** checking whether a concurrent fix existed before shipping a redundant one, rather than pushing two overlapping mechanisms for the same problem.
+
+**Handing to the operator:** Kids Bedroom's B9 claim is now stale (claimed 12:55, unfinished past the 3-hour window), likely abandoned; a concurrent session below already reclaimed and corrected the ledger, so no action needed here.
+
+---
+
+## 2026-09-29, PM check-in (16:2x slot: two content gates from an earlier handoff found already fixed by Phil and a concurrent session; own duplicate work discarded; the abandoned Kids Bedroom claim's ledger entry corrected rather than left ambiguous)
+
+NEXT FOR THE OPERATOR: Kids Bedroom is already reclaimed and in progress (16:24, fresh session); no action needed there. When it lands, the next tied-smallest unclaimed rooms are Nursery, Patio or Deck, Primary Bedroom, Workshop, all 6 zones. B9 remains the only unblocked, gated, operator-actionable stream on the board.
+
+Attached clean. Found `gate_general_reading_differentiated` and `gate_diagnosis_rendered` still red from an earlier PM slot's own deferred handoff and began fixing both directly (reordering one friction's branches in two newer zones to break a related-reading-set tie). While regenerating and re-verifying, found the real fix had already landed: Phil, working with a concurrent Claude session, replaced the fixed 35-link ceiling with a proportional one and made `cause_reading()` de-duplicate by set rather than discovery order (`e2d623535`, 5 new test cases), a genuine root-cause fix where mine was a manual patch that would have recurred every few rooms. My own commit never reached origin (a push conflict surfaced the divergence first); confirmed the better fix was already merged, discarded mine (`git reset --hard`, nothing lost, never pushed), and re-ran a full `preflight.py` against the adopted state: every gate passed.
+
+**One real ledger defect found and fixed, distinct from the sibling entry below.** Kids Bedroom's 12:55 claim was 3h28m stale with no deck file and no commit against it since the claim itself (verified via `git log --all`, not assumed). A concurrent operator session reached the same conclusion independently and reclaimed the room fresh (`a031a92f4`) without releasing the old entry; the sibling PM entry below (16:1x) checked `active_claims()` and correctly found the stale entry already excluded from room-picking, so treated it as nothing to fix. That is true for `next_room()`, but `gate_b9_claim_problems` in `preflight.py` checks the raw claims list per entry, not the filtered view, so the stale `in_progress` entry would keep tripping the gate's staleness warning on every future run even with a live claim covering the same room. Fixed the ledger directly: the 12:55 entry now reads `status: "abandoned"` with a `released_at` note explaining why (not `"done"`, since no deck actually shipped from it), leaving the 16:24 entry untouched. `ops/b9_claims.py --release` was not the right tool here: it matches every `in_progress` entry for a room name, so calling it now would have incorrectly released the live 16:24 claim too. Verified against the gate's own pure function directly: zero problems reported.
+
+**Went well:** not forcing a duplicate content fix through once a better one was found on origin; distinguishing "excluded from room-picking" from "will stop tripping the gate" rather than assuming the sibling entry's check covered both.
+
+**Did not go well:** three separate concurrent sessions independently attacked the same two content gates this afternoon before Phil's proportional-ceiling fix landed; that should have been the first fix tried, not the third.
+
+Pushed to main. `ops/b9-claims.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page, no deploy triggered.
+
+---
+
+## 2026-09-29, PM check-in (16:1x, previous work confirmed finished; found and fixed two real preflight FAILs the Mudroom ship left behind)
+
+Attached clean: fetch, unshallow (was shallow this time), `checkout main`, `merge --ff-only` fast-forwarded 974 commits onto `origin/main` (`0e0e3193b`), no conflict. Read `git log -12`, the two newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section headings, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub open issues (8, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked for this slot).
+
+**Step 2: was the previous work (Mudroom, B9's fifteenth room) actually finished? No.** That cycle's own entry honestly flagged `gate_tests` as unverified at push time. A full `python ops/preflight.py` run here got legitimately stuck on the slow sequential test sweep (5+ minutes on `test_audit_catalog.py` alone, still running after 15+ minutes, never hung, just slow), so per the prior PM cycle's own precedent (16:1x-era entries above), called the gates directly instead of waiting on the whole suite, checking each one's actual `FAIL` list rather than trusting a bare try/except (the exact silent-pass trap this file has already recorded once). `gate_general_reading_differentiated`, `gate_diagnosis_rendered`, `gate_mudroom_deck_current`, `gate_mudroom_deck_rendered`, `gate_risks_evidence_current`, `gate_mcp_corpus_current` all genuinely passed. Two did not: **`gate_generator_ownership`** (`ops/sitemap-content-hashes.json` and `site/sitemap.xml` had drifted from `ops/build_seo.py`'s own output, the Mudroom page never having triggered a resync) and **`gate_build_id_current`** (`site/build-id.txt` stale against the real tree hash). Both mechanical, both fixed this slot: ran `ops/build_seo.py` (205 URLs) and `ops/build_id.py`, re-checked both gates clean against the regenerated files.
+
+**Verified the fix, not just the regeneration:** `check_urls.py` (205/205), `audit_pages.py` (209 pages, 0 findings, 0 duplicate titles/descriptions), `fix_dashes.py --check` (0 em/en dashes). `RISKS.md`'s `forms_dead=209` citation cross-checked directly against `ops/state.json`'s live value: matches, no drift. B9 claims: Kids Bedroom's claim (12:55Z) is now well past the 3-hour staleness window with no release recorded; confirmed `ops/b9_claims.py --status` already excludes it from `active_claims()` automatically (`is_stale()` in the tool itself), so nothing needed hand-fixing there, and `--status` already reports Nursery/Patio or Deck/Primary Bedroom/Workshop as the next tied-smallest unclaimed rooms alongside it.
+
+**Went well:** treating the two real FAILs as this slot's actual work per step 2, and checking gate `FAIL` contents directly instead of trusting a bare function call not to raise.
+
+**Did not go well:** the wider `gate_tests` sweep (300+ files) still has not finished in this environment inside a 30-minute slot; not claiming it clean end to end, per CLAUDE.md 0.4.
+
+**Handing to the operator (:43):** B9's next room, one of Nursery/Patio or Deck/Primary Bedroom/Workshop (all 6 zones, tied-smallest), once Kids Bedroom's own claim is confirmed abandoned rather than just stale. Epics 1-4 remain Phil-blocked.
+
+Pushed to main. `ops/sitemap-content-hashes.json`, `site/sitemap.xml`, `site/build-id.txt`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched, no new page, IndexNow not applicable (sitemap URL set unchanged, only content hashes/dates refreshed).
+
+---
+
 ## 2026-09-29, scheduled operator (hourly), fixed a live cross-zone related-reading defect preflight found, then built Mudroom as B9's fifteenth room
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` (step 2's mandatory gate) failed with 4 real problems, so per this run's own step 2 instruction ("if it fails, fixing that IS this run's work"), fixed those first rather than picking a backlog item.
