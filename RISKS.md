@@ -422,7 +422,16 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
-  - current baseline, direct Umami database read 2026-09-25 01:17 UTC: 57
+  - current baseline, direct Umami database read 2026-09-29 22:2x UTC: 48
+    visitors / 119 visits / 731 pageviews / 30 days, down from 57 on
+    2026-09-25. Last 7 days: 14 visitors, 18 visits, 50 pageviews, but 30 of
+    those pageviews arrived in one 20-minute burst on 27 September from 9
+    distinct visitor ids, all direct, no browser signature identifying them
+    as human; excluding that bucket the week is 7 visitors, 9 visits, 20
+    pageviews, down on the 12/14/27 read four days earlier. The honest
+    reading is that arrivals fell again and the burst masked it.
+  - superseded baseline, kept for the trend it shows, direct Umami database
+    read 2026-09-25 01:17 UTC: 57
     visitors/144 visits/786 pageviews/30 days, down from 68 on 2026-09-23. It fell from 76 mostly
     because the 7 Sept automated session described above (431 pageviews)
     has now rolled OUT of the 30-day window, so this count is very nearly
@@ -1110,6 +1119,14 @@ evidence:
     `website_id` predicate said 239 visitors: this Umami instance serves three
     sites, and `ops/experiments.py` now refuses a query that does not name
     one (`ops/tests/test_umami_website_filter.py`).
+  - RE-MEASURED 2026-09-29: 48 visitors / 119 visits / 731 pageviews over 30
+    days, down from 57. The fall has not stopped; a burst made it look as
+    though it had. Last 7 days: 14 visitors, 18 visits, 50 pageviews, but 30
+    of those pageviews arrived in one 20-minute burst on 27 September from 9
+    distinct visitor ids, all direct, across Windows 7, Windows 10, Mac OS
+    and iOS, no signature identifying them as human. Excluding that bucket
+    the week is 7 visitors, 9 visits, 20 pageviews, down on the 12/14/27
+    read four days earlier. One sale ever, $19, a personal referral.
   - THE CRAWL RISE THIS ROW USED TO CITE WAS A BURST, AND THE CORRECTION
     MATTERS MORE THAN THE FIGURE. It previously read that Googlebot content
     fetches "ROSE sharply" from about 1.3 a day to 17 on 20 Sept and 11 by
