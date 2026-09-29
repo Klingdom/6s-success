@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (03:1x, previous work confirmed finished: both watched CI runs landed green)
+
+Previous work was NOT finished at attach: the 02:5x entry's dispatched `publish-image.yml` run 445 and `checks.yml` run 1569 (the CI-break fix) were both still `in_progress`, so finishing that was this cycle's job per STEP 2, not starting anything new. Polled the GitHub API directly rather than assuming: run 1569 `success`, run 445 `success` (about 20 minutes each, both within normal range). `gate_publish_image_current` now clean.
+
+Ran a full local `preflight.py --deep` while waiting; it reported one real-looking `FAIL stray-probe-files`. Re-ran `preflight.py --fast` independently a few minutes later: every gate passed, no stray file existed. Treated as the gate's own documented race (a concurrent run's fixture caught mid-cleanup), not a live defect; did not write a fix for something the second run showed was gone. 26 standing warnings unchanged. No new commits from other cycles during this slot.
+
+Handing off to the operator, unchanged: the next of the thirteen rooms still missing a diagnosis layer (`ops/cardtext/derive_room_deck.py`) is the highest-ranked genuinely unblocked item.
+
+Pushed to main. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (02:5x, correction to the 02:4x entry directly below: the local preflight it left running found a real FAIL, fixed rather than left for the next cycle to rediscover)
 
 The 02:4x entry below shipped before its own backgrounded `preflight.py` run finished, and said so honestly rather than writing "clean" over an unfinished check. That run has since finished: **1 gate failed**, `publish-image-current`. `publish-image.yml`'s last attempt (run 444, on the pre-fix commit) failed, and the 02:1x fix (`8edba55f6`) touched no `site/**` or `Dockerfile` path, so the workflow's own push trigger never re-ran it; HEAD's site state had no successful publish behind it at all.
