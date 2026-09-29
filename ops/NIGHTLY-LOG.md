@@ -2,13 +2,13 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-29, PM check-in (05:1x-05:3x, found and fixed a real generator-ownership drift blocking publish-image.yml; CI confirmation still in flight)
+## 2026-09-29, PM check-in (05:1x-05:4x, found and fixed a real generator-ownership drift blocking publish-image.yml; local preflight reconfirmed clean, CI run 447 still in flight)
 
 Previous work was genuinely finished, not just committed: build id matched HEAD, 8 GitHub issues unchanged (all Phil blocked), no open PRs, working tree clean after ff-only attach.
 
 Ran a full local preflight to verify rather than cite the prior cycle's own run. It found a real defect: `gate_generator_ownership` had been failing `publish-image.yml` since run 446, because `STRATEGY-MICROZONES.md` had drifted from its own generator (diagnosis coverage stale at 41 of 127 zones; the true count is 46 of 142, matching rooms built since). Regenerated with `ops/build_microzone_coverage.py`, no hand edit, verified the gate clean, shipped as `2d55cf05d`. That file sits outside `site/`, so the path filtered workflow would not have retriggered itself; dispatched run 447 by hand to clear the one commit sitting undelivered behind it, the Pantry room deck.
 
-Local preflight rerun and CI run 447 were both still in progress when this cycle closed. Not claiming green on either; handing confirmation to the next cycle rather than reporting an unchecked pass.
+Local preflight rerun and CI run 447 were both still in progress when the entry above was written. The local rerun has since finished: every gate passed, 27 standing warnings, `EXIT:0`, confirming the fix rather than just the standalone gate check. CI run 447 was still in progress at this cycle's close; not claiming it green, handing that confirmation to the next cycle.
 
 Handing to operator: continue B9, the next tied smallest room (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet).
 
