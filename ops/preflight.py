@@ -73,6 +73,7 @@ import sys
 import traceback
 
 import browser as B
+import b9_claims
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -15197,6 +15198,107 @@ def gate_status_deploy_gap_count_current() -> None:
         warn("status-deploy-gap-count-current", problem)
 
 
+def b9_claim_problems(claims: list, diagnosis: dict, now: str,
+                       stale_hours: int = 3) -> list:
+    """Pure logic for gate_b9_claims_current, testable without disk or git.
+
+    Found live 2026-09-29: three separate duplicate-work collisions inside
+    one day (Pantry, then Hall Closet, then Hall Closet/Dining Room again
+    inside one push), each costing a full extra preflight re-run and, twice,
+    a real regression fix reconciled on top of it. The repository's own
+    retrospective named the gap "process, not a missing check" (`ops/
+    NIGHTLY-LOG.md`, 2026-09-29 retrospective entry). `ops/b9_claims.py`
+    gives sessions a cheap claim-before-building signal; this gate is the
+    other half, catching the ways that ledger itself can go wrong and cause
+    a NEW failure mode (every room permanently looking claimed) rather than
+    fixing the original one.
+
+    claims is the raw list from ops/b9-claims.json's "claims" key. diagnosis
+    is {room name: (fully_diagnosed: bool, zone_count: int)}, i.e. what
+    ops/b9_claims.py's own room_diagnosis_status() returns. now is an
+    ISO8601 UTC timestamp string in the same "%Y-%m-%dT%H:%M:%SZ" shape
+    every claim uses.
+
+    Returns a list of problem strings, empty if nothing is wrong. Three
+    shapes are checked:
+
+    1. A claim naming a room that is not a real room in content.json (a
+       typo would silently make that room permanently unclaimable by
+       anyone using --claim's own name-check, but would say nothing to a
+       session reading the ledger directly).
+    2. An in_progress claim older than stale_hours whose room is STILL not
+       fully diagnosed: an abandoned claim, blocking every other session
+       from picking up a room nobody is actually working on. This is the
+       failure mode a lock-like mechanism introduces that a pure prose
+       convention does not have, so it is the one this gate weighs most:
+       named by room and age, not just counted.
+    3. An in_progress claim whose room IS already fully diagnosed: the
+       claiming session finished but never released it (or another
+       session's push finished the room first). Harmless to a room-picking
+       session (ops/b9_claims.py's own next_room() only ever offers
+       undiagnosed rooms), but left uncleared it silently grows the ledger
+       forever and hides which claims are genuinely live; flagged as a
+       lower-urgency cleanup item, worded differently from case 2 so the
+       two are never confused.
+
+    A WARNING, matching every sibling process-hygiene gate here: nothing in
+    the ledger can make a build wrong, only a collision more or less
+    likely.
+    """
+    problems = []
+    for c in claims:
+        room = c.get("room")
+        if room not in diagnosis:
+            problems.append(
+                "ops/b9-claims.json has a claim for %r, which is not a "
+                "real room in content.json; a typo here silently makes "
+                "that name unclaimable and claims nothing real" % room)
+            continue
+        if c.get("status") != "in_progress":
+            continue
+        done, _ = diagnosis[room]
+        claimed_at = c.get("claimed_at", "")
+        if done:
+            problems.append(
+                "ops/b9-claims.json still lists %r as in_progress "
+                "(claimed %s) but content.json shows it fully diagnosed; "
+                "release the claim so the ledger reflects real state" % (
+                    room, claimed_at or "unknown time"))
+        elif b9_claims.is_stale(claimed_at, now, stale_hours):
+            problems.append(
+                "ops/b9-claims.json's claim on %r (claimed %s) is older "
+                "than %d hours and the room is still not diagnosed: likely "
+                "an abandoned claim blocking other sessions from picking "
+                "it up; release it or confirm work is genuinely still in "
+                "progress" % (room, claimed_at or "unknown time",
+                              stale_hours))
+    return problems
+
+
+def gate_b9_claims_current() -> None:
+    """ops/b9-claims.json stays honest: no typo'd room, no stale abandoned
+    claim blocking other sessions, no finished claim left uncleared.
+
+    Proof this can fail: ops/tests/test_gate_b9_claims_current.py calls
+    b9_claim_problems() directly with a synthetic claims list and diagnosis
+    map covering all three shapes (unknown room, stale in_progress claim,
+    finished-but-uncleared claim) and asserts each fires by name, then
+    confirms a clean ledger (no claims, or a fresh in_progress claim on a
+    genuinely undiagnosed room) produces no warning.
+    """
+    if not os.path.exists(b9_claims.CLAIMS_PATH) or \
+            not os.path.exists(b9_claims.CONTENT_PATH):
+        return
+    try:
+        claims = b9_claims.load_claims()
+        diagnosis = b9_claims.room_diagnosis_status()
+    except Exception:                                          # noqa: BLE001
+        return
+    now = b9_claims.now_iso()
+    for problem in b9_claim_problems(claims.get("claims", []), diagnosis, now):
+        warn("b9-claims-current", problem)
+
+
 def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                                    max_entries: int = 4) -> list[str]:
     """Pure logic: returns the basenames of any ops/*.py, site/assets/js/*.js
@@ -24183,6 +24285,7 @@ def main() -> int:
     run_gate(gate_status_currency)
     run_gate(gate_status_deploy_verdict_current)
     run_gate(gate_status_deploy_gap_count_current)
+    run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
