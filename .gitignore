@@ -12,6 +12,14 @@ _CLAUDE-INBOX/
 # Claude Code local machine settings (per-machine, not shared)
 .claude/settings.local.json
 
+# Claude Code agent worktrees: a full scratch checkout per background
+# subagent, created and torn down by the harness, not repository content.
+# Found live 2026-09-29: one such worktree carries a copied .env, so
+# tracking this directory risks committing a secret straight into a
+# public repository, the exact class .env.secrets/.env.local etc. below
+# already exist to prevent.
+.claude/worktrees/
+
 # Secrets. site/.env is deliberately tracked because it holds only DOMAIN and
 # ACME_EMAIL, which are public facts the deploy needs. NEVER put an API key,
 # token, or password in it. Anything genuinely secret goes in one of these
