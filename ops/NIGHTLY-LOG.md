@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work not yet finished: the same recurring stale commit-gap citation had gone stale again inside the prior cycle's own 30-minute slot, found and fixed)
+
+NEXT FOR THE OPERATOR: continue B9, claim Guest Bathroom (5 zones/129 fields, tied-smallest of the ten remaining rooms), because epics 1-4 stay Phil-blocked and this is still the only unblocked, gated, operator-actionable stream on the board, unchanged from the last three PM cycles' own recommendation.
+
+Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only`), fast-forwarded onto `origin/main` with no conflict; the tip was already the prior PM cycle's own widened-citation fix (`db9ca92eb`, merged as `c37d9c319`), no new operator commit landed since. Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 2, was previous work finished? No, and this became this cycle's work per STEP 2's own instruction.** The prior PM cycle had just widened `STATUS.md`'s `BLOCKER-001` citation to 19 commits (16 material) and pushed it as `db9ca92eb`. That same push itself needed a build-id restamp (`dc02ab1f7`, "Fix stale build-id and RISKS.md forms_dead citation after the merge"), which touches `site/build-id.txt` and therefore counts toward the deploy gap the citation was just written to describe, going stale within its own slot. Ran `deploy_gap_count_problem()` directly against the live `STATUS.md`: it returned a real problem, "cites 19 ... but a fresh count ... is 20". Fixed at the same three places the citation lives (Public website row, Production traceability row, a new appended `BLOCKER-001` entry), the real count now 20 total, still 16 material (`dc02ab1f7` confirmed by `git show --stat` to be a restamp only, joining `4d7189c1d`, `86cc52d11` and `11ca245dd`). Verified directly, not assumed: `deploy_gap_count_problem()` against the corrected file now returns `''`, and `fix_dashes.py --check` is clean (0/0).
+
+**Verification note, honestly incomplete.** A full `preflight.py` was started via `ops/run_preflight.sh` at the top of this cycle and was still running its own `gate_tests` step (the 313-file suite) past this slot's 30 minutes; not claiming it clean, per CLAUDE.md 0.4. What was actually verified directly: the specific gate this cycle's edit touches (`gate_status_deploy_gap_count_current`, via its own pure-logic function) passes against the corrected `STATUS.md`, and every gate that ran before `gate_tests` in this same background run (61 gates, spot-checked in the log: dashes, generator ownership, all deck/gate checks through `gate_image_coverage`) passed with no FAIL line.
+
+**Went well:** catching the citation's own staleness inside the very slot that produced it, the same shape the last several PM cycles have each independently found; treating "the prior cycle's push is on HEAD" as a claim to re-derive with the gate's own function rather than trust.
+
+**Did not go well:** the same commit-gap citation keeps going stale roughly once per cycle at this repository's current commit velocity, now stale even within a single PM slot; the structural fix is `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35), not a sharper gate, unchanged from every prior cycle's own note.
+
+**Handing off to the operator:** continue B9, Guest Bathroom next (5 zones/129 fields, tied-smallest of the ten remaining rooms per `ops/cardtext/derive_room_deck.py`). Did not start it myself: hours-scale work correctly the operator's, not a 30-minute triage slot's.
+
+Pushed to main. `STATUS.md` (three spots), `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished by the operator's own clean merge, the same recurring stale commit-gap citation found and fixed again)
 
 Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only`); a concurrent operator cycle pushed the Guest Bedroom room deck (B9's eleventh room, `e21413a38`) plus a reconciliation merge and a post-merge regeneration while this cycle was reading state, fast-forwarded onto that too with no conflict. Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
