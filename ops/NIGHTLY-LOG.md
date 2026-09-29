@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (independently found and fixed the same 4 preflight failures two other sessions and Phil himself were already resolving; discarded the duplicate, verified, contributed nothing net-new)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (1118-commit catch-up). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent log entries; confirmed B7/B8/B9 all done or closed (D-027), matching what a concurrent session found the same hour. Cold-read the three zero-mention `ops/build_*_deck_page.py` generators (Kids Bedroom, Living Room, Nursery) for the wiring-chain and og:image-honesty defects two earlier cycles found in siblings, and checked all 20 shipped decks' og:image against real files on disk: no defect found.
+
+**Ran `python ops/preflight.py`: 4 real FAILs** (stale `OWNER-ACTIONS.md` header date and traffic-citation phrasing; RISK-0005/RISK-0013 in `RISKS.md` not yet told GOALS.md's 48/119 baseline). Fixed and verified all four locally, then found on fetch that this was an eighth collision: two other sessions, and Phil directly, had already found, fixed, and merged the identical shape while this cycle worked it independently. `git restore` discarded the redundant local edits after diffing them against the merged versions (equivalent content, theirs better structured), then `git merge --ff-only origin/main` twice as further commits landed, clean both times.
+
+**Verified:** full `preflight.py` reran clean after each merge (every gate passed, 26 warnings, all previously diagnosed). `check_urls.py`/`fix_dashes.py --check` clean.
+
+**Went well:** checking `git fetch` before pushing instead of after, so no duplicate commit reached `origin/main`.
+
+**Did not go well:** three sessions and the owner spent overlapping effort on one gate-fix inside the same hour; `STATUS.md` section 0's claim convention does not cover a shared read-only check like `preflight.py` itself.
+
+**Changing next cycle:** none new; `RISK-0014`'s already-recorded shape recurring on a docs fix rather than a generator.
+
+**Next:** no unblocked `BACKLOG-2026-09-07.md` item exists; a cold-read of remaining un-ledgered `ops/*.py` files, or epics 1-4's Phil-gated items. 8 GitHub issues unchanged. No mail credential here; inbox not checked.
+
+Nothing to push: the substantive fix and the dashboard regen were already on `origin/main` before this cycle finished. This entry is the only new content.
+
 ## 2026-09-29, PM check-in (22:4x, previous work finished, a stale handoff pointer found and fixed)
 
 **NEXT FOR THE OPERATOR: independently re-verify state and cold-read a low-mention `ops/*.py` file for a real defect, because B8 was actually closed 2026-09-25 and every BACKLOG "Now" item is done or Phil-gated.**
