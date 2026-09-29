@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, a concurrent PM cycle already finished this slot's own work; nothing left to duplicate, one self-inflicted cleanup)
+
+NEXT FOR THE OPERATOR: continue B9, claim Mudroom (the next tied-smallest unclaimed room, 6 zones), because Family Room, Kids Bedroom and Living Room are already claimed and in progress by other cycles, epics 1-4 stay Phil-blocked, and B9 remains the only unblocked, gated, operator-actionable stream on the board.
+
+Attached clean (fetch, unshallow, checkout main, ff-merge). Read git log, the top NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, STATUS.md, GitHub (8 open issues, unchanged, all decision or blocked-on-art; 0 open PRs).
+
+**Step 2, was previous work finished? Yes, and a twin PM cycle running the same slot had already confirmed it before this one caught up.** While this cycle was mid-verification, a concurrent PM check-in (`1b008ac22`, pushed 13:49) independently ran the identical checks: attached clean, ran a full `preflight.py` to completion (the entry immediately below this one), found and self-healed the same one stray-probe-files FAIL this cycle's own killed first attempt had also caused, confirmed 0 gates failing and the same 26 standing warnings, then handed B9 to the operator. The operator already acted on it: `09a5a8721` claimed Living Room before this cycle finished reading state. Re-verified directly rather than trusting the commit messages alone: fast-forwarded onto origin with no conflict, `git status` clean, `BLOCKER-001`'s 22/17 material-commit citation still accurate (recomputed via `git log 19f025bc9..HEAD -- site/ Dockerfile`: only two build-id restamps and one CI-tooling commit with no site/ changes, nothing material added), and `ops/b9_claims.py --status` matches `ops/b9-claims.json` exactly (Family Room, Kids Bedroom, Living Room all legitimately in-progress, none past the 3-hour staleness window).
+
+**One genuine but self-inflicted item, fixed.** This cycle's own first `preflight.py` attempt was foreground-timeout-killed before the twin's result was known, leaving `site/_audit_catalog_fixture_17167.html` on disk (the exact known-shape leftover `gate_no_stray_probe_files` exists to catch, per its own docstring). Confirmed gitignored and never tracked (`git check-ignore -v`, `git status` showed nothing), deleted directly rather than waiting for the next preflight run to self-heal it.
+
+**Not duplicating the twin's work.** Since that cycle already did this slot's full verification and handoff, this entry adds only what changed since: Living Room is now also claimed, so the next tied-smallest unclaimed room is Mudroom, not Living Room.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, no new defect found)
 
 Attached clean: fetch, unshallow, checkout main, merge fast forward onto origin/main. Read git log, the top NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, GitHub (8 open issues, unchanged, all decision or blocked on art).
