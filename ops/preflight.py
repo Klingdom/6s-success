@@ -14640,14 +14640,26 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     section's final entry is checked; older entries are a deliberately kept
     history, not the current standing claim.
 
-    Matches both phrasings this file has actually used: "(8 commits,
-    `hash`)" (the count inside its own parenthetical) and "8 commits
-    (`hash`, `hash`)" (the count bare, followed by a parenthetical hash
-    list). Found live 2026-09-26, PM check-in: the newest BLOCKER-001
-    entries had already switched to the second phrasing, and the original
-    regex only matched the first, so this gate had been silently unable to
-    parse its own latest entry, and had not fired, since the phrasing
-    changed: a real count drifted from 8 to 9 with nothing catching it.
+    Matches every phrasing this file has actually used: "(8 commits,
+    `hash`)" (the count inside its own parenthetical), "8 commits (`hash`,
+    `hash`)" (the count bare, followed by a parenthetical hash list), and
+    "real gap is now 5 commits, not 3." (the count bare, no parenthetical
+    anywhere nearby). Found live 2026-09-26, PM check-in: the newest
+    BLOCKER-001 entries had already switched to the second phrasing, and
+    the original regex only matched the first, so this gate had been
+    silently unable to parse its own latest entry, and had not fired,
+    since the phrasing changed: a real count drifted from 8 to 9 with
+    nothing catching it. Found live again 2026-09-29, PM check-in: the
+    2026-09-28 23:5x entry dropped parentheses entirely ("real gap is
+    now 5 commits, not 3."), the third phrasing this file has drifted to,
+    and the regex still required a paren on one side or the other, so it
+    matched nothing and stayed silent again while the real count moved
+    from 5 to 7. Widened to a bare "<digits> commit(s)" match with no
+    paren requirement at all; the last such match in the entry is still
+    the newest-stated count, because every entry states the old, stale
+    figure first (quoting or restating it) and the freshly re-derived one
+    second, the same order this function's own docstring already relies
+    on for the parenthesised forms.
 
     Returns a problem string if the cited count and the real one disagree;
     '' if there is no BLOCKER-001 section, no build_id, the latest entry
@@ -14669,12 +14681,11 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     latest = entries[-1] if entries else section
     if build_id not in latest:
         return ""
-    matches = list(re.finditer(
-        r"\((\d+)\s+commits?\b|(\d+)\s+commits?\s*\(", latest))
+    matches = list(re.finditer(r"(\d+)\s+commits?\b", latest))
     if not matches:
         return ""
     last = matches[-1]
-    cited = int(last.group(1) or last.group(2))
+    cited = int(last.group(1))
     if cited != real_count:
         return (
             "BLOCKER-001's latest entry cites a gap of %d commit(s) next "

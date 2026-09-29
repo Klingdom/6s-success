@@ -149,12 +149,43 @@ def main() -> int:
         fails.append("bare phrasing, cited 9, real 9: still flagged: %r"
                      % problem)
 
+    # 10. The real live shape found 2026-09-29, PM check-in: no parens at
+    #     all, just "real gap is now N commits, not M." The prior fix
+    #     handled "(N commits" and "N commits (" but not this bare form,
+    #     so the gate stayed silent again while the count drifted from 5
+    #     to 7. Must still fire.
+    no_parens = (
+        "**Widened, later: the \"3 commits\" figure above had gone stale "
+        "again.** Same build_id (`%s`), same resolved commit. Re-derived "
+        "directly, not cited: real gap is now 5 commits, not 3." % BUILD_ID
+    )
+    problem = preflight.deploy_gap_count_problem(
+        section(no_parens), real_count=7, build_id=BUILD_ID,
+        checked_at="2026-09-28T23:50:00Z")
+    if not problem:
+        fails.append(
+            "no-parens phrasing, cited 5 real 7: expected a problem, got "
+            "none")
+    elif "5 commit" not in problem or "7" not in problem:
+        fails.append("no-parens problem string did not name both counts: "
+                      "%r" % problem)
+
+    # 11. Same no-parens phrasing, cited count already matches: must not
+    #     fire.
+    no_parens_ok = no_parens.replace("now 5 commits", "now 7 commits")
+    problem = preflight.deploy_gap_count_problem(
+        section(no_parens_ok), real_count=7, build_id=BUILD_ID,
+        checked_at="2026-09-28T23:50:00Z")
+    if problem:
+        fails.append("no-parens phrasing, cited 7, real 7: still flagged: "
+                      "%r" % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 8 checks")
+    print("PASS: 11 checks")
     return 0
 
 
