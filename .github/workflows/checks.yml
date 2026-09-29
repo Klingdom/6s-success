@@ -277,6 +277,32 @@ jobs:
       - name: Install python dependencies
         run: pip install --quiet -r ops/requirements.txt
 
+      # WITHOUT THIS, ONE GATE HAS NEVER ACTUALLY RUN HERE.
+      #
+      # gate_no_dangling_js_references scans every shipped script for a
+      # reference to something never defined, which is the exact shape of the
+      # 2026-09-23 defect that broke the mobile nav and .reveal content across
+      # the whole site (a stray call to a deleted function). It uses eslint's
+      # own no-undef rule rather than a hand-rolled walker, and correctly warns
+      # UNCHECKED rather than passing clean when eslint is absent.
+      #
+      # eslint was absent from this runner, so every CI run since that gate was
+      # written has reported it unchecked and nobody noticed, which is the
+      # "written but never wired to what runs it" shape this repository keeps
+      # paying for. Verified 2026-09-29 by replanting the original paint()
+      # call: the gate fails by name and line with eslint present, and reports
+      # unchecked without it.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install eslint, so the JavaScript gate can actually run
+        # Pinned to the major actually verified here (10.11.0). The gate
+        # writes its own flat eslint.config.js, which 9 and 10 both
+        # accept, but CI should run the combination that was proved
+        # rather than a neighbouring one.
+        run: npm install -g eslint@10 --silent
+
       - name: Every ops file must parse
         # The cheapest possible check and the one that would have caught both
         # incidents above. A file that does not compile cannot gate anything,

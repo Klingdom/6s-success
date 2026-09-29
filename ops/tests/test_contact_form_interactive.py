@@ -192,7 +192,13 @@ def main():
              "--user-data-dir=" + profile,
              "--window-size=1140,4300", "--virtual-time-budget=25000",
              "--dump-dom", "file:///" + wrap.replace("\\", "/")],
-            capture_output=True, timeout=180)
+            # 180s was not enough on a loaded workstation and the test
+            # reported itself UNVERIFIED rather than failing, which is
+            # the right behaviour and still means the contact form, a
+            # real customer path, was never actually driven here. The
+            # probe settles in well under a minute when the machine is
+            # idle; this budget is for when it is not.
+            capture_output=True, timeout=600)
     finally:
         if os.path.exists(wrap):
             os.remove(wrap)
