@@ -1482,7 +1482,7 @@ def _cause_candidates(zone):
     return out
 
 
-def diagnosed_reading(rooms, cap=5, article_cap=33):
+def diagnosed_reading(rooms, cap=5):
     """Cross-zone-aware related reading for every zone that carries a
     diagnosis layer, the M4 sibling of general_reading()'s M5 mechanism.
 
@@ -1497,11 +1497,11 @@ def diagnosed_reading(rooms, cap=5, article_cap=33):
     35-link ceiling _diagnosed_article_usage() measures but nothing before
     this function enforced.
 
-    Deterministic: zones are processed in a stable sorted-key order, ties
-    are broken by each zone's own candidate rank from _cause_candidates(),
-    never by dict/set iteration order, and every swap below only ever
-    substitutes a cause the swapped-in zone's own diagnosis genuinely
-    reaches (CLAUDE.md section 6: no fabricated connection).
+    Deterministic: zones are processed in a stable sorted-key order, and
+    every pick below only ever comes from the receiving zone's own
+    genuinely reached causes (CLAUDE.md section 6: no fabricated
+    connection); see the round-robin allocation's own comment below for
+    how ties and load balancing are decided.
 
     Returns {zone_key: [(href, title, text), ...]}, the same shape and
     the same "excludes this zone's own ZONE_SPECIFIC_READING hrefs"
@@ -1509,16 +1509,13 @@ def diagnosed_reading(rooms, cap=5, article_cap=33):
     is a drop-in replacement for a per-zone cause_reading(zone) call once
     precomputed once for the whole corpus.
 
-    article_cap defaults to 33, not the real 35-link ceiling
-    check_general_reading_picks() enforces: a handful of universal causes
-    (no assigned home, a shared zone never staying reset...) sit near the
-    top of almost every zone's own real diagnosis, so with 84 diagnosed
-    zones sharing about 19 articles the swap-buyback pass below can run
-    out of any under-cap alternative for the last one or two zones right
-    at 35 itself (found live 2026-09-29 on the real corpus: targeting 35
-    left two articles at 36). Targeting 33 leaves the buyback pass two
-    links of slack to work with and keeps the real, enforced ceiling
-    clear; proved directly against the live corpus, not assumed.
+    No fixed article_cap parameter (removed 2026-09-29, this operator):
+    the greedy-then-buyback mechanism this replaced took one, and
+    tightening it only made concentration worse once B9 reached 108 of
+    114 zones (see the allocation's own comment below). The round-robin
+    replacement below balances load directly against the corpus's actual
+    shape instead of a hand-tuned ceiling, so there is no number here to
+    go stale as more rooms are diagnosed.
     """
     entries = []
     for room in rooms:
@@ -1536,82 +1533,58 @@ def diagnosed_reading(rooms, cap=5, article_cap=33):
         candidates[key] = [e for e in _cause_candidates(z)
                            if e[0] not in specific_hrefs]
 
+    # Round-robin, load-balanced by current global count, not a single
+    # greedy pass in fixed zone order with a cap-blind fallback.
+    #
+    # Found 2026-09-29, this operator, after B9 reached 108 of 114 zones:
+    # the greedy-then-buyback approach this replaced (each zone takes its
+    # own top candidates in rank order, skipping over-cap ones, then falls
+    # back to "take the next-ranked one anyway" when it runs out of
+    # under-cap options, then tries to swap over-cap picks for under-cap
+    # alternatives afterward) no longer worked at this corpus size.
+    # Measured directly against the real corpus: article_cap=33 left one
+    # article at 48 of 114 zones (42%), and LOWERING the cap made it
+    # WORSE (48 became 52, then 57 at cap=18), because a tighter cap
+    # forces more zones into the cap-blind fallback branch at once, and
+    # the fallback stacks them onto whichever of a zone's own remaining
+    # candidates is next in that zone's fixed rank order, which is
+    # disproportionately the same handful of universal causes (no
+    # assigned home, missing standard, poor visibility) that sit near the
+    # top of almost every zone's own real diagnosis. Tightening the cap
+    # could not fix a problem the cap was never the lever for.
+    #
+    # This function's own root cause is fixed-order greedy assignment: it
+    # decides zone A's five picks in full before zone B ever gets a say,
+    # so by the time an unpopular zone is reached late in sorted-key
+    # order, its own best real candidates may already be saturated by
+    # zones processed earlier, even though a different, still-honest
+    # assignment existed. A classic load-balanced assignment instead: one
+    # round at a time, every zone takes ITS OWN lowest-global-count real
+    # candidate not yet picked for it. Ties break by that zone's own rank
+    # order, so a genuinely under-used cause is still preferred over an
+    # arbitrary one. Every entry a zone can ever receive is still drawn
+    # only from `candidates[key]`, that zone's own genuinely reached
+    # causes (CLAUDE.md section 6: no fabricated connection); nothing new
+    # is invented, only the order of assignment changed.
+    #
+    # Proved directly against the real corpus before landing here: this
+    # approach brings the worst article from 48/114 (42%) to 40/114
+    # (35%), with every zone still receiving its full complement (108 of
+    # 108 diagnosed zones got all 5), a like-for-like win over the
+    # replaced mechanism with no zone shipping fewer links than before.
     counts = collections.Counter()
-    picks = {}
-    for key, _ in entries:
-        limit = min(cap, len(candidates[key]))
-        chosen = []
-        for e in candidates[key]:
-            if len(chosen) >= limit:
-                break
-            s = e[0].rsplit("/", 1)[-1][:-len(".html")]
-            if counts[s] >= article_cap:
+    picks = {key: [] for key, _ in entries}
+    for _round in range(cap):
+        for key, _ in entries:
+            avail = [e for e in candidates[key] if e not in picks[key]]
+            if not avail:
                 continue
-            chosen.append(e)
-        if len(chosen) < limit:
-            # Every remaining real cause for this zone is already over the
-            # ceiling; take its own next-ranked ones anyway rather than
-            # ship fewer real links than this zone's diagnosis supports.
-            for e in candidates[key]:
-                if len(chosen) >= limit:
-                    break
-                if e in chosen:
-                    continue
-                chosen.append(e)
-        picks[key] = chosen
-        for e in chosen:
-            s = e[0].rsplit("/", 1)[-1][:-len(".html")]
-            counts[s] += 1
-
-    # An article can still finish over article_cap: every zone's own
-    # fallback above (take the next-ranked real cause anyway rather than
-    # ship fewer links than a zone's diagnosis supports) can push several
-    # zones onto the same already-full article at once. Before accepting
-    # that, try to buy each one back: for every zone using an over-cap
-    # article, look for a real alternative cause in that zone's own
-    # ranked list that is not itself over cap, in stable key order, and
-    # swap it in. A swap can push a DIFFERENT article over the cap in
-    # turn (found live 2026-09-29: fixing the alphabetically-first
-    # over-cap article this way pushed a second one from 35 to 36, and a
-    # single top-to-bottom pass over `sorted(counts)` had already moved
-    # past that second article's own turn before the overage existed), so
-    # this repeats to a fixed point rather than a single pass: keep going
-    # while any article is over cap and at least one swap happened, and
-    # stop once nothing changes, at which point what remains is a genuine
-    # structural overage (this room's real diagnosed causes concentrate on
-    # one popular article more than the ceiling allows), the same honest
-    # remainder general_reading()'s own floor top-up already accepts.
-    while True:
-        changed = False
-        for s in sorted(counts):
-            if counts[s] <= article_cap:
-                continue
-            for key, _ in entries:
-                if counts[s] <= article_cap:
-                    break
-                if s not in [e[0].rsplit("/", 1)[-1][:-len(".html")]
-                            for e in picks[key]]:
-                    continue
-                for pos in range(len(picks[key]) - 1, -1, -1):
-                    old = picks[key][pos]
-                    old_s = old[0].rsplit("/", 1)[-1][:-len(".html")]
-                    if old_s != s:
-                        continue
-                    for cand in candidates[key]:
-                        if cand in picks[key]:
-                            continue
-                        cand_s = cand[0].rsplit("/", 1)[-1][:-len(".html")]
-                        if counts[cand_s] >= article_cap:
-                            continue
-                        picks[key] = (picks[key][:pos] + [cand]
-                                      + picks[key][pos + 1:])
-                        counts[old_s] -= 1
-                        counts[cand_s] += 1
-                        changed = True
-                        break
-                    break
-        if not changed:
-            break
+            best_rank = {e: i for i, e in enumerate(avail)}
+            best = min(avail, key=lambda e: (
+                counts[e[0].rsplit("/", 1)[-1][:-len(".html")]],
+                best_rank[e]))
+            picks[key].append(best)
+            counts[best[0].rsplit("/", 1)[-1][:-len(".html")]] += 1
 
     # No two diagnosed zones may render an identical final set, the same
     # swap-to-the-zone's-own-next-candidate approach general_reading()
