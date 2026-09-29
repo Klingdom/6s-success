@@ -24,6 +24,20 @@ Nothing pushed to main this cycle beyond this log entry; no code, price or page 
 
 ---
 
+## 2026-09-29, PM check-in (previous work not finished: 6 real preflight FAILs from the Family Room/Living Room merge; converged with a better concurrent fix rather than duplicating it)
+
+**Not finished:** a full preflight after this morning's Family Room and Living Room merge showed 6 real FAILs: stale build-id, a stale forms_dead citation in RISKS.md (state.json itself was stale too), a related-reading collision (Dining Table vs Sofa and Seating), and three articles over their 35-zone ceiling.
+
+**Fixed the small ones directly:** build-id, RISKS.md's forms_dead citation, the dashboard regeneration.
+
+**Chased the collision and ceiling by hand first, then discarded that in favor of a better concurrent fix.** Reordering whole frictions broke build_family_room_deck.py's own EXPECTED_DIAGNOSIS check (positional card metadata pairing), caught and reverted. A branch-order-within-a-friction version across 9 zones avoided that, but mid-ship a concurrent push showed Phil and another session had independently found the identical two zones and two over-cap articles this cycle diagnosed, and fixed it properly: a new `diagnosed_reading()` in `ops/build_zone_pages.py` computes cross-zone uniqueness and an article_cap (33, with buyback slack) at generation time, permanently, rather than a one-off hand reorder that the next diagnosed room would just break again. Took their version, discarded this cycle's own 9-zone content.json edit and the two EXPECTED_DIAGNOSIS edits that went with it, regenerated every affected deck and page from the clean merge, reverified full preflight clean.
+
+**Went well:** checking whether a concurrent fix existed before shipping a redundant one, rather than pushing two overlapping mechanisms for the same problem.
+
+**Handing to the operator:** Kids Bedroom's B9 claim is now stale (claimed 12:55, unfinished past the 3-hour window), likely abandoned; a concurrent session below already reclaimed and corrected the ledger, so no action needed here.
+
+---
+
 ## 2026-09-29, PM check-in (16:2x slot: two content gates from an earlier handoff found already fixed by Phil and a concurrent session; own duplicate work discarded; the abandoned Kids Bedroom claim's ledger entry corrected rather than left ambiguous)
 
 NEXT FOR THE OPERATOR: Kids Bedroom is already reclaimed and in progress (16:24, fresh session); no action needed there. When it lands, the next tied-smallest unclaimed rooms are Nursery, Patio or Deck, Primary Bedroom, Workshop, all 6 zones. B9 remains the only unblocked, gated, operator-actionable stream on the board.
