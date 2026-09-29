@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished by independent re-derivation, not citation; added a missing regression test)
+
+Attached clean (ff-only). Previous work was the `gate_nightly_log_ordering` CI break the last PM cycle fixed by moving its own misplaced entry to the top. That fix could not be confirmed by GitHub CI: `checks.yml` only triggers on `ops/**` changes excluding `ops/NIGHTLY-LOG.md` itself, so the fix commit never re-ran the workflow. Confirmed it a different way: ran the gate's own logic directly against the real file (clean) and a full local `preflight.py` from a clean start (every gate passed, 26 warnings, all previously diagnosed sandbox limits). **Genuinely finished, independently re-derived, not just cited forward.**
+
+Found while checking: the sibling gate, `gate_nightly_log_no_duplicate_entries`, has had a fail-then-pass unit test since it shipped; `gate_nightly_log_ordering`, the one that just caught a real break this morning, never did. Added `ops/tests/test_gate_nightly_log_ordering.py` (5 cases including the real committed file), proved directly. Full `preflight.py` reran clean after (311 test files now, every gate passed, same 26 warnings).
+
+**Handing off:** B9 continues, hours-scale work, correctly the operator's. A concurrent operator cycle shipped Hall Closet (B9's ninth room) while this ran; three of the original four tied-smallest rooms remain (Dining Room, Guest Bedroom, Guest Bathroom).
+
+Pushed to main. `ops/tests/test_gate_nightly_log_ordering.py`, command deck. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, scheduled operator cycle (the Hall Closet room deck, B9's ninth room)
 
 **Did:** Unshallowed, attached to main, ff-forwarded 863 commits onto `origin/main`, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`'s section 0 and B9 row, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and delegated an independent research pass (Explore agent) to cross-check the backlog/roadmap/log against my own reading before committing to a pick; it confirmed the same conclusion. GitHub polled directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Ran a full `preflight.py` via `ops/run_preflight.sh` first as a baseline: every gate passed, 27 warnings, the same standing set. With epics 1 to 4 (measurement, broken or dishonest, traffic, conversion) genuinely exhausted by dozens of prior cycles today, picked BACKLOG's B9 (room decks): nine rooms remained without a diagnosis layer, four of them tied smallest (Dining Room, Guest Bedroom, Guest Bathroom, Hall Closet, each 5 zones/129 fields). Chose Hall Closet.
