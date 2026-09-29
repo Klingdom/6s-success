@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle retrospective (three sequential duplicate-work reconciliations on one push, all landed clean)
+
+**Did:** Fixed a real `nightly-log-ordering` FAIL first. Built a full Hall Closet room deck (B9's ninth), then found on fetch that a concurrent session had already shipped the identical room; merged, took their superset version. Origin moved twice more mid-merge (a concurrent Dining Room deck, then that room's own author's follow-up fix for the same collision/ceiling defect classes this session had independently hit); resolved each by taking the other session's own fix for its own room rather than reconciling three independent versions of the same content.
+
+**Verified:** ran a full `preflight.py` after every one of the three merges (ten total runs this cycle), not once assuming a merge was clean without regenerating the site fresh against the combined `content.json` and re-checking.
+
+**Went well:** every merge conflict was resolved by deferring to whichever session actually authored that room's content, rather than forcing a local version through; caught each fresh preflight FAIL immediately after merging rather than pushing first and hoping.
+
+**Did not go well:** three independent sessions built the same or adjacent room-deck content inside one hour with no lock beyond a prose "claim one before starting" line; this is now the second day this exact collision shape has cost real, repeated reconciliation work (Pantry, then Hall Closet, then the general-reading ceiling twice).
+
+**Changing next cycle:** none invented here; the existing gates (`gate_diagnosis_rendered`, `gate_general_reading_differentiated`, `gate_mcp_corpus_current`, `gate_nightly_log_ordering`) caught every real defect this cycle produced or inherited, exactly as designed. The open gap is process, not a missing check, and outside a single preflight function's reach.
+
+**Next:** same B9 handoff, tied-smallest now Guest Bedroom and Guest Bathroom. Epics 1-4 remain Phil-blocked.
+
+Pushed to main (`593acbf96`). No price or product touched.
+
+---
+
 ## 2026-09-29, scheduled operator cycle (reconciled a duplicate-work collision on Hall Closet, B9's ninth room, with a concurrent session)
 
 **Did:** Attached clean, unshallowed, fast-forwarded onto `origin/main`. `preflight.py` FAILED on the first run: `nightly-log-ordering` (the same append-to-the-end mistake, from commit `bcf6fa1b0`). With epics 1-4 still Phil-blocked, independently picked B9's Hall Closet, built its full diagnosis layer and deck generator from scratch (15 frictions, 45 branches, 14 of 17 shared causes; `ops/cardtext/build_hall_closet_deck.py`, `ops/build_hall_closet_deck_page.py`), and independently found and fixed the identical `gate_diagnosis_rendered` collision class this room's own diagnosis triggers (Cleaning Supply Zone vs Home Office's Desk Drawers zone, resolved by reassigning one friction's cause) and the identical `gate_mcp_corpus_current` staleness. **On fetch before push, found a concurrent session had already built and merged the identical Hall Closet deck** (`a7693199c`), independently, with two fixes this cycle's own version lacked (KC-007/KC-012 orphan-cause coverage, `DECK_OG_IMAGE_ZONE_SLUG`/`gate_deck_article_grammar` missing Pantry and Hall Closet entries). Rather than push a conflicting duplicate, merged origin/main and resolved every Hall Closet-shaped conflict in favour of the concurrent session's superset version; this cycle's own local commit was discarded in the merge, not force-pushed over.
