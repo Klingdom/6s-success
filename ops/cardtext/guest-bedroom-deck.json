@@ -1,0 +1,2459 @@
+{
+ "deck": "guest-bedroom",
+ "room": "Guest Bedroom",
+ "count": 57,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 5,
+  "FRICTION CARD": 15,
+  "ROOT CAUSE CARD": 13,
+  "ACTION CARD": 13,
+  "STANDARD CARD": 5,
+  "EVENT CARD": 5
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "GBR-001",
+   "title": "THE GUEST BEDROOM",
+   "type": "ROOM CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "THE ROOM WITH NO DAILY USER IS WHERE EVERYTHING UNDECIDED HIDES.",
+   "objective": "The guest bedroom is the only room in the house with no daily user, which is why it quietly absorbs whatever the rest of the house could not decide about. This card is the map and the order.",
+   "zones_in_order": [
+    "GBZ-001 Guest Bed and Linens",
+    "GBZ-002 Guest Nightstand",
+    "GBZ-003 Guest Dresser",
+    "GBZ-004 Guest Closet",
+    "GBZ-005 Guest Welcome and Work Surface"
+   ],
+   "start_here": "GBZ-004 Guest Closet. Open the closet first and pull everything onto the bed. You cannot judge how much room a visitor actually has while half of it is hidden behind a closet door, and working on the bed forces you to finish before anyone can sleep in here.",
+   "how_to_play": [
+    "1. Deal the five ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your guest room. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do GBA-011 The Full Room Safety And Access Walk before any rebuild. It takes thirty minutes and covers the dark path, every cord, and the dresser strap.",
+   "related": {
+    "contents": "GBZ-001 to GBZ-005, GBF-001 to GBF-015, the shared root causes in ops/root_causes.py, GBA-001 to GBA-013, GBS-001 to GBS-005, GBE-001 to GBE-005"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole guest bedroom in its settled state, the bed made up, the nightstand, the dresser, the closet door open onto six matching hangers, and the welcome desk all visible in one frame",
+    "must_show": [
+     "all five zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the five zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "GBZ-001",
+   "title": "GUEST BED AND LINENS",
+   "type": "ZONE CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "ONE SET MADE UP. ONE SET TAGGED. NOTHING ELSE UNDER THE BED.",
+   "objective": "A bed a visitor can get into tonight without you touching anything first.",
+   "callouts": [
+    "A mattress protector fitted under the bottom sheet",
+    "One complete sheet set made up on the bed",
+    "A second complete set folded inside its own pillowcase, standing on the shelf",
+    "Two pillows that spring back into shape when folded in half",
+    "One empty suitcase lying flat under the bed",
+    "A tag naming the bed size visible on the folded spare set"
+   ],
+   "done_looks_like": "Mattress protector on, one complete set made up on the bed, a second complete set folded inside its own pillowcase on the shelf, two pillows that spring back when you fold them in half, and nothing under the bed but one empty suitcase lying flat.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "A guest crossing an unfamiliar room in the dark to find the bathroom, with a suitcase or a footstool in the path between the bed and the door."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "A looped blind or curtain cord hanging within reach of the bed, which matters the moment a visiting family puts a small child in this room."
+    }
+   ],
+   "the_call": {
+    "title": "The demoted sheets",
+    "text": "The linen in this room got here because it stopped being good enough for your own bed. Thin sheets, the pilled set, the flat pillows, all quietly reassigned to people who will never say anything about it. The rule that settles it: if you would not sleep on it yourself for a week, it is not guest linen, it is cleaning cloth. Keep two complete sets that pass that test and let the rest go, even if it means buying one set. Two good sets beat six tired ones, and the shelf finally holds a decision instead of a backlog."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Upholstery tool for the vacuum",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Laundry detergent"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GBS-001",
+    "actions": [
+     "GBA-001",
+     "GBA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a made-up guest bed with a mattress protector and one complete sheet set, a second folded set with a visible size tag standing on a shelf nearby, two pillows resting beside it, and one empty suitcase lying flat and visible under the bed",
+    "must_show": [
+     "A mattress protector fitted under the bottom sheet",
+     "One complete sheet set made up on the bed",
+     "A second complete set folded inside its own pillowcase, standing on the shelf",
+     "Two pillows that spring back into shape when folded in half",
+     "One empty suitcase lying flat under the bed",
+     "A tag naming the bed size visible on the folded spare set"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GBZ-002",
+   "title": "GUEST NIGHTSTAND",
+   "type": "ZONE CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "order": 2,
+   "difficulty": 1,
+   "tagline": "TWO CABLES, TESTED TONIGHT. NOTHING OF YOURS IN THE DRAWER.",
+   "objective": "The handful of things a guest needs in the middle of the night without knocking on your door.",
+   "callouts": [
+    "A bedside lamp with its switch easy to find by feel",
+    "One charging cable per common connector, plugged in and reaching the pillow",
+    "A coaster sitting on the nightstand surface",
+    "A box of tissues at least half full",
+    "A drawer standing open and empty apart from one card",
+    "A card printed with the wifi name and password sitting alone in the drawer"
+   ],
+   "done_looks_like": "A lamp whose switch you can find by feel in the dark, one charging cable per common connector plugged in and reaching the pillow, a coaster, a box of tissues at least half full, and a drawer that is genuinely empty apart from a card with the wifi name and password.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "A water glass sitting beside a lamp base and a charger head on a small surface, with the cord crossing the top where a sleepy arm sweeps it."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Your own prescriptions or painkillers left in the nightstand drawer, at exactly the height a visiting toddler explores first."
+    }
+   ],
+   "the_call": {
+    "title": "Two cables, tested",
+    "text": "There are probably six or seven charging cables in this house that nobody can account for, and a few have drifted into this drawer on the theory that a guest might need one. They will not. A guest will find a cable, trust it because it is offered, plug in, and wake to a phone that never charged. That is worse than offering nothing. The rule: keep exactly two here, one of each connector your visitors actually carry, and prove each one tonight by charging a real device with it. Anything you cannot prove goes to the household charging drawer or into electronics recycling. An untested cable is not hospitality, it is a trap with a bow on it."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GBS-002",
+    "actions": [
+     "GBA-003",
+     "GBA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a bedside nightstand with a lamp switch within easy reach, one charging cable of each common type reaching toward the pillow, a coaster and a half-full tissue box on the surface, and an open drawer showing only a single wifi card inside",
+    "must_show": [
+     "A bedside lamp with its switch easy to find by feel",
+     "One charging cable per common connector, plugged in and reaching the pillow",
+     "A coaster sitting on the nightstand surface",
+     "A box of tissues at least half full",
+     "A drawer standing open and empty apart from one card",
+     "A card printed with the wifi name and password sitting alone in the drawer"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GBZ-003",
+   "title": "GUEST DRESSER",
+   "type": "ZONE CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "TWO DRAWERS, ALWAYS EMPTY. THE STRAP FIXED. NOTHING BORROWED.",
+   "objective": "Somewhere a guest can unpack, so they stop living out of a half open suitcase on the floor.",
+   "callouts": [
+    "The top two drawers standing completely empty and lined",
+    "Spare linens in the lower drawers folded to one uniform footprint",
+    "A label fixed to the inside front edge of a lower drawer",
+    "An anti-tip strap fixed between the dresser and the wall",
+    "A lamp or a mirror standing alone on the dresser top",
+    "No second object crowding the dresser top beside the lamp or mirror"
+   ],
+   "done_looks_like": "The top two drawers completely empty and lined, the lower drawers holding spare linens folded to one uniform footprint with a label on the inside front edge, an anti-tip strap fixed to the wall, and the dresser top carrying a lamp or a mirror and nothing else.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An unstrapped dresser with heavy linens low and empty drawers high, in a room where a visiting child is often left to play while the adults talk downstairs."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Dry cleaning film or the plastic bags spare bedding came sealed in, left inside a low drawer a small guest can open on their own."
+    }
+   ],
+   "the_call": {
+    "title": "The overflow you told yourself was free",
+    "text": "You have been storing things in here on the reasoning that the room stands empty most of the year, so the space costs nothing. It costs the whole point of the room. The rule: these two drawers belong to the guest and are never available, not for a week, not for the box you are about to sort properly, not for the winter coats until spring. When something in the house needs a home and this dresser is the only candidate, that is not a reason to take the drawer, it is a signal that you have not yet decided about the thing. Make the decision instead. This is the drawer that turns a storage room with a bed in it back into a guest room."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Streak-free glass and mirror cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GBS-003",
+    "actions": [
+     "GBA-005",
+     "GBA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a guest dresser with its top two drawers open and empty, a lower drawer showing folded linens at one uniform footprint with a visible label, an anti-tip strap fixed between the dresser back and the wall, and a lamp standing alone on the dresser top",
+    "must_show": [
+     "The top two drawers standing completely empty and lined",
+     "Spare linens in the lower drawers folded to one uniform footprint",
+     "A label fixed to the inside front edge of a lower drawer",
+     "An anti-tip strap fixed between the dresser and the wall",
+     "A lamp or a mirror standing alone on the dresser top",
+     "No second object crowding the dresser top beside the lamp or mirror"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GBZ-004",
+   "title": "GUEST CLOSET",
+   "type": "ZONE CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "order": 4,
+   "difficulty": 4,
+   "tagline": "SIX HANGERS PAST THE TAPE. ONE CLEAR SQUARE. NOTHING SEALED SINCE THE MOVE.",
+   "objective": "Hanging space for someone else's clothes, plus whatever household storage this room has honestly agreed to carry.",
+   "callouts": [
+    "A forearm's width of clear closet rod",
+    "Six matching empty hangers on the clear rod",
+    "A clear floor square big enough for an open suitcase",
+    "Household bins on the shelf inside labelled lidded boxes",
+    "Nothing loose sitting above head height on the shelf",
+    "A strip of tape on the rod marking where the guest section ends"
+   ],
+   "done_looks_like": "At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labelled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Heavy boxes stored above the rod, directly over the head and hands of anyone reaching in for a hanger, in a closet nobody uses often enough to notice a bin creeping toward the shelf edge."
+    },
+    {
+     "question": "Fall",
+     "text": "Suitcases and loose bins on the closet floor, in the dark stretch of room a guest crosses barefoot on the way to the light switch."
+    }
+   ],
+   "the_call": {
+    "title": "The box you have not opened since the move",
+    "text": "There are two or three boxes on that shelf that were sealed at a previous address and have travelled unopened ever since. You keep them because opening one feels like it might cost an afternoon, and you keep meaning to have that afternoon. Do it standing here, now, with one box. If you can name a specific person and a specific occasion for what is inside, it earns a labelled home. If you find yourself saying we might need it, that is not a use, that is a delayed decision wearing a use's clothes. For anything you truly cannot face, write today's date on the lid in marker and put it back. If a year passes and you have not opened it again, it leaves unopened, and you will not remember what was in it."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GBS-004",
+    "actions": [
+     "GBA-007",
+     "GBA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a guest closet with a clear stretch of rod holding six matching empty hangers past a strip of tape, an open floor square large enough for a suitcase, and a shelf of labelled lidded bins sitting below head height",
+    "must_show": [
+     "A forearm's width of clear closet rod",
+     "Six matching empty hangers on the clear rod",
+     "A clear floor square big enough for an open suitcase",
+     "Household bins on the shelf inside labelled lidded boxes",
+     "Nothing loose sitting above head height on the shelf",
+     "A strip of tape on the rod marking where the guest section ends"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GBZ-005",
+   "title": "GUEST WELCOME AND WORK SURFACE",
+   "type": "ZONE CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "order": 5,
+   "difficulty": 3,
+   "tagline": "ONE MARKED FOOTPRINT. ONE CLEAR DESK. NO CORD ACROSS THE FLOOR.",
+   "objective": "Where a guest lands the suitcase, charges a laptop, and answers the email they came to this room to escape.",
+   "callouts": [
+    "A clear desk surface with a working lamp",
+    "A chair pulled up to the desk",
+    "A luggage rack or a taped floor square for the suitcase",
+    "One labelled welcome bin standing on the desk",
+    "A spare charger, wifi card, water glass, tissues and a folded blanket visible inside the open bin",
+    "A reachable outlet with no cord crossing the floor"
+   ],
+   "done_looks_like": "A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labelled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "An extension lead running from the desk across the open floor to the only reachable outlet, in the strip of carpet a guest walks in the dark."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A folding luggage rack that has never been load tested, or a hard case balanced on the desk edge, in a room where a child may be playing while you carry cases in and out."
+    }
+   ],
+   "the_call": {
+    "title": "The room's second job",
+    "text": "Almost every guest room is also something else: the home office, the sewing room, the place the exercise bike ended up. Pretending otherwise is precisely why hosting takes an afternoon, because you are not tidying, you are relocating an entire activity under time pressure. Name the second job out loud and give it a marked footprint, then test it honestly: can you clear that footprint into one bin or one cupboard, in a single trip, without unplugging anything? If yes, share the room and set the boundary in tape. If no, the second job is too big to share this room, and something moves out for good. That decision is uncomfortable, and it is the one that turns hosting from an event into a bed change."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Upholstery tool for the vacuum",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GBS-005",
+    "actions": [
+     "GBA-009",
+     "GBA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a guest room desk with a working lamp, a chair pulled up to it, a luggage rack beside a taped floor square, one labelled bin open to show a charger, wifi card, water glass and tissues, and a wall outlet with no cord crossing the floor",
+    "must_show": [
+     "A clear desk surface with a working lamp",
+     "A chair pulled up to the desk",
+     "A luggage rack or a taped floor square for the suitcase",
+     "One labelled welcome bin standing on the desk",
+     "A spare charger, wifi card, water glass, tissues and a folded blanket visible inside the open bin",
+     "A reachable outlet with no cord crossing the floor"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GBF-001",
+   "title": "THE DARK PATH FROM PILLOW TO DOOR",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A guest crossing this room in the dark to find the bathroom would have to step around a suitcase, a footstool, or a looped blind cord near the bed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's obvious to us because we live with this room, so nobody has actually walked it in the dark the way a stranger would",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Nobody is assigned to walk this room and check the path before a guest arrives",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "This is a real fall and strangulation risk the moment a guest or a visiting child meets it, not a tidiness question",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-001",
+    "root_causes": [
+     "RC-017",
+     "RC-013",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a guest bedroom at night with a footstool and a looped blind cord sitting in the direct path between the bed and the door",
+    "must_show": [
+     "A guest crossing this room in the dark to find the bathroom would have to step around a suitcase, a footstool, or a looped blind cord near the bed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-002",
+   "title": "SOMETHING UNDER THE BED THAT ISN'T THE SUITCASE",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Something that is not a suitcase is sitting under the guest bed when you finally look.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It was easier to set it down here than decide where it actually belongs",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "This room has no daily user, so whatever lands under that bed goes unnoticed until a guest is already arriving",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Nobody in the house has agreed this space is reserved for the suitcase and nothing else",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-001",
+    "root_causes": [
+     "RC-015",
+     "KC-009",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cardboard box visible under a made-up guest bed where only a flat empty suitcase should be",
+    "must_show": [
+     "Something that is not a suitcase is sitting under the guest bed when you finally look."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-003",
+   "title": "THE SET THAT POPS A CORNER EVERY TIME",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A fitted sheet's corner pops off the mattress while you are making up the bed, and it has been part of the guest set for years anyway.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's not really a spare anymore, it's linen I haven't admitted needs replacing",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "I can't tell from the shelf how many complete sets we actually have without unfolding each one",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nothing marks a set as failed the day it pops a corner, so it just goes back onto the shelf with the good ones",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-001",
+    "root_causes": [
+     "RC-015",
+     "KC-005",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a fitted sheet's corner springing loose off a mattress mid-make on a guest bed, an otherwise ordinary bedroom in the background",
+    "must_show": [
+     "A fitted sheet's corner pops off the mattress while you are making up the bed, and it has been part of the guest set for years anyway."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-004",
+   "title": "DEAD BATTERIES AND A CLOCK WITH THE WRONG TIME",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The drawer holds dead batteries, a clock radio with the wrong time, or paperbacks nobody actually chose for this room.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it has a real home elsewhere in the house, so it ends up in the one drawer nobody uses daily",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It's been in there for years, so it doesn't register as something to remove anymore",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Whoever last used this room for something else left it there, and nobody after them has looked",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-002",
+    "root_causes": [
+     "KC-002",
+     "RC-017",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open nightstand drawer holding loose dead batteries, a small clock radio showing the wrong time, and a couple of paperback books",
+    "must_show": [
+     "The drawer holds dead batteries, a clock radio with the wrong time, or paperbacks nobody actually chose for this room."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-005",
+   "title": "THE CORD ACROSS THE SLEEPY-ARM SWEEP",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A water glass and a charging cord are crowded on this small surface where a sleepy arm could sweep them, or a prescription is sitting in the drawer at the height a visiting toddler would explore first.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "This is a real shock, spill, or poisoning risk, which outranks how convenient the layout is",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Finding the lamp switch by feel in the dark has never actually been tested, so a guest fumbles for it instead",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "We've walked past that cord crossing the surface so many times it stopped registering as a hazard",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-006",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a water glass, a lamp base and a charging cord crowded together on a small nightstand surface with the cord crossing where a reaching arm would land",
+    "must_show": [
+     "A water glass and a charging cord are crowded on this small surface where a sleepy arm could sweep them, or a prescription is sitting in the drawer at the height a visiting toddler would explore first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-006",
+   "title": "THE CABLE NOBODY HAS TESTED",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A cable in this drawer has never actually been tested, and nobody could say whether it would charge anything tonight.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It drifted in on the idea a guest might need it, not because anyone tested it",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "There's no standard for what counts as guest-ready here, only whatever happened to end up in the drawer",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Nobody has a reason to open this drawer and test anything between one guest and the next",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-002",
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a loose charging cable coiled in an open nightstand drawer with no device attached to prove it works",
+    "must_show": [
+     "A cable in this drawer has never actually been tested, and nobody could say whether it would charge anything tonight."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-007",
+   "title": "THE BAG KEPT FOR A DECISION NOT YET MADE",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bag of outgrown baby clothes is still in this dresser, kept for a second child nobody has actually decided about.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's not clutter, it's a decision about whether we're having another child that I haven't made yet",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It's a keepsake from when they were tiny, and letting go of it feels bigger than the space it takes",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "The lower drawers were never actually assigned to spare guest linens only, so the baby bag just moved in when there was room",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-003",
+    "root_causes": [
+     "RC-015",
+     "RC-014",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a sealed bag of outgrown baby clothes sitting in the bottom of a guest dresser drawer beside folded guest linens",
+    "must_show": [
+     "A bag of outgrown baby clothes is still in this dresser, kept for a second child nobody has actually decided about."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-008",
+   "title": "THE DRESSER WITH NO STRAP",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "This dresser has no anti-tip strap, the heaviest linens sit in the bottom drawers, and a loose dry-cleaning bag is within a low drawer a small child could open.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "This is a real tip-over and suffocation risk the moment a visiting child is left playing in this room",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody has checked this dresser's own weight distribution or its low drawers since it was set up",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "We've walked past this same dresser for years without ever registering it isn't strapped down",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-003",
+    "root_causes": [
+     "KC-010",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a bedroom dresser with no visible anti-tip strap between its back and the wall, a low drawer cracked open showing loose plastic dry-cleaning film",
+    "must_show": [
+     "This dresser has no anti-tip strap, the heaviest linens sit in the bottom drawers, and a loose dry-cleaning bag is within a low drawer a small child could open."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-009",
+   "title": "THE TOP DRAWER THAT ISN'T EMPTY",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The guest dresser's top two drawers are holding off-season clothes, cables, or wrapping paper instead of standing empty for a guest.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The room stands empty most of the year, so it felt like the space cost nothing to borrow",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody has agreed these two drawers are reserved and never available for anything else",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "There's no other place in the house these off-season things have an actual assigned spot",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-003",
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dresser's top drawer half open, showing folded off-season jumpers and a tangle of cables instead of standing empty",
+    "must_show": [
+     "The guest dresser's top two drawers are holding off-season clothes, cables, or wrapping paper instead of standing empty for a guest."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-010",
+   "title": "THE BOX SEALED SINCE THE LAST ADDRESS",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A box on this shelf has been sealed since a previous address, and nobody can say what's inside without opening it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Opening it feels like it could cost an afternoon, so it keeps getting put off",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "This closet gets opened for a guest, not for a household chore, so nothing ever naturally prompts opening that box",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It's been sitting on that shelf so long it doesn't register as a task anymore, just part of the shelf",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-004",
+    "root_causes": [
+     "RC-015",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a taped cardboard box sitting on a closet shelf with an old, unreadable address label still stuck to its side",
+    "must_show": [
+     "A box on this shelf has been sealed since a previous address, and nobody can say what's inside without opening it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-011",
+   "title": "PAPERWORK WITH NO NAME ATTACHED",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A box of old phones or paperwork from a previous address is on this shelf with no named person or occasion attached to it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it has a next use, it's just here because nowhere else claimed it",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "There's more of this kind of thing than any real future use could need",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Sorting it by who would actually use it takes a decision I keep deferring",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-004",
+    "root_causes": [
+     "KC-002",
+     "KC-001",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a stack of old paperwork and a box of outdated phones sitting on a closet shelf beside neatly hung clothes",
+    "must_show": [
+     "A box of old phones or paperwork from a previous address is on this shelf with no named person or occasion attached to it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-012",
+   "title": "BOXES ABOVE THE ROD, BINS ON THE DARK FLOOR",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Heavy boxes sit on the shelf above the rod, or a suitcase and loose bins are left on the closet floor in the dark stretch a guest crosses barefoot.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "This is a real falling-object and trip risk the moment someone reaches for a hanger or walks this floor in the dark",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody checks this shelf often enough to notice a bin has crept toward the edge",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The floor square for a suitcase was never actually marked, so bins spread into it by default",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-004",
+    "root_causes": [
+     "KC-010",
+     "RC-013",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "heavy boxes stacked on a closet shelf directly above a hanging rod, with loose bins sitting on the closet floor below in dim light",
+    "must_show": [
+     "Heavy boxes sit on the shelf above the rod, or a suitcase and loose bins are left on the closet floor in the dark stretch a guest crosses barefoot."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-013",
+   "title": "THE DESK DOING THE ROOM'S SECOND JOB",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The desk is holding gift wrap, an ironing pile that never made it back to the wardrobe, or a printer that hasn't been switched on all year.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "This room is doing a second job for the household, and nobody's decided how much of that job this desk can honestly keep",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "None of this has a home somewhere else in the house, so the closest quiet surface holds it",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It's been sitting there long enough that it doesn't register as something to clear anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-005",
+    "root_causes": [
+     "RC-015",
+     "KC-002",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a guest room desk covered in gift wrap, an unfinished ironing pile and an unused printer instead of standing clear",
+    "must_show": [
+     "The desk is holding gift wrap, an ironing pile that never made it back to the wardrobe, or a printer that hasn't been switched on all year."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-014",
+   "title": "THE CORD ACROSS THE WALKING LINE",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "An extension lead runs across the open floor to the only reachable outlet, or a hard case is balanced on the desk edge while cases are carried in and out.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "This is a real trip, fall, and crush risk the moment a guest walks this floor in the dark or a child is in the room while cases move",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The only reachable outlet sits on the far side of the room from the desk, so the lead has to cross the walking path to reach it",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "It's the household's own habit to balance things on the desk edge, and nobody's re-checked that habit since a guest room started needing it clear",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-005",
+    "root_causes": [
+     "KC-010",
+     "KC-003",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an extension lead running across an open floor to a far wall outlet, a hard suitcase balanced on the edge of a desk nearby",
+    "must_show": [
+     "An extension lead runs across the open floor to the only reachable outlet, or a hard case is balanced on the desk edge while cases are carried in and out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GBF-015",
+   "title": "MORE THAN ONE TRIP TO CLEAR IT",
+   "type": "FRICTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Clearing this room's second job off the desk would take more than one trip, or something would need unplugging first.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The second job was never given its own marked footprint, so it spread across the whole desk instead of staying in one bin",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "This activity genuinely needs more room than a shared desk can honestly give it",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Nobody has actually run the one-trip test to find out; it's just assumed to be fine",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your guest room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GBZ-005",
+    "root_causes": [
+     "KC-008",
+     "KC-007",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cluttered desk corner with craft supplies spread past a single bin's worth of space",
+    "must_show": [
+     "Clearing this room's second job off the desk would take more than one trip, or something would need unplugging first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-011"
+    ],
+    "actions": [
+     "GBA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shelf of old phones and paperwork from a previous address filling a guest closet shelf, clearly more than any real future use would need",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-004",
+     "GBF-007",
+     "GBF-009",
+     "GBF-011",
+     "GBF-013"
+    ],
+    "actions": [
+     "GBA-003",
+     "GBA-007",
+     "GBA-009",
+     "GBA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "loose household batteries, a clock radio and paperback books sitting inside an open guest nightstand drawer with nowhere else in the house to go",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-014"
+    ],
+    "actions": [
+     "GBA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an extension lead stretching across an open guest room floor to reach the one outlet on the far wall",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-003"
+    ],
+    "actions": [
+     "GBA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of folded guest sheet sets on a shelf with no way to tell how many complete sets are inside without unfolding each one",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-005"
+    ],
+    "actions": [
+     "GBA-004",
+     "GBA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand fumbling in the dark for a bedside lamp switch that cannot be found by feel",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-015"
+    ],
+    "actions": [
+     "GBA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "craft supplies spread across a guest room desk with far more than one bin's worth of space",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-002",
+     "GBF-003",
+     "GBF-006",
+     "GBF-009",
+     "GBF-012",
+     "GBF-015"
+    ],
+    "actions": [
+     "GBA-004",
+     "GBA-006",
+     "GBA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a guest dresser drawer half full of off-season clothes with no label or marking showing it should stand empty",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-002",
+     "GBF-006",
+     "GBF-010"
+    ],
+    "actions": [
+     "GBA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a sealed box sitting untouched on a guest closet shelf with nothing in the room's own routine to prompt opening it",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-001",
+     "GBF-005",
+     "GBF-008",
+     "GBF-012",
+     "GBF-014"
+    ],
+    "actions": [
+     "GBA-002",
+     "GBA-004",
+     "GBA-006",
+     "GBA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a looped blind cord hanging within reach of a guest bed, and an extension lead crossing the floor nearby",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-001",
+     "GBF-004",
+     "GBF-008",
+     "GBF-012",
+     "GBF-015"
+    ],
+    "actions": [
+     "GBA-003",
+     "GBA-008",
+     "GBA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a guest bedroom floor with an unremoved footstool in the walking path, no checklist or name attached to who should have walked it",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-007"
+    ],
+    "actions": [
+     "GBA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a small bag of outgrown baby clothes sitting untouched in the bottom of a guest dresser drawer",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-002",
+     "GBF-003",
+     "GBF-006",
+     "GBF-007",
+     "GBF-009",
+     "GBF-010",
+     "GBF-011",
+     "GBF-013"
+    ],
+    "actions": [
+     "GBA-001",
+     "GBA-005",
+     "GBA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a taped cardboard box sitting sealed on a guest closet shelf since a previous address, no name or date marked anywhere on it",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GBF-001",
+     "GBF-004",
+     "GBF-005",
+     "GBF-008",
+     "GBF-010",
+     "GBF-013",
+     "GBF-014"
+    ],
+    "actions": [
+     "GBA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an unstrapped dresser standing in a guest bedroom exactly as it has for years, nothing about it flagged as unusual",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "GBA-001",
+   "title": "TEST EVERY GUEST SET, RAG THE FAILURES",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take every sheet set that has been demoted to this room and try each fitted sheet on the actual mattress, so nothing that fails the test stays in the guest rotation.",
+   "why_it_matters": "A set that pops a corner mid-make is a rag, not a spare, and a guest has no way to know which one they were handed.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag or rag pile"
+   ],
+   "steps": [
+    "Take every sheet set that has been demoted to this room and try each fitted sheet on the actual mattress. If a corner pops off while you are making the bed, it is a rag, not a spare. Fold each pillow in half and let go, and anything that stays folded goes out.",
+    "Count what survives: you need exactly two complete sets for this bed, not however many happen to fit on the shelf."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-005"
+    ],
+    "zone": "GBZ-001",
+    "standard": "GBS-001"
+   },
+   "victory_condition": "Every remaining sheet set has passed the mattress test, and every remaining pillow springs back when folded in half.",
+   "next_card": "GBS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand testing a fitted sheet's corner against a bare mattress, a folded rejected set set apart on the floor beside it",
+    "must_show": [
+     "Every remaining sheet set has passed the mattress test, and every remaining pillow springs back when folded in half."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-002",
+   "title": "CLEAR UNDER THE BED AND WALK THE DARK ROUTE",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Empty anything that is not the guest suitcase out from under the bed, tie up any loose blind cord, and walk the route from pillow to door with the lights off.",
+   "why_it_matters": "A guest crossing this room in the dark has never memorised where the footstool or the box lives; you have, which is exactly why you cannot see the hazard anymore.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond your own two feet and the lights switch"
+   ],
+   "steps": [
+    "Walk from the pillow to the door with the lights off, the way a guest will in the small hours in a room they do not know, and clear anything their shin will find.",
+    "If the bed sits under a blind, tie the cord up out of reach of a visiting toddler.",
+    "Remove anything from under the bed that is not the one folded-flat suitcase, and give it a real home elsewhere in the house."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-010"
+    ],
+    "zone": "GBZ-001",
+    "standard": "GBS-001"
+   },
+   "victory_condition": "Nothing but one empty suitcase remains under the bed, and the dark walk from pillow to door meets no obstacle.",
+   "next_card": "GBA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand tying up a blind cord above a guest bed at night, the floor path to the door visibly clear",
+    "must_show": [
+     "Nothing but one empty suitcase remains under the bed, and the dark walk from pillow to door meets no obstacle."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-003",
+   "title": "CLEAR THE DRAWER OF EVERYTHING THAT ISN'T A GUEST'S",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take out everything that has been hiding in this drawer and leave only what a guest actually needs.",
+   "why_it_matters": "None of what collects here belongs to a guest, and none of it belongs to you either once you actually look at it.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Open the drawer and take out what has been hiding in a room nobody uses: dead batteries, a clock radio that lost its time when the power blipped, three paperbacks nobody chose, cough drops fused into their tin. None of it belongs to a guest, and none of it belongs to you either.",
+    "Leave only a card with the wifi name and password inside the empty drawer."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-013"
+    ],
+    "zone": "GBZ-002",
+    "standard": "GBS-002"
+   },
+   "victory_condition": "The drawer holds only what a guest needs: a lamp within reach, two tested cables, tissues, a coaster and the wifi card, nothing of the household's.",
+   "next_card": "GBS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand clearing dead batteries and an old paperback out of a nightstand drawer, a single wifi card left inside",
+    "must_show": [
+     "The drawer holds only what a guest needs: a lamp within reach, two tested cables, tissues, a coaster and the wifi card, nothing of the household's."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-004",
+   "title": "PROVE TWO CABLES AND MOVE THE HAZARDS",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Keep exactly two cables here, one of each connector your visitors actually carry, and prove each one tonight by charging a real device. Move any prescription or medicine out of the drawer.",
+   "why_it_matters": "An untested cable is not hospitality, it is a trap with a bow on it, and medicine at toddler height is a poisoning risk the moment a visiting family uses this room.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a real phone to test with",
+    "the two cables you are keeping"
+   ],
+   "steps": [
+    "Charge a real device from each cable you plan to keep before a guest ever tries either one.",
+    "Move anything of the household's, prescriptions and painkillers included, out of this drawer for good.",
+    "Confirm the lamp switch can be found by feel with the room dark."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-010",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-010",
+     "KC-006"
+    ],
+    "zone": "GBZ-002",
+    "standard": "GBS-002"
+   },
+   "victory_condition": "Two tested cables reach the pillow, the lamp switch is findable by feel in the dark, and nothing of the household's remains in the drawer.",
+   "next_card": "GBA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand charging a phone from a nightstand cable in a dim room, the charge indicator lit",
+    "must_show": [
+     "Two tested cables reach the pillow, the lamp switch is findable by feel in the dark, and nothing of the household's remains in the drawer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-005",
+   "title": "OPEN THE TOP DRAWERS AND MAKE THE DECISION",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the top two drawers of everything the household has been storing there, and make the one decision that has been avoided about the baby clothes.",
+   "why_it_matters": "This dresser is not free storage because the room stands empty most of the year; every week it holds the household's overflow is a week the guest room is not actually a guest room.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a marker for the drawer label",
+    "somewhere for the jumpers and cables to go"
+   ],
+   "steps": [
+    "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
+    "Label the inside front edge of a lower drawer with what it now holds."
+   ],
+   "root_causes": [
+    "RC-015",
+    "RC-014"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "RC-014"
+    ],
+    "zone": "GBZ-003",
+    "standard": "GBS-003"
+   },
+   "victory_condition": "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed.",
+   "next_card": "GBS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a dresser's top drawer standing empty and lined, a bag of baby clothes set apart on the floor awaiting a decision",
+    "must_show": [
+     "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-006",
+   "title": "STRAP THE DRESSER AND CLEAR THE LOW DRAWER",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Fix an anti-tip strap between the dresser and the wall, and remove any loose plastic or dry-cleaning film from a low drawer.",
+   "why_it_matters": "An unstrapped dresser with heavy linens low and light drawers high is a real tip-over risk in a room where a visiting child is often left to play.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "an anti-tip strap and its fixings",
+    "a screwdriver"
+   ],
+   "steps": [
+    "Fix the anti-tip strap between the back of the dresser and the wall stud, not just the drywall.",
+    "Remove any dry-cleaning film or loose plastic bags from a low drawer a small guest could open.",
+    "Mark these two drawers reserved so nothing of the household's moves back in."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-008"
+    ],
+    "zone": "GBZ-003",
+    "standard": "GBS-003"
+   },
+   "victory_condition": "An anti-tip strap is fixed between the dresser and the wall, and no low drawer holds loose plastic or film.",
+   "next_card": "GBA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand fixing an anti-tip strap between the back of a dresser and a wall stud",
+    "must_show": [
+     "An anti-tip strap is fixed between the dresser and the wall, and no low drawer holds loose plastic or film."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-007",
+   "title": "OPEN THE SEALED BOX AND NAME A PERSON OR IT GOES",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty this closet onto the bed and sort everything by whether a named person will use it in a named situation.",
+   "why_it_matters": "A box sealed since a previous address that nobody can name a use for is not storage, it is a decision wearing a use's clothes.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a marker for dating anything you cannot yet decide on"
+   ],
+   "steps": [
+    "Take everything out and put it on the bed. This closet is where the house keeps holiday decorations, a wedding dress in a zipped bag, a box of old phones, and paperwork from two addresses ago. Sort by whether a named person will use it in a named situation, and route the rest out.",
+    "For anything you truly cannot face today, write today's date on the lid and give yourself one year before it leaves unopened."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-001"
+    ],
+    "zone": "GBZ-004",
+    "standard": "GBS-004"
+   },
+   "victory_condition": "At least a forearm's width of clear rod carries six matching empty hangers, and the floor square for a suitcase is clear.",
+   "next_card": "GBS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a sealed cardboard box opened on a bed beside a closet, its contents being sorted into keep and go piles",
+    "must_show": [
+     "At least a forearm's width of clear rod carries six matching empty hangers, and the floor square for a suitcase is clear."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-008",
+   "title": "TAPE THE GUEST SECTION AND CLEAR THE OVERHEAD SHELF",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Move heavy boxes off the shelf directly above the rod, clear loose bins from the closet floor, and mark the tape line where the guest section ends.",
+   "why_it_matters": "A heavy box above the rod is a falling-object risk the moment a hand reaches for a hanger, and a bin on the dark floor is what a barefoot guest finds first.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "tape for the rod line",
+    "labelled lidded bins"
+   ],
+   "steps": [
+    "Move every heavy box off the shelf directly above the rod, and repack household storage into labelled lidded bins below head height.",
+    "Clear the closet floor of loose bins so a suitcase has a real square to sit in.",
+    "Stick a strip of tape on the rod marking exactly where the guest section ends."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-013"
+    ],
+    "zone": "GBZ-004",
+    "standard": "GBS-004"
+   },
+   "victory_condition": "No loose item sits above head height on the shelf, and a strip of tape on the rod marks the guest section clearly.",
+   "next_card": "GBA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand moving a heavy box down from a closet shelf above the rod, a clear floor square visible below",
+    "must_show": [
+     "No loose item sits above head height on the shelf, and a strip of tape on the rod marks the guest section clearly."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-009",
+   "title": "CLEAR THE DESK COMPLETELY",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the desk surface completely and send everything on it back to where it actually belongs.",
+   "why_it_matters": "Gift wrap, an ironing pile, and an unused printer are the household's second job spilling onto the one surface a guest needs clear.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin for filing",
+    "the wardrobe the ironing came from"
+   ],
+   "steps": [
+    "Clear the surface completely. It will be holding gift wrap, an ironing pile that never made it back, a printer that has not been switched on this year, and paperwork someone brought in here to deal with in peace. The ironing goes back to the wardrobe it came from, the printer either earns a desk somewhere it gets used or leaves the house, and the paperwork goes into the file it was always headed for."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ],
+    "zone": "GBZ-005",
+    "standard": "GBS-005"
+   },
+   "victory_condition": "The desk stands clear with a working lamp, and no cord crosses the walking line to the outlet.",
+   "next_card": "GBS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a desk being cleared of gift wrap and an ironing pile, a lamp and a clear surface emerging underneath",
+    "must_show": [
+     "The desk stands clear with a working lamp, and no cord crosses the walking line to the outlet."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-010",
+   "title": "GIVE THE SECOND JOB A MARKED FOOTPRINT AND MOVE THE CORD",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Name this room's second job out loud, give it a marked footprint you can clear in one trip, and route the extension lead away from the walking path.",
+   "why_it_matters": "Pretending this room has only one job is why hosting takes an afternoon; naming the second job honestly is what turns it back into a bed change.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "tape for the marked footprint",
+    "one bin or cupboard for the second job"
+   ],
+   "steps": [
+    "Name the room's second job out loud, and test it: can the whole thing clear into one bin or one cupboard, in a single trip, without unplugging anything?",
+    "Mark that footprint in tape so the boundary is visible, not assumed.",
+    "Move the extension lead so it no longer crosses the floor a guest walks in the dark."
+   ],
+   "root_causes": [
+    "KC-007",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "KC-003"
+    ],
+    "zone": "GBZ-005",
+    "standard": "GBS-005"
+   },
+   "victory_condition": "The second job clears into its marked footprint in one trip, and no cord crosses the walking line to the outlet.",
+   "next_card": "GBA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a taped floor footprint beside a desk, an extension lead rerouted away from the open walking path",
+    "must_show": [
+     "The second job clears into its marked footprint in one trip, and no cord crosses the walking line to the outlet."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-011",
+   "title": "THE FULL ROOM SAFETY AND ACCESS WALK",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk the whole room testing what a guest cannot see for themselves: the lamp switch in the dark, every cord's route, and whether anything about this room's own habits has gone unnoticed for too long.",
+   "why_it_matters": "You know this room too well to see its own hazards; a guest meets all of them for the first time, in the dark, tonight.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing beyond the lights switch and your own hands"
+   ],
+   "steps": [
+    "With the lights off, find the nightstand lamp switch by feel alone, the way a guest will.",
+    "Walk every cord in the room and confirm none of them crosses a path a guest would take.",
+    "Ask someone who does not live here to name one thing about this room that looks out of place to them; if they see it instantly and you had stopped noticing, fix that thing first."
+   ],
+   "root_causes": [
+    "KC-006",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "The lamp switch is findable by feel in the dark, no cord crosses a walking path, and nothing a fresh pair of eyes flagged remains unfixed.",
+   "next_card": "GBA-010",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand finding a bedside lamp switch by feel in a dark guest room, no cord visible crossing the floor",
+    "must_show": [
+     "The lamp switch is findable by feel in the dark, no cord crosses a walking path, and nothing a fresh pair of eyes flagged remains unfixed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-012",
+   "title": "WHO WALKS THIS ROOM BEFORE A GUEST ARRIVES",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Name one person whose job it is to walk this room and check it before every arrival, not whoever happens to remember.",
+   "why_it_matters": "This room has no daily user, so upkeep depends entirely on someone being named for it; without a name, it depends on luck.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing beyond a decision"
+   ],
+   "steps": [
+    "Say out loud, or write down, whose job it is to walk this room before every guest arrives.",
+    "Walk it once now, today, as a test of what that job actually involves."
+   ],
+   "root_causes": [
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013"
+    ]
+   },
+   "victory_condition": "One named person has walked this room before this arrival, and everyone in the house knows whose job that is.",
+   "next_card": "GBA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing a name onto a card taped inside a guest bedroom closet door",
+    "must_show": [
+     "One named person has walked this room before this arrival, and everyone in the house knows whose job that is."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBA-013",
+   "title": "THE MONTHLY BORROWED-SPACE AUDIT",
+   "type": "ACTION CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Once a month, check that the reserved dresser drawers, the closet's guest section, and the desk's marked footprint have not been quietly recolonised by the household.",
+   "why_it_matters": "A boundary drawn once and never rechecked is exactly how a guest room turns back into a storage room with a bed in it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond the boundaries you have already marked"
+   ],
+   "steps": [
+    "Check the top two dresser drawers are still empty and the closet's tape line still marks a real boundary.",
+    "Check the desk's marked footprint still holds only what it was given.",
+    "For anything that has crept back in, decide today where it actually belongs rather than let it stay."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-002"
+    ]
+   },
+   "victory_condition": "Every marked boundary in this room, the drawers, the closet line, and the desk footprint, still holds exactly what it was given, checked this month.",
+   "next_card": "GBA-012",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand checking an empty dresser drawer against its own label, a tape line visible on a closet rod behind it",
+    "must_show": [
+     "Every marked boundary in this room, the drawers, the closet line, and the desk footprint, still holds exactly what it was given, checked this month."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GBS-001",
+   "title": "GUEST BED AND LINENS STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Bed and Linens",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two complete guest sets, each bundled in its own pillowcase and tagged with the bed size, and one of them always on the bed.",
+   "trigger": "When you carry the departing guest's towels to the machine, the sheets come off the bed and go in with them.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run the vacuum's upholstery tool along the mattress seams where dust settles between guests.",
+    "Wipe the headboard's top edge with a dry microfiber cloth, the one strip nobody's arm ever reaches while sitting up.",
+    "Pull the bed a stride from the wall and vacuum the strip of floor behind it."
+   ],
+   "related": {
+    "zone": "GBZ-001",
+    "actions": [
+     "GBA-001",
+     "GBA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a made-up guest bed with a mattress protector and one complete sheet set, a second folded set with a visible size tag standing on a shelf nearby, two pillows resting beside it, and one empty suitcase lying flat and visible under the bed, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GBS-002",
+   "title": "GUEST NIGHTSTAND STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Nightstand",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Lamp, two proven cables, tissues, coaster, wifi card. Nothing of the household's inside the drawer.",
+   "trigger": "When you make up the bed for an arrival, you switch the lamp on and charge your own phone from both cables before you leave the room.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the lamp base and switch with a barely damp cloth so a guest's first touch in the dark is clean.",
+    "Vacuum the drawer's inside corners where dust settles behind the wifi card.",
+    "Test both charging cables against a real phone and note the date on a card inside the drawer."
+   ],
+   "related": {
+    "zone": "GBZ-002",
+    "actions": [
+     "GBA-003",
+     "GBA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a bedside nightstand with a lamp switch within easy reach, one charging cable of each common type reaching toward the pillow, a coaster and a half-full tissue box on the surface, and an open drawer showing only a single wifi card inside, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GBS-003",
+   "title": "GUEST DRESSER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Dresser",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Top two drawers empty and labelled reserved, lower drawers holding only spare linens for this room's bed, strap fixed to the wall.",
+   "trigger": "When you swap your own wardrobe over between seasons, you check the guest drawers are still empty before the swap counts as finished.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the dresser top and the lamp or mirror on it until no smear remains.",
+    "Vacuum inside each empty top drawer before closing it, corners included.",
+    "Check the anti-tip strap's screws are still snug against the wall."
+   ],
+   "related": {
+    "zone": "GBZ-003",
+    "actions": [
+     "GBA-005",
+     "GBA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a guest dresser with its top two drawers open and empty, a lower drawer showing folded linens at one uniform footprint with a visible label, an anti-tip strap fixed between the dresser back and the wall, and a lamp standing alone on the dresser top, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GBS-004",
+   "title": "GUEST CLOSET STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Closet",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Six matching empty hangers past the tape line, a clear floor square for a suitcase, and every household bin lidded, labelled and below head height.",
+   "trigger": "When you fetch or return a seasonal bin, you count the six hangers before you close the door.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Vacuum the closet floor corner behind where suitcases usually sit.",
+    "Wipe the rod itself with a dry cloth so a hanger slides on cleanly.",
+    "Check the taped guest-section line is still stuck down and readable."
+   ],
+   "related": {
+    "zone": "GBZ-004",
+    "actions": [
+     "GBA-007",
+     "GBA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a guest closet with a clear stretch of rod holding six matching empty hangers past a strip of tape, an open floor square large enough for a suitcase, and a shelf of labelled lidded bins sitting below head height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GBS-005",
+   "title": "GUEST WELCOME AND WORK SURFACE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bedroom",
+   "zone": "Guest Welcome and Work Surface",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Clear desk, marked suitcase footprint, one labelled welcome bin with the ready-state photo inside the lid, and no cord crossing a walking line.",
+   "trigger": "When the guest's sheets go into the machine, the welcome bin is restocked and put back before you leave the room.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the desk surface and lamp base with the neutral pH cleaner before the welcome bin goes back.",
+    "Vacuum the chair seat and the floor square marked for the suitcase.",
+    "Check the outlet and cord are still clear of the walking line."
+   ],
+   "related": {
+    "zone": "GBZ-005",
+    "actions": [
+     "GBA-009",
+     "GBA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a guest room desk with a working lamp, a chair pulled up to it, a luggage rack beside a taped floor square, one labelled bin open to show a charger, wifi card, water glass and tissues, and a wall outlet with no cord crossing the floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GBE-001",
+   "title": "THE LATE-NIGHT ARRIVAL",
+   "type": "EVENT CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest calls from the road an hour out, later than planned, and the bed has to be ready the moment they walk in.",
+   "tests_zones": [
+    "GBZ-001"
+   ],
+   "held_if": "A complete set is already made up and the second set sits tagged and ready on the shelf, no laundry required.",
+   "if_it_failed": "If a set had to come out of the wash or off another bed first, the sustain trigger slipped. Draw GBA-001.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GBZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand smoothing a finished, made-up guest bed at night with a tagged spare set visible folded on a nearby shelf",
+    "must_show": [
+     "A guest calls from the road an hour out, later than planned, and the bed has to be ready the moment they walk in."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GBE-002",
+   "title": "THE PHONE THAT NEEDS TO CHARGE OVERNIGHT",
+   "type": "EVENT CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest's phone is nearly dead and they reach for whichever cable is on the nightstand without asking.",
+   "tests_zones": [
+    "GBZ-002"
+   ],
+   "held_if": "Either cable on the nightstand charges the phone immediately, because both were tested this week.",
+   "if_it_failed": "If the cable did nothing, an untested one had drifted back into the drawer. Draw GBA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GBZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand plugging a phone into a nightstand cable in a dimly lit guest room, the charge indicator lighting up immediately",
+    "must_show": [
+     "A guest's phone is nearly dead and they reach for whichever cable is on the nightstand without asking."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GBE-003",
+   "title": "THE WEEKEND GUEST WHO ACTUALLY UNPACKS",
+   "type": "EVENT CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest staying more than one night opens the top drawers to unpack a full suitcase.",
+   "tests_zones": [
+    "GBZ-003"
+   ],
+   "held_if": "Both top drawers are already empty and lined, ready for a full suitcase with nothing to clear out first.",
+   "if_it_failed": "If anything of the household's had to come out first, the reserved-drawer rule slipped. Draw GBA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GBZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a guest's folded clothes being placed into an already-empty, lined dresser drawer",
+    "must_show": [
+     "A guest staying more than one night opens the top drawers to unpack a full suitcase."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GBE-004",
+   "title": "THE COAT THAT NEEDS A HANGER IN THE DARK",
+   "type": "EVENT CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest arrives after dark and reaches into the closet for a hanger without a light on.",
+   "tests_zones": [
+    "GBZ-004"
+   ],
+   "held_if": "Six matching hangers are exactly where the tape line says they are, and the floor square underneath is clear to step onto.",
+   "if_it_failed": "If a hanger was missing or a bin was underfoot in the dark, the guest-section boundary slipped. Draw GBA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GBZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching into a dark closet and finding an empty hanger exactly past a strip of tape on the rod",
+    "must_show": [
+     "A guest arrives after dark and reaches into the closet for a hanger without a light on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GBE-005",
+   "title": "THE MORNING THE HOUSEHOLD'S OWN PROJECT SPILLS BACK IN",
+   "type": "EVENT CARD",
+   "room": "Guest Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Someone needs the desk for the room's other job the same week a guest is due to arrive.",
+   "tests_zones": [
+    "GBZ-005"
+   ],
+   "held_if": "The whole project clears into its one marked bin in a single trip, no unplugging required, leaving the desk clear.",
+   "if_it_failed": "If it took more than one trip or something needed unplugging, the marked footprint was never honestly set. Draw GBA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GBZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "hands lifting a single labelled bin off a guest room desk to leave it completely clear",
+    "must_show": [
+     "Someone needs the desk for the room's other job the same week a guest is due to arrive."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

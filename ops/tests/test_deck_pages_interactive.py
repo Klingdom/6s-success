@@ -146,6 +146,16 @@ PAGES = (
     # (ops/build_hall_closet_deck_page.py also mirrors the same card for
     # card), so the same native-<details> probe applies.
     ("hall-closet-deck.html", KITCHEN_DECK_PROBE),
+    # Tenth room (ops/build_dining_room_deck_page.py also mirrors the same
+    # card for card). Never actually added here when that room shipped,
+    # the same "claimed in the log, never landed" gap Stair Landing's own
+    # entry above already found once; found and fixed while wiring in the
+    # eleventh room (Guest Bedroom) below.
+    ("dining-room-deck.html", KITCHEN_DECK_PROBE),
+    # Eleventh room, same generator shape again
+    # (ops/build_guest_bedroom_deck_page.py also mirrors the same card for
+    # card), so the same native-<details> probe applies.
+    ("guest-bedroom-deck.html", KITCHEN_DECK_PROBE),
 )
 
 
@@ -289,6 +299,10 @@ CHECKERS = {
         o, bad, page="pantry-deck.html"),
     "hall-closet-deck.html": lambda o, bad: _check_kitchen_deck(
         o, bad, page="hall-closet-deck.html"),
+    "dining-room-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="dining-room-deck.html"),
+    "guest-bedroom-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="guest-bedroom-deck.html"),
 }
 
 

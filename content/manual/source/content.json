@@ -4874,6 +4874,65 @@
        "While you turn the mattress, flag any headboard bolt or frame joint that has worked loose, and any slat that has cracked or slipped its rail.",
        "Flag damp, rust, or a musty note on the under-bed floor or inside the stored suitcase, which tells you moisture is sitting where you never look."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A guest crossing this room in the dark to find the bathroom would have to step around a suitcase, a footstool, or a looped blind cord near the bed.",
+        "branches": [
+         {
+          "answer": "It's obvious to us because we live with this room, so nobody has actually walked it in the dark the way a stranger would",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nobody is assigned to walk this room and check the path before a guest arrives",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "This is a real fall and strangulation risk the moment a guest or a visiting child meets it, not a tidiness question",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "Something that is not a suitcase is sitting under the guest bed when you finally look.",
+        "branches": [
+         {
+          "answer": "It was easier to set it down here than decide where it actually belongs",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "This room has no daily user, so whatever lands under that bed goes unnoticed until a guest is already arriving",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the house has agreed this space is reserved for the suitcase and nothing else",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A fitted sheet's corner pops off the mattress while you are making up the bed, and it has been part of the guest set for years anyway.",
+        "branches": [
+         {
+          "answer": "It's not really a spare anymore, it's linen I haven't admitted needs replacing",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "I can't tell from the shelf how many complete sets we actually have without unfolding each one",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nothing marks a set as failed the day it pops a corner, so it just goes back onto the shelf with the good ones",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every sheet set that has been demoted to this room and try each fitted sheet on the actual mattress. If a corner pops off while you are making the bed, it is a rag, not a spare. Fold each pillow in half and let go, and anything that stays folded goes out.",
+       "victory": "Every remaining sheet set has passed the mattress test, and every remaining pillow springs back when folded in half."
+      }
      }
     },
     {
@@ -4946,6 +5005,65 @@
        "Flag a drawer that catches or a runner that has come loose from its screw as you slide it back in.",
        "Flag a sticky or musty residue in the back corner of the drawer, where a past spill was never fully cleaned out."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The drawer holds dead batteries, a clock radio with the wrong time, or paperbacks nobody actually chose for this room.",
+        "branches": [
+         {
+          "answer": "None of it has a real home elsewhere in the house, so it ends up in the one drawer nobody uses daily",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's been in there for years, so it doesn't register as something to remove anymore",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Whoever last used this room for something else left it there, and nobody after them has looked",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A water glass and a charging cord are crowded on this small surface where a sleepy arm could sweep them, or a prescription is sitting in the drawer at the height a visiting toddler would explore first.",
+        "branches": [
+         {
+          "answer": "This is a real shock, spill, or poisoning risk, which outranks how convenient the layout is",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Finding the lamp switch by feel in the dark has never actually been tested, so a guest fumbles for it instead",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "We've walked past that cord crossing the surface so many times it stopped registering as a hazard",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A cable in this drawer has never actually been tested, and nobody could say whether it would charge anything tonight.",
+        "branches": [
+         {
+          "answer": "It drifted in on the idea a guest might need it, not because anyone tested it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no standard for what counts as guest-ready here, only whatever happened to end up in the drawer",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody has a reason to open this drawer and test anything between one guest and the next",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open the drawer and take out what has been hiding in a room nobody uses: dead batteries, a clock radio that lost its time when the power blipped, three paperbacks nobody chose, cough drops fused into their tin. None of it belongs to a guest, and none of it belongs to you either.",
+       "victory": "The drawer holds only what a guest needs: a lamp within reach, two tested cables, tissues, a coaster and the wifi card, nothing of the household's."
+      }
      }
     },
     {
@@ -5019,6 +5137,65 @@
        "As you clear the top, flag any water stain or heat mark left by a past plant, glass, or lamp.",
        "While you work behind it, flag an anti-tip strap that has gone slack or whose screw has started to pull from the wall."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A bag of outgrown baby clothes is still in this dresser, kept for a second child nobody has actually decided about.",
+        "branches": [
+         {
+          "answer": "It's not clutter, it's a decision about whether we're having another child that I haven't made yet",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's a keepsake from when they were tiny, and letting go of it feels bigger than the space it takes",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "The lower drawers were never actually assigned to spare guest linens only, so the baby bag just moved in when there was room",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "This dresser has no anti-tip strap, the heaviest linens sit in the bottom drawers, and a loose dry-cleaning bag is within a low drawer a small child could open.",
+        "branches": [
+         {
+          "answer": "This is a real tip-over and suffocation risk the moment a visiting child is left playing in this room",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody has checked this dresser's own weight distribution or its low drawers since it was set up",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "We've walked past this same dresser for years without ever registering it isn't strapped down",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The guest dresser's top two drawers are holding off-season clothes, cables, or wrapping paper instead of standing empty for a guest.",
+        "branches": [
+         {
+          "answer": "The room stands empty most of the year, so it felt like the space cost nothing to borrow",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody has agreed these two drawers are reserved and never available for anything else",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "There's no other place in the house these off-season things have an actual assigned spot",
+          "cause": "KC-002"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
+       "victory": "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed."
+      }
      }
     },
     {
@@ -5091,6 +5268,65 @@
        "Flag small holes in stored fabric or larvae casings in the corners, the signs of moths in a space that is opened too rarely to catch them.",
        "Flag a closet light that does not come on, since a dark closet is one a guest cleans out of by feel."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A box on this shelf has been sealed since a previous address, and nobody can say what's inside without opening it.",
+        "branches": [
+         {
+          "answer": "Opening it feels like it could cost an afternoon, so it keeps getting put off",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "This closet gets opened for a guest, not for a household chore, so nothing ever naturally prompts opening that box",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's been sitting on that shelf so long it doesn't register as a task anymore, just part of the shelf",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A box of old phones or paperwork from a previous address is on this shelf with no named person or occasion attached to it.",
+        "branches": [
+         {
+          "answer": "None of it has a next use, it's just here because nowhere else claimed it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "There's more of this kind of thing than any real future use could need",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Sorting it by who would actually use it takes a decision I keep deferring",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "Heavy boxes sit on the shelf above the rod, or a suitcase and loose bins are left on the closet floor in the dark stretch a guest crosses barefoot.",
+        "branches": [
+         {
+          "answer": "This is a real falling-object and trip risk the moment someone reaches for a hanger or walks this floor in the dark",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody checks this shelf often enough to notice a bin has crept toward the edge",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The floor square for a suitcase was never actually marked, so bins spread into it by default",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything out and put it on the bed. This closet is where the house keeps holiday decorations, a wedding dress in a zipped bag, a box of old phones, and paperwork from two addresses ago. Sort by whether a named person will use it in a named situation, and route the rest out.",
+       "victory": "At least a forearm's width of clear rod carries six matching empty hangers, and the floor square for a suitcase is clear."
+      }
      }
     },
     {
@@ -5169,6 +5405,65 @@
        "Flag a water ring or a heat mark on the desk top left by a past mug or laptop charger.",
        "Flag a wobble in a desk leg or a chair joint that has worked loose under weight."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The desk is holding gift wrap, an ironing pile that never made it back to the wardrobe, or a printer that hasn't been switched on all year.",
+        "branches": [
+         {
+          "answer": "This room is doing a second job for the household, and nobody's decided how much of that job this desk can honestly keep",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "None of this has a home somewhere else in the house, so the closest quiet surface holds it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's been sitting there long enough that it doesn't register as something to clear anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "An extension lead runs across the open floor to the only reachable outlet, or a hard case is balanced on the desk edge while cases are carried in and out.",
+        "branches": [
+         {
+          "answer": "This is a real trip, fall, and crush risk the moment a guest walks this floor in the dark or a child is in the room while cases move",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The only reachable outlet sits on the far side of the room from the desk, so the lead has to cross the walking path to reach it",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "It's the household's own habit to balance things on the desk edge, and nobody's re-checked that habit since a guest room started needing it clear",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Clearing this room's second job off the desk would take more than one trip, or something would need unplugging first.",
+        "branches": [
+         {
+          "answer": "The second job was never given its own marked footprint, so it spread across the whole desk instead of staying in one bin",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "This activity genuinely needs more room than a shared desk can honestly give it",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Nobody has actually run the one-trip test to find out; it's just assumed to be fine",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the surface completely. It will be holding gift wrap, an ironing pile that never made it back, a printer that has not been switched on this year, and paperwork someone brought in here to deal with in peace. The ironing goes back to the wardrobe it came from, the printer either earns a desk somewhere it gets used or leaves the house, and the paperwork goes into the file it was always headed for.",
+       "victory": "The desk stands clear with a working lamp, and no cord crosses the walking line to the outlet."
+      }
      }
     }
    ]
