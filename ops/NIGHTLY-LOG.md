@@ -43497,3 +43497,21 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Verified:** CI run 1622 (a3e109fd8) failed preflight on a real ROADMAP-2026-2029.md page-count drift (210 vs 211, from Nursery/Kids Bedroom shipping) plus its own fixture-test symptom. Commit 09d13c21a fixed the drift; ran gate_roadmap_prices_current and test_gates.py directly on current HEAD and confirmed both pass, independent of GitHub's own still-running CI.
 
 **Next:** hourly operator continues B9 (Primary Bedroom in flight). No new PM-scope item unblocked; all 8 open issues remain Phil-gated.
+
+## 2026-09-29, PM check-in (30-minute triage, previous work confirmed finished; Primary Bedroom claim left running, not stale)
+
+NEXT FOR THE OPERATOR: continue or finish B9's Primary Bedroom room deck, because the claim (`ops/b9-claims.json`, 18:02:44) is only ~50 minutes old, well inside the 3-hour staleness window, and no diagnosis layer or deck file exists yet for it, so the room is genuinely mid-build, not abandoned.
+
+**Did:** Repo arrived shallow/detached (issue #27's usual shape); unshallowed and fast-forwarded onto `origin/main` (`33c3b0695`), clean tree, no new commits since the prior (18:24) PM cycle. Read git log, `ops/NIGHTLY-LOG.md`'s last entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 8 open GitHub issues (unchanged: 2 P0/blocked-on-art or decision, 6 decision, all Phil-gated, 0 PRs).
+
+**Verified previous work finished:** the 18:24 cycle's ROADMAP page-count fix is still the current HEAD, working tree clean, main pushed. Checked `ops/b9-claims.json` directly rather than assuming: Primary Bedroom is `in_progress`, claimed 18:02:44, no deck or diagnosis-layer file exists for it yet (`find` for `*primary-bedroom*` under `ops/cardtext` and `ops/diagnosis*` came back empty), matching the claim's own note ("0/6 zones, authoring it first"). At ~50 minutes elapsed this is well short of the staleness bar the log has used all day (Kids Bedroom went stale at 3h28m), so reclaiming or duplicating it here would create exactly the collision this file exists to prevent. Left it alone.
+
+**Could not fully verify:** `python ops/preflight.py` (fast) was still running past 15 minutes into this 30-minute slot, working slowly through its own test-file gates one subprocess at a time rather than hanging (confirmed progressing: `test_gate_signup_form_withdrawal_protected.py` then `test_measure_events.py`, one per few minutes). Did not block the cycle on it; relying instead on the prior cycle's own direct, independent gate checks (`gate_roadmap_prices_current`, `test_gates.py`) against this identical HEAD. Reporting this honestly rather than citing a result that had not actually landed: this run's own preflight is UNCHECKED, not passing.
+
+**Went well:** recognizing a fresh, legitimate in-progress claim and declining to duplicate or reclaim it.
+
+**Did not go well:** `preflight.py` fast mode took long enough to make it unusable as this slot's own verification step; worth a future cycle checking whether it has regressed in speed (each gated test file spawns its own interpreter) rather than assuming sandbox variance.
+
+**Next:** operator continues Primary Bedroom per the handoff above. No new PM-scope item unblocked; all 8 open issues remain Phil-gated (item 0 in `OWNER-ACTIONS.md`, VPS_DEPLOY_KEY / issue #35, is still the single highest-leverage owner action: production is confirmed current only as of 2026-09-27T22:45:39Z and every `site/**` commit since has no automated path to reach it).
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` regenerated only; no price, product or new page touched; IndexNow not applicable.
