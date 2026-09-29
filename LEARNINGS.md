@@ -323,6 +323,7 @@ Maintain:
 | LRN-0018 | Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0019 | The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus fix never reaches the product | BUILD / PRODUCT | SUPPORTED | HIGH |
 | LRN-0020 | When a gate has no available action, the format is usually the thing to change, not the blocker | MEDIA / BUILD | SUPPORTED | HIGH |
+| LRN-0021 | A fixed threshold is a dated assumption about corpus size, and it fails as a reward for growth | BUILD / QUALITY | SUPPORTED | HIGH |
 | LRN-0021 | nohup and disown do not protect a background job from a process-group signal; only a new session (setsid) does | ENGINEERING / RELIABILITY | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
@@ -590,6 +591,42 @@ this log records). Any future wrapper meant to survive a caller being killed
 should be checked the same way: launch it, kill the launcher with the same
 signal shape the real constraint uses, and look at `ps`, not at the wrapper's
 own exit code, to see what actually happened to the child.
+
+#### LRN-0021: A fixed threshold is a dated assumption about corpus size, and it fails as a reward for growth
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (three instances in five days, same shape each time)
+**Domain:** BUILD / QUALITY
+**Measured:** 2026-09-25 to 2026-09-29
+
+Three gates failed in one week. None had a defect behind it. In all three a
+number that was correct when written stopped describing the thing it was
+chosen to describe, because the corpus grew underneath it:
+
+| Gate | Fixed number | What it measured | What had changed |
+|---|---|---|---|
+| kit-compact-rendered | 340 words per kit block | prose verbosity | a garage holds 18 kit items, a bathroom drawer 10 |
+| general-reading | 35 inbound links per article | link concentration | zones linking went 12 to 114 |
+| deck-print-tier | 72 cards | print economics | genuinely fixed, correctly kept |
+
+The first two were re-expressed against the quantity that actually varies: 28
+words per ITEM, and 40% of the ZONES THAT LINK. Measured after, the busiest
+article sits at 34% of zones against an even-spread 22.8, which is a healthy
+distribution that a fixed 35 was about to condemn. The third was checked and
+left alone, because 18-card print steps really are fixed and eight US Letter
+sheets at nine-up really is 72.
+
+**The tell is the failure mode.** A threshold that fails every time the project
+succeeds is measuring the denominator. The cost is not the red build, it is
+that the obvious response is to raise the number, which teaches everyone to
+raise it again, until the check is a number nobody believes and the day the
+spread genuinely collapses it says exactly the same thing it said on all the
+harmless days.
+
+**Implication.** When a gate fails, ask what grew before asking what broke.
+Then decide honestly which kind of number it is: some really are fixed by
+physics or by a supplier's price list, and re-expressing those as a ratio would
+be the same error pointing the other way.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 

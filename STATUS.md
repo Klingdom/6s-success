@@ -14,6 +14,36 @@ Update this file whenever the material operating state changes.
 
 ---
 
+# 0. Claim before you start, if more than one session is running
+
+**Added 2026-09-29 after three collisions in a single afternoon.** Two
+autonomous sessions independently built the same cross-zone
+`diagnosed_reading()` precompute, wrote the same `forms_dead` increments into
+`RISKS.md`, and then independently worked out the same rewording of the same
+line in that file. Every one of those was correct work. All of it but the first
+copy was waste, and the merges cost more than the fixes.
+
+`BACKLOG-2026-09-07.md` B7 already says to claim a room before authoring it.
+That rule was written for content and the collisions were not in content. It
+applies to anything shared:
+
+- a generator in `ops/`
+- a gate in `ops/preflight.py`
+- an operating document (`RISKS.md`, `STATUS.md`, `GOALS.md`, `OWNER-ACTIONS.md`)
+- a workflow in `.github/workflows/`
+
+**Before starting non-trivial work on one of those, append a line below.**
+Delete it when the work lands. A stale claim is much cheaper than a duplicated
+one: if a line here is older than a day and its work is in `main`, remove it.
+
+This is a convention, not a lock. It cannot stop a collision on its own; it
+makes one visible in the thirty seconds before the work starts, which is the
+only moment it is cheap.
+
+## Open claims
+
+_(none right now)_
+
 # 1. Status Metadata
 
 **Last Updated:** Scheduled operator cycle, 2026-09-29: built BACKLOG's B9 twelfth room, Guest Bathroom, delegated to a subagent and independently re-verified before commit. New diagnosis layer for all five Guest Bathroom zones (15 frictions, 45 branches, grounded in the room's own real Manual text, reaching 16 of 17 shared root causes, the most of any room so far), new `ops/cardtext/build_guest_bathroom_deck.py` (60 cards) and `ops/build_guest_bathroom_deck_page.py`, shipped `site/guest-bathroom-deck.html`. **Verified, not assumed:** ran a fresh full preflight independently after the subagent's own work and caught one real FAIL it had also found (`site/deck.html`'s hand edit had left the sitemap `lastmod` stale), fixed by rerunning `ops/build_seo.py`, confirmed clean against the gate function and its test (6/6) before commit. Final full `preflight.py` clean except the previously-documented `test_wire_nav_preserves_aria_current.py` clean-tree precondition, confirmed cleared by rerunning it standalone after the commit. `audit_pages.py` (206/0), `check_urls.py` (202/202), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0, every new file also hand-checked directly for em/en dashes). `BLOCKER-001`'s deploy gap widened to 21 commits (17 material). No price or product touched; one new free page. Dashboard regenerated per step 11b.
