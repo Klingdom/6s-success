@@ -42,7 +42,7 @@ only moment it is cheap.
 
 ## Open claims
 
-_(none right now)_
+- 2026-09-29, scheduled operator cycle: claiming Nursery for B9 (room deck). Diagnosis layer already complete (6/6 zones, verified in `mcp/content.json`); building `ops/cardtext/build_nursery_deck.py` + `ops/build_nursery_deck_page.py` + `site/nursery-deck.html` following the Kids Bedroom/Mudroom reference pattern. Delete this line once merged.
 
 # 1. Status Metadata
 
