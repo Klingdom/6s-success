@@ -12,6 +12,12 @@
       "status": "in_progress",
       "claimed_at": "2026-09-29T12:50:32Z",
       "note": "scheduled operator cycle, thirteenth room"
+    },
+    {
+      "room": "Kids Bedroom",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T12:55:19Z",
+      "note": "scheduled operator cycle 2026-09-29, fourteenth room, 6 zones (Family Room claimed by a concurrent session first)"
     }
   ]
 }
