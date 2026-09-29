@@ -1118,6 +1118,12 @@ _CAUSE_ARTICLE_BY_SLUG.update({
 # floor balancing in general_reading() needs to see every zone at once).
 _GENERAL_READING = {}
 
+# Populated once by main() via diagnosed_reading(), the same reason: a
+# diagnosed zone's related-reading pick has to see every other diagnosed
+# zone at once to de-duplicate and respect the shared article ceiling,
+# which cause_reading() alone (one zone in isolation) cannot do.
+_DIAGNOSED_READING = {}
+
 # PLAN-MICROZONES-DECKS-APP.md M5: the 102 zones with no diagnosis yet (M6 is
 # deliberately gated 21 days behind M4, not started early) still carried the
 # exact same 19-link ZONE_READING block, byte for byte, on every one of them.
@@ -1199,7 +1205,14 @@ def _diagnosed_article_usage(rooms):
     through a different function, and a cap that only watched one side
     let two articles reach 38 site-wide links against a stated ceiling of
     30, found and fixed the same cycle general_reading() was written.
+
+    Sourced from diagnosed_reading()'s own cross-zone deduped and capped
+    picks (not a raw per-zone cause_reading() call) since 2026-09-29, so
+    this always counts what the site actually ships rather than the
+    pre-dedup, pre-cap picks that let two diagnosed zones collide once
+    enough rooms carried a diagnosis layer for it to matter.
     """
+    picks = diagnosed_reading(rooms)
     used = collections.Counter()
     for room in rooms:
         rs = slug(room["room"])
@@ -1207,9 +1220,10 @@ def _diagnosed_article_usage(rooms):
             if not z.get("diagnosis"):
                 continue
             zs = slug(display(room["room"], z["zone"]))
-            specific = ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])
+            key = f"{rs}-{zs}"
+            specific = ZONE_SPECIFIC_READING.get(key, [])
             specific_hrefs = {e[0] for e in specific}
-            links = (specific + [e for e in cause_reading(z)
+            links = (specific + [e for e in picks.get(key, [])
                                  if e[0] not in specific_hrefs])[:5]
             for href, _, __ in links:
                 slug_ = href.rsplit("/", 1)[-1][:-len(".html")]
@@ -1438,6 +1452,18 @@ def cause_reading(zone, cap=5):
     on-topic article. Every diagnosed pilot zone clears 5 distinct causes
     with a real article before the cap is reached.
     """
+    return _cause_candidates(zone)[:cap]
+
+
+def _cause_candidates(zone):
+    """Every real, distinct cause this zone's diagnosis reaches, resolved
+    to its article, in the order the causes first appear across the
+    zone's own frictions and branches. Unlike cause_reading(), not capped
+    at 5, so diagnosed_reading()'s cross-zone picker can skip an already
+    over-used or already-picked article and still find a real alternative,
+    never an invented one: every entry here is still a cause this zone's
+    own diagnosed frictions genuinely reach.
+    """
     diag = zone.get("diagnosis") or {}
     out = []
     seen = set()
@@ -1452,9 +1478,115 @@ def cause_reading(zone, cap=5):
                 continue
             seen.add(article)
             out.append(entry)
-            if len(out) == cap:
-                return out
     return out
+
+
+def diagnosed_reading(rooms, cap=5, article_cap=35):
+    """Cross-zone-aware related reading for every zone that carries a
+    diagnosis layer, the M4 sibling of general_reading()'s M5 mechanism.
+
+    cause_reading() alone picks each zone's own real causes in isolation
+    and has no way to see what any other zone picked, which held up while
+    only the 12 M4 pilot zones carried a diagnosis and stopped holding
+    once B9 gave most rooms one: found live 2026-09-29 by
+    gate_diagnosis_rendered and gate_general_reading_differentiated, two
+    zones (dining-room-the-dining-table, living-room-the-sofa-and-seating)
+    had ended up with byte-identical five-article sets, and two popular
+    causes' articles (assigned-home, disagrees-about-clean) had passed the
+    35-link ceiling _diagnosed_article_usage() measures but nothing before
+    this function enforced.
+
+    Deterministic: zones are processed in a stable sorted-key order, ties
+    are broken by each zone's own candidate rank from _cause_candidates(),
+    never by dict/set iteration order, and every swap below only ever
+    substitutes a cause the swapped-in zone's own diagnosis genuinely
+    reaches (CLAUDE.md section 6: no fabricated connection).
+
+    Returns {zone_key: [(href, title, text), ...]}, the same shape and
+    the same "excludes this zone's own ZONE_SPECIFIC_READING hrefs"
+    convention cause_reading()'s callers already apply by hand, so this
+    is a drop-in replacement for a per-zone cause_reading(zone) call once
+    precomputed once for the whole corpus.
+    """
+    entries = []
+    for room in rooms:
+        rs = slug(room["room"])
+        for z in room["zones"]:
+            if not z.get("diagnosis"):
+                continue
+            zs = slug(display(room["room"], z["zone"]))
+            entries.append((f"{rs}-{zs}", z))
+    entries.sort(key=lambda kv: kv[0])
+
+    candidates = {}
+    for key, z in entries:
+        specific_hrefs = {e[0] for e in ZONE_SPECIFIC_READING.get(key, [])}
+        candidates[key] = [e for e in _cause_candidates(z)
+                           if e[0] not in specific_hrefs]
+
+    counts = collections.Counter()
+    picks = {}
+    for key, _ in entries:
+        limit = min(cap, len(candidates[key]))
+        chosen = []
+        for e in candidates[key]:
+            if len(chosen) >= limit:
+                break
+            s = e[0].rsplit("/", 1)[-1][:-len(".html")]
+            if counts[s] >= article_cap:
+                continue
+            chosen.append(e)
+        if len(chosen) < limit:
+            # Every remaining real cause for this zone is already over the
+            # ceiling; take its own next-ranked ones anyway rather than
+            # ship fewer real links than this zone's diagnosis supports.
+            for e in candidates[key]:
+                if len(chosen) >= limit:
+                    break
+                if e in chosen:
+                    continue
+                chosen.append(e)
+        picks[key] = chosen
+        for e in chosen:
+            s = e[0].rsplit("/", 1)[-1][:-len(".html")]
+            counts[s] += 1
+
+    # No two diagnosed zones may render an identical final set, the same
+    # swap-to-the-zone's-own-next-candidate approach general_reading()
+    # already proves out for the non-diagnosed pool.
+    seen = {}
+    for key, _ in entries:
+        fs = tuple(sorted(e[0] for e in picks[key]))
+        if fs not in seen:
+            seen[fs] = key
+            continue
+        fixed = False
+        for pos in range(len(picks[key]) - 1, -1, -1):
+            old = picks[key][pos]
+            for cand in candidates[key]:
+                if cand in picks[key]:
+                    continue
+                trial = picks[key][:pos] + [cand] + picks[key][pos + 1:]
+                tfs = tuple(sorted(e[0] for e in trial))
+                if tfs in seen:
+                    continue
+                picks[key] = trial
+                s_old = old[0].rsplit("/", 1)[-1][:-len(".html")]
+                s_new = cand[0].rsplit("/", 1)[-1][:-len(".html")]
+                counts[s_old] -= 1
+                counts[s_new] += 1
+                seen[tfs] = key
+                fixed = True
+                break
+            if fixed:
+                break
+        if not fixed:
+            # No distinct real alternative exists in this zone's own
+            # reached causes: two zones honestly diagnosing the same
+            # causes in the same order is a fact about the corpus, not a
+            # defect to paper over with an invented link.
+            seen[fs] = key
+    return picks
 
 
 def _norm_symptom(s):
@@ -2903,7 +3035,14 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     _specific = ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])
     _specific_hrefs = {e[0] for e in _specific}
     if zone.get("diagnosis"):
-        _cause_links = (_specific + [e for e in cause_reading(zone)
+        _diagnosed = _DIAGNOSED_READING.get(f"{rs}-{zs}")
+        if _diagnosed is None:
+            # No precomputed, cross-zone-deduped pick (diagnosed_reading()
+            # was not run, e.g. a standalone call outside main()): fall
+            # back to this zone's own isolated pick rather than render
+            # nothing.
+            _diagnosed = cause_reading(zone)
+        _cause_links = (_specific + [e for e in _diagnosed
                                      if e[0] not in _specific_hrefs])[:5]
     else:
         _general = _GENERAL_READING.get(f"{rs}-{zs}")
@@ -3344,6 +3483,13 @@ def main():
     os.makedirs(os.path.join(SITE, "zones"), exist_ok=True)
 
     _validate_room_job(data["rooms"])
+
+    # M4: compute every diagnosed zone's cross-zone deduped, cap-respecting
+    # related-reading pick once, over the whole corpus, before M5's general
+    # picks below (which read diagnosed usage through this same corpus) and
+    # before any page is rendered.
+    _DIAGNOSED_READING.clear()
+    _DIAGNOSED_READING.update(diagnosed_reading(data["rooms"]))
 
     # M5: compute every non-diagnosed zone's differentiated related-reading
     # pick once, over the whole corpus, before any page is rendered.
