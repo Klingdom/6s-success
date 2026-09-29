@@ -1,0 +1,1702 @@
+{
+ "deck": "stair-landing",
+ "room": "Stair Landing",
+ "count": 40,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 3,
+  "FRICTION CARD": 9,
+  "ROOT CAUSE CARD": 12,
+  "ACTION CARD": 9,
+  "STANDARD CARD": 3,
+  "EVENT CARD": 3
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "SLR-001",
+   "title": "THE STAIR LANDING",
+   "type": "ROOM CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "THREE ZONES. START WITH THE STAIRS THEMSELVES.",
+   "objective": "The stair landing belongs to nobody, and it is the one route in the house where a small oversight turns into a real injury. This card is the map and the order.",
+   "zones_in_order": [
+    "SLZ-001 Landing Surface or Console",
+    "SLZ-002 Wall and Display Zone",
+    "SLZ-003 Stair and Floor Path"
+   ],
+   "start_here": "SLZ-003 Stair and Floor Path. Do the Stair and Floor Path zone first, even though it looks like the least cluttered of the three. Clearing the treads and sorting the lighting sets the limit on what the console and the wall are allowed to hold.",
+   "how_to_play": [
+    "1. Deal the three ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true on your landing. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do SLA-007 The Full Flight Safety Walk before any rebuild. It takes thirty minutes and covers every tread, the rail, the runner, both lights and every wall hanging on the flight.",
+   "related": {
+    "contents": "SLZ-001 to SLZ-003, SLF-001 to SLF-009, the shared root causes in ops/root_causes.py, SLA-001 to SLA-009, SLS-001 to SLS-003, SLE-001 to SLE-003"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole staircase and landing in its settled state, a console table, a wall of framed pictures and a full flight of bare treads all visible in one frame",
+    "must_show": [
+     "all three zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the three zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "SLZ-001",
+   "title": "LANDING SURFACE OR CONSOLE",
+   "type": "ZONE CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "THREE THINGS ON TOP. ONE BASKET ON THE FLOOR. BOTH EMPTY OF YESTERDAY.",
+   "objective": "A small surface beside the stairs that holds a lamp and a landing spot, without becoming the house's holding pen for things headed to another floor.",
+   "callouts": [
+    "A lamp, a framed photo and one tray, three things on the console top",
+    "The tray holding only keys and coins, nothing left from yesterday",
+    "The lamp cord clipped down the back leg, clear of the walking side",
+    "One stair basket standing on the floor at the end nearest the top step",
+    "The stair basket empty",
+    "Bare surface around all three permanent items, nothing overhanging the stair side"
+   ],
+   "done_looks_like": "Three permanent things on the console top, say a lamp, a framed photo and one tray, with the tray holding nothing that was there yesterday. The lamp cord runs down the back leg in a clip, not across the walking side. One stair basket sits on the floor at the end nearest the top step, and it is empty.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Anything set near the stair-side edge of the console, a book, a phone, a set of keys, can be caught by a passing sleeve and knocked onto the top tread, where it waits in the dark."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A glass vase or ceramic bowl on a console beside an open stairwell falls further than furniture height. It breaks across treads that people walk in socks."
+    }
+   ],
+   "the_call": {
+    "title": "The going-upstairs-anyway pile",
+    "text": "Every landing has one: the small heap of things that belong on the other floor, waiting for a trip that would have happened anyway. The honest question you have been avoiding is whether that heap gets a container or gets banned outright. Give it a container, exactly one basket, and then enforce the part that hurts, which is that it empties nightly whether it is full or not. Here is the rule that settles the rest. If an item rides that basket three nights running without landing anywhere, it is not waiting for a trip, it has no home on the destination floor. Stop carrying it back and forth, and either give it a home tonight or route it out of the house."
+   },
+   "supplies": [
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner",
+    "Compact vacuum with attachments",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "SLS-001",
+    "actions": [
+     "SLA-001",
+     "SLA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a narrow console table standing beside a staircase holding a lamp, a framed photo and one shallow tray with visible bare wood around each, a woven basket sitting empty on the floor at the end nearest the bottom of the stairs, and a lamp cord running down the back leg clipped flat",
+    "must_show": [
+     "A lamp, a framed photo and one tray, three things on the console top",
+     "The tray holding only keys and coins, nothing left from yesterday",
+     "The lamp cord clipped down the back leg, clear of the walking side",
+     "One stair basket standing on the floor at the end nearest the top step",
+     "The stair basket empty",
+     "Bare surface around all three permanent items, nothing overhanging the stair side"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "SLZ-002",
+   "title": "WALL AND DISPLAY ZONE",
+   "type": "ZONE CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "EVERY FRAME LEVEL. TWO POINTS EACH. NOTHING A SHOULDER CAN CATCH.",
+   "objective": "The frames, mirror and any sconces on the stairway wall, hung so they stay put and never crowd the shoulder of someone climbing with their arms full.",
+   "callouts": [
+    "A row of frames climbing the wall on the stair's own diagonal, evenly spaced",
+    "Every frame hanging level, none tilted",
+    "Two visible hanging points on each frame, no single nail or sawtooth hanger",
+    "The mirror at the turn sitting flat against the wall",
+    "Nothing projecting more than a hand's width out from the wall at shoulder height",
+    "A clean wall along the turn, no grey shoulder-height smear"
+   ],
+   "done_looks_like": "Every frame level and hung from two points, each one the same vertical distance above the tread nose below it, so the gallery climbs on the stair's diagonal rather than fighting it. No sawtooth hanger and no single nail anywhere on the flight. Nothing projects more than a hand's width from the wall at shoulder height, and the mirror at the turn sits flat with no play when you push up on it.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A framed picture coming off a stairway wall lands on treads and shatters across several steps at once, in the one place you cannot sweep from a standing position."
+    },
+    {
+     "question": "Fall",
+     "text": "Reaching sideways to level a frame while standing on a tread puts your weight outside your feet on the least forgiving surface in the house."
+    }
+   ],
+   "the_call": {
+    "title": "The heavy mirror you would rather not touch",
+    "text": "There is one piece on this wall you already suspect is too heavy for what is holding it, usually the mirror at the turn or the big frame over the middle of the flight. You have left it because taking it down means finding a stud, patching a hole and repainting a stairwell you would need a ladder for. Make this call with your hands, not your eye. Grip it and push up and out. If it lifts off the wall with any play in the hook, it is being held by friction and gravity on a surface that shakes every time someone runs down. Rehang it today on two rated anchors, or take it down and leave the wall bare until the right hardware arrives. A bare stairway wall is not a failure. It is safer than heavy glass hanging over steps."
+   },
+   "supplies": [
+    "Streak-free glass and mirror cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "SLS-002",
+    "actions": [
+     "SLA-003",
+     "SLA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a stairway wall with a row of picture frames climbing on the same diagonal as the stairs, each frame hanging level and evenly spaced with two visible picture hooks behind each one, a flat mirror at the turn of the stairs showing no gap behind it, and a clean unmarked wall at shoulder height",
+    "must_show": [
+     "A row of frames climbing the wall on the stair's own diagonal, evenly spaced",
+     "Every frame hanging level, none tilted",
+     "Two visible hanging points on each frame, no single nail or sawtooth hanger",
+     "The mirror at the turn sitting flat against the wall",
+     "Nothing projecting more than a hand's width out from the wall at shoulder height",
+     "A clean wall along the turn, no grey shoulder-height smear"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "SLZ-003",
+   "title": "STAIR AND FLOOR PATH",
+   "type": "ZONE CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "BARE TREADS. CLEAR RAIL. LIT AT BOTH ENDS.",
+   "objective": "The treads, runner, handrail and lighting that carry every person in the house between floors, several times a day, often with their arms full.",
+   "callouts": [
+    "Every tread bare from nose to riser, including the bottom three steps",
+    "The runner lying flat with no lifted corner at the turn",
+    "The handrail running clear and unobstructed, top newel to bottom",
+    "No bag, coat or lead hung on either newel post",
+    "The light lit over the top step",
+    "The light lit over the bottom step"
+   ],
+   "done_looks_like": "Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog lead hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "A lifted runner corner, a loose handrail bracket, or a dead bulb over the top step. Each one is a fall on the hardest surface in the house, and they tend to arrive together, at night."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Carrying a laundry basket or a box you cannot see over means going down blind with no free hand for the rail. Anything parked on the bottom three steps is invisible to that person."
+    }
+   ],
+   "the_call": {
+    "title": "The runner that has already lifted once",
+    "text": "If your stairs have a runner and one corner has lifted or one rod has worked loose, you have almost certainly pressed it back down and carried on. That is the decision you keep deferring, and it is the wrong shape, because a runner that has lifted once has already told you what it will do again. Choose today between two honest options and refuse the third. Either refix it properly along its whole length, with rods or full-width tape on every tread rather than a patch on the one failed corner, or take it up entirely and live with bare treads. Bare wood you know is slippery beats a runner you have quietly stopped trusting, because you adjust your step for the first and not the second. The one thing you may not do is press it down again and wait."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Floor-material-compatible cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "SLS-003",
+    "actions": [
+     "SLA-005",
+     "SLA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a full flight of stairs seen from the bottom, every tread bare and visible from nose to riser, a runner lying completely flat down the centre with no lifted corner at the turn, an unobstructed handrail running the full length with nothing hung on either newel post, and light visibly falling on both the top step and the bottom step",
+    "must_show": [
+     "Every tread bare from nose to riser, including the bottom three steps",
+     "The runner lying flat with no lifted corner at the turn",
+     "The handrail running clear and unobstructed, top newel to bottom",
+     "No bag, coat or lead hung on either newel post",
+     "The light lit over the top step",
+     "The light lit over the bottom step"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "SLF-001",
+   "title": "THE BASKET NEVER MAKES THE TRIP",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Things ride the stair basket for days without ever landing where they actually belong.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing marks the moment to carry it, so it waits for a trip that never comes on its own",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The item doesn't have a real home on the floor it's headed to",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It's not clutter, it's a decision I haven't made yet about where it goes",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-001",
+    "root_causes": [
+     "KC-009",
+     "KC-002",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a woven basket sitting on a stair landing floor holding a stack of folded clothes, a paperback book and a single shoe, positioned at the top of a staircase as if waiting for a trip that keeps not happening",
+    "must_show": [
+     "Things ride the stair basket for days without ever landing where they actually belong."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-002",
+   "title": "SOMETHING CREEPS PAST THE STAIR-SIDE EDGE",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A book, a phone or a set of keys ends up hanging over the stair side of the console instead of set back from it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody agreed exactly what may and may not sit on this surface",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "I stopped noticing the edge creep because I see this console every day",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "The tray sits at the wrong end, so hands set things down closer to the stair side",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-001",
+    "root_causes": [
+     "KC-008",
+     "RC-017",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a narrow console table beside an open stairwell with a paperback book resting with its spine projecting just past the table's stair-side edge, the top of a staircase visible immediately below",
+    "must_show": [
+     "A book, a phone or a set of keys ends up hanging over the stair side of the console instead of set back from it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-003",
+   "title": "THE DRAWER REFILLS WITHIN DAYS",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Loose screws, dry pens, keys to nothing and mail already read pile back into the drawer almost as soon as it is cleared.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of these things has anywhere else in the house to go",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "I'm keeping more just-in-case odds and ends than this drawer was ever meant to hold",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nobody in the house is assigned to clear this drift, so it's whoever notices first",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-001",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open shallow console drawer crowded with loose screws, a handful of pens, a single unlabeled key and a small stack of opened envelopes, no dividers separating any of it",
+    "must_show": [
+     "Loose screws, dry pens, keys to nothing and mail already read pile back into the drawer almost as soon as it is cleared."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-004",
+   "title": "A FRAME STILL HANGS FROM ONE NAIL",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "At least one frame on this wall is still held up by a single nail or a sawtooth hanger instead of two rated points.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Taking it down properly means finding a stud and patching a hole I've been putting off",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody set a rule that every frame on this flight gets two hanging points",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "A stair wall shakes with every footstep, and single-point hardware works loose here faster than anywhere else in the house",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-002",
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single picture frame on a stairway wall hanging slightly crooked from one visible nail, a small gap of unhung wall space around it where a proper two-point mount would sit",
+    "must_show": [
+     "At least one frame on this wall is still held up by a single nail or a sawtooth hanger instead of two rated points."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-005",
+   "title": "THE MIRROR MOVES WHEN YOU PUSH IT",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The mirror or the biggest frame on the wall has some play in it when you push up and out on it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "I've never actually press-tested it, so I don't know how loose it's gotten",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "It's awkward to reach behind the mirror at the turn to check it, so nobody bothers",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "Nobody is assigned to check hardware on this wall, so it only gets tested by accident",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-002",
+    "root_causes": [
+     "RC-017",
+     "RC-016",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand pressed flat against the edge of a wall mirror at a stair turn, a thin sliver of shadow visible along one edge where the frame has lifted slightly away from the wall",
+    "must_show": [
+     "The mirror or the biggest frame on the wall has some play in it when you push up and out on it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-006",
+   "title": "A FRAME DRIFTS OUT OF LEVEL",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A frame has drifted out of level, or something on the wall projects far enough to catch a shoulder or a bag going past.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody checks this wall on a schedule, so drift is only caught by accident",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Constant footfall vibration is working the hardware loose between checks",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The spacing was eyeballed rather than measured off the tread nose below it, so nothing caps how far a piece can sit out from the wall",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-002",
+    "root_causes": [
+     "KC-009",
+     "KC-010",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a row of picture frames climbing a stairway wall with one frame visibly tilted out of level compared to its neighbors, its bottom corner sitting slightly further from the wall than the frames beside it",
+    "must_show": [
+     "A frame has drifted out of level, or something on the wall projects far enough to catch a shoulder or a bag going past."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-007",
+   "title": "THE RUNNER GETS PRESSED BACK DOWN, NOT FIXED",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A lifted runner corner or a loose rod gets pressed back into place and left instead of actually refixed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Fixing it properly means clearing the whole flight and buying rods or tape, and that's a bigger job than the few minutes I have when I notice it",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nothing prompts a proper refix, so pressing it down becomes the whole routine",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "I've stopped seeing the lifted corner as a real hazard because it's been like that for a while",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-003",
+    "root_causes": [
+     "RC-015",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a stair runner with one corner visibly lifted away from a tread at the turn of a staircase, a faint crease across the carpet where it has clearly been pressed flat before",
+    "must_show": [
+     "A lifted runner corner or a loose rod gets pressed back into place and left instead of actually refixed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-008",
+   "title": "A DEAD BULB GOES UNNOTICED OVER THE TOP STEP",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bulb lighting the top or bottom step burns out and nobody replaces it until someone nearly misses a step in the dark.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no spare bulb kept on hand for this fitting, so a burnout turns into a multi-day wait",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "Nobody checks the stairwell lighting on a schedule, it only gets noticed at night by accident",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Nobody in the house is the one who's supposed to notice or replace it",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-003",
+    "root_causes": [
+     "KC-011",
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dark stairwell light fitting over a top step with no bulb glowing, the step below sitting in shadow while daylight from a nearby window lights the rest of the hallway",
+    "must_show": [
+     "A bulb lighting the top or bottom step burns out and nobody replaces it until someone nearly misses a step in the dark."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "SLF-009",
+   "title": "SOMETHING GETS STAGED ON THE BOTTOM STEPS",
+   "type": "FRICTION CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Laundry, shoes or a delivery box gets set down on the bottom three steps instead of carried the rest of the way.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The thing on the step has no assigned home on the floor it's actually headed to",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "There's no agreed rule that stairs are never used as a shelf",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Carrying it needs a free hand, and the hand that should be on the rail is already full, so it gets set down instead",
+     "root_cause": "KC-006"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your landing, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "SLZ-003",
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "KC-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small cardboard delivery box and a single shoe sitting on the bottom three steps of a staircase, the rest of the flight above completely bare",
+    "must_show": [
+     "Laundry, shoes or a delivery box gets set down on the bottom three steps instead of carried the rest of the way."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-003"
+    ],
+    "actions": [
+     "SLA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a console drawer beside a staircase pulled open to show far more loose pens, screws and odd keys than the drawer was ever meant to hold",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-001",
+     "SLF-003",
+     "SLF-009"
+    ],
+    "actions": [
+     "SLA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a folded sweater sitting alone in a stair basket at the top of a flight with no obvious destination shelf or drawer anywhere nearby",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-002"
+    ],
+    "actions": [
+     "SLA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shallow tray sitting at the far end of a narrow console table, well away from the end nearest the top of the stairs where a hand would actually land",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-009"
+    ],
+    "actions": [
+     "SLA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a person's one free hand pressed to a stair handrail while the other arm holds a stacked laundry basket too full to set anything else down on the steps",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-002",
+     "SLF-004",
+     "SLF-006",
+     "SLF-009"
+    ],
+    "actions": [
+     "SLA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stairway console at dusk with one end completely bare and the other end crowded with a book, a phone and a set of keys, no visible line dividing the two",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-001",
+     "SLF-006",
+     "SLF-007",
+     "SLF-008"
+    ],
+    "actions": [
+     "SLA-001",
+     "SLA-005",
+     "SLA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a landing light switch beside an empty stair basket, the basket still sitting there untouched after the light has clearly already been switched off once that evening",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-004",
+     "SLF-006"
+    ],
+    "actions": [
+     "SLA-003",
+     "SLA-004",
+     "SLA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a heavy framed mirror at a stair turn with a hand pushing up on its lower edge, a thin sliver of shadow showing where it has lifted slightly off the wall",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-008"
+    ],
+    "actions": [
+     "SLA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty light fitting socket over a stairwell with no spare bulb visible anywhere nearby on the landing",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-003",
+     "SLF-005",
+     "SLF-008"
+    ],
+    "actions": [
+     "SLA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stair landing at the end of the day with a basket still full and a wall switch untouched, no single person's coat or bag nearby to say whose job this was tonight",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-001",
+     "SLF-004",
+     "SLF-007"
+    ],
+    "actions": [
+     "SLA-001",
+     "SLA-006",
+     "SLA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of opened envelopes sitting on a landing console tray, one half pulled out with a form visible but nothing filled in",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-005"
+    ],
+    "actions": [
+     "SLA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a vacuum attachment reaching awkwardly into the crevice where a stair tread meets its riser beside a runner tucked tight against the stringer",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "SLF-002",
+     "SLF-005",
+     "SLF-007"
+    ],
+    "actions": [
+     "SLA-004",
+     "SLA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single picture frame hanging visibly crooked on a stairway wall among several other frames that all hang level and straight",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "SLA-001",
+   "title": "CLEAR THE CONSOLE AND THE BASKET",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the console top and drawer, route anything headed elsewhere straight into the stair basket, and carry the basket the rest of the way.",
+   "why_it_matters": "Paper, screws and pens with no verdict are why this surface fills back up faster than any reset here can outpace.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag",
+    "the recycling bin"
+   ],
+   "steps": [
+    "Clear the console top and drawer in one sweep: keep only what truly lives on this floor, drop anything headed to another floor straight into the stair basket, and bag up the loose screws, dead pens and read mail that have drifted in.",
+    "Carry the stair basket up or down right now and bring it back empty rather than setting it down half done.",
+    "Wipe the tray and set it back holding only keys and coins."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-015"
+    ],
+    "zone": "SLZ-001",
+    "standard": "SLS-001"
+   },
+   "victory_condition": "The console top holds only its permanent items and an empty tray, and the stair basket on the floor is empty.",
+   "next_card": "SLS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a console table beside a staircase with a bare top holding only a lamp, a photo and an empty tray, a woven basket sitting empty on the floor beside it",
+    "must_show": [
+     "The console top holds only its permanent items and an empty tray, and the stair basket on the floor is empty."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-002",
+   "title": "GIVE THE CONSOLE A NAMED LIMIT",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move the tray to where your hand actually lands, clip the lamp cord clear, and give the drawer named sections so drift stops routing back in.",
+   "why_it_matters": "A tray in the wrong spot and a drawer with no named sections is why keys land beside it and screws pile back up within days.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a shallow tray",
+    "small dividers or a tin for loose items",
+    "a marker",
+    "a cable clip for the lamp cord"
+   ],
+   "steps": [
+    "Move the tray to the end of the console nearest the top step, where your hand actually lands as you turn in.",
+    "Clip the lamp cord down the back leg so it never lies across the side people walk.",
+    "Fit a small tin or divider in the drawer for loose screws, pens and keys to nothing, and write what belongs in each section.",
+    "Set a rule for the drift pile: anything that has sat in the tin two weeks without being claimed gets thrown out or moved to its real home."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-001"
+    ],
+    "zone": "SLZ-001",
+    "standard": "SLS-001"
+   },
+   "victory_condition": "The tray sits at the end nearest the top step, the lamp cord is clipped clear of the walking side, and the drawer's sections each hold one named kind of item.",
+   "next_card": "SLA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a narrow stairside console with a tray positioned at the end nearest the bottom of the stairs, a lamp cord visibly clipped down the back leg, and an open drawer below divided into small labeled sections",
+    "must_show": [
+     "The tray sits at the end nearest the top step, the lamp cord is clipped clear of the walking side, and the drawer's sections each hold one named kind of item."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-003",
+   "title": "TAKE DOWN WHAT HANGS FROM ONE NAIL",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take down every frame still hanging from a single nail or a sawtooth hanger, and anything with cracked glass.",
+   "why_it_matters": "A stair wall shakes with every footstep, and single-point hardware is the first thing that lets go here.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nowhere to set frames down but a soft surface"
+   ],
+   "steps": [
+    "Walk the flight and take down every frame still hanging from a single nail or a sawtooth hanger, along with anything with cracked glass, and set them aside rather than rehanging them the same way.",
+    "Sort what came down into two piles: worth rehanging properly, and honestly not looked at in years.",
+    "Leave the wall bare where a piece came down rather than rehanging it the same way it just failed."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-008"
+    ],
+    "zone": "SLZ-002",
+    "standard": "SLS-002"
+   },
+   "victory_condition": "No frame on the wall hangs from a single nail or a sawtooth hanger, and nothing with cracked glass has gone back up.",
+   "next_card": "SLS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a stairway wall with one bare patch where a frame has just been taken down, the remaining frames all hanging level and undisturbed",
+    "must_show": [
+     "No frame on the wall hangs from a single nail or a sawtooth hanger, and nothing with cracked glass has gone back up."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-004",
+   "title": "REHANG ON TWO POINTS AND PRESS-TEST",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Rehang everything on two rated points measured off the tread below it, and press-test the heaviest piece before trusting it again.",
+   "why_it_matters": "Stair walls take constant vibration, and single-point hardware works loose here faster than anywhere else in the house.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "two picture hooks or D-rings per frame",
+    "a stud finder or wall anchors for the mirror",
+    "a tape measure",
+    "a dated sticker"
+   ],
+   "steps": [
+    "Measure from each frame's centre down to the tread nose beneath it, and hold that number constant up the flight.",
+    "Rehang every frame on two hooks and a wire, never a single nail or a sawtooth hanger.",
+    "Find a stud or fit a proper wall anchor for the mirror or the heaviest frame, never friction and gravity alone.",
+    "Grip the mirror and push up and out on it; if it moves at all, refit it before you finish.",
+    "Stick a dated sticker on the back of the lowest frame recording today as the last press-test."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-017"
+    ],
+    "zone": "SLZ-002",
+    "standard": "SLS-002"
+   },
+   "victory_condition": "Every frame hangs from two rated points measured off the tread below it, the mirror is fixed to a stud or a proper anchor, and it does not move when pushed.",
+   "next_card": "SLA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a stairway wall with a frame being lifted onto two picture hooks measured level with a tape, a heavy mirror at the turn anchored flush to the wall with no gap visible behind it",
+    "must_show": [
+     "Every frame hangs from two rated points measured off the tread below it, the mirror is fixed to a stud or a proper anchor, and it does not move when pushed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-005",
+   "title": "CLEAR THE TREADS AND CHECK BOTH LIGHTS",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear every tread of anything sitting on it, and confirm both the top and bottom stair lights actually work.",
+   "why_it_matters": "A dead bulb over the top step is the single most dangerous fault this room can hold, and it hides until someone finds it in the dark.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a spare bulb if one is on hand"
+   ],
+   "steps": [
+    "Clear every tread of anything sitting on it, laundry, shoes, a box, in one trip to where it actually belongs, then stand at the bottom of the flight and check that both the top and bottom lights actually come on.",
+    "If a bulb is out, switch the light off at the wall, let it cool, and replace it from a properly footed ladder on the landing, never balanced on a tread.",
+    "Note the bottom three steps by name: they are stairs, not a shelf, and nothing goes back on them."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-011",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-011",
+     "KC-006"
+    ],
+    "zone": "SLZ-003",
+    "standard": "SLS-003"
+   },
+   "victory_condition": "Every tread is bare from nose to riser, and both the top and bottom stair lights work.",
+   "next_card": "SLS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a staircase with every tread completely bare and light visibly falling on both the top step and the bottom step",
+    "must_show": [
+     "Every tread is bare from nose to riser, and both the top and bottom stair lights work."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-006",
+   "title": "REFIX THE RUNNER OR TAKE IT UP",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Make the real decision on a runner that has already lifted once: refix it properly along its whole length or take it up entirely.",
+   "why_it_matters": "A runner corner pressed back down once has already told you what it will do again, and the half-fix is worse than either honest option.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "stair rods or full-width non-slip tape",
+    "a staple gun or tack strip if refitting",
+    "gloves for removal if taking it up"
+   ],
+   "steps": [
+    "Decide today, out loud: refix the whole runner properly, or take it up and live with bare treads.",
+    "If refixing, resecure it the full length with rods or full-width tape on every tread, not a patch on the one failed corner.",
+    "If removing, pull it up entirely, tread by tread, rather than leaving a half-removed strip.",
+    "Vacuum the crevice where each tread meets its riser and along the stringer before anything goes back down.",
+    "Tug every edge of the finished runner, or press every bare tread, to confirm nothing shifts underfoot."
+   ],
+   "root_causes": [
+    "RC-015",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "RC-017"
+    ],
+    "zone": "SLZ-003",
+    "standard": "SLS-003"
+   },
+   "victory_condition": "The runner lies flat and fixed the whole length with no corner left pressing back down, or the stairs are bare treads with no runner left half-attached.",
+   "next_card": "SLA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a staircase runner being fixed flat along its whole length with a row of stair rods, no lifted corner visible anywhere down the flight",
+    "must_show": [
+     "The runner lies flat and fixed the whole length with no corner left pressing back down, or the stairs are bare treads with no runner left half-attached."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-007",
+   "title": "THE FULL FLIGHT SAFETY WALK",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk the whole flight once, top to bottom, testing every tread, the rail, the runner and both lights before trusting any of it.",
+   "why_it_matters": "The falls that hurt people on a staircase never show up unless you test for them on purpose: a loose tread, a lifted runner, a dead bulb and a wall hanging that could come down all hide until someone finds them the hard way.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing beyond thirty minutes and a working set of hands"
+   ],
+   "steps": [
+    "Press each tread nose for movement and tug every runner edge as you walk down the flight.",
+    "Grip the handrail hard at the top, middle and bottom to find any bracket that has worked loose.",
+    "Stand at the bottom in the dark and look at the top step, then stand at the top and look at the bottom, confirming both lights actually work.",
+    "Push up and out on the mirror and the heaviest frame on the wall to confirm neither has any play.",
+    "Fix what you find right there, or write it down with today's date if it needs a tool you do not have to hand."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-016"
+    ]
+   },
+   "victory_condition": "You can name, out loud, that the treads, the rail, the runner, both lights and the wall hangings have each been checked today.",
+   "next_card": "SLA-006",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand testing a stair tread with a foot's pressure partway down a flight, the handrail, a runner and a wall frame all visible along the same view",
+    "must_show": [
+     "You can name, out loud, that the treads, the rail, the runner, both lights and the wall hangings have each been checked today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-008",
+   "title": "THE WEEKLY RAIL AND FRAME PASS",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Wipe the handrail its full length and press-test the two nearest frames on the same pass, so the wall gets checked ten seconds at a time.",
+   "why_it_matters": "Handrail day is also frame day: footfall works stairway hardware loose constantly, and the only check that survives a busy week is one stitched onto a chore already being done.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a microfiber cloth",
+    "a neutral pH cleaner"
+   ],
+   "steps": [
+    "Wipe the handrail end to end, underside included, as you go up the flight.",
+    "Push up and out on the two frames nearest your hand at each stop.",
+    "Flag anything that moved, and note it on the dated sticker on the lowest frame."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "The rail is wiped its full length, and the two nearest frames were press-tested the same day.",
+   "next_card": "SLA-004",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand wiping a stair handrail with a cloth while the other hand rests briefly against a nearby picture frame on the wall",
+    "must_show": [
+     "The rail is wiped its full length, and the two nearest frames were press-tested the same day."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLA-009",
+   "title": "THE THREE-NIGHT VERDICT SWEEP",
+   "type": "ACTION CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Check the stair basket and the console tray for anything that has ridden along too many nights running, and give each one a real verdict tonight.",
+   "why_it_matters": "An item riding the basket three nights without landing anywhere does not have a pending trip, it has no home on the destination floor, and pretending otherwise is how the console and the bottom steps fill up.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a pen to note tonight's date",
+    "wherever the item's real home should be"
+   ],
+   "steps": [
+    "Check what has been sitting in the stair basket or the console tray, and note anything that has been there longer than two nights.",
+    "For each one, give it a home on its destination floor tonight, or decide it does not belong in the house and remove it.",
+    "Carry the basket the rest of the way and bring it back empty before you go to bed."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ]
+   },
+   "victory_condition": "Nothing in the basket or the tray has been sitting for more than two nights, and the basket goes to bed empty.",
+   "next_card": "SLA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a stair basket being carried up a flight of stairs at night, the console tray visible below sitting completely empty",
+    "must_show": [
+     "Nothing in the basket or the tray has been sitting for more than two nights, and the basket goes to bed empty."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "SLS-001",
+   "title": "LANDING SURFACE OR CONSOLE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Stair Landing",
+   "zone": "Landing Surface or Console",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Three permanent items plus one tray on top, nothing overhanging the stair side, and one stair basket that sleeps empty.",
+   "trigger": "When you switch off the landing light at night, the basket goes with you.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the top rim of the lamp shade where the stairwell draught keeps dropping a grey collar.",
+    "Check the drawer runners for grit and brush them clear before you slide the drawer home.",
+    "Press one corner of the console, and if it rocks, shim it before you set anything back down."
+   ],
+   "related": {
+    "zone": "SLZ-001",
+    "actions": [
+     "SLA-001",
+     "SLA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a narrow console table standing beside a staircase holding a lamp, a framed photo and one shallow tray with visible bare wood around each, a woven basket sitting empty on the floor at the end nearest the bottom of the stairs, and a lamp cord running down the back leg clipped flat, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "SLS-002",
+   "title": "WALL AND DISPLAY ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Stair Landing",
+   "zone": "Wall and Display Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two hanging points and rated hardware on every item, nothing projecting more than a hand's width at shoulder height, and the mirror fixed to a stud or a proper wall anchor.",
+   "trigger": "When you wipe the handrail on your weekly pass, press-test the two frames closest to your hand.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Tilt each frame slightly as your hand leaves it and check the wire and hook behind for a kink or a bent lip.",
+    "Wipe the grey shoulder-height smear along the turn where bags and baskets rub the wall.",
+    "Dust the top rim of any sconce and lift cobwebs off its arm with a soft brush attachment."
+   ],
+   "related": {
+    "zone": "SLZ-002",
+    "actions": [
+     "SLA-003",
+     "SLA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a stairway wall with a row of picture frames climbing on the same diagonal as the stairs, each frame hanging level and evenly spaced with two visible picture hooks behind each one, a flat mirror at the turn of the stairs showing no gap behind it, and a clean unmarked wall at shoulder height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "SLS-003",
+   "title": "STAIR AND FLOOR PATH STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Stair Landing",
+   "zone": "Stair and Floor Path",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Bare treads at full width, runner flat and fixed the whole way, handrail clear from newel to newel, and working light at both ends.",
+   "trigger": "When you head up to bed, you go with a hand on the rail and nothing left standing on a tread behind you.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Vacuum the crevice where each tread meets its riser, where trapped grit polishes a runner slick.",
+    "Test the smoke alarm on this landing by pressing and holding the button until it sounds a full tone.",
+    "Wipe both newel post caps, where dust settles and set-down keys leave a film."
+   ],
+   "related": {
+    "zone": "SLZ-003",
+    "actions": [
+     "SLA-005",
+     "SLA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a full flight of stairs seen from the bottom, every tread bare and visible from nose to riser, a runner lying completely flat down the centre with no lifted corner at the turn, an unobstructed handrail running the full length with nothing hung on either newel post, and light visibly falling on both the top step and the bottom step, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "SLE-001",
+   "title": "THE LAUNDRY BASKET DESCENT",
+   "type": "EVENT CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Someone carries a full laundry basket down the flight with both hands, unable to see their own feet or hold the rail.",
+   "tests_zones": [
+    "SLZ-003"
+   ],
+   "held_if": "Every tread is bare underfoot and both lights are already on, so the whole descent happens without a single glance down.",
+   "if_it_failed": "If something on a tread had to be stepped around blind, the bottom three steps were being used as a shelf again. Draw SLA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "SLZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a person's feet descending a staircase carrying a large laundry basket that blocks the view of the treads below, every step visible underneath bare and clear",
+    "must_show": [
+     "Someone carries a full laundry basket down the flight with both hands, unable to see their own feet or hold the rail."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "SLE-002",
+   "title": "THE GUEST WHO LEANS ON THE WALL",
+   "type": "EVENT CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest carrying bags up the stairs for the first time reaches out and grabs the nearest frame or the mirror at the turn for balance.",
+   "tests_zones": [
+    "SLZ-002"
+   ],
+   "held_if": "Whatever they grabbed holds its full weight without shifting, because it was already hanging from two rated points.",
+   "if_it_failed": "If a frame moved or came away from the wall under a stranger's grip, it was still resting on one nail or friction alone. Draw SLA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "SLZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand gripping the edge of a picture frame on a stairway wall for balance, the frame staying perfectly level against the wall",
+    "must_show": [
+     "A guest carrying bags up the stairs for the first time reaches out and grabs the nearest frame or the mirror at the turn for balance."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "SLE-003",
+   "title": "THE BULB THAT PICKS TONIGHT TO DIE",
+   "type": "EVENT CARD",
+   "room": "Stair Landing",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The bulb over the top step burns out the same night as an unplanned errand, and the flight goes dark exactly when the whole house is walking it before bed.",
+   "tests_zones": [
+    "SLZ-003"
+   ],
+   "held_if": "A spare bulb is already on hand, so the fitting is relit within minutes and nobody takes the flight in the dark.",
+   "if_it_failed": "If nobody had a spare and someone crossed the flight blind, the fitting had no backup stocked. Draw SLA-005 and keep a spare with the landing's own cleaning caddy from then on.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "SLZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand fitting a fresh light bulb into a stairwell fixture over the top step, the rest of the landing lit warmly around it",
+    "must_show": [
+     "The bulb over the top step burns out the same night as an unplanned errand, and the flight goes dark exactly when the whole house is walking it before bed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

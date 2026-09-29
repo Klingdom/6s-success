@@ -11661,6 +11661,65 @@
        "Check the framed glass, and any vase or bowl on the top, for a hairline crack while it is in your hands.",
        "Look at the shade lining and around the bulb for a brown scorch or heat mark that says the bulb is running too hot for the fitting."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Things ride the stair basket for days without ever landing where they actually belong.",
+        "branches": [
+         {
+          "answer": "Nothing marks the moment to carry it, so it waits for a trip that never comes on its own",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The item doesn't have a real home on the floor it's headed to",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's not clutter, it's a decision I haven't made yet about where it goes",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A book, a phone or a set of keys ends up hanging over the stair side of the console instead of set back from it.",
+        "branches": [
+         {
+          "answer": "Nobody agreed exactly what may and may not sit on this surface",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "I stopped noticing the edge creep because I see this console every day",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The tray sits at the wrong end, so hands set things down closer to the stair side",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "Loose screws, dry pens, keys to nothing and mail already read pile back into the drawer almost as soon as it is cleared.",
+        "branches": [
+         {
+          "answer": "None of these things has anywhere else in the house to go",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "I'm keeping more just-in-case odds and ends than this drawer was ever meant to hold",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nobody in the house is assigned to clear this drift, so it's whoever notices first",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the console top and drawer in one sweep: keep only what truly lives on this floor, drop anything headed to another floor straight into the stair basket, and bag up the loose screws, dead pens and read mail that have drifted in.",
+       "victory": "The console top holds only its permanent items and an empty tray, and the stair basket on the floor is empty."
+      }
      }
     },
     {
@@ -11761,6 +11820,65 @@
        "On a sconce, notice a warm or discoloured fitting, a scorched shade, or a bulb that flickers as you dust near it.",
        "Flag any frame that has crept out of line or drooped since last time, since the constant vibration of a stair wall is what quietly works hardware loose."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "At least one frame on this wall is still held up by a single nail or a sawtooth hanger instead of two rated points.",
+        "branches": [
+         {
+          "answer": "Taking it down properly means finding a stud and patching a hole I've been putting off",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody set a rule that every frame on this flight gets two hanging points",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "A stair wall shakes with every footstep, and single-point hardware works loose here faster than anywhere else in the house",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "The mirror or the biggest frame on the wall has some play in it when you push up and out on it.",
+        "branches": [
+         {
+          "answer": "I've never actually press-tested it, so I don't know how loose it's gotten",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "It's awkward to reach behind the mirror at the turn to check it, so nobody bothers",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Nobody is assigned to check hardware on this wall, so it only gets tested by accident",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A frame has drifted out of level, or something on the wall projects far enough to catch a shoulder or a bag going past.",
+        "branches": [
+         {
+          "answer": "Nobody checks this wall on a schedule, so drift is only caught by accident",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Constant footfall vibration is working the hardware loose between checks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The spacing was eyeballed rather than measured off the tread nose below it, so nothing caps how far a piece can sit out from the wall",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Walk the flight and take down every frame still hanging from a single nail or a sawtooth hanger, along with anything with cracked glass, and set them aside rather than rehanging them the same way.",
+       "victory": "No frame on the wall hangs from a single nail or a sawtooth hanger, and nothing with cracked glass has gone back up."
+      }
      }
     },
     {
@@ -11868,6 +11986,65 @@
        "While you clean the treads under each fitting, flag a bulb over the top or bottom step that is dim, flickering, or dead, because that is the most dangerous fault this room can hold.",
        "Watch the stringer and skirting for a cracked or springy board, and the switch plates for warmth or discolouring as you wipe them."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A lifted runner corner or a loose rod gets pressed back into place and left instead of actually refixed.",
+        "branches": [
+         {
+          "answer": "Fixing it properly means clearing the whole flight and buying rods or tape, and that's a bigger job than the few minutes I have when I notice it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nothing prompts a proper refix, so pressing it down becomes the whole routine",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "I've stopped seeing the lifted corner as a real hazard because it's been like that for a while",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A bulb lighting the top or bottom step burns out and nobody replaces it until someone nearly misses a step in the dark.",
+        "branches": [
+         {
+          "answer": "There's no spare bulb kept on hand for this fitting, so a burnout turns into a multi-day wait",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Nobody checks the stairwell lighting on a schedule, it only gets noticed at night by accident",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the house is the one who's supposed to notice or replace it",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Laundry, shoes or a delivery box gets set down on the bottom three steps instead of carried the rest of the way.",
+        "branches": [
+         {
+          "answer": "The thing on the step has no assigned home on the floor it's actually headed to",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "There's no agreed rule that stairs are never used as a shelf",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Carrying it needs a free hand, and the hand that should be on the rail is already full, so it gets set down instead",
+          "cause": "KC-006"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear every tread of anything sitting on it, laundry, shoes, a box, in one trip to where it actually belongs, then stand at the bottom of the flight and check that both the top and bottom lights actually come on.",
+       "victory": "Every tread is bare from nose to riser, and both the top and bottom stair lights work."
+      }
      }
     }
    ]
