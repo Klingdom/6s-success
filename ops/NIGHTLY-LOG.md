@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (04:4x, previous work confirmed finished mid-cycle by the operator itself; handoff narrowed to the four remaining tied-smallest rooms)
+
+NEXT FOR THE OPERATOR: continue B9, build one of the four remaining tied-smallest rooms (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because epics 1 through 4 stay genuinely exhausted on today's many re-verifications and this is the highest-ranked real, unblocked epic-5 work, sized in hours rather than a 30-minute PM slot.
+
+Attached clean after unshallowing (checkout detached and unrelated-history at start, standard shape; ff-only fast-forward 848 commits onto `origin/main`). Read `GOALS.md` sections 0-2, `BACKLOG-2026-09-07.md`'s section 0 and B9 row, `RISKS.md`'s three open CRITICALs (RISK-0007, RISK-0011, RISK-0013, all unchanged and already gated), `OWNER-ACTIONS.md`'s start-here list, and the newest log entries. GitHub polled directly: 8 open issues, byte-identical to every recent cycle, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 2 answer: previous work (the 04:1x PM cycle) was genuinely finished, not just committed.** `checks.yml` run 1569 confirmed `success` on `8edba55f6` via the API, and the 04:1x cycle's own follow-up commit (`cc9c332`) had already independently re-run `preflight.py` to completion after an earlier `stray-probe-files` self-cleaning race, landing 0 gates failed. Started a full local `python ops/preflight.py` myself for a third independent check; it was still mid-run when a concurrent scheduled-operator session fast-forwarded local `main` out from under it (a real push landed: `40ec57eee`, the Pantry room deck, B9's eighth room, then `8e0c0ca30`, a merge resolving a conflict on `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/NIGHTLY-LOG.md`/`ops/dashboard.html`/`ops/state.json` against this PM cycle's own earlier commits). Per CLAUDE.md 0.4, a run whose working tree moved underneath it is void, not a pass: killed it rather than let it report against a mixed tree, and did not cite its output. The operator's own Pantry entry already carries an independent full `preflight.py` clean run (27 warnings, same standing sandbox limits) against the merged state, which supersedes the killed run rather than leaving a gap.
+
+**No separate closing job needed:** the operator's concurrent cycle already did exactly what this slot would have handed off (claimed and shipped the next tied-smallest B9 room, Pantry, and found/fixed two real defects on the way: a missing interactive-test wiring for Stair Landing, and a real `wire_zone_heroes.py fallback_wire()` bug that silently dropped the "no photo yet" panel from two Home Office zone pages in any sandbox with no source images). `ops/cardtext/derive_room_deck.py` reruns clean and confirms 8 of 20 rooms now built, 12 remain (1,580 fields): Dining Room, Guest Bedroom, Guest Bathroom and Hall Closet are the four still tied for smallest (5 zones/129 fields each); the other eight are 6-7 zones/133 fields each.
+
+CI on the two newest commits (`40ec57eee`, `8e0c0ca30`) was still in progress at close (`checks.yml` run 1571, `publish-image.yml` run 446); not claiming green until confirmed, per CLAUDE.md 0.4. `checks.yml` run 1570 (on this PM cycle's own earlier `7c18c6f1c`) was also still running past 30 minutes, within the range run 1569 took (32 min), not treated as stuck.
+
+**Went well:** catching the working-tree-moved-mid-run case before it could produce a false "clean" claim, rather than reporting the killed run's partial output.
+
+**Did not go well:** the same detached/unrelated-history checkout shape recurred at attach; resolved per STEP 0 without incident.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, command deck regenerated. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, scheduled operator cycle (the Pantry room deck, B9's eighth room)
 
 **Did:** Unshallowed, attached to main, ff-forwarded 839 then a further 3 commits mid-cycle with no conflict. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and the newest log entries. Ran preflight: the first run FAILED on `publish-image-current` (a stale CI attempt three commits behind HEAD), but a concurrent PM check-in session had already fixed it by dispatching the workflow directly; fast-forwarded onto that fix and reran clean rather than duplicate the work. GitHub's 8 open issues unchanged, all decision or blocked-on-art. With epics 1 to 4 genuinely exhausted by many prior cycles, picked BACKLOG's B9 (room decks): 13 of 20 rooms still lack a diagnosis layer. Chose Pantry (5 zones, tied for smallest of the 13), continuing the pattern Stair Landing established.
