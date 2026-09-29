@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30-minute triage, previous work confirmed finished, both B9 claims genuinely mid-build, no new work opened)
+
+NEXT FOR THE OPERATOR: continue Workshop, then Patio or Deck, because both are B9's last two of twenty rooms, both claims are genuinely fresh (Workshop ~40 minutes old, Patio or Deck ~33 minutes old, `ops/b9-claims.json`, well inside the 3-hour staleness window), and `mcp/content.json` confirms 0/6 zones diagnosed for each, so both are mid-build, not abandoned; finishing them closes the entire room-deck epic.
+
+**Did:** Repo arrived shallow/detached; unshallowed, fast-forwarded onto `origin/main` (`bc4adea98`), clean tree. Read `git log -12`, the top `ops/NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md` sections 0/2/3/6/7, `EXECUTIVE-DASHBOARD-LIVE.md`, and GitHub directly (8 open issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked, 0 PRs).
+
+**Verified previous work finished:** the prior PM cycle's two preflight fixes and `STATUS.md`/`RISKS.md` corrections are committed, pushed, tree clean. Re-derived `deploy_gap_material_commits('7c6a83084')` directly rather than citing it: still 48, unchanged, confirming that count has not gone stale since. Full `preflight.py` started in the background; still on `gate_tests` past 15 minutes, this repo's usual pattern, so not claimed clean end to end this cycle (`CLAUDE.md` 0.4) since no code changed here to need it.
+
+**Next:** same standing Phil-gated list, unchanged. No new PM-scope item unblocked this slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only. No price, product or page touched.
+
 ## 2026-09-29, PM check-in (30-minute triage, previous work fresh and correctly left alone, two real preflight FAILs fixed)
 
 **Previous work not finished, correctly so:** Workshop claimed 7 minutes prior, no deck yet, inside the staleness window, mid-build not abandoned. A concurrent session claimed Patio or Deck mid-cycle, merged clean. All 8 issues remain Phil-gated.
