@@ -16,6 +16,24 @@ Pushed to main. No price or product touched; no new page from this cycle (Hall C
 
 ---
 
+## 2026-09-29, PM check-in (30 minute triage, previous work reconfirmed finished, one real stale-citation defect found and fixed)
+
+NEXT FOR THE OPERATOR: continue B9 (the room-deck rollout), the next smallest untouched room, one of Dining Room, Guest Bedroom or Guest Bathroom (5 zones/129 fields each, per `ops/cardtext/derive_room_deck.py`), because epics 1-4 (measurement, broken-or-dishonest, traffic, conversion) are exhausted across dozens of prior cycles today, all 8 open GitHub issues are genuinely `decision`/`blocked-on-art`, and B9 is the correct next rung, already 9 of 19 rooms shipped.
+
+**Attached** clean, unshallowed (`fetch --unshallow`), `checkout main`/`merge --ff-only` fast-forwarded 878 commits onto `origin/main`, no conflict.
+
+**Step 2, was previous work finished?** Yes. The immediately prior PM cycle (07:23-07:34) had already independently re-derived, not cited, that the `gate_nightly_log_ordering` CI break was fixed (ran the gate's own logic directly, a full local `preflight.py` clean, 26 warnings), then added the missing regression test. Nothing in the repository had changed since that commit (`521616efa`) when this cycle started: tree clean, main pushed. Re-verified rather than trusted: ran `preflight.py` myself. First attempt used a plain foreground `timeout 280` wrapper and was killed mid-run (exit 143), the exact anti-pattern `ops/run_preflight.sh`'s own docstring warns against; no stray files resulted, tree stayed clean, confirmed on disk before rerunning correctly via the safe wrapper. That run: **every gate passed, 27 warnings**, the same standing sandbox-limit set every recent cycle has recorded. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. CI on the last ops-touching commit (`36bc58fad`) was still mid-run at check time (its own Preflight step alone runs ~19-22 minutes in this repository, confirmed against the immediately prior run's own job log, not a hang); the merge commit just before it (`925b7c76c`) had already completed green.
+
+**One real defect found and fixed: `gate_status_deploy_gap_count_current`'s own complaint was truncated in the preflight console output, so it was read in full from the raw log rather than skipped.** `STATUS.md`'s `BLOCKER-001` latest entry cited a gap of 8 commits against build `159acc34b643d712`; a fresh count with `deploy_gap_material_commits('7c6a83084')` gives 9, not 8. Cause: a concurrent scheduled-operator cycle shipped the Hall Closet room deck (`a7693199c`, B9's ninth room) after the "8 commits" entry was written, the identical recurring shape this gate exists to catch (a correct build_id next to a stale count beside it), already caught and fixed this same way five times today. Fixed at the three places the citation lives: the "Public website" and "Production traceability" summary-table rows, and a new appended `BLOCKER-001` entry (never edited a closed entry in place, per this file's own newest-at-bottom convention for that section). Verified against the gate's own logic directly, not assumed: `preflight.deploy_gap_count_problem(status_text, 9, '159acc34b643d712', '2026-09-27T22:45:39Z')` returns `''` (no complaint) against the corrected file. Full `preflight.py` reran clean after via the safe wrapper.
+
+**Went well:** reading the gate's raw log file when the console tail truncated its message, instead of treating "warning present, can't read it" as good enough to skip.
+
+**Did not go well:** the same class of stale citation (a real commit landing between when a prose count is written and when the next cycle reads it) keeps recurring at roughly one incident per PM/operator cycle today; the structural fix is `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35), not a sharper gate, and that is Phil's alone.
+
+**Handing off:** did not start B9 myself, per this slot's own instruction not to begin large work three minutes before the operator's own run.
+
+Pushed to main. `STATUS.md` (three spots), command deck. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished by independent re-derivation, not citation; added a missing regression test)
 
 Attached clean (ff-only). Previous work was the `gate_nightly_log_ordering` CI break the last PM cycle fixed by moving its own misplaced entry to the top. That fix could not be confirmed by GitHub CI: `checks.yml` only triggers on `ops/**` changes excluding `ops/NIGHTLY-LOG.md` itself, so the fix commit never re-ran the workflow. Confirmed it a different way: ran the gate's own logic directly against the real file (clean) and a full local `preflight.py` from a clean start (every gate passed, 26 warnings, all previously diagnosed sandbox limits). **Genuinely finished, independently re-derived, not just cited forward.**
