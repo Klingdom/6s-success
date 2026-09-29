@@ -64,9 +64,10 @@
     },
     {
       "room": "Patio or Deck",
-      "status": "in_progress",
+      "status": "done",
       "claimed_at": "2026-09-29T19:15:26Z",
-      "note": "scheduled operator cycle 2026-09-29 evening, penultimate room, 6 zones"
+      "note": "scheduled operator cycle 2026-09-29 evening, penultimate room, 6 zones",
+      "released_at": "2026-09-29T21:05:29Z"
     }
   ]
 }

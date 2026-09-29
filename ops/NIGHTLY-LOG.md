@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (Patio or Deck shipped, nineteenth of twenty rooms; found and fixed a real related-reading concentration bug)
+
+**Did:** Checkout arrived shallow/detached; unshallowed and attached to `main`, fast-forwarded cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean (0 FAILs, 27 warnings, all standing sandbox limits: no Stripe/SSH/network credentials here). GitHub: 8 open issues, all decision/blocked-on-art, none Phil-unblocked; 0 PRs. Inbox: no mail credential, unchecked not empty. Affiliate check clean, 165 documents.
+
+**Claimed and built Patio or Deck (B9), delegated to a subagent, independently re-verified.** Diagnosis layer authored for all 6 zones (18 frictions, 54 branches, grounded in the room's own real text, 16 of 17 shared root causes reached), new `ops/cardtext/build_patio_or_deck_deck.py` (68 cards) and `ops/build_patio_or_deck_deck_page.py`, shipped `site/patio-or-deck-deck.html`, new gate and test (6/6).
+
+**Found and fixed a real, reproducible defect this exposed:** with 108 of 114 zones now diagnosed, `diagnosed_reading()`'s greedy-plus-buyback cross-zone allocator let one article climb to 42% of all zone pages, past `test_reading_spread_and_uniqueness.py`'s 40% ceiling. Verified this was not flakiness (isolated re-runs reproduced it identically) and not fixable by tightening the cap (tried 33 down to 18, share got WORSE each time, 42% to 50%, because a tighter cap pushes more zones into its cap-blind fallback at once). Root cause: fixed zone-order greedy assignment lets early zones exhaust the popular articles before later zones are considered. Replaced with a round-robin, load-balanced allocation (every zone takes its own lowest-global-count real candidate each round); proved against the real corpus first (48/114 to 40/114) before landing. 106 zone pages regenerated.
+
+**Verified, not assumed:** full `preflight.py` reached 0 FAILs / 28 warnings only after re-deriving each real gap it caught, in order: a stale `RISKS.md` forms_dead citation (fixed by rerunning `ops/dashboard.py`), a stale sitemap lastmod and build-id after the 106-page regeneration (`ops/build_seo.py`, `ops/build_id.py`), and one self-inflicted mistake caught by re-running: `build_id.py` hashes the git INDEX, not the working tree, so running it before `git add` stamped a hash for the PREVIOUS commit's content; re-staged then re-stamped, confirmed `--check` current with a clean tree. `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, `fix_dashes.py --check` (0/0) all clean after. Three other concurrent sessions (PM check-ins, hourly check-ins, and another session building Workshop) were pushing to this same shared repository throughout; merged cleanly each time, no real conflicts (only auto-generated dashboard/state files, resolved by taking the fresher side and regenerating).
+
+**Went well:** treating "the test failed" as a real signal worth investigating rather than assuming concurrent-session flakiness by default; the empirical binary-search on `article_cap` (getting WORSE as it tightened) was the clue that this was an algorithmic bug, not a tuning number.
+
+**Did not go well:** lost real time to transient stray-fixture-file collisions from other sessions' concurrent test runs before finding the one genuine defect underneath; `build_id.py`'s index-vs-working-tree distinction cost one extra round trip.
+
+**Changing next cycle:** none new; the existing stray-probe-files self-heal and this cycle's own careful re-verification already cover the pattern seen.
+
+**Next:** Workshop is the only room left of B9's 20; claimed by a concurrent session as of this writing. Once it ships, B9 itself is done and the next highest-value item is BACKLOG's B8 (landing each deck on an 18-card print step) or returning to epics 1-4, which were exhausted again this cycle.
+
+Pushed to main. `ops/build_zone_pages.py`, 106 `site/zones/*.html`, `ops/cardtext/build_patio_or_deck_deck.py`, `ops/build_patio_or_deck_deck_page.py`, `site/patio-or-deck-deck.html`, `ops/preflight.py`, `ops/tests/test_gate_patio_or_deck_deck_rendered.py`, `STRATEGY-MICROZONES.md`, `RISKS.md`, `ROADMAP-2026-2029.md`, sitemap, build-id, dashboard. No price or product touched; one new free page, IndexNow not reachable from this sandbox (network egress denied by policy, confirmed via the proxy status endpoint, not assumed).
+
 ## 2026-09-29, PM check-in (20:4x, previous work still mid-build, both claims re-verified fresh, no unblocked item, no new defect)
 
 NEXT FOR THE OPERATOR: continue Workshop, then Patio or Deck, because both are B9's last two of twenty rooms, both claims are genuinely fresh (`python ops/b9_claims.py --status`: Workshop claimed 19:07:33Z, Patio or Deck 19:15:26Z, both well inside the 3-hour staleness window), and neither has a deck file yet (`site/workshop-deck.html`, `site/patio-or-deck-deck.html` both absent), so both are mid-build, not abandoned.

@@ -56,12 +56,13 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-09-29, scheduled operator cycle: claiming Workshop for B9 (room deck), via `python ops/b9_claims.py --claim` (see `ops/b9-claims.json`, claimed 19:07:33Z). No diagnosis layer yet (0/6 zones); authoring it first (Main Workbench, Power Tool Storage, Fastener and Hardware Zone, Material Rack, Finishing and Chemical Zone, Safety and PPE Station), then the deck, following the Primary Bedroom/Nursery reference pattern. Delete this line once merged.
-- 2026-09-29, scheduled operator cycle (evening): claiming Patio or Deck for B9 (room deck), the last of the 20 rooms after Workshop above. No diagnosis layer yet (0/6 zones diagnosed in `mcp/content.json`); authoring the diagnosis layer for all 6 zones first (Outdoor Seating Zone, Grill and Outdoor Cooking Zone, Outdoor Dining Zone, Garden and Plant Care Zone, Outdoor Storage Zone, Surface Rail and Safety Zone), grounded in the room's own real Manual text, then the cardtext/deck-page generators, following the most recent room's reference pattern (Primary Bedroom). Different room from Workshop above, no collision. Delete this line once merged.
+- 2026-09-29, scheduled operator cycle: claiming Workshop for B9 (room deck), via `python ops/b9_claims.py --claim` (see `ops/b9-claims.json`, claimed 19:07:33Z). No diagnosis layer yet (0/6 zones); authoring it first (Main Workbench, Power Tool Storage, Fastener and Hardware Zone, Material Rack, Finishing and Chemical Zone, Safety and PPE Station), then the deck, following the Primary Bedroom/Nursery reference pattern. Delete this line once merged. Workshop is now the LAST of the 20 rooms without a deck; once it ships, B9 itself is done.
 
-Primary Bedroom's B9 claim (diagnosis layer plus
-`site/primary-bedroom-deck.html`) shipped and was released via
-`ops/b9_claims.py --release`; see `ops/b9-claims.json`.
+Patio or Deck's B9 claim (diagnosis layer plus `site/patio-or-deck-deck.html`,
+the 19th of 20 rooms) shipped and was released via `ops/b9_claims.py
+--release`; see `ops/b9-claims.json`. Primary Bedroom's B9 claim (diagnosis
+layer plus `site/primary-bedroom-deck.html`) shipped and was released the
+same way.
 
 # 1. Status Metadata
 
