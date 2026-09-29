@@ -529,12 +529,12 @@
      "root_cause": "KC-003"
     },
     {
-     "answer": "Everyone has a different idea of where the remotes should live, so they end up wherever the last person set them down",
-     "root_cause": "KC-008"
-    },
-    {
      "answer": "Once a remote slides down the seam, nobody wants to dig two hands deep into the cushions for it, so it stays lost until somebody needs it",
      "root_cause": "KC-004"
+    },
+    {
+     "answer": "Everyone has a different idea of where the remotes should live, so they end up wherever the last person set them down",
+     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
@@ -542,8 +542,8 @@
     "zone": "LVZ-001",
     "root_causes": [
      "KC-003",
-     "KC-008",
-     "KC-004"
+     "KC-004",
+     "KC-008"
     ]
    },
    "source": "content/manual/source/content.json",

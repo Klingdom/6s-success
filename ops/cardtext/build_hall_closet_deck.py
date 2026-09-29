@@ -222,12 +222,12 @@ EXPECTED_DIAGNOSIS = {
                "forearm, and pulling one from the bottom risks bringing "
                "the whole stack down.",
     "branches": [
-     {"answer": "There's no agreed limit on how tall a stack is allowed "
-                "to get", "cause": "KC-008"},
      {"answer": "Nobody checks stack height when folding laundry back "
                 "onto this shelf", "cause": "RC-013"},
      {"answer": "The bracket holding this shelf has never been checked "
                 "to see if it's screwed into a stud", "cause": "KC-010"},
+     {"answer": "There's no agreed limit on how tall a stack is allowed "
+                "to get", "cause": "KC-008"},
     ]},
    {"symptom": "A set sized for the guest bed is folded in among the "
                "everyday sets, so the wrong size gets grabbed at "

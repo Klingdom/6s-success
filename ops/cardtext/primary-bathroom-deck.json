@@ -780,12 +780,12 @@
      "root_cause": "KC-002"
     },
     {
-     "answer": "The dividers move when the drawer is opened hard",
-     "root_cause": "KC-008"
-    },
-    {
      "answer": "Hot tools are left out to cool and never make it back",
      "root_cause": "KC-003"
+    },
+    {
+     "answer": "The dividers move when the drawer is opened hard",
+     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
@@ -793,8 +793,8 @@
     "zone": "PBZ-002",
     "root_causes": [
      "KC-002",
-     "KC-008",
-     "KC-003"
+     "KC-003",
+     "KC-008"
     ]
    },
    "source": "content/manual/source/content.json",
@@ -996,25 +996,25 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Nothing ever prompts a check of the dates",
-     "root_cause": "KC-009"
-    },
-    {
      "answer": "We keep it in case it is still fine",
      "root_cause": "RC-015"
     },
     {
      "answer": "Nobody knows whose it is, so nobody throws it out",
      "root_cause": "RC-013"
+    },
+    {
+     "answer": "Nothing ever prompts a check of the dates",
+     "root_cause": "KC-009"
     }
    ],
    "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "PBZ-004",
     "root_causes": [
-     "KC-009",
      "RC-015",
-     "RC-013"
+     "RC-013",
+     "KC-009"
     ]
    },
    "source": "content/manual/source/content.json",
@@ -1260,25 +1260,25 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "The brush goes back into its holder wet",
-     "root_cause": "KC-008"
-    },
-    {
      "answer": "The bin has no lid or no liner",
      "root_cause": "RC-016"
     },
     {
      "answer": "The floor behind the pedestal is never reached",
      "root_cause": "KC-006"
+    },
+    {
+     "answer": "The brush goes back into its holder wet",
+     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "PBZ-006",
     "root_causes": [
-     "KC-008",
      "RC-016",
-     "KC-006"
+     "KC-006",
+     "KC-008"
     ]
    },
    "source": "content/manual/source/content.json",

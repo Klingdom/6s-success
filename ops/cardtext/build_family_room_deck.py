@@ -386,11 +386,11 @@ EXPECTED_DIAGNOSIS = {
                 "reaches the bottom box is a real fall and crush risk "
                 "that outranks how compact the stack looks",
       "cause": "KC-010"},
-     {"answer": "Getting the bottom box out means moving five others "
-                "first, every single time", "cause": "KC-004"},
      {"answer": "The shelf sits high enough that reaching the bottom "
                 "box safely isn't possible without pulling the whole "
                 "stack down first", "cause": "KC-006"},
+     {"answer": "Getting the bottom box out means moving five others "
+                "first, every single time", "cause": "KC-004"},
     ]},
    {"symptom": "You can't read which game is which from across the "
                "room, and dice and pawns from an open box are "

@@ -845,14 +845,14 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=206)
+  - every form on the site is inert (forms_dead=208)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
     footer form is present on 193 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=206 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=208 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
   - UPDATED 2026-09-22: forms_dead moved 193 to 194. The one addition is
@@ -911,7 +911,18 @@ evidence:
     continued, the twelfth room deck), same inert footer newsletter form,
     nothing new in kind. Found by `preflight.py`'s own `risks-evidence-
     current` gate, re-verified directly against `ops/state.json`
-    (`forms_dead=206`) rather than trusted from the gate's own message.
+    (a live `forms_dead` value of 206 at that time) rather than trusted
+    from the gate's own message.
+  - UPDATED 2026-09-29, PM check-in: forms_dead moved 206 to 208 in one
+    jump, not one. Two room decks landed since the last update, each
+    adding its own inert footer form: family-room-deck.html (thirteenth
+    room) and living-room-deck.html (fourteenth room). `ops/state.json`
+    itself was stale at 207 (captured between the two merges, after
+    Family Room but before Living Room); a live scan of every `site/*.html`
+    file for `onsubmit="return false"` confirmed 208 directly, then
+    `ops/dashboard.py` was rerun to bring `ops/state.json` back in line
+    before trusting it. Nothing new in kind, same inert footer newsletter
+    form.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,

@@ -571,12 +571,12 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "The lids are the nearest flat surface in the room",
-     "root_cause": "KC-002"
-    },
-    {
      "answer": "The folding counter is covered, so things migrate here",
      "root_cause": "KC-007"
+    },
+    {
+     "answer": "The lids are the nearest flat surface in the room",
+     "root_cause": "KC-002"
     },
     {
      "answer": "Nobody ever agreed the lids stay bare",
@@ -587,8 +587,8 @@
    "related": {
     "zone": "LRZ-001",
     "root_causes": [
-     "KC-002",
      "KC-007",
+     "KC-002",
      "KC-008"
     ]
    },

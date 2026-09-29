@@ -455,25 +455,25 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "There's no agreed limit on how tall a stack is allowed to get",
-     "root_cause": "KC-008"
-    },
-    {
      "answer": "Nobody checks stack height when folding laundry back onto this shelf",
      "root_cause": "RC-013"
     },
     {
      "answer": "The bracket holding this shelf has never been checked to see if it's screwed into a stud",
      "root_cause": "KC-010"
+    },
+    {
+     "answer": "There's no agreed limit on how tall a stack is allowed to get",
+     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "HCZ-001",
     "root_causes": [
-     "KC-008",
      "RC-013",
-     "KC-010"
+     "KC-010",
+     "KC-008"
     ]
    },
    "source": "content/manual/source/content.json",

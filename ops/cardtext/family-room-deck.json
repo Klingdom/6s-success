@@ -793,12 +793,12 @@
      "root_cause": "KC-010"
     },
     {
-     "answer": "Getting the bottom box out means moving five others first, every single time",
-     "root_cause": "KC-004"
-    },
-    {
      "answer": "The shelf sits high enough that reaching the bottom box safely isn't possible without pulling the whole stack down first",
      "root_cause": "KC-006"
+    },
+    {
+     "answer": "Getting the bottom box out means moving five others first, every single time",
+     "root_cause": "KC-004"
     }
    ],
    "instruction": "Pick the answer that is true in your family room, then turn to that root cause card. If two are true, take the one you could change this week.",
@@ -806,8 +806,8 @@
     "zone": "FRZ-003",
     "root_causes": [
      "KC-010",
-     "KC-004",
-     "KC-006"
+     "KC-006",
+     "KC-004"
     ]
    },
    "source": "content/manual/source/content.json",
