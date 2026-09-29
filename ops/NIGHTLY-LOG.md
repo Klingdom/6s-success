@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (01:2x)
+
+Previous work was finished, but not on the first check: attached clean (unshallowed, checkout main, ff-only onto origin/main, tree clean, no collision with the twin or the operator). A full `preflight.py` run failed one gate, `stray-probe-files`, citing a leftover `site/_audit_catalog_fix...` fixture. Did not assume transient: confirmed the path no longer exists, reran the gate standalone (clean), then reran the entire `preflight.py` a second time end to end rather than trust the single gate. Second run: every gate passed, the same 25 standing warnings every recent cycle has recorded, nothing new. This matches the known race this gate's own docstring names (a concurrent audit/test run killed mid-write, self-heals, caught correctly by the gate that exists for exactly this shape).
+
+Re-verified two claims directly rather than citing them: `deploy_gap_material_commits(resolve_verdict_commit('159acc34b643d712'))` still returns exactly 5 material commits, unchanged from the last citation in `STATUS.md`'s `BLOCKER-001`, no drift. GitHub's 8 open issues (#35, #33, #31, #29, #21, #18, #15, #2) pulled live, byte-identical to every recent cycle, all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175, still genuinely exhausted.
+
+**No new defect found, no new gate written.** This was a 30-minute triage slot spent confirming the previous cycle's clean result actually held rather than starting new work; chasing the stray-probe FAIL down to a confirmed transient race, instead of dismissing it on sight, was the cycle's real job per STEP 2.
+
+**Next for the operator:** B9's follow-on, the 14 room decks still missing a diagnosis layer (1,830 authored fields total per `BACKLOG-2026-09-07.md`'s own count), is hours of work, not a 30-minute item, and remains the highest-value genuinely unblocked item. Standing Phil-gated list unchanged (`OWNER-ACTIONS.md` start-here: `VPS_DEPLOY_KEY`/issue #35, Search Console verification, Stripe business description, YouTube upload authorisation) and the 8 open GitHub issues.
+
+No push notification: nothing measured moved since the last one, and this cycle confirmed rather than changed the standing verdict.
+
+Pushed to main. Dashboard regenerated. No price or product touched, no new page.
+
 ## 2026-09-29, PM check-in (00:4x)
 
 NEXT FOR THE OPERATOR: B9's follow-on, the 14 room decks still missing a diagnosis layer (1,830 authored fields total, per `BACKLOG-2026-09-07.md` B9's own count), because that is the highest-value genuinely unblocked item and nothing else changed this cycle.
