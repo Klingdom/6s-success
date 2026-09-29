@@ -200,13 +200,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-14T06:30:08Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-14T14:17:23Z",
    "mode": "changed",
    "offered": 172,
@@ -618,6 +611,13 @@
    "offered": 25,
    "accepted": 25,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-29T08:35:24Z",
+   "mode": "changed",
+   "offered": 7,
+   "accepted": 7,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -693,10 +693,10 @@
   "https://6s-success.com/rooms/primary-bedroom": "cf00b67d4cabd490",
   "https://6s-success.com/rooms/stair-landing": "1ac19ece0dd98016",
   "https://6s-success.com/rooms/workshop": "0b50b223fd02910b",
-  "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "d31e0bbda6c92b58",
+  "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "6fc802902f27ada6",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "de763c8e0c5a11b7",
   "https://6s-success.com/zones/dining-room-the-dining-table": "2cf0dabf45f2dc60",
-  "https://6s-success.com/zones/dining-room-the-sideboard-storage": "e5a8b16bf1f241fc",
+  "https://6s-success.com/zones/dining-room-the-sideboard-storage": "981f3d1c9fbd66c5",
   "https://6s-success.com/zones/dining-room-the-sideboard-surface": "85d07d4dbb2dea3f",
   "https://6s-success.com/zones/entryway-the-bench-or-console": "f1936bd0bfa5a5fd",
   "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "e8b342fecbb7d9d0",
@@ -761,7 +761,7 @@
   "https://6s-success.com/zones/living-room-the-coffee-table": "15b84e8dff10680d",
   "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "3cb255b1a35ca9a7",
   "https://6s-success.com/zones/living-room-the-media-center": "1dc1bd9d60f3219c",
-  "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "bf89e4a4674e5bad",
+  "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "dbc0d1cda2bba40d",
   "https://6s-success.com/zones/living-room-the-sofa-and-seating": "de77032758c9df10",
   "https://6s-success.com/zones/mudroom-the-bench-and-transition-surface": "1e6c0348ee666f25",
   "https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone": "6623e6da0d246490",
@@ -774,17 +774,17 @@
   "https://6s-success.com/zones/nursery-the-changing-station": "562a547aaf08caeb",
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "27743c7ffd116646",
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "2a5eeb56e67599bb",
-  "https://6s-success.com/zones/nursery-the-feeding-station": "47b64db6ea4616b3",
+  "https://6s-success.com/zones/nursery-the-feeding-station": "b15b69e875c119f5",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "babb47a579eb86bf",
   "https://6s-success.com/zones/pantry-the-baking-zone": "a263b8000747760a",
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "4e77f5242c504024",
   "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "7a2023a00566ee43",
   "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "6062f68e7ea49be8",
-  "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "66949607a5ef242e",
-  "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "9b5cce3297dd9f08",
+  "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "6224d963b6f4c46b",
+  "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "b8e35ccd7b06c3a2",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "296cb73c6091b6a0",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "69d92d36943ef1b9",
-  "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "bf5dc6a39794659c",
+  "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "1ab92158c86b0dd2",
   "https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone": "63a2ec73ce15b729",
   "https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage": "70ffdccd2be6cb13",
   "https://6s-success.com/zones/primary-bathroom-the-medicine-cabinet": "802c355a7f6b8f27",

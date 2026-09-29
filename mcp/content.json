@@ -2813,8 +2813,8 @@
           "cause": "KC-005"
          },
          {
-          "answer": "Nobody's ever counted how many things share that one outlet, and it adds up to a real overload risk",
-          "cause": "KC-010"
+          "answer": "There's no rule about how many things can share one outlet here",
+          "cause": "KC-008"
          },
          {
           "answer": "Checking the cords back there isn't anyone's specific job",
@@ -2928,19 +2928,19 @@
      "diagnosis": {
       "frictions": [
        {
-        "symptom": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
+        "symptom": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
         "branches": [
          {
-          "answer": "Nobody's actually measured it against the table you own now",
-          "cause": "RC-015"
+          "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
+          "cause": "KC-004"
          },
          {
-          "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
-          "cause": "RC-014"
+          "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
+          "cause": "RC-017"
          },
          {
-          "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
-          "cause": "KC-008"
+          "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
+          "cause": "RC-013"
          }
         ]
        },
@@ -2962,19 +2962,19 @@
         ]
        },
        {
-        "symptom": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
+        "symptom": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
         "branches": [
          {
-          "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
-          "cause": "KC-004"
+          "answer": "Nobody's actually measured it against the table you own now",
+          "cause": "RC-015"
          },
          {
-          "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
-          "cause": "RC-017"
+          "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
+          "cause": "RC-014"
          },
          {
-          "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
-          "cause": "RC-013"
+          "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
+          "cause": "KC-008"
          }
         ]
        }
