@@ -1117,6 +1117,7 @@ _CAUSE_ARTICLE_BY_SLUG.update({
 # the whole 102-zone corpus rather than one zone in isolation (the cap and
 # floor balancing in general_reading() needs to see every zone at once).
 _GENERAL_READING = {}
+_DIAGNOSED_READING = {}
 
 # PLAN-MICROZONES-DECKS-APP.md M5: the 102 zones with no diagnosis yet (M6 is
 # deliberately gated 21 days behind M4, not started early) still carried the
@@ -1418,6 +1419,56 @@ def general_reading(rooms, cap=5, article_cap=30, floor=3):
               f"over-cap swap to stay unique: {overcap}")
 
     return {key: [_ARTICLE_BY_SLUG[s] for s in picks[key]] for key, _ in zones}
+
+
+def diagnosed_reading(rooms, cap=5):
+    """Cause-chosen related reading for every diagnosed zone, made unique.
+
+    cause_reading() picks a zone's articles from its own causes, in the order
+    those causes first appear. That is the right rule and it is not sufficient
+    on its own: two zones whose five most prominent causes happen to coincide
+    get the same five articles, and M4's acceptance criteria require no two
+    diagnosed zones to ship an identical set.
+
+    It was sufficient while 12 zones were diagnosed. It stopped being
+    sufficient at 2026-09-29, when Dining Table and Sofa and Seating both
+    resolved to {assigned home, unclear ownership, missing standard,
+    perceptual blindness, wrong location}, in different orders, from genuinely
+    different friction lists. Ordering cannot fix that, because the gate
+    compares sets. The pool is 17 causes with an article each, so as more rooms
+    are diagnosed collisions get more likely, not less: this is structural and
+    will recur.
+
+    So the last pick is swapped for the zone's next distinct cause article
+    until the set is one nothing else has taken. Every link is still chosen by
+    that zone's own causes; only which of its own causes gets the fifth slot
+    changes. A zone with no deeper cause to fall back on keeps its set and the
+    gate reports the collision honestly rather than this function inventing a
+    link to escape it.
+    """
+    taken = {}
+    out = {}
+    for room in rooms:
+        rs = slug(room["room"])
+        for z in room.get("zones", []):
+            if not z.get("diagnosis"):
+                continue
+            zs = slug(display(room["room"], z["zone"]))
+            key = f"{rs}-{zs}"
+            specific = ZONE_SPECIFIC_READING.get(key, [])
+            specific_hrefs = {e[0] for e in specific}
+            # Everything this zone's causes offer, not just the first five.
+            pool = [e for e in cause_reading(z, cap=99)
+                    if e[0] not in specific_hrefs]
+            links = (specific + pool)[:cap]
+            sig = frozenset(e[0] for e in links)
+            spare = [e for e in pool if e not in links]
+            while sig in taken and spare and len(links) == cap:
+                links = links[:-1] + [spare.pop(0)]
+                sig = frozenset(e[0] for e in links)
+            taken[sig] = key
+            out[key] = links
+    return out
 
 
 def cause_reading(zone, cap=5):
@@ -2903,8 +2954,13 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     _specific = ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])
     _specific_hrefs = {e[0] for e in _specific}
     if zone.get("diagnosis"):
-        _cause_links = (_specific + [e for e in cause_reading(zone)
-                                     if e[0] not in _specific_hrefs])[:5]
+        # Precomputed across every room so no two diagnosed zones collide;
+        # falls back to the per-zone pick when this generator is called
+        # outside main() (a standalone render, or a test).
+        _cause_links = _DIAGNOSED_READING.get(f"{rs}-{zs}")
+        if _cause_links is None:
+            _cause_links = (_specific + [e for e in cause_reading(zone)
+                                         if e[0] not in _specific_hrefs])[:5]
     else:
         _general = _GENERAL_READING.get(f"{rs}-{zs}")
         if _general is None:
@@ -3349,6 +3405,8 @@ def main():
     # pick once, over the whole corpus, before any page is rendered.
     _GENERAL_READING.clear()
     _GENERAL_READING.update(general_reading(data["rooms"]))
+    _DIAGNOSED_READING.clear()
+    _DIAGNOSED_READING.update(diagnosed_reading(data["rooms"]))
 
     urls, nz, words = [], 0, 0
     room_names = [r["room"] for r in data["rooms"]]

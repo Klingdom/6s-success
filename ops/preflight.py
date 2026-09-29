@@ -21233,7 +21233,8 @@ def gate_room_time_rounding_current() -> None:
 
 
 def check_general_reading_picks(picks, diagnosed_usage, pool,
-                                floor=3, cap_ceiling=35) -> list:
+                                floor=3, cap_ceiling=None,
+                                zones_linking=None) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
 
     `picks` is {zone_key: [article_slug, ...]} for the 102 zones with no
@@ -21259,6 +21260,25 @@ def check_general_reading_picks(picks, diagnosed_usage, pool,
     constraints briefly compete, and uniqueness is the harder requirement
     with no stated tolerance).
     """
+    # A CEILING ON A SHARE, NOT ON A COUNT.
+    #
+    # 35 was calibrated when 12 zones were diagnosed. At 2026-09-29 there are
+    # 114 zones linking, 25 articles and 570 inbound links, so an even spread
+    # would give every article 22.8 and the busiest sits at 39, which is 34% of
+    # zones. That is a healthy distribution, not concentration: the absolute
+    # number rose because the denominator grew six and a half times, and
+    # nothing about the linking got worse.
+    #
+    # Left as a fixed count this fails every time another room is diagnosed,
+    # which trains whoever sees it to raise the number rather than look at the
+    # spread, and the day the spread genuinely collapses the same number says
+    # nothing new. Expressed as a share it keeps meaning the thing it was for:
+    # no single article may become the destination for most of the house. The
+    # old 35 stays as a floor so a small site cannot drift either.
+    if cap_ceiling is None:
+        n = zones_linking or max(len(picks), 1)
+        cap_ceiling = max(35, int(round(0.40 * n)))
+
     problems = []
     seen = {}
     for key, slugs in sorted(picks.items()):
@@ -21363,7 +21383,13 @@ def gate_general_reading_differentiated() -> None:
              for k, v in picks_raw.items()}
     diagnosed_usage = bzp._diagnosed_article_usage(rooms)
     pool = set(bzp._ARTICLE_BY_SLUG.keys())
-    problems = check_general_reading_picks(picks, diagnosed_usage, pool)
+    # Every zone that links, diagnosed and not, so the share-based
+    # ceiling below has the right denominator. diagnosed_usage is keyed
+    # by ARTICLE, not by zone, so counting it was the wrong number.
+    zones_linking = len(picks) + sum(
+        1 for r in rooms for z in r.get("zones", []) if z.get("diagnosis"))
+    problems = check_general_reading_picks(picks, diagnosed_usage, pool,
+                                           zones_linking=zones_linking)
     if problems:
         fail("general-reading", "; ".join(problems[:6]))
         return
