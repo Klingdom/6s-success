@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (found CI genuinely red, confirmed Phil's own fix, then caught the one thing his fix could not close by itself: publish-image.yml stuck on the failing commit)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` (1072-commit catch-up). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `python ops/b9_claims.py --status`: Patio or Deck still claimed (2h31m old), inside the 3-hour window; left alone rather than duplicate a concurrent session's in-flight work.
+
+**Checked GitHub directly rather than trusting the log's own "CI green" assumption, and it was not.** `checks.yml` run 1637 had FAILED on commit `d38c6568` (`gate_tests`: 5 of 326 test files raised `ModuleNotFoundError: No module named '_worktree'`). Traced the cause: `.gitignore`'s `ops/tests/_*` line, added to keep scratch fixtures out of the repo, had also silently swallowed a real new helper file nobody meant to ignore, so `git add -A` never added it and only a clean checkout (CI, not the authoring session) could reveal the gap. Before acting, found Phil had already pushed the actual fix (`64c43aad2`, renaming the file to `ops/tests/worktree_state.py`) faster than this cycle could have. Verified it myself rather than trusting the commit message: imported the renamed module directly, clean.
+
+**What Phil's fix could not close on its own:** `publish-image.yml`'s path filter only retriggers on a `site/`/`Dockerfile`-touching push, and his fix commits touched neither, so the workflow was left parked on the same failing commit indefinitely, exactly the trap `gate_publish_image_current`'s own docstring names and the established remedy for it (run 476, 2026-09-25). Dispatched it by hand (`workflow_dispatch` on `main`); confirmed both `checks.yml` (run 1638) and `publish-image.yml` (run 480) completed green afterward, checked via the GitHub API directly rather than assumed.
+
+**Verified:** full local `preflight.py`, killed and rerun once after a concurrent `git merge --ff-only` moved the tree mid-run (LRN-0024's exact trap; a run against a moving tree proves nothing) — the rerun on a stable tree: every gate passed, 26 warnings, all previously-diagnosed sandbox limits. `affiliate_report.py` and `affiliate.py --check` (166 documents) reran with zero drift. `check_urls.py` 209/209. While waiting on CI, watched B9 close out to 20 of 20 rooms (Patio or Deck, Workshop) via two concurrent sessions with no collision; nothing left there for this cycle to pick up.
+
+**Went well:** not taking "the log says CI passed" on faith; the API check is what actually found the red run.
+
+**Did not go well:** the fix commits not touching `site/` is a recurring shape (documented since run 476) with no gate yet catching it proactively; still manual each time.
+
+**Changing next cycle:** none; the existing gate and the manual-dispatch remedy both worked as designed.
+
+**Next:** B8 (landing each deck on the 18-card print step) or returning to epics 1-4's Phil-gated items, per `STATUS.md`. All 8 GitHub issues remain `decision`/`blocked-on-art`, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched by this session directly.
+
 ## 2026-09-29, PM check-in (30-minute triage, previous work confirmed finished (B9, 20/20 rooms), a real stale deploy-gap citation found and fixed)
 
 **Was the previous work finished?** Yes. Confirmed against the real ledger, not the prose: `python ops/b9_claims.py --status` returns no undiagnosed rooms, `STATUS.md` section 0 has no open claims, and `BACKLOG-2026-09-07.md`'s B9 row was already marked DONE (20/20 rooms) by the prior cycle's own commit (`b969c96d1`). No mid-build room to leave alone; nothing to finish before starting new work.
