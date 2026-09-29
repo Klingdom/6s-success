@@ -327,6 +327,7 @@ Maintain:
 | LRN-0021 | nohup and disown do not protect a background job from a process-group signal; only a new session (setsid) does | ENGINEERING / RELIABILITY | SUPPORTED | HIGH |
 | LRN-0023 | Text shared by every room must not assume one room, and no equality check can find the assumption | CONTENT / QUALITY | SUPPORTED | HIGH |
 | LRN-0024 | Read the line ending from what git stores, not from the working copy | ENGINEERING / TOOLING | SUPPORTED | HIGH |
+| LRN-0025 | At this traffic scale one 20-minute burst can invert a weekly trend, so check concentration before calling direction | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -733,6 +734,56 @@ true whatever the cause.
 
 **Next action.** Check `--numstat`, not just `--stat`, before every commit
 that touched a tracked text file with a script.
+
+#### LRN-0025: At this traffic scale one 20-minute burst can invert a weekly trend, so check concentration before calling direction
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (caught before publication; the same signature is present twice in the data)
+**Domain:** ANALYTICS / MEASUREMENT
+**Measured:** 2026-09-29
+
+**Observation.** A fresh database read gave the trailing week as 14 visitors,
+18 visits and 50 pageviews, against 12 / 14 / 27 four days earlier. That is up
+on every measure, and it was written into `GOALS.md`, `STATUS.md`,
+`BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/roadmap_report.py` and
+`ops/experiments.json` as **"the first reading up on every measure since this
+row was created"**.
+
+It was wrong. 30 of the 50 pageviews and 9 of the visitor ids arrived between
+18:00 and 18:20 on 27 September: all direct, no referrer, across Windows 7,
+Windows 10, Mac OS and iOS. Excluding that single 20-minute bucket the week is
+**7 visitors, 9 visits, 20 pageviews**, which is DOWN on 12 / 14 / 27.
+
+**Evidence.** Two queries, neither of which the first pass ran: pageviews per
+visitor with their time span, and visitors per 20-minute bucket. The second
+shows the top bucket all time is 2026-09-27 18:00 with 9 visitors, and that
+three consecutive buckets late on 2026-08-23 hold 6 to 8 each. So the shape
+recurs, and a weekly comparison that straddles one of them is comparing a
+burst to a baseline.
+
+**What the first pass did wrong, precisely.** It read the aggregate and
+believed it. The aggregate was correct: 50 pageviews really did arrive. The
+error was inferring a trend from a total without asking how it was
+distributed, at a scale where distribution is the whole story. Fourteen
+visitors a week means one afternoon is the week.
+
+**A tell that looked strong and was not.** The burst has no country recorded
+for any visitor, which reads as datacentre traffic. Checked: country is blank
+for all 87 visitors this site has ever had, so it says nothing at all. Worth
+recording because it is the shape of a satisfying-but-void signal, and it
+would have been quoted as proof if it had not been checked against the
+baseline.
+
+**Implication.** Nothing identifies the burst as human, and nothing identifies
+it as a bot either; at n=9 the honest answer is that it is unexplained. So
+report both numbers, lead with the conservative one, and size experiments off
+it: at 7 human-plausible visitors a week, any experiment needing hundreds of
+sessions cannot finish here at all, which is a more useful conclusion than the
+false rise was.
+
+**Next action.** Before any weekly traffic figure enters a document, run the
+per-bucket concentration query alongside the aggregate. If one bucket holds a
+quarter or more of the period, report the period both ways.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 

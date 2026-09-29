@@ -60,18 +60,22 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 57, "visits": 144, "views": 786,
-           "days": 30, "as_of": "2026-09-25",
-           "how": "read directly from the Umami database 2026-09-25 01:17 UTC "
-                  "over ssh (ops/traffic_query.sh): 57 visitors, 144 visits, "
-                  "786 pageviews. Down from 76 mainly because the 7 Sept "
-                  "automated session (431 pageviews in 28 minutes) has rolled "
-                  "OUT of the 30-day window, so views here is very nearly all "
-                  "human and is no longer net of an exclusion. The trailing "
-                  "week is 12 visitors, against 10, 14 and 18 in the three "
-                  "weeks before: the fall has stopped without reversing. In "
-                  "Umami session_id is the VISITOR and persists across days, "
-                  "while visit_id is the visit."}
+TRAFFIC = {"visitors": 48, "visits": 119, "views": 731,
+           "days": 30, "as_of": "2026-09-29",
+           "how": "read directly from the Umami database 2026-09-29 over ssh "
+                  "(ops/traffic_query.sh): 48 visitors, 119 visits, 731 "
+                  "pageviews. The 30-day figure keeps falling because late "
+                  "August days roll out of the window, not because arrivals "
+                  "fell. The trailing WEEK records 14 visitors / 18 visits / 50 "
+                  "pageviews against 12 / 14 / 27 four days earlier, but 30 of "
+                  "those pageviews and 9 of the visitor ids arrived between "
+                  "18:00 and 18:20 on 27 September, all direct, across four "
+                  "operating systems; the same shape appears late on 23 August. "
+                  "EX-BURST the week is 7 visitors / 9 visits / 20 pageviews, "
+                  "DOWN on 12 / 14 / 27. Size experiments off the ex-burst "
+                  "figure. All time: 87 visitors, 232 visits, 1030 "
+                  "pageviews since 2026-08-20. In Umami session_id is the "
+                  "VISITOR and persists across days, while visit_id is the visit."}
 
 
 def env(name: str, default: str = "") -> str:

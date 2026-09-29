@@ -13,9 +13,10 @@ the publish pair is verified at 114 of 114. Earlier, 2026-09-26, item 1 was held
 and then CLEARED the same day. The hold was real: all 114 films were 30.2s while their captions ran to
 74.8s, so publishing would have put captions 45 seconds past the end of the
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both film
-length and caption sync, so the row is actionable again. Traffic figure below unchanged since
-2026-09-25 01:17 UTC, when a direct database read gave 57 visitors/144 visits/30
-days (1.9 a day; trailing week 12 after 12, 10, 14, 18).
+length and caption sync, so the row is actionable again. Traffic re-measured 2026-09-29 by a
+direct database read: 48 visitors/119 visits/30 days (1.6 a day). The trailing
+week records 14, but 30 of its 50 pageviews came in one 20-minute burst on 27
+September; ex-burst the week is 7 visitors and it fell again.
 
 **Corrected 2026-09-25 00:1x, PM check-in: the "3 commits" figure below was already stale, and citing a superseded build_id besides.** Before re-deriving from the same `28ed2709194afab5`/`d5b0d5c8` citation the note below used, checked `ops/deploy-verdict.json` directly. It now records a newer, unread confirmation: `verdict: "current"`, build `6a10df205a3d058c`, `checked_at: 2026-09-24T23:35:51Z`, resolving (`git log -S`) to commit `b8eca135` ("Micro zones: Laundry Room personalised"). A session with real access redeployed again after the `d5b0d5c8` confirmation and closed the gap in full at that time. Reopened since by exactly one further `site/**` commit, Phil's own `ca49aa25` ("Micro zones: Garage personalised"): `git log b8eca135..HEAD -- site/ Dockerfile` reads 1 commit, 44 files, 547 insertions, 323 deletions, not the 4 a recount against the older, superseded build would have shown. No new action needed beyond item 0 below, same structural gap, just correctly sized against the current verdict; `STATUS.md`'s `BLOCKER-001` carries the same correction.
 
@@ -600,7 +601,7 @@ on the zone page" rather than presenting four sixths of a standard as the
 whole of it. One of those hidden items was "The cabinet strapped to a wall
 stud", which is a safety line.
 
-**Measured 2026-09-25 01:17 UTC by a direct database read.** Traffic is 57 visitors, 144 visits and 786 pageviews, 1.9 a day. It fell from 76 mostly because the 7 Sept automated session (431 pageviews) rolled out of the 30-day window, so this count is now very nearly all human. The last 7 days: **12 visitors**, against 10, 14 and 18 in the three weeks before, so the fall has stopped without reversing. The crawl rise I reported on 21 Sept turned out to be a two-day burst from the IndexNow submission, not a change (1, 17, 15, 2, 2 by day), so this is not a crawling problem and it is not a crawling success either:
+**Re-measured 2026-09-29 by a direct database read.** Traffic is 48 visitors, 119 visits and 731 pageviews, 1.6 a day. The 30-day count keeps sliding only because late-August days roll out of the window; the 7 Sept automated session (431 pageviews) is long gone from it, so this is very nearly all human. The last 7 days record **14 visitors, 18 visits, 50 pageviews** against 12/14/27 four days earlier, but 30 of those pageviews and 9 of the visitor ids landed between 18:00 and 18:20 on 27 September, all direct, across four operating systems, a shape that also appears late on 23 August. **Ex-burst the week is 7 visitors, 9 visits, 20 pageviews: down, not up.** A first draft of this line today called it the first rise on every measure; checking where the pageviews came from withdrew that. The crawl rise I reported on 21 Sept turned out to be a two-day burst from the IndexNow submission, not a change (1, 17, 15, 2, 2 by day), so this is not a crawling problem and it is not a crawling success either:
 
 | Source | Visitors, 30 days |
 |---|---|
