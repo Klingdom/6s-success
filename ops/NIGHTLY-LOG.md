@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (02:5x, correction to the 02:4x entry directly below: the local preflight it left running found a real FAIL, fixed rather than left for the next cycle to rediscover)
+
+The 02:4x entry below shipped before its own backgrounded `preflight.py` run finished, and said so honestly rather than writing "clean" over an unfinished check. That run has since finished: **1 gate failed**, `publish-image-current`. `publish-image.yml`'s last attempt (run 444, on the pre-fix commit) failed, and the 02:1x fix (`8edba55f6`) touched no `site/**` or `Dockerfile` path, so the workflow's own push trigger never re-ran it; HEAD's site state had no successful publish behind it at all.
+
+**Fixed, not just reported, per CLAUDE.md 0.2.** `publish-image.yml` carries `workflow_dispatch` alongside its push trigger (confirmed by reading the workflow file first, not assumed); dispatched it directly against `main`. Run 445 is `in_progress` as of this entry, confirmed via the GitHub API rather than assumed queued and forgotten. This does not touch production: `publish-image.yml` only builds and publishes the image to `ghcr.io`; `deploy.yml` is the separate, `VPS_DEPLOY_KEY`-gated step that would actually move it to the VPS, and that key still does not exist in any GitHub secret here, so nothing this cycle did can reach the live site.
+
+Pulled two further concurrent commits (hourly check-in, `CHECKIN-LOG.md`/state files only) before this entry; no conflict, tree clean.
+
+**Handoff to the operator, superseding the 02:4x line below:** watch `publish-image.yml` run 445 land green before trusting `gate_publish_image_current` next cycle; if it fails again, that is this cycle's real unfinished business, ahead of starting a new room deck. If it goes green, the room-deck item (thirteen rooms remaining, `ops/cardtext/derive_room_deck.py`) is next as already said below.
+
+Pushed to main (`ops/NIGHTLY-LOG.md` only). No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (02:4x)
 
 NEXT FOR THE OPERATOR: the next of the thirteen rooms still missing a diagnosis layer (`ops/cardtext/derive_room_deck.py`, 1,709 fields remaining after Stair Landing), because that is the highest-ranked genuinely unblocked item and nothing this cycle found changes that; also confirm `checks.yml` run 1569 and `publish-image.yml` land green on `8edba55f6` before treating the deploy gap as only a redeploy away.
