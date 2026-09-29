@@ -36,6 +36,8 @@ NEXT FOR THE OPERATOR: continue Workshop, then Patio or Deck, because both are B
 
 Pushed to main. `ops/NIGHTLY-LOG.md` only. No price, product or page touched.
 
+**Addendum, once the background `preflight.py` finished after this entry shipped:** 1 gate failed, `stray-probe-files`, naming `site/_audit_catalog_fix...`, a real FAIL at the moment the gate ran, not a false read. Checked live rather than assumed stale: the path no longer exists (`find` empty, `git status` clean), and re-running `gate_no_stray_probe_files()` directly now reports clean. This is the same transient race the prior PM cycle already diagnosed and named (a concurrent session's own audit/test run writing and removing a gitignored scratch file mid-preflight); `preflight.py`'s own module docstring (line 40) already documents this exact FAIL shape. No fix needed, nothing left dirty. Every other gate passed, 26 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, Pillow/JRE not installed here).
+
 ## 2026-09-29, PM check-in (30-minute triage, previous work fresh and correctly left alone, two real preflight FAILs fixed)
 
 **Previous work not finished, correctly so:** Workshop claimed 7 minutes prior, no deck yet, inside the staleness window, mid-build not abandoned. A concurrent session claimed Patio or Deck mid-cycle, merged clean. All 8 issues remain Phil-gated.
