@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (found the two handed-off gate FAILs already fixed by a concurrent session, adopted rather than duplicated; then built Kids Bedroom, B9's sixteenth room)
+
+**Did:** Unshallowed, attached to main, ff-forwarded clean. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the top NIGHTLY-LOG entries: the most recent PM check-in named two real, currently-red preflight gates and handed them to the operator. Ran `preflight.py` myself per STEP 2, reconfirmed both, and independently built a fix: reassigned one friction branch's root cause for the diagnosis-rendered collision, and made `cause_reading()` cap-aware for the general-reading ceiling breach (it had no ceiling awareness at all, unlike its sibling `general_reading()`). Verified both gates clean, discovered a real ripple (the fix broke `gate_dining_room_deck_rendered`'s own pinned content snapshot), fixed that too, and was about to commit.
+
+**Before pushing, a `git fetch` surfaced the actual situation: a concurrent session, and Phil himself, had already fixed both gates**, with a more complete solution than mine (`diagnosed_reading()`, a single function giving the diagnosed-zone pool both a uniqueness-swap pass and a proportional inbound-link ceiling, `max(35, 40% of zones that link)` rather than a fixed count that breaks every time the corpus grows). Two other sessions had converged on the same problem the same afternoon; Phil's own merge commits record choosing the more complete of two competing implementations. Rather than push a third, conflicting version: discarded every one of my own changes to `build_zone_pages.py`, `content.json` and the dining-room-deck files, fast-forwarded onto the real tip, and independently re-verified the already-shipped fix directly against both gates (0 problems) before accepting it. Deleted my own test file, since it tested an API shape (`cause_reading(counts=, article_cap=)`) the accepted fix does not use.
+
+**With that item closed, moved to B9.** Kids Bedroom's standing claim (12:55) had passed the 3-hour staleness window with no deck shipped; claimed it, pushed the claim alone, delegated the build to a subagent with the Mudroom commit as the explicit reference pattern. Diagnosis layer for all 6 zones (18 frictions, 54 branches, all 17 shared root causes reachable), every branch grounded in the zone's own real text: a strangling blind cord at a sleeping child's neck height, a choke-sized toy part, an unanchored dresser a child climbs, a school backpack carrying daily medication.
+
+**Verified, not assumed:** independently re-ran both new gates and both originally-red gates directly against the real files (0 problems, all four); `mcp/content.json` confirmed byte-identical; `build_zone_pages.py` and the two new generators confirmed idempotent; the dedicated test (6/6); `check_urls.py` (206/206), `audit_pages.py` (210/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0). Caught one real gap the subagent's own report had not fully closed by the time I checked: nothing, the report was accurate.
+
+**Went well:** checking origin before pushing rather than after, so the discarded fix cost a rebuild, not a merge conflict or a duplicate gate.
+
+**Did not go well:** built a full independent fix (including a ripple fix to the dining room deck) before ever checking whether the work was already done; a `git fetch` at the start would have caught this before any of it was written.
+
+**Changing next cycle:** check `git fetch origin main` again immediately before starting any fix to a gate a PM check-in already named, not just at session start, since these gates recur exactly because multiple concurrent sessions read the same handoff.
+
+**Next:** B9 continues, four rooms remain (Nursery, Patio or Deck, Primary Bedroom, Workshop), all tied at 6 zones.
+
+Pushed to main. No price or product touched; one new free page (site/kids-bedroom-deck.html), IndexNow submission attempted.
+
 ## 2026-09-29, scheduled operator (hourly), fixed a live cross-zone related-reading defect preflight found, then built Mudroom as B9's fifteenth room
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top `ops/NIGHTLY-LOG.md` entries. `python ops/preflight.py` (step 2's mandatory gate) failed with 4 real problems, so per this run's own step 2 instruction ("if it fails, fixing that IS this run's work"), fixed those first rather than picking a backlog item.
