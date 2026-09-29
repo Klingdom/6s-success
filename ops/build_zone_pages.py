@@ -1117,6 +1117,7 @@ _CAUSE_ARTICLE_BY_SLUG.update({
 # the whole 102-zone corpus rather than one zone in isolation (the cap and
 # floor balancing in general_reading() needs to see every zone at once).
 _GENERAL_READING = {}
+_DIAGNOSED_READING = {}
 
 # Populated once by main() via diagnosed_reading(), the same reason: a
 # diagnosed zone's related-reading pick has to see every other diagnosed
@@ -3556,6 +3557,8 @@ def main():
     # pick once, over the whole corpus, before any page is rendered.
     _GENERAL_READING.clear()
     _GENERAL_READING.update(general_reading(data["rooms"]))
+    _DIAGNOSED_READING.clear()
+    _DIAGNOSED_READING.update(diagnosed_reading(data["rooms"]))
 
     urls, nz, words = [], 0, 0
     room_names = [r["room"] for r in data["rooms"]]

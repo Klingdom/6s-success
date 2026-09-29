@@ -3397,12 +3397,12 @@
           "cause": "KC-003"
          },
          {
-          "answer": "Once a remote slides down the seam, nobody wants to dig two hands deep into the cushions for it, so it stays lost until somebody needs it",
-          "cause": "KC-004"
-         },
-         {
           "answer": "Everyone has a different idea of where the remotes should live, so they end up wherever the last person set them down",
           "cause": "KC-008"
+         },
+         {
+          "answer": "Once a remote slides down the seam, nobody wants to dig two hands deep into the cushions for it, so it stays lost until somebody needs it",
+          "cause": "KC-004"
          }
         ]
        },
@@ -4542,12 +4542,12 @@
           "cause": "KC-010"
          },
          {
-          "answer": "The shelf sits high enough that reaching the bottom box safely isn't possible without pulling the whole stack down first",
-          "cause": "KC-006"
-         },
-         {
           "answer": "Getting the bottom box out means moving five others first, every single time",
           "cause": "KC-004"
+         },
+         {
+          "answer": "The shelf sits high enough that reaching the bottom box safely isn't possible without pulling the whole stack down first",
+          "cause": "KC-006"
          }
         ]
        },
@@ -7496,12 +7496,12 @@
           "cause": "KC-002"
          },
          {
-          "answer": "Hot tools are left out to cool and never make it back",
-          "cause": "KC-003"
-         },
-         {
           "answer": "The dividers move when the drawer is opened hard",
           "cause": "KC-008"
+         },
+         {
+          "answer": "Hot tools are left out to cool and never make it back",
+          "cause": "KC-003"
          }
         ]
        }
@@ -7781,16 +7781,16 @@
         "symptom": "There is medicine in here that expired years ago.",
         "branches": [
          {
+          "answer": "Nothing ever prompts a check of the dates",
+          "cause": "KC-009"
+         },
+         {
           "answer": "We keep it in case it is still fine",
           "cause": "RC-015"
          },
          {
           "answer": "Nobody knows whose it is, so nobody throws it out",
           "cause": "RC-013"
-         },
-         {
-          "answer": "Nothing ever prompts a check of the dates",
-          "cause": "KC-009"
          }
         ]
        },
@@ -8094,16 +8094,16 @@
         "symptom": "This area smells even after cleaning it.",
         "branches": [
          {
+          "answer": "The brush goes back into its holder wet",
+          "cause": "KC-008"
+         },
+         {
           "answer": "The bin has no lid or no liner",
           "cause": "RC-016"
          },
          {
           "answer": "The floor behind the pedestal is never reached",
           "cause": "KC-006"
-         },
-         {
-          "answer": "The brush goes back into its holder wet",
-          "cause": "KC-008"
          }
         ]
        },
@@ -9164,12 +9164,12 @@
         "symptom": "There is always something sitting on top of the machines.",
         "branches": [
          {
-          "answer": "The folding counter is covered, so things migrate here",
-          "cause": "KC-007"
-         },
-         {
           "answer": "The lids are the nearest flat surface in the room",
           "cause": "KC-002"
+         },
+         {
+          "answer": "The folding counter is covered, so things migrate here",
+          "cause": "KC-007"
          },
          {
           "answer": "Nobody ever agreed the lids stay bare",
@@ -11299,16 +11299,16 @@
         "symptom": "Packs are left charging overnight, or for days.",
         "branches": [
          {
+          "answer": "Nothing says a pack comes off the charger when it is full",
+          "cause": "KC-008"
+         },
+         {
           "answer": "The charger is somewhere nobody walks past",
           "cause": "KC-003"
          },
          {
           "answer": "The shelf is crowded, so a full pack has nowhere to move to",
           "cause": "KC-007"
-         },
-         {
-          "answer": "Nothing says a pack comes off the charger when it is full",
-          "cause": "KC-008"
          }
         ]
        },
@@ -11456,16 +11456,16 @@
         "symptom": "There is a sticky film or a puddle under the shelf.",
         "branches": [
          {
+          "answer": "Bottles are stored lying down or leaning",
+          "cause": "KC-008"
+         },
+         {
           "answer": "There is no tray, so a weep goes straight onto the slab",
           "cause": "KC-002"
          },
          {
           "answer": "The shelf is too deep to reach the back of and wipe",
           "cause": "RC-016"
-         },
-         {
-          "answer": "Bottles are stored lying down or leaning",
-          "cause": "KC-008"
          }
         ]
        },
@@ -13493,16 +13493,16 @@
         "symptom": "A towel stack on this shelf has grown taller than your forearm, and pulling one from the bottom risks bringing the whole stack down.",
         "branches": [
          {
+          "answer": "There's no agreed limit on how tall a stack is allowed to get",
+          "cause": "KC-008"
+         },
+         {
           "answer": "Nobody checks stack height when folding laundry back onto this shelf",
           "cause": "RC-013"
          },
          {
           "answer": "The bracket holding this shelf has never been checked to see if it's screwed into a stud",
           "cause": "KC-010"
-         },
-         {
-          "answer": "There's no agreed limit on how tall a stack is allowed to get",
-          "cause": "KC-008"
          }
         ]
        },

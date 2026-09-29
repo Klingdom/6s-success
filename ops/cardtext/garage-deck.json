@@ -866,25 +866,25 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
+     "answer": "Nothing says a pack comes off the charger when it is full",
+     "root_cause": "KC-008"
+    },
+    {
      "answer": "The charger is somewhere nobody walks past",
      "root_cause": "KC-003"
     },
     {
      "answer": "The shelf is crowded, so a full pack has nowhere to move to",
      "root_cause": "KC-007"
-    },
-    {
-     "answer": "Nothing says a pack comes off the charger when it is full",
-     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your garage, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "GAZ-003",
     "root_causes": [
+     "KC-008",
      "KC-003",
-     "KC-007",
-     "KC-008"
+     "KC-007"
     ]
    },
    "source": "content/manual/source/content.json",
@@ -998,25 +998,25 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
+     "answer": "Bottles are stored lying down or leaning",
+     "root_cause": "KC-008"
+    },
+    {
      "answer": "There is no tray, so a weep goes straight onto the slab",
      "root_cause": "KC-002"
     },
     {
      "answer": "The shelf is too deep to reach the back of and wipe",
      "root_cause": "RC-016"
-    },
-    {
-     "answer": "Bottles are stored lying down or leaning",
-     "root_cause": "KC-008"
     }
    ],
    "instruction": "Pick the answer that is true in your garage, then turn to that root cause card. If two are true, take the one you could change this week.",
    "related": {
     "zone": "GAZ-004",
     "root_causes": [
+     "KC-008",
      "KC-002",
-     "RC-016",
-     "KC-008"
+     "RC-016"
     ]
    },
    "source": "content/manual/source/content.json",
