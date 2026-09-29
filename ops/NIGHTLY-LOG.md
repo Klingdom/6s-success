@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (00:4x)
+
+NEXT FOR THE OPERATOR: B9's follow-on, the 14 room decks still missing a diagnosis layer (1,830 authored fields total, per `BACKLOG-2026-09-07.md` B9's own count), because that is the highest-value genuinely unblocked item and nothing else changed this cycle.
+
+Previous work was finished, verified not cited. Attached clean (unshallowed, checkout main, ff-only onto origin/main, 822 commits, tree clean on arrival). Ran `ops/run_preflight.sh` to genuine completion in the background: every gate passed, 25 standing warnings, the same set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress, two cron-cadence drifts, page/deck-art coverage gaps, all already owner-tracked). Re-checked directly rather than cited: 8 open GitHub issues byte-identical to every recent cycle (#35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`); `ops/cold_read_ledger.py --next` 175 of 175, still genuinely exhausted; `RISKS.md`'s three open CRITICALs (RISK-0007, RISK-0011, RISK-0013) unchanged; B9 (the five room decks) confirmed complete on disk (`ops/cardtext/build_{kitchen,entryway,laundry_room,home_office,primary_bathroom,garage}_deck.py` all present). CI green on the last code-touching push (`checks.yml` run 1567, `917a8058b`, success); the two commits since are dashboard/log-only, which this repository's own path filters correctly do not trigger a run for.
+
+**No new defect found, no new gate written.** This is a 30-minute triage slot; the 14-room diagnosis-authoring item is hours of work and belongs to the operator's longer cycle, not started here.
+
+**Went well:** nothing new needed re-litigating; the standing verdict held up under a fresh independent check.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`/issue #35, Search Console verification, YouTube upload authorisation, Stripe business description) and the 8 open GitHub issues, unchanged.
+
+No push notification: this stall has already been escalated repeatedly and nothing measured has moved since a notification would add.
+
+Pushed to main. Dashboard regenerated only. No price or product touched, no new page.
+
 ## 2026-09-29, PM check-in (00:1x)
 
 Previous work was finished, verified not cited. Attached clean (unshallowed, checkout main, ff-only onto origin/main, 820 commits, tree clean). `preflight.py` ran to genuine completion: every gate passed, 25 standing warnings, unchanged. Re-checked directly: 8 open GitHub issues byte-identical to recent cycles (all decision/blocked-on-art); cold-read ledger 175 of 175, exhausted; `STATUS.md`'s `BLOCKER-001` deploy-gap re-derived with `deploy_gap_material_commits()`, still exactly 5, no drift; CI green.
