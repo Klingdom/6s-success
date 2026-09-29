@@ -2649,6 +2649,65 @@
        "A screw backing out of the apron, or a top fixing you can rock with a fingertip, means the frame is working loose. Flag it.",
        "On an extension table, a leaf latch that no longer sits flush or a slide that binds is worth flagging while the leaf is open."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Homework, mail, or a craft project has been sitting on the table for days, migrating a few inches each evening but never actually leaving.",
+        "branches": [
+         {
+          "answer": "That activity doesn't have anywhere else in the house to happen",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "One person treats this as the family desk and everyone else wants it clear for dinner, and that's never actually been settled",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Clearing it before dinner isn't actually anyone's job, so it depends on who notices first",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A chair has started to wobble at the rungs, and everyone has quietly learned which one to avoid instead of getting it fixed.",
+        "branches": [
+         {
+          "answer": "Nobody checks the chairs for looseness, it only gets noticed when one nearly gives way",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no agreed point at which a wobble becomes 'needs fixing' instead of 'still fine'",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The wobble has gone on so long, people don't really register it as a problem to fix",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A hot dish has scorched the tabletop, or a candle has burned close to the runner, because the trivet was still in a drawer across the room when the food came out.",
+        "branches": [
+         {
+          "answer": "The trivet doesn't live in the drawer nearest the table, so it's easier to skip than fetch",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "There's no rule about candles and runners, so it's whatever looks nice that night",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Setting the table happens in a rush right before people sit down, so the trivet gets skipped",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the whole table onto the floor in one armful, then sort what came off by owner rather than by type. The homework, the unopened mail, and the half-finished craft project each go back to a person, not back to the table.",
+       "victory": "The table holds nothing but its centerpiece, and every activity that was on it has gone home with the person who owns it."
+      }
      }
     },
     {
@@ -2726,6 +2785,65 @@
        "Fresh pinholes with a little powder beneath, or a leg you can rock, say the frame is working loose or being eaten. Flag it.",
        "A scorch bloom or a heat ring you had not seen before points to something hot being set down here. Flag where it is."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The mail lands on the sideboard the moment it comes through the door, and by the end of the week there's a loose stack where the bare wood used to be.",
+        "branches": [
+         {
+          "answer": "Nothing tells the mail where else to go, so the nearest flat surface wins",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The mail pile isn't obviously wrong to look at anymore",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Opening the mail is its own decision nobody's made yet, so it just sits",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A lamp, a phone charger, and a warming tray all share one outlet behind the sideboard, and nobody has checked that plug in months.",
+        "branches": [
+         {
+          "answer": "That plug is tucked behind heavy furniture where nobody ever looks",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule about how many things can share one outlet here",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Checking the cords back there isn't anyone's specific job",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "More than three display pieces have collected at the lamp end, including a tall vase a small child could pull over reaching past it.",
+        "branches": [
+         {
+          "answer": "There's no agreed limit on how many display pieces belong here",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nice things keep getting added and nothing is ever removed to make room",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The vase has stood there long enough that its height at a child's reach stopped registering as a risk",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the wood, including the picture frames and the candlesticks, and give every piece of paper a verdict tonight: act on it, file it, or recycle it. Burnt-down candle stubs, dried flowers, and chargers belonging to other rooms leave now.",
+       "victory": "The wood is bare, every piece of paper has a verdict, and nothing that belongs to another room is still sitting here."
+      }
      }
     },
     {
@@ -2806,6 +2924,65 @@
        "A shelf board bowing under the stoneware, or a runner pulling away from its screws, is a fixing starting to fail. Flag it.",
        "A hairline crack across a platter or a chip on the punch bowl rim can open into a break the next time it is carried full. Flag the piece."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
+        "branches": [
+         {
+          "answer": "Nobody's actually measured it against the table you own now",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "The punch bowl and the heavy stoneware platters live on a shelf above shoulder height, and they only come down when your arms are already full of something else.",
+        "branches": [
+         {
+          "answer": "Nobody thought about who'd actually have to lift it back down when it went up there",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody's re-sorted this shelf by weight since it was first packed",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been stored that way so long it doesn't register as a reach risk anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
+        "branches": [
+         {
+          "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every tablecloth, runner, and napkin out and lay them across the table so you can see which sets are actually complete. Partial napkin sets, cloths with stains you have already tried and failed to lift, and serving pieces orphaned from sets you no longer own are finished.",
+       "victory": "Every remaining linen set is complete, every serving piece belongs to a set you still own, and nothing carries a stain you've already failed to lift."
+      }
      }
     },
     {
@@ -2885,6 +3062,65 @@
        "A wall strap that looks frayed or a fixing screw you can see has pulled loose is worth flagging, even though bracing it is the Safety pass.",
        "Moisture or condensation inside the glass, or a back panel starting to bow, tells you damp is getting in. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are twelve place settings of china from a relative behind this glass, more than the largest meal you've actually hosted in years, and deciding what to do with the rest feels impossible.",
+        "branches": [
+         {
+          "answer": "It's not really china anymore, it's a person, and sorting it feels like a betrayal",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's actually counted the largest meal hosted against the number of settings kept",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Twelve settings genuinely doesn't fit this cabinet's shelves at eight plates high with felt between each, so stacks run taller than they should",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "This cabinet has never been strapped to the wall, and its shelves are exactly the height a small child would use as a ladder.",
+        "branches": [
+         {
+          "answer": "It's a bigger job than a quick tidy, so it keeps getting pushed to later",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Securing furniture like this has never been anyone's specific task",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's stood there unstrapped so long, the risk doesn't register day to day",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The top of this cabinet, high and out of easy sight, has a visible layer of dust nobody's touched in a long time.",
+        "branches": [
+         {
+          "answer": "Reaching up there means finding a stool first, so it's the last thing anyone bothers with",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "It's high enough that you can't actually see it's dusty from normal eye level",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody's assigned to check the top of this cabinet specifically",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every piece out and split it into three groups: complete sets, chipped or crazed pieces, and lone survivors of sets that are long gone. A chipped rim cannot be mended and is not safe to drink from, so that whole group leaves together.",
+       "victory": "What's left behind the glass is complete sets and pieces without a chip or crack, nothing kept only out of habit."
+      }
      }
     },
     {
@@ -2970,6 +3206,65 @@
        "A shelf underside that is swelling, warping, or discoloring above the kettle is steam damage building. Flag it.",
        "Water pooling under the machine base when it should be dry can mean an inside seal is going. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The bean jar has run below its own marked fill line more than once with nobody noticing until the machine sputtered out mid-pour.",
+        "branches": [
+         {
+          "answer": "Topping the jar isn't tied to any specific moment, so it only happens when someone remembers",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The fill line is marked but nobody's actually assigned to check it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "This station runs low silently, nothing about it signals 'running out' before it's actually out",
+          "cause": "KC-011"
+         }
+        ]
+       },
+       {
+        "symptom": "There are two ways to make a hot drink on this counter, and one of them hasn't earned its counter space in months but nobody's tested that.",
+        "branches": [
+         {
+          "answer": "Getting rid of a machine somebody might start using again feels premature",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been part of the counter so long it doesn't register as extra anymore",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no actual rule for how little use earns a machine its spot",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter.",
+        "branches": [
+         {
+          "answer": "There's no latch or high shelf assigned for alcohol at this station, only in the kitchen",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "This station never got the same childproofing pass the kitchen did",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Moving the bottles higher keeps getting put off because it's a small job with no deadline",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Line up every tea box, syrup bottle, and pod sleeve and check the dates, then open the travel mugs and match them to their lids. Anything past date, any mug missing its lid, and the promotional glassware you have never once poured into are out.",
+       "victory": "Everything on the counter is in date, every travel mug has its matching lid, and no glassware sits here unused."
+      }
      }
     }
    ]
