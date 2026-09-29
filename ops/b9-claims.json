@@ -62,6 +62,12 @@
       "claimed_at": "2026-09-29T19:07:33Z",
       "note": "scheduled operator cycle 2026-09-29, PM slot, tied-smallest remaining room, using the ledger tool this time",
       "released_at": "2026-09-29T20:33:42Z"
+    },
+    {
+      "room": "Patio or Deck",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T19:15:26Z",
+      "note": "scheduled operator cycle 2026-09-29 evening, penultimate room, 6 zones"
     }
   ]
 }
