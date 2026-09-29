@@ -212,6 +212,13 @@
  ],
  "runs": [
   {
+   "at": "2026-09-17T13:38:22Z",
+   "mode": "changed",
+   "offered": 7,
+   "accepted": 7,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
    "at": "2026-09-17T21:37:14Z",
    "mode": "changed",
    "offered": 1,
@@ -615,6 +622,13 @@
    "mode": "changed",
    "offered": 30,
    "accepted": 30,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-29T20:29:40Z",
+   "mode": "new",
+   "offered": 3,
+   "accepted": 3,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   },
   {

@@ -17,10 +17,23 @@ evidence 5 more that no Kitchen zone happens to need. Corrected in
 PLAN-MICROZONES-DECKS-APP.md; the real total is 17, not padded to a number
 nobody measured.
 
-CAUSES[i]["id"] for the first 12 is copied character-for-character from
-ops/cardtext/kitchen-deck.json's ROOT CAUSE CARD entries (title, six_s and
-confirm_in_30_seconds included) so the frozen vocabulary cannot silently
-diverge from the cards already in print. The remaining 5 use a new "RC-"
+CAUSES[i]["id"], name and six_s for the first 12 are taken from
+ops/cardtext/kitchen-deck.json's ROOT CAUSE CARD entries so the frozen
+vocabulary cannot silently diverge from the cards already in print.
+
+This file used to claim confirm_in_30_seconds was copied
+character-for-character too. Checked on 2026-09-29, that was false for 7 of
+the 12, and rightly so: the Kitchen pilot speaks in a kitchen voice ("every
+time you cook", "the everyday plates", "load the dishwasher together") while
+this model is read in twenty rooms. The 15 later decks DO carry this file's
+wording verbatim, and gate_cause_vocabulary in ops/preflight.py now holds
+exactly that split, so an edit here can no longer leave them stale.
+
+The same pass found why the distinction matters. KC-008 read "Ask two people
+what this surface should look like at bedtime" and shipped on 100 pages,
+including every garage, pantry and kitchen page. It was drafted against a
+bedside zone and promoted here without being read in any other room. Text in
+this file is shared by every room, so it must not assume one. The remaining 5 use a new "RC-"
 prefix rather than continuing "KC-", because "KC" already means a Kitchen
 card id in three other card types (KF, KA, KZ) and reusing it for causes
 with no Kitchen origin would make a future Kitchen-specific id collide with
@@ -112,9 +125,9 @@ CAUSES = [
         "name": "MISSING STANDARD",
         "meaning": "Nobody agreed what good looks like, so everybody is "
                     "right.",
-        "confirm_30s": "Ask two people what this surface should look "
-                        "like at bedtime. Two answers means there is no "
-                        "standard to keep.",
+        "confirm_30s": "Ask two people in the house to describe this "
+                        "zone when it is finished. Two different "
+                        "answers means there is no standard to keep.",
         "six_s": "Standardize",
         "article": "why-everyone-in-your-house-disagrees-about-clean",
     },

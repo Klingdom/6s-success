@@ -1495,7 +1495,7 @@
    "six_s": "Standardize",
    "tagline": "STANDARDIZE FIXES THIS ONE.",
    "objective": "Nobody agreed what good looks like, so everybody is right.",
-   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "confirm_in_30_seconds": "Ask two people in the house to describe this zone when it is finished. Two different answers means there is no standard to keep.",
    "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
    "related": {
     "frictions": [

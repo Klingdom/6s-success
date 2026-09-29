@@ -36,6 +36,9 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _worktree import changed_files, is_changed                 # noqa: E402,F401
+
 import preflight                                               # noqa: E402
 
 
@@ -95,10 +98,10 @@ def main() -> int:
         if r:
             fails.append("a genuinely current shop.html was wrongly failed: "
                          "%r" % (r,))
-        status = git("status", "--porcelain", cwd=wt)
-        if status.strip():
+        dirty = changed_files(wt)
+        if dirty:
             fails.append("the gate left the worktree dirty on a clean run: %r"
-                         % (status,))
+                         % (dirty,))
 
         # 2. The real regression shape: a hand edit inside the pre-rendered
         #    block that the generator itself would never produce (the shape
