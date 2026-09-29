@@ -131,6 +131,11 @@
       "date": "2026-09-25",
       "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Garage's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
     },
+    "build_guest_bathroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "full read: wiring chain complete, og:image honest, ZONE_ORDER[0] matches its own 'start with the vanity counter' copy, whole_ids assert verified against live corpus, no defect found, 2026-09-29 scheduled operator"
+    },
     "build_home_office_deck_page.py": {
       "status": "fixed",
       "date": "2026-09-25",
@@ -150,6 +155,11 @@
       "status": "clean",
       "date": "2026-09-27",
       "note": "PM cold-read 2026-09-27: re-verified after the 09-17 comment-only edit fixing the stale nine-image count to six; no logic change, TIER0 list and load() unaffected."
+    },
+    "build_kids_bedroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "wiring chain complete (matches B1 follow-on fix), og:image honest and file exists, no defect found, 2026-09-29 scheduled operator"
     },
     "build_kit_page.py": {
       "status": "clean",
@@ -171,6 +181,11 @@
       "date": "2026-09-25",
       "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Laundry Room's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
     },
+    "build_living_room_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "structurally identical to sibling generators, wiring chain complete, og:image honest, no defect found, 2026-09-29 scheduled operator"
+    },
     "build_manual_print.py": {
       "status": "fixed",
       "date": "2026-09-26",
@@ -185,6 +200,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). Verified live: --check reports the mobile corpus matches quest-data.js (114 zones, 684 cards), git status clean after. hero_plan()/hero_problems()/write_heroes() correctly derive zone pictures from the site's own approved -sm.jpg files, hard-erroring on any approved stem with no source file rather than silently skipping. Already gated (gate_mobile_corpus_current in preflight.py) and already imported by build_social_pins.py and wire_generated_catalog.py, so it is wired, not orphaned. No defect."
+    },
+    "build_nursery_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "structurally identical to sibling generators, wiring chain complete, og:image honest, no defect found, 2026-09-29 scheduled operator"
     },
     "build_primary_bathroom_deck_page.py": {
       "status": "fixed",
