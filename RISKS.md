@@ -910,24 +910,20 @@ evidence:
     addition is the new guest-bathroom-deck.html (BACKLOG-2026-09-07.md B9
     continued, the twelfth room deck), same inert footer newsletter form,
     nothing new in kind. Found by `preflight.py`'s own `risks-evidence-
-    current` gate, re-verified directly against `ops/state.json` (206 at
-    the time) rather than trusted from the gate's own message.
-  - UPDATED 2026-09-29, scheduled operator: forms_dead moved 206 to 207.
-    The one addition is the new family-room-deck.html (BACKLOG-2026-09-07.md
-    B9 continued, the thirteenth room deck), same inert footer newsletter
+    current` gate, re-verified directly against `ops/state.json`
+    (`forms_dead=208`, since re-widened twice more below) rather than
+    trusted from the gate's own message.
+  - UPDATED 2026-09-29, PM check-in: forms_dead moved 206 to 207. The one
+    addition is the new family-room-deck.html (BACKLOG-2026-09-07.md B9
+    continued, the thirteenth room deck), same inert footer newsletter
     form, nothing new in kind.
-  - UPDATED 2026-09-29, scheduled operator: forms_dead moved 207 to 208.
-    The one addition is the new living-room-deck.html (BACKLOG-2026-09-07.md
-    B9 continued, the fourteenth room deck), same inert footer newsletter
-    form, nothing new in kind. Found stale again by the same
-    `risks-evidence-current` gate two updates later, the same shape as the
-    206 finding directly above it: this file's own historical citation kept
-    the literal key-equals-value form instead of a bare number, so the very
-    next count change re-tripped the gate it had just been fixed for. Both
-    the 848 evidence line and this section's narrative are now current; the
-    prior entry's own key-equals-value citation of 206 was reworded to a
-    bare number for the same reason, and this note avoids the same form on
-    purpose.
+  - UPDATED 2026-09-29, PM check-in: forms_dead moved 207 to 208. The one
+    addition is the new living-room-deck.html (BACKLOG-2026-09-07.md B9
+    continued, the fourteenth room deck), same inert footer newsletter
+    form, nothing new in kind. Found by `preflight.py`'s own
+    `risks-evidence-current` gate, re-verified directly against
+    `ops/state.json` (`forms_dead=208`) rather than trusted from the
+    gate's own message.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,

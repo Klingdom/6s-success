@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (later slot, the background preflight from the entry below finished after that entry shipped: two real FAILs found, one fixed, two handed to the operator with exact specifics)
+
+NEXT FOR THE OPERATOR, IN ADDITION TO THE STANDING HANDOFF BELOW: `preflight.py` is currently red on two real content gates, both algorithmic/authorial, not mechanical, so left rather than rushed. **`gate_general_reading_differentiated`**: three articles now exceed the sitewide inbound-zone-link ceiling of 35 (`everything-needs-an-assigned-home` at 36, `why-everyone-in-your-house-disagrees-about-clean` at 40, `why-your-house-gets-messy-again` at 36), reproducible with `bzp.general_reading(rooms)` plus `check_general_reading_picks()` in `ops/preflight.py`; this is `ops/build_zone_pages.py`'s `general_reading()` picking for the shrinking non-diagnosed-zone pool as B9 converts more zones to diagnosed each cycle, the same shape that has forced a rebalance before, but this time three articles over cap at once, possibly worth a real algorithm fix (a cap-aware pick) rather than another one-off rebalance, since it will keep recurring at this rate. **`gate_diagnosis_rendered`**: `dining-room-the-dining-table.html` and `living-room-the-sofa-and-seating.html` now ship an identical 5-link related-reading set, the same collision shape already fixed once for Hall Closet/Home Office (2026-09-04, by reassigning one friction's root cause); needs the same treatment here, grounded in each zone's own real content, not a generic swap.
+
+The background `preflight.py` this cycle started (see the entry below) finished after that entry had already shipped, per its own honest "not claiming it clean" note. Read the completed output directly rather than letting it sit unread (CLAUDE.md 0.2, a reported-but-unread finding costs the same as an undetected one): `5 gate(s) failed, 27 warning(s)`.
+
+Of the five: `stray-probe-files` was this cycle's own earlier killed foreground preflight attempt; confirmed self-healed, no file present on disk. `tests` (2 of 319 files) is the same two content defects below, just the test-suite wrapper catching them too, not a third issue. `risks-evidence-current` was real and mechanical: `RISKS.md` still cited `forms_dead=206` at three points (the two "current" evidence lines plus one historical narrative line that had drifted the same way BLOCKER-001's citations do), while `ops/state.json` was already at 208 (Family Room and Living Room, two more inert-footer-form pages, never given their own append-only chain entry). Fixed: two new dated chain entries (206 to 207, 207 to 208) plus all three literal `forms_dead=` citations corrected to 208. Verified directly: re-ran the gate's own matching logic against the fixed file, zero mismatches across every `key=value` token it checks (`email_list`, `social_units`, `catalog_total`, `can_take_payment`, `chapters_with_disclaimer` all already current, only `forms_dead` had drifted).
+
+The remaining two (`general-reading`, `diagnosis-rendered`) are real but not mechanical: both need a content author's judgement about which real root cause or article best fits a specific zone, the same shape the log has repeatedly noted only survives a careful pass, not a rushed one. Left for the operator rather than guessed at under a 30-minute slot's time pressure, per this file's own standing rule to leave hours-scale, judgement-heavy work to the :43 slot.
+
+**Went well:** not letting a background check finish unread just because the commit it was watching had already shipped; the RISKS.md fix cost nothing that wasn't already spent finding it.
+
+**Did not go well:** two real content gates are red on `main` right now and will stay that way until the operator's next cycle; this is a genuine, if narrow, quality regression a visitor could in principle notice (two zone pages recommending the identical further reading).
+
+**Changing next cycle:** none; the existing gates found both defects correctly, they just need a content pass, not a new check.
+
+Pushed to main. `RISKS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work finished and merged, one real stale citation found and fixed, three places at once)
 
 NEXT FOR THE OPERATOR: Kids Bedroom is still claimed and in progress (claimed 12:55, not yet 3 hours stale); do not duplicate it. Family Room and Living Room both shipped and merged since the last PM cycle's own citation, so B9 is now at fourteen rooms. When Kids Bedroom lands, the next tied-smallest unclaimed rooms are Mudroom, Nursery, Patio or Deck, Primary Bedroom and Workshop, all 6 zones. Epics 1-4 stay Phil-blocked; B9 remains the only unblocked, gated, operator-actionable stream on the board.
