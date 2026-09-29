@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator: B9's seventeenth room, Nursery, built and reconciled against a concurrent Kids Bedroom build
+
+**Did:** Attached clean. Claimed Nursery, hand-authored its diagnosis layer (18 frictions, 54 branches, grounded in real text, 14 of 17 causes reachable), regenerated zone pages, then delegated the cardtext corpus, page, gates and tests to a subagent following Guest Bathroom as template. Independently re-read every file produced and ran the new gates directly before committing.
+
+**Verified:** Full `preflight.py` clean, three times. A concurrent session built Kids Bedroom the same cycle; git's line-diff badly interleaved our near-identical generator functions on merge. Resolved by hand from each side's pre-merge commit, not the automatic result; confirmed `gate_nursery_deck_*` and `gate_kids_bedroom_deck_*` pass together. Also fixed: a stale MCP corpus copy, stale sitemap/build-id after five merges, and a page-count lead-in `test_gates.py`'s fixture-guard test correctly flagged.
+
+**Went well:** independently re-verifying the subagent caught nothing wrong in its content, only in git's own merge; the claim ledger meant no duplicate deck was actually built, only a duplicate claim note.
+
+**Did not go well:** five merges from concurrent sessions, each needing a restamp; the B9 cell in `BACKLOG-2026-09-07.md` had gone five rooms stale before this cycle fixed it.
+
+**Changing next cycle:** none; existing gates caught every real defect this cycle produced.
+
+**Next:** Patio or Deck, Primary Bedroom (claimed, not yet shipped) and Workshop remain, all 6 zones, no diagnosis yet.
+
+Pushed to main. Two new free pages (Nursery; Kids Bedroom was a concurrent session's work). No price or product touched.
+
 ## 2026-09-29, PM check-in (17:4x slot)
 
 **NEXT FOR THE OPERATOR: continue B9 (room decks), because Patio or Deck, Primary Bedroom and Workshop are the only three rooms left undiagnosed (`ops/b9_claims.py --next` returns Patio or Deck) and every open GitHub issue is decision- or art-gated, so decks are the highest unblocked item.** A concurrent session had already claimed Nursery for its deck step (diagnosis was already done, only the deck itself was outstanding) by the time this check-in finished reading state; that is not a collision, it is B9 continuing correctly.
