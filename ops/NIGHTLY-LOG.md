@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (the Dining Room deck, B9's tenth room)
+
+**Did:** Unshallowed, attached to main clean (ff-only). Read GOALS.md, the backlog, roadmap, CLAUDE.md, and the last four log entries (an agent cross-checked independently, same conclusion). First preflight found one real FAIL: `STRATEGY-MICROZONES.md`'s diagnosis count (46) had gone stale after Hall Closet shipped (real count 51), failing `gate_generator_ownership` and `publish-image.yml` run 448. Fixed at the source (`ops/build_microzone_coverage.py`, no hand edit), pushed, re-triggered the workflow. With epics 1-4 genuinely exhausted, picked B9: Dining Room, tied-smallest with Guest Bedroom and Guest Bathroom.
+
+**Shipped:** a real diagnosis layer for Dining Room's five zones, 15 frictions, 45 branches, reaching all seventeen shared root causes honestly, verified against `gate_diagnosis_branch_shape` before building. New `build_dining_room_deck.py`/`build_dining_room_deck_page.py` produce a 61-card deck at `site/dining-room-deck.html`. New `gate_dining_room_deck_rendered`/`_current`, wired into every required list; a 6/6 test, fail-then-pass proved on disk. Regenerated the five zone pages, `STRATEGY-MICROZONES.md` (51 to 56), sitemap, `deck.html`, the backlog's B9 row.
+
+**Found and fixed while authoring:** the deck's own `gate()` caught four root causes reached by frictions but untreated by any action; fixed by extending four existing actions' real steps.
+
+**Found and fixed after the first push, a full preflight against the committed tree:** 7 real failures from this same deck: `mcp/content.json` unsynced; two zones (this room's Coffee Station, Stair Landing's Stair-and-Floor-Path) shipped an identical related-reading set because their first five reached causes coincided; a missing-standard article crossed its 35-link ceiling from this room's own heavy real use of that cause; the roadmap's page count and `RISKS.md`'s `forms_dead` citation were one behind; build-id was stale. Fixed each at the source (two cosmetic friction reorders, `EXPECTED_DIAGNOSIS`/`FRICTION_META` updated to match, `gate()` re-passed; synced the mcp copy; corrected both docs; regenerated build-id). A second preflight caught build-id and sitemap-lastmod stale again, regenerated before rather than after the doc fixes; fixed by running `build_seo.py` then `build_id.py` last.
+
+**Verified:** a third full `preflight.py`: every gate passed, 27 warnings, the same standing sandbox-limit set.
+
+**Went well:** the deck's own `gate()` and two sitewide structural gates each caught a real defect before it could ship silently.
+
+**Did not go well:** built the causes-to-articles mapping without first checking it against every other diagnosed zone's picks, the same oversight a prior cycle's own handoff had already named.
+
+**Changing next cycle:** before finalizing a new room's friction order, diff its `cause_reading()` picks against every existing zone's set and each article's running site-wide count first, not after.
+
+**Next:** nine rooms remain with no diagnosis layer (1,322 fields, `ops/cardtext/derive_room_deck.py`); Guest Bedroom and Guest Bathroom now tied-smallest.
+
+Pushed to main across three commits, each merged cleanly with concurrent PM/hourly cycles. Command deck regenerated. IndexNow submission attempted and correctly refused (could not verify the key file is served from this sandbox). Owner inbox: no mail credential here, UNCHECKED not empty. No price or product touched.
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, the same recurring stale-citation defect found and fixed again)
 
 NEXT FOR THE OPERATOR: continue B9, the next smallest untouched room (Guest Bedroom or Guest Bathroom, tied smallest per `ops/cardtext/derive_room_deck.py`), because epics 1-4 are still exhausted and 10 of 19 rooms are now shipped (Dining Room landed this cycle, see below).
