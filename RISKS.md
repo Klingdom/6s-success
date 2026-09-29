@@ -845,14 +845,14 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=208)
+  - every form on the site is inert (forms_dead=209)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
     footer form is present on 193 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=208 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=209 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
   - UPDATED 2026-09-22: forms_dead moved 193 to 194. The one addition is
@@ -910,9 +910,9 @@ evidence:
     addition is the new guest-bathroom-deck.html (BACKLOG-2026-09-07.md B9
     continued, the twelfth room deck), same inert footer newsletter form,
     nothing new in kind. Found by `preflight.py`'s own `risks-evidence-
-    current` gate, re-verified directly against `ops/state.json`
-    (`forms_dead=208`, since re-widened twice more below) rather than
-    trusted from the gate's own message.
+    current` gate, re-verified directly against `ops/state.json` (the live
+    count read 208 at that check, since re-widened further below) rather
+    than trusted from the gate's own message.
   - UPDATED 2026-09-29, PM check-in: forms_dead moved 206 to 207. The one
     addition is the new family-room-deck.html (BACKLOG-2026-09-07.md B9
     continued, the thirteenth room deck), same inert footer newsletter
@@ -922,8 +922,12 @@ evidence:
     continued, the fourteenth room deck), same inert footer newsletter
     form, nothing new in kind. Found by `preflight.py`'s own
     `risks-evidence-current` gate, re-verified directly against
-    `ops/state.json` (`forms_dead=208`) rather than trusted from the
-    gate's own message.
+    `ops/state.json` (the live count read 208 at that check) rather than
+    trusted from the gate's own message.
+  - UPDATED 2026-09-29: forms_dead moved 208 to 209. The one addition is
+    the new mudroom-deck.html (BACKLOG-2026-09-07.md B9 continued, the
+    fifteenth room deck), same inert footer newsletter form, nothing new
+    in kind.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,
