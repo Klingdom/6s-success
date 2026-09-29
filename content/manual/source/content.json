@@ -13206,8 +13206,8 @@
         "symptom": "A half-assembled project has sat on the bench for months because the next step is one you are unsure how to do.",
         "branches": [
          {
-          "answer": "You have never said out loud what the next physical action is or picked a date this month to do it",
-          "cause": "RC-015"
+          "answer": "Nobody has been assigned to force a decision once a project stalls, so it just keeps occupying the bench indefinitely",
+          "cause": "RC-013"
          },
          {
           "answer": "The project has nowhere else to go once you set it down mid-build, so the bench became its only address",
@@ -13231,8 +13231,8 @@
           "cause": "KC-004"
          },
          {
-          "answer": "Nobody decided whether a tool in active use during a session has to sit on its silhouette or can wait in a tray until the clear down",
-          "cause": "KC-008"
+          "answer": "Two different people run this bench by two different unwritten rules about what counts as put away, so a tool ends up in the tray under one and on the wall under the other",
+          "cause": "KC-012"
          }
         ]
        },
@@ -13248,8 +13248,8 @@
           "cause": "RC-017"
          },
          {
-          "answer": "The offcuts on the bench have not been given a verdict yet, rack or fire bucket, so they sit there instead of leaving with the rest of the mess",
-          "cause": "RC-015"
+          "answer": "Nothing marks the specific moment a fresh offcut earns its verdict, so it just sits on the bench until the whole session gets cleared",
+          "cause": "KC-009"
          }
         ]
        }
@@ -13357,8 +13357,8 @@
           "cause": "KC-009"
          },
          {
-          "answer": "It has stuck a little longer each month, slowly enough that you stopped registering it as a fault",
-          "cause": "RC-017"
+          "answer": "Nobody in the shop is assigned to notice a tool's wear over time, so a guard degrading gradually is not specifically anyone's job to catch",
+          "cause": "RC-013"
          }
         ]
        },
@@ -13383,8 +13383,8 @@
         "symptom": "There are two drills, or a spare sander, duplicating one already on the wall, and one of them has not cut anything in two years.",
         "branches": [
          {
-          "answer": "The two question test, used in the last 24 months, would you rent instead, has never actually been asked out loud about this one",
-          "cause": "RC-015"
+          "answer": "Nothing ever creates the moment to actually ask the two-question test out loud, so a duplicate keeps its hook by default",
+          "cause": "KC-009"
          },
          {
           "answer": "Two similar tools arrived on the wall over time and nobody ever decided only one earns a hook",
@@ -13488,8 +13488,8 @@
           "cause": "RC-014"
          },
          {
-          "answer": "Nobody set a rule that mixed hardware never returns to the shelf once it has been sorted, so a new jar just starts the pile again",
-          "cause": "KC-008"
+          "answer": "Nobody in the household has taken ownership of keeping mixed hardware off the shelf once it has been sorted, so a new jar just starts the pile again",
+          "cause": "RC-013"
          },
          {
           "answer": "A handful of screws from a finished job never had its own compartment to return to, so it dropped into whatever jar was closest",
@@ -13628,8 +13628,8 @@
         "symptom": "The offcut bin is well over its marked fill line, and short pieces from last month are still in it.",
         "branches": [
          {
-          "answer": "Every piece in there is honestly still good wood, and the size floor and bin cap exist precisely because that fact alone never shrinks a pile",
-          "cause": "RC-015"
+          "answer": "There is more offcut sitting in reserve than this zone was ever meant to hold, because every cutting session adds more before anything old leaves",
+          "cause": "KC-001"
          },
          {
           "answer": "The rule is the shortest piece leaves when the bin is full, but nothing prompts anyone to check the bin against its line",
@@ -13653,8 +13653,8 @@
           "cause": "KC-002"
          },
          {
-          "answer": "It has stood at that angle long enough that the lean itself stopped registering as unusual",
-          "cause": "RC-017"
+          "answer": "Nobody in the household has been assigned to check how the sheet goods are leaning, so an angle that developed slowly is not specifically anyone's job to catch",
+          "cause": "RC-013"
          }
         ]
        },
@@ -13781,8 +13781,8 @@
         "symptom": "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in.",
         "branches": [
          {
-          "answer": "Almost none of it will brush out matching in two years anyway, but nobody has actually tested that assumption against this specific row",
-          "cause": "RC-015"
+          "answer": "Nobody has ever checked whether an old can is still good before it goes back on the shelf, so it just ages there unnoticed",
+          "cause": "KC-011"
          },
          {
           "answer": "You are storing a full tin against the small chance of a touch up that would only ever need a sealed jar's worth",

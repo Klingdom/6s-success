@@ -58,9 +58,10 @@
     },
     {
       "room": "Workshop",
-      "status": "in_progress",
+      "status": "done",
       "claimed_at": "2026-09-29T19:07:33Z",
-      "note": "scheduled operator cycle 2026-09-29, PM slot, tied-smallest remaining room, using the ledger tool this time"
+      "note": "scheduled operator cycle 2026-09-29, PM slot, tied-smallest remaining room, using the ledger tool this time",
+      "released_at": "2026-09-29T20:33:42Z"
     }
   ]
 }
