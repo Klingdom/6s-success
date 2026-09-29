@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (a real preflight FAIL fixed first, then the Hall Closet room deck, B9's ninth room)
+
+**Did:** Attached clean (shallow, detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 869 commits onto `origin/main`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's newest entries. `preflight.py` FAILED on the first run: `nightly-log-ordering`, a genuine instance of the append-to-the-end mistake its own docstring warns about, from a prior cycle's commit (`bcf6fa1b0`). Fixed that first, per this file's own "if it fails, fixing that IS this run's work," before picking new work. With epics 1-4 still genuinely Phil-blocked (no Stripe/SSH/mail credential here), picked B9's next tied-smallest room, Hall Closet: built its full diagnosis layer from scratch (15 frictions, 45 branches, grounded in the room's own real `passes`/`the_call`/`watch_for` text, reaching 14 of 17 shared root causes), new `ops/cardtext/build_hall_closet_deck.py` (58 cards) and `ops/build_hall_closet_deck_page.py`, shipped `site/hall-closet-deck.html`.
+
+**Verified:** rebuilding zone pages surfaced a real `gate_diagnosis_rendered` FAIL: Hall Closet's Cleaning Supply Zone and Home Office's Desk Drawers And Pedestal zone shared an identical 5-article related-reading set, because `cause_reading()`'s first-appearance ordering happened to pick the same five causes for both. Traced to one branch, reassigned its cause (RC-013 to KC-009, truer to the actual answer), confirmed 0 collisions across all 51 diagnosed zones after. Also caught and fixed `gate_mcp_corpus_current` (resynced `mcp/content.json`) and `generator-protection-plan` (registered both new generators in `preflight.py`'s ownership chain). Full `preflight.py`, `check_urls.py` (200/200), `audit_pages.py` (203/0), `affiliate.py --check`, `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), `ops/audit_visual.py` (0 findings, both viewports), and the interactive deck-pages probe (10/10 real-browser pages) all clean after.
+
+**Went well:** did not start new content work on top of a failing gate; the diagnosis-rendered collision was caught and fixed before push, not discovered live later.
+
+**Did not go well:** the related-reading collision shows `cause_reading()`'s ordering can coincide across unrelated rooms by chance as more rooms ship; the existing gate caught it correctly, so no new gate is needed yet, but the odds rise with every room.
+
+**Changing next cycle:** none; existing gates worked exactly as designed.
+
+**Next:** same B9 handoff, tied-smallest now Dining Room, Guest Bedroom, Guest Bathroom (5 zones, 129 fields each). Epics 1-4 remain Phil-blocked.
+
+Pushed to main. No price or product touched; one new free page. IndexNow submission to be attempted post-push.
+
+---
+
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, a real check-in flood found and throttled)
+
+Previous work was genuinely finished: `checks.yml` run 1572 and `publish-image.yml` run 447 both confirmed success on the fix commit via the GitHub API. B9 (claim a tied-smallest room) is hours of work, left for the operator, still unclaimed.
+
+Found and fixed instead: `hourly-brief.yml`'s push trigger fires `ops/checkin.py` on every commit, not hourly, and unlike `ops/hourly_brief.py` it had no throttle, so `CHECKIN-LOG.md` gained a near duplicate entry every 13 to 20 minutes all morning. Added a 50 minute floor mirroring the brief's own pattern, proved fail then pass live (ran twice back to back, second skipped; forced an old timestamp, confirmed it records again). New test coverage, `preflight.py` clean, 26 standing warnings. Pushed.
+
+**Next:** the same B9 handoff stands.
+
+---
+
 ## 2026-09-29, PM check-in (05:4x, previous work confirmed finished by a concurrent operator cycle; handing off the next tied-smallest B9 room)
 
 NEXT FOR THE OPERATOR: continue B9, claim one of the four remaining tied-smallest rooms (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because epics 1 through 4 (measurement, broken or dishonest, traffic, conversion) stay genuinely blocked on Phil (no Stripe or ssh credential in this environment, the redeploy itself waits on the Hostinger button) and this is the highest-ranked real, unblocked epic-5 work. Claim one before starting: a Pantry deck and the STRATEGY-MICROZONES.md fix were each independently built twice today by concurrent sessions.
@@ -42863,11 +42891,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, a real check-in flood found and throttled)
-
-Previous work was genuinely finished: `checks.yml` run 1572 and `publish-image.yml` run 447 both confirmed success on the fix commit via the GitHub API. B9 (claim a tied-smallest room) is hours of work, left for the operator, still unclaimed.
-
-Found and fixed instead: `hourly-brief.yml`'s push trigger fires `ops/checkin.py` on every commit, not hourly, and unlike `ops/hourly_brief.py` it had no throttle, so `CHECKIN-LOG.md` gained a near duplicate entry every 13 to 20 minutes all morning. Added a 50 minute floor mirroring the brief's own pattern, proved fail then pass live (ran twice back to back, second skipped; forced an old timestamp, confirmed it records again). New test coverage, `preflight.py` clean, 26 standing warnings. Pushed.
-
-**Next:** the same B9 handoff stands.

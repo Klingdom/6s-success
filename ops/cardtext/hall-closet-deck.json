@@ -1,0 +1,2503 @@
+{
+ "deck": "hall-closet",
+ "room": "Hall Closet",
+ "count": 58,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 5,
+  "FRICTION CARD": 15,
+  "ROOT CAUSE CARD": 14,
+  "ACTION CARD": 13,
+  "STANDARD CARD": 5,
+  "EVENT CARD": 5
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "HCR-001",
+   "title": "THE HALL CLOSET",
+   "type": "ROOM CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "FIVE SHELVES OF EVERYTHING WITH NOWHERE ELSE TO GO. START WITH THE ONE YOU CAN'T SEE THE BACK OF.",
+   "objective": "The hall closet is the darkest and deepest storage in the house, and the only one nobody owns. This card is the map and the order.",
+   "zones_in_order": [
+    "HCZ-001 Linen Shelf Zone",
+    "HCZ-002 Cleaning Equipment Zone",
+    "HCZ-003 Cleaning Supply Zone",
+    "HCZ-004 Paper and Household Backstock",
+    "HCZ-005 Seasonal and Guest Zone"
+   ],
+   "start_here": "HCZ-001 Linen Shelf Zone. Empty one shelf onto the hallway floor before you touch anything else. A closet this deep cannot be sorted in place; you have to see the back wall to know what you own.",
+   "how_to_play": [
+    "1. Deal the five ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your closet. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do HCA-011 The Full Shelf Weight And Reach Safety Walk before any rebuild. It takes thirty minutes and covers every shelf's height, the stool, and every loaded bracket.",
+   "related": {
+    "contents": "HCZ-001 to HCZ-005, HCF-001 to HCF-015, the shared root causes in ops/root_causes.py, HCA-001 to HCA-013, HCS-001 to HCS-005, HCE-001 to HCE-005"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole hallway closet in its settled state, linen shelf, cleaning equipment on a rail, cleaning supply caddies, paper and battery backstock, and seasonal bins all visible in one frame",
+    "must_show": [
+     "all five zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the five zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "HCZ-001",
+   "title": "LINEN SHELF ZONE",
+   "type": "ZONE CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "THREE SETS PER BED. ONE PILLOWCASE EACH. THE COUNT ON THE SHELF.",
+   "objective": "Holds the sheets, towels, and blankets the beds in this house actually rotate through.",
+   "callouts": [
+    "Three sheet sets per bed, each bundled inside its own pillowcase",
+    "The bed size and count written on the shelf edge underneath",
+    "Everyday towels folded to one width in a stack no taller than a forearm",
+    "Two spare blankets on the top shelf with nothing balanced on them",
+    "Queen and king sets stored low, guest blankets on top",
+    "No loose, unmatched sheet lying outside a bundle"
+   ],
+   "done_looks_like": "Three sheet sets per bed, each nested inside one of its own pillowcases, with the bed size written on the shelf edge underneath. Everyday towels folded to one width in a stack no taller than your forearm. Two spare blankets on the top shelf with nothing balanced on them.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Pulling a towel from the bottom of a chest-high stack brings the whole pile down onto your face and the hallway floor."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Damp-weight blankets and a full shelf of folded cotton are heavier than they look; check the shelf brackets are screwed into studs, not just into plasterboard."
+    }
+   ],
+   "the_call": {
+    "title": "The good set you never put on a bed",
+    "text": "There is a sheet set here that is too nice to use and too nice to give away, so it has sat at the front of the shelf for years while you sleep on the worn ones. Settle it with a date: put it on a bed this month, or accept that it is a keepsake rather than a linen. Keepsakes can live in a memory box. They cannot live on the shelf you reach into every week."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HCS-001",
+    "actions": [
+     "HCA-001",
+     "HCA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a hallway closet shelf holding pillowcase-bundled sheet sets grouped by bed size with a small dated count card on the shelf edge, a stack of folded towels no taller than a forearm beside them, and two spare blankets on the top shelf",
+    "must_show": [
+     "Three sheet sets per bed, each bundled inside its own pillowcase",
+     "The bed size and count written on the shelf edge underneath",
+     "Everyday towels folded to one width in a stack no taller than a forearm",
+     "Two spare blankets on the top shelf with nothing balanced on them",
+     "Queen and king sets stored low, guest blankets on top",
+     "No loose, unmatched sheet lying outside a bundle"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HCZ-002",
+   "title": "CLEANING EQUIPMENT ZONE",
+   "type": "ZONE CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "order": 2,
+   "difficulty": 2,
+   "tagline": "EVERY HANDLE ON THE RAIL. THE VACUUM INSIDE ITS OUTLINE.",
+   "objective": "Parks the vacuum, broom, and mop so they come out in one motion and go back without a fight.",
+   "callouts": [
+    "Broom, mop and duster hanging handle-down from wall clips",
+    "Every head hanging clear of the closet floor",
+    "The vacuum parked inside a taped floor outline",
+    "Crevice tools and brush heads zipped in one bag clipped to the vacuum's handle",
+    "The vacuum's cord wrapped, not trailing loose",
+    "The closet door swinging fully open without touching anything"
+   ],
+   "done_looks_like": "The vacuum standing inside a taped floor outline with its cord wrapped and every crevice tool and brush head zipped in one bag clipped to its handle. Broom, mop, and duster hanging handle-down from wall clips with the heads clear of the floor. The closet door swinging fully open without touching anything.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Unclipped handles slide down the wall and drop across the doorway or onto whoever opens the door."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A damp mop head or a wet bucket stored against a vacuum cord in a closed closet is the one combination to refuse; check the cord for cracked insulation near the plug while you have it out."
+    }
+   ],
+   "the_call": {
+    "title": "The vacuum you keep meaning to fix",
+    "text": "It has a split hose or a dead brush roll, and it sits here because throwing out a machine that mostly works feels wasteful. Give it a repair date written on masking tape stuck to the body. If that date passes and you have not ordered the part, you have your answer: the repair was never going to happen, and the broken machine has been standing where the working one needs to stand. Recycle it and keep the one that runs."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Scissors"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HCS-002",
+    "actions": [
+     "HCA-003",
+     "HCA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a wall-mounted rail in a hallway closet holding a broom, mop and duster hanging handle-down with heads clear of the floor, a vacuum parked inside a taped floor outline with its attachment bag clipped to the handle",
+    "must_show": [
+     "Broom, mop and duster hanging handle-down from wall clips",
+     "Every head hanging clear of the closet floor",
+     "The vacuum parked inside a taped floor outline",
+     "Crevice tools and brush heads zipped in one bag clipped to the vacuum's handle",
+     "The vacuum's cord wrapped, not trailing loose",
+     "The closet door swinging fully open without touching anything"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HCZ-003",
+   "title": "CLEANING SUPPLY ZONE",
+   "type": "ZONE CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "ONE CADDY PER ROOM. EVERY LABEL ORIGINAL. BLEACH APART FROM AMMONIA.",
+   "objective": "Holds the products you clean with, grouped so you carry the right handful to the right room.",
+   "callouts": [
+    "Two or three caddies, each labeled on the end with the room it serves",
+    "Every bottle wearing its original, legible label",
+    "Bleach products and ammonia products on separate shelves",
+    "Gloves and cloths riding inside each caddy with the sprays",
+    "The whole zone up out of a small child's reach or behind a latch",
+    "No sticky ring visible under any bottle"
+   ],
+   "done_looks_like": "Two or three caddies, each labeled on the end with the room it serves, every bottle wearing its original label, bleach products and ammonia products on separate shelves, and the whole zone up out of a small child's reach or behind a latch.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bleach stored beside an ammonia glass cleaner, and any product in an unlabeled bottle at a height a child can reach from the hallway floor."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "Aerosol tins and solvent-based sprays sitting against a closet wall that backs onto a boiler or a hot water pipe; move them to the coolest shelf."
+    }
+   ],
+   "the_call": {
+    "title": "Eleven bottles, each a third full",
+    "text": "You buy a new one because you cannot see what is left in the old one, and the shelf now carries four glass cleaners, three floor sprays, and a scatter of part-used others. The rule that settles it: one open bottle per job. Pour identical products together, and for the rest, accept that finishing a half bottle down the drain costs you a little while keeping it costs you the shelf you need. You did not save money by keeping them. You paid twice and stored the evidence."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Disposable gloves"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HCS-003",
+    "actions": [
+     "HCA-005",
+     "HCA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "labeled cleaning caddies standing on a hallway closet shelf, each bottle inside showing its own legible original label, bleach products visible on a separate shelf from ammonia-based products",
+    "must_show": [
+     "Two or three caddies, each labeled on the end with the room it serves",
+     "Every bottle wearing its original, legible label",
+     "Bleach products and ammonia products on separate shelves",
+     "Gloves and cloths riding inside each caddy with the sprays",
+     "The whole zone up out of a small child's reach or behind a latch",
+     "No sticky ring visible under any bottle"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HCZ-004",
+   "title": "PAPER AND HOUSEHOLD BACKSTOCK",
+   "type": "ZONE CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "A MINIMUM AND MAXIMUM ON EVERY BIN. EVERY LABEL FACING THE DOOR.",
+   "objective": "Keeps a reserve of paper goods, bulbs, and batteries so you never make a late-night emergency trip.",
+   "callouts": [
+    "Toilet roll in one clear bin with a minimum and maximum on the shelf edge",
+    "Bulbs in a labeled bin sorted by fitting",
+    "Batteries standing upright in a shallow tray, sorted by size",
+    "Every bin label facing the door",
+    "The heaviest packs stored at waist height, not overhead",
+    "Every pack dated with a marker, oldest at the front"
+   ],
+   "done_looks_like": "Toilet roll in one clear bin with a card on the shelf edge reading \"min 6, max 24\". Bulbs in a labeled bin sorted by fitting. Batteries standing in their original packs in a shallow tray, sizes readable without lifting one out. Every bin label facing the door.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Button cells and loose AAAs rolling to the closet floor where a small child finds them at eye level."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A shrink-wrapped bulk pack of paper towel stored above head height slides free the moment you tug the corner of it."
+    }
+   ],
+   "the_call": {
+    "title": "The offer that made you buy twelve",
+    "text": "Bulk buying feels thrifty right up to the point where a warehouse pack blocks the shelf and you buy more anyway because you cannot see past it. Set your maximum as the number that fits inside the bin without stacking above the rim, then hold it: if a deal will not fit the bin, the deal is not for you. And date each pack with a marker as it arrives, pulling the oldest first. Undated bulk is where the saving quietly expires."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HCS-004",
+    "actions": [
+     "HCA-007",
+     "HCA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a hallway closet shelf holding a clear toilet-roll bin with a small dated count card on its shelf edge, a labeled bulb bin sorted by fitting, and a shallow tray of batteries standing upright sorted by size",
+    "must_show": [
+     "Toilet roll in one clear bin with a minimum and maximum on the shelf edge",
+     "Bulbs in a labeled bin sorted by fitting",
+     "Batteries standing upright in a shallow tray, sorted by size",
+     "Every bin label facing the door",
+     "The heaviest packs stored at waist height, not overhead",
+     "Every pack dated with a marker, oldest at the front"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HCZ-005",
+   "title": "SEASONAL AND GUEST ZONE",
+   "type": "ZONE CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "order": 5,
+   "difficulty": 3,
+   "tagline": "ONE BIN PER OCCASION. A DATE ON EVERY LID. A MAP ON THE DOOR.",
+   "objective": "Parks the things you use a few weekends a year: guest bedding, decorations, and travel gear.",
+   "callouts": [
+    "Three or four lidded bins on the upper shelf, each labeled with contents and a closing date",
+    "A photograph of each bin's contents taped to its own lid",
+    "Guest pillows sealed in a zip bag",
+    "A shelf map taped inside the door showing which bin sits where",
+    "Nothing overhead heavy enough to need both hands",
+    "No bin marked only \"misc\""
+   ],
+   "done_looks_like": "Three or four lidded bins on the upper shelf, each labeled with what is inside and the month it was last closed. Guest pillows sealed in a zip bag. A shelf map taped inside the door showing which bin sits where, and nothing overhead heavy enough to need both hands.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Reaching for a top-shelf bin while balanced on a hallway chair, with a lid you cannot see over hiding the step down."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A bin of decorations lifted down overhead shifts its weight halfway and lands on your foot or on whoever is holding the door."
+    }
+   ],
+   "the_call": {
+    "title": "The bin you have moved three times without opening",
+    "text": "It has survived a house move and two closet reshuffles, and you still cannot say what is in it. That is the decision you have been avoiding, and the avoidance is itself the answer. Open it on the floor today. For each thing inside, name the specific occasion in the next twelve months when you will use it: a birthday, a holiday, a trip already booked. Anything you cannot name an occasion for does not get the lid back on, because a sealed bin of unknowns is not storage, it is a decision you agreed to keep paying for."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "HCS-005",
+    "actions": [
+     "HCA-009",
+     "HCA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a hallway closet upper shelf holding lidded storage bins each labeled with contents and a closing date, a photograph taped to one lid, and a shelf map taped inside the closet door",
+    "must_show": [
+     "Three or four lidded bins on the upper shelf, each labeled with contents and a closing date",
+     "A photograph of each bin's contents taped to its own lid",
+     "Guest pillows sealed in a zip bag",
+     "A shelf map taped inside the door showing which bin sits where",
+     "Nothing overhead heavy enough to need both hands",
+     "No bin marked only \"misc\""
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "HCF-001",
+   "title": "THE SHEET THAT LOST ITS OTHER HALF",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The flat sheet whose fitted half vanished months ago is still folded into the stack instead of already gone.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "I keep meaning to check if it's really orphaned before I get rid of it",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody counts the pieces in a folded stack before it goes back on the shelf",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "A folded stack hides a missing piece too well to notice at a glance",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-001",
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a folded stack of bed sheets on a hallway closet shelf with one flat sheet lying loose and unmatched beside a neat folded set, no fitted sheet visible near it",
+    "must_show": [
+     "The flat sheet whose fitted half vanished months ago is still folded into the stack instead of already gone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-002",
+   "title": "A TOWEL STACK TALLER THAN YOUR FOREARM",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A towel stack on this shelf stands taller than your forearm, and the bottom towel only comes out with a fight.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Pulling from the bottom of a stack that tall is how the whole pile ends up on the floor",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody ever agreed on how tall a stack here is allowed to get",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "You stopped noticing how tall the stack had gotten, since it grew a little at a time",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-001",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hallway closet shelf holding a stack of folded towels taller than a forearm's length, the top towel wobbling slightly",
+    "must_show": [
+     "A towel stack on this shelf stands taller than your forearm, and the bottom towel only comes out with a fight."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-003",
+   "title": "THE GOOD SET NOBODY PUTS ON A BED",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The good sheet set still sits at the front of the shelf, unused, while the worn ones go back on the bed every week.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's too nice to use and too nice to give away, so nothing gets decided",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It matters more as a keepsake than as something to actually sleep on",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nobody wants to be the one who finally decides to use it or let it go",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-001",
+    "root_causes": [
+     "RC-015",
+     "RC-014",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a nicer, more decorative sheet set sitting untouched at the front of a hallway closet shelf ahead of visibly worn, faded sheet sets behind it",
+    "must_show": [
+     "The good sheet set still sits at the front of the shelf, unused, while the worn ones go back on the bed every week."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-004",
+   "title": "A BROOM THAT PUSHES DUST INSTEAD OF GATHERING IT",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A broom with splayed, worn bristles is still hanging on the rail instead of already gone.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It has hung in that exact spot so long you stopped seeing what its bristles actually look like",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "There's no rule for when a broom counts as worn out and needs replacing",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The old vacuum kept for parts takes up the spot a working broom should have",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-002",
+    "root_causes": [
+     "RC-017",
+     "KC-008",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a broom hanging from a hallway closet rail with its bristles visibly splayed outward instead of gathered in a point",
+    "must_show": [
+     "A broom with splayed, worn bristles is still hanging on the rail instead of already gone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-005",
+   "title": "A MOP HANDLE SLIDING TOWARD THE DOORWAY",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A mop handle is left standing against the wall instead of clipped to the rail, sliding down toward the doorway.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's heavier and more awkward to clip than to lean, so leaning wins in a hurry",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody wrapped the cord and parked the vacuum in its outline last time, so the rail was never actually clear to reach",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "A handle sliding down the wall and blocking the door has genuinely hurt someone opening it before",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-002",
+    "root_causes": [
+     "KC-004",
+     "KC-009",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a mop handle leaning against a hallway closet wall, sliding down toward the closet doorway instead of hanging from a wall clip",
+    "must_show": [
+     "A mop handle is left standing against the wall instead of clipped to the rail, sliding down toward the doorway."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-006",
+   "title": "THE VACUUM WAITING ON A REPAIR THAT NEVER COMES",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The vacuum has a split hose and a dead brush roll, and it still stands where the working one needs to stand.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Throwing out a machine that mostly works feels wasteful, so the decision keeps getting deferred",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody in the house is the one who actually orders the part",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no separate spot for a broken tool waiting on a decision, so it just stays parked with the working ones",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-002",
+    "root_causes": [
+     "RC-015",
+     "RC-013",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an upright vacuum cleaner standing in a hallway closet with a visibly split hose, a strip of masking tape wrapped around its handle",
+    "must_show": [
+     "The vacuum has a split hose and a dead brush roll, and it still stands where the working one needs to stand."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-007",
+   "title": "FOUR HALF-USED BOTTLES OF THE SAME SPRAY",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Four half-used glass cleaners and three floor sprays crowd the shelf instead of one open bottle of each.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A new one gets bought because you can't see how much is left in the old one",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nobody's ever called four of one thing too many, it's just how the shelf fills up between shops",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "There's no rule that only one bottle of a job stays open at a time",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-003",
+    "root_causes": [
+     "KC-005",
+     "KC-001",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "four nearly identical spray bottles of glass cleaner crowded together on a hallway closet shelf, each only a third full",
+    "must_show": [
+     "Four half-used glass cleaners and three floor sprays crowd the shelf instead of one open bottle of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-008",
+   "title": "A SPRAY BOTTLE WITH NO LABEL LEFT TO READ",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A spray bottle on this shelf carries no legible original label, and nobody remembers what's actually inside it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It got decanted into a spare bottle at some point and the label never got copied over",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Bleach products and ammonia products end up stored close together instead of on separate shelves",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nothing prompts anyone to check a bottle's label before it fades away completely",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-003",
+    "root_causes": [
+     "KC-008",
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a spray bottle on a hallway closet shelf with its original label worn away to nothing, standing among other clearly labeled bottles",
+    "must_show": [
+     "A spray bottle on this shelf carries no legible original label, and nobody remembers what's actually inside it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-009",
+   "title": "A STICKY RING DRIED ONTO THE SHELF",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A dried sticky ring has formed at the base of a bottle, right where the shelf liner should have caught it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The shelf has no wipeable liner, so a drip soaks straight into the wood before anyone notices",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "Nobody wipes the base of the bottles when they go back, only when there's an obvious mess",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It's tucked at the back of a dense shelf where a small drip doesn't get noticed for weeks",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-003",
+    "root_causes": [
+     "RC-016",
+     "KC-009",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dried sticky ring stain on a hallway closet shelf board where a cleaning bottle has been standing",
+    "must_show": [
+     "A dried sticky ring has formed at the base of a bottle, right where the shelf liner should have caught it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-010",
+   "title": "A LOOSE BATTERY NOBODY CAN VOUCH FOR",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A loose battery rolls free in this bin, and nobody can vouch for whether it's still good or already dead.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Batteries get emptied out of their packaging instead of staying in it, so there's no way to tell them apart by age",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "A loose button cell at floor level is a real risk for a small child in the hallway",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody sorts this tray by size until it's already a mess of mixed batteries",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-004",
+    "root_causes": [
+     "KC-008",
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shallow tray in a hallway closet holding a loose jumble of mismatched batteries with no packaging to identify them",
+    "must_show": [
+     "A loose battery rolls free in this bin, and nobody can vouch for whether it's still good or already dead."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-011",
+   "title": "THE LAST ROLL LEAVES WITH NO WARNING",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The toilet roll bin is empty, and nobody mentioned it was close before the last one came out.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Taking the last one and not saying anything is just what happens here, it's nobody's job to flag it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no minimum written on the shelf edge to catch it before it runs out",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The bin is solid sided, so the level isn't visible until you actually lift the lid",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-004",
+    "root_causes": [
+     "RC-013",
+     "KC-008",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open toilet-roll storage bin in a hallway closet sitting completely empty",
+    "must_show": [
+     "The toilet roll bin is empty, and nobody mentioned it was close before the last one came out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-012",
+   "title": "A BULK PACK OVERHEAD, PAST ANY WRITTEN LIMIT",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A shrink-wrapped bulk pack sits above head height, and the count already on the shelf below is well past any written maximum.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The deal was good enough to buy even though there was nowhere left on the shelf for it",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nothing this heavy should be stored above head height where a tug brings it down on you",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There's no maximum written on the shelf edge to say the deal doesn't fit this time",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-004",
+    "root_causes": [
+     "KC-001",
+     "KC-010",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a shrink-wrapped bulk pack of paper towels sitting on a hallway closet shelf above head height, stacked well past a marked shelf-edge limit",
+    "must_show": [
+     "A shrink-wrapped bulk pack sits above head height, and the count already on the shelf below is well past any written maximum."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-013",
+   "title": "THE BIN MARKED MISC, MOVED THREE TIMES UNOPENED",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bin marked misc has moved through two closet reshuffles, and nobody can say what's actually inside it without opening it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Naming what's inside and deciding on each thing is a bigger job than just leaving the lid on",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "A sealed bin on a high shelf is the easiest place in the house to defer a decision, out of sight and out of mind",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There's no label naming its contents or the date it was last opened",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-005",
+    "root_causes": [
+     "RC-015",
+     "KC-005",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a plain storage bin on a high hallway closet shelf with no visible label, positioned among other clearly labeled bins",
+    "must_show": [
+     "A bin marked misc has moved through two closet reshuffles, and nobody can say what's actually inside it without opening it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-014",
+   "title": "GUEST BEDDING STRAYS ONTO THE EVERYDAY SHELF",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Guest bedding comes back from the wash and lands on the everyday linen shelf instead of its own labeled bin.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no separate labeled bin actually waiting for it, so it goes wherever there's room",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Whoever strips the guest bed isn't the one who knows where the seasonal bins live",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's faster to drop it on the nearest shelf than to find and reopen the right bin",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-005",
+    "root_causes": [
+     "KC-002",
+     "RC-013",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "folded guest bedding sitting on top of an everyday linen stack on a hallway closet shelf instead of inside its own separate bin",
+    "must_show": [
+     "Guest bedding comes back from the wash and lands on the everyday linen shelf instead of its own labeled bin."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "HCF-015",
+   "title": "A CHAIR STANDING IN FOR A STOOL",
+   "type": "FRICTION CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Reaching a top-shelf bin means standing on a hallway chair, with a lid blocking the view of the step down.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no stool kept near this closet, so a chair is what's nearest",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "A bin of decorations is heavier than it looks once it's overhead and shifts weight coming down",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody moved the heaviest bins down to a lower shelf when the closet was last reset",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your closet, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "HCZ-005",
+    "root_causes": [
+     "KC-006",
+     "KC-010",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hallway chair positioned beneath a high closet shelf, someone's feet visible standing on its seat reaching upward",
+    "must_show": [
+     "Reaching a top-shelf bin means standing on a hallway chair, with a lid blocking the view of the step down."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-004",
+     "HCF-007",
+     "HCF-012"
+    ],
+    "actions": [
+     "HCA-003",
+     "HCA-008",
+     "HCA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "four nearly identical spray bottles crowded together on a hallway closet shelf, far more than one open bottle of that job would ever need",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-006",
+     "HCF-014"
+    ],
+    "actions": [
+     "HCA-006",
+     "HCA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of folded guest bedding sitting on top of the everyday linen shelf with no labeled bin nearby to hold it",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-015"
+    ],
+    "actions": [
+     "HCA-007",
+     "HCA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a heavy storage bin sitting on a high hallway closet shelf well above head height, with a lower empty shelf visible beneath it",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-005",
+     "HCF-014"
+    ],
+    "actions": [
+     "HCA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a mop leaning unclipped against a hallway closet wall instead of hanging from the rail within easy reach",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-001",
+     "HCF-007",
+     "HCF-009",
+     "HCF-011",
+     "HCF-013"
+    ],
+    "actions": [
+     "HCA-001",
+     "HCA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a solid-sided storage bin in a hallway closet with no way to see how full it is without lifting the lid",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-015"
+    ],
+    "actions": [
+     "HCA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hallway chair standing in for a step stool beneath a high closet shelf, no stool anywhere in sight",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-001",
+     "HCF-002",
+     "HCF-004",
+     "HCF-007",
+     "HCF-008",
+     "HCF-010",
+     "HCF-011",
+     "HCF-012",
+     "HCF-013"
+    ],
+    "actions": [
+     "HCA-002",
+     "HCA-008",
+     "HCA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bare hallway closet shelf edge with no count card or label anywhere on it, bins stacked with no visible rule",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-005",
+     "HCF-008",
+     "HCF-009",
+     "HCF-010"
+    ],
+    "actions": [
+     "HCA-004",
+     "HCA-005",
+     "HCA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty toilet-roll bin in a hallway closet with no shopping list nearby and no note that it needs restocking",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-002",
+     "HCF-005",
+     "HCF-008",
+     "HCF-010",
+     "HCF-012",
+     "HCF-015"
+    ],
+    "actions": [
+     "HCA-006",
+     "HCA-007",
+     "HCA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a heavy bulk pack sitting on a hallway closet shelf above head height, positioned to slide free at the slightest tug",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-003",
+     "HCF-006",
+     "HCF-011",
+     "HCF-014"
+    ],
+    "actions": [
+     "HCA-010",
+     "HCA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an unrefilled storage bin sitting empty in a hallway closet at the end of the day, no single person's name attached to restocking it",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-003"
+    ],
+    "actions": [
+     "HCA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a nicer sheet set kept folded and untouched at the front of a hallway closet shelf instead of ever going onto a bed",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-001",
+     "HCF-003",
+     "HCF-006",
+     "HCF-013"
+    ],
+    "actions": [
+     "HCA-002",
+     "HCA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a sealed storage bin marked vaguely, sitting untouched on a hallway closet shelf, clearly not yet decided about",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-009"
+    ],
+    "actions": [
+     "HCA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching awkwardly behind a dense row of bottles on a hallway closet shelf toward a dried sticky ring that is hard to reach",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "HCF-002",
+     "HCF-004"
+    ],
+    "actions": [
+     "HCA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a worn broom with splayed bristles hanging in a hallway closet exactly where it has hung, unnoticed, for a long time",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "HCA-001",
+   "title": "UNFOLD EVERY SET AND CHECK IT'S WHOLE",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Pull every sheet set off the shelf, unfold each one fully, and check it is complete and still fits a bed in this house.",
+   "why_it_matters": "A set that's missing its match or gone slack at the elastic is impossible to use in the moment you actually reach for it.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag",
+    "the hallway floor"
+   ],
+   "steps": [
+    "Pull every sheet set off the shelf, unfold each one fully, and check it's complete and still fits a bed you still own: the flat sheet with no fitted match, the elastic that's gone slack, and anything that smells sour after drying all leave today.",
+    "Set aside anything unopened and genuinely still useful to give away rather than binning it.",
+    "Refold what stays to one width and group by bed size."
+   ],
+   "root_causes": [
+    "KC-005",
+    "RC-014"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "RC-014"
+    ],
+    "zone": "HCZ-001",
+    "standard": "HCS-001"
+   },
+   "victory_condition": "Every remaining set is a complete, matching set that fits a real bed, and nothing waits folded that failed the check.",
+   "next_card": "HCS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hallway closet shelf mid-clear with unfolded sheet sets laid out on the floor, one incomplete set set apart from the rest",
+    "must_show": [
+     "Every remaining set is a complete, matching set that fits a real bed, and nothing waits folded that failed the check."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-002",
+   "title": "BUNDLE EACH SET AND LABEL THE SHELF EDGE",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Fold each set to one uniform footprint, bundle it inside its own pillowcase, and write the bed size and count on the shelf edge.",
+   "why_it_matters": "A shelf label that only names the size and not the count still leaves a laundry-day guess.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "pillowcases already on hand",
+    "a permanent marker",
+    "adhesive shelf-edge labels"
+   ],
+   "steps": [
+    "Fold each set to one uniform footprint and bundle it inside its own pillowcase so a bed change is one grab, not four.",
+    "Group bundles by bed size: queen and king low, everyday towels at chest height, guest blankets on top.",
+    "Write the size and count on the shelf edge underneath, not just the name."
+   ],
+   "root_causes": [
+    "KC-008",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "RC-015"
+    ],
+    "zone": "HCZ-001",
+    "standard": "HCS-001"
+   },
+   "victory_condition": "Every bed's sets are bundled inside their own pillowcases, and the shelf edge names both the size and the count.",
+   "next_card": "HCA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing a bed size and a count onto a shelf-edge label beneath a shelf of pillowcase-bundled sheet sets",
+    "must_show": [
+     "Every bed's sets are bundled inside their own pillowcases, and the shelf edge names both the size and the count."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-003",
+   "title": "STAND UP EVERY TOOL AND CHECK THE WORKING END",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Stand every handle up and look at the working end, removing anything that no longer does its job.",
+   "why_it_matters": "A broom that pushes dust instead of gathering it, or a spare vacuum kept for parts never harvested, is taking up the spot a working tool needs.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Stand every handle up and look at the working end: brooms with splayed bristles that push dust rather than gather it, a mop head that no longer twists off its plate, and the old vacuum you keep for parts you've never once harvested all go out this week.",
+    "Recycle what can be recycled, and clear the floor space they were taking."
+   ],
+   "root_causes": [
+    "KC-001",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "RC-017"
+    ],
+    "zone": "HCZ-002",
+    "standard": "HCS-002"
+   },
+   "victory_condition": "Only tools that actually do their job stand in this closet, and nothing broken is waiting on a repair that was never going to happen.",
+   "next_card": "HCS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a row of cleaning tools standing upright in a hallway closet, one broom with splayed bristles set apart to be discarded",
+    "must_show": [
+     "Only tools that actually do their job stand in this closet, and nothing broken is waiting on a repair that was never going to happen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-004",
+   "title": "FIT THE RAIL AND TAPE THE VACUUM'S OUTLINE",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Fit a rail so each tool hangs with its head clear of the floor, and tape a floor outline for the vacuum with its attachments bagged on the handle.",
+   "why_it_matters": "A mop head left standing on the floor bends over and re-soils what you just cleaned, and an unclipped handle is what slides down across the doorway.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a wall rail with hooks",
+    "tape for the floor outline",
+    "a small zip bag for attachments"
+   ],
+   "steps": [
+    "Fit a rail and hang each tool so bristles and mop heads swing free of the floor.",
+    "Tape an outline for the vacuum's footprint on the closet floor.",
+    "Zip the crevice tools and brush heads into one bag clipped to the vacuum's handle."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-009"
+    ],
+    "zone": "HCZ-002",
+    "standard": "HCS-002"
+   },
+   "victory_condition": "Handles hang from the rail with heads clear of the floor, the vacuum parks inside its taped outline, and the attachment bag rides on its handle.",
+   "next_card": "HCA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a wall-mounted rail in a hallway closet holding a broom, mop and duster hanging handle-down, a taped floor outline visible below with a vacuum parked inside it",
+    "must_show": [
+     "Handles hang from the rail with heads clear of the floor, the vacuum parks inside its taped outline, and the attachment bag rides on its handle."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-005",
+   "title": "LINE UP EVERY BOTTLE AND CLEAR THE UNMARKED ONES",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Line every bottle up on the hallway floor, and remove anything decanted into an unmarked spray bottle or bought for one old stain.",
+   "why_it_matters": "A bottle with no legible original label is a guess every time you reach for it, and pouring like into like is the only way to know what's actually here.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the hallway floor",
+    "a bin bag"
+   ],
+   "steps": [
+    "Line every bottle up on the hallway floor. Anything decanted into an unmarked spray bottle is disposed of according to its own product's instructions, and the specialty cleaner bought for one old stain goes with it.",
+    "Pour only identical products together into one bottle.",
+    "Set the survivors back with every label facing out."
+   ],
+   "root_causes": [
+    "RC-016",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-016",
+     "KC-009"
+    ],
+    "zone": "HCZ-003",
+    "standard": "HCS-003"
+   },
+   "victory_condition": "Every bottle on the shelf carries its own legible original label, and only one open bottle of each job remains.",
+   "next_card": "HCS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "cleaning bottles lined up on a hallway floor, one unmarked spray bottle set apart from a row of clearly labeled ones",
+    "must_show": [
+     "Every bottle on the shelf carries its own legible original label, and only one open bottle of each job remains."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-006",
+   "title": "BUILD ONE CADDY PER ROOM",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Build a bathroom caddy and a kitchen caddy so the whole job for that room travels in one hand, and keep bleach and ammonia products on separate shelves.",
+   "why_it_matters": "Sending yourself back to this closet twice mid-clean is the walk this caddy exists to remove, and bleach beside ammonia is the one combination to refuse outright.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "two caddies",
+    "adhesive labels for the caddy ends"
+   ],
+   "steps": [
+    "Build a bathroom caddy and a kitchen caddy, with gloves and cloths riding inside each one alongside the sprays.",
+    "Label each caddy's end with the room it serves.",
+    "Move bleach products and ammonia products onto separate shelves, out of a small child's reach or behind a latch."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-010"
+    ],
+    "zone": "HCZ-003",
+    "standard": "HCS-003"
+   },
+   "victory_condition": "One caddy per room carries its own labeled sprays and cloths, and bleach and ammonia products sit on separate shelves.",
+   "next_card": "HCA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "two labeled cleaning caddies standing ready in a hallway closet, one marked for the bathroom and one for the kitchen, bleach and ammonia products visible on separate shelves behind them",
+    "must_show": [
+     "One caddy per room carries its own labeled sprays and cloths, and bleach and ammonia products sit on separate shelves."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-007",
+   "title": "TAKE THE LOT OUT AND SORT BY SIZE",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take every battery, bulb, and paper pack out onto the hallway floor, removing anything you can't vouch for or can't lift safely alone.",
+   "why_it_matters": "A loose battery nobody can vouch for and a fitting you replaced months ago are both still costing this shelf space.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the hallway floor",
+    "a bin bag"
+   ],
+   "steps": [
+    "Take the lot out. Loose batteries you cannot vouch for, bulbs for fittings you replaced when you went over to LED, and any bulk pack too big to lift down alone all leave now.",
+    "Sort surviving batteries upright in a shallow tray by size, and box bulbs together by fitting.",
+    "Set the heaviest remaining packs at waist height, not overhead."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-003"
+    ],
+    "zone": "HCZ-004",
+    "standard": "HCS-004"
+   },
+   "victory_condition": "Every battery is sorted by size in its tray, every bulb is boxed by fitting, and nothing left on the shelf is too heavy or too high to lift down alone.",
+   "next_card": "HCS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "batteries and bulbs spread out on a hallway floor being sorted into a shallow tray and a labeled bin, an oversized pack set apart to be moved",
+    "must_show": [
+     "Every battery is sorted by size in its tray, every bulb is boxed by fitting, and nothing left on the shelf is too heavy or too high to lift down alone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-008",
+   "title": "WRITE A MINIMUM AND MAXIMUM ON EVERY BIN",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Write a minimum and a maximum on the shelf edge in front of each bin, sized to what the bin can hold without stacking above its rim.",
+   "why_it_matters": "A number in your head is not a number anyone else can read, and an undated bulk pack is where a saving quietly expires.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a marker",
+    "adhesive shelf-edge labels"
+   ],
+   "steps": [
+    "Set the maximum for each bin as the count that fits inside it without stacking above the rim.",
+    "Write both the minimum and maximum on the shelf edge in front of each bin.",
+    "Date every pack with a marker as it goes back, oldest at the front."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-008"
+    ],
+    "zone": "HCZ-004",
+    "standard": "HCS-004"
+   },
+   "victory_condition": "Every bin carries a minimum and maximum on its shelf edge, and every pack behind it is dated with the oldest at the front.",
+   "next_card": "HCA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing a minimum and maximum onto a shelf-edge label in front of a hallway closet bin, dated packs visible behind it",
+    "must_show": [
+     "Every bin carries a minimum and maximum on its shelf edge, and every pack behind it is dated with the oldest at the front."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-009",
+   "title": "OPEN EVERY LID ON THE FLOOR, IN DAYLIGHT",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take every lid off, on the floor, in daylight, and remove anything you can't name from memory.",
+   "why_it_matters": "A sealed bin of unknowns is not storage, it is a decision you agreed to keep paying for.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the hallway floor",
+    "a bin bag"
+   ],
+   "steps": [
+    "Take every lid off, on the floor, in daylight. Decorations for a tree you no longer put up, a guest pillow gone flat and yellow, and any bin marked misc whose contents you cannot name without looking all go.",
+    "For each remaining item, name the specific occasion in the next twelve months when it will be used.",
+    "Anything with no named occasion does not get the lid back on."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-005"
+    ],
+    "zone": "HCZ-005",
+    "standard": "HCS-005"
+   },
+   "victory_condition": "Every remaining bin holds one named occasion, and nothing sealed inside it is something you couldn't name from memory.",
+   "next_card": "HCS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "storage bins opened on a hallway floor in daylight, their contents spread out for sorting, one bin marked misc set apart",
+    "must_show": [
+     "Every remaining bin holds one named occasion, and nothing sealed inside it is something you couldn't name from memory."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-010",
+   "title": "LABEL EVERY BIN, DATE THE LID, MAP THE SHELF",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Label each bin with its contents and the date it was last closed, photograph it packed, and tape a shelf map inside the door.",
+   "why_it_matters": "A photograph taped to the lid gives repacking a target instead of a guess, and a shelf map means someone else can find the guest bedding without unstacking the shelf.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "a camera or phone",
+    "tape",
+    "paper for the shelf map"
+   ],
+   "steps": [
+    "Label each bin with what's inside and the date it was last closed.",
+    "Photograph each bin packed and tape the picture to the lid.",
+    "Tape a simple shelf map inside the closet door showing which bin sits where."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-013"
+    ],
+    "zone": "HCZ-005",
+    "standard": "HCS-005"
+   },
+   "victory_condition": "Every bin is labeled with contents and a closing date, carries a photo of itself packed, and the door holds a shelf map that matches the shelves.",
+   "next_card": "HCA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a labeled storage bin with a photograph taped to its lid, a shelf map taped inside a hallway closet door visible behind it",
+    "must_show": [
+     "Every bin is labeled with contents and a closing date, carries a photo of itself packed, and the door holds a shelf map that matches the shelves."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-011",
+   "title": "THE FULL SHELF WEIGHT AND REACH SAFETY WALK",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every shelf checking what's stored above head height, whether a stool lives in reach, and that the brackets holding the heaviest loads are sound.",
+   "why_it_matters": "A heavy bin overhead and a hallway chair standing in for a stool both hide until someone tests for them on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a step stool"
+   ],
+   "steps": [
+    "Check every shelf for anything heavy stored above head height, and move it down to a lower shelf.",
+    "Confirm a real step stool lives near this closet, not a hallway chair standing in for one.",
+    "Check the shelf brackets are screwed into studs, not just into plasterboard, under the heaviest loads."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-010",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-010",
+     "KC-003"
+    ]
+   },
+   "victory_condition": "Nothing heavy sits above head height, a real stool lives within reach, and every loaded bracket is anchored into a stud.",
+   "next_card": "HCA-010",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand using a step stool to move a heavy storage bin down from a high hallway closet shelf to a lower one",
+    "must_show": [
+     "Nothing heavy sits above head height, a real stool lives within reach, and every loaded bracket is anchored into a stud."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-012",
+   "title": "THE WEEKLY BEFORE-THE-LIST CHECK",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the paper, battery, and bulb bins reading what's low before the shopping list gets written, and name who is doing it this week.",
+   "why_it_matters": "Everybody takes the last roll and almost nobody mentions it, so this zone fails silently unless somebody is actually assigned to look.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the shopping list"
+   ],
+   "steps": [
+    "Walk the backstock bins and read each one against its written minimum before the list gets written.",
+    "Say out loud, or write down, whose turn it is to do this pass this week.",
+    "Add anything genuinely below its minimum to the list on the spot."
+   ],
+   "root_causes": [
+    "RC-013",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "The bins were read against their written minimums before this week's list was written, and one named person did it.",
+   "next_card": "HCA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing an item onto a shopping list while standing in front of a hallway closet bin sitting below its own shelf-edge minimum",
+    "must_show": [
+     "The bins were read against their written minimums before this week's list was written, and one named person did it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCA-013",
+   "title": "THE SEASONAL MAXIMUM AND LABEL AUDIT",
+   "type": "ACTION CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Once a season, check every written maximum and every bin label against what's actually on the shelves, correcting anything that has drifted.",
+   "why_it_matters": "A maximum or a label written once and never revisited stops meaning anything the first time a good deal or a quiet clear-out moves past it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "this season's receipts if you kept them"
+   ],
+   "steps": [
+    "Compare the count behind each bin against its written maximum, and note any line that has crept over.",
+    "Relabel any bin whose contents or closing date no longer match what's inside it.",
+    "Correct the shelf map inside the door if a bin has moved."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-001"
+    ]
+   },
+   "victory_condition": "Every bin sits at or under a maximum checked this season, and every label and the shelf map both match what's actually on the shelves.",
+   "next_card": "HCA-012",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand comparing a bin's count against a shelf-edge maximum label in a hallway closet, a shelf map taped inside the door beside it",
+    "must_show": [
+     "Every bin sits at or under a maximum checked this season, and every label and the shelf map both match what's actually on the shelves."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "HCS-001",
+   "title": "LINEN SHELF ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Hall Closet",
+   "zone": "Linen Shelf Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Three sets per bed, each nested in its own pillowcase, with the size and count written on the shelf edge.",
+   "trigger": "When you strip the beds on laundry day, the fresh set comes off this shelf and you read the count as you lift it.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run a hand along the shelf's front lip and check for the grey dust line before it thickens onto the clean stack below it.",
+    "Wipe the shelf brackets and the underside of the board above with a dry cloth, catching the fluff that clings and drops onto the stack.",
+    "Shake out one folded sheet set and refold it to the same width as its neighbors, checking for a musty note as you go."
+   ],
+   "related": {
+    "zone": "HCZ-001",
+    "actions": [
+     "HCA-001",
+     "HCA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a hallway closet shelf holding pillowcase-bundled sheet sets grouped by bed size with a small dated count card on the shelf edge, a stack of folded towels no taller than a forearm beside them, and two spare blankets on the top shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HCS-002",
+   "title": "CLEANING EQUIPMENT ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Equipment Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Handles hang from the rail with heads clear of the floor, the vacuum parks inside its outline, and nothing goes in wet.",
+   "trigger": "When the vacuum is switched off after a clean, it is wrapped, bagged, and back inside the tape before you sit down.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Empty the vacuum canister into the bin and wipe it out before it goes back inside the taped outline.",
+    "Comb the broom bristles clear of trapped hair and thread, letting nothing carry back onto the floor you just swept.",
+    "Run each cord through a folded cloth along its whole length as you coil it, lifting off the dust that collects in the loops."
+   ],
+   "related": {
+    "zone": "HCZ-002",
+    "actions": [
+     "HCA-003",
+     "HCA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a wall-mounted rail in a hallway closet holding a broom, mop and duster hanging handle-down with heads clear of the floor, a vacuum parked inside a taped floor outline with its attachment bag clipped to the handle, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HCS-003",
+   "title": "CLEANING SUPPLY ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Hall Closet",
+   "zone": "Cleaning Supply Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One caddy per room, one open bottle per job, original labels only, and bleach and ammonia kept apart.",
+   "trigger": "When the caddy is set back on the shelf after a clean, whatever ran out is written on the list in the same movement.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the crusted ring off the base of one bottle and clean the dried run down its neck before it goes back on the shelf.",
+    "Lift the shelf liner, rinse both faces, and lay it back flat so the next slow drip lands on something wipeable.",
+    "Wipe the inside of a caddy's divider walls and its handle where product residue gathers most."
+   ],
+   "related": {
+    "zone": "HCZ-003",
+    "actions": [
+     "HCA-005",
+     "HCA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "labeled cleaning caddies standing on a hallway closet shelf, each bottle inside showing its own legible original label, bleach products visible on a separate shelf from ammonia-based products, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HCS-004",
+   "title": "PAPER AND HOUSEHOLD BACKSTOCK STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Hall Closet",
+   "zone": "Paper and Household Backstock",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every bin carries a minimum and maximum on the shelf edge, stock is dated with a marker on arrival, and the oldest pack is pulled first.",
+   "trigger": "When you take the last roll or the last pack of bulbs out of a bin, the restock goes on the shopping list on that same trip to the closet.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the battery tray out, wipe the bottom clean, and watch for a white crust before it dries back before the batteries return.",
+    "Press the underside of one paper pack stored against the outside wall to check for damp before it soaks through unnoticed.",
+    "Tip the paper dust and cardboard flecks from the bottom corners of the toilet-roll bin before it goes back on the shelf."
+   ],
+   "related": {
+    "zone": "HCZ-004",
+    "actions": [
+     "HCA-007",
+     "HCA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a hallway closet shelf holding a clear toilet-roll bin with a small dated count card on its shelf edge, a labeled bulb bin sorted by fitting, and a shallow tray of batteries standing upright sorted by size, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HCS-005",
+   "title": "SEASONAL AND GUEST ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Hall Closet",
+   "zone": "Seasonal and Guest Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every bin is lidded, labeled with contents and the date it was last closed, photographed inside the lid, and stored clean and dry.",
+   "trigger": "When the guest bed is stripped after a visit, the bedding is washed and returned to its own bin before the closet door shuts.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Put your nose to the bottom of one open bin and check for the mustiness that means something went in damp.",
+    "Wipe the dust off the top of a bin lid before you set it aside, so none of it tips down into the open bin below.",
+    "Check the shelf map taped inside the closet door is still legible and still matches what's actually on each shelf."
+   ],
+   "related": {
+    "zone": "HCZ-005",
+    "actions": [
+     "HCA-009",
+     "HCA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a hallway closet upper shelf holding lidded storage bins each labeled with contents and a closing date, a photograph taped to one lid, and a shelf map taped inside the closet door, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "HCE-001",
+   "title": "THE MIDNIGHT SHEET CHANGE",
+   "type": "EVENT CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A child is sick at midnight and the bed needs fresh sheets right now, no time to hunt.",
+   "tests_zones": [
+    "HCZ-001"
+   ],
+   "held_if": "The right size set comes off the shelf in one bundle, no digging through mismatched pieces.",
+   "if_it_failed": "If you had to unfold three sets to find one complete match, the check-and-bundle habit slipped. Draw HCA-001.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HCZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand pulling one bundled sheet set from a hallway closet shelf quickly at night",
+    "must_show": [
+     "A child is sick at midnight and the bed needs fresh sheets right now, no time to hunt."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "HCE-002",
+   "title": "THE SPILL THAT NEEDS EVERYTHING AT ONCE",
+   "type": "EVENT CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Something spills across the kitchen floor and the mop, the bucket and gloves all have to come out together, right now.",
+   "tests_zones": [
+    "HCZ-002"
+   ],
+   "held_if": "Every tool comes off the rail already working, with nothing missing from the bag on the handle.",
+   "if_it_failed": "If a tool was broken or an attachment was missing from the bag, the stand-up check or the rail habit slipped. Draw HCA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HCZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand pulling a working mop from a hallway closet rail in a hurry, a bucket already in the other hand",
+    "must_show": [
+     "Something spills across the kitchen floor and the mop, the bucket and gloves all have to come out together, right now."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "HCE-003",
+   "title": "THE GUEST ARRIVING IN AN HOUR",
+   "type": "EVENT CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Guests are due in an hour and the bathroom and kitchen both need a fast, real clean.",
+   "tests_zones": [
+    "HCZ-003"
+   ],
+   "held_if": "Grabbing the bathroom caddy in one hand gets the whole job there without a second trip to this closet.",
+   "if_it_failed": "If you had to come back for a bottle the caddy should have held, the one-caddy-per-room habit slipped. Draw HCA-006.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HCZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a fully stocked bathroom caddy off a hallway closet shelf in one motion",
+    "must_show": [
+     "Guests are due in an hour and the bathroom and kitchen both need a fast, real clean."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "HCE-004",
+   "title": "THE POWER CUT THAT NEEDS A FLASHLIGHT NOW",
+   "type": "EVENT CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The power goes out at night and the flashlight needs batteries that actually work, immediately.",
+   "tests_zones": [
+    "HCZ-004"
+   ],
+   "held_if": "The right size battery is standing upright in its tray, sorted and easy to find in the dark.",
+   "if_it_failed": "If you had to feel around for a loose battery you couldn't vouch for, the sort-by-size habit slipped. Draw HCA-007.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HCZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching into a battery tray in a dark hallway closet, batteries standing upright and sorted by size",
+    "must_show": [
+     "The power goes out at night and the flashlight needs batteries that actually work, immediately."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "HCE-005",
+   "title": "THE OVERNIGHT GUEST WITH NO WARNING",
+   "type": "EVENT CARD",
+   "room": "Hall Closet",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Somebody needs the guest bed made up tonight, with no notice.",
+   "tests_zones": [
+    "HCZ-005"
+   ],
+   "held_if": "The guest bedding is clean, in its own labeled bin, and the shelf map says exactly where to find it.",
+   "if_it_failed": "If the bedding had drifted onto the everyday shelf or the bin had no date, the wash-and-return habit slipped. Draw HCA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "HCZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a labeled bin of clean guest bedding off a hallway closet shelf, a shelf map visible taped inside the door",
+    "must_show": [
+     "Somebody needs the guest bed made up tonight, with no notice."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}
