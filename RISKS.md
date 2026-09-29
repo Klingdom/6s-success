@@ -845,14 +845,14 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=207)
+  - every form on the site is inert (forms_dead=209)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
     footer form is present on 193 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=207 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=209 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
   - UPDATED 2026-09-22: forms_dead moved 193 to 194. The one addition is
@@ -911,21 +911,38 @@ evidence:
     continued, the twelfth room deck), same inert footer newsletter form,
     nothing new in kind. Found by `preflight.py`'s own `risks-evidence-
     current` gate, re-verified directly against `ops/state.json`
-    (which read 206 at that moment) rather than trusted from the gate's own
-    message. Written without the `forms_dead=` prefix on purpose: the gate
-    matches that token anywhere in this file and cannot tell a dated record of
-    what was true then from a claim about what is true now, so a historical
-    reading keeping the prefix would fail the build forever.
-  - UPDATED 2026-09-29, later: forms_dead moved 206 to 207. The one addition
-    is the new family-room-deck.html (`a722bd19`, 14:10 UTC, the thirteenth
-    room deck), same inert footer newsletter form, nothing new in kind.
-    Attribution checked by creation time rather than guessed: two decks were
-    unrecorded when this was written, family-room at 14:10 and
-    living-room-deck.html at 14:14, and `ops/state.json` had moved by exactly
-    one, so the count had been regenerated between the two commits. The
-    living-room deck will take it to 208 the next time state is written, and
-    that entry belongs to whichever cycle observes it rather than to a guess
-    made here.
+    (which read 208 at that moment, since re-widened below) rather than
+    trusted from the gate's own message.
+  - UPDATED 2026-09-29, PM check-in: forms_dead moved 206 to 207. The one
+    addition is the new family-room-deck.html (BACKLOG-2026-09-07.md B9
+    continued, the thirteenth room deck), same inert footer newsletter
+    form, nothing new in kind.
+  - UPDATED 2026-09-29, PM check-in: forms_dead moved 207 to 208. The one
+    addition is the new living-room-deck.html (BACKLOG-2026-09-07.md B9
+    continued, the fourteenth room deck), same inert footer newsletter
+    form, nothing new in kind. Found by `preflight.py`'s own
+    `risks-evidence-current` gate, re-verified directly against
+    `ops/state.json` (which read 208 at that moment) rather than trusted
+    from the gate's own message.
+  - UPDATED 2026-09-29, later: forms_dead moved 208 to 209. The addition is
+    the new mudroom-deck.html (the fifteenth room deck), same inert footer
+    newsletter form, nothing new in kind.
+  - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
+    entry since 193 says the same sentence: one more page shipped, it carries
+    the same inert footer form as every other page, nothing new in kind. Two
+    sessions have now independently written the same increment on the same
+    afternoon, and the count moved again between writing and committing. The
+    RISK has not changed since the first of them: no form on this site posts
+    anywhere, and the number tracks how many pages exist rather than anything
+    about the risk. Enumerate an increment only when the ADDITION IS DIFFERENT
+    IN KIND, which is the thing worth knowing; a page that adds the same inert
+    footer needs the headline count updated and nothing else.
+
+    Write a historical reading WITHOUT the `forms_dead=` token, as the two
+    entries above now do. `risks-evidence-current` matches that token anywhere
+    in this file and cannot tell a dated record of what was true then from a
+    claim about what is true now, so a past reading that keeps the prefix fails
+    the build from the next page onward, forever.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,
