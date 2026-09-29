@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (Guest Bathroom room deck, B9's twelfth room, built by a delegated subagent, verified independently)
+
+**Did:** Unshallowed, attached to main, ff-forwarded, no conflict. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG entries: epics 1-4 remain Phil-blocked (owner gates, art billing, VPS access), B9 room decks the correct unblocked epic-5 work. Claimed Guest Bathroom via ops/b9_claims.py, pushed the claim commit alone first. Delegated the build to a subagent with full context on the established pattern; it authored a diagnosis layer for all five zones (15 frictions, 45 branches, grounded in the room's own real content, reaching 16 of 17 shared causes, the most of any room so far), built ops/cardtext/build_guest_bathroom_deck.py and ops/build_guest_bathroom_deck_page.py (60 cards), registered preflight gates and a dedicated test, and wired deck.html and the interactive test suite.
+
+**Verified, not assumed:** I ran a fresh full preflight independently after the subagent's own run: caught one real FAIL (site/deck.html's hand edit left the sitemap lastmod stale), fixed by rerunning ops/build_seo.py, confirmed clean directly against the gate function and its test (6/6). Final full preflight: one FAIL remained, test_wire_nav_preserves_aria_current.py, the previously-documented transient that requires a clean git tree before it runs; expected to clear on this commit. audit_pages.py 206/0, check_urls.py 202/202, fix_dashes.py 0/0 (also hand-checked every new file for em/en dashes directly), affiliate.py --check clean.
+
+**Went well:** delegating the multi-hour authoring work while independently re-verifying its output before committing.
+
+**Did not go well:** the killed foreground preflight attempt I made early in this cycle left a stray probe file; the gate caught and self-healed it, no real damage.
+
+**Changing next cycle:** none new.
+
+**Next:** B9 continues, thirteenth room, tied-smallest now Family Room/Kids Bedroom/Living Room/Mudroom/Patio or Deck/Workshop at 6 zones each.
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work not yet finished: last cycle's BLOCKER-001 fix had left the full preflight and test suite unverified past its slot)
 
 Attached clean, fetch/unshallow/checkout/ff-merge, no conflict; HEAD already matched origin, no concurrent push. Read git log, top of `ops/NIGHTLY-LOG.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub (8 open issues, unchanged, all `decision`/`blocked-on-art`).

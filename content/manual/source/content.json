@@ -7677,6 +7677,65 @@
        "The caulk seam where the counter meets the basin or the wall going dark, soft, or lifting at one end.",
        "A water mark or a swollen edge on the underside lip of the counter, the kind of sign that something above it drips."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A cup on this counter is holding a toothbrush that clearly belongs to someone who lives here, not a visitor.",
+        "branches": [
+         {
+          "answer": "Someone in this house genuinely brushes their teeth in here every day, and nobody's said that out loud yet",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Nobody ever decided this counter isn't for personal items, so whatever's nearby just lands here",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The main bathroom ran out of room, so the overflow came in here without anyone deciding to move it back",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The soap pump sits below half and the hand towel still smells faintly of the closet, and you only notice because someone is already at the door.",
+        "branches": [
+         {
+          "answer": "Nobody is the one who walks in here between visits to check on it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no trigger tied to a visit being confirmed, so topping it up depends on remembering",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "A counter with no daily user is easy to stop seeing as something that needs checking at all",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A glass tumbler stands on a wet counter beside a hair dryer that is still plugged in next to a full basin.",
+        "branches": [
+         {
+          "answer": "It's decorative, so it never occurred to anyone that a wet counter makes it a hazard",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The cord gets left plugged in and coiled on the counter because there's nowhere else near the basin to keep it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's a real fall and shock risk sitting there beside a full basin, and that outranks how it looks",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the counter and put back only what a visitor would use: soap, tissues, hand towel. The travel conditioner, the spare contact lens case, and the razor that ended up here because the main bathroom ran out of room all go back where they belong or into the trash.",
+       "victory": "Only soap, tissues and a folded hand towel remain on the counter, with bare space enough for a phone and glasses, and nothing of the household's left behind."
+      }
      }
     },
     {
@@ -7753,6 +7812,65 @@
        "A musty smell or a bloom of mildew in the back corner where the air never moves.",
        "A bin base that lifts out damp, or a hinge screw that has worked loose in the door."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A shelf in this cabinet is still holding shampoos and lotions from three different trips, most of them barely started.",
+        "branches": [
+         {
+          "answer": "Throwing out free soap feels like waste, so it just never gets decided",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Every trip added one more and nobody's ever called the total too many",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "They arrived from a different bathroom's overflow, not bought for this cabinet",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "The toilet paper stack is already down to its last roll before anyone notices it's running low.",
+        "branches": [
+         {
+          "answer": "There's no drawn line showing when the stack is getting low, so nobody notices until it's nearly gone",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "It's stacked loose behind other things instead of standing in plain view",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Whoever raids this cabinet for the main bathroom never records that they did",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A bottle of bowl cleaner sits on the cabinet floor with its cap loose, at exactly the height a crawling child would reach.",
+        "branches": [
+         {
+          "answer": "It's stored low because that's simply where the cabinet space was, not because it's safe",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "It's within reach of hands the household doesn't usually think about, which is a safety problem that outranks convenience",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody who opens this cabinet regularly is the one who'd notice a visiting child in the room",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull everything out and be honest about the hotel miniatures: the shampoos from three trips, the lotion nobody opened, the free conditioner samples. Keep the unopened ones a guest would actually use, throw out the started ones, and send household backstock that drifted in here back to the bathroom it came from.",
+       "victory": "Every started miniature and drifted household item is gone, and only unopened travel toiletries a guest would actually use remain."
+      }
      }
     },
     {
@@ -7840,6 +7958,65 @@
        "Scale crusting the shower head so the spray splits and sprays sideways.",
        "A brown bloom or a spreading stain on the ceiling above, which points to something wet in the floor above or the roof."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "One grout line has been scrubbed three times, stayed the same gray, and you've quietly started calling that clean.",
+        "branches": [
+         {
+          "answer": "It's mold grown into the grout or a failed silicone bead, not surface dirt, and no product lifts that",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Nobody's called it a repair job instead of a cleaning job, so it keeps costing a scrub every week",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's stayed the same shade for so long it's stopped registering as stained rather than clean",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Three half-used bottles of shampoo and body wash nobody liked are welded to the tub floor by their own residue.",
+        "branches": [
+         {
+          "answer": "They arrived because the household rejected them elsewhere, and this shower is where rejects retire",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no caddy or shelf, so anything set down stands directly on the tub floor",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's more bottles than one person showering needs, they just never got cleared",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "There's no mat on the tub floor and no grab bar on the wall, and a guest is about to step in here well after dark.",
+        "branches": [
+         {
+          "answer": "A towel bar screwed into drywall isn't rated to take a person's weight, and nobody's added a proper anchor point",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The household showers here so rarely that a missing mat stopped registering as a problem",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Putting the mat out isn't anyone's specific job before a guest arrives",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take out every bottle and turn it over. This is where the household's rejected products retire: the shampoo nobody liked, the body wash that smells wrong, the conditioner welded to the shelf. Keep one shampoo, one conditioner, one body wash, all readable and more than a third full. The rest go, along with the old razor and the disintegrating loofah.",
+       "victory": "One shampoo, one conditioner and one body wash stand in the shower, each more than a third full and easy to read, with nothing else left welded to the shelf."
+      }
      }
     },
     {
@@ -7921,6 +8098,65 @@
        "A seat that rocks on loose bolts, or a hairline crack running out from a bolt hole in the tank or the bowl.",
        "The mineral ring at the water line coming back fast, the mark of hard water and a slow, weak flush."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The reserve roll is mounted low on the wall, and a seated guest has to stand up to reach it.",
+        "branches": [
+         {
+          "answer": "It went into whatever holder was already installed, never tested with someone actually seated",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody's rechecked its placement since it was first fitted",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been in that spot so long nobody thinks to question the reach anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The top of the tank and the floor behind the bowl have collected a pile: air fresheners, a second brush, old magazines, a box nobody can identify.",
+        "branches": [
+         {
+          "answer": "None of it got a decision when it landed there, it just accumulated behind the door swing",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody's specifically responsible for clearing this room's flat surfaces, so it just grows",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been building for so long that none of it reads as clutter to the household anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The toilet brush has stood in an inch of gray water in its holder for years, bristles splayed.",
+        "branches": [
+         {
+          "answer": "It's a consumable everyone's been treating like a fixture, so nobody's replaced it",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Cleaning properly under the rim and rinsing the brush after each flush takes an extra step nobody's built into the routine",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "There's no trigger that says a brush this age gets replaced, so it just keeps going",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear everything from the top of the tank and the floor behind the bowl: the collection of air fresheners, the second brush, the magazines, the box of something nobody has identified in years. One reserve roll stays in the open. Nothing else.",
+       "victory": "The tank top and the floor behind the bowl are bare except for one reserve roll standing in the open."
+      }
      }
     },
     {
@@ -7997,6 +8233,65 @@
        "Rust, scorch marks, or condensation on the water heater and its pipes where they share this closet.",
        "A shelf bracket beginning to pull away from the wall under the weight, or a bath mat whose rubber backing has gone hard and stopped gripping."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The best towels in the house are still folded in the closet years later, while guests dry off on ones that have gone thin and gray.",
+        "branches": [
+         {
+          "answer": "Using the nice ones feels like using them up, so they get held back instead",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's decided the worn ones should actually retire, so they just keep getting reissued",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "A towel that just sits folded doesn't look like it needs a decision, thin fold line and all",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A bundle taken from this shelf midweek for some other use is never the one that comes back.",
+        "branches": [
+         {
+          "answer": "Nothing here tracks what left, so the gap is only found by the next guest",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "There's no single person who restocks this shelf after it's been raided",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Taking a towel from here doesn't trigger anything that says to replace it",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "Making up a guest set means grabbing a bath towel from one stack, a hand towel from a shelf across the closet, and a washcloth that matches neither.",
+        "branches": [
+         {
+          "answer": "Towels are stored by type instead of as ready sets, so what should be one lift turns into three separate stops",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nobody decided guest towels should be pre-bundled, so they default to being grouped by size instead",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's always been sorted this way, so the extra hunting doesn't register as a real problem",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Unfold every towel and look at it in daylight rather than closet light. Anything thin along the fold line, permanently gray, stiff from too much softener, or carrying a hair dye or nosebleed stain comes out of the guest stack. It becomes a rag or a car towel today. It does not go back just in case.",
+       "victory": "Every towel remaining in the guest stack is free of thinning, graying, stiffness or stains, and none of it went back in just in case."
+      }
      }
     }
    ]
