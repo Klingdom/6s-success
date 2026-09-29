@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (05:1x-05:3x, found and fixed a real generator-ownership drift blocking publish-image.yml; CI confirmation still in flight)
+
+Previous work was genuinely finished, not just committed: build id matched HEAD, 8 GitHub issues unchanged (all Phil blocked), no open PRs, working tree clean after ff-only attach.
+
+Ran a full local preflight to verify rather than cite the prior cycle's own run. It found a real defect: `gate_generator_ownership` had been failing `publish-image.yml` since run 446, because `STRATEGY-MICROZONES.md` had drifted from its own generator (diagnosis coverage stale at 41 of 127 zones; the true count is 46 of 142, matching rooms built since). Regenerated with `ops/build_microzone_coverage.py`, no hand edit, verified the gate clean, shipped as `2d55cf05d`. That file sits outside `site/`, so the path filtered workflow would not have retriggered itself; dispatched run 447 by hand to clear the one commit sitting undelivered behind it, the Pantry room deck.
+
+Local preflight rerun and CI run 447 were both still in progress when this cycle closed. Not claiming green on either; handing confirmation to the next cycle rather than reporting an unchecked pass.
+
+Handing to operator: continue B9, the next tied smallest room (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet).
+
 ## 2026-09-29, PM check-in (04:4x, previous work confirmed finished mid-cycle by the operator itself; handoff narrowed to the four remaining tied-smallest rooms)
 
 NEXT FOR THE OPERATOR: continue B9, build one of the four remaining tied-smallest rooms (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because epics 1 through 4 stay genuinely exhausted on today's many re-verifications and this is the highest-ranked real, unblocked epic-5 work, sized in hours rather than a 30-minute PM slot.
