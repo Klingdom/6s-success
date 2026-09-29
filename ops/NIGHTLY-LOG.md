@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (previous work was NOT finished, main was red, fixed the actual CI break before handing off)
+
+NEXT FOR THE OPERATOR: continue B9, claim one of the four remaining tied-smallest rooms (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because epics 1 through 4 stay genuinely blocked on Phil and this is the highest-ranked unblocked epic-5 work.
+
+Attached clean (ff-only, no conflict). `checks.yml` run 1574, on the prior cycle's own pushed commit (`bcf6fa1b0`, the checkin.py throttle), had FAILED: that cycle cited an earlier run's green result and pushed without waiting on its own. Per STEP 2, finishing it was this run's job, not the room-deck handoff. The failing gate was `gate_nightly_log_ordering`: that cycle's own log entry had been appended to the physical end of this file (42,000+ lines past the top, after weeks of 2026-09-04 history) instead of prepended, the exact misreading-"last entries" shape this gate exists to catch. Moved the entry to the top, text byte-identical, verified by diffing file length before and after (unchanged) and by re-running the gate's own logic directly against the fixed file. 8 open GitHub issues reconfirmed unchanged, all `decision`/`blocked-on-art`. Full `preflight.py` re-run from a clean start, in the background, to confirm the fix rather than assume it.
+
+**Went well:** catching that the previous cycle's "confirmed finished" claim covered the wrong commit, per CLAUDE.md 0.3/0.4, instead of citing it forward.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only (one entry moved, none edited). No price or product touched, no new page, no deploy triggered.
+
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, a real check-in flood found and throttled)
+
+Previous work was genuinely finished: `checks.yml` run 1572 and `publish-image.yml` run 447 both confirmed success on the fix commit via the GitHub API. B9 (claim a tied-smallest room) is hours of work, left for the operator, still unclaimed.
+
+Found and fixed instead: `hourly-brief.yml`'s push trigger fires `ops/checkin.py` on every commit, not hourly, and unlike `ops/hourly_brief.py` it had no throttle, so `CHECKIN-LOG.md` gained a near duplicate entry every 13 to 20 minutes all morning. Added a 50 minute floor mirroring the brief's own pattern, proved fail then pass live (ran twice back to back, second skipped; forced an old timestamp, confirmed it records again). New test coverage, `preflight.py` clean, 26 standing warnings. Pushed.
+
+**Next:** the same B9 handoff stands.
+
 ## 2026-09-29, PM check-in (05:4x, previous work confirmed finished by a concurrent operator cycle; handing off the next tied-smallest B9 room)
 
 NEXT FOR THE OPERATOR: continue B9, claim one of the four remaining tied-smallest rooms (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because epics 1 through 4 (measurement, broken or dishonest, traffic, conversion) stay genuinely blocked on Phil (no Stripe or ssh credential in this environment, the redeploy itself waits on the Hostinger button) and this is the highest-ranked real, unblocked epic-5 work. Claim one before starting: a Pantry deck and the STRATEGY-MICROZONES.md fix were each independently built twice today by concurrent sessions.
@@ -42863,11 +42881,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, a real check-in flood found and throttled)
-
-Previous work was genuinely finished: `checks.yml` run 1572 and `publish-image.yml` run 447 both confirmed success on the fix commit via the GitHub API. B9 (claim a tied-smallest room) is hours of work, left for the operator, still unclaimed.
-
-Found and fixed instead: `hourly-brief.yml`'s push trigger fires `ops/checkin.py` on every commit, not hourly, and unlike `ops/hourly_brief.py` it had no throttle, so `CHECKIN-LOG.md` gained a near duplicate entry every 13 to 20 minutes all morning. Added a 50 minute floor mirroring the brief's own pattern, proved fail then pass live (ran twice back to back, second skipped; forced an old timestamp, confirmed it records again). New test coverage, `preflight.py` clean, 26 standing warnings. Pushed.
-
-**Next:** the same B9 handoff stands.
