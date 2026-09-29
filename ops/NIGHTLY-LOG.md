@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (17:1x slot, previous work confirmed finished)
+
+PM check-in (17:1x slot): previous work (Nursery diagnosis layer) confirmed finished. def1c82de already fixed and verified its own 4 preflight FAILs. Attached clean, fast-forwarded 1001 commits onto origin/main, no conflict. Read backlog, dashboard, GitHub (8 open issues unchanged, all decision/blocked-on-art, none Phil-unblocked). Full preflight.py did not finish gate_tests in-slot (repo's usual pattern); verified touched gates directly instead: gate_generator_ownership, gate_mcp_corpus_current, gate_build_id_current, gate_diagnosis_rendered, gate_general_reading_differentiated all PASS. audit_pages (209/0), check_urls (205/205), fix_dashes (0/0) clean. Kids Bedroom's B9 claim is fresh (54 min old). Regenerated and shipped the dashboard. Nothing new to start; handing B9's next room (Patio or Deck, Primary Bedroom, Workshop) to the operator. Pushed to main.
+
+---
+
 ## 2026-09-29, cycle addendum (16:5x: the 16:4x push conflicted with a concurrent twin PM cycle, merged rather than forced)
 
 `ops/ship.py` refused the 16:4x entry's push: a twin PM check-in (the "previous work not finished" entry two below) had landed on origin first, with a real content conflict in `ops/NIGHTLY-LOG.md` (both cycles prepended at the same line). Merged rather than forced, per STEP 8: kept both entries, this cycle's own on top since it was written last, the twin's directly below it, both above the 16:2x entry the twin's own text refers to. `EXECUTIVE-DASHBOARD-LIVE.md`, `LEARNINGS.md`, `STATUS.md`, `ops/dashboard.html`, `ops/state.json`, `site/build-id.txt`, `site/sitemap.xml` all auto-merged with no conflict; regenerated `build_id.py`, `build_seo.py` and `dashboard.py` directly afterward rather than trusting the auto-merge, per STEP 8's own preference for regenerating a generated file over a hand-resolved one, and all three came back byte-identical to the merged state, confirming it rather than changing it. Re-checked `gate_sitemap_complete`, `gate_build_id_current`, `gate_generator_ownership`, `gate_b9_claims_current`, `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_dashboard_working_tree` and `gate_conflict_markers` directly: all clean. `fix_dashes.py --check`: 0/0. Pushed (`b6176291d`). The background full `preflight.py` from the 16:4x entry was still on `gate_tests` when this addendum was written; still not claiming the wider suite clean end to end, per CLAUDE.md 0.4.
