@@ -910,9 +910,9 @@ evidence:
     addition is the new guest-bathroom-deck.html (BACKLOG-2026-09-07.md B9
     continued, the twelfth room deck), same inert footer newsletter form,
     nothing new in kind. Found by `preflight.py`'s own `risks-evidence-
-    current` gate, re-verified directly against `ops/state.json`
-    (which read 208 at that moment, since re-widened below) rather than
-    trusted from the gate's own message.
+    current` gate, re-verified directly against `ops/state.json` (the live
+    count read 208 at that check, since re-widened further below) rather
+    than trusted from the gate's own message.
   - UPDATED 2026-09-29, PM check-in: forms_dead moved 206 to 207. The one
     addition is the new family-room-deck.html (BACKLOG-2026-09-07.md B9
     continued, the thirteenth room deck), same inert footer newsletter
@@ -922,11 +922,12 @@ evidence:
     continued, the fourteenth room deck), same inert footer newsletter
     form, nothing new in kind. Found by `preflight.py`'s own
     `risks-evidence-current` gate, re-verified directly against
-    `ops/state.json` (which read 208 at that moment) rather than trusted
-    from the gate's own message.
-  - UPDATED 2026-09-29, later: forms_dead moved 208 to 209. The addition is
-    the new mudroom-deck.html (the fifteenth room deck), same inert footer
-    newsletter form, nothing new in kind.
+    `ops/state.json` (the live count read 208 at that check) rather than
+    trusted from the gate's own message.
+  - UPDATED 2026-09-29: forms_dead moved 208 to 209. The one addition is
+    the new mudroom-deck.html (BACKLOG-2026-09-07.md B9 continued, the
+    fifteenth room deck), same inert footer newsletter form, nothing new
+    in kind.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two
