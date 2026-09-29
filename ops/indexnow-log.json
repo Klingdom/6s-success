@@ -94,6 +94,7 @@
   "https://6s-success.com/stair-landing-deck.html",
   "https://6s-success.com/standards.html",
   "https://6s-success.com/terms.html",
+  "https://6s-success.com/workshop-deck.html",
   "https://6s-success.com/zones/",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet",
@@ -211,13 +212,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-09-18T16:36:06Z",
-   "mode": "changed",
-   "offered": 187,
-   "accepted": 187,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-09-18T19:47:51Z",
    "mode": "changed",
@@ -630,6 +624,13 @@
    "offered": 113,
    "accepted": 113,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-29T22:31:41Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -841,6 +842,7 @@
   "https://6s-success.com/stair-landing-deck.html": "f4a22378cfcadd75",
   "https://6s-success.com/kids-bedroom-deck.html": "739cf4b0dab1b31b",
   "https://6s-success.com/nursery-deck.html": "99f34ed8a88eb547",
-  "https://6s-success.com/primary-bedroom-deck.html": "f3e63ef27ed85eac"
+  "https://6s-success.com/primary-bedroom-deck.html": "f3e63ef27ed85eac",
+  "https://6s-success.com/workshop-deck.html": "e9987c36784ee9e4"
  }
 }
