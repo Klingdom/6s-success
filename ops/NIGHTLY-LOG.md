@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30-minute triage, previous work fresh and correctly left alone, two real preflight FAILs fixed)
+
+**Previous work not finished, correctly so:** Workshop claimed 7 minutes prior, no deck yet, inside the staleness window, mid-build not abandoned. A concurrent session claimed Patio or Deck mid-cycle, merged clean. All 8 issues remain Phil-gated.
+
+**Did:** a backgrounded `preflight.py` found two real FAILs, both fixed and re-verified directly. `risks-evidence-current`: `RISKS.md` cited stale `forms_dead=211`, state has 212. `stray-probe-files` flagged a path already gone, a transient race from a concurrent run. Also caught `STATUS.md`'s deploy-gap stale at 26 commits after four more decks shipped; recounted directly, 48, not 26, material split left honestly unresolved. Supporting checks clean; dashboard regenerated.
+
+**Leaving for the operator:** Workshop's diagnosis and deck, then Patio or Deck.
+
+Pushed to main. `STATUS.md`, `RISKS.md` and the dashboard regen only. No price or product touched, no new page.
+
 ## 2026-09-29, scheduled operator cycle (a real collision caught before it cost a merge, then Primary Bedroom, eighteenth room, shipped clean)
 
 **Did:** Unshallowed and attached to main. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast: clean. GitHub: 8 open issues, all decision or art blocked, 0 PRs, unchanged. No mail credential. Picked up B9 (room decks, the current active epic since 1-4 are Phil gated): claimed Nursery, dispatched a subagent to build it, then a full preflight run surfaced `ops/b9-claims.json` already showing Nursery claimed by a concurrent session an hour earlier. My own STATUS.md prose claim had never checked that structured ledger. Stopped the subagent immediately (it had authored one file, no commit, no push), fast forwarded onto the concurrent session's already-merged Nursery deck, discarded the duplicate work.
@@ -1295,7 +1305,7 @@ Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only`, 751 com
 
 **The rerun surfaced a real, if minor, consequence of that same kill: `FAIL stray-probe-files`**, 2 leftover probe/fixture paths (including `site/_deck_probe_6.html`) left behind when the killed run's `audit_visual.py` pass didn't reach its own cleanup. `gate_no_stray_probe_files` did exactly what its docstring says it will: reported the failure by name, then deleted the stray paths itself (it runs first in `main()` and self-heals after reporting). Verified rather than assumed: confirmed both paths gone from disk and `git status` clean, then ran the full wrapped `preflight.py` a second time end to end: every gate passed, 25 warnings, the same standing set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress).
 
-**Independently re-verified, not cited, four standing claims:** (1) `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. (2) `ops/inbox_agent.py --apply`: no mail credential, unchecked not empty. (3) Network egress: live `curl` to `6s-success.com`, `api.indexnow.org` and `api.stripe.com` all three denied by the agent proxy (403), matching every prior cycle. (4) GitHub: 8 open issues, fetched live via the API and read in full (not just the label) for all 8, not a sample — #2 and #29 (blocked-on-art) both genuinely need Desktop-only source art or a stronger image model neither of which exist in this sandbox; #18, #21, #31, #33, #35 (decision) and #15 (P0, decision) are each a real whole-book-style commitment, a Stripe legal-identity edit, a product-mismatch call, a game-design tradeoff, a new SSH-credential-into-production risk decision, and a second-Listmonk-instance cost, none foldable into a GREEN-tier fix from here. 0 open PRs.
+**Independently re-verified, not cited, four standing claims:** (1) `ops/cold_read_ledger.py --next`: 175 of 175, genuinely exhausted. (2) `ops/inbox_agent.py --apply`: no mail credential, unchecked not empty. (3) Network egress: live `curl` to `6s-success.com`, `api.indexnow.org` and `api.stripe.com` all three denied by the agent proxy (403), matching every prior cycle. (4) GitHub: 8 open issues, fetched live via the API and read in full (not just the label) for all 8, not a sample, and #2 and #29 (blocked-on-art) both genuinely need Desktop-only source art or a stronger image model neither of which exist in this sandbox; #18, #21, #31, #33, #35 (decision) and #15 (P0, decision) are each a real whole-book-style commitment, a Stripe legal-identity edit, a product-mismatch call, a game-design tradeoff, a new SSH-credential-into-production risk decision, and a second-Listmonk-instance cost, none foldable into a GREEN-tier fix from here. 0 open PRs.
 
 **Spot-checked Phil's own most recent commit** (`9915548c4`, this morning): reading the four third-party mail messages `gate_owner_waiting` had been flagging since 29 August, concluding none needed a decision, and retiring them via `ops/inbox-state.json` so the warning stops repeating. Already merged, nothing left open there.
 
