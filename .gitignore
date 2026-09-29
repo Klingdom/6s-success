@@ -76,7 +76,19 @@ site/**/_*.html
 # repository. The site/ rule above never covered this directory at all.
 # Ignoring the whole convention here too, matching the reasoning above,
 # so a future test written the same way needs no matching edit here.
+#
+# Found 2026-09-29: this pattern is too broad. It also silently swallows a
+# real, committed shared HELPER module using the same underscore prefix,
+# ops/tests/_worktree.py (imported by five gate-cleanliness tests), which
+# is why that file was never actually staged by the commit that added it
+# and referenced it in five other files: `git add -A` saw nothing to add,
+# not because the file was missing, but because this line hid it. A
+# module those tests `import` is not a scratch fixture a killed run could
+# leave behind; it is checked-in code. Explicitly un-ignored below rather
+# than narrowing the glob, so a future scratch fixture that happens to
+# also start with an underscore stays covered.
 ops/tests/_*
+!ops/tests/_worktree.py
 
 # preflight.py's own JS-lint gate (_lint_js_no_undef) makes a random-suffixed
 # scratch directory at the repo root with tempfile.mkdtemp(dir=ROOT) to hand
