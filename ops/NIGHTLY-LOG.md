@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (both B9 claims genuinely mid-build, no unblocked backlog item found; cold-read three payment-critical ops files, no defect)
+
+**Did:** Checkout arrived shallow/detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Confirmed with GitHub directly rather than citing the log: 8 open issues, all `decision`/`blocked-on-art`, none Phil-unblocked, 0 PRs. `inbox_agent.py --apply`: no mail credential in this environment, reported unchecked, not empty.
+
+**Checked whether B9 had an unclaimed room before picking anything else.** `python ops/b9_claims.py --status` showed both remaining rooms (Workshop, Patio or Deck) already claimed, 20-30 minutes old, well inside the 3-hour staleness window; a concurrent PM check-in confirmed the same independently while this cycle was reading state and pushed first. Fetched and fast-forward merged onto it rather than duplicating the same conclusion. Every row in `BACKLOG-2026-09-07.md` sections 2 and 3 (micro zones, decks) is marked done; epics 1-4 are the standing Phil-gated set (`OWNER-ACTIONS.md` items 0/1/1a/1d, GitHub `decision`/`blocked-on-art` issues). No unblocked, unclaimed operator-actionable item existed this cycle.
+
+**Per CLAUDE.md 0.2, used the gap to verify rather than idle.** Cold-read three low-mention `ops/*.py` files nobody's log entry had touched in the last several hundred entries, chosen for stakes rather than convenience (payment/commerce safety, CLAUDE.md section 36b/37): `check_ledgerium.py` (confirmed `gate_ledgerium` is wired into `preflight.py`'s `main()`, the VPS-shipout fallback and the ambient-key fallback both read the single shared `EXPECTED`/`WEBHOOK` source in `ledgerium_price_check.py` rather than a second hand-copied set), `retire_stripe_skus.py` (confirmed it refuses to touch anything carrying `metadata.ledgerium_plan`, refuses to run without a fresh clean live-site scan first, and records its own audit trail rather than trusting Stripe's state silently), and `product_links.py` (confirmed the "unchecked is not dead" design is real in `check()`'s own return states, then ran `--status`: 120 of 123 verified, 3 too weak to publish, correctly excluded). No defect found in any of the three; evidence in `ops/product-links-evidence.json` is dated 2026-09-04, 25 days old, but re-verifying it needs live network egress this sandbox does not have, so left as a known, already-documented sandbox limit rather than a finding.
+
+**Re-derived rather than cited two numbers the last cycle also re-derived independently, both still current:** `RISKS.md`'s `forms_dead=212` against `ops/state.json`'s live value (match), and `deploy_gap_material_commits('7c6a83084')` recomputed directly (48, unchanged).
+
+**Verified:** `check_urls.py` (208/208), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, every page with links discloses above them), `fix_dashes.py --check` (0/0). Full `preflight.py` run in the background; stuck past 15 minutes on `gate_tests`' `test_audit_catalog.py`, this repo's own documented pattern (a cross-process lockdir serializing concurrent runs of that one file, self-healing at 300s, and this sandbox has several other sessions' own preflight runs genuinely concurrent with this one). Killed it once a concurrent push changed the tree under it rather than trust a run whose target had moved mid-flight; not claiming `gate_tests` clean end to end this cycle, per CLAUDE.md 0.4, since the four ancillary checks above and every fast gate before `gate_tests` (no `FAIL` line, checked directly) did complete clean.
+
+**Went well:** picking a genuinely unread, stakes-weighted file set instead of repeating the low-mention sweep's own exhausted tail; catching that a stale lock warning in this environment's own docstring meant "wait it out," not "investigate a hang."
+
+**Did not go well:** the usual unrelated-history/shallow-checkout shape at attach; the standing `gate_tests` runtime in this sandbox, unchanged.
+
+**Changing next cycle:** none new.
+
+**Next:** operator continues Workshop then Patio or Deck once their own claims finish or go stale (`python ops/b9_claims.py --status`); that closes B9's full 20-room set. All 8 GitHub issues remain Phil-gated; `OWNER-ACTIONS.md` item 0 (`VPS_DEPLOY_KEY`) remains the single highest-leverage owner action, 48 commits behind production.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-29, PM check-in (30-minute triage, previous work confirmed finished, both B9 claims genuinely mid-build, no new work opened)
 
 NEXT FOR THE OPERATOR: continue Workshop, then Patio or Deck, because both are B9's last two of twenty rooms, both claims are genuinely fresh (Workshop ~40 minutes old, Patio or Deck ~33 minutes old, `ops/b9-claims.json`, well inside the 3-hour staleness window), and `mcp/content.json` confirms 0/6 zones diagnosed for each, so both are mid-build, not abandoned; finishing them closes the entire room-deck epic.
