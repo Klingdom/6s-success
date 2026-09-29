@@ -1,0 +1,2964 @@
+{
+ "deck": "workshop",
+ "room": "Workshop",
+ "count": 68,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 16,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "WSR-001",
+   "title": "THE WORKSHOP",
+   "type": "ROOM CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. START AT SAFETY, EVEN THOUGH IT IS THE SMALLEST.",
+   "objective": "The workshop is the room 6S came from, and the only one in the house where a bad standard can cost you a finger rather than an afternoon. This card is the map and the order.",
+   "zones_in_order": [
+    "WSZ-001 Main Workbench",
+    "WSZ-002 Power Tool Storage",
+    "WSZ-003 Fastener and Hardware Zone",
+    "WSZ-004 Material Rack",
+    "WSZ-005 Finishing and Chemical Zone",
+    "WSZ-006 Safety and PPE Station"
+   ],
+   "start_here": "WSZ-006 Safety and PPE Station. Take the Safety and PPE Station first even though it is the smallest zone in the room. It sets the terms for the other five: once the glasses hang by the door and the extinguisher gauge reads green, you can work through the blades and the solvents without improvising.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Start at Safety and PPE Station, or take the zone that is annoying you today.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your workshop. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 2. A shared shop runs on the same standards for everyone who uses it: the visitor rule on the Safety and PPE Station card exists precisely because two people improvising two different rules is how someone gets hurt.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do WSA-013 The Full Workshop Hazard Walk before any rebuild. It takes thirty minutes and covers every stuck guard, the unanchored small-parts cabinet and material rack, a shallow-leaning sheet good, the extinguisher gauge, and any loose oily rag.",
+   "related": {
+    "contents": "WSZ-001 to WSZ-006, WSF-001 to WSF-018, the shared root causes in ops/root_causes.py, WSA-001 to WSA-015, WSS-001 to WSS-006, WSE-001 to WSE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole workshop in its settled state, a bare workbench with a vise and a task lamp, a wall of guarded power tools, a labeled small parts cabinet, a loaded material rack, a closed finishing cabinet, and a full safety board by the door, all visible in one frame",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "WSZ-001",
+   "title": "MAIN WORKBENCH",
+   "type": "ZONE CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "order": 1,
+   "difficulty": 3,
+   "tagline": "ONE PROJECT ON THE BENCH. THE VISE AND THE LAMP, NOTHING ELSE.",
+   "objective": "The one surface where a project actually gets built, cut, glued, and repaired.",
+   "callouts": [
+    "A bare bench top holding only the vise and the task lamp",
+    "One project tray holding the current job's parts",
+    "A clear run of bench in front of the vise long enough to lay a board across",
+    "Every chisel and square back on its traced outline on the tool wall",
+    "The dog holes sitting empty",
+    "No offcuts or glue squeeze-out under the bench"
+   ],
+   "done_looks_like": "A bare bench top except the vise and the task lamp, one project tray holding the current job's parts, and a clear run of bench in front of the vise long enough to lay a board across. Every chisel and square back on its traced outline, the dog holes empty, and no offcuts or glue squeeze-out under the bench.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Chisels and marking knives lying edge up in an open tray, and a vise whose jaws have worn smooth enough to release a workpiece mid-cut."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "The task lamp or a tool cord running across the bench or down onto a damp concrete floor where you stand to work."
+    }
+   ],
+   "the_call": {
+    "title": "The project that has been on the bench since spring",
+    "text": "You have a half-assembled something occupying your best surface, and you have not touched it in months because the next step is one you are unsure how to do. Here is the rule that settles it: say out loud what the next physical action is and what date this month you will do it. If you cannot name both in one breath, the project is finished. Take it apart, put the hardware back in the fastener drawers, put the stock back on the rack, and let the bench go back to being a bench. Keeping it assembled is not keeping the project alive, it is only keeping the surface unusable."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Plastic scraper or putty knife",
+    "Light machine oil",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "WSS-001",
+    "actions": [
+     "WSA-001",
+     "WSA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a workshop main workbench with a bare top holding only a vise and a task lamp, one project tray holding parts, chisels and a square hanging on traced outlines on the tool wall behind, and the dog holes sitting empty",
+    "must_show": [
+     "A bare bench top holding only the vise and the task lamp",
+     "One project tray holding the current job's parts",
+     "A clear run of bench in front of the vise long enough to lay a board across",
+     "Every chisel and square back on its traced outline on the tool wall",
+     "The dog holes sitting empty",
+     "No offcuts or glue squeeze-out under the bench"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "WSZ-002",
+   "title": "POWER TOOL STORAGE",
+   "type": "ZONE CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "GUARDED, UNPLUGGED, AND STORED WITH WHAT IT NEEDS.",
+   "objective": "Keep every corded and cordless tool guarded, complete with its own accessories, and ready to pick up and use.",
+   "callouts": [
+    "Each tool in a labeled home with its guard closed",
+    "A blade wrench or chuck key attached to its own tool, not floating in a drawer",
+    "Battery packs sitting on a shelf, off the chargers",
+    "No bare circular saw blade loose in a drawer",
+    "No cord repaired with electrical tape anywhere in the zone",
+    "Every corded tool unplugged rather than left running on the charger"
+   ],
+   "done_looks_like": "Each tool in a labeled home with its guard closed and its blade wrench or chuck key attached to it, not floating in a drawer. Batteries sitting on a shelf off the chargers, no bare circular saw blade loose in a drawer, and no cord repaired with electrical tape anywhere in the zone.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A blade guard that has stopped springing shut on its own, and loose blades stored flat in a drawer where your hand goes in first."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "Lithium battery packs left on chargers indefinitely, especially sitting on a wooden shelf under a bench full of sawdust."
+    }
+   ],
+   "the_call": {
+    "title": "The expensive tool you never use",
+    "text": "Somewhere in this zone is a tool that cost real money and has not cut anything in two years, and you keep it because selling it would be admitting the purchase was wrong. Two questions settle it. Has it done work in the last twenty-four months? And if the job came up tomorrow, would you happily hire one for a day instead? If the answer is no and yes, sell it now, while it still fetches something and while the batteries in it are still worth having. A tool losing value on your shelf is not an asset you are holding, it is a decision you are storing."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Resin and pitch remover",
+    "Compressed air or a blower"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "WSS-002",
+    "actions": [
+     "WSA-003",
+     "WSA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "workshop power tool storage with each corded and cordless tool hanging guarded in a labeled spot, a blade wrench clipped to its own saw, battery packs resting on a shelf off the chargers, and no loose blade or taped cord in sight",
+    "must_show": [
+     "Each tool in a labeled home with its guard closed",
+     "A blade wrench or chuck key attached to its own tool, not floating in a drawer",
+     "Battery packs sitting on a shelf, off the chargers",
+     "No bare circular saw blade loose in a drawer",
+     "No cord repaired with electrical tape anywhere in the zone",
+     "Every corded tool unplugged rather than left running on the charger"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "WSZ-003",
+   "title": "FASTENER AND HARDWARE ZONE",
+   "type": "ZONE CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "ONE SIZE PER COMPARTMENT. A SAMPLE SCREW GLUED ON FRONT.",
+   "objective": "Let you put your hand on the right screw straight away, so a project never stops for a hardware run.",
+   "callouts": [
+    "One fastener type and size in each compartment",
+    "A sample screw glued to the outside of each drawer face",
+    "Deck screws stored separate from drywall screws",
+    "No coffee tin of mixed hardware anywhere on the shelf",
+    "A marked minimum line inside the compartments you empty most",
+    "The cabinet fixed into wall studs, not just plasterboard anchors"
+   ],
+   "done_looks_like": "One fastener type and size per compartment, with a sample screw glued to the outside of each drawer face so you match by eye rather than by reading. Deck screws separate from drywall screws, no coffee tin of mixed hardware anywhere on the shelf, and a marked minimum line inside the compartments you empty most.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A loaded small-parts cabinet pulling off the wall, or a top-heavy drawer unit tipping when you open the highest drawer full of bolts."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Loose screws, washers, and wall anchors on the floor at the height where a toddler or a dog finds them first."
+    }
+   ],
+   "the_call": {
+    "title": "The inherited jar of mixed hardware",
+    "text": "There is a jar or a tin, probably from a relative's garage, holding a few kilograms of unsorted screws, nuts, and washers, and it has followed you through two houses because there is obviously good hardware in there. Price the alternative first: a full box of the screws you actually drive costs less than the evening you would spend sorting. So give it one sitting. Pick out only the sizes you already have a compartment for, and when the sitting ends, whatever is left in the jar goes to metal recycling that same day. Do not tip the remainder back into a smaller jar. That is exactly how it survived the last two moves."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "WSS-003",
+    "actions": [
+     "WSA-005",
+     "WSA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a workshop small-parts cabinet with one fastener size per labeled compartment, a sample screw glued to each drawer face, a minimum fill line marked inside, and no mixed jar of hardware anywhere on the shelf",
+    "must_show": [
+     "One fastener type and size in each compartment",
+     "A sample screw glued to the outside of each drawer face",
+     "Deck screws stored separate from drywall screws",
+     "No coffee tin of mixed hardware anywhere on the shelf",
+     "A marked minimum line inside the compartments you empty most",
+     "The cabinet fixed into wall studs, not just plasterboard anchors"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "WSZ-004",
+   "title": "MATERIAL RACK",
+   "type": "ZONE CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "order": 4,
+   "difficulty": 3,
+   "tagline": "ONE OFFCUT BIN. A SIZE FLOOR AND A FILL LINE, BOTH WRITTEN ON.",
+   "objective": "Hold the wood and metal you will genuinely use, stored so it stays straight and does not fall on anyone.",
+   "callouts": [
+    "Boards lying flat and supported along their length, longest and heaviest at the bottom",
+    "Sheet goods standing close to vertical against the wall",
+    "An offcut bin with its size floor written on the front in marker",
+    "Nothing stored directly on the shop floor",
+    "The route from the bench to the door clear along its full width",
+    "Pipe, trim, and dowel standing upright in their own vertical bin"
+   ],
+   "done_looks_like": "Boards lying flat and supported along their length with the longest and heaviest at the bottom, sheet goods standing on edge against the wall rather than leaning out into the room, and an offcut bin with its size floor written on the front in marker. Nothing stored directly on the floor, and the route from the bench to the door clear along its full width.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Sheet goods sliding off a shallow lean, and long boards pulled from the middle of a stack bringing the ones above down onto your feet."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A dry offcut pile stacked against the wall near a heater, water heater, or extension lead."
+    }
+   ],
+   "the_call": {
+    "title": "The offcut that is still good wood",
+    "text": "This is the hardest decision in the workshop and you already know it. Every short piece in that bin is genuinely usable, which is exactly why the pile never shrinks, and the cost of keeping it is invisible while the cost of tossing it feels sharp. Set two limits and let them decide for you instead. A size floor, anything shorter than your forearm or narrower than your palm, and a bin cap, one bin and no overflow. When the bin is full, the shortest piece in it leaves to make room for the newest. You are not judging whether a piece is good wood. You are only judging whether it is better than the worst piece already in the bin."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Stiff broom or long-handled brush",
+    "Light machine oil"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "WSS-004",
+    "actions": [
+     "WSA-007",
+     "WSA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a workshop material rack with boards stacked flat and supported by length, sheet goods standing close to vertical against the wall, an offcut bin with its size floor marked on the front, and a clear route along the floor to the door",
+    "must_show": [
+     "Boards lying flat and supported along their length, longest and heaviest at the bottom",
+     "Sheet goods standing close to vertical against the wall",
+     "An offcut bin with its size floor written on the front in marker",
+     "Nothing stored directly on the shop floor",
+     "The route from the bench to the door clear along its full width",
+     "Pipe, trim, and dowel standing upright in their own vertical bin"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "WSZ-005",
+   "title": "FINISHING AND CHEMICAL ZONE",
+   "type": "ZONE CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "order": 5,
+   "difficulty": 4,
+   "tagline": "ORIGINAL CONTAINERS. DATED LIDS. INCOMPATIBLES APART.",
+   "objective": "Store paint, glue, stain, and solvent so they stay usable and so they never start a fire.",
+   "callouts": [
+    "Every product in its original labeled container, inside a closed metal cabinet",
+    "Each lid dated in marker",
+    "Water based paint on one shelf, solvents and thinners on another",
+    "Oily rags inside a self-closing metal can with the lid down",
+    "A drip tray under the solvent shelf",
+    "No aerosol standing on a sunny sill or near a pilot light"
+   ],
+   "done_looks_like": "Every product in its original labeled container inside a closed metal cabinet, each lid dated in marker, water based paint on one shelf and solvents and thinners on another. Oily rags in a self-closing metal can with the lid down, a drip tray under the solvent shelf, and no aerosol standing on a sunny sill or near a pilot light.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Oil finish rags balled up in a bin liner or draped over the bench, and solvent stored within reach of a water heater flame."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Thinner or turpentine decanted into an unlabeled drink bottle, and spraying or brushing solvent based finish in a closed shop with the door shut."
+    }
+   ],
+   "the_call": {
+    "title": "The wall of half-used paint",
+    "text": "You are storing a row of part cans against the possibility of a touch-up, including colours from a wall you painted over and a house you no longer live in. Almost none of it will still brush out matching in two years anyway. So keep only colours currently on a surface in this house, and keep them properly: one small sealed jar of each, labeled with the room and the finish, not the original half-empty tin sitting open to the air. Everything else goes to hazardous waste on the same day you sort it, because a box of condemned paint sitting by the door for a month is just the same problem, relocated."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Mineral spirits or matching brush cleaner",
+    "Clean shop rags"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "WSS-005",
+    "actions": [
+     "WSA-009",
+     "WSA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a workshop finishing and chemical cabinet, closed metal doors, original labeled paint and solvent containers with dated lids on separate shelves, a self-closing metal rag can with its lid down, and a drip tray beneath the solvent shelf",
+    "must_show": [
+     "Every product in its original labeled container, inside a closed metal cabinet",
+     "Each lid dated in marker",
+     "Water based paint on one shelf, solvents and thinners on another",
+     "Oily rags inside a self-closing metal can with the lid down",
+     "A drip tray under the solvent shelf",
+     "No aerosol standing on a sunny sill or near a pilot light"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "WSZ-006",
+   "title": "SAFETY AND PPE STATION",
+   "type": "ZONE CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "order": 6,
+   "difficulty": 1,
+   "tagline": "A FULL BOARD AT THE DOOR. ONE LABELED SET PER USER.",
+   "objective": "Make protective gear so easy to reach that putting it on is faster than skipping it.",
+   "callouts": [
+    "Safety glasses on hooks at the door, one labeled pair per regular user",
+    "Hearing protection hanging beside the glasses",
+    "Dust masks in a dated box",
+    "An extinguisher mounted on the wall with its gauge in the green",
+    "Clear floor in front of the extinguisher",
+    "A first aid kit stocked with burn dressings and more than three plasters"
+   ],
+   "done_looks_like": "Safety glasses on hooks at the door you come in through, one labeled pair per regular user, hearing protection beside them, and dust masks in a dated box. An extinguisher mounted on the wall with its gauge in the green and clear floor in front of it, and a first aid kit that still has burn dressings and more than three plasters in it.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "An extinguisher with the gauge out of the green, no inspection date on it, or a stack of timber leaning against the wall in front of it."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Safety glasses so scratched that you take them off to see the cut line, which is the moment the chip flies."
+    }
+   ],
+   "the_call": {
+    "title": "The visitor rule",
+    "text": "The genuinely awkward decision here is not your own gear, it is what happens when your brother-in-law or your fourteen year old wanders in while the saw is running and wants to help. You have been handling it case by case, which means you have been handling it badly. Decide it once and hang it on the wall: anyone who works in this shop has their own labeled set of glasses and muffs, and there is one spare set on a hook marked for visitors. If a visitor will not wear it, they stay on the near side of the doorway and watch. Saying that once, in advance, is far easier than saying it while holding a running grinder."
+   },
+   "supplies": [
+    "Mild dish soap",
+    "Color-coded microfiber cloth set",
+    "Streak-free glass and mirror cleaner",
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "WSS-006",
+    "actions": [
+     "WSA-011",
+     "WSA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a workshop safety station at the door with labeled safety glasses and hearing protection hanging on a silhouette board, a dated dust mask box, a wall mounted extinguisher with its gauge in the green, and clear floor in front of it",
+    "must_show": [
+     "Safety glasses on hooks at the door, one labeled pair per regular user",
+     "Hearing protection hanging beside the glasses",
+     "Dust masks in a dated box",
+     "An extinguisher mounted on the wall with its gauge in the green",
+     "Clear floor in front of the extinguisher",
+     "A first aid kit stocked with burn dressings and more than three plasters"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "WSF-001",
+   "title": "A HALF-ASSEMBLED PROJECT HAS SAT ON THE BENCH FOR MONTHS",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A half-assembled project has sat on the bench for months because the next step is one you are unsure how to do.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody has been assigned to force a decision once a project stalls, so it just keeps occupying the bench indefinitely",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The project has nowhere else to go once you set it down mid-build, so the bench became its only address",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It has been up there so long that a half-built something on the bench no longer reads as unusual",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-001",
+    "root_causes": [
+     "RC-013",
+     "KC-002",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a half-assembled woodworking project sitting on an otherwise bare workbench, dust visibly settled across its unfinished joints",
+    "must_show": [
+     "A half-assembled project has sat on the bench for months because the next step is one you are unsure how to do."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-002",
+   "title": "A CHISEL LIES EDGE UP IN AN OPEN TRAY INSTEAD OF ON ITS OUTLINE",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A chisel or marking knife is lying edge up in an open tray instead of on its traced outline on the tool wall.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is what your hand finds first when you reach across the bench without looking, and that risk outranks tidying it between cuts",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Putting it back on the wall mid-cut means crossing the bench and losing your place in the work, so the tray catches it instead",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Two different people run this bench by two different unwritten rules about what counts as put away, so a tool ends up in the tray under one and on the wall under the other",
+     "root_cause": "KC-012"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-001",
+    "root_causes": [
+     "KC-010",
+     "KC-004",
+     "KC-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a chisel and a marking knife lying blade up in a small open tray on a workbench, an empty traced outline visible on the tool wall behind where the chisel belongs",
+    "must_show": [
+     "A chisel or marking knife is lying edge up in an open tray instead of on its traced outline on the tool wall."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-003",
+   "title": "THE BENCH NEVER GOT ITS CLEAR DOWN LAST NIGHT",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The bench did not get its clear down before the shop light went off last night, and offcuts or glue squeeze-out are still on the bench this morning.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Two of you used the bench that evening and each assumed the other would do the ten minute clear down",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The eye level photo is the standard, but nobody actually glances at it before switching the light off, so drift is not caught in the moment",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Nothing marks the specific moment a fresh offcut earns its verdict, so it just sits on the bench until the whole session gets cleared",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-001",
+    "root_causes": [
+     "RC-013",
+     "RC-017",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a workbench left with offcuts and a smear of dried glue squeeze out still on the top the morning after a session",
+    "must_show": [
+     "The bench did not get its clear down before the shop light went off last night, and offcuts or glue squeeze-out are still on the bench this morning."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-004",
+   "title": "A BLADE GUARD NO LONGER SPRINGS BACK ON ITS OWN",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A blade guard does not spring back on its own anymore when you release it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A guard that sticks is the injury this zone is actually waiting on, and that outranks how small a fix it seems",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody checks the guard action on a schedule, so a guard that started sticking gradually is only caught the day it fails outright",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Nobody in the shop is assigned to notice a tool's wear over time, so a guard degrading gradually is not specifically anyone's job to catch",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a circular saw with its retracting blade guard caught half open, not fully sprung back into its resting position",
+    "must_show": [
+     "A blade guard does not spring back on its own anymore when you release it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-005",
+   "title": "A CHARGED BATTERY SITS ON A WOODEN SHELF UNDER A DUSTY BENCH",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A lithium battery pack is still sitting on the charger well after the job that needed it ended, resting on a wooden shelf under a bench full of sawdust.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A charged pack left running on wood under sawdust is a fire risk, and that outranks the convenience of leaving it plugged in",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The rule is the tool and the battery travel together off the charger in the same motion, but tonight only the tool got hung up",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The battery shelf is the only spot the chargers have ever been mounted, so a wooden shelf under a dusty bench never got questioned",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a lithium battery pack still seated on its charger, resting on a wooden shelf thick with sawdust beneath a workbench",
+    "must_show": [
+     "A lithium battery pack is still sitting on the charger well after the job that needed it ended, resting on a wooden shelf under a bench full of sawdust."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-006",
+   "title": "TWO DRILLS DUPLICATE EACH OTHER AND ONE HASN'T CUT IN YEARS",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are two drills, or a spare sander, duplicating one already on the wall, and one of them has not cut anything in two years.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing ever creates the moment to actually ask the two-question test out loud, so a duplicate keeps its hook by default",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Two similar tools arrived on the wall over time and nobody ever decided only one earns a hook",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "It has sat in the same spot long enough that a second drill on the wall no longer registers as two too many",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-002",
+    "root_causes": [
+     "KC-009",
+     "KC-001",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two cordless drills of the same size hanging side by side on a tool wall, one with a visible film of dust across its trigger",
+    "must_show": [
+     "There are two drills, or a spare sander, duplicating one already on the wall, and one of them has not cut anything in two years."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-007",
+   "title": "A JAR OF MIXED HARDWARE IS BACK ON THE SHELF AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a coffee tin or jar of mixed, unsorted hardware back on the shelf again, probably traced back to a relative's garage.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It came from a relative's garage, and sorting it down to only the sizes you use and recycling the rest feels like discarding part of what they left behind",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nobody in the household has taken ownership of keeping mixed hardware off the shelf once it has been sorted, so a new jar just starts the pile again",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "A handful of screws from a finished job never had its own compartment to return to, so it dropped into whatever jar was closest",
+     "root_cause": "KC-002"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-003",
+    "root_causes": [
+     "RC-014",
+     "RC-013",
+     "KC-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an old coffee tin overflowing with a mixed jumble of unsorted screws, nuts, and washers standing on a shop shelf",
+    "must_show": [
+     "There is a coffee tin or jar of mixed, unsorted hardware back on the shelf again, probably traced back to a relative's garage."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-008",
+   "title": "THE SMALL PARTS CABINET IS FIXED INTO PLASTERBOARD, NOT STUDS",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The wall mounted small parts cabinet is fixed into plasterboard anchors rather than studs, and it is fully loaded with steel fasteners.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A loaded cabinet pulling off the wall is a real fall and crush risk, and that outranks how solid the anchors looked going in",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Finding the studs and refixing it properly is a job that keeps getting pushed to another weekend",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It has hung there since it was first put up, so the anchors stopped reading as a decision that needs revisiting",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-003",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a fully loaded wall mounted small parts cabinet held by anchors visibly pulling slightly away from a plasterboard wall",
+    "must_show": [
+     "The wall mounted small parts cabinet is fixed into plasterboard anchors rather than studs, and it is fully loaded with steel fasteners."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-009",
+   "title": "THE WEEKLY SIZE IS BURIED WHILE A RARE HINGE SITS AT HAND HEIGHT",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The compartment you use weekly, the screws you actually drive, sits buried in the middle of the cabinet while a specialty hinge nobody has touched in years sits at hand height.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing has ever been rearranged since the cabinet was first filled, so the layout reflects the day it was loaded, not what actually gets driven now",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Getting to the weekly size means moving other bins out of the way first, every single time",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "The minimum line inside that compartment is not marked the way the others are, so a low bin of a size you use constantly never announces itself",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-003",
+    "root_causes": [
+     "KC-003",
+     "KC-004",
+     "KC-011"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small parts cabinet with a rarely used specialty hinge compartment at eye level and the everyday screw size buried low in the middle row",
+    "must_show": [
+     "The compartment you use weekly, the screws you actually drive, sits buried in the middle of the cabinet while a specialty hinge nobody has touched in years sits at hand height."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-010",
+   "title": "THE OFFCUT BIN SITS WELL OVER ITS MARKED FILL LINE",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The offcut bin is well over its marked fill line, and short pieces from last month are still in it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is more offcut sitting in reserve than this zone was ever meant to hold, because every cutting session adds more before anything old leaves",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The rule is the shortest piece leaves when the bin is full, but nothing prompts anyone to check the bin against its line",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "More usable offcut comes out of every cutting session than one bin was ever sized to hold",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-004",
+    "root_causes": [
+     "KC-001",
+     "KC-009",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an offcut bin overflowing above its own marked fill line, short boards spilling out onto the shop floor beside it",
+    "must_show": [
+     "The offcut bin is well over its marked fill line, and short pieces from last month are still in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-011",
+   "title": "A FULL SHEET OF PLYWOOD LEANS AT A SHALLOW, UNSAFE ANGLE",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A full sheet of plywood is leaning against the wall at a shallow angle instead of standing close to vertical.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A shallow lean can slide flat without warning and take out whatever is in front of it, and that outranks how it looks propped there",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There is no marked bay or bracket for sheet goods the way there is for boards by length, so it just leans wherever there is a gap",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Nobody in the household has been assigned to check how the sheet goods are leaning, so an angle that developed slowly is not specifically anyone's job to catch",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-004",
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a full sheet of plywood leaning against a workshop wall at a shallow angle, clearly at risk of sliding flat",
+    "must_show": [
+     "A full sheet of plywood is leaning against the wall at a shallow angle instead of standing close to vertical."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-012",
+   "title": "THE GAP BEHIND THE RACK HIDES DROPPINGS, WEBS, AND DAMP",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is mouse droppings, cobwebs, or a damp stain in the gap behind the rack, the kind of thing you only find once you finally sweep back there.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Reaching behind a fully loaded rack costs real effort compared with the rest of the shine pass, so it is the part that gets skipped",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "That gap sits outside your everyday sightline, so nothing happening back there gets flagged until you deliberately look",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nobody has been assigned to check behind the rack since it is not on anyone's daily path through the shop",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-004",
+    "root_causes": [
+     "RC-016",
+     "KC-005",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "cobwebs, mouse droppings, and a damp stain visible in the narrow gap behind a fully loaded material rack",
+    "must_show": [
+     "There is mouse droppings, cobwebs, or a damp stain in the gap behind the rack, the kind of thing you only find once you finally sweep back there."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-013",
+   "title": "AN OIL FINISH RAG IS BALLED UP INSTEAD OF IN THE CAN",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "An oil finish rag is balled up in the bin liner, or draped loose over the bench, instead of in the lidded metal can.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A balled up oil rag generates its own heat as it cures and can ignite with nothing touching it, and that outranks the two seconds it takes to find the can",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The rule is the rag goes in the can right at the tap when you wash the brush, but tonight the brush got washed somewhere else",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It has draped there before with nothing catching fire, so the risk stopped feeling real each time it happens again",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-005",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an oil-soaked finishing rag balled up loose in an open bin liner instead of inside the lidded self-closing metal can beside it",
+    "must_show": [
+     "An oil finish rag is balled up in the bin liner, or draped loose over the bench, instead of in the lidded metal can."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-014",
+   "title": "A ROW OF HALF-USED PAINT CANS SITS FOR COLOURS NO LONGER ON ANY WALL",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody has ever checked whether an old can is still good before it goes back on the shelf, so it just ages there unnoticed",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "You are storing a full tin against the small chance of a touch up that would only ever need a sealed jar's worth",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nobody in the house has ever been the one responsible for checking the shelf against the walls it matches, so it defaults to never",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-005",
+    "root_causes": [
+     "KC-011",
+     "KC-001",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a row of half-used paint cans of different faded colours lined up on a shelf, dust settled on several unopened lids",
+    "must_show": [
+     "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-015",
+   "title": "A SOLVENT CAN AND A WATER BASED PAINT CAN SHARE ONE SHELF",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A solvent can and a water based paint can are sitting on the same shelf instead of separated.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Incompatibles meeting on one shelf is the actual hazard this zone exists to prevent, and it outranks how tidy the shelf looks",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "It has held both together long enough that the mix on that shelf stopped standing out as wrong",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "The zone does not have quite enough clearly separate shelves for every incompatible family, so overflow drifts onto whichever shelf has space",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-005",
+    "root_causes": [
+     "KC-010",
+     "RC-017",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a solvent can and a water based paint can standing side by side on the same shelf instead of on separated shelves",
+    "must_show": [
+     "A solvent can and a water based paint can are sitting on the same shelf instead of separated."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-016",
+   "title": "THE EXTINGUISHER GAUGE IS OUT OF THE GREEN, OR UNDATED",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The extinguisher gauge is not sitting in the green, or there is no inspection date on the bracket tape.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A dead extinguisher looks identical to a working one until the moment you need it, and that outranks how rarely you check the gauge",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Checking the gauge has no moment attached to it, no session end, no fixed day, so months pass between glances",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It has read fine every other time you happened to glance at it, so skipping this month's check did not feel like it changed anything",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a wall mounted fire extinguisher with its pressure gauge needle sitting outside the green zone, no inspection date visible on the bracket tape",
+    "must_show": [
+     "The extinguisher gauge is not sitting in the green, or there is no inspection date on the bracket tape."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-017",
+   "title": "SCRATCHED SAFETY GLASSES GET LIFTED OFF TO SEE THE CUT LINE",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Your safety glasses are scratched and hazed enough that you have caught yourself lifting them off to see the cut line clearly.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Lifting them off at exactly the moment the blade is closest is the injury this whole station exists to prevent, and that outranks finishing the cut with blurred vision",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The lenses got wiped on a dusty shop rag instead of washed in soap and water, which is what put the scratches there in the first place",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "A scratched pair that still technically hangs on the hook does not get replaced, because nothing signals the moment a pair stopped being trustworthy",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "KC-011"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a pair of heavily scratched and hazed safety glasses being lifted away from the face at a workbench mid cut",
+    "must_show": [
+     "Your safety glasses are scratched and hazed enough that you have caught yourself lifting them off to see the cut line clearly."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "WSF-018",
+   "title": "A VISITOR'S GEAR DEPENDS ON WHO IS SUPERVISING THAT DAY",
+   "type": "FRICTION CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A visitor is standing in the shop while the saw runs, and whether they need their own glasses and muffs depends on who happens to be supervising that day.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The board was mounted once, at whoever's height was doing the mounting that day, and never rechecked against the shortest person who actually uses the shop",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "There is only one labeled set per regular user and a single spare, so a second visitor on the same day has nothing left to put on",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Whoever happens to be supervising that day enforces a different version of the rule, so a visitor gets a different answer depending on who is in the shop",
+     "root_cause": "KC-012"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your workshop, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "WSZ-006",
+    "root_causes": [
+     "KC-006",
+     "KC-007",
+     "KC-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a visitor standing just inside a workshop doorway near a running saw, no safety glasses or hearing protection handed to them yet",
+    "must_show": [
+     "A visitor is standing in the shop while the saw runs, and whether they need their own glasses and muffs depends on who happens to be supervising that day."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-006",
+     "WSF-010",
+     "WSF-014"
+    ],
+    "actions": [
+     "WSA-004",
+     "WSA-007",
+     "WSA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two similar cordless drills hanging side by side on the tool wall, one with dust settled across its trigger guard",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-001",
+     "WSF-007",
+     "WSF-011"
+    ],
+    "actions": [
+     "WSA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a phone charging cable and a handful of loose screws sitting on a workbench top with no drawer or hook assigned to either",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-005",
+     "WSF-009"
+    ],
+    "actions": [
+     "WSA-004",
+     "WSA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a battery charger mounted on a wooden shelf thick with sawdust under a workbench, instead of on a cleared wall",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-002",
+     "WSF-009"
+    ],
+    "actions": [
+     "WSA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching past three stacked lengths of pipe in a vertical bin to get to the one piece stored at the back",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-012"
+    ],
+    "actions": [
+     "WSA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a vertical storage bin holding mixed lengths of pipe and dowel, the pieces at the back completely hidden from view",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-018"
+    ],
+    "actions": [
+     "WSA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a safety glasses hook mounted well above the reach of a shorter shop user, stretching up on their toes for it",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-010",
+     "WSF-015",
+     "WSF-018"
+    ],
+    "actions": [
+     "WSA-007",
+     "WSA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an offcut bin overflowing above its own marked fill line, short boards spilling onto the shop floor beside it",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people in the house to describe this zone when it is finished. Two different answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-017"
+    ],
+    "actions": [
+     "WSA-001",
+     "WSA-005",
+     "WSA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a scratched pair of safety glasses hanging on a hook next to a clean pair, with no note on the wall saying which is retired",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-003",
+     "WSF-004",
+     "WSF-005",
+     "WSF-006",
+     "WSF-008",
+     "WSF-010",
+     "WSF-013",
+     "WSF-016"
+    ],
+    "actions": [
+     "WSA-002",
+     "WSA-003",
+     "WSA-004",
+     "WSA-006",
+     "WSA-009",
+     "WSA-011",
+     "WSA-013",
+     "WSA-014",
+     "WSA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a fire extinguisher gauge with no inspection date on the bracket tape, hanging untouched on the workshop wall",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-002",
+     "WSF-004",
+     "WSF-005",
+     "WSF-008",
+     "WSF-011",
+     "WSF-013",
+     "WSF-015",
+     "WSF-016",
+     "WSF-017"
+    ],
+    "actions": [
+     "WSA-001",
+     "WSA-003",
+     "WSA-006",
+     "WSA-008",
+     "WSA-009",
+     "WSA-010",
+     "WSA-011",
+     "WSA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a chisel lying blade up in an open tray on a workbench, directly in the path of a hand reaching across",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-009",
+     "WSF-014",
+     "WSF-017"
+    ],
+    "actions": [
+     "WSA-006",
+     "WSA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a small-parts compartment sitting below its own marked minimum line, with nobody having noticed yet",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-002",
+     "WSF-018"
+    ],
+    "actions": [
+     "WSA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a visitor standing beside a running saw at a workshop doorway, unsure which of two different safety glasses sets is theirs to wear",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-001",
+     "WSF-003",
+     "WSF-004",
+     "WSF-007",
+     "WSF-011",
+     "WSF-012",
+     "WSF-014"
+    ],
+    "actions": [
+     "WSA-002",
+     "WSA-014",
+     "WSA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "cobwebs and dust in the gap behind a loaded material rack, untouched because it sits outside anyone's daily path through the shop",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-007"
+    ],
+    "actions": [
+     "WSA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a rusted coffee tin of mixed screws and nails on a shop shelf, the kind that came from a relative's garage",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-012"
+    ],
+    "actions": [
+     "WSA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching a long-handled brush into the narrow, hard to reach gap behind a fully loaded material rack",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "WSF-001",
+     "WSF-003",
+     "WSF-006",
+     "WSF-008",
+     "WSF-013",
+     "WSF-015",
+     "WSF-016"
+    ],
+    "actions": [
+     "WSA-002",
+     "WSA-014",
+     "WSA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a row of half-used paint cans that has stood in the same spot on a finishing shelf so long it no longer registers as clutter",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "WSA-001",
+   "title": "CLEAR THE BENCH TO JUST THE VISE AND THE LAMP",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the bench top down to just the vise and the task lamp, and give every offcut or glue drip its verdict.",
+   "why_it_matters": "A half-cleared bench is where the next project's chisel goes missing and where a hand finds a blade lying edge up without looking.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the offcut bin",
+    "the fire bucket"
+   ],
+   "steps": [
+    "Clear the bench top down to just the vise and the task lamp: put every hand tool back on its traced outline, and give any offcut or glue squeeze-out its verdict, the rack, the fire bucket, or the bin.",
+    "Put every hand tool back on its traced outline on the tool wall before you call the bench clear."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-010",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-010",
+     "KC-008"
+    ],
+    "zone": "WSZ-001",
+    "standard": "WSS-001"
+   },
+   "victory_condition": "The bench top holds only the vise and the task lamp, with every tool back on its silhouette and the dog holes empty.",
+   "next_card": "WSS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bare workbench top holding only a vise and a task lamp, every hand tool hanging back on its silhouette on the tool wall behind",
+    "must_show": [
+     "The bench top holds only the vise and the task lamp, with every tool back on its silhouette and the dog holes empty."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-002",
+   "title": "GIVE THE STALLED PROJECT ITS VERDICT AND SET THE CLEAR DOWN RULE",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "difficulty": 3,
+   "six_s": "Sustain",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Decide the fate of any project that has sat on the bench for months, and agree the ten-minute clear down happens before the glasses come off.",
+   "why_it_matters": "A project with no next action and no date is not a project in progress, it is the reason the bench stops being usable, and a clear down with nobody assigned to it just does not happen on a bad night.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker and a tag for the project's parts",
+    "the tool wall"
+   ],
+   "steps": [
+    "Say out loud what the next physical action on the stalled project is and what date this month you will do it; if you cannot name both, take it apart and return the hardware to the fastener drawers and the stock to the rack.",
+    "Agree, out loud, whose job the ten-minute clear down is when more than one of you uses the bench in one evening."
+   ],
+   "root_causes": [
+    "RC-013",
+    "KC-009",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "KC-009",
+     "RC-017"
+    ],
+    "zone": "WSZ-001",
+    "standard": "WSS-001"
+   },
+   "victory_condition": "The bench carries either one project with a named next action and a date, or no project at all, and everyone who uses the bench knows whose job the clear down is that night.",
+   "next_card": "WSA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand setting a dated, tagged project's parts onto a shelf, a workbench left bare beside it",
+    "must_show": [
+     "The bench carries either one project with a named next action and a date, or no project at all, and everyone who uses the bench knows whose job the clear down is that night."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-003",
+   "title": "TEST EVERY GUARD AND CLEAR A LINGERING CHARGER",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Work the retracting guard on every saw with your thumb, and move any battery still sitting on the charger from a finished job onto its tool's hook.",
+   "why_it_matters": "A guard that sticks is the injury this zone is actually waiting on, and a charged pack left running on a dusty wooden shelf is a fire risk sitting under your bench.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "nothing, this is a walk and a check"
+   ],
+   "steps": [
+    "Work the retracting guard on every saw with your thumb to confirm it snaps back on its own, and move any battery still sitting on the charger from a finished job onto its tool's hook.",
+    "Note any guard that does not snap back cleanly and set that tool aside until it is fixed rather than back on its hook."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009"
+    ],
+    "zone": "WSZ-002",
+    "standard": "WSS-002"
+   },
+   "victory_condition": "Every guard snaps shut on its own, and no charger is running behind a job that already ended.",
+   "next_card": "WSS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a thumb testing a circular saw's retracting blade guard, a battery pack being lifted off a charger and carried to its tool's hook on the wall",
+    "must_show": [
+     "Every guard snaps shut on its own, and no charger is running behind a job that already ended."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-004",
+   "title": "SELL THE TOOL YOU RENT INSTEAD OF USE",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Apply the two-question test to any duplicate or unused power tool, and move the charger shelf off the wooden surface under the bench.",
+   "why_it_matters": "A tool losing value on the shelf while duplicating one already on the wall is not an asset, it is a decision you are storing, and a charger shelf sitting on wood under sawdust is a fire risk waiting on the next job.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marketplace listing",
+    "a non-wood shelf or a metal tray for the chargers"
+   ],
+   "steps": [
+    "Ask of any duplicate or two-year-unused tool: has it done work in the last twenty-four months, and would you happily hire one for a day instead? If no and yes, list it for sale now.",
+    "Move the battery shelf off any wooden surface sitting under the bench onto a shelf that is not wood, or add a fireproof mat beneath it."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-001",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-001",
+     "KC-003"
+    ],
+    "zone": "WSZ-002",
+    "standard": "WSS-002"
+   },
+   "victory_condition": "Any tool that failed the two-question test is listed for sale, and the battery shelf no longer sits directly on wood under the bench.",
+   "next_card": "WSA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a power tool listed for sale on a phone screen held beside the tool itself, a battery charging shelf now resting on a metal tray instead of bare wood",
+    "must_show": [
+     "Any tool that failed the two-question test is listed for sale, and the battery shelf no longer sits directly on wood under the bench."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-005",
+   "title": "SORT ONE MIXED JAR AND RECYCLE THE REST",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Tip out one obviously mixed jar or tin of hardware, sort only the sizes you already have a labeled compartment for, and recycle the rest today.",
+   "why_it_matters": "An inherited jar that keeps surviving house moves is not spare hardware, it is a decision nobody has made, and every day it sits is a day closer to a third house.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a labeled compartment cabinet",
+    "a bag for metal recycling"
+   ],
+   "steps": [
+    "Tip out one obviously mixed jar or tin of hardware, and sort only the sizes you already have a labeled compartment for; whatever is left over goes straight to metal recycling today.",
+    "Carry the recycling bag out to the bin the same day rather than setting it down inside the shop."
+   ],
+   "root_causes": [
+    "RC-014",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-014",
+     "KC-008"
+    ],
+    "zone": "WSZ-003",
+    "standard": "WSS-003"
+   },
+   "victory_condition": "That one jar is empty and gone, and every fastener from it that stayed is inside a labeled compartment, not back in a container of its own.",
+   "next_card": "WSS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a mixed jar of hardware being sorted screw by screw into labeled cabinet compartments, an empty metal recycling bag waiting beside it",
+    "must_show": [
+     "That one jar is empty and gone, and every fastener from it that stayed is inside a labeled compartment, not back in a container of its own."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-006",
+   "title": "REFIX THE CABINET INTO STUDS AND MOVE THE WEEKLY SIZE TO HAND HEIGHT",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Find the studs and refix the loaded small-parts cabinet properly, then move the fastener size you drive weekly down to hand height.",
+   "why_it_matters": "A steel-loaded cabinet held only by plasterboard anchors can pull off the wall onto whoever is standing under the top drawer, and a weekly size buried in the middle means moving other bins every single time you need it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a stud finder",
+    "proper screws for the cabinet weight"
+   ],
+   "steps": [
+    "Find the wall studs behind the cabinet, refix it directly into them, and confirm the fixing holds when you lean on the loaded top drawer.",
+    "Move the compartment holding the size you drive weekly down to hand height, mark its minimum line the same way the other compartments carry one, and move any specialty hinge or threaded rod you have not touched this year up high."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009",
+    "KC-003",
+    "KC-004",
+    "KC-011"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "KC-003",
+     "KC-004",
+     "KC-011"
+    ],
+    "zone": "WSZ-003",
+    "standard": "WSS-003"
+   },
+   "victory_condition": "The cabinet is fixed into studs and holds when leaned on, the fastener size you drive weekly sits at hand height, and its compartment carries a marked minimum line.",
+   "next_card": "WSA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a stud finder held against a wall behind a small-parts cabinet, a weekly-use compartment of screws now sitting at hand height on the front row",
+    "must_show": [
+     "The cabinet is fixed into studs and holds when leaned on, the fastener size you drive weekly sits at hand height, and its compartment carries a marked minimum line."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-007",
+   "title": "GIVE EVERY LOOSE OFFCUT ITS VERDICT",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Pull every offcut sitting on the bench, floor, or top of the rack and give each one its verdict: the bin under the fill line, or the fire bucket.",
+   "why_it_matters": "An offcut with no verdict does not stay on the bench by accident, it stays because nobody decided, and the pile only grows from there.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the offcut bin",
+    "the fire bucket"
+   ],
+   "steps": [
+    "Pull every offcut sitting on the bench, the floor, or the top of the rack right now and give each one its verdict: into the bin under the fill line, or straight to the fire bucket.",
+    "If the bin is already at its fill line once the good pieces go in, the shortest piece already in it leaves to make room."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-007"
+    ],
+    "zone": "WSZ-004",
+    "standard": "WSS-004"
+   },
+   "victory_condition": "Nothing is stored directly on the shop floor, and the offcut bin sits at or under its marked fill line.",
+   "next_card": "WSS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "offcuts being sorted off a workbench and a shop floor into a bin marked with a fill line, a fire bucket standing ready beside it",
+    "must_show": [
+     "Nothing is stored directly on the shop floor, and the offcut bin sits at or under its marked fill line."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-008",
+   "title": "STAND THE SHEET GOODS UP AND CLEAR THE GAP BEHIND THE RACK",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Bring any shallow-leaning sheet good closer to vertical against the wall, and sweep out the gap behind the rack.",
+   "why_it_matters": "A sheet leaning at too shallow an angle can slide flat without warning onto whatever is in front of it, and the gap behind a loaded rack is exactly where damp, droppings, and webs go unnoticed.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a broom or long-handled brush",
+    "a helper for heavy sheet goods"
+   ],
+   "steps": [
+    "Stand each sheet good up close to vertical against the wall rather than leaning at a shallow angle, getting help for anything full sized.",
+    "Sweep or vacuum the gap behind the rack, checking for droppings, webs, or a damp stain while you are back there."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-016",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-016",
+     "KC-005"
+    ],
+    "zone": "WSZ-004",
+    "standard": "WSS-004"
+   },
+   "victory_condition": "Every sheet good stands close to vertical against the wall, and the gap behind the rack is swept clear with nothing living back there.",
+   "next_card": "WSA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a full sheet of plywood being stood upright close to vertical against a workshop wall, a long-handled brush sweeping the gap behind a material rack",
+    "must_show": [
+     "Every sheet good stands close to vertical against the wall, and the gap behind the rack is swept clear with nothing living back there."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-009",
+   "title": "CAN THE LOOSE RAGS AND DATE THE OPEN LIDS",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Put every loose oil-finish rag into the lidded metal can with the lid down, and date any open can on the shelf that is missing one.",
+   "why_it_matters": "A balled up oil rag generates its own heat as it cures and can ignite with nothing touching it, and an undated can is how a finish quietly skins over before you notice.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the lidded metal rag can",
+    "a marker"
+   ],
+   "steps": [
+    "Check every rag from today's finishing work: anything balled up loose goes into the lidded metal can with the lid pushed down, and scan the open cans on the shelf for one without a date and mark it now.",
+    "Confirm the rag can's lid falls shut on its own weight before you leave the zone."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009"
+    ],
+    "zone": "WSZ-005",
+    "standard": "WSS-005"
+   },
+   "victory_condition": "No oily rag is loose anywhere in the zone, and every open can on the shelf shows a marker date on its lid.",
+   "next_card": "WSS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "an oily finishing rag being pushed down into a self-closing metal can, a marker dating the lid of an open paint can on the shelf beside it",
+    "must_show": [
+     "No oily rag is loose anywhere in the zone, and every open can on the shelf shows a marker date on its lid."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-010",
+   "title": "KEEP ONLY THE COLOURS STILL ON A WALL AND SEPARATE THE SHELVES",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Narrow the paint shelf down to only colours currently on a surface in this house, in small sealed jars, and put solvents and water based finishes on separate shelves.",
+   "why_it_matters": "Almost none of an old can will brush out matching in two years anyway, and solvents sharing a shelf with water based finish is the actual incompatible-storage hazard this zone exists to prevent.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "small sealed jars and labels",
+    "household hazardous waste drop-off"
+   ],
+   "steps": [
+    "Decant a small sealed, labeled jar of each colour still on a wall in this house, and take every other can straight to household hazardous waste that same day.",
+    "Move every solvent and thinner onto its own shelf, separate from water based paint, with the layout written on the inside of the cabinet door."
+   ],
+   "root_causes": [
+    "KC-011",
+    "KC-001",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "KC-001",
+     "KC-010"
+    ],
+    "zone": "WSZ-005",
+    "standard": "WSS-005"
+   },
+   "victory_condition": "The paint shelf holds only small sealed jars of colours currently on a wall in this house, and solvents stand on a shelf of their own, apart from water based paint.",
+   "next_card": "WSA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "small labeled paint jars standing on a shelf beside a shelf layout diagram taped inside a cabinet door, solvent cans now separated onto their own shelf",
+    "must_show": [
+     "The paint shelf holds only small sealed jars of colours currently on a wall in this house, and solvents stand on a shelf of their own, apart from water based paint."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-011",
+   "title": "CHECK THE EXTINGUISHER AND CULL THE SCRATCHED GLASSES",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Lift the extinguisher and confirm the gauge sits in the green, then bin any pair of safety glasses scratched enough to tempt you to lift them off mid-cut.",
+   "why_it_matters": "A dead extinguisher looks identical to a working one until the moment you need it, and a scratched pair you lift off mid-cut is the exact moment the chip flies.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "masking tape and a marker for the date",
+    "a replacement pair of glasses"
+   ],
+   "steps": [
+    "Lift the extinguisher and confirm the gauge sits in the green, then run a hand over every pair of glasses on the hooks and bin any pair scratched enough that you would lift them off to see a cut line.",
+    "Write today's date on the extinguisher bracket tape once the gauge is confirmed."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "KC-008"
+    ],
+    "zone": "WSZ-006",
+    "standard": "WSS-006"
+   },
+   "victory_condition": "The extinguisher gauge reads green with a dated tape on the bracket, and every pair of glasses left on the hooks is clear enough to cut by.",
+   "next_card": "WSS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand checking a wall mounted extinguisher gauge in the green with a dated bracket tape beside it, a scratched pair of safety glasses being dropped into a bin",
+    "must_show": [
+     "The extinguisher gauge reads green with a dated tape on the bracket, and every pair of glasses left on the hooks is clear enough to cut by."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-012",
+   "title": "SET THE VISITOR RULE AND MATCH THE BOARD TO THE SHORTEST USER",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Decide the visitor rule once and hang it on the wall, and lower or add a hook so the shortest regular user can reach their own gear without help.",
+   "why_it_matters": "Handling the visitor question case by case means handling it badly, and a hook board mounted to the tallest user's height means the shortest one skips the gear because reaching for it is a hassle.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a marker and a card for the wall",
+    "an extra hook"
+   ],
+   "steps": [
+    "Write the visitor rule on a card and hang it at the door: anyone who works in this shop gets a labeled set, one spare set is marked for visitors, and anyone who will not wear it stays on the near side of the doorway.",
+    "Check the shortest regular user can reach their own hook without stretching or asking for help, and add or lower a hook if they cannot."
+   ],
+   "root_causes": [
+    "KC-012",
+    "KC-006",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-012",
+     "KC-006",
+     "KC-007"
+    ],
+    "zone": "WSZ-006",
+    "standard": "WSS-006"
+   },
+   "victory_condition": "The visitor rule hangs written at the door, and every regular user, including the shortest, can reach their own hook without help.",
+   "next_card": "WSA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a visitor rule card hung beside a hook board at a workshop door, a lowered hook now within easy reach at a shorter user's height",
+    "must_show": [
+     "The visitor rule hangs written at the door, and every regular user, including the shortest, can reach their own hook without help."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-013",
+   "title": "THE FULL WORKSHOP HAZARD WALK",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every zone checking for a stuck guard, an unanchored small-parts cabinet, an extinguisher out of the green, and a shallow-leaning sheet good.",
+   "why_it_matters": "This room's own hazards, blades, batteries, solvents, and a full sheet of ply, sit across six different zones and only get found together if someone walks the whole shop on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a stud finder",
+    "masking tape and a marker"
+   ],
+   "steps": [
+    "Test the retracting guard on every saw, and check every battery is off its charger once its job is done.",
+    "Confirm the small-parts cabinet and the material rack are both fixed into studs, and stand up any sheet good leaning at a shallow angle.",
+    "Lift the extinguisher and confirm the gauge is green and dated, and confirm oily rags are in the lidded can rather than loose anywhere in the shop."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "No guard sticks, both the cabinet and the rack hold when leaned on, no sheet leans at a shallow angle, the extinguisher reads green and dated, and no oily rag sits loose.",
+   "next_card": "WSE-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand testing a saw guard beside a checklist, a wall mounted extinguisher with a dated gauge and a stood-up sheet of plywood visible in the same frame",
+    "must_show": [
+     "No guard sticks, both the cabinet and the rack hold when leaned on, no sheet leans at a shallow angle, the extinguisher reads green and dated, and no oily rag sits loose."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-014",
+   "title": "THE ROOM'S OWN TRAP: THE VERDICT NOBODY HAS MADE",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk the shop looking for anything, a stalled project, a mixed jar of hardware, a shelf of retired paint, that is really a decision nobody has made yet, and make it.",
+   "why_it_matters": "This room's own real friction is never really about storage, it is about verdicts you keep postponing on offcuts, on half-finished projects, and on paint; the workshop only gets crowded because those decisions have nowhere else to hide.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker and tags",
+    "household hazardous waste drop-off"
+   ],
+   "steps": [
+    "List every stalled project, mixed jar, and shelf of retired paint you can find in one walk of the shop.",
+    "Give each one a verdict today, a date and a next action, or straight to recycling, the fire bucket, or hazardous waste, rather than setting it back down unresolved."
+   ],
+   "root_causes": [
+    "RC-013",
+    "KC-009",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "Nothing in the shop is a postponed decision anymore. Every stalled project has a date, every jar is sorted, and every retired can has left for hazardous waste.",
+   "next_card": "WSA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing a date on a tag attached to a half-finished project, a shop with sorted hardware bins and a cleared paint shelf visible behind",
+    "must_show": [
+     "Nothing in the shop is a postponed decision anymore. Every stalled project has a date, every jar is sorted, and every retired can has left for hazardous waste."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSA-015",
+   "title": "THE LAST-THING-BEFORE-THE-LIGHT-GOES-OUT RESET",
+   "type": "ACTION CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1 TO 2.",
+   "objective": "Before the shop light goes off, confirm the bench is clear, every tool and battery is on its hook, and the safety gear is back on the board.",
+   "why_it_matters": "Every standard in this room is built to survive a bad week, and the only way that holds is checking it meets its own standard before the light goes out, not noticing days later that it slipped.",
+   "time_target_minutes": 15,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing, this is a walk-through"
+   ],
+   "steps": [
+    "Walk the bench, the tool wall, and the battery shelf, and confirm nothing is out of place before you reach for the light switch.",
+    "Confirm every pair of safety glasses and hearing protection is back on its own hook, not in a pocket or a drawer."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "The bench is bare except the vise and the lamp, every tool and battery is on its hook, and all safety gear is back on the board, before the light goes out.",
+   "next_card": "WSA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand reaching for a workshop light switch with a bare bench, a full tool wall, and a full safety gear board all visible in the same glance",
+    "must_show": [
+     "The bench is bare except the vise and the lamp, every tool and battery is on its hook, and all safety gear is back on the board, before the light goes out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "WSS-001",
+   "title": "MAIN WORKBENCH STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Workshop",
+   "zone": "Main Workbench",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One project on the bench at a time, and the bench ends every session bare except the vise and the lamp.",
+   "trigger": "When you reach up to switch off the task lamp, the bench must already be clear, so the clear down happens before the light goes out.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run the vacuum crevice nozzle along the top of every tool outline on the wall, where sawdust settles unseen before it showers onto the bench.",
+    "Wipe the task lamp's shade, head, and arm joints with a barely damp cloth once the bulb is cool, keeping the cloth off the bulb and switch.",
+    "Wind the vise fully open and closed to clear the screw of grit, then wipe it clean and work in one drop of light machine oil."
+   ],
+   "related": {
+    "zone": "WSZ-001",
+    "actions": [
+     "WSA-001",
+     "WSA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a workshop main workbench with a bare top holding only a vise and a task lamp, one project tray holding parts, chisels and a square hanging on traced outlines on the tool wall behind, and the dog holes sitting empty, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "WSS-002",
+   "title": "POWER TOOL STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Workshop",
+   "zone": "Power Tool Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every tool rests guarded, unplugged, and stored with the accessories it needs to work.",
+   "trigger": "When the shop door gets locked at the end of a session, no charger is left running behind it.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Blow or brush the packed sawdust out of one tool's motor vents with its battery out, then wipe the housing clear of the vents.",
+    "Wipe the pitch and resin off one saw blade with resin remover so the teeth cut clean instead of burning, then stand it back guarded.",
+    "Wipe each contact face on the battery shelf and chargers with a dry cloth, keeping all moisture away from the live terminals."
+   ],
+   "related": {
+    "zone": "WSZ-002",
+    "actions": [
+     "WSA-003",
+     "WSA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "workshop power tool storage with each corded and cordless tool hanging guarded in a labeled spot, a blade wrench clipped to its own saw, battery packs resting on a shelf off the chargers, and no loose blade or taped cord in sight, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "WSS-003",
+   "title": "FASTENER AND HARDWARE ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Workshop",
+   "zone": "Fastener and Hardware Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One size per compartment, a sample fastener on the front, and a minimum line inside.",
+   "trigger": "When you empty your pockets at the end of a job, the loose hardware goes back into its compartment rather than onto the bench.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe one drawer face and its glued sample screw with a barely damp cloth, so you can still match a screw by eye rather than a smeared label.",
+    "Lift out a loose bin, vacuum the metal filings and grit from its compartment, and run the detail brush into the corners.",
+    "Vacuum the floor under and in front of the cabinet, where a single dropped screw waits for a bare foot."
+   ],
+   "related": {
+    "zone": "WSZ-003",
+    "actions": [
+     "WSA-005",
+     "WSA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a workshop small-parts cabinet with one fastener size per labeled compartment, a sample screw glued to each drawer face, a minimum fill line marked inside, and no mixed jar of hardware anywhere on the shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "WSS-004",
+   "title": "MATERIAL RACK STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Workshop",
+   "zone": "Material Rack",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One offcut bin with a written size floor and a fill line, and nothing stored on the shop floor.",
+   "trigger": "When the saw gets unplugged, the offcuts get their verdict.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Brush the cobwebs and settled dust off the top rail and the highest arms with a long-handled brush before touching the stock below.",
+    "Wipe the surface rust off one length of steel stock with a cloth and lay on a light film of oil before it goes back on the rack.",
+    "Tip the offcut bin out, vacuum the sawdust from the bottom, and refill it only up to the size marked on the front."
+   ],
+   "related": {
+    "zone": "WSZ-004",
+    "actions": [
+     "WSA-007",
+     "WSA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a workshop material rack with boards stacked flat and supported by length, sheet goods standing close to vertical against the wall, an offcut bin with its size floor marked on the front, and a clear route along the floor to the door, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "WSS-005",
+   "title": "FINISHING AND CHEMICAL ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Workshop",
+   "zone": "Finishing and Chemical Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Original containers, dated lids, incompatibles on separate shelves, and rags in a lidded metal can.",
+   "trigger": "When the brush goes under the tap, the rag goes in the can and the lid goes down.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the rim and shoulder of one can before its lid goes back on, since a rim packed with dried finish is why a lid stops sealing.",
+    "Lift the drip tray out from under the solvent shelf and clean it, so the next drip lands on bare metal instead of a crust of old spills.",
+    "Clean one brush right through to the ferrule with the matching thinner, work it dry, and hang it bristle down."
+   ],
+   "related": {
+    "zone": "WSZ-005",
+    "actions": [
+     "WSA-009",
+     "WSA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a workshop finishing and chemical cabinet, closed metal doors, original labeled paint and solvent containers with dated lids on separate shelves, a self-closing metal rag can with its lid down, and a drip tray beneath the solvent shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "WSS-006",
+   "title": "SAFETY AND PPE STATION STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Workshop",
+   "zone": "Safety and PPE Station",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "A full silhouette board at the door, one labeled set per user plus a visitor set, with dated extinguisher and first aid checks.",
+   "trigger": "When your safety glasses come off your face, they go straight onto their hook, never into a pocket or a drawer.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wash one pair of safety glasses in mild dish soap and warm water and dry with a clean microfiber cloth, never a shop rag.",
+    "Wipe the sweat and sawdust off the earmuff cushions and headband so the cushions still seal against your head.",
+    "Clean the extinguisher gauge face with a streak-free glass cleaner so you can read the needle at a glance."
+   ],
+   "related": {
+    "zone": "WSZ-006",
+    "actions": [
+     "WSA-011",
+     "WSA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a workshop safety station at the door with labeled safety glasses and hearing protection hanging on a silhouette board, a dated dust mask box, a wall mounted extinguisher with its gauge in the green, and clear floor in front of it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "WSE-001",
+   "title": "THE NIGHT YOU NEED THE BENCH FOR A QUICK REPAIR",
+   "type": "EVENT CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Something breaks at 9pm and you need the bench right now for a five-minute fix, not a whole project.",
+   "tests_zones": [
+    "WSZ-001"
+   ],
+   "held_if": "The bench top is bare except the vise and the lamp, so you set to work immediately with a clear surface and every tool exactly where its outline says it lives.",
+   "if_it_failed": "If you had to clear someone else's project off the bench first, or hunt for a tool missing from its outline, the clear down did not hold. Draw WSA-001.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "WSZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand setting a broken part down onto an otherwise bare workbench top, a full tool wall with every outline filled visible behind",
+    "must_show": [
+     "Something breaks at 9pm and you need the bench right now for a five-minute fix, not a whole project."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "WSE-002",
+   "title": "THE SATURDAY MORNING YOU GRAB THE SAW WITHOUT LOOKING",
+   "type": "EVENT CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You are already running late for a job and grab the circular saw off its hook without checking it first.",
+   "tests_zones": [
+    "WSZ-002"
+   ],
+   "held_if": "The guard snaps back clean under your thumb, the blade wrench is right there on the saw, and the battery is already charged and waiting on its shelf.",
+   "if_it_failed": "If the guard stuck, the wrench was missing, or the battery was flat, the storage and safety checks have slipped. Draw WSA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "WSZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a circular saw off its wall hook, its blade wrench visibly clipped to the saw and a charged battery beside it",
+    "must_show": [
+     "You are already running late for a job and grab the circular saw off its hook without checking it first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "WSE-003",
+   "title": "THE JOB THAT NEEDS ONE SPECIFIC SCREW RIGHT NOW",
+   "type": "EVENT CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You are mid-assembly and need one specific size of deck screw, and you need it without stopping the job to go looking.",
+   "tests_zones": [
+    "WSZ-003"
+   ],
+   "held_if": "You match the sample screw glued to the drawer face by eye, pull the compartment, and it is not below its own marked minimum line.",
+   "if_it_failed": "If you had to open three drawers or found the compartment nearly empty with no warning, the labels or the minimum lines have slipped. Draw WSA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "WSZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand pulling one drawer straight to a glued sample screw on its face, the compartment behind it still above its marked minimum line",
+    "must_show": [
+     "You are mid-assembly and need one specific size of deck screw, and you need it without stopping the job to go looking."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "WSE-004",
+   "title": "THE DAY YOU NEED A SPECIFIC LENGTH OF BOARD FAST",
+   "type": "EVENT CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A project calls for one specific length and thickness of board, and you need to find it without unstacking half the rack.",
+   "tests_zones": [
+    "WSZ-004"
+   ],
+   "held_if": "You pull the board you need from its own grouped bay without moving three others first, and nothing is stored on the floor in your way.",
+   "if_it_failed": "If you had to unstack several boards to reach the one you needed, or step over something on the floor to get there, the rack has drifted. Draw WSA-007.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "WSZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a single board being pulled cleanly from a grouped bay on a material rack, a clear floor visible along the route to the bench",
+    "must_show": [
+     "A project calls for one specific length and thickness of board, and you need to find it without unstacking half the rack."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "WSE-005",
+   "title": "THE TOUCH-UP JOB THAT NEEDS ONE SPECIFIC COLOUR",
+   "type": "EVENT CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A wall needs a small touch-up today, and you go to the shelf for the exact colour that is on it.",
+   "tests_zones": [
+    "WSZ-005"
+   ],
+   "held_if": "A small sealed jar labeled with the room and the finish is exactly where it should be, and it still brushes out matching.",
+   "if_it_failed": "If you found only an old half-empty tin skinned over at the rim, or no labeled jar at all, the paint shelf has drifted back toward the old pile. Draw WSA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "WSZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a small labeled paint jar being opened for a touch-up, its lid clean and the paint inside still liquid",
+    "must_show": [
+     "A wall needs a small touch-up today, and you go to the shelf for the exact colour that is on it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "WSE-006",
+   "title": "THE MORNING A FRIEND DROPS BY WHILE THE GRINDER IS RUNNING",
+   "type": "EVENT CARD",
+   "room": "Workshop",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A friend wanders in to say hello while the grinder is running, and wants to get a closer look.",
+   "tests_zones": [
+    "WSZ-006"
+   ],
+   "held_if": "The visitor rule is right there on the wall, and the spare labeled set is on its own marked hook, ready to hand over or to send them back to the doorway.",
+   "if_it_failed": "If you had to improvise an answer on the spot, or there was no spare set to hand over, the visitor rule was never actually decided. Draw WSA-012.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "WSZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a spare set of safety glasses and ear protection being handed to a visitor standing at a workshop doorway, a rule card visible on the wall",
+    "must_show": [
+     "A friend wanders in to say hello while the grinder is running, and wants to get a closer look."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

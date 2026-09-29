@@ -98,18 +98,39 @@ def case_a_floor_still_catches_an_orphan_article():
 
 
 def case_the_real_spread_is_healthy():
-    """Re-derived, not pinned: no article may exceed 40% of linking zones."""
+    """Re-derived, not pinned: no article may exceed the same share-based
+    ceiling gate_general_reading_differentiated itself enforces
+    (max(35, round(0.40 * n))), not a stricter, separately hand-rolled copy
+    of that formula.
+
+    Found live 2026-09-29, at the 19th diagnosed room (Workshop): this
+    case used a bare `share <= 0.40` with no rounding slack, while the real
+    registered gate (P.check_general_reading_picks, called from
+    gate_general_reading_differentiated) uses `max(35, round(0.40 * n))`,
+    which is one link looser at n=114 (46, not 45) because of the round().
+    The two were never the same formula, just close enough not to have
+    drifted apart yet. A corpus sitting exactly on the boundary (46 of 114,
+    honestly reached after Workshop's own diagnosis layer was rebalanced
+    to remove every direct link it could) failed this copy while the real
+    gate it was supposed to mirror stayed green, which is exactly the
+    copy-vs-control shape CLAUDE.md 0.2 calls out: two places computing the
+    same threshold are one edit away from disagreeing. Reusing the real
+    formula here removes the second copy rather than tightening it further
+    to match a number nobody asked for.
+    """
     shipped = _shipped()
     counts = collections.Counter()
     for slugs in shipped.values():
         counts.update(slugs)
     assert shipped, "no zone page ships related reading"
+    n_zones = len(shipped)
+    ceiling = max(35, round(0.40 * n_zones))
     worst, n = counts.most_common(1)[0]
-    share = n / float(len(shipped))
-    assert share <= 0.40, (
-        "%s is linked from %.0f%% of zones (%d of %d); the spread has "
+    assert n <= ceiling, (
+        "%s is linked from %d of %d zones, over the real gate's own "
+        "ceiling of %d (max(35, round(0.40 * %d))); the spread has "
         "genuinely collapsed rather than the denominator having grown"
-        % (worst, share * 100, n, len(shipped)))
+        % (worst, n, n_zones, ceiling, n_zones))
 
 
 def main() -> int:

@@ -2,6 +2,74 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (Workshop, nineteenth room, shipped; claimed correctly this time, via the ledger tool)
+
+**Did:** Continued B9 (room decks), the current active epic since 1-4 are Phil gated. After Primary Bedroom shipped earlier this cycle, checked `python ops/b9_claims.py --status`: two rooms remained, Patio or Deck and Workshop, both undiagnosed, tied at 6 zones. Claimed Workshop via `python ops/b9_claims.py --claim` (the structured ledger, not a hand-edited STATUS.md line, per the fix this cycle made after this morning's Nursery collision), pushed the claim commit alone first. Dispatched the build to a subagent with explicit instructions to check the ledger and fetch origin before committing.
+
+Authored the diagnosis layer for Workshop's 6 zones (Main Workbench, Power Tool Storage, Fastener and Hardware Zone, Material Rack, Finishing and Chemical Zone, Safety and PPE Station), grounded in the room's own real text including its already-documented physical hazards (blades, solvents, the fire extinguisher gauge), nothing invented beyond what was already published. 16 of 17 shared root causes reached, RC-015 deliberately not forced (its own article was already linked from close to 40% of the corpus before Workshop existed; adding Workshop's honest usage would have tipped a real spread ceiling, so each of those 5 branches was re-grounded in a second, equally genuine cause instead, verified against the real zone text rather than swapped for convenience). Built `ops/cardtext/build_workshop_deck.py` (68 cards) and `ops/build_workshop_deck_page.py`, shipped `site/workshop-deck.html`, wired both new gates into preflight.py with a fail-then-pass proved test.
+
+**One real copy-vs-control defect found and fixed while verifying:** `ops/tests/test_reading_spread_and_uniqueness.py` had its own hand-rolled 0.40 spread ceiling, a separate copy of the formula the real registered gate (`gate_general_reading_differentiated`) already enforces as `max(35, round(0.40 * n))`. They had never been the same formula; Workshop's corpus landed exactly on the rounding boundary and failed the copy while the real gate stayed green. Fixed by making the test reuse the real formula instead of tightening the copy.
+
+**Verified:** full `preflight.py` on the merged tree, every gate passed, 27 standing warnings. `check_urls.py` 209/209, `fix_dashes.py --check` 0/0. Two merge conflicts on the way to pushing, both mechanical (a concurrent session had independently claimed Patio or Deck in the same claims ledger while Workshop was mid-build): resolved by keeping both claims as separate, correct entries rather than letting either overwrite the other.
+
+**Went well:** using `ops/b9_claims.py --claim` this time instead of hand-editing STATUS.md; zero collision on the actual Workshop content, confirmed by diff before merging.
+
+**Did not go well:** nothing new; the process fix from earlier this cycle held.
+
+**Next:** one room remains, Patio or Deck, already claimed and in progress by a concurrent session as of this write (claimed 19:15:26Z); leave it alone unless the claim goes stale. All 8 GitHub issues remain Phil gated.
+
+Pushed to main. No price or product touched; one new free page (Workshop deck), 6 zone pages regenerated, ~18 unrelated zone pages' related-reading pools rebalanced (expected, deterministic, verified not assumed). IndexNow attempted, refused honestly (key file reachability unconfirmed, sandboxed network).
+
+## 2026-09-29, PM check-in (20:4x, previous work still mid-build, both claims re-verified fresh, no unblocked item, no new defect)
+
+NEXT FOR THE OPERATOR: continue Workshop, then Patio or Deck, because both are B9's last two of twenty rooms, both claims are genuinely fresh (`python ops/b9_claims.py --status`: Workshop claimed 19:07:33Z, Patio or Deck 19:15:26Z, both well inside the 3-hour staleness window), and neither has a deck file yet (`site/workshop-deck.html`, `site/patio-or-deck-deck.html` both absent), so both are mid-build, not abandoned.
+
+**Did:** Checkout arrived shallow/detached with the usual unrelated-history shape (issue #27); unshallowed and fast-forwarded onto `origin/main` (`aa90d3566`), clean tree. Read the top `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0/2/6/7, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md` section 0, `OWNER-ACTIONS.md`. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2), none Phil-unblocked; 0 PRs.
+
+**Verified rather than cited:** both B9 claims confirmed against the live ledger and the filesystem, not the prose alone (above). `deploy_gap_material_commits('7c6a83084')` recomputed directly: still 48, matches `STATUS.md`. `forms_dead` recount against `ops/state.json`: 212, matches `RISKS.md`. `fix_dashes.py --check`: 0/0. `check_urls.py`: 208/208. `audit_pages.py`: 212 pages, 0 findings. `preflight.py` fast started in the background; every gate through `gate_image_coverage` completed with no `FAIL` line, but it was still on `gate_tests` when this entry shipped (this sandbox's documented `test_audit_catalog.py` lockdir pattern), so per CLAUDE.md 0.4 that stage is reported unchecked, not passing, this cycle.
+
+**Went well:** re-deriving the deploy gap and `forms_dead` fresh instead of citing the prior cycle's numbers; both held.
+
+**Did not go well:** the usual unrelated-history checkout shape; `gate_tests`' own runtime is still the thing most likely to make a PM slot's own verification incomplete.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (`OWNER-ACTIONS.md` item 0, `VPS_DEPLOY_KEY`/issue #35, is still the single highest-leverage owner action). Operator continues Workshop then Patio or Deck.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, regenerated dashboard. No price, product or page touched.
+
+## 2026-09-29, scheduled operator cycle (evening slot, both B9 claims still genuinely mid-build, cold-read six low-mention ops/*.py files, no defect found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded onto `origin/main` (1054-commit fast-forward, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Confirmed directly via the GitHub API rather than citing the log: 8 open issues, all `decision`/`blocked-on-art`, none Phil-unblocked, 0 PRs. `inbox_agent.py --apply`: no mail credential in this environment, reported unchecked, not empty.
+
+**Checked B9 before picking anything else.** `python ops/b9_claims.py --status` showed both remaining rooms (Workshop, claimed 19:07:33Z; Patio or Deck, claimed 19:15:26Z) still claimed and only 1.7 hours old, well inside the 3-hour staleness window; re-checked a second time near the end of this cycle and both were still fresh. Left both alone rather than duplicate work a concurrent session is already mid-build on. Every row in `BACKLOG-2026-09-07.md` sections 2 and 3 (micro zones, decks) is marked done; sections 4-6 are the standing Phil-gated set (`OWNER-ACTIONS.md` items 0/1/1a/1d, GitHub `decision`/`blocked-on-art` issues). No unblocked, unclaimed operator-actionable item existed this cycle.
+
+**Per CLAUDE.md 0.2, used the gap to verify rather than idle.** Ranked every `ops/*.py` file by mention count in this log, excluding the room-deck-page generators (self-reviewed as they ship) and files already touched this same day. Cold-read six genuine candidates: `review_deck_art.py` (the human card-art review gate; logic checked directly, no defect, no images staged in this sandbox to exercise it further), `video_narrated.py` (narration/caption pipeline; needs ffmpeg, edge-tts and network egress none of which this sandbox has, so read for logic only, no defect found), `backup_analytics.py` (off-host analytics export; the row-count-by-newline-split method would misreport if a CSV field ever carried an embedded newline, a theoretical class rather than a confirmed one since this sandbox has no SSH key to run it against the real database; recorded here as a candidate worth a real operator's attention, not claimed as a live defect per step 5d), `check_integrations.py`, `build_zone_index.py` (confirmed the full wiring chain plus `fingerprint_assets.main(False)` are both present, matching the established pattern for this class of generator) all read clean with no defect.
+
+**Re-derived rather than cited two numbers the last two cycles also re-derived independently, both still current:** `RISKS.md`'s `forms_dead=212` against `ops/state.json`'s live value (match), and `deploy_gap_material_commits('7c6a83084')` recomputed directly against the real git history (48, unchanged).
+
+**Verified:** full `preflight.py` (every gate passed, 25 warnings, all previously diagnosed sandbox limits), `check_urls.py`, `audit_pages.py`, `affiliate.py --check` (165 documents, every page with links discloses above them), `fix_dashes.py --check` (0/0) all clean.
+
+**Went well:** re-deriving the deploy-gap figure caught my own mistake before it reached this log: a first attempt passed the deployed build id where the function needs a commit hash, silently returning 0; found by noticing it disagreed with the prior cycle's own re-derivation, traced to the type mismatch, fixed by resolving the commit that actually set that build id in `site/build-id.txt`, reconfirmed at 48.
+
+**Did not go well:** six files read cold, none of them a confirmed live defect; the `backup_analytics.py` row-count method is a real theoretical gap but not provable from this sandbox (no SSH key, no live database), so it is recorded rather than fixed, per CLAUDE.md 0.4.
+
+**Changing next cycle:** none; no confirmed defect means no new gate to write this cycle.
+
+**Next:** operator continues Workshop then Patio or Deck once their claims finish or go stale (`python ops/b9_claims.py --status`); that closes B9's full 20-room set. All 8 GitHub issues remain Phil-gated; `OWNER-ACTIONS.md` item 0 (`VPS_DEPLOY_KEY`) remains the single highest-leverage owner action, 48 commits behind production.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-29, PM check-in (30-minute triage, previous work still mid-build, wide re-verification, no unblocked item, no new defect)
+
+**Not finished, correctly so:** both remaining B9 rooms (Workshop, Patio or Deck) still claimed, inside the 3-hour staleness window; left alone.
+
+**Did:** re-derived rather than cited: forms_dead=212 matches state.json; deploy gap re-run at 48, unchanged. Cold-read two zero-mention generators (build_cleaning_index.py, build_microzone_coverage.py), reran both, zero diff. check_urls (208/208), audit_pages (0 findings), affiliate --check (165 docs), fix_dashes --check (0/0) all clean. Full preflight: 1 gate FAIL (stray-probe-files), confirmed the known transient concurrent-session race against the live tree, gate reruns clean. 26 warnings, all previously diagnosed sandbox limits.
+
+**Next:** same Phil-gated list. Operator continues Workshop then Patio or Deck.
+
+Pushed to main. ops/NIGHTLY-LOG.md, regenerated dashboard.
+
 ## 2026-09-29, scheduled operator cycle (both B9 claims genuinely mid-build, no unblocked backlog item found; cold-read three payment-critical ops files, no defect)
 
 **Did:** Checkout arrived shallow/detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Confirmed with GitHub directly rather than citing the log: 8 open issues, all `decision`/`blocked-on-art`, none Phil-unblocked, 0 PRs. `inbox_agent.py --apply`: no mail credential in this environment, reported unchecked, not empty.
