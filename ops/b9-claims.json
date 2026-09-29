@@ -33,6 +33,12 @@
       "claimed_at": "2026-09-29T15:33:01Z",
       "note": "scheduled operator cycle 2026-09-29 15:2x, next tied-smallest unclaimed room, 6 zones (Kids Bedroom in progress by concurrent session, claimed 12:55, not stale)",
       "released_at": "2026-09-29T15:59:54Z"
+    },
+    {
+      "room": "Kids Bedroom",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T16:24:17Z",
+      "note": "scheduled operator cycle 2026-09-29 16:2x, prior claim stale (claimed 12:55, past the 3-hour window, no deck shipped), 6 zones"
     }
   ]
 }
