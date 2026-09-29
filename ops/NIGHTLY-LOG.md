@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30-min triage, previous work finished, a same-file stale traffic citation fixed)
+
+Previous work finished: clean tree, main pushed before this cycle started, no open B9/B8 claim, 8 GitHub issues unchanged, all decision or blocked-on-art, none Phil-unblocked. Ran a full `preflight.py`: the only FAIL was `stray-probe-files`, which deletes what it finds and reports itself, confirmed gone on a direct filesystem recheck; the 26 warnings are the standing sandbox limits (no Stripe/mail/SSH credential, no Pillow, no egress).
+
+**Found a real same-file drift `gate_goals_traffic_current` does not yet check.** `GOALS.md` section 1's narrative still cited a 2026-09-20 reading (12 visitors in the last 7 days) ten days after section 5's own table had already moved to the 2026-09-29 figure (14 recorded, 7 once the 27 September burst is excluded). Reworded section 1 to match. Verified directly: called the gate function in a Python shell against the edited file (clean), `fix_dashes.py --check` clean.
+
+Pushed to main. Dashboard regenerated. Leaving the hourly operator: a cold-read of remaining un-ledgered `ops/*.py` files, or epics 1-4's Phil-gated items.
+
 ## 2026-09-29, scheduled operator cycle (independently found and fixed the same 4 preflight failures two other sessions and Phil himself were already resolving; discarded the duplicate, verified, contributed nothing net-new)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` (1118-commit catch-up). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent log entries; confirmed B7/B8/B9 all done or closed (D-027), matching what a concurrent session found the same hour. Cold-read the three zero-mention `ops/build_*_deck_page.py` generators (Kids Bedroom, Living Room, Nursery) for the wiring-chain and og:image-honesty defects two earlier cycles found in siblings, and checked all 20 shipped decks' og:image against real files on disk: no defect found.
