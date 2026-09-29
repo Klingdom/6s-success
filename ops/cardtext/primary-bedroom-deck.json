@@ -1,0 +1,2916 @@
+{
+ "deck": "primary-bedroom",
+ "room": "Primary Bedroom",
+ "count": 66,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 14,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "PRR-001",
+   "title": "THE PRIMARY BEDROOM",
+   "type": "ROOM CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. START WITH YOUR OWN NIGHTSTAND TONIGHT.",
+   "objective": "The primary bedroom is the only room in the house whose job is to help you stop. This card is the map and the order.",
+   "zones_in_order": [
+    "PRZ-001 Bed and Bedding Zone",
+    "PRZ-002 Nightstand Left",
+    "PRZ-003 Nightstand Right",
+    "PRZ-004 Dresser Top",
+    "PRZ-005 Dresser Drawers",
+    "PRZ-006 Primary Closet"
+   ],
+   "start_here": "PRZ-002 Nightstand Left. Do your own nightstand tonight, in one sitting. It is the smallest zone in the room and the one you look at last thing and first thing, so it shows you the change twice before you touch anything bigger.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your bedroom. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 2. With a shared bed, the Nightstand Right zone belongs to the other sleeper: you may clean it, not cull it. Let the difference between the two nightstands make the argument, not a conversation.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do PRA-013 The Full Bedroom Hazard Walk before any rebuild. It takes thirty minutes and covers every cord reachable from the walking strip, the unanchored dresser, and the medication in either nightstand drawer.",
+   "related": {
+    "contents": "PRZ-001 to PRZ-006, PRF-001 to PRF-018, the shared root causes in ops/root_causes.py, PRA-001 to PRA-015, PRS-001 to PRS-006, PRE-001 to PRE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole primary bedroom in its settled state, a made bed with two matching nightstands, a dresser with a valet tray on top and folded clothes visible in an open drawer, and a closet with garments hanging at a shared depth all visible in one frame",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "PRZ-001",
+   "title": "BED AND BEDDING ZONE",
+   "type": "ZONE CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "TWO SHEET SETS. ONE ON, ONE CLEAN. NOTHING ELSE ON THE SHELF.",
+   "objective": "The bed and the linens on it have one job, which is to get you through the night without waking up.",
+   "callouts": [
+    "A made bed holding a fitted sheet, a flat sheet or duvet, and two sleeping pillows per person",
+    "One throw folded at the foot of the bed",
+    "Two complete sheet sets for this bed, one on it and one folded on the linen shelf",
+    "Under the bed holding either nothing or two labelled flat bins",
+    "A clear floor on both sides of the bed all the way to the door",
+    "A headboard shelf holding nothing but the lamp"
+   ],
+   "done_looks_like": "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labelled flat bins, and you can walk from either side of the bed to the door without stepping over anything.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Storage bins, shoes and a charging cable in the strip of floor between the bed and the door are what your foot finds at three in the morning on the way to the bathroom. Keep that strip bare."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Framed pictures, a speaker or a stack of books on a headboard ledge or hung on the wall above the pillows sit directly over a sleeping head. Move them, or fix them into the wall properly."
+    }
+   ],
+   "the_call": {
+    "title": "The third sheet set",
+    "text": "You are holding four or five sets because one was a wedding gift, one is new but scratchy, and one is the good set you have never slept on. Two per bed is the honest number: one on, one clean. Keep a third only if a child or a pet actually sleeps here and you have stripped this bed at two in the morning within the last year. Anything past three is a set you wash, fold, and never put on a bed. And the good one goes on tonight, because a sheet saved for an occasion is a sheet nobody ever uses."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Laundry detergent for the stripped bedding"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PRS-001",
+    "actions": [
+     "PRA-001",
+     "PRA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a primary bedroom bed made with a fitted sheet, a flat sheet or duvet, two pillows per side, and one throw folded at the foot, a clear floor on both sides leading to the door, and a headboard shelf holding only a lamp",
+    "must_show": [
+     "A made bed holding a fitted sheet, a flat sheet or duvet, and two sleeping pillows per person",
+     "One throw folded at the foot of the bed",
+     "Two complete sheet sets for this bed, one on it and one folded on the linen shelf",
+     "Under the bed holding either nothing or two labelled flat bins",
+     "A clear floor on both sides of the bed all the way to the door",
+     "A headboard shelf holding nothing but the lamp"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PRZ-002",
+   "title": "NIGHTSTAND LEFT",
+   "type": "ZONE CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "order": 2,
+   "difficulty": 1,
+   "tagline": "FIVE THINGS OR FEWER. COUNTABLE FROM THE DOORWAY.",
+   "objective": "This is your side, and it holds only what you reach for between getting into bed and falling asleep.",
+   "callouts": [
+    "A lamp, a lidded bottle or coaster, one book, and a small dish holding glasses, all on top",
+    "Five things or fewer on the top, countable from the doorway",
+    "No cable crossing the top surface",
+    "A drawer with three divided sections, each with room left in it",
+    "The lamp and clock cords clipped down the back leg",
+    "The power strip moved off the top and onto the floor behind the nightstand"
+   ],
+   "done_looks_like": "On top: lamp, a lidded bottle or a coaster, one book, and a small dish holding your glasses. Five things or fewer, with no cable crossing the surface. The drawer has three divided sections with room left in each, and you can name what is in each one without opening it.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "An open glass of water sitting beside a lamp base, a charger and a power strip on one small top is a single knocked elbow away from a problem. Put a lid on the water or move the power off the top."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A lit candle on a nightstand sits level with the bedding and right where your sleeve passes when you reach for the lamp. If you want one burning at night, it burns on the dresser."
+    }
+   ],
+   "the_call": {
+    "title": "The phone charger",
+    "text": "You know the phone should not sleep here, and you have kept it because it is your alarm. That is one job, and a nine pound clock does it. Buy the clock, move the charger to the dresser across the room, and give the phone a landing spot you have to stand up to reach. If you will not commit to that, then commit to the honest version instead: the charger stays, the phone lies face down, and something else comes off the top so you are still at five. What you cannot keep doing is calling the current arrangement temporary."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PRS-002",
+    "actions": [
+     "PRA-003",
+     "PRA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a primary bedroom nightstand top holding a lamp, a lidded bottle, one book, and a small dish of reading glasses, five items in total, with the lamp cord clipped down the back leg and no cable crossing the top",
+    "must_show": [
+     "A lamp, a lidded bottle or coaster, one book, and a small dish holding glasses, all on top",
+     "Five things or fewer on the top, countable from the doorway",
+     "No cable crossing the top surface",
+     "A drawer with three divided sections, each with room left in it",
+     "The lamp and clock cords clipped down the back leg",
+     "The power strip moved off the top and onto the floor behind the nightstand"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PRZ-003",
+   "title": "NIGHTSTAND RIGHT",
+   "type": "ZONE CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "YOU CLEAN. THEY CULL. MEDICATION IS THE ONE EXCEPTION.",
+   "objective": "This is the other sleeper's side, and it is the one zone in this room that is not yours to decide about.",
+   "callouts": [
+    "A top clear enough to set a mug down without moving anything first",
+    "The lamp cord running behind the leg, not across the floor beside the bed",
+    "Medication in the drawer capped and in date",
+    "Medication closed away from a child or a dog that can climb onto the bed",
+    "The same item count on this top as the other nightstand",
+    "A floor beside this nightstand kept clear, the same as the other side"
+   ],
+   "done_looks_like": "The top is clear enough to set a mug down without moving anything first, the lamp cord runs behind the leg rather than across the floor beside the bed, and any medication in the drawer is in date, capped, and closed away from a child or a dog who can climb onto this bed.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Sleep aids, painkillers and prescription bottles loose in an open bedside drawer sit at exactly the height a toddler or a dog reaches from the mattress. Cap them and shut them into a box."
+    },
+    {
+     "question": "Fall",
+     "text": "A lamp cord crossing the walking strip on this side catches a foot in a dark room. Run it down behind the leg and along the wall."
+    }
+   ],
+   "the_call": {
+    "title": "Whose things you are allowed to throw away",
+    "text": "You want to fix this side because you can see it from yours, and every argument about tidiness in a shared bedroom starts right here. The rule that settles it: you clean, they cull. You may wipe, vacuum and straighten anything on this side, and you may not remove a single object from it. Finish your own nightstand to the standard, leave theirs untouched, and let the difference between the two tops be the entire argument you make. If they never change a thing, you have still fixed half the room and kept the marriage. The one item you can raise out loud is the out of date medication, because that is a safety question and not a taste question."
+   },
+   "supplies": [
+    "Streak-free glass and mirror cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PRS-003",
+    "actions": [
+     "PRA-005",
+     "PRA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a primary bedroom's second nightstand with a clear top, a capped medication bottle visible inside a slightly open drawer, and a lamp cord running down behind the leg rather than across the floor",
+    "must_show": [
+     "A top clear enough to set a mug down without moving anything first",
+     "The lamp cord running behind the leg, not across the floor beside the bed",
+     "Medication in the drawer capped and in date",
+     "Medication closed away from a child or a dog that can climb onto the bed",
+     "The same item count on this top as the other nightstand",
+     "A floor beside this nightstand kept clear, the same as the other side"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PRZ-004",
+   "title": "DRESSER TOP",
+   "type": "ZONE CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "ONE TRAY. EVERYTHING FROM YOUR POCKETS LANDS INSIDE IT.",
+   "objective": "This is where your pockets land at the end of the day and where tomorrow's watch and rings wait for you.",
+   "callouts": [
+    "One valet tray holding keys, wallet, watch and rings, with nothing sitting outside it",
+    "Fragrance bottles grouped on a small dish, set back from the front edge",
+    "No folded laundry resting on the dresser top",
+    "No receipts or loose coins on the bare wood",
+    "An anti-tip strap running from the back of the dresser into the wall",
+    "A dresser top with nothing else on the bare wood besides the tray and the dish"
+   ],
+   "done_looks_like": "One valet tray holding keys, wallet, watch and rings, with nothing sitting outside it. Fragrance bottles grouped on a small dish, set back from the front edge. No folded laundry, no receipts, no loose coins on the wood. An anti-tip strap runs from the back of the dresser into the wall.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An unstrapped tall dresser tips forward the moment a loaded drawer is open and weight goes on it, and it is heavy enough to pin a child underneath. Strap it into a stud and keep the heaviest clothes in the bottom drawers."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Glass fragrance bottles parked on the front edge break into small pieces on a hard floor beside a bed you walk to barefoot. Set them back and group them on a dish."
+    }
+   ],
+   "the_call": {
+    "title": "The perfume you were given",
+    "text": "There are three or four bottles standing up here and you wear one of them. The others were gifts, or they were expensive, or they were who you were five years ago. Fragrance turns. A bottle that has stood open for years smells sharper and flatter than the one you were handed, and one you have not reached for in a full year will not be reached for now. Keep the one you wear and the one you honestly alternate to. The rest go, and the guilt goes with them, because whoever gave it to you wanted you to smell good, not to store glass. The same test sorts the jewellery: worn in the last year stays in the tray, loved but unworn goes to a box in the closet, neither worn nor loved leaves the house."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PRS-004",
+    "actions": [
+     "PRA-007",
+     "PRA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a primary bedroom dresser top holding one valet tray with keys, a wallet, a watch and rings, a small dish of fragrance bottles set back from the front edge, and bare wood everywhere else, with an anti-tip strap visible running from the back of the dresser into the wall",
+    "must_show": [
+     "One valet tray holding keys, wallet, watch and rings, with nothing sitting outside it",
+     "Fragrance bottles grouped on a small dish, set back from the front edge",
+     "No folded laundry resting on the dresser top",
+     "No receipts or loose coins on the bare wood",
+     "An anti-tip strap running from the back of the dresser into the wall",
+     "A dresser top with nothing else on the bare wood besides the tray and the dish"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PRZ-005",
+   "title": "DRESSER DRAWERS",
+   "type": "ZONE CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "order": 5,
+   "difficulty": 3,
+   "tagline": "ONE CATEGORY PER DRAWER. A HAND'S WIDTH OF SPACE LEFT.",
+   "objective": "These drawers hold the folded clothes you wear this season, split into categories you can find without digging.",
+   "callouts": [
+    "Each drawer holding one category: underwear and socks, sleepwear, t-shirts, workout clothes",
+    "Clothes folded to stand upright, readable from above when the drawer opens",
+    "A hand's width of free space in each drawer",
+    "Every drawer sliding shut without being pressed down",
+    "The heaviest categories, jeans and knitwear, in the bottom drawers",
+    "Mothballs or cedar blocks sealed inside a mesh bag rather than rolling loose"
+   ],
+   "done_looks_like": "Each drawer holds one category: underwear and socks, sleepwear, t-shirts, workout clothes. Everything folded to stand upright so you read the whole drawer from above when it opens. A hand's width of free space in each drawer, and every drawer slides shut without you pressing anything down first.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Two heavy drawers open at once, or a child climbing the open drawers like steps, is how a chest of drawers comes down on someone. One drawer at a time, heaviest clothes lowest, anti-tip strap fitted."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Mothballs and cedar blocks rolling loose in a sock drawer look like sweets to a toddler standing at the open bottom drawer. Put them in a mesh bag hung at the back, or leave them out."
+    }
+   ],
+   "the_call": {
+    "title": "The size you are not right now",
+    "text": "Two of these drawers are part filled with clothes that do not fit today, so every morning starts with a small unpleasant reminder instead of a clean choice. Take them out of the bedroom entirely. One box, not two, today's date written on the lid, stored somewhere else in the house. If that box is still sealed a year from now it leaves sealed, and you do not look inside, because looking is how it all comes back. These drawers dress the body you have this morning. That is not giving up on anything. It is refusing to open a drawer and be told off by it every day."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PRS-005",
+    "actions": [
+     "PRA-009",
+     "PRA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open primary bedroom dresser drawer with clothes folded upright in a single category, a hand's width of empty space at the front, and the drawer beneath sliding fully shut",
+    "must_show": [
+     "Each drawer holding one category: underwear and socks, sleepwear, t-shirts, workout clothes",
+     "Clothes folded to stand upright, readable from above when the drawer opens",
+     "A hand's width of free space in each drawer",
+     "Every drawer sliding shut without being pressed down",
+     "The heaviest categories, jeans and knitwear, in the bottom drawers",
+     "Mothballs or cedar blocks sealed inside a mesh bag rather than rolling loose"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PRZ-006",
+   "title": "PRIMARY CLOSET",
+   "type": "ZONE CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "order": 6,
+   "difficulty": 4,
+   "tagline": "TWO FINGERS OF SPACE. ONE IN, ONE OUT.",
+   "objective": "The closet holds the clothes you actually wear this season, visible and reachable in one look.",
+   "callouts": [
+    "One hanger style throughout, every hook facing the same way",
+    "Garments grouped by type and then by shade",
+    "Shoes in pairs on a rack, not heaped on the floor",
+    "Bags standing upright on the shelf, belts on one hook",
+    "Two fingers of space between hanging items, and a bare stretch of rod at one end",
+    "A clear closet floor you can stand on"
+   ],
+   "done_looks_like": "One hanger style throughout, grouped by type and then by shade, every hook facing the same way. Shoes in pairs on a rack instead of a floor heap, bags standing upright on the shelf, belts on one hook. Two fingers of space between hanging items, a bare stretch of rod at one end, and floor you can stand on.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A rod loaded end to end with winter coats can tear its brackets out of plasterboard and bring the whole rail, and everything on it, down on you. Anchor into a stud and stop hanging past two fingers of space."
+    },
+    {
+     "question": "Fall",
+     "text": "A heap of shoes and bags across the closet floor is what you step onto half awake in an unlit room. Get the floor bare and the shoes onto a rack in pairs."
+    }
+   ],
+   "the_call": {
+    "title": "The expensive mistake",
+    "text": "There is one thing hanging in here that cost real money and does not fit your life: the suit for the job you left, the coat that is beautiful and far too warm, the shoes that turn on you after twenty minutes. You keep it because letting it go makes the money real. The money is already gone. It left the day you bought it, and keeping the garment does not bring back a penny of it; it just takes a hanger you need and gives you a small flinch every time you slide past. Set one deadline. Photograph it tonight, list it for sale, and if it has not sold in thirty days it goes to the charity shop without another conversation. The lesson is worth keeping. The garment is not."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PRS-006",
+    "actions": [
+     "PRA-011",
+     "PRA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a primary closet with one hanger style throughout, garments grouped by type and shade, shoes in pairs on a rack, bags standing upright on a shelf, and a clear stretch of floor beneath",
+    "must_show": [
+     "One hanger style throughout, every hook facing the same way",
+     "Garments grouped by type and then by shade",
+     "Shoes in pairs on a rack, not heaped on the floor",
+     "Bags standing upright on the shelf, belts on one hook",
+     "Two fingers of space between hanging items, and a bare stretch of rod at one end",
+     "A clear closet floor you can stand on"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PRF-001",
+   "title": "THREE OR MORE SHEET SETS ARE STACKED ON THE LINEN SHELF",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are three or more sheet sets stacked on the linen shelf, including the good set you have never actually put on the bed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "One was a wedding gift and letting it go feels like refusing the person who gave it",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "The honest number is one on, one clean, but nobody has ever said that out loud as the rule",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "A set that has stood on the shelf that long stops registering as more than the bed actually needs",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-001",
+    "root_causes": [
+     "RC-014",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a linen shelf holding four folded sheet sets stacked together, one still wrapped in its original packaging, crowding a shelf meant for two",
+    "must_show": [
+     "There are three or more sheet sets stacked on the linen shelf, including the good set you have never actually put on the bed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-002",
+   "title": "A BIN, SHOES, OR A CABLE SIT IN THE FLOOR STRIP BETWEEN THE BED AND THE DOOR",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a storage bin, a pair of shoes, or a charging cable sitting in the strip of floor between the bed and the door.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The cable has nowhere else it is supposed to live once it reaches this side of the room",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It is what your foot finds at three in the morning, and that risk outranks the two seconds it takes to leave it there",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nothing marks the moment to clear that strip, so it only gets checked once someone trips",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a phone charging cable and a pair of shoes lying across the strip of bedroom floor between the foot of the bed and the door",
+    "must_show": [
+     "There is a storage bin, a pair of shoes, or a charging cable sitting in the strip of floor between the bed and the door."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-003",
+   "title": "BOOKS, A SPEAKER, OR A FRAMED PICTURE SIT ON THE SHELF ABOVE THE PILLOWS",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A stack of books, a speaker, or a framed picture sits on a headboard shelf directly above the pillows.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is weight sitting right over a sleeping head, and that outranks how it looks on the shelf",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody has decided the shelf above the pillows is off limits to anything but the lamp",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It has been up there since before anyone thought about what is underneath it, so the height stopped reading as a hazard",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-001",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small stack of books and a framed picture sitting on a headboard shelf directly above two sleeping pillows",
+    "must_show": [
+     "A stack of books, a speaker, or a framed picture sits on a headboard shelf directly above the pillows."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-004",
+   "title": "THE PHONE CHARGES ON THE NIGHTSTAND TOP AND DOUBLES AS THE ALARM",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The phone is charging on the nightstand top and doubles as your alarm clock.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is never a specific moment, a birthday or a new year, that turns buying the clock into something that actually happens",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The charger has no other assigned spot in the room, so it stayed exactly where it was first plugged in",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It has been the alarm for so long that calling the arrangement temporary does not feel dishonest anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-002",
+    "root_causes": [
+     "KC-009",
+     "KC-002",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a phone lying face up on a nightstand top, its charging cable running to an outlet, sitting beside a lamp with no separate alarm clock in sight",
+    "must_show": [
+     "The phone is charging on the nightstand top and doubles as your alarm clock."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-005",
+   "title": "AN OPEN GLASS OF WATER SITS ON THE SAME TOP AS THE LAMP AND A POWER STRIP",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is an open glass of water sitting on the same small top as the lamp and a power strip.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is a single knocked elbow from water and electricity meeting, and that outranks the convenience of a lidless glass",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The power strip has never had anywhere else on this nightstand to go besides the top",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Nobody set the rule that water needs a lid near this outlet, so it is whoever's habit wins that night",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open glass of water standing on a small nightstand top beside a lamp base and a power strip with two cables plugged in",
+    "must_show": [
+     "There is an open glass of water sitting on the same small top as the lamp and a power strip."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-006",
+   "title": "THE DRAWER HOLDS AN OLD CHARGER, A DEAD PEN, AND UNREAD BOOKS",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The drawer holds a charger for a phone you do not own anymore, a dead pen, and a couple of books you started months ago.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it has been used in months, but nothing has forced the drawer to prove it is still earning its spot",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Once it is stirred into the pile you cannot see it without digging, so it never surfaces to be judged",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nobody clears it out on any schedule, so it only gets sorted whenever someone happens to dump the drawer on the bed",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-002",
+    "root_causes": [
+     "KC-001",
+     "KC-005",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open nightstand drawer holding a tangled phone charger, a dried-out pen, and two books with bookmarks partway through, none of it sorted into sections",
+    "must_show": [
+     "The drawer holds a charger for a phone you do not own anymore, a dead pen, and a couple of books you started months ago."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-007",
+   "title": "MEDICATION SITS LOOSE IN THE OPEN DRAWER ON THIS SIDE",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is medication, capped or not, sitting loose in the open drawer on this side.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It is a poisoning risk at exactly the height a toddler or a dog reaches from the mattress, and that is worth raising even though the rest of the drawer is not yours to touch",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody has checked the dates together in a while, so a bottle ages out of use unnoticed",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "It has been in that drawer long enough that neither of you registers it as open and unsecured anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-003",
+    "root_causes": [
+     "KC-010",
+     "KC-011",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a nightstand drawer standing open with a few medication bottles lying loose inside, one lid sitting unscrewed beside it",
+    "must_show": [
+     "There is medication, capped or not, sitting loose in the open drawer on this side."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-008",
+   "title": "THE LAMP CORD ON THIS SIDE RUNS LOOSE ACROSS THE FLOOR",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The lamp cord on this side runs loose across the floor instead of behind the leg.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It crosses the exact strip you both walk in the dark, and that is a real trip risk ahead of how it looks",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "This side's cord was never run behind the leg the way the other side's was, so the shared standard stopped at one nightstand",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The floor beside this side is not yours to rearrange, so a hazard sitting in shared space does not get fixed because it is not your side",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-003",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a lamp cord running loose across the bedroom floor beside a nightstand instead of tucked behind the leg",
+    "must_show": [
+     "The lamp cord on this side runs loose across the floor instead of behind the leg."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-009",
+   "title": "THE TWO NIGHTSTAND TOPS HOLD DIFFERENT NUMBERS OF THINGS",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The two nightstand tops are holding different numbers of things, one cluttered, one clear.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "One person tidied the other's side once, and it started an argument that has made both of you avoid the topic since",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "There is no agreed number for this side the way there is for the other, so clear means something different to each of you",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Whoever notices the gap first assumes it is the other person's job to close it",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-003",
+    "root_causes": [
+     "KC-012",
+     "KC-008",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two nightstands on either side of a made bed, one top bare and orderly, the other crowded with several more items than the first",
+    "must_show": [
+     "The two nightstand tops are holding different numbers of things, one cluttered, one clear."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-010",
+   "title": "LOOSE CHANGE, A RECEIPT, OR AN EARRING SITS ON THE BARE WOOD BESIDE THE TRAY",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is loose change, a receipt, or a single earring sitting on the bare wood beside the tray instead of inside it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The tray is already full, so the honest fix is thinning the keyring or moving a ring to the jewellery box, not starting a second pile",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Loose change and receipts have no assigned home of their own once they leave your pocket",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "One receipt on bare wood does not look like much on its own, which is exactly how a second pile starts",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-004",
+    "root_causes": [
+     "KC-007",
+     "KC-002",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dresser top with a valet tray at its center and a scatter of loose coins, a folded receipt, and a single earring sitting on the bare wood just outside it",
+    "must_show": [
+     "There is loose change, a receipt, or a single earring sitting on the bare wood beside the tray instead of inside it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-011",
+   "title": "THREE OR FOUR FRAGRANCE BOTTLES STAND ON THE TOP BUT ONLY ONE GETS USED",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are three or four fragrance bottles standing on the top, but you only reach for one of them.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The others were gifts, and letting them go feels like it dishonors who gave them",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nothing has actually been decided about the ones you have not worn in a year, so they just keep standing there",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "They have stood in the same spot so long that four bottles does not register as three too many",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-004",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "four fragrance bottles of different heights standing together on a dresser top, one visibly used down to half and the others still full and dusty",
+    "must_show": [
+     "There are three or four fragrance bottles standing on the top, but you only reach for one of them."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-012",
+   "title": "THE DRESSER IS NOT STRAPPED TO THE WALL, AND AN OPEN DRAWER SITS LOW ENOUGH TO LEAN ON",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The dresser is not strapped to the wall, and a drawer left open sits low enough for a child to lean on.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A tall unstrapped chest can tip forward and pin a child, and that outranks how a strap looks on the wall",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Fitting it means finding a stud and doing a small job that keeps getting pushed to another weekend",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It has stood unstrapped since it was delivered, so the risk stopped registering the moment it became furniture",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-004",
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tall dresser standing away from the wall with no anti-tip strap visible, its bottom drawer left open at a height a small child could lean on",
+    "must_show": [
+     "The dresser is not strapped to the wall, and a drawer left open sits low enough for a child to lean on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-013",
+   "title": "A DRAWER NEEDS A SHOVE TO CLOSE, AND IT IS THE ONE HOLDING WORKOUT TOPS",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A drawer needs a shove or a press-down to close, and it is the one holding workout tops or t-shirts.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "You own more of that category than you actually wear, six workout tops when you wear two",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "There is no fill line anyone is applying, so the drawer just absorbs more until it will not shut",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The overflow only shows up as effort at closing time, so it is easy to keep ignoring until today",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-005",
+    "root_causes": [
+     "KC-001",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dresser drawer stuffed with folded workout tops bulging above the drawer's own rim, a hand pressing down on the pile to force it shut",
+    "must_show": [
+     "A drawer needs a shove or a press-down to close, and it is the one holding workout tops or t-shirts."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-014",
+   "title": "TWO DRAWERS ARE PART FILLED WITH CLOTHES THAT DO NOT FIT TODAY",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Two of the drawers are part filled with clothes that do not fit you today.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "You have not decided yet whether these come back, so they sit exactly where they always have instead of leaving the bedroom",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "They stayed in the main rotation of drawers instead of moving to a box elsewhere in the house, so there is no boundary marking them as separate",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nobody has re-checked these drawers since your size changed; there was no moment that prompted it",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-005",
+    "root_causes": [
+     "RC-015",
+     "KC-003",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two half-filled dresser drawers holding folded clothes in a visibly different size from what is hanging in the closet beyond",
+    "must_show": [
+     "Two of the drawers are part filled with clothes that do not fit you today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-015",
+   "title": "MOTHBALLS OR CEDAR BLOCKS ROLL LOOSE IN THE BOTTOM OF A DRAWER",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Mothballs or cedar blocks are rolling loose in the bottom of a sock or underwear drawer.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Loose in an open drawer, they look like candy to a toddler standing at drawer height, and that outranks the moth protection",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "They have never been given their own mesh bag, so loose is just how they have always been stored",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "They have rolled around long enough, under the folded rows, that nobody notices them as loose anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-005",
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a few loose mothballs rolling among folded socks in the bottom of an open dresser drawer, no mesh bag or pouch in sight",
+    "must_show": [
+     "Mothballs or cedar blocks are rolling loose in the bottom of a sock or underwear drawer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-016",
+   "title": "A WIRE HANGER OR A DRY-CLEANER SHEATH IS STILL ON A GARMENT ON THE ROD",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a wire hanger or a plastic dry-cleaner sheath still on a garment on the rod.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The dry cleaner sends them home and nothing has ever swapped them out for the one hanger style the rest of the closet uses",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The plastic sheath is a real suffocation risk if a small child gets in here, and that outranks leaving it on for now",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "It blends into a rod that is this full, so a wire hanger among dozens of matching ones does not stand out anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-006",
+    "root_causes": [
+     "KC-008",
+     "KC-010",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a thin wire hanger holding a shirt among rows of matching wooden hangers, and a sheer plastic dry-cleaner sheath still covering a coat beside it",
+    "must_show": [
+     "There is a wire hanger or a plastic dry-cleaner sheath still on a garment on the rod."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-017",
+   "title": "A SUIT, A COAT, OR SHOES THAT COST REAL MONEY HAVEN'T BEEN WORN IN A YEAR",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a suit, a coat, or a pair of shoes in here that cost real money and has not been worn in over a year.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Letting it go feels like admitting the money is gone, so it stays even though the money already left the day it was bought",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "There is no deadline attached to it, photograph it, list it, thirty days, so someday never actually arrives",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It has hung in the same spot long enough that walking past it barely registers anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-006",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a formal suit hanging at the end of the closet rod with a thin layer of dust visible on its shoulders, untouched among more recently worn clothes",
+    "must_show": [
+     "There is a suit, a coat, or a pair of shoes in here that cost real money and has not been worn in over a year."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PRF-018",
+   "title": "YOU CANNOT SLIDE TWO FINGERS BETWEEN THE HANGERS ANYWHERE ON THE ROD",
+   "type": "FRICTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "You cannot slide two fingers between the hangers anywhere along the rod, and there is no bare stretch left at the end.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The rod is carrying more than the two-finger standard allows, so one in one out has stopped happening",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Winter coats and heavy knits that should have moved to the labelled bin for the off season never actually left the rod",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The overloaded rod is putting real weight on brackets only ever meant to hold what one season needs, and it can tear out of the plasterboard while you are reaching in underneath",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bedroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PRZ-006",
+    "root_causes": [
+     "KC-001",
+     "KC-003",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a closet rod packed edge to edge with hanging garments touching at the shoulders, no gap visible anywhere along its length",
+    "must_show": [
+     "You cannot slide two fingers between the hangers anywhere along the rod, and there is no bare stretch left at the end."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-006",
+     "PRF-013",
+     "PRF-018"
+    ],
+    "actions": [
+     "PRA-003",
+     "PRA-009",
+     "PRA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "six workout tops stuffed into one dresser drawer when only two are ever actually worn in a week",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-002",
+     "PRF-004",
+     "PRF-005",
+     "PRF-010",
+     "PRF-015"
+    ],
+    "actions": [
+     "PRA-001",
+     "PRA-004",
+     "PRA-007",
+     "PRA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a power strip and a phone charger sitting on a nightstand top with no drawer or shelf ever assigned to either",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-014",
+     "PRF-018"
+    ],
+    "actions": [
+     "PRA-010",
+     "PRA-012",
+     "PRA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "winter coats and heavy knits still hanging on the closet rod months after they should have moved to the seasonal bin",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-006"
+    ],
+    "actions": [
+     "PRA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a nightstand drawer so crowded with a charger, a pen and old books that nothing in it can be named without digging",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-010"
+    ],
+    "actions": [
+     "PRA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single valet tray already overflowing with keys, a watch and rings, with no room left for anything else that belongs in it",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-001",
+     "PRF-003",
+     "PRF-005",
+     "PRF-008",
+     "PRF-009",
+     "PRF-013",
+     "PRF-016"
+    ],
+    "actions": [
+     "PRA-002",
+     "PRA-004",
+     "PRA-006",
+     "PRA-009",
+     "PRA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a headboard shelf holding a stack of books and a framed picture, with no note anywhere saying the shelf is for the lamp alone",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-002",
+     "PRF-004",
+     "PRF-006",
+     "PRF-012",
+     "PRF-014"
+    ],
+    "actions": [
+     "PRA-003",
+     "PRA-004",
+     "PRA-008",
+     "PRA-010",
+     "PRA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a dresser standing unstrapped to the wall since delivery day, with no reminder anywhere that the job was ever supposed to happen",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-002",
+     "PRF-003",
+     "PRF-005",
+     "PRF-007",
+     "PRF-008",
+     "PRF-012",
+     "PRF-015",
+     "PRF-016",
+     "PRF-018"
+    ],
+    "actions": [
+     "PRA-001",
+     "PRA-004",
+     "PRA-005",
+     "PRA-008",
+     "PRA-010",
+     "PRA-011",
+     "PRA-012",
+     "PRA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a lamp cord running loose across the bedroom floor exactly where a foot lands getting out of bed in the dark",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-007"
+    ],
+    "actions": [
+     "PRA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a medication bottle sitting in a nightstand drawer well past its printed date, never checked since it was put away",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-009"
+    ],
+    "actions": [
+     "PRA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two nightstands on either side of the same bed, one holding five items and the other holding twice that many",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-008",
+     "PRF-009"
+    ],
+    "actions": [
+     "PRA-006",
+     "PRA-013",
+     "PRA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a lamp cord crossing the shared floor beside a nightstand that neither sleeper has claimed as their job to fix",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-001",
+     "PRF-011",
+     "PRF-017"
+    ],
+    "actions": [
+     "PRA-002",
+     "PRA-008",
+     "PRA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a wedding-gift sheet set still sealed in its original packaging on the linen shelf, years after the wedding",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-011",
+     "PRF-014",
+     "PRF-017"
+    ],
+    "actions": [
+     "PRA-008",
+     "PRA-010",
+     "PRA-012",
+     "PRA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a suit for a job that ended still hanging at the end of the closet rod, with no date set for when it finally leaves",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PRF-001",
+     "PRF-003",
+     "PRF-004",
+     "PRF-007",
+     "PRF-010",
+     "PRF-011",
+     "PRF-012",
+     "PRF-013",
+     "PRF-015",
+     "PRF-016",
+     "PRF-017"
+    ],
+    "actions": [
+     "PRA-002",
+     "PRA-004",
+     "PRA-005",
+     "PRA-008",
+     "PRA-010",
+     "PRA-012",
+     "PRA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a folded quilt draped over the same spot on a headboard shelf for so long that walking past it barely registers anymore",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "PRA-001",
+   "title": "CLEAR THE FLOOR STRIP AND THE HEADBOARD SHELF",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the floor strip between the bed and the door, and move any headboard-shelf item that is not the lamp off the shelf.",
+   "why_it_matters": "A bin, a shoe, or a cable in the walking strip is what your foot finds at three in the morning, and weight over the pillows on an unmarked shelf is a fall risk you sleep under every night.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a laundry basket",
+    "the linen shelf"
+   ],
+   "steps": [
+    "Clear the floor strip between the bed and the door of anything sitting on it, and move any headboard-shelf item that is not the lamp off the shelf.",
+    "Carry each item to where it actually belongs rather than setting it down again somewhere else in the room."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-010"
+    ],
+    "zone": "PRZ-001",
+    "standard": "PRS-001"
+   },
+   "victory_condition": "The floor strip between the bed and the door is bare, and the headboard shelf above the pillows holds only the lamp.",
+   "next_card": "PRS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bedroom floor strip between the bed and the door being cleared of a charging cable and a pair of shoes, a headboard shelf above the pillows left holding only a lamp",
+    "must_show": [
+     "The floor strip between the bed and the door is bare, and the headboard shelf above the pillows holds only the lamp."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-002",
+   "title": "SET THE SHEET COUNT AND MOVE THIS BED'S LINEN TO ITS OWN SPACE",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Pull the linen shelf down to two sheet sets for this bed and separate them from guest and kid linens.",
+   "why_it_matters": "A shelf holding four or five sets for one bed is not spare capacity, it is a decision nobody has made yet, and mixing this bed's sets with other beds' linen means digging every time you strip it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a donation bag or rag bin",
+    "a marker for the shelf"
+   ],
+   "steps": [
+    "Count every sheet set for this bed on the linen shelf. Keep two: one on the bed, one clean. A third stays only if a child or a pet actually sleeps here and you have stripped this bed at two in the morning within the last year.",
+    "Move whatever is left, worn thin, pilled, or simply extra, out as rag or textile recycling, and separate this bed's own two sets from any guest doubles or kid singles sharing the same shelf."
+   ],
+   "root_causes": [
+    "RC-014",
+    "KC-008",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-014",
+     "KC-008",
+     "RC-017"
+    ],
+    "zone": "PRZ-001",
+    "standard": "PRS-001"
+   },
+   "victory_condition": "The linen shelf holds exactly two sheet sets for this bed, set apart from any guest or kid linen sharing the shelf.",
+   "next_card": "PRA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a linen shelf holding exactly two folded sheet sets for one bed, set apart from a separate stack of guest and kids' sheets",
+    "must_show": [
+     "The linen shelf holds exactly two sheet sets for this bed, set apart from any guest or kid linen sharing the shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-003",
+   "title": "CLEAR THE TOP TO FIVE AND EMPTY THE DRAWER",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the top down to five items and empty the drawer onto the bed, clearing out what no longer earns its spot.",
+   "why_it_matters": "A dead charger and a book you are not reading this week cost nothing to keep and everything to dig through the one time you actually need the drawer.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin",
+    "the bookshelf"
+   ],
+   "steps": [
+    "Empty the top down to five items and empty the drawer onto the bed: the dead pen, the chargers for phones you do not own, and any book you have not picked up this week go straight to the shelf or the bin.",
+    "Divide the drawer so glasses, lip balm and earplugs each sit in their own section instead of sliding into one heap."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-005",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-005",
+     "KC-009"
+    ],
+    "zone": "PRZ-002",
+    "standard": "PRS-002"
+   },
+   "victory_condition": "The nightstand top holds five things or fewer with no cable crossing it, and the drawer holds only what you would actually reach for tonight.",
+   "next_card": "PRS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a nightstand top mid-clear, a dead pen and an old phone charger being lifted out of the drawer, five items left standing on the top",
+    "must_show": [
+     "The nightstand top holds five things or fewer with no cable crossing it, and the drawer holds only what you would actually reach for tonight."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-004",
+   "title": "SEPARATE WATER FROM POWER AND GIVE THE PHONE CHARGER A REAL HOME",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move the power strip off the nightstand top, commit to a lidded drink at the bedside, and give the phone charger a charging spot that is not beside your pillow.",
+   "why_it_matters": "Water and a power strip sharing one small surface is a single knocked elbow from a real problem, and a phone doubling as your alarm is the reason it never actually leaves the bedside.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a bottle with a lid",
+    "a nine-dollar alarm clock"
+   ],
+   "steps": [
+    "Move the power strip off the nightstand top and onto the floor behind it, and if you drink in bed, switch to a bottle with a lid.",
+    "Buy the cheap alarm clock, move the phone charger to the dresser across the room, and give the phone a landing spot you have to stand up to reach; if you will not commit to that, keep the charger but lay the phone face down and drop one other item so the top still counts to five."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-002",
+    "KC-009",
+    "RC-017",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "KC-009",
+     "RC-017",
+     "KC-008"
+    ],
+    "zone": "PRZ-002",
+    "standard": "PRS-002"
+   },
+   "victory_condition": "The power strip is off the top and on the floor behind the nightstand, and the phone charger has either moved to the dresser or the phone lies face down with the top still counting to five.",
+   "next_card": "PRA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand moving a power strip off a nightstand top onto the floor behind it, a phone lying face down beside a small battery alarm clock",
+    "must_show": [
+     "The power strip is off the top and on the floor behind the nightstand, and the phone charger has either moved to the dresser or the phone lies face down with the top still counting to five."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-005",
+   "title": "CHECK THE MEDICATION AND RUN THE CORD BEHIND THE LEG",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1 TO 2.",
+   "objective": "Check the medication dates together, cap and close away anything loose, and run the lamp cord behind the leg on this side to match the other.",
+   "why_it_matters": "Sleep aids and painkillers loose in an open bedside drawer sit at exactly the height a toddler or a dog reaches from the mattress, and this is the one thing worth raising even though the rest of the drawer is not yours to touch.",
+   "time_target_minutes": 15,
+   "players": "1 to 2",
+   "inputs": [
+    "a closed box for medication",
+    "cable clips"
+   ],
+   "steps": [
+    "Check the medication dates together right now: cap anything loose, and if a child or a dog gets onto this bed, move it into a closed box. Then run the lamp cord behind the leg on this side to match the other.",
+    "Confirm both changes hold before you leave the room: the drawer closed, the cord out of the walking path."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-011",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-011",
+     "RC-017"
+    ],
+    "zone": "PRZ-003",
+    "standard": "PRS-003"
+   },
+   "victory_condition": "Medication on this side is capped and closed away, and the lamp cord runs behind the leg instead of across the floor.",
+   "next_card": "PRS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand capping a medication bottle over a closed box on a nightstand, a lamp cord running down behind the leg instead of across the floor",
+    "must_show": [
+     "Medication on this side is capped and closed away, and the lamp cord runs behind the leg instead of across the floor."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-006",
+   "title": "AGREE THE SHARED STANDARD AND CLOSE THE COUNT GAP",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Agree out loud that the cord rule and the item count apply to both nightstands equally, then bring this side's count level with the other.",
+   "why_it_matters": "Every argument about tidiness in a shared bedroom starts with one person fixing the side that is not theirs to fix; matching the standard instead of the contents settles it without either of you touching the other's drawer.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing, this is a conversation"
+   ],
+   "steps": [
+    "Say out loud, together, that the cord-behind-the-leg rule and the shared item count apply to both nightstands, not just the one that already meets it.",
+    "Whoever's top is running high brings their own count down to match the other's; you may wipe and vacuum this side, but the choice of what stays in the drawer is theirs alone to make."
+   ],
+   "root_causes": [
+    "KC-008",
+    "RC-013",
+    "KC-012"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "RC-013",
+     "KC-012"
+    ],
+    "zone": "PRZ-003",
+    "standard": "PRS-003"
+   },
+   "victory_condition": "Both nightstand tops run the same lamp-cord rule and the same item count, and the difference that started the conversation is gone.",
+   "next_card": "PRA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "two nightstands on either side of a made bed, both tops now holding the same small number of items",
+    "must_show": [
+     "Both nightstand tops run the same lamp-cord rule and the same item count, and the difference that started the conversation is gone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-007",
+   "title": "SWEEP THE TOP DOWN TO THE TRAY AND THE DISH",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Sweep the dresser top down to just the valet tray and the fragrance dish, sorting the pocket sediment as you go.",
+   "why_it_matters": "Loose change, a receipt, and a snapped chain do not improve by sitting on the wood, they just start the second pile that spreads from there.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a jar for change",
+    "a small repair bag"
+   ],
+   "steps": [
+    "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewellery) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
+    "Move any jewellery you love but never wear into a box in the closet rather than back onto the top."
+   ],
+   "root_causes": [
+    "KC-007",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "KC-002"
+    ],
+    "zone": "PRZ-004",
+    "standard": "PRS-004"
+   },
+   "victory_condition": "The dresser top holds only the valet tray and a small dish of fragrance bottles, and nothing loose sits on the bare wood.",
+   "next_card": "PRS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a dresser top mid-sweep, loose change and a receipt being lifted off the bare wood into a jar, the valet tray and fragrance dish left standing alone",
+    "must_show": [
+     "The dresser top holds only the valet tray and a small dish of fragrance bottles, and nothing loose sits on the bare wood."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-008",
+   "title": "STRAP THE DRESSER AND CLEAR OUT THE UNWORN FRAGRANCE",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Fit an anti-tip strap into a stud, and keep only the fragrance you actually wear and the one you honestly alternate to.",
+   "why_it_matters": "An unstrapped tall dresser tips forward the moment a loaded drawer is open and a child leans on it, and a shelf of unworn fragrance is glass sitting at exactly that same front edge.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "an anti-tip strap",
+    "a screwdriver"
+   ],
+   "steps": [
+    "Fit an anti-tip strap into a stud, and check the fixing holds when you lean on an open drawer.",
+    "Test every fragrance bottle against the last year: keep the one you wear and the one you honestly alternate to, and let the rest go along with the guilt."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-009",
+    "RC-014",
+    "RC-015",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-009",
+     "RC-014",
+     "RC-015",
+     "RC-017"
+    ],
+    "zone": "PRZ-004",
+    "standard": "PRS-004"
+   },
+   "victory_condition": "The dresser is strapped into a stud, and the only fragrance bottles left on the dish are ones you have actually reached for in the last year.",
+   "next_card": "PRA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand fitting an anti-tip strap between a dresser and the wall stud, two fragrance bottles set aside on a cloth while two remain on the dish",
+    "must_show": [
+     "The dresser is strapped into a stud, and the only fragrance bottles left on the dish are ones you have actually reached for in the last year."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-009",
+   "title": "PULL THE OVERFLOW FROM THE DRAWER THAT NEEDS A SHOVE",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Open the drawer that needs a shove to close and pull one full category's worth of overflow out right now.",
+   "why_it_matters": "A drawer that needs pressing down to shut has already outgrown its category, and the fix costs the same fifteen minutes today that it costs every day you put it off.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a donation bag"
+   ],
+   "steps": [
+    "Open the drawer that needs a shove to close and pull one full category's worth of overflow out right now: extra workout tops, a wrong-size stack, or loose mothballs, whichever is worst.",
+    "Check that the drawer now closes without being pressed down before you move on."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-008"
+    ],
+    "zone": "PRZ-005",
+    "standard": "PRS-005"
+   },
+   "victory_condition": "Every drawer closes without being pressed down, and a hand's width of free space shows in each one.",
+   "next_card": "PRS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a dresser drawer mid-sort, a stack of extra workout tops being lifted out, a hand's width of space showing at the front of the drawer",
+    "must_show": [
+     "Every drawer closes without being pressed down, and a hand's width of free space shows in each one."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-010",
+   "title": "BOX THE WRONG SIZE, BAG THE MOTHBALLS, AND STRAP THE CHEST",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move the two part-filled off-size drawers into one dated box out of the bedroom, bag any loose mothballs or cedar, and confirm the chest is anchored.",
+   "why_it_matters": "Clothes that do not fit today are a small unpleasant reminder every morning, and loose mothballs at drawer height look like candy to a toddler standing at the open bottom drawer.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a box and a marker",
+    "a mesh bag"
+   ],
+   "steps": [
+    "Empty the two part-filled off-size drawers into one box, write today's date on the lid, and store it somewhere else in the house; if it is still sealed a year from now it leaves sealed.",
+    "Gather any loose mothballs or cedar blocks into a mesh bag hung at the back of the drawer, or leave them out entirely, and confirm the anti-tip strap is fitted and holding."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-003",
+    "KC-009",
+    "KC-010",
+    "KC-002",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-003",
+     "KC-009",
+     "KC-010",
+     "KC-002",
+     "RC-017"
+    ],
+    "zone": "PRZ-005",
+    "standard": "PRS-005"
+   },
+   "victory_condition": "No drawer holds clothes in a size you are not wearing today, any mothballs or cedar are sealed in a mesh bag rather than rolling loose, and the chest is anchored to the wall.",
+   "next_card": "PRA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a dated cardboard box holding off-size clothes being carried out of a bedroom, a mesh bag of mothballs set inside an open drawer behind it",
+    "must_show": [
+     "No drawer holds clothes in a size you are not wearing today, any mothballs or cedar are sealed in a mesh bag rather than rolling loose, and the chest is anchored to the wall."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-011",
+   "title": "PULL EVERY WIRE HANGER AND DRY-CLEANER SHEATH OFF THE ROD",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the rod and pull every wire hanger and plastic dry-cleaner sheath off the garments, and bag them for the bin.",
+   "why_it_matters": "A thin dry-cleaning bag clinging to a face is a real suffocation risk if a small child plays in here, and a wire hanger among matching ones is the first sign the one-hanger rule has slipped.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Walk the rod and pull every wire hanger and plastic dry-cleaner sheath off the garments right now, and bag them for the bin.",
+    "Swap anything left on a wire hanger onto the closet's own hanger style before it goes back on the rod."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-010"
+    ],
+    "zone": "PRZ-006",
+    "standard": "PRS-006"
+   },
+   "victory_condition": "Every hanger on the rod is the same style, and no wire hanger or dry-cleaner sheath remains on anything hanging.",
+   "next_card": "PRS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a closet rod mid-sort, a wire hanger and a sheer dry-cleaner sheath being pulled off into a bin bag, matching wooden hangers left in place",
+    "must_show": [
+     "Every hanger on the rod is the same style, and no wire hanger or dry-cleaner sheath remains on anything hanging."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-012",
+   "title": "SET THE THIRTY-DAY DEADLINE AND CLEAR THE ROD TO TWO FINGERS",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Photograph and list the one expensive unworn item with a thirty-day deadline, and move winter coats or heavy knits off the rod until you can slide two fingers between every hanger.",
+   "why_it_matters": "An overloaded rod can tear its brackets out of plasterboard while you are standing underneath reaching in, and an expensive item you never wear costs you a hanger and a flinch every time you slide past it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a phone camera",
+    "the seasonal storage bin"
+   ],
+   "steps": [
+    "Photograph the one suit, coat, or pair of shoes that cost real money and has not been worn in a year, list it for sale, and set a thirty-day deadline: unsold, it goes to the charity shop without another conversation.",
+    "Move winter coats and heavy knits that belong in the labelled off-season bin off the rod until you can slide two fingers between every remaining hanger, with a bare stretch left at one end."
+   ],
+   "root_causes": [
+    "RC-014",
+    "RC-015",
+    "RC-017",
+    "KC-001",
+    "KC-003",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "RC-017",
+     "KC-001",
+     "KC-003",
+     "KC-010"
+    ],
+    "zone": "PRZ-006",
+    "standard": "PRS-006"
+   },
+   "victory_condition": "The expensive unworn item has a photograph, a listing, and a thirty-day deadline, and you can slide two fingers between every hanger on the rod with a bare stretch left at the end.",
+   "next_card": "PRA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a phone photographing an unworn suit on a closet rod, a labelled seasonal bin standing nearby with a folded coat going into it",
+    "must_show": [
+     "The expensive unworn item has a photograph, a listing, and a thirty-day deadline, and you can slide two fingers between every hanger on the rod with a bare stretch left at the end."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-013",
+   "title": "THE FULL BEDROOM HAZARD WALK",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every zone checking for a reachable cord, an unanchored dresser, and medication left loose in an open drawer.",
+   "why_it_matters": "This room's own hazards, a cord in the dark path to the door, an unstrapped dresser, capped medication, sit across four different zones and only get found together if someone walks the whole room on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a screwdriver",
+    "an anti-tip strap"
+   ],
+   "steps": [
+    "Check the floor strip beside the bed and both nightstands for any cord running loose across it, and clip or reroute each one behind a leg.",
+    "Check the dresser and confirm the anti-tip strap is fitted and holding, and check the headboard shelf for anything unfixed sitting above the pillows.",
+    "Check both nightstand drawers for medication that is not capped and in date, and close it away if a child or a dog can climb onto this bed."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "No cord runs loose across a walked path, the dresser is anchored, nothing unfixed sits above the pillows, and all medication is capped, in date, and closed away.",
+   "next_card": "PRE-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand checking an anti-tip strap on a bedroom dresser, a lamp cord clipped behind a nightstand leg visible beyond",
+    "must_show": [
+     "No cord runs loose across a walked path, the dresser is anchored, nothing unfixed sits above the pillows, and all medication is capped, in date, and closed away."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-014",
+   "title": "THE ROOM'S OWN TRAP: WHAT THE REST OF THE HOUSE OFFLOADED HERE",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk the room looking for anything that belongs to another room entirely, wrapping paper, exercise equipment, paperwork, and move each thing back to where it is actually used.",
+   "why_it_matters": "The bedroom absorbs what the rest of the house refuses because the door usually stays shut; none of it supports sleep, and it only stays here by default.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a laundry basket for cross-room items"
+   ],
+   "steps": [
+    "Walk the whole room and pull out anything that plainly belongs to another room: gift wrap, seasonal decor, exercise equipment, a box of unfiled paperwork.",
+    "Carry each item to the room it is actually used in today, not to a corner of this one, and if nowhere else in the house wants it, that is itself the answer."
+   ],
+   "root_causes": [
+    "KC-003",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "RC-015"
+    ]
+   },
+   "victory_condition": "Nothing remains in the bedroom that plainly belongs to another room's job, and every item pulled has either moved to where it is used or left the house.",
+   "next_card": "PRA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a roll of wrapping paper and a box of paperwork being carried out of a bedroom, an exercise bike left bare of any clothes draped over it",
+    "must_show": [
+     "Nothing remains in the bedroom that plainly belongs to another room's job, and every item pulled has either moved to where it is used or left the house."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRA-015",
+   "title": "THE LAST-THING-BEFORE-BED RESET",
+   "type": "ACTION CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1 TO 2.",
+   "objective": "The last thing before you leave the room in the morning, confirm the bed is made, both nightstand tops are at their count, and the dresser tray is empty of loose pocket items.",
+   "why_it_matters": "Every standard in this room is built to survive a bad week, and the only way that holds is checking it meets its own standard before you leave, not noticing days later that it slipped.",
+   "time_target_minutes": 15,
+   "players": "1 to 2",
+   "inputs": [
+    "nothing, this is a walk-through"
+   ],
+   "steps": [
+    "Make the bed before you leave the room, while the duvet is still thrown back and it takes one pull.",
+    "Check both nightstand tops sit at their agreed count, and empty your pockets into the dresser tray rather than beside it."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "The bed is made, both nightstand tops sit at their agreed count, and nothing from your pockets sits loose beside the dresser tray.",
+   "next_card": "PRA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand doing a last-check pass across a settled bedroom, a made bed and two matching nightstand tops visible in one frame",
+    "must_show": [
+     "The bed is made, both nightstand tops sit at their agreed count, and nothing from your pockets sits loose beside the dresser tray."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PRS-001",
+   "title": "BED AND BEDDING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bedroom",
+   "zone": "Bed and Bedding Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two sheet sets for this bed, each folded inside its own pillowcase; a made bed means the agreed pillow count and nothing else on the cover.",
+   "trigger": "When you strip the bed to wash the sheets, look underneath it before the clean set goes on.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run the vacuum crevice tool down the gap where dust and hair pack against the wall behind the headboard.",
+    "Wipe along the top of the bed frame rails and down the legs, getting the inner faces of the slats you never see once the mattress is back down.",
+    "Slide a pillowcase over each still fan blade, close it and pull back so the dust comes off inside the case, then wipe each blade dry."
+   ],
+   "related": {
+    "zone": "PRZ-001",
+    "actions": [
+     "PRA-001",
+     "PRA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a primary bedroom bed made with a fitted sheet, a flat sheet or duvet, two pillows per side, and one throw folded at the foot, a clear floor on both sides leading to the door, and a headboard shelf holding only a lamp, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PRS-002",
+   "title": "NIGHTSTAND LEFT STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Left",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Five things or fewer on the top, one book at a time, and a divided drawer where every section has a name.",
+   "trigger": "When you reach over to switch off the lamp, that is the moment the top goes back to five.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the lamp base and switch with a barely damp cloth, getting into the ring where fingers turn it on night after night.",
+    "Tip out the drawer's divided sections, vacuum the grit from the corners, then wipe the base and both runners.",
+    "Follow the lamp cord down to the floor and check nothing is snagged along the skirting behind the leg."
+   ],
+   "related": {
+    "zone": "PRZ-002",
+    "actions": [
+     "PRA-003",
+     "PRA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a primary bedroom nightstand top holding a lamp, a lidded bottle, one book, and a small dish of reading glasses, five items in total, with the lamp cord clipped down the back leg and no cable crossing the top, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PRS-003",
+   "title": "NIGHTSTAND RIGHT STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bedroom",
+   "zone": "Nightstand Right",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The same item count on both tops, medication in date and closed away, and the drawer contents belonging to whoever sleeps on that side.",
+   "trigger": "When the sheets go into the wash, both tops get cleared and wiped in the same pass.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the framed photo, dust the back and stand, then mist glass cleaner onto the cloth rather than the glass and wipe the front streak-free.",
+    "Run the crevice tool down the narrow slot between the nightstand and the bed frame, where tissues and dust collect unseen.",
+    "Vacuum the drawer interior without unpacking what is stored there, and wipe the base around it."
+   ],
+   "related": {
+    "zone": "PRZ-003",
+    "actions": [
+     "PRA-005",
+     "PRA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a primary bedroom's second nightstand with a clear top, a capped medication bottle visible inside a slightly open drawer, and a lamp cord running down behind the leg rather than across the floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PRS-004",
+   "title": "DRESSER TOP STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Top",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One valet tray holds every daily-carry item; if it will not sit in the tray, it does not live on the dresser.",
+   "trigger": "When you empty your pockets at the end of the day, the tray takes all of it and the wood stays bare.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Vacuum the dust from the narrow gap behind the dresser, then wipe the back edge of the top where a cloth rarely reaches.",
+    "Empty the valet tray and wipe it inside and out, then clean the necks and bases of the fragrance bottles where scent has gone tacky.",
+    "Wipe each drawer front and get into the handles where hands leave an oily film."
+   ],
+   "related": {
+    "zone": "PRZ-004",
+    "actions": [
+     "PRA-007",
+     "PRA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a primary bedroom dresser top holding one valet tray with keys, a wallet, a watch and rings, a small dish of fragrance bottles set back from the front edge, and bare wood everywhere else, with an anti-tip strap visible running from the back of the dresser into the wall, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PRS-005",
+   "title": "DRESSER DRAWERS STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bedroom",
+   "zone": "Dresser Drawers",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One category per drawer, folded to stand upright, and a hand's width of free space kept as the fill line.",
+   "trigger": "When the laundry basket comes back up to the bedroom, it gets folded into the drawers before you put the empty basket down.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift each drawer out completely, vacuum the corners and folds, and wipe the base, letting it dry fully before clothes return.",
+    "Work the detail brush along the metal runners and into the track, lifting the grit that makes a drawer stick and jump.",
+    "With the drawers out, vacuum inside the empty carcass and the back panel where dust and stray socks gather."
+   ],
+   "related": {
+    "zone": "PRZ-005",
+    "actions": [
+     "PRA-009",
+     "PRA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open primary bedroom dresser drawer with clothes folded upright in a single category, a hand's width of empty space at the front, and the drawer beneath sliding fully shut, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PRS-006",
+   "title": "PRIMARY CLOSET STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Primary Bedroom",
+   "zone": "Primary Closet",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One hanger style, grouped by type then shade, two fingers of space between items, and one in one out once the rod is full.",
+   "trigger": "When you hang up the first coat of a new season, turn every hanger on the rod backwards and start the count again.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the bags and boxes down from the top shelf, dust where a film has been settling onto stored things all year.",
+    "Run a damp cloth the full length of the hanging rod to take off the fuzzy grey film that transfers onto a dark shoulder.",
+    "Lift the shoes off the rack, wipe the shelves clean of grit and dried mud, and wipe the soles before pairs go back."
+   ],
+   "related": {
+    "zone": "PRZ-006",
+    "actions": [
+     "PRA-011",
+     "PRA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a primary closet with one hanger style throughout, garments grouped by type and shade, shoes in pairs on a rack, bags standing upright on a shelf, and a clear stretch of floor beneath, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PRE-001",
+   "title": "THE NIGHT YOU GET INTO BED WITHOUT TURNING ON A LIGHT",
+   "type": "EVENT CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You come to bed late and get in without turning on the overhead light, feeling your way from the door.",
+   "tests_zones": [
+    "PRZ-001"
+   ],
+   "held_if": "The floor strip between the door and the bed is completely bare, so nothing catches your foot in the dark.",
+   "if_it_failed": "If you stubbed a toe on a bin, a shoe, or a cable, the floor strip was never cleared or it slipped back since. Draw PRA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PRZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand feeling along a dark bedroom wall toward a bed, the floor strip between the door and the bed completely bare",
+    "must_show": [
+     "You come to bed late and get in without turning on the overhead light, feeling your way from the door."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PRE-002",
+   "title": "THE MORNING YOU HIT SNOOZE WITHOUT LOOKING",
+   "type": "EVENT CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Your alarm goes off and your hand reaches for the nightstand top without your eyes open yet.",
+   "tests_zones": [
+    "PRZ-002"
+   ],
+   "held_if": "Your hand finds the lamp switch or the clock in the same five items every time, nothing else in the way.",
+   "if_it_failed": "If your hand knocked into a glass, a charger cable, or a sixth item you did not expect, the top has drifted past five. Draw PRA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PRZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching for a small alarm clock on a nightstand top holding five items, eyes still closed",
+    "must_show": [
+     "Your alarm goes off and your hand reaches for the nightstand top without your eyes open yet."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PRE-003",
+   "title": "THE NIGHT YOUR PARTNER IS SICK AND NEEDS MEDICATION IN THE DARK",
+   "type": "EVENT CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Your partner wakes at 2 a.m. needing their medication, and you are the one reaching into their nightstand drawer in the dark.",
+   "tests_zones": [
+    "PRZ-003"
+   ],
+   "held_if": "The medication is capped, in date, and easy to find because you both agreed on the cord and the count, even though the rest of the drawer stayed theirs.",
+   "if_it_failed": "If you had to hunt or the cap was already off, the one exception this side allows, checking medication together, has not happened in a while. Draw PRA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PRZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand finding a capped medication bottle inside a nightstand drawer in a dim bedroom at night",
+    "must_show": [
+     "Your partner wakes at 2 a.m. needing their medication, and you are the one reaching into their nightstand drawer in the dark."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PRE-004",
+   "title": "THE MORNING YOU'RE ALREADY LATE AND EMPTYING YOUR POCKETS",
+   "type": "EVENT CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You are rushing out the door and empty last night's pockets onto the dresser on your way past.",
+   "tests_zones": [
+    "PRZ-004"
+   ],
+   "held_if": "Everything lands inside the valet tray in one motion because the tray still has room, and the wood around it stays bare.",
+   "if_it_failed": "If something landed on the bare wood beside the tray because it was already full, the tray needs thinning, not a bigger tray. Draw PRA-007.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PRZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand dropping keys and a watch into a valet tray on a dresser top in one motion while rushing past",
+    "must_show": [
+     "You are rushing out the door and empty last night's pockets onto the dresser on your way past."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PRE-005",
+   "title": "THE DAY LAUNDRY COMES BACK AND YOU'RE TIRED",
+   "type": "EVENT CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A full laundry basket comes back up to the bedroom at the end of a long day, and putting it away is the last thing you want to do.",
+   "tests_zones": [
+    "PRZ-005"
+   ],
+   "held_if": "Every drawer still has a hand's width of space waiting, so folding it in takes ten minutes and nothing gets pressed down.",
+   "if_it_failed": "If a drawer needed a shove to close, the overflow was never pulled the last time this happened. Draw PRA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PRZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a laundry basket beside an open dresser drawer with a hand's width of free space visible at the front",
+    "must_show": [
+     "A full laundry basket comes back up to the bedroom at the end of a long day, and putting it away is the last thing you want to do."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PRE-006",
+   "title": "THE MORNING YOU NEED SOMETHING SPECIFIC IN A HURRY",
+   "type": "EVENT CARD",
+   "room": "Primary Bedroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You need one specific jacket for an event this morning and you are already running behind.",
+   "tests_zones": [
+    "PRZ-006"
+   ],
+   "held_if": "You can slide two fingers along the rod straight to it because everything hangs at the same depth, grouped by type and shade.",
+   "if_it_failed": "If you had to fight through a packed rod to find it, one in one out has stopped happening. Draw PRA-012.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PRZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand pulling one jacket straight from a closet rod with two fingers of space visible on either side of it",
+    "must_show": [
+     "You need one specific jacket for an event this morning and you are already running behind."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

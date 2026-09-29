@@ -5240,8 +5240,8 @@
         "symptom": "The phone is charging on the nightstand top and doubles as your alarm clock.",
         "branches": [
          {
-          "answer": "You have decided the phone cannot leave but have not bought the clock that would replace its one job",
-          "cause": "RC-015"
+          "answer": "There is never a specific moment, a birthday or a new year, that turns buying the clock into something that actually happens",
+          "cause": "KC-009"
          },
          {
           "answer": "The charger has no other assigned spot in the room, so it stayed exactly where it was first plugged in",

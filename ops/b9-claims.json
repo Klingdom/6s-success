@@ -51,9 +51,10 @@
     },
     {
       "room": "Primary Bedroom",
-      "status": "in_progress",
+      "status": "done",
       "claimed_at": "2026-09-29T18:02:44Z",
-      "note": "scheduled operator cycle 2026-09-29, PM slot; no diagnosis layer yet (0/6 zones), authoring it first then the deck"
+      "note": "scheduled operator cycle 2026-09-29, PM slot; no diagnosis layer yet (0/6 zones), authoring it first then the deck",
+      "released_at": "2026-09-29T18:31:58Z"
     }
   ]
 }

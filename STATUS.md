@@ -42,7 +42,9 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-09-29, scheduled operator cycle: claiming Primary Bedroom for B9 (room deck). No diagnosis layer yet (0/6 zones diagnosed in `mcp/content.json`); authoring the diagnosis layer for all 6 zones first (Bed and Bedding Zone, Nightstand Left, Nightstand Right, Dresser Top, Dresser Drawers, Primary Closet), grounded in the room's own real text, then the cardtext/deck-page generators, following the Nursery/Kids Bedroom reference pattern. Delete this line once merged.
+None currently open. Primary Bedroom's B9 claim (diagnosis layer plus
+`site/primary-bedroom-deck.html`) shipped and was released via
+`ops/b9_claims.py --release`; see `ops/b9-claims.json`.
 
 # 1. Status Metadata
 
