@@ -149,8 +149,9 @@ this file exists for. See `gate_risks_register_current` in
 `ops/preflight.py`, added this cycle, which fails if this date goes more
 than 31 days stale again.
 
-Thirteen risks are recorded. Six are open, none are mitigating, seven are
-closed. Three open risks are `CRITICAL` (RISK-0007, RISK-0011, RISK-0013).
+Fourteen risks are recorded. Seven are open, none are mitigating, seven
+are closed. Three open risks are `CRITICAL` (RISK-0007, RISK-0011,
+RISK-0013).
 None have been formally accepted by the owner, so none are `ACCEPTED` yet.
 
 | ID | Title | Severity | Status |
@@ -168,6 +169,7 @@ None have been formally accepted by the owner, so none are `ACCEPTED` yet.
 | RISK-0011 | Product masters live outside the repository | CRITICAL | OPEN |
 | RISK-0012 | No audience is being retained | HIGH | OPEN |
 | RISK-0013 | No stranger has ever converted; discovery is the constraint | CRITICAL | OPEN |
+| RISK-0014 | Two autonomous sessions share one working directory | HIGH | OPEN |
 
 ---
 
@@ -1167,6 +1169,69 @@ two more weeks. This register's own Final Principle (section 24) asks
 whether the cause of failure, if this business fails, is already written
 here. As of this review, the honest answer points to this entry, not
 RISK-0001.
+
+---
+
+# 20c. RISK-0014 Two Autonomous Sessions Share One Working Directory
+
+```yaml
+id: RISK-0014
+title: Two autonomous sessions share one working directory
+status: OPEN
+severity: HIGH
+likelihood: OCCURRING
+owner: devops-sre
+evidence:
+  - 2026-09-29: six tests failed in a full-suite run and every one of them
+    passed when re-run individually minutes later
+  - 2026-09-29: ops/build_pantry_deck_page.py died with OSError 22 writing
+    site/guest-bedroom-deck.html while the other session was writing it
+  - 2026-09-29: both sessions authored the Primary Bedroom diagnosis layer in
+    parallel; one full room of work was discarded. Sixth such collision.
+impact: >
+  Local validation cannot be trusted, which is this repository's most
+  expensive defect class. A green suite proves nothing if another process
+  rewrote the files under it, and a red one wastes a cycle chasing a fault
+  that does not exist. It is strictly worse than the duplicated-work
+  collisions STATUS.md section 0 already governs, because those cost effort
+  while this one costs confidence in the gates themselves. It also silently
+  destroys uncommitted work: a checkout or clean by one session removes files
+  the other has created and not yet committed, because a clean by one is
+  indiscriminate about whose work it removes.
+mitigation: >
+  Short term, already in force: claim before starting (STATUS.md section 0
+  and ops/b9-claims.json), commit early to shorten the exposed window, and
+  treat any failure from a full local run as unproven until re-run in
+  isolation. Structural fix: give each concurrent session its own git
+  worktree (git worktree add), so only the push path is shared and the
+  filesystem is not. That is a one-command change per session and requires no
+  repository change.
+closing_condition: >
+  Either concurrent sessions run in separate worktrees, or only one session
+  runs at a time. Observable as: no cycle reports a test that fails in a
+  suite and passes in isolation, and no cycle reports a file disappearing.
+review: next cycle that runs concurrently with another
+```
+
+## Why this is not simply "be careful"
+
+Every existing mitigation in this repository for concurrent sessions is about
+**intent**: claim the room, read the file first, do not duplicate the gate.
+Those work, when they are followed, because the collision is between two
+plans.
+
+This risk is between two **processes**, and no amount of care prevents it.
+The generator chain rewrites 200-odd files over several minutes; the test
+suite reads them for twenty. There is no way to be careful enough to make
+those two safe to interleave, and the failure is silent in the worst
+direction: the run goes green or red for reasons unrelated to the change
+being validated.
+
+The fix is cheap and it is not a repository change, which is why this is
+recorded as a risk rather than a backlog item: `git worktree add` gives each
+session its own checkout of the same repository, sharing history and the
+remote but not the filesystem. Nothing else about how the sessions work needs
+to change.
 
 ---
 
