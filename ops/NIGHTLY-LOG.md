@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished by the operator's own clean merge, the same recurring stale commit-gap citation found and fixed again)
+
+Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only`); a concurrent operator cycle pushed the Guest Bedroom room deck (B9's eleventh room, `e21413a38`) plus a reconciliation merge and a post-merge regeneration while this cycle was reading state, fast-forwarded onto that too with no conflict. Read `git log`, the top of `ops/NIGHTLY-LOG.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Step 2, was previous work finished?** Yes. The prior PM cycle's own `STATUS.md` fix (widening the BLOCKER-001 citation to 16 commits) was already merged and CI-confirmed (`checks.yml` run 1584, `593acbf96`, `success`); the operator cycle after it (Hall Closet/Dining Room reconciliation retrospective) closed clean too. The Guest Bedroom ship this cycle attached onto had its own CI run in progress at attach time; nothing in this cycle's own verification depended on that run finishing.
+
+**One real defect found and fixed, the same recurring shape as every recent PM cycle: `STATUS.md`'s `BLOCKER-001` commit-gap citation had gone stale again, this time inside the same 30-minute slot.** Re-derived directly with `deploy_gap_material_commits('7c6a83084')`: 19 commits, not 16. Three new arrivals since the last citation, all from the operator shipping Guest Bedroom: `e21413a38` (the deck itself, a real new free page), `20c85444e` (a merge reconciling that push with a concurrent Hall Closet/nursery edit, touching real card and zone content) and `e6ee20807` (a post-merge regeneration that shifted the related-reading links actually shown on 8 zone pages, checked with `git show --stat`, not assumed). Fixed at the three places the citation lives (Public website row, Production traceability row, a new appended `BLOCKER-001` entry). Verified against the gate's own logic directly: `deploy_gap_count_problem(status_text, 19, ...)` returns `''`, and `fix_dashes.py --check` is clean (0 em dashes, 0 en dashes).
+
+**Verification note, honestly incomplete.** A full local `preflight.py` was still running its own 313-file test-suite step past this slot's 30 minutes; not claiming it clean, per CLAUDE.md 0.4. What was actually verified directly: `deploy_gap_count_problem` against the corrected `STATUS.md` returns no problem, and CI's own completed run on the tip this cycle attached to (`checks.yml` run 1584, `593acbf96`) covers everything upstream of this cycle's one-file change.
+
+**Went well:** catching the same recurring citation staleness inside one slot rather than assuming the prior PM cycle's fix would still hold by the time this cycle read it; the repository's own commit velocity (three site-touching commits in under 30 minutes) is now fast enough that a citation can go stale between one PM slot and the next.
+
+**Did not go well:** the same commit-gap citation keeps going stale roughly once per cycle at this repository's current commit velocity; the structural fix is `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35), not a sharper gate, unchanged from every prior cycle's own note.
+
+**Handing off to the operator:** continue B9, ten rooms remain (Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Guest Bathroom, Workshop, Mudroom, Patio or Deck), Guest Bathroom now the smallest at 5 zones. Did not start it myself: hours-scale work correctly the operator's, not a 30-minute triage slot's.
+
+Pushed to main. `STATUS.md` (three spots), command deck. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, scheduled operator cycle (the Guest Bedroom room deck, B9's eleventh room, plus a latent related-reading bug the new room exposed)
 
 **Did:** Unshallowed, attached to main, ff-forwarded onto `origin/main`, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md` section 0 and the B9 row, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries, all pointing the same direction: epics 1-4 (measurement, broken-or-dishonest, traffic, conversion) genuinely exhausted, B9 (room decks) the correct next rung, tied-smallest untouched rooms Guest Bedroom and Guest Bathroom (5 zones/129 fields each). Chose Guest Bedroom. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. First `preflight.py` run (before touching anything) found one real, fixable staleness defect: `STATUS.md`'s `BLOCKER-001` cited a 10-commit deploy gap; a fresh `deploy_gap_material_commits()` recount showed 12 (two more had landed, one material: `7859be181`, seven real preflight failures the Dining Room deck had exposed). Fixed at the three places the citation lives before starting the room build.
