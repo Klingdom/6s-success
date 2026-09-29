@@ -642,6 +642,49 @@ def fallback_wire(apply_it: bool) -> int:
         print(f"  fallback: {verb} {len(pulled)} hero(es) from a page that "
               f"had one, no longer approved: {sorted(pulled)}")
     print(f"  fallback: restored {wired}, already present {skipped}")
+
+    # A ZONE WITH NO APPROVED HERO AT ALL (a rejected image, or none
+    # generated yet) gets the same typographic panel main()'s own PULLED
+    # sweep already writes, so it stays "no photo yet, here is the text"
+    # rather than a bare hole. That sweep only ever runs in main()'s
+    # have>0 branch, which needs real source PNGs under build/heroes/
+    # this sandbox, like every checkout but Phil's own machine, never has
+    # (`have` is 0 here every run). Found 2026-09-29: a standalone rerun
+    # of ops/build_zone_pages.py in exactly this sandbox regenerated
+    # home-office-the-file-storage.html and home-office-the-printer-and-
+    # scanning-station.html from their template, which does not itself
+    # carry the panel, silently dropping it from both and shipping them
+    # with no image at all, caught by ops/tests/test_zone_hero_panel.py.
+    # Restoring it needs no source image, only the same corpus meta and
+    # panel_figure() the have>0 branch already calls, so it belongs here
+    # too rather than staying stranded behind a branch this environment
+    # can never reach.
+    panelled = 0
+    for page in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        fname = os.path.basename(page)
+        if fname in entries:
+            continue  # handled by the approved-hero loop above
+        s = io.open(page, encoding="utf-8").read()
+        if 'id="zone-hero"' in s:
+            continue  # already carries a hero or a panel
+        meta = _corpus_meta().get(fname)
+        if not meta:
+            continue
+        panel = panel_figure(meta["room"], meta["zone"],
+                             meta["done_looks_like"])
+        if not panel:
+            continue
+        m2 = re.search(HERO_SLOT, s, re.S)
+        if not m2:
+            continue
+        if apply_it:
+            io.open(page, "w", encoding="utf-8", newline="").write(
+                s[:m2.end(1)] + NL + panel + NL + s[m2.end(1):])
+        panelled += 1
+    if panelled:
+        verb = "added" if apply_it else "would add"
+        print(f"  fallback: {verb} the typographic panel to {panelled} "
+              f"unapproved-hero page(s) with none, needing no source image")
     return wired
 
 

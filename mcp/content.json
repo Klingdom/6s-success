@@ -1949,6 +1949,65 @@
        "A shelf board that has started to bow in the middle under the weight sitting on it.",
        "A damp patch or a musty note at the back wall, or spots of rust on a wire shelf, telling you moisture is coming from behind."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A bag you opened for one recipe two summers ago is still sitting up there, unlabeled, and you can't say when it was opened.",
+        "branches": [
+         {
+          "answer": "It's not really clutter, it's a recipe I still mean to make again",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nothing gets written on the bag the day it's opened, so there's no way to judge how old it really is",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "I've walked past that shelf so many times it doesn't register as a problem anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Two open bags of the same rice or oats turn up on the shelf at once, one pushed behind the other.",
+        "branches": [
+         {
+          "answer": "New stock gets unpacked straight to the front instead of behind the open bag",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "I buy a replacement before I actually check whether the open one is empty yet",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule everyone in the house follows for loading new stock in behind",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A glass grain jar sits above eye level on this shelf instead of at chest height where it belongs.",
+        "branches": [
+         {
+          "answer": "There wasn't a clear place made for it at chest height so it ended up wherever there was room",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Reaching the top shelf safely means keeping a step stool in the pantry, and it's not there",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody in the house is the one who checks this shelf for what's stored above eye level",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Bring down every bag and box on this shelf, open anything already opened, and smell the flour and the oats: stale, webbed, or bought for a recipe you have not cooked in months leaves today.",
+       "victory": "Every opened bag is sealed in a labeled container or gone, and pasta, rice and oats stand together as one block."
+      }
      }
     },
     {
@@ -2026,6 +2085,65 @@
        "An ant trail or a single scout following a sugary edge, telling you a sticky spot got missed last time.",
        "A shelf board bowing under a dense row of cans, or a label peeling with damp behind it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A can with a dented seam or a jar with a popped lid is still sitting on the shelf instead of already in the bin.",
+        "branches": [
+         {
+          "answer": "I wasn't sure whether a small dent or a slightly domed lid really counts as spoiled",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's tucked behind a row of other cans where nobody actually looks at it",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody has checked this shelf for damaged cans in a long time; it's not really anyone's job",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Four jars of the same pasta sauce turn up when you finally take everything off the shelf.",
+        "branches": [
+         {
+          "answer": "I keep buying it because I genuinely can't tell from a glance how many are already here",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Four of one thing is just how much ends up here between big shops, nobody's ever called it too many",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Whoever unpacks the shopping doesn't check the shelf before adding another one",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "A shelf edge feels tacky where a honey jar or sauce lid has wept, and you only notice because of an ant.",
+        "branches": [
+         {
+          "answer": "Reaching the sticky ring under that jar costs more effort than the rest of the shelf, so it gets skipped",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "The sticky ring was there so long I stopped seeing it as something to fix",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nothing tells you a jar has started weeping until the ants already have",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every can and jar off the shelf, turn each one to find the date, and put anything dented, rusted, bulging or domed straight into the bin rather than back on the shelf.",
+       "victory": "No dented, rusted, domed or bulging can or jar remains on the shelf, and every label faces out."
+      }
      }
     },
     {
@@ -2104,6 +2222,65 @@
        "A hairline crack in a plastic canister, or a cutter or tip showing the first orange bloom of rust.",
        "An allergen container sharing a scoop with the open shelf, a cross-contact risk worth calling out on the spot."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Baking powder or yeast has been sitting in the bin for a long time and nobody has actually tested whether it still works.",
+        "branches": [
+         {
+          "answer": "There's no reminder built into anything that prompts a test before a bake",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The tin has no date on the lid, so there's no way to judge how old it really is",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "I keep meaning to test it and use it up before I replace it, and never quite get to it",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The nut flour or sesame container shares a scoop with everything else on this shelf.",
+        "branches": [
+         {
+          "answer": "Nobody ever agreed this container needs its own dedicated scoop",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It sits in the middle of the row instead of at the end where a hand would notice it's different",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Whoever's baking in a hurry just grabs whatever scoop is closest",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "The lift-out baking bin comes back short a scoop, or the vanilla is missing, right when you're about to start a bake.",
+        "branches": [
+         {
+          "answer": "Somebody borrowed from this bin for something that wasn't a bake, and it never got told to the person who baked",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no moment that resets the bin, it only gets noticed when a bake is already underway",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The bin holds more loose extras than a single bake actually needs, so something always drifts out of it",
+          "cause": "KC-001"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Test every leavener rather than guessing: a spoon of baking powder in hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with any hardened brown sugar or greyed cocoa.",
+       "victory": "Every leavener in the bin has been tested this week, and nothing dead or expired remains."
+      }
      }
     },
     {
@@ -2182,6 +2359,65 @@
        "The shelving unit rocking or its wall anchor working loose where a child has been climbing to the higher shelf.",
        "A sticky sugary drip at the back of the bin that a scout ant has already found."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The open snack bin sits below the marked fill line most mornings, well before the week is over.",
+        "branches": [
+         {
+          "answer": "Nobody actually refills it to the line the evening before, it just gets remembered some nights and not others",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no clear rule for who tops it up when the lunchboxes come home",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Filling it happens whenever someone notices, not at a fixed moment in the evening",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "A container comes back from the shelf with no matching lid, or a lid with nothing to close.",
+        "branches": [
+         {
+          "answer": "Lids and containers get put away separately instead of paired the moment they're washed",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "A stray lid or container has been sitting loose in the cupboard for a while and nobody's dealt with it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been an orphaned lid for so long it just blends into the shelf now",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A hard sweet, a whole nut or a small round cheese sits in the open bin a two-year-old can reach.",
+        "branches": [
+         {
+          "answer": "The bin's contents were chosen for the oldest child in the house, not the youngest who can actually reach it",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Nobody re-checked the bin's contents after a younger child started reaching the shelf",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's a choking hazard at child height, which is a safety problem that outranks how convenient it is to grab",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Match every lid to a container and bin the orphans in both directions, the lidless tubs and the lids for tubs that died. Pull any snack boxes with only a couple of bars rattling around and combine them.",
+       "victory": "Every reusable container has its own lid sitting on it, and the open bin is filled to its marked line."
+      }
      }
     },
     {
@@ -2255,6 +2491,65 @@
        "A sack that has started to bulge, split, or leak its contents onto the shelf below.",
        "A case crushed or bowing under the weight above it, or rust creeping up a metal shelf leg near the damp floor."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A second sack of rice or a twelve-pack nobody liked turns up when you finally clear the back of this zone.",
+        "branches": [
+         {
+          "answer": "I bought it for the unit price without checking whether I'd actually used up the last one",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "There's no written maximum for this item, so nothing stopped the extra one coming home",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's a good deal I'm not ready to admit didn't work out, so it stays instead of moving on",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A case near the bottom of a stack shows a soft, damp corner instead of the crisp cardboard everything else has.",
+        "branches": [
+         {
+          "answer": "Nobody has actually lifted and checked the underside of the bottom case in a while",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Checking underneath a stacked case means unstacking it first, so it doesn't happen often",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "That corner is against an outside wall that sweats, and nothing routes stock away from it",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "A case is stacked in front of another case of the same thing, so the older one at the back never gets pulled first.",
+        "branches": [
+         {
+          "answer": "There's no arrangement that keeps this one row deep, so a new case just goes wherever there's floor space",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The gap left by the front case emptying isn't the trigger for pulling the one behind it forward, it just gets refilled from the front again",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "I can't see behind the front row to know an older case is even back there",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open up the back of this zone and meet what you forgot you owned: any item you hold more than one genuine spare of moves forward into the working shelves this month or it leaves.",
+       "victory": "Every remaining pack carries its arrival month, and nothing sits stacked in front of an older case of the same thing."
+      }
      }
     }
    ]
