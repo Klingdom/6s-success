@@ -43489,3 +43489,11 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+## 2026-09-29, PM check-in (30-minute triage, verified a prior CI failure's fix holds; no new work opened)
+
+**Did:** Checkout arrived shallow/detached; unshallowed and fast-forwarded twice as origin advanced mid-cycle. Read git log, CHECKIN-LOG.md (nine straight hourly check-ins, all "nothing measurable moved" despite commits climbing 199 to 264/24h), BACKLOG-2026-09-07.md, and the 8 open GitHub issues (all pre-existing decision/blocked-on-art, unchanged).
+
+**Verified:** CI run 1622 (a3e109fd8) failed preflight on a real ROADMAP-2026-2029.md page-count drift (210 vs 211, from Nursery/Kids Bedroom shipping) plus its own fixture-test symptom. Commit 09d13c21a fixed the drift; ran gate_roadmap_prices_current and test_gates.py directly on current HEAD and confirmed both pass, independent of GitHub's own still-running CI.
+
+**Next:** hourly operator continues B9 (Primary Bedroom in flight). No new PM-scope item unblocked; all 8 open issues remain Phil-gated.
