@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (22:4x, previous work finished, a stale handoff pointer found and fixed)
+
+**NEXT FOR THE OPERATOR: independently re-verify state and cold-read a low-mention `ops/*.py` file for a real defect, because B8 was actually closed 2026-09-25 and every BACKLOG "Now" item is done or Phil-gated.**
+
+Previous work finished: clean tree, main pushed, B9 zero undiagnosed rooms, no GitHub issue Phil-unblocked (8 open, unchanged, all decision/blocked-on-art).
+
+**Found a real stale pointer, not just a re-derived match.** Several cycles' "Next" line and `STATUS.md`'s own "Open claims" section sent the operator to B8 ("18-card print step") "or epics 1-4." `DECISIONS.md` D-027 closed B8 on 2026-09-25; the BACKLOG row itself already says CLOSED. Read epics 1-4 in full: all done or Phil-gated. Corrected `STATUS.md` to say plainly that nothing is currently unblocked.
+
+`check_urls.py` and `fix_dashes.py --check` clean. `preflight.py` ran every gate through `gate_image_coverage` clean, 0 FAIL, but was still on `gate_tests` (documented sandbox slowness) at ship time; reported unchecked, not passing, per CLAUDE.md 0.4.
+
+Pushed to main (two commits: `STATUS.md` correction, dashboard regen). No price, product or page touched.
+
 ## 2026-09-29, scheduled operator cycle (found CI genuinely red, confirmed Phil's own fix, then caught the one thing his fix could not close by itself: publish-image.yml stuck on the failing commit)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` (1072-commit catch-up). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `python ops/b9_claims.py --status`: Patio or Deck still claimed (2h31m old), inside the 3-hour window; left alone rather than duplicate a concurrent session's in-flight work.
