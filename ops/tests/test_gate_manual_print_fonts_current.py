@@ -32,6 +32,9 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _worktree import changed_files, is_changed                 # noqa: E402,F401
+
 import preflight                                               # noqa: E402
 
 OUT_REL = "content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html"
@@ -125,9 +128,10 @@ def main() -> int:
     r, w = _run_gate(tmp)
     if r:
         fails.append("a genuinely current print file was wrongly failed: %r" % (r,))
-    if _git(tmp, "status", "--porcelain").stdout.strip():
+    dirty = changed_files(tmp)
+    if dirty:
         fails.append("gate left the tree dirty on a clean run: %r"
-                     % (_git(tmp, "status", "--porcelain").stdout,))
+                     % (dirty,))
 
     # 2. The real regression shape: the font file changes (a re-cut face)
     #    after the print file was last committed, so the two now disagree.

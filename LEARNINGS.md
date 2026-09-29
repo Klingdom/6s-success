@@ -323,8 +323,10 @@ Maintain:
 | LRN-0018 | Crawlers fetch by sitemap, not by depth, so content quality cannot be measured in a server log | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0019 | The $29 Manual's body text is not re-derived from the corpus by anything in ops/, so a corpus fix never reaches the product | BUILD / PRODUCT | SUPPORTED | HIGH |
 | LRN-0020 | When a gate has no available action, the format is usually the thing to change, not the blocker | MEDIA / BUILD | SUPPORTED | HIGH |
-| LRN-0021 | A fixed threshold is a dated assumption about corpus size, and it fails as a reward for growth | BUILD / QUALITY | SUPPORTED | HIGH |
+| LRN-0022 | A fixed threshold is a dated assumption about corpus size, and it fails as a reward for growth | BUILD / QUALITY | SUPPORTED | HIGH |
 | LRN-0021 | nohup and disown do not protect a background job from a process-group signal; only a new session (setsid) does | ENGINEERING / RELIABILITY | SUPPORTED | HIGH |
+| LRN-0023 | Text shared by every room must not assume one room, and no equality check can find the assumption | CONTENT / QUALITY | SUPPORTED | HIGH |
+| LRN-0024 | Read the line ending from what git stores, not from the working copy | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -592,7 +594,7 @@ should be checked the same way: launch it, kill the launcher with the same
 signal shape the real constraint uses, and look at `ps`, not at the wrapper's
 own exit code, to see what actually happened to the child.
 
-#### LRN-0021: A fixed threshold is a dated assumption about corpus size, and it fails as a reward for growth
+#### LRN-0022: A fixed threshold is a dated assumption about corpus size, and it fails as a reward for growth
 
 **Status:** SUPPORTED
 **Confidence:** HIGH (three instances in five days, same shape each time)
@@ -627,6 +629,110 @@ harmless days.
 Then decide honestly which kind of number it is: some really are fixed by
 physics or by a supplier's price list, and re-expressing those as a ratio would
 be the same error pointing the other way.
+
+#### LRN-0023: Text shared by every room must not assume one room, and no equality check can find the assumption
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (one instance, but it had shipped to 100 pages and every existing check passed)
+**Domain:** CONTENT / QUALITY
+**Measured:** 2026-09-29
+
+**Observation.** KC-008 MISSING STANDARD, one of the 17 root causes the whole
+product is built on, carried this confirmation test:
+
+> Ask two people what this surface should look like at bedtime.
+
+It rendered on 100 pages: 84 zone pages and every one of the 16 deck pages.
+Among them were the garage, the pantry, the workshop and the kitchen. A
+household standing in a garage was being asked to picture a surface at
+bedtime.
+
+**Evidence.** Found by reading one rendered page out loud while checking a
+new room's work, not by any check. Confirmed with `grep -rl` across `site/`:
+100 files, of which 99 are rooms nobody stands in at bedtime.
+
+**Why nothing caught it.** Every check that existed compared copies against
+each other. `ops/root_causes.py` is the single shared vocabulary, 15 of the
+16 deck sources are generated from it, and all 16 decks agreed with it and
+with each other. The text was perfectly consistent everywhere and wrong
+everywhere, so consistency checking was structurally incapable of finding
+it. This is the same defect shape as LRN-0017 (cause IDs assigned from
+memory): correct structure, wrong meaning, and only reading it against its
+actual use finds it.
+
+**A second finding from the same pass, which was NOT a defect.**
+`ops/root_causes.py` claimed its first 12 causes were "copied
+character-for-character" from the Kitchen deck so the vocabulary "cannot
+silently diverge from the cards already in print". Checked: it was false for
+7 of 12, and correctly so. The Kitchen pilot speaks in a kitchen voice
+("every time you cook", "the everyday plates", "load the dishwasher
+together"); the shared model has to speak to twenty rooms. The claim was
+wrong, the code was right. A comment asserting an invariant that nothing
+enforces is a claim with a date on it, and this one had expired.
+
+**Implication.** Two different rules are needed, and only one of them is an
+equality rule:
+
+1. Generated copies must match their generator (equality, mechanical).
+2. Text that is shared across contexts must not name one context
+   (vocabulary, semantic).
+
+`gate_cause_vocabulary` in `ops/preflight.py` now holds both, exempting the
+Kitchen pilot by name from rule 1's text half while still holding its ids,
+titles and six-S entry points. `ops/tests/test_cause_vocabulary.py` proves
+it, including a case that restores the exact 2026-09-29 wording and asserts
+the real tree fails on it.
+
+**Next action.** When promoting any text into a shared model, read it in the
+context furthest from the one it was drafted in. For this product that means:
+draft it in a bedroom, read it in the garage.
+
+#### LRN-0024: Read the line ending from what git stores, not from the working copy
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (one instance, caught before commit, but it had already produced 1,300 phantom line changes across five files)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-09-29
+
+**Observation.** This repository's established in-place edit pattern is:
+
+```python
+raw = io.open(FP, encoding="utf-8", newline="").read()
+crlf = "\r\n" in raw
+...
+io.open(FP, "w", encoding="utf-8", newline="").write(out)
+```
+
+It reads the newline convention off the **working copy**. `core.autocrlf` is
+`true` here, so git rewrites line endings on checkout: a file stored LF in
+the repository arrives in the worktree as CRLF. Detecting CRLF there and
+writing it back produced a file that differed from the index on **every
+line**. Five test files showed `1,322 insertions, 1,305 deletions` for what
+were, in truth, five-line edits.
+
+**Evidence.** `git show HEAD:<file> | od -c` showed `\n`; the worktree copy
+showed `\r\n`. Converting the file back to LF collapsed the diff from
+`240/236` to `6/2`, exactly the intended edit.
+
+**Why it matters more than tidiness.** A whole-file rewrite destroys `git
+blame` for the file, buries the real change inside thousands of noise lines
+where no reviewer will find it, and makes a later conflict unresolvable by
+inspection. It is also invisible in the only place people look: the edit
+itself was correct, the tests passed, and `--stat` was the only signal.
+
+**Why the pattern is not simply wrong.** It is right for
+`content/manual/source/content.json`, which genuinely is stored CRLF, and
+this session used it correctly there all day. The rule cannot be "always
+LF"; it has to be "ask the thing that decides".
+
+**Implication.** When rewriting a tracked file in place, take the convention
+from `git show HEAD:<path>`, not from the worktree. When that is awkward,
+check `git diff --numstat` afterwards: a file whose changed-line count
+approaches its total line count has been rewritten, not edited, and that is
+true whatever the cause.
+
+**Next action.** Check `--numstat`, not just `--stat`, before every commit
+that touched a tracked text file with a script.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
@@ -1338,3 +1444,4 @@ Every meaningful cycle should leave the system with one of three outcomes:
 If autonomous work repeatedly produces code and content without producing better knowledge or better customer outcomes, the system is not continuously improving.
 
 `LEARNINGS.md` is the memory that turns repeated execution into compounding intelligence.
+

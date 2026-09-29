@@ -19908,6 +19908,156 @@ def gate_srt_matches_film() -> None:
              % (len(out_of_sync), "; ".join(out_of_sync[:4])))
 
 
+# One room's vocabulary, found inside the SHARED cause model, is the defect
+# this list names. These are words that can only be true of a single room, so
+# a generic confirmation test containing one is being read by every household
+# standing in a different room. "bedtime" shipped on 100 pages, including
+# every garage, pantry and kitchen page, before anybody read one out loud.
+ROOM_SPECIFIC_WORDS = (
+    "bedtime", "dishwasher", "kitchen", "cook", "plates", "shower",
+    "garage", "pantry", "laundry", "nightstand", "mattress", "toilet",
+    "countertop", "driveway",
+)
+
+# The Kitchen deck is the pilot the whole vocabulary was extracted FROM, and
+# its cards are deliberately written in a kitchen voice ("every time you
+# cook", "load the dishwasher together"). That is not drift, so it is named
+# here rather than silently tolerated, and its ids, titles and six-S entry
+# points are still held to the shared model below.
+CAUSE_VOICE_EXEMPT_DECKS = ("kitchen-deck.json",)
+
+
+def check_cause_vocabulary(cards_by_deck, causes) -> list:
+    """Pure check: every deck's ROOT CAUSE CARDs against the shared model.
+
+    WHY THIS EXISTS
+    ---------------
+    ops/root_causes.py's own docstring claimed its first 12 causes were
+    "copied character-for-character" from ops/cardtext/kitchen-deck.json so
+    the frozen vocabulary "cannot silently diverge from the cards already in
+    print". Nothing enforced that claim, and on 2026-09-29 it was false for
+    7 of the 12: the Kitchen cards say "every time you cook", "the everyday
+    plates", "load the dishwasher together", and the shared model had
+    generalised all three. That divergence is correct and wanted, so the
+    invariant this gate holds is the one that is actually true:
+
+      - every ROOT CAUSE CARD id exists in the shared model, because a card
+        id with no model entry renders a cause with no confirmation test;
+      - its title and six-S entry point match the model exactly, because
+        those two are what the deck, the app and the article agree on;
+      - every deck EXCEPT the named pilot carries the model's confirmation
+        text verbatim, because those 15 decks were generated from the model
+        and a later edit to the model would otherwise leave them stale;
+      - no confirmation text in the SHARED model names one room.
+
+    That last rule is the one that would have caught the bug that prompted
+    this gate. KC-008 read "Ask two people what this surface should look
+    like at bedtime", and it shipped on 100 pages: every deck page and every
+    zone page that reaches MISSING STANDARD, in twenty rooms, most of which
+    nobody stands in at bedtime. Equality checks could never find it,
+    because all 16 decks agreed with each other and with the model. Only a
+    rule about what the shared text is allowed to assume could.
+    """
+    problems = []
+    by_id = {c["id"]: c for c in causes}
+
+    for cause in causes:
+        text = (cause.get("confirm_30s") or "").lower()
+        for word in ROOM_SPECIFIC_WORDS:
+            if word in text:
+                problems.append(
+                    "%s's confirmation test says %r, but this text is shared "
+                    "by every room; a household standing in another one is "
+                    "being asked about a room they are not in"
+                    % (cause["id"], word))
+
+    for deck, cards in sorted(cards_by_deck.items()):
+        exempt = deck in CAUSE_VOICE_EXEMPT_DECKS
+        for card in cards:
+            cid = card.get("id")
+            model = by_id.get(cid)
+            if model is None:
+                problems.append(
+                    "%s: root cause card %r is not in the shared model, so it "
+                    "renders with no confirmation test anywhere else"
+                    % (deck, cid))
+                continue
+            if (card.get("title") or "").strip() != model["name"].strip():
+                problems.append(
+                    "%s: %s is titled %r on the card and %r in the shared "
+                    "model; one cause cannot have two names"
+                    % (deck, cid, card.get("title"), model["name"]))
+            if (card.get("six_s") or "").strip() != model["six_s"].strip():
+                problems.append(
+                    "%s: %s enters at %r on the card and %r in the shared "
+                    "model, so the card and the site send the reader to two "
+                    "different passes"
+                    % (deck, cid, card.get("six_s"), model["six_s"]))
+            if exempt:
+                continue
+            if ((card.get("confirm_in_30_seconds") or "").strip()
+                    != (model.get("confirm_30s") or "").strip()):
+                problems.append(
+                    "%s: %s's confirmation test has drifted from the shared "
+                    "model. This deck was generated from the model, so the "
+                    "difference is a stale copy, not a local voice"
+                    % (deck, cid))
+    return problems
+
+
+def _root_cause_cards(doc) -> list:
+    """Every ROOT CAUSE CARD in a deck document, at whatever depth."""
+    found = []
+    stack = [doc]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, dict):
+            if node.get("type") == "ROOT CAUSE CARD":
+                found.append(node)
+            stack.extend(node.values())
+        elif isinstance(node, list):
+            stack.extend(node)
+    return found
+
+
+def gate_cause_vocabulary() -> None:
+    """One cause vocabulary across 16 decks, 114 zone pages and the articles."""
+    import glob as _glob
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        from root_causes import CAUSES
+    except Exception as exc:                                   # noqa: BLE001
+        warn("cause-vocabulary",
+             "ops/root_causes.py did not import (%s), so the shared cause "
+             "vocabulary was NOT checked. Unchecked, not clean." % exc)
+        return
+    cards_by_deck = {}
+    unreadable = []
+    for fp in sorted(_glob.glob(os.path.join(ROOT, "ops", "cardtext",
+                                             "*-deck.json"))):
+        name = os.path.basename(fp)
+        try:
+            doc = json.load(io.open(fp, encoding="utf-8"))
+        except Exception as exc:                               # noqa: BLE001
+            unreadable.append("%s (%s)" % (name, exc))
+            continue
+        cards_by_deck[name] = _root_cause_cards(doc)
+    if unreadable:
+        warn("cause-vocabulary",
+             "%d deck source(s) did not parse, so their cause cards were NOT "
+             "checked: %s" % (len(unreadable), ", ".join(unreadable[:3])))
+    if not cards_by_deck:
+        warn("cause-vocabulary",
+             "no deck sources found under ops/cardtext/, so nothing was "
+             "checked. Unchecked, not clean.")
+        return
+    problems = check_cause_vocabulary(cards_by_deck, CAUSES)
+    if problems:
+        fail("cause-vocabulary",
+             "%d fault(s) in the shared root-cause vocabulary: %s"
+             % (len(problems), "; ".join(problems[:4])))
+
+
 def gate_deck_print_tiers() -> None:
     """Every built deck's card count against the 18-card print step."""
     import glob as _glob
@@ -25103,6 +25253,7 @@ def main() -> int:
     run_gate(gate_root_cause_articles_current)
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_branch_shape)
+    run_gate(gate_cause_vocabulary)
     run_gate(gate_deck_print_tiers)
     run_gate(gate_srt_matches_film)
     run_gate(gate_kitchen_deck_current)

@@ -5159,7 +5159,21 @@
        "action": "Clear the floor strip between the bed and the door of anything sitting on it, and move any headboard-shelf item that is not the lamp off the shelf.",
        "victory": "The floor strip between the bed and the door is bare, and the headboard shelf above the pillows holds only the lamp."
       }
-     }
+     },
+     "capacity": {
+      "rule": "Two complete sheet sets for this bed, each folded inside its own pillowcase, plus two sleeping pillows per person and one throw. Under the bed holds nothing, or two labelled flat bins that slide out without lifting the frame.",
+      "does_not_fit": "A third set is honest only if a child or a pet actually sleeps here and you have stripped this bed at two in the morning within the last year. If the linen shelf will not hold two sets per bed in the house without you pressing them down, the shelf is undersized for the household, not badly kept."
+     },
+     "variants": [
+      {
+       "condition": "Two sleepers who disagree about temperature or duvet weight",
+       "guidance": "Two single duvets on one bed beats one shared duvet neither of you likes, and it counts as one set each rather than doubling the linen. Make the bed by laying both flat side by side instead of fighting one duvet square, which also drops the morning job back under two minutes."
+      },
+      {
+       "condition": "A platform bed, a divan with built-in drawers, or a frame too low for bins",
+       "guidance": "There is no under-bed strip to police, so that rule stops applying and the floor rule matters more: whatever used to go under the bed now has to live somewhere else entirely, not stacked against the wall in the walking strip. Built-in drawers count as storage with a fill line, one category each, the same as a chest."
+      }
+     ]
     },
     {
      "zone": "Nightstand Left",
@@ -5292,7 +5306,21 @@
        "action": "Empty the top down to five items and empty the drawer onto the bed: the dead pen, the chargers for phones you do not own, and any book you have not picked up this week go straight to the shelf or the bin.",
        "victory": "The nightstand top holds five things or fewer with no cable crossing it, and the drawer holds only what you would actually reach for tonight."
       }
-     }
+     },
+     "capacity": {
+      "rule": "Five things or fewer on the top: a lamp, one lidded drink or a coaster, one book, and a small dish for glasses. No cable crossing the surface. The drawer runs three divided sections, each with room left in it.",
+      "does_not_fit": "A CPAP, an inhaler, a hearing-aid charger or a glucose monitor counts as one of the five and the book moves to a shelf. The number bends for equipment you need in the night, and not for a second book, a second drink or a pile of post."
+     },
+     "variants": [
+      {
+       "condition": "A medical device, CPAP hose or oxygen line lives on this side",
+       "guidance": "The device wins the top and the power outlet, and everything optional moves off to make room around it. Keep the hose run clear of the walking strip rather than coiled under the bed frame, and stand the drink on the far side of the lamp so a knocked glass cannot reach the device or its power."
+      },
+      {
+       "condition": "No nightstand at all, only a shelf, a stool or a windowsill",
+       "guidance": "The five-thing rule still holds and the drawer rule simply stops applying: with no drawer there is no hidden layer, so anything that would have gone in one needs a home elsewhere in the room rather than stacking on the surface. A shallow wall shelf plus a single small basket does the same job as a drawer."
+      }
+     ]
     },
     {
      "zone": "Nightstand Right",
@@ -5431,7 +5459,21 @@
        "action": "Check the medication dates together right now: cap anything loose, and if a child or a dog gets onto this bed, move it into a closed box. Then run the lamp cord behind the leg on this side to match the other.",
        "victory": "Medication on this side is capped and closed away, and the lamp cord runs behind the leg instead of across the floor."
       }
-     }
+     },
+     "capacity": {
+      "rule": "The same agreed item count on both tops, whatever number the two sleepers settle on, applied equally to each side. Medication lives capped, in date, and closed into one box in the drawer rather than loose.",
+      "does_not_fit": "If the two of you cannot agree a number yet, the safety items are still not up for negotiation: capped medication in a closed box, and no cord across a walking strip. Everything else waits for the conversation rather than being decided by whoever minds most."
+     },
+     "variants": [
+      {
+       "condition": "You sleep alone and this side is effectively spare",
+       "guidance": "The shared-ownership rule stops applying and the risk changes shape: a spare bedside top nobody uses nightly becomes a shelf for post, chargers and anything without a home. Give it one job you can say out loud, even if that job is a lamp and a glass for a guest, and keep the drawer empty rather than useful."
+      },
+      {
+       "condition": "One sleeper works nights or shifts",
+       "guidance": "Whoever is asleep while the other is up sets the rules for the walking strip and the light on that side, because they cannot see a hazard being created while they sleep. Cords off the floor and one low light on this side are not tidiness here, they are the only way one room works for two schedules at once."
+      }
+     ]
     },
     {
      "zone": "Dresser Top",
@@ -5566,7 +5608,21 @@
        "action": "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewellery) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
        "victory": "The dresser top holds only the valet tray and a small dish of fragrance bottles, and nothing loose sits on the bare wood."
       }
-     }
+     },
+     "capacity": {
+      "rule": "One valet tray holding keys, wallet, watch and rings, with nothing sitting outside it, plus one small dish for fragrance set back from the front edge. If it will not sit in the tray, it does not live on the dresser.",
+      "does_not_fit": "If two people empty their pockets here, that is two trays and not one larger one, and the fragrance dish moves off the dresser to make the room. If the tray will not hold one person's daily carry without lifting something out first, the tray is undersized rather than overfull."
+     },
+     "variants": [
+      {
+       "condition": "Two people empty their pockets onto the same dresser",
+       "guidance": "One shared tray turns into a morning hunt through somebody else's things. Give each person their own tray, set apart rather than side by side, so nobody has to lift the other's wallet to find their keys, and let the fragrance and anything decorative leave the top entirely."
+      },
+      {
+       "condition": "The dresser is low, built in, or already anchored to the wall",
+       "guidance": "The tipping risk is genuinely absent, so the anti-tip strap stops being the first job and the front-edge rule matters more instead. A low dresser puts its top at a small child's eye and hand height, which turns fragrance, jewellery and anything with a small removable part into a reaching problem rather than a falling one."
+      }
+     ]
     },
     {
      "zone": "Dresser Drawers",
@@ -5697,7 +5753,21 @@
        "action": "Open the drawer that needs a shove to close and pull one full category's worth of overflow out right now: extra workout tops, a wrong-size stack, or loose mothballs, whichever is worst.",
        "victory": "Every drawer closes without being pressed down, and a hand's width of free space shows in each one."
       }
-     }
+     },
+     "capacity": {
+      "rule": "One category per drawer, folded to stand upright so you read the whole drawer from above, with a hand's width of free space kept as the fill line and the heaviest clothes in the bottom drawers.",
+      "does_not_fit": "If every drawer holds one category, everything is folded upright, and there is still no hand's width free, the chest is genuinely too small for the clothes you wear this season. That is a capacity fact rather than a folding failure, and it is answered by moving one category to a closet shelf, not by pressing the drawer shut."
+     },
+     "variants": [
+      {
+       "condition": "Two people share one chest of drawers",
+       "guidance": "Split it by person first and by category second, whole drawers each, never half a drawer each. A drawer with a line down the middle collapses within a fortnight because neither person can see where their own half ends, and one category per person per drawer is the only split that survives a busy week."
+      },
+      {
+       "condition": "A child, or anyone seated, uses these drawers",
+       "guidance": "The reachable drawers are the middle ones rather than the top, so the categories used most often move down to where the hand arrives without stretching or climbing. That also settles the safety question, because the reason a child climbs a drawer at all is that what they need is above them."
+      }
+     ]
     },
     {
      "zone": "Primary Closet",
@@ -5835,7 +5905,21 @@
        "action": "Walk the rod and pull every wire hanger and plastic dry-cleaner sheath off the garments right now, and bag them for the bin.",
        "victory": "Every hanger on the rod is the same style, and no wire hanger or dry-cleaner sheath remains on anything hanging."
       }
-     }
+     },
+     "capacity": {
+      "rule": "Two fingers of space between hanging items and a bare stretch of rod at one end, one hanger style throughout, grouped by type and then by shade. Shoes in pairs on a rack, bags upright on the shelf, belts on one hook. Once the rod is full it runs one in, one out.",
+      "does_not_fit": "If this season's clothes, honestly culled, still will not leave two fingers between items, the rod is genuinely short for this household. The answer is a second rod at a different height, or the off-season half moved out of the room, and never hanging past the line and calling it full."
+     },
+     "variants": [
+      {
+       "condition": "Two people share one rod",
+       "guidance": "Split the rod into two named stretches with the bare stretch in the middle, so each person can see their own line being crossed rather than arguing about whose things spread. One hanger style still applies to both halves, because mixed hangers are what makes a shared rod impossible to read at a glance."
+      },
+      {
+       "condition": "A reach-in with no fitted rod, or a freestanding rail",
+       "guidance": "A freestanding rail hits a weight limit long before it hits a space limit, so the two-fingers rule becomes a safety line rather than a visibility one. Keep the heaviest coats over the legs rather than the centre span, and if the rail bows at all it is already past its load however much space is left."
+      }
+     ]
     }
    ]
   },

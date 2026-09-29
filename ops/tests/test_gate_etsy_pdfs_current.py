@@ -59,6 +59,9 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _worktree import changed_files, is_changed                 # noqa: E402,F401
+
 import preflight                                               # noqa: E402
 
 try:
@@ -364,9 +367,9 @@ def main() -> int:
     r, w = _run_gate(tmp, browser)
     if r:
         fails.append("a genuinely current listing was wrongly failed: %r" % (r,))
-    status = _git(tmp, "status", "--porcelain").stdout.strip()
-    if status:
-        fails.append("gate left the tree dirty on a clean run: %r" % (status,))
+    dirty = changed_files(tmp)
+    if dirty:
+        fails.append("gate left the tree dirty on a clean run: %r" % (dirty,))
 
     # 2. The real regression shape: the source HTML changes (a rewrite, same
     #    as the real Sustain rewrite) after the PDF was last rendered, so the

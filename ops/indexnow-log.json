@@ -56,14 +56,17 @@
   "https://6s-success.com/home-office-deck.html",
   "https://6s-success.com/how-to-clean-anything.html",
   "https://6s-success.com/how-we-make-money.html",
+  "https://6s-success.com/kids-bedroom-deck.html",
   "https://6s-success.com/kit.html",
   "https://6s-success.com/kitchen-deck.html",
   "https://6s-success.com/laundry-room-deck.html",
   "https://6s-success.com/living-room-deck.html",
   "https://6s-success.com/method.html",
   "https://6s-success.com/mudroom-deck.html",
+  "https://6s-success.com/nursery-deck.html",
   "https://6s-success.com/pantry-deck.html",
   "https://6s-success.com/primary-bathroom-deck.html",
+  "https://6s-success.com/primary-bedroom-deck.html",
   "https://6s-success.com/privacy.html",
   "https://6s-success.com/quest.html",
   "https://6s-success.com/resources.html",
@@ -208,13 +211,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-09-17T07:51:23Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-09-17T13:38:22Z",
    "mode": "changed",
@@ -626,6 +622,13 @@
    "mode": "changed",
    "offered": 30,
    "accepted": 30,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-29T20:29:40Z",
+   "mode": "new",
+   "offered": 3,
+   "accepted": 3,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
