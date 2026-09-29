@@ -128,10 +128,38 @@ PAGES = (
     # (ops/build_primary_bathroom_deck_page.py also mirrors the same card
     # for card), so the same native-<details> probe applies.
     ("primary-bathroom-deck.html", KITCHEN_DECK_PROBE),
-    # Sixth and last room, same generator shape again
+    # Sixth room, same generator shape again
     # (ops/build_garage_deck_page.py also mirrors the same card for card),
     # so the same native-<details> probe applies.
     ("garage-deck.html", KITCHEN_DECK_PROBE),
+    # Seventh room, same generator shape again
+    # (ops/build_stair_landing_deck_page.py also mirrors the same card for
+    # card). This entry was claimed added in ops/NIGHTLY-LOG.md's own
+    # 2026-09-29 Stair Landing entry but never actually landed here; found
+    # and fixed while building the eighth room (Pantry) below.
+    ("stair-landing-deck.html", KITCHEN_DECK_PROBE),
+    # Eighth room, same generator shape again
+    # (ops/build_pantry_deck_page.py also mirrors the same card for card),
+    # so the same native-<details> probe applies.
+    ("pantry-deck.html", KITCHEN_DECK_PROBE),
+    # Ninth room, same generator shape again
+    # (ops/build_hall_closet_deck_page.py also mirrors the same card for
+    # card), so the same native-<details> probe applies.
+    ("hall-closet-deck.html", KITCHEN_DECK_PROBE),
+    # Tenth room (ops/build_dining_room_deck_page.py also mirrors the same
+    # card for card). Never actually added here when that room shipped,
+    # the same "claimed in the log, never landed" gap Stair Landing's own
+    # entry above already found once; found and fixed while wiring in the
+    # eleventh room (Guest Bedroom) below.
+    ("dining-room-deck.html", KITCHEN_DECK_PROBE),
+    # Eleventh room, same generator shape again
+    # (ops/build_guest_bedroom_deck_page.py also mirrors the same card for
+    # card), so the same native-<details> probe applies.
+    ("guest-bedroom-deck.html", KITCHEN_DECK_PROBE),
+    # Twelfth room, same generator shape again
+    # (ops/build_guest_bathroom_deck_page.py also mirrors the same card for
+    # card), so the same native-<details> probe applies.
+    ("guest-bathroom-deck.html", KITCHEN_DECK_PROBE),
 )
 
 
@@ -269,6 +297,18 @@ CHECKERS = {
         o, bad, page="primary-bathroom-deck.html"),
     "garage-deck.html": lambda o, bad: _check_kitchen_deck(
         o, bad, page="garage-deck.html"),
+    "stair-landing-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="stair-landing-deck.html"),
+    "pantry-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="pantry-deck.html"),
+    "hall-closet-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="hall-closet-deck.html"),
+    "dining-room-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="dining-room-deck.html"),
+    "guest-bedroom-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="guest-bedroom-deck.html"),
+    "guest-bathroom-deck.html": lambda o, bad: _check_kitchen_deck(
+        o, bad, page="guest-bathroom-deck.html"),
 }
 
 

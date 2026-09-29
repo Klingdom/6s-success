@@ -92,6 +92,47 @@ def num_word(n: int) -> str:
     return _NUM_WORDS.get(n, str(n))
 
 
+_ONES = {0: "zero", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+         6: "six", 7: "seven", 8: "eight", 9: "nine"}
+_TEENS = {10: "ten", 11: "eleven", 12: "twelve", 13: "thirteen",
+          14: "fourteen", 15: "fifteen", 16: "sixteen", 17: "seventeen",
+          18: "eighteen", 19: "nineteen"}
+_TENS_WORD = {2: "twenty", 3: "thirty", 4: "forty", 5: "fifty", 6: "sixty",
+              7: "seventy", 8: "eighty", 9: "ninety"}
+
+
+def _leading_spoken_word(n: int) -> str:
+    """The first word of a cardinal number as spoken aloud, e.g. 80 ->
+    "eighty", 72 -> "seventy". That first word is all that decides "a"
+    versus "an" (found live 2026-09-28: the Garage deck's own JSON-LD
+    abstract read "A 80 card deck", wrong, because 80 is spoken "eighty").
+    Handles what a card count on this page can realistically be (0-999);
+    past that it falls back to the digit string, which no deck built here
+    produces."""
+    n = abs(n)
+    if n < 10:
+        return _ONES[n]
+    if n < 20:
+        return _TEENS[n]
+    if n < 100:
+        return _TENS_WORD[n // 10]
+    if n < 1000:
+        return _ONES[n // 100]
+    return str(n)
+
+
+def article_for(n: int) -> str:
+    """"A" or "An" for a card count spoken aloud. Every deck page's real
+    count is only known once its corpus is built, so the article cannot be
+    hand-typed into the template without risking exactly the Garage
+    mismatch this exists to fix. "one" is the one word here that starts
+    with a vowel LETTER but a consonant SOUND ("won"), so it is excluded
+    even though every other word in _ONES/_TEENS/_TENS_WORD that starts
+    with a vowel letter also starts with a vowel sound."""
+    word = _leading_spoken_word(n)
+    return "An" if word != "one" and word[:1] in "aeiou" else "A"
+
+
 def short(text: str, limit: int = 118) -> str:
     """First sentence if it is short enough, else a word-boundary cut.
 
@@ -447,7 +488,7 @@ PAGE = """<!doctype html>
   "gameItem": {"@type": "Thing", "name": "__N__ printable cards, front and back, typeset, no illustrations yet"},
   "publisher": {"@id": "https://6s-success.com/#organization"},
   "genre": "Household organization",
-  "abstract": "A __N__ card deck for the kitchen: __NZONES_LOWER__ zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
+  "abstract": "__ARTICLE__ __N__ card deck for the kitchen: __NZONES_LOWER__ zones, the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath, the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
 }
 </script>
 <!-- SEO:END -->
@@ -675,6 +716,7 @@ def main() -> int:
             .replace("__SHEET__", build_print_sheet(deck))
             .replace("__UMAMI__", UMAMI)
             .replace("__N__", str(n_total))
+            .replace("__ARTICLE__", article_for(n_total))
             .replace("__NZONES_LOWER__", num_word(n_zones).lower())
             .replace("__NZONES__", num_word(n_zones))
             .replace("__NCAUSES_LOWER__", num_word(n_causes).lower())

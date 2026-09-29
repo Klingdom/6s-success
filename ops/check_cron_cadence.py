@@ -192,6 +192,25 @@ def has_push_trigger(workflow_file: str) -> bool:
     # fulfil-orders.yml carries no such branch: every triggered run attempts
     # delivery, which is why it is safe there and why the distinction is drawn
     # on the branch rather than on the trigger.
+    #
+    # hourly-brief.yml (push trigger added 2026-09-28) gates the same way in
+    # spirit, at a different layer: it carries no `github.event_name` branch
+    # in the YAML, because ops/hourly_brief.py's own seconds_since_last_send()
+    # throttle decides at runtime, inside the script, whether a triggered run
+    # sends anything (roughly hourly) or exits without mailing Phil. A push
+    # RUN there is just as often not a push DELIVERY as it is for the two
+    # workflows above; the substring check above cannot see a throttle that
+    # lives in Python, so it is named here explicitly rather than silently
+    # miscounted as "ungated" the way the pre-2026-09-27 version of this
+    # function once did for the YAML-branch case (see
+    # case_coverage_is_earned_not_assumed in
+    # ops/tests/test_cron_effective_latency.py). This means this gate stays
+    # conservative (reports hourly-brief.yml as still cron-degraded) even
+    # after the throttle is doing its job; that costs a stale-sounding
+    # warning, not a false claim of coverage, and is the safer side to err on.
+    SCRIPT_THROTTLED_PUSH = {"hourly-brief.yml"}
+    if workflow_file in SCRIPT_THROTTLED_PUSH:
+        return False
     return "github.event_name" not in text
 
 

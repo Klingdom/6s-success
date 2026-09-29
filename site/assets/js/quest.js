@@ -7,6 +7,20 @@
  * No account and no server. Progress lives in this browser and goes nowhere,
  * which is both the honest choice for a household app and the only one a
  * static site allows.
+ *
+ * TWO LOADS, NOT ONE, SINCE 2026-09-28
+ * -------------------------------------
+ * window.QUEST arrives twice. quest-data-symptoms.js sets it first, eager,
+ * 3KB: symptoms/six/colours/purpose, everything the symptom picker (a new
+ * visitor's first screen) needs. It carries no "rooms" key. The full
+ * quest-data.js (419KB, the whole 114-zone manual) is loaded lazily, by
+ * loadRooms() below, the first time something actually needs a room: a
+ * deep link (?zone=/?room=), begin() (drawing any card), renderMap(), or
+ * renderKeep(). Everything in between reads Q.rooms/DECK/TOTAL_ZONES only
+ * from inside one of those gated paths, never at parse time, which is the
+ * change from before: the deck used to be built by calling allCards() the
+ * moment this script executed, requiring the full manual synchronously
+ * before the symptom picker could even be interactive.
  */
 (function () {
   "use strict";
@@ -35,6 +49,83 @@
 
   var KEY = "6s.quest.v1";
   var $ = function (s) { return document.querySelector(s); };
+
+  /* ------------------------------------------------------ lazy room data
+   *
+   * roomsLoaded/roomsFailed both start false: neither means "still Q's
+   * eager, symptoms-only copy". Deliberately not "if (Q.rooms)", because an
+   * empty array is truthy and would read as loaded when it is not.
+   *
+   * Every caller that needs Q.rooms goes through ensureRooms(cb); cb runs
+   * synchronously if the data is already there (the common case once one
+   * caller has already paid for the fetch), or once the script lands.
+   * onRoomsFailed still calls back rather than hanging forever: a caller
+   * gated on ensureRooms sees whatever Q.rooms is at that point (absent),
+   * the same shape functions here already handle for a zone with no
+   * picture or a room with no zones left, and the notice already shown for
+   * a wholly missing quest-data-symptoms.js covers the "nothing works"
+   * case for a visitor who is offline with nothing cached.
+   */
+  var roomsLoaded = false, roomsFailed = false, roomsStarted = false;
+  var roomsCallbacks = [];
+
+  function onRoomsReady() {
+    roomsLoaded = true;
+    DECK = allCards();
+    TOTAL_ZONES = computeTotalZones();
+    var cbs = roomsCallbacks;
+    roomsCallbacks = [];
+    cbs.forEach(function (cb) { cb(); });
+  }
+
+  function onRoomsFailed() {
+    roomsFailed = true;
+    var n = document.getElementById("notice");
+    if (n) {
+      n.hidden = false;
+      n.textContent = "The full card deck did not load, so rooms and zones "
+        + "cannot be shown. Check your connection and reload the page.";
+    }
+    if (window.Measure) { window.Measure.track("quest-rooms-load-failed", {}); }
+    var cbs = roomsCallbacks;
+    roomsCallbacks = [];
+    cbs.forEach(function (cb) { cb(); });
+  }
+
+  function loadRooms() {
+    if (roomsStarted) { return; }
+    roomsStarted = true;
+    /* The prefetch link in quest.html's <head> likely already has this in
+       the browser's HTTP cache by the time anything calls ensureRooms, so
+       this script tag usually resolves from cache rather than the network.
+       A plain <script>, not fetch+eval: quest-data.js is JS, not JSON (it
+       assigns window.QUEST directly), and this is the same mechanism the
+       page used to load it before the split, just triggered by code
+       instead of parsed markup. */
+    /* Reuse the exact URL quest.html's own <link rel="prefetch"> already
+       named, ?v= hash included, so this fetch lands on the same cache entry
+       ops/fingerprint_assets.py keeps current rather than an unversioned
+       one nginx would hold for its full 30-day max-age past any edit. */
+    var pre = document.querySelector('link[rel="prefetch"][href*="quest-data.js"]');
+    var s = document.createElement("script");
+    s.src = pre ? pre.href : "assets/js/quest-data.js";
+    s.onload = function () {
+      if (window.QUEST && window.QUEST.rooms) {
+        Q = window.QUEST;
+        onRoomsReady();
+      } else {
+        onRoomsFailed();
+      }
+    };
+    s.onerror = onRoomsFailed;
+    document.head.appendChild(s);
+  }
+
+  function ensureRooms(cb) {
+    if (roomsLoaded || roomsFailed) { cb(); return; }
+    roomsCallbacks.push(cb);
+    loadRooms();
+  }
 
   /* THE HERO IS IN THE WAY OF THE PERSON WHO ALREADY SAID YES.
      ---------------------------------------------------------
@@ -191,7 +282,11 @@
     return out;
   }
 
-  var DECK = allCards();
+  /* Both start empty/zero and are filled in by onRoomsReady() once the full
+     manual actually lands; every reader of either is behind ensureRooms(),
+     directly or via begin()/renderMap()/renderKeep(), so neither is ever
+     read in its placeholder state. */
+  var DECK = [];
 
   /* 684 cards is not a number anybody finishes, and a bar toward it reads as
    * discouraging rather than motivating. A zone (six cards, one per S) is a
@@ -212,7 +307,10 @@
     return "";
   }
 
-  var TOTAL_ZONES = Q.rooms.reduce(function (n, r) { return n + r.zones.length; }, 0);
+  function computeTotalZones() {
+    return Q.rooms.reduce(function (n, r) { return n + r.zones.length; }, 0);
+  }
+  var TOTAL_ZONES = 0;
 
   var reduceMotion = !!(window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -377,8 +475,14 @@
   function zoneKey(room, zone) { return room + "|" + zone; }
 
   /* A zone is held when every one of its cards is done. Derived rather than
-     stored, so it stays true even if progress is edited or partly reset. */
+     stored, so it stays true even if progress is edited or partly reset.
+     Safe to call before the manual has loaded: returns empty rather than
+     reading Q.rooms, matching what progress() already returns in the same
+     state (DECK also still empty), so a caller that is not itself gated on
+     ensureRooms (beforeinstallprompt, in particular, which can fire before
+     anything on the page asks for a room) degrades instead of crashing. */
   function heldZones() {
+    if (!roomsLoaded) { return []; }
     var out = [];
     Q.rooms.forEach(function (r) {
       r.zones.forEach(function (z) {
@@ -600,15 +704,11 @@
 
   /* The Keep view: what you have already fixed, and what holds it there.
      This is the half of the method the app was missing. */
-  function renderKeep() {
-    /* Every repaint starts from zero live URLs. Two of the five paths that
-       reach this function (the Keep nav tab and the restore-backup flow)
-       never called releaseUrls() themselves before this fix, so repeatedly
-       opening Keep leaked a blob per photograph per visit, exactly the
-       failure mode releaseUrls()'s own comment above warns about. Doing the
-       release here once, unconditionally, means no future call site can
-       forget it. */
-    releaseUrls();
+  function renderKeepNow() {
+    /* releaseUrls() itself moved to renderKeep() below, the real entry
+       point every call site (and gate_quest_keep_releases_urls_first) uses;
+       it does not need Q.rooms, so it runs before this function waits on
+       ensureRooms rather than after. */
     var held = heldZones();
     var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
     var el = $("#keep-body");
@@ -655,6 +755,22 @@
     el.innerHTML = out.join("");
     held.forEach(function (h) { paintShots(h.room, h.zone); });
     show("keep");
+  }
+
+  /* Every repaint starts from zero live URLs. Two of the five paths that
+     reach this function (the Keep nav tab and the restore-backup flow) used
+     to not call releaseUrls() themselves, so repeatedly opening Keep leaked
+     a blob per photograph per visit, exactly the failure mode releaseUrls()'s
+     own comment above warns about; gate_quest_keep_releases_urls_first
+     checks that this stays the first real statement here, on the real
+     entry point every call site uses, not buried inside a function that
+     might not run yet. held/due in renderKeepNow() come from heldZones(),
+     which needs the full manual; the button that reaches this (go-keep) is
+     hidden until a returning visitor's dashboard has already rendered,
+     itself already gated, so this is normally synchronous. */
+  function renderKeep() {
+    releaseUrls();
+    ensureRooms(renderKeepNow);
   }
 
   /* Photographs live in IndexedDB and are read asynchronously, so the slots are
@@ -799,7 +915,20 @@
    */
   var FIRST_ZONE = { room: "Entryway", zone: "Door, Mat, and Immediate Floor" };
 
-  function isFirstRun() { return heldZones().length === 0 && progress().done === 0; }
+  /* heldZones()/progress() both need Q.rooms/DECK, which is exactly what a
+     first-time visitor's screen must not wait on. But if state.done has no
+     entries at all, both are mathematically guaranteed empty/zero regardless
+     of whether the manual has loaded yet (isDone() can only ever find a key
+     in state.done, and heldZones()/progress() only ever count keys that are
+     there), so a brand new visitor, the case this matters most for, never
+     touches Q.rooms to learn they are one. A visitor with any real progress
+     still needs the full manual to be sure, and by the time this fires from
+     a click rather than at parse time, ensureRooms() has usually already
+     resolved it. */
+  function isFirstRun() {
+    if (Object.keys(state.done).length === 0) { return true; }
+    return heldZones().length === 0 && progress().done === 0;
+  }
 
   var pendingInstall = null;
   var installWired = false;
@@ -962,85 +1091,96 @@
   }
 
   function renderStart() {
-    var p = progress();
-    var held = heldZones();
-
-    /* Above the gate, deliberately. See fillRoomSelect. A fresh arrival at
-       the start screen (drawing again, backing out of the map, and so on)
-       resets which symptom, if any, was mid-flow: nothing downstream should
-       still be pointing at a choice from a screen that is no longer shown. */
-    fillRoomSelect();
+    /* fillRoomSelect() used to run right here, unconditionally, so that
+       "pick a different room" (goOther, below) was never a dead end even
+       during a first run. It still isn't: goOther calls ensureRooms itself
+       before touching the dropdown. Calling it here would need Q.rooms
+       before the gate below has even decided whether this visitor's screen
+       needs it, which is exactly the wait this split exists to remove, so
+       it moves into each branch below instead, gated. */
     renderSymptomList();
     pendingSymptom = null;
 
-    /* Also above the gate, and just as deliberately. renderStart() is the
-       handler wired to every "back to start" control that exists (m-back,
-       k-back, f-again), not only the page's own initial render, so it is the
-       one place responsible for making #view-start the visible section
-       again. The gate below decides WHAT that section shows, never WHETHER
-       it is shown: a visitor who has done 0 cards and held 0 zones (still
-       "first run" by isFirstRun()'s own definition) can still reach the map
-       or the Keep screen, because "pick a different room" reveals go-map and
-       go-keep without changing either count. Before this line, such a
-       visitor tapping Back or Draw again from there hit the gate's early
-       return with show("start") never called, so #view-map or #view-keep
-       stayed the visible section and the button did nothing they could see:
-       confirmed live, not assumed, by driving the real flow in a headless
-       browser (sym-other, then go-other, then go-map, then m-back, reading
-       the actual hidden attributes after each step). The initial page load
-       is unaffected: #view-start already ships visible in the markup, and
-       show()'s own everShown flag still treats this as the first call, so
-       the no-scroll-on-arrival behaviour is unchanged. */
+    /* renderStart() is the handler wired to every "back to start" control
+       that exists (m-back, k-back, f-again), not only the page's own
+       initial render, so it is the one place responsible for making
+       #view-start the visible section again. The gate below decides WHAT
+       that section shows, never WHETHER it is shown. */
     show("start");
 
-    if (applyFirstRunGate()) {
-      /* Nothing below this point has anything true to say to somebody with
-         no history, and saying it anyway is what the gate exists to stop. */
+    /* applyFirstRunGate() calls isFirstRun(), which for anybody with real
+       progress needs heldZones()/progress(), which need Q.rooms: calling it
+       here, unguarded, crashed for a returning visitor on a page that had
+       not finished loading the manual yet (Q.rooms undefined, not merely
+       empty). Checked directly here first, without touching Q.rooms at all:
+       if state.done truly has nothing in it, isFirstRun() is guaranteed
+       true regardless of what Q.rooms holds (heldZones()/progress() can
+       only ever count keys that are in state.done), so that one case is
+       safe to decide before the manual arrives. Everything else waits. */
+    if (Object.keys(state.done).length === 0) {
+      applyFirstRunGate();
+      /* Loaded in the background regardless, so "pick a different room"
+         has real options by the time anyone reaches for it rather than a
+         dropdown that fills in after the tap. */
+      ensureRooms(fillRoomSelect);
       return;
     }
 
-    /* The headline number is zones held, not cards done: 114 is still a lot,
-       but each one is a real, reachable finish line, which 684 cards is not.
-       The raw card count moves down to a supporting line instead. */
-    $("#p-done").textContent = held.length;
-    $("#p-total").textContent = TOTAL_ZONES;
-    var zpct = TOTAL_ZONES ? Math.round(held.length / TOTAL_ZONES * 100) : 0;
-    $("#p-bar").style.width = zpct + "%";
-    var track = $("#p-bar").parentNode;
-    track.setAttribute("aria-valuemax", String(TOTAL_ZONES));
-    track.setAttribute("aria-valuenow", String(held.length));
-    track.setAttribute("aria-valuetext", held.length + " of " + TOTAL_ZONES + " zones holding");
+    /* Below this point is the returning-visitor dashboard: progress, the
+       recommendation, the room preview, and the gate itself (a visitor with
+       stray state.done keys that match nothing in the current DECK is rare
+       but real, e.g. after content changes, and only the full manual can
+       tell). All of it needs the full manual. */
+    ensureRooms(function () {
+      fillRoomSelect();
+      if (applyFirstRunGate()) { return; }
+      var p = progress();
+      var held = heldZones();
 
-    $("#p-note").textContent = p.done === 0
-      ? "Nothing done yet. Six cards finishes a zone, and one card is a real start."
-      : p.done === p.total
-      ? "Every card in the house is done. Reset a room to run it again."
-      : p.done + " of " + p.total + " cards done, " +
-        (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + " of the house.";
+      /* The headline number is zones held, not cards done: 114 is still a
+         lot, but each one is a real, reachable finish line, which 684 cards
+         is not. The raw card count moves down to a supporting line instead. */
+      $("#p-done").textContent = held.length;
+      $("#p-total").textContent = TOTAL_ZONES;
+      var zpct = TOTAL_ZONES ? Math.round(held.length / TOTAL_ZONES * 100) : 0;
+      $("#p-bar").style.width = zpct + "%";
+      var track = $("#p-bar").parentNode;
+      track.setAttribute("aria-valuemax", String(TOTAL_ZONES));
+      track.setAttribute("aria-valuenow", String(held.length));
+      track.setAttribute("aria-valuetext", held.length + " of " + TOTAL_ZONES + " zones holding");
 
-    /* A streak and a due count give the start screen something to say to
-       somebody returning, which it previously did not. Both are derived from
-       the timestamps already stored, so neither can disagree with the work.
-       Held count itself is no longer repeated here: it is now the headline. */
-    var extra = $("#p-extra");
-    if (extra) {
-      var st = streak();
-      var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
-      var bits = [];
-      if (st > 1) { bits.push(st + " days in a row"); }
-      if (due.length) { bits.push(due.length + " worth another look"); }
-      extra.textContent = bits.join("  ·  ");
-      extra.hidden = !bits.length;
-    }
+      $("#p-note").textContent = p.done === 0
+        ? "Nothing done yet. Six cards finishes a zone, and one card is a real start."
+        : p.done === p.total
+        ? "Every card in the house is done. Reset a room to run it again."
+        : p.done + " of " + p.total + " cards done, " +
+          (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + " of the house.";
 
-    renderRecommendation(p);
+      /* A streak and a due count give the start screen something to say to
+         somebody returning, which it previously did not. Both are derived
+         from the timestamps already stored, so neither can disagree with
+         the work. Held count itself is no longer repeated here: it is now
+         the headline. */
+      var extra = $("#p-extra");
+      if (extra) {
+        var st = streak();
+        var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
+        var bits = [];
+        if (st > 1) { bits.push(st + " days in a row"); }
+        if (due.length) { bits.push(due.length + " worth another look"); }
+        extra.textContent = bits.join("  ·  ");
+        extra.hidden = !bits.length;
+      }
 
-    /* Counts move as cards get done, so the preview is repainted rather than
-       left showing the numbers from before this session. show("start") is
-       no longer called again here: the call above, before the gate, already
-       made #view-start the visible section, and calling it a second time
-       would only re-run its scroll and focus() side effects for no reason. */
-    renderRoomPreview();
+      renderRecommendation(p);
+
+      /* Counts move as cards get done, so the preview is repainted rather
+         than left showing the numbers from before this session. show("start")
+         is not called again here: the call above already made #view-start
+         the visible section, and calling it a second time would only re-run
+         its scroll and focus() side effects for no reason. */
+      renderRoomPreview();
+    });
   }
 
   /* WHAT "WORK A ROOM" ACTUALLY MEANS
@@ -1551,7 +1691,7 @@
    * button that explains itself rather than one that quietly does nothing,
    * since resetting a whole room stays a deliberate choice made from the
    * select below, not a stray tap on a tile. */
-  function renderMap() {
+  function renderMapNow() {
     var rows = Q.rooms.map(function (r) {
       var cards = DECK.filter(function (c) { return c.room === r.room; });
       var done = cards.filter(isDone).length;
@@ -1570,6 +1710,14 @@
     show("map");
   }
 
+  /* Reachable only once rooms/go-map are visible, themselves already gated
+     behind the rooms load elsewhere, but wrapped anyway: cheap when already
+     loaded, and it removes any need to trust every future caller to gate
+     itself correctly. */
+  function renderMap() {
+    ensureRooms(renderMapNow);
+  }
+
   /* ---------------------------------------------------------------- actions */
 
   /* opts lets a recommendation or a map tile start a specific room or zone
@@ -1577,7 +1725,11 @@
    * and "spass" modes read from when opts does not say otherwise. Mode
    * "zone" is a room-style run (method order, not shuffled) narrowed to one
    * zone by build()'s existing zoneName filter. */
-  function begin(mode, opts) {
+  /* Every real caller (buttons, the recommendation, deep links) reaches this
+     through begin() below, which waits for the full manual first; opts.room/
+     zone/s are read from the DOM or from the caller's own literal values,
+     neither of which changes during that short wait. */
+  function beginNow(mode, opts) {
     opts = opts || {};
     var room = opts.room != null ? opts.room : ($("#room-select").value || null);
     var zone = opts.zone != null ? opts.zone : null;
@@ -1643,6 +1795,14 @@
     m("quest-start", { mode: mode, first: isFirstRun() ? 1 : 0,
                        cards: queue.length });
     renderCard();
+  }
+
+  /* Every mode deals from DECK, built from the full manual, so nothing here
+     can run until it has loaded. Synchronous once ensureRooms already has
+     it, which is the case for everything but the very first card dealt on a
+     visit; see the file header. */
+  function begin(mode, opts) {
+    ensureRooms(function () { beginNow(mode, opts); });
   }
 
   function alertBox(msg) {
@@ -1803,11 +1963,14 @@
       goOther.addEventListener("click", function () {
         var box = $("#first-run");
         if (box) { box.hidden = true; }
-        /* Belt and braces: renderStart already fills this before the gate,
+        /* Belt and braces: renderStart already queues this before the gate,
            but this handler is the only path that reveals the modes without
            going through renderStart at all, and an empty dropdown here is
-           precisely the dead end being fixed. */
-        fillRoomSelect();
+           precisely the dead end being fixed. Gated on ensureRooms rather
+           than called bare: the manual may still be in flight the first
+           time anybody taps this, and an unguarded call would read Q.rooms
+           before it exists. */
+        ensureRooms(fillRoomSelect);
         /* No #p-done-wrap here either; see the matching comment in
            applyFirstRunGate(). "#start-head" and "#p-bar"'s own parentNode
            (below) already cover what it would have named. */
@@ -1967,51 +2130,70 @@
      * random card from the kitchen is a bait and switch. */
     var params = new URLSearchParams(location.search);
     var zoneSlug = params.get("zone");
-    if (zoneSlug) {
-      var target = findZoneBySlug(zoneSlug);
-      if (target) {
-        begin("zone", { room: target.room, zone: target.zone });
-        if (run) { return; }
-        /* Every card in this zone is already held; begin() already told the
-         * visitor so via alertBox. Fall through to the normal start screen
-         * rather than leaving the page blank. */
-      }
-    }
-
-    /* Same idea, one level up: a room page's free link carries that room's
-     * slug, so a visitor who has been reading about the whole Kitchen gets
-     * that room's own run, in method order, rather than a dropdown asking
-     * them to name the room they just came from. */
     var roomSlug = params.get("room");
-    if (roomSlug) {
-      var roomName = findRoomBySlug(roomSlug);
-      if (roomName) {
-        begin("room", { room: roomName });
-        if (run) { return; }
-        /* Every card in this room is already held; begin() already told the
-         * visitor so via alertBox. Fall through to the normal start screen. */
+    var go = params.get("go");
+
+    /* All three resolve a slug against Q.rooms (findZoneBySlug/findRoomBySlug)
+       or deal from DECK (begin("draw")), so unlike a bare quest.html landing,
+       none of these three can show anything real without the full manual.
+       Gated below; a bare landing (no zone=/room=/go=draw) needs none of it
+       and reaches renderStart() immediately instead. */
+    var needsRoomsNow = !!(zoneSlug || roomSlug || go === "draw" || go === "map");
+
+    /* Starts the background fetch immediately either way, deep link or not,
+       so it is as far along as possible by the time anything on the plain
+       symptom-picker path (a click, not a query param) first asks for it. */
+    ensureRooms(function () {});
+
+    function resolveThenShow() {
+      if (zoneSlug) {
+        var target = findZoneBySlug(zoneSlug);
+        if (target) {
+          begin("zone", { room: target.room, zone: target.zone });
+          if (run) { return; }
+          /* Every card in this zone is already held; begin() already told
+           * the visitor so via alertBox. Fall through to the normal start
+           * screen rather than leaving the page blank. */
+        }
       }
+
+      /* Same idea, one level up: a room page's free link carries that
+         room's slug, so a visitor who has been reading about the whole
+         Kitchen gets that room's own run, in method order, rather than a
+         dropdown asking them to name the room they just came from. */
+      if (roomSlug) {
+        var roomName = findRoomBySlug(roomSlug);
+        if (roomName) {
+          begin("room", { room: roomName });
+          if (run) { return; }
+          /* Every card in this room is already held; begin() already told
+           * the visitor so via alertBox. Fall through to the normal start
+           * screen. */
+        }
+      }
+
+      /* Launcher shortcuts and the manifest start_url land here with a hint.
+       * manifest.webmanifest wires "Draw a card" to exactly this URL, so
+       * this is the one deep link a returning, engaged visitor is likely to
+       * use over and over, unlike zone= and room=, each usually followed
+       * once from an article. The same emptied-queue case those two already
+       * fall through on (every card in scope already done) was left
+       * unhandled here: with no `if (run)` guard, an unconditional return
+       * skipped both releaseHero() and renderStart() whenever the whole
+       * 684-card deck was finished, leaving the page on its raw markup
+       * state, hero still hidden, and #first-run (visible by default, for
+       * the no-JS case) telling somebody who just finished every zone in
+       * the house to "start at the door". Fixed to the same fall-through
+       * shape as zone= and room= above. */
+      if (go === "draw") {
+        begin("draw");
+        if (run) { return; }
+      } else if (go === "map") { renderMap(); return; }
+
+      releaseHero();
+      renderStart();
     }
 
-    /* Launcher shortcuts and the manifest start_url land here with a hint.
-     * manifest.webmanifest wires "Draw a card" to exactly this URL, so this
-     * is the one deep link a returning, engaged visitor is likely to use
-     * over and over, unlike zone= and room=, each usually followed once from
-     * an article. The same emptied-queue case those two already fall through
-     * on (every card in scope already done) was left unhandled here: with no
-     * `if (run)` guard, an unconditional return skipped both releaseHero()
-     * and renderStart() whenever the whole 684-card deck was finished,
-     * leaving the page on its raw markup state, hero still hidden, and
-     * #first-run (visible by default, for the no-JS case) telling somebody
-     * who just finished every zone in the house to "start at the door".
-     * Fixed to the same fall-through shape as zone= and room= above. */
-    var go = params.get("go");
-    if (go === "draw") {
-      begin("draw");
-      if (run) { return; }
-    } else if (go === "map") { renderMap(); return; }
-
-    releaseHero();
-    renderStart();
+    if (needsRoomsNow) { ensureRooms(resolveThenShow); } else { resolveThenShow(); }
   });
 })();

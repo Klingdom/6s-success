@@ -1,0 +1,2568 @@
+{
+ "deck": "guest-bathroom",
+ "room": "Guest Bathroom",
+ "count": 60,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 5,
+  "FRICTION CARD": 15,
+  "ROOT CAUSE CARD": 16,
+  "ACTION CARD": 13,
+  "STANDARD CARD": 5,
+  "EVENT CARD": 5
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "GHR-001",
+   "title": "THE GUEST BATHROOM",
+   "type": "ROOM CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "FIVE ZONES. START WITH THE COUNTER THE VISITOR SEES FIRST.",
+   "objective": "The guest bathroom is the one room a visitor spends time in alone, with the door shut and nothing to look at but your standards. This card is the map and the order.",
+   "zones_in_order": [
+    "GHZ-001 Guest Vanity Counter",
+    "GHZ-002 Guest Vanity Storage",
+    "GHZ-003 Shower or Tub",
+    "GHZ-004 Toilet Area",
+    "GHZ-005 Guest Linen Zone"
+   ],
+   "start_here": "GHZ-001 Guest Vanity Counter. Do the vanity counter first and the linen shelf last. The counter takes one trip and changes how the whole room reads; the linen shelf needs a wash cycle to finish, so put the stored towels in the machine before you touch anything else and let them run while you work the rest of the room.",
+   "how_to_play": [
+    "1. Deal the five ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your bathroom. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do GHA-011 The Full Guest Bathroom Hazard Walk before any rebuild. It takes thirty minutes and covers the cord beside the basin, the chemicals under the cabinet, the tub floor, and the water heater in the linen closet.",
+   "related": {
+    "contents": "GHZ-001 to GHZ-005, GHF-001 to GHF-015, the shared root causes in ops/root_causes.py, GHA-001 to GHA-013, GHS-001 to GHS-005, GHE-001 to GHE-005"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole guest bathroom in its settled state, a vanity counter holding three items, a closed cabinet, a shower with a hanging caddy, a toilet area and a linen shelf all visible in one frame",
+    "must_show": [
+     "all five zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the five zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "GHZ-001",
+   "title": "GUEST VANITY COUNTER",
+   "type": "ZONE CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "THREE THINGS LIVE HERE: SOAP, TISSUES, A TOWEL. NOTHING ELSE.",
+   "objective": "It gives a visitor somewhere to wash their hands and set a phone down, with nothing of yours in the way.",
+   "callouts": [
+    "A soap pump standing above half full on the counter",
+    "One folded hand towel hanging on a ring visible from the doorway",
+    "A box of tissues sitting at the back corner clear of splash",
+    "A clear stretch of bare counter wide enough for a phone and a pair of glasses",
+    "No toothbrush cup or hair clips anywhere on the counter",
+    "A dry, ring-free patch of counter under the soap dispenser"
+   ],
+   "done_looks_like": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the tap, no dried soap ring under the dispenser.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "Anything with a cord left plugged in next to a basin that a guest will fill. Unplug and store after every use, and keep the cord off the counter entirely."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Glass tumblers and glass decorative dishes on a wet counter. When one goes over in a small tiled room, someone is standing there barefoot."
+    }
+   ],
+   "the_call": {
+    "title": "Whose bathroom is this really",
+    "text": "If a child or a housemate genuinely brushes their teeth in here, the hotel counter standard loses every time and you end up resetting it twice a week. The decision you have been dodging is which room this actually is. Pick out loud: either it is a used bathroom, in which case one named person gets a labeled caddy or drawer and the counter holds their two items alongside the guest three, or it is a guest bathroom, in which case that toothbrush moves today and nothing personal comes back. Holding a hotel standard against a resident who lives here is not a discipline problem, it is a standard aimed at the wrong room."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner (not in this zone's list, and the mirror needs it)",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GHS-001",
+    "actions": [
+     "GHA-001",
+     "GHA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a bathroom vanity counter holding a soap pump standing above half full, a single folded hand towel hanging on a ring by the door, a box of tissues at the back corner, and a clear stretch of bare counter with no toothbrush cup or hair clips in view",
+    "must_show": [
+     "A soap pump standing above half full on the counter",
+     "One folded hand towel hanging on a ring visible from the doorway",
+     "A box of tissues sitting at the back corner clear of splash",
+     "A clear stretch of bare counter wide enough for a phone and a pair of glasses",
+     "No toothbrush cup or hair clips anywhere on the counter",
+     "A dry, ring-free patch of counter under the soap dispenser"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GHZ-002",
+   "title": "GUEST VANITY STORAGE",
+   "type": "ZONE CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "TWO BINS. ONE LABELED GUEST, ONE LABELED CLEANING. THE BASE STAYS BARE.",
+   "objective": "It holds the things a guest might otherwise have to ask you for, plus the cleaning kit that keeps this room ready.",
+   "callouts": [
+    "A bin labeled Guest Supplies holding a new toothbrush and a wrapped bar of soap",
+    "A small dish holding four unopened travel toiletries inside that same bin",
+    "A bin labeled Cleaning holding bowl cleaner, glass spray and cloths standing upright",
+    "Four rolls of toilet paper stacked in plain view",
+    "A bare cabinet base with nothing loose sitting on it",
+    "Both bins standing light enough to lift out with one hand"
+   ],
+   "done_looks_like": "Open the door and see two lift-out bins and nothing loose: one labeled for guest supplies holding a new toothbrush, a wrapped bar of soap, and four unopened travel toiletries in a small dish, and one labeled for cleaning holding bowl cleaner, glass spray, and cloths standing upright on a shallow tray. Four rolls of toilet paper stacked in plain view. The cabinet base is bare enough that a single drip from the trap would show.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bowl cleaner, bleach, and drain opener stored under the sink of the bathroom where a visiting child gets sent alone. Latch the door or move the chemicals out of the room."
+    },
+    {
+     "question": "Fall",
+     "text": "A slow weep from the trap that nobody sees because nobody opens this cabinet. It reaches the tile as a thin invisible film long before it shows as a puddle."
+    }
+   ],
+   "the_call": {
+    "title": "The bag of hotel miniatures",
+    "text": "The collection of tiny shampoos is the hardest thing in this cabinet, because throwing out free soap feels like waste and keeping it feels like hospitality, so it has sat there for years doing neither. Settle it with arithmetic: a guest staying two nights uses one shampoo, one conditioner, one soap, and one lotion. So keep four, unopened, the four with the least battered labels, and put them in a small dish where they read as an offering rather than a hoard. The rest go today. If binning them is genuinely beyond you, they go into a shelter donation box this week, in the car, not back on the shelf."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Neutral pH multi-surface cleaner (not in this zone's list, but the sealed cabinet interior needs it)",
+    "Color-coded microfiber cloth set (not in this zone's list, and you cannot wipe the cabinet down without cloths)",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GHS-002",
+    "actions": [
+     "GHA-003",
+     "GHA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "the inside of an open bathroom vanity cabinet holding two labeled lift-out bins, one marked Guest Supplies with a wrapped soap bar and travel toiletries in a small dish, one marked Cleaning with bottles standing upright on a tray, four rolls of toilet paper stacked beside them, and a bare cabinet base",
+    "must_show": [
+     "A bin labeled Guest Supplies holding a new toothbrush and a wrapped bar of soap",
+     "A small dish holding four unopened travel toiletries inside that same bin",
+     "A bin labeled Cleaning holding bowl cleaner, glass spray and cloths standing upright",
+     "Four rolls of toilet paper stacked in plain view",
+     "A bare cabinet base with nothing loose sitting on it",
+     "Both bins standing light enough to lift out with one hand"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GHZ-003",
+   "title": "SHOWER OR TUB",
+   "type": "ZONE CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "order": 3,
+   "difficulty": 4,
+   "tagline": "THREE BOTTLES. ONE MAT. ONE THING BOLTED IN TO GRAB.",
+   "objective": "It has to be ready for someone to shower in tonight, even though nobody has used it since spring.",
+   "callouts": [
+    "Three bottles in a hanging caddy, shampoo, conditioner and body wash, each more than a third full",
+    "A curtain liner or glass screen with no pink film along its bottom edge",
+    "A bath mat folded over the tub rim rather than lying wet on the floor",
+    "Grout the same even color in the corners as in the middle",
+    "A non-slip surface visible on the tub floor",
+    "One securely anchored grab point fixed to the wall, not a towel bar"
+   ],
+   "done_looks_like": "Three bottles in the caddy, all recognizable and more than a third full, a curtain liner or glass screen with no pink film along the bottom edge, a bath mat folded over the tub rim rather than lying wet on the floor, and grout that is the same color in the corners as it is in the middle. A non-slip surface underfoot inside the tub.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "An unfamiliar tub with a slick glazed floor, used at night by someone who does not know the room. A non-slip mat or strips are the fix, not a warning."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A towel bar or a suction rail being used as a grab handle. Both let go under load, and the person comes down against the tub rim on the way."
+    }
+   ],
+   "the_call": {
+    "title": "The grout you cannot clean",
+    "text": "You have scrubbed one grout line three times, it stayed gray, and you have quietly started calling that clean. It is not dirt. It is mold that has grown into porous grout or a silicone bead that has failed underneath, and no product will bring it back, so every week you spend part of the clean on a job that cannot succeed. The rule: give a stained line one proper treatment with full dwell time and a stiff brush. If it darkens again within two weeks, stop cleaning it and move it to the repair list, which means raking out and regrouting, or cutting out the old silicone and running a fresh bead. Calling it a repair is the decision. It is a Saturday afternoon once, instead of a chore forever."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Dedicated mildew remover (not in this zone's list, for grout the soap-film cleaner will not shift)",
+    "Stiff grout or detail brush (not in this zone's list, and the grout and the non-slip floor need bristles)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GHS-003",
+    "actions": [
+     "GHA-005",
+     "GHA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a guest bathroom shower with three bottles standing in a hanging caddy, a clean curtain liner with no pink film at its hem, a folded bath mat draped over the tub rim, evenly colored grout in every corner, a non-slip ridged tub floor, and one securely anchored grab bar fixed to the tiled wall",
+    "must_show": [
+     "Three bottles in a hanging caddy, shampoo, conditioner and body wash, each more than a third full",
+     "A curtain liner or glass screen with no pink film along its bottom edge",
+     "A bath mat folded over the tub rim rather than lying wet on the floor",
+     "Grout the same even color in the corners as in the middle",
+     "A non-slip surface visible on the tub floor",
+     "One securely anchored grab point fixed to the wall, not a towel bar"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GHZ-004",
+   "title": "TOILET AREA",
+   "type": "ZONE CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "ONE ROLL IN SIGHT. A DRY BRUSH. A LINER IN THE CAN.",
+   "objective": "It has to be clean and stocked in a way that is obvious to someone who will never ask you where anything is.",
+   "callouts": [
+    "One spare toilet roll standing in a holder within reach of a seated person",
+    "A dry toilet brush resting in its holder with no liquid pooled in the bottom",
+    "A small trash can with a liner actually fitted inside it",
+    "No ring visible at the bowl's water line",
+    "A dry, dust-free floor behind the pedestal",
+    "A bare tank top with nothing standing on it"
+   ],
+   "done_looks_like": "One spare roll standing in plain sight on the tank or in a holder a seated person can reach without standing up. A brush that is dry, resting in a holder with no liquid pooled in the bottom. A small trash can with a liner actually in it. No ring at the water line, and a dry, dust-free floor behind the pedestal.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bleach and an acid bowl or limescale cleaner used one after the other in a small room with the door closed and no fan running. Use one product, ventilate, and never store the two together."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "A bowl cleaner bottle left standing behind the pedestal after cleaning. It is at floor level, in reach, and the cap is rarely back on properly."
+    }
+   ],
+   "the_call": {
+    "title": "The brush nobody wants to touch",
+    "text": "The toilet brush in a guest bathroom is the object your household has silently agreed not to look at. It has splayed bristles, it stands in an inch of gray water in the bottom of its holder, and it has been there for years, spreading more than it removes. The decision you are avoiding is that a brush is a consumable, not a fixture. The rule: splayed bristles or liquid in the holder means both go out today and a fresh set comes in, and from then on the brush gets rinsed in the flush and left propped under the closed seat to drip before it goes back in the holder. If that much handling is more than you will realistically do, buy the kind with a disposable head and stop negotiating with yourself about it."
+   },
+   "supplies": [
+    "Bathroom grime and soap-film cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Toilet bowl cleaner and a dedicated bowl brush (not in this zone's list, and the bowl needs both)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GHS-004",
+    "actions": [
+     "GHA-007",
+     "GHA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a guest bathroom toilet area with one spare roll standing in a holder within easy seated reach, a dry brush resting in its holder, a small lined trash can, a clean bowl with no ring at the water line, and a dust-free floor behind the pedestal",
+    "must_show": [
+     "One spare toilet roll standing in a holder within reach of a seated person",
+     "A dry toilet brush resting in its holder with no liquid pooled in the bottom",
+     "A small trash can with a liner actually fitted inside it",
+     "No ring visible at the bowl's water line",
+     "A dry, dust-free floor behind the pedestal",
+     "A bare tank top with nothing standing on it"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GHZ-005",
+   "title": "GUEST LINEN ZONE",
+   "type": "ZONE CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "order": 5,
+   "difficulty": 3,
+   "tagline": "TWO BUNDLES. ONE LIFT EACH. THE MAT UNDERNEATH.",
+   "objective": "It holds one complete fresh set of towels so hosting never starts with a search.",
+   "callouts": [
+    "Two complete towel bundles, each holding a bath towel, hand towel and washcloth folded together",
+    "Both bundles matching in color with neither carrying a musty smell",
+    "A clean bath mat folded flat beneath the bundles",
+    "A hand's width of clear air above the stack",
+    "No thin gray towel or dog towel sharing the shelf",
+    "A hand's width of clearance kept around anything on the shelf that runs hot"
+   ],
+   "done_looks_like": "One bundle per expected guest, each holding a bath towel, a hand towel, and a washcloth folded together, matching in color, smelling of nothing at all. A clean bath mat folded flat beneath the bundles. A hand's width of air above the stack. No thin gray towel kept for the dog sharing the shelf.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Textiles stacked against a water heater, a hot pipe, or its power cable in a shared closet. Keep a hand's width of clear air on every hot side."
+    },
+    {
+     "question": "Fall",
+     "text": "A bath mat with a curled or hardened rubber backing. It stops gripping the tile and slides out from under someone stepping off wet."
+    }
+   ],
+   "the_call": {
+    "title": "The good towels",
+    "text": "Every house has a set of nice towels that guests are not quite allowed to use and a set of worn ones that guests actually get, and nobody ever says this out loud. Towels thin whether they are used or not, so holding the good ones back means they will age untouched in a closet while your visitors dry off on something gray. The rule: the guest bundle is built from the best towels you own, put into service today, and the ones they replace get demoted to rags on the same trip so they cannot creep back. And if a towel is genuinely too good for a guest to use, then it is not linen, it is a keepsake, and it belongs anywhere except the towel shelf."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Washing machine (not a listed product, but the stored linens need a hot wash)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "GHS-005",
+    "actions": [
+     "GHA-009",
+     "GHA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a linen closet shelf holding two matching complete towel bundles each with a bath towel, hand towel and washcloth folded together, a folded bath mat lying flat beneath them, a hand's width of clear air above the stack, and no thin gray towel sharing the shelf",
+    "must_show": [
+     "Two complete towel bundles, each holding a bath towel, hand towel and washcloth folded together",
+     "Both bundles matching in color with neither carrying a musty smell",
+     "A clean bath mat folded flat beneath the bundles",
+     "A hand's width of clear air above the stack",
+     "No thin gray towel or dog towel sharing the shelf",
+     "A hand's width of clearance kept around anything on the shelf that runs hot"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "GHF-001",
+   "title": "A HOUSEMATE'S TOOTHBRUSH LIVES HERE TOO",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A cup on this counter is holding a toothbrush that clearly belongs to someone who lives here, not a visitor.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Someone in this house genuinely brushes their teeth in here every day, and nobody's said that out loud yet",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "Nobody ever decided this counter isn't for personal items, so whatever's nearby just lands here",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The main bathroom ran out of room, so the overflow came in here without anyone deciding to move it back",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-001",
+    "root_causes": [
+     "KC-012",
+     "KC-002",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cup on a bathroom vanity counter holding two mismatched toothbrushes standing among the guest soap and tissues",
+    "must_show": [
+     "A cup on this counter is holding a toothbrush that clearly belongs to someone who lives here, not a visitor."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-002",
+   "title": "THE SOAP PUMP HASN'T BEEN TOPPED UP SINCE THE LAST VISIT",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The soap pump sits below half and the hand towel still smells faintly of the closet, and you only notice because someone is already at the door.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody is the one who walks in here between visits to check on it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no trigger tied to a visit being confirmed, so topping it up depends on remembering",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "A counter with no daily user is easy to stop seeing as something that needs checking at all",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-001",
+    "root_causes": [
+     "RC-013",
+     "KC-009",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a soap pump on a bathroom vanity counter sitting visibly below half full beside a hand towel that looks limp and long hung",
+    "must_show": [
+     "The soap pump sits below half and the hand towel still smells faintly of the closet, and you only notice because someone is already at the door."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-003",
+   "title": "A GLASS TUMBLER SITS ON A WET COUNTER BESIDE A PLUGGED-IN CORD",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A glass tumbler stands on a wet counter beside a hair dryer that is still plugged in next to a full basin.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's decorative, so it never occurred to anyone that a wet counter makes it a hazard",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "The cord gets left plugged in and coiled on the counter because there's nowhere else near the basin to keep it",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It's a real fall and shock risk sitting there beside a full basin, and that outranks how it looks",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-001",
+    "root_causes": [
+     "RC-017",
+     "KC-002",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a glass tumbler standing on a wet bathroom counter beside a hair dryer with its cord still plugged into a wall socket near the basin",
+    "must_show": [
+     "A glass tumbler stands on a wet counter beside a hair dryer that is still plugged in next to a full basin."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-004",
+   "title": "A DRAWER FULL OF HOTEL MINIATURES FROM THREE TRIPS",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A shelf in this cabinet is still holding shampoos and lotions from three different trips, most of them barely started.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Throwing out free soap feels like waste, so it just never gets decided",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Every trip added one more and nobody's ever called the total too many",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "They arrived from a different bathroom's overflow, not bought for this cabinet",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-002",
+    "root_causes": [
+     "RC-015",
+     "KC-001",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cluttered vanity cabinet shelf crowded with a dozen mismatched hotel miniature shampoo and lotion bottles from different trips",
+    "must_show": [
+     "A shelf in this cabinet is still holding shampoos and lotions from three different trips, most of them barely started."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-005",
+   "title": "THE TOILET PAPER STACK IS ALREADY DOWN TO ONE ROLL",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The toilet paper stack is already down to its last roll before anyone notices it's running low.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no drawn line showing when the stack is getting low, so nobody notices until it's nearly gone",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "It's stacked loose behind other things instead of standing in plain view",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Whoever raids this cabinet for the main bathroom never records that they did",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-002",
+    "root_causes": [
+     "KC-011",
+     "KC-005",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single toilet paper roll standing alone on an otherwise bare vanity cabinet shelf",
+    "must_show": [
+     "The toilet paper stack is already down to its last roll before anyone notices it's running low."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-006",
+   "title": "THE BOWL CLEANER SITS WHERE A CRAWLING CHILD CAN REACH IT",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bottle of bowl cleaner sits on the cabinet floor with its cap loose, at exactly the height a crawling child would reach.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's stored low because that's simply where the cabinet space was, not because it's safe",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "It's within reach of hands the household doesn't usually think about, which is a safety problem that outranks convenience",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody who opens this cabinet regularly is the one who'd notice a visiting child in the room",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-002",
+    "root_causes": [
+     "KC-003",
+     "KC-010",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a bottle of bowl cleaner with its cap loose sitting on the floor of an open vanity cabinet at a low, child-reachable height",
+    "must_show": [
+     "A bottle of bowl cleaner sits on the cabinet floor with its cap loose, at exactly the height a crawling child would reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-007",
+   "title": "THE GROUT STAYS THE SAME GRAY NO MATTER HOW MANY TIMES YOU SCRUB IT",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "One grout line has been scrubbed three times, stayed the same gray, and you've quietly started calling that clean.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's mold grown into the grout or a failed silicone bead, not surface dirt, and no product lifts that",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "Nobody's called it a repair job instead of a cleaning job, so it keeps costing a scrub every week",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It's stayed the same shade for so long it's stopped registering as stained rather than clean",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-003",
+    "root_causes": [
+     "RC-016",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a close view of grout lines in a shower corner showing an even gray tint against the surrounding tile despite a scrub brush resting nearby",
+    "must_show": [
+     "One grout line has been scrubbed three times, stayed the same gray, and you've quietly started calling that clean."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-008",
+   "title": "THREE REJECTED BOTTLES ARE WELDED TO THE TUB FLOOR",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Three half-used bottles of shampoo and body wash nobody liked are welded to the tub floor by their own residue.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "They arrived because the household rejected them elsewhere, and this shower is where rejects retire",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "There's no caddy or shelf, so anything set down stands directly on the tub floor",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "It's more bottles than one person showering needs, they just never got cleared",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-003",
+    "root_causes": [
+     "RC-015",
+     "KC-002",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "three half-used shampoo and body wash bottles standing directly on a wet tub floor, each ringed with a sticky residue at its base",
+    "must_show": [
+     "Three half-used bottles of shampoo and body wash nobody liked are welded to the tub floor by their own residue."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-009",
+   "title": "NO MAT, NO GRAB BAR, AND A GUEST STEPPING IN AT NIGHT",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There's no mat on the tub floor and no grab bar on the wall, and a guest is about to step in here well after dark.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A towel bar screwed into drywall isn't rated to take a person's weight, and nobody's added a proper anchor point",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The household showers here so rarely that a missing mat stopped registering as a problem",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Putting the mat out isn't anyone's specific job before a guest arrives",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-003",
+    "root_causes": [
+     "KC-010",
+     "RC-017",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an empty tub floor with no bath mat and a towel bar mounted on the tiled wall, no dedicated grab bar anywhere in view",
+    "must_show": [
+     "There's no mat on the tub floor and no grab bar on the wall, and a guest is about to step in here well after dark."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-010",
+   "title": "THE RESERVE ROLL IS MOUNTED WHERE A SEATED GUEST CAN'T REACH IT",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The reserve roll is mounted low on the wall, and a seated guest has to stand up to reach it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It went into whatever holder was already installed, never tested with someone actually seated",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "Nobody's rechecked its placement since it was first fitted",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's been in that spot so long nobody thinks to question the reach anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-004",
+    "root_causes": [
+     "KC-006",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a toilet paper holder mounted low on a bathroom wall well behind and below where a seated person's hand would reach",
+    "must_show": [
+     "The reserve roll is mounted low on the wall, and a seated guest has to stand up to reach it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-011",
+   "title": "A PILE OF AIR FRESHENERS AND OLD MAGAZINES BEHIND THE BOWL",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The top of the tank and the floor behind the bowl have collected a pile: air fresheners, a second brush, old magazines, a box nobody can identify.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it got a decision when it landed there, it just accumulated behind the door swing",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody's specifically responsible for clearing this room's flat surfaces, so it just grows",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's been building for so long that none of it reads as clutter to the household anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-004",
+    "root_causes": [
+     "RC-015",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cluttered toilet tank top holding air freshener cans, a second toilet brush and a stack of old magazines",
+    "must_show": [
+     "The top of the tank and the floor behind the bowl have collected a pile: air fresheners, a second brush, old magazines, a box nobody can identify."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-012",
+   "title": "THE BRUSH HAS STOOD IN GRAY WATER FOR YEARS",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The toilet brush has stood in an inch of gray water in its holder for years, bristles splayed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's a consumable everyone's been treating like a fixture, so nobody's replaced it",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Cleaning properly under the rim and rinsing the brush after each flush takes an extra step nobody's built into the routine",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "There's no trigger that says a brush this age gets replaced, so it just keeps going",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-004",
+    "root_causes": [
+     "KC-008",
+     "RC-016",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a toilet brush standing in a holder with visibly gray, cloudy water pooled in its base, its bristles splayed outward",
+    "must_show": [
+     "The toilet brush has stood in an inch of gray water in its holder for years, bristles splayed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-013",
+   "title": "THE GOOD TOWELS ARE STILL FOLDED IN THE CLOSET",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The best towels in the house are still folded in the closet years later, while guests dry off on ones that have gone thin and gray.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Using the nice ones feels like using them up, so they get held back instead",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nobody's decided the worn ones should actually retire, so they just keep getting reissued",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "A towel that just sits folded doesn't look like it needs a decision, thin fold line and all",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-005",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a linen closet shelf holding a pristine folded towel set clearly untouched at the back, beside a thin, graying towel set at the front",
+    "must_show": [
+     "The best towels in the house are still folded in the closet years later, while guests dry off on ones that have gone thin and gray."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-014",
+   "title": "A BUNDLE LEFT THIS SHELF MIDWEEK AND NEVER CAME BACK",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bundle taken from this shelf midweek for some other use is never the one that comes back.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing here tracks what left, so the gap is only found by the next guest",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "There's no single person who restocks this shelf after it's been raided",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "Taking a towel from here doesn't trigger anything that says to replace it",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-005",
+    "root_causes": [
+     "KC-011",
+     "RC-013",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a linen closet shelf holding a single towel bundle where a matching second one should stand beside it, an obvious gap in the stack",
+    "must_show": [
+     "A bundle taken from this shelf midweek for some other use is never the one that comes back."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "GHF-015",
+   "title": "ONE GUEST SET MEANS THREE SEPARATE STOPS",
+   "type": "FRICTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Making up a guest set means grabbing a bath towel from one stack, a hand towel from a shelf across the closet, and a washcloth that matches neither.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Towels are stored by type instead of as ready sets, so what should be one lift turns into three separate stops",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody decided guest towels should be pre-bundled, so they default to being grouped by size instead",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's always been sorted this way, so the extra hunting doesn't register as a real problem",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your bathroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "GHZ-005",
+    "root_causes": [
+     "KC-004",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand reaching across three separate stacks in an open linen closet to gather one bath towel, one hand towel and one washcloth",
+    "must_show": [
+     "Making up a guest set means grabbing a bath towel from one stack, a hand towel from a shelf across the closet, and a washcloth that matches neither."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-004",
+     "GHF-008"
+    ],
+    "actions": [
+     "GHA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a small cluster of hotel miniature shampoo bottles crowded together on a bathroom vanity shelf, far more than a single guest stay would use",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-001",
+     "GHF-003",
+     "GHF-008"
+    ],
+    "actions": [
+     "GHA-001",
+     "GHA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hair dryer's cord coiled loose on a bathroom vanity counter with no drawer or hook anywhere nearby to hold it",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-004",
+     "GHF-006"
+    ],
+    "actions": [
+     "GHA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bottle of bowl cleaner standing on the floor behind a toilet pedestal instead of inside the cleaning cabinet across the room",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-015"
+    ],
+    "actions": [
+     "GHA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching across three separate stacks in a linen closet to gather one bath towel, one hand towel and one washcloth",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-005"
+    ],
+    "actions": [
+     "GHA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single roll of toilet paper stacked behind other items on a vanity cabinet shelf, barely visible from the door",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-010"
+    ],
+    "actions": [
+     "GHA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a toilet paper holder mounted low on a bathroom wall, out of easy reach for someone seated",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-012",
+     "GHF-015"
+    ],
+    "actions": [
+     "GHA-002",
+     "GHA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a worn toilet brush standing in its holder beside a spare one, with no sign either has ever been replaced on a schedule",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-002",
+     "GHF-012",
+     "GHF-014"
+    ],
+    "actions": [
+     "GHA-012",
+     "GHA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bathroom vanity counter with a soap pump sitting below half full and no note or reminder anywhere nearby",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-003",
+     "GHF-006",
+     "GHF-009"
+    ],
+    "actions": [
+     "GHA-004",
+     "GHA-006",
+     "GHA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a glass tumbler standing on a wet bathroom counter beside a plugged-in appliance cord within reach of the basin",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-005",
+     "GHF-014"
+    ],
+    "actions": [
+     "GHA-004",
+     "GHA-010",
+     "GHA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty gap on a linen closet shelf where a second towel bundle should stand",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-001"
+    ],
+    "actions": [
+     "GHA-001",
+     "GHA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a toothbrush cup holding two personal toothbrushes standing among a guest soap pump and folded hand towel",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-002",
+     "GHF-005",
+     "GHF-006",
+     "GHF-009",
+     "GHF-010",
+     "GHF-011",
+     "GHF-014"
+    ],
+    "actions": [
+     "GHA-011",
+     "GHA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bathroom vanity counter with a hand towel that has clearly hung untouched since an earlier visit, no note of whose turn it is to refresh it",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-013"
+    ],
+    "actions": [
+     "GHA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a pristine, never-used towel set folded at the back of a linen shelf behind the towels actually given to guests",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-001",
+     "GHF-004",
+     "GHF-007",
+     "GHF-008",
+     "GHF-011",
+     "GHF-013"
+    ],
+    "actions": [
+     "GHA-003",
+     "GHA-005",
+     "GHA-007",
+     "GHA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a half-used bottle of rejected shampoo standing on a shower shelf, clearly kept rather than thrown out",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-007",
+     "GHF-012"
+    ],
+    "actions": [
+     "GHA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shower grout line showing the same even gray tone despite a scrub brush resting against the tile beside it",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "GHF-002",
+     "GHF-003",
+     "GHF-007",
+     "GHF-009",
+     "GHF-010",
+     "GHF-011",
+     "GHF-013",
+     "GHF-015"
+    ],
+    "actions": [
+     "GHA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a toilet brush standing in cloudy water in its holder, positioned in a corner nobody appears to have looked at in some time",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "GHA-001",
+   "title": "CLEAR THE COUNTER TO THREE THINGS",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take everything off the counter and put back only what a visitor would use, so nothing of the household's is left in view.",
+   "why_it_matters": "A counter holding a housemate's toothbrush or a stray hair clip stops reading as a guest counter and starts reading as an argument about whose bathroom this is.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a small box for anything going back to another room",
+    "a bin bag"
+   ],
+   "steps": [
+    "Take everything off the counter and put back only what a visitor would use: soap, tissues, hand towel. The travel conditioner, the spare contact lens case, and the razor that ended up here because the main bathroom ran out of room all go back where they belong or into the trash.",
+    "Set the soap, tissues and towel back in their usual spots, clear of the basin."
+   ],
+   "root_causes": [
+    "KC-012",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-012",
+     "KC-002"
+    ],
+    "zone": "GHZ-001",
+    "standard": "GHS-001"
+   },
+   "victory_condition": "Only soap, tissues and a folded hand towel remain on the counter, with bare space enough for a phone and glasses, and nothing of the household's left behind.",
+   "next_card": "GHS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bathroom vanity counter mid-clear, a small box of personal items being carried out and only soap, tissues and a folded towel remaining",
+    "must_show": [
+     "Only soap, tissues and a folded hand towel remain on the counter, with bare space enough for a phone and glasses, and nothing of the household's left behind."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-002",
+   "title": "SETTLE WHOSE BATHROOM THIS IS AND PHOTOGRAPH THE STANDARD",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Decide out loud whether this is a used bathroom or a guest bathroom, then photograph the three-item counter and post the picture inside the vanity door.",
+   "why_it_matters": "Holding a hotel standard against a resident who genuinely uses this room is aimed at the wrong room, and it gets reset twice a week until somebody decides.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a phone camera",
+    "tape"
+   ],
+   "steps": [
+    "Ask out loud whether anyone in the house actually uses this bathroom day to day.",
+    "If yes, give that person one named drawer or caddy for their two items, alongside the guest three; if no, agree that nothing personal comes back to this counter, starting today.",
+    "Photograph the counter holding exactly its agreed items and tape the picture inside the vanity door."
+   ],
+   "root_causes": [
+    "KC-012",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-012",
+     "KC-008"
+    ],
+    "zone": "GHZ-001",
+    "standard": "GHS-001"
+   },
+   "victory_condition": "One decision is made and photographed: either a named resident has their own labeled spot, or nothing personal returns to this counter.",
+   "next_card": "GHA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand taping a photograph of a settled bathroom counter to the inside of a vanity cabinet door",
+    "must_show": [
+     "One decision is made and photographed: either a named resident has their own labeled spot, or nothing personal returns to this counter."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-003",
+   "title": "CLEAR THE MINIATURES AND SEND BACKSTOCK HOME",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Pull everything out of the cabinet, be honest about years of hotel miniatures, and return anything that drifted in from another bathroom.",
+   "why_it_matters": "A miniature kept because throwing out free soap feels wasteful still takes up the same shelf as the four a guest would actually use.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a donation bag",
+    "a bin bag"
+   ],
+   "steps": [
+    "Pull everything out and be honest about the hotel miniatures: the shampoos from three trips, the lotion nobody opened, the free conditioner samples. Keep the unopened ones a guest would actually use, throw out the started ones, and send household backstock that drifted in here back to the bathroom it came from.",
+    "Keep four unopened travel toiletries with the least battered labels in a small dish; bag the rest for donation or the bin."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-001",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-001",
+     "KC-003"
+    ],
+    "zone": "GHZ-002",
+    "standard": "GHS-002"
+   },
+   "victory_condition": "Every started miniature and drifted household item is gone, and only unopened travel toiletries a guest would actually use remain.",
+   "next_card": "GHS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand sorting a pile of hotel miniature bottles into a keep dish of four and a donation bag of the rest",
+    "must_show": [
+     "Every started miniature and drifted household item is gone, and only unopened travel toiletries a guest would actually use remain."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-004",
+   "title": "LABEL TWO BINS AND LATCH THE CLEANING SHELF",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Set up two labeled lift-out bins, draw a minimum line for toilet paper, and move or latch anything a crawling child could reach.",
+   "why_it_matters": "Bowl cleaner and bleach sitting under this sink are exactly at a visiting toddler's eye level, and a bare cabinet base is the only way a slow leak from the trap ever gets seen.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "two bins",
+    "a marker",
+    "labels",
+    "a childproof latch"
+   ],
+   "steps": [
+    "Write two labels by hand, Guest Supplies and Cleaning, and load each bin accordingly.",
+    "Draw a line on the shelf at the toilet paper minimum, and stack rolls in plain view above it.",
+    "Fit the cabinet with a childproof latch or move the cleaning bin to a high shelf elsewhere, and never store bleach beside an acid bowl or limescale cleaner."
+   ],
+   "root_causes": [
+    "KC-011",
+    "KC-010",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "KC-010",
+     "KC-005"
+    ],
+    "zone": "GHZ-002",
+    "standard": "GHS-002"
+   },
+   "victory_condition": "Two labeled bins sit on a bare base, toilet paper stands visible above its drawn line, and the cleaning products are latched away from a child's reach.",
+   "next_card": "GHA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "two labeled lift-out bins standing in an open vanity cabinet beside a visible stack of toilet paper, a childproof latch fitted to the cabinet door",
+    "must_show": [
+     "Two labeled bins sit on a bare base, toilet paper stands visible above its drawn line, and the cleaning products are latched away from a child's reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-005",
+   "title": "CLEAR THE REJECTED BOTTLES",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take out every bottle, turn it over, and keep only one shampoo, one conditioner and one body wash, all more than a third full.",
+   "why_it_matters": "A bottle nobody liked does not improve by staying on the tub floor, it just collects a sticky ring underneath it.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Take out every bottle and turn it over. This is where the household's rejected products retire: the shampoo nobody liked, the body wash that smells wrong, the conditioner welded to the shelf. Keep one shampoo, one conditioner, one body wash, all readable and more than a third full. The rest go, along with the old razor and the disintegrating loofah.",
+    "Wipe the sticky ring left on the tub floor or shelf under each bottle removed."
+   ],
+   "root_causes": [
+    "RC-015",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "KC-002"
+    ],
+    "zone": "GHZ-003",
+    "standard": "GHS-003"
+   },
+   "victory_condition": "One shampoo, one conditioner and one body wash stand in the shower, each more than a third full and easy to read, with nothing else left welded to the shelf.",
+   "next_card": "GHS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand lifting a welded shampoo bottle off a tub floor, one shampoo, one conditioner and one body wash left standing in a hanging caddy",
+    "must_show": [
+     "One shampoo, one conditioner and one body wash stand in the shower, each more than a third full and easy to read, with nothing else left welded to the shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-006",
+   "title": "TREAT THE GROUT, HANG THE MAT, ANCHOR A GRAB BAR",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Give a stained grout line one proper treatment with full dwell time, fit a non-slip mat, and install one solidly anchored grab point.",
+   "why_it_matters": "A guest steps into an unfamiliar tub at night on a surface they cannot judge, and a towel bar screwed into drywall tears out the moment it takes a person's weight.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "dedicated mildew remover",
+    "a stiff grout brush",
+    "a non-slip mat or adhesive strips",
+    "a wall-anchored grab bar"
+   ],
+   "steps": [
+    "Spray the stained grout line with dedicated mildew remover, leave it for full dwell time, then work it with a stiff grout brush and rinse.",
+    "If it darkens again within two weeks, stop cleaning it and move it to the repair list instead.",
+    "Fit a non-slip mat or adhesive strips to the tub floor, and install one securely anchored grab bar, never relying on a towel bar."
+   ],
+   "root_causes": [
+    "RC-016",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-016",
+     "KC-010"
+    ],
+    "zone": "GHZ-003",
+    "standard": "GHS-003"
+   },
+   "victory_condition": "The treated grout line holds its color for two weeks, a non-slip mat sits on the tub floor, and one solidly anchored grab bar is fixed to the wall.",
+   "next_card": "GHA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand pressing a stiff grout brush into a shower corner beside a freshly fitted non-slip mat and a securely anchored wall grab bar",
+    "must_show": [
+     "The treated grout line holds its color for two weeks, a non-slip mat sits on the tub floor, and one solidly anchored grab bar is fixed to the wall."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-007",
+   "title": "CLEAR THE TANK TOP AND FLOOR BEHIND THE BOWL",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear everything from the top of the tank and the floor behind the bowl, leaving one reserve roll standing in the open.",
+   "why_it_matters": "A pile of air fresheners and old magazines behind the bowl is where a guest bathroom's clutter hides longest, because nobody but a guest ever looks there.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag",
+    "a box for anything worth keeping elsewhere"
+   ],
+   "steps": [
+    "Clear everything from the top of the tank and the floor behind the bowl: the collection of air fresheners, the second brush, the magazines, the box of something nobody has identified in years. One reserve roll stays in the open. Nothing else.",
+    "Bin anything unidentifiable and rehome anything genuinely useful to where it is actually used."
+   ],
+   "root_causes": [
+    "RC-015",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "RC-017"
+    ],
+    "zone": "GHZ-004",
+    "standard": "GHS-004"
+   },
+   "victory_condition": "The tank top and the floor behind the bowl are bare except for one reserve roll standing in the open.",
+   "next_card": "GHS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bare toilet tank top and floor behind the bowl with a single reserve roll standing in the open, a bin bag sitting nearby",
+    "must_show": [
+     "The tank top and the floor behind the bowl are bare except for one reserve roll standing in the open."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-008",
+   "title": "MOVE THE ROLL WITHIN SEATED REACH AND RETIRE THE BRUSH",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Remount the reserve roll where a seated person can reach it, and replace a splayed or standing-water brush with a fresh one.",
+   "why_it_matters": "A reserve roll nobody seated can reach defeats the entire point of having one, and a brush that has stood in gray water for years spreads more than it removes.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a roll holder",
+    "a new toilet brush and holder"
+   ],
+   "steps": [
+    "Remount or reposition the roll holder so a seated person can reach it without standing up.",
+    "Replace a brush with splayed bristles or standing water in its holder with a fresh set.",
+    "Agree the new routine: rinse the brush in the flush and prop it to drip under the closed seat before it goes back in the holder."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-008"
+    ],
+    "zone": "GHZ-004",
+    "standard": "GHS-004"
+   },
+   "victory_condition": "The reserve roll is reachable from a seated position, and a fresh, dry brush stands in a dry holder.",
+   "next_card": "GHA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a toilet paper holder remounted within easy seated reach, a fresh dry toilet brush standing in a clean holder beside it",
+    "must_show": [
+     "The reserve roll is reachable from a seated position, and a fresh, dry brush stands in a dry holder."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-009",
+   "title": "RETIRE THE THIN AND GRAY TOWELS",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Unfold every towel in daylight and pull anything thin, gray, stiff or stained out of the guest stack for good.",
+   "why_it_matters": "A towel that looks fine folded in closet light shows its wear the moment it is unfolded in daylight, and a guest is the one who finds out first.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "daylight or a bright lamp",
+    "a rag bin"
+   ],
+   "steps": [
+    "Unfold every towel and look at it in daylight rather than closet light. Anything thin along the fold line, permanently gray, stiff from too much softener, or carrying a hair dye or nosebleed stain comes out of the guest stack. It becomes a rag or a car towel today. It does not go back just in case.",
+    "Move the household's best remaining towels into the guest stack to replace what left."
+   ],
+   "root_causes": [
+    "RC-014",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-014",
+     "RC-015"
+    ],
+    "zone": "GHZ-005",
+    "standard": "GHS-005"
+   },
+   "victory_condition": "Every towel remaining in the guest stack is free of thinning, graying, stiffness or stains, and none of it went back in just in case.",
+   "next_card": "GHS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand unfolding a thin, graying towel in daylight beside a stack of newly promoted guest towels",
+    "must_show": [
+     "Every towel remaining in the guest stack is free of thinning, graying, stiffness or stains, and none of it went back in just in case."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-010",
+   "title": "BUNDLE BY GUEST, MARK THE LINE, WASH THE STORED SET",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "difficulty": 3,
+   "six_s": "Sustain",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Fold towels into complete guest bundles rather than stacks by type, mark the shelf at the second bundle's edge, and wash the stored set even though nobody has used it.",
+   "why_it_matters": "Gathering a bath towel from one stack and a washcloth from another turns one guest's setup into three separate searches, and a towel that sat folded all season carries a musty note the instant it gets wet.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "the washing machine"
+   ],
+   "steps": [
+    "Fold each bath towel, hand towel and washcloth together into one bundle, so setting up for a guest is one lift.",
+    "Mark the shelf edge where the second bundle should end.",
+    "Wash the whole stored set and the bath mat on a hot cycle before refolding, even though nobody has used them."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-011"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-011"
+    ],
+    "zone": "GHZ-005",
+    "standard": "GHS-005"
+   },
+   "victory_condition": "Two complete bundles sit on the shelf up to the marked line, freshly washed, with the bath mat folded beneath them.",
+   "next_card": "GHA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "two complete folded towel bundles on a linen shelf beside a marker line showing where the second bundle ends",
+    "must_show": [
+     "Two complete bundles sit on the shelf up to the marked line, freshly washed, with the bath mat folded beneath them."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-011",
+   "title": "THE FULL GUEST BATHROOM HAZARD WALK",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every zone checking for a plugged-in cord beside water, a chemical within a child's reach, a slick tub floor, and any textile stacked against the water heater.",
+   "why_it_matters": "A guest brings an unfamiliar body, sometimes a visiting child, into a room the household almost never uses, so the hazards a daily bathroom would surface get found here only if someone looks on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a childproof latch",
+    "a non-slip mat",
+    "a cloth"
+   ],
+   "steps": [
+    "Check the counter for any cord plugged in beside the basin and any glass standing on a wet surface, and clear both.",
+    "Check under the vanity for bowl cleaner or bleach within a child's reach, and latch the cabinet if it is not already.",
+    "Check the tub for a non-slip mat and one securely anchored grab point, and check the linen closet for a hand's width of clearance around the water heater."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "No cord sits beside water, no chemical sits within a child's reach, the tub has a non-slip surface and an anchored grab point, and nothing touches the water heater.",
+   "next_card": "GHA-012",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand checking a childproof latch on a vanity cabinet in a guest bathroom, a non-slip mat visible in the tub beyond",
+    "must_show": [
+     "No cord sits beside water, no chemical sits within a child's reach, the tub has a non-slip surface and an anchored grab point, and nothing touches the water heater."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-012",
+   "title": "THE VISIT-CONFIRMED WALK-THROUGH",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "The moment a visit is confirmed, walk the whole room once: top up the soap, hang a fresh towel, check the reserve roll, and confirm two linen bundles are ready.",
+   "why_it_matters": "This room has no daily user, so nothing forces a check except someone deciding to do one before a guest arrives.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a fresh hand towel",
+    "a spare toilet roll"
+   ],
+   "steps": [
+    "Top up the soap and hang a fresh hand towel on the counter.",
+    "Confirm the reserve roll is upright and a fresh liner is in the trash can.",
+    "Confirm two complete towel bundles stand on the linen shelf up to the marked line."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "The whole room was checked the moment the visit was confirmed, and one named person did it.",
+   "next_card": "GHA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand hanging a fresh folded towel on a guest bathroom counter ring, a full soap pump and a spare toilet roll visible nearby",
+    "must_show": [
+     "The whole room was checked the moment the visit was confirmed, and one named person did it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHA-013",
+   "title": "THE DEPARTURE RESET",
+   "type": "ACTION CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Sustain",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "The moment a guest leaves, strip the bathroom the same way you strip the bed: run everything they used through one wash, and restock the linen shelf before you sit down.",
+   "why_it_matters": "A towel taken from this shelf midweek is never the one that comes back unless the departure itself is what triggers the reset.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "the washing machine"
+   ],
+   "steps": [
+    "Carry out whatever the guest left in the shower or on the counter to the laundry on the same trip as the bed sheets.",
+    "Wash the used towels and bath mat together in one load.",
+    "Refold and restock the linen shelf to two complete bundles before considering the room done."
+   ],
+   "root_causes": [
+    "KC-011",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "Everything the guest used is through the wash, and two complete bundles stand ready on the shelf again.",
+   "next_card": "GHA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a laundry basket holding used guest towels and a bath mat beside a linen shelf being restocked to two bundles",
+    "must_show": [
+     "Everything the guest used is through the wash, and two complete bundles stand ready on the shelf again."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "GHS-001",
+   "title": "GUEST VANITY COUNTER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Counter",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The counter holds three things: soap, tissues, hand towel. Anything a visitor brings leaves with them.",
+   "trigger": "When you put away fresh towels after laundry, swap the guest hand towel in the same motion.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the collar at the base of the tap where a chalky ring hides, working it with a folded cloth corner until it lifts.",
+    "Lift the soap pump and wipe the sticky ring under its base before setting it back down.",
+    "Wipe the towel ring and its mount clean before you rehang a fresh folded towel."
+   ],
+   "related": {
+    "zone": "GHZ-001",
+    "actions": [
+     "GHA-001",
+     "GHA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a bathroom vanity counter holding a soap pump standing above half full, a single folded hand towel hanging on a ring by the door, a box of tissues at the back corner, and a clear stretch of bare counter with no toothbrush cup or hair clips in view, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GHS-002",
+   "title": "GUEST VANITY STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Vanity Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two labeled lift-out bins and a visible toilet paper stack. Nothing loose on the cabinet base, so a leak has somewhere obvious to show.",
+   "trigger": "You already open this cabinet to get the brush for the weekly bowl clean, so run a hand across the base while you are down there.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the neck and cap of one bottle in each bin where dried product has run down the side.",
+    "Run a hand across the bare cabinet base, feeling for a dark ring or a soft patch near the trap.",
+    "Wipe the inside face of the cabinet door and its handle before closing it."
+   ],
+   "related": {
+    "zone": "GHZ-002",
+    "actions": [
+     "GHA-003",
+     "GHA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "the inside of an open bathroom vanity cabinet holding two labeled lift-out bins, one marked Guest Supplies with a wrapped soap bar and travel toiletries in a small dish, one marked Cleaning with bottles standing upright on a tray, four rolls of toilet paper stacked beside them, and a bare cabinet base, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GHS-003",
+   "title": "SHOWER OR TUB STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bathroom",
+   "zone": "Shower or Tub",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One shampoo, one conditioner, one body wash, all readable and above a third full, over a non-slip tub floor.",
+   "trigger": "When you strip the guest bed after a visit, carry out whatever the guest left in the shower on the same trip to the laundry.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Spray the grout lines and the bottom band of the liner, then leave them to dwell while you finish elsewhere.",
+    "Wipe the sticky ring left under each bottle on the caddy or shelf.",
+    "Wipe the shower head and arm where scale has started to crust the spray holes."
+   ],
+   "related": {
+    "zone": "GHZ-003",
+    "actions": [
+     "GHA-005",
+     "GHA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a guest bathroom shower with three bottles standing in a hanging caddy, a clean curtain liner with no pink film at its hem, a folded bath mat draped over the tub rim, evenly colored grout in every corner, a non-slip ridged tub floor, and one securely anchored grab bar fixed to the tiled wall, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GHS-004",
+   "title": "TOILET AREA STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bathroom",
+   "zone": "Toilet Area",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One reserve roll visible from the seat, a dry brush in a dry holder, a lined can, and no ring at the water line.",
+   "trigger": "Trash collection night is liner night in here, and the reserve roll gets checked while you are holding the bag.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the flush handle on every face, since it is the one thing every guest touches.",
+    "Lift the seat and wipe its underside and the rim it sits on, the part most often missed.",
+    "Rinse the brush holder so no liquid pools in its bottom before it goes back."
+   ],
+   "related": {
+    "zone": "GHZ-004",
+    "actions": [
+     "GHA-007",
+     "GHA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a guest bathroom toilet area with one spare roll standing in a holder within easy seated reach, a dry brush resting in its holder, a small lined trash can, a clean bowl with no ring at the water line, and a dust-free floor behind the pedestal, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GHS-005",
+   "title": "GUEST LINEN ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Guest Bathroom",
+   "zone": "Guest Linen Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two complete bundles, bath towel plus hand towel plus washcloth in each, and the bath mat folded beneath.",
+   "trigger": "The guest's departure is the trigger: strip the bed and the bathroom together, wash them together, restock the shelf before you sit down.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the front lip of one shelf where hands grip to pull a towel stack out.",
+    "Run a hand along the back wall of the closet, checking for damp.",
+    "Refold one bundle so a hand's width of air sits above the finished stack."
+   ],
+   "related": {
+    "zone": "GHZ-005",
+    "actions": [
+     "GHA-009",
+     "GHA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a linen closet shelf holding two matching complete towel bundles each with a bath towel, hand towel and washcloth folded together, a folded bath mat lying flat beneath them, a hand's width of clear air above the stack, and no thin gray towel sharing the shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "GHE-001",
+   "title": "THE UNANNOUNCED DROP-IN",
+   "type": "EVENT CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A friend calls from the driveway, already parking, and the guest counter has to answer for itself with zero notice.",
+   "tests_zones": [
+    "GHZ-001"
+   ],
+   "held_if": "The soap pump is full, a fresh hand towel hangs on the ring, and nothing personal is anywhere in sight.",
+   "if_it_failed": "If a stray toothbrush or a half-empty soap pump greeted them instead, the visit-confirmed walk-through did not happen. Draw GHA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GHZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand towel hanging fresh on a guest bathroom counter ring moments before a doorbell rings",
+    "must_show": [
+     "A friend calls from the driveway, already parking, and the guest counter has to answer for itself with zero notice."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GHE-002",
+   "title": "THE OVERNIGHT GUEST WHO FORGOT A TOOTHBRUSH",
+   "type": "EVENT CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest arrives without a toothbrush and has to ask, or hopes the cabinet already has one.",
+   "tests_zones": [
+    "GHZ-002"
+   ],
+   "held_if": "The guest supplies bin opens to a new toothbrush, a wrapped soap and four fresh travel toiletries, no rummaging required.",
+   "if_it_failed": "If the bin was empty or stuffed with old miniatures instead, the sort-and-restock pass slipped. Draw GHA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GHZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a labeled Guest Supplies bin from an open vanity cabinet, a new toothbrush and wrapped soap visible inside",
+    "must_show": [
+     "A guest arrives without a toothbrush and has to ask, or hopes the cabinet already has one."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GHE-003",
+   "title": "THE GUEST WHO SHOWERS AT ELEVEN AT NIGHT",
+   "type": "EVENT CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest showers well after dark, in an unfamiliar tub, on a floor they cannot judge by feel alone.",
+   "tests_zones": [
+    "GHZ-003"
+   ],
+   "held_if": "A non-slip mat grips the tub floor, one solidly anchored grab bar is exactly where a reaching hand finds it, and three full bottles are easy to read in dim light.",
+   "if_it_failed": "If they reached for a towel bar instead of a grab bar, or found the floor slick, the safety pass slipped. Draw GHA-006.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GHZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand gripping a securely anchored wall bar beside a non-slip tub floor in a dimly lit guest bathroom at night",
+    "must_show": [
+     "A guest showers well after dark, in an unfamiliar tub, on a floor they cannot judge by feel alone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GHE-004",
+   "title": "THE MIDDLE-OF-THE-NIGHT ROLL CHANGE",
+   "type": "EVENT CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The roll runs out at two in the morning and a half-asleep guest has to find the reserve without turning on every light.",
+   "tests_zones": [
+    "GHZ-004"
+   ],
+   "held_if": "The reserve roll stands in reach from the seat, in the same spot it always is.",
+   "if_it_failed": "If they had to get up and hunt for it, the roll never got remounted within seated reach. Draw GHA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GHZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching for a toilet paper holder mounted within easy seated reach in a dim bathroom",
+    "must_show": [
+     "The roll runs out at two in the morning and a half-asleep guest has to find the reserve without turning on every light."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "GHE-005",
+   "title": "TWO GUESTS ARRIVE INSTEAD OF ONE",
+   "type": "EVENT CARD",
+   "room": "Guest Bathroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A second guest turns up unannounced and the linen shelf has to produce a full second set on the spot.",
+   "tests_zones": [
+    "GHZ-005"
+   ],
+   "held_if": "Two complete bundles already stand on the shelf up to the marked line, each one lift away.",
+   "if_it_failed": "If only one bundle was ready, or towels had to be gathered from three different stacks, the departure reset or the bundling pass slipped. Draw GHA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "GHZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "two complete towel bundles being lifted together from a linen shelf for two arriving guests",
+    "must_show": [
+     "A second guest turns up unannounced and the linen shelf has to produce a full second set on the spot."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

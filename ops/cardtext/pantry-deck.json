@@ -1,0 +1,2470 @@
+{
+ "deck": "pantry",
+ "room": "Pantry",
+ "count": 57,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 5,
+  "FRICTION CARD": 15,
+  "ROOT CAUSE CARD": 13,
+  "ACTION CARD": 13,
+  "STANDARD CARD": 5,
+  "EVENT CARD": 5
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "PNR-001",
+   "title": "THE PANTRY",
+   "type": "ROOM CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "FIVE SHELVES. START WITH THE ONE THAT HIDES THE OLDEST BAG.",
+   "objective": "The pantry is where you find out the difference between what you buy and what you actually eat. This card is the map and the order.",
+   "zones_in_order": [
+    "PNZ-001 Dry Goods Shelves",
+    "PNZ-002 Canned and Jarred Goods",
+    "PNZ-003 Baking Zone",
+    "PNZ-004 Snack and Lunch Zone",
+    "PNZ-005 Backstock and Bulk Zone"
+   ],
+   "start_here": "PNZ-001 Dry Goods Shelves. Take one shelf completely off and onto the counter before you decide anything. A shelf sorted in place keeps its own history, and the bag that got pushed behind the cereal two years ago stays behind the cereal.",
+   "how_to_play": [
+    "1. Deal the five ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true on your shelf. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do PNA-011 The Full Shelf Safety And Access Walk before any rebuild. It takes thirty minutes and covers every shelf's height, the stool, and every hard-to-reach spot.",
+   "related": {
+    "contents": "PNZ-001 to PNZ-005, PNF-001 to PNF-015, the shared root causes in ops/root_causes.py, PNA-001 to PNA-013, PNS-001 to PNS-005, PNE-001 to PNE-005"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole pantry in its settled state, dry goods shelves, canned goods, a baking bin, a child-height snack bin and a backstock area all visible in one frame",
+    "must_show": [
+     "all five zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the five zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "PNZ-001",
+   "title": "DRY GOODS SHELVES",
+   "type": "ZONE CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "order": 1,
+   "difficulty": 3,
+   "tagline": "ONE BLOCK OF STAPLES. ONE LABEL EACH. READABLE FROM THE DOORWAY.",
+   "objective": "Holds the grains, pasta and cereals you actually cook from in a normal week.",
+   "callouts": [
+    "Rice, pasta and oats standing together as one labeled block at chest height",
+    "Breakfast cereal boxes standing together as their own block",
+    "Every opened bag sealed inside a matching container",
+    "A handwritten date visible on each container's label",
+    "The fill level inside every container readable without lifting it",
+    "A two-step stool standing inside the pantry beneath the top shelf"
+   ],
+   "done_looks_like": "Every opened bag is either sealed in a container with its opening date written on it, or gone. Pasta, rice and oats stand as one block, breakfast cereal as another, and you can read the level in every container from the doorway without lifting a thing.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Reaching the top shelf from a kitchen chair or by standing on the bottom shelf edge. Keep a two-step stool inside the pantry, and if the stool is not there, that shelf is too high for anything you need weekly."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Glass grain jars stored above eye level. A full one is heavy, hands in a kitchen are wet, and glass on a hard floor puts the room out of use. Glass at chest height or lower, lidded plastic up top."
+    }
+   ],
+   "the_call": {
+    "title": "The bag you opened for one recipe",
+    "text": "Half a kilo of buckwheat, the coarse polenta, the rice flour from the week you tried a new bread. You keep them because binning food feels wrong, and because you genuinely still intend to. Settle it with a rule: if it is open, and you cannot name the specific meal you will cook with it inside the next fourteen days, it leaves now. Unopened and in date, give it away while it is still worth having. Opened and more than a year old, it goes in the bin without further debate, because stale grain is not a saving you can ever spend."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Small detail brush",
+    "Mild dish soap"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PNS-001",
+    "actions": [
+     "PNA-001",
+     "PNA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a pantry shelf at chest height holding matching labeled containers of rice, pasta and oats standing together as one block, a separate block of cereal boxes beside them, each container's label showing a dated sticker, and a small two-step stool standing on the floor below",
+    "must_show": [
+     "Rice, pasta and oats standing together as one labeled block at chest height",
+     "Breakfast cereal boxes standing together as their own block",
+     "Every opened bag sealed inside a matching container",
+     "A handwritten date visible on each container's label",
+     "The fill level inside every container readable without lifting it",
+     "A two-step stool standing inside the pantry beneath the top shelf"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PNZ-002",
+   "title": "CANNED AND JARRED GOODS",
+   "type": "ZONE CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "order": 2,
+   "difficulty": 2,
+   "tagline": "EVERY LABEL FACING OUT. NOTHING DENTED. THE OLDEST DATE UP FRONT.",
+   "objective": "Holds the cans and jars that turn an empty-fridge week into dinner.",
+   "callouts": [
+    "Cans standing in rows on a stepped riser, every label facing outward",
+    "Tomatoes grouped in one row, beans in another, soup in a third",
+    "No dented seam or domed lid visible on any can",
+    "No jar standing hidden directly behind another jar",
+    "The oldest-dated can or jar standing at the front of its row",
+    "A clean, dry shelf edge with no sticky ring under any jar"
+   ],
+   "done_looks_like": "Cans sit in rows on risers with every label facing you: tomatoes together, beans together, soup together. No dented seams, no domed lids, no jar hidden behind another jar, and the oldest date in each row standing at the front of it.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "A bulging or leaking can is a spoilage warning and no amount of cooking makes it safe. Bag it sealed, bin it, and wash the shelf underneath where it stood."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A dense row of cans on a high shelf. One tin landing on a bare foot is a broken toe, and a glass sauce jar bursting on tile leaves splinters you find for weeks. Cans and glass belong below shoulder height."
+    }
+   ],
+   "the_call": {
+    "title": "The best-before you keep arguing with",
+    "text": "The soup two years past its date, the chickpeas whose date has rubbed off, the fancy jar somebody gave you that you are saving for an occasion that has not arrived. Best-before is about quality rather than safety, so you have been keeping these on a technicality and never eating them. End the argument with one pass: anything past best-before goes into a meal in the next seven days or it goes out this week. Anything past a use-by date goes now. Anything dented on the seam, rusted, or domed goes now regardless of the date, and it does not go to the food bank either. If you would not open it tonight, you are not saving it, you are storing it."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Small detail brush"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PNS-002",
+    "actions": [
+     "PNA-003",
+     "PNA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a pantry shelf with canned goods standing in labeled rows on a stepped riser, every label facing outward, tomatoes grouped separately from beans and soup, no can showing a dented seam or domed lid, and a clean dry shelf edge with no sticky residue",
+    "must_show": [
+     "Cans standing in rows on a stepped riser, every label facing outward",
+     "Tomatoes grouped in one row, beans in another, soup in a third",
+     "No dented seam or domed lid visible on any can",
+     "No jar standing hidden directly behind another jar",
+     "The oldest-dated can or jar standing at the front of its row",
+     "A clean, dry shelf edge with no sticky ring under any jar"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PNZ-003",
+   "title": "BAKING ZONE",
+   "type": "ZONE CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "ONE LIFT-OUT BIN. LEAVENERS DATED. THE ALLERGEN SHELF STANDS APART.",
+   "objective": "Holds everything you need to start a bake without a trip to the shop first.",
+   "callouts": [
+    "Flour, sugar and brown sugar standing in sealed one-handed containers",
+    "Baking powder, bicarbonate of soda and yeast together in one small dated box",
+    "A single lift-out bin holding cutters, cases and piping tips",
+    "A dedicated scoop and sealed container for nut flour standing apart at the end of the row",
+    "No loose sprinkles rolling free on the shelf",
+    "A washed scoop sitting inside the flour bin, not buried in the flour"
+   ],
+   "done_looks_like": "Flour, sugar and brown sugar in sealed containers you can open one-handed. Baking powder, bicarbonate of soda and yeast together in one small box with their dates showing. Cutters, cases and piping tips in a single lift-out bin, and no loose sprinkles rolling around the shelf.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Cross-contact between nut flours and everything else on the shelf, plus small decorating pieces like silver balls and mini cutters sitting on a low shelf within a toddler's reach."
+    },
+    {
+     "question": "Fall",
+     "text": "Spilled flour or sugar on a hard kitchen floor is genuinely slick, and you will be walking a hot tray across it. Sweep the spill when it happens rather than when the bake is done."
+    }
+   ],
+   "the_call": {
+    "title": "The kit for the baker you meant to become",
+    "text": "The piping set from the birthday you decorated once, the fondant, the third tart tin, the specialty flour from a month of enthusiastic bread. This is the hardest shelf in the pantry, because letting it go feels like admitting something about yourself. Here is the rule that settles it: keep the tools for what you have baked twice, and let go of the tools for what you have baked once. Twice means it is a thing you do. Once means it was a good afternoon, and the afternoon has already happened. Whatever survives that test earns its bin space. The rest goes to somebody who bakes this month, not into a box in the garage where you will meet it again in three years."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Dry hand brush and dustpan",
+    "Mild dish soap"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PNS-003",
+    "actions": [
+     "PNA-005",
+     "PNA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a pantry baking shelf with flour, sugar and brown sugar in sealed one-handed containers, a small dated box holding baking powder, bicarbonate of soda and yeast together, a lift-out bin of cutters and piping tips, and a separate sealed nut-flour container with its own scoop standing at the end of the row",
+    "must_show": [
+     "Flour, sugar and brown sugar standing in sealed one-handed containers",
+     "Baking powder, bicarbonate of soda and yeast together in one small dated box",
+     "A single lift-out bin holding cutters, cases and piping tips",
+     "A dedicated scoop and sealed container for nut flour standing apart at the end of the row",
+     "No loose sprinkles rolling free on the shelf",
+     "A washed scoop sitting inside the flour bin, not buried in the flour"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PNZ-004",
+   "title": "SNACK AND LUNCH ZONE",
+   "type": "ZONE CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "ONE BIN AT CHILD HEIGHT. ONE LINE TO FILL IT TO. EVERY LID MATCHED.",
+   "objective": "Holds what goes into a lunchbox, and what a child is allowed to take without asking.",
+   "callouts": [
+    "One open bin standing at child height",
+    "A marked fill line visible inside the open bin",
+    "A higher shelf holding the snacks that need an adult's yes",
+    "Every reusable container with its own lid sitting on top of it",
+    "Lunch bags and ice packs standing next to the containers",
+    "No loose orphaned lid or lidless tub anywhere on the shelf"
+   ],
+   "done_looks_like": "One open bin at child height holding only snacks you have already said yes to, and a higher shelf holding the ones that need an adult. Every reusable container has its own lid sitting on it, and the number of containers matches the number of lunches you genuinely pack.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Hard sweets, whole nuts and small round cheeses in an open bin a two-year-old can reach. The bin's contents are set by the youngest child in the house, not the oldest."
+    },
+    {
+     "question": "Fall",
+     "text": "A child climbing the shelving to reach the higher snack shelf. If it is worth climbing for, either move it out of the pantry entirely or fix the shelving unit to the wall."
+    }
+   ],
+   "the_call": {
+    "title": "Whether the answer is yours or the bin's",
+    "text": "You are negotiating snacks several times a day, and every one of those is a fresh decision made while you are busy and being asked twice. The call is to move the decision off the moment and onto the shelf. Choose once, in daylight and not at four o'clock, exactly what a child may take without asking, and put precisely that in the open bin at their height. Everything else goes above eye line and requires you. Then hold the line: when the bin is empty at four o'clock, the answer is that the bin is empty, not that you will go and find something. That single refusal is what makes the bin real. Until you hold it, the bin is decoration and you are still the one being asked."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Mild dish soap",
+    "Bottle and spout brush"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PNS-004",
+    "actions": [
+     "PNA-007",
+     "PNA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a pantry shelf with an open snack bin at child height filled to a marked line, a higher shelf above holding snacks that need an adult, reusable lunch containers each with its own lid sitting on top, and lunch bags with ice packs standing beside them",
+    "must_show": [
+     "One open bin standing at child height",
+     "A marked fill line visible inside the open bin",
+     "A higher shelf holding the snacks that need an adult's yes",
+     "Every reusable container with its own lid sitting on top of it",
+     "Lunch bags and ice packs standing next to the containers",
+     "No loose orphaned lid or lidless tub anywhere on the shelf"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PNZ-005",
+   "title": "BACKSTOCK AND BULK ZONE",
+   "type": "ZONE CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "order": 5,
+   "difficulty": 3,
+   "tagline": "DATED ON ARRIVAL. A MAXIMUM ON THE EDGE. ONE ROW DEEP.",
+   "objective": "Holds the reserve that feeds the working shelves, and nothing else.",
+   "callouts": [
+    "Sacks of rice standing at or below waist height",
+    "Cases of tinned tomatoes with the arrival month written on each one",
+    "Packs of kitchen roll stored up high, off the floor",
+    "A maximum number written on the shelf edge for each line",
+    "The count on the shelf sitting at or under its written maximum",
+    "Nothing stacked directly in front of anything else"
+   ],
+   "done_looks_like": "Sacks of rice, cases of tinned tomatoes and packs of kitchen roll, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Cases stacked above chest height, and a heavy rice sack lifted off the floor with a twist in your back. Stack low, and slide the sack out onto a step or a chair before you lift it properly."
+    },
+    {
+     "question": "Fall",
+     "text": "A floor-stacked case left near the doorway of a dim pantry is a shin-height trip in the dark. Keep the floor inside the door clear and put a light where your hand reaches it before your foot does."
+    }
+   ],
+   "the_call": {
+    "title": "The warehouse pack that was not a saving",
+    "text": "You bought the big one because the unit price was better, and some of it went stale, rancid, or simply boring before you reached the bottom. The honest question is not whether the price was good. It is whether you have ever finished one of these in time. So write down, for each item, the largest quantity you have genuinely used up before it turned, and make that number your maximum on the shelf edge. Until your count falls back below that number you do not buy the item again, whatever the shelf price is doing. Anything already over the line goes forward into meals this month or out to a food bank while it is still in date. A cupboard full of food you will not eat is not a store of value, it is money you have already spent."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Broom and dustpan"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "PNS-005",
+    "actions": [
+     "PNA-009",
+     "PNA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a pantry backstock area with sacks of rice and cases of tinned tomatoes standing at or below waist height, each case marked with its arrival month, light packs of kitchen roll stored higher up, a small dated sticker fixed to the shelf edge, and nothing stacked in front of anything else",
+    "must_show": [
+     "Sacks of rice standing at or below waist height",
+     "Cases of tinned tomatoes with the arrival month written on each one",
+     "Packs of kitchen roll stored up high, off the floor",
+     "A maximum number written on the shelf edge for each line",
+     "The count on the shelf sitting at or under its written maximum",
+     "Nothing stacked directly in front of anything else"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "PNF-001",
+   "title": "THE BAG YOU OPENED TWO SUMMERS AGO",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bag you opened for one recipe two summers ago is still sitting up there, unlabeled, and you can't say when it was opened.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's not really clutter, it's a recipe I still mean to make again",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nothing gets written on the bag the day it's opened, so there's no way to judge how old it really is",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "I've walked past that shelf so many times it doesn't register as a problem anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-001",
+    "root_causes": [
+     "RC-015",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an unlabeled half-used bag of flour pushed to the back of a pantry shelf behind a row of cereal boxes, no date or marking visible anywhere on it",
+    "must_show": [
+     "A bag you opened for one recipe two summers ago is still sitting up there, unlabeled, and you can't say when it was opened."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-002",
+   "title": "TWO OPEN BAGS OF THE SAME THING",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Two open bags of the same rice or oats turn up on the shelf at once, one pushed behind the other.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "New stock gets unpacked straight to the front instead of behind the open bag",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "I buy a replacement before I actually check whether the open one is empty yet",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There's no rule everyone in the house follows for loading new stock in behind",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-001",
+    "root_causes": [
+     "KC-009",
+     "KC-005",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two open bags of the same rice sitting side by side on a pantry shelf, one bag pushed behind the other instead of one finishing before the next begins",
+    "must_show": [
+     "Two open bags of the same rice or oats turn up on the shelf at once, one pushed behind the other."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-003",
+   "title": "A GLASS JAR SITS ABOVE EYE LEVEL",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A glass grain jar sits above eye level on this shelf instead of at chest height where it belongs.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There wasn't a clear place made for it at chest height so it ended up wherever there was room",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Reaching the top shelf safely means keeping a step stool in the pantry, and it's not there",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "Nobody in the house is the one who checks this shelf for what's stored above eye level",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-006",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a glass grain jar sitting on a high pantry shelf well above eye level, no step stool visible anywhere nearby on the floor below",
+    "must_show": [
+     "A glass grain jar sits above eye level on this shelf instead of at chest height where it belongs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-004",
+   "title": "A DENTED CAN NEVER MADE IT TO THE BIN",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A can with a dented seam or a jar with a popped lid is still sitting on the shelf instead of already in the bin.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "I wasn't sure whether a small dent or a slightly domed lid really counts as spoiled",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's tucked behind a row of other cans where nobody actually looks at it",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nobody has checked this shelf for damaged cans in a long time; it's not really anyone's job",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-002",
+    "root_causes": [
+     "KC-008",
+     "KC-005",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a can with a visibly dented seam sitting upright in a row of otherwise ordinary canned goods on a pantry shelf",
+    "must_show": [
+     "A can with a dented seam or a jar with a popped lid is still sitting on the shelf instead of already in the bin."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-005",
+   "title": "FOUR JARS OF THE SAME SAUCE",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Four jars of the same pasta sauce turn up when you finally take everything off the shelf.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "I keep buying it because I genuinely can't tell from a glance how many are already here",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Four of one thing is just how much ends up here between big shops, nobody's ever called it too many",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Whoever unpacks the shopping doesn't check the shelf before adding another one",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-002",
+    "root_causes": [
+     "KC-005",
+     "KC-001",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "four identical jars of pasta sauce lined up together on a pantry shelf, clearly more than a single row would ever need",
+    "must_show": [
+     "Four jars of the same pasta sauce turn up when you finally take everything off the shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-006",
+   "title": "THE STICKY RING UNDER THE HONEY JAR",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A shelf edge feels tacky where a honey jar or sauce lid has wept, and you only notice because of an ant.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Reaching the sticky ring under that jar costs more effort than the rest of the shelf, so it gets skipped",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "The sticky ring was there so long I stopped seeing it as something to fix",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Nothing tells you a jar has started weeping until the ants already have",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-002",
+    "root_causes": [
+     "RC-016",
+     "RC-017",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a honey jar sitting in a sticky ring of residue on a pantry shelf, a single ant visible following the edge of the sticky patch",
+    "must_show": [
+     "A shelf edge feels tacky where a honey jar or sauce lid has wept, and you only notice because of an ant."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-007",
+   "title": "THE UNTESTED TIN OF BAKING POWDER",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Baking powder or yeast has been sitting in the bin for a long time and nobody has actually tested whether it still works.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no reminder built into anything that prompts a test before a bake",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The tin has no date on the lid, so there's no way to judge how old it really is",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "I keep meaning to test it and use it up before I replace it, and never quite get to it",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-003",
+    "root_causes": [
+     "KC-009",
+     "KC-008",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tin of baking powder sitting in a baking bin with a bare, unmarked lid, positioned beside a mixing bowl as if a bake is about to start",
+    "must_show": [
+     "Baking powder or yeast has been sitting in the bin for a long time and nobody has actually tested whether it still works."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-008",
+   "title": "ONE SCOOP FOR EVERYTHING, INCLUDING THE ALMOND FLOUR",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The nut flour or sesame container shares a scoop with everything else on this shelf.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody ever agreed this container needs its own dedicated scoop",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It sits in the middle of the row instead of at the end where a hand would notice it's different",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Whoever's baking in a hurry just grabs whatever scoop is closest",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-003",
+    "root_causes": [
+     "KC-008",
+     "KC-003",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single scoop resting inside an open bag of almond flour on a baking shelf, positioned in the middle of a row of ordinary baking ingredients rather than standing apart at the end",
+    "must_show": [
+     "The nut flour or sesame container shares a scoop with everything else on this shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-009",
+   "title": "THE BIN COMES BACK SHORT A SCOOP",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The lift-out baking bin comes back short a scoop, or the vanilla is missing, right when you're about to start a bake.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Somebody borrowed from this bin for something that wasn't a bake, and it never got told to the person who baked",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no moment that resets the bin, it only gets noticed when a bake is already underway",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The bin holds more loose extras than a single bake actually needs, so something always drifts out of it",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-003",
+    "root_causes": [
+     "RC-013",
+     "KC-009",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open lift-out baking bin on a pantry shelf with an empty slot where a scoop should be and a bottle of vanilla extract visibly missing from its usual spot",
+    "must_show": [
+     "The lift-out baking bin comes back short a scoop, or the vanilla is missing, right when you're about to start a bake."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-010",
+   "title": "THE BIN SITS BELOW ITS OWN LINE",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The open snack bin sits below the marked fill line most mornings, well before the week is over.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody actually refills it to the line the evening before, it just gets remembered some nights and not others",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no clear rule for who tops it up when the lunchboxes come home",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Filling it happens whenever someone notices, not at a fixed moment in the evening",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-004",
+    "root_causes": [
+     "RC-013",
+     "KC-008",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open snack bin at child height in a pantry, its contents sitting visibly below a marked fill line painted or taped inside it",
+    "must_show": [
+     "The open snack bin sits below the marked fill line most mornings, well before the week is over."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-011",
+   "title": "A LID WITH NOTHING LEFT TO CLOSE",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A container comes back from the shelf with no matching lid, or a lid with nothing to close.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Lids and containers get put away separately instead of paired the moment they're washed",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "A stray lid or container has been sitting loose in the cupboard for a while and nobody's dealt with it",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It's been an orphaned lid for so long it just blends into the shelf now",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-004",
+    "root_causes": [
+     "KC-002",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single plastic container lid sitting alone on a pantry shelf with no matching container anywhere nearby",
+    "must_show": [
+     "A container comes back from the shelf with no matching lid, or a lid with nothing to close."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-012",
+   "title": "A HARD SWEET WITHIN A TODDLER'S REACH",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A hard sweet, a whole nut or a small round cheese sits in the open bin a two-year-old can reach.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The bin's contents were chosen for the oldest child in the house, not the youngest who can actually reach it",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "Nobody re-checked the bin's contents after a younger child started reaching the shelf",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's a choking hazard at child height, which is a safety problem that outranks how convenient it is to grab",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-004",
+    "root_causes": [
+     "KC-012",
+     "RC-013",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small bowl of hard candies and whole nuts sitting inside an open snack bin positioned at a very low, child-reachable height in a pantry",
+    "must_show": [
+     "A hard sweet, a whole nut or a small round cheese sits in the open bin a two-year-old can reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-013",
+   "title": "THE SECOND SACK NOBODY NEEDED",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A second sack of rice or a twelve-pack nobody liked turns up when you finally clear the back of this zone.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "I bought it for the unit price without checking whether I'd actually used up the last one",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "There's no written maximum for this item, so nothing stopped the extra one coming home",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's a good deal I'm not ready to admit didn't work out, so it stays instead of moving on",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-005",
+    "root_causes": [
+     "KC-001",
+     "KC-008",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two full sacks of rice standing side by side in a pantry backstock area, one clearly still sealed and untouched behind the other already in use",
+    "must_show": [
+     "A second sack of rice or a twelve-pack nobody liked turns up when you finally clear the back of this zone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-014",
+   "title": "THE SOFT CORNER ON THE BOTTOM CASE",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A case near the bottom of a stack shows a soft, damp corner instead of the crisp cardboard everything else has.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody has actually lifted and checked the underside of the bottom case in a while",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "Checking underneath a stacked case means unstacking it first, so it doesn't happen often",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "That corner is against an outside wall that sweats, and nothing routes stock away from it",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-005",
+    "root_causes": [
+     "RC-013",
+     "RC-016",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cardboard case at the bottom of a stack in a pantry showing a visibly soft, darkened corner against a wall",
+    "must_show": [
+     "A case near the bottom of a stack shows a soft, damp corner instead of the crisp cardboard everything else has."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "PNF-015",
+   "title": "THE CASE HIDING BEHIND THE CASE",
+   "type": "FRICTION CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A case is stacked in front of another case of the same thing, so the older one at the back never gets pulled first.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no arrangement that keeps this one row deep, so a new case just goes wherever there's floor space",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The gap left by the front case emptying isn't the trigger for pulling the one behind it forward, it just gets refilled from the front again",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "I can't see behind the front row to know an older case is even back there",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true on your shelf, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "PNZ-005",
+    "root_causes": [
+     "KC-008",
+     "KC-009",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two identical cases of canned tomatoes standing one directly in front of the other on a pantry backstock shelf, the rear case's label barely visible",
+    "must_show": [
+     "A case is stacked in front of another case of the same thing, so the older one at the back never gets pulled first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-005",
+     "PNF-009",
+     "PNF-013"
+    ],
+    "actions": [
+     "PNA-004",
+     "PNA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "four identical jars of pasta sauce crowded together on a pantry shelf, far more than a single row of that item would ever need",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-003",
+     "PNF-011"
+    ],
+    "actions": [
+     "PNA-002",
+     "PNA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a glass grain jar sitting on whatever open pantry shelf had space, no chest-height spot cleared for it anywhere",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-008",
+     "PNF-014"
+    ],
+    "actions": [
+     "PNA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a nut-flour scoop sitting in the middle of a baking shelf row instead of standing apart at the end where a hand would notice it",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-002",
+     "PNF-004",
+     "PNF-005",
+     "PNF-015"
+    ],
+    "actions": [
+     "PNA-003",
+     "PNA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a second unopened bag of rice hidden directly behind an already-open bag on a pantry shelf, invisible from the doorway",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-003"
+    ],
+    "actions": [
+     "PNA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a high pantry shelf holding a glass jar with no step stool anywhere in reach below it",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-001",
+     "PNF-002",
+     "PNF-004",
+     "PNF-007",
+     "PNF-008",
+     "PNF-010",
+     "PNF-013",
+     "PNF-015"
+    ],
+    "actions": [
+     "PNA-002",
+     "PNA-003",
+     "PNA-006",
+     "PNA-010",
+     "PNA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bare pantry shelf edge with no dated sticker or count marker anywhere on it, stock stacked with no visible rule",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-002",
+     "PNF-005",
+     "PNF-006",
+     "PNF-007",
+     "PNF-009",
+     "PNF-010",
+     "PNF-015"
+    ],
+    "actions": [
+     "PNA-004",
+     "PNA-005",
+     "PNA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a case of canned tomatoes emptying at the front of a pantry row with nothing behind it pulled forward to replace it",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-012"
+    ],
+    "actions": [
+     "PNA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a small bowl of hard candies and whole nuts sitting in an open bin at a toddler's exact reaching height",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-012"
+    ],
+    "actions": [
+     "PNA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an open snack bin stocked with items sized for an older child, sitting at a height a much younger child can also reach",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-003",
+     "PNF-004",
+     "PNF-008",
+     "PNF-009",
+     "PNF-010",
+     "PNF-012",
+     "PNF-014"
+    ],
+    "actions": [
+     "PNA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a pantry shelf with an unrefilled snack bin sitting below its marked line at the end of the day, no single person's name attached to the task",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-001",
+     "PNF-007",
+     "PNF-011",
+     "PNF-013"
+    ],
+    "actions": [
+     "PNA-001",
+     "PNA-005",
+     "PNA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an opened bag of specialty flour bought for one recipe sitting untouched on a pantry shelf, clearly not decided about yet",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-006",
+     "PNF-014"
+    ],
+    "actions": [
+     "PNA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching awkwardly behind a dense row of jars on a pantry shelf toward a sticky ring that is hard to get to",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "PNF-001",
+     "PNF-006",
+     "PNF-011"
+    ],
+    "actions": [
+     "PNA-001",
+     "PNA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an orphaned lid sitting on a pantry shelf so long it blends in among the containers around it",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "PNA-001",
+   "title": "CLEAR THE SHELF AND SMELL-TEST IT",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Bring down every bag and box on this shelf and smell-test every opened one, so nothing stale or forgotten survives on a technicality.",
+   "why_it_matters": "A bag with no date on it is impossible to judge honestly, so it just keeps not getting thrown out.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag",
+    "a marker"
+   ],
+   "steps": [
+    "Bring down every bag and box on this shelf, open anything already opened, and smell the flour and the oats: stale, webbed, or bought for a recipe you have not cooked in months leaves today.",
+    "For anything unopened and still in date but unlikely to get used, set it aside to give away rather than binning it.",
+    "Group what stays into two blocks on the shelf: rice, pasta and oats together, cereal together."
+   ],
+   "root_causes": [
+    "RC-015",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "RC-017"
+    ],
+    "zone": "PNZ-001",
+    "standard": "PNS-001"
+   },
+   "victory_condition": "Every opened bag is sealed in a labeled container or gone, and pasta, rice and oats stand together as one block.",
+   "next_card": "PNS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a pantry shelf mid-clear with two clean blocks forming, one of grain containers and one of cereal boxes, a bin bag sitting on the floor beside it",
+    "must_show": [
+     "Every opened bag is sealed in a labeled container or gone, and pasta, rice and oats stand together as one block."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-002",
+   "title": "LABEL EVERY CONTAINER AND MOVE THE GLASS DOWN",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Give every staple one container style with a written open date, and move any glass jar down to chest height or lower.",
+   "why_it_matters": "A missing label makes every container's age a guess, and a glass jar above eye level is a real fall and cut risk beside wet hands.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "matching containers",
+    "a permanent marker",
+    "adhesive labels"
+   ],
+   "steps": [
+    "Decant each staple into one container style, and write the item and today's date on the label the moment it is opened.",
+    "Move every glass jar down to chest height or lower, and put lidded plastic containers up top instead.",
+    "Keep a two-step stool inside the pantry for anything that still sits on the top shelf."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-002"
+    ],
+    "zone": "PNZ-001",
+    "standard": "PNS-001"
+   },
+   "victory_condition": "Every staple sits in a labeled container with its opening date on it, and no glass container sits above eye level.",
+   "next_card": "PNA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing today's date on a labeled pantry container at chest height, a glass jar visible lower down on the shelf than a set of plastic containers above it",
+    "must_show": [
+     "Every staple sits in a labeled container with its opening date on it, and no glass container sits above eye level."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-003",
+   "title": "PULL EVERY DENTED OR DOMED CAN",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take every can and jar off the shelf, check each one for damage or a bad date, and remove anything spoiled without debate.",
+   "why_it_matters": "A dented seam or a domed lid is a spoilage warning, not a judgment call, and it does not get tasted or given away.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Take every can and jar off the shelf, turn each one to find the date, and put anything dented, rusted, bulging or domed straight into the bin rather than back on the shelf.",
+    "Bag anything spoiled sealed before it goes in the bin, and wipe the shelf underneath where it stood.",
+    "Set every surviving can and jar back with its label facing out."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-005"
+    ],
+    "zone": "PNZ-002",
+    "standard": "PNS-002"
+   },
+   "victory_condition": "No dented, rusted, domed or bulging can or jar remains on the shelf, and every label faces out.",
+   "next_card": "PNS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand pulling a dented can off a pantry shelf and setting it apart from a row of undamaged, label-out cans",
+    "must_show": [
+     "No dented, rusted, domed or bulging can or jar remains on the shelf, and every label faces out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-004",
+   "title": "ROW BY MEAL, LABEL EACH ROW, RISER UP",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Rearrange cans and jars into rows by meal rather than by size, label each row, and put the back row up on a riser.",
+   "why_it_matters": "Four jars of the same sauce is what happens when nobody can see what is already on the shelf before buying another.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a shelf riser",
+    "adhesive labels",
+    "a marker"
+   ],
+   "steps": [
+    "Group cans and jars by meal: tomatoes, coconut milk and stock together, beans and tuna together, tall jars behind short cans.",
+    "Set the back row up on a riser so it sits visibly above the front row.",
+    "Label each row with its category so a gap reads as a shopping list from the doorway."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-009"
+    ],
+    "zone": "PNZ-002",
+    "standard": "PNS-002"
+   },
+   "victory_condition": "Every row holds one category, is labeled, and the back row sits visibly above the front row on a riser.",
+   "next_card": "PNA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a pantry shelf with cans arranged in labeled rows by meal, a riser lifting the back row visibly above the front row",
+    "must_show": [
+     "Every row holds one category, is labeled, and the back row sits visibly above the front row on a riser."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-005",
+   "title": "TEST EVERY LEAVENER, TOSS WHAT'S DEAD",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Test every leavener rather than guessing, and remove anything dead along with hardened brown sugar or greyed cocoa.",
+   "why_it_matters": "A cake that will not rise on the day is the only way most households ever find out a leavener died months ago.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "hot water",
+    "warm sugared water",
+    "a spoon"
+   ],
+   "steps": [
+    "Test every leavener rather than guessing: a spoon of baking powder in hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with any hardened brown sugar or greyed cocoa.",
+    "Write today's date on the lid of anything that survives, including anything freshly opened."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-015"
+    ],
+    "zone": "PNZ-003",
+    "standard": "PNS-003"
+   },
+   "victory_condition": "Every leavener in the bin has been tested this week, and nothing dead or expired remains.",
+   "next_card": "PNS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a spoon of baking powder fizzing in a glass of hot water on a pantry counter, a dated tin standing ready beside it",
+    "must_show": [
+     "Every leavener in the bin has been tested this week, and nothing dead or expired remains."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-006",
+   "title": "GIVE THE ALLERGEN SHELF ITS OWN SCOOP AND SPOT",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move nut flours and sesame to the end of the row with their own sealed container and their own scoop, never shared.",
+   "why_it_matters": "One shared scoop carries a trace of an allergen straight into a birthday cake, and nobody notices until somebody reacts.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a sealed container per allergen",
+    "a dedicated scoop per allergen",
+    "a label"
+   ],
+   "steps": [
+    "Move every nut flour and sesame product to the end of the row, away from where a hand grabs by habit.",
+    "Seal each one in its own container with its own scoop kept inside it, never shared with the rest of the shelf.",
+    "Label the container clearly so anyone baking in a hurry sees the warning before the scoop."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-008"
+    ],
+    "zone": "PNZ-003",
+    "standard": "PNS-003"
+   },
+   "victory_condition": "Every allergen container stands at the end of the row, sealed, labeled, with its own dedicated scoop inside it.",
+   "next_card": "PNA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a sealed, labeled nut-flour container with its own scoop standing apart at the end of a pantry baking shelf",
+    "must_show": [
+     "Every allergen container stands at the end of the row, sealed, labeled, with its own dedicated scoop inside it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-007",
+   "title": "MATCH LIDS, COMBINE THE RATTLING BOXES",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Match every lid to a container, bin the orphans in both directions, and combine snack boxes that are nearly empty.",
+   "why_it_matters": "An orphaned lid or a lidless tub is why a container gets passed over at packing time instead of used.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Match every lid to a container and bin the orphans in both directions, the lidless tubs and the lids for tubs that died. Pull any snack boxes with only a couple of bars rattling around and combine them.",
+    "Flatten and recycle the empty cartons."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-017"
+    ],
+    "zone": "PNZ-004",
+    "standard": "PNS-004"
+   },
+   "victory_condition": "Every reusable container has its own lid sitting on it, and the open bin is filled to its marked line.",
+   "next_card": "PNS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand matching a lid to its container on a pantry shelf, an orphaned lid and a lidless tub set apart to be binned",
+    "must_show": [
+     "Every reusable container has its own lid sitting on it, and the open bin is filled to its marked line."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-008",
+   "title": "SET THE BIN BY THE YOUNGEST REACH AND FIX THE LINE",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Choose the open bin's contents by the youngest child who can reach it, and mark a fill line a child can read.",
+   "why_it_matters": "A bin stocked for the oldest child in the house is a choke hazard for the youngest one who can also reach it.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "tape or a marker for the fill line",
+    "the snacks you are choosing to allow"
+   ],
+   "steps": [
+    "Empty the bin and set aside anything that is a choking hazard for the youngest child who can reach this shelf.",
+    "Refill it with only what you have said yes to, and mark a fill line inside the bin at the level it should sit at.",
+    "Move anything that still needs an adult up to the higher shelf."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-012"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-012"
+    ],
+    "zone": "PNZ-004",
+    "standard": "PNS-004"
+   },
+   "victory_condition": "The open bin holds only pre-approved, age-appropriate snacks, filled to a clearly marked line.",
+   "next_card": "PNA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open snack bin at child height with a clearly marked fill line, filled with age-appropriate snacks and no choking hazards",
+    "must_show": [
+     "The open bin holds only pre-approved, age-appropriate snacks, filled to a clearly marked line."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-009",
+   "title": "MOVE THE EXTRA FORWARD OR OUT",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Meet what you forgot you owned in the backstock, and move any genuine extra forward into use this month or out of the house.",
+   "why_it_matters": "A warehouse pack was never a saving if it went stale before you reached the bottom of it.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a marker for writing the arrival month"
+   ],
+   "steps": [
+    "Open up the back of this zone and meet what you forgot you owned: any item you hold more than one genuine spare of moves forward into the working shelves this month or it leaves.",
+    "Write the arrival month on every remaining pack as it goes back."
+   ],
+   "root_causes": [
+    "KC-001",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "RC-015"
+    ],
+    "zone": "PNZ-005",
+    "standard": "PNS-005"
+   },
+   "victory_condition": "Every remaining pack carries its arrival month, and nothing sits stacked in front of an older case of the same thing.",
+   "next_card": "PNS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a backstock shelf with a duplicate sack of rice set apart from the rest, ready to move forward into use or leave the house",
+    "must_show": [
+     "Every remaining pack carries its arrival month, and nothing sits stacked in front of an older case of the same thing."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-010",
+   "title": "DATE EVERY CASE AND WRITE THE MAXIMUM",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Write a maximum for each line on the shelf edge, and check every case is one row deep with nothing hidden behind it.",
+   "why_it_matters": "Undated bulk with no written limit is where a saving quietly expires out of sight, and a hidden case behind another one never gets pulled first.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a marker",
+    "adhesive shelf-edge labels"
+   ],
+   "steps": [
+    "Pull every case forward to check nothing is stacked directly in front of another one of the same thing.",
+    "Write a maximum for each line on the shelf edge, based on the most you have genuinely used up before it turned.",
+    "Mark every case with its arrival month as it goes back, oldest at the front."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-005"
+    ],
+    "zone": "PNZ-005",
+    "standard": "PNS-005"
+   },
+   "victory_condition": "Every line has a maximum written on the shelf edge, every pack carries its arrival month, and nothing is stacked in front of anything else.",
+   "next_card": "PNA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a shelf edge in a pantry backstock zone with a small dated sticker marking a count, cases arranged one row deep behind it",
+    "must_show": [
+     "Every line has a maximum written on the shelf edge, every pack carries its arrival month, and nothing is stacked in front of anything else."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-011",
+   "title": "THE FULL SHELF SAFETY AND ACCESS WALK",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every shelf checking what is stored above eye level, whether a stool is where it should be, and reaching the sticky spots nobody gets to on an ordinary pass.",
+   "why_it_matters": "A glass jar too high and a sticky ring too awkward to reach both hide until someone tests for them on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a two-step stool",
+    "a cloth for the awkward spots"
+   ],
+   "steps": [
+    "Check every shelf for glass or heavy items stored above eye level, and move them down to chest height or lower.",
+    "Confirm a two-step stool actually lives inside the pantry, not somewhere else in the house.",
+    "Reach behind the dense rows to find and wipe any sticky ring or hard-to-reach spot the ordinary Shine pass skips."
+   ],
+   "root_causes": [
+    "KC-006",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "RC-016"
+    ]
+   },
+   "victory_condition": "Nothing heavy or glass sits above eye level, a working stool lives in the pantry, and no sticky spot remains unreached.",
+   "next_card": "PNA-010",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand using a two-step stool to move a glass jar down from a high pantry shelf to chest height",
+    "must_show": [
+     "Nothing heavy or glass sits above eye level, a working stool lives in the pantry, and no sticky spot remains unreached."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-012",
+   "title": "THE WEEKLY GAP-AND-DATE PASS",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk every shelf reading the gaps before the shopping list gets written, and name who is doing it this week.",
+   "why_it_matters": "Cans and jars never force the issue by spoiling on schedule, so this zone fails silently unless somebody is actually assigned to look.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the shopping list"
+   ],
+   "steps": [
+    "Walk the can rows and the staple blocks and read the gaps before the shopping list gets written.",
+    "Say out loud, or write down, whose turn it is to do this pass this week.",
+    "Add anything genuinely missing to the list on the spot."
+   ],
+   "root_causes": [
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013"
+    ]
+   },
+   "victory_condition": "The shelves were read for gaps before this week's shopping list was written, and one named person did it.",
+   "next_card": "PNA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand writing an item onto a shopping list while standing in front of a pantry shelf with a visible gap in one row",
+    "must_show": [
+     "The shelves were read for gaps before this week's shopping list was written, and one named person did it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNA-013",
+   "title": "THE MONTHLY OVER-BUY AUDIT",
+   "type": "ACTION CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Once a month, check every written maximum and label against what is actually on the shelves, and correct any that have drifted.",
+   "why_it_matters": "A maximum written once and never revisited stops meaning anything the first time a genuinely good price tempts you past it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "this month's receipts if you kept them"
+   ],
+   "steps": [
+    "Compare the count on each backstock line against its written maximum, and note any line that has crept over.",
+    "For any line over its maximum, decide today whether the number was wrong or the buying was: correct the label, or commit to pausing that purchase.",
+    "Check that every open container still carries a legible date and relabel anything that has faded."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-009"
+    ]
+   },
+   "victory_condition": "Every backstock line sits at or under a maximum you checked this month, and every open container's date is legible.",
+   "next_card": "PNA-012",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand comparing a shelf's case count against a small dated sticker fixed to a pantry backstock shelf edge",
+    "must_show": [
+     "Every backstock line sits at or under a maximum you checked this month, and every open container's date is legible."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "PNS-001",
+   "title": "DRY GOODS SHELVES STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Pantry",
+   "zone": "Dry Goods Shelves",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Staples live in one container style, labeled with the item and the date it was opened, filled front to back with the oldest bag at the front.",
+   "trigger": "When you unpack the shopping bags, new stock loads in from behind the open one.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Vacuum the front lip of the shelf where flour dust drifts forward and settles, a spot your eyes skip every time you reach in.",
+    "Press a finger into the back corner where board meets upright and check for packed flour dust, then brush it clear.",
+    "Check the level in each container from the doorway, without lifting a single one, and note which one is close to empty."
+   ],
+   "related": {
+    "zone": "PNZ-001",
+    "actions": [
+     "PNA-001",
+     "PNA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a pantry shelf at chest height holding matching labeled containers of rice, pasta and oats standing together as one block, a separate block of cereal boxes beside them, each container's label showing a dated sticker, and a small two-step stool standing on the floor below, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PNS-002",
+   "title": "CANNED AND JARRED GOODS STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Pantry",
+   "zone": "Canned and Jarred Goods",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every label faces out, every row holds one category, and the oldest date sits at the front of its row.",
+   "trigger": "When you carry the recycling out past the pantry, you face up the can rows on the way.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run a finger under the lid of the honey or syrup jar and wipe away any sticky drip before an ant finds it.",
+    "Turn one row of cans so every label faces out and the oldest date stands at the front.",
+    "Wipe the rim and top of one can as it goes back, where kitchen dust settles into a greasy film."
+   ],
+   "related": {
+    "zone": "PNZ-002",
+    "actions": [
+     "PNA-003",
+     "PNA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a pantry shelf with canned goods standing in labeled rows on a stepped riser, every label facing outward, tomatoes grouped separately from beans and soup, no can showing a dented seam or domed lid, and a clean dry shelf edge with no sticky residue, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PNS-003",
+   "title": "BAKING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Pantry",
+   "zone": "Baking Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One lift-out baking bin with a washed scoop, leaveners dated on the lid the day they are opened, and allergen flours sealed with a scoop of their own.",
+   "trigger": "When you set the oven to preheat, you check the leavener dates while it comes up to temperature.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wash the baking bin's scoop in warm soapy water and dry it fully before it goes back into the flour.",
+    "Wipe the one-handed lid mechanism on the flour container clear of dust so it clicks fully shut again.",
+    "Check the nut-flour container's own scoop is still sealed inside with it, not swapped for another."
+   ],
+   "related": {
+    "zone": "PNZ-003",
+    "actions": [
+     "PNA-005",
+     "PNA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a pantry baking shelf with flour, sugar and brown sugar in sealed one-handed containers, a small dated box holding baking powder, bicarbonate of soda and yeast together, a lift-out bin of cutters and piping tips, and a separate sealed nut-flour container with its own scoop standing at the end of the row, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PNS-004",
+   "title": "SNACK AND LUNCH ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Pantry",
+   "zone": "Snack and Lunch Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The open bin at child height holds only pre-approved snacks and is refilled to one marked level, and no container returns to the shelf without its lid on it.",
+   "trigger": "When the lunchboxes are emptied at the sink after school, the bin gets filled back to its line before the bags go on their hook.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Turn one lunch bag inside out and shake any crumbs into the bin before it goes back on its hook.",
+    "Wash a drink bottle's spout and screw thread where a sour film hides in the seam.",
+    "Wipe the bin's exterior and the shelf edge where sticky hands land most often."
+   ],
+   "related": {
+    "zone": "PNZ-004",
+    "actions": [
+     "PNA-007",
+     "PNA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a pantry shelf with an open snack bin at child height filled to a marked line, a higher shelf above holding snacks that need an adult, reusable lunch containers each with its own lid sitting on top, and lunch bags with ice packs standing beside them, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PNS-005",
+   "title": "BACKSTOCK AND BULK ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Pantry",
+   "zone": "Backstock and Bulk Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every pack carries its arrival month, every line has a maximum written on the shelf edge, and stock is always pulled from the front.",
+   "trigger": "When you get home from a big shop, you write the month on each pack with the marker that lives on that shelf, before anything gets put away.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the lowest case in one stack and feel its underside for damp before setting it back down.",
+    "Sweep the floor just inside the pantry doorway where a case at shin height hides in the dark.",
+    "Wipe one shelf edge label clean so its written maximum count stays readable from across the room."
+   ],
+   "related": {
+    "zone": "PNZ-005",
+    "actions": [
+     "PNA-009",
+     "PNA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a pantry backstock area with sacks of rice and cases of tinned tomatoes standing at or below waist height, each case marked with its arrival month, light packs of kitchen roll stored higher up, a small dated sticker fixed to the shelf edge, and nothing stacked in front of anything else, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "PNE-001",
+   "title": "THE MIDWEEK EMPTY-SHELF SCRAMBLE",
+   "type": "EVENT CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "You reach for pasta on a Tuesday night with no plan B, and the shelf has to answer honestly whether there's a full block of staples or a gap.",
+   "tests_zones": [
+    "PNZ-001"
+   ],
+   "held_if": "A full, labeled block of rice, pasta and oats answers immediately, no hunting behind other boxes.",
+   "if_it_failed": "If you had to dig behind cereal boxes to find a bag that might still be good, the loading-behind rule slipped. Draw PNA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PNZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand reaching confidently into a pantry shelf at dinner time and pulling out a labeled container of pasta from a tidy block of staples",
+    "must_show": [
+     "You reach for pasta on a Tuesday night with no plan B, and the shelf has to answer honestly whether there's a full block of staples or a gap."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PNE-002",
+   "title": "THE EMPTY-FRIDGE-WEEK DINNER",
+   "type": "EVENT CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The fridge is bare and dinner has to come entirely from cans and jars tonight.",
+   "tests_zones": [
+    "PNZ-002"
+   ],
+   "held_if": "Every can you reach for is legible, unspoiled and exactly where its row says it should be.",
+   "if_it_failed": "If you pulled a can and found it dented or hidden behind another, the spoilage or visibility check lapsed. Draw PNA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PNZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand pulling a labeled, undamaged can from a well-organized pantry row to make a meal from pantry staples alone",
+    "must_show": [
+     "The fridge is bare and dinner has to come entirely from cans and jars tonight."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PNE-003",
+   "title": "THE UNPLANNED BIRTHDAY BAKE",
+   "type": "EVENT CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Someone asks for a cake with two hours' notice and the baking bin has to answer for itself.",
+   "tests_zones": [
+    "PNZ-003"
+   ],
+   "held_if": "The bin has a working scoop, dated leaveners that still test fresh, and vanilla exactly where it belongs.",
+   "if_it_failed": "If a leavener failed its fizz test or a tool was missing, the bin's own reset slipped. Draw PNA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PNZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a lift-out baking bin from a pantry shelf, a scoop, dated leaveners and vanilla all visibly in place",
+    "must_show": [
+     "Someone asks for a cake with two hours' notice and the baking bin has to answer for itself."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PNE-004",
+   "title": "THE MORNING NOBODY PACKED LUNCH THE NIGHT BEFORE",
+   "type": "EVENT CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Lunches have to get packed in five rushed minutes before the bus, straight from whatever the bin already holds.",
+   "tests_zones": [
+    "PNZ-004"
+   ],
+   "held_if": "The open bin is filled to its line with only pre-approved snacks, and every container has its matching lid.",
+   "if_it_failed": "If the bin was empty or a container had no lid, the evening refill did not happen. Draw PNA-007.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PNZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand packing a lunchbox quickly from a well-stocked open snack bin at child height, every container already matched with its lid",
+    "must_show": [
+     "Lunches have to get packed in five rushed minutes before the bus, straight from whatever the bin already holds."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "PNE-005",
+   "title": "THE SURPRISE BULK DELIVERY",
+   "type": "EVENT CARD",
+   "room": "Pantry",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A bulk order arrives unannounced and has to go somewhere in a backstock zone that is already at its stated limits.",
+   "tests_zones": [
+    "PNZ-005"
+   ],
+   "held_if": "Every existing line sits at or under its written maximum, so the new delivery has an honest amount of room to go into.",
+   "if_it_failed": "If there was nowhere to put it without exceeding a written maximum, the pull-forward-and-stop-buying rule slipped. Draw PNA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "PNZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a delivery person setting down a new case of groceries beside neatly dated, labeled backstock cases each with visible room still left on their shelf",
+    "must_show": [
+     "A bulk order arrives unannounced and has to go somewhere in a backstock zone that is already at its stated limits."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

@@ -76,7 +76,7 @@ VALID_STATUSES = ("clean", "fixed")
 # while adding the site/assets/js lane itself, 2026-09-27: a bare
 # `site/assets/js/*.js` glob silently swept both of these in alongside
 # the five genuinely hand-written files in that directory.
-GENERATED_JS = frozenset({"data.js", "quest-data.js"})
+GENERATED_JS = frozenset({"data.js", "quest-data.js", "quest-data-symptoms.js"})
 
 # (lane directory relative to ROOT, glob pattern within it). A basename
 # collision across lanes would make the ledger's bare-name keys

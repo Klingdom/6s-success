@@ -14,10 +14,28 @@ name: Hourly brief
 # says the same thing all day teaches its reader to stop opening it, which costs
 # more than the reports are worth. Change the cron to '0 */4 * * *' or disable
 # the workflow in the Actions tab.
+#
+# A SECOND WAY IN, because the schedule above does not fire as asked.
+# Measured by ops/check_cron_cadence.py (see gate_cron_cadence in
+# preflight.py): this cron's real gaps average 4 to 5 hours against the
+# configured 60 minutes, sustained across weeks, the same GitHub-scheduler
+# throttling fulfil-orders.yml already works around with its own `push`
+# trigger. Copied here, but NOT unguarded the way fulfil-orders.yml's is
+# safe to be: that workflow only emails a customer when a real unfulfilled
+# order exists, so running it on every commit costs nothing extra. This one
+# emails Phil unconditionally, so `ops/hourly_brief.py` now throttles the
+# actual send to roughly once every 50 minutes (`MIN_SEND_INTERVAL_MINUTES`,
+# tracked in the committed `ops/last-brief-sent.json` so the throttle
+# survives the fresh checkout every run starts from) regardless of how often
+# this workflow itself fires. The push trigger just gives GitHub many more
+# chances a day to land a run close to that 50-minute floor instead of
+# waiting out a multi-hour scheduler delay.
 
 on:
   schedule:
     - cron: '23 * * * *'      # hourly at 23 past; :05 is one of the busiest minutes on the platform
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -114,7 +132,7 @@ jobs:
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@github.com'
-          git add CHECKIN-LOG.md ops/state-checkin.json ops/indexnow-log.json site/indexnow.txt "site/6a1f4c2e8b7d4a3f9e5c1b8d2a7f6e30.txt" || true
+          git add CHECKIN-LOG.md ops/state-checkin.json ops/indexnow-log.json ops/last-brief-sent.json site/indexnow.txt "site/6a1f4c2e8b7d4a3f9e5c1b8d2a7f6e30.txt" || true
           git diff --cached --quiet || git commit -m 'Hourly check-in record'
           git pull --rebase --autostash origin main || true
           git push origin HEAD:main || true

@@ -50,6 +50,41 @@ STATE = os.path.join(ROOT, "ops", "state.json")
 LAST = os.path.join(ROOT, "ops", "last-brief.json")
 SITE = "https://6s-success.com"
 
+# Tracked in git (unlike LAST above, which is gitignored scratch state and
+# never survives a fresh GitHub Actions checkout), because this is the one
+# fact that has to survive between runs on the only host that matters: a
+# throttle that forgets the last send on every run is not a throttle.
+SENT_STATE = os.path.join(ROOT, "ops", "last-brief-sent.json")
+# hourly-brief.yml's own cron is configured for 60 minutes but, measured by
+# ops/check_cron_cadence.py, GitHub's scheduler actually fires it every 4 to
+# 5 hours (see that file and gate_cron_cadence in preflight.py). Adding a
+# `push:` trigger the way fulfil-orders.yml already does fixes the gap, but
+# fulfil-orders.yml is safe to over-run because it emails customers only when
+# a real order is waiting; this workflow emails Phil unconditionally, so
+# running it on every one of a day's ~150 commits would replace "arrives four
+# hours late" with "arrives 150 times a day," the exact failure this file's
+# own opening docstring warns about. This floor keeps the push trigger from
+# becoming that: the workflow can fire as often as commits land, but the
+# actual send to Phil stays throttled to roughly hourly regardless.
+MIN_SEND_INTERVAL_MINUTES = 50
+
+
+def seconds_since_last_send() -> float | None:
+    """None if never sent (or the record is unreadable), else the real gap."""
+    try:
+        data = json.load(io.open(SENT_STATE, encoding="utf-8"))
+        last = datetime.datetime.fromisoformat(data["sent_at"])
+    except Exception:                                          # noqa: BLE001
+        return None
+    now = datetime.datetime.now(datetime.timezone.utc)
+    return (now - last).total_seconds()
+
+
+def record_sent() -> None:
+    now = datetime.datetime.now(datetime.timezone.utc)
+    json.dump({"sent_at": now.isoformat(timespec="seconds")},
+              io.open(SENT_STATE, "w", encoding="utf-8"), indent=1)
+
 
 def env(name: str, default: str = "") -> str:
     v = os.environ.get(name, "").strip()
@@ -507,12 +542,20 @@ def build() -> tuple[str, str]:
 
 
 if __name__ == "__main__":
-    subject, text = build()
     mode = sys.argv[1] if len(sys.argv) > 1 else "--preview"
     if mode == "--send" and len(sys.argv) > 2:
+        gap = seconds_since_last_send()
+        if gap is not None and gap < MIN_SEND_INTERVAL_MINUTES * 60:
+            print(f"skip: sent {gap / 60:.1f} min ago, next eligible in "
+                  f"{MIN_SEND_INTERVAL_MINUTES - gap / 60:.1f} min "
+                  f"(throttled so a push-triggered run cannot spam Phil)")
+            sys.exit(0)
+        subject, text = build()
         from mailer import send                               # noqa: E402
         send(sys.argv[2], subject, text)
+        record_sent()
         print("sent:", subject)
     else:
+        subject, text = build()
         print("SUBJECT:", subject, "\n")
         print(text)

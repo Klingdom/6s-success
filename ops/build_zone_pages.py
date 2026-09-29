@@ -1307,13 +1307,21 @@ def general_reading(rooms, cap=5, article_cap=30, floor=3):
         for s in chosen:
             counts[s] += 1
 
-    # Top-up: an article under `floor` gets added to whichever eligible zone
-    # ranks it highest, until it clears the floor. Every zone already holds
-    # `cap` picks at this point, so this can only replace headroom that does
-    # not exist; instead it is appended, capped at `cap + 1` per zone rather
-    # than silently failing the floor. In the real corpus this pass never
-    # fires above zero extra slots per zone; ops/tests proves the mechanism
-    # anyway, since a floor that has never been tested is not a guarantee.
+    # Top-up: an article under `floor` gets swapped into whichever eligible
+    # zone ranks it highest, until it clears the floor. Every zone already
+    # holds `cap` picks at this point, so this replaces the zone's own
+    # lowest-ranked existing pick rather than appending past `cap`, as long
+    # as that pick's own article stays at or above the floor once removed;
+    # appending (growing the zone to `cap + 1`, breaking M5's stated 3-to-5
+    # range) is the last resort only when no such safe swap exists for a
+    # zone. Found live 2026-09-29: with enough rooms diagnosed to shrink
+    # this shared pool, a low-scoring generic article (no specific zone's
+    # text favours it) fell under the floor and this pass's own append
+    # silently pushed a real zone (primary-bedroom-the-dresser-drawers) to
+    # 6 links, exactly the range violation M5's own acceptance criterion
+    # forbids; ops/tests/test_general_reading.py's existing "every zone 3
+    # to 5" case had always been able to catch this, it just never fired
+    # before the pool shrank enough to starve an article this way.
     for s in sorted(slugs):
         if counts[s] >= floor:
             continue
@@ -1324,8 +1332,19 @@ def general_reading(rooms, cap=5, article_cap=30, floor=3):
         for _, key in candidates:
             if counts[s] >= floor:
                 break
-            picks[key].append(s)
-            counts[s] += 1
+            swapped = False
+            for pos in range(len(picks[key]) - 1, -1, -1):
+                old = picks[key][pos]
+                if counts[old] - 1 < floor:
+                    continue
+                picks[key] = picks[key][:pos] + [s] + picks[key][pos + 1:]
+                counts[old] -= 1
+                counts[s] += 1
+                swapped = True
+                break
+            if not swapped:
+                picks[key].append(s)
+                counts[s] += 1
 
     # A handful of zones (11 of 102 in the real corpus, always ones whose
     # own published text is short and generic enough that most of the 19
@@ -3450,6 +3469,23 @@ def main():
     # every generator that chains build_avif.wire() also chains this.
     import fingerprint_assets
     fingerprint_assets.main(False)
+
+    # STRATEGY-MICROZONES.md's own coverage table is measured straight from
+    # content.json's diagnosis layer, so any room-deck generator that adds
+    # one (this function's whole reason for running standalone after a
+    # content.json edit) moves the real coverage number the moment it runs.
+    # Found live twice now, once after the Stair Landing deck (fixed in
+    # 8edba55f6) and again after the Pantry deck (this same recurrence,
+    # tripping gate_generator_ownership on CI both times): the fix landed on
+    # the DOCUMENT each time, never on the CHAIN that would have kept it
+    # from happening a third time. build_microzone_coverage.py is already
+    # named in GENERATOR_OWNERSHIP_CHAIN as a generator this repository owns
+    # centrally; it was simply never called from anywhere. Chained here,
+    # not in each room generator individually, because this function is the
+    # one thing every room-deck generator's own diagnosis ripple already
+    # runs through.
+    import build_microzone_coverage
+    build_microzone_coverage.main()
 
     return urls
 

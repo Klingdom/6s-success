@@ -1,0 +1,2599 @@
+{
+ "deck": "dining-room",
+ "room": "Dining Room",
+ "count": 61,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 5,
+  "FRICTION CARD": 15,
+  "ROOT CAUSE CARD": 17,
+  "ACTION CARD": 13,
+  "STANDARD CARD": 5,
+  "EVENT CARD": 5
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "DRR-001",
+   "title": "THE DINING ROOM",
+   "type": "ROOM CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "ONE JOB. THE ONLY ROOM THAT CAN LOSE IT QUIETLY.",
+   "objective": "The dining room has one job, and it is the only room in the house that can quietly lose that job without anyone noticing. This card is the map and the order.",
+   "zones_in_order": [
+    "DRZ-001 Dining Table",
+    "DRZ-002 Buffet or Sideboard Surface",
+    "DRZ-003 Buffet or Sideboard Storage",
+    "DRZ-004 China or Display Cabinet",
+    "DRZ-005 Beverage or Coffee Station"
+   ],
+   "start_here": "DRZ-001 Dining Table. Start with the Dining Table. It is the quickest zone in the room and the only one whose result shows up at dinner the same evening, which buys you the goodwill to open the sideboard drawers tomorrow.",
+   "how_to_play": [
+    "1. Deal the five ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your dining room. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do DRA-011 The Full Dining Room Safety Walk before any rebuild. It takes thirty minutes and covers every chair, the cabinet strap, and whether alcohol and candles are kept out of a child's reach.",
+   "related": {
+    "contents": "DRZ-001 to DRZ-005, DRF-001 to DRF-015, the shared root causes in ops/root_causes.py, DRA-001 to DRA-013, DRS-001 to DRS-005, DRE-001 to DRE-005"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole dining room in its settled state, the dining table, a sideboard's serving surface and storage, a china cabinet and a beverage station all visible in one frame",
+    "must_show": [
+     "all five zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the five zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "DRZ-001",
+   "title": "DINING TABLE",
+   "type": "ZONE CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "ONE CENTERPIECE. BARE WOOD. NOTHING ELSE ON IT.",
+   "objective": "Seat everyone for a shared meal without having to move anything first.",
+   "callouts": [
+    "One centerpiece sitting alone on bare wood",
+    "Every chair pushed fully in, nothing hanging off any chair back",
+    "No paper anywhere on the tabletop",
+    "A trivet visible just inside the nearest sideboard drawer",
+    "Placemats stacked in that same drawer",
+    "The chair rungs and legs clear of anything leaning against them"
+   ],
+   "done_looks_like": "One centerpiece on bare wood and nothing else, every chair pushed all the way in with nothing hanging off its back, placemats and trivets in the sideboard drawer one step away, and no paper anywhere on the surface.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Candles set at the ends of a table runner catch the runner before anyone sitting at the table notices, and a hot serving dish on bare wood scorches it and can crack a glass top."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A drop leaf or an extension table with a worn latch can fold on a hand when someone leans on it, and dining chairs work loose at the rungs long before they actually break."
+    }
+   ],
+   "the_call": {
+    "title": "The person who works at the table",
+    "text": "Someone in the house has made the table their desk, and every reset you have run so far has been a polite request that they stop. Requests do not hold. Here is the rule that settles it: if an activity lands on the table more than three evenings in a week, it is not clutter, it is an activity with nowhere else to be, and no table standard will survive it. Give that activity a caddy it lives in and a named shelf it goes back to, or accept that this is a desk and stop calling the room a dining room. Then decide which meal you are protecting, Sunday lunch or weeknight dinner, say it out loud to the household, and let everything outside that meal be negotiable."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "DRS-001",
+    "actions": [
+     "DRA-001",
+     "DRA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a set dining table with one centerpiece on bare wood, every chair pushed fully in, and a sideboard drawer visible open nearby holding placemats and a trivet",
+    "must_show": [
+     "One centerpiece sitting alone on bare wood",
+     "Every chair pushed fully in, nothing hanging off any chair back",
+     "No paper anywhere on the tabletop",
+     "A trivet visible just inside the nearest sideboard drawer",
+     "Placemats stacked in that same drawer",
+     "The chair rungs and legs clear of anything leaning against them"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "DRZ-002",
+   "title": "BUFFET OR SIDEBOARD SURFACE",
+   "type": "ZONE CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "order": 2,
+   "difficulty": 2,
+   "tagline": "ONE BARE RUN FOR SERVING. THREE PIECES FOR DISPLAY.",
+   "objective": "Hold serving dishes during a meal and a small, deliberate display between them.",
+   "callouts": [
+    "A strip of tape marking a bare serving run at one end of the sideboard",
+    "Three display objects grouped together at the lamp end",
+    "A lamp standing among the display objects",
+    "The lamp's cord the only cord visible",
+    "No paper anywhere on the wood",
+    "The serving run empty and clear of any object"
+   ],
+   "done_looks_like": "A taped run of bare wood at the end nearest the table long enough for the roasting pan, three display objects grouped at the lamp end, no paper on the wood, and the lamp cord the only cord in sight.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "A sideboard often ends up carrying a lamp, a phone charger, and a warming tray on one outlet behind the furniture where you never look. Count what is on that plug and feel the strip for warmth or discoloring."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Tall vases and heavy candlesticks on a narrow sideboard sit at head height for a small child and topple when the drawer below is yanked open."
+    }
+   ],
+   "the_call": {
+    "title": "The clear run you actually need",
+    "text": "You have been asking one surface to do three jobs: serving, display, and mail. It cannot, and the mail always wins, because paper arrives daily and decor does not. Settle it with a measurement rather than an intention. Take the largest dish you genuinely serve from this surface, the roasting pan or the big salad bowl, set it down where you would really set it, and mark that length of wood with a strip of tape. That run is protected and nothing lives on it, ever. Now look at your decor in what is left. Whatever does not fit in the remaining length leaves the room, however much you like it, and the mail never had a claim here to begin with."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner",
+    "Compact vacuum with attachments",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Plastic card for lifting wax"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "DRS-002",
+    "actions": [
+     "DRA-003",
+     "DRA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a sideboard with a taped bare wood run at one end and three display objects with a lamp grouped at the other end, no paper anywhere on the surface",
+    "must_show": [
+     "A strip of tape marking a bare serving run at one end of the sideboard",
+     "Three display objects grouped together at the lamp end",
+     "A lamp standing among the display objects",
+     "The lamp's cord the only cord visible",
+     "No paper anywhere on the wood",
+     "The serving run empty and clear of any object"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "DRZ-003",
+   "title": "BUFFET OR SIDEBOARD STORAGE",
+   "type": "ZONE CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "TWO CLOTHS ROLLED WITH THEIR NAPKINS. A COUNT CARD INSIDE THE DOOR.",
+   "objective": "Hold the things that only come out when the table is being set.",
+   "callouts": [
+    "Two rolled tablecloths sitting in one open drawer",
+    "Napkins visible tucked inside each rolled cloth",
+    "Serving bowls nested together by size in a separate drawer",
+    "Large platters standing upright on edge behind a divider",
+    "A latched drawer holding taper candles of matching length",
+    "A count card taped to the inside of the door"
+   ],
+   "done_looks_like": "Two tablecloths rolled with their matching napkins inside them in one drawer, serving bowls nested by size in the next, the large platters standing on edge behind a divider, taper candles of one length in a latched drawer, and a count card taped inside the door.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Platters and the punch bowl stored above shoulder height come down while your arms are already loaded, and a drawer packed tight with linens can pull clean out of its runners."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "Boxes of taper candles and long matches sitting loose in a low sideboard drawer are exactly at a child's reach and open on all sides."
+    }
+   ],
+   "the_call": {
+    "title": "The tablecloth for a table you don't own",
+    "text": "This drawer is full of linen from other houses, other tables, and other decades, and you keep it because letting go of good cloth feels wasteful. Make it a measuring problem instead of a feeling. Measure your table, then measure every cloth: one that does not hang at least a hand's depth over your actual table edge on all sides will never get used, because it looks wrong the moment it goes on and you will fold it away again. Keep the cloths that fit the table you own, plus one sized for the table with the leaf in. Anything carrying a stain you have already treated once and failed to shift becomes rags today, not next season. Partial napkin sets travel with the cloth they match, or they go with it."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy",
+    "Silver polish"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "DRS-003",
+    "actions": [
+     "DRA-005",
+     "DRA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open sideboard cabinet showing two rolled tablecloths with napkins in one drawer, nested serving bowls in another, and platters standing on edge behind a divider",
+    "must_show": [
+     "Two rolled tablecloths sitting in one open drawer",
+     "Napkins visible tucked inside each rolled cloth",
+     "Serving bowls nested together by size in a separate drawer",
+     "Large platters standing upright on edge behind a divider",
+     "A latched drawer holding taper candles of matching length",
+     "A count card taped to the inside of the door"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "DRZ-004",
+   "title": "CHINA OR DISPLAY CABINET",
+   "type": "ZONE CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "order": 4,
+   "difficulty": 3,
+   "tagline": "EIGHT PLATES HIGH, WITH FELT BETWEEN THEM. STRAPPED TO THE WALL.",
+   "objective": "Keep the good tableware safe, visible, and genuinely usable.",
+   "callouts": [
+    "A stack of plates no taller than eight, felt visible between each plate",
+    "Cups standing single file in a row rather than nested together",
+    "Glasses standing rim up on a clean shelf liner",
+    "A tureen sitting on the cabinet's bottom shelf",
+    "A visible strap securing the cabinet to the wall",
+    "A small photo taped to the inside of the cabinet door"
+   ],
+   "done_looks_like": "Plates stacked no more than eight high with felt between them, cups standing single file rather than nested, glasses rim up on a clean liner, tureens on the bottom shelf, the cabinet strapped to a wall stud, and a photo of the finished shelves taped inside the door.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A tall glass-fronted cabinet loaded with heavy plates is the largest tip-over risk in this room, and its shelves make an inviting ladder for a small child."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Decorative antique and hand-painted pieces of unknown origin can carry lead in the glaze, particularly on gilt rims and bright reds. Display them, but keep acidic food and drink off them."
+    }
+   ],
+   "the_call": {
+    "title": "The twelve settings from your grandmother",
+    "text": "This is the hardest decision in the room and everyone knows why: the china is not china, it is a person. Separate the two on purpose. Keep the number of settings that fits the largest meal you have actually hosted in the past three years, plus two for breakage. For the rest, write down whose they were and what you remember about them, photograph them alongside that note, and offer them to the relative most likely to set a table with them, then sell or donate whatever nobody claims. Then the part people skip: what you keep, you owe use. Name an occasion, once a year at minimum, when it goes on the table. China that never leaves the cabinet is not being honored. It is being stored behind glass."
+   },
+   "supplies": [
+    "Streak-free glass and mirror cleaner",
+    "Neutral pH multi-surface cleaner",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Mild dish soap",
+    "Plastic washing basin"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "DRS-004",
+    "actions": [
+     "DRA-007",
+     "DRA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a glass-fronted china cabinet with plates stacked no more than eight high with felt between them, cups standing single file, and a strap visible securing it to the wall",
+    "must_show": [
+     "A stack of plates no taller than eight, felt visible between each plate",
+     "Cups standing single file in a row rather than nested together",
+     "Glasses standing rim up on a clean shelf liner",
+     "A tureen sitting on the cabinet's bottom shelf",
+     "A visible strap securing the cabinet to the wall",
+     "A small photo taped to the inside of the cabinet door"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "DRZ-005",
+   "title": "BEVERAGE OR COFFEE STATION",
+   "type": "ZONE CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "order": 5,
+   "difficulty": 2,
+   "tagline": "ONE TRAY. LEFT TO RIGHT. A LINE ON THE JAR.",
+   "objective": "Make a drink and hand it over without crossing into the kitchen.",
+   "callouts": [
+    "A coffee machine, grounds, mugs, and spoons arranged left to right on one tray",
+    "The whole arrangement sitting on a single liftable tray",
+    "A marked fill line visible on the bean jar",
+    "A capped, limited number of mugs on the shelf",
+    "A hand's width of clear space behind the kettle",
+    "Spoons and sugar grouped together at one end of the tray"
+   ],
+   "done_looks_like": "Machine, grounds, mugs, then spoons and sugar running left to right along one liftable tray, mugs capped at the number of daily drinkers plus two, a marked fill line on the bean jar, and a hand's width of clear air behind the kettle.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "The machine, the kettle, and an open water jug share a small surface, and cords near the front edge get hooked by a sleeve. Keep the appliances on their own outlet and never top up a plugged-in machine over its base."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A kettle boiling directly under a wall shelf drives steam into the underside of it, warping the shelf and dropping condensation onto the plug below."
+    }
+   ],
+   "the_call": {
+    "title": "The second machine",
+    "text": "There are at least two ways to make a hot drink on this counter, and one of them is kept for the person you meant to become. Do not settle it from memory, because memory is generous about the press you used enthusiastically for three weeks the summer you bought it. Put a sticky note on each machine and make a mark every time it produces a drink someone actually drinks. Give it one full week, weekend included. Any machine with fewer than three marks comes off the counter and goes into a cupboard for one more month, and if it is still unused at the end of that month it leaves the house. The same test settles the mug shelf: the mugs you reach past every single morning are not favorites, they are furniture."
+   },
+   "supplies": [
+    "Food-area degreaser",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Descaling solution or white vinegar"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "DRS-005",
+    "actions": [
+     "DRA-009",
+     "DRA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a beverage station counter with a coffee machine, mugs, and spoons arranged left to right on one tray, a marked fill line visible on the bean jar",
+    "must_show": [
+     "A coffee machine, grounds, mugs, and spoons arranged left to right on one tray",
+     "The whole arrangement sitting on a single liftable tray",
+     "A marked fill line visible on the bean jar",
+     "A capped, limited number of mugs on the shelf",
+     "A hand's width of clear space behind the kettle",
+     "Spoons and sugar grouped together at one end of the tray"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "DRF-001",
+   "title": "THE DESK THAT USED TO BE A TABLE",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Homework, mail, or a craft project has been sitting on the table for days, migrating a few inches each evening but never actually leaving.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "That activity doesn't have anywhere else in the house to happen",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "One person treats this as the family desk and everyone else wants it clear for dinner, and that's never actually been settled",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "Clearing it before dinner isn't actually anyone's job, so it depends on who notices first",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-012",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dining table with a laptop, a stack of mail, and a half-finished craft project spread across one end, the opposite end still set with a single centerpiece",
+    "must_show": [
+     "Homework, mail, or a craft project has been sitting on the table for days, migrating a few inches each evening but never actually leaving."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-002",
+   "title": "THE CHAIR EVERYONE QUIETLY AVOIDS",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A chair has started to wobble at the rungs, and everyone has quietly learned which one to avoid instead of getting it fixed.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody checks the chairs for looseness, it only gets noticed when one nearly gives way",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no agreed point at which a wobble becomes 'needs fixing' instead of 'still fine'",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The wobble has gone on so long, people don't really register it as a problem to fix",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-001",
+    "root_causes": [
+     "RC-013",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a dining chair pulled slightly away from a table, visibly tilting on one leg, with place settings arranged at every other chair around it",
+    "must_show": [
+     "A chair has started to wobble at the rungs, and everyone has quietly learned which one to avoid instead of getting it fixed."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-003",
+   "title": "THE HOT DISH WITH NO TRIVET IN REACH",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A hot dish has scorched the tabletop, or a candle has burned close to the runner, because the trivet was still in a drawer across the room when the food came out.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The trivet doesn't live in the drawer nearest the table, so it's easier to skip than fetch",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "There's no rule about candles and runners, so it's whatever looks nice that night",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Setting the table happens in a rush right before people sit down, so the trivet gets skipped",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-001",
+    "root_causes": [
+     "KC-003",
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a steaming dish set directly on bare dining table wood beside an unlit candle burned close to the edge of a table runner",
+    "must_show": [
+     "A hot dish has scorched the tabletop, or a candle has burned close to the runner, because the trivet was still in a drawer across the room when the food came out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-004",
+   "title": "THE MAIL THAT NEVER LEFT THE SIDEBOARD",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The mail lands on the sideboard the moment it comes through the door, and by the end of the week there's a loose stack where the bare wood used to be.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing tells the mail where else to go, so the nearest flat surface wins",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The mail pile isn't obviously wrong to look at anymore",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Opening the mail is its own decision nobody's made yet, so it just sits",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-002",
+    "root_causes": [
+     "KC-002",
+     "RC-017",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a sideboard surface with a loose stack of unopened mail sitting where a bare serving run should be, a lamp and three display objects pushed aside",
+    "must_show": [
+     "The mail lands on the sideboard the moment it comes through the door, and by the end of the week there's a loose stack where the bare wood used to be."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-005",
+   "title": "THREE PLUGS BEHIND THE FURNITURE",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A lamp, a phone charger, and a warming tray all share one outlet behind the sideboard, and nobody has checked that plug in months.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "That plug is tucked behind heavy furniture where nobody ever looks",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There's no rule about how many things can share one outlet here",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Checking the cords back there isn't anyone's specific job",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-002",
+    "root_causes": [
+     "KC-005",
+     "KC-008",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "the back of a sideboard pulled slightly from the wall, revealing a single outlet crowded with a lamp plug, a phone charger, and a warming tray cord",
+    "must_show": [
+     "A lamp, a phone charger, and a warming tray all share one outlet behind the sideboard, and nobody has checked that plug in months."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-006",
+   "title": "THE FOURTH DISPLAY PIECE",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "More than three display pieces have collected at the lamp end, including a tall vase a small child could pull over reaching past it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no agreed limit on how many display pieces belong here",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Nice things keep getting added and nothing is ever removed to make room",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The vase has stood there long enough that its height at a child's reach stopped registering as a risk",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-002",
+    "root_causes": [
+     "KC-008",
+     "KC-001",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a sideboard's display end crowded with four candlesticks and vases grouped together, one tall vase standing closest to the edge nearest a drawer",
+    "must_show": [
+     "More than three display pieces have collected at the lamp end, including a tall vase a small child could pull over reaching past it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-007",
+   "title": "THREE PLATTERS TO REACH THE FOURTH",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-003",
+    "root_causes": [
+     "KC-004",
+     "RC-017",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a stack of flat serving platters inside a sideboard cupboard with the bottom platter partly pulled, the two platters above it lifted off to one side",
+    "must_show": [
+     "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-008",
+   "title": "THE PLATTER ABOVE SHOULDER HEIGHT",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The punch bowl and the heavy stoneware platters live on a shelf above shoulder height, and they only come down when your arms are already full of something else.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody thought about who'd actually have to lift it back down when it went up there",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "Nobody's re-sorted this shelf by weight since it was first packed",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's been stored that way so long it doesn't register as a reach risk anymore",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-003",
+    "root_causes": [
+     "KC-006",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a stoneware platter and a punch bowl standing on a sideboard shelf above shoulder height, a hand reaching up toward them with both arms already full",
+    "must_show": [
+     "The punch bowl and the heavy stoneware platters live on a shelf above shoulder height, and they only come down when your arms are already full of something else."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-009",
+   "title": "THE TABLECLOTH FOR A TABLE YOU DON'T OWN",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody's actually measured it against the table you own now",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-003",
+    "root_causes": [
+     "RC-015",
+     "RC-014",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open sideboard drawer with a folded tablecloth clearly too small laid across a dining table, its edge falling short of the table's corners",
+    "must_show": [
+     "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-010",
+   "title": "TWELVE SETTINGS FROM YOUR GRANDMOTHER",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are twelve place settings of china from a relative behind this glass, more than the largest meal you've actually hosted in years, and deciding what to do with the rest feels impossible.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's not really china anymore, it's a person, and sorting it feels like a betrayal",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nobody's actually counted the largest meal hosted against the number of settings kept",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Twelve settings genuinely doesn't fit this cabinet's shelves at eight plates high with felt between each, so stacks run taller than they should",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-004",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a glass-fronted china cabinet packed with more full place settings than its shelves comfortably hold, stacks reaching close to the shelf above",
+    "must_show": [
+     "There are twelve place settings of china from a relative behind this glass, more than the largest meal you've actually hosted in years, and deciding what to do with the rest feels impossible."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-011",
+   "title": "THE CABINET THAT'S NEVER BEEN STRAPPED DOWN",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "This cabinet has never been strapped to the wall, and its shelves are exactly the height a small child would use as a ladder.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's a bigger job than a quick tidy, so it keeps getting pushed to later",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Securing furniture like this has never been anyone's specific task",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's stood there unstrapped so long, the risk doesn't register day to day",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-004",
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tall glass-fronted china cabinet standing away from the wall with no visible strap or bracket, a low stepped shelf at a small child's climbing height",
+    "must_show": [
+     "This cabinet has never been strapped to the wall, and its shelves are exactly the height a small child would use as a ladder."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-012",
+   "title": "THE DUST ON TOP NOBODY'S TOUCHED IN YEARS",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The top of this cabinet, high and out of easy sight, has a visible layer of dust nobody's touched in a long time.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Reaching up there means finding a stool first, so it's the last thing anyone bothers with",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "It's high enough that you can't actually see it's dusty from normal eye level",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nobody's assigned to check the top of this cabinet specifically",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-004",
+    "root_causes": [
+     "RC-016",
+     "KC-005",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "the dusty top of a china cabinet seen from a raised angle, a visible layer of dust undisturbed across its surface, high above eye level",
+    "must_show": [
+     "The top of this cabinet, high and out of easy sight, has a visible layer of dust nobody's touched in a long time."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-013",
+   "title": "THE WINE WITHIN A CHILD'S REACH",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no latch or high shelf assigned for alcohol at this station, only in the kitchen",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "This station never got the same childproofing pass the kitchen did",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Moving the bottles higher keeps getting put off because it's a small job with no deadline",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-005",
+    "root_causes": [
+     "KC-002",
+     "KC-010",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open shelf at a beverage station holding a wine bottle and two spirit bottles at the height of a small child standing at the counter",
+    "must_show": [
+     "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-014",
+   "title": "THE BEAN JAR BELOW ITS OWN LINE",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The bean jar has run below its own marked fill line more than once with nobody noticing until the machine sputtered out mid-pour.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Topping the jar isn't tied to any specific moment, so it only happens when someone remembers",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "The fill line is marked but nobody's actually assigned to check it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "This station runs low silently, nothing about it signals 'running out' before it's actually out",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-005",
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "KC-011"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a coffee bean jar on a counter with its contents sitting visibly below a marked fill line drawn on the glass",
+    "must_show": [
+     "The bean jar has run below its own marked fill line more than once with nobody noticing until the machine sputtered out mid-pour."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "DRF-015",
+   "title": "THE SECOND MACHINE",
+   "type": "FRICTION CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are two ways to make a hot drink on this counter, and one of them hasn't earned its counter space in months but nobody's tested that.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Getting rid of a machine somebody might start using again feels premature",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "It's been part of the counter so long it doesn't register as extra anymore",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "There's no actual rule for how little use earns a machine its spot",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your dining room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "DRZ-005",
+    "root_causes": [
+     "RC-015",
+     "RC-017",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "two coffee-making machines side by side on a counter, one with a sticky note and tally marks on it, the other bare and unused beside it",
+    "must_show": [
+     "There are two ways to make a hot drink on this counter, and one of them hasn't earned its counter space in months but nobody's tested that."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-006"
+    ],
+    "actions": [
+     "DRA-004",
+     "DRA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "more display objects crowded at one end of a sideboard than the space was ever meant to hold",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-001",
+     "DRF-004",
+     "DRF-013"
+    ],
+    "actions": [
+     "DRA-001",
+     "DRA-003",
+     "DRA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of mail sitting on a dining table with no drawer or tray anywhere nearby assigned to catch it",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-003"
+    ],
+    "actions": [
+     "DRA-002"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a trivet sitting in a drawer at the far side of a dining room, nowhere near the table it's meant to protect",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-007"
+    ],
+    "actions": [
+     "DRA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of serving platters with the two top pieces lifted aside just to reach the one at the bottom",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-005",
+     "DRF-012"
+    ],
+    "actions": [
+     "DRA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bean jar on a counter with its fill level impossible to see from a normal standing height",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-008"
+    ],
+    "actions": [
+     "DRA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a heavy stoneware platter sitting on a shelf above shoulder height with no step stool anywhere nearby",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-010"
+    ],
+    "actions": [
+     "DRA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a china cabinet shelf with plates stacked higher than the felt dividers between them were ever meant to allow",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-002",
+     "DRF-005",
+     "DRF-006",
+     "DRF-009",
+     "DRF-015"
+    ],
+    "actions": [
+     "DRA-002",
+     "DRA-004",
+     "DRA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a sideboard surface with no taped boundary anywhere to show where serving space ends and display space begins",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-003",
+     "DRF-011",
+     "DRF-013",
+     "DRF-014"
+    ],
+    "actions": [
+     "DRA-008",
+     "DRA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an unlit candle burned down close to a table runner with no marked moment that would have prompted moving it sooner",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-003",
+     "DRF-006",
+     "DRF-013"
+    ],
+    "actions": [
+     "DRA-006",
+     "DRA-010",
+     "DRA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a bottle of wine standing open on a shelf at exactly the height a small child would reach",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-014"
+    ],
+    "actions": [
+     "DRA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a coffee bean jar sitting visibly below its own marked fill line beside an empty mug",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-001"
+    ],
+    "actions": [
+     "DRA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a dining table with a laptop and papers spread across one end and a place setting arranged at the other",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-001",
+     "DRF-002",
+     "DRF-005",
+     "DRF-007",
+     "DRF-008",
+     "DRF-011",
+     "DRF-012",
+     "DRF-014"
+    ],
+    "actions": [
+     "DRA-002",
+     "DRA-008",
+     "DRA-011",
+     "DRA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a dining chair with a visibly loose rung, standing among other chairs with nobody having marked it for repair",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-009",
+     "DRF-010"
+    ],
+    "actions": [
+     "DRA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a full china cabinet of inherited place settings, far more than the table in front of it has ever been set for",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-004",
+     "DRF-009",
+     "DRF-010",
+     "DRF-015"
+    ],
+    "actions": [
+     "DRA-003",
+     "DRA-005",
+     "DRA-009"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a folded tablecloth clearly too small for the dining table it's meant to cover, kept in the drawer anyway",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-012"
+    ],
+    "actions": [
+     "DRA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "the dusty top of a tall china cabinet seen from below, well out of easy reach for a regular wipe",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "DRF-002",
+     "DRF-004",
+     "DRF-007",
+     "DRF-008",
+     "DRF-011",
+     "DRF-015"
+    ],
+    "actions": [
+     "DRA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a loose stack of mail on a sideboard that has clearly sat undisturbed long enough to look like it belongs there",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "DRA-001",
+   "title": "CLEAR THE TABLE BY OWNER, NOT BY TYPE",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the whole table onto the floor in one armful and sort what came off by the person it belongs to, so nothing stays homeless on a technicality.",
+   "why_it_matters": "A pile sorted by type just becomes three piles; sorting by owner means somebody actually carries it away.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a basket for each person's things"
+   ],
+   "steps": [
+    "Clear the whole table onto the floor in one armful, then sort what came off by owner rather than by type. The homework, the unopened mail, and the half-finished craft project each go back to a person, not back to the table.",
+    "Hand each pile to the person it belongs to, right now, rather than setting it back down anywhere else in the room.",
+    "Wipe the bare table once everything is off it, then set the centerpiece back down alone."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-012"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "KC-012"
+    ],
+    "zone": "DRZ-001",
+    "standard": "DRS-001"
+   },
+   "victory_condition": "The table holds nothing but its centerpiece, and every activity that was on it has gone home with the person who owns it.",
+   "next_card": "DRS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a dining table mid-clear with one basket holding homework and mail sitting on a chair beside it, the tabletop otherwise bare except the centerpiece going back down",
+    "must_show": [
+     "The table holds nothing but its centerpiece, and every activity that was on it has gone home with the person who owns it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-002",
+   "title": "PHOTOGRAPH BOTH STATES AND TAPE THEM INSIDE THE DOOR",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Photograph the table both set for a meal and cleared to its standard, and tape both pictures inside the sideboard door so the standard isn't something anyone has to remember.",
+   "why_it_matters": "A standard living only in someone's head resets differently every night; a photo taped where people can see it resets the same way every time.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a phone camera",
+    "tape"
+   ],
+   "steps": [
+    "Set the table as if for a real meal and photograph it.",
+    "Clear it to bare wood plus the centerpiece and photograph that too.",
+    "Confirm the trivet and placemats live in the sideboard drawer nearest the table, not one further away, then tape both photos inside that door at eye level."
+   ],
+   "root_causes": [
+    "KC-008",
+    "RC-013",
+    "KC-003"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "RC-013",
+     "KC-003"
+    ],
+    "zone": "DRZ-001",
+    "standard": "DRS-001"
+   },
+   "victory_condition": "Both photos are taped inside the sideboard door, and anyone in the house can point at them to say what 'cleared' actually looks like.",
+   "next_card": "DRA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand taping two photographs, one of a set table and one of a cleared table, to the inside of a sideboard door",
+    "must_show": [
+     "Both photos are taped inside the sideboard door, and anyone in the house can point at them to say what 'cleared' actually looks like."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-003",
+   "title": "CLEAR THE WOOD AND GIVE EVERY PAPER A VERDICT",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take everything off the sideboard's wood and give every piece of paper a real verdict tonight, so nothing sits there by default.",
+   "why_it_matters": "Paper left 'for now' is exactly how a serving surface turns into a filing cabinet.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a recycling bin",
+    "a folder for anything to file"
+   ],
+   "steps": [
+    "Take everything off the wood, including the picture frames and the candlesticks, and give every piece of paper a verdict tonight: act on it, file it, or recycle it. Burnt-down candle stubs, dried flowers, and chargers belonging to other rooms leave now.",
+    "Return chargers and stray items to the room they actually belong to.",
+    "Set only the lamp and the display group you're keeping back down at the far end."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ],
+    "zone": "DRZ-002",
+    "standard": "DRS-002"
+   },
+   "victory_condition": "The wood is bare, every piece of paper has a verdict, and nothing that belongs to another room is still sitting here.",
+   "next_card": "DRA-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a sideboard cleared completely to bare wood with a small stack of mail sorted into an action pile, a file pile, and a recycling pile on the floor beside it",
+    "must_show": [
+     "The wood is bare, every piece of paper has a verdict, and nothing that belongs to another room is still sitting here."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-004",
+   "title": "TAPE THE SERVING RUN AND CAP THE DISPLAY AT THREE",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Mark the serving run with tape sized to your largest dish, and settle the display group at exactly three objects at the far end.",
+   "why_it_matters": "A run you can see is a run you'll actually keep clear; an unlimited display always grows until it swallows the space mail wants to claim.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a large serving dish to measure with",
+    "tape"
+   ],
+   "steps": [
+    "Set your largest serving dish where you'd really put it and mark that length with tape.",
+    "Choose exactly three display objects for the far end and put everything else away or elsewhere.",
+    "Pull the sideboard out and trace the lamp cord to the outlet so you can actually see what else shares that plug."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-001",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-001",
+     "KC-005"
+    ],
+    "zone": "DRZ-002",
+    "standard": "DRS-002"
+   },
+   "victory_condition": "The taped run stays bare, exactly three display objects sit at the far end, and you know what else shares the lamp's outlet.",
+   "next_card": "DRA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a strip of tape marking a bare serving run at one end of a sideboard, exactly three display objects grouped at the far end beside a lamp",
+    "must_show": [
+     "The taped run stays bare, exactly three display objects sit at the far end, and you know what else shares the lamp's outlet."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-005",
+   "title": "LAY OUT EVERY LINEN AND CHECK EVERY SET",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Pull every tablecloth, runner, and napkin out and lay them across the table to see which sets are actually complete, so nothing partial keeps its drawer space.",
+   "why_it_matters": "A stained cloth or an orphaned napkin only reveals itself the night you actually need the full set.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the dining table to lay things across",
+    "a bin bag"
+   ],
+   "steps": [
+    "Pull every tablecloth, runner, and napkin out and lay them across the table so you can see which sets are actually complete. Partial napkin sets, cloths with stains you have already tried and failed to lift, and serving pieces orphaned from sets you no longer own are finished.",
+    "Roll each surviving cloth with its matching napkins inside it before it goes back.",
+    "Measure what's left against the table you actually own, including the leaf in."
+   ],
+   "root_causes": [
+    "RC-015",
+    "RC-014"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-015",
+     "RC-014"
+    ],
+    "zone": "DRZ-003",
+    "standard": "DRS-003"
+   },
+   "victory_condition": "Every remaining linen set is complete, every serving piece belongs to a set you still own, and nothing carries a stain you've already failed to lift.",
+   "next_card": "DRA-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "tablecloths, runners, and napkins spread across a dining table, one pile of complete matched sets and a smaller pile of stained or partial linens set apart",
+    "must_show": [
+     "Every remaining linen set is complete, every serving piece belongs to a set you still own, and nothing carries a stain you've already failed to lift."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-006",
+   "title": "MOVE THE HEAVY PIECES DOWN AND THE CANDLES UP",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move the punch bowl and heavy platters to the lowest shelf, and move taper candles and matches into a latched drawer or high out of a child's reach.",
+   "why_it_matters": "Heavy stoneware overhead comes down while your hands are already full, and loose candles and matches in a low drawer are exactly at a small child's reach.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a latch or a high shelf"
+   ],
+   "steps": [
+    "Move the punch bowl and heavy stoneware platters down to the bottom shelf.",
+    "Move taper candles and matches into a latched drawer, or a shelf out of reach.",
+    "Fit a divider and stand the large platters on edge behind it, so reaching one no longer means lifting the others off first."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-010",
+    "KC-004"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-010",
+     "KC-004"
+    ],
+    "zone": "DRZ-003",
+    "standard": "DRS-003"
+   },
+   "victory_condition": "The heaviest pieces sit on the bottom shelf, candles and matches are latched or out of reach, and the platters stand on edge behind a divider.",
+   "next_card": "DRA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand moving a heavy stoneware platter down onto a sideboard's bottom shelf, a latched drawer holding taper candles visible beside it",
+    "must_show": [
+     "The heaviest pieces sit on the bottom shelf, candles and matches are latched or out of reach, and the platters stand on edge behind a divider."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-007",
+   "title": "SPLIT THE CHINA INTO THREE HONEST GROUPS",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take every piece out and split it into complete sets, chipped or crazed pieces, and lone survivors, so nothing unsafe to drink from stays in rotation.",
+   "why_it_matters": "A chipped rim cannot be mended and is not safe to drink from, whatever the set it came from.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a towel-lined table surface",
+    "a box for pieces leaving"
+   ],
+   "steps": [
+    "Take every piece out and split it into three groups: complete sets, chipped or crazed pieces, and lone survivors of sets that are long gone. A chipped rim cannot be mended and is not safe to drink from, so that whole group leaves together.",
+    "Hand-wash and dry each piece you're keeping before it goes back.",
+    "Stack plates no more than eight high with felt between them as they return."
+   ],
+   "root_causes": [
+    "KC-007",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "RC-017"
+    ],
+    "zone": "DRZ-004",
+    "standard": "DRS-004"
+   },
+   "victory_condition": "What's left behind the glass is complete sets and pieces without a chip or crack, nothing kept only out of habit.",
+   "next_card": "DRA-008",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "china laid out on a towel-covered table in three groups, one group of chipped pieces visibly set apart in a box",
+    "must_show": [
+     "What's left behind the glass is complete sets and pieces without a chip or crack, nothing kept only out of habit."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-008",
+   "title": "STRAP THE CABINET AND PHOTOGRAPH THE SHELVES",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Strap the cabinet to a wall stud, and photograph the finished shelves to tape inside the door.",
+   "why_it_matters": "A tall glass-fronted case loaded with plates is this room's biggest tip-over risk, and a photo means a missing piece is found in December, not next December.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a wall strap kit",
+    "a stud finder",
+    "a phone camera"
+   ],
+   "steps": [
+    "Find the stud and fit a wall strap between it and the cabinet.",
+    "While you're up there, dust the top of the cabinet, high and out of easy sight, with a stool and a long-handled duster.",
+    "Photograph the finished shelves and tape that photo inside the cabinet door."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013",
+    "RC-016"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "RC-016"
+    ],
+    "zone": "DRZ-004",
+    "standard": "DRS-004"
+   },
+   "victory_condition": "The cabinet is strapped to a wall stud, and a photo of the finished shelves is taped inside the door.",
+   "next_card": "DRA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a wall strap fitted between the back of a tall china cabinet and a wall stud, a small photograph taped to the inside of the cabinet door",
+    "must_show": [
+     "The cabinet is strapped to a wall stud, and a photo of the finished shelves is taped inside the door."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-009",
+   "title": "CHECK EVERY DATE AND MATCH EVERY LID",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Check the date on every tea box, syrup bottle, and pod sleeve, and match every travel mug to its lid, so nothing past date or lidless keeps its spot.",
+   "why_it_matters": "A syrup you'll never use again and a mug with no lid are both taking up space the morning rush actually needs.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bin bag"
+   ],
+   "steps": [
+    "Line up every tea box, syrup bottle, and pod sleeve and check the dates, then open the travel mugs and match them to their lids. Anything past date, any mug missing its lid, and the promotional glassware you have never once poured into are out.",
+    "Recycle or donate anything you kept only because it was a gift.",
+    "Mark today's fill line on the bean jar with tape or a permanent marker."
+   ],
+   "root_causes": [
+    "KC-011",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-011",
+     "RC-015"
+    ],
+    "zone": "DRZ-005",
+    "standard": "DRS-005"
+   },
+   "victory_condition": "Everything on the counter is in date, every travel mug has its matching lid, and no glassware sits here unused.",
+   "next_card": "DRA-010",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "tea boxes, syrup bottles, and travel mugs lined up on a counter, mugs matched to their lids, a bin bag beside expired items set apart",
+    "must_show": [
+     "Everything on the counter is in date, every travel mug has its matching lid, and no glassware sits here unused."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-010",
+   "title": "GIVE THE MACHINE ITS OWN OUTLET AND LOCK UP THE BOTTLES",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Give the machine and kettle their own outlet, clear cords back from the edge, and move any wine or spirits behind a latch or high out of reach.",
+   "why_it_matters": "Water and electricity share this counter, and an open bottle at a child's eye level is a real hazard the kitchen version of this station wouldn't have.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a latch or a high shelf",
+    "cable clips"
+   ],
+   "steps": [
+    "Give the machine and the kettle their own outlet where possible.",
+    "Clip cords back from the front edge where a sleeve can hook them.",
+    "Move wine and spirits behind a latch or up out of a small child's reach."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-002"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-002"
+    ],
+    "zone": "DRZ-005",
+    "standard": "DRS-005"
+   },
+   "victory_condition": "The machine and kettle have their own outlet, no cord sits at the front edge, and any alcohol is latched or out of reach.",
+   "next_card": "DRA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a coffee machine and kettle each plugged into their own outlet on a counter, cords clipped back from the front edge, a latched cabinet visible below holding bottles",
+    "must_show": [
+     "The machine and kettle have their own outlet, no cord sits at the front edge, and any alcohol is latched or out of reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-011",
+   "title": "THE FULL DINING ROOM SAFETY WALK",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk every zone checking the chairs, the cabinet strap, the outlets, and anything within a small child's reach.",
+   "why_it_matters": "A wobbly chair, an unstrapped cabinet, and an open bottle of wine all hide until someone tests for them on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a step stool"
+   ],
+   "steps": [
+    "Rock every chair to find a loose joint, and turn any that move to face the wall.",
+    "Confirm the china cabinet is strapped to a wall stud.",
+    "Confirm alcohol and candles are out of a small child's reach throughout the room."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "No chair wobbles unmarked, the cabinet is strapped, and nothing hazardous sits within a small child's reach.",
+   "next_card": "DRA-012",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand rocking a dining chair to test its joints, a strapped china cabinet and a latched cabinet visible in the background",
+    "must_show": [
+     "No chair wobbles unmarked, the cabinet is strapped, and nothing hazardous sits within a small child's reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-012",
+   "title": "THE NIGHTLY CLEAR, ONE TRIP",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "When the plates go to the sink, carry out everything else on the table and the sideboard's bare run in the same trip.",
+   "why_it_matters": "Nothing in this room forces its own reset, so the only thing that works is tying it to a trip that was already happening.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [],
+   "steps": [
+    "Carry the dishes to the sink.",
+    "On the same trip, carry out anything that landed on the table or the sideboard's bare run that day.",
+    "Notice whether the table matches its taped photo."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "The table and the sideboard's bare run match their standard before the kitchen light goes off.",
+   "next_card": "DRA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand carrying a small stack of mail and a stray craft project away from a dining table in the same trip as dinner plates heading to the sink",
+    "must_show": [
+     "The table and the sideboard's bare run match their standard before the kitchen light goes off."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRA-013",
+   "title": "THE MONTHLY LIMIT AND COUNT CHECK",
+   "type": "ACTION CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Once a month, check the sideboard's count card, the display limit, and the bean jar's fill line against what's actually there.",
+   "why_it_matters": "A limit written once and never revisited stops meaning anything the first time a good deal or a gift tempts you past it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker"
+   ],
+   "steps": [
+    "Compare the count card in the sideboard drawer against what's actually in it.",
+    "Count the display objects on the sideboard surface; correct back to three if it's crept up.",
+    "Check the bean jar's fill line is still legible and accurate."
+   ],
+   "root_causes": [
+    "KC-008",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-008",
+     "KC-001"
+    ]
+   },
+   "victory_condition": "The count card matches the drawer, the display group is back to three, and the fill line still reads true.",
+   "next_card": "DRA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand comparing a small card taped inside a sideboard door against tablecloths and serving pieces actually in the drawer",
+    "must_show": [
+     "The count card matches the drawer, the display group is back to three, and the fill line still reads true."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "DRS-001",
+   "title": "DINING TABLE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Dining Room",
+   "zone": "Dining Table",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Bare wood plus one centerpiece between meals, and every visiting activity arrives in its own container and leaves with it.",
+   "trigger": "When the plates go to the sink after dinner, everything else on the table travels with them.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run a fingernail down the leaf seam or extension joint and clear out any crumbs hiding in the gap.",
+    "Wipe the underside lip and apron rail where hands grip to pull a chair in.",
+    "Rock each chair once and flag any joint that has started to work loose."
+   ],
+   "related": {
+    "zone": "DRZ-001",
+    "actions": [
+     "DRA-001",
+     "DRA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a set dining table with one centerpiece on bare wood, every chair pushed fully in, and a sideboard drawer visible open nearby holding placemats and a trivet, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "DRS-002",
+   "title": "BUFFET OR SIDEBOARD SURFACE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Surface",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The taped serving run stays bare, three display objects at the far end, and no paper on the wood at any hour.",
+   "trigger": "When the day's mail comes through the door, it goes straight past this surface to the chair where you actually open it.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the lamp and follow its cord the whole way to the outlet, checking for a cracked or chafed patch.",
+    "Work any fresh wax drip off the wood with a plastic card before it hardens further.",
+    "Dust behind each display object rather than around it."
+   ],
+   "related": {
+    "zone": "DRZ-002",
+    "actions": [
+     "DRA-003",
+     "DRA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a sideboard with a taped bare wood run at one end and three display objects with a lamp grouped at the other end, no paper anywhere on the surface, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "DRS-003",
+   "title": "BUFFET OR SIDEBOARD STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Dining Room",
+   "zone": "Buffet or Sideboard Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "A written count card inside the door, linens rolled with their napkins, platters on edge, and the heavy pieces on the bottom shelf.",
+   "trigger": "When the tablecloth comes out of the dryer, it is rolled and returned before anything else in that load gets folded.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Smell one rolled tablecloth as you refold it, checking for a musty note that means it needs rewashing.",
+    "Check the silver-plate serving pieces together for any spreading tarnish.",
+    "Slide the drawer fully open and check it still runs flush on its runners."
+   ],
+   "related": {
+    "zone": "DRZ-003",
+    "actions": [
+     "DRA-005",
+     "DRA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open sideboard cabinet showing two rolled tablecloths with napkins in one drawer, nested serving bowls in another, and platters standing on edge behind a divider, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "DRS-004",
+   "title": "CHINA OR DISPLAY CABINET STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Dining Room",
+   "zone": "China or Display Cabinet",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "A shelf photo inside the door, eight plates at most per stack with felt between, the weight on the bottom shelf, and the cabinet strapped to the wall.",
+   "trigger": "When the last guest leaves, the good china is washed and back behind the glass before anyone turns the kitchen light off.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Dust the very top of the cabinet, high and out of sight, where this room's dust settles thickest.",
+    "Check one glass shelf for a hairline crack or a bent support pin.",
+    "Wipe the wall strap and its fixing point where the cabinet meets the wall."
+   ],
+   "related": {
+    "zone": "DRZ-004",
+    "actions": [
+     "DRA-007",
+     "DRA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a glass-fronted china cabinet with plates stacked no more than eight high with felt between them, cups standing single file, and a strap visible securing it to the wall, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "DRS-005",
+   "title": "BEVERAGE OR COFFEE STATION STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Dining Room",
+   "zone": "Beverage or Coffee Station",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One tray, one outlet, use-order left to right, mugs capped at drinkers plus two, and a fill line on the jar.",
+   "trigger": "While the morning coffee brews, the tray gets wiped and the jar gets topped back to its line.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the drip tray grate and check underneath it for mold before it spreads.",
+    "Wipe the underside of the wall shelf above the kettle, where steam warps the board.",
+    "Check the bean jar's fill line is still legible and matches what's actually in the jar."
+   ],
+   "related": {
+    "zone": "DRZ-005",
+    "actions": [
+     "DRA-009",
+     "DRA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a beverage station counter with a coffee machine, mugs, and spoons arranged left to right on one tray, a marked fill line visible on the bean jar, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "DRE-001",
+   "title": "THE UNEXPECTED DINNER GUEST",
+   "type": "EVENT CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest is staying for dinner tonight, unannounced, and the table has to seat one more person in the next ten minutes.",
+   "tests_zones": [
+    "DRZ-001"
+   ],
+   "held_if": "The table clears to bare wood plus centerpiece in one trip, and an extra chair and place setting go down without hunting for anything.",
+   "if_it_failed": "If clearing the table took more than one trip, or you had to search for a chair or a setting, the nightly clear slipped. Draw DRA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "DRZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a dining table being reset for one more guest, an extra chair being pulled in and a place setting added quickly beside three already set",
+    "must_show": [
+     "A guest is staying for dinner tonight, unannounced, and the table has to seat one more person in the next ten minutes."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "DRE-002",
+   "title": "THE HOLIDAY SERVING RUSH",
+   "type": "EVENT CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Three serving dishes need to land on the sideboard at once, straight from the oven, with no time to move anything out of the way first.",
+   "tests_zones": [
+    "DRZ-002"
+   ],
+   "held_if": "The taped run takes all three dishes without moving the display group first.",
+   "if_it_failed": "If a display object had to move to fit a hot dish, the run isn't actually sized for your real serving load. Draw DRA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "DRZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "three hot serving dishes set down in a row along a bare taped run on a sideboard, three display objects undisturbed at the far end",
+    "must_show": [
+     "Three serving dishes need to land on the sideboard at once, straight from the oven, with no time to move anything out of the way first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "DRE-003",
+   "title": "THE TABLE THAT NEEDS SETTING FOR TWELVE",
+   "type": "EVENT CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A holiday meal for twelve is an hour away, and the good linens and serving pieces have to come out of storage complete and ready.",
+   "tests_zones": [
+    "DRZ-003"
+   ],
+   "held_if": "The count card tells you exactly what's in the drawer before you open it, and every cloth, napkin, and serving piece pulled out is complete.",
+   "if_it_failed": "If you had to hunt for a missing napkin or discover a stain mid-setup, the count card or the sort slipped. Draw DRA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "DRZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "linens and serving pieces being pulled from a sideboard drawer for a large table setting, a count card visible taped inside the open door",
+    "must_show": [
+     "A holiday meal for twelve is an hour away, and the good linens and serving pieces have to come out of storage complete and ready."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "DRE-004",
+   "title": "THE ACCIDENTAL KNOCK",
+   "type": "EVENT CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Someone bumps hard into the china cabinet while carrying a full tray, and it does not so much as rock.",
+   "tests_zones": [
+    "DRZ-004"
+   ],
+   "held_if": "The cabinet stays put, strapped to its wall stud, and nothing inside shifts or falls.",
+   "if_it_failed": "If the cabinet rocked or something shifted, the strap is missing or has failed. Draw DRA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "DRZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a full serving tray passing close beside a tall, strapped china cabinet, the cabinet standing completely still against the wall",
+    "must_show": [
+     "Someone bumps hard into the china cabinet while carrying a full tray, and it does not so much as rock."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "DRE-005",
+   "title": "THE MORNING WITH A HOUSE FULL OF GUESTS",
+   "type": "EVENT CARD",
+   "room": "Dining Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Eight overnight guests all want coffee or tea in the same twenty minutes, with no time to hunt for a clean mug or discover the bean jar is empty.",
+   "tests_zones": [
+    "DRZ-005"
+   ],
+   "held_if": "The tray has enough capped mugs, the bean jar is above its fill line, and everything runs left to right without anyone crossing into the kitchen.",
+   "if_it_failed": "If the bean jar ran out or mugs ran short, the replenishment check slipped. Draw DRA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "DRZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "several mugs lined up on a single tray at a beverage station, a full bean jar above its marked fill line, guests' hands reaching for cups",
+    "must_show": [
+     "Eight overnight guests all want coffee or tea in the same twenty minutes, with no time to hunt for a clean mug or discover the bean jar is empty."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}

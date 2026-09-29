@@ -1949,6 +1949,65 @@
        "A shelf board that has started to bow in the middle under the weight sitting on it.",
        "A damp patch or a musty note at the back wall, or spots of rust on a wire shelf, telling you moisture is coming from behind."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A bag you opened for one recipe two summers ago is still sitting up there, unlabeled, and you can't say when it was opened.",
+        "branches": [
+         {
+          "answer": "It's not really clutter, it's a recipe I still mean to make again",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nothing gets written on the bag the day it's opened, so there's no way to judge how old it really is",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "I've walked past that shelf so many times it doesn't register as a problem anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Two open bags of the same rice or oats turn up on the shelf at once, one pushed behind the other.",
+        "branches": [
+         {
+          "answer": "New stock gets unpacked straight to the front instead of behind the open bag",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "I buy a replacement before I actually check whether the open one is empty yet",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule everyone in the house follows for loading new stock in behind",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A glass grain jar sits above eye level on this shelf instead of at chest height where it belongs.",
+        "branches": [
+         {
+          "answer": "There wasn't a clear place made for it at chest height so it ended up wherever there was room",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Reaching the top shelf safely means keeping a step stool in the pantry, and it's not there",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody in the house is the one who checks this shelf for what's stored above eye level",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Bring down every bag and box on this shelf, open anything already opened, and smell the flour and the oats: stale, webbed, or bought for a recipe you have not cooked in months leaves today.",
+       "victory": "Every opened bag is sealed in a labeled container or gone, and pasta, rice and oats stand together as one block."
+      }
      }
     },
     {
@@ -2026,6 +2085,65 @@
        "An ant trail or a single scout following a sugary edge, telling you a sticky spot got missed last time.",
        "A shelf board bowing under a dense row of cans, or a label peeling with damp behind it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A can with a dented seam or a jar with a popped lid is still sitting on the shelf instead of already in the bin.",
+        "branches": [
+         {
+          "answer": "I wasn't sure whether a small dent or a slightly domed lid really counts as spoiled",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's tucked behind a row of other cans where nobody actually looks at it",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody has checked this shelf for damaged cans in a long time; it's not really anyone's job",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Four jars of the same pasta sauce turn up when you finally take everything off the shelf.",
+        "branches": [
+         {
+          "answer": "I keep buying it because I genuinely can't tell from a glance how many are already here",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Four of one thing is just how much ends up here between big shops, nobody's ever called it too many",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Whoever unpacks the shopping doesn't check the shelf before adding another one",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "A shelf edge feels tacky where a honey jar or sauce lid has wept, and you only notice because of an ant.",
+        "branches": [
+         {
+          "answer": "Reaching the sticky ring under that jar costs more effort than the rest of the shelf, so it gets skipped",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "The sticky ring was there so long I stopped seeing it as something to fix",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nothing tells you a jar has started weeping until the ants already have",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every can and jar off the shelf, turn each one to find the date, and put anything dented, rusted, bulging or domed straight into the bin rather than back on the shelf.",
+       "victory": "No dented, rusted, domed or bulging can or jar remains on the shelf, and every label faces out."
+      }
      }
     },
     {
@@ -2104,6 +2222,65 @@
        "A hairline crack in a plastic canister, or a cutter or tip showing the first orange bloom of rust.",
        "An allergen container sharing a scoop with the open shelf, a cross-contact risk worth calling out on the spot."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Baking powder or yeast has been sitting in the bin for a long time and nobody has actually tested whether it still works.",
+        "branches": [
+         {
+          "answer": "There's no reminder built into anything that prompts a test before a bake",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The tin has no date on the lid, so there's no way to judge how old it really is",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "I keep meaning to test it and use it up before I replace it, and never quite get to it",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The nut flour or sesame container shares a scoop with everything else on this shelf.",
+        "branches": [
+         {
+          "answer": "Nobody ever agreed this container needs its own dedicated scoop",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It sits in the middle of the row instead of at the end where a hand would notice it's different",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Whoever's baking in a hurry just grabs whatever scoop is closest",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "The lift-out baking bin comes back short a scoop, or the vanilla is missing, right when you're about to start a bake.",
+        "branches": [
+         {
+          "answer": "Somebody borrowed from this bin for something that wasn't a bake, and it never got told to the person who baked",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no moment that resets the bin, it only gets noticed when a bake is already underway",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The bin holds more loose extras than a single bake actually needs, so something always drifts out of it",
+          "cause": "KC-001"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Test every leavener rather than guessing: a spoon of baking powder in hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with any hardened brown sugar or greyed cocoa.",
+       "victory": "Every leavener in the bin has been tested this week, and nothing dead or expired remains."
+      }
      }
     },
     {
@@ -2182,6 +2359,65 @@
        "The shelving unit rocking or its wall anchor working loose where a child has been climbing to the higher shelf.",
        "A sticky sugary drip at the back of the bin that a scout ant has already found."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The open snack bin sits below the marked fill line most mornings, well before the week is over.",
+        "branches": [
+         {
+          "answer": "Nobody actually refills it to the line the evening before, it just gets remembered some nights and not others",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no clear rule for who tops it up when the lunchboxes come home",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Filling it happens whenever someone notices, not at a fixed moment in the evening",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "A container comes back from the shelf with no matching lid, or a lid with nothing to close.",
+        "branches": [
+         {
+          "answer": "Lids and containers get put away separately instead of paired the moment they're washed",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "A stray lid or container has been sitting loose in the cupboard for a while and nobody's dealt with it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been an orphaned lid for so long it just blends into the shelf now",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A hard sweet, a whole nut or a small round cheese sits in the open bin a two-year-old can reach.",
+        "branches": [
+         {
+          "answer": "The bin's contents were chosen for the oldest child in the house, not the youngest who can actually reach it",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Nobody re-checked the bin's contents after a younger child started reaching the shelf",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's a choking hazard at child height, which is a safety problem that outranks how convenient it is to grab",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Match every lid to a container and bin the orphans in both directions, the lidless tubs and the lids for tubs that died. Pull any snack boxes with only a couple of bars rattling around and combine them.",
+       "victory": "Every reusable container has its own lid sitting on it, and the open bin is filled to its marked line."
+      }
      }
     },
     {
@@ -2255,6 +2491,65 @@
        "A sack that has started to bulge, split, or leak its contents onto the shelf below.",
        "A case crushed or bowing under the weight above it, or rust creeping up a metal shelf leg near the damp floor."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A second sack of rice or a twelve-pack nobody liked turns up when you finally clear the back of this zone.",
+        "branches": [
+         {
+          "answer": "I bought it for the unit price without checking whether I'd actually used up the last one",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "There's no written maximum for this item, so nothing stopped the extra one coming home",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's a good deal I'm not ready to admit didn't work out, so it stays instead of moving on",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A case near the bottom of a stack shows a soft, damp corner instead of the crisp cardboard everything else has.",
+        "branches": [
+         {
+          "answer": "Nobody has actually lifted and checked the underside of the bottom case in a while",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Checking underneath a stacked case means unstacking it first, so it doesn't happen often",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "That corner is against an outside wall that sweats, and nothing routes stock away from it",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "A case is stacked in front of another case of the same thing, so the older one at the back never gets pulled first.",
+        "branches": [
+         {
+          "answer": "There's no arrangement that keeps this one row deep, so a new case just goes wherever there's floor space",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The gap left by the front case emptying isn't the trigger for pulling the one behind it forward, it just gets refilled from the front again",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "I can't see behind the front row to know an older case is even back there",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open up the back of this zone and meet what you forgot you owned: any item you hold more than one genuine spare of moves forward into the working shelves this month or it leaves.",
+       "victory": "Every remaining pack carries its arrival month, and nothing sits stacked in front of an older case of the same thing."
+      }
      }
     }
    ]
@@ -2354,6 +2649,65 @@
        "A screw backing out of the apron, or a top fixing you can rock with a fingertip, means the frame is working loose. Flag it.",
        "On an extension table, a leaf latch that no longer sits flush or a slide that binds is worth flagging while the leaf is open."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Homework, mail, or a craft project has been sitting on the table for days, migrating a few inches each evening but never actually leaving.",
+        "branches": [
+         {
+          "answer": "That activity doesn't have anywhere else in the house to happen",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "One person treats this as the family desk and everyone else wants it clear for dinner, and that's never actually been settled",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Clearing it before dinner isn't actually anyone's job, so it depends on who notices first",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A chair has started to wobble at the rungs, and everyone has quietly learned which one to avoid instead of getting it fixed.",
+        "branches": [
+         {
+          "answer": "Nobody checks the chairs for looseness, it only gets noticed when one nearly gives way",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no agreed point at which a wobble becomes 'needs fixing' instead of 'still fine'",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The wobble has gone on so long, people don't really register it as a problem to fix",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A hot dish has scorched the tabletop, or a candle has burned close to the runner, because the trivet was still in a drawer across the room when the food came out.",
+        "branches": [
+         {
+          "answer": "The trivet doesn't live in the drawer nearest the table, so it's easier to skip than fetch",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "There's no rule about candles and runners, so it's whatever looks nice that night",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Setting the table happens in a rush right before people sit down, so the trivet gets skipped",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the whole table onto the floor in one armful, then sort what came off by owner rather than by type. The homework, the unopened mail, and the half-finished craft project each go back to a person, not back to the table.",
+       "victory": "The table holds nothing but its centerpiece, and every activity that was on it has gone home with the person who owns it."
+      }
      }
     },
     {
@@ -2431,6 +2785,65 @@
        "Fresh pinholes with a little powder beneath, or a leg you can rock, say the frame is working loose or being eaten. Flag it.",
        "A scorch bloom or a heat ring you had not seen before points to something hot being set down here. Flag where it is."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The mail lands on the sideboard the moment it comes through the door, and by the end of the week there's a loose stack where the bare wood used to be.",
+        "branches": [
+         {
+          "answer": "Nothing tells the mail where else to go, so the nearest flat surface wins",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The mail pile isn't obviously wrong to look at anymore",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Opening the mail is its own decision nobody's made yet, so it just sits",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A lamp, a phone charger, and a warming tray all share one outlet behind the sideboard, and nobody has checked that plug in months.",
+        "branches": [
+         {
+          "answer": "That plug is tucked behind heavy furniture where nobody ever looks",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule about how many things can share one outlet here",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Checking the cords back there isn't anyone's specific job",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "More than three display pieces have collected at the lamp end, including a tall vase a small child could pull over reaching past it.",
+        "branches": [
+         {
+          "answer": "There's no agreed limit on how many display pieces belong here",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nice things keep getting added and nothing is ever removed to make room",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The vase has stood there long enough that its height at a child's reach stopped registering as a risk",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the wood, including the picture frames and the candlesticks, and give every piece of paper a verdict tonight: act on it, file it, or recycle it. Burnt-down candle stubs, dried flowers, and chargers belonging to other rooms leave now.",
+       "victory": "The wood is bare, every piece of paper has a verdict, and nothing that belongs to another room is still sitting here."
+      }
      }
     },
     {
@@ -2511,6 +2924,65 @@
        "A shelf board bowing under the stoneware, or a runner pulling away from its screws, is a fixing starting to fail. Flag it.",
        "A hairline crack across a platter or a chip on the punch bowl rim can open into a break the next time it is carried full. Flag the piece."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The everyday platters are stacked flat, so getting the one you actually need means lifting the two or three sitting on top of it first.",
+        "branches": [
+         {
+          "answer": "There's no divider or system to stand them on edge, so reaching the one you want means moving the others every time",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "It's only used a handful of times a year, so the extra effort never feels worth solving",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Reorganizing the platter shelf has never been anyone's assigned job",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "The punch bowl and the heavy stoneware platters live on a shelf above shoulder height, and they only come down when your arms are already full of something else.",
+        "branches": [
+         {
+          "answer": "Nobody thought about who'd actually have to lift it back down when it went up there",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody's re-sorted this shelf by weight since it was first packed",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been stored that way so long it doesn't register as a reach risk anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A tablecloth that doesn't actually fit the table anymore is still folded in this drawer, kept because letting go of good linen feels wasteful.",
+        "branches": [
+         {
+          "answer": "Nobody's actually measured it against the table you own now",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It came from somebody else's table and giving it up feels like giving up the memory",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "There's no rule that a cloth has to actually fit to earn a spot in the drawer",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every tablecloth, runner, and napkin out and lay them across the table so you can see which sets are actually complete. Partial napkin sets, cloths with stains you have already tried and failed to lift, and serving pieces orphaned from sets you no longer own are finished.",
+       "victory": "Every remaining linen set is complete, every serving piece belongs to a set you still own, and nothing carries a stain you've already failed to lift."
+      }
      }
     },
     {
@@ -2590,6 +3062,65 @@
        "A wall strap that looks frayed or a fixing screw you can see has pulled loose is worth flagging, even though bracing it is the Safety pass.",
        "Moisture or condensation inside the glass, or a back panel starting to bow, tells you damp is getting in. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are twelve place settings of china from a relative behind this glass, more than the largest meal you've actually hosted in years, and deciding what to do with the rest feels impossible.",
+        "branches": [
+         {
+          "answer": "It's not really china anymore, it's a person, and sorting it feels like a betrayal",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's actually counted the largest meal hosted against the number of settings kept",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Twelve settings genuinely doesn't fit this cabinet's shelves at eight plates high with felt between each, so stacks run taller than they should",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "This cabinet has never been strapped to the wall, and its shelves are exactly the height a small child would use as a ladder.",
+        "branches": [
+         {
+          "answer": "It's a bigger job than a quick tidy, so it keeps getting pushed to later",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Securing furniture like this has never been anyone's specific task",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's stood there unstrapped so long, the risk doesn't register day to day",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The top of this cabinet, high and out of easy sight, has a visible layer of dust nobody's touched in a long time.",
+        "branches": [
+         {
+          "answer": "Reaching up there means finding a stool first, so it's the last thing anyone bothers with",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "It's high enough that you can't actually see it's dusty from normal eye level",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody's assigned to check the top of this cabinet specifically",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every piece out and split it into three groups: complete sets, chipped or crazed pieces, and lone survivors of sets that are long gone. A chipped rim cannot be mended and is not safe to drink from, so that whole group leaves together.",
+       "victory": "What's left behind the glass is complete sets and pieces without a chip or crack, nothing kept only out of habit."
+      }
      }
     },
     {
@@ -2675,6 +3206,65 @@
        "A shelf underside that is swelling, warping, or discoloring above the kettle is steam damage building. Flag it.",
        "Water pooling under the machine base when it should be dry can mean an inside seal is going. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A bottle of wine and a couple of spirits sit open on a shelf at this station, within easy reach of a small child standing at the counter.",
+        "branches": [
+         {
+          "answer": "There's no latch or high shelf assigned for alcohol at this station, only in the kitchen",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "This station never got the same childproofing pass the kitchen did",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Moving the bottles higher keeps getting put off because it's a small job with no deadline",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "The bean jar has run below its own marked fill line more than once with nobody noticing until the machine sputtered out mid-pour.",
+        "branches": [
+         {
+          "answer": "Topping the jar isn't tied to any specific moment, so it only happens when someone remembers",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The fill line is marked but nobody's actually assigned to check it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "This station runs low silently, nothing about it signals 'running out' before it's actually out",
+          "cause": "KC-011"
+         }
+        ]
+       },
+       {
+        "symptom": "There are two ways to make a hot drink on this counter, and one of them hasn't earned its counter space in months but nobody's tested that.",
+        "branches": [
+         {
+          "answer": "Getting rid of a machine somebody might start using again feels premature",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been part of the counter so long it doesn't register as extra anymore",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no actual rule for how little use earns a machine its spot",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Line up every tea box, syrup bottle, and pod sleeve and check the dates, then open the travel mugs and match them to their lids. Anything past date, any mug missing its lid, and the promotional glassware you have never once poured into are out.",
+       "victory": "Everything on the counter is in date, every travel mug has its matching lid, and no glassware sits here unused."
+      }
      }
     }
    ]
@@ -4284,6 +4874,65 @@
        "While you turn the mattress, flag any headboard bolt or frame joint that has worked loose, and any slat that has cracked or slipped its rail.",
        "Flag damp, rust, or a musty note on the under-bed floor or inside the stored suitcase, which tells you moisture is sitting where you never look."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A guest crossing this room in the dark to find the bathroom would have to step around a suitcase, a footstool, or a looped blind cord near the bed.",
+        "branches": [
+         {
+          "answer": "It's obvious to us because we live with this room, so nobody has actually walked it in the dark the way a stranger would",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nobody is assigned to walk this room and check the path before a guest arrives",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "This is a real fall and strangulation risk the moment a guest or a visiting child meets it, not a tidiness question",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "Something that is not a suitcase is sitting under the guest bed when you finally look.",
+        "branches": [
+         {
+          "answer": "It was easier to set it down here than decide where it actually belongs",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "This room has no daily user, so whatever lands under that bed goes unnoticed until a guest is already arriving",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the house has agreed this space is reserved for the suitcase and nothing else",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A fitted sheet's corner pops off the mattress while you are making up the bed, and it has been part of the guest set for years anyway.",
+        "branches": [
+         {
+          "answer": "It's not really a spare anymore, it's linen I haven't admitted needs replacing",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "I can't tell from the shelf how many complete sets we actually have without unfolding each one",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nothing marks a set as failed the day it pops a corner, so it just goes back onto the shelf with the good ones",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take every sheet set that has been demoted to this room and try each fitted sheet on the actual mattress. If a corner pops off while you are making the bed, it is a rag, not a spare. Fold each pillow in half and let go, and anything that stays folded goes out.",
+       "victory": "Every remaining sheet set has passed the mattress test, and every remaining pillow springs back when folded in half."
+      }
      }
     },
     {
@@ -4356,6 +5005,65 @@
        "Flag a drawer that catches or a runner that has come loose from its screw as you slide it back in.",
        "Flag a sticky or musty residue in the back corner of the drawer, where a past spill was never fully cleaned out."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The drawer holds dead batteries, a clock radio with the wrong time, or paperbacks nobody actually chose for this room.",
+        "branches": [
+         {
+          "answer": "None of it has a real home elsewhere in the house, so it ends up in the one drawer nobody uses daily",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's been in there for years, so it doesn't register as something to remove anymore",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Whoever last used this room for something else left it there, and nobody after them has looked",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A water glass and a charging cord are crowded on this small surface where a sleepy arm could sweep them, or a prescription is sitting in the drawer at the height a visiting toddler would explore first.",
+        "branches": [
+         {
+          "answer": "This is a real shock, spill, or poisoning risk, which outranks how convenient the layout is",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Finding the lamp switch by feel in the dark has never actually been tested, so a guest fumbles for it instead",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "We've walked past that cord crossing the surface so many times it stopped registering as a hazard",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A cable in this drawer has never actually been tested, and nobody could say whether it would charge anything tonight.",
+        "branches": [
+         {
+          "answer": "It drifted in on the idea a guest might need it, not because anyone tested it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no standard for what counts as guest-ready here, only whatever happened to end up in the drawer",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody has a reason to open this drawer and test anything between one guest and the next",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open the drawer and take out what has been hiding in a room nobody uses: dead batteries, a clock radio that lost its time when the power blipped, three paperbacks nobody chose, cough drops fused into their tin. None of it belongs to a guest, and none of it belongs to you either.",
+       "victory": "The drawer holds only what a guest needs: a lamp within reach, two tested cables, tissues, a coaster and the wifi card, nothing of the household's."
+      }
      }
     },
     {
@@ -4429,6 +5137,65 @@
        "As you clear the top, flag any water stain or heat mark left by a past plant, glass, or lamp.",
        "While you work behind it, flag an anti-tip strap that has gone slack or whose screw has started to pull from the wall."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A bag of outgrown baby clothes is still in this dresser, kept for a second child nobody has actually decided about.",
+        "branches": [
+         {
+          "answer": "It's not clutter, it's a decision about whether we're having another child that I haven't made yet",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's a keepsake from when they were tiny, and letting go of it feels bigger than the space it takes",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "The lower drawers were never actually assigned to spare guest linens only, so the baby bag just moved in when there was room",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "This dresser has no anti-tip strap, the heaviest linens sit in the bottom drawers, and a loose dry-cleaning bag is within a low drawer a small child could open.",
+        "branches": [
+         {
+          "answer": "This is a real tip-over and suffocation risk the moment a visiting child is left playing in this room",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody has checked this dresser's own weight distribution or its low drawers since it was set up",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "We've walked past this same dresser for years without ever registering it isn't strapped down",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The guest dresser's top two drawers are holding off-season clothes, cables, or wrapping paper instead of standing empty for a guest.",
+        "branches": [
+         {
+          "answer": "The room stands empty most of the year, so it felt like the space cost nothing to borrow",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody has agreed these two drawers are reserved and never available for anything else",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "There's no other place in the house these off-season things have an actual assigned spot",
+          "cause": "KC-002"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
+       "victory": "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed."
+      }
      }
     },
     {
@@ -4501,6 +5268,65 @@
        "Flag small holes in stored fabric or larvae casings in the corners, the signs of moths in a space that is opened too rarely to catch them.",
        "Flag a closet light that does not come on, since a dark closet is one a guest cleans out of by feel."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A box on this shelf has been sealed since a previous address, and nobody can say what's inside without opening it.",
+        "branches": [
+         {
+          "answer": "Opening it feels like it could cost an afternoon, so it keeps getting put off",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "This closet gets opened for a guest, not for a household chore, so nothing ever naturally prompts opening that box",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's been sitting on that shelf so long it doesn't register as a task anymore, just part of the shelf",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A box of old phones or paperwork from a previous address is on this shelf with no named person or occasion attached to it.",
+        "branches": [
+         {
+          "answer": "None of it has a next use, it's just here because nowhere else claimed it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "There's more of this kind of thing than any real future use could need",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Sorting it by who would actually use it takes a decision I keep deferring",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "Heavy boxes sit on the shelf above the rod, or a suitcase and loose bins are left on the closet floor in the dark stretch a guest crosses barefoot.",
+        "branches": [
+         {
+          "answer": "This is a real falling-object and trip risk the moment someone reaches for a hanger or walks this floor in the dark",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody checks this shelf often enough to notice a bin has crept toward the edge",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The floor square for a suitcase was never actually marked, so bins spread into it by default",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything out and put it on the bed. This closet is where the house keeps holiday decorations, a wedding dress in a zipped bag, a box of old phones, and paperwork from two addresses ago. Sort by whether a named person will use it in a named situation, and route the rest out.",
+       "victory": "At least a forearm's width of clear rod carries six matching empty hangers, and the floor square for a suitcase is clear."
+      }
      }
     },
     {
@@ -4579,6 +5405,65 @@
        "Flag a water ring or a heat mark on the desk top left by a past mug or laptop charger.",
        "Flag a wobble in a desk leg or a chair joint that has worked loose under weight."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The desk is holding gift wrap, an ironing pile that never made it back to the wardrobe, or a printer that hasn't been switched on all year.",
+        "branches": [
+         {
+          "answer": "This room is doing a second job for the household, and nobody's decided how much of that job this desk can honestly keep",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "None of this has a home somewhere else in the house, so the closest quiet surface holds it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's been sitting there long enough that it doesn't register as something to clear anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "An extension lead runs across the open floor to the only reachable outlet, or a hard case is balanced on the desk edge while cases are carried in and out.",
+        "branches": [
+         {
+          "answer": "This is a real trip, fall, and crush risk the moment a guest walks this floor in the dark or a child is in the room while cases move",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The only reachable outlet sits on the far side of the room from the desk, so the lead has to cross the walking path to reach it",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "It's the household's own habit to balance things on the desk edge, and nobody's re-checked that habit since a guest room started needing it clear",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Clearing this room's second job off the desk would take more than one trip, or something would need unplugging first.",
+        "branches": [
+         {
+          "answer": "The second job was never given its own marked footprint, so it spread across the whole desk instead of staying in one bin",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "This activity genuinely needs more room than a shared desk can honestly give it",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Nobody has actually run the one-trip test to find out; it's just assumed to be fine",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the surface completely. It will be holding gift wrap, an ironing pile that never made it back, a printer that has not been switched on this year, and paperwork someone brought in here to deal with in peace. The ironing goes back to the wardrobe it came from, the printer either earns a desk somewhere it gets used or leaves the house, and the paperwork goes into the file it was always headed for.",
+       "victory": "The desk stands clear with a working lamp, and no cord crosses the walking line to the outlet."
+      }
      }
     }
    ]
@@ -6792,6 +7677,65 @@
        "The caulk seam where the counter meets the basin or the wall going dark, soft, or lifting at one end.",
        "A water mark or a swollen edge on the underside lip of the counter, the kind of sign that something above it drips."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A cup on this counter is holding a toothbrush that clearly belongs to someone who lives here, not a visitor.",
+        "branches": [
+         {
+          "answer": "Someone in this house genuinely brushes their teeth in here every day, and nobody's said that out loud yet",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Nobody ever decided this counter isn't for personal items, so whatever's nearby just lands here",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The main bathroom ran out of room, so the overflow came in here without anyone deciding to move it back",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The soap pump sits below half and the hand towel still smells faintly of the closet, and you only notice because someone is already at the door.",
+        "branches": [
+         {
+          "answer": "Nobody is the one who walks in here between visits to check on it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "There's no trigger tied to a visit being confirmed, so topping it up depends on remembering",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "A counter with no daily user is easy to stop seeing as something that needs checking at all",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A glass tumbler stands on a wet counter beside a hair dryer that is still plugged in next to a full basin.",
+        "branches": [
+         {
+          "answer": "It's decorative, so it never occurred to anyone that a wet counter makes it a hazard",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The cord gets left plugged in and coiled on the counter because there's nowhere else near the basin to keep it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's a real fall and shock risk sitting there beside a full basin, and that outranks how it looks",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take everything off the counter and put back only what a visitor would use: soap, tissues, hand towel. The travel conditioner, the spare contact lens case, and the razor that ended up here because the main bathroom ran out of room all go back where they belong or into the trash.",
+       "victory": "Only soap, tissues and a folded hand towel remain on the counter, with bare space enough for a phone and glasses, and nothing of the household's left behind."
+      }
      }
     },
     {
@@ -6868,6 +7812,65 @@
        "A musty smell or a bloom of mildew in the back corner where the air never moves.",
        "A bin base that lifts out damp, or a hinge screw that has worked loose in the door."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A shelf in this cabinet is still holding shampoos and lotions from three different trips, most of them barely started.",
+        "branches": [
+         {
+          "answer": "Throwing out free soap feels like waste, so it just never gets decided",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Every trip added one more and nobody's ever called the total too many",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "They arrived from a different bathroom's overflow, not bought for this cabinet",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "The toilet paper stack is already down to its last roll before anyone notices it's running low.",
+        "branches": [
+         {
+          "answer": "There's no drawn line showing when the stack is getting low, so nobody notices until it's nearly gone",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "It's stacked loose behind other things instead of standing in plain view",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Whoever raids this cabinet for the main bathroom never records that they did",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A bottle of bowl cleaner sits on the cabinet floor with its cap loose, at exactly the height a crawling child would reach.",
+        "branches": [
+         {
+          "answer": "It's stored low because that's simply where the cabinet space was, not because it's safe",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "It's within reach of hands the household doesn't usually think about, which is a safety problem that outranks convenience",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody who opens this cabinet regularly is the one who'd notice a visiting child in the room",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull everything out and be honest about the hotel miniatures: the shampoos from three trips, the lotion nobody opened, the free conditioner samples. Keep the unopened ones a guest would actually use, throw out the started ones, and send household backstock that drifted in here back to the bathroom it came from.",
+       "victory": "Every started miniature and drifted household item is gone, and only unopened travel toiletries a guest would actually use remain."
+      }
      }
     },
     {
@@ -6955,6 +7958,65 @@
        "Scale crusting the shower head so the spray splits and sprays sideways.",
        "A brown bloom or a spreading stain on the ceiling above, which points to something wet in the floor above or the roof."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "One grout line has been scrubbed three times, stayed the same gray, and you've quietly started calling that clean.",
+        "branches": [
+         {
+          "answer": "It's mold grown into the grout or a failed silicone bead, not surface dirt, and no product lifts that",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Nobody's called it a repair job instead of a cleaning job, so it keeps costing a scrub every week",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's stayed the same shade for so long it's stopped registering as stained rather than clean",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Three half-used bottles of shampoo and body wash nobody liked are welded to the tub floor by their own residue.",
+        "branches": [
+         {
+          "answer": "They arrived because the household rejected them elsewhere, and this shower is where rejects retire",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no caddy or shelf, so anything set down stands directly on the tub floor",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's more bottles than one person showering needs, they just never got cleared",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "There's no mat on the tub floor and no grab bar on the wall, and a guest is about to step in here well after dark.",
+        "branches": [
+         {
+          "answer": "A towel bar screwed into drywall isn't rated to take a person's weight, and nobody's added a proper anchor point",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The household showers here so rarely that a missing mat stopped registering as a problem",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Putting the mat out isn't anyone's specific job before a guest arrives",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take out every bottle and turn it over. This is where the household's rejected products retire: the shampoo nobody liked, the body wash that smells wrong, the conditioner welded to the shelf. Keep one shampoo, one conditioner, one body wash, all readable and more than a third full. The rest go, along with the old razor and the disintegrating loofah.",
+       "victory": "One shampoo, one conditioner and one body wash stand in the shower, each more than a third full and easy to read, with nothing else left welded to the shelf."
+      }
      }
     },
     {
@@ -7036,6 +8098,65 @@
        "A seat that rocks on loose bolts, or a hairline crack running out from a bolt hole in the tank or the bowl.",
        "The mineral ring at the water line coming back fast, the mark of hard water and a slow, weak flush."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The reserve roll is mounted low on the wall, and a seated guest has to stand up to reach it.",
+        "branches": [
+         {
+          "answer": "It went into whatever holder was already installed, never tested with someone actually seated",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody's rechecked its placement since it was first fitted",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been in that spot so long nobody thinks to question the reach anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The top of the tank and the floor behind the bowl have collected a pile: air fresheners, a second brush, old magazines, a box nobody can identify.",
+        "branches": [
+         {
+          "answer": "None of it got a decision when it landed there, it just accumulated behind the door swing",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody's specifically responsible for clearing this room's flat surfaces, so it just grows",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It's been building for so long that none of it reads as clutter to the household anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The toilet brush has stood in an inch of gray water in its holder for years, bristles splayed.",
+        "branches": [
+         {
+          "answer": "It's a consumable everyone's been treating like a fixture, so nobody's replaced it",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Cleaning properly under the rim and rinsing the brush after each flush takes an extra step nobody's built into the routine",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "There's no trigger that says a brush this age gets replaced, so it just keeps going",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear everything from the top of the tank and the floor behind the bowl: the collection of air fresheners, the second brush, the magazines, the box of something nobody has identified in years. One reserve roll stays in the open. Nothing else.",
+       "victory": "The tank top and the floor behind the bowl are bare except for one reserve roll standing in the open."
+      }
      }
     },
     {
@@ -7112,6 +8233,65 @@
        "Rust, scorch marks, or condensation on the water heater and its pipes where they share this closet.",
        "A shelf bracket beginning to pull away from the wall under the weight, or a bath mat whose rubber backing has gone hard and stopped gripping."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The best towels in the house are still folded in the closet years later, while guests dry off on ones that have gone thin and gray.",
+        "branches": [
+         {
+          "answer": "Using the nice ones feels like using them up, so they get held back instead",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's decided the worn ones should actually retire, so they just keep getting reissued",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "A towel that just sits folded doesn't look like it needs a decision, thin fold line and all",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A bundle taken from this shelf midweek for some other use is never the one that comes back.",
+        "branches": [
+         {
+          "answer": "Nothing here tracks what left, so the gap is only found by the next guest",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "There's no single person who restocks this shelf after it's been raided",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Taking a towel from here doesn't trigger anything that says to replace it",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "Making up a guest set means grabbing a bath towel from one stack, a hand towel from a shelf across the closet, and a washcloth that matches neither.",
+        "branches": [
+         {
+          "answer": "Towels are stored by type instead of as ready sets, so what should be one lift turns into three separate stops",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nobody decided guest towels should be pre-bundled, so they default to being grouped by size instead",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's always been sorted this way, so the extra hunting doesn't register as a real problem",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Unfold every towel and look at it in daylight rather than closet light. Anything thin along the fold line, permanently gray, stiff from too much softener, or carrying a hair dye or nosebleed stain comes out of the guest stack. It becomes a rag or a car towel today. It does not go back just in case.",
+       "victory": "Every towel remaining in the guest stack is free of thinning, graying, stiffness or stains, and none of it went back in just in case."
+      }
      }
     }
    ]
@@ -11227,6 +12407,65 @@
        "Rust freckling on a metal bracket, or marks on wire shelving where moisture keeps settling. Flag it.",
        "Small holes, gritty frass, or pale casings tucked into a wool blanket point to moth. Flag it before you refold and reshelve."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A sheet set too nice to use sits at the front of this shelf year after year while the beds get slept on with the worn ones.",
+        "branches": [
+         {
+          "answer": "It's the nicest set we own and I don't want it to wear out",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "It's not really a decision I've made, I just keep meaning to put it on a bed",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been at the front of the shelf so long I don't register it as odd anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A towel stack on this shelf has grown taller than your forearm, and pulling one from the bottom risks bringing the whole stack down.",
+        "branches": [
+         {
+          "answer": "There's no agreed limit on how tall a stack is allowed to get",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody checks stack height when folding laundry back onto this shelf",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The bracket holding this shelf has never been checked to see if it's screwed into a stud",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "A set sized for the guest bed is folded in among the everyday sets, so the wrong size gets grabbed at bedtime.",
+        "branches": [
+         {
+          "answer": "There's no fixed spot per bed size, so sets get folded wherever there's room",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Two people fold the laundry differently, one groups by size and one by whoever's turn it is",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "The shelf label only gives a count, not which edge belongs to which size",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Unfold every set and check it is complete and fits a bed you still own. The flat sheet whose fitted half vanished, fitted sheets with slack elastic that pop off a corner at three in the morning, and towels that smell sour an hour after drying all leave.",
+       "victory": "Every set on the shelf is complete, fits a bed you still own, and no towel carries a sour smell."
+      }
      }
     },
     {
@@ -11309,6 +12548,65 @@
        "A water stain or a damp patch on the closet floor or the wall behind the mop names a leak or rising damp. Flag it.",
        "Rust creeping up a metal broom clip or a bucket handle marks where water is sitting after every use. Note it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The vacuum with the split hose has been standing here for months because throwing out a machine that mostly works feels wasteful.",
+        "branches": [
+         {
+          "answer": "I keep meaning to order the part and never quite do it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no date attached to the repair, so 'later' has no deadline",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's stood there so long I've stopped seeing it as broken, just as 'the other vacuum'",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A broom handle has slid down the wall again and is lying across the doorway instead of hanging from its clip.",
+        "branches": [
+         {
+          "answer": "The clip is the wrong size for this handle so it never really holds",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "The clip sits at an awkward height, so leaning the handle in the corner is just easier",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody agreed that leaning it in the corner still counts as put away",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A damp mop head is resting against the vacuum's own cord at the back of this closet, both shut behind a closed door.",
+        "branches": [
+         {
+          "answer": "There's nowhere else in the closet a wet mop head can hang to dry first",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody checks the cord for cracks before it goes back, wet or dry",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It goes back wet because nothing prompts letting it dry outside the closet first",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Stand every handle up and look at the working end. Brooms with splayed bristles that push dust rather than gather it, the mop head that no longer twists off its plate, and the old vacuum you keep for parts you have never once harvested all go out this week.",
+       "victory": "Every remaining tool has a working end, and nothing is being kept for parts that were never actually used."
+      }
      }
     },
     {
@@ -11390,6 +12688,65 @@
        "A shelf liner that has gone soft, bleached, or corroded in one spot names a leak that has been dripping there for a while. Flag it.",
        "A label gone illegible from a chemical run down the bottle means you can no longer tell what is inside. Flag it before it goes back on the shelf."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A bottle of bleach sits on the same shelf as an ammonia-based glass cleaner, both within reach from the hallway floor.",
+        "branches": [
+         {
+          "answer": "Nobody sorted this shelf by what's safe to store together, only by what fits",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The latch that used to keep small kids out broke months ago and was never replaced",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "The two bottles have sat side by side so long the mismatch doesn't register anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A row of aerosol cans and a solvent-based spray sit against the closet wall that backs onto the boiler, on the same shelf they've always used.",
+        "branches": [
+         {
+          "answer": "These cans have always gone on this shelf, so nobody questioned whether it's actually the safe spot",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nobody's ever traced which wall of this closet backs onto the boiler",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The coolest shelf in this closet is already full of something else, so the aerosols default to whatever's left",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another.",
+        "branches": [
+         {
+          "answer": "You can't see the fill level from the doorway, so a new one seems safer than trusting the old",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule that says one open bottle per job, so a new bottle just joins the others",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The shelf holds more of everything than any one job actually needs",
+          "cause": "KC-001"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Line every bottle up on the hallway floor. Anything decanted into an unmarked spray bottle gets disposed of according to its own instructions, and the specialty cleaner bought for one stain years ago goes with it. Only identical products get poured together.",
+       "victory": "Every bottle on the shelf is in its own original, labeled container, and no two different products have been mixed."
+      }
      }
     },
     {
@@ -11465,6 +12822,65 @@
        "A paper pack that feels soft or damp on its underside, and a wall behind it that reads cold and wet, point to condensation off the outside wall or a slow leak. Flag it.",
        "A spare bulb with a darkened base or a loose rattle inside is already spent. Note it rather than reshelving it as a working spare."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A warehouse pack of paper towels bought on a deal is too big to fit in its bin, so it sits blocking the shelf instead.",
+        "branches": [
+         {
+          "answer": "There was no written maximum before the deal, so nothing stopped you buying it",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The bulk price felt like a saving even though it's more than the shelf's job needs",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "You can't see how much is already on the shelf before you buy more",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "A pack of bulbs at the back of this shelf is for a fitting the house replaced with LED two years ago, and nobody noticed until now.",
+        "branches": [
+         {
+          "answer": "Nothing gets dated or labeled with the fitting when it arrives, so an outdated pack looks the same as a current one",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "The oldest stock is buried behind the newest because new stock goes in at the front",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "This shelf gets restocked but never audited, so it just accumulates",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Loose AAA batteries have rolled off a low shelf and are sitting on the closet floor at a small child's eye level.",
+        "branches": [
+         {
+          "answer": "Batteries get tipped in loose instead of standing upright in a tray, so a knock sends them rolling",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "This bin sits low enough for a small child to reach without help",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody's swept this shelf floor since the last time this happened",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take the lot out. Loose batteries you cannot vouch for, bulbs for fittings you replaced when you went over to LED, and the bulk paper towel pack too big to lift down alone all leave now.",
+       "victory": "Every battery is in its original pack, every bulb fits a fitting the house still uses, and nothing on the shelf is too heavy to lift down alone."
+      }
      }
     },
     {
@@ -11545,6 +12961,65 @@
        "A bin lid that has cracked or warped and no longer seats flat is letting damp and pests straight in. Note it.",
        "A water stain spreading on the top shelf board or the wall above it, being the highest point in the closet, can be the first sign of a roof or pipe leak. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A sealed bin has survived a house move and two closet reshuffles, and nobody can say what's actually inside it without opening it.",
+        "branches": [
+         {
+          "answer": "It's easier to keep moving it than to open it and decide",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It was labeled 'misc' when it was packed, and 'misc' hasn't been questioned since",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's been sitting there so long it just reads as storage, not as a thing to deal with",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Getting the good decorations down means standing on a hallway chair and reaching overhead, because there's no step stool kept in this closet.",
+        "branches": [
+         {
+          "answer": "There's nowhere in this closet a stool actually lives, so whatever's nearby gets used instead",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "The heaviest bins ended up on the top shelf because that's where there was room when they were packed",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody re-checked shelf heights after the last time someone needed a chair to reach one",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A guest pillow has gone flat and yellowed inside its bin, and nobody noticed until it came out for an actual guest.",
+        "branches": [
+         {
+          "answer": "The bin only gets opened right before a guest arrives, so a tired pillow is never caught early",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "There's no date on the bin telling you how long that pillow has actually been in there",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "A flat, yellowed pillow still looks like a stored pillow from the outside of a sealed bin",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Every lid comes off, on the floor, in daylight. Decorations for a tree you no longer put up, the guest pillow gone flat and yellow, and the bin marked \"misc\" whose contents you cannot name without looking all go.",
+       "victory": "Every remaining bin can be named without opening it, and nothing inside is flat, yellowed, or for a tradition you no longer keep."
+      }
      }
     }
    ]
@@ -11661,6 +13136,65 @@
        "Check the framed glass, and any vase or bowl on the top, for a hairline crack while it is in your hands.",
        "Look at the shade lining and around the bulb for a brown scorch or heat mark that says the bulb is running too hot for the fitting."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Things ride the stair basket for days without ever landing where they actually belong.",
+        "branches": [
+         {
+          "answer": "Nothing marks the moment to carry it, so it waits for a trip that never comes on its own",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The item doesn't have a real home on the floor it's headed to",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's not clutter, it's a decision I haven't made yet about where it goes",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A book, a phone or a set of keys ends up hanging over the stair side of the console instead of set back from it.",
+        "branches": [
+         {
+          "answer": "Nobody agreed exactly what may and may not sit on this surface",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "I stopped noticing the edge creep because I see this console every day",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The tray sits at the wrong end, so hands set things down closer to the stair side",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "Loose screws, dry pens, keys to nothing and mail already read pile back into the drawer almost as soon as it is cleared.",
+        "branches": [
+         {
+          "answer": "None of these things has anywhere else in the house to go",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "I'm keeping more just-in-case odds and ends than this drawer was ever meant to hold",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nobody in the house is assigned to clear this drift, so it's whoever notices first",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the console top and drawer in one sweep: keep only what truly lives on this floor, drop anything headed to another floor straight into the stair basket, and bag up the loose screws, dead pens and read mail that have drifted in.",
+       "victory": "The console top holds only its permanent items and an empty tray, and the stair basket on the floor is empty."
+      }
      }
     },
     {
@@ -11761,6 +13295,65 @@
        "On a sconce, notice a warm or discoloured fitting, a scorched shade, or a bulb that flickers as you dust near it.",
        "Flag any frame that has crept out of line or drooped since last time, since the constant vibration of a stair wall is what quietly works hardware loose."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "At least one frame on this wall is still held up by a single nail or a sawtooth hanger instead of two rated points.",
+        "branches": [
+         {
+          "answer": "Taking it down properly means finding a stud and patching a hole I've been putting off",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody set a rule that every frame on this flight gets two hanging points",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "A stair wall shakes with every footstep, and single-point hardware works loose here faster than anywhere else in the house",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "The mirror or the biggest frame on the wall has some play in it when you push up and out on it.",
+        "branches": [
+         {
+          "answer": "I've never actually press-tested it, so I don't know how loose it's gotten",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "It's awkward to reach behind the mirror at the turn to check it, so nobody bothers",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Nobody is assigned to check hardware on this wall, so it only gets tested by accident",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A frame has drifted out of level, or something on the wall projects far enough to catch a shoulder or a bag going past.",
+        "branches": [
+         {
+          "answer": "Nobody checks this wall on a schedule, so drift is only caught by accident",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Constant footfall vibration is working the hardware loose between checks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The spacing was eyeballed rather than measured off the tread nose below it, so nothing caps how far a piece can sit out from the wall",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Walk the flight and take down every frame still hanging from a single nail or a sawtooth hanger, along with anything with cracked glass, and set them aside rather than rehanging them the same way.",
+       "victory": "No frame on the wall hangs from a single nail or a sawtooth hanger, and nothing with cracked glass has gone back up."
+      }
      }
     },
     {
@@ -11868,6 +13461,65 @@
        "While you clean the treads under each fitting, flag a bulb over the top or bottom step that is dim, flickering, or dead, because that is the most dangerous fault this room can hold.",
        "Watch the stringer and skirting for a cracked or springy board, and the switch plates for warmth or discolouring as you wipe them."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A lifted runner corner or a loose rod gets pressed back into place and left instead of actually refixed.",
+        "branches": [
+         {
+          "answer": "Fixing it properly means clearing the whole flight and buying rods or tape, and that's a bigger job than the few minutes I have when I notice it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nothing prompts a proper refix, so pressing it down becomes the whole routine",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "I've stopped seeing the lifted corner as a real hazard because it's been like that for a while",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A bulb lighting the top or bottom step burns out and nobody replaces it until someone nearly misses a step in the dark.",
+        "branches": [
+         {
+          "answer": "There's no spare bulb kept on hand for this fitting, so a burnout turns into a multi-day wait",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Nobody checks the stairwell lighting on a schedule, it only gets noticed at night by accident",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the house is the one who's supposed to notice or replace it",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Laundry, shoes or a delivery box gets set down on the bottom three steps instead of carried the rest of the way.",
+        "branches": [
+         {
+          "answer": "The thing on the step has no assigned home on the floor it's actually headed to",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "There's no agreed rule that stairs are never used as a shelf",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Carrying it needs a free hand, and the hand that should be on the rail is already full, so it gets set down instead",
+          "cause": "KC-006"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear every tread of anything sitting on it, laundry, shoes, a box, in one trip to where it actually belongs, then stand at the bottom of the flight and check that both the top and bottom lights actually come on.",
+       "victory": "Every tread is bare from nose to riser, and both the top and bottom stair lights work."
+      }
      }
     }
    ]
