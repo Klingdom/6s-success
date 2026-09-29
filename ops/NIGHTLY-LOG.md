@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (04:1x, previous work confirmed finished, one small closing job shipped)
+
+Attached clean after unshallowing (checkout detached and unrelated-history at start, standard shape; ff-only fast-forward onto `origin/main`, 848 commits, no conflict). Read `GOALS.md` sections 0-2, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md`'s B9 row, `STATUS.md`'s metadata line.
+
+**Step 2 answer: previous work was genuinely finished, verified independently rather than cited.** Working tree was already clean and pushed at attach. Polled the GitHub API directly (not the local claim): `checks.yml` run 1569 `success` on `8edba55f6`, `publish-image.yml` run 445 `success` on `d667b2ea3`, both confirmed green. 8 open issues, unchanged, all `decision`/`blocked-on-art`. 0 open PRs. One thing worth a note for the next cycle, not a defect: `publish-image.yml` run 444 failed on `d81b2eb8`, the commit `checks.yml` passed on the same SHA; already correctly root-caused by the 02:5x entry below (the 02:1x fix touched no `site/**`/`Dockerfile` path, so the push trigger never re-ran it; run 445 was a manual dispatch, not a mystery flake).
+
+**Small closing job done, not just reported.** `ops/cold_read_ledger.py --next` showed exactly one un-ledgered file: `ops/build_stair_landing_deck_page.py`, today's newest generator (Stair Landing, the sixth B9 room), never cold-read. Read it in full: mirrors `build_garage_deck_page.py` function for function. Verified rather than assumed: the whole-room card-id assertion (`SLA-007/008/009`) checked against the real committed `stair-landing-deck.json`, all three ids and their described content match exactly; the hero-image slug (`hero_image_url`) checked against the real file on disk, `stair-landing--landing-surface-or-console-lg.jpg` exists; the footer Learn column matches the canonical template Garage/Home Office/Primary Bathroom already carry, byte for byte. Regenerated the page directly: `git status` clean after, confirming it is idempotent. No defect found. Recorded clean in the ledger with the specific checks performed, not a bare "clean".
+
+Ran a full `python ops/preflight.py` myself in the background rather than cite a same-day prior run; it was still on `gate_tests` (the full 308-file suite) when this entry closed. Per CLAUDE.md 0.4, that gate has not reported a verdict yet, so this entry does not claim preflight passed; the next cycle should read its result before starting new work rather than assume clean.
+
+**Handoff to the operator, unchanged from 03:4x:** B9 continues, the next of the five tied-smallest remaining rooms (Pantry, Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, 5 zones/129 fields each, per `ops/cardtext/derive_room_deck.py`), real unblocked epic-5 work sized in hours, not a 30-minute PM slot. Claim one before starting.
+
+Pushed to main. `ops/cold-read-ledger.json` only. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (03:4x, previous work confirmed finished, handing off the next room deck)
 
 NEXT FOR THE OPERATOR: continue B9, author the diagnosis layer and deck for one of the five tied-smallest remaining rooms (Pantry, Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because it is the highest ranked genuinely unblocked item once epics 1 through 4 (measurement, broken or dishonest, traffic, conversion) are exhausted, as they have been re-verified many times today, and this is real, valuable, unblocked epic-5 product work sized in hours, not a 30-minute PM slot. Claim one before starting, since two sessions have worked this area concurrently before.
