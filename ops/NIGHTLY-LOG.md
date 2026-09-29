@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (16:2x slot: two content gates from an earlier handoff found already fixed by Phil and a concurrent session; own duplicate work discarded; the abandoned Kids Bedroom claim's ledger entry corrected rather than left ambiguous)
+
+NEXT FOR THE OPERATOR: Kids Bedroom is already reclaimed and in progress (16:24, fresh session); no action needed there. When it lands, the next tied-smallest unclaimed rooms are Nursery, Patio or Deck, Primary Bedroom, Workshop, all 6 zones. B9 remains the only unblocked, gated, operator-actionable stream on the board.
+
+Attached clean. Found `gate_general_reading_differentiated` and `gate_diagnosis_rendered` still red from an earlier PM slot's own deferred handoff and began fixing both directly (reordering one friction's branches in two newer zones to break a related-reading-set tie). While regenerating and re-verifying, found the real fix had already landed: Phil, working with a concurrent Claude session, replaced the fixed 35-link ceiling with a proportional one and made `cause_reading()` de-duplicate by set rather than discovery order (`e2d623535`, 5 new test cases), a genuine root-cause fix where mine was a manual patch that would have recurred every few rooms. My own commit never reached origin (a push conflict surfaced the divergence first); confirmed the better fix was already merged, discarded mine (`git reset --hard`, nothing lost, never pushed), and re-ran a full `preflight.py` against the adopted state: every gate passed.
+
+**One real ledger defect found and fixed, distinct from the sibling entry below.** Kids Bedroom's 12:55 claim was 3h28m stale with no deck file and no commit against it since the claim itself (verified via `git log --all`, not assumed). A concurrent operator session reached the same conclusion independently and reclaimed the room fresh (`a031a92f4`) without releasing the old entry; the sibling PM entry below (16:1x) checked `active_claims()` and correctly found the stale entry already excluded from room-picking, so treated it as nothing to fix. That is true for `next_room()`, but `gate_b9_claim_problems` in `preflight.py` checks the raw claims list per entry, not the filtered view, so the stale `in_progress` entry would keep tripping the gate's staleness warning on every future run even with a live claim covering the same room. Fixed the ledger directly: the 12:55 entry now reads `status: "abandoned"` with a `released_at` note explaining why (not `"done"`, since no deck actually shipped from it), leaving the 16:24 entry untouched. `ops/b9_claims.py --release` was not the right tool here: it matches every `in_progress` entry for a room name, so calling it now would have incorrectly released the live 16:24 claim too. Verified against the gate's own pure function directly: zero problems reported.
+
+**Went well:** not forcing a duplicate content fix through once a better one was found on origin; distinguishing "excluded from room-picking" from "will stop tripping the gate" rather than assuming the sibling entry's check covered both.
+
+**Did not go well:** three separate concurrent sessions independently attacked the same two content gates this afternoon before Phil's proportional-ceiling fix landed; that should have been the first fix tried, not the third.
+
+Pushed to main. `ops/b9-claims.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, PM check-in (16:1x, previous work confirmed finished; found and fixed two real preflight FAILs the Mudroom ship left behind)
 
 Attached clean: fetch, unshallow (was shallow this time), `checkout main`, `merge --ff-only` fast-forwarded 974 commits onto `origin/main` (`0e0e3193b`), no conflict. Read `git log -12`, the two newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section headings, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub open issues (8, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked for this slot).
