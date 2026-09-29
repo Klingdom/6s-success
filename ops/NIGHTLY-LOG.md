@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (Family Room room deck, B9's thirteenth room, built by a delegated subagent, verified independently)
+
+**Did:** Unshallowed, attached to main, ff-forwarded, no conflict. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG entries: epics 1-4 remain Phil-blocked (owner gates, art billing, VPS access), B9 room decks the correct unblocked epic-5 work, matching the prior cycle's own handoff naming Family Room as the next tied-smallest room. Confirmed no other session held an active B9 claim, then claimed Family Room via ops/b9_claims.py and pushed the claim commit alone first. Delegated the build to a subagent with the full established pattern (Guest Bathroom as the reference implementation, exact preflight.py registration points named, root cause vocabulary and real content.json zone text supplied as grounding material). It authored a diagnosis layer for all six zones (18 frictions, 54 branches, 6 first_15 actions, all 17 shared root causes genuinely reachable, the first room to reach every one), built ops/cardtext/build_family_room_deck.py and ops/build_family_room_deck_page.py (69 cards, sized to the room's own 6 real zones rather than a generic template budget, matching every other already-shipped room's own precedent), registered the gates and tests, and wired deck.html and the interactive test suite.
+
+**Verified, not assumed:** ran a fresh full preflight independently, both before the subagent started (clean baseline) and after its own final run (one FAIL, test_wire_nav_preserves_aria_current.py's own dirty-tree precondition, proven not a regression by stashing and rerunning clean, then restoring byte-for-byte). Beyond trusting its report, independently re-ran every check myself against the real files: fix_dashes.py --check (0/0) plus a direct unicode scan of every changed file for em/en dash characters (found two in ops/preflight.py, traced to pre-existing, unrelated literal search-target strings inside a different gate, not new code); check_urls.py (203/203); audit_pages.py (207 pages, 0 findings); affiliate.py --check (165 documents); link_graph_report.py (0 orphans); test_gate_family_room_deck_rendered.py (6/6); test_deck_pages_interactive.py (14 pages driven, clean); test_general_reading.py (PASSED, confirming the subagent's own root-cause-ceiling fix across the 9 affected zones); audit_visual.py on the new page (0 findings, desktop); syntax-checked both new generator files directly; confirmed mcp/content.json byte-identical to its source. Everything matched the subagent's own report exactly.
+
+**Went well:** delegating the multi-hour authoring and wiring work while independently re-verifying every one of its claims against the real files rather than trusting the report; a genuine ceiling defect (two shared-cause articles already at the sitewide inbound-link cap) found and fixed honestly, with zero content-truth changes in three of four affected zones and one honest cause substitution in the fourth, all 17 causes still reachable.
+
+**Did not go well:** two concurrent sessions claimed Kids Bedroom and Living Room while this cycle's own full preflight run was in progress, so the final push needed a straightforward fast-forward merge; no file overlap, no conflict.
+
+**Changing next cycle:** none new.
+
+**Next:** B9 continues, fourteenth room. Kids Bedroom and Living Room are already claimed in progress by concurrent sessions; the next unclaimed tied-smallest rooms are Mudroom, Nursery, Patio or Deck, Primary Bedroom and Workshop, all at 6 zones each.
+
+Pushed to main. No price or product touched; one new free page (site/family-room-deck.html), IndexNow submission attempted. content/manual/source/content.json, mcp/content.json, ops/preflight.py, ops/cardtext/build_family_room_deck.py, ops/build_family_room_deck_page.py, ops/cardtext/family-room-deck.json, site/family-room-deck.html, ops/tests/test_gate_family_room_deck_rendered.py, ops/tests/test_deck_pages_interactive.py, site/deck.html, ROADMAP-2026-2029.md, STRATEGY-MICROZONES.md, site/rooms/family-room.html, 6 Family Room zone pages, plus the deterministic related-reading redistribution touching zone pages in Kids Bedroom, Living Room, Nursery, Patio or Deck and Workshop.
+
+---
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, no new defect found)
 
 Attached clean: fetch, unshallow, checkout main, merge fast forward onto origin/main. Read git log, the top NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, GitHub (8 open issues, unchanged, all decision or blocked on art).

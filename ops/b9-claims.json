@@ -9,9 +9,10 @@
     },
     {
       "room": "Family Room",
-      "status": "in_progress",
+      "status": "done",
       "claimed_at": "2026-09-29T12:50:32Z",
-      "note": "scheduled operator cycle, thirteenth room"
+      "note": "scheduled operator cycle, thirteenth room",
+      "released_at": "2026-09-29T14:08:40Z"
     },
     {
       "room": "Kids Bedroom",

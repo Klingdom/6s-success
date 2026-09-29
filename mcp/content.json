@@ -3878,6 +3878,65 @@
        "A sticky drink ring or a water stain on the top of the unit, where a glass has been set over live connections.",
        "Browning or a warm patch on the power strip body, or a socket that grips a plug loosely."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A previous-generation console has sat unplugged behind the newer one for two years because someone's save file lives on it.",
+        "branches": [
+         {
+          "answer": "It's a genuine attachment to what's on that save file, not to the box itself",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Moving the save data or letting the console go is a decision nobody has actually made, so it just keeps the shelf",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Two consoles is more than the shelf's one-console-per-job plan needs once you're honest about which one gets used",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "Dust has caked thick in the vent slots on the back of a console, exactly the buildup that cooks the board, because reaching it means pulling the whole unit out from the wall first.",
+        "branches": [
+         {
+          "answer": "The vents cost more effort to reach than the rest of the shelf combined, so they get skipped",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "A blanket or a stack of disc cases sits on top blocking the vents, trapping that heat against the board",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It's been running warm in the same spot for so long that nobody thinks to check the vents at all anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The dock has an empty cradle, and nobody in the house can say who had the controller last.",
+        "branches": [
+         {
+          "answer": "Three people used the same pad tonight, so nobody felt like the one who had to put it back",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "There's no rule that says the credits rolling is when it goes back on the dock",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's been missing long enough that an empty cradle just reads as normal instead of a problem to solve",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every disc case, spare remote, headset, and loose cable out of the cabinet onto the floor. Anything that pairs with a console or a television you no longer own leaves today, including any remote you have been keeping in case. Check the dock: if a cradle is empty, that controller is loose in the house, and you go find it now rather than at the start of the next game.",
+       "victory": "Every remaining disc case, controller, and cable in the cabinet pairs with a console or television the house still owns, and every dock cradle holds the controller that belongs in it."
+      }
      }
     },
     {
@@ -3963,6 +4022,65 @@
        "A shelf that rocks, or a bracket you feel move, when you lift the mat or a bin past it.",
        "A photo label peeling or faded off a bin front so the category no longer reads."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A large, loud toy a relative gave takes up its own space on the shelf, and no child has reached for it without being pointed at it in months.",
+        "branches": [
+         {
+          "answer": "It's kept for the giver, not for a child who plays with it, and letting go of it feels disloyal",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's actually run the honest week test to see whether a child reaches for it unprompted, so the question keeps getting deferred",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's sat in the same spot so long it doesn't register as unused clutter anymore, just furniture",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The bins on the shelf are crammed two deep with toys that belong in the overflow bins in the closet, not on this shelf at all.",
+        "branches": [
+         {
+          "answer": "The overflow is stored right here on the play shelf instead of the closet, so the shelf never gets down to five or six real choices",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "A bin crammed two deep hides half of what's inside it from a child looking down at the label",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no trigger that says a bin gets swapped in from the closet by name and the old one goes back out, so overflow just keeps arriving here instead",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "A wheel snapped off a toy vehicle and a handful of small figure accessories are loose on the floor a crawling child also uses.",
+        "branches": [
+         {
+          "answer": "Pieces small enough to fit through a toilet paper tube ended up on a floor a crawling child can reach, and that outranks anything else about this shelf",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody's agreed that a cracked or broken toy comes off the shelf the moment it's noticed, so it just stays in rotation",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody specifically checks this shelf and floor for a broken edge or a stray small part between resets",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every toy off the shelf and run the two-question sort in the open: does a child actually reach for this without being pointed at it, and is it in one piece with no small part loose enough to choke on. Anything nobody has chosen in the last honest week, and anything cracked or missing a piece that could be swallowed, comes off the shelf today.",
+       "victory": "Only toys a child actually chooses remain on the shelf, none of them cracked or missing a small part, sorted into five or six open bins a child can see into from standing height."
+      }
      }
     },
     {
@@ -4042,6 +4160,65 @@
        "A shelf board that sags in the middle under a five-high stack.",
        "A damp patch or water stain on the back edge of a shelf against an outside wall."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A game box has been missing one piece for longer than anyone can remember, and it never got a sticky note or a deadline.",
+        "branches": [
+         {
+          "answer": "The missing piece is structural, a board section or a single puzzle piece, and the game is already over even though the box still looks fine on the shelf",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody's the one who checks a box's piece count before it goes back on the shelf, so a loss from last time goes unnoticed until the next play",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The box has sat looking complete for so long that the missing piece has stopped registering as a problem",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A stack of six or seven boxes on a high shelf has to come down as one weight to reach the bottom one.",
+        "branches": [
+         {
+          "answer": "That much weight coming down at once onto whoever reaches the bottom box is a real fall and crush risk that outranks how compact the stack looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Getting the bottom box out means moving five others first, every single time",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "The shelf sits high enough that reaching the bottom box safely isn't possible without pulling the whole stack down first",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "You can't read which game is which from across the room, and dice and pawns from an open box are scattered on the same floor the play zone shares with a young child.",
+        "branches": [
+         {
+          "answer": "Nobody's put a tape strip naming the game on the short edge, so the only way to identify it is pulling the whole box out",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Loose dice and pawns on a shared floor are a choke hazard for a crawling child, independent of how the shelf looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There's no habit of bagging loose pieces inside the lid before the box goes back, so pieces migrate onto the floor between plays",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every box and check its lid for a name label and a tape strip on the short edge. While each one is open, count the pieces against the box's own list. If something is missing, decide now whether it's substitutable (a token, a die, a bill of play money you can replace) or structural (a rules booklet, a board section, a single puzzle piece). Write the missing item and today's date on a sticky note on any box you are not fixing immediately.",
+       "victory": "Every box on the shelf is labeled and stacked no more than five high, and any box missing a piece carries a dated sticky note naming exactly what is gone."
+      }
      }
     },
     {
@@ -4118,6 +4295,65 @@
        "Pet hair and an oily film building in the basket base that never quite comes out.",
        "A cracked, splintered, or loosening rim on a woven basket that could snag a blanket or a hand."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A fleece throw is draped over the radiator to dry or just to be out of the way, right where the room's heat source runs hottest.",
+        "branches": [
+         {
+          "answer": "Synthetic fabric left against a hot surface once the room empties is a real fire risk, and that overrides how convenient the spot is",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The basket is already full, so draping it over the radiator is easier than working it back in",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Nobody's decided a radiator isn't a storage spot for a throw, so it just keeps happening",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "The good-looking wool throw sits folded and untouched on the arm of a chair while a pilled fleece gets fought over every night.",
+        "branches": [
+         {
+          "answer": "The wool one is kept because it matches the room, not because anyone reaches for it, and that's a decision about looks standing in for a decision about use",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "An heirloom blanket a relative knitted is being kept here out of guilt rather than because anyone actually wraps up in it",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "The room has more throws than the one basket's job needs once you count only the ones people actually reach for",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "A throw slides off the sofa arm onto the floor in the dark, right where the next person puts a foot when they stand up.",
+        "branches": [
+         {
+          "answer": "A throw left on the floor in a walked path in the dark is a fall hazard, plain and simple",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There's no habit of folding it back into the basket the moment the last lamp goes off, so it just stays where it landed",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the house treats putting a dropped throw away as specifically their job",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every throw and cushion out and fold each throw to the same rectangle so the fold edges line up in the basket. Run the reaches test out loud: which ones actually get pulled off the pile in an average week. The decorative one nobody reaches for goes to the guest bed or out, and a genuine heirloom nobody unfolds goes to the linen closet or to the person who will actually use it.",
+       "victory": "One basket holds one throw per regular seat plus one spare, all folded to the same rectangle, and nothing is draped over the sofa back, a radiator, or a chair arm."
+      }
      }
     },
     {
@@ -4203,6 +4439,65 @@
        "A cable end that wobbles loose in its port, or a plug that no longer grips.",
        "A drink ring or moisture on the table right beside the strip."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A retired phone sits in the drawer, kept as both a backup that hasn't been charged in a year and an archive that was never transferred.",
+        "branches": [
+         {
+          "answer": "It's serving two contradictory jobs at once and actually doing neither, and nobody's settled which one it is",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "The photos on it matter to someone, which is a real reason to keep it, but transferring them is a task that's been avoided rather than a home it's missing",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "A phone with a swollen or dead battery sitting loose in a drawer is a real hazard, not just clutter",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "A charging cable hangs in a loop from the side table down to the floor at exactly toddler neck height, on the same table where drinks get set down.",
+        "branches": [
+         {
+          "answer": "A loose loop at a toddler's neck height and a drink beside a live strip are both safety constraints that outrank tidy",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody's shortened or clipped the cable flat since it was first run, because nobody specifically checks this station for hazards",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Nobody notices a specific cable type has run out until a device needs it and there's no spare left in the bag",
+          "cause": "KC-011"
+         }
+        ]
+       },
+       {
+        "symptom": "A tablet is charging under a blanket on the sofa cushion instead of on the strip, and it's warm to the touch.",
+        "branches": [
+         {
+          "answer": "Charging on soft material that traps heat against a battery is a fire risk that overrides where it's convenient to leave it",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The station's slots are already all taken, so the next device charges wherever there's an open outlet",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "There's no rule that every device charges at the one strip, so people default to whatever socket is closest",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Match every cable at the station to a device the house actually uses, and keep one spare of each connector type in a labeled bag. Pull the retired phone out of the drawer, charge it, and decide out loud whether it is genuinely a backup or an archive. If it is an archive, transfer the photos now while it is charged and in your hand; if it is neither, recycle it with the battery still in it at a proper collection point.",
+       "victory": "Every cable at the station ends at a named device the house uses, the retired phone has been settled as backup, archive, or recycled, and no charger is plugged in anywhere else in the room."
+      }
      }
     },
     {
@@ -4288,6 +4583,65 @@
        "A scissor or tool cup that tips easily, ready to spill points onto the shared floor.",
        "Seed beads, googly eyes, or pompoms that have escaped onto the floor a crawling child uses, all choke sized."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Seed beads and pompoms from the kits-in-progress bin are scattered on the floor this room shares with a crawling child, and finding the glue means opening three different bins.",
+        "branches": [
+         {
+          "answer": "Small beads on a floor a crawling child also uses are a choke hazard that overrides anything about the room's tidiness",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Supplies aren't grouped by activity the way the four labeled bins are supposed to work, so finding one thing means opening several",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "The bins have drifted out of their labeled categories over time, so what's inside no longer matches what the label promises",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "A half-finished project has held the good end of the work surface for months, and clearing it feels like quitting.",
+        "branches": [
+         {
+          "answer": "It's a decision nobody's made about whether the project is actually still active, not a storage problem",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been sitting on the table so long that it doesn't register as unfinished anymore, just part of the furniture",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The project stalled because it never got a named next action and a day to do it, so it just sits",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "The glue gun is still plugged in on the table after everyone's walked away, and the scissors are sitting blade up where a child reaches across the table.",
+        "branches": [
+         {
+          "answer": "A hot glue tip and blade-up scissors within a child's reach are safety constraints that outrank how the table looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There's no standard that scissors go back point down in the cup and the glue gun gets unplugged before anyone leaves the table",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody specifically checks the table for a hot tool before the room empties",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "For any project sitting on the work surface, name its very next physical action and the day you will do it, out loud. If you can't produce both without stalling, the project is finished whether it says so or not. Break it down: good materials go back into the paper, drawing, or glue bins where the next project can use them, and the partly worked piece goes to someone who will finish it or goes out. Put the scissors point down in the cup and unplug the glue gun.",
+       "victory": "The work surface is completely clear except for at most one active project bin, every scissors sits point down in its cup, and the glue gun is unplugged."
+      }
      }
     }
    ]
