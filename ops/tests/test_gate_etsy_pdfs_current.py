@@ -60,7 +60,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _worktree import changed_files, is_changed                 # noqa: E402,F401
+from worktree_state import changed_files, is_changed                 # noqa: E402,F401
 
 import preflight                                               # noqa: E402
 
