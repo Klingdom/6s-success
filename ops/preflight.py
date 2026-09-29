@@ -11453,13 +11453,26 @@ def gate_no_stray_probe_files() -> None:
     it is normal operation, and the gate failed on it every time, breaking
     the very next CI run after the widening merged. Excluded by basename
     below; the sweep still catches any real `_`-prefixed probe/fixture path.
+
+    Found 2026-09-29: the same glob also matches a real, shared source
+    module, `ops/tests/_worktree.py` (changed_files(), is_changed(),
+    imported by five gate self-tests), which follows the identical
+    underscore-prefixed convention only because Python spells "internal
+    helper" the same way this repository spells "scratch fixture." Before
+    it was git-tracked this gate deleted it silently on every preflight
+    run, which is the actual reason it had been written, used, and
+    described as shipped in `STATUS.md` while never once surviving to the
+    next session: this sweep, not `.gitignore`, was destroying it. Excluded
+    by basename below, same treatment as `__pycache__`. If a future file
+    needs the same exception, add its basename here rather than widen the
+    glob's intent.
     """
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
         for pat in (os.path.join(SITE, "**", "_*.html"),
                     os.path.join(ROOT, "ops", "tests", "_*"))
         for f in glob.glob(pat, recursive=True)
-        if os.path.basename(f) != "__pycache__")
+        if os.path.basename(f) not in ("__pycache__", "_worktree.py"))
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture path(s) sitting in site/ or "
