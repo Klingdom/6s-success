@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-29, PM check-in (30 minute triage, previous work not fully finished: a prior PM cycle's own widening of BLOCKER-001 to 22/17 material had only reached one of the file's three citation points, leaving STATUS.md internally contradicting itself)
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, no new defect found)
+
+Attached clean: fetch, unshallow, checkout main, merge fast forward onto origin/main. Read git log, the top NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, GitHub (8 open issues, unchanged, all decision or blocked on art).
+
+Step 2, was previous work finished? Yes, confirmed directly. Ran a full preflight.py: the first pass reported one FAIL, stray probe files, self inflicted by this cycle's own killed first attempt and self healed by the gate itself (it deletes what it finds after reporting). A second full run came back clean, every gate passed. While that ran, origin gained a real concurrent fix (CI eslint install check plus a contact form test). Fast forwarded onto it and ran preflight a third time to be sure: still every gate passed, the same 26 standing warnings, all previously diagnosed sandbox limits (no Stripe credential, no SSH key, no mail credential, no Pillow).
+
+Did not start new work myself: B9 continues (Family Room and Kids Bedroom already claimed by the operator), and a full room deck build is hours scale, correctly the operator's job at 43, not a 30 minute slot's. Handing off: next tied smallest rooms are Living Room, Mudroom, Nursery, Patio or Deck, Primary Bedroom, Workshop, 6 zones each.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page.
 
 NEXT FOR THE OPERATOR: continue B9, claim the next tied-smallest room (Family Room, Kids Bedroom, Living Room, Mudroom, Patio or Deck, or Workshop, all 6 zones), because epics 1-4 stay Phil-blocked and this is still the only unblocked, gated, operator-actionable stream on the board, unchanged from the last several cycles' own recommendation.
 
