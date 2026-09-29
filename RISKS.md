@@ -422,12 +422,15 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
-  - current baseline, direct Umami database read 2026-09-25 01:17 UTC: 57
-    visitors/144 visits/786 pageviews/30 days, down from 68 on 2026-09-23. It fell from 76 mostly
-    because the 7 Sept automated session described above (431 pageviews)
-    has now rolled OUT of the 30-day window, so this count is very nearly
-    all human and no longer needs the exclusion this row exists to explain.
-    The trailing week is 12 visitors, against 10, 14 and 18 in the three
+  - current baseline, direct Umami database read 2026-09-29: 48
+    visitors/119 visits/731 pageviews/30 days, down from 57 on 2026-09-25
+    and 68 on 2026-09-23, as the busier fortnight keeps rolling out of the
+    window. The 7 Sept automated session (431 pageviews) left it long ago,
+    so this count is very nearly all human and no longer needs the
+    exclusion this row exists to explain.
+    The trailing week RECORDS 14 visitors but 30 of its 50 pageviews and 9
+    of its visitor ids arrived in one 20-minute burst on 27 September;
+    ex-burst it is 7 visitors, DOWN on 12. Earlier readings were 12, 10, 14 and 18 in the three
     weeks before: the fall has stopped without reversing.
   - superseded baseline, kept for the trend it shows, direct Umami database
     read 2026-09-20 15:40 UTC: 76 visitors/193 visits/946 pageviews/30 days,
@@ -1101,12 +1104,14 @@ evidence:
     automated session, leaving 505 human pageviews from 75 visitors. The
     30-day figure looks flat at 76 only because the window still contains a
     busier fortnight that is rolling out of it.
-  - RE-MEASURED 2026-09-25: 57 visitors / 144 visits / 786 pageviews over 30
-    days, down from 68 on 2026-09-23 and 76 before that, as the busier
-    fortnight rolls out of the window. The trailing week is 12 visitors,
-    against 12, 10, 14 and 18 in the four weeks before, so the fall has
-    stopped without reversing; at this scale the difference between 10 and 12
-    is noise, not recovery. A read taken the same night without the
+  - RE-MEASURED 2026-09-29: 48 visitors / 119 visits / 731 pageviews over 30
+    days, down from 57 on 2026-09-25, 68 on 2026-09-23 and 76 before that, as
+    the busier fortnight rolls out of the window. The trailing week RECORDS 14
+    visitors, but 30 of its 50 pageviews and 9 of its visitor ids arrived
+    between 18:00 and 18:20 on 27 September, all direct, across four
+    operating systems; ex-burst the week is 7 visitors / 9 visits / 20
+    pageviews, DOWN on 12 / 14 / 27. The fall has not stopped; a burst hid it
+    (LRN-0025). A read taken the same night without the
     `website_id` predicate said 239 visitors: this Umami instance serves three
     sites, and `ops/experiments.py` now refuses a query that does not name
     one (`ops/tests/test_umami_website_filter.py`).
