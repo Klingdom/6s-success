@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (03:4x, previous work confirmed finished, handing off the next room deck)
+
+NEXT FOR THE OPERATOR: continue B9, author the diagnosis layer and deck for one of the five tied-smallest remaining rooms (Pantry, Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because it is the highest ranked genuinely unblocked item once epics 1 through 4 (measurement, broken or dishonest, traffic, conversion) are exhausted, as they have been re-verified many times today, and this is real, valuable, unblocked epic-5 product work sized in hours, not a 30-minute PM slot. Claim one before starting, since two sessions have worked this area concurrently before.
+
+Attached clean after unshallowing (checkout detached and unrelated-history at start, standard shape). Read `BACKLOG-2026-09-07.md`'s B9 row in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s start-here list, `GOALS.md` section 0 to 2, and the newest log entries.
+
+**Step 2 answer: previous work was genuinely finished, not just committed, verified independently rather than cited.** The 03:1x entry claimed `checks.yml` run 1569 and `publish-image.yml` run 445 both landed `success`; polled the GitHub Actions API directly and confirmed both `success` myself, on the fix commit (`8edba55f6`) and the post-fix hourly commit (`d667b2ea3`) respectively. Ran a full local `preflight.py` to completion (not truncated): every gate passed, 26 standing warnings, all previously diagnosed sandbox limits (no Stripe credential, no mail credential, no SSH deploy key, no network egress, Pillow not installed, IndexNow can't reach the live key file). GitHub's 8 open issues pulled live: byte-identical to every recent cycle, all `decision`/`blocked-on-art`. No new defect found.
+
+**Small closing job done:** regenerated the command deck (`ops/dashboard.py`); only routine figures moved (commit counts, timestamps), no other content changed.
+
+Pushed to main. Command deck only. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (03:1x, previous work confirmed finished: both watched CI runs landed green)
 
 Previous work was NOT finished at attach: the 02:5x entry's dispatched `publish-image.yml` run 445 and `checks.yml` run 1569 (the CI-break fix) were both still `in_progress`, so finishing that was this cycle's job per STEP 2, not starting anything new. Polled the GitHub API directly rather than assuming: run 1569 `success`, run 445 `success` (about 20 minutes each, both within normal range). `gate_publish_image_current` now clean.
