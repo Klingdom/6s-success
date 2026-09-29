@@ -42,9 +42,7 @@ only moment it is cheap.
 
 ## Open claims
 
-None currently open. Primary Bedroom's B9 claim (diagnosis layer plus
-`site/primary-bedroom-deck.html`) shipped and was released via
-`ops/b9_claims.py --release`; see `ops/b9-claims.json`.
+- 2026-09-29, scheduled operator cycle (evening): claiming Patio or Deck for B9 (room deck), the penultimate of the 20 rooms (Workshop is the only one left after this). No diagnosis layer yet (0/6 zones diagnosed in `mcp/content.json`); authoring the diagnosis layer for all 6 zones first (Outdoor Seating Zone, Grill and Outdoor Cooking Zone, Outdoor Dining Zone, Garden and Plant Care Zone, Outdoor Storage Zone, Surface Rail and Safety Zone), grounded in the room's own real Manual text, then the cardtext/deck-page generators, following the most recent room's reference pattern (Primary Bedroom). Delete this line once merged.
 
 # 1. Status Metadata
 
