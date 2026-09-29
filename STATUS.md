@@ -56,7 +56,9 @@ only moment it is cheap.
 
 ## Open claims
 
-None currently open. Primary Bedroom's B9 claim (diagnosis layer plus
+- 2026-09-29, scheduled operator cycle: claiming Workshop for B9 (room deck), via `python ops/b9_claims.py --claim` (see `ops/b9-claims.json`, claimed 19:07:33Z). No diagnosis layer yet (0/6 zones); authoring it first (Main Workbench, Power Tool Storage, Fastener and Hardware Zone, Material Rack, Finishing and Chemical Zone, Safety and PPE Station), then the deck, following the Primary Bedroom/Nursery reference pattern. Delete this line once merged.
+
+Primary Bedroom's B9 claim (diagnosis layer plus
 `site/primary-bedroom-deck.html`) shipped and was released via
 `ops/b9_claims.py --release`; see `ops/b9-claims.json`.
 
