@@ -231,6 +231,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "build_stair_landing_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "PM check-in cold-read: mirrors build_garage_deck_page.py structure, whole-room card id assertion (SLA-007/008/009) verified against real deck json, hero image slug verified against real file on disk (stair-landing--landing-surface-or-console-lg.jpg), footer matches canonical template, regeneration byte-identical (idempotent). No defect found."
+    },
     "build_standards.py": {
       "status": "clean",
       "date": "2026-09-25",

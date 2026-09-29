@@ -22,6 +22,42 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ROADMAP-2026-2029.md`'s page-count citation updated (201 to 202), `BACKLOG-2026-09-07.md`'s B9 row updated, command deck regenerated. No price or product touched; one new free page, `IndexNow` submission attempted and correctly refused (could not verify the key file is served from this sandbox).
 
+## 2026-09-29, PM check-in (04:1x, previous work confirmed finished, one small closing job shipped)
+
+Attached clean after unshallowing (checkout detached and unrelated-history at start, standard shape; ff-only fast-forward onto `origin/main`, 848 commits, no conflict). Read `GOALS.md` sections 0-2, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md`'s B9 row, `STATUS.md`'s metadata line.
+
+**Step 2 answer: previous work was genuinely finished, verified independently rather than cited.** Working tree was already clean and pushed at attach. Polled the GitHub API directly (not the local claim): `checks.yml` run 1569 `success` on `8edba55f6`, `publish-image.yml` run 445 `success` on `d667b2ea3`, both confirmed green. 8 open issues, unchanged, all `decision`/`blocked-on-art`. 0 open PRs. One thing worth a note for the next cycle, not a defect: `publish-image.yml` run 444 failed on `d81b2eb8`, the commit `checks.yml` passed on the same SHA; already correctly root-caused by the 02:5x entry below (the 02:1x fix touched no `site/**`/`Dockerfile` path, so the push trigger never re-ran it; run 445 was a manual dispatch, not a mystery flake).
+
+**Small closing job done, not just reported.** `ops/cold_read_ledger.py --next` showed exactly one un-ledgered file: `ops/build_stair_landing_deck_page.py`, today's newest generator (Stair Landing, the sixth B9 room), never cold-read. Read it in full: mirrors `build_garage_deck_page.py` function for function. Verified rather than assumed: the whole-room card-id assertion (`SLA-007/008/009`) checked against the real committed `stair-landing-deck.json`, all three ids and their described content match exactly; the hero-image slug (`hero_image_url`) checked against the real file on disk, `stair-landing--landing-surface-or-console-lg.jpg` exists; the footer Learn column matches the canonical template Garage/Home Office/Primary Bathroom already carry, byte for byte. Regenerated the page directly: `git status` clean after, confirming it is idempotent. No defect found. Recorded clean in the ledger with the specific checks performed, not a bare "clean".
+
+Ran a full `python ops/preflight.py` myself in the background rather than cite a same-day prior run. It finished after the entry above was first drafted and shipped: **1 gate FAILed**, `stray-probe-files`, one leftover `site/_audit_catalog_fixture.html` from a run killed mid-audit or mid-test (this operator's own concurrent `gate_tests()` call, or another cycle's, per the gate's own long-documented shape). Did not stop at "the gate reports it fixes itself": confirmed on disk (`ls`, `git status`) that the file was already gone and the tree already clean before treating it as resolved, then re-ran `preflight.py` a second time, full, to genuine completion rather than trust the first run's own self-repair claim. Second run: **every gate passed, 26 warnings**, the same standing set (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Treated as the gate's own documented self-cleaning race, not a live defect, the same shape several prior cycles today have already hit and closed the same way.
+
+**Handoff to the operator, unchanged from 03:4x:** B9 continues, the next of the five tied-smallest remaining rooms (Pantry, Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, 5 zones/129 fields each, per `ops/cardtext/derive_room_deck.py`), real unblocked epic-5 work sized in hours, not a 30-minute PM slot. Claim one before starting.
+
+Pushed to main. `ops/cold-read-ledger.json` only. No price or product touched, no new page, no deploy triggered.
+
+## 2026-09-29, PM check-in (03:4x, previous work confirmed finished, handing off the next room deck)
+
+NEXT FOR THE OPERATOR: continue B9, author the diagnosis layer and deck for one of the five tied-smallest remaining rooms (Pantry, Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because it is the highest ranked genuinely unblocked item once epics 1 through 4 (measurement, broken or dishonest, traffic, conversion) are exhausted, as they have been re-verified many times today, and this is real, valuable, unblocked epic-5 product work sized in hours, not a 30-minute PM slot. Claim one before starting, since two sessions have worked this area concurrently before.
+
+Attached clean after unshallowing (checkout detached and unrelated-history at start, standard shape). Read `BACKLOG-2026-09-07.md`'s B9 row in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s start-here list, `GOALS.md` section 0 to 2, and the newest log entries.
+
+**Step 2 answer: previous work was genuinely finished, not just committed, verified independently rather than cited.** The 03:1x entry claimed `checks.yml` run 1569 and `publish-image.yml` run 445 both landed `success`; polled the GitHub Actions API directly and confirmed both `success` myself, on the fix commit (`8edba55f6`) and the post-fix hourly commit (`d667b2ea3`) respectively. Ran a full local `preflight.py` to completion (not truncated): every gate passed, 26 standing warnings, all previously diagnosed sandbox limits (no Stripe credential, no mail credential, no SSH deploy key, no network egress, Pillow not installed, IndexNow can't reach the live key file). GitHub's 8 open issues pulled live: byte-identical to every recent cycle, all `decision`/`blocked-on-art`. No new defect found.
+
+**Small closing job done:** regenerated the command deck (`ops/dashboard.py`); only routine figures moved (commit counts, timestamps), no other content changed.
+
+Pushed to main. Command deck only. No price or product touched, no new page, no deploy triggered.
+
+## 2026-09-29, PM check-in (03:1x, previous work confirmed finished: both watched CI runs landed green)
+
+Previous work was NOT finished at attach: the 02:5x entry's dispatched `publish-image.yml` run 445 and `checks.yml` run 1569 (the CI-break fix) were both still `in_progress`, so finishing that was this cycle's job per STEP 2, not starting anything new. Polled the GitHub API directly rather than assuming: run 1569 `success`, run 445 `success` (about 20 minutes each, both within normal range). `gate_publish_image_current` now clean.
+
+Ran a full local `preflight.py --deep` while waiting; it reported one real-looking `FAIL stray-probe-files`. Re-ran `preflight.py --fast` independently a few minutes later: every gate passed, no stray file existed. Treated as the gate's own documented race (a concurrent run's fixture caught mid-cleanup), not a live defect; did not write a fix for something the second run showed was gone. 26 standing warnings unchanged. No new commits from other cycles during this slot.
+
+Handing off to the operator, unchanged: the next of the thirteen rooms still missing a diagnosis layer (`ops/cardtext/derive_room_deck.py`) is the highest-ranked genuinely unblocked item.
+
+Pushed to main. No price or product touched, no new page, no deploy triggered.
+
 ## 2026-09-29, PM check-in (02:5x, correction to the 02:4x entry directly below: the local preflight it left running found a real FAIL, fixed rather than left for the next cycle to rediscover)
 
 The 02:4x entry below shipped before its own backgrounded `preflight.py` run finished, and said so honestly rather than writing "clean" over an unfinished check. That run has since finished: **1 gate failed**, `publish-image-current`. `publish-image.yml`'s last attempt (run 444, on the pre-fix commit) failed, and the 02:1x fix (`8edba55f6`) touched no `site/**` or `Dockerfile` path, so the workflow's own push trigger never re-ran it; HEAD's site state had no successful publish behind it at all.
