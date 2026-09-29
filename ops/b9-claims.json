@@ -40,6 +40,12 @@
       "status": "in_progress",
       "claimed_at": "2026-09-29T16:24:17Z",
       "note": "scheduled operator cycle 2026-09-29 16:2x, prior claim stale (claimed 12:55, past the 3-hour window, no deck shipped), 6 zones"
+    },
+    {
+      "room": "Nursery",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T16:53:22Z",
+      "note": "scheduled operator cycle 2026-09-29, PM slot, preflight clean before claim"
     }
   ]
 }
