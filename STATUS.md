@@ -62,8 +62,17 @@ and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
 sessions in parallel with no collision (different rooms), both claims
 released via `ops/b9_claims.py --release`; see `ops/b9-claims.json` for the
 full ledger. Primary Bedroom's claim shipped and released the same way just
-before. Next highest-value BACKLOG item is B8 (landing each deck on an
-18-card print step) or returning to epics 1-4.
+before. **Correction, 2026-09-29 PM check-in: this line's own "B8" pointer was
+stale.** `DECISIONS.md` D-027 closed B8 on 2026-09-25 (print-tier alignment
+deferred until a room actually goes to print); `BACKLOG-2026-09-07.md`'s own
+B8 row already says CLOSED. Epics 1-4 (`BACKLOG-2026-09-07.md` sections 2-4,
+A1-A10/B1-B9/C1-C7) are also all done or Phil-gated, confirmed by reading
+every row, not by re-citing the prior stale pointer. No BACKLOG "Now" item
+is currently unblocked: section 5 is Hold pending traffic/evidence, section 6
+is Phil's own owner gates, and all 8 open GitHub issues are `decision`/
+`blocked-on-art`. The standing fallback several recent cycles have used in
+this exact state, per `CLAUDE.md` 0.2, is independent re-verification plus a
+cold-read of a low-mention `ops/*.py` file for a real, fixable defect.
 
 # 1. Status Metadata
 
