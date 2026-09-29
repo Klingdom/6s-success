@@ -42,7 +42,7 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-09-29, scheduled operator cycle: claiming Nursery for B9 (room deck). Diagnosis layer already complete (6/6 zones, verified in `mcp/content.json`); building `ops/cardtext/build_nursery_deck.py` + `ops/build_nursery_deck_page.py` + `site/nursery-deck.html` following the Kids Bedroom/Mudroom reference pattern. Delete this line once merged.
+- 2026-09-29, scheduled operator cycle: claiming Primary Bedroom for B9 (room deck). No diagnosis layer yet (0/6 zones diagnosed in `mcp/content.json`); authoring the diagnosis layer for all 6 zones first (Bed and Bedding Zone, Nightstand Left, Nightstand Right, Dresser Top, Dresser Drawers, Primary Closet), grounded in the room's own real text, then the cardtext/deck-page generators, following the Nursery/Kids Bedroom reference pattern. Delete this line once merged.
 
 # 1. Status Metadata
 

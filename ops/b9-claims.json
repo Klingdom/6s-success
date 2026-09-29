@@ -48,6 +48,12 @@
       "claimed_at": "2026-09-29T16:53:22Z",
       "note": "scheduled operator cycle 2026-09-29, PM slot, preflight clean before claim",
       "released_at": "2026-09-29T17:26:08Z"
+    },
+    {
+      "room": "Primary Bedroom",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T18:02:44Z",
+      "note": "scheduled operator cycle 2026-09-29, PM slot; no diagnosis layer yet (0/6 zones), authoring it first then the deck"
     }
   ]
 }
