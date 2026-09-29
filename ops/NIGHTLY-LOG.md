@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work not fully finished: a prior PM cycle's own widening of BLOCKER-001 to 22/17 material had only reached one of the file's three citation points, leaving STATUS.md internally contradicting itself)
+
+NEXT FOR THE OPERATOR: continue B9, claim the next tied-smallest room (Family Room, Kids Bedroom, Living Room, Mudroom, Patio or Deck, or Workshop, all 6 zones), because epics 1-4 stay Phil-blocked and this is still the only unblocked, gated, operator-actionable stream on the board, unchanged from the last several cycles' own recommendation.
+
+Attached clean: fetch, unshallow, `checkout main`, `merge --ff-only`, fast-forwarded onto `origin/main` with no conflict (HEAD was `44c8f27cd`, the automated hourly check-in record; touches only `CHECKIN-LOG.md`/`ops/state-checkin.json`, confirmed via `git show --stat`, so it added nothing to the deploy gap). Read `git log`, the top two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub (8 open issues, unchanged, all `decision`/`blocked-on-art`, confirmed live via the API).
+
+**Step 2, was previous work finished? No.** The prior PM cycle's own commit message claimed "widen BLOCKER-001 to 22/17 material after merging Guest Bathroom," but only the Public Website row in section 1 had actually been edited to 22/17; the Production Traceability row and the `BLOCKER-001` section's own latest entry both still read 20/16, so the file cited three different counts for the same gap simultaneously. Caught by calling `deploy_gap_count_problem()` directly rather than trusting the commit message: it returned a live problem, citing 20 against a freshly recomputed 22. Finished the fix the prior cycle started instead of opening new work: updated the Production Traceability row and appended a new dated entry to `BLOCKER-001` itself (not editing history, per this file's own append-only convention), both now stating 22 commits, 17 material, with the two new commits named directly (`19f025bc9`, the Guest Bathroom deck; `63c53cee3`, confirmed via `git show --stat` to be a build-id-only restamp). Verified directly, not assumed: `deploy_gap_count_problem()` against the corrected file now returns `''` at all three points, and `fix_dashes.py --check` is clean (0 em dashes, 0 en dashes).
+
+**Verification note, honestly incomplete.** A full `preflight.py` was started via `ops/run_preflight.sh` late in this slot and had not finished its 313-file test suite by the time this entry was written; not claiming it clean, per CLAUDE.md 0.4. What was actually verified directly: the specific gate this cycle's edit touches (`gate_status_deploy_gap_count_current`, via its own pure-logic function) passes against the corrected `STATUS.md`.
+
+**Went well:** treating a prior cycle's own commit message as a claim to verify against the file's actual three citation points, not evidence the fix was complete everywhere it needed to be.
+
+**Did not go well:** this is the same recurring shape as every prior cycle's note: the structural fix is `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35), not a sharper gate or a more careful edit.
+
+**Handing off to the operator:** continue B9, next tied-smallest room per the last operator cycle's own count (Family Room/Kids Bedroom/Living Room/Mudroom/Patio or Deck/Workshop, 6 zones each). Did not start it myself: hours-scale work correctly the operator's, not a 30-minute triage slot's.
+
+Pushed to main. `STATUS.md` (two spots), `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, scheduled operator cycle (Guest Bathroom room deck, B9's twelfth room, built by a delegated subagent, verified independently)
 
 **Did:** Unshallowed, attached to main, ff-forwarded, no conflict. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG entries: epics 1-4 remain Phil-blocked (owner gates, art billing, VPS access), B9 room decks the correct unblocked epic-5 work. Claimed Guest Bathroom via ops/b9_claims.py, pushed the claim commit alone first. Delegated the build to a subagent with full context on the established pattern; it authored a diagnosis layer for all five zones (15 frictions, 45 branches, grounded in the room's own real content, reaching 16 of 17 shared causes, the most of any room so far), built ops/cardtext/build_guest_bathroom_deck.py and ops/build_guest_bathroom_deck_page.py (60 cards), registered preflight gates and a dedicated test, and wired deck.html and the interactive test suite.
