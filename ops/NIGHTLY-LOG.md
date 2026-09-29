@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (02:4x)
+
+NEXT FOR THE OPERATOR: the next of the thirteen rooms still missing a diagnosis layer (`ops/cardtext/derive_room_deck.py`, 1,709 fields remaining after Stair Landing), because that is the highest-ranked genuinely unblocked item and nothing this cycle found changes that; also confirm `checks.yml` run 1569 and `publish-image.yml` land green on `8edba55f6` before treating the deploy gap as only a redeploy away.
+
+Previous work (the 02:1x check-in's CI-break fix) was finished, not merely committed: re-verified rather than cited. Attached clean (unshallowed, checkout main, ff-only onto origin/main, one further hourly commit fast-forwarded mid-cycle, no conflict, tree clean throughout). Read `GOALS.md`'s standing content via recent files, `BACKLOG-2026-09-07.md`'s B9 row in full, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest log entries, and `OWNER-ACTIONS.md`'s start-here list.
+
+Confirmed the 02:1x fix (`8edba55f6`, STRATEGY-MICROZONES.md's stale coverage numbers plus the `gate_status_deploy_gap_count_current` regex blind spot) is real and correctly landed: read `STATUS.md`'s BLOCKER-001 tail directly, it now states 7 commits/6 material, matching the commit message's own account. `checks.yml` run 1569 for that commit was still `in_progress` after several minutes; did not wait it out or assume green, named it in the handoff instead. Started a full local `preflight.py` via `ops/run_preflight.sh`; a first attempt was launched before the fast-forward above landed and was killed once `ops/preflight.py` itself turned out to be one of the changed files, avoiding the same stale-mid-run-tree artifact this log has diagnosed before. The rerun reached `gate_tests` (the slow full suite) but had not finished when this cycle's own time budget ran out; reporting unchecked rather than writing a clean result over it, per CLAUDE.md 0.4.
+
+GitHub's 8 open issues pulled live: byte-identical to every recent cycle (#35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, 0 open PRs. `RISKS.md`'s three open CRITICALs (RISK-0007, RISK-0011, RISK-0013) read directly, unchanged, all Phil-gated. `OWNER-ACTIONS.md` item 0 (`VPS_DEPLOY_KEY`) still the standing first blocker.
+
+**No new defect found this cycle; the real find already happened at 02:1x and is confirmed correct.** No new gate written.
+
+Pushed to main (log entry only, no dashboard regeneration this cycle since no other file changed and the deck already reflects `8edba55f6`). No price or product touched, no new page.
+
 ## 2026-09-29, PM check-in (02:1x)
 
 Previous work (Stair Landing room deck, B9's sixth room) was finished and
