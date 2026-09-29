@@ -11522,6 +11522,65 @@
        "Rust freckling on a metal bracket, or marks on wire shelving where moisture keeps settling. Flag it.",
        "Small holes, gritty frass, or pale casings tucked into a wool blanket point to moth. Flag it before you refold and reshelve."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A sheet set too nice to use sits at the front of this shelf year after year while the beds get slept on with the worn ones.",
+        "branches": [
+         {
+          "answer": "It's the nicest set we own and I don't want it to wear out",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "It's not really a decision I've made, I just keep meaning to put it on a bed",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It's been at the front of the shelf so long I don't register it as odd anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A towel stack on this shelf has grown taller than your forearm, and pulling one from the bottom risks bringing the whole stack down.",
+        "branches": [
+         {
+          "answer": "There's no agreed limit on how tall a stack is allowed to get",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody checks stack height when folding laundry back onto this shelf",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The bracket holding this shelf has never been checked to see if it's screwed into a stud",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "A set sized for the guest bed is folded in among the everyday sets, so the wrong size gets grabbed at bedtime.",
+        "branches": [
+         {
+          "answer": "There's no fixed spot per bed size, so sets get folded wherever there's room",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Two people fold the laundry differently, one groups by size and one by whoever's turn it is",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "The shelf label only gives a count, not which edge belongs to which size",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Unfold every set and check it is complete and fits a bed you still own. The flat sheet whose fitted half vanished, fitted sheets with slack elastic that pop off a corner at three in the morning, and towels that smell sour an hour after drying all leave.",
+       "victory": "Every set on the shelf is complete, fits a bed you still own, and no towel carries a sour smell."
+      }
      }
     },
     {
@@ -11604,6 +11663,65 @@
        "A water stain or a damp patch on the closet floor or the wall behind the mop names a leak or rising damp. Flag it.",
        "Rust creeping up a metal broom clip or a bucket handle marks where water is sitting after every use. Note it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The vacuum with the split hose has been standing here for months because throwing out a machine that mostly works feels wasteful.",
+        "branches": [
+         {
+          "answer": "I keep meaning to order the part and never quite do it",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "There's no date attached to the repair, so 'later' has no deadline",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's stood there so long I've stopped seeing it as broken, just as 'the other vacuum'",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A broom handle has slid down the wall again and is lying across the doorway instead of hanging from its clip.",
+        "branches": [
+         {
+          "answer": "The clip is the wrong size for this handle so it never really holds",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "The clip sits at an awkward height, so leaning the handle in the corner is just easier",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "Nobody agreed that leaning it in the corner still counts as put away",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "A damp mop head is resting against the vacuum's own cord at the back of this closet, both shut behind a closed door.",
+        "branches": [
+         {
+          "answer": "There's nowhere else in the closet a wet mop head can hang to dry first",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody checks the cord for cracks before it goes back, wet or dry",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It goes back wet because nothing prompts letting it dry outside the closet first",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Stand every handle up and look at the working end. Brooms with splayed bristles that push dust rather than gather it, the mop head that no longer twists off its plate, and the old vacuum you keep for parts you have never once harvested all go out this week.",
+       "victory": "Every remaining tool has a working end, and nothing is being kept for parts that were never actually used."
+      }
      }
     },
     {
@@ -11685,6 +11803,65 @@
        "A shelf liner that has gone soft, bleached, or corroded in one spot names a leak that has been dripping there for a while. Flag it.",
        "A label gone illegible from a chemical run down the bottle means you can no longer tell what is inside. Flag it before it goes back on the shelf."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Four glass cleaners and three floor sprays, each bottle a third full, crowd this shelf because you can't tell what's already here before buying another.",
+        "branches": [
+         {
+          "answer": "You can't see the fill level from the doorway, so a new one seems safer than trusting the old",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There's no rule that says one open bottle per job, so a new bottle just joins the others",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The shelf holds more of everything than any one job actually needs",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "A bottle of bleach sits on the same shelf as an ammonia-based glass cleaner, both within reach from the hallway floor.",
+        "branches": [
+         {
+          "answer": "Nobody sorted this shelf by what's safe to store together, only by what fits",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The latch that used to keep small kids out broke months ago and was never replaced",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "The two bottles have sat side by side so long the mismatch doesn't register anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A row of aerosol cans and a solvent-based spray sit against the closet wall that backs onto the boiler, on the same shelf they've always used.",
+        "branches": [
+         {
+          "answer": "These cans have always gone on this shelf, so nobody questioned whether it's actually the safe spot",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nobody's ever traced which wall of this closet backs onto the boiler",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The coolest shelf in this closet is already full of something else, so the aerosols default to whatever's left",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Line every bottle up on the hallway floor. Anything decanted into an unmarked spray bottle gets disposed of according to its own instructions, and the specialty cleaner bought for one stain years ago goes with it. Only identical products get poured together.",
+       "victory": "Every bottle on the shelf is in its own original, labeled container, and no two different products have been mixed."
+      }
      }
     },
     {
@@ -11760,6 +11937,65 @@
        "A paper pack that feels soft or damp on its underside, and a wall behind it that reads cold and wet, point to condensation off the outside wall or a slow leak. Flag it.",
        "A spare bulb with a darkened base or a loose rattle inside is already spent. Note it rather than reshelving it as a working spare."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A warehouse pack of paper towels bought on a deal is too big to fit in its bin, so it sits blocking the shelf instead.",
+        "branches": [
+         {
+          "answer": "There was no written maximum before the deal, so nothing stopped you buying it",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The bulk price felt like a saving even though it's more than the shelf's job needs",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "You can't see how much is already on the shelf before you buy more",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "A pack of bulbs at the back of this shelf is for a fitting the house replaced with LED two years ago, and nobody noticed until now.",
+        "branches": [
+         {
+          "answer": "Nothing gets dated or labeled with the fitting when it arrives, so an outdated pack looks the same as a current one",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "The oldest stock is buried behind the newest because new stock goes in at the front",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "This shelf gets restocked but never audited, so it just accumulates",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "Loose AAA batteries have rolled off a low shelf and are sitting on the closet floor at a small child's eye level.",
+        "branches": [
+         {
+          "answer": "Batteries get tipped in loose instead of standing upright in a tray, so a knock sends them rolling",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "This bin sits low enough for a small child to reach without help",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody's swept this shelf floor since the last time this happened",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take the lot out. Loose batteries you cannot vouch for, bulbs for fittings you replaced when you went over to LED, and the bulk paper towel pack too big to lift down alone all leave now.",
+       "victory": "Every battery is in its original pack, every bulb fits a fitting the house still uses, and nothing on the shelf is too heavy to lift down alone."
+      }
      }
     },
     {
@@ -11840,6 +12076,65 @@
        "A bin lid that has cracked or warped and no longer seats flat is letting damp and pests straight in. Note it.",
        "A water stain spreading on the top shelf board or the wall above it, being the highest point in the closet, can be the first sign of a roof or pipe leak. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A sealed bin has survived a house move and two closet reshuffles, and nobody can say what's actually inside it without opening it.",
+        "branches": [
+         {
+          "answer": "It's easier to keep moving it than to open it and decide",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It was labeled 'misc' when it was packed, and 'misc' hasn't been questioned since",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's been sitting there so long it just reads as storage, not as a thing to deal with",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Getting the good decorations down means standing on a hallway chair and reaching overhead, because there's no step stool kept in this closet.",
+        "branches": [
+         {
+          "answer": "There's nowhere in this closet a stool actually lives, so whatever's nearby gets used instead",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "The heaviest bins ended up on the top shelf because that's where there was room when they were packed",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody re-checked shelf heights after the last time someone needed a chair to reach one",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A guest pillow has gone flat and yellowed inside its bin, and nobody noticed until it came out for an actual guest.",
+        "branches": [
+         {
+          "answer": "The bin only gets opened right before a guest arrives, so a tired pillow is never caught early",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "There's no date on the bin telling you how long that pillow has actually been in there",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "A flat, yellowed pillow still looks like a stored pillow from the outside of a sealed bin",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Every lid comes off, on the floor, in daylight. Decorations for a tree you no longer put up, the guest pillow gone flat and yellow, and the bin marked \"misc\" whose contents you cannot name without looking all go.",
+       "victory": "Every remaining bin can be named without opening it, and nothing inside is flat, yellowed, or for a tradition you no longer keep."
+      }
      }
     }
    ]

@@ -1187,6 +1187,7 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_garage_deck_page.py",
     "build_stair_landing_deck_page.py",
     "build_pantry_deck_page.py",
+    "build_hall_closet_deck_page.py",
     "build_youtube_metadata.py",
     "build_social_captions.py",
     "build_feed.py",
@@ -1230,6 +1231,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_garage_deck.py": ("gate_garage_deck_current",),
     "build_stair_landing_deck.py": ("gate_stair_landing_deck_current",),
     "build_pantry_deck.py": ("gate_pantry_deck_current",),
+    "build_hall_closet_deck.py": ("gate_hall_closet_deck_current",),
     "build_manual_print.py": ("gate_front_matter_filled",
                                "gate_manual_print_fonts_current"),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
@@ -5219,6 +5221,94 @@ def gate_pantry_deck_rendered() -> None:
         fail("pantry-deck-rendered", "; ".join(problems))
 
 
+def check_hall_closet_deck_rendered(cards: list, page: str) -> list:
+    """Pure logic for gate_hall_closet_deck_rendered, the room built as
+    BACKLOG-2026-09-07.md B9's continuation past the original eight.
+    `cards` is ops/cardtext/build_hall_closet_deck.py's own card list;
+    `page` is the full text of site/hall-closet-deck.html. Same shape as
+    check_pantry_deck_rendered.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    corpus_ids = {c["id"] for c in cards}
+    page_ids = set(re.findall(r'<article class="kcard" id="([^"]+)"', page))
+    missing = sorted(corpus_ids - page_ids)
+    extra = sorted(page_ids - corpus_ids)
+    problems = []
+    if missing:
+        problems.append(f"{len(missing)} corpus card(s) missing from the "
+                        f"page, e.g. {missing[:3]}")
+    if extra:
+        problems.append(f"{len(extra)} card id(s) on the page do not exist "
+                        f"in the corpus, e.g. {extra[:3]}")
+
+    by_type = {}
+    for c in cards:
+        by_type.setdefault(c["type"], c)
+    for t in ("ROOM CARD", "ZONE CARD", "ROOT CAUSE CARD", "STANDARD CARD",
+              "EVENT CARD", "FRICTION CARD", "ACTION CARD"):
+        c = by_type.get(t)
+        if not c:
+            continue
+        raw = c.get("objective")
+        if not raw:
+            continue
+        needle = _html.escape(str(raw), quote=True)
+        if needle not in page:
+            problems.append(f"{c['id']} ({t}) corpus text does not appear "
+                            f"verbatim on the page. Re-run "
+                            f"ops/build_hall_closet_deck_page.py.")
+
+    drifted_mq = []
+    for c in cards:
+        if c["type"] != "STANDARD CARD":
+            continue
+        for q in c.get("micro_quest") or []:
+            if _html.escape(q, quote=True) not in page:
+                drifted_mq.append(c["id"])
+                break
+    if drifted_mq:
+        problems.append(f"{len(drifted_mq)} standard card(s) whose micro "
+                        f"quests do not appear verbatim on the page, e.g. "
+                        f"{drifted_mq[:3]}.")
+    return problems
+
+
+def gate_hall_closet_deck_rendered() -> None:
+    """BACKLOG-2026-09-07.md B9, continued: the Hall Closet deck, built
+    straight off content.json's real five zones, must actually be the
+    cards on site/hall-closet-deck.html, not just present in the gated
+    cardtext corpus. Same shape as gate_pantry_deck_rendered.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_hall_closet_deck as HC
+        import importlib
+        importlib.reload(HC)
+        deck = HC.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("hall-closet-deck-rendered",
+             f"could not build the Hall Closet cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "hall-closet-deck.html")
+    if not os.path.exists(page_path):
+        fail("hall-closet-deck-rendered",
+             "ops/cardtext/build_hall_closet_deck.py's corpus exists but "
+             "site/hall-closet-deck.html does not. Run "
+             "ops/build_hall_closet_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_hall_closet_deck_rendered(deck["cards"], page)
+    if problems:
+        fail("hall-closet-deck-rendered", "; ".join(problems))
+
+
 # Every deck page's own og:image/twitter:image, page filename -> room slug.
 # The two rooms with a real photographic before/after (BACKLOG-2026-09-07.md
 # section 3c) use that photo's own chapter file; every other room deck has
@@ -5235,6 +5325,8 @@ DECK_OG_IMAGE_ZONE_SLUG = {
     "home-office-deck.html": "home-office",
     "primary-bathroom-deck.html": "primary-bathroom",
     "stair-landing-deck.html": "stair-landing",
+    "pantry-deck.html": "pantry",
+    "hall-closet-deck.html": "hall-closet",
 }
 
 
@@ -5369,7 +5461,8 @@ def gate_deck_article_grammar() -> None:
     for fname in ("kitchen-deck.html", "entryway-deck.html",
                   "laundry-room-deck.html", "home-office-deck.html",
                   "primary-bathroom-deck.html", "garage-deck.html",
-                  "stair-landing-deck.html"):
+                  "stair-landing-deck.html", "pantry-deck.html",
+                  "hall-closet-deck.html"):
         path = os.path.join(SITE, fname)
         if not os.path.exists(path):
             continue
@@ -19265,6 +19358,45 @@ def gate_pantry_deck_current() -> None:
              "python ops/cardtext/build_pantry_deck.py")
 
 
+def gate_hall_closet_deck_current() -> None:
+    """Same shape as gate_pantry_deck_current, for the room built as
+    BACKLOG-2026-09-07.md B9's continuation:
+    ops/cardtext/hall-closet-deck.json must be exactly what
+    ops/cardtext/build_hall_closet_deck.py produces today.
+
+    This is the file's own entry in GENERATOR_PROTECTED_ELSEWHERE:
+    build_hall_closet_deck.py lives one directory deeper than
+    gate_every_generator_has_a_protection_plan's top-level glob can see,
+    the same reason every prior room generator needed one.
+    """
+    gen_path = os.path.join(ROOT, "ops", "cardtext",
+                             "build_hall_closet_deck.py")
+    out_path = os.path.join(ROOT, "ops", "cardtext",
+                             "hall-closet-deck.json")
+    if not os.path.exists(gen_path) or not os.path.exists(out_path):
+        return
+    before = io.open(out_path, encoding="utf-8").read()
+    p = subprocess.run([PY, gen_path], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    after = (io.open(out_path, encoding="utf-8").read()
+             if os.path.exists(out_path) else "")
+    io.open(out_path, "w", encoding="utf-8", newline="").write(before)
+    if p.returncode != 0:
+        fail("hall-closet-deck-current",
+             "build_hall_closet_deck.py could not regenerate "
+             "hall-closet-deck.json (exit %d), and the committed file "
+             "was restored unchanged rather than proven current: %s"
+             % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
+        return
+    if after != before:
+        fail("hall-closet-deck-current",
+             "ops/cardtext/hall-closet-deck.json does not match what "
+             "ops/cardtext/build_hall_closet_deck.py produces today, so "
+             "a hand edit there (or an unrerun source edit) will be lost "
+             "on the next build. Run: "
+             "python ops/cardtext/build_hall_closet_deck.py")
+
+
 def gate_diagnosis_schema() -> None:
     """ops/diagnosis.py is a real, working schema check for the `diagnosis`
     block (>= 3 frictions, every branch's `cause` a known root-cause id,
@@ -22717,6 +22849,7 @@ GENERATED_TOP_LEVEL_PAGES = {
     "garage-deck.html": "build_garage_deck_page.py",
     "stair-landing-deck.html": "build_stair_landing_deck_page.py",
     "pantry-deck.html": "build_pantry_deck_page.py",
+    "hall-closet-deck.html": "build_hall_closet_deck_page.py",
     "kit.html": "build_kit_page.py",
     "resources.html": "build_resources.py",
     "standards.html": "build_standards_page.py",
@@ -23579,6 +23712,7 @@ def main() -> int:
     run_gate(gate_garage_deck_rendered)
     run_gate(gate_stair_landing_deck_rendered)
     run_gate(gate_pantry_deck_rendered)
+    run_gate(gate_hall_closet_deck_rendered)
     run_gate(gate_deck_og_image_honest)
     run_gate(gate_deck_article_grammar)
     run_gate(gate_unique_names)
@@ -23658,6 +23792,7 @@ def main() -> int:
     run_gate(gate_garage_deck_current)
     run_gate(gate_stair_landing_deck_current)
     run_gate(gate_pantry_deck_current)
+    run_gate(gate_hall_closet_deck_current)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)
