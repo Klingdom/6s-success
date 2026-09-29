@@ -898,15 +898,20 @@ evidence:
     the new hall-closet-deck.html (BACKLOG-2026-09-07.md B9 continued,
     the ninth room deck), same inert footer newsletter form, nothing new
     in kind.
-  - UPDATED 2026-09-29: forms_dead moved 203 to 206 in three additions,
-    caught late as a single stale-citation gate FAIL rather than tracked
-    per room as every prior addition was: dining-room-deck.html (B9's
-    tenth room), guest-bedroom-deck.html (B9's eleventh room) and
-    guest-bathroom-deck.html (B9's twelfth room), each the same inert
-    footer newsletter form, nothing new in kind. `RISKS.md`'s own citation
-    had drifted to 205 with no matching narrative row for two of the three;
-    corrected against `ops/state.json`'s real forms_dead=206 directly
-    rather than assumed.
+  - UPDATED 2026-09-29: forms_dead moved 203 to 204. The one addition is
+    the new dining-room-deck.html (BACKLOG-2026-09-07.md B9 continued,
+    the tenth room deck), same inert footer newsletter form, nothing new
+    in kind.
+  - UPDATED 2026-09-29: forms_dead moved 204 to 205. The one addition is
+    the new guest-bedroom-deck.html (BACKLOG-2026-09-07.md B9 continued,
+    the eleventh room deck), same inert footer newsletter form, nothing
+    new in kind.
+  - UPDATED 2026-09-29, PM check-in: forms_dead moved 205 to 206. The one
+    addition is the new guest-bathroom-deck.html (BACKLOG-2026-09-07.md B9
+    continued, the twelfth room deck), same inert footer newsletter form,
+    nothing new in kind. Found by `preflight.py`'s own `risks-evidence-
+    current` gate, re-verified directly against `ops/state.json`
+    (`forms_dead=206`) rather than trusted from the gate's own message.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,
