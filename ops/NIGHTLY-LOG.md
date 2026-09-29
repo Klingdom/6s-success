@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, cycle addendum (17:2x: the 17:1x push conflicted with the concurrent Kids Bedroom completion, merged rather than forced)
+
+`git push` was rejected twice while this cycle's own dashboard-regen commit was in flight: first by the operator's Kids Bedroom deck (real content, `ops/NIGHTLY-LOG.md` conflicted on the same prepend line as this cycle's own entry, plus the usual generated-file conflicts), then by the automated hourly check-in bot. Merged both rather than forcing, per STEP 8: kept both nightly-log entries by commit timestamp (this cycle's own 9 seconds later, so on top), regenerated `build_id.py` and `dashboard.py` directly rather than hand-resolving their generated-file conflicts, and let the hourly bot's `indexnow-log.json` change auto-merge with no conflict. Re-checked `gate_conflict_markers`, `gate_dashboard_working_tree`, `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_page_ownership_registry`, `gate_b9_claims_current`, `gate_generator_ownership` and `gate_build_id_current` directly on the merged tree: all clean. `fix_dashes.py --check`: 0/0. Pushed (`1808a83d7`).
+
+---
+
 ## 2026-09-29, PM check-in (17:1x slot, previous work confirmed finished)
 
 PM check-in (17:1x slot): previous work (Nursery diagnosis layer) confirmed finished. def1c82de already fixed and verified its own 4 preflight FAILs. Attached clean, fast-forwarded 1001 commits onto origin/main, no conflict. Read backlog, dashboard, GitHub (8 open issues unchanged, all decision/blocked-on-art, none Phil-unblocked). Full preflight.py did not finish gate_tests in-slot (repo's usual pattern); verified touched gates directly instead: gate_generator_ownership, gate_mcp_corpus_current, gate_build_id_current, gate_diagnosis_rendered, gate_general_reading_differentiated all PASS. audit_pages (209/0), check_urls (205/205), fix_dashes (0/0) clean. Kids Bedroom's B9 claim was fresh (54 min old) at read time; a concurrent operator cycle finished and released it moments later, below. Regenerated and shipped the dashboard. Nothing new started this slot. Pushed to main.
