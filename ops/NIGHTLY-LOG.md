@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work finished and merged, one real stale citation found and fixed, three places at once)
+
+NEXT FOR THE OPERATOR: Kids Bedroom is still claimed and in progress (claimed 12:55, not yet 3 hours stale); do not duplicate it. Family Room and Living Room both shipped and merged since the last PM cycle's own citation, so B9 is now at fourteen rooms. When Kids Bedroom lands, the next tied-smallest unclaimed rooms are Mudroom, Nursery, Patio or Deck, Primary Bedroom and Workshop, all 6 zones. Epics 1-4 stay Phil-blocked; B9 remains the only unblocked, gated, operator-actionable stream on the board.
+
+Attached clean (fetch, unshallow, checkout main, ff-merge onto `87ccec034`). Read `GOALS.md`, `git log`, the top `ops/NIGHTLY-LOG.md` entries, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub (8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs).
+
+**Step 2, was previous work finished? Yes, both room decks are merged to `main` (`a722bd190`/`bd99db870`), and `ops/b9-claims.json` shows both released as done. Kids Bedroom is genuinely still in progress, not abandoned: claimed 12:55, under the 3-hour staleness window at the time this cycle read it.**
+
+**One real defect found and fixed: `STATUS.md` cited three different, all-stale counts for the same production deploy gap.** `BLOCKER-001`'s own last entry and both table rows (Public Website, Production Traceability) still said "22 commits, 17 material" against build `159acc34b643d712`, the count from before Family Room and Living Room shipped. Caught by calling `deploy_gap_material_commits('7c6a83084')` directly rather than trusting the citation: real gap is 26 commits, not 22. Traced each of the five new arrivals with `git show --stat` rather than assumed: `a722bd190` and `76b56e3d4` (the two room decks, both real new pages) and `58d5724ae` (a related-reading regeneration visible across 17 zone pages, the same shape already established as material for `e6ee20807`) are material; `bd99db870` (the merge reconciling both rooms) and `b1bf3389` (a build-id restamp) are not. One previously-counted restamp, `63c53cee3`, no longer appears in the function's own output at all, the same path-simplification disappearance this file already recorded once for `ac1af6e7`. Fixed all three citation points in the same commit, following this file's own recurring-pattern convention (append, do not edit history). Verified directly: `deploy_gap_count_problem()` against the corrected file returns `''`.
+
+**Verification note, honestly incomplete.** A full `python ops/preflight.py` was started in the background early in this slot and had not finished its test suite (`gate_tests`) after roughly 25 minutes, longer than usual; not claiming it clean, per CLAUDE.md 0.4. What was actually verified directly: `deploy_gap_count_problem()` against the fixed `STATUS.md` (clean), `fix_dashes.py --check` (0 em dashes, 0 en dashes across the control layer), and a direct scan of the edited text for literal em/en dash characters (0 found). `ops/b9-claims.json` matches the true claim state. No new commits appeared on `origin/main` while this cycle worked, so no collision to reconcile.
+
+**Went well:** treating a stale multi-point citation as this slot's actual work rather than a footnote, and re-deriving the count from the gate's own function instead of hand-counting `git log`.
+
+**Did not go well:** the full preflight run did not finish inside a 30-minute slot; the specific gate this edit touches was verified directly instead, but the wider suite's result is genuinely unknown as of this commit.
+
+**Changing next cycle:** none new; the existing gate and its parsing already caught this correctly once re-run.
+
+Pushed to main. `STATUS.md` (three citation points), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, scheduled operator cycle (Family Room room deck, B9's thirteenth room, built by a delegated subagent, verified independently)
 
 **Did:** Unshallowed, attached to main, ff-forwarded, no conflict. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, recent NIGHTLY-LOG entries: epics 1-4 remain Phil-blocked (owner gates, art billing, VPS access), B9 room decks the correct unblocked epic-5 work, matching the prior cycle's own handoff naming Family Room as the next tied-smallest room. Confirmed no other session held an active B9 claim, then claimed Family Room via ops/b9_claims.py and pushed the claim commit alone first. Delegated the build to a subagent with the full established pattern (Guest Bathroom as the reference implementation, exact preflight.py registration points named, root cause vocabulary and real content.json zone text supplied as grounding material). It authored a diagnosis layer for all six zones (18 frictions, 54 branches, 6 first_15 actions, all 17 shared root causes genuinely reachable, the first room to reach every one), built ops/cardtext/build_family_room_deck.py and ops/build_family_room_deck_page.py (69 cards, sized to the room's own 6 real zones rather than a generic template budget, matching every other already-shipped room's own precedent), registered the gates and tests, and wired deck.html and the interactive test suite.
