@@ -150,6 +150,70 @@ def test_pycache_under_ops_tests_is_not_a_stray():
         preflight.SITE, preflight.ROOT = old_site, old_root
 
 
+def test_tracked_underscore_file_is_never_reported_or_deleted():
+    """Found live 2026-09-29: ops/tests/_worktree.py, a real, checked-in
+    helper module five gate-cleanliness tests import, matches this same
+    `ops/tests/_*` glob. A tracked file can never be a killed-run leftover
+    (a leftover is untracked by definition), so this gate must exempt
+    anything git actually tracks, checked directly rather than by a second
+    hand-maintained name list. Uses a real git repo, not a bare directory,
+    to exercise the actual `git ls-files` call this exemption depends on."""
+    import subprocess
+    tmp = tempfile.mkdtemp()
+    os.makedirs(os.path.join(tmp, "site"))
+    tests_dir = os.path.join(tmp, "ops", "tests")
+    os.makedirs(tests_dir)
+    tracked_path = os.path.join(tests_dir, "_worktree.py")
+    io.open(tracked_path, "w", encoding="utf-8").write("# real helper\n")
+    subprocess.run(["git", "init", "-q"], cwd=tmp, capture_output=True)
+    subprocess.run(["git", "-c", "user.email=t@example.com",
+                    "-c", "user.name=t", "add", "-A"], cwd=tmp,
+                   capture_output=True)
+    subprocess.run(["git", "-c", "user.email=t@example.com",
+                    "-c", "user.name=t", "commit", "-q", "-m", "initial"],
+                   cwd=tmp, capture_output=True)
+    old_site, old_root = preflight.SITE, preflight.ROOT
+    preflight.SITE = os.path.join(tmp, "site")
+    preflight.ROOT = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_no_stray_probe_files()
+        assert preflight.FAIL == [], (
+            f"a tracked file must never be reported as a stray probe "
+            f"file, got {preflight.FAIL}")
+        assert os.path.exists(tracked_path), (
+            "a tracked file must never be deleted by this gate")
+    finally:
+        preflight.SITE, preflight.ROOT = old_site, old_root
+
+
+def test_untracked_underscore_file_still_caught_in_a_real_repo():
+    """The other half of the same fix: an actually untracked stray file,
+    in a real git repo (not just a bare directory), must still be caught
+    and deleted. Proves the tracked-file exemption above did not
+    accidentally exempt everything."""
+    import subprocess
+    tmp = tempfile.mkdtemp()
+    os.makedirs(os.path.join(tmp, "site"))
+    tests_dir = os.path.join(tmp, "ops", "tests")
+    os.makedirs(tests_dir)
+    subprocess.run(["git", "init", "-q"], cwd=tmp, capture_output=True)
+    stray_path = os.path.join(tests_dir, "_scratch_leftover.html")
+    io.open(stray_path, "w", encoding="utf-8").write("<html></html>")
+    old_site, old_root = preflight.SITE, preflight.ROOT
+    preflight.SITE = os.path.join(tmp, "site")
+    preflight.ROOT = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_no_stray_probe_files()
+        assert len(preflight.FAIL) == 1, preflight.FAIL
+        assert "_scratch_leftover.html" in preflight.FAIL[0][1]
+        assert not os.path.exists(stray_path), (
+            "an untracked stray file must still be deleted")
+    finally:
+        preflight.SITE, preflight.ROOT = old_site, old_root
+
+
 def test_clean_ops_tests_dir_passes():
     tmp = tempfile.mkdtemp()
     os.makedirs(os.path.join(tmp, "site"))

@@ -11551,12 +11551,24 @@ def gate_no_stray_probe_files() -> None:
     the very next CI run after the widening merged. Excluded by basename
     below; the sweep still catches any real `_`-prefixed probe/fixture path.
     """
+    # Found 2026-09-29: a real, checked-in helper module,
+    # ops/tests/_worktree.py, matches this same glob. A tracked file can
+    # never be a killed-run leftover (a leftover is untracked by
+    # definition), so this gate must never delete one; checked directly
+    # against git's own index rather than a second hand-maintained
+    # exclusion list, so a future legitimate ops/tests/_*.py file needs no
+    # matching edit here either, the same reasoning the __pycache__
+    # exclusion already used.
+    tracked = set(subprocess.run(
+        ["git", "ls-files", "ops/tests"], cwd=ROOT,
+        capture_output=True, text=True).stdout.splitlines())
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
         for pat in (os.path.join(SITE, "**", "_*.html"),
                     os.path.join(ROOT, "ops", "tests", "_*"))
         for f in glob.glob(pat, recursive=True)
-        if os.path.basename(f) != "__pycache__")
+        if os.path.basename(f) != "__pycache__"
+        and os.path.relpath(f, ROOT).replace(os.sep, "/") not in tracked)
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture path(s) sitting in site/ or "
