@@ -16,9 +16,10 @@
     },
     {
       "room": "Kids Bedroom",
-      "status": "in_progress",
+      "status": "abandoned",
       "claimed_at": "2026-09-29T12:55:19Z",
-      "note": "scheduled operator cycle 2026-09-29, fourteenth room, 6 zones (Family Room claimed by a concurrent session first)"
+      "note": "scheduled operator cycle 2026-09-29, fourteenth room, 6 zones (Family Room claimed by a concurrent session first)",
+      "released_at": "2026-09-29T16:24:17Z: PM check-in confirmed this claim stale (3h28m, no deck file, no commit against it since the claim itself) at the same moment a concurrent operator cycle independently reclaimed the room fresh below; marked abandoned rather than done since no deck shipped from this claim"
     },
     {
       "room": "Living Room",
@@ -33,6 +34,12 @@
       "claimed_at": "2026-09-29T15:33:01Z",
       "note": "scheduled operator cycle 2026-09-29 15:2x, next tied-smallest unclaimed room, 6 zones (Kids Bedroom in progress by concurrent session, claimed 12:55, not stale)",
       "released_at": "2026-09-29T15:59:54Z"
+    },
+    {
+      "room": "Kids Bedroom",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T16:24:17Z",
+      "note": "scheduled operator cycle 2026-09-29 16:2x, prior claim stale (claimed 12:55, past the 3-hour window, no deck shipped), 6 zones"
     }
   ]
 }
