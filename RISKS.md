@@ -845,14 +845,14 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=202)
+  - every form on the site is inert (forms_dead=203)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
   - "every form on the site is inert" is no longer true as written. The
     footer form is present on 193 pages and IS wired, by ops/site.js, to a
     mailto path that opens the visitor's mail client with a one-line message,
-    and it fires a `list-signup` event. forms_dead=202 counts the STATIC
+    and it fires a `list-signup` event. forms_dead=203 counts the STATIC
     markup (`onsubmit="return false"`), which is still accurate for that
     narrow thing and misleading as a summary.
   - UPDATED 2026-09-22: forms_dead moved 193 to 194. The one addition is
@@ -890,6 +890,14 @@ evidence:
     the new stair-landing-deck.html (BACKLOG-2026-09-07.md B9, continued
     past its original five-room scope, the sixth room deck), same inert
     footer newsletter form, nothing new in kind.
+  - UPDATED 2026-09-29: forms_dead moved 201 to 202. The one addition is
+    the new pantry-deck.html (BACKLOG-2026-09-07.md B9 continued, the
+    eighth room deck), same inert footer newsletter form, nothing new in
+    kind.
+  - UPDATED 2026-09-29: forms_dead moved 202 to 203. The one addition is
+    the new hall-closet-deck.html (BACKLOG-2026-09-07.md B9 continued,
+    the ninth room deck), same inert footer newsletter form, nothing new
+    in kind.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,

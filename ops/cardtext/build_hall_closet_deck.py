@@ -31,9 +31,9 @@ room's deck already uses, so a household owning more than one deck keeps one
 diagnosis pile rather than several (DECK-GAME-DESIGN.md 4.3). Fourteen of
 the seventeen shared ids are reachable from this room's real frictions,
 counted honestly from the branches actually written below, not chosen first
-and filled in: KC-001, KC-002, KC-003, KC-004, KC-005, KC-006, KC-008,
-KC-009, KC-010, RC-013, RC-014, RC-015, RC-016, RC-017. KC-007, KC-011 and
-KC-012 are not reachable because nothing in this room's real diagnosis
+and filled in: KC-001, KC-002, KC-005, KC-006, KC-007, KC-008, KC-009,
+KC-010, KC-011, KC-012, RC-013, RC-014, RC-015, RC-017. KC-003, KC-004 and
+RC-016 are not reachable because nothing in this room's real diagnosis
 branches to them, and that is a true statement about this room's own
 frictions, not an oversight; nothing pads the count to a rounder number.
 
@@ -44,11 +44,13 @@ this line shipped at before any print-on-demand decision existed
 (DECK-GAME-DESIGN.md 4.1 is Kitchen's fixed-72 print-tier constraint, and it
 does not apply here; D-027 already settled that trimming or filling a
 room's honest count to chase a print tier is the wrong move). The budget
-below is the same shape as Entryway and Pantry, the other five-zone rooms in
-this line: five real zones, fifteen frictions (three per zone), fourteen
-reachable root causes, thirteen action cards (two per zone plus three
-whole-closet), five standard cards and five event cards. 58 cards in total,
-not padded or trimmed to match any other room's count.
+below is the same shape as Entryway and Pantry, the other five-zone rooms
+in this line: five real zones, fifteen frictions (three per zone), fourteen
+reachable root causes (one more than Pantry's thirteen, because this room's
+real frictions happen to reach EXCESS and POOR REPLENISHMENT where Pantry's
+did not), thirteen action cards (two per zone plus three whole-closet), five
+standard cards and five event cards. 58 cards in total, not padded or
+trimmed to match any other room's count.
 
 WHAT THIS DOES NOT DO
 ----------------------
@@ -93,9 +95,9 @@ TYPE_COLOUR = {
 # below from the Manual and asserted (in gate()) to be exactly this set: not
 # a number chosen first and filled in. Confirmed against
 # content/manual/source/content.json before this file was written.
-CAUSE_IDS = ["KC-001", "KC-002", "KC-003", "KC-004", "KC-005", "KC-006",
-             "KC-008", "KC-009", "KC-010", "RC-013", "RC-014", "RC-015",
-             "RC-016", "RC-017"]
+CAUSE_IDS = ["KC-001", "KC-002", "KC-005", "KC-006", "KC-007", "KC-008",
+             "KC-009", "KC-010", "KC-011", "KC-012", "RC-013", "RC-014",
+             "RC-015", "RC-017"]
 
 # ---------------------------------------------------------------------------
 # ZONE LAYER. Callouts are done_looks_like broken into six countable things,
@@ -105,84 +107,87 @@ CAUSE_IDS = ["KC-001", "KC-002", "KC-003", "KC-004", "KC-005", "KC-006",
 
 ZONES = {
  "Linen Shelf Zone": {
-  "id": "HCZ-001", "order": 1, "difficulty": 2,
-  "tagline": "THREE SETS PER BED. ONE PILLOWCASE EACH. THE COUNT ON THE SHELF.",
+  "id": "HCZ-001", "order": 1, "difficulty": 3,
+  "tagline": "THREE SETS PER BED. ONE PILLOWCASE EACH. THE SIZE ON THE EDGE.",
   "callouts": [
-   "Three sheet sets per bed, each bundled inside its own pillowcase",
-   "The bed size and count written on the shelf edge underneath",
-   "Everyday towels folded to one width in a stack no taller than a forearm",
-   "Two spare blankets on the top shelf with nothing balanced on them",
-   "Queen and king sets stored low, guest blankets on top",
-   "No loose, unmatched sheet lying outside a bundle",
+   "Sheet sets nested inside their own matching pillowcases",
+   "A bed-size label fixed to the shelf edge under each stack",
+   "A stack of folded everyday towels no taller than a forearm",
+   "Two spare blankets standing on the top shelf",
+   "Clear space above the blankets with nothing stacked on them",
+   "Queen and king sets sitting on a lower shelf than the guest blankets",
   ],
-  "art": ("a hallway closet shelf holding pillowcase-bundled sheet sets "
-          "grouped by bed size with a small dated count card on the "
-          "shelf edge, a stack of folded towels no taller than a "
-          "forearm beside them, and two spare blankets on the top "
-          "shelf"),
+  "art": ("a linen shelf holding neatly folded sheet sets each nested "
+          "inside its own matching pillowcase, a small dated label fixed "
+          "to the shelf edge beneath each stack, a stack of folded "
+          "towels no taller than a forearm, and two spare blankets "
+          "standing on the top shelf with nothing stacked on them"),
  },
  "Cleaning Equipment Zone": {
   "id": "HCZ-002", "order": 2, "difficulty": 2,
-  "tagline": "EVERY HANDLE ON THE RAIL. THE VACUUM INSIDE ITS OUTLINE.",
+  "tagline": "EVERYTHING HANGS. NOTHING TOUCHES THE FLOOR. THE DOOR SWINGS CLEAR.",
   "callouts": [
-   "Broom, mop and duster hanging handle-down from wall clips",
-   "Every head hanging clear of the closet floor",
-   "The vacuum parked inside a taped floor outline",
-   "Crevice tools and brush heads zipped in one bag clipped to the vacuum's handle",
-   "The vacuum's cord wrapped, not trailing loose",
+   "A vacuum standing inside a taped floor outline",
+   "Its cord wrapped neatly around the body",
+   "A zipped bag of attachments clipped to the vacuum's handle",
+   "A broom hanging handle-down from a wall clip, head clear of the floor",
+   "A mop and a duster hanging the same way, heads clear of the floor",
    "The closet door swinging fully open without touching anything",
   ],
-  "art": ("a wall-mounted rail in a hallway closet holding a broom, mop "
-          "and duster hanging handle-down with heads clear of the floor, "
-          "a vacuum parked inside a taped floor outline with its "
-          "attachment bag clipped to the handle"),
+  "art": ("a cleaning closet with a vacuum standing inside a taped floor "
+          "outline, its cord wrapped and a zipped attachment bag clipped "
+          "to its handle, a broom, mop and duster hanging handle-down "
+          "from wall clips with their heads clear of the floor, and the "
+          "closet door swinging fully open"),
  },
  "Cleaning Supply Zone": {
   "id": "HCZ-003", "order": 3, "difficulty": 3,
-  "tagline": "ONE CADDY PER ROOM. EVERY LABEL ORIGINAL. BLEACH APART FROM AMMONIA.",
+  "tagline": "ONE CADDY PER ROOM. BLEACH AND AMMONIA APART. OUT OF SMALL HANDS.",
   "callouts": [
-   "Two or three caddies, each labeled on the end with the room it serves",
-   "Every bottle wearing its original, legible label",
-   "Bleach products and ammonia products on separate shelves",
-   "Gloves and cloths riding inside each caddy with the sprays",
-   "The whole zone up out of a small child's reach or behind a latch",
-   "No sticky ring visible under any bottle",
+   "Two or three caddies, each labeled with the room it serves",
+   "Every bottle wearing its own original label",
+   "Bleach products standing on one shelf",
+   "Ammonia products standing on a separate shelf",
+   "A latch or height barrier keeping the zone out of a small child's reach",
+   "Gloves and cloths riding inside each caddy",
   ],
-  "art": ("labeled cleaning caddies standing on a hallway closet shelf, "
-          "each bottle inside showing its own legible original label, "
-          "bleach products visible on a separate shelf from "
-          "ammonia-based products"),
+  "art": ("a cleaning supply shelf holding two or three caddies each "
+          "with an end label naming its room, bleach products standing "
+          "on one shelf and ammonia-based products on a separate shelf, "
+          "and a latch fixed at the top of the closet door"),
  },
  "Paper and Household Backstock": {
   "id": "HCZ-004", "order": 4, "difficulty": 2,
-  "tagline": "A MINIMUM AND MAXIMUM ON EVERY BIN. EVERY LABEL FACING THE DOOR.",
+  "tagline": "A MINIMUM AND A MAXIMUM ON EVERY BIN. DATED. FACING THE DOOR.",
   "callouts": [
-   "Toilet roll in one clear bin with a minimum and maximum on the shelf edge",
+   "Toilet roll sitting loose in one clear bin",
+   "A card on the shelf edge reading a minimum and maximum count",
    "Bulbs in a labeled bin sorted by fitting",
-   "Batteries standing upright in a shallow tray, sorted by size",
-   "Every bin label facing the door",
-   "The heaviest packs stored at waist height, not overhead",
-   "Every pack dated with a marker, oldest at the front",
+   "Batteries standing upright in a shallow tray",
+   "Battery sizes readable without lifting a single pack out",
+   "Every bin label turned to face the door",
   ],
-  "art": ("a hallway closet shelf holding a clear toilet-roll bin with a "
-          "small dated count card on its shelf edge, a labeled bulb bin "
-          "sorted by fitting, and a shallow tray of batteries standing "
-          "upright sorted by size"),
+  "art": ("a household backstock shelf with toilet roll sitting loose "
+          "in a clear bin, a small dated card fixed to the shelf edge, "
+          "bulbs in a labeled bin sorted by fitting, and batteries "
+          "standing upright in a shallow tray with their sizes visible "
+          "without lifting one out"),
  },
  "Seasonal and Guest Zone": {
-  "id": "HCZ-005", "order": 5, "difficulty": 3,
-  "tagline": "ONE BIN PER OCCASION. A DATE ON EVERY LID. A MAP ON THE DOOR.",
+  "id": "HCZ-005", "order": 5, "difficulty": 2,
+  "tagline": "ONE BIN PER OCCASION. LABELED. MAPPED ON THE DOOR.",
   "callouts": [
-   "Three or four lidded bins on the upper shelf, each labeled with contents and a closing date",
-   "A photograph of each bin's contents taped to its own lid",
-   "Guest pillows sealed in a zip bag",
-   "A shelf map taped inside the door showing which bin sits where",
-   "Nothing overhead heavy enough to need both hands",
-   "No bin marked only \"misc\"",
+   "Three or four lidded bins standing on the upper shelf",
+   "A label on each bin naming its contents",
+   "The month each bin was last closed marked on its label",
+   "Guest pillows sealed inside a zip bag",
+   "A shelf map taped inside the closet door",
+   "Nothing overhead heavy enough to need both hands to lift",
   ],
-  "art": ("a hallway closet upper shelf holding lidded storage bins each "
-          "labeled with contents and a closing date, a photograph taped "
-          "to one lid, and a shelf map taped inside the closet door"),
+  "art": ("a closet upper shelf holding three or four lidded storage "
+          "bins each with its own label, guest pillows sealed inside a "
+          "zip bag, and a small paper map taped to the inside of the "
+          "closet door"),
  },
 }
 
@@ -191,250 +196,250 @@ ZONE_ORDER = [n for n, _ in sorted(ZONES.items(), key=lambda kv: kv[1]["order"])
 
 # ---------------------------------------------------------------------------
 # DIAGNOSIS LAYER. Written into content/manual/source/content.json by this
-# project (not this file): each zone's own "diagnosis" object holds
-# "frictions" (symptom plus branches to a shared root-cause id) and
-# "first_15" (a genuine fifteen-minute starting action and a checkable
-# victory condition). This dict is this file's own record of what that
-# layer is expected to hold, so build() can assert nothing has drifted
-# between the two files.
+# project (not this file, see scratch patch script used to write it): each
+# zone's own "diagnosis" object holds "frictions" (symptom plus branches to
+# a shared root-cause id) and "first_15" (a genuine fifteen-minute starting
+# action and a checkable victory condition). This dict is this file's own
+# record of what that layer is expected to hold, so build() can assert
+# nothing has drifted between the two files.
 # ---------------------------------------------------------------------------
 
 EXPECTED_DIAGNOSIS = {
  "Linen Shelf Zone": {
   "frictions": [
-   {"symptom": "The flat sheet whose fitted half vanished months ago is "
-               "still folded into the stack instead of already gone.",
+   {"symptom": "A sheet set too nice to use sits at the front of this "
+               "shelf year after year while the beds get slept on with "
+               "the worn ones.",
     "branches": [
-     {"answer": "I keep meaning to check if it's really orphaned before "
-                "I get rid of it", "cause": "RC-015"},
-     {"answer": "Nobody counts the pieces in a folded stack before it "
-                "goes back on the shelf", "cause": "KC-008"},
-     {"answer": "A folded stack hides a missing piece too well to notice "
-                "at a glance", "cause": "KC-005"},
+     {"answer": "It's the nicest set we own and I don't want it to wear "
+                "out", "cause": "RC-014"},
+     {"answer": "It's not really a decision I've made, I just keep "
+                "meaning to put it on a bed", "cause": "RC-015"},
+     {"answer": "It's been at the front of the shelf so long I don't "
+                "register it as odd anymore", "cause": "RC-017"},
     ]},
-   {"symptom": "A towel stack on this shelf stands taller than your "
-               "forearm, and the bottom towel only comes out with a "
-               "fight.",
+   {"symptom": "A towel stack on this shelf has grown taller than your "
+               "forearm, and pulling one from the bottom risks bringing "
+               "the whole stack down.",
     "branches": [
-     {"answer": "Pulling from the bottom of a stack that tall is how the "
-                "whole pile ends up on the floor", "cause": "KC-010"},
-     {"answer": "Nobody ever agreed on how tall a stack here is allowed "
+     {"answer": "There's no agreed limit on how tall a stack is allowed "
                 "to get", "cause": "KC-008"},
-     {"answer": "You stopped noticing how tall the stack had gotten, "
-                "since it grew a little at a time", "cause": "RC-017"},
+     {"answer": "Nobody checks stack height when folding laundry back "
+                "onto this shelf", "cause": "RC-013"},
+     {"answer": "The bracket holding this shelf has never been checked "
+                "to see if it's screwed into a stud", "cause": "KC-010"},
     ]},
-   {"symptom": "The good sheet set still sits at the front of the shelf, "
-               "unused, while the worn ones go back on the bed every "
-               "week.",
+   {"symptom": "A set sized for the guest bed is folded in among the "
+               "everyday sets, so the wrong size gets grabbed at "
+               "bedtime.",
     "branches": [
-     {"answer": "It's too nice to use and too nice to give away, so "
-                "nothing gets decided", "cause": "RC-015"},
-     {"answer": "It matters more as a keepsake than as something to "
-                "actually sleep on", "cause": "RC-014"},
-     {"answer": "Nobody wants to be the one who finally decides to use "
-                "it or let it go", "cause": "RC-013"},
+     {"answer": "There's no fixed spot per bed size, so sets get folded "
+                "wherever there's room", "cause": "KC-002"},
+     {"answer": "Two people fold the laundry differently, one groups by "
+                "size and one by whoever's turn it is", "cause": "KC-012"},
+     {"answer": "The shelf label only gives a count, not which edge "
+                "belongs to which size", "cause": "KC-008"},
     ]},
   ],
   "first_15": {
-   "action": "Pull every sheet set off the shelf, unfold each one fully, "
-             "and check it's complete and still fits a bed you still "
-             "own: the flat sheet with no fitted match, the elastic "
-             "that's gone slack, and anything that smells sour after "
-             "drying all leave today.",
-   "victory": "Every remaining set is a complete, matching set that fits "
-              "a real bed, and nothing waits folded that failed the "
-              "check.",
+   "action": "Unfold every set and check it is complete and fits a bed "
+             "you still own. The flat sheet whose fitted half vanished, "
+             "fitted sheets with slack elastic that pop off a corner at "
+             "three in the morning, and towels that smell sour an hour "
+             "after drying all leave.",
+   "victory": "Every set on the shelf is complete, fits a bed you still "
+              "own, and no towel carries a sour smell.",
   },
  },
  "Cleaning Equipment Zone": {
   "frictions": [
-   {"symptom": "A broom with splayed, worn bristles is still hanging on "
-               "the rail instead of already gone.",
+   {"symptom": "The vacuum with the split hose has been standing here "
+               "for months because throwing out a machine that mostly "
+               "works feels wasteful.",
     "branches": [
-     {"answer": "It has hung in that exact spot so long you stopped "
-                "seeing what its bristles actually look like",
-      "cause": "RC-017"},
-     {"answer": "There's no rule for when a broom counts as worn out "
-                "and needs replacing", "cause": "KC-008"},
-     {"answer": "The old vacuum kept for parts takes up the spot a "
-                "working broom should have", "cause": "KC-001"},
-    ]},
-   {"symptom": "A mop handle is left standing against the wall instead "
-               "of clipped to the rail, sliding down toward the "
-               "doorway.",
-    "branches": [
-     {"answer": "It's heavier and more awkward to clip than to lean, so "
-                "leaning wins in a hurry", "cause": "KC-004"},
-     {"answer": "Nobody wrapped the cord and parked the vacuum in its "
-                "outline last time, so the rail was never actually "
-                "clear to reach", "cause": "KC-009"},
-     {"answer": "A handle sliding down the wall and blocking the door "
-                "has genuinely hurt someone opening it before",
-      "cause": "KC-010"},
-    ]},
-   {"symptom": "The vacuum has a split hose and a dead brush roll, and "
-               "it still stands where the working one needs to stand.",
-    "branches": [
-     {"answer": "Throwing out a machine that mostly works feels "
-                "wasteful, so the decision keeps getting deferred",
+     {"answer": "I keep meaning to order the part and never quite do it",
       "cause": "RC-015"},
-     {"answer": "Nobody in the house is the one who actually orders the "
-                "part", "cause": "RC-013"},
-     {"answer": "There's no separate spot for a broken tool waiting on "
-                "a decision, so it just stays parked with the working "
-                "ones", "cause": "KC-002"},
+     {"answer": "There's no date attached to the repair, so 'later' has "
+                "no deadline", "cause": "KC-009"},
+     {"answer": "It's stood there so long I've stopped seeing it as "
+                "broken, just as 'the other vacuum'", "cause": "RC-017"},
+    ]},
+   {"symptom": "A broom handle has slid down the wall again and is "
+               "lying across the doorway instead of hanging from its "
+               "clip.",
+    "branches": [
+     {"answer": "The clip is the wrong size for this handle so it never "
+                "really holds", "cause": "KC-007"},
+     {"answer": "The clip sits at an awkward height, so leaning the "
+                "handle in the corner is just easier", "cause": "KC-006"},
+     {"answer": "Nobody agreed that leaning it in the corner still "
+                "counts as put away", "cause": "KC-008"},
+    ]},
+   {"symptom": "A damp mop head is resting against the vacuum's own "
+               "cord at the back of this closet, both shut behind a "
+               "closed door.",
+    "branches": [
+     {"answer": "There's nowhere else in the closet a wet mop head can "
+                "hang to dry first", "cause": "KC-002"},
+     {"answer": "Nobody checks the cord for cracks before it goes back, "
+                "wet or dry", "cause": "RC-013"},
+     {"answer": "It goes back wet because nothing prompts letting it "
+                "dry outside the closet first", "cause": "KC-009"},
     ]},
   ],
   "first_15": {
-   "action": "Stand every handle up and look at the working end: brooms "
+   "action": "Stand every handle up and look at the working end. Brooms "
              "with splayed bristles that push dust rather than gather "
-             "it, a mop head that no longer twists off its plate, and "
-             "the old vacuum you keep for parts you've never once "
+             "it, the mop head that no longer twists off its plate, and "
+             "the old vacuum you keep for parts you have never once "
              "harvested all go out this week.",
-   "victory": "Only tools that actually do their job stand in this "
-              "closet, and nothing broken is waiting on a repair that "
-              "was never going to happen.",
+   "victory": "Every remaining tool has a working end, and nothing is "
+              "being kept for parts that were never actually used.",
   },
  },
  "Cleaning Supply Zone": {
   "frictions": [
-   {"symptom": "Four half-used glass cleaners and three floor sprays "
-               "crowd the shelf instead of one open bottle of each.",
+   {"symptom": "Four glass cleaners and three floor sprays, each bottle "
+               "a third full, crowd this shelf because you can't tell "
+               "what's already here before buying another.",
     "branches": [
-     {"answer": "A new one gets bought because you can't see how much "
-                "is left in the old one", "cause": "KC-005"},
-     {"answer": "Nobody's ever called four of one thing too many, it's "
-                "just how the shelf fills up between shops",
-      "cause": "KC-001"},
-     {"answer": "There's no rule that only one bottle of a job stays "
-                "open at a time", "cause": "KC-008"},
+     {"answer": "You can't see the fill level from the doorway, so a "
+                "new one seems safer than trusting the old",
+      "cause": "KC-005"},
+     {"answer": "There's no rule that says one open bottle per job, so a "
+                "new bottle just joins the others", "cause": "KC-008"},
+     {"answer": "The shelf holds more of everything than any one job "
+                "actually needs", "cause": "KC-001"},
     ]},
-   {"symptom": "A spray bottle on this shelf carries no legible "
-               "original label, and nobody remembers what's actually "
-               "inside it.",
+   {"symptom": "A bottle of bleach sits on the same shelf as an "
+               "ammonia-based glass cleaner, both within reach from the "
+               "hallway floor.",
     "branches": [
-     {"answer": "It got decanted into a spare bottle at some point and "
-                "the label never got copied over", "cause": "KC-008"},
-     {"answer": "Bleach products and ammonia products end up stored "
-                "close together instead of on separate shelves",
-      "cause": "KC-010"},
-     {"answer": "Nothing prompts anyone to check a bottle's label before "
-                "it fades away completely", "cause": "KC-009"},
+     {"answer": "Nobody sorted this shelf by what's safe to store "
+                "together, only by what fits", "cause": "KC-010"},
+     {"answer": "The latch that used to keep small kids out broke "
+                "months ago and was never replaced", "cause": "RC-015"},
+     {"answer": "The two bottles have sat side by side so long the "
+                "mismatch doesn't register anymore", "cause": "RC-017"},
     ]},
-   {"symptom": "A dried sticky ring has formed at the base of a bottle, "
-               "right where the shelf liner should have caught it.",
+   {"symptom": "A row of aerosol cans and a solvent-based spray sit "
+               "against the closet wall that backs onto the boiler, on "
+               "the same shelf they've always used.",
     "branches": [
-     {"answer": "The shelf has no wipeable liner, so a drip soaks "
-                "straight into the wood before anyone notices",
-      "cause": "RC-016"},
-     {"answer": "Nobody wipes the base of the bottles when they go "
-                "back, only when there's an obvious mess",
-      "cause": "KC-009"},
-     {"answer": "It's tucked at the back of a dense shelf where a small "
-                "drip doesn't get noticed for weeks", "cause": "KC-005"},
+     {"answer": "These cans have always gone on this shelf, so nobody "
+                "questioned whether it's actually the safe spot",
+      "cause": "RC-017"},
+     {"answer": "Nobody's ever traced which wall of this closet backs "
+                "onto the boiler", "cause": "RC-013"},
+     {"answer": "The coolest shelf in this closet is already full of "
+                "something else, so the aerosols default to whatever's "
+                "left", "cause": "KC-007"},
     ]},
   ],
   "first_15": {
    "action": "Line every bottle up on the hallway floor. Anything "
-             "decanted into an unmarked spray bottle is disposed of "
-             "according to its own product's instructions, and the "
-             "specialty cleaner bought for one old stain goes with it.",
-   "victory": "Every bottle on the shelf carries its own legible "
-              "original label, and only one open bottle of each job "
-              "remains.",
+             "decanted into an unmarked spray bottle gets disposed of "
+             "according to its own instructions, and the specialty "
+             "cleaner bought for one stain years ago goes with it. Only "
+             "identical products get poured together.",
+   "victory": "Every bottle on the shelf is in its own original, "
+              "labeled container, and no two different products have "
+              "been mixed.",
   },
  },
  "Paper and Household Backstock": {
   "frictions": [
-   {"symptom": "A loose battery rolls free in this bin, and nobody can "
-               "vouch for whether it's still good or already dead.",
+   {"symptom": "A warehouse pack of paper towels bought on a deal is "
+               "too big to fit in its bin, so it sits blocking the "
+               "shelf instead.",
     "branches": [
-     {"answer": "Batteries get emptied out of their packaging instead "
-                "of staying in it, so there's no way to tell them apart "
-                "by age", "cause": "KC-008"},
-     {"answer": "A loose button cell at floor level is a real risk for "
-                "a small child in the hallway", "cause": "KC-010"},
-     {"answer": "Nobody sorts this tray by size until it's already a "
-                "mess of mixed batteries", "cause": "KC-009"},
+     {"answer": "There was no written maximum before the deal, so "
+                "nothing stopped you buying it", "cause": "KC-008"},
+     {"answer": "The bulk price felt like a saving even though it's "
+                "more than the shelf's job needs", "cause": "KC-001"},
+     {"answer": "You can't see how much is already on the shelf before "
+                "you buy more", "cause": "KC-005"},
     ]},
-   {"symptom": "The toilet roll bin is empty, and nobody mentioned it "
-               "was close before the last one came out.",
+   {"symptom": "A pack of bulbs at the back of this shelf is for a "
+               "fitting the house replaced with LED two years ago, and "
+               "nobody noticed until now.",
     "branches": [
-     {"answer": "Taking the last one and not saying anything is just "
-                "what happens here, it's nobody's job to flag it",
-      "cause": "RC-013"},
-     {"answer": "There's no minimum written on the shelf edge to catch "
-                "it before it runs out", "cause": "KC-008"},
-     {"answer": "The bin is solid sided, so the level isn't visible "
-                "until you actually lift the lid", "cause": "KC-005"},
+     {"answer": "Nothing gets dated or labeled with the fitting when it "
+                "arrives, so an outdated pack looks the same as a "
+                "current one", "cause": "KC-011"},
+     {"answer": "The oldest stock is buried behind the newest because "
+                "new stock goes in at the front", "cause": "KC-009"},
+     {"answer": "This shelf gets restocked but never audited, so it "
+                "just accumulates", "cause": "RC-013"},
     ]},
-   {"symptom": "A shrink-wrapped bulk pack sits above head height, and "
-               "the count already on the shelf below is well past any "
-               "written maximum.",
+   {"symptom": "Loose AAA batteries have rolled off a low shelf and are "
+               "sitting on the closet floor at a small child's eye "
+               "level.",
     "branches": [
-     {"answer": "The deal was good enough to buy even though there was "
-                "nowhere left on the shelf for it", "cause": "KC-001"},
-     {"answer": "Nothing this heavy should be stored above head height "
-                "where a tug brings it down on you", "cause": "KC-010"},
-     {"answer": "There's no maximum written on the shelf edge to say "
-                "the deal doesn't fit this time", "cause": "KC-008"},
+     {"answer": "Batteries get tipped in loose instead of standing "
+                "upright in a tray, so a knock sends them rolling",
+      "cause": "KC-008"},
+     {"answer": "This bin sits low enough for a small child to reach "
+                "without help", "cause": "KC-010"},
+     {"answer": "Nobody's swept this shelf floor since the last time "
+                "this happened", "cause": "RC-013"},
     ]},
   ],
   "first_15": {
    "action": "Take the lot out. Loose batteries you cannot vouch for, "
              "bulbs for fittings you replaced when you went over to "
-             "LED, and any bulk pack too big to lift down alone all "
-             "leave now.",
-   "victory": "Every battery is sorted by size in its tray, every bulb "
-              "is boxed by fitting, and nothing left on the shelf is "
-              "too heavy or too high to lift down alone.",
+             "LED, and the bulk paper towel pack too big to lift down "
+             "alone all leave now.",
+   "victory": "Every battery is in its original pack, every bulb fits a "
+              "fitting the house still uses, and nothing on the shelf "
+              "is too heavy to lift down alone.",
   },
  },
  "Seasonal and Guest Zone": {
   "frictions": [
-   {"symptom": "A bin marked misc has moved through two closet "
+   {"symptom": "A sealed bin has survived a house move and two closet "
                "reshuffles, and nobody can say what's actually inside "
                "it without opening it.",
     "branches": [
-     {"answer": "Naming what's inside and deciding on each thing is a "
-                "bigger job than just leaving the lid on",
-      "cause": "RC-015"},
-     {"answer": "A sealed bin on a high shelf is the easiest place in "
-                "the house to defer a decision, out of sight and out of "
-                "mind", "cause": "KC-005"},
-     {"answer": "There's no label naming its contents or the date it "
-                "was last opened", "cause": "KC-008"},
+     {"answer": "It's easier to keep moving it than to open it and "
+                "decide", "cause": "RC-015"},
+     {"answer": "It was labeled 'misc' when it was packed, and 'misc' "
+                "hasn't been questioned since", "cause": "KC-008"},
+     {"answer": "It's been sitting there so long it just reads as "
+                "storage, not as a thing to deal with", "cause": "RC-017"},
     ]},
-   {"symptom": "Guest bedding comes back from the wash and lands on the "
-               "everyday linen shelf instead of its own labeled bin.",
+   {"symptom": "Getting the good decorations down means standing on a "
+               "hallway chair and reaching overhead, because there's no "
+               "step stool kept in this closet.",
     "branches": [
-     {"answer": "There's no separate labeled bin actually waiting for "
-                "it, so it goes wherever there's room", "cause": "KC-002"},
-     {"answer": "Whoever strips the guest bed isn't the one who knows "
-                "where the seasonal bins live", "cause": "RC-013"},
-     {"answer": "It's faster to drop it on the nearest shelf than to "
-                "find and reopen the right bin", "cause": "KC-004"},
+     {"answer": "There's nowhere in this closet a stool actually lives, "
+                "so whatever's nearby gets used instead", "cause": "KC-006"},
+     {"answer": "The heaviest bins ended up on the top shelf because "
+                "that's where there was room when they were packed",
+      "cause": "KC-002"},
+     {"answer": "Nobody re-checked shelf heights after the last time "
+                "someone needed a chair to reach one", "cause": "RC-013"},
     ]},
-   {"symptom": "Reaching a top-shelf bin means standing on a hallway "
-               "chair, with a lid blocking the view of the step down.",
+   {"symptom": "A guest pillow has gone flat and yellowed inside its "
+               "bin, and nobody noticed until it came out for an actual "
+               "guest.",
     "branches": [
-     {"answer": "There's no stool kept near this closet, so a chair is "
-                "what's nearest", "cause": "KC-006"},
-     {"answer": "A bin of decorations is heavier than it looks once "
-                "it's overhead and shifts weight coming down",
-      "cause": "KC-010"},
-     {"answer": "Nobody moved the heaviest bins down to a lower shelf "
-                "when the closet was last reset", "cause": "KC-003"},
+     {"answer": "The bin only gets opened right before a guest arrives, "
+                "so a tired pillow is never caught early", "cause": "KC-009"},
+     {"answer": "There's no date on the bin telling you how long that "
+                "pillow has actually been in there", "cause": "KC-008"},
+     {"answer": "A flat, yellowed pillow still looks like a stored "
+                "pillow from the outside of a sealed bin", "cause": "KC-005"},
     ]},
   ],
   "first_15": {
-   "action": "Take every lid off, on the floor, in daylight. "
-             "Decorations for a tree you no longer put up, a guest "
-             "pillow gone flat and yellow, and any bin marked misc "
+   "action": "Every lid comes off, on the floor, in daylight. "
+             "Decorations for a tree you no longer put up, the guest "
+             "pillow gone flat and yellow, and the bin marked \"misc\" "
              "whose contents you cannot name without looking all go.",
-   "victory": "Every remaining bin holds one named occasion, and "
-              "nothing sealed inside it is something you couldn't name "
-              "from memory.",
+   "victory": "Every remaining bin can be named without opening it, and "
+              "nothing inside is flat, yellowed, or for a tradition you "
+              "no longer keep.",
   },
  },
 }
@@ -449,113 +454,105 @@ EXPECTED_DIAGNOSIS = {
 # ---------------------------------------------------------------------------
 
 FRICTION_META = [
- ("Linen Shelf Zone", "HCF-001", "THE SHEET THAT LOST ITS OTHER HALF",
-  "a folded stack of bed sheets on a hallway closet shelf with one flat "
-  "sheet lying loose and unmatched beside a neat folded set, no fitted "
-  "sheet visible near it"),
- ("Linen Shelf Zone", "HCF-002", "A TOWEL STACK TALLER THAN YOUR FOREARM",
-  "a hallway closet shelf holding a stack of folded towels taller than "
-  "a forearm's length, the top towel wobbling slightly"),
- ("Linen Shelf Zone", "HCF-003", "THE GOOD SET NOBODY PUTS ON A BED",
-  "a nicer, more decorative sheet set sitting untouched at the front of "
-  "a hallway closet shelf ahead of visibly worn, faded sheet sets "
-  "behind it"),
+ ("Linen Shelf Zone", "HCF-001", "THE GOOD SET YOU NEVER PUT ON A BED",
+  "a noticeably nicer folded sheet set sitting at the very front of a "
+  "linen shelf, visibly untouched compared to the worn everyday sets "
+  "stacked behind it"),
+ ("Linen Shelf Zone", "HCF-002", "THE STACK TALLER THAN YOUR FOREARM",
+  "a folded towel stack on a linen shelf rising well above forearm "
+  "height, the stack visibly leaning and about to topple"),
+ ("Linen Shelf Zone", "HCF-003", "THE GUEST SIZE HIDING AMONG THE EVERYDAY SETS",
+  "a folded sheet set of a different, larger size sitting wedged among "
+  "a row of everyday-sized sheet sets on a linen shelf, no visible way "
+  "to tell them apart at a glance"),
 
- ("Cleaning Equipment Zone", "HCF-004",
-  "A BROOM THAT PUSHES DUST INSTEAD OF GATHERING IT",
-  "a broom hanging from a hallway closet rail with its bristles "
-  "visibly splayed outward instead of gathered in a point"),
- ("Cleaning Equipment Zone", "HCF-005",
-  "A MOP HANDLE SLIDING TOWARD THE DOORWAY",
-  "a mop handle leaning against a hallway closet wall, sliding down "
-  "toward the closet doorway instead of hanging from a wall clip"),
- ("Cleaning Equipment Zone", "HCF-006",
-  "THE VACUUM WAITING ON A REPAIR THAT NEVER COMES",
-  "an upright vacuum cleaner standing in a hallway closet with a "
-  "visibly split hose, a strip of masking tape wrapped around its "
-  "handle"),
+ ("Cleaning Equipment Zone", "HCF-004", "THE VACUUM YOU KEEP MEANING TO FIX",
+  "an older vacuum cleaner with a visibly split hose standing in a "
+  "cleaning closet corner, parked apart from a working vacuum inside "
+  "its own taped outline"),
+ ("Cleaning Equipment Zone", "HCF-005", "THE HANDLE ACROSS THE DOORWAY",
+  "a broom handle fallen across the floor of an open closet doorway, "
+  "its wall clip visible standing empty above it"),
+ ("Cleaning Equipment Zone", "HCF-006", "THE DAMP MOP AGAINST THE CORD",
+  "a damp mop head resting directly against a coiled vacuum cord at the "
+  "back of a closed cleaning closet"),
 
- ("Cleaning Supply Zone", "HCF-007",
-  "FOUR HALF-USED BOTTLES OF THE SAME SPRAY",
-  "four nearly identical spray bottles of glass cleaner crowded "
-  "together on a hallway closet shelf, each only a third full"),
- ("Cleaning Supply Zone", "HCF-008",
-  "A SPRAY BOTTLE WITH NO LABEL LEFT TO READ",
-  "a spray bottle on a hallway closet shelf with its original label "
-  "worn away to nothing, standing among other clearly labeled bottles"),
- ("Cleaning Supply Zone", "HCF-009", "A STICKY RING DRIED ONTO THE SHELF",
-  "a dried sticky ring stain on a hallway closet shelf board where a "
-  "cleaning bottle has been standing"),
+ ("Cleaning Supply Zone", "HCF-007", "ELEVEN BOTTLES, EACH A THIRD FULL",
+  "a crowded cleaning supply shelf holding several duplicate glass "
+  "cleaner and floor spray bottles, each visibly only partly full"),
+ ("Cleaning Supply Zone", "HCF-008", "BLEACH BESIDE THE AMMONIA CLEANER",
+  "a bottle of bleach standing directly beside an ammonia-based glass "
+  "cleaner on a low cleaning supply shelf within reach from the hallway "
+  "floor"),
+ ("Cleaning Supply Zone", "HCF-009", "THE AEROSOLS AGAINST THE WARM WALL",
+  "a row of aerosol cans and a solvent-based spray bottle standing "
+  "against a closet wall, positioned close to a household boiler "
+  "visible on the other side"),
 
- ("Paper and Household Backstock", "HCF-010",
-  "A LOOSE BATTERY NOBODY CAN VOUCH FOR",
-  "a shallow tray in a hallway closet holding a loose jumble of "
-  "mismatched batteries with no packaging to identify them"),
- ("Paper and Household Backstock", "HCF-011",
-  "THE LAST ROLL LEAVES WITH NO WARNING",
-  "an open toilet-roll storage bin in a hallway closet sitting "
-  "completely empty"),
- ("Paper and Household Backstock", "HCF-012",
-  "A BULK PACK OVERHEAD, PAST ANY WRITTEN LIMIT",
-  "a shrink-wrapped bulk pack of paper towels sitting on a hallway "
-  "closet shelf above head height, stacked well past a marked "
-  "shelf-edge limit"),
+ ("Paper and Household Backstock", "HCF-010", "THE WAREHOUSE PACK THAT WON'T FIT THE BIN",
+  "an oversized shrink-wrapped bulk pack of paper towels wedged "
+  "sideways across a backstock shelf, blocking the bins around it"),
+ ("Paper and Household Backstock", "HCF-011", "THE BULB PACK FOR A FITTING THAT'S GONE",
+  "a dusty, undated pack of incandescent bulbs sitting at the back of a "
+  "backstock shelf behind newer LED bulb packs"),
+ ("Paper and Household Backstock", "HCF-012", "LOOSE BATTERIES AT A CHILD'S EYE LEVEL",
+  "several loose AAA batteries scattered across a low closet floor near "
+  "the doorway, at the exact height a small child would notice them"),
 
- ("Seasonal and Guest Zone", "HCF-013",
-  "THE BIN MARKED MISC, MOVED THREE TIMES UNOPENED",
-  "a plain storage bin on a high hallway closet shelf with no visible "
-  "label, positioned among other clearly labeled bins"),
- ("Seasonal and Guest Zone", "HCF-014",
-  "GUEST BEDDING STRAYS ONTO THE EVERYDAY SHELF",
-  "folded guest bedding sitting on top of an everyday linen stack on a "
-  "hallway closet shelf instead of inside its own separate bin"),
- ("Seasonal and Guest Zone", "HCF-015", "A CHAIR STANDING IN FOR A STOOL",
-  "a hallway chair positioned beneath a high closet shelf, someone's "
-  "feet visible standing on its seat reaching upward"),
+ ("Seasonal and Guest Zone", "HCF-013", "THE BIN YOU'VE MOVED THREE TIMES WITHOUT OPENING",
+  "a sealed, unlabeled storage bin sitting on an upper closet shelf, "
+  "visibly older and more battered than the bins around it"),
+ ("Seasonal and Guest Zone", "HCF-014", "REACHING FROM A HALLWAY CHAIR",
+  "a hallway chair pulled up beside an open closet, positioned beneath "
+  "a heavy bin sitting on the topmost shelf with no step stool anywhere "
+  "in view"),
+ ("Seasonal and Guest Zone", "HCF-015", "THE PILLOW THAT WENT FLAT INSIDE THE BIN",
+  "a visibly flat, yellowed pillow lying inside an open storage bin on "
+  "a closet shelf, undated and indistinguishable from the sealed bins "
+  "around it"),
 ]
 
 
 # ---------------------------------------------------------------------------
-# ROOT CAUSE LAYER, hall-closet-scened art only. The name, meaning, six_s
-# and confirm_in_30_seconds text are not reauthored: they are read straight
+# ROOT CAUSE LAYER, hall-closet-scened art only. The name, meaning, six_s and
+# confirm_in_30_seconds text are not reauthored: they are read straight
 # from ops/root_causes.py, the one shared vocabulary the deck, the app and
 # the articles all already use.
 # ---------------------------------------------------------------------------
 
 CAUSE_ART = {
- "KC-001": "four nearly identical spray bottles crowded together on a "
-           "hallway closet shelf, far more than one open bottle of that "
-           "job would ever need",
- "KC-002": "a stack of folded guest bedding sitting on top of the "
-           "everyday linen shelf with no labeled bin nearby to hold it",
- "KC-003": "a heavy storage bin sitting on a high hallway closet shelf "
-           "well above head height, with a lower empty shelf visible "
-           "beneath it",
- "KC-004": "a mop leaning unclipped against a hallway closet wall "
-           "instead of hanging from the rail within easy reach",
- "KC-005": "a solid-sided storage bin in a hallway closet with no way "
-           "to see how full it is without lifting the lid",
- "KC-006": "a hallway chair standing in for a step stool beneath a high "
-           "closet shelf, no stool anywhere in sight",
- "KC-008": "a bare hallway closet shelf edge with no count card or "
-           "label anywhere on it, bins stacked with no visible rule",
- "KC-009": "an empty toilet-roll bin in a hallway closet with no "
-           "shopping list nearby and no note that it needs restocking",
- "KC-010": "a heavy bulk pack sitting on a hallway closet shelf above "
-           "head height, positioned to slide free at the slightest tug",
- "RC-013": "an unrefilled storage bin sitting empty in a hallway closet "
-           "at the end of the day, no single person's name attached to "
-           "restocking it",
- "RC-014": "a nicer sheet set kept folded and untouched at the front of "
-           "a hallway closet shelf instead of ever going onto a bed",
- "RC-015": "a sealed storage bin marked vaguely, sitting untouched on a "
-           "hallway closet shelf, clearly not yet decided about",
- "RC-016": "a hand reaching awkwardly behind a dense row of bottles on "
-           "a hallway closet shelf toward a dried sticky ring that is "
-           "hard to reach",
- "RC-017": "a worn broom with splayed bristles hanging in a hallway "
-           "closet exactly where it has hung, unnoticed, for a long "
-           "time",
+ "KC-001": "a cleaning supply shelf crowded with far more partly-used "
+           "bottles than a single job would ever need",
+ "KC-002": "a heavy storage bin sitting on whatever shelf had room when "
+           "it was packed, no dedicated spot cleared for it",
+ "KC-005": "a sealed opaque storage bin on a closet shelf giving no "
+           "hint of what is inside it",
+ "KC-006": "a hallway chair standing in for a step stool beneath a "
+           "high closet shelf, no stool anywhere in the closet itself",
+ "KC-007": "a wall clip too small for the broom handle it is meant to "
+           "hold, the handle slipping free of it",
+ "KC-008": "a bare shelf edge in a closet with no dated card or count "
+           "marker anywhere on it",
+ "KC-009": "a vacuum with a split hose standing untouched in a closet "
+           "corner, no repair date marked anywhere on it",
+ "KC-010": "a bottle of bleach standing directly beside an "
+           "ammonia-based cleaner on a shelf within a small child's "
+           "reach",
+ "KC-011": "an undated pack of bulbs sitting at the back of a "
+           "backstock shelf for a fitting the house no longer uses",
+ "KC-012": "two differently folded stacks of the same linen sitting "
+           "side by side on one shelf, one style clearly not matching "
+           "the other",
+ "RC-013": "an unrefilled bin sitting on a closet shelf at the end of "
+           "the day, no single person's name attached to it",
+ "RC-014": "a noticeably nicer sheet set sitting untouched at the "
+           "front of a linen shelf, visibly never used",
+ "RC-015": "a sealed, undated storage bin sitting on a closet shelf "
+           "that has clearly been moved more than once without ever "
+           "being opened",
+ "RC-017": "a vacuum with a split hose standing so long in its closet "
+           "corner that it now blends in among the working equipment "
+           "around it",
 }
 
 
@@ -566,44 +563,44 @@ CAUSE_ART = {
 
 MICRO_QUESTS = {
  "Linen Shelf Zone": [
-  "Run a hand along the shelf's front lip and check for the grey dust "
-  "line before it thickens onto the clean stack below it.",
-  "Wipe the shelf brackets and the underside of the board above with a "
-  "dry cloth, catching the fluff that clings and drops onto the stack.",
-  "Shake out one folded sheet set and refold it to the same width as "
-  "its neighbors, checking for a musty note as you go.",
+  "Run a hand along the shelf lip where dust drifts down onto the "
+  "folded stacks and wipe it clear before it settles onto clean linen.",
+  "Check the underside of one shelf bracket for dust that clings and "
+  "drops onto the stack below it.",
+  "Shake out one folded set and refold it to the same width as the "
+  "rest, catching a musty note before it seals back into the stack.",
  ],
  "Cleaning Equipment Zone": [
-  "Empty the vacuum canister into the bin and wipe it out before it "
-  "goes back inside the taped outline.",
-  "Comb the broom bristles clear of trapped hair and thread, letting "
-  "nothing carry back onto the floor you just swept.",
-  "Run each cord through a folded cloth along its whole length as you "
-  "coil it, lifting off the dust that collects in the loops.",
+  "Wipe the vacuum cord down its full length and check for a cracked "
+  "patch of insulation near the plug.",
+  "Take the mop head off its handle and rinse it clean before it hangs "
+  "back up damp.",
+  "Wipe the wall clips themselves where grime builds up behind the "
+  "tool nobody moves to check.",
  ],
  "Cleaning Supply Zone": [
-  "Wipe the crusted ring off the base of one bottle and clean the "
-  "dried run down its neck before it goes back on the shelf.",
-  "Lift the shelf liner, rinse both faces, and lay it back flat so the "
-  "next slow drip lands on something wipeable.",
-  "Wipe the inside of a caddy's divider walls and its handle where "
-  "product residue gathers most.",
+  "Wipe the outside of one caddy down where sprayed product drips and "
+  "dries into a film nobody notices.",
+  "Check the latch or barrier keeping this shelf out of reach still "
+  "closes fully.",
+  "Wipe the shelf edge under the bottles where a ring of residue "
+  "collects unseen.",
  ],
  "Paper and Household Backstock": [
-  "Lift the battery tray out, wipe the bottom clean, and watch for a "
-  "white crust before it dries back before the batteries return.",
-  "Press the underside of one paper pack stored against the outside "
-  "wall to check for damp before it soaks through unnoticed.",
-  "Tip the paper dust and cardboard flecks from the bottom corners of "
-  "the toilet-roll bin before it goes back on the shelf.",
+  "Check the fill level in the clear toilet roll bin against its own "
+  "minimum card.",
+  "Wipe the shelf edge label clean so its minimum and maximum stay "
+  "legible from across the room.",
+  "Turn the battery tray so every size is readable without lifting a "
+  "single pack out.",
  ],
  "Seasonal and Guest Zone": [
-  "Put your nose to the bottom of one open bin and check for the "
-  "mustiness that means something went in damp.",
-  "Wipe the dust off the top of a bin lid before you set it aside, so "
-  "none of it tips down into the open bin below.",
-  "Check the shelf map taped inside the closet door is still legible "
-  "and still matches what's actually on each shelf.",
+  "Check one bin's label still names what's inside and when it was "
+  "last closed.",
+  "Wipe the shelf map taped inside the door so it stays legible for "
+  "whoever opens this closet next.",
+  "Feel the zip bag holding the guest pillows for any damp before it "
+  "goes back on the shelf.",
  ],
 }
 
@@ -612,341 +609,321 @@ MICRO_QUESTS = {
 # ACTION LAYER. Two per zone: the 15-minute reset (the Manual's own
 # first_15 action and victory condition, quoted and gate-checked, expanded
 # into a short numbered script) and an authored 30-minute rebuild. Three
-# more whole-room actions, the same shape every other room's whole-room
+# more whole-closet actions, the same shape every other room's whole-room
 # cards use: no zone or standard invented for them, only their real root
 # causes.
 # ---------------------------------------------------------------------------
 
 ACTIONS = [
  {"id": "HCA-001", "zone": "Linen Shelf Zone",
-  "title": "UNFOLD EVERY SET AND CHECK IT'S WHOLE",
+  "title": "CLEAR THE SHELF AND CHECK EVERY SET",
   "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
-  "goal": "Pull every sheet set off the shelf, unfold each one fully, "
-          "and check it is complete and still fits a bed in this "
-          "house.",
-  "why": "A set that's missing its match or gone slack at the elastic "
-         "is impossible to use in the moment you actually reach for it.",
-  "inputs": ["a bin bag", "the hallway floor"],
-  "steps": [
-   "Pull every sheet set off the shelf, unfold each one fully, and "
-   "check it's complete and still fits a bed you still own: the flat "
-   "sheet with no fitted match, the elastic that's gone slack, and "
-   "anything that smells sour after drying all leave today.",
-   "Set aside anything unopened and genuinely still useful to give "
-   "away rather than binning it.",
-   "Refold what stays to one width and group by bed size."],
-  "causes": ["KC-005", "RC-014"],
-  "victory": "Every remaining set is a complete, matching set that fits "
-             "a real bed, and nothing waits folded that failed the "
-             "check.",
-  "next": "HCS-001",
-  "art": "a hallway closet shelf mid-clear with unfolded sheet sets "
-         "laid out on the floor, one incomplete set set apart from the "
-         "rest"},
-
- {"id": "HCA-002", "zone": "Linen Shelf Zone",
-  "title": "BUNDLE EACH SET AND LABEL THE SHELF EDGE",
-  "minutes": 30, "players": "1", "six_s": "Standardize",
-  "goal": "Fold each set to one uniform footprint, bundle it inside its "
-          "own pillowcase, and write the bed size and count on the "
-          "shelf edge.",
-  "why": "A shelf label that only names the size and not the count "
-         "still leaves a laundry-day guess.",
-  "inputs": ["pillowcases already on hand", "a permanent marker",
-             "adhesive shelf-edge labels"],
-  "steps": [
-   "Fold each set to one uniform footprint and bundle it inside its "
-   "own pillowcase so a bed change is one grab, not four.",
-   "Group bundles by bed size: queen and king low, everyday towels at "
-   "chest height, guest blankets on top.",
-   "Write the size and count on the shelf edge underneath, not just "
-   "the name."],
-  "causes": ["KC-008", "RC-015"],
-  "victory": "Every bed's sets are bundled inside their own "
-             "pillowcases, and the shelf edge names both the size and "
-             "the count.",
-  "next": "HCA-001",
-  "art": "a hand writing a bed size and a count onto a shelf-edge "
-         "label beneath a shelf of pillowcase-bundled sheet sets"},
-
- {"id": "HCA-003", "zone": "Cleaning Equipment Zone",
-  "title": "STAND UP EVERY TOOL AND CHECK THE WORKING END",
-  "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
-  "goal": "Stand every handle up and look at the working end, removing "
-          "anything that no longer does its job.",
-  "why": "A broom that pushes dust instead of gathering it, or a spare "
-         "vacuum kept for parts never harvested, is taking up the spot "
-         "a working tool needs.",
+  "goal": "Unfold every set and check it is complete and fits a bed you "
+          "still own, so nothing half-usable survives on a technicality.",
+  "why": "A set with a missing half or slack elastic only reveals "
+         "itself at three in the morning, the worst possible time to "
+         "find out.",
   "inputs": ["a bin bag"],
   "steps": [
-   "Stand every handle up and look at the working end: brooms with "
-   "splayed bristles that push dust rather than gather it, a mop head "
-   "that no longer twists off its plate, and the old vacuum you keep "
-   "for parts you've never once harvested all go out this week.",
-   "Recycle what can be recycled, and clear the floor space they were "
-   "taking."],
-  "causes": ["KC-001", "RC-017"],
-  "victory": "Only tools that actually do their job stand in this "
-             "closet, and nothing broken is waiting on a repair that "
-             "was never going to happen.",
-  "next": "HCS-002",
-  "art": "a row of cleaning tools standing upright in a hallway "
-         "closet, one broom with splayed bristles set apart to be "
-         "discarded"},
+   "Unfold every set and check it is complete and fits a bed you still "
+   "own. The flat sheet whose fitted half vanished, fitted sheets with "
+   "slack elastic that pop off a corner at three in the morning, and "
+   "towels that smell sour an hour after drying all leave.",
+   "Set aside anything still good but unlikely to get used, to give "
+   "away rather than bin.",
+   "Re-nest each surviving set inside its own matching pillowcase "
+   "before it goes back."],
+  "causes": ["RC-014", "RC-015"],
+  "victory": "Every set on the shelf is complete, fits a bed you still "
+             "own, and no towel carries a sour smell.",
+  "next": "HCS-001",
+  "art": "a linen shelf mid-clear with a matched set half-nested into "
+         "its own pillowcase, a bin bag sitting on the floor beside it"},
 
- {"id": "HCA-004", "zone": "Cleaning Equipment Zone",
-  "title": "FIT THE RAIL AND TAPE THE VACUUM'S OUTLINE",
-  "minutes": 30, "players": "1", "six_s": "Straighten",
-  "goal": "Fit a rail so each tool hangs with its head clear of the "
-          "floor, and tape a floor outline for the vacuum with its "
-          "attachments bagged on the handle.",
-  "why": "A mop head left standing on the floor bends over and "
-         "re-soils what you just cleaned, and an unclipped handle is "
-         "what slides down across the doorway.",
-  "inputs": ["a wall rail with hooks", "tape for the floor outline",
-             "a small zip bag for attachments"],
-  "steps": [
-   "Fit a rail and hang each tool so bristles and mop heads swing "
-   "free of the floor.",
-   "Tape an outline for the vacuum's footprint on the closet floor.",
-   "Zip the crevice tools and brush heads into one bag clipped to the "
-   "vacuum's handle."],
-  "causes": ["KC-004", "KC-009"],
-  "victory": "Handles hang from the rail with heads clear of the "
-             "floor, the vacuum parks inside its taped outline, and "
-             "the attachment bag rides on its handle.",
-  "next": "HCA-003",
-  "art": "a wall-mounted rail in a hallway closet holding a broom, mop "
-         "and duster hanging handle-down, a taped floor outline "
-         "visible below with a vacuum parked inside it"},
-
- {"id": "HCA-005", "zone": "Cleaning Supply Zone",
-  "title": "LINE UP EVERY BOTTLE AND CLEAR THE UNMARKED ONES",
-  "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
-  "goal": "Line every bottle up on the hallway floor, and remove "
-          "anything decanted into an unmarked spray bottle or bought "
-          "for one old stain.",
-  "why": "A bottle with no legible original label is a guess every "
-         "time you reach for it, and pouring like into like is the "
-         "only way to know what's actually here.",
-  "inputs": ["the hallway floor", "a bin bag"],
-  "steps": [
-   "Line every bottle up on the hallway floor. Anything decanted into "
-   "an unmarked spray bottle is disposed of according to its own "
-   "product's instructions, and the specialty cleaner bought for one "
-   "old stain goes with it.",
-   "Pour only identical products together into one bottle.",
-   "Set the survivors back with every label facing out."],
-  "causes": ["RC-016", "KC-009"],
-  "victory": "Every bottle on the shelf carries its own legible "
-             "original label, and only one open bottle of each job "
-             "remains.",
-  "next": "HCS-003",
-  "art": "cleaning bottles lined up on a hallway floor, one unmarked "
-         "spray bottle set apart from a row of clearly labeled ones"},
-
- {"id": "HCA-006", "zone": "Cleaning Supply Zone",
-  "title": "BUILD ONE CADDY PER ROOM",
-  "minutes": 30, "players": "1", "six_s": "Straighten",
-  "goal": "Build a bathroom caddy and a kitchen caddy so the whole job "
-          "for that room travels in one hand, and keep bleach and "
-          "ammonia products on separate shelves.",
-  "why": "Sending yourself back to this closet twice mid-clean is the "
-         "walk this caddy exists to remove, and bleach beside ammonia "
-         "is the one combination to refuse outright.",
-  "inputs": ["two caddies", "adhesive labels for the caddy ends"],
-  "steps": [
-   "Build a bathroom caddy and a kitchen caddy, with gloves and "
-   "cloths riding inside each one alongside the sprays.",
-   "Label each caddy's end with the room it serves.",
-   "Move bleach products and ammonia products onto separate shelves, "
-   "out of a small child's reach or behind a latch."],
-  "causes": ["KC-002", "KC-010"],
-  "victory": "One caddy per room carries its own labeled sprays and "
-             "cloths, and bleach and ammonia products sit on separate "
-             "shelves.",
-  "next": "HCA-005",
-  "art": "two labeled cleaning caddies standing ready in a hallway "
-         "closet, one marked for the bathroom and one for the kitchen, "
-         "bleach and ammonia products visible on separate shelves "
-         "behind them"},
-
- {"id": "HCA-007", "zone": "Paper and Household Backstock",
-  "title": "TAKE THE LOT OUT AND SORT BY SIZE",
-  "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
-  "goal": "Take every battery, bulb, and paper pack out onto the "
-          "hallway floor, removing anything you can't vouch for or "
-          "can't lift safely alone.",
-  "why": "A loose battery nobody can vouch for and a fitting you "
-         "replaced months ago are both still costing this shelf "
-         "space.",
-  "inputs": ["the hallway floor", "a bin bag"],
-  "steps": [
-   "Take the lot out. Loose batteries you cannot vouch for, bulbs for "
-   "fittings you replaced when you went over to LED, and any bulk "
-   "pack too big to lift down alone all leave now.",
-   "Sort surviving batteries upright in a shallow tray by size, and "
-   "box bulbs together by fitting.",
-   "Set the heaviest remaining packs at waist height, not overhead."],
-  "causes": ["KC-010", "KC-003"],
-  "victory": "Every battery is sorted by size in its tray, every bulb "
-             "is boxed by fitting, and nothing left on the shelf is "
-             "too heavy or too high to lift down alone.",
-  "next": "HCS-004",
-  "art": "batteries and bulbs spread out on a hallway floor being "
-         "sorted into a shallow tray and a labeled bin, an oversized "
-         "pack set apart to be moved"},
-
- {"id": "HCA-008", "zone": "Paper and Household Backstock",
-  "title": "WRITE A MINIMUM AND MAXIMUM ON EVERY BIN",
-  "minutes": 30, "players": "1 to 2", "six_s": "Standardize",
-  "goal": "Write a minimum and a maximum on the shelf edge in front of "
-          "each bin, sized to what the bin can hold without stacking "
-          "above its rim.",
-  "why": "A number in your head is not a number anyone else can read, "
-         "and an undated bulk pack is where a saving quietly expires.",
+ {"id": "HCA-002", "zone": "Linen Shelf Zone",
+  "title": "LABEL EVERY STACK AND SET THE HEIGHT LIMIT",
+  "minutes": 30, "players": "1", "six_s": "Standardize",
+  "goal": "Write each bed size on the shelf edge under its stack, and "
+          "keep every stack no taller than a forearm.",
+  "why": "A label-less stack forces a guess at bedtime, and a stack "
+         "taller than a forearm is a fall waiting on the next towel "
+         "pulled from the bottom.",
   "inputs": ["a marker", "adhesive shelf-edge labels"],
   "steps": [
-   "Set the maximum for each bin as the count that fits inside it "
-   "without stacking above the rim.",
-   "Write both the minimum and maximum on the shelf edge in front of "
-   "each bin.",
-   "Date every pack with a marker as it goes back, oldest at the "
-   "front."],
-  "causes": ["KC-001", "KC-008"],
-  "victory": "Every bin carries a minimum and maximum on its shelf "
-             "edge, and every pack behind it is dated with the oldest "
-             "at the front.",
+   "Group sets by the bed they fit, queen and king low, guest blankets "
+   "on top.",
+   "Write the bed size and set count on the shelf edge under each "
+   "stack.",
+   "Split any stack taller than a forearm into two shorter ones."],
+  "causes": ["KC-008", "KC-002", "KC-012"],
+  "victory": "Every stack is labeled with its bed size, and no stack "
+             "stands taller than a forearm.",
+  "next": "HCA-001",
+  "art": "a hand marking a bed size onto a shelf-edge label under a "
+         "folded linen stack no taller than a forearm"},
+
+ {"id": "HCA-003", "zone": "Cleaning Equipment Zone",
+  "title": "STAND EVERY HANDLE UP AND CHECK THE WORKING END",
+  "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
+  "goal": "Stand every handle up and look at the working end, so "
+          "nothing kept only for parts survives another season.",
+  "why": "A splayed broom pushes dust instead of gathering it, and a "
+         "vacuum kept for parts never harvested is just standing where "
+         "the working one needs to stand.",
+  "inputs": ["a bin bag"],
+  "steps": [
+   "Stand every handle up and look at the working end. Brooms with "
+   "splayed bristles that push dust rather than gather it, the mop "
+   "head that no longer twists off its plate, and the old vacuum you "
+   "keep for parts you have never once harvested all go out this "
+   "week.",
+   "Wrap any surviving cord neatly and zip loose attachments into one "
+   "bag.",
+   "Recycle anything that goes, and note the repair each surviving "
+   "tool actually needs."],
+  "causes": ["RC-015", "RC-017"],
+  "victory": "Every remaining tool has a working end, and nothing is "
+             "being kept for parts that were never actually used.",
+  "next": "HCS-002",
+  "art": "a hand standing a broom up to check its bristles, a splayed "
+         "broom set apart on the floor beside a bin bag"},
+
+ {"id": "HCA-004", "zone": "Cleaning Equipment Zone",
+  "title": "HANG EVERY HANDLE AND TAPE THE VACUUM'S SPOT",
+  "minutes": 30, "players": "1", "six_s": "Safety",
+  "goal": "Fit a rail so every handle hangs bristles-up, and tape a "
+          "floor outline for the vacuum with a repair date on anything "
+          "still broken.",
+  "why": "A handle left standing on the floor bends and re-soils what "
+         "you just cleaned, and a repair with no date attached never "
+         "actually happens.",
+  "inputs": ["a wall rail or clips", "tape for the floor outline",
+             "masking tape and a marker for the repair date"],
+  "steps": [
+   "Fit a rail or clips at a height that clears the floor, and hang "
+   "every handle bristles or mop-head up.",
+   "Tape a floor outline for the vacuum and park it there after every "
+   "use.",
+   "If anything still needs a repair, write the date on masking tape "
+   "stuck to the body."],
+  "causes": ["KC-006", "KC-009", "KC-007"],
+  "victory": "Every handle hangs clear of the floor, the vacuum parks "
+             "inside its taped outline, and any repair still needed "
+             "carries a written date.",
+  "next": "HCA-003",
+  "art": "a broom, mop and duster hanging handle-down from wall clips "
+         "above a taped floor outline holding a parked vacuum"},
+
+ {"id": "HCA-005", "zone": "Cleaning Supply Zone",
+  "title": "LINE UP EVERY BOTTLE AND DISPOSE OF THE UNMARKED",
+  "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
+  "goal": "Line every bottle up on the hallway floor and only pour "
+          "identical products together, so nothing unmarked survives "
+          "unidentified.",
+  "why": "A decanted, unmarked bottle is a real hazard the moment "
+         "somebody other than you reaches for it.",
+  "inputs": ["gloves", "a bin bag"],
+  "steps": [
+   "Line every bottle up on the hallway floor. Anything decanted into "
+   "an unmarked spray bottle gets disposed of according to its own "
+   "instructions, and the specialty cleaner bought for one stain years "
+   "ago goes with it. Only identical products get poured together.",
+   "Group only identical products together before anything goes back.",
+   "Set aside anything unlabeled for safe disposal per its own "
+   "instructions."],
+  "causes": ["KC-005", "KC-001"],
+  "victory": "Every bottle on the shelf is in its own original, "
+             "labeled container, and no two different products have "
+             "been mixed.",
+  "next": "HCS-003",
+  "art": "a row of cleaning bottles lined up on a hallway floor, each "
+         "one wearing its own original label"},
+
+ {"id": "HCA-006", "zone": "Cleaning Supply Zone",
+  "title": "BUILD TWO CADDIES AND SEPARATE BLEACH FROM AMMONIA",
+  "minutes": 30, "players": "1", "six_s": "Safety",
+  "goal": "Build a bathroom caddy and a kitchen caddy, and move bleach "
+          "and ammonia products onto separate shelves out of a child's "
+          "reach.",
+  "why": "Bleach and ammonia stored together is a real hazard, and a "
+         "caddy per room means carrying the whole job in one hand "
+         "instead of walking back twice.",
+  "inputs": ["two caddies", "adhesive end labels"],
+  "steps": [
+   "Sort bleach products onto one shelf and ammonia products onto a "
+   "separate one.",
+   "Build a bathroom caddy and a kitchen caddy, gloves and cloths "
+   "riding inside each.",
+   "Move the whole zone up out of a small child's reach, or fit a "
+   "latch."],
+  "causes": ["KC-010", "KC-008"],
+  "victory": "Bleach and ammonia sit on separate shelves, two labeled "
+             "caddies exist, and the zone sits out of a small child's "
+             "reach.",
+  "next": "HCA-005",
+  "art": "two labeled cleaning caddies, one marked for the bathroom and "
+         "one for the kitchen, standing on separate shelves from a row "
+         "of bleach bottles"},
+
+ {"id": "HCA-007", "zone": "Paper and Household Backstock",
+  "title": "TAKE THE LOT OUT AND CHECK EVERY PACK",
+  "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
+  "goal": "Take the lot out and check every battery, bulb and bulk "
+          "pack, so nothing unusable keeps its shelf space.",
+  "why": "A battery you cannot vouch for and a bulb for a fitting you "
+         "no longer own are both taking up space a real reserve needs.",
+  "inputs": ["a bin bag"],
+  "steps": [
+   "Take the lot out. Loose batteries you cannot vouch for, bulbs for "
+   "fittings you replaced when you went over to LED, and the bulk "
+   "paper towel pack too big to lift down alone all leave now.",
+   "Recycle any pack for a fitting the house no longer uses.",
+   "Set the bulk paper towel pack down at waist height, not overhead."],
+  "causes": ["KC-011", "KC-001"],
+  "victory": "Every battery is in its original pack, every bulb fits a "
+             "fitting the house still uses, and nothing on the shelf "
+             "is too heavy to lift down alone.",
+  "next": "HCS-004",
+  "art": "a backstock shelf cleared onto the floor, loose batteries set "
+         "apart from bulb packs still in their original boxes"},
+
+ {"id": "HCA-008", "zone": "Paper and Household Backstock",
+  "title": "SET A MINIMUM AND MAXIMUM ON EVERY BIN",
+  "minutes": 30, "players": "1 to 2", "six_s": "Standardize",
+  "goal": "Write a minimum and maximum on the shelf edge for toilet "
+          "roll, bulbs and batteries, and date every pack as it "
+          "arrives.",
+  "why": "A shelf with no written limit is where an emergency trip or "
+         "a shelf-blocking bulk buy both quietly happen.",
+  "inputs": ["a marker", "adhesive shelf-edge cards"],
+  "steps": [
+   "Set a clear bin for toilet roll and write a minimum and maximum on "
+   "the shelf edge.",
+   "Sort bulbs into a labeled bin by fitting, and stand batteries "
+   "upright in a shallow tray by size.",
+   "Turn every bin label to face the door."],
+  "causes": ["KC-008", "KC-005"],
+  "victory": "Every bin carries a minimum and maximum on the shelf "
+             "edge, and every label faces the door.",
   "next": "HCA-007",
-  "art": "a hand writing a minimum and maximum onto a shelf-edge label "
-         "in front of a hallway closet bin, dated packs visible behind "
-         "it"},
+  "art": "a small dated card fixed to a backstock shelf edge reading a "
+         "minimum and maximum count, bin labels turned to face forward"},
 
  {"id": "HCA-009", "zone": "Seasonal and Guest Zone",
-  "title": "OPEN EVERY LID ON THE FLOOR, IN DAYLIGHT",
+  "title": "OPEN EVERY LID ON THE FLOOR IN DAYLIGHT",
   "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
-  "goal": "Take every lid off, on the floor, in daylight, and remove "
-          "anything you can't name from memory.",
-  "why": "A sealed bin of unknowns is not storage, it is a decision "
-         "you agreed to keep paying for.",
-  "inputs": ["the hallway floor", "a bin bag"],
+  "goal": "Open every lid on the floor in daylight and name what's "
+          "actually inside, so nothing unnamed keeps its bin.",
+  "why": "A bin nobody can name without opening it is not storage, it "
+         "is a decision that keeps getting postponed.",
+  "inputs": ["a bin bag", "daylight or a bright lamp"],
   "steps": [
-   "Take every lid off, on the floor, in daylight. Decorations for a "
-   "tree you no longer put up, a guest pillow gone flat and yellow, "
-   "and any bin marked misc whose contents you cannot name without "
+   "Every lid comes off, on the floor, in daylight. Decorations for a "
+   "tree you no longer put up, the guest pillow gone flat and yellow, "
+   "and the bin marked \"misc\" whose contents you cannot name without "
    "looking all go.",
-   "For each remaining item, name the specific occasion in the next "
-   "twelve months when it will be used.",
-   "Anything with no named occasion does not get the lid back on."],
-  "causes": ["RC-015", "KC-005"],
-  "victory": "Every remaining bin holds one named occasion, and "
-             "nothing sealed inside it is something you couldn't name "
-             "from memory.",
+   "For anything you keep, name the occasion in the next twelve months "
+   "you'll use it.",
+   "Reseal only what you named an occasion for."],
+  "causes": ["RC-015", "RC-017"],
+  "victory": "Every remaining bin can be named without opening it, and "
+             "nothing inside is flat, yellowed, or for a tradition you "
+             "no longer keep.",
   "next": "HCS-005",
-  "art": "storage bins opened on a hallway floor in daylight, their "
-         "contents spread out for sorting, one bin marked misc set "
-         "apart"},
+  "art": "several storage bins opened on a closet floor in daylight, "
+         "their lids set aside while contents are sorted into keep and "
+         "go piles"},
 
  {"id": "HCA-010", "zone": "Seasonal and Guest Zone",
-  "title": "LABEL EVERY BIN, DATE THE LID, MAP THE SHELF",
+  "title": "LABEL EVERY BIN AND MAP THE SHELF",
   "minutes": 30, "players": "1", "six_s": "Standardize",
-  "goal": "Label each bin with its contents and the date it was last "
-          "closed, photograph it packed, and tape a shelf map inside "
-          "the door.",
-  "why": "A photograph taped to the lid gives repacking a target "
-         "instead of a guess, and a shelf map means someone else can "
-         "find the guest bedding without unstacking the shelf.",
-  "inputs": ["a marker", "a camera or phone", "tape",
-             "paper for the shelf map"],
+  "goal": "Label each bin with its contents and the month it was last "
+          "closed, and tape a shelf map inside the door.",
+  "why": "A shelf map means someone else can find the guest bedding "
+         "without unstacking the whole shelf to look.",
+  "inputs": ["a marker", "adhesive labels", "tape",
+             "paper for the map"],
   "steps": [
-   "Label each bin with what's inside and the date it was last "
+   "Seal guest pillows inside a zip bag.",
+   "Label each bin with its contents and the month it was last "
    "closed.",
-   "Photograph each bin packed and tape the picture to the lid.",
    "Tape a simple shelf map inside the closet door showing which bin "
    "sits where."],
-  "causes": ["KC-002", "RC-013"],
-  "victory": "Every bin is labeled with contents and a closing date, "
-             "carries a photo of itself packed, and the door holds a "
-             "shelf map that matches the shelves.",
+  "causes": ["KC-002", "KC-006"],
+  "victory": "Every bin is labeled with its contents and last-closed "
+             "month, and a shelf map is taped inside the door.",
   "next": "HCA-009",
-  "art": "a labeled storage bin with a photograph taped to its lid, a "
-         "shelf map taped inside a hallway closet door visible behind "
-         "it"},
+  "art": "a labeled storage bin standing on a shelf beside a small "
+         "paper map taped to the inside of a closet door"},
 
  {"id": "HCA-011", "zone": None,
-  "title": "THE FULL SHELF WEIGHT AND REACH SAFETY WALK",
+  "title": "THE FULL CLOSET SAFETY AND HEIGHT WALK",
   "minutes": 30, "players": "1 to 2", "six_s": "Safety",
-  "goal": "Walk every shelf checking what's stored above head height, "
-          "whether a stool lives in reach, and that the brackets "
-          "holding the heaviest loads are sound.",
-  "why": "A heavy bin overhead and a hallway chair standing in for a "
-         "stool both hide until someone tests for them on purpose.",
-  "inputs": ["a step stool"],
+  "goal": "Walk every shelf checking what sits above a safe reach, "
+          "whether a stool actually lives in the closet, and whether "
+          "bleach and ammonia are kept apart.",
+  "why": "A heavy bin overhead and two chemicals stored together both "
+         "hide until someone tests for them on purpose.",
+  "inputs": ["a step stool", "a cloth for the awkward spots"],
   "steps": [
-   "Check every shelf for anything heavy stored above head height, "
-   "and move it down to a lower shelf.",
-   "Confirm a real step stool lives near this closet, not a hallway "
-   "chair standing in for one.",
-   "Check the shelf brackets are screwed into studs, not just into "
-   "plasterboard, under the heaviest loads."],
-  "causes": ["KC-006", "KC-010", "KC-003"],
-  "victory": "Nothing heavy sits above head height, a real stool lives "
-             "within reach, and every loaded bracket is anchored into "
-             "a stud.",
+   "Check every shelf for anything a small child could reach that "
+   "shouldn't be reachable.",
+   "Confirm a step stool actually lives inside this closet, not "
+   "somewhere else in the house.",
+   "Confirm bleach and ammonia products sit on separate shelves."],
+  "causes": ["KC-006", "KC-010"],
+  "victory": "Nothing unsafe sits within a small child's reach, a "
+             "working stool lives in the closet, and bleach and "
+             "ammonia sit apart.",
   "next": "HCA-010",
-  "art": "a hand using a step stool to move a heavy storage bin down "
-         "from a high hallway closet shelf to a lower one"},
+  "art": "a step stool standing inside an open hall closet beneath a "
+         "high shelf, bleach and ammonia products visible on separate "
+         "shelves below it"},
 
  {"id": "HCA-012", "zone": None,
-  "title": "THE WEEKLY BEFORE-THE-LIST CHECK",
+  "title": "THE WEEKLY GAP-AND-DATE PASS",
   "minutes": 15, "players": "1", "six_s": "Sustain",
-  "goal": "Walk the paper, battery, and bulb bins reading what's low "
+  "goal": "Walk every bin and shelf reading what's low or undated "
           "before the shopping list gets written, and name who is "
           "doing it this week.",
-  "why": "Everybody takes the last roll and almost nobody mentions it, "
-         "so this zone fails silently unless somebody is actually "
+  "why": "Nothing in this closet forces the issue by running out on "
+         "schedule, so it fails silently unless somebody is actually "
          "assigned to look.",
   "inputs": ["the shopping list"],
   "steps": [
-   "Walk the backstock bins and read each one against its written "
-   "minimum before the list gets written.",
-   "Say out loud, or write down, whose turn it is to do this pass "
-   "this week.",
-   "Add anything genuinely below its minimum to the list on the "
-   "spot."],
-  "causes": ["RC-013", "KC-009"],
-  "victory": "The bins were read against their written minimums before "
-             "this week's list was written, and one named person did "
-             "it.",
+   "Walk the backstock and linen shelves and read the gaps before the "
+   "list gets written.",
+   "Say out loud, or write down, whose turn it is to do this pass this "
+   "week.",
+   "Add anything genuinely missing to the list on the spot."],
+  "causes": ["RC-013"],
+  "victory": "The shelves were read for gaps before this week's list "
+             "was written, and one named person did it.",
   "next": "HCA-011",
   "art": "a hand writing an item onto a shopping list while standing "
-         "in front of a hallway closet bin sitting below its own "
-         "shelf-edge minimum"},
+         "in front of an open hall closet shelf with a visible gap"},
 
  {"id": "HCA-013", "zone": None,
-  "title": "THE SEASONAL MAXIMUM AND LABEL AUDIT",
+  "title": "THE MONTHLY LABEL AND LIMIT AUDIT",
   "minutes": 30, "players": "1", "six_s": "Standardize",
-  "goal": "Once a season, check every written maximum and every bin "
-          "label against what's actually on the shelves, correcting "
-          "anything that has drifted.",
-  "why": "A maximum or a label written once and never revisited stops "
-         "meaning anything the first time a good deal or a quiet "
-         "clear-out moves past it.",
-  "inputs": ["a marker", "this season's receipts if you kept them"],
+  "goal": "Once a month, check every written minimum, maximum and date "
+          "against what's actually on the shelves, and correct any "
+          "that have drifted.",
+  "why": "A limit written once and never revisited stops meaning "
+         "anything the first time a good deal tempts you past it.",
+  "inputs": ["a marker", "this month's receipts if you kept them"],
   "steps": [
-   "Compare the count behind each bin against its written maximum, "
-   "and note any line that has crept over.",
-   "Relabel any bin whose contents or closing date no longer match "
-   "what's inside it.",
-   "Correct the shelf map inside the door if a bin has moved."],
-  "causes": ["KC-008", "KC-001"],
-  "victory": "Every bin sits at or under a maximum checked this "
-             "season, and every label and the shelf map both match "
-             "what's actually on the shelves.",
+   "Compare the count on each backstock line against its written "
+   "minimum and maximum.",
+   "Check every stored date is still legible and relabel anything "
+   "faded.",
+   "Correct any label that has drifted from what's actually true."],
+  "causes": ["KC-008", "KC-009"],
+  "victory": "Every limit sits checked this month, and every date on "
+             "the shelf is legible.",
   "next": "HCA-012",
-  "art": "a hand comparing a bin's count against a shelf-edge maximum "
-         "label in a hallway closet, a shelf map taped inside the door "
-         "beside it"},
+  "art": "a hand comparing a shelf's item count against a small dated "
+         "card fixed to a backstock shelf edge"},
 ]
 
 
@@ -956,55 +933,60 @@ ACTIONS = [
 # ---------------------------------------------------------------------------
 
 EVENTS = [
- ("HCE-001", "THE MIDNIGHT SHEET CHANGE",
-  "A child is sick at midnight and the bed needs fresh sheets right "
-  "now, no time to hunt.",
+ ("HCE-001", "THE LAST-MINUTE BED CHANGE",
+  "A guest is arriving in twenty minutes and the right-sized bed linen "
+  "has to answer immediately.",
   ["HCZ-001"],
-  "The right size set comes off the shelf in one bundle, no digging "
-  "through mismatched pieces.",
-  "If you had to unfold three sets to find one complete match, the "
-  "check-and-bundle habit slipped. Draw HCA-001.",
-  "a hand pulling one bundled sheet set from a hallway closet shelf "
-  "quickly at night"),
- ("HCE-002", "THE SPILL THAT NEEDS EVERYTHING AT ONCE",
-  "Something spills across the kitchen floor and the mop, the bucket "
-  "and gloves all have to come out together, right now.",
+  "A labeled, complete set for that exact bed size comes off the shelf "
+  "in one grab, no unfolding others to check.",
+  "If you had to unfold more than one stack to find a set that "
+  "actually fit, the sizing and labeling slipped. Draw HCA-002.",
+  "a hand pulling a labeled, complete sheet set from a linen shelf in "
+  "one motion, a bed-size card visible on the shelf edge beneath it"),
+ ("HCE-002", "THE SPILL THAT NEEDS THE VACUUM NOW",
+  "Something breaks in the kitchen and the vacuum has to come out and "
+  "work, right now, with no time for a fight.",
   ["HCZ-002"],
-  "Every tool comes off the rail already working, with nothing "
-  "missing from the bag on the handle.",
-  "If a tool was broken or an attachment was missing from the bag, "
-  "the stand-up check or the rail habit slipped. Draw HCA-003.",
-  "a hand pulling a working mop from a hallway closet rail in a "
-  "hurry, a bucket already in the other hand"),
- ("HCE-003", "THE GUEST ARRIVING IN AN HOUR",
-  "Guests are due in an hour and the bathroom and kitchen both need a "
-  "fast, real clean.",
+  "The vacuum rolls out of its outline, cord already wrapped, every "
+  "attachment already in its bag.",
+  "If you had to hunt for an attachment or untangle the cord first, "
+  "the reset after the last use slipped. Draw HCA-004.",
+  "a hand pulling a vacuum cleaner out of a taped floor outline in a "
+  "cleaning closet, its cord already wrapped and an attachment bag "
+  "already clipped to the handle"),
+ ("HCE-003", "THE TODDLER LOOSE IN THE HALLWAY",
+  "A toddler gets ten unsupervised seconds near this closet door "
+  "before anyone notices.",
   ["HCZ-003"],
-  "Grabbing the bathroom caddy in one hand gets the whole job there "
-  "without a second trip to this closet.",
-  "If you had to come back for a bottle the caddy should have held, "
-  "the one-caddy-per-room habit slipped. Draw HCA-006.",
-  "a hand lifting a fully stocked bathroom caddy off a hallway closet "
-  "shelf in one motion"),
- ("HCE-004", "THE POWER CUT THAT NEEDS A FLASHLIGHT NOW",
-  "The power goes out at night and the flashlight needs batteries "
-  "that actually work, immediately.",
+  "Nothing on this shelf is within their reach, and nothing unlabeled "
+  "is within reach either.",
+  "If a bottle was within reach or unlabeled, the height and labeling "
+  "rules slipped. Draw HCA-006.",
+  "a closet door standing open at child height with an empty lower "
+  "shelf, cleaning products all visible only on a shelf well above "
+  "reach"),
+ ("HCE-004", "THE SURPRISE POWER CUT",
+  "The power goes out at nine at night and the household needs "
+  "working batteries, fast, with no time to test three dead ones "
+  "first.",
   ["HCZ-004"],
-  "The right size battery is standing upright in its tray, sorted and "
-  "easy to find in the dark.",
-  "If you had to feel around for a loose battery you couldn't vouch "
-  "for, the sort-by-size habit slipped. Draw HCA-007.",
-  "a hand reaching into a battery tray in a dark hallway closet, "
-  "batteries standing upright and sorted by size"),
- ("HCE-005", "THE OVERNIGHT GUEST WITH NO WARNING",
-  "Somebody needs the guest bed made up tonight, with no notice.",
+  "The battery tray gives up the right size in one glance, no "
+  "digging, and it works.",
+  "If the battery you grabbed was already dead or the right size was "
+  "impossible to find, the sorting and dating slipped. Draw HCA-008.",
+  "a hand lifting a labeled battery pack from a shallow upright tray "
+  "in a backstock shelf, sizes clearly visible without moving anything "
+  "else"),
+ ("HCE-005", "THE UNANNOUNCED OVERNIGHT GUEST",
+  "A guest is staying tonight, unannounced, and the guest bedding has "
+  "to come out of storage in under five minutes.",
   ["HCZ-005"],
-  "The guest bedding is clean, in its own labeled bin, and the shelf "
-  "map says exactly where to find it.",
-  "If the bedding had drifted onto the everyday shelf or the bin had "
-  "no date, the wash-and-return habit slipped. Draw HCA-010.",
-  "a hand lifting a labeled bin of clean guest bedding off a hallway "
-  "closet shelf, a shelf map visible taped inside the door"),
+  "The shelf map sends you straight to the right bin, and the pillow "
+  "inside is sealed, plump and fresh.",
+  "If you had to open two or three bins to find the right one, or the "
+  "pillow was flat, the labeling and the map slipped. Draw HCA-010.",
+  "a hand checking a small paper map taped inside a closet door, "
+  "pointing directly at one labeled bin holding sealed guest pillows"),
 ]
 
 
@@ -1211,11 +1193,11 @@ def room_card(intro: str, tips: list) -> dict:
     return {
         "id": "HCR-001", "title": "THE HALL CLOSET", "type": "ROOM CARD",
         "room": ROOM, "zone": None, "difficulty": 1,
-        "tagline": "FIVE SHELVES OF EVERYTHING WITH NOWHERE ELSE TO GO. "
-                   "START WITH THE ONE YOU CAN'T SEE THE BACK OF.",
-        "objective": "The hall closet is the darkest and deepest "
-                     "storage in the house, and the only one nobody "
-                     "owns. This card is the map and the order.",
+        "tagline": "FIVE SHELVES OF EVERYTHING THAT HAD NOWHERE ELSE TO "
+                   "GO.",
+        "objective": "The hall closet is where everything that had to "
+                     "go somewhere ended up. This card is the map and "
+                     "the order.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"HCZ-001 Linen Shelf Zone. {start_tip['text']}"
@@ -1247,23 +1229,22 @@ def room_card(intro: str, tips: list) -> dict:
                    "Disagreement is the useful part, not a problem to "
                    "resolve before starting.",
         "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
-        "safety_first": "Do HCA-011 The Full Shelf Weight And Reach "
-                        "Safety Walk before any rebuild. It takes thirty "
+        "safety_first": "Do HCA-011 The Full Closet Safety And Height "
+                        "Walk before any rebuild. It takes thirty "
                         "minutes and covers every shelf's height, the "
-                        "stool, and every loaded bracket.",
-        "related": {"contents": "HCZ-001 to HCZ-005, HCF-001 to "
-                                 "HCF-015, the shared root causes in "
-                                 "ops/root_causes.py, HCA-001 to "
-                                 "HCA-013, HCS-001 to HCS-005, HCE-001 "
-                                 "to HCE-005"},
+                        "stool, and whether bleach and ammonia are kept "
+                        "apart.",
+        "related": {"contents": "HCZ-001 to HCZ-005, HCF-001 to HCF-015, "
+                                 "the shared root causes in "
+                                 "ops/root_causes.py, HCA-001 to HCA-013, "
+                                 "HCS-001 to HCS-005, HCE-001 to HCE-005"},
         "source": "content/manual/source/content.json",
         "art": {"framing": "Room",
-                "subject": "a wide establishing view of a whole "
-                           "hallway closet in its settled state, linen "
-                           "shelf, cleaning equipment on a rail, "
-                           "cleaning supply caddies, paper and battery "
-                           "backstock, and seasonal bins all visible in "
-                           "one frame",
+                "subject": "a wide establishing view of a whole hall "
+                           "closet in its settled state, linen shelves, "
+                           "cleaning equipment, a cleaning supply "
+                           "caddy, a backstock shelf and a seasonal "
+                           "storage shelf all visible in one frame",
                 "must_show": ["all five zones legible in one frame"],
                 "must_show_kind": "objects",
                 "accept_test": "You should be able to point at where "

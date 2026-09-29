@@ -5223,9 +5223,9 @@ def gate_pantry_deck_rendered() -> None:
 
 def check_hall_closet_deck_rendered(cards: list, page: str) -> list:
     """Pure logic for gate_hall_closet_deck_rendered, the room built as
-    BACKLOG-2026-09-07.md B9's continuation past Pantry. `cards` is
-    ops/cardtext/build_hall_closet_deck.py's own card list; `page` is the
-    full text of site/hall-closet-deck.html. Same shape as
+    BACKLOG-2026-09-07.md B9's continuation past the original eight.
+    `cards` is ops/cardtext/build_hall_closet_deck.py's own card list;
+    `page` is the full text of site/hall-closet-deck.html. Same shape as
     check_pantry_deck_rendered.
 
     Returns a list of problem strings, empty when clean.
@@ -5325,6 +5325,8 @@ DECK_OG_IMAGE_ZONE_SLUG = {
     "home-office-deck.html": "home-office",
     "primary-bathroom-deck.html": "primary-bathroom",
     "stair-landing-deck.html": "stair-landing",
+    "pantry-deck.html": "pantry",
+    "hall-closet-deck.html": "hall-closet",
 }
 
 
@@ -5459,7 +5461,8 @@ def gate_deck_article_grammar() -> None:
     for fname in ("kitchen-deck.html", "entryway-deck.html",
                   "laundry-room-deck.html", "home-office-deck.html",
                   "primary-bathroom-deck.html", "garage-deck.html",
-                  "stair-landing-deck.html"):
+                  "stair-landing-deck.html", "pantry-deck.html",
+                  "hall-closet-deck.html"):
         path = os.path.join(SITE, fname)
         if not os.path.exists(path):
             continue
@@ -19357,7 +19360,7 @@ def gate_pantry_deck_current() -> None:
 
 def gate_hall_closet_deck_current() -> None:
     """Same shape as gate_pantry_deck_current, for the room built as
-    BACKLOG-2026-09-07.md B9's continuation past Pantry:
+    BACKLOG-2026-09-07.md B9's continuation:
     ops/cardtext/hall-closet-deck.json must be exactly what
     ops/cardtext/build_hall_closet_deck.py produces today.
 

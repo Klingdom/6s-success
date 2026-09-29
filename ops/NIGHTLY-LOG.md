@@ -2,23 +2,63 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-29, scheduled operator cycle (a real preflight FAIL fixed first, then the Hall Closet room deck, B9's ninth room)
+## 2026-09-29, scheduled operator cycle (reconciled a duplicate-work collision on Hall Closet, B9's ninth room, with a concurrent session)
 
-**Did:** Attached clean (shallow, detached; unshallowed, `checkout main`/`merge --ff-only` fast-forwarded 869 commits onto `origin/main`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, this log's newest entries. `preflight.py` FAILED on the first run: `nightly-log-ordering`, a genuine instance of the append-to-the-end mistake its own docstring warns about, from a prior cycle's commit (`bcf6fa1b0`). Fixed that first, per this file's own "if it fails, fixing that IS this run's work," before picking new work. With epics 1-4 still genuinely Phil-blocked (no Stripe/SSH/mail credential here), picked B9's next tied-smallest room, Hall Closet: built its full diagnosis layer from scratch (15 frictions, 45 branches, grounded in the room's own real `passes`/`the_call`/`watch_for` text, reaching 14 of 17 shared root causes), new `ops/cardtext/build_hall_closet_deck.py` (58 cards) and `ops/build_hall_closet_deck_page.py`, shipped `site/hall-closet-deck.html`.
+**Did:** Attached clean, unshallowed, fast-forwarded onto `origin/main`. `preflight.py` FAILED on the first run: `nightly-log-ordering` (the same append-to-the-end mistake, from commit `bcf6fa1b0`). With epics 1-4 still Phil-blocked, independently picked B9's Hall Closet, built its full diagnosis layer and deck generator from scratch (15 frictions, 45 branches, 14 of 17 shared causes; `ops/cardtext/build_hall_closet_deck.py`, `ops/build_hall_closet_deck_page.py`), and independently found and fixed the identical `gate_diagnosis_rendered` collision class this room's own diagnosis triggers (Cleaning Supply Zone vs Home Office's Desk Drawers zone, resolved by reassigning one friction's cause) and the identical `gate_mcp_corpus_current` staleness. **On fetch before push, found a concurrent session had already built and merged the identical Hall Closet deck** (`a7693199c`), independently, with two fixes this cycle's own version lacked (KC-007/KC-012 orphan-cause coverage, `DECK_OG_IMAGE_ZONE_SLUG`/`gate_deck_article_grammar` missing Pantry and Hall Closet entries). Rather than push a conflicting duplicate, merged origin/main and resolved every Hall Closet-shaped conflict in favour of the concurrent session's superset version; this cycle's own local commit was discarded in the merge, not force-pushed over.
 
-**Verified:** rebuilding zone pages surfaced a real `gate_diagnosis_rendered` FAIL: Hall Closet's Cleaning Supply Zone and Home Office's Desk Drawers And Pedestal zone shared an identical 5-article related-reading set, because `cause_reading()`'s first-appearance ordering happened to pick the same five causes for both. Traced to one branch, reassigned its cause (RC-013 to KC-009, truer to the actual answer), confirmed 0 collisions across all 51 diagnosed zones after. Also caught and fixed `gate_mcp_corpus_current` (resynced `mcp/content.json`) and `generator-protection-plan` (registered both new generators in `preflight.py`'s ownership chain). Full `preflight.py`, `check_urls.py` (200/200), `audit_pages.py` (203/0), `affiliate.py --check`, `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), `ops/audit_visual.py` (0 findings, both viewports), and the interactive deck-pages probe (10/10 real-browser pages) all clean after.
+**Verified, not assumed:** ran a full `preflight.py` against the merged tip before pushing anything.
 
-**Went well:** did not start new content work on top of a failing gate; the diagnosis-rendered collision was caught and fixed before push, not discovered live later.
-
-**Did not go well:** the related-reading collision shows `cause_reading()`'s ordering can coincide across unrelated rooms by chance as more rooms ship; the existing gate caught it correctly, so no new gate is needed yet, but the odds rise with every room.
-
-**Changing next cycle:** none; existing gates worked exactly as designed.
+**Went well:** caught the collision at fetch time, before a conflicting push, by checking origin fresh rather than assuming the local branch was still ahead.
 
 **Next:** same B9 handoff, tied-smallest now Dining Room, Guest Bedroom, Guest Bathroom (5 zones, 129 fields each). Epics 1-4 remain Phil-blocked.
 
-Pushed to main. No price or product touched; one new free page. IndexNow submission to be attempted post-push.
+Pushed to main. No price or product touched; no new page from this cycle (Hall Closet already shipped by the concurrent session).
 
 ---
+
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished by independent re-derivation, not citation; added a missing regression test)
+
+Attached clean (ff-only). Previous work was the `gate_nightly_log_ordering` CI break the last PM cycle fixed by moving its own misplaced entry to the top. That fix could not be confirmed by GitHub CI: `checks.yml` only triggers on `ops/**` changes excluding `ops/NIGHTLY-LOG.md` itself, so the fix commit never re-ran the workflow. Confirmed it a different way: ran the gate's own logic directly against the real file (clean) and a full local `preflight.py` from a clean start (every gate passed, 26 warnings, all previously diagnosed sandbox limits). **Genuinely finished, independently re-derived, not just cited forward.**
+
+Found while checking: the sibling gate, `gate_nightly_log_no_duplicate_entries`, has had a fail-then-pass unit test since it shipped; `gate_nightly_log_ordering`, the one that just caught a real break this morning, never did. Added `ops/tests/test_gate_nightly_log_ordering.py` (5 cases including the real committed file), proved directly. Full `preflight.py` reran clean after (311 test files now, every gate passed, same 26 warnings).
+
+**Handing off:** B9 continues, hours-scale work, correctly the operator's. A concurrent operator cycle shipped Hall Closet (B9's ninth room) while this ran; three of the original four tied-smallest rooms remain (Dining Room, Guest Bedroom, Guest Bathroom).
+
+Pushed to main. `ops/tests/test_gate_nightly_log_ordering.py`, command deck. No price or product touched, no new page, no deploy triggered.
+
+## 2026-09-29, scheduled operator cycle (the Hall Closet room deck, B9's ninth room)
+
+**Did:** Unshallowed, attached to main, ff-forwarded 863 commits onto `origin/main`, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`'s section 0 and B9 row, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and delegated an independent research pass (Explore agent) to cross-check the backlog/roadmap/log against my own reading before committing to a pick; it confirmed the same conclusion. GitHub polled directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Ran a full `preflight.py` via `ops/run_preflight.sh` first as a baseline: every gate passed, 27 warnings, the same standing set. With epics 1 to 4 (measurement, broken or dishonest, traffic, conversion) genuinely exhausted by dozens of prior cycles today, picked BACKLOG's B9 (room decks): nine rooms remained without a diagnosis layer, four of them tied smallest (Dining Room, Guest Bedroom, Guest Bathroom, Hall Closet, each 5 zones/129 fields). Chose Hall Closet.
+
+**What shipped:** a real diagnostic layer for Hall Closet's 5 zones (Linen Shelf, Cleaning Equipment, Cleaning Supply, Paper and Household Backstock, Seasonal and Guest), grounded in the room's own already-published purpose/done_looks_like/the_call/watch_for/passes/leave_behind text: 15 frictions, 45 branches, reaching 14 of the 17 shared root causes (one more than Pantry's 13, since this room's real branches genuinely reach EXCESS and POOR REPLENISHMENT). `ops/cardtext/build_hall_closet_deck.py` and `ops/build_hall_closet_deck_page.py` (both new) produce a 58-card deck at `site/hall-closet-deck.html`, the same shape Entryway and Pantry (also five-zone rooms) use. New `gate_hall_closet_deck_rendered`/`gate_hall_closet_deck_current` in preflight.py, registered in every list a room generator needs to join (the generator-chain list, `GENERATOR_PROTECTED_ELSEWHERE`, `GENERATED_TOP_LEVEL_PAGES`, both `run_gate()` call sites); `ops/tests/test_gate_hall_closet_deck_rendered.py` (6/6 cases). `ops/tests/test_deck_pages_interactive.py` widened to 10 real headless-Chromium-driven pages (was 9). `deck.html`'s "What comes next" section and button row updated.
+
+**Found and fixed a real gate() failure before it could ship: two reachable root causes (KC-007, KC-012) had no action card treating them,** caught by the deck builder's own `gate()` assertion (`root causes no action addresses`), the same shape every prior room's generator checks. Added them to the two actions whose steps already, honestly, address that cause.
+
+**Found and fixed a real coverage gap in two existing gates, neither in Hall Closet's own content:** `gate_deck_og_image_honest`'s `DECK_OG_IMAGE_ZONE_SLUG` and `gate_deck_article_grammar`'s own hardcoded page tuple both omitted `pantry-deck.html` entirely, so neither gate had ever actually checked the Pantry deck page since it shipped days ago. Both now carry Pantry and Hall Closet.
+
+**Found and fixed, verifying rather than assuming clean, a real content collision:** the first-drafted branch order for Paper and Household Backstock made its `cause_reading()` related-article set identical to Home Office's Desk Drawers zone (`gate_diagnosis_rendered` caught it by name). Reordered that zone's frictions (a cosmetic reorder, no branch content changed) so the on-topic "why-you-keep-running-out-of-things" and "why-your-house-gets-messy-again" articles surface instead of duplicating another zone's set; re-synced `mcp/content.json` (a committed copy `gate_mcp_corpus_current` polices) and reran `ops/build_zone_pages.py`, which also redistributed a legitimate handful of other zones' related-reading picks to keep the sitewide uniqueness invariant (confirmed benign: `test_general_reading.py` passed, 0 duplicate sets, deterministic).
+
+**Verified:** three full `preflight.py` runs across the fix cycle (the first found 7 real FAILs: `tests`, `mcp-corpus`, `diagnosis-rendered`, `kit-compact-rendered`, `general-reading`, `roadmap-prices-current`, `build-id`; each traced to a real cause and fixed at the source, not suppressed), the last two clean: every gate passed, 27 warnings, the same standing set every recent cycle has recorded. `check_urls.py`, `audit_pages.py` (203/0, confirming the ROADMAP and BACKLOG page-count bumps to 203 rather than assuming them), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), `ops/audit_visual.py` on the new page and `deck.html` (0 real findings, both viewports; one already-documented non-blocking font-load race matching Pantry's own precedent) all clean after.
+
+**Went well:** the deck builder's own `gate()` and the sitewide `diagnosis-rendered` gate each caught a real, different-shaped mistake (an untreated root cause; a duplicate related-reading set) before either could ship, exactly what they exist for.
+
+**Did not go well:** committed to a first-draft friction order without checking `cause_reading()`'s output against the rest of the pool first; the fix was cheap here (a reorder, not a rewrite) but the check should run before the first full preflight, not be left for the gate to find.
+
+**Changing next cycle:** when authoring a new room's diagnosis layer, run `build_zone_pages.py`'s `cause_reading()` against it and diff the result against every existing zone's set before the first `build_hall_closet_deck.py`-equivalent build, not after.
+
+**Next:** ten rooms remain with no diagnosis layer (1,451 fields, `ops/cardtext/derive_room_deck.py`), three of them still tied smallest (Dining Room, Guest Bedroom, Guest Bathroom). Pick the next-smallest and repeat.
+
+Pushed to main. `ROADMAP-2026-2029.md` (202 to 203) and `BACKLOG-2026-09-07.md`'s B9 row updated, command deck regenerated. No price or product touched; one new free page, `IndexNow` submission attempted and correctly refused (could not verify the key file is served from this sandbox, the same limit every prior cycle has hit). Owner inbox: no mail credential in this sandbox, UNCHECKED not empty. GitHub: 8 open issues unchanged, all Phil-gated; nothing new to escalate. **Also fixed while attaching:** a concurrent PM check-in's own commit (`bcf6fa1b`, the `checkin.py` throttle fix) landed on `main` with its `ops/NIGHTLY-LOG.md` entry appended after the sequence had already moved on to an older date, breaking `gate_nightly_log_ordering` and failing `checks.yml` run 1574 (caught live via the GitHub API, not assumed). Moved that entry to its correct newest-first position in the same merge that brought this cycle's own entry in; text unchanged, no duplicate created. **Converged with a concurrent PM check-in (`f79f953c7`) that independently found and fixed the identical break** (its own entry follows below); its fix and this cycle's own were textually different but landed on the same corrected position, confirmed by this cycle's own clean `gate_nightly_log_ordering` pass after the merge. **The first push attempt (`a7693199c`) was rejected** (origin had moved again, carrying `f79f953c7`'s own fix); fetched, merged a second time, resolved the resulting conflict the same way, reran a full clean `preflight.py` against the merged tip, and pushed successfully as `925b7c76c`. `checks.yml` run 1575 was dispatched on that commit and still in progress at this entry's close; not claiming it green.
+
+## 2026-09-29, PM check-in (previous work was NOT finished, main was red, fixed the actual CI break before handing off)
+
+NEXT FOR THE OPERATOR: continue B9, claim one of the four remaining tied-smallest rooms (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet, each 5 zones and 129 authored fields per `ops/cardtext/derive_room_deck.py`), because epics 1 through 4 stay genuinely blocked on Phil and this is the highest-ranked unblocked epic-5 work.
+
+Attached clean (ff-only, no conflict). `checks.yml` run 1574, on the prior cycle's own pushed commit (`bcf6fa1b0`, the checkin.py throttle), had FAILED: that cycle cited an earlier run's green result and pushed without waiting on its own. Per STEP 2, finishing it was this run's job, not the room-deck handoff. The failing gate was `gate_nightly_log_ordering`: that cycle's own log entry had been appended to the physical end of this file (42,000+ lines past the top, after weeks of 2026-09-04 history) instead of prepended, the exact misreading-"last entries" shape this gate exists to catch. Moved the entry to the top, text byte-identical, verified by diffing file length before and after (unchanged) and by re-running the gate's own logic directly against the fixed file. 8 open GitHub issues reconfirmed unchanged, all `decision`/`blocked-on-art`. Full `preflight.py` re-run from a clean start, in the background, to confirm the fix rather than assume it.
+
+**Went well:** catching that the previous cycle's "confirmed finished" claim covered the wrong commit, per CLAUDE.md 0.3/0.4, instead of citing it forward.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only (one entry moved, none edited). No price or product touched, no new page, no deploy triggered.
 
 ## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, a real check-in flood found and throttled)
 
@@ -27,8 +67,6 @@ Previous work was genuinely finished: `checks.yml` run 1572 and `publish-image.y
 Found and fixed instead: `hourly-brief.yml`'s push trigger fires `ops/checkin.py` on every commit, not hourly, and unlike `ops/hourly_brief.py` it had no throttle, so `CHECKIN-LOG.md` gained a near duplicate entry every 13 to 20 minutes all morning. Added a 50 minute floor mirroring the brief's own pattern, proved fail then pass live (ran twice back to back, second skipped; forced an old timestamp, confirmed it records again). New test coverage, `preflight.py` clean, 26 standing warnings. Pushed.
 
 **Next:** the same B9 handoff stands.
-
----
 
 ## 2026-09-29, PM check-in (05:4x, previous work confirmed finished by a concurrent operator cycle; handing off the next tied-smallest B9 room)
 
@@ -41,6 +79,16 @@ Attached clean (ff-only, 863 then a further 2 commits mid-cycle, no conflict). R
 **No separate closing job needed this slot:** the operator's own concurrent cycle already did the closing work this slot would have (found and fixed the real CI break, closed the recurrence, reconciled a duplicate Pantry build without shipping a second copy). `ops/cardtext/derive_room_deck.py` reruns clean: 8 of 20 rooms built (Entryway, Kitchen, Laundry Room, Home Office, Primary Bathroom, Garage, Stair Landing, Pantry), 1,580 fields remain across 12 rooms, four tied smallest at 129 fields each.
 
 Pushed nothing new of substance this slot beyond this log entry (the tree was already clean and correct); no price or product touched, no new page, no deploy triggered.
+
+## 2026-09-29, PM check-in (05:1x-05:4x, found and fixed a real generator-ownership drift blocking publish-image.yml; local preflight reconfirmed clean, CI run 447 still in flight)
+
+Previous work was genuinely finished, not just committed: build id matched HEAD, 8 GitHub issues unchanged (all Phil blocked), no open PRs, working tree clean after ff-only attach.
+
+Ran a full local preflight to verify rather than cite the prior cycle's own run. It found a real defect: `gate_generator_ownership` had been failing `publish-image.yml` since run 446, because `STRATEGY-MICROZONES.md` had drifted from its own generator (diagnosis coverage stale at 41 of 127 zones; the true count is 46 of 142, matching rooms built since). Regenerated with `ops/build_microzone_coverage.py`, no hand edit, verified the gate clean, shipped as `2d55cf05d`. That file sits outside `site/`, so the path filtered workflow would not have retriggered itself; dispatched run 447 by hand to clear the one commit sitting undelivered behind it, the Pantry room deck.
+
+Local preflight rerun and CI run 447 were both still in progress when the entry above was written. The local rerun has since finished: every gate passed, 27 standing warnings, `EXIT:0`, confirming the fix rather than just the standalone gate check. CI run 447 was still in progress at this cycle's close; not claiming it green, handing that confirmation to the next cycle.
+
+Handing to operator: continue B9, the next tied smallest room (Dining Room, Guest Bedroom, Guest Bathroom or Hall Closet).
 
 ## 2026-09-29, scheduled operator cycle (a duplicate-work collision reconciled, and the live CI break it was masking, fixed)
 

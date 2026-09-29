@@ -9,7 +9,7 @@ BACKLOG-2026-09-07.md B9, continued to a ninth room. Like Laundry Room,
 Home Office, Primary Bathroom, Garage, Stair Landing and Pantry, there is
 no old, mismatched free Hall Closet deck to disclose against: no free Hall
 Closet product exists on the site yet, so this page is the first, at its
-own URL. This file mirrors ops/build_garage_deck_page.py function for
+own URL. This file mirrors ops/build_pantry_deck_page.py function for
 function, and imports the same shared, room-agnostic rendering helpers
 (`esc`, `band`, `card_html`, `print_tile`, the CSS) rather than forking a
 second copy of logic that has nothing room-specific in it.
@@ -29,12 +29,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
 
-import build_hall_closet_deck as HC                               # noqa: E402
+import build_hall_closet_deck as HC                              # noqa: E402
 # Shared, room-agnostic rendering helpers: none of these read anything
 # Kitchen-specific, they read only the card dict shape every generator
 # here produces (id/type/title/tagline/...), so they are imported rather
 # than forked a ninth time.
-from build_kitchen_deck_page import (                              # noqa: E402
+from build_kitchen_deck_page import (                            # noqa: E402
     esc, num_word as _num_word, article_for, colours, band,
     card_html, print_tile, CSS, UMAMI,
 )
@@ -113,20 +113,21 @@ def build_body(deck: dict) -> str:
         block.append('</div></section>')
         parts.append("".join(block))
 
-    # Names what the three whole-room cards are about, not just how many: a
-    # count alone cannot prove the naming below still matches.
+    # Names what the three whole-closet cards are about, not just how many:
+    # a count alone cannot prove the naming below still matches.
     whole_ids = [c["id"] for c in whole]
     assert whole_ids == ["HCA-011", "HCA-012", "HCA-013"], (
-        "whole-room action cards changed (%s); the 'safety walk/weekly "
-        "list check/seasonal audit' sentence in build_body() no longer "
-        "describes the real three and must be rewritten by hand" % whole_ids)
+        "whole-closet action cards changed (%s); the 'safety walk/gap-and-"
+        "date pass/label-and-limit audit' sentence in build_body() no "
+        "longer describes the real three and must be rewritten by hand"
+        % whole_ids)
     parts.append('<section class="kzone"><h2>Whole closet</h2>'
                   f'<p class="klead-p">{num_word(len(whole))} cards that '
                   'are not one shelf’s job: a walk that checks what sits '
-                  'above head height and that every bracket is anchored '
-                  'into a stud, a weekly pass that reads the bins before '
-                  'the shopping list gets written, and a seasonal audit '
-                  'that checks every written maximum and label still '
+                  'above a safe reach and whether bleach and ammonia are '
+                  'kept apart, a weekly pass that reads the gaps before '
+                  'the shopping list gets written, and a monthly audit '
+                  'that checks every written minimum and maximum still '
                   'matches what is actually on the shelves.</p>'
                   + "".join(card_html(c, by_id) for c in whole)
                   + '</section>')
