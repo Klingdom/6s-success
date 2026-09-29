@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle wrap-up (B9 complete, 20/20 rooms; two more real defects found and fixed while reconciling with three concurrent sessions)
+
+**Did:** Continuation of this same cycle's own entries below. Workshop (the twentieth and final room) shipped from a concurrent session while this cycle was mid-verification; merged cleanly (different rooms, no collision). Regenerated the full 114-zone corpus against the merged content twice more (once after Workshop landed, once after a separate concurrent commit fixed a shared root-cause wording bug), confirming the round-robin allocator holds under both.
+
+**Found and fixed, verified, not assumed:** (1) `patio-or-deck-deck.json` had gone stale against `root_causes.py` after the shared wording fix merged; re-ran its own generator, `gate_cause_vocabulary` and its test (11/11) clean after. (2) A stale ROADMAP page count (213 vs the live 214) and a `forms_dead` citation drift in RISKS.md (213 vs live 214), both re-derived and fixed rather than carried forward. (3) `test_gate_general_reading.py`'s own real-corpus case called `check_general_reading_picks()` with no guard for zero non-diagnosed zones left (B9 just completed), flagging articles the real registered gate (which already has that guard) correctly ignores; added the matching guard. (4) A genuinely serious one: `gate_no_stray_probe_files`'s own `ops/tests/_*` cleanup glob would have deleted any real, tracked file using that naming convention, discovered the moment this session (independently, in parallel with Phil himself) tried to add a helper module five tests import and hit exactly that collision. Phil's own fix (`64c43aad2`) renamed the helper to `worktree_state.py`, avoiding the convention rather than carving an exception into it; adopted his naming, but kept this cycle's own independent, complementary hardening of the gate itself (never delete a file `git ls-files` reports as tracked, checked directly rather than by name), proved by two new fail-then-pass cases.
+
+**Went well:** treating every test failure as a real signal worth a full investigation rather than defaulting to "concurrent session noise," which is what turned up three of the four real defects above, not just the first one. Reconciling with Phil's own parallel fix by adopting his approach rather than defending a redundant one.
+
+**Did not go well:** this cycle spent a large share of its time on merge reconciliation against three to four concurrently active sessions (PM check-ins, hourly check-ins, and at least one other content-building session) sharing this same working directory; RISKS.md's own RISK-0014 (opened today) already names the structural fix (`git worktree add` per session) this class of cost argues for.
+
+**Changing next cycle:** none new beyond what RISK-0014 already recommends.
+
+**Next:** B9 is done, all 20 rooms have a deck. Highest-value unblocked item is BACKLOG's B8 (landing each deck on an 18-card print step) or a fresh pass through epics 1-4. All 8 GitHub issues remain Phil-gated (decision/blocked-on-art).
+
+Pushed to main. Full `preflight.py`: every gate passed, 27 warnings, all standing sandbox limits (no Stripe/SSH/network credentials here). No price or product touched. Dashboard regenerated.
+
 ## 2026-09-29, scheduled operator cycle (Patio or Deck shipped, nineteenth of twenty rooms; found and fixed a real related-reading concentration bug)
 
 **Did:** Checkout arrived shallow/detached; unshallowed and attached to `main`, fast-forwarded cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean (0 FAILs, 27 warnings, all standing sandbox limits: no Stripe/SSH/network credentials here). GitHub: 8 open issues, all decision/blocked-on-art, none Phil-unblocked; 0 PRs. Inbox: no mail credential, unchecked not empty. Affiliate check clean, 165 documents.
