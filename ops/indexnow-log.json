@@ -200,13 +200,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-14T14:17:23Z",
-   "mode": "changed",
-   "offered": 172,
-   "accepted": 172,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-14T23:14:50Z",
    "mode": "changed",
    "offered": 1,
@@ -618,6 +611,13 @@
    "offered": 7,
    "accepted": 7,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-29T09:33:26Z",
+   "mode": "changed",
+   "offered": 6,
+   "accepted": 6,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -727,7 +727,7 @@
   "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "95df31fd3066f8b7",
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "8ad60e09f62cbfbb",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "a5cceae04d880f54",
-  "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "b9f483781d312c02",
+  "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "7bc6ef00aec8f0d9",
   "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "3d3dd9470c3edff6",
   "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "c4492a51ecb825bc",
   "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "67de7f18d77d03ca",
@@ -738,7 +738,7 @@
   "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "8dac8d0a6a73ffcf",
   "https://6s-success.com/zones/home-office-the-supply-cabinet": "6deebcb875ef5c8b",
   "https://6s-success.com/zones/": "936f06a59b3cfd4f",
-  "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "c6b85a6e6a90951b",
+  "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "a5d1601438d81eca",
   "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "7d1442ddd3e4604d",
   "https://6s-success.com/zones/kids-bedroom-the-dresser-drawers": "bf20770659e51e27",
   "https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone": "e25ba8554b8d1ca9",
@@ -765,11 +765,11 @@
   "https://6s-success.com/zones/living-room-the-sofa-and-seating": "de77032758c9df10",
   "https://6s-success.com/zones/mudroom-the-bench-and-transition-surface": "1e6c0348ee666f25",
   "https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone": "6623e6da0d246490",
-  "https://6s-success.com/zones/mudroom-the-family-hook-zone": "9e6438444d536294",
+  "https://6s-success.com/zones/mudroom-the-family-hook-zone": "2df7ba7a43b0a95c",
   "https://6s-success.com/zones/mudroom-the-pet-station": "3787b6b5351f6c6a",
   "https://6s-success.com/zones/mudroom-the-seasonal-outdoor-gear": "df79f41fdd00efc7",
   "https://6s-success.com/zones/mudroom-the-shoe-and-boot-storage": "ab8e6de590b3d01f",
-  "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "794f0d3e497f03c5",
+  "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "cb71b66dd6e37ce5",
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "2ed56f8a4dd6e22b",
   "https://6s-success.com/zones/nursery-the-changing-station": "562a547aaf08caeb",
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "27743c7ffd116646",
@@ -793,7 +793,7 @@
   "https://6s-success.com/zones/primary-bathroom-the-under-sink-cabinet": "8d179b308326708f",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-counter": "da3fb7de42869a24",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-drawers": "ff42969d870c79d4",
-  "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "6a6e3cb672cde13d",
+  "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "1f1cdfcf3a0811c3",
   "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "e8a3399db7b4ce0d",
   "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "4072912af08f12a4",
   "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "653fc7b01286f3d6",
@@ -806,7 +806,7 @@
   "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "9a0f668b40927187",
   "https://6s-success.com/zones/workshop-the-main-workbench": "742330d9a770f21e",
   "https://6s-success.com/zones/workshop-the-material-rack": "96a5aa68b107b48c",
-  "https://6s-success.com/zones/workshop-the-power-tool-storage": "64d4137801646d46",
+  "https://6s-success.com/zones/workshop-the-power-tool-storage": "f7ad7c0206ba46fa",
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "09c6bc9de23ede97",
   "https://6s-success.com/kitchen-deck.html": "631dee85a1508920",
   "https://6s-success.com/bundle.html": "b258005ab469371e",
