@@ -27,6 +27,20 @@ copy was waste, and the merges cost more than the fixes.
 That rule was written for content and the collisions were not in content. It
 applies to anything shared:
 
+**For B9 (room decks) specifically, use `python ops/b9_claims.py --claim
+"Room Name" --note "..."` (and `--release "Room Name"` when done), not a
+hand-edited line below.** This section's own prose convention is what a
+2026-09-29 cycle used to claim Nursery, minutes after a concurrent session
+had already claimed it in `ops/b9-claims.json`: prose here does not check
+`ops/b9-claims.json`, so it caught nothing, and a subagent spent real work
+before the duplicate was found (`gate_b9_claims_current`'s own warning, not
+this section, is what surfaced it). `ops/b9_claims.py --claim` reads that
+same ledger and refuses outright if the room is already actively claimed by
+someone else, so it is a real check, not just visibility. Still append a
+line below too, for a human skimming this file, but treat the JSON ledger as
+authoritative for B9 and check it (`python ops/b9_claims.py --status`)
+before claiming a room here.
+
 - a generator in `ops/`
 - a gate in `ops/preflight.py`
 - an operating document (`RISKS.md`, `STATUS.md`, `GOALS.md`, `OWNER-ACTIONS.md`)
@@ -42,7 +56,12 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-09-29, scheduled operator cycle (evening): claiming Patio or Deck for B9 (room deck), the penultimate of the 20 rooms (Workshop is the only one left after this). No diagnosis layer yet (0/6 zones diagnosed in `mcp/content.json`); authoring the diagnosis layer for all 6 zones first (Outdoor Seating Zone, Grill and Outdoor Cooking Zone, Outdoor Dining Zone, Garden and Plant Care Zone, Outdoor Storage Zone, Surface Rail and Safety Zone), grounded in the room's own real Manual text, then the cardtext/deck-page generators, following the most recent room's reference pattern (Primary Bedroom). Delete this line once merged.
+- 2026-09-29, scheduled operator cycle: claiming Workshop for B9 (room deck), via `python ops/b9_claims.py --claim` (see `ops/b9-claims.json`, claimed 19:07:33Z). No diagnosis layer yet (0/6 zones); authoring it first (Main Workbench, Power Tool Storage, Fastener and Hardware Zone, Material Rack, Finishing and Chemical Zone, Safety and PPE Station), then the deck, following the Primary Bedroom/Nursery reference pattern. Delete this line once merged.
+- 2026-09-29, scheduled operator cycle (evening): claiming Patio or Deck for B9 (room deck), the last of the 20 rooms after Workshop above. No diagnosis layer yet (0/6 zones diagnosed in `mcp/content.json`); authoring the diagnosis layer for all 6 zones first (Outdoor Seating Zone, Grill and Outdoor Cooking Zone, Outdoor Dining Zone, Garden and Plant Care Zone, Outdoor Storage Zone, Surface Rail and Safety Zone), grounded in the room's own real Manual text, then the cardtext/deck-page generators, following the most recent room's reference pattern (Primary Bedroom). Different room from Workshop above, no collision. Delete this line once merged.
+
+Primary Bedroom's B9 claim (diagnosis layer plus
+`site/primary-bedroom-deck.html`) shipped and was released via
+`ops/b9_claims.py --release`; see `ops/b9-claims.json`.
 
 # 1. Status Metadata
 

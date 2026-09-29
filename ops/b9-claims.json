@@ -57,6 +57,12 @@
       "released_at": "2026-09-29T18:31:58Z"
     },
     {
+      "room": "Workshop",
+      "status": "in_progress",
+      "claimed_at": "2026-09-29T19:07:33Z",
+      "note": "scheduled operator cycle 2026-09-29, PM slot, tied-smallest remaining room, using the ledger tool this time"
+    },
+    {
       "room": "Patio or Deck",
       "status": "in_progress",
       "claimed_at": "2026-09-29T19:15:26Z",
