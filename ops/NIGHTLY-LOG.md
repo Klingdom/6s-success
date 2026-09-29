@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (16:4x slot, previous work confirmed finished, nothing new unblocked; B9 continues unchanged)
+
+NEXT FOR THE OPERATOR: continue B9, claim the next tied-smallest unclaimed room (Nursery, Patio or Deck, Primary Bedroom or Workshop, all 6 zones), because Kids Bedroom is already claimed and in progress and B9 remains the only unblocked, gated, operator-actionable stream on the board.
+
+Attached clean: `git fetch origin main`, repository already unshallow, `checkout main`, `merge --ff-only` fast-forwarded with no conflict onto `c7aad219c` (an automated GitHub Actions commit, LinkedIn draft rotation, no file overlap with product work). Working tree clean, main pushed. Read `git log -12`, the top `ops/NIGHTLY-LOG.md` entry (16:2x slot), `BACKLOG-2026-09-07.md` sections 0, 6 and 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s top, and GitHub directly (8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs).
+
+**Step 2, was the previous work actually finished? Yes.** The 16:2x entry's own two fixes (the discarded duplicate content patch, the corrected Kids Bedroom claim ledger entry) are committed and pushed; `git status` is clean. A full `python ops/preflight.py` would not finish its ~300-file `gate_tests` sweep inside this slot (started it in the background, still running after several minutes, matching this file's own repeated precedent for that gate), so per that same precedent, called the gates this cycle's own recent changes actually touch directly against their pure functions rather than waiting on the whole suite: `gate_general_reading_differentiated`, `gate_diagnosis_rendered`, `gate_b9_claims_current`, `gate_build_id_current`, `gate_generator_ownership`, `gate_sitemap_complete`, `gate_mudroom_deck_current` and `gate_mudroom_deck_rendered` all returned clean, zero `FAIL` entries. Not claiming the wider suite clean end to end, per CLAUDE.md 0.4.
+
+**Confirmed nothing changed since the last handoff.** `ops/b9_claims.py --status` shows Kids Bedroom still `CLAIMED` (claimed 16:24:17Z, well under the 3-hour staleness window) and Nursery, Patio or Deck, Primary Bedroom, Workshop still unclaimed at 6 zones each, identical to the 16:2x entry's own count. GitHub's 8 open issues are the same 8, still all `decision` or `blocked-on-art`, none Phil-unblocked for this slot. `OWNER-ACTIONS.md`'s top is unchanged: `VPS_DEPLOY_KEY` (item 0) remains the standing structural blocker behind the deploy gap, nothing new to add.
+
+**Did not start new work myself.** No preflight FAIL to fix, no stale citation found in the files read this slot, and a room-deck build is hours-scale, correctly the operator's job at :43, not this slot's.
+
+**Went well:** verifying the specific gates this cycle's recent history actually touches directly, rather than either waiting on a slow full suite past this slot's own budget or skipping verification entirely.
+
+**Did not go well:** the full `gate_tests` sweep still routinely outlasts a 30-minute slot in this environment; nothing new about that today, but it remains the reason this entry cannot honestly claim an end-to-end clean preflight.
+
+**Changing next cycle:** none.
+
+Nothing pushed to main this cycle beyond this log entry; no code, price or page touched, no deploy triggered.
+
+---
+
 ## 2026-09-29, PM check-in (16:2x slot: two content gates from an earlier handoff found already fixed by Phil and a concurrent session; own duplicate work discarded; the abandoned Kids Bedroom claim's ledger entry corrected rather than left ambiguous)
 
 NEXT FOR THE OPERATOR: Kids Bedroom is already reclaimed and in progress (16:24, fresh session); no action needed there. When it lands, the next tied-smallest unclaimed rooms are Nursery, Patio or Deck, Primary Bedroom, Workshop, all 6 zones. B9 remains the only unblocked, gated, operator-actionable stream on the board.
