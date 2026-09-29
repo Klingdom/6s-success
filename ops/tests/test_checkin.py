@@ -22,6 +22,7 @@ is caught and a legitimate shrink can never trip it again.
 
     python ops/tests/test_checkin.py
 """
+import datetime as _dt
 import os
 import sys
 
@@ -233,15 +234,33 @@ def main() -> int:
             fails.append("OUTCOME_KEYS names %r, which MEANING does not "
                          "explain" % k)
 
+    # minutes_since_last_checkin: the throttle found 2026-09-29, hourly-brief.yml's
+    # push trigger firing ops/checkin.py on every commit (13 to 20 minutes
+    # apart, not hourly) with no floor of its own, unlike hourly_brief.py's
+    # matching MIN_SEND_INTERVAL_MINUTES.
+    anchor = _dt.datetime(2026, 9, 29, 12, 0)
+    got = checkin.minutes_since_last_checkin({"at": "2026-09-29 11:40"}, anchor)
+    if got is None or abs(got - 20.0) > 0.01:
+        fails.append("minutes_since_last_checkin did not compute a 20 minute "
+                     "gap correctly: %r" % (got,))
+    if checkin.minutes_since_last_checkin({}, anchor) is not None:
+        fails.append("minutes_since_last_checkin did not return None with no "
+                     "previous 'at' at all")
+    if checkin.minutes_since_last_checkin({"at": "not a timestamp"}, anchor) is not None:
+        fails.append("minutes_since_last_checkin did not return None on an "
+                     "unparseable previous 'at'")
+
     if fails:
         print("FAIL")
         for f in fails:
             print("  -", f)
         return 1
-    print("PASS: 26 assertions, commits_24h_text, parse_undelivered, "
-         "carry_forward, repo_product_count and next_action (including the "
+    print("PASS: 29 assertions, commits_24h_text, parse_undelivered, "
+         "carry_forward, repo_product_count, next_action (including the "
          "products_live==0 fix, the hardcoded-159 fix, and the "
-         "carried-forward-products_live-on-a-blind-run fix) all correct")
+         "carried-forward-products_live-on-a-blind-run fix) and "
+         "minutes_since_last_checkin (the push-trigger flooding fix) all "
+         "correct")
     return 0
 
 

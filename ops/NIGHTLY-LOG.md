@@ -42863,3 +42863,11 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+## 2026-09-29, PM check-in (30 minute triage, previous work confirmed finished, a real check-in flood found and throttled)
+
+Previous work was genuinely finished: `checks.yml` run 1572 and `publish-image.yml` run 447 both confirmed success on the fix commit via the GitHub API. B9 (claim a tied-smallest room) is hours of work, left for the operator, still unclaimed.
+
+Found and fixed instead: `hourly-brief.yml`'s push trigger fires `ops/checkin.py` on every commit, not hourly, and unlike `ops/hourly_brief.py` it had no throttle, so `CHECKIN-LOG.md` gained a near duplicate entry every 13 to 20 minutes all morning. Added a 50 minute floor mirroring the brief's own pattern, proved fail then pass live (ran twice back to back, second skipped; forced an old timestamp, confirmed it records again). New test coverage, `preflight.py` clean, 26 standing warnings. Pushed.
+
+**Next:** the same B9 handoff stands.

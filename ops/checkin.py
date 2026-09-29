@@ -13,8 +13,20 @@ says so plainly and exits non-zero, because "I was busy" and "something
 improved" are different claims and this repository has produced a lot of the
 first while reporting the second: 427 commits in a week against $0 of revenue.
 
-    python ops/checkin.py            measure, record, print
-    python ops/checkin.py --quiet    record without the narrative
+hourly-brief.yml fires this on every push to main, not hourly (GitHub's
+scheduler runs that cron 4 to 5 hours late, so a push trigger fills the gap,
+the same workaround ops/hourly_brief.py itself documents). hourly_brief.py
+throttles its own send to roughly once every 50 minutes so Phil does not get
+the brief 150 times a day; this file had no matching throttle, so
+CHECKIN-LOG.md gained a near-duplicate "Nothing measurable moved" entry on
+every one of a day's ~150 commits instead of once an hour, found 2026-09-29
+from entries 13 to 20 minutes apart all afternoon. Mirrors hourly_brief.py's
+MIN_SEND_INTERVAL_MINUTES pattern exactly, using this file's own persisted
+"at" field rather than a second state file.
+
+    python ops/checkin.py            measure, record, print (throttled)
+    python ops/checkin.py --quiet    record without the narrative (throttled)
+    python ops/checkin.py --force    bypass the throttle (manual/debug use)
 """
 from __future__ import annotations
 
@@ -215,6 +227,28 @@ def load_prev() -> dict:
     return {}
 
 
+# Matches ops/hourly_brief.py's MIN_SEND_INTERVAL_MINUTES: the workflow can
+# fire as often as commits land, but the actual record stays roughly hourly.
+MIN_CHECKIN_INTERVAL_MINUTES = 50
+
+
+def minutes_since_last_checkin(prev: dict, now: dt.datetime) -> float | None:
+    """None if there is no readable previous "at", else the real gap in minutes.
+
+    Pure so a test can prove the boundary without touching the filesystem or
+    the real clock. "at" is naive local time (measure()'s own format), so
+    `now` must be the same kind of naive datetime, not an aware one.
+    """
+    at = prev.get("at")
+    if not at:
+        return None
+    try:
+        last = dt.datetime.strptime(at, "%Y-%m-%d %H:%M")
+    except Exception:                                            # noqa: BLE001
+        return None
+    return (now - last).total_seconds() / 60.0
+
+
 def carry_forward(key: str, now: dict, prev: dict) -> dict:
     """Keep the last MEASURED value of `key`, and say when it was taken.
 
@@ -313,8 +347,18 @@ def next_action(persisted: dict, want_products) -> str:
 
 def main() -> int:
     quiet = "--quiet" in sys.argv
-    now = measure()
+    force = "--force" in sys.argv
     prev = load_prev()
+
+    if not force:
+        gap = minutes_since_last_checkin(prev, dt.datetime.now())
+        if gap is not None and gap < MIN_CHECKIN_INTERVAL_MINUTES:
+            print("skip: recorded %.1f min ago, next eligible in %.1f min "
+                  "(throttled so a push-triggered run cannot flood "
+                  "CHECKIN-LOG.md)" % (gap, MIN_CHECKIN_INTERVAL_MINUTES - gap))
+            return 0
+
+    now = measure()
 
     moved, flat = [], []
     for k, v in now.items():
