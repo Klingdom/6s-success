@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, cycle addendum (16:5x: the 16:4x push conflicted with a concurrent twin PM cycle, merged rather than forced)
+
+`ops/ship.py` refused the 16:4x entry's push: a twin PM check-in (the "previous work not finished" entry two below) had landed on origin first, with a real content conflict in `ops/NIGHTLY-LOG.md` (both cycles prepended at the same line). Merged rather than forced, per STEP 8: kept both entries, this cycle's own on top since it was written last, the twin's directly below it, both above the 16:2x entry the twin's own text refers to. `EXECUTIVE-DASHBOARD-LIVE.md`, `LEARNINGS.md`, `STATUS.md`, `ops/dashboard.html`, `ops/state.json`, `site/build-id.txt`, `site/sitemap.xml` all auto-merged with no conflict; regenerated `build_id.py`, `build_seo.py` and `dashboard.py` directly afterward rather than trusting the auto-merge, per STEP 8's own preference for regenerating a generated file over a hand-resolved one, and all three came back byte-identical to the merged state, confirming it rather than changing it. Re-checked `gate_sitemap_complete`, `gate_build_id_current`, `gate_generator_ownership`, `gate_b9_claims_current`, `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_dashboard_working_tree` and `gate_conflict_markers` directly: all clean. `fix_dashes.py --check`: 0/0. Pushed (`b6176291d`). The background full `preflight.py` from the 16:4x entry was still on `gate_tests` when this addendum was written; still not claiming the wider suite clean end to end, per CLAUDE.md 0.4.
+
+---
+
 ## 2026-09-29, PM check-in (16:4x slot, previous work confirmed finished, nothing new unblocked; B9 continues unchanged)
 
 NEXT FOR THE OPERATOR: continue B9, claim the next tied-smallest unclaimed room (Nursery, Patio or Deck, Primary Bedroom or Workshop, all 6 zones), because Kids Bedroom is already claimed and in progress and B9 remains the only unblocked, gated, operator-actionable stream on the board.
